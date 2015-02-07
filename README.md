@@ -1,6 +1,6 @@
 # Material Design Colors In XAML Toolkit
 
-Google Material Design Colors Swatches Specified in XAML
+Google Material Design Colors Swatches Specified in XAML.
 
 # What's Included?
 
