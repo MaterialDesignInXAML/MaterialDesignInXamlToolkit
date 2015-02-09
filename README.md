@@ -20,4 +20,9 @@ Google Material Design Colors Swatches Specified in XAML.
  
 # Why?
 
-I intend to create a Material Design TabControl theme for [Dragablz](https://github.com/ButchersBoy/Dragablz). The first step being getting hold of all the colours, but I guess the resources might come in handy to others. 
+In creating a Material Design TabControl theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), the first step was getting hold of all the colours.  The resulting resource dictionaries work well stand alone, so are completely re-usable. 
+
+And here's the proof in the pudding, [Dragablz](https://github.com/ButchersBoy/Dragablz) themed with Material Design styling and colours:
+
+![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo1.gif "Material Design style")
+
