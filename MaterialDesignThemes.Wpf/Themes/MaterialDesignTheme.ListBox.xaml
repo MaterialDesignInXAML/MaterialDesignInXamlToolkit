@@ -68,8 +68,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignCardsListBox" TargetType="{x:Type ListBox}">
-        <Setter Property="Margin" Value="8 8 0 8"/>
+    <Style x:Key="MaterialDesignCardsListBox" TargetType="{x:Type ListBox}">        
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>

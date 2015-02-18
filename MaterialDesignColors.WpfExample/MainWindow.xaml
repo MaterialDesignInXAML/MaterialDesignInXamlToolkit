@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
-        Title="Material Design Colors Palette" Height="350" Width="525">
+        Title="Material Design Colors Palette" Height="350" Width="525"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -12,11 +13,15 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Margin="8 8 8 8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <ListBox Style="{StaticResource MaterialDesignCardsListBox}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type system:DateTime}">
@@ -59,6 +64,10 @@
             <system:DateTime>1972-12-12 12:31:00</system:DateTime>
             <system:DateTime>1973-11-17 12:31:00</system:DateTime>
         </ListBox>
-        <wpfExample:Palette Grid.Column="1" Margin="0,-8,0,8" />
+        <wpfExample:Palette Grid.Row="0" Grid.Column="1" Margin="2 0 0 0"/>
+        <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}"
+                Margin="0 8 0 0">
+            NOTHING
+        </Button>
     </Grid>
 </Window>
