@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="MahMaterialDragablzMashUp.Mah"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <TextBlock TextWrapping="Wrap">All controls using MahApps themes, will use Material Design pallete.</TextBlock>
+        <CheckBox Margin="0 8 0 0">CheckBox</CheckBox>
+        <ListBox Margin="0 8 0 0">
+            <ListBoxItem IsSelected="True">MahApps</ListBoxItem>
+            <ListBoxItem>Dragablz</ListBoxItem>
+            <ListBoxItem>Material</ListBoxItem>
+        </ListBox>
+        <controls:ToggleSwitch IsChecked="True" HorizontalAlignment="Left" />
+        <Button Width="100" Margin="0 8 0 0" Content="Nice" HorizontalAlignment="Left"
+                Style="{DynamicResource AccentedSquareButtonStyle}" />
+    </StackPanel>
+</UserControl>

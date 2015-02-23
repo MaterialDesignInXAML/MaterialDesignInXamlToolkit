@@ -1,0 +1,26 @@
+﻿<controls:MetroWindow x:Class="MahMaterialDragablzMashUp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:mahMaterialDragablzMashUp="clr-namespace:MahMaterialDragablzMashUp"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Title="Material-MahApps-Dragablz Mash Up" Height="350" Width="525">
+    <dragablz:TabablzControl>
+        <dragablz:TabablzControl.InterTabController>
+            <dragablz:InterTabController />
+        </dragablz:TabablzControl.InterTabController>        
+        <TabItem Header="CARDS">
+            <mahMaterialDragablzMashUp:Cards Margin="8" />
+        </TabItem>
+        <TabItem Header="BUTTONS">
+            <mahMaterialDragablzMashUp:Buttons Margin="8" />
+        </TabItem>
+        <TabItem Header="PALETTE">
+            <mahMaterialDragablzMashUp:Palette Margin="16" />
+        </TabItem>
+        <TabItem Header="MAHAPPS">
+            <mahMaterialDragablzMashUp:Mah Margin="8" />
+        </TabItem>
+    </dragablz:TabablzControl>
+</controls:MetroWindow>

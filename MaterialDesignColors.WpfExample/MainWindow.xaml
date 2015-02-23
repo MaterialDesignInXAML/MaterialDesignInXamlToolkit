@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
-        Title="Material Design Colors Palette" Height="480" Width="640"
+        Title="Material Design in XAML" Height="480" Width="640"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Window.Resources>
         <ResourceDictionary>
