@@ -8,9 +8,9 @@
     <Grid>
         <Grid.Resources>
             <Style TargetType="TextBlock">
-                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontWeight" Value="DemiBold" />
-                <Setter Property="Margin" Value="2" />
+                <Setter Property="Margin" Value="4" />
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
