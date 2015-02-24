@@ -11,7 +11,7 @@
         </Setter>
     </Style>
 
-    <!-- TODO freeze -->
+    <!-- TODO freeze, share -->
     <SolidColorBrush x:Key="AttentionToActionBrush" Color="Black" Opacity=".23" />
 
     <Style x:Key="MaterialDesignRaisedButton" TargetType="{x:Type Button}">
@@ -158,8 +158,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-
 
     <Style x:Key="MaterialDesignFloatingActionButton" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>

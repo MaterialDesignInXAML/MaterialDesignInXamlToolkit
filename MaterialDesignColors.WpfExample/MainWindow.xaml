@@ -7,9 +7,10 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Window.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+            <ResourceDictionary.MergedDictionaries>                
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -113,6 +114,16 @@
             <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 0">
                 NOTHING
             </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0 8 0 0" Orientation="Horizontal">
+            <CheckBox Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionLightCheckBox}"/>
+            <CheckBox Content="H" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionCheckBox}"/>
+            <CheckBox Content="E" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionDarkCheckBox}"/>
+            <CheckBox Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionAccentCheckBox}"/>
+            <CheckBox Content="K" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionCheckBox}" IsEnabled="False"/>
+            <CheckBox Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionCheckBox}">
+                <Image Source="Resources/ProfilePic.jpg"></Image>
+            </CheckBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0 8 0 0"
                     HorizontalAlignment="Right">
