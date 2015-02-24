@@ -3,7 +3,7 @@
 * Google Material Design Color Swatches Specified in XAML.
 * Some basic WPF themes
 
-![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo2.png "Material Design Themes")
+![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo3.gif "Material Design Themes")
 
 # What's Included?
 
@@ -33,7 +33,5 @@ In creating a Material Design TabControl theme for [Dragablz](https://github.com
 
 Then I took a step further and created a few simple styles which turned out looking OK.
 
-Here's [Dragablz](https://github.com/ButchersBoy/Dragablz) themed with Material Design styling and colours:
-
-![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo1.gif "Material Design style")
+![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo2.png "Material Design Themes")
 
