@@ -1,18 +1,16 @@
 # Material Design In XAML Toolkit
 
-* Google Material Design Color Swatches Specified in XAML.
-* Some basic WPF themes
-
 ![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo31.gif "Material Design Themes")
 
-# What's Included?
+# Summary
 
- * XAML Resources for Google swatches displayed [here](http://www.google.co.uk/design/spec/style/color.html#color-ui-color-application)
-* A few WPF themes used to generate the above example 
-* Small sample apps showing how to include chosen colours and use the resources:
+ * XAML Resources for [Google swatches displayed](http://www.google.co.uk/design/spec/style/color.html#color-ui-color-application)
+ * WPF control themes
+ * Small sample apps showing how to include chosen colours and use the resources:
    * WPF
    * WinRT
- * Hacky console app which was used to generate the XAML
+ * Compatible with [MahApps](http://mahapps.com) and [Dragablz](https://github.com/ButchersBoy/Dragablz).  See demo app in source and [Mash Up! blog](http://dragablz.net/2015/02/25/material-design-in-xaml-mash-up/).
+ * Inclused hacky console app which was used to generate the XAML colour definitions
 
 # How Can I Use The Colours?
 
@@ -27,7 +25,7 @@
 * Here's the [Nuget package](https://www.nuget.org/packages/MaterialDesignThemes/).
 * Or fire up the MaterialDesignColors.WpfExample project in the source code.
 
-# Why?
+# A Brief History
 
 In creating a Material Design TabControl theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), the first step was getting hold of all the colours.  The resulting resource dictionaries work well stand alone, so are completely re-usable. 
 
