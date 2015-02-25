@@ -54,10 +54,10 @@
             </CheckBox>
         </WrapPanel>
         <WrapPanel Grid.Row="2">
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 8" Content="LIGHT" Width="76" />
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 8" Content="MID" Width="76" />
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 8" Content="DARK" Width="76" />
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 8" Content="ACCENT" Width="76" />
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 8" Content="LIGHT" Width="80" />
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 8" Content="MID" Width="80" />
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 8" Content="DARK" Width="80" />
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 8" Content="ACCENT" Width="80" />
         </WrapPanel>
         <WrapPanel Grid.Row="3">
             <StackPanel>
@@ -75,6 +75,15 @@
                 <RadioButton IsChecked="True">Check</RadioButton>
                 <RadioButton>Out</RadioButton>
                 <RadioButton>Radio buttons</RadioButton>
+            </StackPanel>
+            <StackPanel Margin="8 0 0 0">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
+                        <Setter Property="Margin" Value="0 4 0 4" />
+                    </Style>
+                </StackPanel.Resources>
+                <ToggleButton />
+                <ToggleButton />                
             </StackPanel>
         </WrapPanel>
         <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0 8 0 0" HorizontalAlignment="Right">

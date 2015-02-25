@@ -4,6 +4,16 @@
     <!-- TODO freeze, share -->
     <SolidColorBrush x:Key="AttentionToActionBrush" Color="Black" Opacity=".23" />
 
+    <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="MaterialDesignActionToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
@@ -126,6 +136,81 @@
         <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignSwitchToggleButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="Checked">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="Thumb">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="23.5">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="Unchecked">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="Thumb">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="23.5"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Viewbox Width="34">
+                        <Grid>
+                            <Rectangle x:Name="Track" Fill="Black" HorizontalAlignment="Left" Height="15" Margin="4.211,5,-4.211,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="40" RadiusY="7.5" RadiusX="7.5" Opacity="0.26"/>
+                            <Ellipse x:Name="Thumb" Fill="#FFFAFAFA" HorizontalAlignment="Left" Height="25" Margin="0,0,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.5,0.5">
+                                <Ellipse.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Ellipse.RenderTransform>
+                                <Ellipse.Effect>
+                                    <DropShadowEffect BlurRadius="5" ShadowDepth="1" Direction="270" Color="#CCCCCC"/>
+                                </Ellipse.Effect>
+                            </Ellipse>
+                        </Grid>
+                    </Viewbox>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="ToggleButton.Checked">
+                            <BeginStoryboard Storyboard="{StaticResource Checked}"/>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                            <BeginStoryboard Storyboard="{StaticResource Unchecked}"/>
+                        </EventTrigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Thumb" Property="Fill" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter TargetName="Track" Property="Fill" Value="{DynamicResource PrimaryHueLightBrush}" />                            
+                        </Trigger>
+                        <Trigger Property="Button.IsDefaulted" Value="true"/>
+                        <Trigger Property="IsMouseOver" Value="true"/>
+                        <Trigger Property="IsPressed" Value="true"/>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Thumb" Property="Fill" Value="#BDBDBD" />
+                            <Setter TargetName="Track" Property="Fill">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="Black" Opacity=".12" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>
