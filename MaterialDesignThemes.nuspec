@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>MaterialDesignThemes</id>
     <version>0.0.0.0</version>
@@ -15,7 +15,7 @@
     <tags>WPF XAML WinRT Material Design Theme Colour Color UI UX</tags>
   </metadata>
   <files>
-    <file src="MaterialDesignThemes.Wpf\bin\Release\MaterialDesignThemes.Wpf.dll" target="lib\net40" />
-    <file src="MaterialDesignThemes.Wpf\bin\Release\MaterialDesignThemes.Wpf.dll" target="lib\net45" />
+    <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.dll" target="lib\net40" />
+    <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.dll" target="lib\net45" />
   </files>  
 </package>
