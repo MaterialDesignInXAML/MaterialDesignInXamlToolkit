@@ -3,7 +3,7 @@
 * Google Material Design Color Swatches Specified in XAML.
 * Some basic WPF themes
 
-![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo3.gif "Material Design Themes")
+![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo31.gif "Material Design Themes")
 
 # What's Included?
 
