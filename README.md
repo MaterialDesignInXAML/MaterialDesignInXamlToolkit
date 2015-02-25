@@ -10,7 +10,7 @@
    * WPF
    * WinRT
  * Compatible with [MahApps](http://mahapps.com) and [Dragablz](https://github.com/ButchersBoy/Dragablz).  See demo app in source and [Mash Up! blog](http://dragablz.net/2015/02/25/material-design-in-xaml-mash-up/).
- * Inclused hacky console app which was used to generate the XAML colour definitions
+ * Includes hacky console app which was used to generate the XAML colour definitions
 
 # How Can I Use The Colours?
 
