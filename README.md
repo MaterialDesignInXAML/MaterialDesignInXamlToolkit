@@ -33,5 +33,5 @@ In creating a Material Design TabControl theme for [Dragablz](https://github.com
 
 Then I took a step further and created a few simple styles which turned out looking OK.
 
-![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo22.png "Material Design Themes")
+![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo23.png "Material Design Themes")
 
