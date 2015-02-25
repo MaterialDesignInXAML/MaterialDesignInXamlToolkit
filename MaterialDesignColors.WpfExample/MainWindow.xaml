@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -23,6 +24,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -103,20 +105,20 @@
                     </Canvas>
                 </Viewbox>
             </Button>
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 0">
-                NOTHING
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 0" Width="76">
+                LIGHT
             </Button>
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 0">
-                NOTHING
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 0" Width="76">
+                MID
             </Button>
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 0">
-                NOTHING
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 0" Width="76">
+                DARK
             </Button>
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 0">
-                NOTHING
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 0" Width="76">
+                ACCENT
             </Button>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0 8 0 0" Orientation="Horizontal">
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0 8 0 0" Grid.ColumnSpan="3" Orientation="Horizontal">
             <ToggleButton Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionLightToggleButton}"/>
             <ToggleButton Content="H" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}"/>
             <!-- checkbox style same as toggle button -->
@@ -126,8 +128,20 @@
             <ToggleButton Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}">
                 <Image Source="Resources/ProfilePic.jpg"></Image>
             </ToggleButton>
+            <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
+                Radio    
+            </RadioButton>
+            <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center">
+                Ga Ga
+            </RadioButton>
+            <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center">
+                Check
+            </CheckBox>
+            <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
+                Mate
+            </CheckBox>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0 8 0 0"
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0 8 0 0"
                     HorizontalAlignment="Right">
             <Button Style="{StaticResource MaterialDesignFlatButton}">ACCEPT</Button>
             <Button Style="{StaticResource MaterialDesignFlatButton}">CANCEL</Button>

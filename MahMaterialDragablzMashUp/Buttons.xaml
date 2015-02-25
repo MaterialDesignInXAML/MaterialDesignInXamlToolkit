@@ -11,6 +11,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="0" Orientation="Horizontal" Margin="0 8 0 0">
             <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}" Margin="0 0 8 8" HorizontalAlignment="Left">
@@ -53,12 +54,30 @@
             </CheckBox>
         </WrapPanel>
         <WrapPanel Grid.Row="2">
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 8" Content="NOTHING"/>
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 8" Content="NOTHING"/>
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 8" Content="NOTHING"/>
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 8" Content="NOTHING"/>
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 8" Content="LIGHT" Width="76" />
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 8" Content="MID" Width="76" />
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 8" Content="DARK" Width="76" />
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 8" Content="ACCENT" Width="76" />
         </WrapPanel>
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0 8 0 0" HorizontalAlignment="Right">
+        <WrapPanel Grid.Row="3">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}" />
+                </StackPanel.Resources>
+                <CheckBox>Check</CheckBox>
+                <CheckBox>Out</CheckBox>
+                <CheckBox>Check boxes</CheckBox>
+            </StackPanel>
+            <StackPanel Margin="8 0 0 0">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}" />
+                </StackPanel.Resources>
+                <RadioButton IsChecked="True">Check</RadioButton>
+                <RadioButton>Out</RadioButton>
+                <RadioButton>Radio buttons</RadioButton>
+            </StackPanel>
+        </WrapPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0 8 0 0" HorizontalAlignment="Right">
             <Button Style="{StaticResource MaterialDesignFlatButton}" Content="ACCEPT"/>
             <Button Style="{StaticResource MaterialDesignFlatButton}" Content="CANCEL"/>
         </StackPanel>
