@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -11,7 +12,7 @@
         </Setter>
     </Style>
 
-    <!-- TODO freeze, share -->
+    <!-- TODO freeze, share, theme -->
     <SolidColorBrush x:Key="AttentionToActionBrush" Color="Black" Opacity=".23" />
 
     <Style x:Key="MaterialDesignRaisedButton" TargetType="{x:Type Button}">
@@ -23,7 +24,7 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="8 2 8 2"/>
+        <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
         <Setter Property="Template">
             <Setter.Value>
@@ -34,16 +35,13 @@
                                 <DropShadowEffect BlurRadius="8" ShadowDepth="2.5" Direction="270" Color="Black" Opacity=".23"/>
                             </Border.Effect>
                         </Border>
-                        <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2" Padding="{TemplateBinding Padding}">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>    
+                        <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
+                            <wpf:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
+                                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                              Padding="{TemplateBinding Padding}" 
+                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />  
                         </Border>                        
-                        <Border x:Name="ClickAnimationEllipse"                  
-                                 Background="{StaticResource AttentionToActionBrush}"
-                                 IsHitTestVisible="False"
-                                 MaxWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"                                 
-                                 MaxHeight="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
-                                 HorizontalAlignment="Center" Height="0" VerticalAlignment="Center" Width="0" Opacity="0">
-                        </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefaulted" Value="true">
@@ -54,26 +52,7 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
-                        </Trigger>
-                        <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
-                            <BeginStoryboard>
-                                <Storyboard TargetName="ClickAnimationEllipse">
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)">
-                                        <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="150"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)">
-                                        <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="150"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
-                                        <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
+                        </Trigger>                        
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -107,21 +86,18 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="8 2 8 2"/>
+        <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
-                        <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2" Padding="{TemplateBinding Padding}">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-                        <Border x:Name="ClickAnimationEllipse"                  
-                                 Background="{StaticResource AttentionToActionBrush}"
-                                 IsHitTestVisible="False"
-                                 MaxWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"                                 
-                                 MaxHeight="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
-                                 HorizontalAlignment="Center" Height="0" VerticalAlignment="Center" Width="0" Opacity="0">
+                        <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
+                            <wpf:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
+                                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                              Padding="{TemplateBinding Padding}" 
+                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />                            
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -134,25 +110,6 @@
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
-                        <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
-                            <BeginStoryboard>
-                                <Storyboard TargetName="ClickAnimationEllipse">
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)">
-                                        <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="150"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)">
-                                        <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="150"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
-                                        <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -180,44 +137,21 @@
                                 <DropShadowEffect BlurRadius="8" ShadowDepth="2.5" Direction="270" Color="Black" Opacity=".23"/>
                             </Ellipse.Effect>
                         </Ellipse>
-                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Ellipse x:Name="ClickAnimationEllipse"                  
-                                 Fill="{StaticResource AttentionToActionBrush}"
-                                 IsHitTestVisible="False"
-                                 MaxWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"
-                                 MaxHeight="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
-                                 HorizontalAlignment="Center" Height="0" VerticalAlignment="Center" Width="0" Opacity="0">
-                        </Ellipse>
+                        <wpf:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
+                                                          Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
+                                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                          Padding="{TemplateBinding Padding}" 
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />                            
+                        <Ellipse x:Name="GeometryEllipse" Fill="Transparent" IsHitTestVisible="False" Focusable="False" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefaulted" Value="true">
                             <Setter Property="Stroke" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Stroke" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />
-                        </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
-                        </Trigger>
-                        <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
-                            <BeginStoryboard>
-                                <Storyboard TargetName="ClickAnimationEllipse">
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)">
-                                        <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="40"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)">
-                                        <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="40"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
-                                        <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
+                        </Trigger>                        
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

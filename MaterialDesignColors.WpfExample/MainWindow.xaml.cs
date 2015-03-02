@@ -24,5 +24,11 @@ namespace MaterialDesignColors.WpfExample
         {
             InitializeComponent();
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Just checking we haven't suppressed the button.");
+            
+        }
     }
 }
