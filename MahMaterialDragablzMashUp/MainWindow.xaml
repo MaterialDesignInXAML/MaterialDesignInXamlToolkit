@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
-        xmlns:mahMaterialDragablzMashUp="clr-namespace:MahMaterialDragablzMashUp"
+        xmlns:mahMaterialDragablzMashUp="clr-namespace:MahMaterialDragablzMashUp"        
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Title="Material-MahApps-Dragablz Mash Up" Height="350" Width="525">
-    <dragablz:TabablzControl>
+    <dragablz:TabablzControl TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                             Background="{DynamicResource MaterialDesignPaper}">
         <dragablz:TabablzControl.InterTabController>
             <dragablz:InterTabController />
         </dragablz:TabablzControl.InterTabController>        

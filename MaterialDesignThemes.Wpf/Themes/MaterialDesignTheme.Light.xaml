@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- plan is to add all of the light/dark specific brushes, quite granular at first. can then consolodate any repition later on if necessary -->
+    
+    <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FFfafafa"/>
+    <SolidColorBrush x:Key="MaterialDesignBody" Color="#DD000000"/>
+    
+    <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89000000" />
+    <SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#42000000" />
+    
+</ResourceDictionary>
