@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="MaterialDesignColors.WpfExample.TextFields"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+			<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+				<Setter Property="HorizontalAlignment" Value="Stretch" />
+				<Setter Property="Margin" Value="0 8 0 8" />
+			</Style>
+			<Style TargetType="{x:Type Viewbox}">
+				<Setter Property="Width" Value="18" />
+				<Setter Property="Height" Value="18" />
+				<Setter Property="Margin" Value="0 0 8 0" />
+				<Setter Property="VerticalAlignment" Value="Center" />
+			</Style>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<Grid Margin="16">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="150" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Viewbox Grid.Row="0" Grid.Column="0">
+			<Canvas Width="24" Height="24">
+				<Path Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" 
+					  Fill="{Binding ElementName=NameTextBox, Path=BorderBrush}" />
+			</Canvas>
+		</Viewbox>
+		<TextBox Grid.Row="0" Grid.Column="1" 
+				 x:Name="NameTextBox"
+				 wpf:TextField.Hint="Name">
+			<TextBox.Text>
+				<Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+					<Binding.ValidationRules>
+						<wpfExample:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+					</Binding.ValidationRules>
+				</Binding>
+			</TextBox.Text>
+		</TextBox>
+		<Viewbox Grid.Row="1" Grid.Column="0">
+			<Canvas Width="24" Height="24">
+				<Path Data="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" 
+					  Fill="{Binding ElementName=PhoneTextBox, Path=BorderBrush}" />
+			</Canvas>
+		</Viewbox>
+		<TextBox Grid.Row="1" Grid.Column="1" 
+				 x:Name="PhoneTextBox"
+				 wpf:TextField.Hint="Phone"
+				 />
+		<Viewbox Grid.Row="2" Grid.Column="0">
+			<Canvas Width="24" Height="24">
+				<Path Data="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9M13,10V6H11V10H13M13,14V12H11V14H13Z" 
+					  Fill="{Binding ElementName=CommentTextBox, Path=BorderBrush}" />
+			</Canvas>
+		</Viewbox>
+		<TextBox Grid.Row="2" Grid.Column="1" 		
+				 x:Name="CommentTextBox"
+				 wpf:TextField.Hint="Comment"
+				 />
+	</Grid>
+</UserControl>

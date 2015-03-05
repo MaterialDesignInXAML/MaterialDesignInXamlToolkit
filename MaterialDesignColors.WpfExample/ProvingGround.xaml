@@ -2,103 +2,52 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-			 Background="White">
-	<UserControl.Resources>
-		<Style x:Key="FocusVisual">
-			<Setter Property="Control.Template">
-				<Setter.Value>
-					<ControlTemplate>
-						<Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style x:Key="ToggleButtonStyle1" TargetType="{x:Type ToggleButton}">
-			<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>									
-			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="HorizontalContentAlignment" Value="Left"/>
-			<Setter Property="VerticalContentAlignment" Value="Top"/>
-			<Setter Property="Padding" Value="1"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type ToggleButton}">
-						<ControlTemplate.Resources>
-							<Storyboard x:Key="Checked">
-								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="Thumb">
-									<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-									<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="23.5">
-										<EasingDoubleKeyFrame.EasingFunction>
-											<QuadraticEase EasingMode="EaseOut"/>
-										</EasingDoubleKeyFrame.EasingFunction>
-									</EasingDoubleKeyFrame>
-								</DoubleAnimationUsingKeyFrames>
-							</Storyboard>
-							<Storyboard x:Key="Unchecked">
-								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="Thumb">
-									<EasingDoubleKeyFrame KeyTime="0" Value="23.5"/>
-									<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
-										<EasingDoubleKeyFrame.EasingFunction>
-											<QuadraticEase EasingMode="EaseOut"/>
-										</EasingDoubleKeyFrame.EasingFunction>
-									</EasingDoubleKeyFrame>
-								</DoubleAnimationUsingKeyFrames>
-							</Storyboard>
-						</ControlTemplate.Resources>		 				
-						<Viewbox Width="34">
-							<Grid>
-								<Rectangle x:Name="Track" Fill="Black" HorizontalAlignment="Left" Height="15" Margin="4.211,5,-4.211,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="40" RadiusY="7.5" RadiusX="7.5" Opacity="0.26"/>
-								<Ellipse x:Name="Thumb" Fill="#FFFAFAFA" HorizontalAlignment="Left" Height="25" Margin="0,0,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.5,0.5">
-									<Ellipse.RenderTransform>
-										<TransformGroup>
-											<ScaleTransform/>
-											<SkewTransform/>
-											<RotateTransform/>
-											<TranslateTransform/>
-										</TransformGroup>
-									</Ellipse.RenderTransform>
-									<Ellipse.Effect>
-										<DropShadowEffect BlurRadius="5" ShadowDepth="1" Direction="270" Color="#CCCCCC"/>
-									</Ellipse.Effect>
-								</Ellipse>
-							</Grid>
-						</Viewbox>													
-						<ControlTemplate.Triggers>
-							<EventTrigger RoutedEvent="ToggleButton.Checked">
-								<BeginStoryboard Storyboard="{StaticResource Checked}"/>
-							</EventTrigger>
-							<EventTrigger RoutedEvent="ToggleButton.Unchecked">
-								<BeginStoryboard Storyboard="{StaticResource Unchecked}"/>
-							</EventTrigger>
-							<Trigger Property="IsChecked" Value="True">
-								<Setter TargetName="Thumb" Property="Fill" Value="LightBlue" />
-								<Setter TargetName="Track" Property="Fill">
-									<Setter.Value>
-										<SolidColorBrush Color="LightBlue" Opacity=".5" />
-									</Setter.Value>									
-								</Setter>
-							</Trigger>
-							<Trigger Property="Button.IsDefaulted" Value="true"/>
-							<Trigger Property="IsMouseOver" Value="true"/>
-							<Trigger Property="IsPressed" Value="true"/>
-							<Trigger Property="IsEnabled" Value="false">							
-								<Setter TargetName="Thumb" Property="Fill" Value="#BDBDBD" />								
-								<Setter TargetName="Track" Property="Fill">
-									<Setter.Value>
-										<SolidColorBrush Color="Black" Opacity=".12" />
-									</Setter.Value>									
-								</Setter>
-							</Trigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-	</UserControl.Resources>
+			 Background="{DynamicResource MaterialDesignPaper}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
 
-    <Grid>
-        <ToggleButton Style="{DynamicResource ToggleButtonStyle1}" />            
-    </Grid>
+                <!-- light or dark theme -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+
+                <!-- primary color -->
+                <ResourceDictionary>
+                    <!-- include your primary palette -->
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.LightBlue.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                    <!-- 
+                            include three hues from the primary palette (and the associated forecolours).  
+                            Do not rename, keep in sequence; light to dark. 
+                        -->
+                    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource Primary100}"/>
+                    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary100Foreground}"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource Primary500}"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}"/>
+                </ResourceDictionary>
+
+                <!-- secondary colour -->
+                <ResourceDictionary>
+                    <!-- include your secondary pallette -->
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Yellow.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+
+                    <!-- include a single secondary accent color (and the associated forecolour) -->
+                    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{StaticResource Accent700}"/>
+                    <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent700Foreground}"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+    
 </UserControl>

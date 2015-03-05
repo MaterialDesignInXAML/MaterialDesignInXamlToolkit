@@ -9,5 +9,7 @@
     
     <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89FFFFFF" />
     <SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#4CFFFFFF" />
+	
+	<SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#89FFFFFF" />
     
 </ResourceDictionary>

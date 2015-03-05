@@ -16,14 +16,18 @@ using System.Windows.Shapes;
 namespace MaterialDesignColors.WpfExample
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Buttons.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Buttons : UserControl
     {
-        public MainWindow()
+        public Buttons()
         {
             InitializeComponent();
         }
 
+	    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+	    {
+			System.Diagnostics.Debug.WriteLine("Just checking we haven't suppressed the button.");
+		}
     }
 }

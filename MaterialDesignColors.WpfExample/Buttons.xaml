@@ -1,0 +1,155 @@
+﻿<UserControl x:Class="MaterialDesignColors.WpfExample.Buttons"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Margin="8 8 8 8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListBox Style="{StaticResource MaterialDesignCardsListBox}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type system:DateTime}">
+                    <Grid Height="80">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="140" />
+                        </Grid.ColumnDefinitions>
+                        <Border Background="{DynamicResource PrimaryHueLightBrush}" TextBlock.Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                                CornerRadius="2 0 0 2"
+                                Padding="8">
+                            <TextBlock Text="{Binding StringFormat=yyy}"  />
+                        </Border>
+                        <StackPanel Margin="8" Grid.Column="1" HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding StringFormat=m}" FontWeight="Bold" />
+                            <TextBlock Text="{Binding StringFormat=T}" />
+                        </StackPanel>
+                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                                Grid.Column="1" Margin="-20 0 0 0" HorizontalAlignment="Left">
+                            <Viewbox Width="24" Height="24">
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="Black" />
+                                </Canvas>
+                            </Viewbox>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <system:DateTime>2011-01-01 12:31:00</system:DateTime>
+            <system:DateTime>2012-06-30 12:31:00</system:DateTime>
+            <system:DateTime>2013-12-12 12:31:00</system:DateTime>
+            <system:DateTime>2014-11-17 12:31:00</system:DateTime>
+            <system:DateTime>1970-01-01 12:31:00</system:DateTime>
+            <system:DateTime>1971-06-30 12:31:00</system:DateTime>
+            <system:DateTime>1972-12-12 12:31:00</system:DateTime>
+            <system:DateTime>1973-11-17 12:31:00</system:DateTime>
+        </ListBox>
+        <GridSplitter Grid.Column="1" Grid.Row="0" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns" Width="4" />
+        <wpfExample:Palette Grid.Row="0" Grid.Column="2" Margin="8 0 0 0"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0 8 0 0">
+            <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    Margin="0 0 8 0" HorizontalAlignment="Left">
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
+                    Margin="0 0 8 0" HorizontalAlignment="Left">
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                    Margin="0 0 8 0" HorizontalAlignment="Left">
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                    Margin="0 0 8 0" HorizontalAlignment="Left">
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 0" Width="80">
+                LIGHT
+            </Button>
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 0" Width="80">
+                MID
+            </Button>
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 0" Width="80">
+                DARK
+            </Button>
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 0" Width="80">
+                ACCENT
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0 8 0 0" Grid.ColumnSpan="3" Orientation="Horizontal">
+            <ToggleButton Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionLightToggleButton}"/>
+            <ToggleButton Content="H" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}"/>
+            <!-- checkbox style same as toggle button -->
+            <CheckBox Content="E" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionDarkCheckBox}"/>
+            <ToggleButton Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionAccentToggleButton}"/>
+            <ToggleButton Content="K" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}" IsEnabled="False"/>
+            <ToggleButton Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}">
+                <Image Source="Resources/ProfilePic.jpg"></Image>
+            </ToggleButton>
+            <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
+                Radio
+            </RadioButton>
+            <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center">
+                Ga Ga
+            </RadioButton>
+            <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center">
+                Check
+            </CheckBox>
+            <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
+                Mate
+            </CheckBox>
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="0 0 8 8"  />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="0 0 8 8"  />
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0 8 0 0"
+                    HorizontalAlignment="Right">
+            <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick">ACCEPT</Button>
+            <Button Style="{StaticResource MaterialDesignFlatButton}">CANCEL</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

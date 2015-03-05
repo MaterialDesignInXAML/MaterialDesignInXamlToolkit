@@ -14,22 +14,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace MaterialDesignColors.WpfExample
 {
     /// <summary>
-    /// Interaction logic for ProvingGround.xaml
+    /// Interaction logic for TextFields.xaml
     /// </summary>
-    public partial class ProvingGround : UserControl
+    public partial class TextFields : UserControl
     {
-        public ProvingGround()
+        public TextFields()
         {
-            InitializeComponent();
-	        DataContext = new ProvingGroundViewModel();
-        }
+            InitializeComponent();	        
+			DataContext = new TextFieldsViewModel();			
+		}		
     }
 
-	public class ProvingGroundViewModel : INotifyPropertyChanged
+	public class TextFieldsViewModel : INotifyPropertyChanged
 	{
 		private string _name;
 
