@@ -15,15 +15,15 @@
 # How Can I Use The Colours?
 
 1. Choose your source:
- * The [NuGet package](https://www.nuget.org/packages/MaterialDesignColors/) which contains a compiled .dll of ResourceDictionary instances (currently WPF only)
+ * Install the [NuGet package](https://www.nuget.org/packages/MaterialDesignColors/) ```Install-Package MaterialDesignColors```
  * Manually pull from [Themes](https://github.com/ButchersBoy/MaterialDesignColorsInXamlToolkit/tree/master/Themes) directory and include in your project
-2. In your App.XAML choose the primary palette and secondary palette, as in [this example](https://github.com/ButchersBoy/MaterialDesignColorsInXamlToolkit/blob/master/MaterialDesignColors.UniversalExample/App.xaml) (this is identical for WPF/WinRT)
+2. In your App.XAML choose the primary palette and secondary palette, and configure standard brushes, as in [this example](https://github.com/ButchersBoy/MaterialDesignColorsInXamlToolkit/blob/master/MaterialDesignColors.UniversalExample/App.xaml) (this is identical for WPF/WinRT)
 3. Make colourful things.
  
 # How Can I Use The Themes?
 
-* Here's the [Nuget package](https://www.nuget.org/packages/MaterialDesignThemes/).
-* Or fire up the MaterialDesignColors.WpfExample project in the source code.
+* Install [Nuget package](https://www.nuget.org/packages/MaterialDesignThemes/) ```Install-Package MaterialDesignThemes```
+* Import required resource dictionaries, and use styles as desiired.  For examples, see the MaterialDesignColors.WpfExample project in the source code.
 
 # A Brief History
 
