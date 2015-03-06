@@ -7,7 +7,7 @@
             <ResourceDictionary.MergedDictionaries>
                 
                 <!-- light or dark theme -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />                
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />                
                 
                 <!-- primary color -->
                 <ResourceDictionary>

@@ -39,8 +39,13 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		private static void ApplyTextBoxViewMargin(TextBoxBase textBox, Thickness margin)
-		{			
-			var frameworkElement = (textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content as FrameworkElement;
+		{
+			var scrollViewer = textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer;
+			if (scrollViewer == null) return;
+			var frameworkElement = scrollViewer.Content as FrameworkElement;
+
+			//remove nice new sytax until i get appveyor working	
+			//var frameworkElement = (textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content as FrameworkElement;
 			if (frameworkElement != null)
 				frameworkElement.Margin = margin;
 		}
