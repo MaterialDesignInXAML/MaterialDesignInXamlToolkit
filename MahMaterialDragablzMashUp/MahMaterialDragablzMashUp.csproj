@@ -84,6 +84,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TextFields.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Mah.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -102,6 +106,9 @@
     <Compile Include="Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TextFields.xaml.cs">
+      <DependentUpon>TextFields.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Mah.xaml.cs">
       <DependentUpon>Mah.xaml</DependentUpon>
     </Compile>
@@ -115,6 +122,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NotEmptyValidationRule.cs" />
     <Compile Include="Palette.xaml.cs">
       <DependentUpon>Palette.xaml</DependentUpon>
     </Compile>

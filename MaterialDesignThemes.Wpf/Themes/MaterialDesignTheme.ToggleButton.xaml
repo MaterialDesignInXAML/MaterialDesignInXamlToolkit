@@ -221,8 +221,8 @@
 		<Setter Property="BorderThickness" Value="1"/>
 		<Setter Property="HorizontalContentAlignment" Value="Center"/>
 		<Setter Property="VerticalContentAlignment" Value="Center"/>
-		<Setter Property="Width" Value="38" />
-		<Setter Property="Height" Value="38" />
+		<Setter Property="Width" Value="37" />
+		<Setter Property="Height" Value="37" />
 		<Setter Property="Padding" Value="1"/>
 		<Setter Property="Template">
 			<Setter.Value>
@@ -317,7 +317,8 @@
 										<TranslateTransform/>
 									</TransformGroup>
 								</Canvas.RenderTransform>
-								<Rectangle x:Name="rectangle" Fill="{TemplateBinding Foreground}" Height="2" Canvas.Left="3" RadiusY="0" RadiusX="0" Canvas.Top="6" Width="18" RenderTransformOrigin="0.5,0.5">
+								<Rectangle x:Name="rectangle" Fill="{TemplateBinding Foreground}" Height="2" Canvas.Left="3" RadiusY="0" RadiusX="0" Canvas.Top="6" Width="18" RenderTransformOrigin="0.5,0.5"
+										   >
 									<Rectangle.RenderTransform>
 										<TransformGroup>
 											<ScaleTransform/>
@@ -327,7 +328,8 @@
 										</TransformGroup>
 									</Rectangle.RenderTransform>
 								</Rectangle>
-								<Rectangle x:Name="rectangle1" Fill="{TemplateBinding Foreground}" Height="2" Canvas.Left="3" RadiusY="0" RadiusX="0" Canvas.Top="11" Width="18" RenderTransformOrigin="0.5,0.5">
+								<Rectangle x:Name="rectangle1" Fill="{TemplateBinding Foreground}" Height="2" Canvas.Left="3" RadiusY="0" RadiusX="0" Canvas.Top="11" Width="18" RenderTransformOrigin="0.5,0.5"										   
+										   >
 									<Rectangle.RenderTransform>
 										<TransformGroup>
 											<ScaleTransform/>
@@ -337,7 +339,8 @@
 										</TransformGroup>
 									</Rectangle.RenderTransform>
 								</Rectangle>
-								<Rectangle x:Name="rectangle2" Fill="{TemplateBinding Foreground}" Height="2" Canvas.Left="3" RadiusY="0" RadiusX="0" Canvas.Top="16" Width="18" RenderTransformOrigin="0.5,0.5">
+								<Rectangle x:Name="rectangle2" Fill="{TemplateBinding Foreground}" Height="2" Canvas.Left="3" RadiusY="0" RadiusX="0" Canvas.Top="16" Width="18" RenderTransformOrigin="0.5,0.5"
+										   >
 									<Rectangle.RenderTransform>
 										<TransformGroup>
 											<ScaleTransform/>
