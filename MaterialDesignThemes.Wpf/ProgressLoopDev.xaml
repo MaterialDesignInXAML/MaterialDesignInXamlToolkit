@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="MaterialDesignThemes.Wpf.ProgressLoopDev"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignThemes.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="100" Background="White">
+    <UserControl.Resources>
+        <Storyboard x:Key="Storyboard1"/>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid>
+        <Path x:Name="Ring_Outer" Data="M299.5,150 C299.5,232.56657 232.56657,299.5 150,299.5 67.43343,299.5 0.5,232.56657 0.5,150 0.5,67.43343 67.43343,0.5 150,0.5 232.56657,0.5 299.5,67.43343 299.5,150 z" Fill="#FF5A5AAE" Stretch="Fill" Stroke="Black" d:IsHidden="True"/>
+
+        <Path x:Name="Ring_Inner" Data="M259.5,130 C259.5,201.52088 201.52088,259.5 130,259.5 58.479125,259.5 0.5,201.52088 0.5,130 0.5,58.479125 58.479125,0.5 130,0.5 201.52088,0.5 259.5,58.479125 259.5,130 z" Fill="#FFE40707" Stretch="Fill" Stroke="Black" Margin="20" d:IsHidden="True"/>
+        <Path x:Name="Segment" Data="M0.5,0.5 C27.410942,0.5 49.306175,21.974758 49.983833,48.722382 L49.998154,49.853981 43.376083,49.853981 43.363922,48.893303 C42.78624,26.091721 24.408279,7.7137604 1.6066971,7.1360774 L0.64601898,7.1239209 0.64601898,0.50184846 z" Fill="#FF5A5AAE" Margin="49.5,0,0.002,49.646" Stretch="Fill"/>
+        <Path x:Name="Pie_Copy" Data="M170,0.5 L170.5,0.50632715 170.5,169.5 339.49368,169.5 339.5,170 C339.5,263.61227 263.61227,339.5 170,339.5 76.387733,339.5 0.5,263.61227 0.5,170 0.5,76.387731 76.387733,0.49999762 170,0.5 z" Fill="#FFAAAE5A" Opacity="0.5" Stretch="Fill" Stroke="Black" d:IsHidden="True" />
+        <Path x:Name="Ring_Copy" Data="M299.5,150 C299.5,232.56657 232.56657,299.5 150,299.5 C67.43343,299.5 0.5,232.56657 0.5,150 C0.5,67.43343 67.43343,0.5 150,0.5 C232.56657,0.5 299.5,67.43343 299.5,150 z M279.5,150 C279.5,221.52088 221.52088,279.5 150,279.5 C78.479125,279.5 20.5,221.52088 20.5,150 C20.5,78.479125 78.479125,20.5 150,20.5 C221.52088,20.5 279.5,78.479125 279.5,150 z" Fill="#FF5A5AAE" Stretch="Fill" Stroke="Black" d:IsHidden="True"/>
+
+
+    </Grid>
+</UserControl>

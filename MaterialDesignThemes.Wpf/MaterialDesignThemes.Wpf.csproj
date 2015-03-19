@@ -56,9 +56,17 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ProgressLoopDev.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignTheme.ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\MaterialDesignTheme.TextBox.xaml">
       <SubType>Designer</SubType>
@@ -94,6 +102,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProgressLoop.cs" />
+    <Compile Include="ProgressLoopDev.xaml.cs">
+      <DependentUpon>ProgressLoopDev.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

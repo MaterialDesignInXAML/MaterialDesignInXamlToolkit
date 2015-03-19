@@ -20,8 +20,9 @@
     </Window.Resources>
 	<DockPanel>
 		<StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="8">
-			<RadioButton Style="{StaticResource MaterialDesignRadioButton}" x:Name="ButtonsRadioButton" IsChecked="True">Buttons</RadioButton>
-			<RadioButton Style="{StaticResource MaterialDesignRadioButton}" x:Name="FieldsRadioButton" Margin="8 0 0 0">Fields</RadioButton>
+			<ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" Checked="ToggleButton_OnChecked" Unchecked="ToggleButton_OnChecked" IsChecked="{Binding ElementName=FieldsRadioButton, Path=IsChecked, Mode=OneWay}" />
+			<RadioButton Style="{StaticResource MaterialDesignRadioButton}" x:Name="ButtonsRadioButton" IsChecked="True" Margin="8 0 0 0" VerticalAlignment="Center">Buttons</RadioButton>
+			<RadioButton Style="{StaticResource MaterialDesignRadioButton}" x:Name="FieldsRadioButton" Margin="8 0 0 0" VerticalAlignment="Center">Fields</RadioButton>
 		</StackPanel>
 		<wpfExample:Buttons Visibility="{Binding ElementName=ButtonsRadioButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />	
 		<wpfExample:TextFields Visibility="{Binding ElementName=FieldsRadioButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />	
