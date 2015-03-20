@@ -1,6 +1,6 @@
 # Material Design In XAML Toolkit
 
-![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo31.gif "Material Design Themes")
+![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MashUp.gif "Material Design Demo")
 
 # Summary
 
