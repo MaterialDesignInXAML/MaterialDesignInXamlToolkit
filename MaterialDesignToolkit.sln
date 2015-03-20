@@ -19,6 +19,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignColors.Palett
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahMaterialDragablzMashUp", "MahMaterialDragablzMashUp\MahMaterialDragablzMashUp.csproj", "{803954E5-3A35-4D8B-95A7-F6E9B63EC0DF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{7D0AC158-FD01-4EA3-8F8A-D19C085C77DF}"
+	ProjectSection(SolutionItems) = preProject
+		web\MashUp.gif = web\MashUp.gif
+		web\MaterialDesignPalette.js = web\MaterialDesignPalette.js
+		web\PaletteBuilder.html = web\PaletteBuilder.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppVeyor|Any CPU = AppVeyor|Any CPU

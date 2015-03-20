@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Xsl;
+using Newtonsoft.Json.Linq;
 
 namespace mdresgen
 {
@@ -23,19 +25,80 @@ namespace mdresgen
 
         static void Main(string[] args)
         {
-            var xDocument = XDocument.Load("MaterialColourSwatchesSnippet.xml");
+			var xDocument = XDocument.Load("MaterialColourSwatchesSnippet.xml");
 
-            const string fileFormat = @"..\..\..\Themes\MaterialDesignColor.{0}.xaml";
-
-            foreach (var colour in xDocument.Root.Elements("section").Select(ToResourceDictionary))
-            {
-                colour.Item2.Save(string.Format(fileFormat, colour.Item1.Replace(" ", "")));                
-            }
+			if (args.Length > 0 && args.Contains("json"))	        
+		        GenerateJson(xDocument);	        
+			else
+				GenerateXaml(xDocument);
         }
 
-        private static Tuple<string, XDocument> ToResourceDictionary(XElement sectionElement)
+	    private static void GenerateXaml(XDocument xDocument)
+	    {		    
+		    const string fileFormat = @"..\..\..\Themes\MaterialDesignColor.{0}.xaml";
+
+		    foreach (var colour in xDocument.Root.Elements("section").Select(ToResourceDictionary))
+		    {
+			    colour.Item2.Save(string.Format(fileFormat, colour.Item1.Replace(" ", "")));
+		    }
+	    }
+
+	    private static void GenerateJson(XDocument xDocument)
+	    {
+			const string file = @"..\..\..\web\MaterialDesignPalette.js";
+
+
+		    var json = new JArray(
+			    xDocument.Root.Elements("section")
+				    .Select(sectionElement => new JObject(
+					    new JProperty("swatch", GetColourName(sectionElement)),
+					    new JProperty("colors",
+						    new JArray(
+							    sectionElement.Element("ul").Elements("li").Skip(1).Select(CreateJsonColourPair)
+							    )
+						    )
+					    ))
+			    ).ToString();
+
+			var javaScript = $"var swatches={json};";
+
+			File.WriteAllText(file, javaScript);
+        }
+
+	    private static JObject CreateJsonColourPair(XElement liElement)
+	    {
+		    var name = liElement.Elements("span").First().Value;
+		    var hex = liElement.Elements("span").Last().Value;
+
+		    var prefix = "Primary";
+		    if (name.StartsWith("A"))
+		    {
+			    prefix = "Accent";
+			    name = name.Skip(1).Aggregate("", (current, next) => current + next);
+		    }
+
+		    var liClass = liElement.Attribute("class").Value;
+		    Color foregroundColour;
+		    if (!ClassNameToForegroundIndex.TryGetValue(liClass, out foregroundColour))
+			    throw new Exception("Unable to map foreground color from class " + liClass);
+
+		    var foreGroundColorHex = string.Format("#{0}{1}{2}{3}",
+			    ByteToHex(foregroundColour.A),
+			    ByteToHex(foregroundColour.R),
+			    ByteToHex(foregroundColour.G),
+			    ByteToHex(foregroundColour.B));
+
+		    return new JObject(
+			    new JProperty("backgroundName", string.Format("{0}{1}", prefix, name)),
+			    new JProperty("backgroundColour", hex),
+			    new JProperty("foregroundName", string.Format("{0}{1}Foreground", prefix, name)),
+			    new JProperty("foregroundColour", foreGroundColorHex)
+			    );
+	    }
+
+	    private static Tuple<string, XDocument> ToResourceDictionary(XElement sectionElement)
         {
-            var colour = sectionElement.Element("ul").Element("li").Elements("span").First().Value;
+            var colour = GetColourName(sectionElement);
 
             XNamespace defaultNamespace = @"http://schemas.microsoft.com/winfx/2006/xaml/presentation";
 
@@ -53,7 +116,12 @@ namespace mdresgen
 
         }
 
-        private static void AddColour(XElement liElement, XNamespace defaultNamespace, XNamespace xNamespace, XDocument doc)
+	    private static string GetColourName(XElement sectionElement)
+	    {
+		    return sectionElement.Element("ul").Element("li").Elements("span").First().Value;
+	    }
+
+	    private static void AddColour(XElement liElement, XNamespace defaultNamespace, XNamespace xNamespace, XDocument doc)
         {
             var name = liElement.Elements("span").First().Value;
             var hex = liElement.Elements("span").Last().Value;
