@@ -1,6 +1,6 @@
 var swatches=[
   {
-    "swatch": "Red",
+    "name": "Red",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -89,7 +89,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Pink",
+    "name": "Pink",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -178,7 +178,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Purple",
+    "name": "Purple",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -267,7 +267,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Deep Purple",
+    "name": "Deep Purple",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -356,7 +356,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Indigo",
+    "name": "Indigo",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -445,7 +445,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Blue",
+    "name": "Blue",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -534,7 +534,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Light Blue",
+    "name": "Light Blue",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -623,7 +623,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Cyan",
+    "name": "Cyan",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -712,7 +712,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Teal",
+    "name": "Teal",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -801,7 +801,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Green",
+    "name": "Green",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -890,7 +890,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Light Green",
+    "name": "Light Green",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -979,7 +979,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Lime",
+    "name": "Lime",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -1068,7 +1068,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Yellow",
+    "name": "Yellow",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -1157,7 +1157,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Amber",
+    "name": "Amber",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -1246,7 +1246,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Orange",
+    "name": "Orange",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -1335,7 +1335,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Deep Orange",
+    "name": "Deep Orange",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -1424,7 +1424,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Brown",
+    "name": "Brown",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -1489,7 +1489,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Grey",
+    "name": "Grey",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -1554,7 +1554,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Blue Grey",
+    "name": "Blue Grey",
     "colors": [
       {
         "backgroundName": "Primary50",
@@ -1619,7 +1619,7 @@ var swatches=[
     ]
   },
   {
-    "swatch": "Black",
+    "name": "Black",
     "colors": [
       {
         "backgroundName": "PrimaryWhite",
