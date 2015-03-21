@@ -45,13 +45,13 @@ namespace mdresgen
 
 	    private static void GenerateJson(XDocument xDocument)
 	    {
-			const string file = @"..\..\..\web\MaterialDesignPalette.js";
+			const string file = @"..\..\..\web\scripts\Swatches.js";
 
 
 		    var json = new JArray(
 			    xDocument.Root.Elements("section")
 				    .Select(sectionElement => new JObject(
-					    new JProperty("swatch", GetColourName(sectionElement)),
+					    new JProperty("name", GetColourName(sectionElement)),
 					    new JProperty("colors",
 						    new JArray(
 							    sectionElement.Element("ul").Elements("li").Skip(1).Select(CreateJsonColourPair)
@@ -82,18 +82,20 @@ namespace mdresgen
 		    if (!ClassNameToForegroundIndex.TryGetValue(liClass, out foregroundColour))
 			    throw new Exception("Unable to map foreground color from class " + liClass);
 
-		    var foreGroundColorHex = string.Format("#{0}{1}{2}{3}",
-			    ByteToHex(foregroundColour.A),
+		    var foreGroundColorHex = string.Format("#{0}{1}{2}",			    
 			    ByteToHex(foregroundColour.R),
 			    ByteToHex(foregroundColour.G),
 			    ByteToHex(foregroundColour.B));
+
+		    var foregroundOpacity = Math.Round((double) foregroundColour.A/(255.0), 2);
 
 		    return new JObject(
 			    new JProperty("backgroundName", string.Format("{0}{1}", prefix, name)),
 			    new JProperty("backgroundColour", hex),
 			    new JProperty("foregroundName", string.Format("{0}{1}Foreground", prefix, name)),
-			    new JProperty("foregroundColour", foreGroundColorHex)
-			    );
+			    new JProperty("foregroundColour", foreGroundColorHex),
+				new JProperty("foregroundOpacity", foregroundOpacity)
+                );
 	    }
 
 	    private static Tuple<string, XDocument> ToResourceDictionary(XElement sectionElement)
