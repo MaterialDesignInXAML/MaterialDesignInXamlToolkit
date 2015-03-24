@@ -20,6 +20,7 @@
  * Manually pull from [Themes](https://github.com/ButchersBoy/MaterialDesignColorsInXamlToolkit/tree/master/Themes) directory and include in your project
 2. In your App.XAML choose the primary palette and secondary palette, and configure standard brushes, as in [this example](https://github.com/ButchersBoy/MaterialDesignColorsInXamlToolkit/blob/master/MaterialDesignColors.UniversalExample/App.xaml) (this is identical for WPF/WinRT)
 3. Make colourful things.
+4. Want help choosing your palette? Try the [Palette Builder](https://rawgit.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/PaletteBuilder.html) (this is very much a work-in-progress)
  
 # How Can I Use The Themes?
 
