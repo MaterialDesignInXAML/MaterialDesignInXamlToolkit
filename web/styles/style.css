@@ -1,8 +1,43 @@
+html,
 body {
-	margin: 0px;
-	padding: 0px;	
+	width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0px auto;
+	font-family: 'Roboto', sans-serif;	
 }
 
+#header{
+    width: 100%;    
+    height: 140px;
+    overflow: hidden; 
+    position: fixed;
+    background: #fafafa;
+    z-index: 1;
+}
+
+#huesContainer{
+    width: 210px;
+    height: 700px;
+    padding-top: 140px; 
+    overflow:hidden;  
+    position:fixed;    
+}
+
+#swatchesScroller{
+    height: auto;   
+    padding-top: 140px; 
+    margin-left: 230px;
+    margin-right: 20px;
+    padding-bottom: 30px;
+    overflow: auto;  //code added
+ }
+
 .swatch {
+	margin: 8px;
 	display: inline-block;
+}
+.swatchColor {
+	padding: 2px 20px 8px 2px;	
+	font-size: 80%;
 }
