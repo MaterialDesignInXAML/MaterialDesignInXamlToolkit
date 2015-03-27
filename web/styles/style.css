@@ -1,10 +1,11 @@
 html,
 body {
 	width: 100%;
-    height: auto;
-    padding: 0;
+    height: auto;    
+    padding: 0px 16px 16px 16px;
     margin: 0px auto;
 	font-family: 'Roboto', sans-serif;	
+    background: #fafafa;
 }
 
 #header{
@@ -19,16 +20,18 @@ body {
 #huesContainer{
     width: 210px;
     height: 700px;
+    padding-left: 8px;
     padding-top: 140px; 
     overflow:hidden;  
     position:fixed;    
+    background: #fafafa;
+    right:0px;
 }
 
 #swatchesScroller{
     height: auto;   
-    padding-top: 140px; 
-    margin-left: 230px;
-    margin-right: 20px;
+    padding-top: 140px;     
+    margin-right: 210px;
     padding-bottom: 30px;
     overflow: auto;  //code added
  }

@@ -1,28 +1,47 @@
+function colourItemFactory (colorItem, isSelected, onSelect) {	
+	return (
+		React.createElement(Color, {item: colorItem, isSelected: isSelected, onSelectChanged: onSelect}) 
+	);
+}
+
 function colourItemMapper (colorItem) {
-			return (
-				React.createElement(Color, {
-					backgroundName: colorItem.backgroundName, 
-					backgroundColour: colorItem.backgroundColour, 
-					foregroundName: colorItem.foregroundName, 
-					foregroundColour: colorItem.foregroundColour, 
-					foregroundOpacity: colorItem.foregroundOpacity})
-			);
-		}
+	return colourItemFactory(colorItem);
+}
+
+function isAccentColor (colorItem) {
+	return colorItem.backgroundName.indexOf("Primary", 0) == -1;
+}
 
 var Color = React.createClass({displayName: "Color",
-	render: function() {
+	_handleCheckChange: function(e) {
+		if (!this.props.onSelectChanged)
+			return;
 
+		this.props.onSelectChanged(this.props.item, e.target.checked);			
+	},
+	getInitialState: function() {		
+		return {isSelected: this.props.isSelected};
+	},
+	render: function() {
 		var bgStyle = {
-			background:this.props.backgroundColour			
+			background:this.props.item.backgroundColour			
 		};
 		var fgStyle = {
-			color:this.props.foregroundColour,
-			opacity:this.props.foregroundOpacity
+			color:this.props.item.foregroundColour,
+			opacity:this.props.item.foregroundOpacity
+		};
+
+		var checkVis = (this.props.onSelectChanged)
+			? "visible"
+			: "hidden";
+		var checkStyle = {
+			visibility:checkVis
 		};
 
 		return (
 			React.createElement("div", {className: "swatchColor", style: bgStyle}, 
-				React.createElement("span", {style: fgStyle}, this.props.backgroundName)
+				React.createElement("span", {style: fgStyle}, this.props.item.backgroundName), 
+				React.createElement("input", {ref: "checkbox", style: checkStyle, type: "checkbox", onChange: this._handleCheckChange, checked: this.props.isSelected})
 			)
 		);
 	}
@@ -75,22 +94,73 @@ var SwatchesBox = React.createClass({displayName: "SwatchesBox",
 	}
 });
 
+function generateHuesState(primarySwatchIndex, accentSwatchIndex, primaryColorIndices, accentColorIndex) {
+	var primaryColours = swatches[primarySwatchIndex].colors.filter(function(colorItem) {
+		return colorItem.backgroundName.lastIndexOf("Primary") === 0;
+	});
+	var accentColours = swatches[accentSwatchIndex].colors.filter(function(colorItem) {
+		return colorItem.backgroundName.lastIndexOf("Accent") === 0;
+	});
+	var primaryColorModels = primaryColours.map(function(colorItem, i) {
+		return { 
+			colorItem: colorItem, 
+			isSelected: primaryColorIndices.indexOf(i) > -1
+		}
+	});
+	var accentColorModels = accentColours.map(function(colorItem, i) {
+		return { 
+			colorItem: colorItem, 
+			isSelected: accentColorIndex == i
+		}
+	});
+	return {
+		primaryColorModels: primaryColorModels,
+		accentColorModels: accentColorModels,
+		generatedFrom: {
+			primarySwatchIndex: primarySwatchIndex, 
+			accentSwatchIndex: accentSwatchIndex, 
+			primaryColorIndices: primaryColorIndices, 
+			accentColorIndex: accentColorIndex
+		}
+	};	
+}
+
 var HuesBox = React.createClass({displayName: "HuesBox",
 	getInitialState: function() {
-		return {
-			primarySwatch: swatches[0],
-			accentSwatch: swatches[5]
-		}
+		return generateHuesState(4, 10, [3,5,7], 2);
 	},	
+	handleColorSelect: function (colorIndex, color, isChecked) {		
+		var newState;
+		if (isAccentColor(color))			
+			newState = generateHuesState(
+				this.state.generatedFrom.primarySwatchIndex, 
+				this.state.generatedFrom.accentSwatchIndex, 
+				this.state.generatedFrom.primaryColorIndices, 
+				colorIndex);
+		else
+		{
+			if (this.state.generatedFrom.primaryColorIndices.indexOf(colorIndex) > -1 && isChecked)
+				return;
+
+			var newIndices = this.state.generatedFrom.primaryColorIndices.slice();
+			newIndices.pop();
+			newIndices.unshift(colorIndex);
+
+			newState = generateHuesState(
+				this.state.generatedFrom.primarySwatchIndex, 
+				this.state.generatedFrom.accentSwatchIndex, 
+				newIndices, 
+				this.state.generatedFrom.accentColorIndex);
+		}
+		this.setState(newState);		
+	},
 	render: function() {
-		var primaryColours = this.state.primarySwatch.colors.filter(function(colorItem) {
-			return colorItem.backgroundName.lastIndexOf("Primary") === 0;
-		});
-		var accentColours = this.state.accentSwatch.colors.filter(function(colorItem) {
-			return colorItem.backgroundName.lastIndexOf("Accent") === 0;
-		});
-		var primaryColourNodes = primaryColours.map(colourItemMapper);
-		var accentColourNodes = accentColours.map(colourItemMapper);
+		var primaryColourNodes = this.state.primaryColorModels.map(function(model, i) {
+			return colourItemFactory(model.colorItem, model.isSelected, this.handleColorSelect.bind(this, i));
+		}, this);
+		var accentColourNodes = this.state.accentColorModels.map(function(model, i) {
+			return colourItemFactory(model.colorItem, model.isSelected, this.handleColorSelect.bind(this, i));
+		}, this);
 		return (
 			React.createElement("div", null, 				
 				primaryColourNodes, 
@@ -106,8 +176,14 @@ var huesBox = React.render(
 	);
 
 function mergeSwatch(index, isAccent) {	
-	var newSwatch = (isAccent ? { accentSwatch: swatches[index]} : { primarySwatch: swatches[index]});
-	huesBox.setState(newSwatch);
+	var state = huesBox.state;
+	var newState = generateHuesState(
+		isAccent ? huesBox.state.generatedFrom.primarySwatchIndex : index, 
+		!isAccent ? huesBox.state.generatedFrom.accentSwatchIndex : index, 
+		huesBox.state.generatedFrom.primaryColorIndices, 
+		huesBox.state.generatedFrom.accentColorIndex);
+	
+	huesBox.setState(newState);
 }
 
 React.render(
