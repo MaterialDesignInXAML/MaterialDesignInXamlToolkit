@@ -1,0 +1,284 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MaterialDesignThemes.Wpf.Themes">
+
+    <SolidColorBrush x:Key="SliderThumb.Static.Foreground" Color="#FFE5E5E5"/>
+    <SolidColorBrush x:Key="SliderThumb.MouseOver.Background" Color="#FFDCECFC"/>
+    <SolidColorBrush x:Key="SliderThumb.MouseOver.Border" Color="#FF7Eb4EA"/>
+    <SolidColorBrush x:Key="SliderThumb.Pressed.Background" Color="#FFDAECFC"/>
+    <SolidColorBrush x:Key="SliderThumb.Pressed.Border" Color="#FF569DE5"/>
+    <SolidColorBrush x:Key="SliderThumb.Disabled.Background" Color="#FFF0F0F0"/>
+    <SolidColorBrush x:Key="SliderThumb.Disabled.Border" Color="#FFD9D9D9"/>
+    <SolidColorBrush x:Key="SliderThumb.Static.Background" Color="#FFF0F0F0"/>
+    <SolidColorBrush x:Key="SliderThumb.Static.Border" Color="#FFACACAC"/>
+    <ControlTemplate x:Key="SliderThumbHorizontalTop" TargetType="{x:Type Thumb}">
+        <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
+            <Ellipse x:Name="grip" Width="12" Height="12" Fill="{DynamicResource PrimaryHueMidBrush}"
+                     UseLayoutRounding="True" VerticalAlignment="Center"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.MouseOver.Background}"/>
+                <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.MouseOver.Border}"/>
+            </Trigger>
+            <Trigger Property="IsDragging" Value="true">
+                <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.Pressed.Background}"/>
+                <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.Pressed.Border}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.Disabled.Background}"/>
+                <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.Disabled.Border}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="SliderThumbHorizontalBottom" TargetType="{x:Type Thumb}">
+        <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
+            <Ellipse x:Name="grip" Width="12" Height="12" Fill="{DynamicResource PrimaryHueMidBrush}"
+                     UseLayoutRounding="True" VerticalAlignment="Center"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.MouseOver.Background}"/>
+                <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.MouseOver.Border}"/>
+            </Trigger>
+            <Trigger Property="IsDragging" Value="true">
+                <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.Pressed.Background}"/>
+                <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.Pressed.Border}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.Disabled.Background}"/>
+                <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.Disabled.Border}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <SolidColorBrush x:Key="SliderThumb.Track.Border" Color="#FFD6D6D6"/>
+    <SolidColorBrush x:Key="SliderThumb.Track.Background" Color="#FFE7EAEA"/>
+    <Style x:Key="HorizontalTrackRepeatButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Canvas Background="Transparent" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+                        <Rectangle x:Name="PART_SelectionRange" Fill="{TemplateBinding Background}" Height="2.0"                                   
+                                   Canvas.Top="8"
+                                   Width="{TemplateBinding ActualWidth}"/>
+                    </Canvas>                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+	<Style x:Key="VerticalTrackRepeatButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Canvas Background="Transparent" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+                        <Rectangle x:Name="PART_SelectionRange" Fill="{TemplateBinding Background}" Width="2.0"                                   
+                                   Canvas.Left="8"
+                                   Height="{TemplateBinding ActualHeight}"/>
+                    </Canvas>                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate x:Key="SliderThumb" TargetType="{x:Type Thumb}">
+        <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
+            <Ellipse x:Name="shadow" 
+                     Width="24" Height="24" Margin="-12"
+                     Fill="{TemplateBinding Foreground}"
+                     Opacity=".0"
+                     UseLayoutRounding="True" />
+            <Ellipse x:Name="grip" Width="12" Height="12" Fill="{TemplateBinding Foreground}"
+                     UseLayoutRounding="True" RenderTransformOrigin=".5,.5">            
+				<Ellipse.RenderTransform>
+					<ScaleTransform ScaleX="1" ScaleY="1"></ScaleTransform>
+				</Ellipse.RenderTransform>
+			</Ellipse>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+				<Trigger.EnterActions>
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
+											 To=".26" Duration="0:0:0.2" />
+						</Storyboard>													
+					</BeginStoryboard>
+				</Trigger.EnterActions>
+				<Trigger.ExitActions>
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
+											 To=".0" Duration="0:0:0.2" />
+						</Storyboard>
+					</BeginStoryboard>
+				</Trigger.ExitActions>
+            </Trigger>
+            <Trigger Property="IsDragging" Value="true">
+				<Trigger.EnterActions>
+					<BeginStoryboard>
+						<Storyboard>
+							<Storyboard>
+								<DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleX">
+									<EasingDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+									<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1.5">
+										<EasingDoubleKeyFrame.EasingFunction>
+											<SineEase EasingMode="EaseInOut" />
+										</EasingDoubleKeyFrame.EasingFunction>
+									</EasingDoubleKeyFrame>
+								</DoubleAnimationUsingKeyFrames>
+								<DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleY">
+									<EasingDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+									<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1.5">
+										<EasingDoubleKeyFrame.EasingFunction>
+											<SineEase EasingMode="EaseInOut" />
+										</EasingDoubleKeyFrame.EasingFunction>
+									</EasingDoubleKeyFrame>
+								</DoubleAnimationUsingKeyFrames>
+							</Storyboard>													
+						</Storyboard>
+					</BeginStoryboard>
+				</Trigger.EnterActions>
+				<Trigger.ExitActions>
+					<BeginStoryboard>
+						<Storyboard>
+							<Storyboard>
+								<DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleX">
+									<EasingDoubleKeyFrame KeyTime="0:0:0" Value="1.5" />
+									<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1">
+										<EasingDoubleKeyFrame.EasingFunction>
+											<SineEase EasingMode="EaseInOut" />
+										</EasingDoubleKeyFrame.EasingFunction>
+									</EasingDoubleKeyFrame>
+								</DoubleAnimationUsingKeyFrames>
+								<DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleY">
+									<EasingDoubleKeyFrame KeyTime="0:0:0" Value="1.5" />
+									<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1">
+										<EasingDoubleKeyFrame.EasingFunction>
+											<SineEase EasingMode="EaseInOut" />
+										</EasingDoubleKeyFrame.EasingFunction>
+									</EasingDoubleKeyFrame>
+								</DoubleAnimationUsingKeyFrames>
+							</Storyboard>													
+						</Storyboard>
+					</BeginStoryboard>
+				</Trigger.ExitActions>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Fill" TargetName="grip" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
+                <Setter Property="Stroke" TargetName="grip" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+	<ControlTemplate x:Key="SliderHorizontal" TargetType="{x:Type Slider}">
+		<Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,0,0,2" Placement="Top" Grid.Row="0" Visibility="Collapsed"/>
+				<TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,2,0,0" Placement="Bottom" Grid.Row="2" Visibility="Collapsed"/>
+				<Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden" Grid.Row="1" />
+				<Track x:Name="PART_Track" Grid.Row="1" OpacityMask="{x:Null}">
+					<Track.DecreaseRepeatButton>
+						<RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource HorizontalTrackRepeatButton}" Background="{TemplateBinding Foreground}" />
+					</Track.DecreaseRepeatButton>
+					<Track.IncreaseRepeatButton>
+						<RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource HorizontalTrackRepeatButton}" Background="{DynamicResource MaterialDesignCheckBoxOff}"
+									  x:Name="IncreaseRepeatButton" />
+					</Track.IncreaseRepeatButton>
+					<Track.Thumb>
+						<Thumb x:Name="Thumb" Focusable="False" Height="18" OverridesDefaultStyle="True" Template="{StaticResource SliderThumb}" 
+							   VerticalAlignment="Center" Width="12"/>
+					</Track.Thumb>
+				</Track>
+			</Grid>
+		</Border>
+		<ControlTemplate.Triggers>
+			<Trigger Property="TickPlacement" Value="TopLeft">
+				<Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+			</Trigger>
+			<Trigger Property="TickPlacement" Value="BottomRight">
+				<Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+			</Trigger>
+			<Trigger Property="TickPlacement" Value="Both">
+				<Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+				<Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+			</Trigger>
+			<Trigger Property="IsSelectionRangeEnabled" Value="true">
+				<Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+			</Trigger>
+			<Trigger Property="IsEnabled" Value="False">
+				<Setter Property="Background" TargetName="IncreaseRepeatButton" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+	<ControlTemplate x:Key="SliderVertical" TargetType="{x:Type Slider}">
+        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition MinWidth="{TemplateBinding MinWidth}" Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TickBar x:Name="TopTick" Grid.Column="0" Fill="{TemplateBinding Foreground}" Margin="0,0,2,0" Placement="Left" Visibility="Collapsed" Width="4"/>
+                <TickBar x:Name="BottomTick" Grid.Column="2" Fill="{TemplateBinding Foreground}" Margin="2,0,0,0" Placement="Right" Visibility="Collapsed" Width="4"/>
+				<Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden" Grid.Column="1" />
+                <Track x:Name="PART_Track" Grid.Column="1">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource VerticalTrackRepeatButton}" Background="{TemplateBinding Foreground}"/>
+                    </Track.DecreaseRepeatButton>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource VerticalTrackRepeatButton}" Background="{DynamicResource MaterialDesignCheckBoxOff}"
+									  x:Name="IncreaseRepeatButton" />
+                    </Track.IncreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb x:Name="Thumb" Focusable="False" Height="12" OverridesDefaultStyle="True" Template="{StaticResource SliderThumb}" VerticalAlignment="Top" Width="18"/>
+                    </Track.Thumb>
+                </Track>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="TickPlacement" Value="TopLeft">
+                <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="BottomRight">
+                <Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="Both">
+                <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+                <Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="IsSelectionRangeEnabled" Value="true">
+                <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+            </Trigger>
+			<Trigger Property="IsEnabled" Value="False">
+				<Setter Property="Background" TargetName="IncreaseRepeatButton" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+			</Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="MaterialDesignSlider" TargetType="{x:Type Slider}">
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="Template" Value="{StaticResource SliderHorizontal}"/>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template" Value="{StaticResource SliderVertical}"/>
+            </Trigger>
+			<Trigger Property="IsEnabled" Value="False">
+				<Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />				
+			</Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

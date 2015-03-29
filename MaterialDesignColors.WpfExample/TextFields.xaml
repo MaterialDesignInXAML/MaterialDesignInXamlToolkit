@@ -10,8 +10,9 @@
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 			<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
 				<Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -27,6 +28,9 @@
 				<Setter Property="Margin" Value="0 0 8 0" />
 				<Setter Property="VerticalAlignment" Value="Center" />
 			</Style>
+            <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource MaterialDesignSlider}">
+				<Setter Property="Margin" Value="0 8 0 8" />
+			</Style>
 		</ResourceDictionary>
 	</UserControl.Resources>
 	<Grid Margin="16">
@@ -37,6 +41,9 @@
             <ColumnDefinition Width="150" />
         </Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
@@ -92,5 +99,13 @@
 				 x:Name="CommentTextBox"
 				 wpf:TextField.Hint="Comment"
 				 />
+		<Slider Grid.Row="3" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
+		<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" >
+			<Slider TickFrequency="5" TickPlacement="BottomRight" Orientation="Vertical" Minimum="1" Maximum="50" />
+			<Slider TickFrequency="25" TickPlacement="TopLeft" Orientation="Vertical" Minimum="1" Maximum="50" IsEnabled="False" Margin="24 8 0 8" />
+		</StackPanel>		
+		<Slider Grid.Row="4" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True" />
+		<Slider Grid.Row="5" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsEnabled="False" />
+		
 	</Grid>
 </UserControl>
