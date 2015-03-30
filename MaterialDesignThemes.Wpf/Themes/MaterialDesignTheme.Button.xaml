@@ -32,7 +32,7 @@
                     <Grid>
                         <Border Background="{TemplateBinding Background}">
                             <Border.Effect>
-                                <DropShadowEffect BlurRadius="8" ShadowDepth="2.5" Direction="270" Color="Black" Opacity=".23"/>
+                                <DropShadowEffect BlurRadius="5" ShadowDepth="1" Direction="270" Color="#CCCCCC" />
                             </Border.Effect>
                         </Border>
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
@@ -134,7 +134,7 @@
                         <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}"
                                  x:Name="border">
                             <Ellipse.Effect>
-                                <DropShadowEffect BlurRadius="8" ShadowDepth="2.5" Direction="270" Color="Black" Opacity=".23"/>
+                                <DropShadowEffect BlurRadius="5" ShadowDepth="1" Direction="270" Color="#CCCCCC"/>
                             </Ellipse.Effect>
                         </Ellipse>
                         <wpf:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
