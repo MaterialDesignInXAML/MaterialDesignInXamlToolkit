@@ -1,5 +1,7 @@
 # Material Design In XAML Toolkit
 
+[![Join the chat at https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MashUp.gif "Material Design Demo")
 
 # Summary
