@@ -106,6 +106,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrushToRadialGradientBrushConverter.cs" />
     <Compile Include="ProgressLoop.cs" />
     <Compile Include="ProgressLoopDev.xaml.cs">
       <DependentUpon>ProgressLoopDev.xaml</DependentUpon>

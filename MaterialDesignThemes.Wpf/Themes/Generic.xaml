@@ -4,7 +4,9 @@
     xmlns:local="clr-namespace:MaterialDesignThemes.Wpf">
 
     <!-- TODO freeze, share, theme -->
-    <SolidColorBrush x:Key="AttentionToActionBrush" Color="Black" Opacity=".23" />
+    <SolidColorBrush x:Key="AttentionToActionBrush" Color="Black" Opacity="1" />
+	
+	<local:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
     
     <Style TargetType="{x:Type local:VisualFeedbackContentControl}">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -13,23 +15,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:VisualFeedbackContentControl}">
-                    <Grid ClipToBounds="True" Background="Transparent">
-                        <ContentPresenter Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          Cursor="{TemplateBinding Cursor}"
-                                          Margin="{TemplateBinding Padding}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Canvas IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Ellipse Opacity="0" Width="60" Height="60" Canvas.Left="{TemplateBinding MouseX}" Canvas.Top="{TemplateBinding MouseY}"                                     
-                                     x:Name="HoverEllipse">
-                                <Ellipse.Fill>
-                                    <RadialGradientBrush RadiusX=".75" RadiusY=".75" GradientOrigin="0.5,0.5" Center="0.5,0.5" >
-                                        <GradientStop Color="Black" />   
-                                        <GradientStop Color="Transparent" Offset="1" />   
-                                    </RadialGradientBrush>
-                                </Ellipse.Fill>
-                                <Ellipse.RenderTransform>
+					<Grid ClipToBounds="True" Background="Transparent">
+						<Canvas IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+							<Ellipse Opacity="0" Width="60" Height="60" Canvas.Left="{TemplateBinding MouseX}" Canvas.Top="{TemplateBinding MouseY}"                                     
+                                     x:Name="HoverEllipse" Fill="{TemplateBinding Foreground, Converter={StaticResource BrushToRadialGradientBrushConverter}}">
+								<Ellipse.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform/>
                                         <SkewTransform/>
@@ -38,7 +28,7 @@
                                     </TransformGroup>
                                 </Ellipse.RenderTransform>
                             </Ellipse>
-                            <Ellipse x:Name="ClickEllipse" Fill="{StaticResource AttentionToActionBrush}" Opacity="0" Width="0" Height="0" Canvas.Left="{TemplateBinding MouseLeftButtonDownX}" Canvas.Top="{TemplateBinding MouseLeftButtonDownY}"
+                            <Ellipse x:Name="ClickEllipse" Fill="{TemplateBinding Foreground}" Opacity="0" Width="0" Height="0" Canvas.Left="{TemplateBinding MouseLeftButtonDownX}" Canvas.Top="{TemplateBinding MouseLeftButtonDownY}"
                                      RenderTransformOrigin=".5,.5">
                                 <Ellipse.RenderTransform>
                                     <TransformGroup>
@@ -50,13 +40,19 @@
                                 </Ellipse.RenderTransform>
                             </Ellipse>
                         </Canvas>
+						<ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Cursor="{TemplateBinding Cursor}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
                                 <Storyboard TargetName="HoverEllipse">
                                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)">
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value=".23"/>
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value=".56"/>
                                     </DoubleAnimationUsingKeyFrames>
                                 </Storyboard>
                             </BeginStoryboard>
@@ -91,7 +87,7 @@
                                     </DoubleAnimationUsingKeyFrames>
                                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
                                         <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value=".26"/>
                                         <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
                                     </DoubleAnimationUsingKeyFrames>
                                 </Storyboard>

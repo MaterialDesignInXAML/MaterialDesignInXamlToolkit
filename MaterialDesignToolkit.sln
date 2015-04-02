@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{7D0AC158-FD0
 		web\PaletteBuilder.html = web\PaletteBuilder.html
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{D34BE232-DE51-43C1-ABDC-B69003BB50FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppVeyor|Any CPU = AppVeyor|Any CPU
@@ -258,5 +260,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CF0A27A8-EF82-44E5-B673-ECCC150C48ED} = {D34BE232-DE51-43C1-ABDC-B69003BB50FF}
+		{1FE7510B-7FDD-40F1-8ED7-A0B5235B9051} = {D34BE232-DE51-43C1-ABDC-B69003BB50FF}
+		{FFA39A82-6F0C-4FFE-96E4-35BCC10B91D1} = {D34BE232-DE51-43C1-ABDC-B69003BB50FF}
+		{803954E5-3A35-4D8B-95A7-F6E9B63EC0DF} = {D34BE232-DE51-43C1-ABDC-B69003BB50FF}
 	EndGlobalSection
 EndGlobal
