@@ -13,6 +13,11 @@
  * Compatible with [MahApps](http://mahapps.com) and [Dragablz](https://github.com/ButchersBoy/Dragablz).  See demo app in source and [Mash Up! blog](http://dragablz.net/2015/02/25/material-design-in-xaml-mash-up/).
  * Includes hacky console app which was used to generate the XAML colour definitions
 
+[![Build](https://img.shields.io/appveyor/ci/ButchersBoy/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://ci.appveyor.com/project/ButchersBoy/materialdesigninxamltoolkit)
+[![NuGet-Themes](https://img.shields.io/nuget/dt/MaterialDesignThemes.svg?label=NuGet-Themes&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
+[![NuGet-Themes](https://img.shields.io/nuget/dt/MaterialDesignColors.svg?label=NuGet-Colors&style=flat-square)](https://www.nuget.org/packages/MaterialDesignColors/)
+[![Issues](https://img.shields.io/github/issues/ButchersBoy/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues)
+
 # How Can I Use The Colours?
 
 1. Choose your source:
