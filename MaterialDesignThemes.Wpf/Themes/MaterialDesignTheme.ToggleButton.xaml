@@ -187,15 +187,15 @@
 						</Grid>
 					</Viewbox>
 					<ControlTemplate.Triggers>
-						<EventTrigger RoutedEvent="ToggleButton.Checked">
-							<BeginStoryboard Storyboard="{StaticResource Checked}"/>
-						</EventTrigger>
-						<EventTrigger RoutedEvent="ToggleButton.Unchecked">
-							<BeginStoryboard Storyboard="{StaticResource Unchecked}"/>
-						</EventTrigger>
 						<Trigger Property="IsChecked" Value="True">
 							<Setter TargetName="Thumb" Property="Fill" Value="{DynamicResource PrimaryHueMidBrush}" />
 							<Setter TargetName="Track" Property="Fill" Value="{DynamicResource PrimaryHueLightBrush}" />
+							<Trigger.EnterActions>
+								<BeginStoryboard Storyboard="{StaticResource Checked}"/>
+							</Trigger.EnterActions>
+							<Trigger.ExitActions>
+								<BeginStoryboard Storyboard="{StaticResource Unchecked}"/>
+							</Trigger.ExitActions>
 						</Trigger>
 						<Trigger Property="Button.IsDefaulted" Value="true"/>
 						<Trigger Property="IsMouseOver" Value="true"/>
