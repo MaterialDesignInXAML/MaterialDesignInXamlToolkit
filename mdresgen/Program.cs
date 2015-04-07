@@ -60,7 +60,8 @@ namespace mdresgen
 					    ))
 			    ).ToString();
 
-			var javaScript = $"var swatches={json};";
+			//var javaScript = $"var swatches={json};";
+            var javaScript = string.Format("var swatches={0};", json);
 
 			File.WriteAllText(file, javaScript);
         }
