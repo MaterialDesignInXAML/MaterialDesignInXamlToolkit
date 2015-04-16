@@ -1,12 +1,13 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:MaterialDesignThemes.Wpf">
+    xmlns:local="clr-namespace:MaterialDesignThemes.Wpf"
+    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
     <!-- TODO freeze, share, theme -->
     <SolidColorBrush x:Key="AttentionToActionBrush" Color="Black" Opacity="1" />
 	
-	<local:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
+	<converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
     
     <Style TargetType="{x:Type local:VisualFeedbackContentControl}">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -106,6 +107,24 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:MaterialDateDisplay}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MaterialDateDisplay}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <StackPanel>
+                            <TextBlock Text="{TemplateBinding ComponentOneContent}" HorizontalAlignment="Center" Margin="0 12 0 0" FontSize="24" FontWeight="Normal" />
+                            <TextBlock Text="{TemplateBinding ComponentTwoContent}" HorizontalAlignment="Center" Margin="0 -6 0 0" FontSize="60" FontWeight="Normal" />
+                            <TextBlock Text="{TemplateBinding ComponentThreeContent}" HorizontalAlignment="Center" Margin="0 -4 0 10" FontSize="24" Opacity=".56" FontWeight="Normal" />
+                        </StackPanel>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

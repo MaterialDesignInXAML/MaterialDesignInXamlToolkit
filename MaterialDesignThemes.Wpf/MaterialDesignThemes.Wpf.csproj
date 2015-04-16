@@ -106,7 +106,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrushToRadialGradientBrushConverter.cs" />
+    <Compile Include="Converters\BrushToRadialGradientBrushConverter.cs" />
+    <Compile Include="Converters\CalendarDateCoalesceConverter.cs" />
+    <Compile Include="MaterialDateDisplay.cs" />
     <Compile Include="ProgressLoop.cs" />
     <Compile Include="ProgressLoopDev.xaml.cs">
       <DependentUpon>ProgressLoopDev.xaml</DependentUpon>
@@ -125,7 +127,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="TextField.cs" />
-    <Compile Include="TextFieldHintVisibilityConverter.cs" />
+    <Compile Include="Converters\TextFieldHintVisibilityConverter.cs" />
     <Compile Include="VisualFeedbackContentControl.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
