@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Navigation;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -40,6 +41,8 @@ namespace MaterialDesignThemes.Wpf
 
 		private static void ApplyTextBoxViewMargin(TextBoxBase textBox, Thickness margin)
 		{
+			if (margin.Equals(new Thickness(double.NegativeInfinity))) return;
+
 			var scrollViewer = textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer;
 			if (scrollViewer == null) return;
 			var frameworkElement = scrollViewer.Content as FrameworkElement;

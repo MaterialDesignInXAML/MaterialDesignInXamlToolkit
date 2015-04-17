@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MaterialDesignThemes.Wpf.Themes">
+
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="MaterialDesignTheme.Calendar.xaml" />
+	</ResourceDictionary.MergedDictionaries>
+	
+	<Style x:Key="MaterialDesignDatePicker" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource {x:Type DatePicker}}">
+		<Setter Property="CalendarStyle" Value="{StaticResource MaterialDesignCalendar}" />
+	</Style>
+</ResourceDictionary>

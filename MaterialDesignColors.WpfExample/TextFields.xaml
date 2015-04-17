@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MaterialDesignColors.WpfExample.TextFields"
+﻿ <UserControl x:Class="MaterialDesignColors.WpfExample.TextFields"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -41,6 +41,7 @@
             <ColumnDefinition Width="150" />
         </Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
@@ -99,13 +100,15 @@
 				 x:Name="CommentTextBox"
 				 wpf:TextField.Hint="Comment"
 				 />
-		<Slider Grid.Row="3" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
-		<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" >
+		<DatePicker Grid.Row="3" Grid.Column="1" />
+		<TextBlock Grid.Row="3" Grid.Column="3" TextWrapping="Wrap">DatePicker isnt done yet, but Calender (v1) is. Use DatePicker to pop open calendar. Not also lack of a modal dialog. That is a seperate concern.</TextBlock>
+		<Slider Grid.Row="4" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
+		<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="3" Grid.RowSpan="3" >
 			<Slider TickFrequency="5" TickPlacement="BottomRight" Orientation="Vertical" Minimum="1" Maximum="50" />
 			<Slider TickFrequency="25" TickPlacement="TopLeft" Orientation="Vertical" Minimum="1" Maximum="50" IsEnabled="False" Margin="24 8 0 8" />
 		</StackPanel>		
-		<Slider Grid.Row="4" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True" />
-		<Slider Grid.Row="5" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsEnabled="False" />
+		<Slider Grid.Row="5" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True" />
+		<Slider Grid.Row="6" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsEnabled="False" />
 		
 	</Grid>
 </UserControl>

@@ -114,6 +114,7 @@
     </Style>
 
     <Style TargetType="{x:Type local:MaterialDateDisplay}">
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:MaterialDateDisplay}">
@@ -129,5 +130,24 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+		<Style.Triggers>
+			<Trigger Property="IsDayInFirstComponent" Value="True">
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="{x:Type local:MaterialDateDisplay}">
+							<Border Background="{TemplateBinding Background}"
+									BorderBrush="{TemplateBinding BorderBrush}"
+									BorderThickness="{TemplateBinding BorderThickness}">
+								<StackPanel>
+									<TextBlock Text="{TemplateBinding ComponentOneContent}" HorizontalAlignment="Center" Margin="0 4 0 0" FontSize="60" FontWeight="Normal" />
+									<TextBlock Text="{TemplateBinding ComponentTwoContent}" HorizontalAlignment="Center" Margin="0 -4 0 0" FontSize="24" FontWeight="Normal" />
+									<TextBlock Text="{TemplateBinding ComponentThreeContent}" HorizontalAlignment="Center" Margin="0 4 0 10" FontSize="24" Opacity=".56" FontWeight="Normal" />
+								</StackPanel>
+							</Border>
+						</ControlTemplate>
+					</Setter.Value>					
+				</Setter>
+			</Trigger>
+		</Style.Triggers>
     </Style>
 </ResourceDictionary>

@@ -98,6 +98,21 @@ namespace MaterialDesignThemes.Wpf
             private set { SetValue(ComponentThreeContentPropertyKey, value); }
         }
 
+	    private static readonly DependencyPropertyKey IsDayInFirstComponentPropertyKey =
+		    DependencyProperty.RegisterReadOnly(
+			    "IsDayInFirstComponent", typeof (bool), typeof (MaterialDateDisplay),
+			    new PropertyMetadata(default(bool)));
+
+	    public static readonly DependencyProperty IsDayInFirstComponentProperty =
+		    IsDayInFirstComponentPropertyKey.DependencyProperty;
+
+	    public bool IsDayInFirstComponent
+	    {
+		    get { return (bool) GetValue(IsDayInFirstComponentProperty); }
+		    private set { SetValue(IsDayInFirstComponentPropertyKey, value); }
+	    }
+
+
         private void UpdateComponents()
         {
             var dateTimeFormatInfo = GetDateFormat(CultureInfo.CurrentCulture);
@@ -105,8 +120,10 @@ namespace MaterialDesignThemes.Wpf
             foreach (var component in dateTimeFormatInfo.ShortDatePattern.Split(new[] {dateTimeFormatInfo.DateSeparator},
                 StringSplitOptions.RemoveEmptyEntries).Select((s, index) => new {code = s.ToLower()[0], index}))
             {
-                _setters[component.index](DisplayDate.ToString(_formats[component.code]).ToUpper());
-            }            
+	            if (component.index == 0)
+		            IsDayInFirstComponent = component.code == 'd';
+				_setters[component.index](DisplayDate.ToString(_formats[component.code]).ToUpper());
+            }					       
         }
 
         /// <summary>
