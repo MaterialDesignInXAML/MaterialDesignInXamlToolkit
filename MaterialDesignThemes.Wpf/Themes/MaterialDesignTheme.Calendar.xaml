@@ -292,14 +292,16 @@
 														<VisualState x:Name="Normal"/>
 														<VisualState x:Name="MouseOver" />
 														<VisualState x:Name="Disabled">
-															<Storyboard>
-																<DoubleAnimation Duration="0" To=".56" Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)" Storyboard.TargetName="path"/>
+															<Storyboard>                                                                
+																<DoubleAnimation Duration="0" To=".56" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="path"/>
 															</Storyboard>
 														</VisualState>
 													</VisualStateGroup>
 												</VisualStateManager.VisualStateGroups>
-												<wpf:VisualFeedbackContentControl>
-													<Path x:Name="path" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" Fill="{TemplateBinding Foreground}" HorizontalAlignment="Left" Margin="8" Stretch="Fill" VerticalAlignment="Center" />
+												<wpf:VisualFeedbackContentControl HorizontalAlignment="Center" VerticalAlignment="Center">
+													<Viewbox Height="12" Margin="8">
+														<Path x:Name="path" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" Fill="{TemplateBinding Foreground}" Stretch="Fill" />	
+													</Viewbox>													
 												</wpf:VisualFeedbackContentControl>
 											</Grid>
 										</ControlTemplate>
@@ -311,13 +313,15 @@
 														<VisualState x:Name="MouseOver"/>
 														<VisualState x:Name="Disabled">
 															<Storyboard>
-																<DoubleAnimation Duration="0" To=".5" Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)" Storyboard.TargetName="path"/>
+																<DoubleAnimation Duration="0" To=".5" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="path"/>
 															</Storyboard>
 														</VisualState>
 													</VisualStateGroup>
 												</VisualStateManager.VisualStateGroups>
-												<wpf:VisualFeedbackContentControl>
-													<Path x:Name="path" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" Fill="{TemplateBinding Foreground}" HorizontalAlignment="Right"  Stretch="Fill" Margin="8" VerticalAlignment="Center" />
+												<wpf:VisualFeedbackContentControl HorizontalAlignment="Center" VerticalAlignment="Center">
+													<Viewbox Height="12" Margin="8">
+														<Path x:Name="path" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" Fill="{TemplateBinding Foreground}" Stretch="Fill"  />
+													</Viewbox>
 												</wpf:VisualFeedbackContentControl>
 											</Grid>
 										</ControlTemplate>
@@ -373,25 +377,16 @@
 											</TextBlock.Text>
 										</TextBlock>
 									</Border>
-									<Border Grid.ColumnSpan="3" Grid.Row="1" Background="{DynamicResource PrimaryHueMidBrush}" />
-									<Button x:Name="PART_PreviousButton" Grid.Row="1" Grid.Column="0" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
-                                                    Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+									<Border Grid.ColumnSpan="3" Grid.Row="1" Background="{DynamicResource PrimaryHueMidBrush}" />									
 									<Button x:Name="PART_HeaderButton" Grid.Row="1" Grid.Column="1" FontWeight="Bold" Focusable="False" FontSize="10.5" HorizontalAlignment="Center" Template="{StaticResource HeaderButtonTemplate}" VerticalAlignment="Center"
 											Height="142"
 											/>
-									<Button x:Name="PART_NextButton" Grid.Row="1" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="36" Template="{StaticResource NextButtonTemplate}" Width="32"
-                                                    Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" />
-									<TextBlock HorizontalAlignment="Center" Margin="8" FontSize="14" Grid.Row="2" Grid.ColumnSpan="3" FontWeight="SemiBold">
-										<TextBlock.Text>
-											<MultiBinding Mode="OneWay" StringFormat="MMMM yyyy">
-												<MultiBinding.Converter>
-													<converters:CalendarDateCoalesceConverter />
-												</MultiBinding.Converter>
-												<Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" Path="DisplayDate" />
-												<Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" Path="SelectedDate" />
-											</MultiBinding>
-										</TextBlock.Text>
-									</TextBlock>
+									<Button x:Name="PART_PreviousButton" Grid.Row="2" Grid.Column="0" Focusable="False" HorizontalAlignment="Right" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
+											Foreground="{TemplateBinding Foreground}" />
+									<TextBlock HorizontalAlignment="Center" Margin="8" FontSize="14" Grid.Row="2" Grid.Column="1" FontWeight="SemiBold" VerticalAlignment="Center"
+											   Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=DisplayDate, StringFormat=MMMM yyyy}" />
+									<Button x:Name="PART_NextButton" Grid.Row="2" Grid.Column="2" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource NextButtonTemplate}" Width="32"
+                                            Foreground="{TemplateBinding Foreground}" />									
 									<Grid x:Name="PART_MonthView" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="6,-1,6,6" Grid.Row="3" Visibility="Visible">
 										<Grid.ColumnDefinitions>
 											<ColumnDefinition Width="Auto"/>

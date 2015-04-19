@@ -9,10 +9,8 @@
              d:DesignHeight="300" d:DesignWidth="300">
 	<UserControl.Resources>
 		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+			<ResourceDictionary.MergedDictionaries>				
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />				
 			</ResourceDictionary.MergedDictionaries>
 			<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
 				<Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -100,8 +98,8 @@
 				 x:Name="CommentTextBox"
 				 wpf:TextField.Hint="Comment"
 				 />
-		<DatePicker Grid.Row="3" Grid.Column="1" />
-		<TextBlock Grid.Row="3" Grid.Column="3" TextWrapping="Wrap">DatePicker isnt done yet, but Calender (v1) is. Use DatePicker to pop open calendar. Not also lack of a modal dialog. That is a seperate concern.</TextBlock>
+		<DatePicker Grid.Row="3" Grid.Column="1" Margin="0 8 0 8" />
+		<TextBlock Grid.Row="3" Grid.Column="3" TextWrapping="Wrap"></TextBlock>
 		<Slider Grid.Row="4" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
 		<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="3" Grid.RowSpan="3" >
 			<Slider TickFrequency="5" TickPlacement="BottomRight" Orientation="Vertical" Minimum="1" Maximum="50" />
