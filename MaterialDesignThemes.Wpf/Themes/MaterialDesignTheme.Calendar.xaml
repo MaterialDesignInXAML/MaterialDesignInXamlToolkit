@@ -257,7 +257,7 @@
 		</Setter>
 	</Style>
 
-	<Style x:Key="MaterialDesignCalendarItem" TargetType="{x:Type CalendarItem}">
+	<Style x:Key="MaterialDesignCalendarItemPortrait" TargetType="{x:Type CalendarItem}">
 		<Setter Property="Margin" Value="0,3,0,3"/>
 		<Setter Property="Template">
 			<Setter.Value>
@@ -381,12 +381,12 @@
 									<Button x:Name="PART_HeaderButton" Grid.Row="1" Grid.Column="1" FontWeight="Bold" Focusable="False" FontSize="10.5" HorizontalAlignment="Center" Template="{StaticResource HeaderButtonTemplate}" VerticalAlignment="Center"
 											Height="142"
 											/>
-									<Button x:Name="PART_PreviousButton" Grid.Row="2" Grid.Column="0" Focusable="False" HorizontalAlignment="Right" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
-											Foreground="{TemplateBinding Foreground}" />
+									<Button x:Name="PART_PreviousButton" Grid.Row="2" Grid.Column="0" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
+											Margin="40 0 0 0" Foreground="{TemplateBinding Foreground}" />
 									<TextBlock HorizontalAlignment="Center" Margin="8" FontSize="14" Grid.Row="2" Grid.Column="1" FontWeight="SemiBold" VerticalAlignment="Center"
 											   Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=DisplayDate, StringFormat=MMMM yyyy}" />
-									<Button x:Name="PART_NextButton" Grid.Row="2" Grid.Column="2" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource NextButtonTemplate}" Width="32"
-                                            Foreground="{TemplateBinding Foreground}" />									
+									<Button x:Name="PART_NextButton" Grid.Row="2" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="36" Template="{StaticResource NextButtonTemplate}" Width="32"
+                                            Margin="0 0 40 0" Foreground="{TemplateBinding Foreground}" />									
 									<Grid x:Name="PART_MonthView" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="6,-1,6,6" Grid.Row="3" Visibility="Visible">
 										<Grid.ColumnDefinitions>
 											<ColumnDefinition Width="Auto"/>
@@ -443,7 +443,7 @@
 		</Setter>
 	</Style>
 
-	<Style x:Key="MaterialDesignCalendar" TargetType="{x:Type Calendar}">
+	<Style x:Key="MaterialDesignCalendarPortrait" TargetType="{x:Type Calendar}">
 		<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
 		<Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
 		<Setter Property="CalendarDayButtonStyle" Value="{StaticResource MaterialDesignCalendarDayButton}" />
@@ -451,9 +451,7 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Calendar}">
-					<StackPanel x:Name="PART_Root" HorizontalAlignment="Center">
-						<CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItem}"/>
-					</StackPanel>
+					<CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItemPortrait}"/>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>

@@ -4,6 +4,7 @@
 
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="MaterialDesignTheme.Calendar.xaml" />
+		<ResourceDictionary Source="MaterialDesignTheme.Shadows.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 	<Style x:Key="MaterialDesignDatePickerTextBox" TargetType="{x:Type DatePickerTextBox}">
@@ -57,12 +58,29 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+	
+	<Style x:Key="MaterialDesignDatePickerCalendarPortrait" TargetType="{x:Type Calendar}">
+		<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+		<Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+		<Setter Property="CalendarDayButtonStyle" Value="{StaticResource MaterialDesignCalendarDayButton}" />
+		<Setter Property="CalendarButtonStyle" Value="{StaticResource MaterialDesignCalendarButton}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Calendar}">
+					<Border Effect="{StaticResource MaterialDesignShadowDepth4}" Padding="8 8 16 24">
+						<CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItemPortrait}"
+									  />	
+					</Border>					
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
 
 	<Style x:Key="MaterialDesignDatePicker" TargetType="{x:Type DatePicker}">
 		<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
 		<Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
 		<Setter Property="Background" Value="Transparent"/>
-		<Setter Property="CalendarStyle" Value="{StaticResource MaterialDesignCalendar}"/>
+		<Setter Property="CalendarStyle" Value="{StaticResource MaterialDesignDatePickerCalendarPortrait}"/>
 		<Setter Property="IsTodayHighlighted" Value="True"/>
 		<Setter Property="SelectedDateFormat" Value="Short"/>
 		<Setter Property="BorderThickness" Value="0 0 0 1"/>
@@ -112,8 +130,8 @@
 								<ColumnDefinition Width="*"/>
 								<ColumnDefinition Width="Auto"/>
 							</Grid.ColumnDefinitions>
-							<Button x:Name="PART_Button" Grid.Column="1" Foreground="{TemplateBinding BorderBrush}" Focusable="False" HorizontalAlignment="Right" Margin="4 0 0 0" Grid.Row="0" Template="{StaticResource DropDownButtonTemplate}" Padding="0"
-									Height="18" />
+							<Button x:Name="PART_Button" Grid.Column="1" Foreground="{TemplateBinding BorderBrush}" Focusable="False" HorizontalAlignment="Right" Margin="4 0 0 -3" Grid.Row="0" Template="{StaticResource DropDownButtonTemplate}" Padding="0"
+									Height="17" />
 							<DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Center" Style="{DynamicResource MaterialDesignDatePickerTextBox}"
 											   HorizontalAlignment="Stretch" />
 							<Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False" />
