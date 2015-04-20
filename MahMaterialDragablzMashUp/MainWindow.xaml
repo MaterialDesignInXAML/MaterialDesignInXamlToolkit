@@ -5,6 +5,7 @@
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         xmlns:mahMaterialDragablzMashUp="clr-namespace:MahMaterialDragablzMashUp" 
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+					  WindowTransitionsEnabled="False"
         Background="{DynamicResource MaterialDesignPaper}"					  
         GlowBrush="{DynamicResource AccentColorBrush}"					  
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"

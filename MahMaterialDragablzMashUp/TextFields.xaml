@@ -67,13 +67,8 @@
             </TextBox.Text>
         </TextBox>
 		<TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">OS</TextBlock>
-		<ComboBox Grid.Row="0" Grid.Column="3" wpf:TextField.Hint="OS">
-			<ComboBoxItem>Andoid</ComboBoxItem>
-			<ComboBoxItem>iOS</ComboBoxItem>
-			<ComboBoxItem>Linux</ComboBoxItem>
-			<ComboBoxItem>Windows</ComboBoxItem>
-		</ComboBox>
-        <Viewbox Grid.Row="1" Grid.Column="0">
+		<DatePicker Grid.Row="0" Grid.Column="3" Margin="0 8 0 8" />					
+		<Viewbox Grid.Row="1" Grid.Column="0">
 			<Canvas Width="24" Height="24">
 				<Path Data="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" 
 					  Fill="{Binding ElementName=PhoneTextBox, Path=BorderBrush}" />
@@ -100,6 +95,12 @@
 				 x:Name="CommentTextBox"
 				 wpf:TextField.Hint="Comment"
 				 />
+		<ComboBox Grid.Row="2" Grid.Column="3" wpf:TextField.Hint="OS">
+			<ComboBoxItem>Andoid</ComboBoxItem>
+			<ComboBoxItem>iOS</ComboBoxItem>
+			<ComboBoxItem>Linux</ComboBoxItem>
+			<ComboBoxItem>Windows</ComboBoxItem>
+		</ComboBox>	
 		<Slider Grid.Row="3" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
 		<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" >
 			<Slider TickFrequency="5" TickPlacement="BottomRight" Orientation="Vertical" Minimum="1" Maximum="50" />
