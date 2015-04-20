@@ -33,6 +33,10 @@
 * Install [Nuget package](https://www.nuget.org/packages/MaterialDesignThemes/) ```Install-Package MaterialDesignThemes```
 * Import required resource dictionaries, and use styles as desired.  For examples, see the MaterialDesignColors.WpfExample project in the source code.
 
+# More Pics
+
+![Alt text](https://dragablz.files.wordpress.com/2015/04/datepicker.gif "Date Picker & Calendar Demo")
+
 # A Brief History
 
 In creating a Material Design TabControl theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), the first step was getting hold of all the colours.  The resulting resource dictionaries work well stand alone, so are completely re-usable. 
