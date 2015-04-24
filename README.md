@@ -18,6 +18,7 @@
 [![NuGet-Themes](https://img.shields.io/nuget/dt/MaterialDesignThemes.svg?label=NuGet-Themes&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](https://img.shields.io/nuget/dt/MaterialDesignColors.svg?label=NuGet-Colors&style=flat-square)](https://www.nuget.org/packages/MaterialDesignColors/)
 [![Issues](https://img.shields.io/github/issues/ButchersBoy/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues)
+[![Twitter](https://img.shields.io/badge/twitter-%40james__willock-55acee.svg?style=flat-square)](https://twitter.com/James_Willock)
 
 # How Can I Use The Colours?
 
