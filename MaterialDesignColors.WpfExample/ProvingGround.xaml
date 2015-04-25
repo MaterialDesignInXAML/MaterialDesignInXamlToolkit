@@ -7,61 +7,171 @@
              xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-             mc:Ignorable="d" 
-             d:DesignHeight="340" d:DesignWidth="260"
-			 Background="{DynamicResource MaterialDesignPaper}">
+             mc:Ignorable="d"              
+			 Background="{DynamicResource MaterialDesignPaper}" d:DesignWidth="340" d:DesignHeight="635">
     <UserControl.Resources>
         <ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.MergedDictionaries>
 
-				<!-- light or dark theme -->
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <!-- light or dark theme -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
 
-				<!-- primary color -->
-				<ResourceDictionary>
-					<!-- include your primary palette -->
-					<ResourceDictionary.MergedDictionaries>
-						<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Teal.xaml" />
-					</ResourceDictionary.MergedDictionaries>
-					<!-- 
+                <!-- primary color -->
+                <ResourceDictionary>
+                    <!-- include your primary palette -->
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                    <!-- 
                             include three hues from the primary palette (and the associated forecolours).  
                             Do not rename, keep in sequence; light to dark. 
                         -->
-					<SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource Primary100}"/>
-					<SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary100Foreground}"/>
-					<SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource Primary500}"/>
-					<SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}"/>
-					<SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}"/>
-					<SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}"/>
-				</ResourceDictionary>
+                    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource Primary100}"/>
+                    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary100Foreground}"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource Primary500}"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}"/>
+                </ResourceDictionary>
 
-				<!-- secondary colour -->
-				<ResourceDictionary>
-					<!-- include your secondary pallette -->
-					<ResourceDictionary.MergedDictionaries>
-						<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Yellow.xaml" />
-					</ResourceDictionary.MergedDictionaries>
+                <!-- secondary colour -->
+                <ResourceDictionary>
+                    <!-- include your secondary pallette -->
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Yellow.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
 
-					<!-- include a single secondary accent color (and the associated forecolour) -->
-					<SolidColorBrush x:Key="SecondaryAccentBrush" Color="{StaticResource Accent700}"/>
-					<SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent700Foreground}"/>
-				</ResourceDictionary>
-			</ResourceDictionary.MergedDictionaries>
+                    <!-- include a single secondary accent color (and the associated forecolour) -->
+                    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{StaticResource Accent700}"/>
+                    <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent700Foreground}"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+			
+			<converters:ClockLineConverter x:Key="ClockHourLineConverter" ClockDisplay="Hours" />
+			<converters:ClockLineConverter x:Key="ClockMinuteLineConverter" ClockDisplay="Minutes" />
+			
+			<Style x:Key="MaterialDesignClockItemThumb" TargetType="{x:Type Thumb}">
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="{x:Type Thumb}">
+							<Ellipse Fill="{TemplateBinding Background}" />
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			
+            <Style x:Key="MaterialDesignClock" TargetType="{x:Type wpf:Clock}">
+                <Setter Property="Width" Value="280" />
+                <Setter Property="Height" Value="470" />
+                <Setter Property="BorderBrush" Value="Black" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="ButtonRadiusRatio" Value=".835" />
+                <Setter Property="ButtonStyle">
+                    <Setter.Value>
+                        <Style TargetType="{x:Type wpf:ClockItemButton}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Width" Value="32" />
+                            <Setter Property="Height" Value="32" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+							<Setter Property="Canvas.ZIndex" Value="0" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type wpf:ClockItemButton}">
+                                        <Grid>
+                                            <Ellipse Fill="{TemplateBinding Background}" />
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+								<Trigger Property="IsMouseOver" Value="True">
+									<Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+								</Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+				<Setter Property="LesserButtonStyle">
+                    <Setter.Value>
+                        <Style TargetType="{x:Type wpf:ClockItemButton}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Width" Value="12" />
+                            <Setter Property="Height" Value="12" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+							<Setter Property="Canvas.ZIndex" Value="1" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type wpf:ClockItemButton}">
+                                        <Grid>
+											<Ellipse Fill="{TemplateBinding Background}" Opacity=".23" />
+											<Ellipse Fill="{TemplateBinding Background}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="6" Width="6" />
+										</Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+								<Trigger Property="IsMouseOver" Value="True">
+									<Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+								</Trigger>
+								<Trigger Property="IsChecked" Value="True">
+									<Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+								</Trigger>
+							</Style.Triggers>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type wpf:Clock}">
+                            <Border Background="{TemplateBinding Background}"
+        						BorderBrush="{TemplateBinding BorderBrush}"
+        						BorderThickness="{TemplateBinding BorderThickness}">
+                                <Grid>
+	                                <Grid.RowDefinitions>
+		                                <RowDefinition Height="Auto" />
+		                                <RowDefinition Height="*" />
+	                                </Grid.RowDefinitions>
+	                                <Border Background="{DynamicResource PrimaryHueMidBrush}" Height="120"
+                                            Opacity=".3">
+                                        <TextBlock>Time goes here</TextBlock>
+                                    </Border>
+                                    <Canvas x:Name="PART_HoursCanvas" Grid.Row="1" Margin="0,24.5,0,159.5" Width="230" Height="230" Visibility="Hidden">
+										<Path x:Name="HourLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
+											<Path.RenderTransform>
+                                                <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
+                                            </Path.RenderTransform>
+										</Path>
+                                    </Canvas>
+									<Canvas x:Name="PART_MinutesCanvas" Grid.Row="1" Margin="0,24.5,0,159.5" Width="230" Height="230">
+										<Path x:Name="MinuteLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
+											<Path.RenderTransform>
+                                                <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
+                                            </Path.RenderTransform>
+										</Path>
+                                    </Canvas>
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
-		</ResourceDictionary>
+        </ResourceDictionary>
 
     </UserControl.Resources>
 
-    <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <DatePicker Style="{DynamicResource MaterialDesignDatePicker}" VerticalAlignment="Top" />
-            <TextBox Margin="10 0 0 0" Width="100" VerticalAlignment="Top">Just to compare</TextBox>
-        </StackPanel>        
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="24">
-            <Calendar Margin="0 0 24 0"></Calendar>
-        </StackPanel>
-    </StackPanel>
+    <Grid>
+        <Image Source="ScreenGrabFromGoogle.gif" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="None" Opacity=".5" />
+        <wpf:Clock Style="{DynamicResource MaterialDesignClock}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+    </Grid>
 
 
 </UserControl>

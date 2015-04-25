@@ -122,8 +122,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clock.cs" />
+    <Compile Include="ClockItemButton.cs" />
     <Compile Include="Converters\BrushToRadialGradientBrushConverter.cs" />
     <Compile Include="Converters\CalendarDateCoalesceConverter.cs" />
+    <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
+    <Compile Include="Converters\ClockLineConverter.cs" />
     <Compile Include="MaterialDateDisplay.cs" />
     <Compile Include="ProgressLoop.cs" />
     <Compile Include="ProgressLoopDev.xaml.cs">
