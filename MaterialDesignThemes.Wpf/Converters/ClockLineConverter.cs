@@ -21,4 +21,5 @@ namespace MaterialDesignThemes.Wpf.Converters
 			return Binding.DoNothing;
 		}
 	}
+
 }

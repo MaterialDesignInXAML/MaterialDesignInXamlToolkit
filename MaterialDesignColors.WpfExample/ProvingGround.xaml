@@ -50,6 +50,7 @@
 
 			<converters:ClockLineConverter x:Key="ClockHourLineConverter" ClockDisplay="Hours" />
 			<converters:ClockLineConverter x:Key="ClockMinuteLineConverter" ClockDisplay="Minutes" />
+			<converters:DateFormatConverter x:Key="TwelveHourDateConverter" Format="h" />
 
 			<Style x:Key="MaterialDesignClockItemThumb" TargetType="{x:Type Thumb}">
 				<Setter Property="Template">
@@ -145,7 +146,7 @@
 										<RowDefinition Height="*" />
 									</Grid.RowDefinitions>
 									<Border Background="{DynamicResource PrimaryHueMidBrush}" Height="120">
-										<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="54 6 0 0">
+										<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 6 38 0">
 											<StackPanel.Resources>
 												<Style x:Key="TimeTextBlock" TargetType="{x:Type TextBlock}">
 													<Setter Property="Foreground" Value="{DynamicResource MaterialDesignPaper}" />
@@ -153,7 +154,7 @@
 													<Setter Property="FontWeight" Value="Normal" />
 												</Style>
 											</StackPanel.Resources>
-											<TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:hh}}" 
+											<TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:%h}}" 
 													   x:Name="PART_HourReadOut">
 												<TextBlock.Style>
 													<Style BasedOn="{StaticResource TimeTextBlock}" TargetType="{x:Type TextBlock}">
@@ -226,7 +227,7 @@
 												</DoubleAnimationUsingKeyFrames>
 												<DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleX">
 													<DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-													<EasingDoubleKeyFrame Value="1.1" KeyTime="0:0:0.5">
+													<EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
 														<EasingDoubleKeyFrame.EasingFunction>
 															<SineEase EasingMode="EaseOut" />
 														</EasingDoubleKeyFrame.EasingFunction>
@@ -234,7 +235,7 @@
 												</DoubleAnimationUsingKeyFrames>
 												<DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleY">
 													<DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-													<EasingDoubleKeyFrame Value="1.1" KeyTime="0:0:0.5">
+													<EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
 														<EasingDoubleKeyFrame.EasingFunction>
 															<SineEase EasingMode="EaseOut" />
 														</EasingDoubleKeyFrame.EasingFunction>
@@ -278,14 +279,14 @@
 												</BooleanAnimationUsingKeyFrames>
 												<DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="Opacity">
 													<DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
-													<EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+													<EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.4">
 														<EasingDoubleKeyFrame.EasingFunction>
 															<SineEase EasingMode="EaseIn" />
 														</EasingDoubleKeyFrame.EasingFunction>
 													</EasingDoubleKeyFrame>
 												</DoubleAnimationUsingKeyFrames>
 												<DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleX">
-													<DiscreteDoubleKeyFrame Value="1.1" KeyTime="0" />
+													<DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
 													<EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
 														<EasingDoubleKeyFrame.EasingFunction>
 															<SineEase EasingMode="EaseOut" />
@@ -293,7 +294,7 @@
 													</EasingDoubleKeyFrame>
 												</DoubleAnimationUsingKeyFrames>
 												<DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleY">
-													<DiscreteDoubleKeyFrame Value="1.1" KeyTime="0" />
+													<DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
 													<EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
 														<EasingDoubleKeyFrame.EasingFunction>
 															<SineEase EasingMode="EaseOut" />
@@ -342,8 +343,8 @@
 	</UserControl.Resources>
 
 	<Grid Margin="16">
-		<Image Source="ScreenGrabFromGoogle.gif" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="None" Opacity="0" />
-		<wpf:Clock Style="{DynamicResource MaterialDesignClock}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+		<Image Source="ScreenGrabFromGoogle.gif" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="None" Opacity="0.5" />
+		<wpf:Clock Style="{DynamicResource MaterialDesignClock}" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.5" />
 	</Grid>
 
 
