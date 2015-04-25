@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace MaterialDesignThemes.Wpf
-{
+{	
+
 	[TemplatePart(Name = ThumbPartName, Type = typeof(Thumb))]
 	public class ClockItemButton : ToggleButton
 	{
@@ -62,21 +64,87 @@ namespace MaterialDesignThemes.Wpf
 			if (_thumb != null)
 			{
 				_thumb.DragDelta -= ThumbOnDragDelta;
+				_thumb.DragCompleted -= ThumbOnDragCompleted;
 			}
 
 			_thumb = GetTemplateChild(ThumbPartName) as Thumb;
 
 			if (_thumb != null)
-			{
-				_thumb.DragDelta += ThumbOnDragDelta;
+			{				
+                _thumb.DragDelta += ThumbOnDragDelta;
+				_thumb.DragCompleted += ThumbOnDragCompleted;
             }
 
 			base.OnApplyTemplate();
 		}
 
+		public static readonly RoutedEvent DragDeltaEvent =
+			EventManager.RegisterRoutedEvent(
+				"DragDelta",
+				RoutingStrategy.Bubble,
+				typeof (DragDeltaEventHandler),
+				typeof (ClockItemButton));
+
+		private static void OnDragDelta(
+			DependencyObject d, double horizontalChange, double verticalChange)
+		{
+			var instance = (ClockItemButton) d;
+			var dragDeltaEventArgs = new DragDeltaEventArgs(horizontalChange, verticalChange)
+			{
+				RoutedEvent = DragDeltaEvent,
+				Source = d
+			};
+
+			instance.RaiseEvent(dragDeltaEventArgs);			
+		}
+
+		public static readonly RoutedEvent DragCompletedEvent =
+			EventManager.RegisterRoutedEvent(
+				"DragCompleted",
+				RoutingStrategy.Bubble,
+				typeof (DragCompletedEventHandler),
+				typeof (ClockItemButton));
+
+		private static void OnDragCompleted(DependencyObject d, double horizontalChange, double verticalChange, bool canceled)
+		{
+			var instance = (ClockItemButton)d;
+			var dragCompletedEventArgs = new DragCompletedEventArgs(horizontalChange, verticalChange, canceled)
+			{
+				RoutedEvent = DragCompletedEvent,
+				Source = d
+			};
+
+			instance.RaiseEvent(dragCompletedEventArgs);
+		}		
+
+		protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
+		{
+			if (_thumb == null) return;
+				
+			base.OnPreviewMouseLeftButtonDown(e);
+			if (!IsChecked.HasValue || !IsChecked.Value)
+			{
+				OnToggle();				
+			}
+		}
+
+		/// <summary> 
+		/// This override method is called when the control is clicked by mouse or keyboard
+		/// </summary> 
+		protected override void OnClick()
+		{
+			if (_thumb == null)
+				base.OnClick();			
+		}
+
 		private void ThumbOnDragDelta(object sender, DragDeltaEventArgs dragDeltaEventArgs)
 		{
-			System.Diagnostics.Debug.WriteLine("drag that shit");
+			OnDragDelta(this, dragDeltaEventArgs.HorizontalChange, dragDeltaEventArgs.VerticalChange);
+		}
+
+		private void ThumbOnDragCompleted(object sender, DragCompletedEventArgs dragCompletedEventArgs)
+		{
+			OnDragCompleted(this, dragCompletedEventArgs.HorizontalChange, dragCompletedEventArgs.VerticalChange, dragCompletedEventArgs.Canceled);
 		}
 
 		protected override Size ArrangeOverride(Size finalSize)
