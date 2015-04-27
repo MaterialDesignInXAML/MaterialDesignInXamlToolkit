@@ -63,6 +63,7 @@ namespace MaterialDesignThemes.Wpf
 		{
 			if (_thumb != null)
 			{
+                _thumb.DragStarted -= ThumbOnDragStarted;
 				_thumb.DragDelta -= ThumbOnDragDelta;
 				_thumb.DragCompleted -= ThumbOnDragCompleted;
 			}
@@ -70,7 +71,8 @@ namespace MaterialDesignThemes.Wpf
 			_thumb = GetTemplateChild(ThumbPartName) as Thumb;
 
 			if (_thumb != null)
-			{				
+			{
+                _thumb.DragStarted += ThumbOnDragStarted;
                 _thumb.DragDelta += ThumbOnDragDelta;
 				_thumb.DragCompleted += ThumbOnDragCompleted;
             }
@@ -98,12 +100,31 @@ namespace MaterialDesignThemes.Wpf
 			instance.RaiseEvent(dragDeltaEventArgs);			
 		}
 
+        public static readonly RoutedEvent DragStartedEvent =
+            EventManager.RegisterRoutedEvent(
+                "DragStarted",
+                RoutingStrategy.Bubble,
+                typeof(DragStartedEventHandler),
+                typeof(ClockItemButton));
+
 		public static readonly RoutedEvent DragCompletedEvent =
 			EventManager.RegisterRoutedEvent(
 				"DragCompleted",
 				RoutingStrategy.Bubble,
 				typeof (DragCompletedEventHandler),
 				typeof (ClockItemButton));
+
+        private static void OnDragStarted(DependencyObject d, double horizontalOffset, double verticalOffset)
+        {
+            var instance = (ClockItemButton)d;
+            var dragStartedEventArgs = new DragStartedEventArgs(horizontalOffset, verticalOffset)
+            {
+                RoutedEvent = DragStartedEvent,
+                Source = d
+            };
+
+            instance.RaiseEvent(dragStartedEventArgs);
+        }
 
 		private static void OnDragCompleted(DependencyObject d, double horizontalChange, double verticalChange, bool canceled)
 		{
@@ -136,6 +157,12 @@ namespace MaterialDesignThemes.Wpf
 			if (_thumb == null)
 				base.OnClick();			
 		}
+
+        private void ThumbOnDragStarted(object sender, DragStartedEventArgs dragStartedEventArgs)
+        {
+            //Get the absolute position of where the drag operation started
+            OnDragStarted(this, CentreX + dragStartedEventArgs.HorizontalOffset - Width / 2.0, CentreY + dragStartedEventArgs.VerticalOffset - Height / 2.0);
+        }
 
 		private void ThumbOnDragDelta(object sender, DragDeltaEventArgs dragDeltaEventArgs)
 		{

@@ -42,7 +42,8 @@ namespace MaterialDesignThemes.Wpf
 		public const string MinuteReadOutPartName = "PART_MinuteReadOut";
 		public const string HourReadOutPartName = "PART_HourReadOut";
 
-		private Point _currentDragDelta = new Point(0, 0);
+        private Point _centreCanvas = new Point(0, 0);
+        private Point _currentStartPosition = new Point(0, 0);
 		private TextBlock _hourReadOutPartName;
 		private TextBlock _minuteReadOutPartName;
 
@@ -53,6 +54,7 @@ namespace MaterialDesignThemes.Wpf
 
 		public Clock()
 		{
+            AddHandler(ClockItemButton.DragStartedEvent, new DragStartedEventHandler(ClockItemDragStartedHandler));
 			AddHandler(ClockItemButton.DragDeltaEvent, new DragDeltaEventHandler(ClockItemDragDeltaHandler));
 			AddHandler(ClockItemButton.DragCompletedEvent, new DragCompletedEventHandler(ClockItemDragCompletedHandler));
 		}
@@ -210,9 +212,8 @@ namespace MaterialDesignThemes.Wpf
 			//nothing fancy with sizing/measuring...we are demanding a height
 			if (canvas.Width < 10.0 || Math.Abs(canvas.Height - canvas.Width) > 0.0) return;
 
-			var centreCanvasX = canvas.Width/2;
-			var centreCanvasY = canvas.Height/2;
-			var hypotenuseRadius = centreCanvasX * ButtonRadiusRatio;
+            _centreCanvas = new Point(canvas.Width / 2, canvas.Height / 2);
+            var hypotenuseRadius = _centreCanvas.X * ButtonRadiusRatio;
 
 			foreach (var i in range)
 			{
@@ -222,8 +223,8 @@ namespace MaterialDesignThemes.Wpf
 				var adjacent = Math.Cos(i*radiansPerItem)*hypotenuseRadius;
 				var opposite = Math.Sin(i*radiansPerItem)*hypotenuseRadius;
 
-				button.CentreX = centreCanvasX + opposite;
-				button.CentreY = centreCanvasY - adjacent;
+                button.CentreX = _centreCanvas.X + opposite;
+                button.CentreY = _centreCanvas.Y - adjacent;
 
 				button.SetBinding(ToggleButton.IsCheckedProperty, GetBinding("Time", converter: isCheckedConverter, converterParameter: i));
 				button.SetBinding(Canvas.LeftProperty, GetBinding("X", button));
@@ -236,8 +237,6 @@ namespace MaterialDesignThemes.Wpf
 
 		private void ClockItemDragCompletedHandler(object sender, DragCompletedEventArgs e)
 		{
-			_currentDragDelta = new Point();
-
 			OnClockChoiceMade(this, DisplayMode);
 
 			switch (DisplayAutomation)
@@ -256,49 +255,25 @@ namespace MaterialDesignThemes.Wpf
 			}
 		}
 
-		private void ClockItemDragDeltaHandler(object sender, DragDeltaEventArgs dragDeltaEventArgs)
-		{			
-			var horizontalChange = dragDeltaEventArgs.HorizontalChange - _currentDragDelta.X;
-			var verticalChange = dragDeltaEventArgs.VerticalChange - _currentDragDelta.Y;
-
-			if (horizontalChange >= 3 || verticalChange >= 3)
-			{
-				var time = DisplayMode == ClockDisplayMode.Hours
-					? new DateTime(Time.Year, Time.Month, Time.Day, IncHour(Time.Hour), Time.Minute, Time.Second)
-					: new DateTime(Time.Year, Time.Month, Time.Day, Time.Hour, IncMinute(Time.Minute), Time.Second);
-
-				SetCurrentValue(TimeProperty, time);
-				_currentDragDelta = new Point(dragDeltaEventArgs.HorizontalChange, dragDeltaEventArgs.VerticalChange);
-			}
-			else if (horizontalChange <= -3 || verticalChange <= -3)
-			{
-				var time = DisplayMode == ClockDisplayMode.Hours
-									? new DateTime(Time.Year, Time.Month, Time.Day, DecHour(Time.Hour), Time.Minute, Time.Second)
-									: new DateTime(Time.Year, Time.Month, Time.Day, Time.Hour, DecMinute(Time.Minute), Time.Second);
-
-				SetCurrentValue(TimeProperty, time);
-				_currentDragDelta = new Point(dragDeltaEventArgs.HorizontalChange, dragDeltaEventArgs.VerticalChange);
-			}			
+        private void ClockItemDragStartedHandler(object sender, DragStartedEventArgs dragStartedEventArgs)
+        {
+            _currentStartPosition = new Point(dragStartedEventArgs.HorizontalOffset, dragStartedEventArgs.VerticalOffset);
         }
 
-		private static int IncMinute(int value)
+		private void ClockItemDragDeltaHandler(object sender, DragDeltaEventArgs dragDeltaEventArgs)
 		{
-			return (++value) == 60 ? 0 : value;
-		}
+            var currentDragPosition = new Point(_currentStartPosition.X + dragDeltaEventArgs.HorizontalChange, _currentStartPosition.Y + dragDeltaEventArgs.VerticalChange);
+            var delta = new Point(currentDragPosition.X - _centreCanvas.X, currentDragPosition.Y - _centreCanvas.Y);
 
-		private static int DecMinute(int value)
-		{
-			return (--value) == -1 ? 59 : value;
-		}
+            var angle = Math.Atan2(delta.X, -delta.Y);
+            if (angle < 0) angle += 2 * Math.PI;
 
-		private static int IncHour(int value)
-		{
-			return (++value) == 12 ? 0 : (value == 24 ? 12 : value);
-		}
-		private static int DecHour(int value)
-		{
-			return (--value) == -1 ? 11 : (value == 11 ? 23 : value);
-		}
+            var time = DisplayMode == ClockDisplayMode.Hours
+                ? new DateTime(Time.Year, Time.Month, Time.Day, (int)Math.Round(6 * angle / Math.PI, MidpointRounding.AwayFromZero) % 12, Time.Minute, Time.Second)
+                : new DateTime(Time.Year, Time.Month, Time.Day, Time.Hour, (int)Math.Round(30 * angle / Math.PI, MidpointRounding.AwayFromZero) % 60, Time.Second);
+
+            SetCurrentValue(TimeProperty, time);	
+        }
 
 		private BindingBase GetBinding(string propertyName, object owner = null, IValueConverter converter = null, object converterParameter = null)
 		{
