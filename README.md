@@ -36,7 +36,9 @@
 
 # More Pics
 
-![Alt text](https://dragablz.files.wordpress.com/2015/04/datepicker.gif "Date Picker & Calendar Demo")
+![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/ClockDemo.gif "Clock Demo")
+![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/DatePicker.gif "Date Picker & Calendar")
+![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/FieldsDemo.gif "Fields Demo")
 
 # A Brief History
 
