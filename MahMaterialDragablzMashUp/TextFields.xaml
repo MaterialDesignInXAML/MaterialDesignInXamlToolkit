@@ -48,6 +48,7 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<Viewbox Grid.Row="0" Grid.Column="0">
 			<Canvas Width="24" Height="24">
@@ -101,12 +102,14 @@
 			<ComboBoxItem>Linux</ComboBoxItem>
 			<ComboBoxItem>Windows</ComboBoxItem>
 		</ComboBox>	
-		<Slider Grid.Row="3" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
-		<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" >
+		<DatePicker Grid.Row="3" Grid.Column="1" Width="100" HorizontalAlignment="Left" />		
+		<wpf:TimePicker Grid.Row="3" Grid.Column="3" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" />	
+		<Slider Grid.Row="4" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
+		<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="3" Grid.RowSpan="3" >
 			<Slider TickFrequency="5" TickPlacement="BottomRight" Orientation="Vertical" Minimum="1" Maximum="50" />
 			<Slider TickFrequency="25" TickPlacement="TopLeft" Orientation="Vertical" Minimum="1" Maximum="50" IsEnabled="False" Margin="24 8 0 8" />
 		</StackPanel>		
-		<Slider Grid.Row="4" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True" />
-		<Slider Grid.Row="5" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsEnabled="False" />
+		<Slider Grid.Row="5" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True" />
+		<Slider Grid.Row="6" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsEnabled="False" />
 	</Grid>
 </UserControl>

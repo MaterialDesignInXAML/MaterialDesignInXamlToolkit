@@ -40,12 +40,12 @@
 					<ControlTemplate.Resources>
 						<ControlTemplate x:Key="TextBoxTemplate" TargetType="{x:Type TextBox}">
 							<Grid>
-								<ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-														  />
+								<ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"											  
+											  />
 								<TextBlock Text="{Binding Path=(wpf:TextField.Hint), RelativeSource={RelativeSource TemplatedParent}}"
-														   Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
-														   x:Name="Hint"
-														   Opacity=".23"/>
+										   Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
+										   x:Name="Hint"
+										   Opacity=".23"/>
 							</Grid>
 						</ControlTemplate>
 						<ControlTemplate x:Key="DropDownButtonTemplate" TargetType="{x:Type Button}">
@@ -72,20 +72,23 @@
 						</ControlTemplate>
 					</ControlTemplate.Resources>
 					<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" 
-									x:Name="border" Padding="0 4 0 4" SnapsToDevicePixels="True">
+							x:Name="border" Padding="0 4 0 4" SnapsToDevicePixels="True">
 						<Grid>
 							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="Auto" />
 							</Grid.ColumnDefinitions>
 							<!-- allow bind hint in -->
 							<TextBox BorderThickness="0" x:Name="PART_TextBox"											 
-											 wpf:TextField.Hint="Select time"
-											 Template="{StaticResource TextBoxTemplate}"
-											 ></TextBox>
+									 wpf:TextField.Hint="Select time"
+									 wpf:TextField.TextBoxViewMargin="0"
+									 Margin="0"
+									 Template="{StaticResource TextBoxTemplate}"									 
+									 />
 							<Button Grid.Column="1" Foreground="{TemplateBinding BorderBrush}" Focusable="False" HorizontalAlignment="Right" Margin="4 0 0 -3" Grid.Row="0" Padding="0"
-											x:Name="PART_Button" Height="17"
-											Template="{StaticResource DropDownButtonTemplate}" />
+									x:Name="PART_Button" 							
+									Height="17"
+									Template="{StaticResource DropDownButtonTemplate}" />
 							<Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False" />
 						</Grid>
 					</Border>
