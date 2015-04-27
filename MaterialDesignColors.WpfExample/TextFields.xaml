@@ -6,7 +6,8 @@
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+              Background="Yellow"
+             d:DesignHeight="300" d:DesignWidth="400">
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>				
@@ -98,7 +99,8 @@
 				 x:Name="CommentTextBox"
 				 wpf:TextField.Hint="Comment"
 				 />
-		<DatePicker Grid.Row="3" Grid.Column="1" Margin="0 8 0 8" />		
+		<DatePicker Grid.Row="3" Grid.Column="1" />		
+		<wpf:TimePicker Grid.Row="3" Grid.Column="3" VerticalAlignment="Top" />	
 		<Slider Grid.Row="4" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
 		<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="3" Grid.RowSpan="3" >
 			<Slider TickFrequency="5" TickPlacement="BottomRight" Orientation="Vertical" Minimum="1" Maximum="50" />

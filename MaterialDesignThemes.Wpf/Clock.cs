@@ -18,10 +18,17 @@ using MaterialDesignThemes.Wpf.Converters;
 
 namespace MaterialDesignThemes.Wpf
 {
-	public enum ClockDisplay
+	public enum ClockDisplayMode
 	{
 		Hours,
 		Minutes
+	}
+
+	public enum ClockDisplayAutomation
+	{
+		None,
+		Cycle,
+		ToMinutesOnly
 	}
 
 	[TemplatePart(Name = HoursCanvasPartName, Type = typeof (Canvas))]
@@ -36,6 +43,8 @@ namespace MaterialDesignThemes.Wpf
 		public const string HourReadOutPartName = "PART_HourReadOut";
 
 		private Point _currentDragDelta = new Point(0, 0);
+		private TextBlock _hourReadOutPartName;
+		private TextBlock _minuteReadOutPartName;
 
 		static Clock()
 		{
@@ -49,7 +58,13 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(
-			"Time", typeof (DateTime), typeof (Clock), new PropertyMetadata(default(DateTime)));
+			"Time", typeof (DateTime), typeof (Clock), new FrameworkPropertyMetadata(default(DateTime), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TimePropertyChangedCallback));
+
+		private static void TimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+		{
+			var clock = (Clock) dependencyObject;
+			clock.IsPostMeridien = clock.Time.Hour >= 12;
+		}
 
 		public DateTime Time
 		{
@@ -57,13 +72,40 @@ namespace MaterialDesignThemes.Wpf
 			set { SetValue(TimeProperty, value); }
 		}
 
-		public static readonly DependencyProperty ClockDisplayProperty = DependencyProperty.Register(
-			"ClockDisplay", typeof (ClockDisplay), typeof (Clock), new PropertyMetadata(ClockDisplay.Hours));
+		public static readonly DependencyProperty IsPostMeridienProperty = DependencyProperty.Register(
+			"IsPostMeridien", typeof (bool), typeof (Clock), new PropertyMetadata(default(bool), IsPostMerdienPropertyChangedCallback));
 
-		public ClockDisplay ClockDisplay
+		private static void IsPostMerdienPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
-			get { return (ClockDisplay) GetValue(ClockDisplayProperty); }
-			set { SetValue(ClockDisplayProperty, value); }
+			var clock = (Clock)dependencyObject;
+			if (clock.IsPostMeridien && clock.Time.Hour < 12)
+				clock.Time = new DateTime(clock.Time.Year, clock.Time.Month, clock.Time.Day, clock.Time.Hour + 12, clock.Time.Minute, clock.Time.Second);
+			else if (!clock.IsPostMeridien && clock.Time.Hour >= 12)
+				clock.Time = new DateTime(clock.Time.Year, clock.Time.Month, clock.Time.Day, clock.Time.Hour - 12, clock.Time.Minute, clock.Time.Second);
+		}
+
+		public bool IsPostMeridien
+		{
+			get { return (bool) GetValue(IsPostMeridienProperty); }
+			set { SetValue(IsPostMeridienProperty, value); }
+		}
+
+		public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(
+			"DisplayMode", typeof (ClockDisplayMode), typeof (Clock), new PropertyMetadata(ClockDisplayMode.Hours));
+
+		public ClockDisplayMode DisplayMode
+		{
+			get { return (ClockDisplayMode) GetValue(DisplayModeProperty); }
+			set { SetValue(DisplayModeProperty, value); }
+		}
+
+		public static readonly DependencyProperty ClockDisplayAutomationProperty = DependencyProperty.Register(
+			"ClockDisplayAutomation", typeof (ClockDisplayAutomation), typeof (Clock), new PropertyMetadata(default(ClockDisplayAutomation)));
+
+		public ClockDisplayAutomation ClockDisplayAutomation
+		{
+			get { return (ClockDisplayAutomation) GetValue(ClockDisplayAutomationProperty); }
+			set { SetValue(ClockDisplayAutomationProperty, value); }
 		}
 
 		public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register(
@@ -101,24 +143,39 @@ namespace MaterialDesignThemes.Wpf
 		public static readonly DependencyProperty HourLineAngleProperty =
 			HourLineAnglePropertyKey.DependencyProperty;
 
-		private TextBlock _hourReadOutPartName;
-		private TextBlock _minuteReadOutPartName;
-
 		public double HourLineAngle
 		{
 			get { return (double) GetValue(HourLineAngleProperty); }
 			private set { SetValue(HourLineAnglePropertyKey, value); }
 		}
 
+		public static readonly RoutedEvent ClockChoiceMadeEvent =
+			EventManager.RegisterRoutedEvent(
+				"ClockChoiceMade",
+				RoutingStrategy.Bubble,
+				typeof (ClockChoiceMadeEventHandler),
+				typeof (Clock));
+
+		private static void OnClockChoiceMade(DependencyObject d, ClockDisplayMode displayMode)
+		{
+			var instance = (Clock)d;
+			var dragCompletedEventArgs = new ClockChoiceMadeEventArgs(displayMode)
+			{
+				RoutedEvent = ClockChoiceMadeEvent,				
+			};
+
+			instance.RaiseEvent(dragCompletedEventArgs);
+		}
+
 		public override void OnApplyTemplate()
 		{			
 			var hoursCanvas = GetTemplateChild(HoursCanvasPartName) as Canvas;
 			if (hoursCanvas != null)
-				GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), new ClockItemIsCheckedConverter(() => Time, ClockDisplay.Hours), i => "ButtonStyle");
+				GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours), i => "ButtonStyle");
 
 			var minutesCanvas = GetTemplateChild(MinutesCanvasPartName) as Canvas;
 			if (minutesCanvas != null)
-				GenerateButtons(minutesCanvas, Enumerable.Range(1, 60).ToList(), new ClockItemIsCheckedConverter(() => Time, ClockDisplay.Minutes),
+				GenerateButtons(minutesCanvas, Enumerable.Range(1, 60).ToList(), new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Minutes),
 					i => ((i / 5.0)%1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle");
 
 			if (_hourReadOutPartName != null)
@@ -137,12 +194,12 @@ namespace MaterialDesignThemes.Wpf
 
 		private void MinuteReadOutPartNameOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			SetCurrentValue(Clock.ClockDisplayProperty, ClockDisplay.Minutes);
+			SetCurrentValue(Clock.DisplayModeProperty, ClockDisplayMode.Minutes);
 		}
 
 		private void HourReadOutPartNameOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
 		{
-			SetCurrentValue(Clock.ClockDisplayProperty, ClockDisplay.Hours);
+			SetCurrentValue(Clock.DisplayModeProperty, ClockDisplayMode.Hours);
 		}
 
 		private void GenerateButtons(Panel canvas, ICollection<int> range, IValueConverter isCheckedConverter, Func<int, string> stylePropertySelector)
@@ -180,6 +237,23 @@ namespace MaterialDesignThemes.Wpf
 		private void ClockItemDragCompletedHandler(object sender, DragCompletedEventArgs e)
 		{
 			_currentDragDelta = new Point();
+
+			OnClockChoiceMade(this, DisplayMode);
+
+			switch (ClockDisplayAutomation)
+			{
+				case ClockDisplayAutomation.None:
+					break;
+				case ClockDisplayAutomation.Cycle:
+					DisplayMode = DisplayMode == ClockDisplayMode.Hours ? ClockDisplayMode.Minutes : ClockDisplayMode.Hours;
+					break;
+				case ClockDisplayAutomation.ToMinutesOnly:
+					if (DisplayMode == ClockDisplayMode.Hours)
+						DisplayMode = ClockDisplayMode.Minutes;					
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
 		}
 
 		private void ClockItemDragDeltaHandler(object sender, DragDeltaEventArgs dragDeltaEventArgs)
@@ -189,7 +263,7 @@ namespace MaterialDesignThemes.Wpf
 
 			if (horizontalChange >= 3 || verticalChange >= 3)
 			{
-				var time = ClockDisplay == ClockDisplay.Hours
+				var time = DisplayMode == ClockDisplayMode.Hours
 					? new DateTime(Time.Year, Time.Month, Time.Day, IncHour(Time.Hour), Time.Minute, Time.Second)
 					: new DateTime(Time.Year, Time.Month, Time.Day, Time.Hour, IncMinute(Time.Minute), Time.Second);
 
@@ -198,7 +272,7 @@ namespace MaterialDesignThemes.Wpf
 			}
 			else if (horizontalChange <= -3 || verticalChange <= -3)
 			{
-				var time = ClockDisplay == ClockDisplay.Hours
+				var time = DisplayMode == ClockDisplayMode.Hours
 									? new DateTime(Time.Year, Time.Month, Time.Day, DecHour(Time.Hour), Time.Minute, Time.Second)
 									: new DateTime(Time.Year, Time.Month, Time.Day, Time.Hour, DecMinute(Time.Minute), Time.Second);
 
@@ -219,7 +293,7 @@ namespace MaterialDesignThemes.Wpf
 
 		private static int IncHour(int value)
 		{
-			return (++value) == 13 ? 1 : (value == 24 ? 12 : value);
+			return (++value) == 12 ? 0 : (value == 24 ? 12 : value);
 		}
 		private static int DecHour(int value)
 		{

@@ -115,7 +115,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void UpdateComponents()
         {
-            var dateTimeFormatInfo = GetDateFormat(CultureInfo.CurrentCulture);
+            var dateTimeFormatInfo = CultureInfo.CurrentCulture.GetDateFormat();
 
             foreach (var component in dateTimeFormatInfo.ShortDatePattern.Split(new[] {dateTimeFormatInfo.DateSeparator},
                 StringSplitOptions.RemoveEmptyEntries).Select((s, index) => new {code = s.ToLower()[0], index}))

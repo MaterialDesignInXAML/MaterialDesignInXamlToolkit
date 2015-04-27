@@ -6,12 +6,12 @@ namespace MaterialDesignThemes.Wpf.Converters
 {
 	public class ClockLineConverter : IValueConverter
 	{
-		public ClockDisplay ClockDisplay { get; set; }
+		public ClockDisplayMode DisplayMode { get; set; }
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			var time = (DateTime) value;
-			return ClockDisplay == ClockDisplay.Hours
+			return DisplayMode == ClockDisplayMode.Hours
 				? (time.Hour > 13 ? time.Hour - 12 : time.Hour)*(360/12)
 				: (time.Minute == 0 ? 60 : time.Minute)*(360/60);
 		}
@@ -20,6 +20,5 @@ namespace MaterialDesignThemes.Wpf.Converters
 		{
 			return Binding.DoNothing;
 		}
-	}
-
+	}	
 }

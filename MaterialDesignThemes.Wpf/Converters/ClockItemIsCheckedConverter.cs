@@ -12,34 +12,34 @@ namespace MaterialDesignThemes.Wpf.Converters
 	internal class ClockItemIsCheckedConverter : IValueConverter
 	{
 		private readonly Func<DateTime> _currentTimeGetter;
-		private readonly ClockDisplay _display;
+		private readonly ClockDisplayMode _displayMode;
 
-		public ClockItemIsCheckedConverter(Func<DateTime> currentTimeGetter, ClockDisplay display)
+		public ClockItemIsCheckedConverter(Func<DateTime> currentTimeGetter, ClockDisplayMode displayMode)
 		{
 			if (currentTimeGetter == null) throw new ArgumentNullException(nameof(currentTimeGetter));
 
 			_currentTimeGetter = currentTimeGetter;
-			_display = display;
+			_displayMode = displayMode;
 		}
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			var dateTime = (DateTime) value;
 			var i = (int) parameter;
-			return (_display == ClockDisplay.Hours ? MassageHour(dateTime.Hour) : MassageMinute(dateTime.Minute)) == i;
+			return (_displayMode == ClockDisplayMode.Hours ? MassageHour(dateTime.Hour) : MassageMinute(dateTime.Minute)) == i;
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if ((bool)value != true) return Binding.DoNothing;
 
-			var currentTimeGetter = _currentTimeGetter();
+			var currentTime = _currentTimeGetter();
 
 			return new DateTime(
-				currentTimeGetter.Year, currentTimeGetter.Month, currentTimeGetter.Day, 
-				(_display == ClockDisplay.Hours) ? (int)parameter : currentTimeGetter.Hour,
-				(_display == ClockDisplay.Minutes) ? ReverseMassageMinute((int)parameter) : currentTimeGetter.Minute, 
-				currentTimeGetter.Second);
+				currentTime.Year, currentTime.Month, currentTime.Day, 
+				(_displayMode == ClockDisplayMode.Hours) ? ReverseMassageHour((int)parameter, currentTime) : currentTime.Hour,
+				(_displayMode == ClockDisplayMode.Minutes) ? ReverseMassageMinute((int)parameter) : currentTime.Minute, 
+				currentTime.Second);
 		}
 
 		private static int MassageHour(int val)
@@ -52,6 +52,13 @@ namespace MaterialDesignThemes.Wpf.Converters
 		private static int MassageMinute(int val)
 		{
 			return val == 0 ? 60 : val;
+		}
+
+		private static int ReverseMassageHour(int val, DateTime currentTime)
+		{
+			return currentTime.Hour < 12 
+				? (val == 12 ? 0 : val)
+				: (val == 12 ? 12 : val + 12);
 		}
 
 		private static int ReverseMassageMinute(int val)
