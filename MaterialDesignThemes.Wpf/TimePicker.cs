@@ -33,7 +33,7 @@ namespace MaterialDesignThemes.Wpf
 		{			
 			_clock = new Clock
 			{
-				ClockDisplayAutomation = ClockDisplayAutomation.ToMinutesOnly
+				DisplayAutomation = ClockDisplayAutomation.ToMinutesOnly
 			};
 			_clockHostContentControl = new ContentControl
 			{

@@ -53,6 +53,10 @@
     </UserControl.Resources>
 
 	<StackPanel Orientation="Horizontal">
+		
+		<wpf:Clock Margin="24" DisplayAutomation="ToMinutesOnly" />
+		
+		<!--
 		<wpf:TimePicker />
 		<TextBox VerticalAlignment="Top">Hello World</TextBox>
 		<DatePicker VerticalAlignment="Top"></DatePicker>
@@ -61,6 +65,7 @@
 			<wpf:Clock HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="1"
 					   Visibility="Hidden" />
 		</Grid>
+		-->
 	</StackPanel>
 
 </UserControl>

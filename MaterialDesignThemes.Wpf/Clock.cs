@@ -99,13 +99,13 @@ namespace MaterialDesignThemes.Wpf
 			set { SetValue(DisplayModeProperty, value); }
 		}
 
-		public static readonly DependencyProperty ClockDisplayAutomationProperty = DependencyProperty.Register(
-			"ClockDisplayAutomation", typeof (ClockDisplayAutomation), typeof (Clock), new PropertyMetadata(default(ClockDisplayAutomation)));
+		public static readonly DependencyProperty DisplayAutomationProperty = DependencyProperty.Register(
+			"DisplayAutomation", typeof (ClockDisplayAutomation), typeof (Clock), new PropertyMetadata(default(ClockDisplayAutomation)));
 
-		public ClockDisplayAutomation ClockDisplayAutomation
+		public ClockDisplayAutomation DisplayAutomation
 		{
-			get { return (ClockDisplayAutomation) GetValue(ClockDisplayAutomationProperty); }
-			set { SetValue(ClockDisplayAutomationProperty, value); }
+			get { return (ClockDisplayAutomation) GetValue(DisplayAutomationProperty); }
+			set { SetValue(DisplayAutomationProperty, value); }
 		}
 
 		public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register(
@@ -240,7 +240,7 @@ namespace MaterialDesignThemes.Wpf
 
 			OnClockChoiceMade(this, DisplayMode);
 
-			switch (ClockDisplayAutomation)
+			switch (DisplayAutomation)
 			{
 				case ClockDisplayAutomation.None:
 					break;
