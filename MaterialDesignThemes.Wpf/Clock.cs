@@ -65,7 +65,7 @@ namespace MaterialDesignThemes.Wpf
 		private static void TimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
 			var clock = (Clock) dependencyObject;
-			clock.IsPostMeridien = clock.Time.Hour >= 12;
+			clock.IsPostMeridiem = clock.Time.Hour >= 12;
 		}
 
 		public DateTime Time
@@ -74,22 +74,22 @@ namespace MaterialDesignThemes.Wpf
 			set { SetValue(TimeProperty, value); }
 		}
 
-		public static readonly DependencyProperty IsPostMeridienProperty = DependencyProperty.Register(
-			"IsPostMeridien", typeof (bool), typeof (Clock), new PropertyMetadata(default(bool), IsPostMerdienPropertyChangedCallback));
+		public static readonly DependencyProperty IsPostMeridiemProperty = DependencyProperty.Register(
+			"IsPostMeridiem", typeof (bool), typeof (Clock), new PropertyMetadata(default(bool), IsPostMeridiemPropertyChangedCallback));
 
-		private static void IsPostMerdienPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+		private static void IsPostMeridiemPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
 			var clock = (Clock)dependencyObject;
-			if (clock.IsPostMeridien && clock.Time.Hour < 12)
+			if (clock.IsPostMeridiem && clock.Time.Hour < 12)
 				clock.Time = new DateTime(clock.Time.Year, clock.Time.Month, clock.Time.Day, clock.Time.Hour + 12, clock.Time.Minute, clock.Time.Second);
-			else if (!clock.IsPostMeridien && clock.Time.Hour >= 12)
+			else if (!clock.IsPostMeridiem && clock.Time.Hour >= 12)
 				clock.Time = new DateTime(clock.Time.Year, clock.Time.Month, clock.Time.Day, clock.Time.Hour - 12, clock.Time.Minute, clock.Time.Second);
 		}
 
-		public bool IsPostMeridien
+		public bool IsPostMeridiem
 		{
-			get { return (bool) GetValue(IsPostMeridienProperty); }
-			set { SetValue(IsPostMeridienProperty, value); }
+			get { return (bool) GetValue(IsPostMeridiemProperty); }
+			set { SetValue(IsPostMeridiemProperty, value); }
 		}
 
 		public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(
