@@ -8,7 +8,7 @@ namespace MaterialDesignThemes.Wpf
 	{
 		internal static DateTimeFormatInfo GetDateFormat(this CultureInfo culture)
 		{
-			if (culture == null) throw new ArgumentNullException(nameof(culture));
+			if (culture == null) throw new ArgumentNullException("culture");
 
 			if (culture.Calendar is GregorianCalendar)
 			{

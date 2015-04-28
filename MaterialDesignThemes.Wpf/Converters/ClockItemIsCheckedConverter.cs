@@ -16,7 +16,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 
 		public ClockItemIsCheckedConverter(Func<DateTime> currentTimeGetter, ClockDisplayMode displayMode)
 		{
-			if (currentTimeGetter == null) throw new ArgumentNullException(nameof(currentTimeGetter));
+			if (currentTimeGetter == null) throw new ArgumentNullException("currentTimeGetter");
 
 			_currentTimeGetter = currentTimeGetter;
 			_displayMode = displayMode;
