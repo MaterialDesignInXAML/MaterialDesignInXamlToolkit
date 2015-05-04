@@ -4,7 +4,7 @@
 
 ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MashUp.gif "Material Design Demo")
 
-[More Pics](#MorePics)
+###### [More pics below](#MorePics)
 
 # ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MD4XAML28.png "Summary") Summary
 
