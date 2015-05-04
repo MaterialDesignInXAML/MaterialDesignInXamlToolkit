@@ -1,3 +1,5 @@
+![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MD4XAML100.png "Material Design In XAML Toolkit")
+
 # Material Design In XAML Toolkit
 
 ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MashUp.gif "Material Design Demo")
@@ -34,17 +36,22 @@
 * Install [Nuget package](https://www.nuget.org/packages/MaterialDesignThemes/) ```Install-Package MaterialDesignThemes```
 * Import required resource dictionaries, and use styles as desired.  For examples, see the MaterialDesignColors.WpfExample project in the source code.
 
+# Mentions
+
+* The spiffing logo is courtesy of GitHub user [Snalty](https://github.com/snalty), and you can see more of him;
+ * on his [blog](http://holothere.tumblr.com/)
+ * and on [Twitter](https://twitter.com/snalty)
+* Marc Angers - I pulled some oh his shadows straight in from this [blog post](http://marcangers.com/material-design-shadows-in-wpf/)
+* Ignace Maes, whose [Material Skin] project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
+* **[Contributers!](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)**  Thanks for the PRs which have helped add some extra polish.  
+
 # More Pics
 
 ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/ClockDemo.gif "Clock Demo")
+
 ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/DatePicker.gif "Date Picker & Calendar")
+
 ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/FieldsDemo.gif "Fields Demo")
-
-# A Brief History
-
-In creating a Material Design TabControl theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), the first step was getting hold of all the colours.  The resulting resource dictionaries work well stand alone, so are completely re-usable. 
-
-Then I took a step further and created a few simple styles which turned out looking OK.
 
 ![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo23.png "Material Design Themes")
 
