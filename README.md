@@ -47,7 +47,7 @@
 * Ignace Maes, whose [Material Skin] project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
 * **[Contributers!](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)**  Thanks for the PRs which have helped add some extra polish.  
 
-# <a name="MorePics"></a>More Pics
+# <a name="MorePics"></a>![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MD4XAML28.png "More Pics")More Pics
 
 ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/ClockDemo.gif "Clock Demo")
 
