@@ -1,12 +1,12 @@
 
 
-# ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MD4XAML64.png "Material Design In XAML Toolkit") Material Design In XAML Toolkit
+# ![Alt text](https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MD4XAML64.png "Material Design In XAML Toolkit") Material Design In XAML Toolkit
 
-![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MashUp.gif "Material Design Demo")
+![Alt text](https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MashUp.gif "Material Design Demo")
 
 ###### [More pics below](#MorePics)
 
-# ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MD4XAML28.png "Summary") Summary
+# ![Alt text](https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MD4XAML28.png "Summary") Summary
 
  * XAML Resources for [Google swatches displayed](http://www.google.co.uk/design/spec/style/color.html#color-ui-color-application)
  * WPF control themes
@@ -24,7 +24,7 @@
 [![Issues](https://img.shields.io/github/issues/ButchersBoy/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues)
 [![Twitter](https://img.shields.io/badge/twitter-%40james__willock-55acee.svg?style=flat-square)](https://twitter.com/James_Willock)
 
-# ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MD4XAML28.png "How Can I Use The Colours?") How Can I Use The Colours?
+# ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MD4XAML28.png "How Can I Use The Colours?") How Can I Use The Colours?
 
 1. Choose your source:
  * Install the [NuGet package](https://www.nuget.org/packages/MaterialDesignColors/) ```Install-Package MaterialDesignColors```
@@ -33,12 +33,12 @@
 3. Make colourful things.
 4. Want help choosing your palette? Try the [Palette Builder](https://rawgit.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/PaletteBuilder.html) (this is very much a work-in-progress)
  
-# ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MD4XAML28.png "How Can I Use The Themes?") How Can I Use The Themes?
+# ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MD4XAML28.png "How Can I Use The Themes?") How Can I Use The Themes?
 
 * Install [Nuget package](https://www.nuget.org/packages/MaterialDesignThemes/) ```Install-Package MaterialDesignThemes```
 * Import required resource dictionaries, and use styles as desired.  For examples, see the MaterialDesignColors.WpfExample project in the source code.
 
-# ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MD4XAML28.png "Mentions") Mentions
+# ![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MD4XAML28.png "Mentions") Mentions
 
 * The spiffing logo is courtesy of GitHub user [Snalty](https://github.com/snalty), and you can see more of him;
  * on his [blog](http://holothere.tumblr.com/)
@@ -47,13 +47,13 @@
 * Ignace Maes, whose [Material Skin] project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
 * **[Contributers!](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)**  Thanks for the PRs which have helped add some extra polish.  
 
-# <a name="MorePics"></a>![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/MD4XAML28.png "More Pics") More Pics
+# <a name="MorePics"></a>![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MD4XAML28.png "More Pics") More Pics
 
-![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/ClockDemo.gif "Clock Demo")
+![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/ClockDemo.gif "Clock Demo")
 
-![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/DatePicker.gif "Date Picker & Calendar")
+![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/DatePicker.gif "Date Picker & Calendar")
 
-![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/web/FieldsDemo.gif "Fields Demo")
+![Alt text](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/FieldsDemo.gif "Fields Demo")
 
 ![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo23.png "Material Design Themes")
 
