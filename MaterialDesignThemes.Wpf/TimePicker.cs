@@ -176,6 +176,7 @@ namespace MaterialDesignThemes.Wpf
 				_textBox.AddHandler(KeyDownEvent, new KeyEventHandler(TextBoxOnKeyDown));
 				_textBox.AddHandler(TextBoxBase.TextChangedEvent, new TextChangedEventHandler(TextBoxOnTextChanged));
 				_textBox.AddHandler(LostFocusEvent, new RoutedEventHandler(TextBoxOnLostFocus));
+			    _textBox.Text = Text;
 			}
 
 			_popup = GetTemplateChild(ElementPopup) as Popup;

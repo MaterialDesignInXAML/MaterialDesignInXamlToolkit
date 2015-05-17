@@ -137,6 +137,7 @@
     <Compile Include="Converters\CalendarDateCoalesceConverter.cs" />
     <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
     <Compile Include="Converters\ClockLineConverter.cs" />
+    <Compile Include="Converters\NotConverter.cs" />
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="MaterialDateDisplay.cs" />
     <Compile Include="ProgressLoop.cs" />

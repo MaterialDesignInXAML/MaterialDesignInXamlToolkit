@@ -27,7 +27,12 @@ namespace MaterialDesignColors.WpfExample
         {
             InitializeComponent();	        
 			DataContext = new TextFieldsViewModel();			
-		}		
+		}
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            PresetTimePicker.SelectedTime = DateTime.Now;            
+        }		
     }
 
 	public class TextFieldsViewModel : INotifyPropertyChanged
