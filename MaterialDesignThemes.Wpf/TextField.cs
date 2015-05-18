@@ -54,7 +54,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
-			"Hint", typeof (string), typeof (TextField), new PropertyMetadata(default(string)));
+			"Hint", typeof (string), typeof (TextField), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
 
 		public static void SetHint(DependencyObject element, string value)
 		{

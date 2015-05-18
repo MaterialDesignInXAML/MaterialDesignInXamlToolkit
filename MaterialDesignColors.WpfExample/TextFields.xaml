@@ -99,9 +99,11 @@
 				 x:Name="CommentTextBox"
 				 wpf:TextField.Hint="Comment"
 				 />
-		<DatePicker Grid.Row="3" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 8 0 8" />		
+		<DatePicker Grid.Row="3" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
+                    wpf:TextField.Hint="James"/>		
 		<wpf:TimePicker Grid.Row="3" Grid.Column="3" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8" />
-        <wpf:TimePicker Grid.Row="3" Grid.Column="4" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8" />
+        <wpf:TimePicker Grid.Row="3" Grid.Column="4" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8"
+                        wpf:TextField.Hint="Custom hint" />
         <Slider Grid.Row="4" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
 		<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="3" Grid.RowSpan="3" >
 			<Slider TickFrequency="5" TickPlacement="BottomRight" Orientation="Vertical" Minimum="1" Maximum="50" />

@@ -16,6 +16,7 @@
 		<Setter Property="Background" Value="Transparent"/>
 		<Setter Property="BorderThickness" Value="0 0 0 1"/>
 		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="wpf:TextField.Hint" Value="Select time" />
 		<Setter Property="ClockStyle" Value="{DynamicResource MaterialDesignClock}" />
 		<Setter Property="ClockHostContentControlStyle">
 			<Setter.Value>
@@ -77,12 +78,10 @@
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>
-							<!-- allow bind hint in -->
-							<TextBox BorderThickness="0" x:Name="PART_TextBox"											 
-									 wpf:TextField.Hint="Select time"
-									 wpf:TextField.TextBoxViewMargin="0"
-									 Margin="0"
+							</Grid.ColumnDefinitions>							
+							<TextBox BorderThickness="0" x:Name="PART_TextBox"											 									 
+									 wpf:TextField.TextBoxViewMargin="1 0 0 0"
+									 Margin="0"                                     
 									 Template="{StaticResource TextBoxTemplate}"									 
 									 />
 							<Button Grid.Column="1" Foreground="{TemplateBinding BorderBrush}" Focusable="False" HorizontalAlignment="Right" Margin="4 0 0 -3" Grid.Row="0" Padding="0"
