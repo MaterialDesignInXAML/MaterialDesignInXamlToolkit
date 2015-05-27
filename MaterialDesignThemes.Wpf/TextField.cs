@@ -1,69 +1,196 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// MaterialDesignToolkit
+// - TextField.cs
+// --------------------------------------------------------------------
+// Author: Bjarke Søgaard <ekrajb123@gmail.com>
+// Copyright (C) Bjarke Søgaard 2015. All rights reserved.
+
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Navigation;
 
 namespace MaterialDesignThemes.Wpf
 {
-	public static class TextField
-	{
-		public static readonly DependencyProperty TextBoxViewMarginProperty = DependencyProperty.RegisterAttached(
-			"TextBoxViewMargin", typeof (Thickness), typeof (TextField), new PropertyMetadata(new Thickness(double.NegativeInfinity), TextBoxViewMarginPropertyChangedCallback));
+    /// <summary>
+    /// The text field.
+    /// </summary>
+    public static class TextField
+    {
+        #region Static Fields
 
-		private static void TextBoxViewMarginPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-		{
-			var textBoxBase = dependencyObject as TextBoxBase;
-			if (textBoxBase == null) return;
+        /// <summary>
+        /// The hint property
+        /// </summary>
+        public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
+            "Hint",
+            typeof(string),
+            typeof(TextField),
+            new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
 
-			if (textBoxBase.IsLoaded)
-				ApplyTextBoxViewMargin(textBoxBase, (Thickness)dependencyPropertyChangedEventArgs.NewValue);
+        /// <summary>
+        /// The text box view margin property
+        /// </summary>
+        public static readonly DependencyProperty TextBoxViewMarginProperty = DependencyProperty.RegisterAttached(
+            "TextBoxViewMargin",
+            typeof(Thickness),
+            typeof(TextField),
+            new PropertyMetadata(new Thickness(double.NegativeInfinity), TextBoxViewMarginPropertyChangedCallback));
 
-			textBoxBase.Loaded += (sender, args) =>
-			{
-				var textBox = (TextBoxBase) sender;
-				ApplyTextBoxViewMargin(textBox, GetTextBoxViewMargin(textBox));
-			};			
+        /// <summary>
+        /// The hint opacity property
+        /// </summary>
+        public static readonly DependencyProperty HintOpacityProperty = DependencyProperty.RegisterAttached(
+            "HintOpacity",
+            typeof(double),
+            typeof(TextField),
+            new PropertyMetadata(.23, HintOpacityPropertyChangedCallback));
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// Gets the hint.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns>
+        /// The <see cref="string" />.
+        /// </returns>
+        public static string GetHint(DependencyObject element)
+        {
+            return (string)element.GetValue(HintProperty);
         }
 
-		public static void SetTextBoxViewMargin(DependencyObject element, Thickness value)
-		{			
-            element.SetValue(TextBoxViewMarginProperty, value);			
-		}
+        /// <summary>
+        /// Gets the text box view margin.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns>
+        /// The <see cref="Thickness" />.
+        /// </returns>
+        public static Thickness GetTextBoxViewMargin(DependencyObject element)
+        {
+            return (Thickness)element.GetValue(TextBoxViewMarginProperty);
+        }
 
-		public static Thickness GetTextBoxViewMargin(DependencyObject element)
-		{
-			return (Thickness) element.GetValue(TextBoxViewMarginProperty);
-		}
+        /// <summary>
+        /// Gets the text box view margin.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns>
+        /// The <see cref="Thickness" />.
+        /// </returns>
+        public static double GetHintOpacityProperty(DependencyObject element)
+        {
+            return (double)element.GetValue(HintOpacityProperty);
+        }
 
-		private static void ApplyTextBoxViewMargin(TextBoxBase textBox, Thickness margin)
-		{
-			if (margin.Equals(new Thickness(double.NegativeInfinity))) return;
+        /// <summary>
+        /// Sets the hint.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <param name="value">The value.</param>
+        public static void SetHint(DependencyObject element, string value)
+        {
+            element.SetValue(HintProperty, value);
+        }
 
-			var scrollViewer = textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer;
-			if (scrollViewer == null) return;
-			var frameworkElement = scrollViewer.Content as FrameworkElement;
+        /// <summary>
+        /// Sets the text box view margin.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <param name="value">The value.</param>
+        public static void SetTextBoxViewMargin(DependencyObject element, Thickness value)
+        {
+            element.SetValue(TextBoxViewMarginProperty, value);
+        }
 
-			//remove nice new sytax until i get appveyor working	
-			//var frameworkElement = (textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content as FrameworkElement;
-			if (frameworkElement != null)
-				frameworkElement.Margin = margin;
-		}
+        /// <summary>
+        /// Sets the hint opacity.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <param name="value">The value.</param>
+        public static void SetHintOpacity(DependencyObject element, double value)
+        {
+            element.SetValue(HintOpacityProperty, value);
+        }
 
-		public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
-			"Hint", typeof (string), typeof (TextField), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
+        #endregion
 
-		public static void SetHint(DependencyObject element, string value)
-		{
-			element.SetValue(HintProperty, value);
-		}
+        #region Methods
 
-		public static string GetHint(DependencyObject element)
-		{
-			return (string) element.GetValue(HintProperty);
-		}
-	}
+        /// <summary>
+        /// Applies the text box view margin.
+        /// </summary>
+        /// <param name="textBox">The text box.</param>
+        /// <param name="margin">The margin.</param>
+        private static void ApplyTextBoxViewMargin(TextBoxBase textBox, Thickness margin)
+        {
+            if (margin.Equals(new Thickness(double.NegativeInfinity)))
+            {
+                return;
+            }
+
+            var scrollViewer = textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer;
+            if (scrollViewer == null)
+            {
+                return;
+            }
+
+            var frameworkElement = scrollViewer.Content as FrameworkElement;
+
+            // remove nice new sytax until i get appveyor working	
+            // var frameworkElement = (textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content as FrameworkElement;
+            if (frameworkElement != null)
+            {
+                frameworkElement.Margin = margin;
+            }
+        }
+
+        /// <summary>
+        /// The text box view margin property changed callback.
+        /// </summary>
+        /// <param name="dependencyObject">The dependency object.</param>
+        /// <param name="dependencyPropertyChangedEventArgs">The dependency property changed event args.</param>
+        private static void TextBoxViewMarginPropertyChangedCallback(
+            DependencyObject dependencyObject,
+            DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var textBoxBase = dependencyObject as TextBoxBase;
+            if (textBoxBase == null)
+            {
+                return;
+            }
+
+            if (textBoxBase.IsLoaded)
+            {
+                ApplyTextBoxViewMargin(textBoxBase, (Thickness)dependencyPropertyChangedEventArgs.NewValue);
+            }
+
+            textBoxBase.Loaded += (sender, args) =>
+            {
+                var textBox = (TextBoxBase)sender;
+                ApplyTextBoxViewMargin(textBox, GetTextBoxViewMargin(textBox));
+            };
+        }
+
+        /// <summary>
+        /// Hints the opacity property changed callback.
+        /// </summary>
+        /// <param name="dependencyObject">The dependency object.</param>
+        /// <param name="dependencyPropertyChangedEventArgs">The <see cref="DependencyPropertyChangedEventArgs" /> instance containing the event data.</param>
+        private static void HintOpacityPropertyChangedCallback(
+            DependencyObject dependencyObject,
+            DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var textBoxBase = dependencyObject as TextBoxBase;
+            if (textBoxBase == null)
+            {
+                return;
+            }
+
+            textBoxBase.Opacity = (double)dependencyPropertyChangedEventArgs.NewValue;
+        }
+
+        #endregion
+    }
 }

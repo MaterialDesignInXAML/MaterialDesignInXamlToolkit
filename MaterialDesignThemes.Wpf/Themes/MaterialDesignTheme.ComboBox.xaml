@@ -178,7 +178,7 @@
                             Margin="{TemplateBinding Padding}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Opacity=".23"
+                            Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                             IsHitTestVisible="False"
                             Text="{TemplateBinding wpf:TextField.Hint}"
                             Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
@@ -261,7 +261,7 @@
                             Margin="{TemplateBinding Padding}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Opacity=".23"
+                            Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                             Text="{TemplateBinding wpf:TextField.Hint}"
                             IsHitTestVisible="False"
                             Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
