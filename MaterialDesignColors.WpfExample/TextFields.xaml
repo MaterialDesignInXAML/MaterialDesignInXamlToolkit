@@ -83,7 +83,7 @@
 				 wpf:TextField.Hint="Phone"
 				 />
 		<TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">Fruit</TextBlock>
-		<ComboBox Grid.Row="1" Grid.Column="3" wpf:TextField.Hint="Search" IsEditable="True">
+		<ComboBox Grid.Row="1" Grid.Column="3" wpf:TextField.Hint="Search" IsEditable="True" wpf:TextField.HintOpacity=".5">
 			<ComboBoxItem>Apple</ComboBoxItem>
 			<ComboBoxItem>Banana</ComboBoxItem>
 			<ComboBoxItem>Pear</ComboBoxItem>

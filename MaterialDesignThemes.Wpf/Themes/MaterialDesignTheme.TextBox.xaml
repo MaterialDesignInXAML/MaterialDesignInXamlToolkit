@@ -39,7 +39,7 @@
                             <TextBlock Text="{Binding Path=(wpf:TextField.Hint), RelativeSource={RelativeSource TemplatedParent}}"
 											   Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
 											   x:Name="Hint"
-											   Opacity=".23"/>
+											   Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
