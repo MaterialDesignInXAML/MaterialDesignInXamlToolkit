@@ -18,7 +18,7 @@ namespace MaterialDesignThemes.Wpf
         #region Static Fields
 
         /// <summary>
-        ///     The hint property
+        /// The hint property
         /// </summary>
         public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
             "Hint",
@@ -27,7 +27,7 @@ namespace MaterialDesignThemes.Wpf
             new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        ///     The text box view margin property
+        /// The text box view margin property
         /// </summary>
         public static readonly DependencyProperty TextBoxViewMarginProperty = DependencyProperty.RegisterAttached(
             "TextBoxViewMargin",
@@ -36,7 +36,7 @@ namespace MaterialDesignThemes.Wpf
             new PropertyMetadata(new Thickness(double.NegativeInfinity), TextBoxViewMarginPropertyChangedCallback));
 
         /// <summary>
-        /// The opacity property
+        /// The hint opacity property
         /// </summary>
         public static readonly DependencyProperty HintOpacityProperty = DependencyProperty.RegisterAttached(
             "HintOpacity",
@@ -51,39 +51,33 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Gets the hint.
         /// </summary>
-        /// <param name="element">
-        /// The element.
-        /// </param>
+        /// <param name="element">The element.</param>
         /// <returns>
-        /// The <see cref="string"/>.
+        /// The <see cref="string" />.
         /// </returns>
         public static string GetHint(DependencyObject element)
         {
             return (string)element.GetValue(HintProperty);
         }
-        
+
         /// <summary>
         /// Gets the text box view margin.
         /// </summary>
-        /// <param name="element">
-        /// The element.
-        /// </param>
+        /// <param name="element">The element.</param>
         /// <returns>
-        /// The <see cref="Thickness"/>.
+        /// The <see cref="Thickness" />.
         /// </returns>
         public static Thickness GetTextBoxViewMargin(DependencyObject element)
         {
             return (Thickness)element.GetValue(TextBoxViewMarginProperty);
         }
-        
+
         /// <summary>
         /// Gets the text box view margin.
         /// </summary>
-        /// <param name="element">
-        /// The element.
-        /// </param>
+        /// <param name="element">The element.</param>
         /// <returns>
-        /// The <see cref="Thickness"/>.
+        /// The <see cref="Thickness" />.
         /// </returns>
         public static double GetHintOpacityProperty(DependencyObject element)
         {
@@ -93,12 +87,8 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Sets the hint.
         /// </summary>
-        /// <param name="element">
-        /// The element.
-        /// </param>
-        /// <param name="value">
-        /// The value.
-        /// </param>
+        /// <param name="element">The element.</param>
+        /// <param name="value">The value.</param>
         public static void SetHint(DependencyObject element, string value)
         {
             element.SetValue(HintProperty, value);
@@ -107,17 +97,18 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Sets the text box view margin.
         /// </summary>
-        /// <param name="element">
-        /// The element.
-        /// </param>
-        /// <param name="value">
-        /// The value.
-        /// </param>
+        /// <param name="element">The element.</param>
+        /// <param name="value">The value.</param>
         public static void SetTextBoxViewMargin(DependencyObject element, Thickness value)
         {
             element.SetValue(TextBoxViewMarginProperty, value);
         }
 
+        /// <summary>
+        /// Sets the hint opacity.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <param name="value">The value.</param>
         public static void SetHintOpacity(DependencyObject element, double value)
         {
             element.SetValue(HintOpacityProperty, value);
@@ -130,12 +121,8 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Applies the text box view margin.
         /// </summary>
-        /// <param name="textBox">
-        /// The text box.
-        /// </param>
-        /// <param name="margin">
-        /// The margin.
-        /// </param>
+        /// <param name="textBox">The text box.</param>
+        /// <param name="margin">The margin.</param>
         private static void ApplyTextBoxViewMargin(TextBoxBase textBox, Thickness margin)
         {
             if (margin.Equals(new Thickness(double.NegativeInfinity)))
@@ -162,12 +149,8 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// The text box view margin property changed callback.
         /// </summary>
-        /// <param name="dependencyObject">
-        /// The dependency object.
-        /// </param>
-        /// <param name="dependencyPropertyChangedEventArgs">
-        /// The dependency property changed event args.
-        /// </param>
+        /// <param name="dependencyObject">The dependency object.</param>
+        /// <param name="dependencyPropertyChangedEventArgs">The dependency property changed event args.</param>
         private static void TextBoxViewMarginPropertyChangedCallback(
             DependencyObject dependencyObject,
             DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
@@ -190,6 +173,11 @@ namespace MaterialDesignThemes.Wpf
             };
         }
 
+        /// <summary>
+        /// Hints the opacity property changed callback.
+        /// </summary>
+        /// <param name="dependencyObject">The dependency object.</param>
+        /// <param name="dependencyPropertyChangedEventArgs">The <see cref="DependencyPropertyChangedEventArgs" /> instance containing the event data.</param>
         private static void HintOpacityPropertyChangedCallback(
             DependencyObject dependencyObject,
             DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
