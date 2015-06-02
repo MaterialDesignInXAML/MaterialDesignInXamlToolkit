@@ -1,0 +1,113 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MaterialDesignThemes.Uwp.Themes"
+    xmlns:uwp="using:MaterialDesignThemes.Uwp">
+    
+    <ResourceDictionary.MergedDictionaries>
+
+        <!-- light or dark theme -->
+        <!--
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+        -->
+        <!-- standard templates -->
+        <!--
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+        -->
+
+        <!-- primary color -->
+        <ResourceDictionary>
+            <!-- include your primary palette -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MaterialDesignColor.DeepOrange.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!-- 
+                    include three hues from the primary palette (and the associated forecolours).  
+                    Do not rename, keep in sequence; light to dark. 
+                -->
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource Primary100}"/>
+            <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary100Foreground}"/>
+            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource Primary500}"/>
+            <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}"/>
+            <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}"/>
+            <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}"/>
+        </ResourceDictionary>
+
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--    secondary colour: 
+                set this manually without importing the color dictionary
+                have a look in the Colour XAML files at the colour you want, and bring in an 
+                accent and its associated foreground,
+                e.g. Accent700 & Accent700Foregrounf        
+        -->
+    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#455a64"/>
+    <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#DDFFFFFF"/>
+
+
+    <Style x:Key="MaterialDesignRaisedButton" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource PrimaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource PrimaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource PrimaryHueMidForegroundBrush}"/>
+        <!--Setter Property="TextBlock.FontWeight" Value="SemiBold"/-->
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="16 4 16 4"/>
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}">                            
+                            <!--
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="5" ShadowDepth="1" Direction="270" Color="#CCCCCC" />
+                    </Border.Effect>
+                    -->
+                        </Border>
+                        <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
+                            <uwp:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                        IsTabStop="False"
+                                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                        Padding="{TemplateBinding Padding}" />
+                        </Border>
+                    </Grid>
+                    <!--
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsDefaulted" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{ThemeResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Opacity" Value="0.23"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+            -->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignRaisedLightButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="Background" Value="{ThemeResource PrimaryHueLightBrush}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource PrimaryHueLightBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource PrimaryHueLightForegroundBrush}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignRaisedDarkButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="Background" Value="{ThemeResource PrimaryHueDarkBrush}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource PrimaryHueDarkBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource PrimaryHueDarkForegroundBrush}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignRaisedAccentButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="Background" Value="{ThemeResource SecondaryAccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource SecondaryAccentBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource SecondaryAccentForegroundBrush}"/>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="MaterialDesign.UwpExample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MaterialDesign.UwpExample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    
+    <Grid>        
+        <StackPanel>
+            <Button Style="{StaticResource MaterialDesignRaisedButton}">Back in the game</Button>
+            <local:ShadowedContentControl Width="50" Height="50" Background="Blue" />
+        </StackPanel>       
+    </Grid>
+</Page>
