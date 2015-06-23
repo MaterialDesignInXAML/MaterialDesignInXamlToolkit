@@ -68,6 +68,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.Card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.Clock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -134,6 +138,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Card.cs" />
     <Compile Include="Clock.cs" />
     <Compile Include="ClockChoiceMadeEventArgs.cs" />
     <Compile Include="ClockItemButton.cs" />
@@ -142,6 +147,7 @@
     <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
     <Compile Include="Converters\ClockLineConverter.cs" />
     <Compile Include="Converters\NotConverter.cs" />
+    <Compile Include="Converters\SizeToRectConverter.cs" />
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="MaterialDateDisplay.cs" />
     <Compile Include="PasswordField.cs" />

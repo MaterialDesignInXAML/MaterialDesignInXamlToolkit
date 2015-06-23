@@ -69,6 +69,9 @@
     <Compile Include="Buttons.xaml.cs">
       <DependentUpon>Buttons.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CardsWindow.xaml.cs">
+      <DependentUpon>CardsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NotEmptyValidationRule.cs" />
     <Compile Include="ProvingGround.xaml.cs">
       <DependentUpon>ProvingGround.xaml</DependentUpon>
@@ -77,6 +80,10 @@
       <DependentUpon>TextFields.xaml</DependentUpon>
     </Compile>
     <Page Include="Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CardsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ScreenGrabFromGoogle.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Chartridge046_small.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
