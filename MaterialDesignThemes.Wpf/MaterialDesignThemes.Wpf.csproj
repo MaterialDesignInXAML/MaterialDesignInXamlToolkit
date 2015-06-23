@@ -80,6 +80,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.PasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.Shadows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,6 +144,7 @@
     <Compile Include="Converters\NotConverter.cs" />
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="MaterialDateDisplay.cs" />
+    <Compile Include="PasswordField.cs" />
     <Compile Include="ProgressLoop.cs" />
     <Compile Include="ProgressLoopDev.xaml.cs">
       <DependentUpon>ProgressLoopDev.xaml</DependentUpon>

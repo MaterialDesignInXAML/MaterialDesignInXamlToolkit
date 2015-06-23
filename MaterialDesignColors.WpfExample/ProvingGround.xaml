@@ -54,7 +54,7 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />                     
 			    <Setter Property="PasswordChar" Value="●"/>
                 <Setter Property="BorderThickness" Value="0 0 0 1"/>
-                <Setter Property="wpf:TextField.TextBoxViewMargin" Value="0 0 0 0" />
+                <Setter Property="wpf:TextField.TextBoxViewMargin" Value="1 0 1 0" />
                 <Setter Property="Background" Value="Transparent"/>
 		        <Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}"/>
                 <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
@@ -84,8 +84,9 @@
                                                   TextElement.FontFamily="Times New Roman" />
                                     <TextBlock Text="{Binding Path=(wpf:TextField.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                                Visibility="{Binding Path=(wpf:PasswordField.HintVisibility), RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                               Margin="1 0 1 0"
                                                x:Name="Hint"
-                                               Opacity=".23"/>
+                                               Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
                                 </Grid>
                             </Border>
                             <ControlTemplate.Triggers>

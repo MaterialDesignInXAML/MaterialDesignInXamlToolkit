@@ -178,8 +178,8 @@
                             Margin="{TemplateBinding Padding}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Opacity=".23"
-                            IsHitTestVisible="False"
+                            Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                            IsHitTestVisible="False"                       
                             Text="{TemplateBinding wpf:TextField.Hint}"
                             Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
             <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -219,7 +219,7 @@
 		<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
 		<Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
 		<Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-		<Setter Property="wpf:TextField.TextBoxViewMargin" Value="0 0 0 0" />
+		<Setter Property="wpf:TextField.TextBoxViewMargin" Value="1 0 1 0" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type TextBox}">
@@ -261,7 +261,7 @@
                             Margin="{TemplateBinding Padding}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Opacity=".23"
+                            Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                             Text="{TemplateBinding wpf:TextField.Hint}"
                             IsHitTestVisible="False"
                             Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />

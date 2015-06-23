@@ -83,7 +83,7 @@
 				 wpf:TextField.Hint="Phone"
 				 />
 		<TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">Fruit</TextBlock>
-		<ComboBox Grid.Row="1" Grid.Column="3" wpf:TextField.Hint="Search" IsEditable="True">
+		<ComboBox Grid.Row="1" Grid.Column="3" wpf:TextField.Hint="Search" IsEditable="True" wpf:TextField.HintOpacity=".5">
 			<ComboBoxItem>Apple</ComboBoxItem>
 			<ComboBoxItem>Banana</ComboBoxItem>
 			<ComboBoxItem>Pear</ComboBoxItem>
@@ -99,6 +99,15 @@
 				 x:Name="CommentTextBox"
 				 wpf:TextField.Hint="Comment"
 				 />
+        <Viewbox Grid.Row="2" Grid.Column="2">
+			<Canvas Width="24" Height="24">
+				<Path Data="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z" 
+					  Fill="{Binding ElementName=PasswordBox, Path=BorderBrush}" />
+			</Canvas>
+		</Viewbox>
+		<PasswordBox Grid.Row="2" Grid.Column="3" 		
+                     x:Name="PasswordBox"
+                     wpf:TextField.Hint="Password" />
 		<DatePicker Grid.Row="3" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
                     wpf:TextField.Hint="James"/>		
 		<wpf:TimePicker Grid.Row="3" Grid.Column="3" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8" />
