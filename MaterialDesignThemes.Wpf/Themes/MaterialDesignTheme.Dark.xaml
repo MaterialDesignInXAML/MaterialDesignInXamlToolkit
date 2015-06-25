@@ -12,4 +12,7 @@
 	
 	<SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#89FFFFFF" />
     
+    <SolidColorBrush x:Key="MaterialDesignDivider" Color="#616161" />
+    <SolidColorBrush x:Key="MaterialDesignSelection" Color="#757575" />
+    
 </ResourceDictionary>

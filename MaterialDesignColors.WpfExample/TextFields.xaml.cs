@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using MaterialDesignColors.WpfExample.Domain;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -35,27 +36,5 @@ namespace MaterialDesignColors.WpfExample
         }		
     }
 
-	public class TextFieldsViewModel : INotifyPropertyChanged
-	{
-		private string _name;
 
-		public string Name
-		{
-			get { return _name; }
-			set
-			{
-				_name = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-		{
-			if (PropertyChanged != null)
-				PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
 }

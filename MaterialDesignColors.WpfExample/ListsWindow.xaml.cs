@@ -5,35 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignColors.WpfExample.Domain;
 
 namespace MaterialDesignColors.WpfExample
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ListsWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ListsWindow : Window
     {
-        public MainWindow()
+        public ListsWindow()
         {
             InitializeComponent();
 
-            new CardsWindow().Show();
-            new ListsWindow().Show();
+            DataContext = new ListsWindowViewModel();
         }
-
-	    private void ToggleButton_OnChecked(object sender, RoutedEventArgs e)
-	    {
-		    FieldsRadioButton.IsChecked = ((ToggleButton) sender).IsChecked;
-			ButtonsRadioButton.IsChecked = !((ToggleButton)sender).IsChecked;
-		}
     }
 }

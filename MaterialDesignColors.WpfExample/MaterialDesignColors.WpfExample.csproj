@@ -72,6 +72,12 @@
     <Compile Include="CardsWindow.xaml.cs">
       <DependentUpon>CardsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Domain\ListFieldsViewModel.cs" />
+    <Compile Include="Domain\SelectableViewModel.cs" />
+    <Compile Include="Domain\TextFieldsViewModel.cs" />
+    <Compile Include="ListsWindow.xaml.cs">
+      <DependentUpon>ListsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NotEmptyValidationRule.cs" />
     <Compile Include="ProvingGround.xaml.cs">
       <DependentUpon>ProvingGround.xaml</DependentUpon>
@@ -84,6 +90,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CardsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

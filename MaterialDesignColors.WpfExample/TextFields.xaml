@@ -10,7 +10,7 @@
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>				
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />				
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />				                
 			</ResourceDictionary.MergedDictionaries>
 			<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
 				<Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -46,7 +46,7 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />		    
 		</Grid.RowDefinitions>
 		<Viewbox Grid.Row="0" Grid.Column="0">
 			<Canvas Width="24" Height="24">
@@ -122,5 +122,6 @@
 		</StackPanel>		
 		<Slider Grid.Row="5" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True" />
 		<Slider Grid.Row="6" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsEnabled="False" />		
+        <TextBlock Grid.Row="7" Grid.Column="0" Margin="0 8 0 0">List</TextBlock>        
 	</Grid>
 </UserControl>
