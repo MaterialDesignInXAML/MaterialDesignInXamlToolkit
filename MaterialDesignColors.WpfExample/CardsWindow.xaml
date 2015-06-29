@@ -70,6 +70,11 @@
                 <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Take a breather</CheckBox>
                 <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">And go create</CheckBox>
             </StackPanel>                               
-        </wpf:Card>        
+        </wpf:Card>
+        <wpf:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueDarkBrush}"
+                  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                  Padding="8" UniformCornerRadius="5">
+            <TextBlock>You can adjust the corner radius</TextBlock>
+        </wpf:Card>
     </WrapPanel>
 </Window>

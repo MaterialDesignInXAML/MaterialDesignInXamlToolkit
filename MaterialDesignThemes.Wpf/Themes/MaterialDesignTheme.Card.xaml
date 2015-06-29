@@ -12,19 +12,10 @@
     <ControlTemplate TargetType="{x:Type wpf:Card}" x:Key="CardTemplate">
         <Border Margin="{TemplateBinding Margin}"
                 Effect="{StaticResource MaterialDesignShadowDepth2}"
-                CornerRadius="2" Background="Transparent">
-
-            <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
-                <Border.Clip>
-                    <RectangleGeometry RadiusX="2" RadiusY="2">
-                        <RectangleGeometry.Rect>
-                            <MultiBinding Converter="{StaticResource CardClipConverter}">
-                                <Binding ElementName="ContentPresenter" Path="RenderSize" Mode="OneWay" />
-                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Padding" Mode="OneWay" />
-                            </MultiBinding>
-                        </RectangleGeometry.Rect>
-                    </RectangleGeometry>
-                </Border.Clip>
+                CornerRadius="{TemplateBinding UniformCornerRadius}" Background="Transparent">
+            <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
+                    x:Name="PART_ClipBorder"
+                    Clip="{TemplateBinding ContentClip}">                
                 <ContentPresenter 
                     x:Name="ContentPresenter"                    
                     Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">                    
