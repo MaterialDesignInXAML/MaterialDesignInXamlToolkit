@@ -148,6 +148,7 @@
     <Compile Include="Converters\ClockLineConverter.cs" />
     <Compile Include="Converters\NotConverter.cs" />
     <Compile Include="Converters\SizeToRectConverter.cs" />
+    <Compile Include="CustomPopupPlacementCallbackHelper.cs" />
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="MaterialDateDisplay.cs" />
     <Compile Include="PasswordField.cs" />

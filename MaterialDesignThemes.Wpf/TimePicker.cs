@@ -19,8 +19,9 @@ namespace MaterialDesignThemes.Wpf
 		private const string ElementTextBox = "PART_TextBox";
 
 		private readonly ContentControl _clockHostContentControl;
-		private readonly Clock _clock;
-		private Popup _popup;
+	    private readonly Clock _clock;
+	    private TextBox _textBox;
+	    private Popup _popup;
 		private Button _dropDownButton;
 		private bool _disablePopupReopen;
 
@@ -30,8 +31,8 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public TimePicker()
-		{			
-			_clock = new Clock
+		{
+            _clock = new Clock
 			{
 				DisplayAutomation = ClockDisplayAutomation.ToMinutesOnly
 			};
@@ -142,15 +143,13 @@ namespace MaterialDesignThemes.Wpf
 		public static readonly DependencyProperty ClockHostContentControlStyleProperty = DependencyProperty.Register(
 			"ClockHostContentControlStyle", typeof (Style), typeof (TimePicker), new PropertyMetadata(default(Style)));
 
-		private TextBox _textBox;
-
-		public Style ClockHostContentControlStyle
+	    public Style ClockHostContentControlStyle
 		{
 			get { return (Style) GetValue(ClockHostContentControlStyleProperty); }
 			set { SetValue(ClockHostContentControlStyleProperty, value); }
 		}
 
-		public override void OnApplyTemplate()
+	    public override void OnApplyTemplate()
 		{
 			if (_popup != null)
 			{

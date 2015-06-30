@@ -134,7 +134,10 @@
 									Height="17" />
 							<DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Center" Style="{DynamicResource MaterialDesignDatePickerTextBox}"
 											   HorizontalAlignment="Stretch" />
-							<Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"
+							<Popup x:Name="PART_Popup" AllowsTransparency="True" 
+                                   Placement="Custom"
+                                   CustomPopupPlacementCallback="{x:Static wpf:CustomPopupPlacementCallbackHelper.LargePopupCallback}"
+                                   PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"
 								   PopupAnimation="Fade"  />
 						</Grid>
 					</Border>
