@@ -69,6 +69,6 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (Geometry) GetValue(ContentClipProperty); }
             private set { SetValue(ContentClipPropertyKey, value); }
-        }         
+        }
     }
 }
