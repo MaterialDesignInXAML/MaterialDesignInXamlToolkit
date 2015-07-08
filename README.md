@@ -90,6 +90,7 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 
 ![Alt text](web/images/screen-sliders.png "Sliders")
 
+![Alt text](https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MenusDemo.jpg "Menus")
 ![Alt text](web/images/screen-typography.png "Typography")
 
 ![Alt text](web/images/screen-groupbox.png "Group Box")
