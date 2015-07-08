@@ -57,5 +57,7 @@
 
 ![Alt text](https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/FieldsDemo.gif "Fields Demo")
 
+![Alt text](https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MenusDemo.jpg "Menus")
+
 ![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo23.png "Material Design Themes")
 
