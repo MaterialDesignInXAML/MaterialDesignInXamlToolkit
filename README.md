@@ -40,11 +40,12 @@
 
 # ![Alt text](https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MD4XAML28.png "Mentions") Mentions
 
-* The spiffing logo is courtesy of GitHub user [Snalty](https://github.com/snalty), and you can see more of him;
+* Logo courtesy of GitHub user [Snalty](https://github.com/snalty), and you can see more of him;
  * on his [blog](http://holothere.tumblr.com/)
  * and on [Twitter](https://twitter.com/snalty)
 * Marc Angers - I pulled some oh his shadows straight in from this [blog post](http://marcangers.com/material-design-shadows-in-wpf/)
-* Ignace Maes, whose [Material Skin] project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
+* Most of the icons come from [Material Design Icons](https://materialdesignicons.com/)...check it!
+* Ignace Maes, whose [Material Skin](https://github.com/IgnaceMaes/MaterialSkin) project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
 * **[Contributers!](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)**  Thanks for the PRs which have helped add some extra polish.  
 
 # <a name="MorePics"></a>![Alt text](https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MD4XAML28.png "More Pics") More Pics
