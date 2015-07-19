@@ -55,10 +55,10 @@
             </CheckBox>
         </WrapPanel>
         <WrapPanel Grid.Row="2">
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 8" Content="LIGHT" Width="80" />
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 8" Content="MID" Width="80" />
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 8" Content="DARK" Width="80" />
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 8" Content="ACCENT" Width="80" />
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 8" Content="_LIGHT" Width="80" />
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 8" Content="_MID" Width="80" />
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 8" Content="_DARK" Width="80" />
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 8" Content="_ACCENT" Width="80" />
         </WrapPanel>
         <WrapPanel Grid.Row="3">
             <StackPanel>
