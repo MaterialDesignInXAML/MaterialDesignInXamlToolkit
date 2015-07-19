@@ -4,7 +4,7 @@
 	<!--  thanks: http://marcangers.com/material-design-shadows-in-wpf/ -->
 	
 	<DropShadowEffect x:Key="MaterialDesignShadowDepth1" BlurRadius="5" ShadowDepth="1" Direction="270" Color="#CCCCCC"/>
-    <DropShadowEffect x:Key="MaterialDesignShadowDepth2" BlurRadius="8" ShadowDepth="2.5" Direction="270" Color="#BBBBBB"/>
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth2" BlurRadius="8" ShadowDepth="1.5" Direction="270" Color="#C4C4C4"/>
     <DropShadowEffect x:Key="MaterialDesignShadowDepth3" BlurRadius="14" ShadowDepth="4.5" Direction="270" Color="#BBBBBB"/>
     <DropShadowEffect x:Key="MaterialDesignShadowDepth4" BlurRadius="25" ShadowDepth="8" Direction="270" Color="#BBBBBB"/>
     <DropShadowEffect x:Key="MaterialDesignShadowDepth5" BlurRadius="35" ShadowDepth="13" Direction="270" Color="#BBBBBB"/>
