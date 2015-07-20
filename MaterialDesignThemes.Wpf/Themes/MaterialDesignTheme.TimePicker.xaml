@@ -3,10 +3,6 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
-	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
-	</ResourceDictionary.MergedDictionaries>
-	
 	<converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
 	
 	<Style x:Key="MaterialDesignTimePicker" TargetType="{x:Type wpf:TimePicker}">
@@ -25,7 +21,7 @@
 						<Setter Property="Template">
 							<Setter.Value>
 								<ControlTemplate TargetType="{x:Type ContentControl}">
-									<Border Effect="{StaticResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
+									<Border Effect="{DynamicResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
 										<ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
 									</Border>
 								</ControlTemplate>

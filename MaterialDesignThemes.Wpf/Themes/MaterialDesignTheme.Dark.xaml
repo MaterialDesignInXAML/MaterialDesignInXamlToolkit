@@ -14,5 +14,11 @@
     
     <SolidColorBrush x:Key="MaterialDesignDivider" Color="#616161" />
     <SolidColorBrush x:Key="MaterialDesignSelection" Color="#757575" />
-    
+
+    <Color x:Key="MaterialDesignShadow1">#CCCCCC</Color>
+    <Color x:Key="MaterialDesignShadow2">#C4C4C4</Color>
+    <Color x:Key="MaterialDesignShadow3">#BBBBBB</Color>
+    <Color x:Key="MaterialDesignShadow4">#BBBBBB</Color>
+    <Color x:Key="MaterialDesignShadow5">#BBBBBB</Color>
+
 </ResourceDictionary>

@@ -171,7 +171,7 @@
 					<Viewbox Width="34">
 						<Grid>
 							<Rectangle x:Name="Track" Fill="Black" HorizontalAlignment="Left" Height="15" Margin="4.211,5,-4.211,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="40" RadiusY="7.5" RadiusX="7.5" Opacity="0.26"/>
-							<Ellipse x:Name="Thumb" Fill="#FFFAFAFA" HorizontalAlignment="Left" Height="25" Margin="0,0,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.5,0.5">
+							<Ellipse x:Name="Thumb" Fill="#FFFAFAFA" HorizontalAlignment="Left" Height="25" Margin="0,0,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.5,0.5" Effect="{DynamicResource MaterialDesignShadowDepth1}">
 								<Ellipse.RenderTransform>
 									<TransformGroup>
 										<ScaleTransform/>
@@ -180,9 +180,6 @@
 										<TranslateTransform/>
 									</TransformGroup>
 								</Ellipse.RenderTransform>
-								<Ellipse.Effect>
-									<DropShadowEffect BlurRadius="5" ShadowDepth="1" Direction="270" Color="#CCCCCC"/>
-								</Ellipse.Effect>
 							</Ellipse>
 						</Grid>
 					</Viewbox>
