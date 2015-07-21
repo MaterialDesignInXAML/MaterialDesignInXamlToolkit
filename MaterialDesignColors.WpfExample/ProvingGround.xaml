@@ -184,9 +184,6 @@
                 <ToggleButton>
                     Switch
                 </ToggleButton>
-                <Menu>
-                    <MenuItem>Embedded menu</MenuItem>
-                </Menu>
             </ToolBar>
         </ToolBarTray>
     </DockPanel>
