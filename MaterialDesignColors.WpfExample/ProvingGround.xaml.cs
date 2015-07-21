@@ -27,9 +27,15 @@ namespace MaterialDesignColors.WpfExample
             InitializeComponent();
 	        DataContext = new ProvingGroundViewModel();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://twitter.com/James_Willock");
+
+        }
     }
 
-	public class ProvingGroundViewModel : INotifyPropertyChanged
+    public class ProvingGroundViewModel : INotifyPropertyChanged
 	{
 		private string _name;
 
