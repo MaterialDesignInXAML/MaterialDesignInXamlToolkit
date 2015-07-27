@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignColors.WpfExample.Domain;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -38,8 +40,10 @@ namespace MaterialDesignColors.WpfExample
     public class ProvingGroundViewModel : INotifyPropertyChanged
 	{
 		private string _name;
+        private readonly ObservableCollection<SelectableViewModel> _items = CreateData();
 
-		public string Name
+
+        public string Name
 		{
 			get { return _name; }
 			set
@@ -49,7 +53,37 @@ namespace MaterialDesignColors.WpfExample
 			}
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
+        public ObservableCollection<SelectableViewModel> Items
+        {
+            get { return _items; }
+        }
+
+        private static ObservableCollection<SelectableViewModel> CreateData()
+        {
+            return new ObservableCollection<SelectableViewModel>
+            {
+                new SelectableViewModel
+                {
+                    Code = 'M',
+                    Name = "Material Design",
+                    Description = "Material Design in XAML Toolkit"
+                },
+                new SelectableViewModel
+                {
+                    Code = 'D',
+                    Name = "Dragablz",
+                    Description = "Dragablz Tab Control"
+                },
+                new SelectableViewModel
+                {
+                    Code = 'P',
+                    Name = "Predator",
+                    Description = "If it bleeds, we can kill it"
+                }
+            };
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
 		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{

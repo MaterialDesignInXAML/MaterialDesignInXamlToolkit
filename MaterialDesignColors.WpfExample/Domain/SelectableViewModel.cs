@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MaterialDesignColors.WpfExample.Domain
 {
@@ -14,6 +10,7 @@ namespace MaterialDesignColors.WpfExample.Domain
         private string _name;
         private string _description;
         private char _code;
+        private double _numeric;        
 
         public bool IsSelected
         {
@@ -59,6 +56,16 @@ namespace MaterialDesignColors.WpfExample.Domain
             }
         }
 
+        public double Numeric
+        {
+            get { return _numeric; }
+            set
+            {
+                if (_numeric == value) return;
+                _numeric = value;
+                OnPropertyChanged();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

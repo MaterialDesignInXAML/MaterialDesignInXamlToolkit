@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 
 namespace MaterialDesignColors.WpfExample.Domain
 {
@@ -8,11 +9,13 @@ namespace MaterialDesignColors.WpfExample.Domain
     {
         private readonly ObservableCollection<SelectableViewModel> _items1;
         private readonly ObservableCollection<SelectableViewModel> _items2;
+        private readonly ObservableCollection<SelectableViewModel> _items3;
 
         public ListsWindowViewModel()
         {
             _items1 = CreateData();
             _items2 = CreateData();
+            _items3 = CreateData();
         }
 
         private static ObservableCollection<SelectableViewModel> CreateData()
@@ -48,6 +51,11 @@ namespace MaterialDesignColors.WpfExample.Domain
         public ObservableCollection<SelectableViewModel> Items2
         {
             get { return _items2; }
+        }
+
+        public ObservableCollection<SelectableViewModel> Items3
+        {
+            get { return _items3; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <!-- plan is to add all of the light/dark specific brushes, quite granular at first. can then consolodate any repition later on if necessary -->
-    
+
+    <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FFFFFFFF"/>
     <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FFfafafa"/>
     <SolidColorBrush x:Key="MaterialDesignBody" Color="#DD000000"/>
     
@@ -11,8 +12,10 @@
 	
 	<SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#89000000" />
 
-    <SolidColorBrush x:Key="MaterialDesignDivider" Color="#eeeeee" />
-    <SolidColorBrush x:Key="MaterialDesignSelection" Color="#e0e0e0" />
+    <SolidColorBrush x:Key="MaterialDesignDivider" Color="#FFeeeeee" />
+    <SolidColorBrush x:Key="MaterialDesignSelection" Color="#FFf5f5f5" />
+        
+   
 
     <Color x:Key="MaterialDesignShadow1">#CCCCCC</Color>
     <Color x:Key="MaterialDesignShadow2">#C4C4C4</Color>

@@ -3,7 +3,8 @@
                     >
     
     <!-- plan is to add all of the light/dark specific brushes, quite granular at first. can then consolodate any repition later on if necessary -->
-    
+
+    <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FF000000"/>
     <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF37474f"/>
     <SolidColorBrush x:Key="MaterialDesignBody" Color="#DDFFFFFF"/>
     
