@@ -1,13 +1,99 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=System">
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.checkbox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <converters:NotZeroToVisibilityConverter x:Key="NotZeroToVisibilityConverter" />
+
+    <Style x:Key="MaterialDesignDataGridCheckBoxColumnStyle" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+    </Style>
+
+    <Style x:Key="MaterialDesignDataGridCheckBoxColumnEditingStyle" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="MaterialDesignDataGridTextColumnEditingStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+        <Setter Property="Margin" Value="0 0 0 -5" />
+        <Setter Property="BorderThickness" Value="0 0 0 2"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
+                            Padding="0 -1 0 3">
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+											  />
+                            <TextBlock Text="{Binding Path=(wpf:TextField.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                       Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
+                                       x:Name="Hint"
+                                       Margin="1 0 1 0"
+                                       Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignDataGridTextColumnPopupEditingStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+        <Setter Property="Margin" Value="0 0 0 -5" />
+        <Setter Property="BorderThickness" Value="0 0 0 2"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <Popup IsOpen="True" AllowsTransparency="True" Placement="RelativePoint" HorizontalOffset="0" VerticalOffset="0" 
+                               PlacementTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}}"                                                              
+                               PopupAnimation="Fade">
+                            <Border Padding="16" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
+                                    Margin="5,5,5,5"
+                                    BorderBrush="{DynamicResource MaterialDesignDivider}" Effect="{DynamicResource MaterialDesignShadowDepth2}"
+                                    BorderThickness="1">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
+                                        Padding="0 -1 0 3">
+                                        <Grid>
+                                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+											      />
+                                            <TextBlock Text="{Binding Path=(wpf:TextField.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                                       Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
+                                                       MinWidth="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}, Path=ActualWidth}"
+                                                       x:Name="Hint"
+                                                       Margin="1 0 1 0"
+                                                       Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                        </Grid>
+                                    </Border>
+                                    <TextBlock Grid.Row="1" HorizontalAlignment="Right" Opacity=".56" Visibility="{TemplateBinding MaxLength, Converter={StaticResource NotZeroToVisibilityConverter}}">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0}/{1}">
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Text.Length" />
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="MaxLength" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Grid>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
         <Setter Property="Template">
@@ -32,11 +118,12 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style x:Key="MaterialDesignDataGridCell" TargetType="{x:Type DataGridCell}">
         <Setter Property="TextBlock.FontSize" Value="13" />
         <Setter Property="Padding" Value="13 8 8 8" />
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>        
+        <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -56,7 +143,7 @@
                     <Condition Property="IsSelected" Value="True"/>
                     <Condition Property="Selector.IsSelectionActive" Value="False"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}"/>                                
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -70,6 +157,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
     <Style x:Key="MaterialDesignDataGridColumnHeaderGripper" TargetType="{x:Type Thumb}">
         <Setter Property="Width" Value="8"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -82,10 +170,13 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style x:Key="MaterialDesignDataGridColumnHeader" TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="TextBlock.FontSize" Value="12" />
+        <Setter Property="TextBlock.FontWeight" Value="Medium" />
         <Setter Property="Padding" Value="8 8 8 8" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignColumnHeader}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
@@ -93,20 +184,20 @@
                         <Storyboard x:Key="GoToVisible">
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SortDirectionIndicator" Storyboard.TargetProperty="Width">
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="14" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="12" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                         <Storyboard x:Key="GoToHidden">
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SortDirectionIndicator" Storyboard.TargetProperty="Width">
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="14" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="12" />
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid>
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
-                            <StackPanel Orientation="Horizontal">
-                                <wpf:ListSortDirectionIndicator Width="0" Height="14" 
+                            <StackPanel Orientation="Horizontal" Background="Transparent">
+                                <wpf:ListSortDirectionIndicator Width="0" Height="12" 
                                                                 x:Name="SortDirectionIndicator"
                                                                 ListSortDirection="{TemplateBinding SortDirection}"
                                                                 />
@@ -115,9 +206,18 @@
                             </StackPanel>
                         </Border>
                         <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignDataGridColumnHeaderGripper}"/>
-                        <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignDataGridColumnHeaderGripper}"/>                        
+                        <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignDataGridColumnHeaderGripper}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                        </Trigger>
+                        <Trigger Property="SortDirection" Value="Ascending">
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                        </Trigger>
+                        <Trigger Property="SortDirection" Value="Descending">
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                        </Trigger>
                         <Trigger SourceName="SortDirectionIndicator" Property="IsNeutral" Value="False">
                             <Trigger.EnterActions>
                                 <BeginStoryboard Storyboard="{StaticResource GoToVisible}" Name="GoToVisible" />
@@ -131,7 +231,8 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>    
+    </Style>
+
     <Style x:Key="MaterialDesignDataGridRowHeaderGripper" TargetType="{x:Type Thumb}">
         <Setter Property="Height" Value="8"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -144,6 +245,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style x:Key="MaterialDesignDataGridRowHeader" TargetType="{x:Type DataGridRowHeader}">
         <Setter Property="Template">
             <Setter.Value>
@@ -162,6 +264,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style x:Key="MaterialDesignDataGridRow" TargetType="{x:Type DataGridRow}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>
@@ -207,6 +310,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
     <Style x:Key="MaterialDesignDataGrid" TargetType="{x:Type DataGrid}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignBackground}"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
@@ -218,8 +322,9 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource MaterialDesignSelection}" />
-        <Setter Property="wpf:DataGridAssist.AutoGeneratedCheckBoxBasedOnStyle" Value="{StaticResource MaterialDesignCheckBox}" />
-        <Setter Property="wpf:DataGridAssist.AutoGeneratedEditingCheckBoxBasedOnStyle" Value="{StaticResource MaterialDesignCheckBox}" />
+        <Setter Property="wpf:DataGridAssist.AutoGeneratedCheckBoxStyle" Value="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}" />
+        <Setter Property="wpf:DataGridAssist.AutoGeneratedEditingCheckBoxStyle" Value="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}" />
+        <Setter Property="wpf:DataGridAssist.AutoGeneratedEditingTextStyle" Value="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGrid}">

@@ -159,11 +159,13 @@
     <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
     <Compile Include="Converters\ClockLineConverter.cs" />
     <Compile Include="Converters\NotConverter.cs" />
+    <Compile Include="Converters\NotZeroToVisibilityConverter.cs" />
     <Compile Include="Converters\SizeToRectConverter.cs" />
     <Compile Include="CustomPopupPlacementCallbackHelper.cs" />
     <Compile Include="DataGridAssist.cs" />
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="ListSortDirectionIndicator.cs" />
+    <Compile Include="MaterialDataGridTextColumn.cs" />
     <Compile Include="MaterialDateDisplay.cs" />
     <Compile Include="PasswordField.cs" />
     <Compile Include="ProgressLoop.cs" />

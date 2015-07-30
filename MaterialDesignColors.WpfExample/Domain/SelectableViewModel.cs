@@ -65,7 +65,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                 _numeric = value;
                 OnPropertyChanged();
             }
-        }
+        }        
 
         public event PropertyChangedEventHandler PropertyChanged;
 
