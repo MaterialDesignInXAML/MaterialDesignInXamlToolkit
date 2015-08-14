@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
-             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"             
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              mc:Ignorable="d"              
@@ -57,9 +56,11 @@
     <!--
     <wpf:ListSortDirectionIndicator Width="24" Height="24" Style="{DynamicResource MaterialDesignListSortDirectionIndicator}" ListSortDirection="Descending"  />
     -->
+    <!--
     <DataGrid ItemsSource="{Binding Items}" CanUserAddRows="False" CanUserSortColumns="True">
         
     </DataGrid>
+    -->
     
     
 </UserControl>
