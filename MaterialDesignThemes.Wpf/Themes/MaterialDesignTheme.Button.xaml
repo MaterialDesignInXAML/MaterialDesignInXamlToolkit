@@ -30,11 +30,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
-                        <Border Background="{TemplateBinding Background}">
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="5" ShadowDepth="1" Direction="270" Color="#CCCCCC" />
-                            </Border.Effect>
-                        </Border>
+                        <Border Background="{TemplateBinding Background}" Effect="{DynamicResource MaterialDesignShadowDepth1}" />
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
                             <wpf:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
                                                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -131,12 +127,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
-                        <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}"
-                                 x:Name="border">
-                            <Ellipse.Effect>
-                                <DropShadowEffect BlurRadius="5" ShadowDepth="1" Direction="270" Color="#CCCCCC"/>
-                            </Ellipse.Effect>
-                        </Ellipse>
+                        <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Effect="{DynamicResource MaterialDesignShadowDepth1}"
+                                 x:Name="border" />
                         <wpf:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
                                                           Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
                                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 

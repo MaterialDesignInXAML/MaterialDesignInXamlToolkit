@@ -3,15 +3,11 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <converters:CardClipConverter x:Key="CardClipConverter" />
 
     <ControlTemplate TargetType="{x:Type wpf:Card}" x:Key="CardTemplate">
         <Border Margin="{TemplateBinding Margin}"
-                Effect="{StaticResource MaterialDesignShadowDepth2}"
+                Effect="{DynamicResource MaterialDesignShadowDepth2}"
                 CornerRadius="{TemplateBinding UniformCornerRadius}" Background="Transparent">
             <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
                     x:Name="PART_ClipBorder"

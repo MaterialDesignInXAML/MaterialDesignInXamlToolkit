@@ -154,10 +154,7 @@
 			<Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
 				<Border x:Name="shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
                                     MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
-                                    BorderThickness="1" BorderBrush="{DynamicResource MaterialDesignDivider}">
-					<Border.Effect>
-						<DropShadowEffect BlurRadius="8" ShadowDepth="1.5" Direction="270" Color="Black" Opacity=".23"/>
-					</Border.Effect>
+                                    BorderThickness="1" BorderBrush="{DynamicResource MaterialDesignDivider}" Effect="{DynamicResource MaterialDesignShadowDepth2}">
 					<Border x:Name="dropDownBorder" Background="Transparent">
 						<ScrollViewer x:Name="DropDownScrollViewer">
 							<Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
@@ -239,10 +236,7 @@
 			<Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
 				<Border x:Name="dropDownBorder" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1" Background="{DynamicResource MaterialDesignPaper}"
                                 CornerRadius="2"
-                                MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
-					<Border.Effect>
-						<DropShadowEffect BlurRadius="8" ShadowDepth="1.5" Direction="270" Color="Black" Opacity=".23"/>
-					</Border.Effect>
+                                MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" Effect="{DynamicResource MaterialDesignShadowDepth2}">
 					<ScrollViewer x:Name="DropDownScrollViewer">
 						<Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
 							<Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">

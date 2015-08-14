@@ -85,7 +85,8 @@
                                 <Path x:Name="Graphic"
                                       Data="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z" 
                                       Fill="{DynamicResource MaterialDesignCheckBoxOff}" />
-                                <Ellipse x:Name="InteractionEllipse" Fill="{TemplateBinding Foreground}" Width="0" Height="0" Canvas.Top="12" Canvas.Left="12" Opacity="0" RenderTransformOrigin="0.5,0.5" >
+                                <Ellipse x:Name="InteractionEllipse" Fill="{TemplateBinding Foreground}" Width="0" Height="0" Canvas.Top="12" Canvas.Left="12" Opacity="0" RenderTransformOrigin="0.5,0.5"
+                                         IsHitTestVisible="False">
                                     <Ellipse.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
