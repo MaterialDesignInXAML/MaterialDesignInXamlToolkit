@@ -126,7 +126,7 @@
 								<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 6 38 0">
 									<StackPanel.Resources>
 										<Style x:Key="TimeTextBlock" TargetType="{x:Type TextBlock}">
-											<Setter Property="Foreground" Value="{DynamicResource MaterialDesignPaper}" />
+                                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
 											<Setter Property="FontSize" Value="66" />
 											<Setter Property="FontWeight" Value="Normal" />
 										</Style>
@@ -159,8 +159,8 @@
 										</TextBlock.Style>
 									</TextBlock>
 									<TextBlock FontSize="16" 
-													   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:tt}}" 
-													   VerticalAlignment="Bottom" Margin="2 0 0 16" Foreground="{DynamicResource MaterialDesignPaper}" />
+                                               Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:tt}}" 
+                                               VerticalAlignment="Bottom" Margin="2 0 0 16" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" />
 								</StackPanel>
 							</Border>
 							<Ellipse Grid.Row="1" Margin="0,24.5,0,94" Width="230" Height="230" Fill="{DynamicResource PrimaryHueLightBrush}" Opacity=".23" />
