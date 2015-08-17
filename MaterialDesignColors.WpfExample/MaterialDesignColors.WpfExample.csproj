@@ -79,6 +79,10 @@
       <DependentUpon>ListsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="NotEmptyValidationRule.cs" />
+    <Compile Include="PaletteSelectorViewModel.cs" />
+    <Compile Include="PaletteSelectorWindow.xaml.cs">
+      <DependentUpon>PaletteSelectorWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProvingGround.xaml.cs">
       <DependentUpon>ProvingGround.xaml</DependentUpon>
     </Compile>
@@ -110,6 +114,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Palette.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PaletteSelectorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
