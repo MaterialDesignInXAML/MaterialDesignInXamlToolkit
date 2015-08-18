@@ -28,6 +28,10 @@ namespace MaterialDesignColors.WpfExample
 
             new CardsWindow().Show();
             new ListsWindow().Show();
+            new PaletteSelectorWindow()
+            {
+                DataContext = new PaletteSelectorViewModel()
+            }.Show();
         }
 
 	    private void ToggleButton_OnChecked(object sender, RoutedEventArgs e)
