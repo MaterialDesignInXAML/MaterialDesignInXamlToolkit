@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
+using MaterialDesignThemes.Wpf;
+using Microsoft.Expression.Interactivity.Core;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -12,32 +16,30 @@ namespace MaterialDesignColors.WpfExample
     {
         public PaletteSelectorViewModel()
         {
-            AscertainCurrentResourceDictionaries();
+            Swatches = new SwatchesProvider().Swatches;            
         }
 
-        private void AscertainCurrentResourceDictionaries()
+        public ICommand ToggleBaseCommand { get; } = new ActionCommand(o => ApplyBase((bool)o));
+
+        private static void ApplyBase(bool isDark)
         {
-            var lightDarkResourceDictionary = Application.Current.Resources.MergedDictionaries
-                .Where(rd => rd.Source != null)
-                .SingleOrDefault(rd => Regex.Match(rd.Source.AbsolutePath, @"(\/MaterialDesignThemes.Wpf;component\/Themes\/MaterialDesignTheme\.)((Light)|(Dark))").Success);
-            if (lightDarkResourceDictionary == null)
-                throw new ApplicationException("Unable to find Light/Dark base theme in Application resources.");
-            var lightDarkDescription = Regex.Match(lightDarkResourceDictionary.Source.AbsolutePath, "(?'desc'(Light)|(Dark))(.xaml)$").Groups[
-                "desc"].Value;
-
-            ResourceDictionary primaryColorResourceDictionary;
-            if (!TryFindSwatchDictionary(Application.Current.Resources, "PrimaryHueMidBrush", out primaryColorResourceDictionary))
-                throw new ApplicationException("Unable to find primary color definition in Application resources.");
-
-            ResourceDictionary accentolorResourceDictionary;
-            if (!TryFindSwatchDictionary(Application.Current.Resources, "SecondaryAccentBrush", out accentolorResourceDictionary))
-                throw new ApplicationException("Unable to find accent color definition in Application resources.");
+            new PaletteHelper().SetLightDark(isDark);
         }
 
-        private bool TryFindSwatchDictionary(ResourceDictionary parentDictionary, string expectedBrushName, out ResourceDictionary dictionary)
+        public IEnumerable<Swatch> Swatches { get; }
+
+        public ICommand ApplyPrimaryCommand { get; } = new ActionCommand(o => ApplyPrimary((Swatch)o));
+
+        private static void ApplyPrimary(Swatch swatch)
         {
-            dictionary = parentDictionary.MergedDictionaries.SingleOrDefault(rd => rd[expectedBrushName] != null);
-            return dictionary != null;
+            new PaletteHelper().ReplacePrimaryColor(swatch);
         }
-    }    
+
+        public ICommand ApplyAccentCommand { get; } = new ActionCommand(o => ApplyAccent((Swatch)o));
+
+        private static void ApplyAccent(Swatch swatch)
+        {
+            new PaletteHelper().ReplaceAccentColor(swatch);
+        }
+    }
 }

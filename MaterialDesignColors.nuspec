@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>MaterialDesignColors</id>
-    <version>0.0.0.0</version>
+    <version>1.0.0</version>
     <title>Material Design Colors XAML Resources</title>
     <authors>James Willock</authors>
     <owners>James Willock</owners>
@@ -15,7 +15,6 @@
     <tags>WPF XAML WinRT Material Design Colour Color UI UX</tags>
   </metadata>
   <files>
-    <file src="MaterialDesignColors.Wpf\bin\Release\MaterialDesignColors.dll" target="lib\net40" />
     <file src="MaterialDesignColors.Wpf\bin\Release\MaterialDesignColors.dll" target="lib\net45" />
   </files>  
 </package>

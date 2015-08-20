@@ -15,7 +15,9 @@
     <tags>WPF XAML WinRT Material Design Theme Colour Color UI UX</tags>
   </metadata>
   <files>
-    <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.dll" target="lib\net40" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.dll" target="lib\net45" />
   </files>  
+  <dependencies>
+    <dependency id="MaterialDesignColors" version="1.0.0" />    
+  </dependencies>
 </package>
