@@ -13,11 +13,11 @@
     <releaseNotes>Google spec at http://www.google.co.uk/design/spec/style/color.html</releaseNotes>
     <copyright>Copyright 2015 James Willock/Mulholland Software Ltd</copyright>
     <tags>WPF XAML WinRT Material Design Theme Colour Color UI UX</tags>
+    <dependencies>
+      <dependency id="MaterialDesignColors" version="1.0.0" />    
+    </dependencies>
   </metadata>
   <files>
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.dll" target="lib\net45" />
-  </files>  
-  <dependencies>
-    <dependency id="MaterialDesignColors" version="1.0.0" />    
-  </dependencies>
+  </files>    
 </package>
