@@ -67,15 +67,5 @@ namespace MaterialDesignColors
                 $"/{assemblyName};component/{path.Replace(".baml", ".xaml")}",
                 UriKind.RelativeOrAbsolute));
         }
-
-        private IEnumerable<DictionaryEntry> Read(Stream stream)
-        {
-            using (var reader = new ResourceReader(stream))
-            {
-                var dictionaryEntries = reader.OfType<DictionaryEntry>().ToList();
-                Console.WriteLine(dictionaryEntries.Count);
-                return reader.OfType<DictionaryEntry>();
-            }
-        }
     }
 }
