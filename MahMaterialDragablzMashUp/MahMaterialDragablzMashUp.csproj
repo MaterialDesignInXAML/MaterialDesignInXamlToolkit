@@ -97,6 +97,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AnotherCommandImplementation.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -107,6 +108,7 @@
     <Compile Include="Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PaletteSelectorViewModel.cs" />
     <Compile Include="TextFields.xaml.cs">
       <DependentUpon>TextFields.xaml</DependentUpon>
     </Compile>
@@ -117,15 +119,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Palette.xaml">
+    <Page Include="PaletteSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NotEmptyValidationRule.cs" />
-    <Compile Include="Palette.xaml.cs">
-      <DependentUpon>Palette.xaml</DependentUpon>
+    <Compile Include="PaletteSelector.xaml.cs">
+      <DependentUpon>PaletteSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -18,9 +18,9 @@ namespace MahMaterialDragablzMashUp
     /// <summary>
     /// Interaction logic for Palette.xaml
     /// </summary>
-    public partial class Palette : UserControl
+    public partial class PaletteSelector : UserControl
     {
-        public Palette()
+        public PaletteSelector()
         {
             InitializeComponent();
         }

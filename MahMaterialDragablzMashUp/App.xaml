@@ -16,11 +16,7 @@
 
                 <!-- Material -->                
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />                
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />                
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />                                
 
                 <!-- primary color -->
                 <ResourceDictionary>
@@ -47,7 +43,6 @@
                     <SolidColorBrush x:Key="AccentColorBrush4" Color="{StaticResource Primary200}" options:Freeze="True" />
                     <SolidColorBrush x:Key="WindowTitleColorBrush" Color="{StaticResource Primary700}" options:Freeze="True" />
                     <SolidColorBrush x:Key="AccentSelectedColorBrush" Color="{StaticResource Primary500Foreground}" options:Freeze="True" />
-
                     <LinearGradientBrush x:Key="ProgressBrush" EndPoint="0.001,0.5" StartPoint="1.002,0.5" options:Freeze="True">
                         <GradientStop Color="{StaticResource Primary700}" Offset="0" />
                         <GradientStop Color="{StaticResource Primary300}" Offset="1" />
