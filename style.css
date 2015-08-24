@@ -196,7 +196,7 @@ background-color: white;
 .android-screen-section {
   position: relative;
   padding-top: 60px;
-  padding-bottom: 80px;
+  padding-bottom: 20px;
 }
 
 .android-screens {  
@@ -290,7 +290,7 @@ background-color: white;
   position: relative;
   background: url('images/wear.png') center top no-repeat;
   background-size: cover;
-  height: 800px;
+  height: 300px;
 }
 
 .android-wear-band {
