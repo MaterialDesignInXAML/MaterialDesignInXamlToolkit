@@ -24,19 +24,11 @@
 [![Issues](https://img.shields.io/github/issues/ButchersBoy/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues)
 [![Twitter](https://img.shields.io/badge/twitter-%40james__willock-55acee.svg?style=flat-square)](https://twitter.com/James_Willock)
 
-# ![Alt text](https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MD4XAML28.png "How Can I Use The Colours?") How Can I Use The Colours?
-
-1. Choose your source:
- * Install the [NuGet package](https://www.nuget.org/packages/MaterialDesignColors/) ```Install-Package MaterialDesignColors```
- * Manually pull from [Themes](https://github.com/ButchersBoy/MaterialDesignColorsInXamlToolkit/tree/master/Themes) directory and include in your project
-2. In your App.XAML choose the primary palette and secondary palette, and configure standard brushes, as in [this example](https://github.com/ButchersBoy/MaterialDesignColorsInXamlToolkit/blob/master/MaterialDesignColors.UniversalExample/App.xaml) (this is identical for WPF/WinRT)
-3. Make colourful things.
-4. Want help choosing your palette? Try the [Palette Builder](https://rawgit.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/PaletteBuilder.html) (this is very much a work-in-progress)
- 
 # ![Alt text](https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MD4XAML28.png "How Can I Use The Themes?") How Can I Use The Themes?
 
 * Install [Nuget package](https://www.nuget.org/packages/MaterialDesignThemes/) ```Install-Package MaterialDesignThemes```
-* Import required resource dictionaries, and use styles as desired.  For examples, see the MaterialDesignColors.WpfExample project in the source code.
+* Configure App.xaml according to the [example](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/MaterialDesignColors.WpfExample/App.xaml).
+* For more information see the [Get Started guide](http://butchersboy.github.io/MaterialDesignInXamlToolkit/#getStarted).
 
 # ![Alt text](https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MD4XAML28.png "Mentions") Mentions
 
