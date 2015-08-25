@@ -37,6 +37,13 @@ a img{
   width: auto;
 }
 
+.mega-octicon {
+  color: black;  
+}
+.mdixtk-title a {
+  margin-right: 16px;
+}
+
 .mdixtk-fab {
   position: absolute;
   right: 20%;
@@ -161,6 +168,7 @@ background-color: white;
   width: auto;
   background-color: #f3f3f3;  
   background-size: cover;
+  padding-bottom: 20px;
 }
 
 .mdixtk-font {
@@ -205,6 +213,10 @@ background-color: white;
 
 .mdixtk-screen {
   text-align: center;
+  display: inline-block;
+  
+  margin-right: 16px;
+  margin-left: 16px;
 }
 
 .mdixtk-screen .mdixtk-link {
@@ -217,14 +229,11 @@ background-color: white;
   text-decoration: none;
 }
 
-.mdixtk-wear {
-  display: inline-block;
-  
-  margin-right: 16px;
-  margin-left: 16px;
-}
 
-.mdixtk-wear .mdixtk-screen-image {
+  
+
+
+.mdixtk-proposition .mdixtk-screen-image {
   width: 76%;
   z-index: 1;
 }
@@ -284,16 +293,16 @@ background-color: white;
   }
 
 
-.mdixtk-wear-section {
+.mdixtk-proposition-section {
 }
 
-.mdixtk-wear-band {    
+.mdixtk-proposition-band {    
   width: 100%;
   text-align: center;
   background-color: #37474f;
 }
 
-.mdixtk-wear-band-text {
+.mdixtk-proposition-band-text {
   max-width: 800px;
   margin-left: 25%;
   padding: 24px;
@@ -301,7 +310,7 @@ background-color: white;
   color: white;
 }
 
-  .mdixtk-wear-band-text p {
+  .mdixtk-proposition-band-text p {
     padding-top: 8px;
   }
 
@@ -502,7 +511,7 @@ background-color: white;
     display: none;
   }
 
-  .mdixtk-wear-band-text {
+  .mdixtk-proposition-band-text {
     margin-left: 0;
     padding: 16px;
   }
