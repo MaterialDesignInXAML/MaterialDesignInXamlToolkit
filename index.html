@@ -25,130 +25,24 @@
 					</div>					
 					<!-- Add spacer, to align navigation to the right in desktop -->
 					<div class="mdixtk-header-spacer mdl-layout-spacer"></div>
-					
-					<!-- Navigation -->
-					<div class="mdixtk-navigation-container">
-						<nav class="mdixtk-navigation mdl-navigation">
-							<a class="mdl-navigation__link mdl-typography--text-uppercase" href="">About</a>
-							<a class="mdl-navigation__link mdl-typography--text-uppercase" href="#getStarted">Get Started</a>
-						</nav>
-					</div>
-					<button class="mdixtk-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
-						<i class="material-icons">more_vert</i>
-					</button>
-					<ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
-						<li class="mdl-menu__item" onclick="window.location.href = 'https://github.com/ButchersBoy/MaterialDesignInXamlToolkit'">GitHub</li>						
-						<li class="mdl-menu__item" onclick="window.location.href = 'http://dragablz.net/category/material-design/'">Blog</li>
-						<li class="mdl-menu__item" onclick="window.location.href = 'http://dragablz.net/'">Dragablz</li>
-						<li class="mdl-menu__item" onclick="window.location.href = 'http://mahapps.com/'">MahApps</li>
-					</ul>
+							
 					<span class="mdixtk-mobile-title mdl-layout-title">
 						<img class="mdixtk-logo-image" src="images/MD4XAML32.png">
 					</span>
 				</div>								
-				
-			</div>
-	
-			<div class="mdixtk-drawer mdl-layout__drawer">
-				<span class="mdl-layout-title">
-					<img class="mdixtk-logo-image" src="images/MD4XAML100.png">
-				</span>
-				<nav class="mdl-navigation">
-					<a class="mdl-navigation__link" href="">About</a>
-					<a class="mdl-navigation__link" href="#getStarted">Get Started</a>				
-				</nav>
 			</div>
 	
 			<div class="mdixtk-content mdl-layout__content">
 				<a name="top"></a>
 				<div class="mdixtk-introduction-section mdl-typography--text-center">
 					<div class="mdixtk-font mdixtk-slogan">Material Design In XAML Toolkit</div>
-					<div class="mdixtk-font mdixtk-sub-slogan">The quickest, easiest way to bring Material Design to your desktop WPF applications.</div>
-					<div class="mdixtk-font mdixtk-sub-slogan">
-						<p class="mdl-typography--font-light">
-							An open source library to providing the Material Design palette, plenty of control themes, and new custom controls to bring this popular design language to your dekstop applications.
-						</p>
-						<p class="mdl-typography--font-light">
-							Take a look around at some screen shots, then follow the easy Get Started guide to give your app a makeover.
-						</p>
-					</div>					
+					<div class="mdixtk-font mdixtk-sub-slogan">Material Design In XAML Toolkit has a new home page, please stop by:</div>
+					<div class="mdixtk-font mdixtk-sub-slogan"><a href="http://materialdesigninxaml.net">materialdesigninxaml.net</a></div>					
 				</div>					
-				
-				
-				<div class="mdixtk-screen-section mdl-typography--text-center">
-					<a name="screens"></a>				
-					<div class="mdixtk-screens">
-						<div class="mdixtk-screen">
-							<img class="mdixtk-screen-image" src="images/MashUp.gif">																			
-						</div>
-						<div class="mdixtk-screen">
-							<img class="mdixtk-screen-image" src="images/ClockDemo.gif">																			
-						</div>
-						<div class="mdixtk-screen">
-							<img class="mdixtk-screen-image" src="images/FieldsDemo.gif">																			
-						</div>
-					</div>
-				</div>
-				<div class="mdixtk-proposition-section">
-					<div class="mdixtk-proposition-band">
-						<div class="mdixtk-proposition-band-text">
-							<div class="mdl-typography--display-2 mdl-typography--font-thin">We integrate nicely</div>
-							<p class="mdl-typography--headline mdl-typography--font-thin">
-								Integrates seamlessly with MahApps and Dragablz to help bring the richest possible experience to the desktop. 
-							</p>
-							<div class="mdl-typography--display-2 mdl-typography--font-thin">Open source</div>
-							<p class="mdl-typography--headline mdl-typography--font-thin">
-								Benefit from the work going on the open source community, learn some more about WPF &amp; XAML, use the themes as a springboard for your own Material Designs. 
-							</p>
-							<p>
-								<a class="mdl-typography--font-regular mdl-typography--text-uppercase mdixtk-alt-link" href="https://github.com/ButchersBoy/MaterialDesignInXamlToolkit">
-								Visit the GitHub homepage<i class="material-icons">chevron_right</i>
-								</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="mdixtk-customized-section">		
-					<a name="getStarted"></a>
-					<div class="mdixtk-font mdixtk-slogan">Get Started</div>
-					<div class="mdixtk-customized-section-text">							
-						<p>
-							To familiarise yourself, be sure to try out the test projects included in the
-							<a href="https://github.com/ButchersBoy/MaterialDesignInXamlToolkit">main source code on GitHub.</a>
-							Once you've done that, try it out in a new WPF project.
-						</p>
-						<p>
-							Install from NuGet.  From the Package Manager Console in Visual Studio type:
-						</p>
-						<code>
-							PM> Install-Package MaterialDesignThemes
-						</code>
-						<p>
-							You need to configure your <code>app.xaml</code>. For now let's assume your are <em>not</em> using MahApps.  A Material Design palette
-							consists of a primary colour and an accent colour.  You can also adjust the hues of each colour, but that's not necessary to start.  The
-							demo project contains a palette selector, but to get started, just copy the XAML from the test application into your app.xaml.																
-						</p>
-						<p>
-							You can copy the <a href="https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/MaterialDesignColors.WpfExample/App.xaml" target="_blank">app.xaml content from here</a>.
-						</p>
-						<p>
-							Now, in your <code>MainWindow.xaml</code> add a couple of controls, say a <code>Button</code> and <code>CheckBox</code>.  Run up the project and they should appear in the new theme.
-						</p>
-						<p>
-							You can go back and adjust the palette (and light/dark mode) in the App.xaml, it is clearly marked where to adjust the primary and accent colour. Note the palette can be adjusted at runtime using <code>PaletteHelper</code>.
-						</p>														
-					</div>
-					<div class="mdixtk-font mdixtk-sub-slogan">Congratulations, you have taken the first steps to a sweet looking desktop app!</div>
-					<br>
-		
-
-					<footer class="mdixtk-footer mdl-mega-footer">
-					
-		
-					</footer>
-				</div>
 			</div>
-
+			
+			<footer class="mdixtk-footer mdl-mega-footer">
+			</footer>
 		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
 	</body>
 </html>
