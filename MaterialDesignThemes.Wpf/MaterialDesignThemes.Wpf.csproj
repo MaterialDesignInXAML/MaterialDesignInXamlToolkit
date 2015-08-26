@@ -80,6 +80,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.DataGrid.ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.DataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,6 +169,7 @@
     <Compile Include="DataGridAssist.cs" />
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="ListSortDirectionIndicator.cs" />
+    <Compile Include="MaterialDataGridComboBoxColumn.cs" />
     <Compile Include="MaterialDataGridTextColumn.cs" />
     <Compile Include="MaterialDateDisplay.cs" />
     <Compile Include="PaletteHelper.cs" />

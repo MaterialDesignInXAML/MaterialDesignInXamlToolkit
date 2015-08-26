@@ -58,7 +58,8 @@ namespace MaterialDesignColors.WpfExample.Domain
                 {
                     Code = 'D',
                     Name = "Dragablz",
-                    Description = "Dragablz Tab Control"
+                    Description = "Dragablz Tab Control",
+                    Food = "Fries"
                 },
                 new SelectableViewModel
                 {
@@ -91,6 +92,17 @@ namespace MaterialDesignColors.WpfExample.Domain
             if (PropertyChanged != null)
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public IEnumerable<string> Foods
+        {
+            get
+            {
+                yield return "Burger";
+                yield return "Fries";
+                yield return "Shake";
+                yield return "Lettuce";
+            }            
         }
     }
 }

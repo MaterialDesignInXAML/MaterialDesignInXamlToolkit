@@ -4,13 +4,15 @@ using System.Runtime.CompilerServices;
 
 namespace MaterialDesignColors.WpfExample.Domain
 {
+    
     public class SelectableViewModel : INotifyPropertyChanged
     {
         private bool _isSelected;
         private string _name;
         private string _description;
         private char _code;
-        private double _numeric;        
+        private double _numeric;
+        private string _food;
 
         public bool IsSelected
         {
@@ -65,7 +67,18 @@ namespace MaterialDesignColors.WpfExample.Domain
                 _numeric = value;
                 OnPropertyChanged();
             }
-        }        
+        }
+
+        public string Food
+        {
+            get { return _food; }
+            set
+            {
+                if (_food == value) return;
+                _food = value;
+                OnPropertyChanged();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
