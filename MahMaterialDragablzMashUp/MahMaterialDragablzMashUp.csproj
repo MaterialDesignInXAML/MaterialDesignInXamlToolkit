@@ -52,13 +52,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Dragablz.0.0.1.109\lib\net45\Dragablz.dll</HintPath>
     </Reference>
-    <Reference Include="MahApps.Metro, Version=1.1.3.15, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.1.1.3-ALPHA015\lib\net45\MahApps.Metro.dll</HintPath>
+    <Reference Include="MahApps.Metro, Version=1.1.3.157, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.1.3-ALPHA157\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.1.1.3-ALPHA015\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.1.1.3-ALPHA157\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,6 +87,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TextFields.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +114,10 @@
     <Compile Include="Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs.xaml.cs">
+      <DependentUpon>Dialogs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogsViewModel.cs" />
     <Compile Include="PaletteSelectorViewModel.cs" />
     <Compile Include="TextFields.xaml.cs">
       <DependentUpon>TextFields.xaml</DependentUpon>
