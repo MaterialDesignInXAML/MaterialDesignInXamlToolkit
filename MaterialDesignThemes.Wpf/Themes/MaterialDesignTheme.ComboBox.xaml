@@ -3,6 +3,10 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
 	<converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
 
 	<Style x:Key="FocusVisual">
@@ -154,7 +158,7 @@
 			<Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
 				<Border x:Name="shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
                                     MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
-                                    BorderThickness="1" BorderBrush="{DynamicResource MaterialDesignDivider}" Effect="{DynamicResource MaterialDesignShadowDepth2}">
+                                    BorderThickness="1" BorderBrush="{DynamicResource MaterialDesignDivider}" Effect="{StaticResource MaterialDesignShadowDepth2}">
 					<Border x:Name="dropDownBorder" Background="Transparent">
 						<ScrollViewer x:Name="DropDownScrollViewer">
 							<Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
@@ -237,7 +241,7 @@
 			<Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
 				<Border x:Name="dropDownBorder" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1" Background="{DynamicResource MaterialDesignPaper}"
                                 CornerRadius="2"
-                                MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" Effect="{DynamicResource MaterialDesignShadowDepth2}">
+                                MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" Effect="{StaticResource MaterialDesignShadowDepth2}">
 					<ScrollViewer x:Name="DropDownScrollViewer">
 						<Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
 							<Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">

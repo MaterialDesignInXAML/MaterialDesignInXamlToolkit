@@ -5,7 +5,8 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.checkbox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />        
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />        
     </ResourceDictionary.MergedDictionaries>
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -58,7 +59,7 @@
                                PopupAnimation="Fade">
                             <Border Padding="16" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
                                     Margin="5,5,5,5"
-                                    BorderBrush="{DynamicResource MaterialDesignDivider}" Effect="{DynamicResource MaterialDesignShadowDepth2}"
+                                    BorderBrush="{DynamicResource MaterialDesignDivider}" Effect="{StaticResource MaterialDesignShadowDepth2}"
                                     BorderThickness="1">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -272,8 +273,7 @@
         <Setter Property="ValidationErrorTemplate">
             <Setter.Value>
                 <ControlTemplate>
-                    <!-- TODO materia pallete color -->
-                    <TextBlock Foreground="Red" Margin="2,0,0,0" Text="!" VerticalAlignment="Center"/>
+                    <TextBlock Foreground="#d50000" Margin="2,0,0,0" Text="!" VerticalAlignment="Center"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
