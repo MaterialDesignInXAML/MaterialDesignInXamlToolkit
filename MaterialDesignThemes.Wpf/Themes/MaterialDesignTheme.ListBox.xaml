@@ -1,6 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -92,7 +96,7 @@
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Grid>
                         <Border CornerRadius="2"
-                                Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true" Effect="{DynamicResource MaterialDesignShadowDepth2}" />
+                                Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true" Effect="{StaticResource MaterialDesignShadowDepth2}" />
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true"
                                 CornerRadius="2"/>

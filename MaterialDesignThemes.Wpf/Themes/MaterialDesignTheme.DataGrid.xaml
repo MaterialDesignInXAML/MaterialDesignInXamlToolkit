@@ -5,7 +5,9 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.checkbox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DataGrid.ComboBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />                
     </ResourceDictionary.MergedDictionaries>
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -19,6 +21,19 @@
 
     <Style x:Key="MaterialDesignDataGridCheckBoxColumnEditingStyle" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}">
         <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ComboBox}, ResourceId=MaterialDataGridComboBoxColumnStyle}"
+           TargetType="{x:Type ComboBox}"
+           BasedOn="{StaticResource MaterialDesignDataGridComboBox}">
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+    </Style>
+
+    <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ComboBox}, ResourceId=MaterialDataGridComboBoxColumnEditingStyle}"
+           TargetType="{x:Type ComboBox}"
+           BasedOn="{StaticResource MaterialDesignDataGridComboBox}">
+        
     </Style>
 
     <Style x:Key="MaterialDesignDataGridTextColumnEditingStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
@@ -58,7 +73,7 @@
                                PopupAnimation="Fade">
                             <Border Padding="16" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
                                     Margin="5,5,5,5"
-                                    BorderBrush="{DynamicResource MaterialDesignDivider}" Effect="{DynamicResource MaterialDesignShadowDepth2}"
+                                    BorderBrush="{DynamicResource MaterialDesignDivider}" Effect="{StaticResource MaterialDesignShadowDepth2}"
                                     BorderThickness="1">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -272,8 +287,7 @@
         <Setter Property="ValidationErrorTemplate">
             <Setter.Value>
                 <ControlTemplate>
-                    <!-- TODO materia pallete color -->
-                    <TextBlock Foreground="Red" Margin="2,0,0,0" Text="!" VerticalAlignment="Center"/>
+                    <TextBlock Foreground="#d50000" Margin="2,0,0,0" Text="!" VerticalAlignment="Center"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -312,7 +326,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignDataGrid" TargetType="{x:Type DataGrid}">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignBackground}"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>
         <Setter Property="BorderThickness" Value="0"/>

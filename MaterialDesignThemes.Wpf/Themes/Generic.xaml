@@ -21,10 +21,7 @@
 	<!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
 	<Style TargetType="{x:Type local:Clock}" BasedOn="{StaticResource MaterialDesignClock}" />
 	<Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />	
-	
-    <!-- TODO freeze, share, theme -->
-    <SolidColorBrush x:Key="AttentionToActionBrush" Color="Black" Opacity="1" />
-	
+		
 	<converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
     
     <Style TargetType="{x:Type local:VisualFeedbackContentControl}">

@@ -12,16 +12,8 @@
     <SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#42000000" />
 	
 	<SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#89000000" />
-
-    <SolidColorBrush x:Key="MaterialDesignDivider" Color="#FFeeeeee" />
-    <SolidColorBrush x:Key="MaterialDesignSelection" Color="#FFf5f5f5" />
-        
-   
-
-    <Color x:Key="MaterialDesignShadow1">#CCCCCC</Color>
-    <Color x:Key="MaterialDesignShadow2">#C4C4C4</Color>
-    <Color x:Key="MaterialDesignShadow3">#BBBBBB</Color>
-    <Color x:Key="MaterialDesignShadow4">#BBBBBB</Color>
-    <Color x:Key="MaterialDesignShadow5">#BBBBBB</Color>
+    
+    <SolidColorBrush x:Key="MaterialDesignDivider" Color="#FFB6B6B6" />
+    <SolidColorBrush x:Key="MaterialDesignSelection" Color="#FFDeDeDe" />
 
 </ResourceDictionary>

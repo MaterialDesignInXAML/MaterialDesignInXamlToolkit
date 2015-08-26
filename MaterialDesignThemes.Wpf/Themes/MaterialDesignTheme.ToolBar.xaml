@@ -7,8 +7,9 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.combobox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.togglebutton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.togglebutton.xaml" />                
     </ResourceDictionary.MergedDictionaries>
     
     <Style x:Key="ToolBarVerticalOverflowButtonStyle" TargetType="{x:Type ToggleButton}">
@@ -130,7 +131,7 @@
                                 <Border x:Name="ToolBarSubMenuBorder" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1" Background="{DynamicResource MaterialDesignPaper}"
                                                 TextBlock.FontWeight="ExtraBold"
                                                 CornerRadius="2" Margin="1"
-                                                Effect="{DynamicResource MaterialDesignShadowDepth2}" RenderOptions.ClearTypeHint="Enabled">
+                                                Effect="{StaticResource MaterialDesignShadowDepth2}" RenderOptions.ClearTypeHint="Enabled">
                                     <Border Background="Transparent">
                                         <ToolBarOverflowPanel x:Name="PART_ToolBarOverflowPanel" KeyboardNavigation.DirectionalNavigation="Cycle" FocusVisualStyle="{x:Null}" Focusable="true" Margin="2" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" KeyboardNavigation.TabNavigation="Cycle" WrapWidth="200"/>
                                     </Border>
