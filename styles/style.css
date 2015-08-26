@@ -457,6 +457,10 @@ background-color: white;
   .mdixtk-navigation-container {
     display: none;
   }
+  
+  #gitHubStarMain {
+    display: none;       
+  }
 
   .mdixtk-title {
     display: none !important;
