@@ -451,6 +451,9 @@ background-color: white;
   cursor: pointer;
 }
 
+#gitHubStarMain {
+  display: inline;
+}
 
 /**** Mobile layout ****/
 @media (max-width: 900px) {
