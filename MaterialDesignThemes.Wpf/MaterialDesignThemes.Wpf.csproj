@@ -108,6 +108,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.ScrollViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.Shadows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

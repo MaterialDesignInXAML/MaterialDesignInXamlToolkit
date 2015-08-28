@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
@@ -48,7 +49,8 @@
                     <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent700Foreground}"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            
+
+
 
         </ResourceDictionary>
 
@@ -59,24 +61,30 @@
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <ScrollBar Orientation="Vertical" Style="{DynamicResource MaterialDesignScrollBar}"
-                   Grid.Column="0"
-                   HorizontalAlignment="Left"
-                   />
-        <ScrollBar Orientation="Vertical" Style="{DynamicResource MaterialDesignScrollBar}"
-                   IsEnabled="False"
-                   Grid.Column="0"
-                   HorizontalAlignment="Right"
-                   />        
-        <ScrollBar Orientation="Horizontal" Style="{DynamicResource MaterialDesignScrollBar}"
-                   Grid.Column="1"
-                   VerticalAlignment="Top"
-                   />
-        <ScrollBar Orientation="Horizontal" Style="{DynamicResource MaterialDesignScrollBar}"
-                   IsEnabled="False"
-                   Grid.Column="1"
-                   VerticalAlignment="Bottom"
-                   />
+        <ScrollViewer>
+            <ItemsControl>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+                <system:String>ghg</system:String>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 
 </UserControl>

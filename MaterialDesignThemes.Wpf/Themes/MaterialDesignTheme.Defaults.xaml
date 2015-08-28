@@ -16,6 +16,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ScrollBar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ScrollViewer.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.slider.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.textbox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.togglebutton.xaml" />
@@ -37,6 +38,7 @@
     <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignPasswordBox}" />    
     <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}" />
     <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MaterialDesignScrollBar}" />
+    <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource MaterialDesignScrollViewer}" />
     <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource MaterialDesignSlider}" />
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}" />
