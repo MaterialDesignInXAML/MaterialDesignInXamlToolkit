@@ -3,13 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
-             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              mc:Ignorable="d"              
-			 Background="{DynamicResource MaterialDesignPaper}" d:DesignWidth="340" d:DesignHeight="635">
+			 d:DesignWidth="340" d:DesignHeight="635">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -49,17 +48,35 @@
                     <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent700Foreground}"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+            
 
         </ResourceDictionary>
 
     </UserControl.Resources>
 
-    <!--
-    <wpf:ListSortDirectionIndicator Width="24" Height="24" Style="{DynamicResource MaterialDesignListSortDirectionIndicator}" ListSortDirection="Descending"  />
-    -->
-    <DataGrid ItemsSource="{Binding Items}" CanUserAddRows="False" CanUserSortColumns="True">
-        
-    </DataGrid>
-    
-    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <ScrollBar Orientation="Vertical" Style="{DynamicResource MaterialDesignScrollBar}"
+                   Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   />
+        <ScrollBar Orientation="Vertical" Style="{DynamicResource MaterialDesignScrollBar}"
+                   IsEnabled="False"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   />        
+        <ScrollBar Orientation="Horizontal" Style="{DynamicResource MaterialDesignScrollBar}"
+                   Grid.Column="1"
+                   VerticalAlignment="Top"
+                   />
+        <ScrollBar Orientation="Horizontal" Style="{DynamicResource MaterialDesignScrollBar}"
+                   IsEnabled="False"
+                   Grid.Column="1"
+                   VerticalAlignment="Bottom"
+                   />
+    </Grid>
+
 </UserControl>
