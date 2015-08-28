@@ -51,40 +51,22 @@
             </ResourceDictionary.MergedDictionaries>
 
 
+            
+
 
         </ResourceDictionary>
 
     </UserControl.Resources>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <ScrollViewer>
-            <ItemsControl>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-                <system:String>ghg</system:String>
-            </ItemsControl>
-        </ScrollViewer>
+        <Button>
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock>And here is your tooltip.</TextBlock>
+                </ToolTip>
+            </Button.ToolTip>
+            Hello World
+        </Button>
     </Grid>
 
 </UserControl>

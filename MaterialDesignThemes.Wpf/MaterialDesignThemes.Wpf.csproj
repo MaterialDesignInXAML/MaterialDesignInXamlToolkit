@@ -164,6 +164,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.ToolTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
@@ -206,6 +210,7 @@
     <Compile Include="TextField.cs" />
     <Compile Include="Converters\TextFieldHintVisibilityConverter.cs" />
     <Compile Include="TimePicker.cs" />
+    <Compile Include="ToolTipAssist.cs" />
     <Compile Include="VisualFeedbackContentControl.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
