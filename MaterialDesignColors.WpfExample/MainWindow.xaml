@@ -81,6 +81,7 @@
 			<ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" Checked="ToggleButton_OnChecked" Unchecked="ToggleButton_OnChecked" IsChecked="{Binding ElementName=FieldsRadioButton, Path=IsChecked, Mode=OneWay}" />
 			<RadioButton Style="{StaticResource MaterialDesignRadioButton}" x:Name="ButtonsRadioButton" IsChecked="True" Margin="8 0 0 0" VerticalAlignment="Center">Buttons</RadioButton>
 			<RadioButton Style="{StaticResource MaterialDesignRadioButton}" x:Name="FieldsRadioButton" Margin="8 0 0 0" VerticalAlignment="Center">Fields</RadioButton>
+            <Button Click="ProgressButton_OnClick" Margin="48 0 0 0">PROGRESS</Button>
 		</StackPanel>
 		<wpfExample:Buttons Visibility="{Binding ElementName=ButtonsRadioButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />	
 		<wpfExample:TextFields Visibility="{Binding ElementName=FieldsRadioButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />	

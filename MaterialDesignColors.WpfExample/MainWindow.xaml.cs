@@ -39,5 +39,10 @@ namespace MaterialDesignColors.WpfExample
 		    FieldsRadioButton.IsChecked = ((ToggleButton) sender).IsChecked;
 			ButtonsRadioButton.IsChecked = !((ToggleButton)sender).IsChecked;
 		}
+
+        private void ProgressButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            new ProgressWindow().Show();
+        }
     }
 }

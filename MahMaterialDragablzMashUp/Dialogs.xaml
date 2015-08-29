@@ -11,5 +11,6 @@
              d:DataContext="{d:DesignInstance local:DialogsViewModel}">
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
         <Button Command="{Binding ShowInputDialogCommand}">INPUT DIALOG</Button>
+        <Button Command="{Binding ShowProgressDialogCommand}" Margin="0 48 0 0">PROGRESS DIALOG</Button>
     </StackPanel>
 </UserControl>

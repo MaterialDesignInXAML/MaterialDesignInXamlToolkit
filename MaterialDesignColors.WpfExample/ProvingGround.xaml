@@ -49,9 +49,11 @@
                     <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent700Foreground}"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+            
 
 
             
+
 
 
         </ResourceDictionary>
@@ -59,14 +61,12 @@
     </UserControl.Resources>
 
     <Grid>
-        <Button>
-            <Button.ToolTip>
-                <ToolTip>
-                    <TextBlock>And here is your tooltip.</TextBlock>
-                </ToolTip>
-            </Button.ToolTip>
-            Hello World
-        </Button>
+        <StackPanel Margin="1.5,0,-1.5,0">
+            <ProgressBar Value="25" Maximum="100" HorizontalAlignment="Stretch" Margin="24" />
+            <ProgressBar Value="50" Maximum="100" HorizontalAlignment="Stretch" Margin="24" />
+            <ProgressBar Value="75" Maximum="100" HorizontalAlignment="Stretch" Margin="24" />
+            <ProgressBar IsIndeterminate="True" HorizontalAlignment="Stretch" Margin="24" />
+        </StackPanel>
     </Grid>
 
 </UserControl>
