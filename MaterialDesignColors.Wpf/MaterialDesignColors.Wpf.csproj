@@ -84,8 +84,18 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="..\Themes\MaterialDesignColor.Amber.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Amber.Named.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\Themes\MaterialDesignColor.Amber.xaml">
       <Link>Themes\MaterialDesignColor.Amber.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Black.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Black.Named.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -94,8 +104,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Blue.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Blue.Named.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\Themes\MaterialDesignColor.Blue.xaml">
       <Link>Themes\MaterialDesignColor.Blue.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Themes\MaterialDesignColor.BlueGrey.Named.xaml">
+      <Link>Themes\MaterialDesignColor.BlueGrey.Named.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -104,8 +124,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Brown.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Brown.Named.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\Themes\MaterialDesignColor.Brown.xaml">
       <Link>Themes\MaterialDesignColor.Brown.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Cyan.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Cyan.Named.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -114,8 +144,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\Themes\MaterialDesignColor.DeepOrange.Named.xaml">
+      <Link>Themes\MaterialDesignColor.DeepOrange.Named.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\Themes\MaterialDesignColor.DeepOrange.xaml">
       <Link>Themes\MaterialDesignColor.DeepOrange.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Themes\MaterialDesignColor.DeepPurple.Named.xaml">
+      <Link>Themes\MaterialDesignColor.DeepPurple.Named.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -124,8 +164,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Green.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Green.Named.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\Themes\MaterialDesignColor.Green.xaml">
       <Link>Themes\MaterialDesignColor.Green.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Grey.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Grey.Named.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -134,8 +184,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Indigo.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Indigo.Named.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\Themes\MaterialDesignColor.Indigo.xaml">
       <Link>Themes\MaterialDesignColor.Indigo.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Themes\MaterialDesignColor.LightBlue.Named.xaml">
+      <Link>Themes\MaterialDesignColor.LightBlue.Named.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -144,8 +204,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\Themes\MaterialDesignColor.LightGreen.Named.xaml">
+      <Link>Themes\MaterialDesignColor.LightGreen.Named.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\Themes\MaterialDesignColor.LightGreen.xaml">
       <Link>Themes\MaterialDesignColor.LightGreen.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Lime.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Lime.Named.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -154,8 +224,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Orange.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Orange.Named.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\Themes\MaterialDesignColor.Orange.xaml">
       <Link>Themes\MaterialDesignColor.Orange.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Pink.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Pink.Named.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -164,8 +244,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Purple.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Purple.Named.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\Themes\MaterialDesignColor.Purple.xaml">
       <Link>Themes\MaterialDesignColor.Purple.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Red.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Red.Named.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -174,8 +264,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Teal.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Teal.Named.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\Themes\MaterialDesignColor.Teal.xaml">
       <Link>Themes\MaterialDesignColor.Teal.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Themes\MaterialDesignColor.Yellow.Named.xaml">
+      <Link>Themes\MaterialDesignColor.Yellow.Named.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -28,8 +28,10 @@ namespace mdresgen
 			var xDocument = XDocument.Load("MaterialColourSwatchesSnippet.xml");
 
 			if (args.Length > 0 && args.Contains("json"))	        
-		        GenerateJson(xDocument);	        
-			else
+		        GenerateJson(xDocument);
+            if (args.Length > 0 && args.Contains("named"))
+                GenerateXamlNamed(xDocument);
+            else
 				GenerateXaml(xDocument);
         }
 
@@ -37,13 +39,25 @@ namespace mdresgen
 	    {		    
 		    const string fileFormat = @"..\..\..\Themes\MaterialDesignColor.{0}.xaml";
 
-		    foreach (var colour in xDocument.Root.Elements("section").Select(ToResourceDictionary))
+		    foreach (var colour in xDocument.Root.Elements("section").Select(el => ToResourceDictionary(el)))
 		    {
 			    colour.Item2.Save(string.Format(fileFormat, colour.Item1.Replace(" ", "")));
 		    }
 	    }
 
-	    private static void GenerateJson(XDocument xDocument)
+        private static void GenerateXamlNamed(XDocument xDocument)
+        {
+            const string fileFormat = @"..\..\..\Themes\MaterialDesignColor.{0}.Named.xaml";
+
+            Console.WriteLine("Running named gen");
+
+            foreach (var colour in xDocument.Root.Elements("section").Select(el => ToResourceDictionary(el, true)))
+            {
+                colour.Item2.Save(string.Format(fileFormat, colour.Item1.Replace(" ", "")));
+            }
+        }
+
+        private static void GenerateJson(XDocument xDocument)
 	    {
 			const string file = @"..\..\..\web\scripts\Swatches.js";
 
@@ -99,7 +113,7 @@ namespace mdresgen
                 );
 	    }
 
-	    private static Tuple<string, XDocument> ToResourceDictionary(XElement sectionElement)
+	    private static Tuple<string, XDocument> ToResourceDictionary(XElement sectionElement, bool named=false)
         {
             var colour = GetColourName(sectionElement);
 
@@ -112,7 +126,7 @@ namespace mdresgen
 
             foreach (var liElement in sectionElement.Element("ul").Elements("li").Skip(1))
             {
-                AddColour(liElement, defaultNamespace, xNamespace, doc);
+                AddColour(liElement, defaultNamespace, xNamespace, doc, named ? colour : "");
             }
             
             return new Tuple<string, XDocument>(colour, doc);
@@ -124,7 +138,7 @@ namespace mdresgen
 		    return sectionElement.Element("ul").Element("li").Elements("span").First().Value;
 	    }
 
-	    private static void AddColour(XElement liElement, XNamespace defaultNamespace, XNamespace xNamespace, XDocument doc)
+	    private static void AddColour(XElement liElement, XNamespace defaultNamespace, XNamespace xNamespace, XDocument doc, string swatchName="")
         {
             var name = liElement.Elements("span").First().Value;
             var hex = liElement.Elements("span").Last().Value;
@@ -138,7 +152,7 @@ namespace mdresgen
 
             var backgroundColourElement = new XElement(defaultNamespace + "Color", hex);
             // new XAttribute()
-            backgroundColourElement.Add(new XAttribute(xNamespace + "Key", string.Format("{0}{1}", prefix, name)));
+            backgroundColourElement.Add(new XAttribute(xNamespace + "Key", string.Format("{0}{1}{2}", swatchName, prefix, name)));
             doc.Root.Add(backgroundColourElement);
 
             var liClass = liElement.Attribute("class").Value;
@@ -153,7 +167,7 @@ namespace mdresgen
                 ByteToHex(foregroundColour.B));
 
             var foregroundColourElement = new XElement(defaultNamespace + "Color", foreGroundColorHex);
-            foregroundColourElement.Add(new XAttribute(xNamespace + "Key", string.Format("{0}{1}Foreground", prefix, name)));
+            foregroundColourElement.Add(new XAttribute(xNamespace + "Key", string.Format("{0}{1}{2}Foreground", swatchName, prefix, name)));
             doc.Root.Add(foregroundColourElement);
         }
 
