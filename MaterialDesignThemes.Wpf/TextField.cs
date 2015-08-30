@@ -40,6 +40,16 @@ namespace MaterialDesignThemes.Wpf
             typeof(TextField),
             new PropertyMetadata(.23, HintOpacityPropertyChangedCallback));
 
+        public static readonly DependencyProperty TextProperty = DependencyProperty.RegisterAttached(
+            "Text", typeof (string), typeof (TextField), new PropertyMetadata(default(string), TextPropertyChangedCallback));
+
+
+        private static readonly DependencyPropertyKey IsNullOrEmptyPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
+            "IsNullOrEmpty", typeof(bool), typeof(TextField), new PropertyMetadata(true));
+
+        public static readonly DependencyProperty IsNullOrEmptyProperty =
+            IsNullOrEmptyPropertyKey.DependencyProperty;
+
         #endregion
 
         #region Public Methods and Operators
@@ -108,6 +118,16 @@ namespace MaterialDesignThemes.Wpf
         public static void SetHintOpacity(DependencyObject element, double value)
         {
             element.SetValue(HintOpacityProperty, value);
+        }
+
+        public static void SetText(DependencyObject element, string value)
+        {
+            element.SetValue(TextProperty, value);
+        }
+
+        public static string GetText(DependencyObject element)
+        {
+            return (string)element.GetValue(TextProperty);
         }
 
         #endregion
@@ -185,7 +205,22 @@ namespace MaterialDesignThemes.Wpf
             }
 
             textBoxBase.Opacity = (double)dependencyPropertyChangedEventArgs.NewValue;
-        }		
+        }
+
+        private static void TextPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            SetIsNullOrEmpty(dependencyObject, string.IsNullOrEmpty((dependencyPropertyChangedEventArgs.NewValue ?? "").ToString()));
+        }
+
+        private static void SetIsNullOrEmpty(DependencyObject element, bool value)
+        {
+            element.SetValue(IsNullOrEmptyPropertyKey, value);
+        }
+
+        public static bool GetIsNullOrEmpty(DependencyObject element)
+        {
+            return (bool)element.GetValue(IsNullOrEmptyProperty);
+        }
 
         #endregion
     }

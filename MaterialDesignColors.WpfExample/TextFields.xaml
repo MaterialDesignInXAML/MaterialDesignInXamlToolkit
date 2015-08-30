@@ -10,7 +10,8 @@
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>				
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />				                
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 			<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
 				<Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -42,6 +43,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
@@ -110,18 +112,20 @@
 		<PasswordBox Grid.Row="2" Grid.Column="3" 		
                      x:Name="PasswordBox"
                      wpf:TextField.Hint="Password" />
-		<DatePicker Grid.Row="3" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
+        <TextBox Grid.Row="3" Grid.Column="1" wpf:TextField.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        <TextBox Grid.Row="3" Grid.Column="3" wpf:TextField.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff" />
+		<DatePicker Grid.Row="4" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
                     wpf:TextField.Hint="James"/>		
-		<wpf:TimePicker Grid.Row="3" Grid.Column="3" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8" />
-        <wpf:TimePicker Grid.Row="3" Grid.Column="4" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8"
+		<wpf:TimePicker Grid.Row="4" Grid.Column="3" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8" />
+        <wpf:TimePicker Grid.Row="4" Grid.Column="4" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8"
                         wpf:TextField.Hint="Custom hint" />
-        <Slider Grid.Row="4" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
-		<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="3" Grid.RowSpan="3" >
+        <Slider Grid.Row="5" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
+		<StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="3" Grid.RowSpan="3" >
 			<Slider TickFrequency="5" TickPlacement="BottomRight" Orientation="Vertical" Minimum="1" Maximum="50" />
 			<Slider TickFrequency="25" TickPlacement="TopLeft" Orientation="Vertical" Minimum="1" Maximum="50" IsEnabled="False" Margin="24 8 0 8" />
 		</StackPanel>		
-		<Slider Grid.Row="5" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True" />
-		<Slider Grid.Row="6" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsEnabled="False" />		
-        <TextBlock Grid.Row="7" Grid.Column="0" Margin="0 8 0 0">List</TextBlock>        
+		<Slider Grid.Row="6" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True" />
+		<Slider Grid.Row="7" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsEnabled="False" />		
+        
 	</Grid>
 </UserControl>

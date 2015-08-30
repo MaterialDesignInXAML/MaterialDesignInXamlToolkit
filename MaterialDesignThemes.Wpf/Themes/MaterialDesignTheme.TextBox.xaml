@@ -6,18 +6,18 @@
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
 
     <Style x:Key="MaterialDesignTextBox" TargetType="{x:Type TextBox}">
-		<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />     
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
         <Setter Property="wpf:TextField.TextBoxViewMargin" Value="1 0 1 0" />
         <Setter Property="Background" Value="Transparent"/>
-		<Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}"/>
+        <Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="AllowDrop" Value="true"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>        
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Validation.ErrorTemplate">
             <Setter.Value>
                 <ControlTemplate>
@@ -35,7 +35,7 @@
                             Padding="0 4 0 4">
                         <Grid>
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-											  />
+                                          />
                             <TextBlock Text="{Binding Path=(wpf:TextField.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                        Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
                                        x:Name="Hint"
@@ -71,6 +71,83 @@
                 <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
             </MultiTrigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MaterialDesignFloatingHintTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+        <Setter Property="wpf:TextField.Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="MoveHintAsideStoryboard">
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
+                                             Duration="0:0:0.3" To="10">
+                                <DoubleAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>    
+                            </DoubleAnimation>
+                            <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
+                                             Duration="0:0:0.3" To="1,-16,1,0">
+                                <ThicknessAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseOut" />
+                                </ThicknessAnimation.EasingFunction>
+                            </ThicknessAnimation>
+                        </Storyboard>
+                        <Storyboard x:Key="MoveHintBackStoryboard">
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
+                                             Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
+                                             Duration="0:0:0.3">
+                                <ThicknessAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseOut" />
+                                </ThicknessAnimation.EasingFunction>
+                            </ThicknessAnimation>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
+                        Padding="0 4 0 4">
+                        <Grid Margin="0 12 0 0">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                                            />
+                            <TextBlock Text="{Binding Path=(wpf:TextField.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       HorizontalAlignment="Left"
+                                       x:Name="Hint"
+                                       Margin="1 0 1 0"
+                                       Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="wpf:TextField.IsNullOrEmpty" Value="False">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard x:Name="MoveHintAsideStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintAsideStoryboard}"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard x:Name="MoveHintBackStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintBackStoryboard}"/>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter TargetName="border" Property="Padding" Value="0 4 0 3"/>
+                            <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                            <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
+                        </Trigger>
+                        <Trigger Property="Validation.HasError" Value="true">
+                            <Setter Property="BorderBrush" Value="#f44336"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

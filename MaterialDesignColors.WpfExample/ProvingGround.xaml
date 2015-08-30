@@ -4,12 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              mc:Ignorable="d"              
-			 d:DesignWidth="340" d:DesignHeight="635">
+			 d:DesignWidth="680" d:DesignHeight="120">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -49,10 +50,10 @@
                     <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent700Foreground}"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            
 
 
-            
+
+
 
 
 
@@ -61,11 +62,28 @@
     </UserControl.Resources>
 
     <Grid>
-        <StackPanel Margin="1.5,0,-1.5,0">
-            <ProgressBar Value="25" Maximum="100" HorizontalAlignment="Stretch" Margin="24" />
-            <ProgressBar Value="50" Maximum="100" HorizontalAlignment="Stretch" Margin="24" />
-            <ProgressBar Value="75" Maximum="100" HorizontalAlignment="Stretch" Margin="24" />
-            <ProgressBar IsIndeterminate="True" HorizontalAlignment="Stretch" Margin="24" />
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  HorizontalAlignment="Center" >
+            <TextBox wpf:TextField.Hint="Type Stuff" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Bottom" Width="80" />
+            <TextBox wpf:TextField.Hint="Type Stuff" Text="I did type stuff" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Bottom" Margin="24 0 0 0" Width="80" />
+            <TextBox wpf:TextField.Hint="Big" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Bottom" 
+                     FontSize="24" Margin="24 0 0 0" Width="80" />
+            <TextBox wpf:TextField.Hint="Big" Text="Large!" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                     FontSize="24" Margin="24 0 0 0" Width="80" />
+            <ComboBox wpf:TextField.Hint="OS" VerticalAlignment="Bottom" Margin="24 0 0 0" Width="80">
+                <ComboBoxItem>Andoid</ComboBoxItem>
+                <ComboBoxItem>iOS</ComboBoxItem>
+                <ComboBoxItem>Linux</ComboBoxItem>
+                <ComboBoxItem>Windows</ComboBoxItem>
+            </ComboBox>
+            <ComboBox wpf:TextField.Hint="OS" SelectedIndex="2" VerticalAlignment="Bottom" Margin="24 0 0 0" Width="80">
+                <ComboBoxItem>Andoid</ComboBoxItem>
+                <ComboBoxItem>iOS</ComboBoxItem>
+                <ComboBoxItem>Linux</ComboBoxItem>
+                <ComboBoxItem>Windows</ComboBoxItem>
+            </ComboBox>
         </StackPanel>
     </Grid>
 
