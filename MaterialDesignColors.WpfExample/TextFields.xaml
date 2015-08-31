@@ -115,7 +115,7 @@
         <TextBox Grid.Row="3" Grid.Column="1" wpf:TextField.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
         <TextBox Grid.Row="3" Grid.Column="3" wpf:TextField.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff" />
 		<DatePicker Grid.Row="4" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
-                    wpf:TextField.Hint="James"/>		
+                    wpf:TextField.Hint="Pick Date"/>		
 		<wpf:TimePicker Grid.Row="4" Grid.Column="3" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8" />
         <wpf:TimePicker Grid.Row="4" Grid.Column="4" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8"
                         wpf:TextField.Hint="Custom hint" />

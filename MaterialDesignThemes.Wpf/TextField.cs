@@ -40,9 +40,11 @@ namespace MaterialDesignThemes.Wpf
             typeof(TextField),
             new PropertyMetadata(.23, HintOpacityPropertyChangedCallback));
 
+        /// <summary>
+        /// Internal framework use only.
+        /// </summary>
         public static readonly DependencyProperty TextProperty = DependencyProperty.RegisterAttached(
             "Text", typeof (string), typeof (TextField), new PropertyMetadata(default(string), TextPropertyChangedCallback));
-
 
         private static readonly DependencyPropertyKey IsNullOrEmptyPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "IsNullOrEmpty", typeof(bool), typeof(TextField), new PropertyMetadata(true));
