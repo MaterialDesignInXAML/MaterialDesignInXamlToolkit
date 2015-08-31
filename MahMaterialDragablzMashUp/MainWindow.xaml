@@ -10,6 +10,13 @@
                       GlowBrush="{DynamicResource AccentColorBrush}"					  
                       FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
                       Title="Material-MahApps-Dragablz Mash Up" Height="350" Width="525">
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl>
+            <controls:Flyout x:Name="LeftFlyout" Position="Left">
+                <mahMaterialDragablzMashUp:FlyoutContent />
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
     <dragablz:TabablzControl TextElement.Foreground="{DynamicResource MaterialDesignBody}" BorderThickness="0"
                              Background="{DynamicResource MaterialDesignPaper}" Margin="0,-1,0,1">
         <dragablz:TabablzControl.InterTabController>

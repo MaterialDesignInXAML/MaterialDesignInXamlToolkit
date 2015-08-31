@@ -91,6 +91,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FlyoutContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TextFields.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +122,9 @@
       <DependentUpon>Dialogs.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogsViewModel.cs" />
+    <Compile Include="FlyoutContent.xaml.cs">
+      <DependentUpon>FlyoutContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PaletteSelectorViewModel.cs" />
     <Compile Include="TextFields.xaml.cs">
       <DependentUpon>TextFields.xaml</DependentUpon>

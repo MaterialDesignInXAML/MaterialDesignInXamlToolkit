@@ -86,6 +86,12 @@
                                     <SineEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>    
                             </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
+                                             Duration="0:0:0.3" To="1">
+                                <DoubleAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
                             <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
                                              Duration="0:0:0.3" To="1,-16,1,0">
                                 <ThicknessAnimation.EasingFunction>
@@ -95,6 +101,12 @@
                         </Storyboard>
                         <Storyboard x:Key="MoveHintBackStoryboard">
                             <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
+                                             Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
                                              Duration="0:0:0.3">
                                 <DoubleAnimation.EasingFunction>
                                     <SineEase EasingMode="EaseOut" />
@@ -130,6 +142,13 @@
                                 <BeginStoryboard x:Name="MoveHintBackStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintBackStoryboard}"/>
                             </Trigger.ExitActions>
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:TextField.IsNullOrEmpty" Value="False" />
+                                <Condition Property="IsKeyboardFocused" Value="True" />                                
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                        </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
                         </Trigger>
