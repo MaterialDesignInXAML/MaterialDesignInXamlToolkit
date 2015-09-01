@@ -38,7 +38,7 @@ namespace MaterialDesignThemes.Wpf
             "HintOpacity",
             typeof(double),
             typeof(TextField),
-            new PropertyMetadata(.23, HintOpacityPropertyChangedCallback));
+            new PropertyMetadata(.48, HintOpacityPropertyChangedCallback));
 
         /// <summary>
         /// Internal framework use only.

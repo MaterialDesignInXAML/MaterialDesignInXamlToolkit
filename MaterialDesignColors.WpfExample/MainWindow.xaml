@@ -4,6 +4,7 @@
         xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
         Title="Material Design in XAML" Height="600" Width="800"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Medium"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Window.Resources>
