@@ -286,4 +286,48 @@
         </Setter>
     </Style>
     
+    <Style TargetType="{x:Type local:ColorZone}">
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ColorZone}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"
+                                          RecognizesAccessKey="True"
+                                          Cursor="{TemplateBinding Cursor}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Mode" Value="Inverted">
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
+                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignPaper}" />
+            </Trigger>
+            <Trigger Property="Mode" Value="PrimaryLight">
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="Mode" Value="PrimaryMid">
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="Mode" Value="PrimaryLight">
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="Mode" Value="Accent">
+                <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>
