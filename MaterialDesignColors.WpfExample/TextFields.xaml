@@ -9,8 +9,10 @@
              d:DesignHeight="300" d:DesignWidth="600" Loaded="UserControl_Loaded">
 	<UserControl.Resources>
 		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>				
-				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+			<ResourceDictionary.MergedDictionaries>
+                <!-- note you only need bring in these extra resource dictionaries when using non-default styles, so only bring them into your controls where the default style is not what you want -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 			<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
@@ -43,6 +45,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
@@ -112,20 +115,39 @@
 		<PasswordBox Grid.Row="2" Grid.Column="3" 		
                      x:Name="PasswordBox"
                      wpf:TextField.Hint="Password" />
-        <TextBox Grid.Row="3" Grid.Column="1" wpf:TextField.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-        <TextBox Grid.Row="3" Grid.Column="3" wpf:TextField.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff" />
-		<DatePicker Grid.Row="4" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
+        
+        <TextBox Grid.Row="3" Grid.Column="1" wpf:TextField.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 Margin="0 8 0 8"/>       
+        <ComboBox Grid.Row="3" Grid.Column="3" wpf:TextField.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                  Margin="0 8 0 8">
+            <ComboBoxItem>Andoid</ComboBoxItem>
+            <ComboBoxItem>iOS</ComboBoxItem>
+            <ComboBoxItem>Linux</ComboBoxItem>
+            <ComboBoxItem>Windows</ComboBoxItem>
+        </ComboBox>
+
+        <TextBox Grid.Row="4" Grid.Column="1" wpf:TextField.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff"
+                 Margin="0 8 0 8"/>
+        <ComboBox Grid.Row="4" Grid.Column="3" wpf:TextField.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                  Margin="0 8 0 8">
+            <ComboBoxItem>Apple</ComboBoxItem>
+            <ComboBoxItem>Banana</ComboBoxItem>
+            <ComboBoxItem>Pear</ComboBoxItem>
+            <ComboBoxItem>Orange</ComboBoxItem>
+        </ComboBox>
+
+        <DatePicker Grid.Row="5" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
                     wpf:TextField.Hint="Pick Date"/>		
-		<wpf:TimePicker Grid.Row="4" Grid.Column="3" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8" />
-        <wpf:TimePicker Grid.Row="4" Grid.Column="4" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8"
+		<wpf:TimePicker Grid.Row="5" Grid.Column="3" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8" />
+        <wpf:TimePicker Grid.Row="5" Grid.Column="4" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="90" HorizontalAlignment="Left" Margin="0 8 0 8"
                         wpf:TextField.Hint="Custom hint" />
-        <Slider Grid.Row="5" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
-		<StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="3" Grid.RowSpan="3" >
+        <Slider Grid.Row="6" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
+		<StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="3" Grid.RowSpan="3" >
 			<Slider TickFrequency="5" TickPlacement="BottomRight" Orientation="Vertical" Minimum="1" Maximum="50" />
 			<Slider TickFrequency="25" TickPlacement="TopLeft" Orientation="Vertical" Minimum="1" Maximum="50" IsEnabled="False" Margin="24 8 0 8" />
 		</StackPanel>		
-		<Slider Grid.Row="6" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True" />
-		<Slider Grid.Row="7" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsEnabled="False" />		
+		<Slider Grid.Row="7" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True" />
+		<Slider Grid.Row="8" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsEnabled="False" />		
         
 	</Grid>
 </UserControl>
