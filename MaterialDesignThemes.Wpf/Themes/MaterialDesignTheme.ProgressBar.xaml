@@ -69,9 +69,11 @@
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                            <BeginStoryboard Storyboard="{StaticResource OnLoaded}"/>
-                        </EventTrigger>
+                        <Trigger Property="IsVisible" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource OnLoaded}"/>
+                            </Trigger.EnterActions>
+                        </Trigger>
                         <Trigger Property="Orientation" Value="Vertical">
                             <Setter Property="LayoutTransform" TargetName="TemplateRoot">
                                 <Setter.Value>
