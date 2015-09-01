@@ -43,6 +43,15 @@ namespace MaterialDesignThemes.Wpf
             MouseY = position.Y;
         }
 
+        public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
+            "Feedback", typeof (Brush), typeof (VisualFeedbackContentControl), new PropertyMetadata(default(Brush)));
+
+        public Brush Feedback
+        {
+            get { return (Brush) GetValue(FeedbackProperty); }
+            set { SetValue(FeedbackProperty, value); }
+        }
+
         private static readonly DependencyPropertyKey MouseXPropertyKey =
             DependencyProperty.RegisterReadOnly(
                 "MouseX", typeof (double), typeof (VisualFeedbackContentControl),

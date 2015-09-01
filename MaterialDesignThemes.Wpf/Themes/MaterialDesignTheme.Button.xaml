@@ -37,6 +37,7 @@
                         <Border Background="{TemplateBinding Background}" Effect="{StaticResource MaterialDesignShadowDepth1}" />
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
                             <wpf:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
+                                                              Feedback="White"
                                                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                               Padding="{TemplateBinding Padding}" 
@@ -94,6 +95,7 @@
                     <Grid>
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
                             <wpf:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
+                                                              Feedback="{DynamicResource MaterialDesignDivider}"
                                                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                               Padding="{TemplateBinding Padding}" 
