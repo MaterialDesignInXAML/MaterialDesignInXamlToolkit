@@ -12,7 +12,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.togglebutton.xaml" />                
     </ResourceDictionary.MergedDictionaries>
     
-    <Style x:Key="ToolBarVerticalOverflowButtonStyle" TargetType="{x:Type ToggleButton}">
+    <Style x:Key="MaterialDesignToolBarVerticalOverflowButtonStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
         <Setter Property="MinHeight" Value="0"/>
         <Setter Property="MinWidth" Value="0"/>
@@ -46,7 +46,8 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="ToolBarHorizontalOverflowButtonStyle" TargetType="{x:Type ToggleButton}">
+    
+    <Style x:Key="MaterialDesignToolBarHorizontalOverflowButtonStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
         <Setter Property="MinHeight" Value="0"/>
         <Setter Property="MinWidth" Value="0"/>
@@ -80,7 +81,8 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="ToolBarThumbStyle" TargetType="{x:Type Thumb}">
+    
+    <Style x:Key="MaterialDesignToolBarThumbStyle" TargetType="{x:Type Thumb}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
@@ -90,7 +92,6 @@
                                 <DrawingBrush TileMode="Tile" Viewbox="0,0,4,4" Viewport="0,0,4,4" ViewportUnits="Absolute" ViewboxUnits="Absolute">
                                     <DrawingBrush.Drawing>
                                         <DrawingGroup>
-                                            <GeometryDrawing Brush="White" Geometry="M 1 1 L 1 3 L 3 3 L 3 1 z"/>
                                             <GeometryDrawing Brush="{DynamicResource MaterialDesignDivider}" Geometry="M 0 0 L 0 2 L 2 2 L 2 0 z"/>
                                         </DrawingGroup>
                                     </DrawingBrush.Drawing>
@@ -107,27 +108,26 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="ToolBarMainPanelBorderStyle" TargetType="{x:Type Border}">
+    
+    <Style x:Key="MaterialDesignToolBarMainPanelBorderStyle" TargetType="{x:Type Border}">
         <Setter Property="Margin" Value="0,0,11,0"/>
         <Setter Property="CornerRadius" Value="3,3,3,3"/>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Source={x:Static SystemParameters.HighContrast}}" Value="true">
-                <Setter Property="CornerRadius" Value="0,0,0,0"/>
-            </DataTrigger>
-        </Style.Triggers>
     </Style>
+    
     <Style x:Key="MaterialDesignToolBar" TargetType="{x:Type ToolBar}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
         <Setter Property="FontFamily" Value="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+        <Setter Property="ClipToBounds" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToolBar}">
                     <DockPanel x:Name="Grid" Margin="3,1,1,1" SnapsToDevicePixels="true" Background="{TemplateBinding Background}">
                         <Grid DockPanel.Dock="Right" x:Name="OverflowGrid" HorizontalAlignment="Right">
-                            <ToggleButton x:Name="OverflowButton" ClickMode="Press" FocusVisualStyle="{x:Null}" IsChecked="{Binding IsOverflowOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" IsEnabled="{TemplateBinding HasOverflowItems}" Style="{StaticResource ToolBarHorizontalOverflowButtonStyle}"
+                            <ToggleButton x:Name="OverflowButton" ClickMode="Press" FocusVisualStyle="{x:Null}" IsChecked="{Binding IsOverflowOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" IsEnabled="{TemplateBinding HasOverflowItems}" Style="{StaticResource MaterialDesignToolBarHorizontalOverflowButtonStyle}"
+                                          Foreground="{TemplateBinding Foreground}"
                                           />
-                            <Popup x:Name="OverflowPopup" AllowsTransparency="true" Focusable="false" IsOpen="{Binding IsOverflowOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom" StaysOpen="false" Margin="1">                                
+                            <Popup x:Name="OverflowPopup" AllowsTransparency="true" Focusable="false" IsOpen="{Binding IsOverflowOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom" StaysOpen="false" Margin="1">
                                 <Border x:Name="ToolBarSubMenuBorder" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1" Background="{DynamicResource MaterialDesignPaper}"
                                                 TextBlock.FontWeight="ExtraBold"
                                                 CornerRadius="2" Margin="1"
@@ -138,9 +138,9 @@
                                 </Border>
                             </Popup>
                         </Grid>
-                        <Border x:Name="MainPanelBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" Style="{StaticResource ToolBarMainPanelBorderStyle}">
+                        <Border x:Name="MainPanelBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" Style="{StaticResource MaterialDesignToolBarMainPanelBorderStyle}">
                             <DockPanel KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local">
-                                <Thumb x:Name="ToolBarThumb" Margin="-3,-1,0,0" Padding="6,5,1,6" Style="{StaticResource ToolBarThumbStyle}" Width="10"/>
+                                <Thumb x:Name="ToolBarThumb" Margin="-3,-1,0,0" Padding="6,5,1,6" Style="{StaticResource MaterialDesignToolBarThumbStyle}" Width="10"/>
                                 <ContentPresenter x:Name="ToolBarHeader" ContentSource="Header" HorizontalAlignment="Center" Margin="4,0,4,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
                                 <ToolBarPanel x:Name="PART_ToolBarPanel" IsItemsHost="true" Margin="0,1,2,2" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </DockPanel>
@@ -161,7 +161,7 @@
                         </Trigger>
                         <Trigger Property="Orientation" Value="Vertical">
                             <Setter Property="Margin" TargetName="Grid" Value="1,3,1,1"/>
-                            <Setter Property="Style" TargetName="OverflowButton" Value="{StaticResource ToolBarVerticalOverflowButtonStyle}"/>
+                            <Setter Property="Style" TargetName="OverflowButton" Value="{StaticResource MaterialDesignToolBarVerticalOverflowButtonStyle}"/>
                             <Setter Property="Height" TargetName="ToolBarThumb" Value="10"/>
                             <Setter Property="Width" TargetName="ToolBarThumb" Value="Auto"/>
                             <Setter Property="Margin" TargetName="ToolBarThumb" Value="-1,-3,0,0"/>
@@ -183,11 +183,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Source={x:Static SystemParameters.HighContrast}}" Value="true">
-                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-            </DataTrigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="{x:Static ToolBar.CheckBoxStyleKey}" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}">
@@ -227,14 +222,17 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="TextBlock.FontWeight" Value="DemiBold"/>
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <wpf:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
-                                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                              Padding="{TemplateBinding Padding}" 
-                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    <wpf:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
+                                                      Foreground="{TemplateBinding Foreground}"
+                                                      ClipToBounds="False"
+                                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      Padding="{TemplateBinding Padding}" 
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value=".56"/>

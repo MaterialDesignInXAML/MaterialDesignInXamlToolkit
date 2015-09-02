@@ -12,6 +12,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DataGrid.xaml" />
 		<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DatePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.GridSplitter.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.Label.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.listbox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PasswordBox.xaml" />
@@ -23,6 +24,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.textbox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.togglebutton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolBar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolBarTray.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolTip.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}" />
@@ -36,6 +38,7 @@
     <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MaterialDesignDataGridRowHeader}" />    
     <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignDatePicker}" />
     <Style TargetType="{x:Type GridSplitter}" BasedOn="{StaticResource MaterialDesignGridSplitter}" />
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource MaterialDesignLabel}" />
     <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}" />
     <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignPasswordBox}" />
     <Style TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource MaterialDesignLinearProgressBar}" />
@@ -46,6 +49,7 @@
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}" />
     <Style TargetType="{x:Type ToolBar}" BasedOn="{StaticResource MaterialDesignToolBar}" />
+    <Style TargetType="{x:Type ToolBarTray}" BasedOn="{StaticResource MaterialDesignToolBarTray}" />
     <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource MaterialDesignToolTip}" />
     <Style TargetType="{x:Type Menu}" BasedOn="{StaticResource MaterialDesignMenu}" />
     <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}" />

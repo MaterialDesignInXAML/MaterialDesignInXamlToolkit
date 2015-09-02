@@ -50,26 +50,10 @@
                     <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent700Foreground}"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <Style x:Key="GridSplitterPreviewStyle">
-                <Setter Property="Control.Template">
-                    <Setter.Value>
-                        <ControlTemplate>
-                            <Rectangle Fill="#80000000"/>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="MaterialDesignGridSplitter" TargetType="{x:Type GridSplitter}">
-                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-                <Setter Property="PreviewStyle" Value="{StaticResource GridSplitterPreviewStyle}"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type GridSplitter}">
-                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+            
+            
+
+
 
 
 
@@ -82,7 +66,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <GridSplitter Style="{DynamicResource MaterialDesignGridSplitter}"  />
+        <ToolBarTray Style="{DynamicResource MaterialDesignToolBarTray}"  />
     </Grid>
 
 </UserControl>
