@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Background="{DynamicResource MaterialDesignPaper}"
         mc:Ignorable="d"
         Title="Progress Indicators" Height="300" Width="600" Left="40" Top="40">
     <Grid>

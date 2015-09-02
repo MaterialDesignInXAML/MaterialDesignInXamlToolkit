@@ -37,7 +37,7 @@
         </Border>
         <Border Background="{DynamicResource SecondaryAccentBrush}"
                                 Grid.Row="4">
-            <TextBlock>Accent</TextBlock>
+            <TextBlock Foreground="{DynamicResource SecondaryAccentForegroundBrush}">Accent</TextBlock>
         </Border>
     </Grid>
 </UserControl>
