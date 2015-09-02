@@ -2,12 +2,13 @@
 <package>
   <metadata>
     <id>MaterialDesignThemes</id>
-    <version>0.0.0.0</version>
+    <version>0.1.0-beta</version>
     <title>Material Design Themes XAML Resources</title>
     <authors>James Willock</authors>
     <owners>James Willock</owners>
     <licenseUrl>http://opensource.org/licenses/MS-PL</licenseUrl>
     <projectUrl>https://github.com/ButchersBoy/MaterialDesignInXamlToolkit</projectUrl>    
+    <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ResourceDictionary instances containing Material Design templates and styles for WPF controls.</description>
     <releaseNotes>Google spec at http://www.google.co.uk/design/spec/style/color.html</releaseNotes>

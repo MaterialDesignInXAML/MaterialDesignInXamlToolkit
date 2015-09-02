@@ -58,7 +58,7 @@
 		</Viewbox>
         <TextBox Grid.Row="0" Grid.Column="1" 
 				 x:Name="NameTextBox"
-				 wpf:TextField.Hint="Name">
+				 wpf:TextFieldAssist.Hint="Name">
             <TextBox.Text>
                 <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -77,10 +77,10 @@
 		</Viewbox>
 		<TextBox Grid.Row="1" Grid.Column="1" 
 				 x:Name="PhoneTextBox"
-				 wpf:TextField.Hint="Phone"
+				 wpf:TextFieldAssist.Hint="Phone"
 				 />
 		<TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">Fruit</TextBlock>
-		<ComboBox Grid.Row="1" Grid.Column="3" wpf:TextField.Hint="OS" IsEditable="True">
+		<ComboBox Grid.Row="1" Grid.Column="3" wpf:TextFieldAssist.Hint="OS" IsEditable="True">
 			<ComboBoxItem>Apple</ComboBoxItem>
 			<ComboBoxItem>Banana</ComboBoxItem>
 			<ComboBoxItem>Pear</ComboBoxItem>
@@ -94,9 +94,9 @@
 		</Viewbox>
 		<TextBox Grid.Row="2" Grid.Column="1" 		
 				 x:Name="CommentTextBox"
-				 wpf:TextField.Hint="Comment"
+				 wpf:TextFieldAssist.Hint="Comment"
 				 />
-		<ComboBox Grid.Row="2" Grid.Column="3" wpf:TextField.Hint="OS">
+		<ComboBox Grid.Row="2" Grid.Column="3" wpf:TextFieldAssist.Hint="OS">
 			<ComboBoxItem>Andoid</ComboBoxItem>
 			<ComboBoxItem>iOS</ComboBoxItem>
 			<ComboBoxItem>Linux</ComboBoxItem>

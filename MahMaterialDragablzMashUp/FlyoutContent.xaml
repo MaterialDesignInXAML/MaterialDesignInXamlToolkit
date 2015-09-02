@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <StackPanel Margin="24">
-        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="18" wpf:TextField.Hint="Your Name" MinWidth="120" />
-        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" wpf:TextField.Hint="Location" MinWidth="120" Margin="0 8 0 0" />
+        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="18" wpf:TextFieldAssist.Hint="Your Name" MinWidth="120" />
+        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" wpf:TextFieldAssist.Hint="Location" MinWidth="120" Margin="0 8 0 0" />
     </StackPanel>
 </UserControl>

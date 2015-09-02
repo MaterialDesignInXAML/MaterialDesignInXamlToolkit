@@ -9,7 +9,7 @@ namespace MaterialDesignThemes.Wpf
     /// <summary>
     /// The text field.
     /// </summary>
-    public static class TextField
+    public static class TextFieldAssist
     {
         #region Static Fields
 
@@ -19,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
             "Hint",
             typeof(string),
-            typeof(TextField),
+            typeof(TextFieldAssist),
             new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty TextBoxViewMarginProperty = DependencyProperty.RegisterAttached(
             "TextBoxViewMargin",
             typeof(Thickness),
-            typeof(TextField),
+            typeof(TextFieldAssist),
             new PropertyMetadata(new Thickness(double.NegativeInfinity), TextBoxViewMarginPropertyChangedCallback));
 
         /// <summary>
@@ -37,17 +37,17 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty HintOpacityProperty = DependencyProperty.RegisterAttached(
             "HintOpacity",
             typeof(double),
-            typeof(TextField),
+            typeof(TextFieldAssist),
             new PropertyMetadata(.48, HintOpacityPropertyChangedCallback));
 
         /// <summary>
         /// Internal framework use only.
         /// </summary>
         public static readonly DependencyProperty TextProperty = DependencyProperty.RegisterAttached(
-            "Text", typeof (string), typeof (TextField), new PropertyMetadata(default(string), TextPropertyChangedCallback));
+            "Text", typeof (string), typeof (TextFieldAssist), new PropertyMetadata(default(string), TextPropertyChangedCallback));
 
         private static readonly DependencyPropertyKey IsNullOrEmptyPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
-            "IsNullOrEmpty", typeof(bool), typeof(TextField), new PropertyMetadata(true));
+            "IsNullOrEmpty", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(true));
 
         public static readonly DependencyProperty IsNullOrEmptyProperty =
             IsNullOrEmptyPropertyKey.DependencyProperty;

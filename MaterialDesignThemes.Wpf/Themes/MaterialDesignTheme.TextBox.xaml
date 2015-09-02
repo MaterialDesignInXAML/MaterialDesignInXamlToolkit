@@ -9,7 +9,7 @@
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
-        <Setter Property="wpf:TextField.TextBoxViewMargin" Value="1 0 1 0" />
+        <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 1 0" />
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
@@ -36,11 +36,11 @@
                         <Grid>
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                                           />
-                            <TextBlock Text="{Binding Path=(wpf:TextField.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                            <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                        Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
                                        x:Name="Hint"
                                        Margin="1 0 1 0"
-                                       Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -74,7 +74,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignFloatingHintTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
-        <Setter Property="wpf:TextField.Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+        <Setter Property="wpf:TextFieldAssist.Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
@@ -125,16 +125,16 @@
                         <Grid Margin="0 12 0 0">
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                                             />
-                            <TextBlock Text="{Binding Path=(wpf:TextField.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                            <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                        FontSize="{TemplateBinding FontSize}"
                                        HorizontalAlignment="Left"
                                        x:Name="Hint"
                                        Margin="1 0 1 0"
-                                       Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="wpf:TextField.IsNullOrEmpty" Value="False">
+                        <Trigger Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False">
                             <Trigger.EnterActions>
                                 <BeginStoryboard x:Name="MoveHintAsideStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintAsideStoryboard}"/>
                             </Trigger.EnterActions>
@@ -144,7 +144,7 @@
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="wpf:TextField.IsNullOrEmpty" Value="False" />
+                                <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
                                 <Condition Property="IsKeyboardFocused" Value="True" />                                
                             </MultiTrigger.Conditions>
                             <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />

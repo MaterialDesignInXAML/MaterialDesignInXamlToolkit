@@ -12,7 +12,7 @@
 		<Setter Property="Background" Value="Transparent"/>
 		<Setter Property="BorderThickness" Value="0 0 0 1"/>
 		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="wpf:TextField.Hint" Value="Select time" />
+        <Setter Property="wpf:TextFieldAssist.Hint" Value="Select time" />
 		<Setter Property="ClockStyle" Value="{DynamicResource MaterialDesignClock}" />
 		<Setter Property="ClockHostContentControlStyle">
 			<Setter.Value>
@@ -39,10 +39,10 @@
 							<Grid>
 								<ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"											  
 											  />
-								<TextBlock Text="{Binding Path=(wpf:TextField.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+								<TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
 										   Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
 										   x:Name="Hint"
-										   Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+										   Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
 							</Grid>
 						</ControlTemplate>
 						<ControlTemplate x:Key="DropDownButtonTemplate" TargetType="{x:Type Button}">
@@ -76,7 +76,7 @@
 								<ColumnDefinition Width="Auto" />
 							</Grid.ColumnDefinitions>							
 							<TextBox BorderThickness="0" x:Name="PART_TextBox"											 									 
-									 wpf:TextField.TextBoxViewMargin="1 0 0 0"
+									 wpf:TextFieldAssist.TextBoxViewMargin="1 0 0 0"
 									 Margin="0"                                     
 									 Template="{StaticResource TextBoxTemplate}"									 
 									 />

@@ -180,9 +180,9 @@
                             Margin="{TemplateBinding Padding}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                            Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                             IsHitTestVisible="False"                       
-                            Text="{TemplateBinding wpf:TextField.Hint}"
+                            Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
                             Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
             <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="0 0 0 2"
@@ -284,9 +284,9 @@
                 <TextBlock x:Name="Hint"
                            Margin="{TemplateBinding Padding}"
                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"                       
-                           Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                           Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                            IsHitTestVisible="False"                       
-                           Text="{TemplateBinding wpf:TextField.Hint}" />
+                           Text="{TemplateBinding wpf:TextFieldAssist.Hint}" />
                 <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="0 0 0 2"
                         x:Name="focusBorder" Visibility="Hidden"
@@ -294,7 +294,7 @@
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="wpf:TextField.IsNullOrEmpty" Value="False">
+            <Trigger Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False">
                 <Trigger.EnterActions>
                     <BeginStoryboard x:Name="MoveHintAsideStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintAsideStoryboard}"/>
                 </Trigger.EnterActions>
@@ -304,7 +304,7 @@
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="wpf:TextField.IsNullOrEmpty" Value="False" />
+                    <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
                     <Condition Property="IsKeyboardFocused" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -340,7 +340,7 @@
 		<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
 		<Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
 		<Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-		<Setter Property="wpf:TextField.TextBoxViewMargin" Value="1 0 1 0" />
+		<Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 1 0" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type TextBox}">
@@ -380,8 +380,8 @@
                             Margin="{TemplateBinding Padding}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                            Text="{TemplateBinding wpf:TextField.Hint}"
+                            Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                            Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
                             IsHitTestVisible="False"
                             Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
 				    <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -489,8 +489,8 @@
                                Margin="{TemplateBinding Padding}"
                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                               Opacity="{Binding Path=(wpf:TextField.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                               Text="{TemplateBinding wpf:TextField.Hint}"
+                               Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                               Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
                                IsHitTestVisible="False" />
                     <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 </Grid>
@@ -500,7 +500,7 @@
                             Grid.ColumnSpan="2" />
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="wpf:TextField.IsNullOrEmpty" Value="False">
+            <Trigger Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False">
                 <Trigger.EnterActions>
                     <BeginStoryboard x:Name="MoveHintAsideStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintAsideStoryboard}"/>
                 </Trigger.EnterActions>
@@ -510,7 +510,7 @@
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="wpf:TextField.IsNullOrEmpty" Value="False" />
+                    <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
                     <Condition Property="IsKeyboardFocused" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -575,7 +575,7 @@
 
     <Style x:Key="MaterialDesignFloatingHintComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}"/>
-        <Setter Property="wpf:TextField.Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+        <Setter Property="wpf:TextFieldAssist.Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>

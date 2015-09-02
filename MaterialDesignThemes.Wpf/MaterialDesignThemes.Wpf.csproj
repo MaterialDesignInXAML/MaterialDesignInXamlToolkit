@@ -206,7 +206,7 @@
     <Compile Include="MaterialDataGridTextColumn.cs" />
     <Compile Include="MaterialDateDisplay.cs" />
     <Compile Include="PaletteHelper.cs" />
-    <Compile Include="PasswordField.cs" />
+    <Compile Include="PasswordFieldAssist.cs" />
     <Compile Include="ProgressLoop.cs" />
     <Compile Include="ProgressLoopDev.xaml.cs">
       <DependentUpon>ProgressLoopDev.xaml</DependentUpon>
@@ -224,7 +224,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TextField.cs" />
+    <Compile Include="TextFieldAssist.cs" />
     <Compile Include="Converters\TextFieldHintVisibilityConverter.cs" />
     <Compile Include="TimePicker.cs" />
     <Compile Include="ToolTipAssist.cs" />

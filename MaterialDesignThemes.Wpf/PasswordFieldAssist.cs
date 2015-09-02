@@ -3,10 +3,10 @@ using System.Windows.Controls;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public static class PasswordField
+    public static class PasswordFieldAssist
     {
         public static readonly DependencyProperty ManagedProperty = DependencyProperty.RegisterAttached(
-            "Managed", typeof(PasswordBox), typeof(PasswordField), new PropertyMetadata(default(PasswordBox), ManagedPropertyChangedCallback));
+            "Managed", typeof(PasswordBox), typeof(PasswordFieldAssist), new PropertyMetadata(default(PasswordBox), ManagedPropertyChangedCallback));
 
         private static void ManagedPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -35,7 +35,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty HintVisibilityProperty = DependencyProperty.RegisterAttached(
-            "HintVisibility", typeof(Visibility), typeof(PasswordField), new PropertyMetadata(default(Visibility)));
+            "HintVisibility", typeof(Visibility), typeof(PasswordFieldAssist), new PropertyMetadata(default(Visibility)));
 
         public static void SetHintVisibility(DependencyObject element, Visibility value)
         {
