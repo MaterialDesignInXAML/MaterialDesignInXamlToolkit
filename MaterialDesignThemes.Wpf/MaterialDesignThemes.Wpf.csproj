@@ -220,6 +220,7 @@
     <Compile Include="Converters\TextFieldHintVisibilityConverter.cs" />
     <Compile Include="TimePicker.cs" />
     <Compile Include="ToolTipAssist.cs" />
+    <Compile Include="VisualFeedbackAssist.cs" />
     <Compile Include="VisualFeedbackContentControl.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

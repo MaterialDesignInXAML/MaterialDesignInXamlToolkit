@@ -118,6 +118,17 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+        <Setter Property="Foreground" Value="#616161"/>
+        <!--
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        -->
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="wpf:VisualFeedbackAssist.ClipToBounds" Value="False"/>
+    </Style>
+    
     <Style x:Key="MaterialDesignFloatingActionButton" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>

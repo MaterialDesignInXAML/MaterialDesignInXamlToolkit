@@ -28,23 +28,14 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="ClipToBounds" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:VisualFeedbackAssist.ClipToBounds)}" />
         <Setter Property="Feedback" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:VisualFeedbackContentControl}">
-					<Grid ClipToBounds="True" Background="Transparent">
+					<Grid Background="Transparent">
 						<Canvas IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-							<Ellipse Opacity="0" Width="60" Height="60" Canvas.Left="{TemplateBinding MouseX}" Canvas.Top="{TemplateBinding MouseY}"                                     
-                                     x:Name="HoverEllipse" Fill="{TemplateBinding Feedback, Converter={StaticResource BrushToRadialGradientBrushConverter}}">
-								<Ellipse.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform/>
-                                        <SkewTransform/>
-                                        <RotateTransform/>
-                                        <TranslateTransform X="-30" Y="-30"/>
-                                    </TransformGroup>
-                                </Ellipse.RenderTransform>
-                            </Ellipse>
                             <Ellipse x:Name="ClickEllipse" Fill="{TemplateBinding Feedback}" Opacity="0" Width="0" Height="0" Canvas.Left="{TemplateBinding MouseLeftButtonDownX}" Canvas.Top="{TemplateBinding MouseLeftButtonDownY}"
                                      RenderTransformOrigin=".5,.5">
                                 <Ellipse.RenderTransform>
@@ -66,24 +57,6 @@
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <EventTrigger RoutedEvent="MouseEnter">
-                            <BeginStoryboard>
-                                <Storyboard TargetName="HoverEllipse">
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)">
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value=".56"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>                        
-                        <EventTrigger RoutedEvent="MouseLeave">
-                            <BeginStoryboard>
-                                <Storyboard TargetName="HoverEllipse">
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)">
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value=".0"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>                        
                         <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
                             <BeginStoryboard>
                                 <Storyboard TargetName="ClickEllipse">
@@ -290,6 +263,7 @@
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ColorZone}">
@@ -297,6 +271,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
+                            ClipToBounds="True"
                             >
                         <ContentPresenter Content="{TemplateBinding Content}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
