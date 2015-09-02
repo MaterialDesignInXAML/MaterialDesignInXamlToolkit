@@ -109,24 +109,23 @@
                     </Canvas>
                 </Viewbox>
             </Button>
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 0" Width="80"
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 0" Width="88"
                     ToolTip="Resource name: MaterialDesignRaisedLightButton">
                 LIGHT
             </Button>
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 0" Width="80"
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 0" Width="88"
                     ToolTip="Resource name: MaterialDesignRaisedButton">
                 MID
             </Button>
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 0" Width="80"
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 0" Width="88"
                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
                 DARK
             </Button>
-            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 0" Width="80"
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 0" Width="88"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton">
                 ACCENT
             </Button>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0 8 0 0" Grid.ColumnSpan="3" Orientation="Horizontal">
+        </StackPanel><StackPanel Grid.Row="2" Grid.Column="0" Margin="0 8 0 0" Grid.ColumnSpan="3" Orientation="Horizontal">
             <ToggleButton Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionLightToggleButton}" IsChecked="True" />
             <ToggleButton Content="H" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}"/>
             <!-- checkbox style same as toggle button -->

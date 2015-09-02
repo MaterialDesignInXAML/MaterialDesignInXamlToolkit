@@ -1,0 +1,77 @@
+﻿<Window x:Class="MaterialDesignColors.WpfExample.ColorZoneWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
+        xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Title="Colour Zones" Height="600" Width="800">
+    <StackPanel Margin="16">
+        <TextBlock FontSize="16">Colour Zones</TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="0 16 0 0">The ColorZone control allows you to  easily define striking blocks of colour to give your application extra clarity and style, whilst still remaining within the bounds of your Material Design palette.</TextBlock>
+        <TextBlock Margin="0 16 0 0" FontSize="10">Invert the basic paper/body colours.</TextBlock>
+        <wpf:ColorZone Mode="Inverted" Padding="16">
+            <StackPanel Orientation="Horizontal">
+                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
+            </StackPanel>
+        </wpf:ColorZone>
+        <TextBlock Margin="0 16 0 0" FontSize="10">Use primary light back and fore colours.</TextBlock>
+        <wpf:ColorZone Mode="PrimaryLight" Padding="16">
+            <StackPanel Orientation="Horizontal">
+                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
+            </StackPanel>
+        </wpf:ColorZone>
+        <TextBlock Margin="0 16 0 0" FontSize="10">Use primary mid colours, and nest colour zones!</TextBlock>
+        <wpf:ColorZone Mode="PrimaryMid" Padding="16">
+            <StackPanel Orientation="Horizontal">
+                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />                
+                <wpf:ColorZone Mode="Standard" Padding="8 4 8 4" CornerRadius="2"
+                               Margin="16 0 0 0"
+                               Effect="{DynamicResource MaterialDesignShadowDepth1}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Width="16" Height="16" VerticalAlignment="Center" Opacity=".56">
+                            <Canvas Width="24" Height="24">
+                                <Path Data="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" 
+                                      Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:ColorZone}, Path=Foreground}" />
+                            </Canvas>
+                        </Viewbox>
+                        <TextBox Grid.Column="1" Margin="8 0 0 0" wpf:TextField.Hint="Build a search bar" MinWidth="200" />
+                        <Viewbox Grid.Column="2" Width="16" Height="16" Margin="8 0 0 0" Opacity=".56">
+                            <Canvas Width="24" Height="24">
+                                <Path Data="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z" 
+                                      Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:ColorZone}, Path=Foreground}" />
+                            </Canvas>
+                        </Viewbox>
+                    </Grid>
+                </wpf:ColorZone>
+            </StackPanel>
+        </wpf:ColorZone>
+        <TextBlock Margin="0 16 0 0" FontSize="10">Add in a corner radius and shadow.</TextBlock>
+        <wpf:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="3" Effect="{DynamicResource MaterialDesignShadowDepth3}">
+            <StackPanel Orientation="Horizontal">
+                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
+            </StackPanel>
+        </wpf:ColorZone>
+        <TextBlock Margin="0 16 0 0" FontSize="10">Use accent back and fore colours.</TextBlock>
+        <wpf:ColorZone Mode="Accent" Padding="16">
+            <StackPanel Orientation="Horizontal">
+                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
+            </StackPanel>
+        </wpf:ColorZone>
+    </StackPanel>
+</Window>

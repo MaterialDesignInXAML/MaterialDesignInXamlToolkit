@@ -289,12 +289,15 @@
     <Style TargetType="{x:Type local:ColorZone}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ColorZone}">
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            >
                         <ContentPresenter Content="{TemplateBinding Content}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           TextElement.Foreground="{TemplateBinding Foreground}"
@@ -320,7 +323,7 @@
                 <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
             </Trigger>
-            <Trigger Property="Mode" Value="PrimaryLight">
+            <Trigger Property="Mode" Value="PrimaryDark">
                 <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
             </Trigger>

@@ -43,5 +43,14 @@ namespace MaterialDesignThemes.Wpf
             get { return (ColorZoneMode) GetValue(ModeProperty); }
             set { SetValue(ModeProperty, value); }
         }
+
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
+            "CornerRadius", typeof (CornerRadius), typeof (ColorZone), new PropertyMetadata(default(CornerRadius)));
+
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius) GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
     }
 }

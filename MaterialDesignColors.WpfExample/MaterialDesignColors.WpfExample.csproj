@@ -72,6 +72,9 @@
     <Compile Include="CardsWindow.xaml.cs">
       <DependentUpon>CardsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ColorZoneWindow.xaml.cs">
+      <DependentUpon>ColorZoneWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Domain\AnotherCommandImplementation.cs" />
     <Compile Include="Domain\ListFieldsViewModel.cs" />
     <Compile Include="Domain\SelectableViewModel.cs" />
@@ -98,6 +101,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CardsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorZoneWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

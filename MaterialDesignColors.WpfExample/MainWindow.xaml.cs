@@ -32,6 +32,7 @@ namespace MaterialDesignColors.WpfExample
             {
                 DataContext = new PaletteSelectorViewModel()
             }.Show();
+            new ColorZoneWindow().Show();
         }
 
 	    private void ToggleButton_OnChecked(object sender, RoutedEventArgs e)
