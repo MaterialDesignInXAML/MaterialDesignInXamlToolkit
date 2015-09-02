@@ -147,6 +147,7 @@
                         <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Effect="{DynamicResource MaterialDesignShadowDepth1}"
                                  x:Name="border" />
                         <wpf:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
+                                                          Feedback="White"
                                                           Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
                                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"

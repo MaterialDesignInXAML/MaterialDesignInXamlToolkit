@@ -227,7 +227,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <wpf:VisualFeedbackContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
-                                                      Foreground="{TemplateBinding Foreground}"
+                                                      Feedback="{TemplateBinding Foreground}"
                                                       ClipToBounds="False"
                                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
