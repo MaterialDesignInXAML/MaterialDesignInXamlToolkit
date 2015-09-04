@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace MaterialDesignThemes.Wpf
 {    
-    public class VisualFeedbackContentControl : ContentControl
+    public class Ripple : ContentControl
     {
-        static VisualFeedbackContentControl()
+        static Ripple()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(VisualFeedbackContentControl), new FrameworkPropertyMetadata(typeof(VisualFeedbackContentControl)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Ripple), new FrameworkPropertyMetadata(typeof(Ripple)));
         }
 
-        public VisualFeedbackContentControl()
+        public Ripple()
         {   
             MouseMove += OnMouseMove;                        
         }
@@ -44,7 +44,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
-            "Feedback", typeof (Brush), typeof (VisualFeedbackContentControl), new PropertyMetadata(default(Brush)));
+            "Feedback", typeof (Brush), typeof (Ripple), new PropertyMetadata(default(Brush)));
 
         public Brush Feedback
         {
@@ -54,7 +54,7 @@ namespace MaterialDesignThemes.Wpf
 
         private static readonly DependencyPropertyKey MouseXPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "MouseX", typeof (double), typeof (VisualFeedbackContentControl),
+                "MouseX", typeof (double), typeof (Ripple),
                 new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty MouseXProperty =
@@ -68,7 +68,7 @@ namespace MaterialDesignThemes.Wpf
 
         private static readonly DependencyPropertyKey MouseYPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "MouseY", typeof (double), typeof (VisualFeedbackContentControl),
+                "MouseY", typeof (double), typeof (Ripple),
                 new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty MouseYProperty =
@@ -82,7 +82,7 @@ namespace MaterialDesignThemes.Wpf
 
         private static readonly DependencyPropertyKey MouseLeftButtonDownXPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "MouseLeftButtonDownX", typeof (double), typeof (VisualFeedbackContentControl),
+                "MouseLeftButtonDownX", typeof (double), typeof (Ripple),
                 new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty MouseLeftButtonDownXProperty =
@@ -96,7 +96,7 @@ namespace MaterialDesignThemes.Wpf
 
         private static readonly DependencyPropertyKey MouseLeftButtonDownYPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "MouseLeftButtonDownY", typeof (double), typeof (VisualFeedbackContentControl),
+                "MouseLeftButtonDownY", typeof (double), typeof (Ripple),
                 new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty MouseLeftButtonDownYProperty =

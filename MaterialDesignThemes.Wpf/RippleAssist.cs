@@ -2,10 +2,10 @@ using System.Windows;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public static class VisualFeedbackAssist
+    public static class RippleAssist
     {
         public static readonly DependencyProperty ClipToBoundsProperty = DependencyProperty.RegisterAttached(
-            "ClipToBounds", typeof (bool), typeof (VisualFeedbackAssist), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
+            "ClipToBounds", typeof (bool), typeof (RippleAssist), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
         public static void SetClipToBounds(DependencyObject element, bool value)
         {

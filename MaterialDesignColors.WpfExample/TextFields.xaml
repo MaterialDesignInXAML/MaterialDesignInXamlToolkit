@@ -34,7 +34,7 @@
 			</Style>
 		</ResourceDictionary>
 	</UserControl.Resources>
-	<Grid Margin="16">
+	<Grid Margin="16" VerticalAlignment="Top">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto" />
 			<ColumnDefinition Width="150" />
@@ -78,6 +78,7 @@
 			<ComboBoxItem>Windows</ComboBoxItem>
 		</ComboBox>
         <TextBox Grid.Row="0" Grid.RowSpan="3" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="16 0 0 0"
+                 MinWidth="280"
                  wpf:TextFieldAssist.Hint="Multiline text">Multiline.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TextBox>
         <Viewbox Grid.Row="1" Grid.Column="0">
 			<Canvas Width="24" Height="24">
