@@ -69,26 +69,30 @@
     <Compile Include="Buttons.xaml.cs">
       <DependentUpon>Buttons.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CardsWindow.xaml.cs">
-      <DependentUpon>CardsWindow.xaml</DependentUpon>
+    <Compile Include="Cards.xaml.cs">
+      <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorZoneWindow.xaml.cs">
-      <DependentUpon>ColorZoneWindow.xaml</DependentUpon>
+    <Compile Include="ColorZones.xaml.cs">
+      <DependentUpon>ColorZones.xaml</DependentUpon>
     </Compile>
     <Compile Include="Domain\AnotherCommandImplementation.cs" />
+    <Compile Include="Domain\DemoItem.cs" />
     <Compile Include="Domain\ListFieldsViewModel.cs" />
     <Compile Include="Domain\SelectableViewModel.cs" />
     <Compile Include="Domain\TextFieldsViewModel.cs" />
     <Compile Include="ListsWindow.xaml.cs">
       <DependentUpon>ListsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NotEmptyValidationRule.cs" />
-    <Compile Include="PaletteSelectorViewModel.cs" />
-    <Compile Include="PaletteSelectorWindow.xaml.cs">
-      <DependentUpon>PaletteSelectorWindow.xaml</DependentUpon>
+    <Compile Include="MenusAndToolBars.xaml.cs">
+      <DependentUpon>MenusAndToolBars.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProgressWindow.xaml.cs">
-      <DependentUpon>ProgressWindow.xaml</DependentUpon>
+    <Compile Include="NotEmptyValidationRule.cs" />
+    <Compile Include="PaletteSelector.xaml.cs">
+      <DependentUpon>PaletteSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PaletteSelectorViewModel.cs" />
+    <Compile Include="Progress.xaml.cs">
+      <DependentUpon>Progress.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProvingGround.xaml.cs">
       <DependentUpon>ProvingGround.xaml</DependentUpon>
@@ -100,11 +104,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CardsWindow.xaml">
+    <Page Include="Cards.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ColorZoneWindow.xaml">
+    <Page Include="ColorZones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,15 +128,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MenusAndToolBars.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Palette.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PaletteSelectorWindow.xaml">
+    <Page Include="PaletteSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProgressWindow.xaml">
+    <Page Include="Progress.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

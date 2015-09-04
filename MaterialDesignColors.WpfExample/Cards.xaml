@@ -1,20 +1,20 @@
-﻿<Window x:Class="MaterialDesignColors.WpfExample.CardsWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Title="Cards" Height="320" Width="400">
-    <Window.Resources>
+﻿<UserControl x:Class="MaterialDesignColors.WpfExample.Cards"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        
-    </Window.Resources>
+    </UserControl.Resources>
     <WrapPanel Margin="0 0 8 8" ItemWidth="200" Orientation="Vertical">
         <wpf:Card Margin="4 4 0 0">
             <Grid>
@@ -22,20 +22,20 @@
                     <RowDefinition Height="140" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>                
-                <Image Source="Resources/Chartridge046_small.jpg" Height="140" Width="196" Stretch="UniformToFill" />                
+                </Grid.RowDefinitions>
+                <Image Source="Resources/Chartridge046_small.jpg" Height="140" Width="196" Stretch="UniformToFill" />
                 <Button Grid.Row="1" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" HorizontalAlignment="Right" Margin="0 -68 16 0">
                     <Viewbox Width="16" Height="16">
                         <Canvas Width="24" Height="24">
                             <Path Data="M5,20.5A3.5,3.5 0 0,1 1.5,17A3.5,3.5 0 0,1 5,13.5A3.5,3.5 0 0,1 8.5,17A3.5,3.5 0 0,1 5,20.5M5,12A5,5 0 0,0 0,17A5,5 0 0,0 5,22A5,5 0 0,0 10,17A5,5 0 0,0 5,12M14.8,10H19V8.2H15.8L13.86,4.93C13.57,4.43 13,4.1 12.4,4.1C11.93,4.1 11.5,4.29 11.2,4.6L7.5,8.29C7.19,8.6 7,9 7,9.5C7,10.13 7.33,10.66 7.85,10.97L11.2,13V18H13V11.5L10.75,9.85L13.07,7.5M19,20.5A3.5,3.5 0 0,1 15.5,17A3.5,3.5 0 0,1 19,13.5A3.5,3.5 0 0,1 22.5,17A3.5,3.5 0 0,1 19,20.5M19,12A5,5 0 0,0 14,17A5,5 0 0,0 19,22A5,5 0 0,0 24,17A5,5 0 0,0 19,12M16,4.8C17,4.8 17.8,4 17.8,3C17.8,2 17,1.2 16,1.2C15,1.2 14.2,2 14.2,3C14.2,4 15,4.8 16,4.8Z" 
                                   Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground}" />
                         </Canvas>
-                    </Viewbox>                    
+                    </Viewbox>
                 </Button>
                 <StackPanel Grid.Row="1" Margin="8 24 8 0" >
                     <TextBlock FontWeight="Bold">Cycling</TextBlock>
-                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center">A great way to keep fit and forget about the constant grind of IT.</TextBlock>    
-                </StackPanel>                
+                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center">A great way to keep fit and forget about the constant grind of IT.</TextBlock>
+                </StackPanel>
                 <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
                     <Button Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0">
                         <Viewbox Width="16" Height="16">
@@ -54,8 +54,8 @@
                         </Viewbox>
                     </Button>
                 </StackPanel>
-            </Grid>            
-        </wpf:Card>        
+            </Grid>
+        </wpf:Card>
         <wpf:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueLightBrush}"
                   Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
                   Padding="8">
@@ -65,11 +65,11 @@
                   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                   Padding="8">
             <StackPanel>
-                <TextBlock FontSize="16">Notes</TextBlock>    
+                <TextBlock FontSize="16">Notes</TextBlock>
                 <CheckBox Margin="0 4 0 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Do something good</CheckBox>
                 <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Take a breather</CheckBox>
                 <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">And go create</CheckBox>
-            </StackPanel>                               
+            </StackPanel>
         </wpf:Card>
         <wpf:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueDarkBrush}"
                   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
@@ -77,4 +77,4 @@
             <TextBlock>You can adjust the corner radius</TextBlock>
         </wpf:Card>
     </WrapPanel>
-</Window>
+</UserControl>

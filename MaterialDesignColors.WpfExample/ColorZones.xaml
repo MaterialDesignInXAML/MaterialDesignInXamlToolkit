@@ -1,17 +1,12 @@
-﻿<Window x:Class="MaterialDesignColors.WpfExample.ColorZoneWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
-        xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-        mc:Ignorable="d"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextElement.FontWeight="Medium"
-        TextElement.FontSize="14"
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Title="Colour Zones" Height="600" Width="800">
+﻿<UserControl x:Class="MaterialDesignColors.WpfExample.ColorZones"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer>
         <StackPanel Margin="16">
             <TextBlock FontSize="16">Colour Zones</TextBlock>
@@ -42,7 +37,7 @@
             <TextBlock Margin="0 16 0 0" FontSize="10">Use primary mid colours, and nest colour zones!</TextBlock>
             <wpf:ColorZone Mode="PrimaryMid" Padding="16">
                 <StackPanel Orientation="Horizontal">
-                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />                
+                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                     <wpf:ColorZone Mode="Standard" Padding="8 4 8 4" CornerRadius="2" Panel.ZIndex="1"
                                    Margin="16 0 0 0"
                                    Effect="{DynamicResource MaterialDesignShadowDepth1}">
@@ -96,4 +91,5 @@
             </wpf:ColorZone>
         </StackPanel>
     </ScrollViewer>
-</Window>
+
+</UserControl>

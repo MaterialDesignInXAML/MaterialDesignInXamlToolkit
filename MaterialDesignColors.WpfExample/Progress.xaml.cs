@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MaterialDesignColors.WpfExample
 {
     /// <summary>
-    /// Interaction logic for ColorZoneWindow.xaml
+    /// Interaction logic for Progress.xaml
     /// </summary>
-    public partial class ColorZoneWindow : Window
+    public partial class Progress : UserControl
     {
-        public ColorZoneWindow()
+        public Progress()
         {
             InitializeComponent();
         }

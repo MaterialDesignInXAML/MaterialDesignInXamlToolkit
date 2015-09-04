@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,18 +11,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MaterialDesignColors.WpfExample
 {
     /// <summary>
-    /// Interaction logic for PaletteSelectorWindow.xaml
+    /// Interaction logic for MenusAndToolBars.xaml
     /// </summary>
-    public partial class PaletteSelectorWindow : Window
+    public partial class MenusAndToolBars : UserControl
     {
-        public PaletteSelectorWindow()
+        public MenusAndToolBars()
         {
             InitializeComponent();
+        }
+
+        private void TwitterButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://twitter.com/James_Willock");
         }
     }
 }
