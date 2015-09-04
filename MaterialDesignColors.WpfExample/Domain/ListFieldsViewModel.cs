@@ -6,14 +6,14 @@ using System.Windows.Controls;
 
 namespace MaterialDesignColors.WpfExample.Domain
 {
-    public class ListsWindowViewModel : INotifyPropertyChanged
+    public class ListsAndGridsViewModel : INotifyPropertyChanged
     {
         private readonly ObservableCollection<SelectableViewModel> _items1;
         private readonly ObservableCollection<SelectableViewModel> _items2;
         private readonly ObservableCollection<SelectableViewModel> _items3;
         private bool? _isAllItems3Selected;
 
-        public ListsWindowViewModel()
+        public ListsAndGridsViewModel()
         {
             _items1 = CreateData();
             _items2 = CreateData();

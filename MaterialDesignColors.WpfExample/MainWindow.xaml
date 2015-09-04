@@ -67,6 +67,24 @@
                     <wpfExample:ColorZones />
                 </domain:DemoItem.Content>
             </domain:DemoItem>
+            <domain:DemoItem Name="Lists">
+                <domain:DemoItem.Content>
+                    <wpfExample:Lists>
+                        <wpfExample:Lists.DataContext>
+                            <domain:ListsAndGridsViewModel />
+                        </wpfExample:Lists.DataContext>
+                    </wpfExample:Lists>
+                </domain:DemoItem.Content>
+            </domain:DemoItem>
+            <domain:DemoItem Name="Grids">
+                <domain:DemoItem.Content>
+                    <wpfExample:Grids>
+                        <wpfExample:Grids.DataContext>
+                            <domain:ListsAndGridsViewModel />
+                        </wpfExample:Grids.DataContext>
+                    </wpfExample:Grids>
+                </domain:DemoItem.Content>
+            </domain:DemoItem>
             <domain:DemoItem Name="Menus &amp; Tool Bars">
                 <domain:DemoItem.Content>
                     <wpfExample:MenusAndToolBars />

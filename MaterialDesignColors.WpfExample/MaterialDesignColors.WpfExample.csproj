@@ -80,8 +80,11 @@
     <Compile Include="Domain\ListFieldsViewModel.cs" />
     <Compile Include="Domain\SelectableViewModel.cs" />
     <Compile Include="Domain\TextFieldsViewModel.cs" />
-    <Compile Include="ListsWindow.xaml.cs">
-      <DependentUpon>ListsWindow.xaml</DependentUpon>
+    <Compile Include="Grids.xaml.cs">
+      <DependentUpon>Grids.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lists.xaml.cs">
+      <DependentUpon>Lists.xaml</DependentUpon>
     </Compile>
     <Compile Include="MenusAndToolBars.xaml.cs">
       <DependentUpon>MenusAndToolBars.xaml</DependentUpon>
@@ -112,7 +115,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListsWindow.xaml">
+    <Page Include="Grids.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Lists.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,21 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MaterialDesignColors.WpfExample.Domain;
 
 namespace MaterialDesignColors.WpfExample
 {
     /// <summary>
-    /// Interaction logic for ListsWindow.xaml
+    /// Interaction logic for Lists.xaml
     /// </summary>
-    public partial class ListsWindow : Window
+    public partial class Lists : UserControl
     {
-        public ListsWindow()
+        public Lists()
         {
             InitializeComponent();
-
-            DataContext = new ListsWindowViewModel();
         }
     }
 }
