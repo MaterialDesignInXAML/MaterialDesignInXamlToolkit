@@ -18,6 +18,7 @@ artifacts:
 - path: '**\MaterialDesignThemes.*.nupkg'
 - path: bin\**\*.*
 
+# configuration for master/CI branch
 -
   branches:
     only:
@@ -29,6 +30,7 @@ artifacts:
       api_key:
         secure: B+WIdbRYr/rJo1QMeDwNen2xcj4RTu1d8AZiA03kb8wsWZVQxt5OgsWRacmEjWRd
 
+# configuration for release branch
 -
   branches:
     only:
