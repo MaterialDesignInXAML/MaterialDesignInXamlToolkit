@@ -36,6 +36,6 @@ artifacts:
 
     version: 1.0.0.{build}
     deploy:
-	- provider: NuGet
+    - provider: NuGet
       api_key:
         secure: B+WIdbRYr/rJo1QMeDwNen2xcj4RTu1d8AZiA03kb8wsWZVQxt5OgsWRacmEjWRd
