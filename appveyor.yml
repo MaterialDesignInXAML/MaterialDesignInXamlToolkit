@@ -23,19 +23,19 @@ artifacts:
     only:
       - master
 
-	version: 0.1.0-beta{build}
-	deploy:
+    version: 0.1.0-beta{build}
+    deploy:
 	- provider: NuGet
-	  api_key:
-	    secure: B+WIdbRYr/rJo1QMeDwNen2xcj4RTu1d8AZiA03kb8wsWZVQxt5OgsWRacmEjWRd
+      api_key:
+        secure: B+WIdbRYr/rJo1QMeDwNen2xcj4RTu1d8AZiA03kb8wsWZVQxt5OgsWRacmEjWRd
 
 -
   branches:
     only:
       - release
 
-	version: 1.0.0.{build}
-	deploy:
+    version: 1.0.0.{build}
+    deploy:
 	- provider: NuGet
-	  api_key:
-	    secure: B+WIdbRYr/rJo1QMeDwNen2xcj4RTu1d8AZiA03kb8wsWZVQxt5OgsWRacmEjWRd
+      api_key:
+        secure: B+WIdbRYr/rJo1QMeDwNen2xcj4RTu1d8AZiA03kb8wsWZVQxt5OgsWRacmEjWRd
