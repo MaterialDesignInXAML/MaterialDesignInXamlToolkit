@@ -83,6 +83,9 @@
     <Compile Include="Grids.xaml.cs">
       <DependentUpon>Grids.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Lists.xaml.cs">
       <DependentUpon>Lists.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Grids.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,6 +215,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Chartridge046_small.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ms-icon-310x310.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Contact.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

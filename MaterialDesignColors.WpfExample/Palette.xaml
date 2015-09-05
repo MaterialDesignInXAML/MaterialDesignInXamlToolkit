@@ -28,15 +28,15 @@
         </Border>
         <Border Background="{DynamicResource PrimaryHueLightBrush}"
                 Grid.Row="1">
-            <TextBlock FontWeight="Bold" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}">Primary - Light</TextBlock>
+            <TextBlock FontWeight="Bold" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}">Light</TextBlock>
         </Border>
         <Border Background="{DynamicResource PrimaryHueMidBrush}"
                 Grid.Row="1" Grid.Column="1">
-            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">Primary - Mid</TextBlock>
+            <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">Mid</TextBlock>
         </Border>
         <Border Background="{DynamicResource PrimaryHueDarkBrush}"
                 Grid.Row="1" Grid.Column="2">
-            <TextBlock Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">Primary - Dark</TextBlock>
+            <TextBlock Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">Dark</TextBlock>
         </Border>
         <Border Background="{DynamicResource SecondaryAccentBrush}"
                 Grid.Row="2" Grid.ColumnSpan="3">

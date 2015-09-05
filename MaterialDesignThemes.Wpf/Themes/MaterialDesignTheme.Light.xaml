@@ -6,6 +6,7 @@
     <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FFFFFFFF"/>
     <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FFfafafa"/>
     <SolidColorBrush x:Key="MaterialDesignBody" Color="#DD000000"/>
+    <SolidColorBrush x:Key="MaterialDesignBodyLight" Color="#89000000"/>
     <SolidColorBrush x:Key="MaterialDesignColumnHeader" Color="#BC000000"/> <!-- 74% -->
     
     <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89000000" />
