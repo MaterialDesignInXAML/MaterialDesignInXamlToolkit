@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mdresgen", "mdresgen\mdresg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.Wpf", "MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj", "{F079FB0A-A8ED-4216-B6A5-345756751A04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignColors.WpfExample", "MaterialDesignColors.WpfExample\MaterialDesignColors.WpfExample.csproj", "{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainDemo.Wpf", "MainDemo.Wpf\MainDemo.Wpf.csproj", "{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignColors.Wpf", "MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj", "{90B53209-C60C-4655-B28D-A1B3E1044BA3}"
 EndProject
