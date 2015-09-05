@@ -27,7 +27,7 @@
                       VerticalAlignment="Bottom"
                       Margin="0 0 0 32">
             <StackPanel Orientation="Horizontal">
-                <wpf:Card Width="420" VerticalAlignment="Top" Margin="4 2 8 16" Height="280">
+                <wpf:Card Width="420" Margin="4 2 8 16" Height="280">
                     <Grid VerticalAlignment="Stretch" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -45,7 +45,8 @@
                                    VerticalAlignment="Top">Say hello, make a feature request, or raise a bug through one of these channels:</TextBlock>
                         <Border Grid.Column="1" Grid.Row="2" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Margin="0 8 0 0">
                             <Grid Margin="8">
-                                <Button Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left">
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left"
+                                        x:Name="GitHubButton" Click="GitHubButton_OnClick">
                                     <StackPanel Orientation="Horizontal">
                                         <Viewbox Width="16" Height="16">
                                             <Canvas Width="24" Height="24">
@@ -56,7 +57,8 @@
                                         <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">GitHub</TextBlock>
                                     </StackPanel>
                                 </Button>
-                                <Button Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right">
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right"
+                                        x:Name="TwitterButton" Click="TwitterButton_OnClick">
                                     <StackPanel Orientation="Horizontal">
                                         <Viewbox Width="16" Height="16">
                                             <Canvas Width="24" Height="24">
@@ -71,7 +73,8 @@
                         </Border>
                         <Border Grid.Column="1" Grid.Row="3" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}">
                             <Grid Margin="8">
-                                <Button Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left">
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left"
+                                        x:Name="ChatButton" Click="ChatButton_OnClick">
                                     <StackPanel Orientation="Horizontal">
                                         <Viewbox Width="16" Height="16">
                                             <Canvas Width="24" Height="24">
@@ -82,7 +85,8 @@
                                         <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">Chat</TextBlock>
                                     </StackPanel>
                                 </Button>
-                                <Button Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right">
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right"
+                                        x:Name="EmailButton" Click="EmailButton_OnClick">
                                     <StackPanel Orientation="Horizontal">
                                         <Viewbox Width="16" Height="16">
                                             <Canvas Width="24" Height="24">
@@ -97,7 +101,7 @@
                         </Border>
                     </Grid>
                 </wpf:Card>
-                <wpf:Card Width="420" VerticalAlignment="Top" Margin="8 2 4 16" Height="280">
+                <wpf:Card Width="420" Margin="8 2 4 16" Height="280">
                     <Grid VerticalAlignment="Stretch">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -114,7 +118,7 @@
                         <StackPanel Grid.Column="1">
                             <TextBlock FontSize="28" Margin="16 16 16 8"  FontWeight="Light">Open Source</TextBlock>
                             <TextBlock TextWrapping="Wrap" Margin="16 0 16 8" Foreground="{DynamicResource MaterialDesignBodyLight}"
-                                       VerticalAlignment="Top">This project is completely open source. If you like and want to say thanks you could hit the GitHub Star button, tweet or post about it, or tell your mum about it!</TextBlock>
+                                       VerticalAlignment="Top">This project is completely open source. If you like it and want to say thanks you could hit the GitHub Star button, tweet or post about it, or tell your mum about it!</TextBlock>
                         </StackPanel>
                     </Grid>
                 </wpf:Card>

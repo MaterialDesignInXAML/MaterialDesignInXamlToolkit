@@ -67,7 +67,7 @@
                                                             ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}" />
                 </DataGrid.Columns>
             </DataGrid>
-            <TextBlock Margin="0 24 0 0" >Auto Generated Columns</TextBlock>
+            <TextBlock Margin="0 24 0 0">Auto Generated Columns</TextBlock>
             <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" />
         </StackPanel>
     </ScrollViewer>
