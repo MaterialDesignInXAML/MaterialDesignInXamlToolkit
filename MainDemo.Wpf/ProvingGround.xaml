@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
@@ -50,23 +51,13 @@
                     <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent700Foreground}"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            
-            
-
-
-
-
-
-
-
-
 
         </ResourceDictionary>
 
     </UserControl.Resources>
 
     <Grid>
-        <ToolBarTray Style="{DynamicResource MaterialDesignToolBarTray}"  />
+        
     </Grid>
 
 </UserControl>

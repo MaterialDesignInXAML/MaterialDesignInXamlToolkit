@@ -26,6 +26,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolBarTray.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolTip.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TreeView.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}" />
 	<Style TargetType="{x:Type Calendar}" BasedOn="{StaticResource MaterialDesignCalendarPortrait}" />
@@ -51,6 +52,8 @@
     <Style TargetType="{x:Type ToolBar}" BasedOn="{StaticResource MaterialDesignToolBar}" />
     <Style TargetType="{x:Type ToolBarTray}" BasedOn="{StaticResource MaterialDesignToolBarTray}" />
     <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource MaterialDesignToolTip}" />
+    <Style TargetType="{x:Type TreeView}" BasedOn="{StaticResource MaterialDesignTreeView}" />
+    <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource MaterialDesignTreeViewItem}" />
     <Style TargetType="{x:Type Menu}" BasedOn="{StaticResource MaterialDesignMenu}" />
     <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}" />
     <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="{x:Type Separator}" BasedOn="{StaticResource MaterialDesignSeparator}" />
