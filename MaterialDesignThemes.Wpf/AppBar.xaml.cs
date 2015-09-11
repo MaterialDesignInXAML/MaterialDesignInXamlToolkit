@@ -16,6 +16,10 @@ using System.Windows.Shapes;
 
 namespace MaterialDesignThemes.Wpf
 {
+    /// <summary>
+    /// A custom control implementing the concept of the app bar.
+    /// It provides an optional toggle button for a side nav, a title, an optional search form and a content area (to add buttons for example).
+    /// </summary>
     [ContentProperty("Children")]
     public partial class AppBar : UserControl
     {
