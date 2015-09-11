@@ -106,7 +106,6 @@
     <Compile Include="ProvingGround.xaml.cs">
       <DependentUpon>ProvingGround.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProvingGroundStuff\Converters.cs" />
     <Compile Include="TextFields.xaml.cs">
       <DependentUpon>TextFields.xaml</DependentUpon>
     </Compile>
@@ -235,6 +234,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ProvingGroundStuff\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

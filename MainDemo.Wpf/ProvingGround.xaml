@@ -3,10 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-             xmlns:cicularProgressBar="clr-namespace:MaterialDesignColors.WpfExample.ProvingGroundStuff.MaterialDesignColors.WpfExample.ProvingGroundStuff.CicularProgressBar"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
@@ -53,105 +49,7 @@
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
 
-            <cicularProgressBar:StartPointConverter x:Key="StartPointConverter" />
-            <cicularProgressBar:ArcSizeConverter x:Key="ArcSizeConverter" />
-            <cicularProgressBar:ArcEndPointConverter x:Key="ArcEndPointConverter" />
-            <cicularProgressBar:LargeArcConverter x:Key="LargeArcConverter" />
-            <cicularProgressBar:RotateTransformConverter x:Key="RotateTransformConverter" />
-            <cicularProgressBar:RotateTransformCentreConverter x:Key="RotateTransformCentreConverter" />
-
-            <Style x:Key="MaterialDesignCicularProgressBar" TargetType="{x:Type ProgressBar}">
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="Width" Value="20" />
-                <Setter Property="Height" Value="20" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ProgressBar}">
-                            <ControlTemplate.Resources>
-                                <Storyboard x:Key="IsIndeterminateStoryboard" TargetName="RotateTransform" TargetProperty="Angle" RepeatBehavior="Forever">
-                                    <DoubleAnimation From="0" To="359" Duration="0:0:2" />
-                                </Storyboard>
-                            </ControlTemplate.Resources>
-                            <Grid x:Name="TemplateRoot" Background="{TemplateBinding Background}" ClipToBounds="False">
-                                <Grid x:Name="PathGrid" Margin="2" />
-                                <Canvas>
-                                    <Path x:Name="Path" Stroke="{TemplateBinding Foreground}" StrokeThickness="3" 
-                                          Canvas.Top="2" Canvas.Left="2"
-                                          RenderTransformOrigin="0, 0">
-                                        <Path.Data>
-                                            <PathGeometry>
-                                                <PathFigure StartPoint="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource StartPointConverter}, Mode=OneWay}">
-                                                    <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource ArcSizeConverter}, Mode=OneWay}"                                                             
-                                                                SweepDirection="Clockwise"
-                                                                >
-                                                        <ArcSegment.IsLargeArc>
-                                                            <MultiBinding Converter="{StaticResource LargeArcConverter}">
-                                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value" />
-                                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Minimum" />
-                                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Maximum" />
-                                                            </MultiBinding>
-                                                        </ArcSegment.IsLargeArc>
-                                                        <ArcSegment.Point>
-                                                            <MultiBinding Converter="{StaticResource ArcEndPointConverter}">
-                                                                <Binding ElementName="PathGrid" Path="ActualWidth" />
-                                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value" />
-                                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Minimum" />
-                                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Maximum" />
-                                                            </MultiBinding>
-                                                        </ArcSegment.Point>
-                                                    </ArcSegment>
-                                                </PathFigure>
-                                            </PathGeometry>
-                                        </Path.Data>
-                                        <Path.RenderTransform>
-                                            <TransformGroup>
-                                                <RotateTransform x:Name="RotateTransform"
-                                                                 CenterX="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource RotateTransformCentreConverter}, Mode=OneWay}" 
-                                                                 CenterY="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource RotateTransformCentreConverter}, Mode=OneWay}">
-                                                    <RotateTransform.Angle>
-                                                        <MultiBinding Converter="{StaticResource RotateTransformConverter}">
-                                                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value" />
-                                                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Minimum" />
-                                                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Maximum" />
-                                                        </MultiBinding>
-                                                    </RotateTransform.Angle>
-                                                </RotateTransform>
-                                            </TransformGroup>
-                                        </Path.RenderTransform>
-                                    </Path>
-                                </Canvas>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsIndeterminate" Value="True">
-                                    <Trigger.EnterActions>
-                                        <BeginStoryboard Storyboard="{StaticResource IsIndeterminateStoryboard}"
-                                                         Name="IsIndeterminateStoryboard"/>
-                                    </Trigger.EnterActions>
-                                    <Trigger.ExitActions>
-                                        <RemoveStoryboard BeginStoryboardName="IsIndeterminateStoryboard" />                                        
-                                    </Trigger.ExitActions>
-                                </Trigger>
-                                <!--
-                                <MultiTrigger>
-                                    <MultiTrigger.Conditions>
-                                        <Condition Property="IsIndeterminate" Value="True" />
-                                        <Condition Property="Value" Value="0" />
-                                    </MultiTrigger.Conditions>
-                                    <MultiTrigger.EnterActions>
-                                        <BeginStoryboard Storyboard="{StaticResource IsFullyIndeterminateStoryboard}"
-                                                         Name="IsFullyIndeterminateStoryboard"/>
-                                    </MultiTrigger.EnterActions>
-                                    <MultiTrigger.ExitActions>
-                                        <RemoveStoryboard BeginStoryboardName="IsFullyIndeterminateStoryboard" />
-                                    </MultiTrigger.ExitActions>
-                                </MultiTrigger>
-                                -->
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+            
 
         </ResourceDictionary>
 
@@ -159,74 +57,6 @@
 
     </UserControl.Resources>
 
-    <Grid VerticalAlignment="Top">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
 
-        <ProgressBar Style="{StaticResource MaterialDesignCicularProgressBar}" 
-                     x:Name="DeterminateCircularProgress"
-                     VerticalAlignment="Center" Margin="12 12 0 12" />
-        <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="12" TextWrapping="Wrap">Standard deterministic progress bar, running from 0 to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value property.</TextBlock>
-
-        <ProgressBar Style="{StaticResource MaterialDesignCicularProgressBar}"                     
-                     Value="35"
-                     IsIndeterminate="True"
-                     Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="12 12 0 12"/>
-        <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="12" TextWrapping="Wrap">Indeterminate progress bar, at 35%.</TextBlock>
-
-        <ProgressBar Style="{StaticResource MaterialDesignCicularProgressBar}"                     
-                     Value="0"
-                     IsIndeterminate="True"
-                     Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="12 12 0 12"/>
-        <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="12" TextWrapping="Wrap">Fully indeterminate progress bar, using .Value=0 to inform the theme.</TextBlock>
-
-        <ProgressBar Style="{StaticResource MaterialDesignCicularProgressBar}"                     
-                     Value="20"
-                     IsIndeterminate="True"
-                     x:Name="IndeterminateToDeterminateCircularProgress"
-                     Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="12 12 0 12"/>
-        <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="12" TextWrapping="Wrap">An indeterminate job transitioning to a determinate job, completing to 100%.</TextBlock>
-
-        
-
-
-    </Grid>
-    <UserControl.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <EventTrigger.Actions>
-                <BeginStoryboard>
-                    <Storyboard TargetName="DeterminateCircularProgress" TargetProperty="Value" RepeatBehavior="Forever">
-                        <DoubleAnimation From="0" To="100" Duration="0:0:2.5">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                    </Storyboard>
-                </BeginStoryboard>
-                <BeginStoryboard>
-                    <Storyboard TargetName="IndeterminateToDeterminateCircularProgress" RepeatBehavior="Forever" Duration="0:0:10">
-                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsIndeterminate">
-                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:4" />
-                        </BooleanAnimationUsingKeyFrames>
-                        <DoubleAnimation From="20" To="100" Duration="0:0:2.5" BeginTime="0:0:4" 
-                                         Storyboard.TargetProperty="Value"
-                                         FillBehavior="HoldEnd">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                    </Storyboard>
-                </BeginStoryboard>
-            </EventTrigger.Actions>
-        </EventTrigger>
-    </UserControl.Triggers>
 
 </UserControl>
