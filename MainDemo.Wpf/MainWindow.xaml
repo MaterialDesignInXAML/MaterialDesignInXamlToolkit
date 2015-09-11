@@ -23,16 +23,24 @@
     </Window.Resources>
 
     <DockPanel>
-        <wpf:ColorZone Padding="16" Effect="{StaticResource MaterialDesignShadowDepth2}"
-                       Mode="PrimaryMid" DockPanel.Dock="Top">
-            <DockPanel>
-                <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="True"
-                              x:Name="MenuToggleButton"/>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
-            </DockPanel>
-        </wpf:ColorZone>
+        <wpf:AppBar DockPanel.Dock="Top" x:Name="ActionBar" Title="Material Design in XAML Toolkit" IsNavigationDrawerOpen="True" ShowNavigationDrawerButton="True" SearchFormVisibility="Folded" SearchHint="Enter your search">
+            <Button Style="{StaticResource MaterialDesignToolForegroundButton}">
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M16.5,6V17.5A4,4 0 0,1 12.5,21.5A4,4 0 0,1 8.5,17.5V5A2.5,2.5 0 0,1 11,2.5A2.5,2.5 0 0,1 13.5,5V15.5A1,1 0 0,1 12.5,16.5A1,1 0 0,1 11.5,15.5V6H10V15.5A2.5,2.5 0 0,0 12.5,18A2.5,2.5 0 0,0 15,15.5V5A4,4 0 0,0 11,1A4,4 0 0,0 7,5V17.5A5.5,5.5 0 0,0 12.5,23A5.5,5.5 0 0,0 18,17.5V6H16.5Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignToolForegroundButton}">
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+        </wpf:AppBar>
         <ListBox DockPanel.Dock="Left" x:Name="DemoItemsListBox" Margin="16 16 0 16" SelectedIndex="0"
-                 Visibility="{Binding ElementName=MenuToggleButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                 Visibility="{Binding ElementName=ActionBar, Path=IsNavigationDrawerOpen, Converter={StaticResource BooleanToVisibilityConverter}}">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="domain:DemoItem">
                     <TextBlock Text="{Binding Name}" />
