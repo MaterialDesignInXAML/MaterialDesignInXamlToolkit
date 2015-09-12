@@ -89,6 +89,11 @@
                     </wpfExample:Lists>
                 </domain:DemoItem.Content>
             </domain:DemoItem>
+            <domain:DemoItem Name="Trees">
+                <domain:DemoItem.Content>
+                    <wpfExample:Trees />
+                </domain:DemoItem.Content>
+            </domain:DemoItem>
             <domain:DemoItem Name="Grids">
                 <domain:DemoItem.Content>
                     <wpfExample:Grids>

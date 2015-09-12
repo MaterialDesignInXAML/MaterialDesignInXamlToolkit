@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                    
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:globalization="clr-namespace:System.Globalization;assembly=mscorlib">
     <Style x:Key="MaterialDesignCalendarButton" TargetType="{x:Type CalendarButton}">
         <Setter Property="MinWidth" Value="5"/>
         <Setter Property="MinHeight" Value="5"/>
@@ -363,7 +364,7 @@
                                 <Border Grid.ColumnSpan="3" Grid.Row="0" Background="{DynamicResource PrimaryHueDarkBrush}" CornerRadius="2 2 0 0">
                                     <TextBlock HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Margin="8" FontSize="14">
                                         <TextBlock.Text>
-                                            <MultiBinding Mode="OneWay" StringFormat="dddd">
+                                            <MultiBinding Mode="OneWay" StringFormat="dddd" ConverterCulture="{x:Static globalization:CultureInfo.CurrentUICulture}" >
                                                 <MultiBinding.Converter>
                                                     <converters:CalendarDateCoalesceConverter />
                                                 </MultiBinding.Converter>
@@ -380,7 +381,7 @@
                                 <Button x:Name="PART_PreviousButton" Grid.Row="2" Grid.Column="0" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
                                             Margin="40 0 0 0" Foreground="{TemplateBinding Foreground}" />
                                 <TextBlock HorizontalAlignment="Center" Margin="8" FontSize="14" Grid.Row="2" Grid.Column="1" FontWeight="SemiBold" VerticalAlignment="Center"
-                                               Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=DisplayDate, StringFormat=MMMM yyyy}" />
+                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=DisplayDate, ConverterCulture={x:Static globalization:CultureInfo.CurrentUICulture}, StringFormat=MMMM yyyy}" />
                                 <Button x:Name="PART_NextButton" Grid.Row="2" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="36" Template="{StaticResource NextButtonTemplate}" Width="32"
                                             Margin="0 0 40 0" Foreground="{TemplateBinding Foreground}" />
                                 <Grid x:Name="PART_MonthView" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="6,-1,6,6" Grid.Row="3" Visibility="Visible">

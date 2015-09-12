@@ -192,6 +192,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.TreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppBar.xaml.cs">
@@ -204,6 +208,13 @@
     <Compile Include="ColorZone.cs" />
     <Compile Include="Converters\BrushToRadialGradientBrushConverter.cs" />
     <Compile Include="Converters\CalendarDateCoalesceConverter.cs" />
+    <Compile Include="Converters\CircularProgressBar\ArcEndPointConverter.cs" />
+    <Compile Include="Converters\CircularProgressBar\ArcSizeConverter.cs" />
+    <Compile Include="Converters\CircularProgressBar\LocalEx.cs" />
+    <Compile Include="Converters\CircularProgressBar\LargeArcConverter.cs" />
+    <Compile Include="Converters\CircularProgressBar\RotateTransformCentreConverter.cs" />
+    <Compile Include="Converters\CircularProgressBar\RotateTransformConverter.cs" />
+    <Compile Include="Converters\CircularProgressBar\StartPointConverter.cs" />
     <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
     <Compile Include="Converters\ClockLineConverter.cs" />
     <Compile Include="Converters\NotConverter.cs" />
