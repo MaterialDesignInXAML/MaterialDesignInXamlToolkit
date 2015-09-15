@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="Deep PurplePrimary50">#ede7f6</Color>
+  <Color x:Key="Deep PurplePrimary50Foreground">#DD000000</Color>
+  <Color x:Key="Deep PurplePrimary100">#d1c4e9</Color>
+  <Color x:Key="Deep PurplePrimary100Foreground">#DD000000</Color>
+  <Color x:Key="Deep PurplePrimary200">#b39ddb</Color>
+  <Color x:Key="Deep PurplePrimary200Foreground">#DD000000</Color>
+  <Color x:Key="Deep PurplePrimary300">#9575cd</Color>
+  <Color x:Key="Deep PurplePrimary300Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep PurplePrimary400">#7e57c2</Color>
+  <Color x:Key="Deep PurplePrimary400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep PurplePrimary500">#673ab7</Color>
+  <Color x:Key="Deep PurplePrimary500Foreground">#DDFFFFFF</Color>
+  <Color x:Key="Deep PurplePrimary600">#5e35b1</Color>
+  <Color x:Key="Deep PurplePrimary600Foreground">#DDFFFFFF</Color>
+  <Color x:Key="Deep PurplePrimary700">#512da8</Color>
+  <Color x:Key="Deep PurplePrimary700Foreground">#DDFFFFFF</Color>
+  <Color x:Key="Deep PurplePrimary800">#4527a0</Color>
+  <Color x:Key="Deep PurplePrimary800Foreground">#DDFFFFFF</Color>
+  <Color x:Key="Deep PurplePrimary900">#311b92</Color>
+  <Color x:Key="Deep PurplePrimary900Foreground">#DDFFFFFF</Color>
+  <Color x:Key="Deep PurpleAccent100">#b388ff</Color>
+  <Color x:Key="Deep PurpleAccent100Foreground">#DD000000</Color>
+  <Color x:Key="Deep PurpleAccent200">#7c4dff</Color>
+  <Color x:Key="Deep PurpleAccent200Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep PurpleAccent400">#651fff</Color>
+  <Color x:Key="Deep PurpleAccent400Foreground">#DDFFFFFF</Color>
+  <Color x:Key="Deep PurpleAccent700">#6200ea</Color>
+  <Color x:Key="Deep PurpleAccent700Foreground">#DDFFFFFF</Color>
+</ResourceDictionary>
