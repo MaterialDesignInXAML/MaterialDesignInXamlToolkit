@@ -17,19 +17,6 @@ namespace MaterialDesignThemes.Wpf
     {
         private const string RatingBarGridPartName = "PART_ratingBarGrid";
 
-        private static readonly DependencyProperty ButtonContentTemplateProperty = DependencyProperty.Register("ButtonContentTemplate", typeof(DataTemplate), typeof(RatingBar));
-
-        public DataTemplate ButtonContentTemplate
-        {
-            get { return (DataTemplate)GetValue(ButtonContentTemplateProperty); }
-
-            set {
-                SetValue(ButtonContentTemplateProperty, value);
-
-                RebuildUi();
-            }
-        }
-
         public static readonly DependencyProperty MaxValueProperty = DependencyProperty.Register("MaxRating", typeof(int), typeof(RatingBar));
 
         public int MaxRating
@@ -72,6 +59,20 @@ namespace MaterialDesignThemes.Wpf
                 SetValue(RatingProperty, rating);
 
                 UpdateButtonOpacity();
+            }
+        }
+
+        private static readonly DependencyProperty RatingItemTemplateProperty = DependencyProperty.Register("RatingItemTemplate", typeof(DataTemplate), typeof(RatingBar));
+
+        public DataTemplate RatingItemTemplate
+        {
+            get { return (DataTemplate)GetValue(RatingItemTemplateProperty); }
+
+            set
+            {
+                SetValue(RatingItemTemplateProperty, value);
+
+                RebuildUi();
             }
         }
 
@@ -124,7 +125,7 @@ namespace MaterialDesignThemes.Wpf
                 for (int i = 0; i < MaxRating; i++)
                 {
                     Button button = new Button();
-                    button.ContentTemplate = ButtonContentTemplate;
+                    button.ContentTemplate = RatingItemTemplate;
 
                     button.DataContext = this;
                     Binding enabledBinding = new Binding("IsEnabled");
