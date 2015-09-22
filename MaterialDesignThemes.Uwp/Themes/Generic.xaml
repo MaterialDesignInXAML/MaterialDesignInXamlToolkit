@@ -1,0 +1,58 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MaterialDesignThemes.Uwp"
+    xmlns:xaml="using:Microsoft.Graphics.Canvas.UI.Xaml">
+
+    <Style TargetType="local:Shadow" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Shadow">
+                    <Grid>
+                        <xaml:CanvasControl x:Name="PART_CanvasControl" />
+                        <Grid Margin="1 0 1 3">
+                            <ContentPresenter x:Name="PART_ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:Ripple">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="Transparent" />        
+        <Setter Property="Feedback" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Ripple">
+                    <Grid Background="Transparent">
+                        <Canvas IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Ellipse x:Name="ClickEllipse" Fill="{TemplateBinding Feedback}" Opacity="1" Width="10" Height="10" 
+                                     Canvas.Left="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PointerPressedX}" 
+                                     Canvas.Top="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PointerPressedY}"
+                                     RenderTransformOrigin=".5,.5">
+                                <Ellipse.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform x:Name="TranslateTransform"/>
+                                    </TransformGroup>
+                                </Ellipse.RenderTransform>
+                            </Ellipse>
+                        </Canvas>
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

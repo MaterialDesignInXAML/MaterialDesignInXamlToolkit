@@ -68,19 +68,19 @@
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 16 0 0">
-            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 0" Width="88"
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedLightButton">
                 LIGHT
             </Button>
-            <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 0" Width="88"
+            <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedButton">
                 MID
             </Button>
-            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 0" Width="88"
+            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
                 DARK
             </Button>
-            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 0" Width="88"
+            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton">
                 ACCENT
             </Button>

@@ -17,7 +17,7 @@
     <ScrollViewer>
         <StackPanel>
             <TextBlock>Custom Columns</TextBlock>
-            <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" HeadersVisibility="All">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Binding="{Binding IsSelected}" 
                                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"

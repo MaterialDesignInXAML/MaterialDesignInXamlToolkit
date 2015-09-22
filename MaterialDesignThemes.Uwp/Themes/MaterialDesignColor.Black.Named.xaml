@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="BlackPrimaryWhite">#ffffff</Color>
+  <Color x:Key="BlackPrimaryWhiteForeground">#DD000000</Color>
+</ResourceDictionary>
