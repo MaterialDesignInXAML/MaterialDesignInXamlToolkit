@@ -29,6 +29,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:Ripple">
                     <Grid Background="Transparent">
+<<<<<<< HEAD
                         <Canvas IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Ellipse x:Name="ClickEllipse" Fill="{TemplateBinding Feedback}" Opacity="1" Width="10" Height="10" 
                                      Canvas.Left="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PointerPressedX}" 
@@ -37,6 +38,69 @@
                                 <Ellipse.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform />
+=======
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Normal" To="MousePressed">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseInOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseInOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ClickEllipse">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value=".26"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value=".26"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="MousePressed" To="Normal">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform" From="1" To="0" Duration="0:0:0" />
+                                            <DoubleAnimation Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform" From="1" To="0" Duration="0:0:0" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MousePressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform">
+                                            <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform">
+                                            <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Canvas IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Ellipse x:Name="ClickEllipse" Fill="{TemplateBinding Feedback}" Opacity="0" 
+                                     Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleSize}" 
+                                     Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleSize}" 
+                                     Canvas.Left="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleX}" 
+                                     Canvas.Top="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleY}"
+                                     RenderTransformOrigin=".5,.5">
+                                <Ellipse.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform x:Name="ScaleTransform" 
+                                                        />
+>>>>>>> a27409f27850f2f66b86905963924270e29b69a7
                                         <SkewTransform/>
                                         <RotateTransform/>
                                         <TranslateTransform x:Name="TranslateTransform"/>
