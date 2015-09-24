@@ -125,6 +125,7 @@
                             <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                        FontSize="{TemplateBinding FontSize}"
                                        HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"
                                        x:Name="Hint"
                                        Margin="1 0 1 0"
                                        Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
