@@ -5,6 +5,10 @@
 
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
 
+
+    <Color x:Key="ValidationErrorColor">#f44336</Color>
+    <SolidColorBrush x:Key="ValidationErrorBrush" Color="{StaticResource ValidationErrorColor}"/>
+
     <Style x:Key="MaterialDesignTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
@@ -19,16 +23,7 @@
         <Setter Property="AllowDrop" Value="true"/>        
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-        <Setter Property="Validation.ErrorTemplate">
-            <Setter.Value>
-                <ControlTemplate>
-                    <StackPanel>
-                        <AdornedElementPlaceholder />
-                        <TextBlock FontSize="10" Foreground="#f44336" Text="{Binding Path=[0].ErrorContent}" />
-                    </StackPanel>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource MaterialDesignValidationErrorTemplate}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -58,7 +53,7 @@
                             <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter Property="BorderBrush" Value="#f44336"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -163,7 +158,7 @@
                             <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter Property="BorderBrush" Value="#f44336"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
