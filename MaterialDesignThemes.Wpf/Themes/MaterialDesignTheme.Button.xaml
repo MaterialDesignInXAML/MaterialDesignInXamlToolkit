@@ -96,7 +96,7 @@
                                 <Border Background="{TemplateBinding Background}"
                                         CornerRadius="2"
                                         Opacity="0"
-                                        Effect="{StaticResource MaterialDesignShadowDepth3}"
+                                        Effect="{StaticResource MaterialDesignHardShadowDepth3}"
                                         x:Name="ShadowBorder"/>
                                 <Border Background="{TemplateBinding Background}"
                                         CornerRadius="2"
