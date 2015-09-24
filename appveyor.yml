@@ -12,6 +12,8 @@
     assembly_version: '{version}'
     assembly_file_version: '{version}'
     assembly_informational_version: '{version}'
+  environment:
+    RestorePackages: false
   install:
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   before_build:
@@ -44,6 +46,8 @@
     assembly_version: '{version}'
     assembly_file_version: '{version}'
     assembly_informational_version: '{version}'
+  environment:
+    RestorePackages: false    
   install:
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   before_build:
