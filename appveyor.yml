@@ -12,11 +12,14 @@
     assembly_version: '{version}'
     assembly_file_version: '{version}'
     assembly_informational_version: '{version}'
+  environment:
+    RestorePackages: false
   install:
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   before_build:
-  - ps: nuget restore
+  - ps: nuget restore MaterialDesignToolkit.Wpf.sln
   build:
+    project: MaterialDesignToolkit.Wpf.sln
     verbosity: minimal
   after_build:
   - ps: nuget pack MaterialDesignThemes.nuspec -Version $env:APPVEYOR_BUILD_VERSION
@@ -44,11 +47,14 @@
     assembly_version: '{version}'
     assembly_file_version: '{version}'
     assembly_informational_version: '{version}'
+  environment:
+    RestorePackages: false    
   install:
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   before_build:
-  - ps: nuget restore
+  - ps: nuget restore MaterialDesignToolkit.Wpf.sln
   build:
+    project: MaterialDesignToolkit.Wpf.sln
     verbosity: minimal
   after_build:
   - ps: nuget pack MaterialDesignThemes.nuspec -Version $env:APPVEYOR_BUILD_VERSION
