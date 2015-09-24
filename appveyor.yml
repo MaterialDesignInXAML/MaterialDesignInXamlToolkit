@@ -17,7 +17,7 @@
   install:
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   before_build:
-  - ps: nuget restore
+  - ps: nuget restore MaterialDesignToolkit.Wpf.sln
   build:
     verbosity: minimal
   after_build:
@@ -51,7 +51,7 @@
   install:
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   before_build:
-  - ps: nuget restore
+  - ps: nuget restore MaterialDesignToolkit.Wpf.sln
   build:
     verbosity: minimal
   after_build:
