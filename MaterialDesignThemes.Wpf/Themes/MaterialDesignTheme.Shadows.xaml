@@ -11,5 +11,11 @@
     <DropShadowEffect x:Key="MaterialDesignShadowDepth3" BlurRadius="14" ShadowDepth="4.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" po:Freeze="True" />
     <DropShadowEffect x:Key="MaterialDesignShadowDepth4" BlurRadius="25" ShadowDepth="8" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" po:Freeze="True" />
     <DropShadowEffect x:Key="MaterialDesignShadowDepth5" BlurRadius="35" ShadowDepth="13" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" po:Freeze="True" />
-	
+    
+    <DropShadowEffect x:Key="MaterialDesignHardShadowDepth1" BlurRadius="5" ShadowDepth="1" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".92" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignHardShadowDepth2" BlurRadius="8" ShadowDepth="1.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".92" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignHardShadowDepth3" BlurRadius="14" ShadowDepth="4.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".92" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignHardShadowDepth4" BlurRadius="25" ShadowDepth="8" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".92" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignHardShadowDepth5" BlurRadius="35" ShadowDepth="13" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".92" po:Freeze="True" />
+
 </ResourceDictionary>
