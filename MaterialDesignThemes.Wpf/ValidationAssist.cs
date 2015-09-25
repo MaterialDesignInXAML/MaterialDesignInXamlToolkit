@@ -31,5 +31,28 @@ namespace MaterialDesignThemes.Wpf
         }
 
         #endregion
+
+        #region UsePopupProperty
+
+        /// <summary>
+        /// The hint property
+        /// </summary>
+        public static readonly DependencyProperty UsePopupProperty = DependencyProperty.RegisterAttached(
+            "UsePopup",
+            typeof(bool),
+            typeof(ValidationAssist),
+            new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
+
+        public static bool GetUsePopup(DependencyObject element)
+        {
+            return (bool)element.GetValue(ShowOnFocusProperty);
+        }
+
+        public static void SetUsePopup(DependencyObject element, bool value)
+        {
+            element.SetValue(ShowOnFocusProperty, value);
+        }
+
+        #endregion
     }
 }
