@@ -6,9 +6,6 @@
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
 
 
-    <Color x:Key="ValidationErrorColor">#f44336</Color>
-    <SolidColorBrush x:Key="ValidationErrorBrush" Color="{StaticResource ValidationErrorColor}"/>
-
     <Style x:Key="MaterialDesignTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
