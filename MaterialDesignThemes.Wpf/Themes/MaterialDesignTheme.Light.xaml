@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
     <!-- plan is to add all of the light/dark specific brushes, quite granular at first. can then consolodate any repition later on if necessary -->
+    <Color x:Key="ValidationErrorColor">#f44336</Color>
+    <SolidColorBrush x:Key="ValidationErrorBrush" Color="{StaticResource ValidationErrorColor}"/>
 
     <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FFFFFFFF"/>
     <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FFfafafa"/>
