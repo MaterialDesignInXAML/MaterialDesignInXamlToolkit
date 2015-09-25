@@ -135,9 +135,9 @@
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
-                        <EventTrigger RoutedEvent="Click">
-                            <!--BeginStoryboard Storyboard="{StaticResource OnClick}"/-->
-                        </EventTrigger>
+                        <!--EventTrigger RoutedEvent="Click">
+                            <BeginStoryboard Storyboard="{StaticResource OnClick}"/>
+                        </-->
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -304,7 +304,7 @@
                         <Ellipse Fill="White"
                                  Stroke="{TemplateBinding BorderBrush}"
                                  StrokeThickness="{TemplateBinding BorderThickness}"
-                                 Effect="{DynamicResource MaterialDesignShadowDepth3}"
+                                 Effect="{DynamicResource MaterialDesignHardShadowDepth3}"
                                  x:Name="HoverBorder"
                                  Opacity="0"
                                  RenderTransformOrigin="0.5,0.5" >
