@@ -66,6 +66,5 @@
                 <Setter TargetName="DefaultErrorViewerWrapper" Property="Visibility" Value="Visible"/>
             </DataTrigger>
         </ControlTemplate.Triggers>
->>>>>>> ValidationErrorTemplate
     </ControlTemplate>
 </ResourceDictionary>
