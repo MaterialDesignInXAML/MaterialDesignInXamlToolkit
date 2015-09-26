@@ -116,13 +116,12 @@
                                 </Border>
                                 <Border Background="Transparent" x:Name="Border"
                                         CornerRadius="2"/>
-									<wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"      
-												x:Name="RippleWrapper"
-                                                Feedback="White"
-                                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                Padding="{TemplateBinding Padding}" 
-                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
+                                            Feedback="White"
+                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            Padding="{TemplateBinding Padding}" 
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                             </Grid>
                         </Border>
                     </Grid>
@@ -139,9 +138,9 @@
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
-                        <EventTrigger RoutedEvent="Click">
-                            <!--BeginStoryboard Storyboard="{StaticResource OnClick}"/-->
-                        </EventTrigger>
+                        <!--EventTrigger RoutedEvent="Click">
+                            <BeginStoryboard Storyboard="{StaticResource OnClick}"/>
+                        </-->
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -306,10 +305,21 @@
                                                          Duration="0"
                                                          Storyboard.TargetName="HoverBorder"
                                                          Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation To="1"
+                                                         Duration="0"
+                                                         Storyboard.TargetName="ShadowBorder"
+                                                         Storyboard.TargetProperty="Opacity"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        <Ellipse Fill="{TemplateBinding Background}"
+                                 Stroke="{TemplateBinding BorderBrush}"
+                                 StrokeThickness="{TemplateBinding BorderThickness}"
+                                 Effect="{DynamicResource MaterialDesignHardShadowDepth1}"
+                                 x:Name="ShadowBorder"
+                                 Opacity="0"
+                                 RenderTransformOrigin="0.5,0.5" />
                         <Ellipse Fill="{TemplateBinding Background}"
                                  Stroke="{TemplateBinding BorderBrush}"
                                  StrokeThickness="{TemplateBinding BorderThickness}"
@@ -318,7 +328,6 @@
                         <Ellipse Fill="White"
                                  Stroke="{TemplateBinding BorderBrush}"
                                  StrokeThickness="{TemplateBinding BorderThickness}"
-                                 Effect="{DynamicResource MaterialDesignShadowDepth3}"
                                  x:Name="HoverBorder"
                                  Opacity="0"
                                  RenderTransformOrigin="0.5,0.5" >
