@@ -23,6 +23,8 @@ namespace MaterialDesignColors.WpfExample
         public Buttons()
         {
             InitializeComponent();
+
+            ratingTextBlock.DataContext = ratingBar;
         }
 
 	    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
