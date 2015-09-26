@@ -192,6 +192,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.ValidationErrorTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
@@ -199,6 +203,7 @@
     <Compile Include="ClockChoiceMadeEventArgs.cs" />
     <Compile Include="ClockItemButton.cs" />
     <Compile Include="ColorZone.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BrushToRadialGradientBrushConverter.cs" />
     <Compile Include="Converters\CalendarDateCoalesceConverter.cs" />
     <Compile Include="Converters\CircularProgressBar\ArcEndPointConverter.cs" />
@@ -215,6 +220,7 @@
     <Compile Include="Converters\NotZeroToVisibilityConverter.cs" />
     <Compile Include="Converters\SizeToRectConverter.cs" />
     <Compile Include="CustomPopupPlacementCallbackHelper.cs" />
+    <Compile Include="CustomValidationPopup.cs" />
     <Compile Include="DataGridAssist.cs" />
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="ListSortDirectionIndicator.cs" />
@@ -248,6 +254,7 @@
     <Compile Include="ToolTipAssist.cs" />
     <Compile Include="RippleAssist.cs" />
     <Compile Include="Ripple.cs" />
+    <Compile Include="ValidationAssist.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -282,6 +289,7 @@
       <Name>MaterialDesignColors.Wpf</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
