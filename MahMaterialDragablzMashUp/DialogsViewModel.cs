@@ -21,6 +21,8 @@ namespace MahMaterialDragablzMashUp
 
         public ICommand ShowLeftFlyoutCommand { get; }
 
+        private ResourceDictionary DialogDictionary = new ResourceDictionary() { Source = new Uri("pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/Dialogs.xaml") };
+
         public DialogsViewModel()
         {
             ShowInputDialogCommand = new AnotherCommandImplementation(_ => InputDialog());
@@ -34,12 +36,8 @@ namespace MahMaterialDragablzMashUp
         {
             var metroDialogSettings = new MetroDialogSettings
             {
-                CustomResourceDictionary =
-                    new ResourceDictionary
-                    {
-                        Source = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.MahApps.Dialogs.xaml")
-                    },
-                NegativeButtonText = "CANCEL",                
+                CustomResourceDictionary = DialogDictionary,
+                NegativeButtonText = "CANCEL",
                 SuppressDefaultResources = true
             };
 
@@ -50,11 +48,7 @@ namespace MahMaterialDragablzMashUp
         {
             var metroDialogSettings = new MetroDialogSettings
             {
-                CustomResourceDictionary =
-                    new ResourceDictionary
-                    {
-                        Source = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.MahApps.Dialogs.xaml")
-                    },
+                CustomResourceDictionary = DialogDictionary,
                 NegativeButtonText = "CANCEL",
                 SuppressDefaultResources = true
             };
@@ -64,7 +58,7 @@ namespace MahMaterialDragablzMashUp
 
         private void ShowLeftFlyout()
         {
-            ((MainWindow) Application.Current.MainWindow).LeftFlyout.IsOpen = true;
+            ((MainWindow)Application.Current.MainWindow).LeftFlyout.IsOpen = true;
         }
-    }    
+    }
 }
