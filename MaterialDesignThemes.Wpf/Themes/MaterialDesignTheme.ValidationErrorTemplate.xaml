@@ -25,6 +25,7 @@
             </Border>
 
             <wpf:CustomValidationPopup x:Name="ValidationPopup"
+                                       PopupAnimation="Slide"
                                        IsOpen="False"
                                        Placement="Bottom" PlacementTarget="{Binding ElementName=Placeholder}"
                                        AllowsTransparency="True">
