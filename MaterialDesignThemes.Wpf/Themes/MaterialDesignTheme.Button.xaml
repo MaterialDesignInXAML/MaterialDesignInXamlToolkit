@@ -292,10 +292,21 @@
                                                          Duration="0"
                                                          Storyboard.TargetName="HoverBorder"
                                                          Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation To="1"
+                                                         Duration="0"
+                                                         Storyboard.TargetName="ShadowBorder"
+                                                         Storyboard.TargetProperty="Opacity"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        <Ellipse Fill="{TemplateBinding Background}"
+                                 Stroke="{TemplateBinding BorderBrush}"
+                                 StrokeThickness="{TemplateBinding BorderThickness}"
+                                 Effect="{DynamicResource MaterialDesignHardShadowDepth1}"
+                                 x:Name="ShadowBorder"
+                                 Opacity="0"
+                                 RenderTransformOrigin="0.5,0.5" />
                         <Ellipse Fill="{TemplateBinding Background}"
                                  Stroke="{TemplateBinding BorderBrush}"
                                  StrokeThickness="{TemplateBinding BorderThickness}"
@@ -304,7 +315,6 @@
                         <Ellipse Fill="White"
                                  Stroke="{TemplateBinding BorderBrush}"
                                  StrokeThickness="{TemplateBinding BorderThickness}"
-                                 Effect="{DynamicResource MaterialDesignHardShadowDepth3}"
                                  x:Name="HoverBorder"
                                  Opacity="0"
                                  RenderTransformOrigin="0.5,0.5" >
