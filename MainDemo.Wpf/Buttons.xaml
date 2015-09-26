@@ -25,14 +25,14 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock>Buttons</TextBlock>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 24 0 0">
@@ -154,22 +154,26 @@
         </StackPanel>
         <TextBlock Margin="0 24 0 0" Grid.Row="9">Rating bar</TextBlock>
         <StackPanel Grid.Row="10" Margin="0 16 0 0" Orientation="Horizontal">
-            <wpf:RatingBar x:Name="ratingBar" MaxRating="5" Rating="2">
-                <wpf:RatingBar.RatingItemTemplate>
-                    <DataTemplate>
-                        <Viewbox Width="21" Height="21">
-                            <Canvas Width="24" Height="24">
-                                <Path Data="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" 
-                                        Fill="{StaticResource PrimaryHueMidBrush}" />
-                            </Canvas>
-                        </Viewbox>
+            <wpf:RatingBar Value="3" x:Name="BasicRatingBar" />
+            <TextBlock Text="{Binding ElementName=BasicRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />            
+            <wpf:RatingBar x:Name="CustomRatingBar" Max="3" Value="2" Margin="24 0 0 0" Orientation="Vertical">
+                <wpf:RatingBar.ValueItemTemplate>
+                    <DataTemplate DataType="system:Int32">
+                        <Grid>
+                            <Viewbox Width="24" Height="24">
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" 
+                                          Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, Path=Foreground}" />
+                                </Canvas>
+                            </Viewbox>
+                            <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="8"
+                                       Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+                        </Grid>
                     </DataTemplate>
-                </wpf:RatingBar.RatingItemTemplate>
+                </wpf:RatingBar.ValueItemTemplate>
             </wpf:RatingBar>
-            <TextBlock Text="Rating: " VerticalAlignment="Center" Margin="10,0,0,0" />
-            <TextBlock x:Name="ratingTextBlock" Text="{Binding Path=Rating, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" />
-            <wpf:RatingBar MaxRating="7" Rating="5" IsEnabled="False" Margin="20,0,0,0" Width="224" />
-                <TextBlock Text="disabled" VerticalAlignment="Center" Margin="10,0,0,0" />
+            <TextBlock Text="{Binding ElementName=CustomRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />
         </StackPanel>
     </Grid>
 </UserControl>
