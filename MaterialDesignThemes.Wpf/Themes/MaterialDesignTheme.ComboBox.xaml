@@ -386,10 +386,23 @@
                             Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
 				    <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 </Grid>
-			</Border>
-			<Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="0 0 0 2"
+            </Border>
+            <Border x:Name="UnderlineBorder"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Bottom"
+                    Background="{DynamicResource PrimaryHueMidBrush}"
+                    IsHitTestVisible="False"
+                    Height="2"
+                    HorizontalAlignment="Stretch"
+                    SnapsToDevicePixels="True"
+                    RenderTransformOrigin="0.5,0.5">
+                <Border.RenderTransform>
+                    <ScaleTransform ScaleX="0" ScaleY="1"/>
+                </Border.RenderTransform>
+            </Border>
+            <!--Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="0 0 0 2"
                             x:Name="focusBorder" Visibility="Hidden"
-                            Grid.ColumnSpan="2" />
+                            Grid.ColumnSpan="2" /-->
 		</Grid>
 		<ControlTemplate.Triggers>
 			<Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
@@ -402,8 +415,9 @@
 				<Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
 			</Trigger>
 			<Trigger Property="IsKeyboardFocused" Value="True" SourceName="PART_EditableTextBox">
-				<Setter TargetName="focusBorder" Property="Visibility" Value="Visible" />
-			</Trigger>
+                <!--Setter TargetName="focusBorder" Property="Visibility" Value="Visible" /-->
+
+            </Trigger>
 			<MultiTrigger>
 				<MultiTrigger.Conditions>
 					<Condition Property="IsGrouping" Value="true"/>

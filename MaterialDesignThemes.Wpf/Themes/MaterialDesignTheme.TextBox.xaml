@@ -18,6 +18,7 @@
         <Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="AllowDrop" Value="true"/>        
@@ -28,27 +29,32 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <ControlTemplate.Resources>
+                        <CircleEase x:Key="EasingFunction" EasingMode="EaseOut"/>
                         <Storyboard x:Key="ExpandUnderlineBorderStoryboard">
                             <DoubleAnimation Storyboard.TargetName="UnderlineBorder"
                                              Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
                                              Duration="0:0:0.4"
+                                             EasingFunction="{StaticResource EasingFunction}"
                                              To="1"/>
                         </Storyboard>
                         <Storyboard x:Key="CollapseUnderlineBorderStoryboard">
                             <DoubleAnimation Storyboard.TargetName="UnderlineBorder"
                                              Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
                                              Duration="0:0:0.4"
+                                             EasingFunction="{StaticResource EasingFunction}"
                                              To="0"/>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            SnapsToDevicePixels="True"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Padding="0 4">
-                        <StackPanel Orientation="Vertical">
+                    <Grid>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Padding="0 4">
                             <Grid >
-                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" 
+                                                  HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"
+                                                  VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
                                               />
                                 <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                            Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
@@ -57,39 +63,27 @@
                                            Margin="1 0 1 0"
                                            Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
                             </Grid>
-                            <Border x:Name="UnderlineBorder"
-                                    Background="{TemplateBinding BorderBrush}"
-                                    Margin="0 0 0 -5"
-                                    Height="2"
-                                    HorizontalAlignment="Stretch"
-                                    SnapsToDevicePixels="True"
-                                    RenderTransformOrigin="0.5,0.5">
-                                <Border.RenderTransform>
-                                    <ScaleTransform ScaleX="0" ScaleY="1"/>
-                                </Border.RenderTransform>
-                            </Border>
-                        </StackPanel>
-                    </Border>
+                        </Border>
+                        <ContentControl x:Name="UnderlineControl"
+                                        Visibility="Collapsed"
+                                        Style="{StaticResource MaterialDesignUnderlineStyle}"
+                                        Background="{DynamicResource PrimaryHueMidBrush}"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                            <!--Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/-->
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter TargetName="border" Property="Padding" Value="0 4 0 3"/>
-                            <!--Setter Property="BorderThickness" Value="0 0 0 2"/-->
-                            <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
-                            <Trigger.EnterActions>
-                                <BeginStoryboard Storyboard="{StaticResource ExpandUnderlineBorderStoryboard}"/>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard Storyboard="{StaticResource CollapseUnderlineBorderStoryboard}"/>
-                            </Trigger.ExitActions>
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                            <Setter TargetName="UnderlineControl" Property="Visibility" Value="Visible"/>
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
                             <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter TargetName="UnderlineControl" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <!--Setter TargetName="UnderlineBorder" Property="Background"  Value="{DynamicResource ValidationErrorBrush}"/-->
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -112,62 +106,55 @@
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
                     <ControlTemplate.Resources>
+                        <SineEase x:Key="HintEasingFunction" EasingMode="EaseOut" />
+                        
                         <Storyboard x:Key="MoveHintAsideStoryboard">
                             <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3" To="10">
-                                <DoubleAnimation.EasingFunction>
-                                    <SineEase EasingMode="EaseOut" />
-                                </DoubleAnimation.EasingFunction>    
-                            </DoubleAnimation>
+                                             EasingFunction="{StaticResource HintEasingFunction}"
+                                             Duration="0:0:0.3" To="10"/>
                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3" To="1">
-                                <DoubleAnimation.EasingFunction>
-                                    <SineEase EasingMode="EaseOut" />
-                                </DoubleAnimation.EasingFunction>
-                            </DoubleAnimation>
+                                             EasingFunction="{StaticResource HintEasingFunction}"
+                                             Duration="0:0:0.3" To="1"/>
                             <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3" To="1,-16,1,0">
-                                <ThicknessAnimation.EasingFunction>
-                                    <SineEase EasingMode="EaseOut" />
-                                </ThicknessAnimation.EasingFunction>
-                            </ThicknessAnimation>
+                                             EasingFunction="{StaticResource HintEasingFunction}"
+                                             Duration="0:0:0.3" To="1,-16,1,0"/>
                         </Storyboard>
                         <Storyboard x:Key="MoveHintBackStoryboard">
                             <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3">
-                                <DoubleAnimation.EasingFunction>
-                                    <SineEase EasingMode="EaseOut" />
-                                </DoubleAnimation.EasingFunction>
-                            </DoubleAnimation>
+                                             EasingFunction="{StaticResource HintEasingFunction}"
+                                             Duration="0:0:0.3"/>
                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3">
-                                <DoubleAnimation.EasingFunction>
-                                    <SineEase EasingMode="EaseOut" />
-                                </DoubleAnimation.EasingFunction>
-                            </DoubleAnimation>
+                                             EasingFunction="{StaticResource HintEasingFunction}"
+                                             Duration="0:0:0.3"/>
                             <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3">
-                                <ThicknessAnimation.EasingFunction>
-                                    <SineEase EasingMode="EaseOut" />
-                                </ThicknessAnimation.EasingFunction>
-                            </ThicknessAnimation>
+                                             EasingFunction="{StaticResource HintEasingFunction}"
+                                             Duration="0:0:0.3"/>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
-                        Padding="0 4 0 4">
-                        <Grid Margin="0 12 0 0">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-                                            />
-                            <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
-                                       IsHitTestVisible="False"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       HorizontalAlignment="Left"
-                                       VerticalAlignment="Top"
-                                       x:Name="Hint"
-                                       Margin="1 0 1 0"
-                                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
-                        </Grid>
-                    </Border>
+                    <Grid>
+                        <Border x:Name="border"
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True"
+                                Padding="0 4">
+                            <Grid Margin="0 12 0 0">
+                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                                                />
+                                <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                           IsHitTestVisible="False"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           x:Name="Hint"
+                                           Margin="1 0 1 0"
+                                           Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </Grid>
+                        </Border>
+                        <ContentControl x:Name="UnderlineControl"
+                                        Visibility="Collapsed"
+                                        Style="{StaticResource MaterialDesignUnderlineStyle}"
+                                        Background="{DynamicResource PrimaryHueMidBrush}"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False">
                             <Trigger.EnterActions>
@@ -195,13 +182,15 @@
                         </Trigger>
                         
                         <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter TargetName="border" Property="Padding" Value="0 4 0 3"/>
-                            <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                            <!--Setter TargetName="border" Property="Padding" Value="0 4 0 3"/>
+                            <Setter Property="BorderThickness" Value="0 0 0 2"/-->
                             <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
+                            <Setter TargetName="UnderlineControl" Property="Visibility" Value="Visible"/>
                         </Trigger>
                         
                         <Trigger Property="Validation.HasError" Value="true">
                             <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter TargetName="UnderlineControl" Property="Background"  Value="{DynamicResource ValidationErrorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

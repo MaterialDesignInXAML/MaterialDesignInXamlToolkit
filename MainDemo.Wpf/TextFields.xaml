@@ -79,7 +79,7 @@
 		</ComboBox>
         <TextBox Grid.Row="0" Grid.RowSpan="2" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="16 0 0 0"
                  MinWidth="280"
-                 AcceptsReturn="True"                 
+                 AcceptsReturn="True"              
                  VerticalScrollBarVisibility="Auto"
                  wpf:TextFieldAssist.Hint="Multiline text"
                  Height="80">Multiline.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The quick brown fox jumps over the lazy dog. War and peace. Keep going. Go on. For how long? Not long. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TextBox>
