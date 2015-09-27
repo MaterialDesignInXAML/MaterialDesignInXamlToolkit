@@ -29,16 +29,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:Ripple">
                     <Grid Background="Transparent">
-<<<<<<< HEAD
-                        <Canvas IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Ellipse x:Name="ClickEllipse" Fill="{TemplateBinding Feedback}" Opacity="1" Width="10" Height="10" 
-                                     Canvas.Left="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PointerPressedX}" 
-                                     Canvas.Top="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PointerPressedY}"
-                                     RenderTransformOrigin=".5,.5">
-                                <Ellipse.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform />
-=======
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualStateGroup.Transitions>
@@ -83,8 +73,7 @@
                                         </DoubleAnimationUsingKeyFrames>
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform">
                                             <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        
+                                        </DoubleAnimationUsingKeyFrames>                                        
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -98,9 +87,7 @@
                                      RenderTransformOrigin=".5,.5">
                                 <Ellipse.RenderTransform>
                                     <TransformGroup>
-                                        <ScaleTransform x:Name="ScaleTransform" 
-                                                        />
->>>>>>> a27409f27850f2f66b86905963924270e29b69a7
+                                        <ScaleTransform x:Name="ScaleTransform" />
                                         <SkewTransform/>
                                         <RotateTransform/>
                                         <TranslateTransform x:Name="TranslateTransform"/>

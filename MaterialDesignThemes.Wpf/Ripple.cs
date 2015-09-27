@@ -56,7 +56,7 @@ namespace MaterialDesignThemes.Wpf
 
             RippleX = point.X - RippleSize / 2;
             RippleY = point.Y - RippleSize / 2;
-
+			
             base.OnPreviewMouseLeftButtonDown(e);
         }
 
