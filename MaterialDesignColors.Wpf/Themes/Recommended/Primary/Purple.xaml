@@ -1,0 +1,15 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Purple.Named.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource PurplePrimary200}"/>
+    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource PurplePrimary200Foreground}"/>
+    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource PurplePrimary500}"/>
+    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource PurplePrimary500Foreground}"/>
+    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource PurplePrimary700}"/>
+    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource PurplePrimary700Foreground}"/>
+    
+</ResourceDictionary>

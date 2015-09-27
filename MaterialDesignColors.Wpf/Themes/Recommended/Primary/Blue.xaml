@@ -1,0 +1,15 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Blue.Named.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource BluePrimary200}"/>
+    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource BluePrimary200Foreground}"/>
+    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource BluePrimary500}"/>
+    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource BluePrimary500Foreground}"/>
+    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource BluePrimary700}"/>
+    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource BluePrimary700Foreground}"/>
+    
+</ResourceDictionary>

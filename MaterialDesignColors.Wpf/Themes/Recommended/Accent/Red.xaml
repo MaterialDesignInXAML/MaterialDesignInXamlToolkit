@@ -1,0 +1,11 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Red.Named.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{StaticResource RedAccent700}"/>
+    <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource RedAccent700Foreground}"/>  
+    
+</ResourceDictionary>
