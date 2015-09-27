@@ -80,11 +80,16 @@
     </Compile>
     <Compile Include="Domain\AnotherCommandImplementation.cs" />
     <Compile Include="Domain\DemoItem.cs" />
+    <Compile Include="Domain\GridViewItemViewModel.cs" />
+    <Compile Include="Domain\GridViewViewModel.cs" />
     <Compile Include="Domain\ListFieldsViewModel.cs" />
     <Compile Include="Domain\SelectableViewModel.cs" />
     <Compile Include="Domain\TextFieldsViewModel.cs" />
     <Compile Include="Grids.xaml.cs">
       <DependentUpon>Grids.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridView.xaml.cs">
+      <DependentUpon>GridView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -125,6 +130,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Grids.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

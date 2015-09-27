@@ -81,6 +81,15 @@
                     </wpfExample:Lists>
                 </domain:DemoItem.Content>
             </domain:DemoItem>
+            <domain:DemoItem Name="Grid view">
+                <domain:DemoItem.Content>
+                    <wpfExample:GridView>
+                        <wpfExample:GridView.DataContext>
+                            <domain:GridViewViewModel />
+                        </wpfExample:GridView.DataContext>
+                    </wpfExample:GridView>
+                </domain:DemoItem.Content>
+            </domain:DemoItem>
             <domain:DemoItem Name="Trees">
                 <domain:DemoItem.Content>
                     <wpfExample:Trees />
