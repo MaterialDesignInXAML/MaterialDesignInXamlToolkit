@@ -27,18 +27,47 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="ExpandUnderlineBorderStoryboard">
+                            <DoubleAnimation Storyboard.TargetName="UnderlineBorder"
+                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                             Duration="0:0:0.4"
+                                             To="1"/>
+                        </Storyboard>
+                        <Storyboard x:Key="CollapseUnderlineBorderStoryboard">
+                            <DoubleAnimation Storyboard.TargetName="UnderlineBorder"
+                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                             Duration="0:0:0.4"
+                                             To="0"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Padding="0 4 0 4">
-                        <Grid >
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-                                          />
-                            <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
-                                       Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
-                                       x:Name="Hint"
-                                       Margin="1 0 1 0"
-                                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
-                        </Grid>
+                            Padding="0 4">
+                        <StackPanel Orientation="Vertical">
+                            <Grid >
+                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                                              />
+                                <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                           Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
+                                           x:Name="Hint"
+                                           Margin="1 0 1 0"
+                                           Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </Grid>
+                            <Border x:Name="UnderlineBorder"
+                                    Background="{TemplateBinding BorderBrush}"
+                                    Margin="0 0 0 -5"
+                                    Height="2"
+                                    HorizontalAlignment="Stretch"
+                                    SnapsToDevicePixels="True"
+                                    RenderTransformOrigin="0.5,0.5">
+                                <Border.RenderTransform>
+                                    <ScaleTransform ScaleX="0" ScaleY="1"/>
+                                </Border.RenderTransform>
+                            </Border>
+                        </StackPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
@@ -49,8 +78,14 @@
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter TargetName="border" Property="Padding" Value="0 4 0 3"/>
-                            <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                            <!--Setter Property="BorderThickness" Value="0 0 0 2"/-->
                             <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource ExpandUnderlineBorderStoryboard}"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource CollapseUnderlineBorderStoryboard}"/>
+                            </Trigger.ExitActions>
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
                             <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
