@@ -73,8 +73,7 @@
                                         </DoubleAnimationUsingKeyFrames>
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform">
                                             <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        
+                                        </DoubleAnimationUsingKeyFrames>                                        
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -88,8 +87,7 @@
                                      RenderTransformOrigin=".5,.5">
                                 <Ellipse.RenderTransform>
                                     <TransformGroup>
-                                        <ScaleTransform x:Name="ScaleTransform" 
-                                                        />
+                                        <ScaleTransform x:Name="ScaleTransform" />
                                         <SkewTransform/>
                                         <RotateTransform/>
                                         <TranslateTransform x:Name="TranslateTransform"/>

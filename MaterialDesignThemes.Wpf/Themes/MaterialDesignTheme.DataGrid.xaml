@@ -136,7 +136,7 @@
 
     <Style x:Key="MaterialDesignDataGridCell" TargetType="{x:Type DataGridCell}">
         <Setter Property="TextBlock.FontSize" Value="13" />
-        <Setter Property="Padding" Value="13 8 8 8" />
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:DataGridAssist.CellPadding)}" />
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Template">
@@ -190,7 +190,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="TextBlock.FontSize" Value="12" />
         <Setter Property="TextBlock.FontWeight" Value="Medium" />
-        <Setter Property="Padding" Value="8 8 8 8" />
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:DataGridAssist.ColumnHeaderPadding)}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignColumnHeader}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -265,7 +265,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridRowHeader}">
-                    <Grid>
+                    <Grid MinWidth="24">
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
                             <StackPanel Orientation="Horizontal">
                                 <ContentPresenter RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
@@ -332,6 +332,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="GridLinesVisibility" Value="Horizontal" />
         <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
+        <Setter Property="HeadersVisibility" Value="Column" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>

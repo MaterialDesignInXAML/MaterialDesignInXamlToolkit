@@ -14,7 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MaterialDesignThemes.Wpf
-{    
+{
+    [TemplateVisualState(GroupName = "CommonStates", Name = "Normal")]
+    [TemplateVisualState(GroupName = "CommonStates", Name = "Pressed")]
     public class Ripple : ContentControl
     {
         static Ripple()
@@ -23,90 +25,86 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public Ripple()
-        {   
-            MouseMove += OnMouseMove;                        
+        {               
+            SizeChanged += OnSizeChanged;          
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            RippleSize = Math.Max(sizeChangedEventArgs.NewSize.Width, sizeChangedEventArgs.NewSize.Height) * RippleSizeMultiplier;
+        }
+
+        public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
+            "Feedback", typeof(Brush), typeof(Ripple), new PropertyMetadata(default(Brush)));
+
+        public Brush Feedback
+        {
+            get { return (Brush)GetValue(FeedbackProperty); }
+            set { SetValue(FeedbackProperty, value); }
         }
 
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            var position = e.GetPosition(this);
-            MouseLeftButtonDownX = position.X;
-            MouseLeftButtonDownY = position.Y;
+            var point = e.GetPosition(this);
+
+            RippleX = point.X - RippleSize / 2;
+            RippleY = point.Y - RippleSize / 2;
+
+            VisualStateManager.GoToState(this, "Normal", true);
+            VisualStateManager.GoToState(this, "MousePressed", true);            
 
             base.OnPreviewMouseLeftButtonDown(e);
         }
 
-        private void OnMouseMove(object sender, MouseEventArgs mouseEventArgs)
+        public static readonly DependencyProperty RippleSizeMultiplierProperty = DependencyProperty.Register(
+            "RippleSizeMultiplier", typeof(double), typeof(Ripple), new PropertyMetadata(1.75));
+
+        public double RippleSizeMultiplier
         {
-            var position = mouseEventArgs.GetPosition(this);
-            MouseX = position.X;
-            MouseY = position.Y;
+            get { return (double)GetValue(RippleSizeMultiplierProperty); }
+            set { SetValue(RippleSizeMultiplierProperty, value); }
         }
 
-        public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
-            "Feedback", typeof (Brush), typeof (Ripple), new PropertyMetadata(default(Brush)));
-
-        public Brush Feedback
-        {
-            get { return (Brush) GetValue(FeedbackProperty); }
-            set { SetValue(FeedbackProperty, value); }
-        }
-
-        private static readonly DependencyPropertyKey MouseXPropertyKey =
+        private static readonly DependencyPropertyKey RippleSizePropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "MouseX", typeof (double), typeof (Ripple),
+                "RippleSize", typeof(double), typeof(Ripple),
                 new PropertyMetadata(default(double)));
 
-        public static readonly DependencyProperty MouseXProperty =
-            MouseXPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty RippleSizeProperty =
+            RippleSizePropertyKey.DependencyProperty;
 
-        public double MouseX
+        public double RippleSize
         {
-            get { return (double) GetValue(MouseXProperty); }
-            private set { SetValue(MouseXPropertyKey, value); }
+            get { return (double)GetValue(RippleSizeProperty); }
+            private set { SetValue(RippleSizePropertyKey, value); }
         }
 
-        private static readonly DependencyPropertyKey MouseYPropertyKey =
+        private static readonly DependencyPropertyKey RippleXPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "MouseY", typeof (double), typeof (Ripple),
+                "RippleX", typeof (double), typeof (Ripple),
                 new PropertyMetadata(default(double)));
 
-        public static readonly DependencyProperty MouseYProperty =
-            MouseYPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty RippleXProperty =
+            RippleXPropertyKey.DependencyProperty;
 
-        public double MouseY
+        public double RippleX
         {
-            get { return (double) GetValue(MouseYProperty); }
-            private set { SetValue(MouseYPropertyKey, value); }
+            get { return (double) GetValue(RippleXProperty); }
+            private set { SetValue(RippleXPropertyKey, value); }
         }
 
-        private static readonly DependencyPropertyKey MouseLeftButtonDownXPropertyKey =
+        private static readonly DependencyPropertyKey RippleYPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "MouseLeftButtonDownX", typeof (double), typeof (Ripple),
+                "RippleY", typeof (double), typeof (Ripple),
                 new PropertyMetadata(default(double)));
 
-        public static readonly DependencyProperty MouseLeftButtonDownXProperty =
-            MouseLeftButtonDownXPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty RippleYProperty =
+            RippleYPropertyKey.DependencyProperty;
 
-        public double MouseLeftButtonDownX
+        public double RippleY
         {
-            get { return (double) GetValue(MouseLeftButtonDownXProperty); }
-            private set { SetValue(MouseLeftButtonDownXPropertyKey, value); }
-        }
-
-        private static readonly DependencyPropertyKey MouseLeftButtonDownYPropertyKey =
-            DependencyProperty.RegisterReadOnly(
-                "MouseLeftButtonDownY", typeof (double), typeof (Ripple),
-                new PropertyMetadata(default(double)));
-
-        public static readonly DependencyProperty MouseLeftButtonDownYProperty =
-            MouseLeftButtonDownYPropertyKey.DependencyProperty;
-
-        public double MouseLeftButtonDownY
-        {
-            get { return (double) GetValue(MouseLeftButtonDownYProperty); }
-            private set { SetValue(MouseLeftButtonDownYPropertyKey, value); }
-        }
-
+            get { return (double) GetValue(RippleYProperty); }
+            private set { SetValue(RippleYPropertyKey, value); }
+        }                                
     }
 }

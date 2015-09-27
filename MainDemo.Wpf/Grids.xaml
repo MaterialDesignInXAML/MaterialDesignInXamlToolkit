@@ -17,7 +17,8 @@
     <ScrollViewer>
         <StackPanel>
             <TextBlock>Custom Columns</TextBlock>
-            <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
+                      wpf:DataGridAssist.CellPadding="13 8 8 8" wpf:DataGridAssist.ColumnHeaderPadding="8">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Binding="{Binding IsSelected}" 
                                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
@@ -69,6 +70,10 @@
             </DataGrid>
             <TextBlock Margin="0 24 0 0">Auto Generated Columns</TextBlock>
             <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" />
+            <TextBlock Margin="0 24 0 0">Custom Padding</TextBlock>
+            <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False"
+                       wpf:DataGridAssist.CellPadding="4 2 2 2" wpf:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                       />
         </StackPanel>
     </ScrollViewer>
 </UserControl>
