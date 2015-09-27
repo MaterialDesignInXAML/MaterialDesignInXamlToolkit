@@ -18,12 +18,12 @@ using System.Windows.Shapes;
 
 namespace MaterialDesignThemes.Wpf
 {
-    [TemplatePart(Name = PartBubbleEllipse, Type = typeof(Ellipse))]
+    [TemplateVisualState(GroupName = "CommonStates", Name = TemplateStateNormal)]
+    [TemplateVisualState(GroupName = "CommonStates", Name = TemplateStateMousePressed)]
     public class Ripple : ContentControl
     {
-        public const string PartBubbleEllipse = "PART_BubbleEllipse";
-
-        private BubbleStoryboardController _bubbleStoryboardController;
+        public const string TemplateStateNormal = "Normal";
+        public const string TemplateStateMousePressed = "MousePressed";
 
         static Ripple()
         {
@@ -32,70 +32,13 @@ namespace MaterialDesignThemes.Wpf
 
         public Ripple()
         {
-            MouseMove += OnMouseMove;
+            SizeChanged += OnSizeChanged;
         }
 
-        protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            var position = e.GetPosition(this);
-            MouseLeftButtonDownX = position.X;
-            MouseLeftButtonDownY = position.Y;
-
-            this.ReleaseMouseCapture();
-
-            base.OnPreviewMouseLeftButtonDown(e);
-        }
-
-        private void OnMouseMove(object sender, MouseEventArgs mouseEventArgs)
-        {
-            var position = mouseEventArgs.GetPosition(this);
-            MouseX = position.X;
-            MouseY = position.Y;
-        }
-
-        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
-            "IsActive", typeof(bool), typeof(Ripple), new FrameworkPropertyMetadata(false, IsActivePropertyChangedCallback));
-
-        public bool IsActive
-        {
-            get { return (bool)GetValue(IsActiveProperty); }
-            set { SetValue(IsActiveProperty, value); }
-        }
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-
-            _bubbleStoryboardController = new BubbleStoryboardController(this);
-        }
-
-        private void StartBubbleAnimation()
-        {
-            _bubbleStoryboardController.Add();
-        }
-
-        private void StopBubbleAnimation()
-        {
-            _bubbleStoryboardController.Remove();
-        }
-
-        private static void IsActivePropertyChangedCallback(
-            DependencyObject dependencyObject,
-            DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var box = dependencyObject as Ripple;
-            if (box == null) return;
-
-            bool isActive = (bool)dependencyPropertyChangedEventArgs.NewValue;
-
-            if (isActive)
-            {
-                box.StartBubbleAnimation();
-            }
-            else
-            {
-                box.StopBubbleAnimation();
-            }
+            double radius = Math.Sqrt(Math.Pow(sizeChangedEventArgs.NewSize.Width, 2) + Math.Pow(sizeChangedEventArgs.NewSize.Height, 2));
+            RippleSize = 2 * radius * RippleSizeMultiplier;
         }
 
         public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
@@ -107,175 +50,93 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(FeedbackProperty, value); }
         }
 
-        private static readonly DependencyPropertyKey MouseXPropertyKey =
-            DependencyProperty.RegisterReadOnly(
-                "MouseX", typeof(double), typeof(Ripple),
-                new PropertyMetadata(default(double)));
-
-        public static readonly DependencyProperty MouseXProperty =
-            MouseXPropertyKey.DependencyProperty;
-
-        public double MouseX
+        protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            get { return (double)GetValue(MouseXProperty); }
-            private set { SetValue(MouseXPropertyKey, value); }
+            var point = e.GetPosition(this);
+
+            RippleX = point.X - RippleSize / 2;
+            RippleY = point.Y - RippleSize / 2;
+			
+            base.OnPreviewMouseLeftButtonDown(e);
         }
 
-        private static readonly DependencyPropertyKey MouseYPropertyKey =
-            DependencyProperty.RegisterReadOnly(
-                "MouseY", typeof(double), typeof(Ripple),
-                new PropertyMetadata(default(double)));
+        public static readonly DependencyProperty RippleSizeMultiplierProperty = DependencyProperty.Register(
+            "RippleSizeMultiplier", typeof(double), typeof(Ripple), new PropertyMetadata(1.0));
 
-        public static readonly DependencyProperty MouseYProperty =
-            MouseYPropertyKey.DependencyProperty;
-
-        public double MouseY
+        public double RippleSizeMultiplier
         {
-            get { return (double)GetValue(MouseYProperty); }
-            private set { SetValue(MouseYPropertyKey, value); }
+            get { return (double)GetValue(RippleSizeMultiplierProperty); }
+            set { SetValue(RippleSizeMultiplierProperty, value); }
         }
 
-        private static readonly DependencyPropertyKey MouseLeftButtonDownXPropertyKey =
+        private static readonly DependencyPropertyKey RippleSizePropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "MouseLeftButtonDownX", typeof(double), typeof(Ripple),
+                "RippleSize", typeof(double), typeof(Ripple),
                 new PropertyMetadata(default(double)));
 
-        public static readonly DependencyProperty MouseLeftButtonDownXProperty =
-            MouseLeftButtonDownXPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty RippleSizeProperty =
+            RippleSizePropertyKey.DependencyProperty;
 
-        public double MouseLeftButtonDownX
+        public double RippleSize
         {
-            get { return (double)GetValue(MouseLeftButtonDownXProperty); }
-            private set { SetValue(MouseLeftButtonDownXPropertyKey, value); }
+            get { return (double)GetValue(RippleSizeProperty); }
+            private set { SetValue(RippleSizePropertyKey, value); }
         }
 
-        private static readonly DependencyPropertyKey MouseLeftButtonDownYPropertyKey =
+        private static readonly DependencyPropertyKey RippleXPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "MouseLeftButtonDownY", typeof(double), typeof(Ripple),
+                "RippleX", typeof(double), typeof(Ripple),
                 new PropertyMetadata(default(double)));
 
-        public static readonly DependencyProperty MouseLeftButtonDownYProperty =
-            MouseLeftButtonDownYPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty RippleXProperty =
+            RippleXPropertyKey.DependencyProperty;
 
-        public double MouseLeftButtonDownY
+        public double RippleX
         {
-            get { return (double)GetValue(MouseLeftButtonDownYProperty); }
-            private set { SetValue(MouseLeftButtonDownYPropertyKey, value); }
+            get { return (double)GetValue(RippleXProperty); }
+            private set { SetValue(RippleXPropertyKey, value); }
         }
 
+        private static readonly DependencyPropertyKey RippleYPropertyKey =
+            DependencyProperty.RegisterReadOnly(
+                "RippleY", typeof(double), typeof(Ripple),
+                new PropertyMetadata(default(double)));
 
-        private sealed class BubbleStoryboardController
+        public static readonly DependencyProperty RippleYProperty =
+            RippleYPropertyKey.DependencyProperty;
+
+        public double RippleY
         {
-            private readonly Ripple _ripple;
-            private readonly Ellipse _ellipse;
-            private readonly TimeSpan _fadeOutDuration = TimeSpan.FromMilliseconds(200);
-            private readonly TimeSpan _bubbleDuration = TimeSpan.FromMilliseconds(400);
+            get { return (double)GetValue(RippleYProperty); }
+            private set { SetValue(RippleYPropertyKey, value); }
+        }
 
-            private volatile Storyboard _currentBubbleStoryboard;
-            private volatile Storyboard _currentFadeOutStoryboard;
+        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
+            "IsActive", typeof(bool), typeof(Ripple), new FrameworkPropertyMetadata(false, IsActivePropertyChangedCallback));
 
-            public BubbleStoryboardController(Ripple ripple)
-            {
-                _ripple = ripple;
-                _ellipse = _ripple.Template.FindName(PartBubbleEllipse, _ripple) as Ellipse;
+        public bool IsActive
+        {
+            get { return (bool)GetValue(IsActiveProperty); }
+            set { SetValue(IsActiveProperty, value); }
+        }
 
-                if (_ellipse == null) throw new InvalidOperationException();
-            }
-            public void Add()
-            {
-                _currentFadeOutStoryboard?.Remove();
-                _currentBubbleStoryboard?.Remove();
+        private static void IsActivePropertyChangedCallback(
+            DependencyObject dependencyObject,
+            DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var box = dependencyObject as Ripple;
+            if (box == null) return;
 
-                _currentBubbleStoryboard = CreateBubbleStoryboard();
-                _currentBubbleStoryboard.Begin();
-            }
+            bool isActive = (bool)dependencyPropertyChangedEventArgs.NewValue;
 
-            public void Remove()
-            {
-                _currentFadeOutStoryboard?.Remove();
+            VisualStateManager.GoToState(box, isActive ? TemplateStateMousePressed : TemplateStateNormal, true);
+        }
 
-                var fadeOutStoryboard = CreateFadeOutStoryboard();
-                var bubbleStoryboardLocalCopy = _currentBubbleStoryboard;
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
 
-                fadeOutStoryboard.Completed += delegate
-                {
-                    fadeOutStoryboard.Remove();
-                    bubbleStoryboardLocalCopy?.Remove();
-                };
-
-                _currentFadeOutStoryboard = fadeOutStoryboard;
-                _currentFadeOutStoryboard.Begin();
-            }
-
-            private Storyboard CreateFadeOutStoryboard()
-            {
-                Storyboard resultStorybaord = new Storyboard();
-
-                DoubleAnimation opacityAnimation = new DoubleAnimation
-                {
-                    To = 0
-                };
-                SetupAnimation(opacityAnimation, _fadeOutDuration, "(UIElement.Opacity)");
-
-                resultStorybaord.Children.Add(opacityAnimation);
-
-                return resultStorybaord;
-            }
-
-            private Storyboard CreateBubbleStoryboard()
-            {
-                Storyboard resultStorybaord = new Storyboard();
-
-                DoubleAnimation opacityAnimation = new DoubleAnimation
-                {
-                    To = 0.26,
-                };
-                SetupAnimation(opacityAnimation, _bubbleDuration, "(UIElement.Opacity)");
-
-                double h = Math.Max(_ripple.MouseLeftButtonDownX, _ripple.ActualWidth - _ripple.MouseLeftButtonDownX);
-                double w = Math.Max(_ripple.MouseLeftButtonDownY, _ripple.ActualHeight - _ripple.MouseLeftButtonDownY);
-                double diameter = 2 * Math.Sqrt(h * h + w * w);
-
-                DoubleAnimation widthAnimation = new DoubleAnimation
-                {
-                    To = diameter
-                };
-                SetupAnimation(widthAnimation, _bubbleDuration, "(FrameworkElement.Width)");
-
-                DoubleAnimation heightAnimation = new DoubleAnimation
-                {
-                    To = diameter
-                };
-                SetupAnimation(heightAnimation, _bubbleDuration, "(FrameworkElement.Height)");
-
-                DoubleAnimation translateXAnimation = new DoubleAnimation
-                {
-                    To = -diameter / 2
-                };
-                SetupAnimation(translateXAnimation, _bubbleDuration, "(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)");
-
-                DoubleAnimation translateYAnimation = new DoubleAnimation
-                {
-                    To = -diameter / 2
-                };
-                SetupAnimation(translateYAnimation, _bubbleDuration, "(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)");
-
-                resultStorybaord.Children.Add(opacityAnimation);
-                resultStorybaord.Children.Add(widthAnimation);
-                resultStorybaord.Children.Add(heightAnimation);
-                resultStorybaord.Children.Add(translateXAnimation);
-                resultStorybaord.Children.Add(translateYAnimation);
-
-                return resultStorybaord;
-            }
-
-            private void SetupAnimation(AnimationTimeline animation, TimeSpan duration, string propertyPath)
-            {
-                animation.AccelerationRatio = 0.25;
-                animation.Duration = new Duration(duration);
-                Storyboard.SetTarget(animation, _ellipse);
-                Storyboard.SetTargetProperty(animation, new PropertyPath(propertyPath));
-            }
+            VisualStateManager.GoToState(this, TemplateStateNormal, false);
         }
     }
 }
