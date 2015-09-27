@@ -227,15 +227,19 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
-                                                      Feedback="{TemplateBinding Foreground}"
-                                                      ClipToBounds="False"
-                                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                      Padding="{TemplateBinding Padding}" 
-                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                x:Name="RippleWrapper"
+                                Feedback="{TemplateBinding Foreground}"
+                                ClipToBounds="False"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Padding="{TemplateBinding Padding}" 
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value=".56"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="RippleWrapper" Property="IsActive" Value="True"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

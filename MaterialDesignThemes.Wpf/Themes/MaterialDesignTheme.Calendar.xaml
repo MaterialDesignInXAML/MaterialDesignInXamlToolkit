@@ -295,12 +295,17 @@
                                                     </VisualState>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                            <wpf:Ripple HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <wpf:Ripple x:Name="RippleWrapper" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <Viewbox Height="12" Margin="8">
                                                     <Path x:Name="path" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" Fill="{TemplateBinding Foreground}" Stretch="Fill" />
                                                 </Viewbox>
                                             </wpf:Ripple>
                                         </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="RippleWrapper" Property="IsActive" Value="True"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                     <ControlTemplate x:Key="NextButtonTemplate" TargetType="{x:Type Button}">
                                         <Grid Cursor="Hand">
@@ -315,12 +320,17 @@
                                                     </VisualState>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                            <wpf:Ripple HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <wpf:Ripple x:Name="RippleWrapper" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <Viewbox Height="12" Margin="8">
                                                     <Path x:Name="path" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" Fill="{TemplateBinding Foreground}" Stretch="Fill"  />
                                                 </Viewbox>
                                             </wpf:Ripple>
                                         </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="RippleWrapper" Property="IsActive" Value="True"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                     <ControlTemplate x:Key="HeaderButtonTemplate" TargetType="{x:Type Button}">
                                         <Grid Cursor="Hand">
