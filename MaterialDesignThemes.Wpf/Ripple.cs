@@ -37,7 +37,11 @@ namespace MaterialDesignThemes.Wpf
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            double radius = Math.Sqrt(Math.Pow(sizeChangedEventArgs.NewSize.Width, 2) + Math.Pow(sizeChangedEventArgs.NewSize.Height, 2));
+            double width = sizeChangedEventArgs.NewSize.Width;
+            double height = sizeChangedEventArgs.NewSize.Height;
+            double radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
+
+            Debug.WriteLine("Width: {0} Height: {1} Radius: {2}", width, height, radius);
             RippleSize = 2 * radius * RippleSizeMultiplier;
         }
 
