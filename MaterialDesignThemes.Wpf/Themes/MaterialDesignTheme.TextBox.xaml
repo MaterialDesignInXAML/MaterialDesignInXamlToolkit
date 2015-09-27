@@ -3,9 +3,11 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="MaterialDesignTheme.ValidationErrorTemplate.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
-
-
 
     <Style x:Key="MaterialDesignTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
@@ -21,7 +23,7 @@
         <Setter Property="AllowDrop" Value="true"/>        
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-        <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource MaterialDesignValidationErrorTemplate}"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
