@@ -22,7 +22,7 @@ namespace MaterialDesignColors.WpfExample
     {
         public Buttons()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
 	    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

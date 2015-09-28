@@ -14,20 +14,20 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// The hint property
         /// </summary>
-        public static readonly DependencyProperty ShowOnFocusProperty = DependencyProperty.RegisterAttached(
-            "ShowOnFocus",
+        public static readonly DependencyProperty OnlyShowOnFocusProperty = DependencyProperty.RegisterAttached(
+            "OnlyShowOnFocus",
             typeof(bool),
             typeof(ValidationAssist),
             new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
 
-        public static bool GetShowOnFocus(DependencyObject element)
+        public static bool GetOnlyShowOnFocus(DependencyObject element)
         {
-            return (bool) element.GetValue(ShowOnFocusProperty);
+            return (bool)element.GetValue(OnlyShowOnFocusProperty);
         }
 
-        public static void SetShowOnFocus(DependencyObject element, bool value)
+        public static void SetOnlyShowOnFocus(DependencyObject element, bool value)
         {
-            element.SetValue(ShowOnFocusProperty, value);
+            element.SetValue(OnlyShowOnFocusProperty, value);
         }
 
         #endregion
@@ -45,12 +45,12 @@ namespace MaterialDesignThemes.Wpf
 
         public static bool GetUsePopup(DependencyObject element)
         {
-            return (bool)element.GetValue(ShowOnFocusProperty);
+            return (bool)element.GetValue(OnlyShowOnFocusProperty);
         }
 
         public static void SetUsePopup(DependencyObject element, bool value)
         {
-            element.SetValue(ShowOnFocusProperty, value);
+            element.SetValue(OnlyShowOnFocusProperty, value);
         }
 
         #endregion
