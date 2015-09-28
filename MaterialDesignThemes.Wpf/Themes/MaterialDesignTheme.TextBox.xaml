@@ -35,6 +35,7 @@
                                           />
                             <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                        Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
+                                       IsHitTestVisible="False"
                                        x:Name="Hint"
                                        Margin="1 0 1 0"
                                        Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
@@ -123,6 +124,7 @@
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                                             />
                             <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                       IsHitTestVisible="False"
                                        FontSize="{TemplateBinding FontSize}"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Top"
@@ -140,6 +142,7 @@
                                 <BeginStoryboard x:Name="MoveHintBackStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintBackStoryboard}"/>
                             </Trigger.ExitActions>
                         </Trigger>
+                        
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
@@ -147,17 +150,21 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
                         </MultiTrigger>
+                        
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
                         </Trigger>
+                        
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
                         </Trigger>
+                        
                         <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter TargetName="border" Property="Padding" Value="0 4 0 3"/>
                             <Setter Property="BorderThickness" Value="0 0 0 2"/>
                             <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
                         </Trigger>
+                        
                         <Trigger Property="Validation.HasError" Value="true">
                             <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
                         </Trigger>

@@ -15,7 +15,9 @@
     >
 
     <Page.Resources>
-        <ResourceDictionary>          
+        <ResourceDictionary>
+            
+            
 
         </ResourceDictionary>
     </Page.Resources>
@@ -30,6 +32,7 @@
                 <Button Margin="8 0 0 0" Width="100" Style="{StaticResource MaterialDesignRaisedDarkButton}">DARK</Button>
                 <Button Margin="8 0 0 0" Width="100" Style="{StaticResource MaterialDesignRaisedAccentButton}">ACCENT</Button>
             </StackPanel>
+            <ToggleSwitch Style="{StaticResource MaterialDesignToggleSwitch}" />            
         </StackPanel>
     </Grid>
 </Page>
