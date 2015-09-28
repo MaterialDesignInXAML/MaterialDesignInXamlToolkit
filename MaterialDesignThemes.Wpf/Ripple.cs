@@ -37,12 +37,33 @@ namespace MaterialDesignThemes.Wpf
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            double width = sizeChangedEventArgs.NewSize.Width;
-            double height = sizeChangedEventArgs.NewSize.Height;
-            double radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
+            var innerContent = (Content as FrameworkElement);
 
-            Debug.WriteLine("Width: {0} Height: {1} Radius: {2}", width, height, radius);
+            double width, height;
+
+            if (innerContent != null)
+            {
+                width = innerContent.ActualWidth;
+                height = innerContent.ActualHeight;
+            }
+            else
+            {
+                width = sizeChangedEventArgs.NewSize.Width;
+                height = sizeChangedEventArgs.NewSize.Height;
+            }
+
+            double radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
+            
             RippleSize = 2 * radius * RippleSizeMultiplier;
+        }
+
+        public static readonly DependencyProperty StayOnCenterProperty = DependencyProperty.Register(
+            "StayOnCenter", typeof(bool), typeof(Ripple), new PropertyMetadata(false));
+
+        public bool StayOnCenter
+        {
+            get { return (bool)GetValue(StayOnCenterProperty); }
+            set { SetValue(StayOnCenterProperty, value); }
         }
 
         public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
@@ -58,8 +79,16 @@ namespace MaterialDesignThemes.Wpf
         {
             var point = e.GetPosition(this);
 
-            RippleX = point.X - RippleSize / 2;
-            RippleY = point.Y - RippleSize / 2;
+            if (StayOnCenter)
+            {
+                RippleX = this.ActualWidth / 2 - RippleSize / 2;
+                RippleY = this.ActualHeight / 2 - RippleSize / 2;
+            }
+            else
+            {
+                RippleX = point.X - RippleSize / 2;
+                RippleY = point.Y - RippleSize / 2;
+            }
 			
             base.OnPreviewMouseLeftButtonDown(e);
         }
