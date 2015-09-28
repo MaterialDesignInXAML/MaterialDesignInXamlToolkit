@@ -81,8 +81,20 @@ namespace MaterialDesignThemes.Wpf
 
             if (StayOnCenter)
             {
-                RippleX = this.ActualWidth / 2 - RippleSize / 2;
-                RippleY = this.ActualHeight / 2 - RippleSize / 2;
+                var innerContent = (Content as FrameworkElement);
+
+                if (innerContent != null)
+                {
+                    Point position = innerContent.TransformToAncestor(this)
+                        .Transform(new Point(0, 0));
+                    RippleX = position.X + innerContent.ActualWidth/ 2 - RippleSize / 2;
+                    RippleY = position.Y + innerContent.ActualHeight / 2 - RippleSize / 2;
+                }
+                else
+                {
+                    RippleX = ActualWidth / 2 - RippleSize / 2;
+                    RippleY = ActualHeight / 2 - RippleSize / 2;
+                }
             }
             else
             {
