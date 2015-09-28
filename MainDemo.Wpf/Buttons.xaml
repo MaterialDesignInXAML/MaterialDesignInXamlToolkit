@@ -119,8 +119,9 @@
             </CheckBox>
         </StackPanel>
         <StackPanel Grid.Row="7"  Margin="0 16 0 0" Orientation="Horizontal">
-            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="0 0 8 8"  />
-            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="0 0 8 8" IsChecked="True" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" IsChecked="True" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" IsEnabled="False" />
         </StackPanel>
         <StackPanel Grid.Row="8"  Margin="0 16 0 0" Orientation="Horizontal">
             <ToggleButton Style="{StaticResource MaterialDesignFlatToggleButton}">
