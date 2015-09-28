@@ -35,6 +35,7 @@
                                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                 Padding="{TemplateBinding Padding}" 
                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                StayOnCenter="True"
                                                 RenderTransformOrigin=".5, .5">
                                         <wpf:Ripple.RenderTransform>
                                             <RotateTransform x:Name="RotateTransform"></RotateTransform>

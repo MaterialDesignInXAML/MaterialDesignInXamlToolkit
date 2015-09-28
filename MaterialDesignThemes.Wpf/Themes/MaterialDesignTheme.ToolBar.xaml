@@ -227,6 +227,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
+                                StayOnCenter="True"
                                 x:Name="RippleWrapper"
                                 Feedback="{TemplateBinding Foreground}"
                                 ClipToBounds="False"
