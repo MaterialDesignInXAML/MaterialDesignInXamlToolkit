@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="800" d:DesignWidth="600">
     <ScrollViewer>
         <StackPanel Margin="16">
             <TextBlock FontSize="16">Colour Zones</TextBlock>
@@ -18,7 +18,8 @@
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                         <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
                     </StackPanel>
-                    <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                    <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                            wpf:RippleAssist.StayOnCenter="True">
                         <Viewbox Width="16" Height="16">
                             <Canvas Width="24" Height="24">
                                 <Path Data="M2,21L23,12L2,3V10L17,12L2,14V21Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
@@ -36,7 +37,8 @@
             </wpf:ColorZone>
             <TextBlock Margin="0 16 0 0" FontSize="10">Use primary mid colours, and nest colour zones!</TextBlock>
             <wpf:ColorZone Mode="PrimaryMid" Padding="16">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"
+                            wpf:RippleAssist.StayOnCenter="True">
                     <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                     <wpf:ColorZone Mode="Standard" Padding="8 4 8 4" CornerRadius="2" Panel.ZIndex="1"
                                    Margin="16 0 0 0"
