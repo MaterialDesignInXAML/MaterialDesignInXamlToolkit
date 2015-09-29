@@ -21,7 +21,7 @@ namespace MahMaterialDragablzMashUp
 
         public ICommand ShowLeftFlyoutCommand { get; }
 
-        private ResourceDictionary DialogDictionary = new ResourceDictionary() { Source = new Uri("pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/Dialogs.xaml") };
+        private ResourceDictionary DialogDictionary = new ResourceDictionary() { Source = new Uri("pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Dialogs.xaml") };
 
         public DialogsViewModel()
         {

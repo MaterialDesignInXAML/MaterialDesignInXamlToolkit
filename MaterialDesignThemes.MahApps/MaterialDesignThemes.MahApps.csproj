@@ -57,15 +57,15 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Themes\Dialogs.xaml">
+    <Page Include="Themes\MaterialDesignTheme.MahApps.Dialogs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Flyout.xaml">
+    <Page Include="Themes\MaterialDesignTheme.MahApps.Flyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Fonts.xaml">
+    <Page Include="Themes\MaterialDesignTheme.MahApps.Fonts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
