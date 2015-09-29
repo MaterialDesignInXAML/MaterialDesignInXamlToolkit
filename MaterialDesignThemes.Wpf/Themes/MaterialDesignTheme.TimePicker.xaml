@@ -41,6 +41,7 @@
 											  />
 								<TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
 										   Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
+                                           IsHitTestVisible="False"
 										   x:Name="Hint"
 										   Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
 							</Grid>
@@ -69,7 +70,7 @@
 						</ControlTemplate>
 					</ControlTemplate.Resources>
 					<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" 
-							x:Name="border" Padding="0 4 0 4" SnapsToDevicePixels="True">
+							x:Name="border" Padding="0 4" SnapsToDevicePixels="True">
 						<Grid>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*" />
@@ -89,15 +90,14 @@
                                    CustomPopupPlacementCallback="{x:Static wpf:CustomPopupPlacementCallbackHelper.LargePopupCallback}"
                                    PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"
 								   PopupAnimation="Fade"/>
-						</Grid>
+                            <wpf:Underline x:Name="UnderlineControl"
+                                           Grid.ColumnSpan="2"
+                                           Margin="0 0 0 -5"/>
+                        </Grid>
 					</Border>
 					<ControlTemplate.Triggers>
-						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
-						</Trigger>
 						<Trigger Property="IsKeyboardFocusWithin" Value="true">
-							<Setter TargetName="border" Property="Padding" Value="0 4 0 3"/>
-							<Setter Property="BorderThickness" Value="0 0 0 2"/>
+                            <Setter TargetName="UnderlineControl" Property="IsActive" Value="True"/>
 							<Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
 						</Trigger>
 					</ControlTemplate.Triggers>
