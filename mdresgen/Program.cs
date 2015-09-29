@@ -13,17 +13,17 @@ namespace mdresgen
         private const string BaseSnippetLocation = "MaterialColourSwatchesSnippet.xml";
 
         // Legacy
-        private const string OldXamlFileFormat = @"..\..\..\Themes\MaterialDesignColor.{0}.xaml";
-        private const string OldXamlNamedFileFormat = @"..\..\..\Themes\MaterialDesignColor.{0}.Named.xaml";
+        private const string OldXamlFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.xaml";
+        private const string OldXamlNamedFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.xaml";
 
 
-        private const string XamlPrimaryFileFormat = @"..\..\..\Themes\MaterialDesignColor.{0}.Primary.xaml";
-        private const string XamlAccentFileFormat = @"..\..\..\Themes\MaterialDesignColor.{0}.Accent.xaml";
-        private const string XamlPrimaryNamedFileFormat = @"..\..\..\Themes\MaterialDesignColor.{0}.Named.Primary.xaml";
-        private const string XamlAccentNamedFileFormat = @"..\..\..\Themes\MaterialDesignColor.{0}.Named.Accent.xaml";
+        private const string XamlPrimaryFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Primary.xaml";
+        private const string XamlAccentFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Accent.xaml";
+        private const string XamlPrimaryNamedFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Primary.xaml";
+        private const string XamlAccentNamedFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Accent.xaml";
 
-        private const string RecommendedPrimaryFileFormat = @"..\..\..\Themes\Recommended\Primary\MaterialDesignColor.{0}.xaml";
-        private const string RecommendedAccentFileFormat = @"..\..\..\Themes\Recommended\Accent\MaterialDesignColor.{0}.xaml";
+        private const string RecommendedPrimaryFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Primary\MaterialDesignColor.{0}.xaml";
+        private const string RecommendedAccentFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Accent\MaterialDesignColor.{0}.xaml";
         private const string RecommendedPrimaryTemplateLocation = "RecommendedPrimaryTemplate.xaml";
         private const string RecommendedAccentTemplateLocation = "RecommendedAccentTemplate.xaml";
 
