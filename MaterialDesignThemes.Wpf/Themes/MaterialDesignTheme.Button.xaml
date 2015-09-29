@@ -70,8 +70,7 @@
                                 </TransformGroup>
                             </Border.RenderTransform>
                         </Border>
-                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"      
-                                    x:Name="RippleWrapper"
+                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"     
                                                             Feedback="White"
                                                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -81,9 +80,6 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefaulted" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="RippleWrapper" Property="IsActive" Value="True"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />
@@ -167,9 +163,8 @@
                             </Border.RenderTransform>
                         </Border>
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
-                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"        
-                                    x:Name="RippleWrapper"                                                         
-                                                              Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
+                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
+                                        Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
                                                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                               Padding="{TemplateBinding Padding}" 
@@ -182,9 +177,6 @@
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="RippleWrapper" Property="IsActive" Value="True"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
@@ -205,17 +197,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"          
-                                    x:Name="RippleWrapper"                                                       
-                                                      Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
-                                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                      Padding="{TemplateBinding Padding}" 
-                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
+                                Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Padding="{TemplateBinding Padding}" 
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="RippleWrapper" Property="IsActive" Value="True"/>
-                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -243,8 +231,7 @@
                     <Grid>
                         <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Effect="{DynamicResource MaterialDesignShadowDepth1}"
                                  x:Name="border" />
-                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"   
-                                    x:Name="RippleWrapper"
+                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
                                     Feedback="White"
                                     Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -256,9 +243,6 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefaulted" Value="true">
                             <Setter Property="Stroke" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="RippleWrapper" Property="IsActive" Value="True"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>

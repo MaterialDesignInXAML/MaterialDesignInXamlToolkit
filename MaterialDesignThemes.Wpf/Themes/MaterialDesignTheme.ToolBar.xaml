@@ -223,12 +223,11 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="TextBlock.FontWeight" Value="DemiBold"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+        <Setter Property="wpf:RippleAssist.StayOnCenter" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
-                                StayOnCenter="True"
-                                x:Name="RippleWrapper"
                                 Feedback="{TemplateBinding Foreground}"
                                 ClipToBounds="False"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -238,9 +237,6 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value=".56"/>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="RippleWrapper" Property="IsActive" Value="True"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Documents.DocumentStructures;
@@ -41,7 +42,7 @@ namespace MaterialDesignThemes.Wpf
 
             double width, height;
 
-            if (StayOnCenter && innerContent != null)
+            if (RippleAssist.GetStayOnCenter(this) && innerContent != null)
             {
                 width = innerContent.ActualWidth;
                 height = innerContent.ActualHeight;
@@ -54,16 +55,7 @@ namespace MaterialDesignThemes.Wpf
 
             double radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
             
-            RippleSize = 2 * radius * RippleSizeMultiplier;
-        }
-
-        public static readonly DependencyProperty StayOnCenterProperty = DependencyProperty.Register(
-            "StayOnCenter", typeof(bool), typeof(Ripple), new PropertyMetadata(false));
-
-        public bool StayOnCenter
-        {
-            get { return (bool)GetValue(StayOnCenterProperty); }
-            set { SetValue(StayOnCenterProperty, value); }
+            RippleSize = 2 * radius * RippleAssist.GetRippleSizeMultiplier(this);
         }
 
         public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
@@ -78,8 +70,8 @@ namespace MaterialDesignThemes.Wpf
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             var point = e.GetPosition(this);
-
-            if (StayOnCenter)
+            
+            if (RippleAssist.GetStayOnCenter(this))
             {
                 var innerContent = (Content as FrameworkElement);
 
@@ -104,15 +96,6 @@ namespace MaterialDesignThemes.Wpf
             }
 			
             base.OnPreviewMouseLeftButtonDown(e);
-        }
-
-        public static readonly DependencyProperty RippleSizeMultiplierProperty = DependencyProperty.Register(
-            "RippleSizeMultiplier", typeof(double), typeof(Ripple), new PropertyMetadata(1.0));
-
-        public double RippleSizeMultiplier
-        {
-            get { return (double)GetValue(RippleSizeMultiplierProperty); }
-            set { SetValue(RippleSizeMultiplierProperty, value); }
         }
 
         private static readonly DependencyPropertyKey RippleSizePropertyKey =
@@ -182,6 +165,17 @@ namespace MaterialDesignThemes.Wpf
         {
             base.OnApplyTemplate();
 
+            var button = (TemplatedParent as ButtonBase);
+            if (button != null)
+            {
+                Binding isPressedBinding = new Binding
+                {
+                    Path = new PropertyPath("IsPressed"),
+                    Source = button
+                };
+                this.SetBinding(Ripple.IsActiveProperty, isPressedBinding);
+            }
+            
             VisualStateManager.GoToState(this, TemplateStateNormal, false);
         }
     }
