@@ -41,7 +41,7 @@ namespace MaterialDesignThemes.Wpf
 
             double width, height;
 
-            if (innerContent != null)
+            if (StayOnCenter && innerContent != null)
             {
                 width = innerContent.ActualWidth;
                 height = innerContent.ActualHeight;
@@ -87,7 +87,8 @@ namespace MaterialDesignThemes.Wpf
                 {
                     Point position = innerContent.TransformToAncestor(this)
                         .Transform(new Point(0, 0));
-                    RippleX = position.X + innerContent.ActualWidth/ 2 - RippleSize / 2;
+
+                    RippleX = position.X + innerContent.ActualWidth / 2 - RippleSize / 2;
                     RippleY = position.Y + innerContent.ActualHeight / 2 - RippleSize / 2;
                 }
                 else
