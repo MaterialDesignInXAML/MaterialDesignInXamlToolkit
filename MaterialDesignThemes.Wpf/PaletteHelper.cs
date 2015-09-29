@@ -1,9 +1,9 @@
-﻿using System;
+﻿using MaterialDesignColors;
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
-using MaterialDesignColors;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -20,7 +20,7 @@ namespace MaterialDesignThemes.Wpf
             var source =
                 $"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{(isDark ? "Dark" : "Light")}.xaml";
             var newResourceDictionary = new ResourceDictionary() { Source = new Uri(source) };
-            
+
             Application.Current.Resources.MergedDictionaries.Remove(existingResourceDictionary);
             Application.Current.Resources.MergedDictionaries.Add(newResourceDictionary);
 
@@ -37,52 +37,46 @@ namespace MaterialDesignThemes.Wpf
             Application.Current.Resources.MergedDictionaries.Add(newMahAppsResourceDictionary);
         }
 
-        public void ReplacePrimaryColor(Swatch swatch)
+        public void ReplacePrimaryColor(Swatch swatch, bool mahapps = false)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
-
-            ResourceDictionary oldColorResourceDictionary;
-            if (!TryFindSwatchDictionary(Application.Current.Resources, "PrimaryHueMidBrush", out oldColorResourceDictionary))
-                throw new ApplicationException("Unable to find primary color definition in Application resources.");
 
             var list = swatch.PrimaryHues.ToList();
             var light = list[2];
             var mid = swatch.ExemplarHue;
             var dark = list[7];
 
-            //TODO reuse some of the dupes, freeze.
-
-            var newColorResourceDictionary = new ResourceDictionary
+            foreach (var color in swatch.PrimaryHues)
             {
-                {"PrimaryHueLightBrush", new SolidColorBrush(light.Color)},
-                {"PrimaryHueLightForegroundBrush", new SolidColorBrush(light.Foreground)},
-                {"PrimaryHueMidBrush", new SolidColorBrush(mid.Color)},
-                {"PrimaryHueMidForegroundBrush", new SolidColorBrush(mid.Foreground)},
-                {"PrimaryHueDarkBrush", new SolidColorBrush(dark.Color)},
-                {"PrimaryHueDarkForegroundBrush", new SolidColorBrush(dark.Foreground)}
-            };
-
-            if (oldColorResourceDictionary.Keys.OfType<string>().Contains("HighlightBrush"))
-            {
-                newColorResourceDictionary.Add("HighlightBrush", new SolidColorBrush(dark.Color));
-                newColorResourceDictionary.Add("AccentColorBrush", new SolidColorBrush(list[5].Color));
-                newColorResourceDictionary.Add("AccentColorBrush2", new SolidColorBrush(list[4].Color));
-                newColorResourceDictionary.Add("AccentColorBrush3", new SolidColorBrush(list[3].Color));
-                newColorResourceDictionary.Add("AccentColorBrush4", new SolidColorBrush(list[2].Color));
-                newColorResourceDictionary.Add("WindowTitleColorBrush", new SolidColorBrush(dark.Color));
-                newColorResourceDictionary.Add("AccentSelectedColorBrush", new SolidColorBrush(list[5].Foreground));
-                newColorResourceDictionary.Add("ProgressBrush", new LinearGradientBrush(dark.Color, list[3].Color, 90.0));
-                newColorResourceDictionary.Add("CheckmarkFill", new SolidColorBrush(list[5].Color));
-                newColorResourceDictionary.Add("RightArrowFill", new SolidColorBrush(list[5].Color));
-                newColorResourceDictionary.Add("IdealForegroundColorBrush", new SolidColorBrush(list[5].Foreground));
-                newColorResourceDictionary.Add("IdealForegroundDisabledBrush", new SolidColorBrush(dark.Color) { Opacity = .4 });
+                ReplaceEntry(color.Name, color.Color);
+                ReplaceEntry(color.Name + "Foreground", color.Foreground);
             }
 
-            Application.Current.Resources.MergedDictionaries.Remove(oldColorResourceDictionary);
-            Application.Current.Resources.MergedDictionaries.Add(newColorResourceDictionary);
+            ReplaceEntry("PrimaryHueLightBrush", new SolidColorBrush(light.Color));
+            ReplaceEntry("PrimaryHueLightForegroundBrush", new SolidColorBrush(light.Foreground));
+            ReplaceEntry("PrimaryHueMidBrush", new SolidColorBrush(mid.Color));
+            ReplaceEntry("PrimaryHueMidForegroundBrush", new SolidColorBrush(mid.Foreground));
+            ReplaceEntry("PrimaryHueDarkBrush", new SolidColorBrush(dark.Color));
+            ReplaceEntry("PrimaryHueDarkForegroundBrush", new SolidColorBrush(dark.Foreground));
+
+            if (mahapps)
+            {
+                ReplaceEntry("HighlightBrush", new SolidColorBrush(dark.Color));
+                ReplaceEntry("AccentColorBrush", new SolidColorBrush(list[5].Color));
+                ReplaceEntry("AccentColorBrush2", new SolidColorBrush(list[4].Color));
+                ReplaceEntry("AccentColorBrush3", new SolidColorBrush(list[3].Color));
+                ReplaceEntry("AccentColorBrush4", new SolidColorBrush(list[2].Color));
+                ReplaceEntry("WindowTitleColorBrush", new SolidColorBrush(dark.Color));
+                ReplaceEntry("AccentSelectedColorBrush", new SolidColorBrush(list[5].Foreground));
+                ReplaceEntry("ProgressBrush", new LinearGradientBrush(dark.Color, list[3].Color, 90.0));
+                ReplaceEntry("CheckmarkFill", new SolidColorBrush(list[5].Color));
+                ReplaceEntry("RightArrowFill", new SolidColorBrush(list[5].Color));
+                ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(list[5].Foreground));
+                ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark.Color) { Opacity = .4 });
+            }
         }
 
-        public void ReplacePrimaryColor(string name)
+        public void ReplacePrimaryColor(string name, bool mahapps = false)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
@@ -92,25 +86,21 @@ namespace MaterialDesignThemes.Wpf
             if (swatch == null)
                 throw new ArgumentException($"No such swatch '{name}'", nameof(name));
 
-            ReplacePrimaryColor(swatch);
+            ReplacePrimaryColor(swatch, mahapps);
         }
 
         public void ReplaceAccentColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
 
-            ResourceDictionary oldColorResourceDictionary;
-            if (!TryFindSwatchDictionary(Application.Current.Resources, "SecondaryAccentBrush", out oldColorResourceDictionary))
-                throw new ApplicationException("Unable to find accent color definition in Application resources.");
-
-            var newColorResourceDictionary = new ResourceDictionary
+            foreach (var color in swatch.AccentHues)
             {
-                {"SecondaryAccentBrush", new SolidColorBrush(swatch.AccentExemplarHue.Color)},
-                {"SecondaryAccentForegroundBrush", new SolidColorBrush(swatch.AccentExemplarHue.Foreground)},
-            };
+                ReplaceEntry(color.Name, color.Color);
+                ReplaceEntry(color.Name + "Foreground", color.Foreground);
+            }
 
-            Application.Current.Resources.MergedDictionaries.Remove(oldColorResourceDictionary);
-            Application.Current.Resources.MergedDictionaries.Add(newColorResourceDictionary);
+            ReplaceEntry("SecondaryAccentBrush", new SolidColorBrush(swatch.AccentExemplarHue.Color));
+            ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(swatch.AccentExemplarHue.Foreground));
         }
 
         public void ReplaceAccentColor(string name)
@@ -126,10 +116,31 @@ namespace MaterialDesignThemes.Wpf
             ReplaceAccentColor(swatch);
         }
 
-        private static bool TryFindSwatchDictionary(ResourceDictionary parentDictionary, string expectedBrushName, out ResourceDictionary dictionary)
+        /// <summary>
+        /// Replaces a certain entry anywhere in the parent dictionary and its merged dictionaries
+        /// </summary>
+        /// <param name="entryName">The entry to replace</param>
+        /// <param name="newValue">The new entry value</param>
+        /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
+        /// <returns>Weather the value was replaced (true) or not (false)</returns>
+        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
         {
-            dictionary = parentDictionary.MergedDictionaries.SingleOrDefault(rd => rd[expectedBrushName] != null);
-            return dictionary != null;
+            if (parentDictionary == null)
+                parentDictionary = Application.Current.Resources;
+
+            if (parentDictionary.Contains(entryName))
+            {
+                parentDictionary[entryName] = newValue;
+                return true;
+            }
+
+            foreach (var dictionary in parentDictionary.MergedDictionaries)
+            {
+                if (ReplaceEntry(entryName, newValue, dictionary))
+                    return true;
+            }
+
+            return false;
         }
     }
 }
