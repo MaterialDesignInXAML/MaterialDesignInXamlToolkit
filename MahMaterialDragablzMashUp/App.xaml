@@ -17,12 +17,9 @@
 
                 <!-- Material Design -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />                
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/Lime.xaml" />                
-
-                <!-- Material Design: MahApps Compatibility -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.DeepPurple.Named.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />                
 
                 <!-- Dragablz Material Design -->
                 <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml"/>
@@ -30,21 +27,21 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!-- MahApps Brushes -->
-            <SolidColorBrush x:Key="HighlightBrush" Color="{StaticResource Deep PurplePrimary700}"/>
-            <SolidColorBrush x:Key="AccentColorBrush" Color="{StaticResource Deep PurplePrimary500}"/>
-            <SolidColorBrush x:Key="AccentColorBrush2" Color="{StaticResource Deep PurplePrimary400}"/>
-            <SolidColorBrush x:Key="AccentColorBrush3" Color="{StaticResource Deep PurplePrimary300}"/>
-            <SolidColorBrush x:Key="AccentColorBrush4" Color="{StaticResource Deep PurplePrimary200}"/>
-            <SolidColorBrush x:Key="WindowTitleColorBrush" Color="{StaticResource Deep PurplePrimary700}"/>
-            <SolidColorBrush x:Key="AccentSelectedColorBrush" Color="{StaticResource Deep PurplePrimary500Foreground}"/>
+            <SolidColorBrush x:Key="HighlightBrush" Color="{DynamicResource Primary700}"/>
+            <SolidColorBrush x:Key="AccentColorBrush" Color="{DynamicResource Primary500}"/>
+            <SolidColorBrush x:Key="AccentColorBrush2" Color="{DynamicResource Primary400}"/>
+            <SolidColorBrush x:Key="AccentColorBrush3" Color="{DynamicResource Primary300}"/>
+            <SolidColorBrush x:Key="AccentColorBrush4" Color="{DynamicResource Primary200}"/>
+            <SolidColorBrush x:Key="WindowTitleColorBrush" Color="{DynamicResource Primary700}"/>
+            <SolidColorBrush x:Key="AccentSelectedColorBrush" Color="{DynamicResource Primary500Foreground}"/>
             <LinearGradientBrush x:Key="ProgressBrush" EndPoint="0.001,0.5" StartPoint="1.002,0.5">
-                <GradientStop Color="{StaticResource Deep PurplePrimary700}" Offset="0"/>
-                <GradientStop Color="{StaticResource Deep PurplePrimary300}" Offset="1"/>
+                <GradientStop Color="{DynamicResource Primary700}" Offset="0"/>
+                <GradientStop Color="{DynamicResource Primary300}" Offset="1"/>
             </LinearGradientBrush>
-            <SolidColorBrush x:Key="CheckmarkFill" Color="{StaticResource Deep PurplePrimary500}"/>
-            <SolidColorBrush x:Key="RightArrowFill" Color="{StaticResource Deep PurplePrimary500}"/>
-            <SolidColorBrush x:Key="IdealForegroundColorBrush" Color="{StaticResource Deep PurplePrimary500Foreground}"/>
-            <SolidColorBrush x:Key="IdealForegroundDisabledBrush" Color="{StaticResource Deep PurplePrimary500}" Opacity="0.4"/>
+            <SolidColorBrush x:Key="CheckmarkFill" Color="{DynamicResource Primary500}"/>
+            <SolidColorBrush x:Key="RightArrowFill" Color="{DynamicResource Primary500}"/>
+            <SolidColorBrush x:Key="IdealForegroundColorBrush" Color="{DynamicResource Primary500Foreground}"/>
+            <SolidColorBrush x:Key="IdealForegroundDisabledBrush" Color="{DynamicResource Primary500}" Opacity="0.4"/>
 
             <!-- Dragablz Material Design -->
             <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}" />
