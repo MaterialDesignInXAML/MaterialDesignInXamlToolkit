@@ -139,30 +139,34 @@
 							</Grid.ColumnDefinitions>
 							<Button x:Name="PART_Button" Grid.Column="1" Foreground="{TemplateBinding BorderBrush}" Focusable="False" HorizontalAlignment="Right" Margin="4 0 0 -3" Grid.Row="0" Template="{StaticResource DropDownButtonTemplate}" Padding="0"
 									Height="17" />
-							<DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Center" Style="{DynamicResource MaterialDesignDatePickerTextBox}"
+							<DatePickerTextBox x:Name="PART_TextBox"
+                                               Grid.Column="0" Grid.Row="0"
+                                               Focusable="{TemplateBinding Focusable}"
+                                               HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"
+                                               Style="{DynamicResource MaterialDesignDatePickerTextBox}"
 											   HorizontalAlignment="Stretch" />
 							<Popup x:Name="PART_Popup" AllowsTransparency="True" 
                                    Placement="Custom"
                                    CustomPopupPlacementCallback="{x:Static wpf:CustomPopupPlacementCallbackHelper.LargePopupCallback}"
                                    PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"
 								   PopupAnimation="Fade"  />
+                            <wpf:Underline x:Name="UnderlineControl"
+                                           Grid.ColumnSpan="2"
+                                           Margin="0 0 0 -5"/>
 						</Grid>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsEnabled" Value="false">
 							<Setter Property="Opacity" TargetName="border" Value="0.56"/>
 						</Trigger>
-						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
-						</Trigger>
 						<Trigger Property="IsKeyboardFocusWithin" Value="true">
-							<Setter TargetName="border" Property="Padding" Value="0 4 0 3"/>
-							<Setter Property="BorderThickness" Value="0 0 0 2"/>
-							<Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
+                            <Setter TargetName="UnderlineControl" Property="IsActive" Value="True"/>
+                            <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
 						</Trigger>
 						<Trigger Property="Validation.HasError" Value="true">
-							<Setter Property="BorderBrush" Value="#f44336"/>
-						</Trigger>
+                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter TargetName="UnderlineControl" Property="Background"  Value="{DynamicResource ValidationErrorBrush}"/>
+                        </Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
 			</Setter.Value>
