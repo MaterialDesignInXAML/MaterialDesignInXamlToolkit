@@ -221,10 +221,8 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ToggleButton}">
 					<ControlTemplate.Resources>
-                        <SineEase x:Key="RippleEasingFunction" EasingMode="EaseInOut"/>
-                        
 						<Storyboard x:Key="Checked">
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ThumbHolder">
+							<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="Thumb">
 								<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
 								<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="23.5">
 									<EasingDoubleKeyFrame.EasingFunction>
@@ -233,24 +231,8 @@
 								</EasingDoubleKeyFrame>
 							</DoubleAnimationUsingKeyFrames>
 						</Storyboard>
-                        <Storyboard x:Key="ShowRipple">
-                            <DoubleAnimation Storyboard.TargetName="RippleThumb" Storyboard.TargetProperty="Opacity"
-                                             EasingFunction="{StaticResource RippleEasingFunction}"
-                                             To="0.26" Duration="0"/>
-                            <DoubleAnimation Storyboard.TargetName="RippleThumb" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                             EasingFunction="{StaticResource RippleEasingFunction}"
-                                             From="1" To="2.5" Duration="0:0:0.2"/>
-                            <DoubleAnimation Storyboard.TargetName="RippleThumb" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                             EasingFunction="{StaticResource RippleEasingFunction}"
-                                             From="1" To="2.5" Duration="0:0:0.2"/>
-                        </Storyboard>
-                        <Storyboard x:Key="HideRipple">
-                            <DoubleAnimation Storyboard.TargetName="RippleThumb" Storyboard.TargetProperty="Opacity"
-                                             EasingFunction="{StaticResource RippleEasingFunction}"
-                                             To="0" Duration="0:0:0.3"/>
-                        </Storyboard>
-                        <Storyboard x:Key="Unchecked">
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ThumbHolder">
+						<Storyboard x:Key="Unchecked">
+							<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="Thumb">
 								<EasingDoubleKeyFrame KeyTime="0" Value="23.5"/>
 								<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
 									<EasingDoubleKeyFrame.EasingFunction>
@@ -262,34 +244,18 @@
 					</ControlTemplate.Resources>
 					<Viewbox Width="34">
 						<Grid>
-							<Rectangle x:Name="Track"
-                                       Fill="Black" HorizontalAlignment="Left" Height="15" Margin="4.211,5,4.211,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="40" RadiusY="7.5" RadiusX="7.5" Opacity="0.26"/>
-                            
-                            <Grid x:Name="ThumbHolder"
-                                  HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Ellipse x:Name="RippleThumb"
-                                         Fill="{DynamicResource PrimaryHueLightBrush}"
-                                         Height="25" Width="25"
-                                         Opacity="0.26"
-                                         Margin="0"
-                                         HorizontalAlignment="Center" VerticalAlignment="Center"
-                                         RenderTransformOrigin="0.5,0.5">
-                                    <Ellipse.RenderTransform>
-                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
-                                    </Ellipse.RenderTransform>
-                                </Ellipse>
-                                <Ellipse x:Name="Thumb"
-                                         Fill="#FFFAFAFA" Stroke="{x:Null}" 
-                                         HorizontalAlignment="Center" VerticalAlignment="Center"
-                                         Width="25" Height="25"
-                                         Margin="0,0,0,0"
-                                         RenderTransformOrigin="0.5,0.5"
-                                         Effect="{DynamicResource MaterialDesignShadowDepth1}"/>
-                                <Grid.RenderTransform>
-                                    <TranslateTransform X="0" Y="0"/>
-                                </Grid.RenderTransform>
-                            </Grid>
-                        </Grid>
+							<Rectangle x:Name="Track" Fill="Black" HorizontalAlignment="Left" Height="15" Margin="4.211,5,4.211,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="40" RadiusY="7.5" RadiusX="7.5" Opacity="0.26"/>
+							<Ellipse x:Name="Thumb" Fill="#FFFAFAFA" HorizontalAlignment="Left" Height="25" Margin="0,0,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.5,0.5" Effect="{DynamicResource MaterialDesignShadowDepth1}">
+								<Ellipse.RenderTransform>
+									<TransformGroup>
+										<ScaleTransform/>
+										<SkewTransform/>
+										<RotateTransform/>
+										<TranslateTransform/>
+									</TransformGroup>
+								</Ellipse.RenderTransform>
+							</Ellipse>
+						</Grid>
 					</Viewbox>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsChecked" Value="True">
@@ -304,14 +270,7 @@
 						</Trigger>
 						<Trigger Property="Button.IsDefaulted" Value="true"/>
 						<Trigger Property="IsMouseOver" Value="true"/>
-                        <Trigger Property="IsPressed" Value="true">
-                            <Trigger.EnterActions>
-                                <BeginStoryboard Storyboard="{StaticResource ShowRipple}"/>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard Storyboard="{StaticResource HideRipple}"/>
-                            </Trigger.ExitActions>
-                        </Trigger>
+						<Trigger Property="IsPressed" Value="true"/>
 						<Trigger Property="IsEnabled" Value="false">
 							<Setter TargetName="Thumb" Property="Fill" Value="#BDBDBD" />
 							<Setter TargetName="Track" Property="Fill">

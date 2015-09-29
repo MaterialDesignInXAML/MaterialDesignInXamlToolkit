@@ -11,5 +11,5 @@ namespace MaterialDesignColors.WpfExample
         {
             InitializeComponent();
         }
-    } 
+    }
 }
