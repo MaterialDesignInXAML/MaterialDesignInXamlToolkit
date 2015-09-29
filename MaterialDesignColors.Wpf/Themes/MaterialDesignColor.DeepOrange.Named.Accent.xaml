@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="Deep OrangeAccent100">#ff9e80</Color>
+  <Color x:Key="Deep OrangeAccent100Foreground">#DD000000</Color>
+  <Color x:Key="Deep OrangeAccent200">#ff6e40</Color>
+  <Color x:Key="Deep OrangeAccent200Foreground">#DD000000</Color>
+  <Color x:Key="Deep OrangeAccent400">#ff3d00</Color>
+  <Color x:Key="Deep OrangeAccent400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep OrangeAccent700">#dd2c00</Color>
+  <Color x:Key="Deep OrangeAccent700Foreground">#FFFFFFFF</Color>
+</ResourceDictionary>
