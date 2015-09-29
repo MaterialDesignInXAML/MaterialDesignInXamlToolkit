@@ -385,7 +385,6 @@
                             IsHitTestVisible="False"
                             Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
                     <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    <wpf:Underline x:Name="UnderlineControl" Margin="0 0 0 -5"/>
                 </Grid>
             </Border>
             <wpf:Underline x:Name="UnderlineBorder" Grid.ColumnSpan="2"/>
@@ -494,7 +493,7 @@
                     <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 </Grid>
             </Border>
-            <wpf:Underline x:Name="UnderlineBorder"/>
+            <wpf:Underline x:Name="UnderlineBorder" Grid.ColumnSpan="2"/>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False">
