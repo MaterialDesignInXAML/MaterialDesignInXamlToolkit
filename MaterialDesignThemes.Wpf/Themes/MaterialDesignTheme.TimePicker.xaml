@@ -42,6 +42,7 @@
 								<TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
 										   Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
 										   x:Name="Hint"
+                                           IsHitTestVisible="False"
 										   Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
 							</Grid>
 						</ControlTemplate>
@@ -68,36 +69,42 @@
 							</Grid>
 						</ControlTemplate>
 					</ControlTemplate.Resources>
-					<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" 
-							x:Name="border" Padding="0 4 0 4" SnapsToDevicePixels="True">
-						<Grid>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>							
-							<TextBox BorderThickness="0" x:Name="PART_TextBox"											 									 
-									 wpf:TextFieldAssist.TextBoxViewMargin="1 0 0 0"
-									 Margin="0"                                     
-									 Template="{StaticResource TextBoxTemplate}"									 
-									 />
-							<Button Grid.Column="1" Foreground="{TemplateBinding BorderBrush}" Focusable="False" HorizontalAlignment="Right" Margin="4 0 0 -3" Grid.Row="0" Padding="0"
-									x:Name="PART_Button" 							
-									Height="17"
-									Template="{StaticResource DropDownButtonTemplate}" />
-							<Popup x:Name="PART_Popup" AllowsTransparency="True" 
-                                   Placement="Custom"
-                                   CustomPopupPlacementCallback="{x:Static wpf:CustomPopupPlacementCallbackHelper.LargePopupCallback}"
-                                   PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"
-								   PopupAnimation="Fade"/>
-						</Grid>
-					</Border>
-					<ControlTemplate.Triggers>
+                    <Grid>
+					    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" 
+                                x:Name="border"
+                                Padding="0 4 0 4"
+                                SnapsToDevicePixels="True">
+						    <Grid>
+						    	<Grid.ColumnDefinitions>
+						    		<ColumnDefinition Width="*" />
+						    		<ColumnDefinition Width="Auto" />
+						    	</Grid.ColumnDefinitions>							
+						    	<TextBox BorderThickness="0" x:Name="PART_TextBox"											 									 
+						    			 wpf:TextFieldAssist.TextBoxViewMargin="1 0 0 0"
+						    			 Margin="0"                                     
+						    			 Template="{StaticResource TextBoxTemplate}"									 
+						    			 />
+						    	<Button Grid.Column="1" Foreground="{TemplateBinding BorderBrush}" Focusable="False" HorizontalAlignment="Right" Margin="4 0 0 -3" Grid.Row="0" Padding="0"
+						    			x:Name="PART_Button" 							
+						    			Height="17"
+						    			Template="{StaticResource DropDownButtonTemplate}" />
+						    	<Popup x:Name="PART_Popup" AllowsTransparency="True" 
+                                       Placement="Custom"
+                                       CustomPopupPlacementCallback="{x:Static wpf:CustomPopupPlacementCallbackHelper.LargePopupCallback}"
+                                       PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"
+						    		   PopupAnimation="Fade"/>
+						    </Grid>
+                        </Border>
+                        <wpf:Underline x:Name="Underline" BindIsKeyboardFocused="False"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="true">
 							<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
 						</Trigger>
 						<Trigger Property="IsKeyboardFocusWithin" Value="true">
-							<Setter TargetName="border" Property="Padding" Value="0 4 0 3"/>
-							<Setter Property="BorderThickness" Value="0 0 0 2"/>
+                            <Setter Property="IsActive" TargetName="Underline" Value="True"/>
 							<Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
 						</Trigger>
 					</ControlTemplate.Triggers>

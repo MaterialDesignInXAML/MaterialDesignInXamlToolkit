@@ -27,20 +27,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Padding="0 4 0 4">
-                        <Grid >
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-                                          />
-                            <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
-                                       Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
-                                       IsHitTestVisible="False"
-                                       x:Name="Hint"
-                                       Margin="1 0 1 0"
-                                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
-                        </Grid>
-                    </Border>
+                    <Grid VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <Border x:Name="border"
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Padding="0 4 0 4">
+                            <Grid Margin="{TemplateBinding Padding}">
+                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                                              />
+                                <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                           Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
+                                           IsHitTestVisible="False"
+                                           x:Name="Hint"
+                                           Margin="1 0 1 0"
+                                           Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </Grid>
+                        </Border>
+                        <wpf:Underline x:Name="Underline"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
@@ -49,12 +55,11 @@
                             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter TargetName="border" Property="Padding" Value="0 4 0 3"/>
-                            <Setter Property="BorderThickness" Value="0 0 0 2"/>
                             <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
                             <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -118,21 +123,28 @@
                             </ThicknessAnimation>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
-                        Padding="0 4 0 4">
-                        <Grid Margin="0 12 0 0">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                    <Grid VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <Border x:Name="border"
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True"
+                                Padding="0 4 0 4">
+                            <Grid Margin="0 12 0 0">
+                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
+                                              HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                                             />
-                            <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
-                                       IsHitTestVisible="False"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       HorizontalAlignment="Left"
-                                       VerticalAlignment="Top"
-                                       x:Name="Hint"
-                                       Margin="1 0 1 0"
-                                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
-                        </Grid>
-                    </Border>
+                                <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                           IsHitTestVisible="False"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           x:Name="Hint"
+                                           Margin="1 0 1 0"
+                                           Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </Grid>
+                        </Border>
+                        <wpf:Underline x:Name="Underline"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False">
                             <Trigger.EnterActions>
@@ -160,13 +172,12 @@
                         </Trigger>
                         
                         <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter TargetName="border" Property="Padding" Value="0 4 0 3"/>
-                            <Setter Property="BorderThickness" Value="0 0 0 2"/>
                             <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
                         </Trigger>
                         
                         <Trigger Property="Validation.HasError" Value="true">
                             <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
