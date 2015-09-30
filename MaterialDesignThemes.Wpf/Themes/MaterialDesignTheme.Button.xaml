@@ -333,7 +333,6 @@
                                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                           Padding="{TemplateBinding Padding}" 
                                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
->>>>>>> ButtonHoverEffect
                         <Ellipse x:Name="GeometryEllipse" Fill="Transparent" IsHitTestVisible="False" Focusable="False" />
                     </Grid>
                     <ControlTemplate.Triggers>
