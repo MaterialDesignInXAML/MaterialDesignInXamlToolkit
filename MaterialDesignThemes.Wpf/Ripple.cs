@@ -26,14 +26,27 @@ namespace MaterialDesignThemes.Wpf
         public const string TemplateStateNormal = "Normal";
         public const string TemplateStateMousePressed = "MousePressed";
 
+        private static readonly HashSet<Ripple> LoadedInstances = new HashSet<Ripple>();
+
         static Ripple()
-        {
+        {                        
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Ripple), new FrameworkPropertyMetadata(typeof(Ripple)));
+
+            EventManager.RegisterClassHandler(typeof(Window), Mouse.PreviewMouseUpEvent, new MouseButtonEventHandler(MouseButtonEventHandler), true);
         }
 
         public Ripple()
-        {
+        {            
             SizeChanged += OnSizeChanged;
+
+            Loaded += (sender, args) => LoadedInstances.Add((Ripple) sender);
+            Unloaded += (sender, args) => LoadedInstances.Remove((Ripple)sender);
+        }        
+
+        private static void MouseButtonEventHandler(object sender, MouseButtonEventArgs e)
+        {
+            foreach (var loadedInstance in LoadedInstances)
+                VisualStateManager.GoToState(loadedInstance, TemplateStateNormal, false);
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
@@ -42,7 +55,7 @@ namespace MaterialDesignThemes.Wpf
 
             double width, height;
 
-            if (RippleAssist.GetStayOnCenter(this) && innerContent != null)
+            if (RippleAssist.GetIsCentered(this) && innerContent != null)
             {
                 width = innerContent.ActualWidth;
                 height = innerContent.ActualHeight;
@@ -53,7 +66,7 @@ namespace MaterialDesignThemes.Wpf
                 height = sizeChangedEventArgs.NewSize.Height;
             }
 
-            double radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
+            var radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
             
             RippleSize = 2 * radius * RippleAssist.GetRippleSizeMultiplier(this);
         }
@@ -71,13 +84,13 @@ namespace MaterialDesignThemes.Wpf
         {
             var point = e.GetPosition(this);
             
-            if (RippleAssist.GetStayOnCenter(this))
+            if (RippleAssist.GetIsCentered(this))
             {
                 var innerContent = (Content as FrameworkElement);
 
                 if (innerContent != null)
                 {
-                    Point position = innerContent.TransformToAncestor(this)
+                    var position = innerContent.TransformToAncestor(this)
                         .Transform(new Point(0, 0));
 
                     RippleX = position.X + innerContent.ActualWidth / 2 - RippleSize / 2;
@@ -94,7 +107,9 @@ namespace MaterialDesignThemes.Wpf
                 RippleX = point.X - RippleSize / 2;
                 RippleY = point.Y - RippleSize / 2;
             }
-			
+
+            VisualStateManager.GoToState(this, TemplateStateMousePressed, true);
+
             base.OnPreviewMouseLeftButtonDown(e);
         }
 
@@ -138,44 +153,12 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (double)GetValue(RippleYProperty); }
             private set { SetValue(RippleYPropertyKey, value); }
-        }
-
-        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
-            "IsActive", typeof(bool), typeof(Ripple), new FrameworkPropertyMetadata(false, IsActivePropertyChangedCallback));
-
-        public bool IsActive
-        {
-            get { return (bool)GetValue(IsActiveProperty); }
-            set { SetValue(IsActiveProperty, value); }
-        }
-
-        private static void IsActivePropertyChangedCallback(
-            DependencyObject dependencyObject,
-            DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var box = dependencyObject as Ripple;
-            if (box == null) return;
-
-            bool isActive = (bool)dependencyPropertyChangedEventArgs.NewValue;
-
-            VisualStateManager.GoToState(box, isActive ? TemplateStateMousePressed : TemplateStateNormal, true);
-        }
+        }       
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-
-            var button = (TemplatedParent as ButtonBase);
-            if (button != null)
-            {
-                Binding isPressedBinding = new Binding
-                {
-                    Path = new PropertyPath("IsPressed"),
-                    Source = button
-                };
-                this.SetBinding(Ripple.IsActiveProperty, isPressedBinding);
-            }
-            
+                        
             VisualStateManager.GoToState(this, TemplateStateNormal, false);
         }
     }

@@ -23,17 +23,17 @@ namespace MaterialDesignThemes.Wpf
 
         #region StayOnCenter
 
-        public static readonly DependencyProperty StayOnCenterProperty = DependencyProperty.RegisterAttached(
-            "StayOnCenter", typeof(bool), typeof(RippleAssist), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
+        public static readonly DependencyProperty IsCenteredProperty = DependencyProperty.RegisterAttached(
+            "IsCentered", typeof(bool), typeof(RippleAssist), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
 
-        public static void SetStayOnCenter(DependencyObject element, bool value)
+        public static void SetIsCentered(DependencyObject element, bool value)
         {
-            element.SetValue(StayOnCenterProperty, value);
+            element.SetValue(IsCenteredProperty, value);
         }
 
-        public static bool GetStayOnCenter(DependencyObject element)
+        public static bool GetIsCentered(DependencyObject element)
         {
-            return (bool)element.GetValue(StayOnCenterProperty);
+            return (bool)element.GetValue(IsCenteredProperty);
         }
 
         #endregion
