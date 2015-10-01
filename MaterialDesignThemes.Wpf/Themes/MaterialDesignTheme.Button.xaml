@@ -31,6 +31,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -76,9 +77,6 @@
                                         <DoubleAnimation To="1"
                                                          Storyboard.TargetName="ShadowBorder"
                                                          Storyboard.TargetProperty="Opacity"/>
-                                        <!--DoubleAnimation To="-0"
-                                                         Storyboard.TargetName="TransformationWrap"
-                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)"/-->
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
