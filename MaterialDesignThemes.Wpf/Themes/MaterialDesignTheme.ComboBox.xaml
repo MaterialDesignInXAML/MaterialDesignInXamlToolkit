@@ -185,9 +185,7 @@
                             Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
                             Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
             <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-            <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="0 0 0 2"
-                            x:Name="focusBorder" Visibility="Hidden"
-                            Grid.ColumnSpan="2" />
+            <wpf:Underline x:Name="Underline" Grid.ColumnSpan="2"/>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
@@ -197,7 +195,7 @@
                 <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
             </Trigger>
             <Trigger Property="IsKeyboardFocused" Value="True">
-                <Setter TargetName="focusBorder" Property="Visibility" Value="Visible" />
+                <Setter TargetName="Underline" Property="IsActive" Value="True"/>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -288,9 +286,7 @@
                            IsHitTestVisible="False"                       
                            Text="{TemplateBinding wpf:TextFieldAssist.Hint}" />
                 <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="0 0 0 2"
-                        x:Name="focusBorder" Visibility="Hidden"
-                        Grid.ColumnSpan="2" />
+                <wpf:Underline x:Name="Underline" Grid.ColumnSpan="2"/>
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
@@ -316,7 +312,7 @@
                 <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
             </Trigger>
             <Trigger Property="IsKeyboardFocused" Value="True">
-                <Setter TargetName="focusBorder" Property="Visibility" Value="Visible" />
+                <Setter TargetName="Underline" Property="IsActive" Value="True"/>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -386,11 +382,9 @@
                             Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
 				    <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 </Grid>
-			</Border>
-			<Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="0 0 0 2"
-                            x:Name="focusBorder" Visibility="Hidden"
-                            Grid.ColumnSpan="2" />
-		</Grid>
+            </Border>
+            <wpf:Underline x:Name="Underline" Grid.ColumnSpan="2" />
+        </Grid>
 		<ControlTemplate.Triggers>
 			<Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
 				<Setter Property="Margin" TargetName="dropDownBorder" Value="5,5,5,5"/>
@@ -402,7 +396,7 @@
 				<Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
 			</Trigger>
 			<Trigger Property="IsKeyboardFocused" Value="True" SourceName="PART_EditableTextBox">
-				<Setter TargetName="focusBorder" Property="Visibility" Value="Visible" />
+                <Setter TargetName="Underline" Property="IsActive" Value="True"/>
 			</Trigger>
 			<MultiTrigger>
 				<MultiTrigger.Conditions>
@@ -492,12 +486,14 @@
                                Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                                Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
                                IsHitTestVisible="False" />
-                    <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    <TextBox x:Name="PART_EditableTextBox"
+                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                             IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}"
+                             Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 </Grid>
             </Border>
-            <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="0 0 0 2"
-                            x:Name="focusBorder" Visibility="Hidden"
-                            Grid.ColumnSpan="2" />
+            <wpf:Underline x:Name="Underline" Grid.ColumnSpan="2" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False">
@@ -525,7 +521,7 @@
                 <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
             </Trigger>
             <Trigger Property="IsKeyboardFocused" Value="True" SourceName="PART_EditableTextBox">
-                <Setter TargetName="focusBorder" Property="Visibility" Value="Visible" />
+                <Setter TargetName="Underline" Property="IsActive" Value="True"/>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>

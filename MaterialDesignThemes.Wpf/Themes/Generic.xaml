@@ -149,6 +149,60 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style TargetType="{x:Type local:Underline}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Height" Value="2"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <ControlTemplate.Resources>
+                        <CircleEase x:Key="UnderlineEasingFunction" EasingMode="EaseOut"/>
+                        <Storyboard x:Key="ExpandUnderlineBorderStoryboard">
+                            <DoubleAnimation Storyboard.TargetName="UnderlineBorder"
+                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                 Duration="0:0:0.3"
+                                                 EasingFunction="{StaticResource UnderlineEasingFunction}"
+                                                 To="1"/>
+                        </Storyboard>
+                        <Storyboard x:Key="CollapseUnderlineBorderStoryboard">
+                            <DoubleAnimation Storyboard.TargetName="UnderlineBorder"
+                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                 Duration="0:0:0.3"
+                                                 EasingFunction="{StaticResource UnderlineEasingFunction}"
+                                                 To="0"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Border x:Name="UnderlineBorder"
+                            Background="{TemplateBinding Background}"
+                            IsHitTestVisible="False"
+                            Height="{TemplateBinding Height}"
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            RenderTransformOrigin="0.5,0.5">
+                        <Border.RenderTransform>
+                            <ScaleTransform ScaleX="0" ScaleY="1"/>
+                        </Border.RenderTransform>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsActive}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource ExpandUnderlineBorderStoryboard}"/>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource CollapseUnderlineBorderStoryboard}"/>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style TargetType="{x:Type local:MaterialDateDisplay}">
         <Setter Property="Background" Value="Transparent" />
