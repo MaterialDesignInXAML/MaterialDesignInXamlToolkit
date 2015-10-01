@@ -46,7 +46,7 @@ namespace MaterialDesignThemes.Wpf
         private static void MouseButtonEventHandler(object sender, MouseButtonEventArgs e)
         {
             foreach (var loadedInstance in LoadedInstances)
-                VisualStateManager.GoToState(loadedInstance, TemplateStateNormal, false);
+                VisualStateManager.GoToState(loadedInstance, TemplateStateNormal, true);
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)

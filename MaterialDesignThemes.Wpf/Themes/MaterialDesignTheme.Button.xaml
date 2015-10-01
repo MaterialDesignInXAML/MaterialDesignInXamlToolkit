@@ -168,6 +168,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Height" Value="32" />
         <Setter Property="Template">
             <Setter.Value>
@@ -268,6 +269,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Width" Value="40" />
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Height" Value="40" />
         <Setter Property="Template">
             <Setter.Value>
