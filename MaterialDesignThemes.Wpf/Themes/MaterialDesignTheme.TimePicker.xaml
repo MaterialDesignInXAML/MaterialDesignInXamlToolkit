@@ -43,7 +43,6 @@
 										   Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
                                            IsHitTestVisible="False"
 										   x:Name="Hint"
-                                           IsHitTestVisible="False"
 										   Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
 							</Grid>
 						</ControlTemplate>
