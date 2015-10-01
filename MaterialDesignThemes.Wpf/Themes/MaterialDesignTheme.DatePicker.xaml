@@ -162,9 +162,6 @@
 						<Trigger Property="IsEnabled" Value="false">
 							<Setter Property="Opacity" TargetName="border" Value="0.56"/>
 						</Trigger>
-						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
-						</Trigger>
 						<Trigger Property="IsKeyboardFocusWithin" Value="true">
                             <Setter TargetName="Underline" Property="IsActive" Value="True"/>
 							<Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>

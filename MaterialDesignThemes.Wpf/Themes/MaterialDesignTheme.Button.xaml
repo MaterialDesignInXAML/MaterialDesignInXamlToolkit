@@ -117,6 +117,7 @@
                                 <Border Background="Transparent" x:Name="Border"
                                         CornerRadius="2"/>
                                 <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
+                                            x:Name="RippleWrapper"
                                             Feedback="White"
                                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
