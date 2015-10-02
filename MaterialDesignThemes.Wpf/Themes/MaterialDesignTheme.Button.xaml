@@ -70,7 +70,7 @@
                                 </TransformGroup>
                             </Border.RenderTransform>
                         </Border>
-                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
+                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"     
                                                             Feedback="White"
                                                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -88,7 +88,7 @@
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
                         <EventTrigger RoutedEvent="Click">
-                            <BeginStoryboard Storyboard="{StaticResource OnClick}"/>
+                            <!--BeginStoryboard Storyboard="{StaticResource OnClick}"/-->
                         </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -163,8 +163,8 @@
                             </Border.RenderTransform>
                         </Border>
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
-                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
-                                                              Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
+                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
+                                        Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
                                                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                               Padding="{TemplateBinding Padding}" 
@@ -182,7 +182,7 @@
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
                         <EventTrigger RoutedEvent="Click">
-                            <BeginStoryboard Storyboard="{StaticResource OnClick}"/>
+                            <!--BeginStoryboard Storyboard="{StaticResource OnClick}"/-->
                         </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -197,12 +197,14 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
-                                                      Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
-                                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                      Padding="{TemplateBinding Padding}" 
-                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
+                                Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Padding="{TemplateBinding Padding}" 
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    <ControlTemplate.Triggers>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -229,13 +231,13 @@
                     <Grid>
                         <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Effect="{DynamicResource MaterialDesignShadowDepth1}"
                                  x:Name="border" />
-                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
-                                                          Feedback="White"
-                                                          Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
-                                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                          Padding="{TemplateBinding Padding}" 
-                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
+                                    Feedback="White"
+                                    Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Padding="{TemplateBinding Padding}" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         <Ellipse x:Name="GeometryEllipse" Fill="Transparent" IsHitTestVisible="False" Focusable="False" />
                     </Grid>
                     <ControlTemplate.Triggers>

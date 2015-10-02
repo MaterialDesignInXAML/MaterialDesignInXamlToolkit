@@ -221,7 +221,6 @@
     <Compile Include="DialogClosingEventArgs.cs" />
     <Compile Include="DialogClosingEventHandler.cs" />
     <Compile Include="DialogHost.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="ListSortDirectionIndicator.cs" />
     <Compile Include="MaterialDataGridComboBoxColumn.cs" />
     <Compile Include="MaterialDataGridTextColumn.cs" />
@@ -249,6 +248,7 @@
     <Compile Include="ToolTipAssist.cs" />
     <Compile Include="RippleAssist.cs" />
     <Compile Include="Ripple.cs" />
+    <Compile Include="Underline.cs" />
     <Compile Include="ValidationAssist.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

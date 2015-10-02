@@ -269,7 +269,7 @@ namespace MaterialDesignThemes.Wpf
             if (angle < 0) angle += 2 * Math.PI;
 
             var time = DisplayMode == ClockDisplayMode.Hours
-                ? new DateTime(Time.Year, Time.Month, Time.Day, (int)Math.Round(6 * angle / Math.PI, MidpointRounding.AwayFromZero) % 12, Time.Minute, Time.Second)
+                ? new DateTime(Time.Year, Time.Month, Time.Day, (int)Math.Round(6 * angle / Math.PI, MidpointRounding.AwayFromZero) % 12 + (IsPostMeridiem? 12 : 0), Time.Minute, Time.Second)
                 : new DateTime(Time.Year, Time.Month, Time.Day, Time.Hour, (int)Math.Round(30 * angle / Math.PI, MidpointRounding.AwayFromZero) % 60, Time.Second);
 
             SetCurrentValue(TimeProperty, time);	
