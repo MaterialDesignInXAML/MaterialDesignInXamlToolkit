@@ -180,6 +180,10 @@
       <Project>{90b53209-c60c-4655-b28d-a1b3e1044ba3}</Project>
       <Name>MaterialDesignColors.Wpf</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MaterialDesignThemes.MahApps\MaterialDesignThemes.MahApps.csproj">
+      <Project>{81556a2d-d467-43e7-945b-fd987c676cf6}</Project>
+      <Name>MaterialDesignThemes.MahApps</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj">
       <Project>{f079fb0a-a8ed-4216-b6a5-345756751a04}</Project>
       <Name>MaterialDesignThemes.Wpf</Name>
