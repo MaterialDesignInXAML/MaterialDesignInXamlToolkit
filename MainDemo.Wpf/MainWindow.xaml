@@ -105,6 +105,11 @@
                     <wpfExample:Progress />
                 </domain:DemoItem.Content>
             </domain:DemoItem>
+            <domain:DemoItem Name="Dialogs">
+                <domain:DemoItem.Content>
+                    <wpfExample:Dialogs />
+                </domain:DemoItem.Content>
+            </domain:DemoItem>
         </ListBox>
         <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
     </DockPanel>

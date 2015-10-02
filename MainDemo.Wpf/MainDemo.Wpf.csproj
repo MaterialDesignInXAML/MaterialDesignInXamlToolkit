@@ -78,6 +78,9 @@
     <Compile Include="ColorZones.xaml.cs">
       <DependentUpon>ColorZones.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs.xaml.cs">
+      <DependentUpon>Dialogs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Domain\AnotherCommandImplementation.cs" />
     <Compile Include="Domain\DemoItem.cs" />
     <Compile Include="Domain\ListFieldsViewModel.cs" />
@@ -121,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ColorZones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="MaterialDesignColors.WpfExample.Dialogs"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />            
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock>WORK IN PROGRESS...DO NOT USE YET...API NOT FINALISED.</TextBlock>
+            <!--
+            <TextBlock>Dialogs can be hosted at any level of you visual tree.</TextBlock>
+            <TextBlock>When a dialog is open the underlying content will be disabled.</TextBlock>
+            -->
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center"
+                       Margin="16">SAMPLE 1: Dialog encapsulating specific content, launched from a routed command, response handled in code-behind.</TextBlock>
+            <wpf:DialogHost DialogClosing="DialogHost_OnDialogClosing"
+                            Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <wpf:DialogHost.DialogContent>
+                    <StackPanel Margin="16">
+                        <TextBlock>Add a new fruit.</TextBlock>
+                        <TextBox Margin="0 8 0 0" HorizontalAlignment="Stretch" x:Name="FruitTextBox" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                    IsDefault="True"
+                                    Margin="0 8 8 0"
+                                    Command="wpf:DialogHost.CloseDialogCommand">
+                                <Button.CommandParameter>
+                                    <system:Boolean>True</system:Boolean>
+                                </Button.CommandParameter>
+                                ACCEPT
+                            </Button>
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                    IsCancel="True"
+                                    Margin="0 8 8 0"
+                                    Command="wpf:DialogHost.CloseDialogCommand">
+                                <Button.CommandParameter>
+                                    <system:Boolean>False</system:Boolean>
+                                </Button.CommandParameter>
+                                CANCEL
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </wpf:DialogHost.DialogContent>
+                <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                        MinWidth="256" MinHeight="256">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ListBox x:Name="FruitListBox">
+                            <ListBoxItem>Apple</ListBoxItem>
+                            <ListBoxItem>Banana</ListBoxItem>
+                            <ListBoxItem>Pear</ListBoxItem>
+                        </ListBox>
+                        <wpf:ColorZone Mode="PrimaryMid" Grid.Row="1">
+                            <TextBlock Margin="16">Fruit Bowl</TextBlock>
+                        </wpf:ColorZone>
+                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"                                
+                                Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                                Grid.Row="0" Margin="0 0 28 -20">
+                            <Viewbox Width="22" Height="22">
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                                </Canvas>
+                            </Viewbox>
+                        </Button>
+                    </Grid>
+                </Border>
+            </wpf:DialogHost>
+        </Grid>
+    </Grid>
+</UserControl>

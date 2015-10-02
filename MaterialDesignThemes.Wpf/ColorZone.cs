@@ -22,7 +22,9 @@ namespace MaterialDesignThemes.Wpf
         PrimaryLight,
         PrimaryMid,
         PrimaryDark,
-        Accent
+        Accent,
+        Light,
+        Dark
     }
 
     /// <summary>
