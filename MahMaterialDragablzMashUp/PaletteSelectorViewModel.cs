@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using MahApps.Metro;
-using MaterialDesignColors;
+﻿using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
+using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace MahMaterialDragablzMashUp
 {
@@ -31,7 +25,7 @@ namespace MahMaterialDragablzMashUp
 
         private static void ApplyPrimary(Swatch swatch)
         {
-            new PaletteHelper().ReplacePrimaryColor(swatch);
+            new PaletteHelper().ReplacePrimaryColor(swatch, true);
         }
 
         public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o));
