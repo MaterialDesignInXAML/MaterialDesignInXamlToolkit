@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="YellowPrimary50">#fffde7</Color>
+  <Color x:Key="YellowPrimary50Foreground">#DD000000</Color>
+  <Color x:Key="YellowPrimary100">#fff9c4</Color>
+  <Color x:Key="YellowPrimary100Foreground">#DD000000</Color>
+  <Color x:Key="YellowPrimary200">#fff59d</Color>
+  <Color x:Key="YellowPrimary200Foreground">#DD000000</Color>
+  <Color x:Key="YellowPrimary300">#fff176</Color>
+  <Color x:Key="YellowPrimary300Foreground">#DD000000</Color>
+  <Color x:Key="YellowPrimary400">#ffee58</Color>
+  <Color x:Key="YellowPrimary400Foreground">#DD000000</Color>
+  <Color x:Key="YellowPrimary500">#ffeb3b</Color>
+  <Color x:Key="YellowPrimary500Foreground">#DD000000</Color>
+  <Color x:Key="YellowPrimary600">#fdd835</Color>
+  <Color x:Key="YellowPrimary600Foreground">#DD000000</Color>
+  <Color x:Key="YellowPrimary700">#fbc02d</Color>
+  <Color x:Key="YellowPrimary700Foreground">#DD000000</Color>
+  <Color x:Key="YellowPrimary800">#f9a825</Color>
+  <Color x:Key="YellowPrimary800Foreground">#DD000000</Color>
+  <Color x:Key="YellowPrimary900">#f57f17</Color>
+  <Color x:Key="YellowPrimary900Foreground">#FF000000</Color>
+</ResourceDictionary>
