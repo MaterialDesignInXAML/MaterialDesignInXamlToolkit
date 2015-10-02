@@ -213,6 +213,7 @@
     <Compile Include="Converters\NotConverter.cs" />
     <Compile Include="Converters\NotNullToVisibilityConverter.cs" />
     <Compile Include="Converters\NotZeroToVisibilityConverter.cs" />
+    <Compile Include="Converters\ShadowConverter.cs" />
     <Compile Include="Converters\SizeToRectConverter.cs" />
     <Compile Include="CustomPopupPlacementCallbackHelper.cs" />
     <Compile Include="CustomValidationPopup.cs" />
@@ -242,6 +243,7 @@
     </Compile>
     <Compile Include="RatingBar.cs" />
     <Compile Include="RatingBarButton.cs" />
+    <Compile Include="ShadowAssist.cs" />
     <Compile Include="TextFieldAssist.cs" />
     <Compile Include="Converters\TextFieldHintVisibilityConverter.cs" />
     <Compile Include="TimePicker.cs" />
