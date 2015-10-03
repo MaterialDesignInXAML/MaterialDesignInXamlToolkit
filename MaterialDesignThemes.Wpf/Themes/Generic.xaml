@@ -45,9 +45,9 @@
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition GeneratedDuration="0:0:0.7" To="MousePressed">
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Border"
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ClickEllipse"
                                                              EasingFunction="{StaticResource EasingFunction}"
-                                                             Duration="0:0:0.7" From="0" To="1"/>
+                                                             Duration="0:0:0.7" From="0" To="0.45"/>
                                             <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform"
                                                              EasingFunction="{StaticResource EasingFunction}"
                                                              Duration="0:0:0.7" From="0" To="1"/>
@@ -58,7 +58,7 @@
                                     </VisualTransition>
                                     <VisualTransition GeneratedDuration="0:0:0.7" To="Normal">
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Border"
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ClickEllipse"
                                                              EasingFunction="{StaticResource EasingFunction}"
                                                              Duration="0:0:1" To="0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform"
@@ -100,8 +100,8 @@
                                 </VisualState>
                                 <VisualState x:Name="MousePressed">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Border"
-                                                         Duration="0" From="0" To="1"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ClickEllipse"
+                                                         Duration="0" From="0" To="0.45"/>
                                         <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform"
                                                          Duration="0" From="0" To="1"/>
                                         <DoubleAnimation Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform"
@@ -117,26 +117,23 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="Border"
-                                Opacity="0">
-                            <Canvas IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <Ellipse x:Name="ClickEllipse" Fill="{TemplateBinding Feedback}" Opacity="0.45" 
-                                         Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleSize}" 
-                                         Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleSize}" 
+                        <Canvas IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Ellipse x:Name="ClickEllipse" Fill="{TemplateBinding Feedback}" Opacity="0.45" 
+                                     Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleSize}" 
+                                     Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleSize}" 
                                          Canvas.Left="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleX}" 
                                          Canvas.Top="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleY}"
                                          RenderTransformOrigin=".5,.5">
-                                    <Ellipse.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform x:Name="TranslateTransform"/>
-                                        </TransformGroup>
-                                    </Ellipse.RenderTransform>
-                                </Ellipse>
-                            </Canvas>
-                        </Border>
+                                <Ellipse.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform x:Name="TranslateTransform"/>
+                                    </TransformGroup>
+                                </Ellipse.RenderTransform>
+                            </Ellipse>
+                        </Canvas>
                         <ContentPresenter Content="{TemplateBinding Content}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           Margin="{TemplateBinding Padding}"
