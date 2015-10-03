@@ -111,8 +111,8 @@
             <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center">
                 Ga Ga
             </RadioButton>
-            <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center">
-                Check
+            <CheckBox Style="{StaticResource MaterialDesignMorpheCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center">
+                Morphe
             </CheckBox>
             <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
                 Mate
