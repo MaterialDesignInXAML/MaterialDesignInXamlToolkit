@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="Deep PurpleAccent100">#b388ff</Color>
+  <Color x:Key="Deep PurpleAccent100Foreground">#DD000000</Color>
+  <Color x:Key="Deep PurpleAccent200">#7c4dff</Color>
+  <Color x:Key="Deep PurpleAccent200Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep PurpleAccent400">#651fff</Color>
+  <Color x:Key="Deep PurpleAccent400Foreground">#DDFFFFFF</Color>
+  <Color x:Key="Deep PurpleAccent700">#6200ea</Color>
+  <Color x:Key="Deep PurpleAccent700Foreground">#DDFFFFFF</Color>
+</ResourceDictionary>

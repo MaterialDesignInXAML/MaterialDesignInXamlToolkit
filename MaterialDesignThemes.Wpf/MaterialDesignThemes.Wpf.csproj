@@ -56,9 +56,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ProgressLoopDev.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Themes\MaterialDesignTheme.MahApps.Dialogs.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -97,10 +97,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\MaterialDesignTheme.Label.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.MahApps.Dialogs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,21 +213,21 @@
     <Compile Include="Converters\NotConverter.cs" />
     <Compile Include="Converters\NotNullToVisibilityConverter.cs" />
     <Compile Include="Converters\NotZeroToVisibilityConverter.cs" />
+    <Compile Include="Converters\ShadowConverter.cs" />
     <Compile Include="Converters\SizeToRectConverter.cs" />
     <Compile Include="CustomPopupPlacementCallbackHelper.cs" />
     <Compile Include="CustomValidationPopup.cs" />
     <Compile Include="DataGridAssist.cs" />
     <Compile Include="DateTimeEx.cs" />
+    <Compile Include="DialogClosingEventArgs.cs" />
+    <Compile Include="DialogClosingEventHandler.cs" />
+    <Compile Include="DialogHost.cs" />
     <Compile Include="ListSortDirectionIndicator.cs" />
     <Compile Include="MaterialDataGridComboBoxColumn.cs" />
     <Compile Include="MaterialDataGridTextColumn.cs" />
     <Compile Include="MaterialDateDisplay.cs" />
     <Compile Include="PaletteHelper.cs" />
     <Compile Include="PasswordFieldAssist.cs" />
-    <Compile Include="ProgressLoop.cs" />
-    <Compile Include="ProgressLoopDev.xaml.cs">
-      <DependentUpon>ProgressLoopDev.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -247,6 +243,7 @@
     </Compile>
     <Compile Include="RatingBar.cs" />
     <Compile Include="RatingBarButton.cs" />
+    <Compile Include="ShadowAssist.cs" />
     <Compile Include="TextFieldAssist.cs" />
     <Compile Include="Converters\TextFieldHintVisibilityConverter.cs" />
     <Compile Include="TimePicker.cs" />

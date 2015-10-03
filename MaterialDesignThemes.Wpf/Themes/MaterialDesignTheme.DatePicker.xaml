@@ -156,7 +156,7 @@
 					    			   PopupAnimation="Fade"  />
                             </Grid>
                         </Border>
-                        <wpf:Underline x:Name="Underline" BindIsKeyboardFocused="False"/>
+                        <wpf:Underline x:Name="Underline" />
                     </Grid>
                     <ControlTemplate.Triggers>
 						<Trigger Property="IsEnabled" Value="false">

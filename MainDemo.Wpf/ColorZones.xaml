@@ -78,7 +78,7 @@
                 </StackPanel>
             </wpf:ColorZone>
             <TextBlock Margin="0 16 0 0" FontSize="10">Add in a corner radius and shadow.</TextBlock>
-            <wpf:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="3" Effect="{DynamicResource MaterialDesignShadowDepth3}" Margin="2">
+            <wpf:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="3" wpf:ShadowAssist.ShadowDepth="Depth3" Margin="2">
                 <StackPanel Orientation="Horizontal">
                     <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                     <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>

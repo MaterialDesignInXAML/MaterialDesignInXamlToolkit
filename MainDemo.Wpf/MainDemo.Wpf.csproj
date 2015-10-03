@@ -78,9 +78,16 @@
     <Compile Include="ColorZones.xaml.cs">
       <DependentUpon>ColorZones.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs.xaml.cs">
+      <DependentUpon>Dialogs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Domain\AnotherCommandImplementation.cs" />
     <Compile Include="Domain\DemoItem.cs" />
+    <Compile Include="Domain\DialogsViewModel.cs" />
     <Compile Include="Domain\ListFieldsViewModel.cs" />
+    <Compile Include="Domain\SampleDialog.xaml.cs">
+      <DependentUpon>SampleDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Domain\SelectableViewModel.cs" />
     <Compile Include="Domain\TextFieldsViewModel.cs" />
     <Compile Include="Grids.xaml.cs">
@@ -106,6 +113,9 @@
     <Compile Include="ProvingGround.xaml.cs">
       <DependentUpon>ProvingGround.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Shadows.xaml.cs">
+      <DependentUpon>Shadows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TextFields.xaml.cs">
       <DependentUpon>TextFields.xaml</DependentUpon>
     </Compile>
@@ -121,6 +131,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ColorZones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Domain\SampleDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -165,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProvingGround.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shadows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

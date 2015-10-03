@@ -148,16 +148,7 @@ namespace MaterialDesignThemes.Wpf
                 return;
             }
 
-            var scrollViewer = textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer;
-            if (scrollViewer == null)
-            {
-                return;
-            }
-
-            var frameworkElement = scrollViewer.Content as FrameworkElement;
-
-            // remove nice new sytax until i get appveyor working	
-            // var frameworkElement = (textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content as FrameworkElement;
+            var frameworkElement = (textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content as FrameworkElement;
             if (frameworkElement != null)
             {
                 frameworkElement.Margin = margin;
@@ -200,13 +191,13 @@ namespace MaterialDesignThemes.Wpf
             DependencyObject dependencyObject,
             DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var textBoxBase = dependencyObject as TextBoxBase;
-            if (textBoxBase == null)
+            var control = dependencyObject as Control; //could be a text box or password box
+            if (control == null)
             {
                 return;
             }
 
-            textBoxBase.Opacity = (double)dependencyPropertyChangedEventArgs.NewValue;
+            control.Opacity = (double)dependencyPropertyChangedEventArgs.NewValue;
         }
 
         private static void TextPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)

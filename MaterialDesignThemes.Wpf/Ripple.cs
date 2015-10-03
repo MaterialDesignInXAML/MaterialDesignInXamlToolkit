@@ -1,75 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Documents.DocumentStructures;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MaterialDesignThemes.Wpf
 {
     [TemplateVisualState(GroupName = "CommonStates", Name = TemplateStateNormal)]
     [TemplateVisualState(GroupName = "CommonStates", Name = TemplateStateMousePressed)]
+    [TemplateVisualState(GroupName = "CommonStates", Name = TemplateStateMouseOut)]
     public class Ripple : ContentControl
     {
         public const string TemplateStateNormal = "Normal";
         public const string TemplateStateMousePressed = "MousePressed";
+        public const string TemplateStateMouseOut = "MouseOut";
 
-        private static readonly HashSet<Ripple> LoadedInstances = new HashSet<Ripple>();
+        private static readonly HashSet<Ripple> PressedInstances = new HashSet<Ripple>();
 
         static Ripple()
         {                        
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Ripple), new FrameworkPropertyMetadata(typeof(Ripple)));
 
             EventManager.RegisterClassHandler(typeof(Window), Mouse.PreviewMouseUpEvent, new MouseButtonEventHandler(MouseButtonEventHandler), true);
+            EventManager.RegisterClassHandler(typeof (Window), Mouse.MouseMoveEvent, new MouseEventHandler(MouseMouveEventHandler), true);
         }
 
         public Ripple()
         {            
-            SizeChanged += OnSizeChanged;
-
-            Loaded += (sender, args) => LoadedInstances.Add((Ripple) sender);
-            Unloaded += (sender, args) => LoadedInstances.Remove((Ripple)sender);
+            SizeChanged += OnSizeChanged;            
         }        
 
         private static void MouseButtonEventHandler(object sender, MouseButtonEventArgs e)
         {
-            foreach (var loadedInstance in LoadedInstances)
-                VisualStateManager.GoToState(loadedInstance, TemplateStateNormal, true);
+            foreach (var ripple in PressedInstances)
+                VisualStateManager.GoToState(ripple, TemplateStateNormal, false);
+            PressedInstances.Clear();
         }
 
-        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        private static void MouseMouveEventHandler(object sender, MouseEventArgs e)
         {
-            var innerContent = (Content as FrameworkElement);
-
-            double width, height;
-
-            if (RippleAssist.GetIsCentered(this) && innerContent != null)
+            foreach (var ripple in PressedInstances.ToList())
             {
-                width = innerContent.ActualWidth;
-                height = innerContent.ActualHeight;
-            }
-            else
-            {
-                width = sizeChangedEventArgs.NewSize.Width;
-                height = sizeChangedEventArgs.NewSize.Height;
-            }
+                var relativePosition = Mouse.GetPosition(ripple);
+                if (relativePosition.X < 0
+                    || relativePosition.Y < 0
+                    || relativePosition.X >= ripple.ActualWidth
+                    || relativePosition.Y >= ripple.ActualHeight)
 
-            var radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
-            
-            RippleSize = 2 * radius * RippleAssist.GetRippleSizeMultiplier(this);
-        }
+                {
+                    VisualStateManager.GoToState(ripple, TemplateStateMouseOut, true);
+                    PressedInstances.Remove(ripple);
+                }
+            }
+        }        
 
         public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
             "Feedback", typeof(Brush), typeof(Ripple), new PropertyMetadata(default(Brush)));
@@ -108,7 +93,9 @@ namespace MaterialDesignThemes.Wpf
                 RippleY = point.Y - RippleSize / 2;
             }
 
+            VisualStateManager.GoToState(this, TemplateStateNormal, false);
             VisualStateManager.GoToState(this, TemplateStateMousePressed, true);
+            PressedInstances.Add(this);            
 
             base.OnPreviewMouseLeftButtonDown(e);
         }
@@ -160,6 +147,28 @@ namespace MaterialDesignThemes.Wpf
             base.OnApplyTemplate();
                         
             VisualStateManager.GoToState(this, TemplateStateNormal, false);
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            var innerContent = (Content as FrameworkElement);
+
+            double width, height;
+
+            if (RippleAssist.GetIsCentered(this) && innerContent != null)
+            {
+                width = innerContent.ActualWidth;
+                height = innerContent.ActualHeight;
+            }
+            else
+            {
+                width = sizeChangedEventArgs.NewSize.Width;
+                height = sizeChangedEventArgs.NewSize.Height;
+            }
+
+            var radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
+
+            RippleSize = 2 * radius * RippleAssist.GetRippleSizeMultiplier(this);
         }
     }
 }

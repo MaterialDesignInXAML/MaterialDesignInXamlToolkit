@@ -13,13 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MaterialDesignThemes.Wpf
-{	
-	public class ProgressLoop : Control
-	{
-		static ProgressLoop()
-		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof(ProgressLoop), new FrameworkPropertyMetadata(typeof(ProgressLoop)));
-		}
-	}
+namespace MaterialDesignColors.WpfExample
+{
+    /// <summary>
+    /// Interaction logic for Shadows.xaml
+    /// </summary>
+    public partial class Shadows : UserControl
+    {
+        public Shadows()
+        {
+            InitializeComponent();
+        }
+    }
 }

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="IndigoAccent100">#8c9eff</Color>
+  <Color x:Key="IndigoAccent100Foreground">#DD000000</Color>
+  <Color x:Key="IndigoAccent200">#536dfe</Color>
+  <Color x:Key="IndigoAccent200Foreground">#FFFFFFFF</Color>
+  <Color x:Key="IndigoAccent400">#3d5afe</Color>
+  <Color x:Key="IndigoAccent400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="IndigoAccent700">#304ffe</Color>
+  <Color x:Key="IndigoAccent700Foreground">#DDFFFFFF</Color>
+</ResourceDictionary>
