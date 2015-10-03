@@ -98,7 +98,7 @@
     <circularProgressBar:RotateTransformConverter x:Key="RotateTransformConverter" />
     <circularProgressBar:RotateTransformCentreConverter x:Key="RotateTransformCentreConverter" />
 
-    <Style x:Key="MaterialDesignCicularProgressBar" TargetType="{x:Type ProgressBar}">
+    <Style x:Key="MaterialDesignCircularProgressBar" TargetType="{x:Type ProgressBar}">
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Width" Value="20" />

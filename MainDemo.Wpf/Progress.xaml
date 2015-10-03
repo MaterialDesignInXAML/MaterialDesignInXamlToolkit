@@ -54,27 +54,27 @@
             
             <TextBlock Grid.ColumnSpan="2" FontSize="16" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Stretch"
                        Margin="0 0 0 16">
-                No extra control is required for the circular style, it is purely a standard ProgressBar, with the MaterialDesignCicularProgressBar style applied.
+                No extra control is required for the circular style, it is purely a standard ProgressBar, with the MaterialDesignCircularProgressBar style applied.
             </TextBlock>
 
-            <ProgressBar Style="{StaticResource MaterialDesignCicularProgressBar}" 
+            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
                      x:Name="DeterminateCircularProgress"
                      Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12" />
             <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap">Standard deterministic progress bar, running from 0 to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value property.</TextBlock>
 
-            <ProgressBar Style="{StaticResource MaterialDesignCicularProgressBar}"                     
+            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
                      Value="35"
                      IsIndeterminate="True"
                      Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12"/>
             <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" TextWrapping="Wrap">Indeterminate progress bar, at 35%.</TextBlock>
 
-            <ProgressBar Style="{StaticResource MaterialDesignCicularProgressBar}"                     
+            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
                      Value="0"
                      IsIndeterminate="True"
                      Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12"/>
             <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" TextWrapping="Wrap">Fully indeterminate progress bar, using .Value=0 to inform the theme.</TextBlock>
 
-            <ProgressBar Style="{StaticResource MaterialDesignCicularProgressBar}"                     
+            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
                      Value="20"
                      IsIndeterminate="True"
                      x:Name="IndeterminateToDeterminateCircularProgress"
@@ -84,7 +84,7 @@
             <wpf:Card UniformCornerRadius="14" Padding="4"
                       Grid.Row="5" Grid.Column="0"
                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12">
-                <ProgressBar Style="{StaticResource MaterialDesignCicularProgressBar}" 
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
                          Value="50"
                          IsIndeterminate="True"                         
                       />
@@ -96,7 +96,7 @@
                       Padding="4" 
                       Grid.Row="6" Grid.Column="0"
                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12">
-                <ProgressBar Style="{StaticResource MaterialDesignCicularProgressBar}"                          
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                          
                              x:Name="AnimatedProgressInCard"
                       />
                 <wpf:Card.RenderTransform>

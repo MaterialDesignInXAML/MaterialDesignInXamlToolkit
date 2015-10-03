@@ -36,11 +36,14 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
+            <!--#region SAMPLE 1-->
             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center"
-                       Margin="16">SAMPLE 1: Dialog encapsulating specific content, launched from a routed command, response handled in code-behind.</TextBlock>
-            <wpf:DialogHost DialogClosing="DialogHost_OnDialogClosing"
+                       Margin="16">SAMPLE 1: Localised dialog encapsulating specific content, launched from a routed command, response handled in code-behind.</TextBlock>
+            <wpf:DialogHost DialogClosing="Sample1_DialogHost_OnDialogClosing"
                             Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <wpf:DialogHost.DialogContent>
                     <StackPanel Margin="16">
@@ -96,6 +99,36 @@
                     </Grid>
                 </Border>
             </wpf:DialogHost>
+            <!--#endregion -->
+        
+            <!--#region SAMPLE 2-->
+            <TextBlock Grid.Column="1" Grid.Row="0" TextWrapping="Wrap">SAMPLE 2: Using OpenDialog, passing content via the Parameter. You can pass a view model, provided a corresponding DataTemplate can be found in the scope of the root DialogHost.</TextBlock>
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <!--the request to open the dialog will bubble up to the top-most DialogHost, but we can used the attached property based event to handle the response -->
+                <Button Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
+                        wpf:DialogHost.DialogClosing="Sample2_DialogHost_OnDialogClosing"
+                        Width="128">
+                    <Button.CommandParameter>
+                        <StackPanel Margin="16">
+                            <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0" />
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True" 
+                                    Command="{x:Static wpf:DialogHost.CloseDialogCommand}"
+                                    CommandParameter="Sample2Cancel"
+                                    HorizontalAlignment="Center">CANCEL</Button>
+                        </StackPanel>
+                    </Button.CommandParameter>
+                    PASS VIEW
+                </Button>
+                <Button Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
+                        Width="128" Margin="0 32 0 0">
+                    <Button.CommandParameter>
+                        <!-- the simplest view model of all, a DateTime. the view can be found in the resources of MainWindow.xaml  -->
+                        <system:DateTime>1966-JUL-30</system:DateTime>
+                    </Button.CommandParameter>
+                    PASS MODEL
+                </Button>
+            </StackPanel>
+            <!--#endregion-->
         </Grid>
     </Grid>
 </UserControl>

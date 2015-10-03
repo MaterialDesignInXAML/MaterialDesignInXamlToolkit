@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -24,6 +25,8 @@ namespace MaterialDesignThemes.Wpf
 
         private Popup _popup;
         private Window _window;
+        private DialogClosingEventHandler _attachedDialogClosingEventHandler;
+        private bool _removeContentOnClose;
 
         static DialogHost()
         {
@@ -49,7 +52,16 @@ namespace MaterialDesignThemes.Wpf
 
             VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), true);
 
-            if (!dialogHost.IsOpen) return;
+            if (!dialogHost.IsOpen)
+            {
+                dialogHost._attachedDialogClosingEventHandler = null;
+                if (dialogHost._removeContentOnClose)
+                {
+                    dialogHost.DialogContent = null;
+                    dialogHost._removeContentOnClose = false;
+                }
+                return;
+            }
 
             dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() =>
             {
@@ -116,30 +128,93 @@ namespace MaterialDesignThemes.Wpf
                 typeof (DialogClosingEventHandler),
                 typeof (DialogHost));
 
+        /// <summary>
+        /// Raised just beforee a dialog is closed.
+        /// </summary>
         public event DialogClosingEventHandler DialogClosing
         {
             add { AddHandler(DialogClosingEvent, value); }
             remove { RemoveHandler(DialogClosingEvent, value); }
         }
 
+        /// <summary>
+        /// Attached property which can be used on the <see cref="Button"/> which instigated the <see cref="OpenDialogCommand"/> to process the closing event.
+        /// </summary>
+        public static readonly DependencyProperty DialogClosingProperty = DependencyProperty.RegisterAttached(
+            "DialogClosing", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
+
+        public static void SetDialogClosing(DependencyObject element, DialogClosingEventHandler value)
+        {
+            element.SetValue(DialogClosingProperty, value);
+        }
+
+        public static DialogClosingEventHandler GetDialogClosing(DependencyObject element)
+        {
+            return (DialogClosingEventHandler) element.GetValue(DialogClosingProperty);
+        }
+
+        public static readonly DependencyProperty DialogClosingCallbackProperty = DependencyProperty.Register(
+            "DialogClosingCallback", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
+
+        /// <summary>
+        /// Callback fired when the <see cref="DialogClosing"/> event is fired, allowing the event to be processed from a binding/view model.
+        /// </summary>
+        public DialogClosingEventHandler DialogClosingCallback
+        {
+            get { return (DialogClosingEventHandler) GetValue(DialogClosingCallbackProperty); }
+            set { SetValue(DialogClosingCallbackProperty, value); }
+        }
+
         protected void OnDialogClosing(DialogClosingEventArgs eventArgs)
         {
-            eventArgs.RoutedEvent = DialogClosingEvent;
+            eventArgs.RoutedEvent = DialogClosingEvent; 
             eventArgs.Source = eventArgs.Source ?? this;
             RaiseEvent(eventArgs);
         }
 
         private void OpenDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
+            if (executedRoutedEventArgs.Handled) return;
+
+            var dependencyObject = executedRoutedEventArgs.OriginalSource as DependencyObject;
+            if (dependencyObject != null)
+            {
+                _attachedDialogClosingEventHandler = GetDialogClosing(dependencyObject);
+
+            }
+
+            if (executedRoutedEventArgs.Parameter != null)
+            {
+                var existindBinding = BindingOperations.GetBindingExpression(this, DialogContentProperty);
+                if (existindBinding != null || DialogContent != null)
+                    throw new InvalidOperationException("Content cannot be passed to a dialog via the OpenDialog of DialogContent is already set, or has a binding.");
+                DialogContent = executedRoutedEventArgs.Parameter;
+                _removeContentOnClose = true;
+            }
+
             SetCurrentValue(IsOpenProperty, true);
+
+            executedRoutedEventArgs.Handled = true;
         }
 
         private void CloseDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
-            var dialogClosingEventArgs = new DialogClosingEventArgs(executedRoutedEventArgs.Parameter);
+            if (executedRoutedEventArgs.Handled) return;
+
+            var dialogClosingEventArgs = new DialogClosingEventArgs(executedRoutedEventArgs.Parameter, DialogContent);
+
+            //multiple ways of calling back that the dialog is closing:
+            // * the attached property (which should be applied to the button which opened the dialog
+            // * straight forward dependency property 
+            // * routed event
+            _attachedDialogClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
+            DialogClosingCallback?.Invoke(this, dialogClosingEventArgs);
             OnDialogClosing(dialogClosingEventArgs);
+
             if (!dialogClosingEventArgs.IsCancelled)
-                SetCurrentValue(IsOpenProperty, false);            
+                SetCurrentValue(IsOpenProperty, false);
+
+            executedRoutedEventArgs.Handled = true;
         }
 
         private string SelectState()
