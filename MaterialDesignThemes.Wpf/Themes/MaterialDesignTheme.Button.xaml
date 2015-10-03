@@ -31,6 +31,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -76,9 +77,6 @@
                                         <DoubleAnimation To="1"
                                                          Storyboard.TargetName="ShadowBorder"
                                                          Storyboard.TargetProperty="Opacity"/>
-                                        <!--DoubleAnimation To="-0"
-                                                         Storyboard.TargetName="TransformationWrap"
-                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)"/-->
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -117,6 +115,7 @@
                                 <Border Background="Transparent" x:Name="Border"
                                         CornerRadius="2"/>
                                 <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
+                                            x:Name="RippleWrapper"
                                             Feedback="White"
                                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -135,9 +134,6 @@
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
-                        <!--EventTrigger RoutedEvent="Click">
-                            <BeginStoryboard Storyboard="{StaticResource OnClick}"/>
-                        </-->
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -172,6 +168,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Height" Value="32" />
         <Setter Property="Template">
             <Setter.Value>
@@ -211,8 +208,8 @@
                             </Border.RenderTransform>
                         </Border>
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
-                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
-                                                              Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
+                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
+                                        Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
                                                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                               Padding="{TemplateBinding Padding}" 
@@ -230,7 +227,7 @@
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
                         <EventTrigger RoutedEvent="Click">
-                            <BeginStoryboard Storyboard="{StaticResource OnClick}"/>
+                            <!--BeginStoryboard Storyboard="{StaticResource OnClick}"/-->
                         </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -245,12 +242,14 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                               
-                                                      Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
-                                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                      Padding="{TemplateBinding Padding}" 
-                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
+                                Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Padding="{TemplateBinding Padding}" 
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    <ControlTemplate.Triggers>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -270,6 +269,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Width" Value="40" />
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Height" Value="40" />
         <Setter Property="Template">
             <Setter.Value>

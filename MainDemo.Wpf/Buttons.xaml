@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -24,12 +25,14 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock>Buttons</TextBlock>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 24 0 0">
@@ -116,8 +119,9 @@
             </CheckBox>
         </StackPanel>
         <StackPanel Grid.Row="7"  Margin="0 16 0 0" Orientation="Horizontal">
-            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="0 0 8 8"  />
-            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="0 0 8 8" IsChecked="True" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" IsChecked="True" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" IsEnabled="False" />
         </StackPanel>
         <StackPanel Grid.Row="8"  Margin="0 16 0 0" Orientation="Horizontal">
             <ToggleButton Style="{StaticResource MaterialDesignFlatToggleButton}">
@@ -148,6 +152,29 @@
                     </Canvas>
                 </Viewbox>
             </ToggleButton>
+        </StackPanel>
+        <TextBlock Margin="0 24 0 0" Grid.Row="9">Rating bar</TextBlock>
+        <StackPanel Grid.Row="10" Margin="0 16 0 0" Orientation="Horizontal">
+            <wpf:RatingBar Value="3" x:Name="BasicRatingBar" />
+            <TextBlock Text="{Binding ElementName=BasicRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />            
+            <wpf:RatingBar x:Name="CustomRatingBar" Max="3" Value="2" Margin="24 0 0 0" Orientation="Vertical">
+                <wpf:RatingBar.ValueItemTemplate>
+                    <DataTemplate DataType="system:Int32">
+                        <Grid>
+                            <Viewbox Width="24" Height="24">
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" 
+                                          Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, Path=Foreground}" />
+                                </Canvas>
+                            </Viewbox>
+                            <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="8"
+                                       Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+                        </Grid>
+                    </DataTemplate>
+                </wpf:RatingBar.ValueItemTemplate>
+            </wpf:RatingBar>
+            <TextBlock Text="{Binding ElementName=CustomRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />
         </StackPanel>
     </Grid>
 </UserControl>
