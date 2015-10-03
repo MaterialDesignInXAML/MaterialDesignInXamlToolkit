@@ -83,7 +83,11 @@
     </Compile>
     <Compile Include="Domain\AnotherCommandImplementation.cs" />
     <Compile Include="Domain\DemoItem.cs" />
+    <Compile Include="Domain\DialogsViewModel.cs" />
     <Compile Include="Domain\ListFieldsViewModel.cs" />
+    <Compile Include="Domain\SampleDialog.xaml.cs">
+      <DependentUpon>SampleDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Domain\SelectableViewModel.cs" />
     <Compile Include="Domain\TextFieldsViewModel.cs" />
     <Compile Include="Grids.xaml.cs">
@@ -131,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Domain\SampleDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

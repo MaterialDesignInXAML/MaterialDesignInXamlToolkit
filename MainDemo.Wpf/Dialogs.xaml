@@ -15,120 +15,116 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
+
+    <Grid VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />            
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel>
-            <TextBlock>WORK IN PROGRESS...DO NOT USE YET...API NOT FINALISED.</TextBlock>
-            <!--
-            <TextBlock>Dialogs can be hosted at any level of you visual tree.</TextBlock>
-            <TextBlock>When a dialog is open the underlying content will be disabled.</TextBlock>
-            -->
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-
-            <!--#region SAMPLE 1-->
-            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center"
-                       Margin="16">SAMPLE 1: Localised dialog encapsulating specific content, launched from a routed command, response handled in code-behind.</TextBlock>
-            <wpf:DialogHost DialogClosing="Sample1_DialogHost_OnDialogClosing"
-                            Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <wpf:DialogHost.DialogContent>
-                    <StackPanel Margin="16">
-                        <TextBlock>Add a new fruit.</TextBlock>
-                        <TextBox Margin="0 8 0 0" HorizontalAlignment="Stretch" x:Name="FruitTextBox" />
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                            <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                    IsDefault="True"
-                                    Margin="0 8 8 0"
-                                    Command="wpf:DialogHost.CloseDialogCommand">
-                                <Button.CommandParameter>
-                                    <system:Boolean>True</system:Boolean>
-                                </Button.CommandParameter>
-                                ACCEPT
-                            </Button>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                    IsCancel="True"
-                                    Margin="0 8 8 0"
-                                    Command="wpf:DialogHost.CloseDialogCommand">
-                                <Button.CommandParameter>
-                                    <system:Boolean>False</system:Boolean>
-                                </Button.CommandParameter>
-                                CANCEL
-                            </Button>
-                        </StackPanel>
-                    </StackPanel>
-                </wpf:DialogHost.DialogContent>
-                <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                        MinWidth="256" MinHeight="256">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <ListBox x:Name="FruitListBox">
-                            <ListBoxItem>Apple</ListBoxItem>
-                            <ListBoxItem>Banana</ListBoxItem>
-                            <ListBoxItem>Pear</ListBoxItem>
-                        </ListBox>
-                        <wpf:ColorZone Mode="PrimaryMid" Grid.Row="1">
-                            <TextBlock Margin="16">Fruit Bowl</TextBlock>
-                        </wpf:ColorZone>
-                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"                                
-                                Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
-                                VerticalAlignment="Bottom" HorizontalAlignment="Right" 
-                                Grid.Row="0" Margin="0 0 28 -20">
-                            <Viewbox Width="22" Height="22">
-                                <Canvas Width="24" Height="24">
-                                    <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
-                                </Canvas>
-                            </Viewbox>
+        <!--#region SAMPLE 1-->
+        <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"
+                   Margin="16">SAMPLE 1: Localised dialog encapsulating specific content, launched from a routed command, response handled in code-behind.</TextBlock>
+        <wpf:DialogHost DialogClosing="Sample1_DialogHost_OnDialogClosing"
+                        Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <wpf:DialogHost.DialogContent>
+                <StackPanel Margin="16">
+                    <TextBlock>Add a new fruit.</TextBlock>
+                    <TextBox Margin="0 8 0 0" HorizontalAlignment="Stretch" x:Name="FruitTextBox" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                IsDefault="True"
+                                Margin="0 8 8 0"
+                                Command="wpf:DialogHost.CloseDialogCommand">
+                            <Button.CommandParameter>
+                                <system:Boolean>True</system:Boolean>
+                            </Button.CommandParameter>
+                            ACCEPT
                         </Button>
-                    </Grid>
-                </Border>
-            </wpf:DialogHost>
-            <!--#endregion -->
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                IsCancel="True"
+                                Margin="0 8 8 0"
+                                Command="wpf:DialogHost.CloseDialogCommand">
+                            <Button.CommandParameter>
+                                <system:Boolean>False</system:Boolean>
+                            </Button.CommandParameter>
+                            CANCEL
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </wpf:DialogHost.DialogContent>
+            <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    MinWidth="256" MinHeight="256">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="FruitListBox">
+                        <ListBoxItem>Apple</ListBoxItem>
+                        <ListBoxItem>Banana</ListBoxItem>
+                        <ListBoxItem>Pear</ListBoxItem>
+                    </ListBox>
+                    <wpf:ColorZone Mode="PrimaryMid" Grid.Row="1">
+                        <TextBlock Margin="16">Fruit Bowl</TextBlock>
+                    </wpf:ColorZone>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"                                
+                            Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
+                            VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                            Grid.Row="0" Margin="0 0 28 -20">
+                        <Viewbox Width="22" Height="22">
+                            <Canvas Width="24" Height="24">
+                                <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button>
+                </Grid>
+            </Border>
+        </wpf:DialogHost>
+        <!--#endregion -->
         
-            <!--#region SAMPLE 2-->
-            <TextBlock Grid.Column="1" Grid.Row="0" TextWrapping="Wrap">SAMPLE 2: Using OpenDialog, passing content via the Parameter. You can pass a view model, provided a corresponding DataTemplate can be found in the scope of the root DialogHost.</TextBlock>
-            <StackPanel Grid.Column="1" Grid.Row="1">
-                <!--the request to open the dialog will bubble up to the top-most DialogHost, but we can used the attached property based event to handle the response -->
-                <Button Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
-                        wpf:DialogHost.DialogClosing="Sample2_DialogHost_OnDialogClosing"
-                        Width="128">
-                    <Button.CommandParameter>
-                        <StackPanel Margin="16">
-                            <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0" />
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True" 
-                                    Command="{x:Static wpf:DialogHost.CloseDialogCommand}"
-                                    CommandParameter="Sample2Cancel"
-                                    HorizontalAlignment="Center">CANCEL</Button>
-                        </StackPanel>
-                    </Button.CommandParameter>
-                    PASS VIEW
-                </Button>
-                <Button Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
-                        Width="128" Margin="0 32 0 0">
-                    <Button.CommandParameter>
-                        <!-- the simplest view model of all, a DateTime. the view can be found in the resources of MainWindow.xaml  -->
-                        <system:DateTime>1966-JUL-30</system:DateTime>
-                    </Button.CommandParameter>
-                    PASS MODEL
-                </Button>
-            </StackPanel>
-            <!--#endregion-->
-        </Grid>
+        <!--#region SAMPLE 2-->
+        <TextBlock Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top">SAMPLE 2: Top level dialog,  using OpenDialog, passing content via the Parameter. You can pass a view model, provided a corresponding DataTemplate can be found in the scope of the root DialogHost.</TextBlock>
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+            <!--the request to open the dialog will bubble up to the top-most DialogHost, but we can used the attached property based event to handle the response -->
+            <Button Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
+                    wpf:DialogHost.DialogClosing="Sample2_DialogHost_OnDialogClosing"
+                    Width="128">
+                <Button.CommandParameter>
+                    <StackPanel Margin="16">
+                        <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0" />
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True" 
+                                Command="{x:Static wpf:DialogHost.CloseDialogCommand}"
+                                CommandParameter="Sample2Cancel"
+                                HorizontalAlignment="Center">CANCEL</Button>
+                    </StackPanel>
+                </Button.CommandParameter>
+                PASS VIEW
+            </Button>
+            <Button Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
+                    Width="128" Margin="0 32 0 0">
+                <Button.CommandParameter>
+                    <!-- the simplest view model of all, a DateTime. the view can be found in the resources of MainWindow.xaml  -->
+                    <system:DateTime>1966-JUL-30</system:DateTime>
+                </Button.CommandParameter>
+                PASS MODEL
+            </Button>
+        </StackPanel>
+        <!--#endregion-->
+
+        <!--#region SAMPLE 3-->
+        <TextBlock Grid.Column="2" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top">SAMPLE 3: Open and listen to the dialog entirely from code in a view model.</TextBlock>
+        <!-- Executes a command on DialogsViewModel.cs, which will launch the dialog from code -->
+        <Button Grid.Column="2" Grid.Row="1" Command="{Binding RunDialogCommand}"
+                Width="128">
+            RUN CODE
+        </Button>
+        <!--#endregion-->
     </Grid>
+    
 </UserControl>

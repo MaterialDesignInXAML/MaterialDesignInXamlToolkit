@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,16 +25,72 @@ namespace MaterialDesignThemes.Wpf
         public static RoutedCommand OpenDialogCommand = new RoutedCommand();
         public static RoutedCommand CloseDialogCommand = new RoutedCommand();
 
+        private static readonly HashSet<DialogHost> LoadedInstances = new HashSet<DialogHost>();
+
+        private readonly ManualResetEvent _asyncShowWaitHandle = new ManualResetEvent(false);
+        private DialogClosingEventHandler _asyncShowClosingEventHandler = null;
+
         private Popup _popup;
         private Window _window;
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;
         private bool _removeContentOnClose;
+        private object _closeDialogExecutionParameter = null;
 
         static DialogHost()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(DialogHost), new FrameworkPropertyMetadata(typeof(DialogHost)));            
         }
 
+        public static async Task<object> Show(object content)
+        {
+            return await Show(content, null, null);
+        }
+
+        public static async Task<object> Show(object content, DialogClosingEventHandler closingEventHandler)
+        {
+            return await Show(content, null, closingEventHandler);
+        }
+
+        public static async Task<object> Show(object content, object dialogIndetifier)
+        {
+            return await Show(content, dialogIndetifier, null);
+        }
+
+        public static async Task<object> Show(object content, object dialogIndetifier, DialogClosingEventHandler closingEventHandler)
+        {
+            if (content == null) throw new ArgumentNullException(nameof(content));
+
+            if (LoadedInstances.Count == 0)
+                throw new InvalidOperationException("No loaded DialogHost instances.");
+            LoadedInstances.First().Dispatcher.VerifyAccess();
+
+            var targets = LoadedInstances.Where(dh => Equals(dh.Identifier, dialogIndetifier)).ToList();
+            if (targets.Count == 0)
+                throw new InvalidOperationException("No loaded DialogHost matches identifier.");
+            if (targets.Count > 1)
+                throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique identifier.");
+            if (targets[0].IsOpen)
+                throw new InvalidOperationException("DialogHost is already open.");
+
+            targets[0].AssertTargetableContent();
+            targets[0].DialogContent = content;
+            targets[0].SetCurrentValue(IsOpenProperty, true);
+            targets[0]._asyncShowClosingEventHandler = closingEventHandler;
+
+            var task = new Task(() =>
+            {
+                targets[0]._asyncShowWaitHandle.WaitOne();
+            });
+            task.Start();
+
+            await task;
+
+            targets[0].DialogContent = null;
+            targets[0]._asyncShowClosingEventHandler = null;
+
+            return targets[0]._closeDialogExecutionParameter;
+        }
+        
         public DialogHost()
         {
             Loaded += OnLoaded;
@@ -41,6 +99,18 @@ namespace MaterialDesignThemes.Wpf
 
             CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler));
             CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));
+        }
+
+        public static readonly DependencyProperty IdentifierProperty = DependencyProperty.Register(
+            "Identifier", typeof (object), typeof (DialogHost), new PropertyMetadata(default(object)));
+
+        /// <summary>
+        /// Identifier which is used in conjunction with <see cref="Show"/> to determine where a dialog should be shown.
+        /// </summary>
+        public object Identifier
+        {
+            get { return GetValue(IdentifierProperty); }
+            set { SetValue(IdentifierProperty, value); }
         }
 
         public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register(
@@ -54,6 +124,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (!dialogHost.IsOpen)
             {
+                dialogHost._asyncShowWaitHandle.Set();
                 dialogHost._attachedDialogClosingEventHandler = null;
                 if (dialogHost._removeContentOnClose)
                 {
@@ -62,6 +133,8 @@ namespace MaterialDesignThemes.Wpf
                 }
                 return;
             }
+
+            dialogHost._asyncShowWaitHandle.Reset();
 
             dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() =>
             {
@@ -180,14 +253,11 @@ namespace MaterialDesignThemes.Wpf
             if (dependencyObject != null)
             {
                 _attachedDialogClosingEventHandler = GetDialogClosing(dependencyObject);
-
             }
 
             if (executedRoutedEventArgs.Parameter != null)
             {
-                var existindBinding = BindingOperations.GetBindingExpression(this, DialogContentProperty);
-                if (existindBinding != null || DialogContent != null)
-                    throw new InvalidOperationException("Content cannot be passed to a dialog via the OpenDialog of DialogContent is already set, or has a binding.");
+                AssertTargetableContent();
                 DialogContent = executedRoutedEventArgs.Parameter;
                 _removeContentOnClose = true;
             }
@@ -195,6 +265,14 @@ namespace MaterialDesignThemes.Wpf
             SetCurrentValue(IsOpenProperty, true);
 
             executedRoutedEventArgs.Handled = true;
+        }
+
+        private void AssertTargetableContent()
+        {
+            var existindBinding = BindingOperations.GetBindingExpression(this, DialogContentProperty);
+            if (existindBinding != null || DialogContent != null)
+                throw new InvalidOperationException(
+                    "Content cannot be passed to a dialog via the OpenDialog of DialogContent is already set, or has a binding.");
         }
 
         private void CloseDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
@@ -206,13 +284,17 @@ namespace MaterialDesignThemes.Wpf
             //multiple ways of calling back that the dialog is closing:
             // * the attached property (which should be applied to the button which opened the dialog
             // * straight forward dependency property 
+            // * handler provided to the async show method
             // * routed event
             _attachedDialogClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
             DialogClosingCallback?.Invoke(this, dialogClosingEventArgs);
+            _asyncShowClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
             OnDialogClosing(dialogClosingEventArgs);
 
             if (!dialogClosingEventArgs.IsCancelled)
                 SetCurrentValue(IsOpenProperty, false);
+
+            _closeDialogExecutionParameter = executedRoutedEventArgs.Parameter;
 
             executedRoutedEventArgs.Handled = true;
         }
@@ -232,6 +314,8 @@ namespace MaterialDesignThemes.Wpf
 
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
+            LoadedInstances.Remove(this);
+
             if (_window != null)
             {
                 _window.LocationChanged -= WindowOnLocationChanged;
@@ -242,6 +326,8 @@ namespace MaterialDesignThemes.Wpf
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
+            LoadedInstances.Add(this);
+
             _window = Window.GetWindow(this);
             if (_window == null) return;
 

@@ -33,7 +33,7 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <wpf:DialogHost>
+    <wpf:DialogHost Identifier="RootDialog">
         <DockPanel>
             <wpf:ColorZone Padding="16" Effect="{StaticResource MaterialDesignShadowDepth2}"
                            Mode="PrimaryMid" DockPanel.Dock="Top">
@@ -119,7 +119,11 @@
                 </domain:DemoItem>
                 <domain:DemoItem Name="Dialogs">
                     <domain:DemoItem.Content>
-                        <wpfExample:Dialogs />
+                        <wpfExample:Dialogs>
+                            <wpfExample:Dialogs.DataContext>
+                                <domain:DialogsViewModel />
+                            </wpfExample:Dialogs.DataContext>
+                        </wpfExample:Dialogs>
                     </domain:DemoItem.Content>
                 </domain:DemoItem>
                 <domain:DemoItem Name="Shadows">
