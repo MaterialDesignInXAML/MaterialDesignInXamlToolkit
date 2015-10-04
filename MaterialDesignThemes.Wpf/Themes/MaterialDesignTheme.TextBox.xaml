@@ -18,6 +18,7 @@
         <Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="AllowDrop" Value="true"/>        
@@ -51,9 +52,6 @@
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
-                        </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter TargetName="Underline" Property="IsActive" Value="True"/>
                         </Trigger>
@@ -82,45 +80,29 @@
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
                     <ControlTemplate.Resources>
+                        <SineEase x:Key="HintEasingFunction" EasingMode="EaseOut" />
+                        
                         <Storyboard x:Key="MoveHintAsideStoryboard">
                             <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3" To="10">
-                                <DoubleAnimation.EasingFunction>
-                                    <SineEase EasingMode="EaseOut" />
-                                </DoubleAnimation.EasingFunction>    
-                            </DoubleAnimation>
+                                             EasingFunction="{StaticResource HintEasingFunction}"
+                                             Duration="0:0:0.3" To="10"/>
                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3" To="1">
-                                <DoubleAnimation.EasingFunction>
-                                    <SineEase EasingMode="EaseOut" />
-                                </DoubleAnimation.EasingFunction>
-                            </DoubleAnimation>
+                                             EasingFunction="{StaticResource HintEasingFunction}"
+                                             Duration="0:0:0.3" To="1"/>
                             <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3" To="1,-16,1,0">
-                                <ThicknessAnimation.EasingFunction>
-                                    <SineEase EasingMode="EaseOut" />
-                                </ThicknessAnimation.EasingFunction>
-                            </ThicknessAnimation>
+                                             EasingFunction="{StaticResource HintEasingFunction}"
+                                             Duration="0:0:0.3" To="1,-16,1,0"/>
                         </Storyboard>
                         <Storyboard x:Key="MoveHintBackStoryboard">
                             <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3">
-                                <DoubleAnimation.EasingFunction>
-                                    <SineEase EasingMode="EaseOut" />
-                                </DoubleAnimation.EasingFunction>
-                            </DoubleAnimation>
+                                             EasingFunction="{StaticResource HintEasingFunction}"
+                                             Duration="0:0:0.3"/>
                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3">
-                                <DoubleAnimation.EasingFunction>
-                                    <SineEase EasingMode="EaseOut" />
-                                </DoubleAnimation.EasingFunction>
-                            </DoubleAnimation>
+                                             EasingFunction="{StaticResource HintEasingFunction}"
+                                             Duration="0:0:0.3"/>
                             <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3">
-                                <ThicknessAnimation.EasingFunction>
-                                    <SineEase EasingMode="EaseOut" />
-                                </ThicknessAnimation.EasingFunction>
-                            </ThicknessAnimation>
+                                             EasingFunction="{StaticResource HintEasingFunction}"
+                                             Duration="0:0:0.3"/>
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
@@ -165,10 +147,6 @@
                         
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-                        </Trigger>
-                        
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
                         </Trigger>
                         
                         <Trigger Property="IsKeyboardFocused" Value="true">

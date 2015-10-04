@@ -22,7 +22,7 @@
 	
 	<!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
 	<Style TargetType="{x:Type local:Clock}" BasedOn="{StaticResource MaterialDesignClock}" />
-	<Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />	
+	<Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />
 		
 	<converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
     
@@ -36,33 +36,37 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Ripple}">
+                    <ControlTemplate.Resources>
+                        <QuadraticEase x:Key="EasingFunction" EasingMode="EaseOut"/>
+                    </ControlTemplate.Resources>
                     <Grid Background="Transparent">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualStateGroup.Transitions>
-                                    <VisualTransition From="Normal" To="MousePressed">
+                                    <VisualTransition GeneratedDuration="0:0:0.7" To="MousePressed">
                                         <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <SineEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <SineEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ClickEllipse">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value=".26"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value=".26"/>
-                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ClickEllipse"
+                                                             EasingFunction="{StaticResource EasingFunction}"
+                                                             Duration="0:0:0.7" From="0" To="0.45"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform"
+                                                             EasingFunction="{StaticResource EasingFunction}"
+                                                             Duration="0:0:0.7" From="0" To="1"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform"
+                                                             EasingFunction="{StaticResource EasingFunction}"
+                                                             Duration="0:0:0.7" From="0" To="1"/>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition GeneratedDuration="0:0:0.7" To="Normal">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ClickEllipse"
+                                                             EasingFunction="{StaticResource EasingFunction}"
+                                                             Duration="0:0:1" To="0"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform"
+                                                             EasingFunction="{StaticResource EasingFunction}"
+                                                             Duration="0:0:0.7" To="1"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform"
+                                                             EasingFunction="{StaticResource EasingFunction}"
+                                                             Duration="0:0:0.7" To="1"/>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="MousePressed" To="MouseOut">
@@ -96,9 +100,12 @@
                                 </VisualState>
                                 <VisualState x:Name="MousePressed">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform" To="1"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform" To="1"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ClickEllipse" To="0.26"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ClickEllipse"
+                                                         Duration="0" From="0" To="0.45"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform"
+                                                         Duration="0" From="0" To="1"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform"
+                                                         Duration="0" From="0" To="1"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="MouseOut">
@@ -111,12 +118,12 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Canvas IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Ellipse x:Name="ClickEllipse" Fill="{TemplateBinding Feedback}" Opacity="0" 
+                            <Ellipse x:Name="ClickEllipse" Fill="{TemplateBinding Feedback}" Opacity="0.45" 
                                      Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleSize}" 
                                      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleSize}" 
-                                     Canvas.Left="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleX}" 
-                                     Canvas.Top="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleY}"
-                                     RenderTransformOrigin=".5,.5">
+                                         Canvas.Left="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleX}" 
+                                         Canvas.Top="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleY}"
+                                         RenderTransformOrigin=".5,.5">
                                 <Ellipse.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
