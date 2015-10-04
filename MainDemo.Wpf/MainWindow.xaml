@@ -35,7 +35,7 @@
 
     <wpf:DialogHost Identifier="RootDialog">
         <DockPanel>
-            <wpf:ColorZone Padding="16" Effect="{StaticResource MaterialDesignShadowDepth2}"
+            <wpf:ColorZone Padding="16" wpf:ShadowAssist.ShadowDepth="Depth2"
                            Mode="PrimaryMid" DockPanel.Dock="Top">
                 <DockPanel>
                     <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="True"
