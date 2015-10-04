@@ -31,7 +31,7 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 
 * Install [Nuget package](https://www.nuget.org/packages/MaterialDesignThemes/) ```Install-Package MaterialDesignThemes```
 * Configure App.xaml according to the [example](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/MaterialDesignColors.WpfExample/App.xaml).
-* For more information see the [Get Started guide](http://butchersboy.github.io/MaterialDesignInXamlToolkit/#getStarted).
+* For more information see the [Get Started guide](http://materialdesigninxaml.net/#getStarted).
 
 # ![Alt text](https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/web/images/MD4XAML28.png "Mentions") Mentions
 
