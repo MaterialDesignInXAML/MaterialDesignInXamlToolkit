@@ -32,15 +32,23 @@ namespace MaterialDesignThemes.Wpf
 	}
 
 	[TemplatePart(Name = HoursCanvasPartName, Type = typeof (Canvas))]
-	[TemplatePart(Name = MinutesCanvasPartName, Type = typeof(Canvas))]
+    [TemplatePart(Name = MinutesCanvasPartName, Type = typeof(Canvas))]
 	[TemplatePart(Name = MinuteReadOutPartName, Type = typeof(TextBlock))]
 	[TemplatePart(Name = HourReadOutPartName, Type = typeof(TextBlock))]
-	public class Clock : Control
+
+    [TemplatePart(Name = Hours13To00CanvasPartName, Type = typeof(Canvas))]
+    [TemplatePart(Name = Hours1To12CanvasPartName, Type = typeof(Canvas))]
+    [TemplatePart(Name = Minutes24HCanvasPartName, Type = typeof(Canvas))]
+    public class Clock : Control
 	{
 		public const string HoursCanvasPartName = "PART_HoursCanvas";
-		public const string MinutesCanvasPartName = "PART_MinutesCanvas";
+        public const string MinutesCanvasPartName = "PART_MinutesCanvas";
 		public const string MinuteReadOutPartName = "PART_MinuteReadOut";
 		public const string HourReadOutPartName = "PART_HourReadOut";
+
+        public const string Hours13To00CanvasPartName = "PART_13To00HoursCanvas";
+        public const string Hours1To12CanvasPartName = "PART_1To12HoursCanvas";
+        public const string Minutes24HCanvasPartName = "PART_24HMinutesCanvas";
 
         private Point _centreCanvas = new Point(0, 0);
         private Point _currentStartPosition = new Point(0, 0);
@@ -91,6 +99,16 @@ namespace MaterialDesignThemes.Wpf
 			get { return (bool) GetValue(IsPostMeridiemProperty); }
 			set { SetValue(IsPostMeridiemProperty, value); }
 		}
+
+	    public static readonly DependencyProperty Is24HoursProperty = DependencyProperty.Register(
+	        "Is24Hours", typeof (bool), typeof (Clock), new PropertyMetadata(default(bool)));
+
+	    public bool Is24Hours
+	    {
+	        get { return (bool) GetValue(Is24HoursProperty); }
+	        set { SetValue(Is24HoursProperty, value); }
+	    }
+
 
 		public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(
 			"DisplayMode", typeof (ClockDisplayMode), typeof (Clock), new PropertyMetadata(ClockDisplayMode.Hours));
@@ -173,14 +191,27 @@ namespace MaterialDesignThemes.Wpf
 		{			
 			var hoursCanvas = GetTemplateChild(HoursCanvasPartName) as Canvas;
 			if (hoursCanvas != null)
-				GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours), i => "ButtonStyle");
+				GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle");
 
 			var minutesCanvas = GetTemplateChild(MinutesCanvasPartName) as Canvas;
 			if (minutesCanvas != null)
-				GenerateButtons(minutesCanvas, Enumerable.Range(1, 60).ToList(), new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Minutes),
+				GenerateButtons(minutesCanvas, Enumerable.Range(1, 60).ToList(), new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Minutes, Is24Hours),
 					i => ((i / 5.0)%1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle");
 
-			if (_hourReadOutPartName != null)
+            var hours13To00Canvas = GetTemplateChild(Hours13To00CanvasPartName) as Canvas;
+            if (hours13To00Canvas != null)
+                GenerateButtons(hours13To00Canvas, new List<int> { 0, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 }, new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle");
+
+            var hours1To12Canvas = GetTemplateChild(Hours1To12CanvasPartName) as Canvas;
+            if (hours1To12Canvas != null)
+                GenerateButtons(hours1To12Canvas, Enumerable.Range(1, 12).ToList(), new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle");
+
+            var minutes24HCanvas = GetTemplateChild(Minutes24HCanvasPartName) as Canvas;
+            if (minutes24HCanvas != null)
+                GenerateButtons(minutes24HCanvas, Enumerable.Range(1, 60).ToList(), new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Minutes, Is24Hours),
+                    i => ((i / 5.0) % 1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle");
+
+            if (_hourReadOutPartName != null)
 				_hourReadOutPartName.PreviewMouseLeftButtonDown -= HourReadOutPartNameOnPreviewMouseLeftButtonDown;
 			if (_minuteReadOutPartName != null)
 				_minuteReadOutPartName.PreviewMouseLeftButtonDown -= MinuteReadOutPartNameOnPreviewMouseLeftButtonDown;
@@ -223,7 +254,7 @@ namespace MaterialDesignThemes.Wpf
 				var adjacent = Math.Cos(i*radiansPerItem)*hypotenuseRadius;
 				var opposite = Math.Sin(i*radiansPerItem)*hypotenuseRadius;
 
-                button.CentreX = _centreCanvas.X + opposite;
+			    button.CentreX = _centreCanvas.X + opposite;
                 button.CentreY = _centreCanvas.Y - adjacent;
 
 				button.SetBinding(ToggleButton.IsCheckedProperty, GetBinding("Time", converter: isCheckedConverter, converterParameter: i));
@@ -234,8 +265,9 @@ namespace MaterialDesignThemes.Wpf
 				canvas.Children.Add(button);
 			}
         }
+        
 
-		private void ClockItemDragCompletedHandler(object sender, DragCompletedEventArgs e)
+        private void ClockItemDragCompletedHandler(object sender, DragCompletedEventArgs e)
 		{
 			OnClockChoiceMade(this, DisplayMode);
 
