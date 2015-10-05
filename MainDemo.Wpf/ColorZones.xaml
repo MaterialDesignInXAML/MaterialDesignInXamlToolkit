@@ -42,7 +42,7 @@
                     <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                     <wpf:ColorZone Mode="Standard" Padding="8 4 8 4" CornerRadius="2" Panel.ZIndex="1"
                                    Margin="16 0 0 0"
-                                   Effect="{DynamicResource MaterialDesignShadowDepth1}">
+                                   wpf:ShadowAssist.ShadowDepth="Depth1">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
