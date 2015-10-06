@@ -38,7 +38,7 @@ namespace MaterialDesignThemes.Wpf
             "HintOpacity",
             typeof(double),
             typeof(TextFieldAssist),
-            new PropertyMetadata(.48, HintOpacityPropertyChangedCallback));
+            new PropertyMetadata(.48));
 
         /// <summary>
         /// Internal framework use only.
@@ -49,7 +49,7 @@ namespace MaterialDesignThemes.Wpf
         private static readonly DependencyPropertyKey IsNullOrEmptyPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "IsNullOrEmpty", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(true));
 
-        public static readonly DependencyProperty IsNullOrEmptyProperty =
+        private static readonly DependencyProperty IsNullOrEmptyProperty =
             IsNullOrEmptyPropertyKey.DependencyProperty;
 
         #endregion
@@ -172,32 +172,14 @@ namespace MaterialDesignThemes.Wpf
 
             if (box.IsLoaded)
             {
-                ApplyTextBoxViewMargin(box, (Thickness)dependencyPropertyChangedEventArgs.NewValue);
+                ApplyTextBoxViewMargin(box, (Thickness) dependencyPropertyChangedEventArgs.NewValue);
             }
 
             box.Loaded += (sender, args) =>
             {
-                var textBox = (Control)sender;
+                var textBox = (Control) sender;
                 ApplyTextBoxViewMargin(textBox, GetTextBoxViewMargin(textBox));
             };
-        }
-
-        /// <summary>
-        /// Hints the opacity property changed callback.
-        /// </summary>
-        /// <param name="dependencyObject">The dependency object.</param>
-        /// <param name="dependencyPropertyChangedEventArgs">The <see cref="DependencyPropertyChangedEventArgs" /> instance containing the event data.</param>
-        private static void HintOpacityPropertyChangedCallback(
-            DependencyObject dependencyObject,
-            DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var control = dependencyObject as Control; //could be a text box or password box
-            if (control == null)
-            {
-                return;
-            }
-
-            control.Opacity = (double)dependencyPropertyChangedEventArgs.NewValue;
         }
 
         private static void TextPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)

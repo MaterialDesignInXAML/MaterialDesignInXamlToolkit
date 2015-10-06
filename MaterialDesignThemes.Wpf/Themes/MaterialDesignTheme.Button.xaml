@@ -25,6 +25,7 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
         <Setter Property="TextBlock.FontWeight" Value="DemiBold"/>
         <Setter Property="TextBlock.FontSize" Value="15"/>
@@ -61,6 +62,7 @@
                     </ControlTemplate.Resources>
                     <Grid>
                         <Border Background="{TemplateBinding Background}" 
+                                x:Name="ShadowBorder"                                
                                 Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" />
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2" />
                         <Border Background="White" CornerRadius="2" x:Name="ClickBorder" Opacity="0" RenderTransformOrigin="0.5,0.5" >
@@ -85,7 +87,8 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />                            
+                            <Setter TargetName="ShadowBorder" Property="wpf:ShadowAssist.Darken" Value="True" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
@@ -121,6 +124,7 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="TextBlock.FontWeight" Value="DemiBold"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -180,6 +184,7 @@
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource MaterialDesignFlatButtonClick}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
@@ -196,7 +201,7 @@
     <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Foreground" Value="#616161"/>
         <Setter Property="Padding" Value="4"/>
-        <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>
+        <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -206,8 +211,6 @@
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Padding="{TemplateBinding Padding}" 
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                    <ControlTemplate.Triggers>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -223,9 +226,10 @@
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth3" />
+        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth2" />
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Width" Value="40" />
         <Setter Property="Height" Value="40" />
@@ -251,6 +255,9 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
