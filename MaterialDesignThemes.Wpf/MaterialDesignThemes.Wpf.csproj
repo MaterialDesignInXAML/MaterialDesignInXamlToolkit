@@ -199,6 +199,7 @@
     <Compile Include="ClockChoiceMadeEventArgs.cs" />
     <Compile Include="ClockItemButton.cs" />
     <Compile Include="ColorZone.cs" />
+    <Compile Include="Converters\BrushRoundConverter.cs" />
     <Compile Include="Converters\BrushToRadialGradientBrushConverter.cs" />
     <Compile Include="Converters\CalendarDateCoalesceConverter.cs" />
     <Compile Include="Converters\CircularProgressBar\ArcEndPointConverter.cs" />
