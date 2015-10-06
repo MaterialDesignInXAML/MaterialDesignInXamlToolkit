@@ -1,6 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+            <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
+            <converters:MathNegativeConverter x:Key="MathNegativeConverter"/>
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
     <Style x:Key="MaterialDesignTreeView" TargetType="{x:Type TreeView}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{x:Null}"/>
@@ -164,56 +173,35 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="SelectionStates">
+                            <VisualStateGroup Name="CommonStates">
                                 <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0" To="Selected">
+                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
                                         <VisualTransition.GeneratedEasingFunction>
-                                            <CubicEase EasingMode="EaseOut"/>
+                                            <CircleEase EasingMode="EaseOut"/>
                                         </VisualTransition.GeneratedEasingFunction>
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="SelectedBorder">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SelectedBorder">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition GeneratedDuration="0" To="Unselected">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="SelectedBorder">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SelectedBorder">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Selected">
+                                <VisualState Name="Normal"/>
+                                <VisualState Name="MouseOver">
                                     <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="SelectedBorder">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SelectedBorder">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
-                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
+                                                             To="0.1" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
-                                <VisualState x:Name="Unselected">
+                                <VisualState Name="Disabled"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="SelectionStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.6"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Selected">
                                     <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="SelectedBorder">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SelectedBorder">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.18" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
+                                <VisualState Name="Unselected"/>
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="ExpansionStates">
                                 <VisualStateGroup.Transitions>
@@ -293,29 +281,37 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        
                         <ToggleButton x:Name="Expander" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" 
                                       Style="{StaticResource MaterialDesignExpandCollapseToggleStyle}"
                                       Foreground="{TemplateBinding Foreground}"
                                       Margin="8 0 8 0"
                                       VerticalAlignment="Center"
                                               />
-                        <Border Background="{DynamicResource MaterialDesignFlatButtonClick}" Opacity="0" RenderTransformOrigin="0.5,0.5" 
-                        			x:Name="SelectedBorder"
-                        			Grid.Column="1" Grid.ColumnSpan="2">
-                            <Border.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleX="0"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Border.RenderTransform>
-                        </Border>
-                        <Border x:Name="MouseOverBorder" Grid.Column="1" Grid.ColumnSpan="2" />
+                        
+                        <Border x:Name="MouseOverBorder"
+                                Grid.Column="1" Grid.ColumnSpan="2"
+                                IsHitTestVisible="False"
+                                Opacity="0"
+                                Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+
+                        <Border x:Name="SelectedBorder"
+                                Grid.Column="1" Grid.ColumnSpan="2"
+                                IsHitTestVisible="False"
+                                Opacity="0"
+                                Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+
                         <Grid Grid.Column="1" Grid.ColumnSpan="2" x:Name="ContentGrid" Background="Transparent">
-                            <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                      Margin="{TemplateBinding Padding}"/>
+                            <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                        Focusable="False"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Padding="{TemplateBinding Padding}">
+                                <ContentPresenter x:Name="PART_Header" ContentSource="Header"/>
+                            </wpf:Ripple>
                         </Grid>
+                        
                         <ItemsPresenter x:Name="ItemsHost" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0,0"
                                                 Opacity="0"
                                                 Margin="-16 0 0 0"
@@ -337,13 +333,6 @@
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value=".56"/>
                         </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="False"/>
-                                <Condition SourceName="ContentGrid" Property="IsMouseOver" Value="True"/>
-                            </MultiTrigger.Conditions>
-                            <Setter Property="Background" TargetName="MouseOverBorder" Value="{DynamicResource MaterialDesignDivider}"/>
-                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

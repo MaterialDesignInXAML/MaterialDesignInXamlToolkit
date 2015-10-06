@@ -59,9 +59,6 @@
                                 </VisualStateGroup.Transitions>
                                 <VisualState Name="Selected">
                                     <Storyboard>
-                                        <!--DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                                         To="1" Duration="0"/-->
                                         <DoubleAnimation Storyboard.TargetName="SelectedBorder"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0.18" Duration="0"/>
