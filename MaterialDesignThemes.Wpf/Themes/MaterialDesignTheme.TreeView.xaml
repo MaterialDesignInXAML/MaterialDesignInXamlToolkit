@@ -6,7 +6,6 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary>
             <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
-            <converters:MathNegativeConverter x:Key="MathNegativeConverter"/>
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
