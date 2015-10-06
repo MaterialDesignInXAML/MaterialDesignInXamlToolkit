@@ -10,18 +10,20 @@
     <converters:CardClipConverter x:Key="CardClipConverter" />
 
     <ControlTemplate TargetType="{x:Type wpf:Card}" x:Key="CardTemplate">
-        <Border Margin="{TemplateBinding Margin}"
-                Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                CornerRadius="{TemplateBinding UniformCornerRadius}" Background="Transparent">
-            <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
-                    x:Name="PART_ClipBorder"
-                    Clip="{TemplateBinding ContentClip}">                
-                <ContentPresenter 
-                    x:Name="ContentPresenter"                    
-                    Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">                    
-                </ContentPresenter>
-            </Border>                        
-        </Border>
+        <Grid Margin="{TemplateBinding Margin}" Background="Transparent">
+            <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                    CornerRadius="{TemplateBinding UniformCornerRadius}">
+                <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
+                        x:Name="PART_ClipBorder"
+                        Clip="{TemplateBinding ContentClip}" />                        
+            </Border>
+            <ContentPresenter 
+                x:Name="ContentPresenter"                    
+                Margin="{TemplateBinding Padding}"
+                Clip="{TemplateBinding ContentClip}"
+                Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">                    
+            </ContentPresenter>
+        </Grid>
     </ControlTemplate>
     <Style TargetType="{x:Type wpf:Card}">
         <Setter Property="TextOptions.TextFormattingMode" Value="Display" />        

@@ -71,38 +71,44 @@
                         <Popup IsOpen="True" AllowsTransparency="True" Placement="RelativePoint" HorizontalOffset="0" VerticalOffset="0" 
                                PlacementTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}}"                                                              
                                PopupAnimation="Fade">
-                            <Border Padding="16" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
-                                    Margin="5,5,5,5"
-                                    BorderBrush="{DynamicResource MaterialDesignDivider}" Effect="{StaticResource MaterialDesignShadowDepth2}"
-                                    BorderThickness="1">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
-                                        Padding="0 -1 0 3">
-                                        <Grid>
-                                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-											      />
-                                            <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
-                                                       Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
-                                                       MinWidth="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}, Path=ActualWidth}"
-                                                       x:Name="Hint"
-                                                       Margin="1 0 1 0"
-                                                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
-                                        </Grid>
-                                    </Border>
-                                    <TextBlock Grid.Row="1" HorizontalAlignment="Right" Opacity=".56" Visibility="{TemplateBinding MaxLength, Converter={StaticResource NotZeroToVisibilityConverter}}">
-                                        <TextBlock.Text>
-                                            <MultiBinding StringFormat="{}{0}/{1}">
-                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Text.Length" />
-                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="MaxLength" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </Grid>
-                            </Border>
+                            <Grid>
+                                <Border Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
+                                        Margin="5,5,5,5"
+                                        Effect="{StaticResource MaterialDesignShadowDepth2}"
+                                        BorderThickness="1" />
+                                <Border Padding="16" Background="Transparent" CornerRadius="2"
+                                        Margin="5,5,5,5"
+                                        BorderBrush="{DynamicResource MaterialDesignDivider}"
+                                        BorderThickness="1">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
+                                            Padding="0 -1 0 3">
+                                            <Grid>
+                                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+											          />
+                                                <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                                           Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
+                                                           MinWidth="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}, Path=ActualWidth}"
+                                                           x:Name="Hint"
+                                                           Margin="1 0 1 0"
+                                                           Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                            </Grid>
+                                        </Border>
+                                        <TextBlock Grid.Row="1" HorizontalAlignment="Right" Opacity=".56" Visibility="{TemplateBinding MaxLength, Converter={StaticResource NotZeroToVisibilityConverter}}">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0}/{1}">
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Text.Length" />
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="MaxLength" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </Grid>
+                                </Border>
+                            </Grid>
                         </Popup>
                     </Grid>
                 </ControlTemplate>
