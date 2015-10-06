@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="CyanPrimary50">#e0f7fa</Color>
+  <Color x:Key="CyanPrimary50Foreground">#DD000000</Color>
+  <Color x:Key="CyanPrimary100">#b2ebf2</Color>
+  <Color x:Key="CyanPrimary100Foreground">#DD000000</Color>
+  <Color x:Key="CyanPrimary200">#80deea</Color>
+  <Color x:Key="CyanPrimary200Foreground">#DD000000</Color>
+  <Color x:Key="CyanPrimary300">#4dd0e1</Color>
+  <Color x:Key="CyanPrimary300Foreground">#DD000000</Color>
+  <Color x:Key="CyanPrimary400">#26c6da</Color>
+  <Color x:Key="CyanPrimary400Foreground">#DD000000</Color>
+  <Color x:Key="CyanPrimary500">#00bcd4</Color>
+  <Color x:Key="CyanPrimary500Foreground">#FFFFFFFF</Color>
+  <Color x:Key="CyanPrimary600">#00acc1</Color>
+  <Color x:Key="CyanPrimary600Foreground">#FFFFFFFF</Color>
+  <Color x:Key="CyanPrimary700">#0097a7</Color>
+  <Color x:Key="CyanPrimary700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="CyanPrimary800">#00838f</Color>
+  <Color x:Key="CyanPrimary800Foreground">#FFFFFFFF</Color>
+  <Color x:Key="CyanPrimary900">#006064</Color>
+  <Color x:Key="CyanPrimary900Foreground">#DDFFFFFF</Color>
+</ResourceDictionary>

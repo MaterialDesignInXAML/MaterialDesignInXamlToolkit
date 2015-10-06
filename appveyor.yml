@@ -1,0 +1,65 @@
+# configuration for master/CI branch
+-
+  branches:
+    only:
+      - master
+
+  os: Visual Studio 2015
+  configuration: AppVeyor
+  assembly_info:
+    patch: true
+    file: '**\AssemblyInfo.*'
+    assembly_version: '{version}'
+    assembly_file_version: '{version}'
+    assembly_informational_version: '{version}'
+  environment:
+    RestorePackages: false
+  install:
+  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+  before_build:
+  - ps: nuget restore MaterialDesignToolkit.Wpf.sln
+  build:
+    project: MaterialDesignToolkit.Wpf.sln
+    verbosity: minimal
+  after_build:
+  - ps: nuget pack MaterialDesignThemes.nuspec -Version $env:APPVEYOR_BUILD_VERSION
+  artifacts:
+  - path: '**\MaterialDesignThemes.*.nupkg'
+  - path: bin\**\*.*
+
+  version: 1.1.0-ci{build}
+  deploy:
+  - provider: NuGet
+    api_key:
+      secure: B+WIdbRYr/rJo1QMeDwNen2xcj4RTu1d8AZiA03kb8wsWZVQxt5OgsWRacmEjWRd
+
+# configuration for release branch
+-
+  branches:
+    only:
+      - release
+
+  os: Visual Studio 2015
+  configuration: AppVeyor
+  assembly_info:
+    patch: true
+    file: '**\AssemblyInfo.*'
+    assembly_version: '{version}'
+    assembly_file_version: '{version}'
+    assembly_informational_version: '{version}'
+  environment:
+    RestorePackages: false    
+  install:
+  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+  before_build:
+  - ps: nuget restore MaterialDesignToolkit.Wpf.sln
+  build:
+    project: MaterialDesignToolkit.Wpf.sln
+    verbosity: minimal
+  after_build:
+  - ps: nuget pack MaterialDesignThemes.nuspec -Version $env:APPVEYOR_BUILD_VERSION
+  artifacts:
+  - path: '**\MaterialDesignThemes.*.nupkg'
+  - path: bin\**\*.*
+
+  version: 1.1.0.{build}

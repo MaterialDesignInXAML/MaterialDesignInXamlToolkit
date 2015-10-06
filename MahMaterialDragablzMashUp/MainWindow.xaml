@@ -1,31 +1,49 @@
 ﻿<controls:MetroWindow x:Class="MahMaterialDragablzMashUp.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
-        xmlns:mahMaterialDragablzMashUp="clr-namespace:MahMaterialDragablzMashUp" 
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-					  WindowTransitionsEnabled="False"
-        Background="{DynamicResource MaterialDesignPaper}"					  
-        GlowBrush="{DynamicResource AccentColorBrush}"					  
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Title="Material-MahApps-Dragablz Mash Up" Height="350" Width="525">
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+                      xmlns:mahMaterialDragablzMashUp="clr-namespace:MahMaterialDragablzMashUp"                       
+                      WindowTransitionsEnabled="False"
+                      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                      Background="{DynamicResource MaterialDesignPaper}"					  
+                      GlowBrush="{DynamicResource AccentColorBrush}"					  
+                      FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+                      Title="Material-MahApps-Dragablz Mash Up" Height="350" Width="525">
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl>
+            <controls:Flyout x:Name="LeftFlyout" Position="Left">
+                <mahMaterialDragablzMashUp:FlyoutContent />
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
     <dragablz:TabablzControl TextElement.Foreground="{DynamicResource MaterialDesignBody}" BorderThickness="0"
                              Background="{DynamicResource MaterialDesignPaper}" Margin="0,-1,0,1">
         <dragablz:TabablzControl.InterTabController>
             <dragablz:InterTabController />
-        </dragablz:TabablzControl.InterTabController>        
+        </dragablz:TabablzControl.InterTabController>
         <TabItem Header="CARDS">
             <mahMaterialDragablzMashUp:Cards Margin="8" />
         </TabItem>
         <TabItem Header="BUTTONS">
             <mahMaterialDragablzMashUp:Buttons Margin="8" />
         </TabItem>
-		<TabItem Header="FIELDS">
+        <TabItem Header="FIELDS">
             <mahMaterialDragablzMashUp:TextFields Margin="8" />
         </TabItem>
         <TabItem Header="PALETTE">
-            <mahMaterialDragablzMashUp:Palette Margin="16" />
+            <mahMaterialDragablzMashUp:PaletteSelector Margin="16">
+                <mahMaterialDragablzMashUp:PaletteSelector.DataContext>
+                    <mahMaterialDragablzMashUp:PaletteSelectorViewModel />
+                </mahMaterialDragablzMashUp:PaletteSelector.DataContext>
+            </mahMaterialDragablzMashUp:PaletteSelector>
+        </TabItem>
+        <TabItem Header="DIALOGS">
+            <mahMaterialDragablzMashUp:Dialogs Margin="8">
+                <mahMaterialDragablzMashUp:Dialogs.DataContext>
+                    <mahMaterialDragablzMashUp:DialogsViewModel />
+                </mahMaterialDragablzMashUp:Dialogs.DataContext>
+            </mahMaterialDragablzMashUp:Dialogs>
         </TabItem>
         <TabItem Header="MAHAPPS">
             <mahMaterialDragablzMashUp:Mah Margin="8" />

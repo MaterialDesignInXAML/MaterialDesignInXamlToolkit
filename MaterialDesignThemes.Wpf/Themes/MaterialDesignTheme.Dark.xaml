@@ -4,9 +4,13 @@
     
     <!-- plan is to add all of the light/dark specific brushes, quite granular at first. can then consolodate any repition later on if necessary -->
 
+    <Color x:Key="ValidationErrorColor">#f44336</Color>
+    <SolidColorBrush x:Key="ValidationErrorBrush" Color="{StaticResource ValidationErrorColor}"/>
+    
     <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FF000000"/>
     <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF37474f"/>        
     <SolidColorBrush x:Key="MaterialDesignBody" Color="#DDFFFFFF"/>
+    <SolidColorBrush x:Key="MaterialDesignBodyLight" Color="#89FFFFFF"/>
     <SolidColorBrush x:Key="MaterialDesignColumnHeader" Color="#BCFFFFFF"/><!-- 74% -->
 
     <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89FFFFFF" />
@@ -17,10 +21,9 @@
     <SolidColorBrush x:Key="MaterialDesignDivider" Color="#616161" />
     <SolidColorBrush x:Key="MaterialDesignSelection" Color="#757575" />
 
-    <Color x:Key="MaterialDesignShadow1">#AA000000</Color>
-    <Color x:Key="MaterialDesignShadow2">#AA000000</Color>
-    <Color x:Key="MaterialDesignShadow3">#AA000000</Color>
-    <Color x:Key="MaterialDesignShadow4">#AA000000</Color>
-    <Color x:Key="MaterialDesignShadow5">#AA000000</Color>
+    <SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#757575" />
+    <SolidColorBrush x:Key="MaterialDesignFlatButtonRipple" Color="#FFB6B6B6" />
+
+    <SolidColorBrush x:Key="MaterialDesignToolTipBackground" Color="#eeeeee" />
 
 </ResourceDictionary>

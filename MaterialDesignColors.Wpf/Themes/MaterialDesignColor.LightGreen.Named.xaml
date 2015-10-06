@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="Light GreenPrimary50">#f1f8e9</Color>
+  <Color x:Key="Light GreenPrimary50Foreground">#DD000000</Color>
+  <Color x:Key="Light GreenPrimary100">#dcedc8</Color>
+  <Color x:Key="Light GreenPrimary100Foreground">#DD000000</Color>
+  <Color x:Key="Light GreenPrimary200">#c5e1a5</Color>
+  <Color x:Key="Light GreenPrimary200Foreground">#DD000000</Color>
+  <Color x:Key="Light GreenPrimary300">#aed581</Color>
+  <Color x:Key="Light GreenPrimary300Foreground">#DD000000</Color>
+  <Color x:Key="Light GreenPrimary400">#9ccc65</Color>
+  <Color x:Key="Light GreenPrimary400Foreground">#DD000000</Color>
+  <Color x:Key="Light GreenPrimary500">#8bc34a</Color>
+  <Color x:Key="Light GreenPrimary500Foreground">#FF000000</Color>
+  <Color x:Key="Light GreenPrimary600">#7cb342</Color>
+  <Color x:Key="Light GreenPrimary600Foreground">#FF000000</Color>
+  <Color x:Key="Light GreenPrimary700">#689f38</Color>
+  <Color x:Key="Light GreenPrimary700Foreground">#FF000000</Color>
+  <Color x:Key="Light GreenPrimary800">#558b2f</Color>
+  <Color x:Key="Light GreenPrimary800Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Light GreenPrimary900">#33691e</Color>
+  <Color x:Key="Light GreenPrimary900Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Light GreenAccent100">#ccff90</Color>
+  <Color x:Key="Light GreenAccent100Foreground">#DD000000</Color>
+  <Color x:Key="Light GreenAccent200">#b2ff59</Color>
+  <Color x:Key="Light GreenAccent200Foreground">#DD000000</Color>
+  <Color x:Key="Light GreenAccent400">#76ff03</Color>
+  <Color x:Key="Light GreenAccent400Foreground">#DD000000</Color>
+  <Color x:Key="Light GreenAccent700">#64dd17</Color>
+  <Color x:Key="Light GreenAccent700Foreground">#DD000000</Color>
+</ResourceDictionary>

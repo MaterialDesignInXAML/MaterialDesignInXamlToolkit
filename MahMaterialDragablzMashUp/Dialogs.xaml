@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="MahMaterialDragablzMashUp.Dialogs"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MahMaterialDragablzMashUp"
+             xmlns:dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+             mc:Ignorable="d"     
+             dialogs:DialogParticipation.Register="{Binding}"
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance local:DialogsViewModel}">
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Button Command="{Binding ShowInputDialogCommand}">INPUT DIALOG</Button>
+        <Button Command="{Binding ShowProgressDialogCommand}" Margin="0 48 0 0">PROGRESS DIALOG</Button>
+        <Button Command="{Binding ShowLeftFlyoutCommand}" Margin="0 48 0 0">FLYOUT</Button>
+    </StackPanel>
+</UserControl>

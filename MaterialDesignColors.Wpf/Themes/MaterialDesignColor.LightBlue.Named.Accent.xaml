@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="Light BlueAccent100">#80d8ff</Color>
+  <Color x:Key="Light BlueAccent100Foreground">#DD000000</Color>
+  <Color x:Key="Light BlueAccent200">#40c4ff</Color>
+  <Color x:Key="Light BlueAccent200Foreground">#DD000000</Color>
+  <Color x:Key="Light BlueAccent400">#00b0ff</Color>
+  <Color x:Key="Light BlueAccent400Foreground">#DD000000</Color>
+  <Color x:Key="Light BlueAccent700">#0091ea</Color>
+  <Color x:Key="Light BlueAccent700Foreground">#FFFFFFFF</Color>
+</ResourceDictionary>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="IndigoPrimary50">#e8eaf6</Color>
+  <Color x:Key="IndigoPrimary50Foreground">#DD000000</Color>
+  <Color x:Key="IndigoPrimary100">#c5cae9</Color>
+  <Color x:Key="IndigoPrimary100Foreground">#DD000000</Color>
+  <Color x:Key="IndigoPrimary200">#9fa8da</Color>
+  <Color x:Key="IndigoPrimary200Foreground">#DD000000</Color>
+  <Color x:Key="IndigoPrimary300">#7986cb</Color>
+  <Color x:Key="IndigoPrimary300Foreground">#FFFFFFFF</Color>
+  <Color x:Key="IndigoPrimary400">#5c6bc0</Color>
+  <Color x:Key="IndigoPrimary400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="IndigoPrimary500">#3f51b5</Color>
+  <Color x:Key="IndigoPrimary500Foreground">#DDFFFFFF</Color>
+  <Color x:Key="IndigoPrimary600">#3949ab</Color>
+  <Color x:Key="IndigoPrimary600Foreground">#DDFFFFFF</Color>
+  <Color x:Key="IndigoPrimary700">#303f9f</Color>
+  <Color x:Key="IndigoPrimary700Foreground">#DDFFFFFF</Color>
+  <Color x:Key="IndigoPrimary800">#283593</Color>
+  <Color x:Key="IndigoPrimary800Foreground">#DDFFFFFF</Color>
+  <Color x:Key="IndigoPrimary900">#1a237e</Color>
+  <Color x:Key="IndigoPrimary900Foreground">#DDFFFFFF</Color>
+</ResourceDictionary>

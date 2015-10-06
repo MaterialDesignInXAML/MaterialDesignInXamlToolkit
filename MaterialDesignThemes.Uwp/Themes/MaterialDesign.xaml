@@ -1,0 +1,275 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:uwp="using:MaterialDesignThemes.Uwp">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="MaterialDesignColor.Indigo.Named.xaml" />
+        <ResourceDictionary Source="MaterialDesignColor.Yellow.Named.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FFFFFFFF"/>
+            <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FFfafafa"/>
+            <SolidColorBrush x:Key="MaterialDesignBody" Color="#DD000000"/>
+            <SolidColorBrush x:Key="MaterialDesignBodyLight" Color="#89000000"/>
+            <SolidColorBrush x:Key="MaterialDesignColumnHeader" Color="#BC000000"/>
+            <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89000000" />
+            <SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#42000000" />
+            <SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#89000000" />
+            <SolidColorBrush x:Key="MaterialDesignDivider" Color="#FFB6B6B6" />
+            <SolidColorBrush x:Key="MaterialDesignSelection" Color="#FFDeDeDe" />
+            <SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#FFDeDeDe" />
+            <SolidColorBrush x:Key="MaterialDesignFlatButtonRipple" Color="#FFB6B6B6" />
+            <SolidColorBrush x:Key="MaterialDesignToolTipBackground" Color="#757575" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FF000000"/>
+            <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF37474f"/>
+            <SolidColorBrush x:Key="MaterialDesignBody" Color="#DDFFFFFF"/>
+            <SolidColorBrush x:Key="MaterialDesignBodyLight" Color="#89FFFFFF"/>
+            <SolidColorBrush x:Key="MaterialDesignColumnHeader" Color="#BCFFFFFF"/>
+            <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89FFFFFF" />
+            <SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#4CFFFFFF" />
+            <SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#89FFFFFF" />
+            <SolidColorBrush x:Key="MaterialDesignDivider" Color="#616161" />
+            <SolidColorBrush x:Key="MaterialDesignSelection" Color="#757575" />
+            <SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#757575" />
+            <SolidColorBrush x:Key="MaterialDesignFlatButtonRipple" Color="#FFB6B6B6" />
+            <SolidColorBrush x:Key="MaterialDesignToolTipBackground" Color="#eeeeee" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource IndigoPrimary300}"/>
+    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource IndigoPrimary300Foreground}"/>
+    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource IndigoPrimary500}"/>
+    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource IndigoPrimary500Foreground}"/>
+    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource IndigoPrimary700}"/>
+    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource IndigoPrimary700Foreground}"/>
+
+    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{StaticResource YellowAccent400}"/>
+    <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource YellowAccent400Foreground}"/>
+
+    <Style x:Key="MaterialDesignRaisedButton" TargetType="Button" BasedOn="{x:Null}">
+        <Setter Property="Background" Value="{ThemeResource PrimaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource PrimaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource PrimaryHueMidForegroundBrush}"/>        
+        <Setter Property="FontFamily" Value="ms-appx:///MaterialDesignThemes.Uwp/Assets/Roboto/Roboto-Bold.ttf#Roboto" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="16 4 16 4"/>
+        <Setter Property="Height" Value="36" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <uwp:Shadow HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
+                            <uwp:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"                                                               
+                                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                        IsTabStop="False"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Padding="{TemplateBinding Padding}" />
+                        </Border>
+                    </uwp:Shadow>
+                    <!--
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsDefaulted" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{ThemeResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Opacity" Value="0.23"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+            -->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignRaisedLightButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="Background" Value="{ThemeResource PrimaryHueLightBrush}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource PrimaryHueLightBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource PrimaryHueLightForegroundBrush}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignRaisedDarkButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="Background" Value="{ThemeResource PrimaryHueDarkBrush}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource PrimaryHueDarkBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource PrimaryHueDarkForegroundBrush}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignRaisedAccentButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="Background" Value="{ThemeResource SecondaryAccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource SecondaryAccentBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource SecondaryAccentForegroundBrush}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignToggleSwitch" TargetType="ToggleSwitch">
+        <Setter Property="Foreground" Value="{ThemeResource MaterialDesignBody}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FontFamily" Value="ms-appx:///MaterialDesignThemes.Uwp/Assets/Roboto/Roboto-Regular.ttf#Roboto" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="ManipulationMode" Value="System,TranslateX"/>
+        <Setter Property="UseSystemFocusVisuals" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleSwitch">
+                    <Grid BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="PointerOver" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X"
+                                                                               Storyboard.TargetName="KnobShadowTranslateTransform">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:10" Value="11.75">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <QuadraticEase EasingMode="EaseOut"/>
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchGrid" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value=".12"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ToggleStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition x:Name="DraggingToOnTransition" From="Dragging" GeneratedDuration="0" To="On">
+                                    </VisualTransition>
+                                    <VisualTransition x:Name="DraggingToOffTransition" From="Dragging" GeneratedDuration="0" To="Off">
+                                    </VisualTransition>
+                                    <VisualTransition x:Name="OnToOffTransition" From="On" To="Off">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X"
+                                                                                   Storyboard.TargetName="KnobShadowTranslateTransform">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="23.5"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseOut"/>
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition x:Name="OffToOnTransition" From="Off" GeneratedDuration="0" To="On">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X"
+                                                                                   Storyboard.TargetName="KnobShadowTranslateTransform">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="23.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseOut"/>
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                                   Storyboard.TargetName="KnobBorder"
+                                                                                   Duration="0">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PrimaryHueMidBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                                   Storyboard.TargetName="Track"
+                                                                                   Duration="0">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PrimaryHueLightBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Dragging"/>
+                                <VisualState x:Name="Off"/>
+                                <VisualState x:Name="On">
+                                    <Storyboard FillBehavior="HoldEnd">
+                                        <DoubleAnimation Storyboard.TargetProperty="X"
+                                                                 Storyboard.TargetName="KnobShadowTranslateTransform"
+                                                                 Duration="0" To="23.5" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                       Storyboard.TargetName="KnobBorder"
+                                                       Duration="0">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PrimaryHueMidBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                                   Storyboard.TargetName="Track"
+                                                                                   Duration="0">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PrimaryHueLightBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ContentStates">
+                                <VisualState x:Name="OffContent">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="OffContentPresenter"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="OffContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <x:Boolean>True</x:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="OnContent">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="OnContentPresenter"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="OnContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <x:Boolean>True</x:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter x:Name="HeaderContentPresenter" AutomationProperties.AccessibilityView="Raw" Grid.ColumnSpan="2" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" IsHitTestVisible="False" Visibility="Collapsed" x:DeferLoadStrategy="Lazy"/>
+                        <ContentPresenter x:Name="OffContentPresenter" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding OffContentTemplate}" Content="{TemplateBinding OffContent}" Grid.Column="1" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="False" Opacity="0" Grid.Row="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <ContentPresenter x:Name="OnContentPresenter" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding OnContentTemplate}" Content="{TemplateBinding OnContent}" Grid.Column="1" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="False" Opacity="0" Grid.Row="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Grid Grid.ColumnSpan="2" Grid.Column="0" Control.IsTemplateFocusTarget="True" Margin="0,5" Grid.Row="1" />
+                        <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" x:Name="SwitchGrid" Margin="0 0 8 0">
+                            <Rectangle x:Name="Track" Fill="Black" HorizontalAlignment="Left" Height="15" Margin="4.211,5,4.211,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="40" RadiusY="7.5" RadiusX="7.5" Opacity="0.26"/>
+                            <uwp:Shadow x:Name="KnobShadow" HorizontalContentAlignment="Left">
+                                <uwp:Shadow.RenderTransform>
+                                    <TranslateTransform x:Name="KnobShadowTranslateTransform" X="0"/>
+                                </uwp:Shadow.RenderTransform>
+                                <Border Background="#FFFAFAFA" x:Name="KnobBorder" Width="24" Height="24" CornerRadius="12" HorizontalAlignment="Left" />
+                            </uwp:Shadow>
+                        </Grid>
+                        <Thumb x:Name="SwitchThumb" AutomationProperties.AccessibilityView="Raw" Grid.ColumnSpan="2"
+                                       Grid.Column="0" Grid.Row="1">
+                            <Thumb.Template>
+                                <ControlTemplate TargetType="Thumb">
+                                    <Rectangle Fill="Transparent"/>
+                                </ControlTemplate>
+                            </Thumb.Template>
+                        </Thumb>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

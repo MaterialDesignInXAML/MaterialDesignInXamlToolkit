@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="RedPrimary50">#ffebee</Color>
+  <Color x:Key="RedPrimary50Foreground">#DD000000</Color>
+  <Color x:Key="RedPrimary100">#ffcdd2</Color>
+  <Color x:Key="RedPrimary100Foreground">#DD000000</Color>
+  <Color x:Key="RedPrimary200">#ef9a9a</Color>
+  <Color x:Key="RedPrimary200Foreground">#DD000000</Color>
+  <Color x:Key="RedPrimary300">#e57373</Color>
+  <Color x:Key="RedPrimary300Foreground">#DD000000</Color>
+  <Color x:Key="RedPrimary400">#ef5350</Color>
+  <Color x:Key="RedPrimary400Foreground">#DD000000</Color>
+  <Color x:Key="RedPrimary500">#f44336</Color>
+  <Color x:Key="RedPrimary500Foreground">#FFFFFFFF</Color>
+  <Color x:Key="RedPrimary600">#e53935</Color>
+  <Color x:Key="RedPrimary600Foreground">#FFFFFFFF</Color>
+  <Color x:Key="RedPrimary700">#d32f2f</Color>
+  <Color x:Key="RedPrimary700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="RedPrimary800">#c62828</Color>
+  <Color x:Key="RedPrimary800Foreground">#DDFFFFFF</Color>
+  <Color x:Key="RedPrimary900">#b71c1c</Color>
+  <Color x:Key="RedPrimary900Foreground">#DDFFFFFF</Color>
+</ResourceDictionary>
