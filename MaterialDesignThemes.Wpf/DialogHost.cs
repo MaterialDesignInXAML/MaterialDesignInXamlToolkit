@@ -209,22 +209,22 @@ namespace MaterialDesignThemes.Wpf
             add { AddHandler(DialogClosingEvent, value); }
             remove { RemoveHandler(DialogClosingEvent, value); }
         }
-
+        
         /// <summary>
         /// Attached property which can be used on the <see cref="Button"/> which instigated the <see cref="OpenDialogCommand"/> to process the closing event.
         /// </summary>
-        public static readonly DependencyProperty DialogClosingProperty = DependencyProperty.RegisterAttached(
-            "DialogClosing", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
+        public static readonly DependencyProperty DialogClosingAttachedProperty = DependencyProperty.RegisterAttached(
+            "DialogClosingAttached", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
 
-        public static void SetDialogClosing(DependencyObject element, DialogClosingEventHandler value)
+        public static void SetDialogClosingAttached(DependencyObject element, DialogClosingEventHandler value)
         {
-            element.SetValue(DialogClosingProperty, value);
+            element.SetValue(DialogClosingAttachedProperty, value);
         }
 
-        public static DialogClosingEventHandler GetDialogClosing(DependencyObject element)
+        public static DialogClosingEventHandler GetDialogClosingAttached(DependencyObject element)
         {
-            return (DialogClosingEventHandler) element.GetValue(DialogClosingProperty);
-        }
+            return (DialogClosingEventHandler) element.GetValue(DialogClosingAttachedProperty);
+        }        
 
         public static readonly DependencyProperty DialogClosingCallbackProperty = DependencyProperty.Register(
             "DialogClosingCallback", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
@@ -239,9 +239,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         protected void OnDialogClosing(DialogClosingEventArgs eventArgs)
-        {
-            eventArgs.RoutedEvent = DialogClosingEvent; 
-            eventArgs.Source = eventArgs.Source ?? this;
+        {            
             RaiseEvent(eventArgs);
         }
 
@@ -252,7 +250,7 @@ namespace MaterialDesignThemes.Wpf
             var dependencyObject = executedRoutedEventArgs.OriginalSource as DependencyObject;
             if (dependencyObject != null)
             {
-                _attachedDialogClosingEventHandler = GetDialogClosing(dependencyObject);
+                _attachedDialogClosingEventHandler = GetDialogClosingAttached(dependencyObject);
             }
 
             if (executedRoutedEventArgs.Parameter != null)
@@ -279,17 +277,17 @@ namespace MaterialDesignThemes.Wpf
         {
             if (executedRoutedEventArgs.Handled) return;
 
-            var dialogClosingEventArgs = new DialogClosingEventArgs(executedRoutedEventArgs.Parameter, DialogContent);
+            var dialogClosingEventArgs = new DialogClosingEventArgs(executedRoutedEventArgs.Parameter, DialogContent, DialogClosingEvent);
 
             //multiple ways of calling back that the dialog is closing:
+            // * routed event
             // * the attached property (which should be applied to the button which opened the dialog
             // * straight forward dependency property 
             // * handler provided to the async show method
-            // * routed event
+            OnDialogClosing(dialogClosingEventArgs);
             _attachedDialogClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
             DialogClosingCallback?.Invoke(this, dialogClosingEventArgs);
             _asyncShowClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
-            OnDialogClosing(dialogClosingEventArgs);
 
             if (!dialogClosingEventArgs.IsCancelled)
                 SetCurrentValue(IsOpenProperty, false);

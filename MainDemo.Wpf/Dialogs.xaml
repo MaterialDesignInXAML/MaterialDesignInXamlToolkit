@@ -100,7 +100,7 @@
             <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
                 <!--the request to open the dialog will bubble up to the top-most DialogHost, but we can used the attached property based event to handle the response -->
                 <Button Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
-                        wpf:DialogHost.DialogClosing="Sample2_DialogHost_OnDialogClosing"
+                        wpf:DialogHost.DialogClosingAttached="Sample2_DialogHost_OnDialogClosing"
                         Width="128">
                     <Button.CommandParameter>
                         <StackPanel Margin="16">
