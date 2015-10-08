@@ -32,8 +32,7 @@ namespace MaterialDesignThemes.Wpf
 
         private Popup _popup;
         private Window _window;
-        private DialogClosingEventHandler _attachedDialogClosingEventHandler;
-        private bool _removeContentOnClose;
+        private DialogClosingEventHandler _attachedDialogClosingEventHandler;        
         private object _closeDialogExecutionParameter = null;
 
         static DialogHost()
@@ -85,7 +84,6 @@ namespace MaterialDesignThemes.Wpf
 
             await task;
 
-            targets[0].DialogContent = null;
             targets[0]._asyncShowClosingEventHandler = null;
 
             return targets[0]._closeDialogExecutionParameter;
@@ -126,11 +124,6 @@ namespace MaterialDesignThemes.Wpf
             {
                 dialogHost._asyncShowWaitHandle.Set();
                 dialogHost._attachedDialogClosingEventHandler = null;
-                if (dialogHost._removeContentOnClose)
-                {
-                    dialogHost.DialogContent = null;
-                    dialogHost._removeContentOnClose = false;
-                }
                 return;
             }
 
@@ -257,7 +250,6 @@ namespace MaterialDesignThemes.Wpf
             {
                 AssertTargetableContent();
                 DialogContent = executedRoutedEventArgs.Parameter;
-                _removeContentOnClose = true;
             }
 
             SetCurrentValue(IsOpenProperty, true);
@@ -268,9 +260,9 @@ namespace MaterialDesignThemes.Wpf
         private void AssertTargetableContent()
         {
             var existindBinding = BindingOperations.GetBindingExpression(this, DialogContentProperty);
-            if (existindBinding != null || DialogContent != null)
+            if (existindBinding != null)
                 throw new InvalidOperationException(
-                    "Content cannot be passed to a dialog via the OpenDialog of DialogContent is already set, or has a binding.");
+                    "Content cannot be passed to a dialog via the OpenDialog if DialogContent already has a binding.");
         }
 
         private void CloseDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
