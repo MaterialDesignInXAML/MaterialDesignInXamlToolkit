@@ -44,6 +44,8 @@
                 </DockPanel>
             </wpf:ColorZone>
             <ListBox DockPanel.Dock="Left" x:Name="DemoItemsListBox" Margin="16 16 0 16" SelectedIndex="0"
+                     Background="{DynamicResource PrimaryHueMidBrush}"
+                     Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
                      Visibility="{Binding ElementName=MenuToggleButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="domain:DemoItem">
