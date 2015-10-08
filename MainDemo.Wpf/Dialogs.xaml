@@ -66,7 +66,7 @@
                     </StackPanel>
                 </wpf:DialogHost.DialogContent>
                 <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                        MinWidth="256" MinHeight="256">
+                        MinWidth="256" MinHeight="256" ClipToBounds="True">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
@@ -77,7 +77,7 @@
                             <ListBoxItem>Banana</ListBoxItem>
                             <ListBoxItem>Pear</ListBoxItem>
                         </ListBox>
-                        <wpf:ColorZone Mode="PrimaryMid" Grid.Row="1">
+                        <wpf:ColorZone Mode="PrimaryMid" Grid.Row="1" Effect="{DynamicResource MaterialDesignShadowDepth5}">
                             <TextBlock Margin="16">Fruit Bowl</TextBlock>
                         </wpf:ColorZone>
                         <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"                                
