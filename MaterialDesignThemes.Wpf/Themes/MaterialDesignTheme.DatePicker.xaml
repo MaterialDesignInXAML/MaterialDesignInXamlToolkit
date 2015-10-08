@@ -145,9 +145,22 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Button x:Name="PART_Button" Grid.Column="1" Foreground="{TemplateBinding BorderBrush}" Focusable="False" HorizontalAlignment="Right" Margin="4 0 0 -3" Grid.Row="0" Template="{StaticResource DropDownButtonTemplate}" Padding="0"
+                                <Button x:Name="PART_Button"
+                                        Grid.Column="1"
+                                        Foreground="{TemplateBinding BorderBrush}"
+                                        Focusable="False"
+                                        HorizontalAlignment="Right"
+                                        Margin="4 0 0 -3"
+                                        Grid.Row="0"
+                                        Template="{StaticResource DropDownButtonTemplate}" Padding="0"
 					    				Height="17" />
-                                <DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Center" Style="{DynamicResource MaterialDesignDatePickerTextBox}"
+                                <DatePickerTextBox x:Name="PART_TextBox"
+                                                   Grid.Column="0"
+                                                   Focusable="{TemplateBinding Focusable}"
+                                                   HorizontalContentAlignment="Stretch"
+                                                   Grid.Row="0"
+                                                   VerticalContentAlignment="Center"
+                                                   Style="{DynamicResource MaterialDesignDatePickerTextBox}"
 					    						   HorizontalAlignment="Stretch" />
                                 <Popup x:Name="PART_Popup" AllowsTransparency="True" 
                                        Placement="Custom"
