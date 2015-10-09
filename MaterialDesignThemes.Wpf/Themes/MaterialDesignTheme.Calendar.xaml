@@ -224,7 +224,11 @@
                                     <VisualTransition GeneratedDuration="0"/>
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Active"/>
-                                <VisualState x:Name="Inactive" />
+                                <VisualState x:Name="Inactive">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="0.2" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </VisualState>
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="DayStates">
                                 <VisualStateGroup.Transitions>
