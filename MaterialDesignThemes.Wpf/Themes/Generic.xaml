@@ -25,6 +25,7 @@
 	<Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />	
 		
 	<converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
+    <converters:DrawerOffsetConverter x:Key="DrawerOffsetConverter" />
     
     <Style TargetType="{x:Type local:Ripple}">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -554,7 +555,7 @@
                                         Content="{TemplateBinding DialogContent}"
                                         ContentTemplate="{TemplateBinding DialogContentTemplate}"
                                         ContentTemplateSelector="{TemplateBinding DialogContentTemplateSelector}"
-                                        ContentStringFormat="{TemplateBinding ContentStringFormat}">
+                                        ContentStringFormat="{TemplateBinding DialogContentStringFormat}">
                                 <local:Card.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform x:Name="CardScaleTransform" ScaleX="0" ScaleY="0" />
@@ -576,5 +577,136 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <Style TargetType="{x:Type local:DrawerHost}">
+        <Setter Property="local:ShadowAssist.ShadowDepth" Value="Depth3" />
+        <Setter Property="LeftDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DrawerHost}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="AllDrawers">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="AllClosed" To="AnyOpen">
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="IsEnabled">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Opacity">
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value=".56" KeyTime="0:0:0.3">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="AnyOpen" To="AllClosed">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Opacity">
+                                                <EasingDoubleKeyFrame Value="0.56" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.3">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseInOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="AnyOpen">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Opacity"
+                                                         To=".56" Duration="0" />                                        
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                        </BooleanAnimationUsingKeyFrames>
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                        </BooleanAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="AllClosed">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Opacity"
+                                                         To="0" />
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteBooleanKeyFrame Value="False" />
+                                        </BooleanAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="LeftDrawer">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="LeftDrawerClosed" To="LeftDrawerOpen">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X" Storyboard.TargetName="LeftDrawerTranslateTransform">
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.4">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimation Storyboard.TargetName="LeftDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.04" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="LeftDrawerOpen" To="LeftDrawerClosed">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="LeftDrawerTranslateTransform" Duration="0:0:0.4">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <SineEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftDrawerShadow" Storyboard.TargetProperty="Opacity">
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.36" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.4">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="LeftDrawerOpen">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="LeftDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="LeftDrawerTranslateTransform" To="0" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="LeftDrawerClosed">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="LeftDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="0" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="LeftDrawerTranslateTransform" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter 
+                                x:Name="ContentPresenter" Opacity="1"                    
+                                Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
+                        <Grid x:Name="PART_ContentCover" Background="Black" Opacity="0" IsHitTestVisible="False" Focusable="False" />
+                        <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                            <Grid.RenderTransform>
+                                <TranslateTransform x:Name="LeftDrawerTranslateTransform"
+                                                    X="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Grid}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}}" />
+                            </Grid.RenderTransform>
+                            <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                    Opacity="0"
+                                    Background="{TemplateBinding LeftDrawerBackground}"
+                                    x:Name="LeftDrawerShadow" />
+                            <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
