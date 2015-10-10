@@ -41,6 +41,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\paket-files\punker76\Controlz\src\Controlz\Controlz\PopupEx.cs">
+      <Paket>True</Paket>
+      <Link>Controlz/PopupEx.cs</Link>
+    </Compile>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -289,7 +293,6 @@
       <Name>MaterialDesignColors.Wpf</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
