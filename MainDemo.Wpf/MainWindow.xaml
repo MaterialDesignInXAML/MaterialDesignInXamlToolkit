@@ -19,7 +19,6 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
             <!-- data template used for the dialogs example, defines a View for a ViewModel of type DateTime  -->
             <DataTemplate DataType="{x:Type system:DateTime}">
@@ -41,8 +40,7 @@
                                   HorizontalAlignment="Right" Margin="16"
                                   IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
                     <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
-                             PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
-                             Visibility="{Binding ElementName=MenuToggleButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                             PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
                         <ListBox.ItemTemplate>
                             <DataTemplate DataType="domain:DemoItem">
                                 <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />

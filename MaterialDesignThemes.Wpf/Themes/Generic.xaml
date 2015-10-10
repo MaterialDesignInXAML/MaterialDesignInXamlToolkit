@@ -609,7 +609,6 @@
                                     </VisualTransition>
                                     <VisualTransition From="AnyOpen" To="AllClosed">
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="LeftDrawerShadow" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" />
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="0.56" KeyTime="0" />
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.3">
@@ -661,12 +660,12 @@
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="LeftDrawerTranslateTransform" Duration="0:0:0.4">
                                                 <DoubleAnimation.EasingFunction>
-                                                    <SineEase EasingMode="EaseInOut" />
+                                                    <SineEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftDrawerShadow" Storyboard.TargetProperty="Opacity">
-                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3" />
-                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.31">
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.36" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.4">
                                                     <EasingDoubleKeyFrame.EasingFunction>
                                                         <SineEase EasingMode="EaseOut" />
                                                     </EasingDoubleKeyFrame.EasingFunction>
