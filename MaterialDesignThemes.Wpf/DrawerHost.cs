@@ -22,11 +22,20 @@ namespace MaterialDesignThemes.Wpf
 
         public const string TemplateContentCoverPartName = "PART_ContentCover";
 
+        public static RoutedCommand OpenDrawerCommand = new RoutedCommand();
+        public static RoutedCommand CloseDrawerCommand = new RoutedCommand();
+
         private FrameworkElement _templateContentCoverElement;
 
         static DrawerHost()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(DrawerHost), new FrameworkPropertyMetadata(typeof(DrawerHost)));
+        }
+
+        public DrawerHost()
+        {
+            CommandBindings.Add(new CommandBinding(OpenDrawerCommand, OpenDrawerHandler));
+            CommandBindings.Add(new CommandBinding(CloseDrawerCommand, CloseDrawerHandler));
         }
 
         public static readonly DependencyProperty LeftDrawerContentProperty = DependencyProperty.Register(
@@ -119,5 +128,22 @@ namespace MaterialDesignThemes.Wpf
             ((DrawerHost)dependencyObject).UpdateVisualStates(true);            
         }
 
+        private void CloseDrawerHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
+        {
+            if (executedRoutedEventArgs.Handled) return;
+
+            SetCurrentValue(IsLeftDrawerOpenProperty, false);
+
+            executedRoutedEventArgs.Handled = true;
+        }
+
+        private void OpenDrawerHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
+        {
+            if (executedRoutedEventArgs.Handled) return;
+
+            SetCurrentValue(IsLeftDrawerOpenProperty, true);
+
+            executedRoutedEventArgs.Handled = true;
+        }
     }
 }
