@@ -222,7 +222,6 @@
     <Compile Include="Converters\ShadowConverter.cs" />
     <Compile Include="Converters\SizeToRectConverter.cs" />
     <Compile Include="CustomPopupPlacementCallbackHelper.cs" />
-    <Compile Include="CustomValidationPopup.cs" />
     <Compile Include="DataGridAssist.cs" />
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="DialogClosingEventArgs.cs" />
