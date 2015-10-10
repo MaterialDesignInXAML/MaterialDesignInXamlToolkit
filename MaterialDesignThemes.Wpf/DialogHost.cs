@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -93,7 +92,6 @@ namespace MaterialDesignThemes.Wpf
         {
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
-            SizeChanged += (sender, args) => TriggerPopupReposition();            
 
             CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler));
             CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));
@@ -294,45 +292,15 @@ namespace MaterialDesignThemes.Wpf
             return IsOpen ? OpenStateName : ClosedStateName;
         }
 
-        private void TriggerPopupReposition()
-        {
-            if (_popup == null) return;
-
-            _popup.HorizontalOffset++;
-            _popup.HorizontalOffset--;
-        }
-
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
             LoadedInstances.Remove(this);
-
-            if (_window != null)
-            {
-                _window.LocationChanged -= WindowOnLocationChanged;
-                _window.SizeChanged -= WindowOnSizeChanged;
-            }
             SetCurrentValue(IsOpenProperty, false);
         }
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             LoadedInstances.Add(this);
-
-            _window = Window.GetWindow(this);
-            if (_window == null) return;
-
-            _window.LocationChanged += WindowOnLocationChanged;
-            _window.SizeChanged += WindowOnSizeChanged;
-        }
-
-        private void WindowOnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
-        {
-            TriggerPopupReposition();
-        }
-
-        private void WindowOnLocationChanged(object sender, EventArgs eventArgs)
-        {
-            TriggerPopupReposition();
         }
     }
 }
