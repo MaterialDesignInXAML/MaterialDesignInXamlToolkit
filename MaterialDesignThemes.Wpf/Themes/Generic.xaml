@@ -560,7 +560,7 @@
                                         Content="{TemplateBinding DialogContent}"
                                         ContentTemplate="{TemplateBinding DialogContentTemplate}"
                                         ContentTemplateSelector="{TemplateBinding DialogContentTemplateSelector}"
-                                        ContentStringFormat="{TemplateBinding ContentStringFormat}">
+                                        ContentStringFormat="{TemplateBinding DialogContentStringFormat}">
                                 <local:Card.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform x:Name="CardScaleTransform"
