@@ -250,6 +250,7 @@
     <Compile Include="RatingBar.cs" />
     <Compile Include="RatingBarButton.cs" />
     <Compile Include="ShadowAssist.cs" />
+    <Compile Include="StringExtensions.cs" />
     <Compile Include="TextFieldAssist.cs" />
     <Compile Include="Converters\TextFieldHintVisibilityConverter.cs" />
     <Compile Include="TimePicker.cs" />

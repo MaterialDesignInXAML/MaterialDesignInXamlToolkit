@@ -48,9 +48,9 @@
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
                                         <DoubleAnimation Duration="0" To=".75" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBackground"/>
-                                        <!--ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText">
                                             <DiscreteObjectKeyFrame Value="{DynamicResource PrimaryHueMidForegroundBrush}" KeyTime="0" />
-                                        </-->
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -100,9 +100,9 @@
                                 <VisualState x:Name="Today">
                                     <Storyboard>
                                         <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TodayBackground"/>
-                                        <!--ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText">
                                             <DiscreteObjectKeyFrame Value="{DynamicResource PrimaryHueLightForegroundBrush}" KeyTime="0" />
-                                        </-->
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -288,6 +288,7 @@
                         
                         <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
                             <TextBlock Foreground="{DynamicResource MaterialDesignToolTipBackground}"
+                                       Opacity="0.65"
                                        FontWeight="Bold"
                                        FontSize="9.5"
                                        FontFamily="Verdana"
@@ -360,14 +361,11 @@
                                                 <VisualStateGroup x:Name="CommonStates">
                                                     <VisualState x:Name="Normal"/>
                                                     <VisualState x:Name="MouseOver" />
-                                                    <VisualState x:Name="Disabled">
-                                                        <Storyboard>
-                                                            <DoubleAnimation Duration="0" To=".5" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="buttonContent"/>
-                                                        </Storyboard>
-                                                    </VisualState>
+                                                    <VisualState x:Name="Disabled"/>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                            <wpf:MaterialDateDisplay x:Name="buttonContent" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
+                                            <wpf:MaterialDateDisplay x:Name="buttonContent" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                                                     IsEnabled="{TemplateBinding IsEnabled}">
                                                 <wpf:MaterialDateDisplay.DisplayDate>
                                                     <MultiBinding Mode="OneWay">
                                                         <MultiBinding.Converter>
@@ -385,7 +383,6 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -393,30 +390,22 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <Border Grid.ColumnSpan="3" Grid.Row="0" Background="{DynamicResource PrimaryHueDarkBrush}" CornerRadius="2 2 0 0">
-                                    <TextBlock HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Margin="8" FontSize="14">
-                                        <TextBlock.Text>
-                                            <MultiBinding Mode="OneWay" StringFormat="dddd" ConverterCulture="{x:Static globalization:CultureInfo.CurrentUICulture}" >
-                                                <MultiBinding.Converter>
-                                                    <converters:CalendarDateCoalesceConverter />
-                                                </MultiBinding.Converter>
-                                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" Path="DisplayDate" />
-                                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" Path="SelectedDate" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </Border>
-                                <Border Grid.ColumnSpan="3" Grid.Row="1" Background="{DynamicResource PrimaryHueMidBrush}" />
-                                <Button x:Name="PART_HeaderButton" Grid.Row="1" Grid.Column="1" FontWeight="Bold" Focusable="False" FontSize="10.5" HorizontalAlignment="Center" Template="{StaticResource HeaderButtonTemplate}" VerticalAlignment="Center"
-                                            Height="142"
-                                            />
-                                <Button x:Name="PART_PreviousButton" Grid.Row="2" Grid.Column="0" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
+                                <Border Grid.ColumnSpan="3" Grid.Row="0" Background="{DynamicResource PrimaryHueMidBrush}" />
+                                <Button x:Name="PART_HeaderButton"
+                                        Grid.Row="0"
+                                        Grid.ColumnSpan="3"
+                                        FontWeight="Bold" Focusable="False" FontSize="10.5"
+                                        HorizontalAlignment="Left" VerticalAlignment="Center"
+                                        Template="{StaticResource HeaderButtonTemplate}"
+                                        Height="Auto"
+                                        Margin="20 15"/>
+                                <Button x:Name="PART_PreviousButton" Grid.Row="1" Grid.Column="0" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
                                             Margin="6 0 0 0" Foreground="{TemplateBinding Foreground}" />
                                 <TextBlock x:Name="CurrentDateTextBlock"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"
                                            Margin="8"
                                            FontSize="14"
-                                           Grid.Row="2" Grid.Column="1"
+                                           Grid.Row="1" Grid.Column="1"
                                            FontWeight="SemiBold"
                                            RenderTransformOrigin="0, 0.5"
                                            Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=DisplayDate, ConverterCulture={x:Static globalization:CultureInfo.CurrentUICulture}, StringFormat=MMMM yyyy}">
@@ -424,12 +413,12 @@
                                         <TranslateTransform X="0" Y="0"/>
                                     </TextBlock.RenderTransform>
                                 </TextBlock>
-                                <Button x:Name="PART_NextButton" Grid.Row="2" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="36" Template="{StaticResource NextButtonTemplate}" Width="32"
+                                <Button x:Name="PART_NextButton" Grid.Row="1" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="36" Template="{StaticResource NextButtonTemplate}" Width="32"
                                             Margin="0 0 6 0" Foreground="{TemplateBinding Foreground}" />
 
                                 <Grid x:Name="MonthViewWrapperGrid"
                                       Grid.ColumnSpan="3"
-                                      Grid.Row="3"
+                                      Grid.Row="2"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Top"
                                       Margin="6 -1 6 6"
@@ -470,7 +459,7 @@
 
                                 <Grid x:Name="YearViewWrapperGrid"
                                       Grid.ColumnSpan="3"
-                                      Grid.Row="3"
+                                      Grid.Row="2"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Top"
                                       Margin="6 -3 7 6"
@@ -484,7 +473,8 @@
                                             <TranslateTransform X="0"/>
                                         </Border.RenderTransform>
                                     </Border>
-                                    <Grid x:Name="PART_YearView" RenderTransformOrigin="0, 0.5">
+                                    <Grid x:Name="PART_YearView"
+                                                 RenderTransformOrigin="0, 0.5">
                                         <Grid.RenderTransform>
                                             <TranslateTransform X="0" />
                                         </Grid.RenderTransform>

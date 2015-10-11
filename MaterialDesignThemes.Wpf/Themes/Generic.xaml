@@ -202,34 +202,33 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <StackPanel>
-                            <TextBlock Text="{TemplateBinding ComponentOneContent}" HorizontalAlignment="Center" Margin="0 12 0 0" FontSize="24" FontWeight="Normal" />
-                            <TextBlock Text="{TemplateBinding ComponentTwoContent}" HorizontalAlignment="Center" Margin="0 -6 0 0" FontSize="60" FontWeight="Normal" />
-                            <TextBlock Text="{TemplateBinding ComponentThreeContent}" HorizontalAlignment="Center" Margin="0 -4 0 10" FontSize="24" Opacity=".56" FontWeight="Normal" />
+                        <StackPanel Orientation="Vertical"
+                                    Margin="0">
+                            <TextBlock x:Name="ComponentThreeTextBlock"
+                                       Text="{TemplateBinding ComponentThreeContent}"
+                                       HorizontalAlignment="Left"
+                                       FontSize="15" FontWeight="Normal" />
+                            <StackPanel x:Name="ComponentOneTwoWrapper" Orientation="Horizontal"
+                                        HorizontalAlignment="Left">
+                                <TextBlock Text="{TemplateBinding ComponentTwoContent}" FontSize="30" FontWeight="Normal" />
+                                <TextBlock Text="{TemplateBinding ComponentOneContent}" Margin="10 0 0 0" FontSize="30" FontWeight="Normal" />
+                            </StackPanel>
                         </StackPanel>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDayInFirstComponent" Value="True">
+                            <Setter TargetName="ComponentThreeTextBlock" Property="Opacity" Value=".56"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="ComponentThreeTextBlock" Property="Opacity" Value="1"/>
+                            <Setter TargetName="ComponentOneTwoWrapper" Property="Opacity" Value=".56"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
 		<Style.Triggers>
-			<Trigger Property="IsDayInFirstComponent" Value="True">
-				<Setter Property="Template">
-					<Setter.Value>
-						<ControlTemplate TargetType="{x:Type local:MaterialDateDisplay}">
-							<Border Background="{TemplateBinding Background}"
-									BorderBrush="{TemplateBinding BorderBrush}"
-									BorderThickness="{TemplateBinding BorderThickness}">
-								<StackPanel>
-									<TextBlock Text="{TemplateBinding ComponentOneContent}" HorizontalAlignment="Center" Margin="0 4 0 0" FontSize="60" FontWeight="Normal" />
-									<TextBlock Text="{TemplateBinding ComponentTwoContent}" HorizontalAlignment="Center" Margin="0 -4 0 0" FontSize="24" FontWeight="Normal" />
-									<TextBlock Text="{TemplateBinding ComponentThreeContent}" HorizontalAlignment="Center" Margin="0 4 0 10" FontSize="24" Opacity=".56" FontWeight="Normal" />
-								</StackPanel>
-							</Border>
-						</ControlTemplate>
-					</Setter.Value>					
-				</Setter>
-			</Trigger>
-		</Style.Triggers>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type local:ListSortDirectionIndicator}">
