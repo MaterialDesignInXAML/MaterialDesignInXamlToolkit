@@ -43,7 +43,7 @@
     </Style>
 
     <Style TargetType="{x:Type MenuItem}" x:Key="MaterialDesignMenuItem" BasedOn="{x:Null}">
-        <Setter Property="Padding" Value="24 0 16 0"></Setter>
+        <Setter Property="Padding" Value="24 0 24 0"></Setter>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -132,7 +132,7 @@
                                                 CornerRadius="2">
                                             <Border Background="Transparent">
                                                 <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
-                                                    <Grid RenderOptions.ClearTypeHint="Enabled" Margin="0 12">
+                                                    <Grid RenderOptions.ClearTypeHint="Enabled" Margin="0 16">
                                                         <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
                                                             <Rectangle x:Name="OpaqueRect"
                                                                        Fill="{Binding Background, ElementName=SubMenuBorder}"
