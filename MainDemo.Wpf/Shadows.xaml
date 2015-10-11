@@ -39,6 +39,7 @@
                     >2</Button>
             <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"
                     Margin="16 0 0 0"                    
+                    wpf:ShadowAssist.ShadowDepth="Depth3"
                     >3</Button>
             <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"
                     Margin="16 0 0 0"

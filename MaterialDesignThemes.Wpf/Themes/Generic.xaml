@@ -2,7 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:MaterialDesignThemes.Wpf"
-    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+    xmlns:controlz="clr-namespace:Controlz">
 
 	<ResourceDictionary.MergedDictionaries>
 		<!--	we only bring in the dictionaries for controls which were "invented"
@@ -416,7 +417,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DialogHost">
-                    <Grid Focusable="False">
+                    <Grid x:Name="DialogHostRoot" Focusable="False">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="PopupStates">
                                 <VisualStateGroup.Transitions>
@@ -528,9 +529,13 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Popup IsOpen="False" StaysOpen="True" AllowsTransparency="True" PopupAnimation="None"
-                               x:Name="PART_Popup"
-                               Placement="Center">
+                        <controlz:PopupEx IsOpen="False"
+                                          PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"
+                                          StaysOpen="True"
+                                          AllowsTransparency="True"
+                                          PopupAnimation="None"
+                                          x:Name="PART_Popup"
+                                          Placement="Center">
                             <Popup.Resources>
                                 <ResourceDictionary>
                                     <ResourceDictionary.MergedDictionaries>
@@ -538,14 +543,14 @@
                                     </ResourceDictionary.MergedDictionaries>
                                 </ResourceDictionary>
                             </Popup.Resources>
-                            <local:Card Margin="22"                                                                                 
+                            <local:Card Margin="22"
                                         local:ShadowAssist.ShadowDepth="Depth5"
                                         UniformCornerRadius="4"
                                         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                                         TextElement.FontWeight="Medium"
                                         TextElement.FontSize="14"
-                                        TextOptions.TextFormattingMode="Ideal" 
-                                        TextOptions.TextRenderingMode="Auto"        
+                                        TextOptions.TextFormattingMode="Ideal"
+                                        TextOptions.TextRenderingMode="Auto"
                                         Foreground="{DynamicResource MaterialDesignBody}"
                                         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
                                         IsTabStop="False"
@@ -558,11 +563,13 @@
                                         ContentStringFormat="{TemplateBinding DialogContentStringFormat}">
                                 <local:Card.RenderTransform>
                                     <TransformGroup>
-                                        <ScaleTransform x:Name="CardScaleTransform" ScaleX="0" ScaleY="0" />
+                                        <ScaleTransform x:Name="CardScaleTransform"
+                                                        ScaleX="0"
+                                                        ScaleY="0" />
                                     </TransformGroup>
                                 </local:Card.RenderTransform>
                             </local:Card>
-                        </Popup>
+                        </controlz:PopupEx>
                         <ContentPresenter 
                                 x:Name="ContentPresenter" Opacity="1"                    
                                 Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
