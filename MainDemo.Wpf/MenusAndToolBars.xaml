@@ -34,6 +34,10 @@
                     <MenuItem Header="Enlightenment?" IsCheckable="True" />
                     <MenuItem Header="Disappointment" IsCheckable="True" />
                 </MenuItem>
+                <MenuItem Header="Look Deeper" InputGestureText="Ctrl+D">
+                    <MenuItem Header="Plain" />
+                    <MenuItem Header="Ice Cream" />
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="_Edit">
                 <MenuItem Header="_Cut" Command="Cut">
