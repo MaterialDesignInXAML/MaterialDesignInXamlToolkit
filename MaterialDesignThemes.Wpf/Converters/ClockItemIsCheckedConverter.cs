@@ -17,7 +17,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 
 		public ClockItemIsCheckedConverter(Func<DateTime> currentTimeGetter, ClockDisplayMode displayMode, bool is24Hours)
 		{
-			if (currentTimeGetter == null) throw new ArgumentNullException("currentTimeGetter");
+			if (currentTimeGetter == null) throw new ArgumentNullException(nameof(currentTimeGetter));
 
 			_currentTimeGetter = currentTimeGetter;
 			_displayMode = displayMode;
@@ -28,7 +28,8 @@ namespace MaterialDesignThemes.Wpf.Converters
 		{
 			var dateTime = (DateTime) value;
 			var i = (int) parameter;
-			return (_displayMode == ClockDisplayMode.Hours ? MassageHour(dateTime.Hour, _is24Hours) : MassageMinute(dateTime.Minute)) == i;
+
+            return (_displayMode == ClockDisplayMode.Hours ? MassageHour(dateTime.Hour, _is24Hours) : MassageMinute(dateTime.Minute)) == i;
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -47,8 +48,8 @@ namespace MaterialDesignThemes.Wpf.Converters
 		private static int MassageHour(int val, bool is24Hours)
 		{
 		    if (is24Hours)
-		    {
-		        return val;
+		    {		        
+		        return val == 0 ? 24 : val;
 		    }
 
 			if (val == 0) return 12;
@@ -65,7 +66,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 		{
 		    if (is24Hours)
 		    {
-		        return val;
+		        return val == 24 ? 0 : val;
 		    }
 
 			return currentTime.Hour < 12 

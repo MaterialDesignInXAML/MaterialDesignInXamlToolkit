@@ -3,361 +3,237 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
-	<converters:ClockLineConverter x:Key="ClockHourLineConverter" DisplayMode="Hours" />
-	<converters:ClockLineConverter x:Key="ClockMinuteLineConverter" DisplayMode="Minutes" />
+    <converters:ClockLineConverter x:Key="ClockHourLineConverter" DisplayMode="Hours" />
+    <converters:ClockLineConverter x:Key="ClockMinuteLineConverter" DisplayMode="Minutes" />
     <converters:NotConverter x:Key="NotConverter" />
-   
-	
-	<Style x:Key="MaterialDesignClockItemThumb" TargetType="{x:Type Thumb}">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type Thumb}">
-					<Ellipse Fill="{TemplateBinding Background}" />
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
 
-	<Style x:Key="MaterialDesignCalendarMeridiemRadioButton" TargetType="{x:Type RadioButton}">
-		<Setter Property="FontSize" Value="14" />
-		<Setter Property="FontWeight" Value="Medium" />
-		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type RadioButton}">
-					<Grid>
-						<Ellipse Fill="{TemplateBinding Background}" />
-						<ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					</Grid>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-		<Style.Triggers>
-			<Trigger Property="IsChecked" Value="True">
-				<Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-				<Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
-			</Trigger>
-		</Style.Triggers>
-	</Style>
+    <Style x:Key="MaterialDesignClockItemThumb" TargetType="{x:Type Thumb}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Ellipse Fill="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<Style x:Key="MaterialDesignClock" TargetType="{x:Type wpf:Clock}">
-        <Setter Property="Is24Hours" Value="False"/>
-		<Setter Property="Width" Value="280" />
-		<Setter Property="Height" Value="470" />
-		<Setter Property="BorderThickness" Value="1" />		
-		<Setter Property="ButtonRadiusRatio" Value=".835" />		
-		<Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
-		<Setter Property="ButtonStyle">
-			<Setter.Value>
-				<Style TargetType="{x:Type wpf:ClockItemButton}">
-					<Setter Property="Background" Value="Transparent" />
-					<Setter Property="Width" Value="32" />
-					<Setter Property="Height" Value="32" />
-					<Setter Property="HorizontalContentAlignment" Value="Center" />
-					<Setter Property="VerticalContentAlignment" Value="Center" />
-					<Setter Property="Canvas.ZIndex" Value="0" />
-					<Setter Property="Template">
-						<Setter.Value>
-							<ControlTemplate TargetType="{x:Type wpf:ClockItemButton}">
-								<Grid>
-									<Thumb Style="{StaticResource MaterialDesignClockItemThumb}" Background="{TemplateBinding Background}" Opacity="23"
+    <Style x:Key="MaterialDesignCalendarMeridiemRadioButton" TargetType="{x:Type RadioButton}">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Grid>
+                        <Ellipse Fill="{TemplateBinding Background}" />
+                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MaterialDesignClock" TargetType="{x:Type wpf:Clock}">
+        <Setter Property="Width" Value="280" />
+        <Setter Property="Height" Value="470" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="ButtonRadiusRatio" Value=".835" />
+        <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="ButtonStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type wpf:ClockItemButton}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Width" Value="32" />
+                    <Setter Property="Height" Value="32" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="Canvas.ZIndex" Value="0" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type wpf:ClockItemButton}">
+                                <Grid>
+                                    <Thumb Style="{StaticResource MaterialDesignClockItemThumb}" Background="{TemplateBinding Background}" Opacity="23"
 												   x:Name="PART_Thumb"/>
-									<ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
 															  IsHitTestVisible="False"/>
-								</Grid>
-							</ControlTemplate>
-						</Setter.Value>
-					</Setter>
-					<Style.Triggers>
-						<Trigger Property="IsMouseOver" Value="True">
-							<Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-						</Trigger>
-						<Trigger Property="IsChecked" Value="True">
-							<Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-							<Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
-						</Trigger>
-					</Style.Triggers>
-				</Style>
-			</Setter.Value>
-		</Setter>
-		<Setter Property="LesserButtonStyle">
-			<Setter.Value>
-				<Style TargetType="{x:Type wpf:ClockItemButton}">
-					<Setter Property="Background" Value="Transparent" />
-					<Setter Property="Width" Value="12" />
-					<Setter Property="Height" Value="12" />
-					<Setter Property="HorizontalContentAlignment" Value="Center" />
-					<Setter Property="VerticalContentAlignment" Value="Center" />
-					<Setter Property="Canvas.ZIndex" Value="1" />
-					<Setter Property="Template">
-						<Setter.Value>
-							<ControlTemplate TargetType="{x:Type wpf:ClockItemButton}">
-								<Grid>
-									<Thumb Style="{StaticResource MaterialDesignClockItemThumb}" Background="{TemplateBinding Background}" Opacity=".52"
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LesserButtonStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type wpf:ClockItemButton}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Width" Value="12" />
+                    <Setter Property="Height" Value="12" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="Canvas.ZIndex" Value="1" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type wpf:ClockItemButton}">
+                                <Grid>
+                                    <Thumb Style="{StaticResource MaterialDesignClockItemThumb}" Background="{TemplateBinding Background}" Opacity=".52"
 												   x:Name="PART_Thumb"
 												   ToolTip="{TemplateBinding Content}"/>
-									<Ellipse Fill="{TemplateBinding Background}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="6" Width="6"
+                                    <Ellipse Fill="{TemplateBinding Background}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="6" Width="6"
 													 IsHitTestVisible="False"/>
-								</Grid>
-							</ControlTemplate>
-						</Setter.Value>
-					</Setter>
-					<Style.Triggers>
-						<Trigger Property="IsMouseOver" Value="True">
-							<Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-						</Trigger>
-						<Trigger Property="IsChecked" Value="True">
-							<Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-						</Trigger>
-					</Style.Triggers>
-				</Style>
-			</Setter.Value>
-		</Setter>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type wpf:Clock}">
-					<Border Background="{TemplateBinding Background}"
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type wpf:Clock}">
+                    <Border Background="{TemplateBinding Background}"
 							BorderBrush="{TemplateBinding BorderBrush}"
         					BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
-						<Grid>
-							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="*" />
-							</Grid.RowDefinitions>
-							<Border Background="{DynamicResource PrimaryHueMidBrush}" Height="120"  CornerRadius="2 2 0 0">
-								<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 6 38 0">
-									<StackPanel.Resources>
-										<Style x:Key="TimeTextBlock" TargetType="{x:Type TextBlock}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border Background="{DynamicResource PrimaryHueMidBrush}" Height="120"  CornerRadius="2 2 0 0">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 6 38 0"
+                                            x:Name="TimeReadoutStackPanel">
+                                    <StackPanel.Resources>
+                                        <Style x:Key="TimeTextBlock" TargetType="{x:Type TextBlock}">
                                             <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
-											<Setter Property="FontSize" Value="66" />
-											<Setter Property="FontWeight" Value="Normal" />
-										</Style>
-									</StackPanel.Resources>
-									<TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:%H}}" 
+                                            <Setter Property="FontSize" Value="66" />
+                                            <Setter Property="FontWeight" Value="Normal" />
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:%h}}" 
 													   x:Name="PART_HourReadOut">
-										<TextBlock.Style>
-											<Style BasedOn="{StaticResource TimeTextBlock}" TargetType="{x:Type TextBlock}">
-												<Setter Property="Opacity" Value=".56"></Setter>
-												<Style.Triggers>
-													<DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
-														<Setter Property="Opacity" Value="1" />
-													</DataTrigger>
-												</Style.Triggers>
-											</Style>
-										</TextBlock.Style>
-									</TextBlock>
-									<TextBlock Text=":" Style="{StaticResource TimeTextBlock}" />
-									<TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:mm}}" 
+                                        <TextBlock.Style>
+                                            <Style BasedOn="{StaticResource TimeTextBlock}" TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Opacity" Value=".56"></Setter>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
+                                                        <Setter Property="Opacity" Value="1" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <TextBlock Text=":" Style="{StaticResource TimeTextBlock}" />
+                                    <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:mm}}" 
 													   x:Name="PART_MinuteReadOut">
-										<TextBlock.Style>
-											<Style BasedOn="{StaticResource TimeTextBlock}" TargetType="{x:Type TextBlock}">
-												<Setter Property="Opacity" Value=".56"></Setter>
-												<Style.Triggers>
-													<DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static  wpf:ClockDisplayMode.Minutes}">
-														<Setter Property="Opacity" Value="1" />
-													</DataTrigger>
-												</Style.Triggers>
-											</Style>
-										</TextBlock.Style>
-									</TextBlock>
-									<TextBlock FontSize="16" 
-                                               Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Is24Hours, Converter={converters:BoolToVisibilityConverter FalseValue=Visible, TrueValue=Collapsed}}"
+                                        <TextBlock.Style>
+                                            <Style BasedOn="{StaticResource TimeTextBlock}" TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Opacity" Value=".56"></Setter>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static  wpf:ClockDisplayMode.Minutes}">
+                                                        <Setter Property="Opacity" Value="1" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <TextBlock FontSize="16" 
+                                               x:Name="AmPmReadout"
                                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:tt}}" 
                                                VerticalAlignment="Bottom" Margin="2 0 0 16" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" />
-								</StackPanel>
-							</Border>
-							<Ellipse Grid.Row="1" Margin="0,24.5,0,94" Width="230" Height="230" Fill="{DynamicResource PrimaryHueLightBrush}" Opacity=".23" />
-                            <Grid Grid.Row="1" x:Name="grid12Hours" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Is24Hours, Converter={converters:BoolToVisibilityConverter FalseValue=Visible, TrueValue=Collapsed}}" >
-                                <Canvas x:Name="PART_HoursCanvas" Margin="0,24.5,0,159.5" Width="230" Height="230"
+                                </StackPanel>
+                            </Border>
+                            <Ellipse x:Name="BackgroundEllipse" Grid.Row="1" Margin="0,24.5,0,94" Width="230" Height="230" Fill="{DynamicResource PrimaryHueLightBrush}" Opacity=".23" />
+                            <Canvas x:Name="PART_HoursCanvas" Grid.Row="1" Margin="0,24.5,0,159.5" Width="230" Height="230"
 											RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="HourLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
-                                        <Path.RenderTransform>
-                                            <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
-                                        </Path.RenderTransform>
-                                    </Path>
-                                    <Canvas.RenderTransform>
-                                        <ScaleTransform x:Name="HoursScaleTransform" ScaleX="1" ScaleY="1" />
-                                    </Canvas.RenderTransform>
-                                </Canvas>
-                                <Canvas x:Name="PART_MinutesCanvas" Margin="0,24.5,0,159.5" Width="230" Height="230" Opacity="0" IsHitTestVisible="False"
+                                <Path x:Name="HourLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Width="2.75" RenderTransformOrigin="0.5,0.985"
+                                      Height="96.959" Canvas.Top="19.047">
+                                    <Path.RenderTransform>
+                                        <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
+                                    </Path.RenderTransform>
+                                </Path>
+                                <Canvas.RenderTransform>
+                                    <ScaleTransform x:Name="HoursScaleTransform" ScaleX="1" ScaleY="1" />
+                                </Canvas.RenderTransform>
+                            </Canvas>
+                            <Canvas x:Name="PART_MinutesCanvas" Grid.Row="1" Margin="0,24.5,0,159.5" Width="230" Height="230" Opacity="0" IsHitTestVisible="False"
 											RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="MinuteLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
-                                        <Path.RenderTransform>
-                                            <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
-                                        </Path.RenderTransform>
-                                    </Path>
-                                    <Canvas.RenderTransform>
-                                        <ScaleTransform x:Name="MinutesScaleTransform" ScaleX="1" ScaleY="1" />
-                                    </Canvas.RenderTransform>
-                                </Canvas>
-                                <RadioButton Content="AM" GroupName="Meridien" HorizontalAlignment="Left" Height="47.333" Margin="31.666,0,0,37.667"  VerticalAlignment="Bottom" Width="47.333" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButton}"
+                                <Path x:Name="MinuteLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
+                                    <Path.RenderTransform>
+                                        <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
+                                    </Path.RenderTransform>
+                                </Path>
+                                <Canvas.RenderTransform>
+                                    <ScaleTransform x:Name="MinutesScaleTransform" ScaleX="1" ScaleY="1" />
+                                </Canvas.RenderTransform>
+                            </Canvas>
+                            <RadioButton Content="AM" GroupName="Meridien" HorizontalAlignment="Left" Height="47.333" Margin="31.666,0,0,37.667" Grid.Row="1" VerticalAlignment="Bottom" Width="47.333" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButton}"
+                                         x:Name="AMRadioButton"
                                          IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPostMeridiem, Converter={StaticResource NotConverter}}" />
-                                <RadioButton Content="PM" GroupName="Meridien" HorizontalAlignment="Right" Height="47.333" Margin="0,0,31.667,37.667"  VerticalAlignment="Bottom" Width="47.333" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButton}"
+                            <RadioButton Content="PM" GroupName="Meridien" HorizontalAlignment="Right" Height="47.333" Margin="0,0,31.667,37.667" Grid.Row="1" VerticalAlignment="Bottom" Width="47.333" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButton}"
+                                         x:Name="PMRadioButton"
                                          IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPostMeridiem}" />
-                            </Grid>
-                            <Grid Grid.Row="1" x:Name="Grid24Hours"  Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Is24Hours, Converter={converters:BoolToVisibilityConverter FalseValue=Collapsed, TrueValue=Visible}}" >
-                                <Canvas x:Name="PART_13To00HoursCanvas" Margin="0,24.5,0,159.5" Width="230" Height="230"
-                                    RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="Hour13To00Line" 
-                                          Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={converters:TimeToVisibilityConverter}}"
-                                          Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
-                                        <Path.RenderTransform>
-                                            <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
-                                        </Path.RenderTransform>
-                                    </Path>
-                                    <Canvas.RenderTransform>
-                                        <ScaleTransform x:Name="Hours13To00ScaleTransform" ScaleX="1" ScaleY="1" />
-                                    </Canvas.RenderTransform>
-                                </Canvas>
-                                <Canvas x:Name="PART_1To12HoursCanvas" Margin="0,24.5,0,159.5" Width="230" Height="230"
-											RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="Hour1To12Line" 
-                                          Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
-                                        <Path.RenderTransform>
-                                            <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
-                                        </Path.RenderTransform>
-                                    </Path>
-                                    <Canvas.RenderTransform>
-                                        <ScaleTransform x:Name="Hours1To12ScaleTransform" ScaleX="0.7" ScaleY="0.7" />
-                                    </Canvas.RenderTransform>
-                                </Canvas>
-                                <Canvas x:Name="PART_24HMinutesCanvas" Margin="0,24.5,0,159.5" Width="230" Height="230" Opacity="0" IsHitTestVisible="False"
-											RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="Minute24HLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
-                                        <Path.RenderTransform>
-                                            <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
-                                        </Path.RenderTransform>
-                                    </Path>
-                                    <Canvas.RenderTransform>
-                                        <ScaleTransform x:Name="Minutes24HScaleTransform" ScaleX="1" ScaleY="1" />
-                                    </Canvas.RenderTransform>
-                                </Canvas>
-                            </Grid>
                         </Grid>
-					</Border>
-					<ControlTemplate.Triggers>
-						<Trigger Property="DisplayMode" Value="Minutes">
-							<Trigger.EnterActions>
-								<BeginStoryboard>
-									<Storyboard>
-                                        <!--12 Hours-->
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="DisplayMode" Value="Minutes">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
-											<DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
-										</BooleanAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="Opacity">
-											<DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-											<EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
-												<EasingDoubleKeyFrame.EasingFunction>
-													<SineEase EasingMode="EaseIn" />
-												</EasingDoubleKeyFrame.EasingFunction>
-											</EasingDoubleKeyFrame>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleX">
-											<DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-											<EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
-												<EasingDoubleKeyFrame.EasingFunction>
-													<SineEase EasingMode="EaseOut" />
-												</EasingDoubleKeyFrame.EasingFunction>
-											</EasingDoubleKeyFrame>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleY">
-											<DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-											<EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
-												<EasingDoubleKeyFrame.EasingFunction>
-													<SineEase EasingMode="EaseOut" />
-												</EasingDoubleKeyFrame.EasingFunction>
-											</EasingDoubleKeyFrame>
-										</DoubleAnimationUsingKeyFrames>
-
+                                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                        </BooleanAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                            <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <SineEase EasingMode="EaseIn" />
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                            <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                            <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <SineEase EasingMode="EaseOut" />
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                            <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                            <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <SineEase EasingMode="EaseOut" />
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
-											<DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
-										</BooleanAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="Opacity">
-											<DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
-											<EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
-												<EasingDoubleKeyFrame.EasingFunction>
-													<SineEase EasingMode="EaseOut" />
-												</EasingDoubleKeyFrame.EasingFunction>
-											</EasingDoubleKeyFrame>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX">
-											<DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
-											<EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
-												<EasingDoubleKeyFrame.EasingFunction>
-													<SineEase EasingMode="EaseOut" />
-												</EasingDoubleKeyFrame.EasingFunction>
-											</EasingDoubleKeyFrame>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY">
-											<DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
-											<EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
-												<EasingDoubleKeyFrame.EasingFunction>
-													<SineEase EasingMode="EaseOut" />
-												</EasingDoubleKeyFrame.EasingFunction>
-											</EasingDoubleKeyFrame>
-										</DoubleAnimationUsingKeyFrames>
-
-
-
-                                        <!--24 Hours -->
-                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_13To00HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
-                                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
-                                        </BooleanAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_13To00HoursCanvas" Storyboard.TargetProperty="Opacity">
-                                            <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <SineEase EasingMode="EaseIn" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Hours13To00ScaleTransform" Storyboard.TargetProperty="ScaleX">
-                                            <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <SineEase EasingMode="EaseOut" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Hours13To00ScaleTransform" Storyboard.TargetProperty="ScaleY">
-                                            <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <SineEase EasingMode="EaseOut" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_1To12HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
-                                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
-                                        </BooleanAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_1To12HoursCanvas" Storyboard.TargetProperty="Opacity">
-                                            <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <SineEase EasingMode="EaseIn" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Hours1To12ScaleTransform" Storyboard.TargetProperty="ScaleX">
-                                            <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <SineEase EasingMode="EaseOut" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Hours1To12ScaleTransform" Storyboard.TargetProperty="ScaleY">
-                                            <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <SineEase EasingMode="EaseOut" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_24HMinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
                                             <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_24HMinutesCanvas" Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="Opacity">
                                             <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
                                             <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
                                                 <EasingDoubleKeyFrame.EasingFunction>
@@ -365,7 +241,7 @@
                                                 </EasingDoubleKeyFrame.EasingFunction>
                                             </EasingDoubleKeyFrame>
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Minutes24HScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX">
                                             <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
                                             <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
                                                 <EasingDoubleKeyFrame.EasingFunction>
@@ -373,7 +249,7 @@
                                                 </EasingDoubleKeyFrame.EasingFunction>
                                             </EasingDoubleKeyFrame>
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Minutes24HScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY">
                                             <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
                                             <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
                                                 <EasingDoubleKeyFrame.EasingFunction>
@@ -382,130 +258,42 @@
                                             </EasingDoubleKeyFrame>
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
-								</BeginStoryboard>
-							</Trigger.EnterActions>
-							<Trigger.ExitActions>
-								<BeginStoryboard>
-									<Storyboard>
-										<!-- 12 Hours -->
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
-											<DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
-										</BooleanAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="Opacity">
-											<DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
-											<EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.4">
-												<EasingDoubleKeyFrame.EasingFunction>
-													<SineEase EasingMode="EaseIn" />
-												</EasingDoubleKeyFrame.EasingFunction>
-											</EasingDoubleKeyFrame>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleX">
-											<DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
-											<EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
-												<EasingDoubleKeyFrame.EasingFunction>
-													<SineEase EasingMode="EaseOut" />
-												</EasingDoubleKeyFrame.EasingFunction>
-											</EasingDoubleKeyFrame>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleY">
-											<DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
-											<EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
-												<EasingDoubleKeyFrame.EasingFunction>
-													<SineEase EasingMode="EaseOut" />
-												</EasingDoubleKeyFrame.EasingFunction>
-											</EasingDoubleKeyFrame>
-										</DoubleAnimationUsingKeyFrames>
-
+                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                        </BooleanAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                                            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.4">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <SineEase EasingMode="EaseIn" />
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                            <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
+                                            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <SineEase EasingMode="EaseOut" />
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                            <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
+                                            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <SineEase EasingMode="EaseOut" />
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
-											<DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
-										</BooleanAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="Opacity">
-											<DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-											<EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
-												<EasingDoubleKeyFrame.EasingFunction>
-													<SineEase EasingMode="EaseOut" />
-												</EasingDoubleKeyFrame.EasingFunction>
-											</EasingDoubleKeyFrame>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX">
-											<DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-											<EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
-												<EasingDoubleKeyFrame.EasingFunction>
-													<SineEase EasingMode="EaseOut" />
-												</EasingDoubleKeyFrame.EasingFunction>
-											</EasingDoubleKeyFrame>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY">
-											<DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
-											<EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
-												<EasingDoubleKeyFrame.EasingFunction>
-													<SineEase EasingMode="EaseOut" />
-												</EasingDoubleKeyFrame.EasingFunction>
-											</EasingDoubleKeyFrame>
-										</DoubleAnimationUsingKeyFrames>
-                                        
-                                        
-                                        <!-- 24 Hours -->
-                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_13To00HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
-                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
-                                        </BooleanAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_13To00HoursCanvas" Storyboard.TargetProperty="Opacity">
-                                            <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.4">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <SineEase EasingMode="EaseIn" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Hours13To00ScaleTransform" Storyboard.TargetProperty="ScaleX">
-                                            <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <SineEase EasingMode="EaseOut" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Hours13To00ScaleTransform" Storyboard.TargetProperty="ScaleY">
-                                            <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <SineEase EasingMode="EaseOut" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-
-                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_1To12HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
-                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
-                                        </BooleanAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_1To12HoursCanvas" Storyboard.TargetProperty="Opacity">
-                                            <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.4">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <SineEase EasingMode="EaseIn" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Hours1To12ScaleTransform" Storyboard.TargetProperty="ScaleX">
-                                            <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="0.7" KeyTime="0:0:0.5">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <SineEase EasingMode="EaseOut" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Hours1To12ScaleTransform" Storyboard.TargetProperty="ScaleY">
-                                            <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="0.7" KeyTime="0:0:0.5">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <SineEase EasingMode="EaseOut" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-
-                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_24HMinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
                                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_24HMinutesCanvas" Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="Opacity">
                                             <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
                                             <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
                                                 <EasingDoubleKeyFrame.EasingFunction>
@@ -513,7 +301,7 @@
                                                 </EasingDoubleKeyFrame.EasingFunction>
                                             </EasingDoubleKeyFrame>
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Minutes24HScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX">
                                             <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
                                             <EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
                                                 <EasingDoubleKeyFrame.EasingFunction>
@@ -521,7 +309,7 @@
                                                 </EasingDoubleKeyFrame.EasingFunction>
                                             </EasingDoubleKeyFrame>
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Minutes24HScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY">
                                             <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
                                             <EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
                                                 <EasingDoubleKeyFrame.EasingFunction>
@@ -530,13 +318,44 @@
                                             </EasingDoubleKeyFrame>
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
-								</BeginStoryboard>
-							</Trigger.ExitActions>
-						</Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="Is24Hours" Value="True">
+                            <Setter TargetName="PART_HourReadOut" Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:HH}}" />
+                            <Setter TargetName="TimeReadoutStackPanel" Property="HorizontalAlignment" Value="Center" />
+                            <Setter TargetName="TimeReadoutStackPanel" Property="Margin" Value="0 6 0 0" />
+                            <Setter TargetName="AmPmReadout" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="AMRadioButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PMRadioButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="BackgroundEllipse" Property="Margin" Value="0,24.5,0,26" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Is24Hours" Value="True" />
+                                <Condition Property="IsPostMeridiem" Value="False" />
+                                <Condition Property="IsMidnightHour" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HourLine" Property="Height" Value="76" />
+                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Is24Hours" Value="True" />
+                                <Condition Property="IsMiddayHour" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HourLine" Property="Height" Value="76" />
+                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Is24Hours" Value="True">
+                <Setter Property="Height" Value="402" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
 </ResourceDictionary>
