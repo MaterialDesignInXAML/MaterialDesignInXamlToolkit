@@ -22,7 +22,7 @@ namespace MaterialDesignThemes.Wpf
         private readonly IDictionary<char, string> _formats = new Dictionary<char, string>
             {
                 {'d', "dd"},
-                {'m', "MMM"},
+                {'m', "ddd, MMM"},
                 {'y', "yyyy"}
             };
 
@@ -122,7 +122,7 @@ namespace MaterialDesignThemes.Wpf
             {
 	            if (component.index == 0)
 		            IsDayInFirstComponent = component.code == 'd';
-				_setters[component.index](DisplayDate.ToString(_formats[component.code], CultureInfo.CurrentUICulture).ToUpper());
+				_setters[component.index](DisplayDate.ToString(_formats[component.code], CultureInfo.CurrentUICulture).ToTitleCase());
             }					       
         }
 
