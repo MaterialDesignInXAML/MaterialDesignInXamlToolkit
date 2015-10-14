@@ -68,7 +68,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid>
-                        <Popup IsOpen="True" AllowsTransparency="True" Placement="RelativePoint" HorizontalOffset="0" VerticalOffset="0" 
+                        <Popup IsOpen="True" AllowsTransparency="True" Placement="RelativePoint" HorizontalOffset="-6" VerticalOffset="-6" 
                                PlacementTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}}"                                                              
                                PopupAnimation="Fade">
                             <Grid>
