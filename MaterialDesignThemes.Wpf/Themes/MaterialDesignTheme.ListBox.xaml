@@ -80,11 +80,11 @@
                                     <ScaleTransform ScaleX="1"/>
                                 </Border.RenderTransform>
                             </Border>
-
                             <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                                         Focusable="False"
                                         Content="{TemplateBinding Content}"
                                         ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -109,8 +109,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <wpf:Card Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>                    
+                    <wpf:Card Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>                    
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
