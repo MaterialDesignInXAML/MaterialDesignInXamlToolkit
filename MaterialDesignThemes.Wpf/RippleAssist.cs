@@ -14,10 +14,7 @@ namespace MaterialDesignThemes.Wpf
             element.SetValue(ClipToBoundsProperty, value);
         }
 
-        public static bool GetClipToBounds(DependencyObject element)
-        {
-            return (bool) element.GetValue(ClipToBoundsProperty);
-        }
+        public static bool GetClipToBounds(DependencyObject element) => element.GetValue(ClipToBoundsProperty);
 
         #endregion
 
@@ -48,10 +45,7 @@ namespace MaterialDesignThemes.Wpf
             element.SetValue(RippleSizeMultiplierProperty, value);
         }
 
-        public static double GetRippleSizeMultiplier(DependencyObject element)
-        {
-            return (double)element.GetValue(RippleSizeMultiplierProperty);
-        }
+        public static double GetRippleSizeMultiplier(DependencyObject element) => element.GetValue(RippleSizeMultiplierProperty);
 
         #endregion
 
