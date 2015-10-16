@@ -372,10 +372,6 @@ namespace MaterialDesignThemes.Wpf
             clock.IsMiddayHour = clock.Time.Hour == 12;
         }
 
-        private BindingBase GetBinding(string propertyName, object owner = null, IValueConverter converter = null, object converterParameter = null)
-		{
-			var result = new Binding(propertyName) {Source = owner ?? this, Converter = converter, ConverterParameter = converterParameter};
-			return result;
-		}
+        private BindingBase GetBinding(string propertyName, object owner = null, IValueConverter converter = null, object converterParameter = null) => return new Binding(propertyName) {Source = owner ?? this, Converter = converter, ConverterParameter = converterParameter};
 	}
 }

@@ -125,8 +125,7 @@ namespace MaterialDesignThemes.Wpf
         /// <returns>Weather the value was replaced (true) or not (false)</returns>
         private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
         {
-            if (parentDictionary == null)
-                parentDictionary = Application.Current.Resources;
+            parentDictionary = parentDictionary == null ? Application.Current.Resources : null;
 
             if (parentDictionary.Contains(entryName))
             {
@@ -135,10 +134,7 @@ namespace MaterialDesignThemes.Wpf
             }
 
             foreach (var dictionary in parentDictionary.MergedDictionaries)
-            {
-                if (ReplaceEntry(entryName, newValue, dictionary))
-                    return true;
-            }
+                return ReplaceEntry(entryName, newValue, dictionary);
 
             return false;
         }
