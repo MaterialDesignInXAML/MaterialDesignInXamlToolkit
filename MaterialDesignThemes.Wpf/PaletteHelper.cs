@@ -9,7 +9,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
     {
-        public static void SetLightDark(bool isDark)
+        public void SetLightDark(bool isDark)
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
                 .Where(rd => rd.Source != null)
@@ -37,7 +37,7 @@ namespace MaterialDesignThemes.Wpf
             Application.Current.Resources.MergedDictionaries.Add(newMahAppsResourceDictionary);
         }
 
-        public static void ReplacePrimaryColor(Swatch swatch, bool mahapps = false)
+        public void ReplacePrimaryColor(Swatch swatch, bool mahapps = false)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
 
@@ -76,7 +76,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public static void ReplacePrimaryColor(string name, bool mahapps = false)
+        public void ReplacePrimaryColor(string name, bool mahapps = false)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
@@ -89,7 +89,7 @@ namespace MaterialDesignThemes.Wpf
             ReplacePrimaryColor(swatch, mahapps);
         }
 
-        public static void ReplaceAccentColor(Swatch swatch)
+        public void ReplaceAccentColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
 
@@ -103,7 +103,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(swatch.AccentExemplarHue.Foreground));
         }
 
-        public static void ReplaceAccentColor(string name)
+        public void ReplaceAccentColor(string name)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
@@ -123,7 +123,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="newValue">The new entry value</param>
         /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
         /// <returns>Weather the value was replaced (true) or not (false)</returns>
-        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null ,bool iscolor = true)
+        private bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null ,bool iscolor = true)
         {
             if (parentDictionary == null)
                 parentDictionary = Application.Current.Resources;
