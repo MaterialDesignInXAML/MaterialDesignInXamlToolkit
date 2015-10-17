@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
-
+using System.Windows.Media.Animation
 namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
@@ -123,23 +123,31 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="newValue">The new entry value</param>
         /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
         /// <returns>Weather the value was replaced (true) or not (false)</returns>
-        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
+        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null ,bool iscolor = true)
         {
             if (parentDictionary == null)
                 parentDictionary = Application.Current.Resources;
 
             if (parentDictionary.Contains(entryName))
             {
-                parentDictionary[entryName] = newValue;
+                if (iscolor = true)
+                {
+                ColorAnimation animation;
+                animation = new ColorAnimation();
+                animation.From = parentDictionary[entryName]; //The old color
+                animation.To = newValue; //The new color
+                animation.Duration = new Duration(new TimeSpan(0,0,0,0,500)); //500ms animation
+                (parentDictionary[entryName] as Brush).BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                }
+                else 
+                {
+                    parentDictionary[entryName] = newValue;
+                }
                 return true;
             }
 
             foreach (var dictionary in parentDictionary.MergedDictionaries)
-            {
-                if (ReplaceEntry(entryName, newValue, dictionary))
-                    return true;
-            }
-
+                return ReplaceEntry(entryName, newValue, dictionary);
             return false;
         }
     }
