@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
-
+using System.Windows.Media.Animation;
 namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
@@ -116,6 +116,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceAccentColor(swatch);
         }
 
+        
         /// <summary>
         /// Replaces a certain entry anywhere in the parent dictionary and its merged dictionaries
         /// </summary>
@@ -130,16 +131,18 @@ namespace MaterialDesignThemes.Wpf
 
             if (parentDictionary.Contains(entryName))
             {
-                parentDictionary[entryName] = newValue;
+                ColorAnimation animation;
+                animation = new ColorAnimation();
+                animation.From = (Color)parentDictionary[entryName]; //The old color
+                animation.To = (Color)newValue; //The new color
+                animation.Duration = new Duration(new TimeSpan(0,0,0,0,500)); //500ms animation
+                (parentDictionary[entryName] as Brush).BeginAnimation(SolidColorBrush.ColorProperty, animation);
                 return true;
             }
 
             foreach (var dictionary in parentDictionary.MergedDictionaries)
-            {
                 if (ReplaceEntry(entryName, newValue, dictionary))
                     return true;
-            }
-
             return false;
         }
     }
