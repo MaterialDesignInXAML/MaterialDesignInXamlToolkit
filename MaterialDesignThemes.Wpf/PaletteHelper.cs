@@ -7,7 +7,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 namespace MaterialDesignThemes.Wpf
 {
-    public static class PaletteHelper
+    public class PaletteHelper
     {
         public static void SetLightDark(bool isDark)
         {
