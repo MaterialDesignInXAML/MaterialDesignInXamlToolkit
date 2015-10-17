@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Animation
+using System.Windows.Media.Animation;
 namespace MaterialDesignThemes.Wpf
 {
     public static class PaletteHelper
