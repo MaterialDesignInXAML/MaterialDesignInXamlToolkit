@@ -147,7 +147,8 @@ namespace MaterialDesignThemes.Wpf
             }
 
             foreach (var dictionary in parentDictionary.MergedDictionaries)
-                return ReplaceEntry(entryName, newValue, dictionary);
+                if (ReplaceEntry(entryName, newValue, dictionary))
+-                    return true;
             return false;
         }
     }
