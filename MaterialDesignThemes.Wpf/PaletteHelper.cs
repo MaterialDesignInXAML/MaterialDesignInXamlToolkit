@@ -150,7 +150,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 if (ReplaceEntry(entryName, newValue, dictionary))
 -                    return true;
-}
+            }
             return false;
         }
     }
