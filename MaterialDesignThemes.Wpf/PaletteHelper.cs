@@ -116,6 +116,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceAccentColor(swatch);
         }
 
+        
         /// <summary>
         /// Replaces a certain entry anywhere in the parent dictionary and its merged dictionaries
         /// </summary>
@@ -123,34 +124,25 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="newValue">The new entry value</param>
         /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
         /// <returns>Weather the value was replaced (true) or not (false)</returns>
-        private bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null ,bool iscolor = true)
+        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
         {
             if (parentDictionary == null)
                 parentDictionary = Application.Current.Resources;
 
             if (parentDictionary.Contains(entryName))
             {
-                if (iscolor == true)
-                {
                 ColorAnimation animation;
                 animation = new ColorAnimation();
                 animation.From = (Color)parentDictionary[entryName]; //The old color
                 animation.To = (Color)newValue; //The new color
                 animation.Duration = new Duration(new TimeSpan(0,0,0,0,500)); //500ms animation
                 (parentDictionary[entryName] as Brush).BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                }
-                else 
-                {
-                    parentDictionary[entryName] = newValue;
-                }
                 return true;
             }
 
             foreach (var dictionary in parentDictionary.MergedDictionaries)
-            {
                 if (ReplaceEntry(entryName, newValue, dictionary))
--                    return true;
-            }
+                    return true;
             return false;
         }
     }
