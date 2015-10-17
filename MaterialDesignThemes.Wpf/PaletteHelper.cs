@@ -134,8 +134,8 @@ namespace MaterialDesignThemes.Wpf
                 {
                 ColorAnimation animation;
                 animation = new ColorAnimation();
-                animation.From = parentDictionary[entryName]; //The old color
-                animation.To = newValue; //The new color
+                animation.From = parentDictionary[entryName] as Color; //The old color
+                animation.To = newValue as Color; //The new color
                 animation.Duration = new Duration(new TimeSpan(0,0,0,0,500)); //500ms animation
                 (parentDictionary[entryName] as Brush).BeginAnimation(SolidColorBrush.ColorProperty, animation);
                 }
