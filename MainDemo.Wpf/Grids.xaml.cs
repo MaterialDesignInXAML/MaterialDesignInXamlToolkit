@@ -24,5 +24,19 @@ namespace MaterialDesignColors.WpfExample
         {
             InitializeComponent();
         }
+
+        private void DataGrid_OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            DataGridCheckBoxColumn column = e.Column as DataGridCheckBoxColumn;
+            if (column != null)
+            {
+                var binding = column.Binding as Binding;
+                if (binding != null)
+                {
+                    binding.NotifyOnTargetUpdated = true;
+                    binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                }
+            }
+        }
     }
 }

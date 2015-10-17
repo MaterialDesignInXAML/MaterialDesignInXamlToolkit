@@ -69,11 +69,12 @@
                 </DataGrid.Columns>
             </DataGrid>
             <TextBlock Margin="0 24 0 0">Auto Generated Columns</TextBlock>
-            <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" />
+            <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGeneratingColumn="DataGrid_OnAutoGeneratingColumn" />
             <TextBlock Margin="0 24 0 0">Custom Padding</TextBlock>
             <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False"
-                       wpf:DataGridAssist.CellPadding="4 2 2 2" wpf:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                       />
+                       wpf:DataGridAssist.CellPadding="4 2 2 2"
+                       wpf:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                       AutoGeneratingColumn="DataGrid_OnAutoGeneratingColumn" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>
