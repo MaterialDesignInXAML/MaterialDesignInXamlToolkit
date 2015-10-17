@@ -130,7 +130,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (parentDictionary.Contains(entryName))
             {
-                if (iscolor = true)
+                if (iscolor == true)
                 {
                 ColorAnimation animation;
                 animation = new ColorAnimation();
