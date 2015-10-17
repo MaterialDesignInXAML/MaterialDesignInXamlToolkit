@@ -20,7 +20,7 @@
             <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
                       wpf:DataGridAssist.CellPadding="13 8 8 8" wpf:DataGridAssist.ColumnHeaderPadding="8">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Binding="{Binding IsSelected}" 
+                    <DataGridCheckBoxColumn Binding="{Binding IsSelected, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" 
                                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                         <DataGridCheckBoxColumn.Header>

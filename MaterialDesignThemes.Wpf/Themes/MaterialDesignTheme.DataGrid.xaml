@@ -15,7 +15,7 @@
 
     <Style x:Key="MaterialDesignDataGridCheckBoxColumnStyle" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}">
         <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="IsHitTestVisible" Value="True" />
         <Setter Property="Focusable" Value="False" />
     </Style>
 
