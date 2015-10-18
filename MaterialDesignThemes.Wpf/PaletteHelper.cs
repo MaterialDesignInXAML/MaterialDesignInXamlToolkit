@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
-
+using System.Windows.Media.Animation;
 namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
@@ -123,23 +123,35 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="newValue">The new entry value</param>
         /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
         /// <returns>Weather the value was replaced (true) or not (false)</returns>
-        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
+        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null, bool animate)
         {
+            const int DURATION_MS = 500; //Change the value if needed
+            
             if (parentDictionary == null)
                 parentDictionary = Application.Current.Resources;
-
+            
             if (parentDictionary.Contains(entryName))
             {
-                parentDictionary[entryName] = newValue;
-                return true;
+                if (animate) //Fade animation is enabled
+                {
+                    ColorAnimation animation = new ColorAnimation()
+                    {
+                        From = (Color)parentDictionary[entryName],//The old color
+                        To = (Color)newValue, //The new color
+                        Duration = new Duration(new TimeSpan(0,0,0,0,DURATION_MS))
+                    };
+                    (parentDictionary[entryName] as Brush).BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
+                    return true;
+                }
+                else
+                {
+                    parentDictionary[entryName] = newvalue;
+                }
             }
-
             foreach (var dictionary in parentDictionary.MergedDictionaries)
-            {
                 if (ReplaceEntry(entryName, newValue, dictionary))
                     return true;
-            }
-
+                    
             return false;
         }
     }
