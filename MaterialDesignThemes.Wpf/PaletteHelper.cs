@@ -145,7 +145,7 @@ namespace MaterialDesignThemes.Wpf
                 }
                 else
                 {
-                    parentDictionary[entryName] = newvalue;
+                    parentDictionary[entryName] = newValue;
                 }
             }
             foreach (var dictionary in parentDictionary.MergedDictionaries)
