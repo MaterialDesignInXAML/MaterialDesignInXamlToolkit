@@ -388,8 +388,8 @@
             </Border>
             <wpf:Underline x:Name="Underline" Grid.ColumnSpan="2" />
         </Grid>
-		<ControlTemplate.Triggers>
-			<Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
+        <ControlTemplate.Triggers>
+            <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
 				<Setter Property="Margin" TargetName="shadow" Value="5,5,5,5"/>
 			</Trigger>
 			<Trigger Property="IsEnabled" Value="false">
@@ -513,7 +513,7 @@
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
-                    <Condition Property="IsKeyboardFocused" Value="True" />
+                    <Condition Property="IsKeyboardFocused" SourceName="PART_EditableTextBox" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </MultiTrigger>
