@@ -123,7 +123,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="newValue">The new entry value</param>
         /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
         /// <returns>Weather the value was replaced (true) or not (false)</returns>
-        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null, bool animate)
+        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null, bool animate = true)
         {
             const int DURATION_MS = 500; //Change the value if needed
             
