@@ -141,12 +141,13 @@ namespace MaterialDesignThemes.Wpf
                         Duration = new Duration(new TimeSpan(0,0,0,0,DURATION_MS))
                     };
                     (parentDictionary[entryName] as Brush).BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
-                    return true;
+                    
                 }
                 else
                 {
                     parentDictionary[entryName] = newValue;
                 }
+                return true;
             }
             foreach (var dictionary in parentDictionary.MergedDictionaries)
                 if (ReplaceEntry(entryName, newValue, dictionary))
