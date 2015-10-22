@@ -59,16 +59,11 @@
     </UserControl.Resources>
 
     
-    <StackPanel Orientation="Horizontal">
-        <Border BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top">
-        <wpf:Clock DisplayAutomation="Cycle" Is24Hours="True">
+    <Grid>
+        <wpf:Clock DisplayAutomation="None" Is24Hours="False" VerticalAlignment="Center" HorizontalAlignment="Center">
         </wpf:Clock>
-        </Border>
-        <!--
-        <wpf:Clock DisplayAutomation="Cycle" Margin="36 0 0 0">
-        </wpf:Clock>
-        -->
-    </StackPanel>
+        
+    </Grid>
     
 
 
