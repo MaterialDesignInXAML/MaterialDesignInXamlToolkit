@@ -22,35 +22,20 @@ namespace MaterialDesignThemes.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is int)
+            double value1, value2;
+            if (Double.TryParse(value.ToString(), out value1) && Double.TryParse(parameter.ToString(), out value2))
             {
                 switch (Operation)
                 {
                     default:
                     case MathOperation.Add:
-                        return (int)value + System.Convert.ToInt32(parameter);
+                        return value1 + value2;
                     case MathOperation.Divide:
-                        return (int)value / System.Convert.ToInt32(parameter);
+                        return value1 / value2;
                     case MathOperation.Multiply:
-                        return (int)value * System.Convert.ToInt32(parameter);
+                        return value1 * value2;
                     case MathOperation.Sub:
-                        return (int)value + System.Convert.ToInt32(parameter);
-                }
-            }
-
-            if (value is double)
-            {
-                switch (Operation)
-                {
-                    default:
-                    case MathOperation.Add:
-                        return (double)value + System.Convert.ToDouble(parameter);
-                    case MathOperation.Divide:
-                        return (double)value / System.Convert.ToDouble(parameter);
-                    case MathOperation.Multiply:
-                        return (double)value * System.Convert.ToDouble(parameter);
-                    case MathOperation.Sub:
-                        return (double)value + System.Convert.ToDouble(parameter);
+                        return value1 - value2;
                 }
             }
 

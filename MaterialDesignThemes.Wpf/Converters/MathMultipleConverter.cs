@@ -18,7 +18,6 @@ namespace MaterialDesignThemes.Wpf.Converters
             double value1, value2;
             if (Double.TryParse(value[0].ToString(), out value1) && Double.TryParse(value[1].ToString(), out value2))
             {
-                Debug.WriteLine($"value1: {value1} value2: {value2}");
                 switch (Operation)
                 {
                     default:
