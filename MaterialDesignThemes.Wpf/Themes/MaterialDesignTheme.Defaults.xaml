@@ -24,6 +24,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ScrollBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ScrollViewer.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.slider.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TabControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.textbox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.togglebutton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolBar.xaml" />
@@ -51,6 +52,8 @@
     <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MaterialDesignScrollBar}" />
     <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource MaterialDesignScrollViewer}" />
     <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource MaterialDesignSlider}" />
+    <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource MaterialDesignTabControl}" />
+    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource MaterialDesignTabItem}" />
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}" />
     <Style TargetType="{x:Type ToolBar}" BasedOn="{StaticResource MaterialDesignToolBar}" />

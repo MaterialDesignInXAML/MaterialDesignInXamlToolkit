@@ -109,6 +109,11 @@
                     <wpfExample:Expander />
                 </domain:DemoItem.Content>
             </domain:DemoItem>
+            <domain:DemoItem Name="Tab control">
+                <domain:DemoItem.Content>
+                    <wpfExample:TabControl />
+                </domain:DemoItem.Content>
+            </domain:DemoItem>
             <domain:DemoItem Name="Menus &amp; Tool Bars">
                 <domain:DemoItem.Content>
                     <wpfExample:MenusAndToolBars />

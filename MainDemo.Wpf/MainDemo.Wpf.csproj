@@ -114,6 +114,9 @@
     <Compile Include="ProvingGround.xaml.cs">
       <DependentUpon>ProvingGround.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TabControl.xaml.cs">
+      <DependentUpon>TabControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TextFields.xaml.cs">
       <DependentUpon>TextFields.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProvingGround.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

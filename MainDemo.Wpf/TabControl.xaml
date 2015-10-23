@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="MaterialDesignColors.WpfExample.TabControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600">
+    <Grid>
+        <TabControl Background="{DynamicResource MaterialDesignBackground}">
+            <TabItem Header="ITEM 1">
+                <TextBlock Text="item 1" />
+            </TabItem>
+            <TabItem Header="ITEM 2">
+                <TextBlock Text="item 2" />
+            </TabItem>
+            <TabItem Header="ITEM 3" IsEnabled="False">
+                <TextBlock Text="item 3" />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>
