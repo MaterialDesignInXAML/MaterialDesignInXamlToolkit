@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="PurplePrimary50">#f3e5f5</Color>
+  <Color x:Key="PurplePrimary50Foreground">#DD000000</Color>
+  <Color x:Key="PurplePrimary100">#e1bee7</Color>
+  <Color x:Key="PurplePrimary100Foreground">#DD000000</Color>
+  <Color x:Key="PurplePrimary200">#ce93d8</Color>
+  <Color x:Key="PurplePrimary200Foreground">#DD000000</Color>
+  <Color x:Key="PurplePrimary300">#ba68c8</Color>
+  <Color x:Key="PurplePrimary300Foreground">#FFFFFFFF</Color>
+  <Color x:Key="PurplePrimary400">#ab47bc</Color>
+  <Color x:Key="PurplePrimary400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="PurplePrimary500">#9c27b0</Color>
+  <Color x:Key="PurplePrimary500Foreground">#DDFFFFFF</Color>
+  <Color x:Key="PurplePrimary600">#8e24aa</Color>
+  <Color x:Key="PurplePrimary600Foreground">#DDFFFFFF</Color>
+  <Color x:Key="PurplePrimary700">#7b1fa2</Color>
+  <Color x:Key="PurplePrimary700Foreground">#DDFFFFFF</Color>
+  <Color x:Key="PurplePrimary800">#6a1b9a</Color>
+  <Color x:Key="PurplePrimary800Foreground">#DDFFFFFF</Color>
+  <Color x:Key="PurplePrimary900">#4a148c</Color>
+  <Color x:Key="PurplePrimary900Foreground">#DDFFFFFF</Color>
+</ResourceDictionary>

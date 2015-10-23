@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
@@ -57,6 +58,13 @@
 
     </UserControl.Resources>
 
+    
+    <Grid>
+        <wpf:Clock DisplayAutomation="None" Is24Hours="False" VerticalAlignment="Center" HorizontalAlignment="Center">
+        </wpf:Clock>
+        
+    </Grid>
+    
 
 
 </UserControl>

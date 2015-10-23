@@ -41,6 +41,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\paket-files\punker76\Controlz\src\Controlz\PopupEx.cs">
+      <Paket>True</Paket>
+      <Link>Controlz/PopupEx.cs</Link>
+    </Compile>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -56,9 +60,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ProgressLoopDev.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Themes\MaterialDesignTheme.MahApps.Dialogs.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -105,10 +109,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\MaterialDesignTheme.Label.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.MahApps.Dialogs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,6 +208,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.ValidationErrorTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
@@ -215,6 +219,7 @@
     <Compile Include="ClockChoiceMadeEventArgs.cs" />
     <Compile Include="ClockItemButton.cs" />
     <Compile Include="ColorZone.cs" />
+    <Compile Include="Converters\BrushRoundConverter.cs" />
     <Compile Include="Converters\BrushToRadialGradientBrushConverter.cs" />
     <Compile Include="Converters\CalendarDateCoalesceConverter.cs" />
     <Compile Include="Converters\CircularProgressBar\ArcEndPointConverter.cs" />
@@ -226,13 +231,20 @@
     <Compile Include="Converters\CircularProgressBar\StartPointConverter.cs" />
     <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
     <Compile Include="Converters\ClockLineConverter.cs" />
+    <Compile Include="Converters\DrawerOffsetConverter.cs" />
     <Compile Include="Converters\NotConverter.cs" />
     <Compile Include="Converters\NotNullToVisibilityConverter.cs" />
     <Compile Include="Converters\NotZeroToVisibilityConverter.cs" />
+    <Compile Include="Converters\ShadowConverter.cs" />
     <Compile Include="Converters\SizeToRectConverter.cs" />
+    <Compile Include="Converters\TimeToVisibilityConverter.cs" />
     <Compile Include="CustomPopupPlacementCallbackHelper.cs" />
     <Compile Include="DataGridAssist.cs" />
     <Compile Include="DateTimeEx.cs" />
+    <Compile Include="DialogClosingEventArgs.cs" />
+    <Compile Include="DialogClosingEventHandler.cs" />
+    <Compile Include="DialogHost.cs" />
+    <Compile Include="DrawerHost.cs" />
     <Compile Include="ListSortDirectionIndicator.cs" />
     <Compile Include="MaterialDataGridComboBoxColumn.cs" />
     <Compile Include="MaterialDataGridTextColumn.cs" />
@@ -240,10 +252,6 @@
     <Compile Include="MultipleSelectionDropDown.cs" />
     <Compile Include="PaletteHelper.cs" />
     <Compile Include="PasswordFieldAssist.cs" />
-    <Compile Include="ProgressLoop.cs" />
-    <Compile Include="ProgressLoopDev.xaml.cs">
-      <DependentUpon>ProgressLoopDev.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -259,12 +267,16 @@
     </Compile>
     <Compile Include="RatingBar.cs" />
     <Compile Include="RatingBarButton.cs" />
+    <Compile Include="ShadowAssist.cs" />
+    <Compile Include="StringExtensions.cs" />
     <Compile Include="TextFieldAssist.cs" />
     <Compile Include="Converters\TextFieldHintVisibilityConverter.cs" />
     <Compile Include="TimePicker.cs" />
     <Compile Include="ToolTipAssist.cs" />
     <Compile Include="RippleAssist.cs" />
     <Compile Include="Ripple.cs" />
+    <Compile Include="Underline.cs" />
+    <Compile Include="ValidationAssist.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

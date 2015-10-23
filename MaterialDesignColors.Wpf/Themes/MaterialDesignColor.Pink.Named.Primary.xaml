@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="PinkPrimary50">#fce4ec</Color>
+  <Color x:Key="PinkPrimary50Foreground">#DD000000</Color>
+  <Color x:Key="PinkPrimary100">#f8bbd0</Color>
+  <Color x:Key="PinkPrimary100Foreground">#DD000000</Color>
+  <Color x:Key="PinkPrimary200">#f48fb1</Color>
+  <Color x:Key="PinkPrimary200Foreground">#DD000000</Color>
+  <Color x:Key="PinkPrimary300">#f06292</Color>
+  <Color x:Key="PinkPrimary300Foreground">#DD000000</Color>
+  <Color x:Key="PinkPrimary400">#ec407a</Color>
+  <Color x:Key="PinkPrimary400Foreground">#DD000000</Color>
+  <Color x:Key="PinkPrimary500">#e91e63</Color>
+  <Color x:Key="PinkPrimary500Foreground">#FFFFFFFF</Color>
+  <Color x:Key="PinkPrimary600">#d81b60</Color>
+  <Color x:Key="PinkPrimary600Foreground">#FFFFFFFF</Color>
+  <Color x:Key="PinkPrimary700">#c2185b</Color>
+  <Color x:Key="PinkPrimary700Foreground">#DDFFFFFF</Color>
+  <Color x:Key="PinkPrimary800">#ad1457</Color>
+  <Color x:Key="PinkPrimary800Foreground">#DDFFFFFF</Color>
+  <Color x:Key="PinkPrimary900">#880e4f</Color>
+  <Color x:Key="PinkPrimary900Foreground">#DDFFFFFF</Color>
+</ResourceDictionary>

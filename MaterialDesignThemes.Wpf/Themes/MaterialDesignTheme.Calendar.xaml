@@ -48,9 +48,9 @@
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
                                         <DoubleAnimation Duration="0" To=".75" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBackground"/>
-                                        <!--ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText">
                                             <DiscreteObjectKeyFrame Value="{DynamicResource PrimaryHueMidForegroundBrush}" KeyTime="0" />
-                                        </-->
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -100,9 +100,9 @@
                                 <VisualState x:Name="Today">
                                     <Storyboard>
                                         <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TodayBackground"/>
-                                        <!--ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText">
                                             <DiscreteObjectKeyFrame Value="{DynamicResource PrimaryHueLightForegroundBrush}" KeyTime="0" />
-                                        </-->
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -122,8 +122,19 @@
                         <Ellipse x:Name="SelectedBackground" Fill="{DynamicResource PrimaryHueMidBrush}" Opacity="0" />
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
                         <Ellipse x:Name="HighlightBackground" Fill="{DynamicResource PrimaryHueDarkBrush}" Opacity="0" />
-                        <ContentPresenter x:Name="NormalText" TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Path x:Name="Blackout" Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="3" Opacity="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" VerticalAlignment="Stretch"/>
+                        <ContentPresenter x:Name="NormalText"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="5,1,5,1"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Path x:Name="Blackout"
+                              Fill="#FF000000"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              Margin="3"
+                              Opacity="0"
+                              RenderTransformOrigin="0.5,0.5"
+                              Stretch="Fill"
+                              Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" />
                         <Ellipse x:Name="DayButtonFocusVisual" Stroke="{DynamicResource PrimaryHueDarkBrush}" Opacity="0" Visibility="Collapsed" StrokeThickness="1"/>
                     </Grid>
                 </ControlTemplate>
@@ -213,7 +224,11 @@
                                     <VisualTransition GeneratedDuration="0"/>
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Active"/>
-                                <VisualState x:Name="Inactive" />
+                                <VisualState x:Name="Inactive">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="0.2" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </VisualState>
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="DayStates">
                                 <VisualStateGroup.Transitions>
@@ -246,7 +261,14 @@
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
                         <Ellipse x:Name="HighlightBackground" Fill="{DynamicResource PrimaryHueDarkBrush}" Opacity="0" />
                         <ContentPresenter x:Name="NormalText" TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Path x:Name="Blackout" Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="3" Opacity="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" VerticalAlignment="Stretch"/>
+                        <Path x:Name="Blackout"
+                              Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z"
+                              Fill="#FF000000"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              Margin="3"
+                              Opacity="0"
+                              RenderTransformOrigin="0.5,0.5"
+                              Stretch="Fill"/>
                         <Ellipse x:Name="DayButtonFocusVisual" Stroke="{DynamicResource PrimaryHueDarkBrush}" Opacity="0" Visibility="Collapsed" StrokeThickness="1"/>
                     </Grid>
                 </ControlTemplate>
@@ -261,8 +283,18 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CalendarItem}">
                     <ControlTemplate.Resources>
+                        <SineEase x:Key="EasingFunction" EasingMode="EaseOut"/>
+                        <CubicEase x:Key="EasingFunctionIn" EasingMode="EaseIn"/>
+                        
                         <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
-                            <TextBlock Foreground="{DynamicResource PrimaryHueMidBrush}" FontWeight="Bold" FontSize="9.5" FontFamily="Verdana" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding [0]}" VerticalAlignment="Center"/>
+                            <TextBlock Foreground="{DynamicResource MaterialDesignToolTipBackground}"
+                                       Opacity="0.65"
+                                       FontWeight="Bold"
+                                       FontSize="9.5"
+                                       FontFamily="Verdana"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Margin="0,6,0,6"
+                                       Text="{Binding [0]}"/>
                         </DataTemplate>
                     </ControlTemplate.Resources>
                     <Grid x:Name="PART_Root">
@@ -279,7 +311,8 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="2">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="2"
+                                ClipToBounds="True">
                             <Grid>
                                 <Grid.Resources>
                                     <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="{x:Type Button}">
@@ -297,7 +330,7 @@
                                             </VisualStateManager.VisualStateGroups>
                                             <wpf:Ripple HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <Viewbox Height="12" Margin="8">
-                                                    <Path x:Name="path" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" Fill="{TemplateBinding Foreground}" Stretch="Fill" />
+                                                    <Path x:Name="path" Data="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" Fill="{TemplateBinding Foreground}" Stretch="Fill" />
                                                 </Viewbox>
                                             </wpf:Ripple>
                                         </Grid>
@@ -317,7 +350,7 @@
                                             </VisualStateManager.VisualStateGroups>
                                             <wpf:Ripple HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <Viewbox Height="12" Margin="8">
-                                                    <Path x:Name="path" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" Fill="{TemplateBinding Foreground}" Stretch="Fill"  />
+                                                    <Path x:Name="path" Data="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" Fill="{TemplateBinding Foreground}" Stretch="Fill"  />
                                                 </Viewbox>
                                             </wpf:Ripple>
                                         </Grid>
@@ -328,14 +361,11 @@
                                                 <VisualStateGroup x:Name="CommonStates">
                                                     <VisualState x:Name="Normal"/>
                                                     <VisualState x:Name="MouseOver" />
-                                                    <VisualState x:Name="Disabled">
-                                                        <Storyboard>
-                                                            <DoubleAnimation Duration="0" To=".5" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="buttonContent"/>
-                                                        </Storyboard>
-                                                    </VisualState>
+                                                    <VisualState x:Name="Disabled"/>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                            <wpf:MaterialDateDisplay x:Name="buttonContent" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
+                                            <wpf:MaterialDateDisplay x:Name="buttonContent" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                                                     IsEnabled="{TemplateBinding IsEnabled}">
                                                 <wpf:MaterialDateDisplay.DisplayDate>
                                                     <MultiBinding Mode="OneWay">
                                                         <MultiBinding.Converter>
@@ -353,7 +383,6 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -361,61 +390,106 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <Border Grid.ColumnSpan="3" Grid.Row="0" Background="{DynamicResource PrimaryHueDarkBrush}" CornerRadius="2 2 0 0">
-                                    <TextBlock HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Margin="8" FontSize="14">
-                                        <TextBlock.Text>
-                                            <MultiBinding Mode="OneWay" StringFormat="dddd" ConverterCulture="{x:Static globalization:CultureInfo.CurrentUICulture}" >
-                                                <MultiBinding.Converter>
-                                                    <converters:CalendarDateCoalesceConverter />
-                                                </MultiBinding.Converter>
-                                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" Path="DisplayDate" />
-                                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" Path="SelectedDate" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </Border>
-                                <Border Grid.ColumnSpan="3" Grid.Row="1" Background="{DynamicResource PrimaryHueMidBrush}" />
-                                <Button x:Name="PART_HeaderButton" Grid.Row="1" Grid.Column="1" FontWeight="Bold" Focusable="False" FontSize="10.5" HorizontalAlignment="Center" Template="{StaticResource HeaderButtonTemplate}" VerticalAlignment="Center"
-                                            Height="142"
-                                            />
-                                <Button x:Name="PART_PreviousButton" Grid.Row="2" Grid.Column="0" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
-                                            Margin="40 0 0 0" Foreground="{TemplateBinding Foreground}" />
-                                <TextBlock HorizontalAlignment="Center" Margin="8" FontSize="14" Grid.Row="2" Grid.Column="1" FontWeight="SemiBold" VerticalAlignment="Center"
-                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=DisplayDate, ConverterCulture={x:Static globalization:CultureInfo.CurrentUICulture}, StringFormat=MMMM yyyy}" />
-                                <Button x:Name="PART_NextButton" Grid.Row="2" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="36" Template="{StaticResource NextButtonTemplate}" Width="32"
-                                            Margin="0 0 40 0" Foreground="{TemplateBinding Foreground}" />
-                                <Grid x:Name="PART_MonthView" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="6,-1,6,6" Grid.Row="3" Visibility="Visible">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
+                                <Border Grid.ColumnSpan="3" Grid.Row="0" Background="{DynamicResource PrimaryHueMidBrush}" />
+                                <Button x:Name="PART_HeaderButton"
+                                        Grid.Row="0"
+                                        Grid.ColumnSpan="3"
+                                        FontWeight="Bold" Focusable="False" FontSize="10.5"
+                                        HorizontalAlignment="Left" VerticalAlignment="Center"
+                                        Template="{StaticResource HeaderButtonTemplate}"
+                                        Height="Auto"
+                                        Margin="20 15"/>
+                                <Button x:Name="PART_PreviousButton" Grid.Row="1" Grid.Column="0" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
+                                            Margin="6 0 0 0" Foreground="{TemplateBinding Foreground}" />
+                                <TextBlock x:Name="CurrentDateTextBlock"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Margin="8"
+                                           FontSize="14"
+                                           Grid.Row="1" Grid.Column="1"
+                                           FontWeight="SemiBold"
+                                           RenderTransformOrigin="0, 0.5"
+                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=DisplayDate, ConverterCulture={x:Static globalization:CultureInfo.CurrentUICulture}, StringFormat=MMMM yyyy}">
+                                    <TextBlock.RenderTransform>
+                                        <TranslateTransform X="0" Y="0"/>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                                <Button x:Name="PART_NextButton" Grid.Row="1" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="36" Template="{StaticResource NextButtonTemplate}" Width="32"
+                                            Margin="0 0 6 0" Foreground="{TemplateBinding Foreground}" />
+
+                                <Grid x:Name="MonthViewWrapperGrid"
+                                      Grid.ColumnSpan="3"
+                                      Grid.Row="2"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Top"
+                                      Margin="6 -1 6 6"
+                                      Visibility="Visible">
+                                    <Border x:Name="PART_MonthViewCopy" RenderTransformOrigin="0, 0.5"
+                                            Opacity="0" Margin="4 7 4 3">
+                                        <Border.Background>
+                                            <VisualBrush Visual="{Binding ElementName=PART_MonthView}" Stretch="UniformToFill"/>
+                                        </Border.Background>
+                                        <Border.RenderTransform>
+                                            <TranslateTransform X="0"/>
+                                        </Border.RenderTransform>
+                                    </Border>
+                                    <Grid x:Name="PART_MonthView" RenderTransformOrigin="0, 0.5">
+                                        <Grid.RenderTransform>
+                                            <TranslateTransform X="0" />
+                                        </Grid.RenderTransform>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                    </Grid>
                                 </Grid>
-                                <Grid x:Name="PART_YearView" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="6,-3,7,6" Grid.Row="3" Visibility="Hidden">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
+
+                                <Grid x:Name="YearViewWrapperGrid"
+                                      Grid.ColumnSpan="3"
+                                      Grid.Row="2"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Top"
+                                      Margin="6 -3 7 6"
+                                      Visibility="Hidden">
+                                    <Border x:Name="PART_YearViewCopy" RenderTransformOrigin="0, 0.5"
+                                            Opacity="0" Margin="2">
+                                        <Border.Background>
+                                            <VisualBrush Visual="{Binding ElementName=PART_YearView}" Stretch="UniformToFill"/>
+                                        </Border.Background>
+                                        <Border.RenderTransform>
+                                            <TranslateTransform X="0"/>
+                                        </Border.RenderTransform>
+                                    </Border>
+                                    <Grid x:Name="PART_YearView"
+                                                 RenderTransformOrigin="0, 0.5">
+                                        <Grid.RenderTransform>
+                                            <TranslateTransform X="0" />
+                                        </Grid.RenderTransform>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Border>
@@ -426,13 +500,91 @@
                             <Setter Property="Visibility" TargetName="PART_DisabledVisual" Value="Visible"/>
                         </Trigger>
                         <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Year">
-                            <Setter Property="Visibility" TargetName="PART_MonthView" Value="Hidden"/>
-                            <Setter Property="Visibility" TargetName="PART_YearView" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="MonthViewWrapperGrid" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="YearViewWrapperGrid" Value="Visible"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Decade">
-                            <Setter Property="Visibility" TargetName="PART_MonthView" Value="Hidden"/>
-                            <Setter Property="Visibility" TargetName="PART_YearView" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="MonthViewWrapperGrid" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="YearViewWrapperGrid" Value="Visible"/>
                         </DataTrigger>
+                        <EventTrigger RoutedEvent="Button.Click" SourceName="PART_NextButton">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="CurrentDateTextBlock"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     EasingFunction="{StaticResource EasingFunction}"
+                                                     AccelerationRatio="0.1" DecelerationRatio="0.9"
+                                                     From="240" To="0" Duration="0:0:0.450"/>
+
+                                    <DoubleAnimation Storyboard.TargetName="PART_MonthViewCopy"
+                                                     Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                     From="1" To="0" Duration="0:0:0.450"/>
+
+                                    <DoubleAnimation Storyboard.TargetName="PART_MonthViewCopy"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     From="0" To="-270" Duration="0:0:0.450"
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+
+                                    <DoubleAnimation Storyboard.TargetName="PART_MonthView"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     From="270" To="0" Duration="0:0:0.450"
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+
+                                    <DoubleAnimation Storyboard.TargetName="PART_YearViewCopy"
+                                                     Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                     From="1" To="0" Duration="0:0:0.450"/>
+                                    
+                                    <DoubleAnimation Storyboard.TargetName="PART_YearViewCopy"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     From="0" To="-240" Duration="0:0:0.450"
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+
+                                    <DoubleAnimation Storyboard.TargetName="PART_YearView"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     From="240" To="0" Duration="0:0:0.450"
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Button.Click" SourceName="PART_PreviousButton">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="CurrentDateTextBlock"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     EasingFunction="{StaticResource EasingFunction}"
+                                                     AccelerationRatio="0.1" DecelerationRatio="0.9"
+                                                     From="-240" To="0" Duration="0:0:0.450"/>
+
+                                    <DoubleAnimation Storyboard.TargetName="PART_MonthViewCopy"
+                                                     Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                     From="1" To="0" Duration="0:0:0.450"/>
+
+                                    <DoubleAnimation Storyboard.TargetName="PART_MonthViewCopy"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     From="0" To="270" Duration="0:0:0.450"
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+
+                                    <DoubleAnimation Storyboard.TargetName="PART_MonthView"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     From="-270" To="0" Duration="0:0:0.450"
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+
+                                    <DoubleAnimation Storyboard.TargetName="PART_YearViewCopy"
+                                                     Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                     From="1" To="0" Duration="0:0:0.450"/>
+
+                                    <DoubleAnimation Storyboard.TargetName="PART_YearViewCopy"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     From="0" To="240" Duration="0:0:0.450"
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+
+                                    <DoubleAnimation Storyboard.TargetName="PART_YearView"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                     From="-240" To="0" Duration="0:0:0.450"
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

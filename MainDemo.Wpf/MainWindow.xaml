@@ -4,6 +4,7 @@
         xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
         xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
         xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         Title="Material Design in XAML" Height="800" Width="1100"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Medium"
@@ -18,24 +19,31 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+            <!-- data template used for the dialogs example, defines a View for a ViewModel of type DateTime  -->
+            <DataTemplate DataType="{x:Type system:DateTime}">
+                <StackPanel Margin="16">
+                    <TextBlock>England win the World Cup:</TextBlock>
+                    <TextBlock Margin="0 8 0 0" Text="{Binding }" />
+                    <TextBlock Margin="0 8 0 0" >You will never see that again.</TextBlock>
+                    <Button  Margin="0 8 0 0" IsDefault="True" Command="{x:Static wpf:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">AWESOME</Button>
+                </StackPanel>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
 
-    <DockPanel>
-        <wpf:ColorZone Padding="16" Effect="{StaticResource MaterialDesignShadowDepth2}"
-                       Mode="PrimaryMid" DockPanel.Dock="Top">
-            <DockPanel>
-                <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="True"
-                              x:Name="MenuToggleButton"/>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
-            </DockPanel>
-        </wpf:ColorZone>
-        <ListBox DockPanel.Dock="Left" x:Name="DemoItemsListBox" Margin="16 16 0 16" SelectedIndex="0"
-                 Visibility="{Binding ElementName=MenuToggleButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+    <wpf:DialogHost Identifier="RootDialog">
+        <wpf:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+            <wpf:DrawerHost.LeftDrawerContent>
+                <StackPanel Orientation="Vertical">
+                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                                  HorizontalAlignment="Right" Margin="16"
+                                  IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+                    <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
+                             PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="domain:DemoItem">
-                    <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
             <domain:DemoItem Name="Home">
@@ -124,8 +132,34 @@
                     <wpfExample:Progress />
                 </domain:DemoItem.Content>
             </domain:DemoItem>
+                        <domain:DemoItem Name="Dialogs">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Dialogs>
+                                    <wpfExample:Dialogs.DataContext>
+                                        <domain:DialogsViewModel />
+                                    </wpfExample:Dialogs.DataContext>
+                                </wpfExample:Dialogs>
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Shadows">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Shadows />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
         </ListBox>
+                </StackPanel>
+            </wpf:DrawerHost.LeftDrawerContent>
+            <DockPanel>
+                <wpf:ColorZone Padding="16" wpf:ShadowAssist.ShadowDepth="Depth2"
+                               Mode="PrimaryMid" DockPanel.Dock="Top">
+                    <DockPanel>
+                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
+                                      x:Name="MenuToggleButton"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
+                    </DockPanel>
+                </wpf:ColorZone>
         <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
     </DockPanel>
-
+        </wpf:DrawerHost>
+    </wpf:DialogHost>
 </Window>

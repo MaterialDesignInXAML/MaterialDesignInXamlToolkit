@@ -19,7 +19,8 @@
             <Image Source="Resources/ms-icon-310x310.png" Stretch="Uniform" Width="100" Height="100" />
             <StackPanel Grid.Column="1" Margin="24 0 0 0">
                 <TextBlock FontSize="32" TextWrapping="Wrap">Welcome to Material Design In XAML Toolkit</TextBlock>
-                <TextBlock Margin="0 8 0 0" TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBodyLight}">Use the left-hand menu to checkout the various controls &amp; themes.</TextBlock>
+                <TextBlock Margin="0 8 0 10" TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBodyLight}">Click EXPLORE to checkout the various controls &amp; themes.</TextBlock>
+                <Button Command="{x:Static wpf:DrawerHost.OpenDrawerCommand}">EXPLORE</Button>
             </StackPanel>
         </Grid>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"

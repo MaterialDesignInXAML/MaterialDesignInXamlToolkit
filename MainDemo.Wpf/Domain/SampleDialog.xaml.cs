@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MaterialDesignThemes.Wpf
+namespace MaterialDesignColors.WpfExample.Domain
 {
     /// <summary>
-    /// Interaction logic for ProgressLoopDev.xaml
+    /// Interaction logic for SampleDialog.xaml
     /// </summary>
-    public partial class ProgressLoopDev : UserControl
+    public partial class SampleDialog : UserControl
     {
-        public ProgressLoopDev()
+        public SampleDialog()
         {
             InitializeComponent();
         }

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -11,5 +12,10 @@ namespace MaterialDesignColors.WpfExample
         {
             InitializeComponent();
         }
-    }
+
+        private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MenuToggleButton.IsChecked = false;
+        }
+    } 
 }

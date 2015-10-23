@@ -18,7 +18,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Save As.." />
-                <MenuItem Header="Exit">
+                <MenuItem Header="Exit" InputGestureText="Ctrl+E">
                     <MenuItem.Icon>
                         <Viewbox Width="16" Height="16">
                             <Canvas Width="24" Height="24">
@@ -30,9 +30,13 @@
                 <Separator />
                 <MenuItem Header="Excellent" IsCheckable="True" IsChecked="True" />
                 <MenuItem Header="Rubbish" IsCheckable="True" />
-                <MenuItem Header="Dig Deeper">
-                    <MenuItem Header="Enlightenment?" />
-                    <MenuItem Header="Disappointment" />
+                <MenuItem Header="Dig Deeper" InputGestureText="Ctrl+D">
+                    <MenuItem Header="Enlightenment?" IsCheckable="True" />
+                    <MenuItem Header="Disappointment" IsCheckable="True" />
+                </MenuItem>
+                <MenuItem Header="Look Deeper" InputGestureText="Ctrl+D">
+                    <MenuItem Header="Plain" />
+                    <MenuItem Header="Ice Cream" />
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Edit">
