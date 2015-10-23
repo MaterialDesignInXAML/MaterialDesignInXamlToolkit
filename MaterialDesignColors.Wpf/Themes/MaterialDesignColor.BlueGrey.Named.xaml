@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="Blue GreyPrimary50">#eceff1</Color>
+  <Color x:Key="Blue GreyPrimary50Foreground">#DD000000</Color>
+  <Color x:Key="Blue GreyPrimary100">#cfd8dc</Color>
+  <Color x:Key="Blue GreyPrimary100Foreground">#DD000000</Color>
+  <Color x:Key="Blue GreyPrimary200">#b0bec5</Color>
+  <Color x:Key="Blue GreyPrimary200Foreground">#DD000000</Color>
+  <Color x:Key="Blue GreyPrimary300">#90a4ae</Color>
+  <Color x:Key="Blue GreyPrimary300Foreground">#DD000000</Color>
+  <Color x:Key="Blue GreyPrimary400">#78909c</Color>
+  <Color x:Key="Blue GreyPrimary400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Blue GreyPrimary500">#607d8b</Color>
+  <Color x:Key="Blue GreyPrimary500Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Blue GreyPrimary600">#546e7a</Color>
+  <Color x:Key="Blue GreyPrimary600Foreground">#DDFFFFFF</Color>
+  <Color x:Key="Blue GreyPrimary700">#455a64</Color>
+  <Color x:Key="Blue GreyPrimary700Foreground">#DDFFFFFF</Color>
+  <Color x:Key="Blue GreyPrimary800">#37474f</Color>
+  <Color x:Key="Blue GreyPrimary800Foreground">#DDFFFFFF</Color>
+  <Color x:Key="Blue GreyPrimary900">#263238</Color>
+  <Color x:Key="Blue GreyPrimary900Foreground">#DDFFFFFF</Color>
+</ResourceDictionary>

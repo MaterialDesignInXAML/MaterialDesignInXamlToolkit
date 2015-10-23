@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="MaterialDesignColors.WpfExample.Shadows"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel Margin="0 8 0 0">
+        <TextBlock>Raised controls have default shadows set, but the shadows can be overriden.</TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="0 32 0 0">
+            <Button Style="{DynamicResource MaterialDesignRaisedButton}"                    
+                    >DEPTH 1</Button>
+            <Button Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Margin="16 0 0 0"
+                    wpf:ShadowAssist.ShadowDepth="Depth2"
+                    >DEPTH 2</Button>
+            <Button Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Margin="16 0 0 0"
+                    wpf:ShadowAssist.ShadowDepth="Depth3"
+                    >DEPTH 3</Button>
+            <Button Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Margin="16 0 0 0"
+                    wpf:ShadowAssist.ShadowDepth="Depth4"
+                    >DEPTH 4</Button>
+            <Button Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Margin="16 0 0 0"
+                    wpf:ShadowAssist.ShadowDepth="Depth5"
+                    >DEPTH 5</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 32 0 0">
+            <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"                   
+                    wpf:ShadowAssist.ShadowDepth="Depth1"
+                    >1</Button>
+            <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"
+                    Margin="16 0 0 0"
+                    wpf:ShadowAssist.ShadowDepth="Depth2"
+                    >2</Button>
+            <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"
+                    Margin="16 0 0 0"                    
+                    wpf:ShadowAssist.ShadowDepth="Depth3"
+                    >3</Button>
+            <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"
+                    Margin="16 0 0 0"
+                    wpf:ShadowAssist.ShadowDepth="Depth4"
+                    >4</Button>
+            <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"
+                    Margin="16 0 0 0"
+                    wpf:ShadowAssist.ShadowDepth="Depth5"
+                    >5</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 32 0 0">
+            <wpf:Card wpf:ShadowAssist.ShadowDepth="Depth1" Padding="32">DEPTH 1</wpf:Card>
+            <wpf:Card wpf:ShadowAssist.ShadowDepth="Depth2" Margin="16 0 0 0" Padding="32">DEPTH 2</wpf:Card>
+            <wpf:Card wpf:ShadowAssist.ShadowDepth="Depth3" Margin="16 0 0 0" Padding="32">DEPTH 3</wpf:Card>
+            <wpf:Card wpf:ShadowAssist.ShadowDepth="Depth4" Margin="16 0 0 0" Padding="32">DEPTH 4</wpf:Card>
+            <wpf:Card wpf:ShadowAssist.ShadowDepth="Depth5" Margin="16 0 0 0" Padding="32">DEPTH 5</wpf:Card>
+        </StackPanel>
+            
+    </StackPanel>
+</UserControl>

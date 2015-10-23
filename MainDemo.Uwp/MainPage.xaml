@@ -1,0 +1,38 @@
+﻿<Page
+    x:Class="MainDemo.Uwp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MainDemo.Uwp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uwp="using:MaterialDesignThemes.Uwp"
+    mc:Ignorable="d"
+    FontFamily="ms-appx:///MaterialDesignThemes.Uwp/Assets/Roboto/Roboto-Regular.ttf#Roboto"
+    FontSize="14"
+    Background="{ThemeResource MaterialDesignPaper}"
+    Foreground="{ThemeResource MaterialDesignBody}"
+    RequestedTheme="Light"
+    >
+
+    <Page.Resources>
+        <ResourceDictionary>
+            
+            
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <StackPanel>
+            <TextBlock FontSize="28" Margin="8 0 0 0">Material Design In XAML Toolkit</TextBlock>
+            <TextBlock Margin="8 0 0 0" Foreground="{ThemeResource MaterialDesignBodyLight}">UWP Edition</TextBlock>
+            <StackPanel Margin="8 8 0 0" Orientation="Horizontal" VerticalAlignment="Top">
+                <Button Width="100" Style="{StaticResource MaterialDesignRaisedLightButton}">LIGHT</Button>
+                <Button Margin="8 0 0 0" Width="100" Style="{StaticResource MaterialDesignRaisedButton}">MID</Button>
+                <Button Margin="8 0 0 0" Width="100" Style="{StaticResource MaterialDesignRaisedDarkButton}">DARK</Button>
+                <Button Margin="8 0 0 0" Width="100" Style="{StaticResource MaterialDesignRaisedAccentButton}">ACCENT</Button>
+            </StackPanel>
+            <ToggleSwitch Style="{StaticResource MaterialDesignToggleSwitch}" />            
+        </StackPanel>
+    </Grid>
+</Page>

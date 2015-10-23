@@ -3,14 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              mc:Ignorable="d"              
-			 d:DesignWidth="680" d:DesignHeight="120">
+			 d:DesignWidth="200" d:DesignHeight="120">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -24,7 +23,7 @@
                 <ResourceDictionary>
                     <!-- include your primary palette -->
                     <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Indigo.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                     <!-- 
                             include three hues from the primary palette (and the associated forecolours).  
@@ -50,23 +49,22 @@
                     <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent700Foreground}"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+
             
-            
-
-
-
-
-
-
-
-
 
         </ResourceDictionary>
 
+
+
     </UserControl.Resources>
 
+    
     <Grid>
-        <ToolBarTray Style="{DynamicResource MaterialDesignToolBarTray}"  />
+        <wpf:Clock DisplayAutomation="None" Is24Hours="False" VerticalAlignment="Center" HorizontalAlignment="Center">
+        </wpf:Clock>
+        
     </Grid>
+    
+
 
 </UserControl>

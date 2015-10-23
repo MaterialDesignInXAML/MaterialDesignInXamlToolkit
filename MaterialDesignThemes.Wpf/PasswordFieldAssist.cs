@@ -57,4 +57,10 @@ namespace MaterialDesignThemes.Wpf
             return (PasswordBox)element.GetValue(ManagedProperty);
         }
     }
+
+    public static class ProgressBarAssist
+    {
+
+        
+    }
 }

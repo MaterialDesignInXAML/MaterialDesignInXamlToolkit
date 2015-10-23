@@ -22,7 +22,7 @@ namespace MaterialDesignThemes.Wpf
         private readonly IDictionary<char, string> _formats = new Dictionary<char, string>
             {
                 {'d', "dd"},
-                {'m', "MMM"},
+                {'m', "ddd, MMM"},
                 {'y', "yyyy"}
             };
 
@@ -112,17 +112,17 @@ namespace MaterialDesignThemes.Wpf
 		    private set { SetValue(IsDayInFirstComponentPropertyKey, value); }
 	    }
 
-
+        //FrameworkElement.LanguageProperty.OverrideMetadata(typeof (Calendar), (PropertyMetadata) new FrameworkPropertyMetadata(new PropertyChangedCallback(Calendar.OnLanguageChanged)));
         private void UpdateComponents()
         {
-            var dateTimeFormatInfo = CultureInfo.CurrentCulture.GetDateFormat();
+            var dateTimeFormatInfo = CultureInfo.CurrentUICulture.GetDateFormat();
 
             foreach (var component in dateTimeFormatInfo.ShortDatePattern.Split(new[] {dateTimeFormatInfo.DateSeparator},
                 StringSplitOptions.RemoveEmptyEntries).Select((s, index) => new {code = s.ToLower()[0], index}))
             {
 	            if (component.index == 0)
 		            IsDayInFirstComponent = component.code == 'd';
-				_setters[component.index](DisplayDate.ToString(_formats[component.code]).ToUpper());
+				_setters[component.index](DisplayDate.ToString(_formats[component.code], CultureInfo.CurrentUICulture).ToTitleCase());
             }					       
         }
 
@@ -160,7 +160,6 @@ namespace MaterialDesignThemes.Wpf
                         }
                     }
                 }
-
 
                 if (foundCal == null)
                 {

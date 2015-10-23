@@ -39,8 +39,8 @@ namespace MaterialDesignThemes.Wpf
 
             var farPoint = new Point(
                 Math.Max(0, _clipBorder.ActualWidth),
-                Math.Max(0, _clipBorder.ActualHeight));               
-
+                Math.Max(0, _clipBorder.ActualHeight));
+            
             var clipRect = new Rect(
                 new Point(),
                 new Point(farPoint.X, farPoint.Y));

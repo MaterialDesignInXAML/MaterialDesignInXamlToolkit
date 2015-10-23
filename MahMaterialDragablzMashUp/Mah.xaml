@@ -8,7 +8,6 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <TextBlock TextWrapping="Wrap">All controls using MahApps themes, will use Material Design pallete.</TextBlock>
-        <CheckBox Margin="0 8 0 0">CheckBox</CheckBox>
         <ListBox Margin="0 8 0 0">
             <ListBoxItem IsSelected="True">MahApps</ListBoxItem>
             <ListBoxItem>Dragablz</ListBoxItem>
@@ -17,5 +16,7 @@
         <controls:ToggleSwitch IsChecked="True" HorizontalAlignment="Left" />
         <Button Width="100" Margin="0 8 0 0" Content="Nice" HorizontalAlignment="Left"
                 Style="{DynamicResource AccentedSquareButtonStyle}" />
+        <controls:RangeSlider Margin="0 16 0 0" LowerValue="25" UpperValue="75" />
+        <controls:RangeSlider Margin="0 16 0 0" LowerValue="25" UpperValue="75" Orientation="Vertical" Height="200"  />
     </StackPanel>
 </UserControl>
