@@ -134,7 +134,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 if (animate) //Fade animation is enabled
                 {
-                    bool isfinished = false;
+                    System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
                     var brush = new SolidColorBrush();
                     ColorAnimation animation = new ColorAnimation()
                     {
@@ -144,15 +144,11 @@ namespace MaterialDesignThemes.Wpf
                     };
                     animation.Completed += (s,e) => 
      {
-        isfinished = true;
+        dispatcherTimer.Stop();
      };
                     brush.BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
-                    System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-                    dispatcherTimer.Tick += (sender, e) =>
-                    {
-                        if (!isfinished)
-                            parentDictionary[entryName] = brush;
-                    };
+                    
+                    dispatcherTimer.Tick += (sender, e) => parentDictionary[entryName] = brush;
                     dispatcherTimer.Interval = new TimeSpan(0,0,0,0,DURATION_MS / 60);//60 can be replaced with the animation frame rate.
                     dispatcherTimer.Start();
                     
