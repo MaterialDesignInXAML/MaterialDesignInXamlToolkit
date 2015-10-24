@@ -16,14 +16,19 @@
                 <Expander.Header>
                     <TextBlock Text="Expander Example 1" />
                 </Expander.Header>
-                <TextBlock Text="A short text to proof functionality." />
+                <Border Background="{StaticResource MaterialDesignBackground}" CornerRadius="5" Padding="5">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="A short text to proof functionality." />
+                        <TextBlock Margin="0,50,0,0" Text="A short text to proof functionality." />
+                    </StackPanel>
+                </Border>
             </Expander>
             <TextBlock Text="Text after the expander." Margin="0,8,0,0" />
         </StackPanel>
         <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" Margin="8" Orientation="Vertical" VerticalAlignment="Stretch">
             <Expander IsExpanded="False" HorizontalAlignment="Stretch">
                 <Expander.Header>
-                    <TextBlock Text="Expander Example 1" />
+                    <TextBlock Text="Expander Example 2" />
                 </Expander.Header>
                 <TextBlock Text="A short text to proof functionality." />
             </Expander>

@@ -2,16 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-    <Style x:Key="FocusVisual">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style x:Key="MaterialDesignExpanderToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="Width" Value="32"/>
         <Setter Property="Height" Value="32"/>
@@ -62,19 +52,46 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <Style x:Key="MaterialDesignExpanderHeaderToggleButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="8,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="MaterialDesignExpander" TargetType="{x:Type Expander}">
         <Setter Property="Background" Value="{StaticResource MaterialDesignPaper}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="OpenContent">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="PART_Content">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="CloseContent">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="PART_Content">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition MinHeight="25" />
                             <RowDefinition Name="PART_ContentRow" Height="0" />
                         </Grid.RowDefinitions>
                         <Border BorderThickness="0">
-                        <!--<Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0,0,0,1" CornerRadius="2,2,0,0">-->
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25" />
@@ -83,17 +100,34 @@
                                 <ToggleButton IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                               Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource TemplatedParent}}" OverridesDefaultStyle="True"
                                               Style="{StaticResource MaterialDesignExpanderToggleButton}" />
-                                <ContentPresenter Grid.Column="1" ContentSource="Header" HorizontalAlignment="Stretch" Margin="8,0" RecognizesAccessKey="True" VerticalAlignment="Center" />
+                                <ToggleButton Grid.Column="1" IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Style="{StaticResource MaterialDesignExpanderHeaderToggleButton}">
+                                    <ContentPresenter ContentSource="Header" HorizontalAlignment="Stretch" RecognizesAccessKey="True" VerticalAlignment="Center" />
+                                </ToggleButton>
                             </Grid>
                         </Border>
                         <Border Grid.Row="1">
-                        <!--<Border Grid.Row="1" x:Name="PART_Content" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1" CornerRadius="0,0,2,2">-->
-                            <ContentPresenter />
+                            <ContentPresenter Name="PART_Content">
+                                <ContentPresenter.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleY="0" />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsExpanded" Value="True">
                             <Setter TargetName="PART_ContentRow" Property="Height" Value="{Binding ElementName=PART_Content, Path=DesiredHeight}" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource OpenContent}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource CloseContent}" />
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
