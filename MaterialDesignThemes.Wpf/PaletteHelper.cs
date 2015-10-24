@@ -48,8 +48,8 @@ namespace MaterialDesignThemes.Wpf
 
             foreach (var color in swatch.PrimaryHues)
             {
-                ReplaceEntry(color.Name, color.Color);
-                ReplaceEntry(color.Name + "Foreground", color.Foreground);
+                ReplaceEntry(color.Name, color.Color, null, false);
+                ReplaceEntry(color.Name + "Foreground", color.Foreground, null, false);
             }
 
             ReplaceEntry("PrimaryHueLightBrush", new SolidColorBrush(light.Color));
@@ -95,8 +95,8 @@ namespace MaterialDesignThemes.Wpf
 
             foreach (var color in swatch.AccentHues)
             {
-                ReplaceEntry(color.Name, color.Color);
-                ReplaceEntry(color.Name + "Foreground", color.Foreground);
+                ReplaceEntry(color.Name, color.Color,null, false);
+                ReplaceEntry(color.Name + "Foreground", color.Foreground, null, false);
             }
 
             ReplaceEntry("SecondaryAccentBrush", new SolidColorBrush(swatch.AccentExemplarHue.Color));
@@ -134,29 +134,17 @@ namespace MaterialDesignThemes.Wpf
             {
                 if (animate) //Fade animation is enabled
                 {
-                    System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-                    var brush = new SolidColorBrush();
                     ColorAnimation animation = new ColorAnimation()
                     {
                         From = (Color)parentDictionary[entryName],//The old color
                         To = (Color)newValue, //The new color
                         Duration = new Duration(new TimeSpan(0,0,0,0,DURATION_MS))
                     };
-                    animation.Completed += (s,e) => 
-     {
-        dispatcherTimer.Stop();
-     };
-                    brush.BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
-                    
-                    dispatcherTimer.Tick += (sender, e) => parentDictionary[entryName] = brush;
-                    dispatcherTimer.Interval = new TimeSpan(0,0,0,0,DURATION_MS / 60);//60 can be replaced with the animation frame rate.
-                    dispatcherTimer.Start();
-                    
+                    parentDictionary[entryName] = new SolidColorBrush();
+                    (parentDictionary[entryName] as SolidColorBrush).BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
                 }
                 else
-                {
                     parentDictionary[entryName] = newValue;
-                }
                 return true;
             }
             foreach (var dictionary in parentDictionary.MergedDictionaries)
