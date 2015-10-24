@@ -14,9 +14,6 @@
     <converters:MathMultipleConverter x:Key="MathMultipleConverter" Operation="Multiply"/>
 
     <Storyboard x:Key="MaterialDesignComboBoxPopupAnimationExpand">
-        <DoubleAnimation Storyboard.TargetName="ItemsPresenter" Storyboard.TargetProperty="Opacity"
-                         From="0" To="1" Duration="0:0:0.5"
-                         AccelerationRatio="0.7" DecelerationRatio="0.3"/>
         <ThicknessAnimation Storyboard.TargetName="shadow"
                             Storyboard.TargetProperty="Margin"
                             From="16 0 0 0" To="0 0 0 0"
@@ -27,10 +24,15 @@
                          From="0" To="1"
                          AccelerationRatio="0.7" DecelerationRatio="0.3"
                          Duration="0:0:0.5"/>
+        <DoubleAnimation Storyboard.TargetName="PopupTemplateRootGrid"
+                         Storyboard.TargetProperty="Opacity"
+                         AccelerationRatio="0.7" DecelerationRatio="0.3"
+                         From="0" To="1" Duration="0:0:0.4"/>
     </Storyboard>
 
     <Storyboard x:Key="MaterialDesignComboBoxPopupAnimationCollapse">
-        <DoubleAnimation Storyboard.TargetName="ItemsPresenter" Storyboard.TargetProperty="Opacity"
+        <DoubleAnimation Storyboard.TargetName="PopupTemplateRootGrid"
+                         Storyboard.TargetProperty="Opacity"
                          To="0" Duration="0:0:0"/>
         <DoubleAnimation Storyboard.TargetName="AnimationScrollViewer"
                          Storyboard.TargetProperty="Tag"
@@ -290,6 +292,7 @@
                    PopupAnimation="None"
                    Placement="RelativePoint">
                 <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                      x:Name="PopupTemplateRootGrid"
                       Margin="5"
                       MinWidth="{Binding ActualWidth, ElementName=templateRoot, Converter={StaticResource MathAddConverter}, ConverterParameter=16}">
                     <Grid.RowDefinitions>
@@ -494,6 +497,7 @@
                         <ScaleTransform ScaleY="1"/>
                     </Popup.RenderTransform>
                     <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                          x:Name="PopupTemplateRootGrid"
                           Margin="5"
                           MinWidth="{Binding ActualWidth, ElementName=templateRoot, Converter={StaticResource MathAddConverter}, ConverterParameter=16}">
                         <Grid.RowDefinitions>
