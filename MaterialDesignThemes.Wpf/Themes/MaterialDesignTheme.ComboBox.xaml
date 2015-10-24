@@ -16,7 +16,7 @@
     <Storyboard x:Key="MaterialDesignComboBoxPopupAnimationExpand">
         <ThicknessAnimation Storyboard.TargetName="shadow"
                             Storyboard.TargetProperty="Margin"
-                            From="16 0 0 0" To="0 0 0 0"
+                            From="16 0 16 0" To="0 0 0 0"
                             AccelerationRatio="0.7" DecelerationRatio="0.3"
                             Duration="0:0:0.3"/>
         <DoubleAnimation Storyboard.TargetName="AnimationScrollViewer"
@@ -39,7 +39,7 @@
                          To="0" Duration="0:0:0"/>
         <ThicknessAnimation Storyboard.TargetName="shadow"
                             Storyboard.TargetProperty="Margin"
-                            To="16 0 0 0" Duration="0:0:0"/>
+                            To="16 0 16 0" Duration="0:0:0"/>
     </Storyboard>
 
     <Style x:Key="FocusVisual">
@@ -294,7 +294,7 @@
                 <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}"
                       x:Name="PopupTemplateRootGrid"
                       Margin="5"
-                      MinWidth="{Binding ActualWidth, ElementName=templateRoot, Converter={StaticResource MathAddConverter}, ConverterParameter=16}">
+                      MinWidth="{Binding ActualWidth, ElementName=templateRoot, Converter={StaticResource MathAddConverter}, ConverterParameter=32}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
@@ -311,7 +311,7 @@
                             Background="Transparent"
                             VerticalAlignment="Top"
                             CornerRadius="2"/>
-                    <Grid Grid.Row="0" Margin="16.5 16 0 8">
+                    <Grid Grid.Row="0" Margin="16.5 16 16 8">
                         <Grid Height="21">
                             <Border BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
@@ -497,7 +497,7 @@
                     <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}"
                           x:Name="PopupTemplateRootGrid"
                           Margin="5"
-                          MinWidth="{Binding ActualWidth, ElementName=templateRoot, Converter={StaticResource MathAddConverter}, ConverterParameter=16}">
+                          MinWidth="{Binding ActualWidth, ElementName=templateRoot, Converter={StaticResource MathAddConverter}, ConverterParameter=32}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
@@ -516,7 +516,7 @@
                                 CornerRadius="2"/>
                         <Grid Grid.Row="0"
                               x:Name="GridContentCloneWrapper"
-                              Margin="16.5 17 0 4">
+                              Margin="16.5 17 16 4">
                             <Grid Height="24"
                                   Margin="0 -1 0 0">
                                 <Grid>
@@ -592,7 +592,7 @@
         <ControlTemplate.Triggers>
             <Trigger Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False">
                 <Setter TargetName="GridHintWrapper" Property="Margin" Value="0 -1 0 0"/>
-                <Setter TargetName="GridContentCloneWrapper" Property="Margin" Value="16.5 25 0 4"/>
+                <Setter TargetName="GridContentCloneWrapper" Property="Margin" Value="16.5 25 16 4"/>
                 <Setter TargetName="PART_Popup" Property="VerticalOffset" Value="-23"/>
                 <Trigger.EnterActions>
                     <BeginStoryboard x:Name="MoveHintAsideStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintAsideStoryboard}"/>
@@ -603,7 +603,7 @@
             </Trigger>
             
             <Trigger Property="IsEditable" Value="True">
-                <Setter TargetName="GridContentCloneWrapper" Property="Margin" Value="16.5 25 0 4"/>
+                <Setter TargetName="GridContentCloneWrapper" Property="Margin" Value="16.5 25 16 4"/>
                 <Setter TargetName="PART_Popup" Property="VerticalOffset" Value="-23"/>
                 
                 <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
