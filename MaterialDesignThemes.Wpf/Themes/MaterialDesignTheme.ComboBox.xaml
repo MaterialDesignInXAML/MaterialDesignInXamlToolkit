@@ -314,32 +314,30 @@
                     <Grid Grid.Row="0" Margin="16.5 16 0 8">
                         <Grid Height="21">
                             <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}">
-                                <Grid>
-                                    <TextBox x:Name="EditableTextBoxClone"
-                                              Visibility="{Binding ElementName=PART_EditableTextBox, Path=Visibility}"
-                                              Text="{Binding ElementName=PART_EditableTextBox, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
-                                              Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
-                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                    <ContentPresenter ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                                      Visibility="{Binding ElementName=contentPresenter, Path=Visibility}"
-                                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                                      Content="{TemplateBinding SelectionBoxItem}"
-                                                      ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                      IsHitTestVisible="False"
-                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                    <TextBlock HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                               Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                                               IsHitTestVisible="False"
-                                               Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
-                                               Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
-                                </Grid>
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Visibility="{Binding ElementName=PART_EditableTextBox, Path=Visibility}">
+                                <TextBox x:Name="EditableTextBoxClone"
+                                          Text="{Binding ElementName=PART_EditableTextBox, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Border>
+                            <ContentPresenter ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                  Visibility="{Binding ElementName=contentPresenter, Path=Visibility}"
+                                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                  Content="{TemplateBinding SelectionBoxItem}"
+                                                  ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  IsHitTestVisible="False"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <TextBlock HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                       IsHitTestVisible="False"
+                                       Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
+                                       Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
                             <wpf:Underline IsActive="{Binding ElementName=EditableTextBoxClone, Path=IsKeyboardFocused}"
                                            Visibility="{Binding ElementName=Underline, Path=Visibility}"
                                            SnapsToDevicePixels="True"/>
@@ -522,29 +520,27 @@
                             <Grid Height="24"
                                   Margin="0 -1 0 0">
                                 <Grid>
+                                    <ContentPresenter ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                      Visibility="{Binding ElementName=contentPresenter, Path=Visibility}"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                      Content="{TemplateBinding SelectionBoxItem}"
+                                                      ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      IsHitTestVisible="False"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                     <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}">
-                                        <Grid>
-                                            <ContentPresenter ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                                              Visibility="{Binding ElementName=contentPresenter, Path=Visibility}"
-                                                              Margin="{TemplateBinding Padding}"
-                                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                                              Content="{TemplateBinding SelectionBoxItem}"
-                                                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                              IsHitTestVisible="False"
-                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                            <TextBox x:Name="EditableTextBoxClone"
-                                                     Visibility="{Binding ElementName=PART_EditableTextBox, Path=Visibility}"
-                                                     Margin="{TemplateBinding Padding}"
-                                                     Text="{Binding ElementName=PART_EditableTextBox, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                     IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
-                                                     Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
-                                                     VerticalAlignment="Center"
-                                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                        </Grid>
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Visibility="{Binding ElementName=PART_EditableTextBox, Path=Visibility}">
+                                        <TextBox x:Name="EditableTextBoxClone"
+                                                 Margin="{TemplateBinding Padding}"
+                                                 Text="{Binding ElementName=PART_EditableTextBox, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                                                 Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                     </Border>
                                     <wpf:Underline IsActive="{Binding ElementName=EditableTextBoxClone, Path=IsKeyboardFocused}"
                                                    Visibility="{Binding ElementName=Underline, Path=Visibility}"
