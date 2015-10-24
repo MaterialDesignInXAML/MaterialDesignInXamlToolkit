@@ -311,7 +311,7 @@
                             Background="Transparent"
                             VerticalAlignment="Top"
                             CornerRadius="2"/>
-                    <Grid Grid.Row="0" Margin="16.5 16 16 8">
+                    <Grid Grid.Row="0" Margin="16.5 16 16 4">
                         <Grid Height="21">
                             <Border BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
