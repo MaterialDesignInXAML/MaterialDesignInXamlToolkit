@@ -148,11 +148,11 @@ namespace MaterialDesignThemes.Wpf
                     catch
                     {
                         System.Diagnostics.Debug.WriteLine(@"The argument :" + nameof(newValue) + " is not a brush.");
-                        goto setval; //Set the value normally if type is incorrect
+                        parentDictionary[entryName] = newValue; //Set the value normally if type is incorrect
                     }
                 }
                 else
-            setval: parentDictionary[entryName] = newValue; //Set value normally
+                    parentDictionary[entryName] = newValue; //Set value normally
                 return true;
             }
             foreach (var dictionary in parentDictionary.MergedDictionaries)
