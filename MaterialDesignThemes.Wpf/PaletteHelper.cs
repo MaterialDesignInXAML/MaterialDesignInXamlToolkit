@@ -147,7 +147,7 @@ namespace MaterialDesignThemes.Wpf
                     }
                     catch
                     {
-                        System.Diagnostics.Debug.WriteLine(@"The argument :" + nameof(newValue) + " is not a brush. It is recommended to call the method like this ReplaceEntry(""SomeColor"", somethingnotabrush, null, false) to improve performance. Setting value without animation");
+                        System.Diagnostics.Debug.WriteLine(@"The argument :" + nameof(newValue) + " is not a brush.");
                         goto setval; //Set the value normally if type is incorrect
                     }
                 }
