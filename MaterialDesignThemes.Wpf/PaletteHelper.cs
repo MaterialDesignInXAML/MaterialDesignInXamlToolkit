@@ -134,17 +134,25 @@ namespace MaterialDesignThemes.Wpf
             {
                 if (animate) //Fade animation is enabled
                 {
-                    ColorAnimation animation = new ColorAnimation()
+                    try
                     {
-                        From = (Color)parentDictionary[entryName],//The old color
-                        To = (Color)newValue, //The new color
-                        Duration = new Duration(new TimeSpan(0,0,0,0,DURATION_MS))
-                    };
-                    parentDictionary[entryName] = parentDictionary[entryName] == null ? new SolidColorBrush() : parentDictionary[entryName];
-                    (parentDictionary[entryName] as SolidColorBrush).BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
+                        ColorAnimation animation = new ColorAnimation()
+                        {
+                            From = (Color)parentDictionary[entryName],//The old color
+                            To = (Color)newValue, //The new color
+                            Duration = new Duration(new TimeSpan(0,0,0,0,DURATION_MS)) //Set the duration
+                        };
+                        parentDictionary[entryName] = parentDictionary[entryName] == null ? new SolidColorBrush() : parentDictionary[entryName]; //Set the resource as a new SolidColorBrush if null.
+                        (parentDictionary[entryName] as SolidColorBrush).BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
+                    }
+                    catch
+                    {
+                        System.Diagnostics.Debug.WriteLine(@"The argument :" + nameof(newValue) + " is not a brush. It is recommended to call the method like this ReplaceEntry(""SomeColor"", somethingnotabrush, null, false) to improve performance. Setting value without animation");
+                        goto setval; //Set the value normally if type is incorrect
+                    }
                 }
                 else
-                    parentDictionary[entryName] = newValue;
+            setval: parentDictionary[entryName] = newValue; //Set value normally
                 return true;
             }
             foreach (var dictionary in parentDictionary.MergedDictionaries)
