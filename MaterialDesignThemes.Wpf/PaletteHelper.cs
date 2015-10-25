@@ -140,7 +140,7 @@ namespace MaterialDesignThemes.Wpf
                         To = (Color)newValue, //The new color
                         Duration = new Duration(new TimeSpan(0,0,0,0,DURATION_MS))
                     };
-                    parentDictionary[entryName] = new SolidColorBrush();
+                    parentDictionary[entryName] = parentDictionary[entryName] == null ? new SolidColorBrush() : parentDictionary[entryName];
                     (parentDictionary[entryName] as SolidColorBrush).BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
                 }
                 else
