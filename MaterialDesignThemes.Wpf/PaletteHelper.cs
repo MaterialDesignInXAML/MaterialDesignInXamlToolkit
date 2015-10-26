@@ -115,6 +115,33 @@ namespace MaterialDesignThemes.Wpf
 
             ReplaceAccentColor(swatch);
         }
+        #region Pinvoke
+            public struct PowerState
+            {
+                public ACLineStatus ACLineStatus;
+                public BatteryFlag BatteryFlag;
+                public Byte BatteryLifePercent;
+                public Byte Reserved1;
+                public Int32 BatteryLifeTime;
+                public Int32 BatteryFullLifeTime;
+            }
+            [DllImport("Kernel32", EntryPoint = "GetSystemPowerStatus")]
+            private static extern bool GetSystemPowerStatusRef(PowerState sps);
+            
+        #endregion
+        public static PowerState GetPowerState()
+        {
+            PowerState state = new PowerState();
+            if (GetSystemPowerStatusRef(state))
+                return state;
+
+            throw new ApplicationException("Unable to get power state");
+        }
+        // Note: Underlying type of byte to match Win32 header
+        public enum ACLineStatus : byte
+        {
+            Offline = 0, Online = 1, Unknown = 255
+        }
 
         /// <summary>
         /// Replaces a certain entry anywhere in the parent dictionary and its merged dictionaries
@@ -126,7 +153,7 @@ namespace MaterialDesignThemes.Wpf
         private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null, bool animate = true)
         {
             const int DURATION_MS = 500; //Change the value if needed
-            int ANIMATION_FPS = 60;
+            int ANIMATION_FPS = GetPowerState().ACLineStatus == Online ? 20 : 60;
             if (parentDictionary == null)
                 parentDictionary = Application.Current.Resources;
             
