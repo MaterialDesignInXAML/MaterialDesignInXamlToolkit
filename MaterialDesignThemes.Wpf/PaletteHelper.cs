@@ -126,23 +126,22 @@ namespace MaterialDesignThemes.Wpf
         private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null, bool animate = true)
         {
             const int DURATION_MS = 500; //Change the value if needed
-            
+            int ANIMATION_FPS = 60;
             if (parentDictionary == null)
                 parentDictionary = Application.Current.Resources;
             
             if (parentDictionary.Contains(entryName))
             {
-                if (animate) //Fade animation is enabled
+                if (animate & parentDictionary[entryName] != null ) //Fade animation is enabled and value is not null.
                 {
                     try
                     {
                         ColorAnimation animation = new ColorAnimation()
                         {
-                            From = (Color)parentDictionary[entryName],//The old color
-                            To = (Color)newValue, //The new color
+                            From = ((SolidColorBrush)parentDictionary[entryName]).Color,//The old color
+                            To = ((SolidColorBrush)newValue).Color, //The new color
                             Duration = new Duration(new TimeSpan(0,0,0,0,DURATION_MS)) //Set the duration
                         };
-                        parentDictionary[entryName] = parentDictionary[entryName] == null ? new SolidColorBrush() : parentDictionary[entryName]; //Set the resource as a new SolidColorBrush if null.
                         (parentDictionary[entryName] as SolidColorBrush).BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
                     }
                     catch
@@ -161,5 +160,5 @@ namespace MaterialDesignThemes.Wpf
                     
             return false;
         }
-    }
+    }    
 }
