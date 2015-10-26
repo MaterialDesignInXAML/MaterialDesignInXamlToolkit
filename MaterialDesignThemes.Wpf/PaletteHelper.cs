@@ -153,13 +153,12 @@ namespace MaterialDesignThemes.Wpf
         private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null, bool animate = true)
         {
             const int DURATION_MS = 500; //Change the value if needed
-            int ANIMATION_FPS = GetPowerState().ACLineStatus == Online ? 20 : 60;
             if (parentDictionary == null)
                 parentDictionary = Application.Current.Resources;
             
             if (parentDictionary.Contains(entryName))
             {
-                if (animate & parentDictionary[entryName] != null ) //Fade animation is enabled and value is not null.
+                if (animate & parentDictionary[entryName] != null & GetPowerState().ACLineStatus == Online) //Fade animation is enabled and value is not null.
                 {
                     try
                     {
