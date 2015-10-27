@@ -143,7 +143,7 @@ namespace MaterialDesignThemes.Wpf
         {
             Offline = 0, Online = 1, Unknown = 255
         }
-        public static bool DisableAnimationOnBattery = true
+        public static bool DisableAnimationOnBattery = true;
         /// <summary>
         /// Replaces a certain entry anywhere in the parent dictionary and its merged dictionaries
         /// </summary>
