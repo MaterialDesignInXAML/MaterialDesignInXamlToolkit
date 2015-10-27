@@ -159,7 +159,7 @@ namespace MaterialDesignThemes.Wpf
             
             if (parentDictionary.Contains(entryName))
             {
-                if (animate & parentDictionary[entryName] != null & GetPowerState().ACLineStatus == Online) //Fade animation is enabled and value is not null.
+                if (animate & parentDictionary[entryName] != null & GetPowerState().ACLineStatus == ACLineStatus.Online) //Fade animation is enabled and value is not null.
                 {
                     try
                     {
