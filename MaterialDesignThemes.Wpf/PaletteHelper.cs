@@ -49,8 +49,8 @@ namespace MaterialDesignThemes.Wpf
 
             foreach (var color in swatch.PrimaryHues)
             {
-                ReplaceEntry(color.Name, color.Color, null, false);
-                ReplaceEntry(color.Name + "Foreground", color.Foreground, null, false);
+                ReplaceEntry(color.Name, color.Color);
+                ReplaceEntry(color.Name + "Foreground", color.Foreground);
             }
 
             ReplaceEntry("PrimaryHueLightBrush", new SolidColorBrush(light.Color));
@@ -96,8 +96,8 @@ namespace MaterialDesignThemes.Wpf
 
             foreach (var color in swatch.AccentHues)
             {
-                ReplaceEntry(color.Name, color.Color,null, false);
-                ReplaceEntry(color.Name + "Foreground", color.Foreground, null, false);
+                ReplaceEntry(color.Name, color.Color);
+                ReplaceEntry(color.Name + "Foreground", color.Foreground);
             }
 
             ReplaceEntry("SecondaryAccentBrush", new SolidColorBrush(swatch.AccentExemplarHue.Color));
