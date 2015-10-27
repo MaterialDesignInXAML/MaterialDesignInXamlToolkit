@@ -143,7 +143,7 @@ namespace MaterialDesignThemes.Wpf
         {
             Offline = 0, Online = 1, Unknown = 255
         }
-
+        public static bool DisableAnimationOnBattery = true
         /// <summary>
         /// Replaces a certain entry anywhere in the parent dictionary and its merged dictionaries
         /// </summary>
@@ -159,7 +159,8 @@ namespace MaterialDesignThemes.Wpf
             
             if (parentDictionary.Contains(entryName))
             {
-                if (animate & parentDictionary[entryName] != null & GetPowerState().ACLineStatus == ACLineStatus.Online & parentDictionary[entryName] as SolidColorBrush != null) //Fade animation is enabled , type is solidcolorbrush and value is not null.
+                bool battery = GetPowerState().ACLineStatus == ACLineStatus.Online | !DisableAnimationOnBattery;
+                if (animate & parentDictionary[entryName] != null & battery & parentDictionary[entryName] as SolidColorBrush != null) //Fade animation is enabled , type is solidcolorbrush and value is not null.
                 {
                     ColorAnimation animation = new ColorAnimation()
                     {
