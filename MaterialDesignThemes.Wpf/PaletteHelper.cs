@@ -120,7 +120,7 @@ namespace MaterialDesignThemes.Wpf
             public struct PowerState
             {
                 public ACLineStatus ACLineStatus;
-                public BatteryFlag BatteryFlag;
+                public byte BatteryFlag;
                 public Byte BatteryLifePercent;
                 public Byte Reserved1;
                 public Int32 BatteryLifeTime;
