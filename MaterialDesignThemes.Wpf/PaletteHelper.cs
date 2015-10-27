@@ -159,23 +159,15 @@ namespace MaterialDesignThemes.Wpf
             
             if (parentDictionary.Contains(entryName))
             {
-                if (animate & parentDictionary[entryName] != null & GetPowerState().ACLineStatus == ACLineStatus.Online) //Fade animation is enabled and value is not null.
+                if (animate & parentDictionary[entryName] != null & GetPowerState().ACLineStatus == ACLineStatus.Online & parentDictionary[entryName] as SolidColorBrush != null) //Fade animation is enabled , type is solidcolorbrush and value is not null.
                 {
-                    try
+                    ColorAnimation animation = new ColorAnimation()
                     {
-                        ColorAnimation animation = new ColorAnimation()
-                        {
-                            From = ((SolidColorBrush)parentDictionary[entryName]).Color,//The old color
-                            To = ((SolidColorBrush)newValue).Color, //The new color
-                            Duration = new Duration(new TimeSpan(0,0,0,0,DURATION_MS)) //Set the duration
-                        };
-                        (parentDictionary[entryName] as SolidColorBrush).BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
-                    }
-                    catch
-                    {
-                        System.Diagnostics.Debug.WriteLine(@"The argument :" + nameof(newValue) + " is not a brush.");
-                        parentDictionary[entryName] = newValue; //Set the value normally if type is incorrect
-                    }
+                        From = ((SolidColorBrush)parentDictionary[entryName]).Color,//The old color
+                        To = ((SolidColorBrush)newValue).Color, //The new color
+                        Duration = new Duration(new TimeSpan(0,0,0,0,DURATION_MS)) //Set the duration
+                    };
+                    (parentDictionary[entryName] as SolidColorBrush).BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
                 }
                 else
                     parentDictionary[entryName] = newValue; //Set value normally
