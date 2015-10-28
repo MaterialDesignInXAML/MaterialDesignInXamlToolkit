@@ -11,7 +11,7 @@ namespace MaterialDesignThemes.Wpf.Converters
     public enum MathOperation
     {
         Add,
-        Sub,
+        Subtract,
         Multiply,
         Divide
     }
@@ -34,7 +34,7 @@ namespace MaterialDesignThemes.Wpf.Converters
                         return value1 / value2;
                     case MathOperation.Multiply:
                         return value1 * value2;
-                    case MathOperation.Sub:
+                    case MathOperation.Subtract:
                         return value1 - value2;
                 }
             }

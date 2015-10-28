@@ -10,8 +10,15 @@ using System.Threading.Tasks;
 namespace MaterialDesignColors.WpfExample.Domain
 {
     public class TextFieldsViewModel : INotifyPropertyChanged
-    {       
+    {
+        private readonly IList<int> _longListToTestComboVirtualization;
+            
         private string _name;
+
+        public TextFieldsViewModel()
+        {
+            _longListToTestComboVirtualization = new List<int>(Enumerable.Range(0, 1000));            
+        }
 
         public string Name
         {
@@ -23,13 +30,13 @@ namespace MaterialDesignColors.WpfExample.Domain
             }
         }
 
+        public IList<int> LongListToTestComboVirtualization => _longListToTestComboVirtualization;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
