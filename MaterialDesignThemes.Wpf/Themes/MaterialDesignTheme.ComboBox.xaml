@@ -1,15 +1,48 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                    
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
 	<converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
+    <converters:MathConverter Operation="Add" x:Key="MathAddConverter"/>
+    <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
+    <converters:MathMultipleConverter x:Key="MathMultipleConverter" Operation="Multiply"/>
 
-	<Style x:Key="FocusVisual">
+    <Storyboard x:Key="MaterialDesignComboBoxPopupAnimationExpand">
+        <ThicknessAnimation Storyboard.TargetName="shadow"
+                            Storyboard.TargetProperty="Margin"
+                            From="16 0 16 0" To="0 0 0 0"
+                            AccelerationRatio="0.7" DecelerationRatio="0.3"
+                            Duration="0:0:0.3"/>
+        <DoubleAnimation Storyboard.TargetName="AnimationScrollViewer"
+                         Storyboard.TargetProperty="Tag"
+                         From="0" To="1"
+                         AccelerationRatio="0.7" DecelerationRatio="0.3"
+                         Duration="0:0:0.5"/>
+        <DoubleAnimation Storyboard.TargetName="PopupTemplateRootGrid"
+                         Storyboard.TargetProperty="Opacity"
+                         AccelerationRatio="0.7" DecelerationRatio="0.3"
+                         From="0" To="1" Duration="0:0:0.4"/>
+    </Storyboard>
+
+    <Storyboard x:Key="MaterialDesignComboBoxPopupAnimationCollapse">
+        <DoubleAnimation Storyboard.TargetName="PopupTemplateRootGrid"
+                         Storyboard.TargetProperty="Opacity"
+                         To="0" Duration="0:0:0"/>
+        <DoubleAnimation Storyboard.TargetName="AnimationScrollViewer"
+                         Storyboard.TargetProperty="Tag"
+                         To="0" Duration="0:0:0"/>
+        <ThicknessAnimation Storyboard.TargetName="shadow"
+                            Storyboard.TargetProperty="Margin"
+                            To="16 0 16 0" Duration="0:0:0"/>
+    </Storyboard>
+
+    <Style x:Key="FocusVisual">
 		<Setter Property="Control.Template">
 			<Setter.Value>
 				<ControlTemplate>
@@ -17,80 +50,134 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
-	</Style>
+    </Style>
 
-	<Style x:Key="MaterialDesignComboBoxItemStyle" TargetType="{x:Type ComboBoxItem}">
-		<Setter Property="SnapsToDevicePixels" Value="True"/>
-		<Setter Property="Padding" Value="8"/>
-		<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-		<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-		<Setter Property="Background" Value="Transparent"/>
-		<Setter Property="BorderBrush" Value="Transparent"/>
-		<Setter Property="BorderThickness" Value="0"/>
-		<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>        
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type ComboBoxItem}">
-					<Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
-						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-					</Border>
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsEnabled" Value="False">
-							<Setter Property="Opacity" TargetName="Bd" Value="0.56"/>
-						</Trigger>
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="IsSelected" Value="False"/>
-								<Condition Property="IsMouseOver" Value="True"/>
-								<Condition Property="IsKeyboardFocused" Value="False"/>
-							</MultiTrigger.Conditions>
-							<Setter Property="Background" TargetName="Bd" Value="{DynamicResource MaterialDesignDivider}"/>
-						</MultiTrigger>
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="IsSelected" Value="True"/>
-								<Condition Property="IsMouseOver" Value="False"/>
-								<Condition Property="IsKeyboardFocused" Value="True"/>
-							</MultiTrigger.Conditions>
-							<Setter Property="Background" TargetName="Bd" Value="{DynamicResource MaterialDesignSelection}"/>
-						</MultiTrigger>
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="IsSelected" Value="True"/>
-								<Condition Property="IsMouseOver" Value="True"/>
-							</MultiTrigger.Conditions>
-							<Setter Property="Background" TargetName="Bd" Value="{DynamicResource MaterialDesignSelection}"/>
-						</MultiTrigger>
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="IsSelected" Value="True"/>
-								<Condition Property="IsMouseOver" Value="False"/>
-								<Condition Property="IsKeyboardFocused" Value="False"/>
-							</MultiTrigger.Conditions>
-							<Setter Property="Background" TargetName="Bd" Value="{DynamicResource MaterialDesignSelection}"/>
-						</MultiTrigger>
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="IsSelected" Value="False"/>
-								<Condition Property="IsMouseOver" Value="False"/>
-								<Condition Property="IsKeyboardFocused" Value="True"/>
-							</MultiTrigger.Conditions>
-							<Setter Property="Background" TargetName="Bd" Value="{DynamicResource MaterialDesignDivider}"/>
-						</MultiTrigger>
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="IsSelected" Value="False"/>
-								<Condition Property="IsMouseOver" Value="True"/>
-								<Condition Property="IsKeyboardFocused" Value="True"/>
-							</MultiTrigger.Conditions>
-							<Setter Property="Background" TargetName="Bd" Value="{DynamicResource MaterialDesignDivider}"/>
-						</MultiTrigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-	
+    <Style x:Key="MaterialDesignComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="MinHeight" Value="0"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 1 0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+											  />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="MaterialDesignComboBoxItemTemplate" TargetType="{x:Type ComboBoxItem}">
+        <Grid x:Name="GridWrapper">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                            <VisualTransition.GeneratedEasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </VisualTransition.GeneratedEasingFunction>
+                        </VisualTransition>
+                    </VisualStateGroup.Transitions>
+                    <VisualState Name="Normal">
+                    </VisualState>
+                    <VisualState Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
+                                                         To="0.1" Duration="0"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup Name="SelectionStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.3"/>
+                    </VisualStateGroup.Transitions>
+                    <VisualState Name="Selected">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="SelectedBorder" Storyboard.TargetProperty="Opacity"
+                                                         To="0.18" Duration="0"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState Name="Unselected"/>
+                </VisualStateGroup>
+                <VisualStateGroup Name="FocusStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.3" To="Unfocused"/>
+                    </VisualStateGroup.Transitions>
+                    <VisualState Name="Focused">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
+                                                         To="0.1" Duration="0"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState Name="Unfocused"/>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="BackBorder"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Background="{TemplateBinding Background}"
+                    SnapsToDevicePixels="true"/>
+
+            <Border x:Name="MouseOverBorder"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Opacity="0"
+                    SnapsToDevicePixels="true"/>
+            <Border x:Name="SelectedBorder"
+                    Opacity="0"
+                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    RenderTransformOrigin="0.5,0.5"/>
+            <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        Focusable="False"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Padding="{TemplateBinding Padding}"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="GridWrapper" Value="0.56"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Tag" Value="1.0"/>
+                    <Condition Property="IsSelected" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    
+    <Style x:Key="MaterialDesignComboBoxItemStyle" TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Padding" Value="16 8"/>
+        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Template" Value="{StaticResource MaterialDesignComboBoxItemTemplate}"/>
+    </Style>
+
+
+    <Style x:Key="MaterialDesignComboBoxItemSelectedCollapsedStyle" TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource MaterialDesignComboBoxItemStyle}">
+        <Setter Property="Tag" Value="1.0"/>
+    </Style>
+
+
+
     <Style x:Key="MaterialDesignComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
 		<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
 		<Setter Property="OverridesDefaultStyle" Value="true"/>
@@ -157,45 +244,152 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
             </Grid.ColumnDefinitions>
-            <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
-                <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" UseLayoutRounding="True">
-                    <Border x:Name="shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2" BorderThickness="1"
-                                        Effect="{StaticResource MaterialDesignShadowDepth2}" />
-                    <Border x:Name="dropDownBorder" Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}" Background="Transparent"
-                            CornerRadius="2" BorderThickness="1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <ToggleButton x:Name="toggleButton"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          Background="{TemplateBinding Background}"
+                          Grid.ColumnSpan="2"
+                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                          Style="{StaticResource MaterialDesignComboBoxToggleButton}"/>
+
+
+            <TextBlock x:Name="Hint"
+                       Margin="{TemplateBinding Padding}"
+                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                       IsHitTestVisible="False"                       
+                       Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
+                       Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
+            <ContentPresenter x:Name="contentPresenter"
+                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                              Content="{TemplateBinding SelectionBoxItem}"
+                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              IsHitTestVisible="false"
+                              Margin="{TemplateBinding Padding}"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            <TextBox x:Name="PART_EditableTextBox"
+                     Visibility="Collapsed"
+                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                     IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                     Margin="{TemplateBinding Padding}"
+                     Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            <wpf:Underline x:Name="Underline" Grid.ColumnSpan="2"
+                           IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
+                           Visibility="Collapsed" />
+
+            <Popup x:Name="PART_Popup"
+                   Grid.ColumnSpan="2"
+                   AllowsTransparency="true"
+                   Focusable="False"
+                   VerticalOffset="-12"
+                   HorizontalOffset="-16"
+                   IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                   PopupAnimation="None"
+                   Placement="RelativePoint">
+                <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                      x:Name="PopupTemplateRootGrid"
+                      Margin="5"
+                      MinWidth="{Binding ActualWidth, ElementName=templateRoot, Converter={StaticResource MathAddConverter}, ConverterParameter=32}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Border x:Name="shadow"
+                            Grid.RowSpan="3"
+                            Background="{DynamicResource MaterialDesignPaper}"
+                            CornerRadius="2"
+                            Effect="{StaticResource MaterialDesignShadowDepth2}" />
+                    <Border x:Name="dropDownBorder"
+                            Grid.RowSpan="3"
+                            Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}"
+                            Background="Transparent"
+                            VerticalAlignment="Top"
+                            CornerRadius="2"/>
+                    <Grid Grid.Row="0" Margin="16.5 16 16 4">
+                        <Grid Height="21">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Visibility="{Binding ElementName=PART_EditableTextBox, Path=Visibility}">
+                                <TextBox x:Name="EditableTextBoxClone"
+                                          Text="{Binding ElementName=PART_EditableTextBox, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                            <ContentPresenter ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                  Visibility="{Binding ElementName=contentPresenter, Path=Visibility}"
+                                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                  Content="{TemplateBinding SelectionBoxItem}"
+                                                  ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  IsHitTestVisible="False"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <TextBlock HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                       IsHitTestVisible="False"
+                                       Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
+                                       Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
+                            <wpf:Underline IsActive="{Binding ElementName=EditableTextBoxClone, Path=IsKeyboardFocused}"
+                                           Visibility="{Binding ElementName=Underline, Path=Visibility}"
+                                           SnapsToDevicePixels="True"/>
+                        </Grid>
+                    </Grid>
+                    <ScrollViewer Grid.Row="1"
+                                  x:Name="AnimationScrollViewer"
+                                  VerticalScrollBarVisibility="Hidden">
+                        <ScrollViewer.Tag>
+                            <system:Double>0.0</system:Double>
+                        </ScrollViewer.Tag>
+                        <ScrollViewer.Height>
+                            <MultiBinding Converter="{StaticResource MathMultipleConverter}">
+                                <Binding Path="ActualHeight" ElementName="DropDownScrollViewer"/>
+                                <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
+                            </MultiBinding>
+                        </ScrollViewer.Height>
                         <ScrollViewer x:Name="DropDownScrollViewer">
-                            <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
-                                <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                    <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
-                                </Canvas>
-                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" UseLayoutRounding="False" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                            </Grid>
+                            <StackPanel x:Name="ItemsPresenter"
+                                        HorizontalAlignment="Stretch"
+                                        IsItemsHost="True"
+                                        KeyboardNavigation.DirectionalNavigation="Contained"
+                                        UseLayoutRounding="True"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </ScrollViewer>
-                    </Border>
+                    </ScrollViewer>
+                    <Rectangle Grid.Row="2"
+                               Height="8"
+                               HorizontalAlignment="Stretch"
+                               Fill="Transparent"/>
                 </Grid>
             </Popup>
-            <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource MaterialDesignComboBoxToggleButton}"
-                                  />
-            <TextBlock x:Name="Hint"
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                            IsHitTestVisible="False"                       
-                            Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
-                            Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
-            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-            <wpf:Underline x:Name="Underline" Grid.ColumnSpan="2"/>
         </Grid>
         <ControlTemplate.Triggers>
+            <Trigger Property="IsEditable" Value="True">
+                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="Underline" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="IsDropDownOpen" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard Storyboard="{DynamicResource MaterialDesignComboBoxPopupAnimationExpand}"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard Storyboard="{DynamicResource MaterialDesignComboBoxPopupAnimationCollapse}"/>
+                </Trigger.ExitActions>
+            </Trigger>
             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
-                <Setter Property="Margin" TargetName="shadow" Value="5,5,5,5"/>
+                <Setter Property="Margin" TargetName="shadow" Value="0"/>
             </Trigger>
             <Trigger Property="HasItems" Value="false">
                 <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
-            </Trigger>
-            <Trigger Property="IsKeyboardFocused" Value="True">
-                <Setter TargetName="Underline" Property="IsActive" Value="True"/>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -204,10 +398,6 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
             </MultiTrigger>
-            <Trigger Property="ScrollViewer.CanContentScroll" SourceName="DropDownScrollViewer" Value="false">
-                <Setter Property="Canvas.Top" TargetName="opaqueRect" Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}"/>
-                <Setter Property="Canvas.Left" TargetName="opaqueRect" Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}"/>
-            </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -260,42 +450,173 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
                 </Grid.ColumnDefinitions>
-                <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
-                    <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" UseLayoutRounding="True">
-                        <Border x:Name="shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2" BorderThickness="1"
-                                            Effect="{StaticResource MaterialDesignShadowDepth2}" />
-                        <Border x:Name="dropDownBorder" Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}" Background="Transparent"
-                                CornerRadius="2" BorderThickness="1" BorderBrush="{DynamicResource MaterialDesignDivider}">
-                            <ScrollViewer x:Name="DropDownScrollViewer">
-                                <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
-                                    <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                        <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
-                                    </Canvas>
-                                    <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" UseLayoutRounding="False" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                </Grid>
-                            </ScrollViewer>
-                        </Border>
-                    </Grid>
-                </Popup>
                 <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource MaterialDesignComboBoxToggleButton}"
                                       />
                 <TextBlock x:Name="Hint"
                            Margin="{TemplateBinding Padding}"
+                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"        
                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"                       
                            Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                           IsHitTestVisible="False"                       
+                           IsHitTestVisible="False"
+                           FontSize="{TemplateBinding FontSize}"
                            Text="{TemplateBinding wpf:TextFieldAssist.Hint}" />
-                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                <wpf:Underline x:Name="Underline" Grid.ColumnSpan="2"/>
+                <ContentPresenter x:Name="contentPresenter"
+                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                  Content="{TemplateBinding SelectionBoxItem}"
+                                  ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  IsHitTestVisible="false"
+                                  Margin="{TemplateBinding Padding}"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                <TextBox x:Name="PART_EditableTextBox"
+                         Visibility="Collapsed"
+                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                         IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                         Margin="{TemplateBinding Padding}"
+                         Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                <wpf:Underline x:Name="Underline" Grid.ColumnSpan="2"
+                           IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
+                           Visibility="Collapsed" />
+
+
+                <Popup x:Name="PART_Popup"
+                       Grid.ColumnSpan="2"
+                       AllowsTransparency="true"
+                       Focusable="False"
+                       VerticalOffset="-15"
+                       HorizontalOffset="-16"
+                       IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                       PopupAnimation="None"
+                       Placement="RelativePoint">
+                    <Popup.RenderTransform>
+                        <ScaleTransform ScaleY="1"/>
+                    </Popup.RenderTransform>
+                    <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                          x:Name="PopupTemplateRootGrid"
+                          Margin="5"
+                          MinWidth="{Binding ActualWidth, ElementName=templateRoot, Converter={StaticResource MathAddConverter}, ConverterParameter=32}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Border x:Name="shadow"
+                                Grid.RowSpan="3"
+                                Background="{DynamicResource MaterialDesignPaper}"
+                                CornerRadius="2"
+                                Effect="{StaticResource MaterialDesignShadowDepth2}" />
+                        <Border x:Name="dropDownBorder"
+                                Grid.RowSpan="3"
+                                Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}"
+                                Background="Transparent"
+                                VerticalAlignment="Top"
+                                CornerRadius="2"/>
+                        <Grid Grid.Row="0"
+                              x:Name="GridContentCloneWrapper"
+                              Margin="16.5 17 16 4">
+                            <Grid Height="24"
+                                  Margin="0 -1 0 0">
+                                <Grid>
+                                    <ContentPresenter ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                      Visibility="{Binding ElementName=contentPresenter, Path=Visibility}"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                      Content="{TemplateBinding SelectionBoxItem}"
+                                                      ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      IsHitTestVisible="False"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Visibility="{Binding ElementName=PART_EditableTextBox, Path=Visibility}">
+                                        <TextBox x:Name="EditableTextBoxClone"
+                                                 Margin="{TemplateBinding Padding}"
+                                                 Text="{Binding ElementName=PART_EditableTextBox, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                                                 Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Border>
+                                    <wpf:Underline IsActive="{Binding ElementName=EditableTextBoxClone, Path=IsKeyboardFocused}"
+                                                   Visibility="{Binding ElementName=Underline, Path=Visibility}"
+                                                   SnapsToDevicePixels="True"/>
+                                </Grid>
+                                <Grid Margin="0 0 0 0"
+                                      x:Name="GridHintWrapper">
+                                    <TextBlock x:Name="HintClone"
+                                               Foreground="{Binding ElementName=Hint, Path=Foreground}"
+                                               Margin="{Binding ElementName=Hint, Path=Margin}"
+                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"                      
+                                               Opacity="{Binding ElementName=Hint, Path=Opacity}"
+                                               IsHitTestVisible="False"
+                                               FontSize="{Binding ElementName=Hint, Path=FontSize}"
+                                               Text="{TemplateBinding wpf:TextFieldAssist.Hint}" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <ScrollViewer Grid.Row="1"
+                                      x:Name="AnimationScrollViewer"
+                                      VerticalScrollBarVisibility="Hidden">
+                            <ScrollViewer.Tag>
+                                <system:Double>0.0</system:Double>
+                            </ScrollViewer.Tag>
+                            <ScrollViewer.Height>
+                                <MultiBinding Converter="{StaticResource MathMultipleConverter}">
+                                    <Binding Path="ActualHeight" ElementName="DropDownScrollViewer"/>
+                                    <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
+                                </MultiBinding>
+                            </ScrollViewer.Height>
+                            <ScrollViewer x:Name="DropDownScrollViewer">
+                                <StackPanel x:Name="ItemsPresenter"
+                                            HorizontalAlignment="Stretch"
+                                            IsItemsHost="True"
+                                            KeyboardNavigation.DirectionalNavigation="Contained"
+                                            UseLayoutRounding="True"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                        </ScrollViewer>
+                        <Rectangle Grid.Row="2"
+                                   Height="8"
+                                   HorizontalAlignment="Stretch"
+                                   Fill="Transparent"/>
+                    </Grid>
+                </Popup>
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False">
+                <Setter TargetName="GridHintWrapper" Property="Margin" Value="0 -1 0 0"/>
+                <Setter TargetName="GridContentCloneWrapper" Property="Margin" Value="16.5 25 16 4"/>
+                <Setter TargetName="PART_Popup" Property="VerticalOffset" Value="-23"/>
                 <Trigger.EnterActions>
                     <BeginStoryboard x:Name="MoveHintAsideStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintAsideStoryboard}"/>
                 </Trigger.EnterActions>
                 <Trigger.ExitActions>
                     <BeginStoryboard x:Name="MoveHintBackStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintBackStoryboard}"/>
+                </Trigger.ExitActions>
+            </Trigger>
+            
+            <Trigger Property="IsEditable" Value="True">
+                <Setter TargetName="GridContentCloneWrapper" Property="Margin" Value="16.5 25 16 4"/>
+                <Setter TargetName="PART_Popup" Property="VerticalOffset" Value="-23"/>
+                
+                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="Underline" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed"/>
+            </Trigger>
+            
+            <Trigger Property="IsDropDownOpen" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard Storyboard="{DynamicResource MaterialDesignComboBoxPopupAnimationExpand}"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard Storyboard="{DynamicResource MaterialDesignComboBoxPopupAnimationCollapse}"/>
                 </Trigger.ExitActions>
             </Trigger>
             <MultiTrigger>
@@ -305,211 +626,6 @@
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </MultiTrigger>
-            <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
-                <Setter Property="Margin" TargetName="shadow" Value="5,5,5,5"/>
-            </Trigger>
-            <Trigger Property="HasItems" Value="false">
-                <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
-            </Trigger>
-            <Trigger Property="IsKeyboardFocused" Value="True">
-                <Setter TargetName="Underline" Property="IsActive" Value="True"/>
-            </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsGrouping" Value="true"/>
-                    <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
-            </MultiTrigger>
-            <Trigger Property="ScrollViewer.CanContentScroll" SourceName="DropDownScrollViewer" Value="false">
-                <Setter Property="Canvas.Top" TargetName="opaqueRect" Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}"/>
-                <Setter Property="Canvas.Left" TargetName="opaqueRect" Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}"/>
-            </Trigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
-
-    <Style x:Key="MaterialDesignComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
-		<Setter Property="OverridesDefaultStyle" Value="true"/>
-		<Setter Property="AllowDrop" Value="true"/>
-		<Setter Property="MinWidth" Value="0"/>
-		<Setter Property="MinHeight" Value="0"/>
-		<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-		<Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-		<Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-		<Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 1 0" />
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type TextBox}">
-					<Grid>
-                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-											  />
-                    </Grid>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-
-    <ControlTemplate x:Key="MaterialDesignComboBoxEditableTemplate" TargetType="{x:Type ComboBox}">
-        <Grid x:Name="templateRoot" SnapsToDevicePixels="true"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
-			</Grid.ColumnDefinitions>
-			<Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
-                <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" UseLayoutRounding="True">
-                    <Border x:Name="shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2" BorderThickness="1"
-                                        Effect="{StaticResource MaterialDesignShadowDepth2}" />
-                    <Border x:Name="dropDownBorder" Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}" Background="Transparent"
-                            CornerRadius="2" BorderThickness="1" BorderBrush="{DynamicResource MaterialDesignDivider}">
-                        <ScrollViewer x:Name="DropDownScrollViewer">
-                            <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
-                                <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                    <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
-                                </Canvas>
-                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" UseLayoutRounding="False" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                            </Grid>
-                        </ScrollViewer>
-                    </Border>
-                </Grid>
-			</Popup>
-			<ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource MaterialDesignComboBoxToggleButton}"/>
-			<Border x:Name="border" Background="Transparent" Margin="{TemplateBinding BorderThickness}">
-                <Grid>
-                    <TextBlock x:Name="Hint"
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                            Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
-                            IsHitTestVisible="False"
-                            Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
-				    <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                </Grid>
-            </Border>
-            <wpf:Underline x:Name="Underline" Grid.ColumnSpan="2" />
-        </Grid>
-        <ControlTemplate.Triggers>
-            <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
-				<Setter Property="Margin" TargetName="shadow" Value="5,5,5,5"/>
-			</Trigger>
-			<Trigger Property="IsEnabled" Value="false">
-				<Setter Property="Opacity" TargetName="border" Value="0.56"/>
-			</Trigger>
-			<Trigger Property="HasItems" Value="false">
-				<Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
-			</Trigger>
-			<Trigger Property="IsKeyboardFocused" Value="True" SourceName="PART_EditableTextBox">
-                <Setter TargetName="Underline" Property="IsActive" Value="True"/>
-			</Trigger>
-			<MultiTrigger>
-				<MultiTrigger.Conditions>
-					<Condition Property="IsGrouping" Value="true"/>
-					<Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
-				</MultiTrigger.Conditions>
-				<Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
-			</MultiTrigger>
-			<Trigger Property="ScrollViewer.CanContentScroll" SourceName="DropDownScrollViewer" Value="false">
-				<Setter Property="Canvas.Top" TargetName="opaqueRect" Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}"/>
-				<Setter Property="Canvas.Left" TargetName="opaqueRect" Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}"/>
-			</Trigger>
-		</ControlTemplate.Triggers>
-	</ControlTemplate>
-
-    <ControlTemplate x:Key="MaterialDesignFloatingHintComboBoxEditableTemplate" TargetType="{x:Type ComboBox}">
-        <ControlTemplate.Resources>
-            <Storyboard x:Key="MoveHintAsideStoryboard">
-                <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3" To="10">
-                    <DoubleAnimation.EasingFunction>
-                        <SineEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3" To="1">
-                    <DoubleAnimation.EasingFunction>
-                        <SineEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3" To="1,-14,1,0">
-                    <ThicknessAnimation.EasingFunction>
-                        <SineEase EasingMode="EaseOut" />
-                    </ThicknessAnimation.EasingFunction>
-                </ThicknessAnimation>
-            </Storyboard>
-            <Storyboard x:Key="MoveHintBackStoryboard">
-                <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3">
-                    <DoubleAnimation.EasingFunction>
-                        <SineEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3">
-                    <DoubleAnimation.EasingFunction>
-                        <SineEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                             Duration="0:0:0.3">
-                    <ThicknessAnimation.EasingFunction>
-                        <SineEase EasingMode="EaseOut" />
-                    </ThicknessAnimation.EasingFunction>
-                </ThicknessAnimation>
-            </Storyboard>
-        </ControlTemplate.Resources>
-        <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
-            </Grid.ColumnDefinitions>
-            <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
-                <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" UseLayoutRounding="True">
-                    <Border x:Name="shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2" BorderThickness="1"
-                                        Effect="{StaticResource MaterialDesignShadowDepth2}" />
-                    <Border x:Name="dropDownBorder" Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}" Background="Transparent"
-                            CornerRadius="2" BorderThickness="1" BorderBrush="{DynamicResource MaterialDesignDivider}">
-                        <ScrollViewer x:Name="DropDownScrollViewer">
-                            <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
-                                <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                    <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
-                                </Canvas>
-                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" UseLayoutRounding="False" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                            </Grid>
-                        </ScrollViewer>
-                    </Border>
-                </Grid>
-            </Popup>
-            <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource MaterialDesignComboBoxToggleButton}"
-                          Margin="0 14 0 0"/>
-            <Border x:Name="border" Background="Transparent" Margin="{TemplateBinding BorderThickness}">
-                <Grid Margin="0 14 0 0">
-                    <TextBlock x:Name="Hint"
-                               FontSize="{TemplateBinding FontSize}"
-                               Margin="{TemplateBinding Padding}"
-                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                               Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                               Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
-                               IsHitTestVisible="False" />
-                    <TextBox x:Name="PART_EditableTextBox"
-                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                             IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}"
-                             Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
-                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                </Grid>
-            </Border>
-            <wpf:Underline x:Name="Underline" Grid.ColumnSpan="2" />
-        </Grid>
-        <ControlTemplate.Triggers>
-            <Trigger Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False">
-                <Trigger.EnterActions>
-                    <BeginStoryboard x:Name="MoveHintAsideStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintAsideStoryboard}"/>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <BeginStoryboard x:Name="MoveHintBackStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintBackStoryboard}"/>
-                </Trigger.ExitActions>
-            </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
@@ -517,17 +633,15 @@
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </MultiTrigger>
-            <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
-                <Setter Property="Margin" TargetName="shadow" Value="5,5,5,5"/>
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
+                    <Condition Property="IsDropDownOpen" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+            </MultiTrigger>
             <Trigger Property="HasItems" Value="false">
                 <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
-            </Trigger>
-            <Trigger Property="IsKeyboardFocused" Value="True" SourceName="PART_EditableTextBox">
-                <Setter TargetName="Underline" Property="IsActive" Value="True"/>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -536,10 +650,6 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
             </MultiTrigger>
-            <Trigger Property="ScrollViewer.CanContentScroll" SourceName="DropDownScrollViewer" Value="false">
-                <Setter Property="Canvas.Top" TargetName="opaqueRect" Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}"/>
-                <Setter Property="Canvas.Left" TargetName="opaqueRect" Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}"/>
-            </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -550,7 +660,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemSelectedCollapsedStyle}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="Padding" Value="0 4 0 4"/>
@@ -571,7 +681,7 @@
             </Trigger>
             <Trigger Property="IsEditable" Value="true">
                 <Setter Property="IsTabStop" Value="false"/>
-                <Setter Property="Template" Value="{StaticResource MaterialDesignComboBoxEditableTemplate}"/>
+                <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -591,7 +701,6 @@
             </Trigger>
             <Trigger Property="IsEditable" Value="true">
                 <Setter Property="IsTabStop" Value="false"/>
-                <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxEditableTemplate}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
