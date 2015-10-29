@@ -32,13 +32,13 @@ namespace MaterialDesignThemes.Wpf
 
             source =
                 $"pack://application:,,,/MahApps.Metro;component/Styles/Accents/{(isDark ? "BaseDark" : "BaseLight")}.xaml";
-            var newMahAppsResourceDictionary = new ResourceDictionary() { Source = new Uri(source) };
+            var newMahAppsResourceDictionary = new ResourceDictionary { Source = new Uri(source) };
 
             Application.Current.Resources.MergedDictionaries.Remove(existingMahAppsResourceDictionary);
             Application.Current.Resources.MergedDictionaries.Add(newMahAppsResourceDictionary);
         }
 
-        public void ReplacePrimaryColor(Swatch swatch, bool mahapps = false)
+        public void ReplacePrimaryColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
 
@@ -60,24 +60,24 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("PrimaryHueDarkBrush", new SolidColorBrush(dark.Color));
             ReplaceEntry("PrimaryHueDarkForegroundBrush", new SolidColorBrush(dark.Foreground));
 
-            if (mahapps)
-            {
-                ReplaceEntry("HighlightBrush", new SolidColorBrush(dark.Color));
-                ReplaceEntry("AccentColorBrush", new SolidColorBrush(list[5].Color));
-                ReplaceEntry("AccentColorBrush2", new SolidColorBrush(list[4].Color));
-                ReplaceEntry("AccentColorBrush3", new SolidColorBrush(list[3].Color));
-                ReplaceEntry("AccentColorBrush4", new SolidColorBrush(list[2].Color));
-                ReplaceEntry("WindowTitleColorBrush", new SolidColorBrush(dark.Color));
-                ReplaceEntry("AccentSelectedColorBrush", new SolidColorBrush(list[5].Foreground));
-                ReplaceEntry("ProgressBrush", new LinearGradientBrush(dark.Color, list[3].Color, 90.0));
-                ReplaceEntry("CheckmarkFill", new SolidColorBrush(list[5].Color));
-                ReplaceEntry("RightArrowFill", new SolidColorBrush(list[5].Color));
-                ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(list[5].Foreground));
-                ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark.Color) { Opacity = .4 });
-            }
+            //mahapps brushes
+            /*
+            ReplaceEntry("HighlightBrush", new SolidColorBrush(dark.Color));
+            ReplaceEntry("AccentColorBrush", new SolidColorBrush(list[5].Color));
+            ReplaceEntry("AccentColorBrush2", new SolidColorBrush(list[4].Color));
+            ReplaceEntry("AccentColorBrush3", new SolidColorBrush(list[3].Color));
+            ReplaceEntry("AccentColorBrush4", new SolidColorBrush(list[2].Color));
+            ReplaceEntry("WindowTitleColorBrush", new SolidColorBrush(dark.Color));
+            ReplaceEntry("AccentSelectedColorBrush", new SolidColorBrush(list[5].Foreground));
+            ReplaceEntry("ProgressBrush", new LinearGradientBrush(dark.Color, list[3].Color, 90.0));
+            ReplaceEntry("CheckmarkFill", new SolidColorBrush(list[5].Color));
+            ReplaceEntry("RightArrowFill", new SolidColorBrush(list[5].Color));
+            ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(list[5].Foreground));
+            ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark.Color) { Opacity = .4 });        
+           */    
         }
 
-        public void ReplacePrimaryColor(string name, bool mahapps = false)
+        public void ReplacePrimaryColor(string name)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
@@ -87,7 +87,7 @@ namespace MaterialDesignThemes.Wpf
             if (swatch == null)
                 throw new ArgumentException($"No such swatch '{name}'", nameof(name));
 
-            ReplacePrimaryColor(swatch, mahapps);
+            ReplacePrimaryColor(swatch);
         }
 
         public void ReplaceAccentColor(Swatch swatch)
@@ -116,69 +116,37 @@ namespace MaterialDesignThemes.Wpf
 
             ReplaceAccentColor(swatch);
         }
-        #region Pinvoke
-            public struct PowerState
-            {
-                public ACLineStatus ACLineStatus;
-                public byte BatteryFlag;
-                public Byte BatteryLifePercent;
-                public Byte Reserved1;
-                public Int32 BatteryLifeTime;
-                public Int32 BatteryFullLifeTime;
-            }
-            [DllImport("Kernel32", EntryPoint = "GetSystemPowerStatus")]
-            private static extern bool GetSystemPowerStatusRef(PowerState sps);
-            
-        #endregion
-        public static PowerState GetPowerState()
-        {
-            PowerState state = new PowerState();
-            if (GetSystemPowerStatusRef(state))
-                return state;
-
-            throw new ApplicationException("Unable to get power state");
-        }
-        // Note: Underlying type of byte to match Win32 header
-        public enum ACLineStatus : byte
-        {
-            Offline = 0, Online = 1, Unknown = 255
-        }
-        public static bool DisableAnimationOnBattery = true;
+        
         /// <summary>
         /// Replaces a certain entry anywhere in the parent dictionary and its merged dictionaries
         /// </summary>
         /// <param name="entryName">The entry to replace</param>
         /// <param name="newValue">The new entry value</param>
         /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
-        /// <returns>Weather the value was replaced (true) or not (false)</returns>
-        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null, bool animate = true)
-        {
-            const int DURATION_MS = 500; //Change the value if needed
+        private static void ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
+        {            
             if (parentDictionary == null)
                 parentDictionary = Application.Current.Resources;
             
             if (parentDictionary.Contains(entryName))
             {
-                bool battery = GetPowerState().ACLineStatus == ACLineStatus.Online | !DisableAnimationOnBattery;
-                if (animate & parentDictionary[entryName] != null & battery & parentDictionary[entryName] as SolidColorBrush != null) //Fade animation is enabled , type is solidcolorbrush and value is not null.
-                {
-                    ColorAnimation animation = new ColorAnimation()
+                var brush = parentDictionary[entryName] as SolidColorBrush;
+                if (brush != null && !brush.IsFrozen)
+                {                 
+                    var animation = new ColorAnimation
                     {
-                        From = ((SolidColorBrush)parentDictionary[entryName]).Color,//The old color
-                        To = ((SolidColorBrush)newValue).Color, //The new color
-                        Duration = new Duration(new TimeSpan(0,0,0,0,DURATION_MS)) //Set the duration
+                        From = ((SolidColorBrush)parentDictionary[entryName]).Color,
+                        To = ((SolidColorBrush)newValue).Color,
+                        Duration = new Duration(TimeSpan.FromMilliseconds(300))
                     };
-                    (parentDictionary[entryName] as SolidColorBrush).BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
+                    brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
                 }
                 else
                     parentDictionary[entryName] = newValue; //Set value normally
-                return true;
             }
+
             foreach (var dictionary in parentDictionary.MergedDictionaries)
-                if (ReplaceEntry(entryName, newValue, dictionary))
-                    return true;
-                    
-            return false;
+                ReplaceEntry(entryName, newValue, dictionary);
         }
     }    
 }
