@@ -20,27 +20,16 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Gets the <see cref="DialogHost.DialogContent"/> which is currently displayed, so this could be a view model or a UI element.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown if the dialog session has ended.</exception>
-        public object Content
-        {
-            get
-            {
-                if (IsDisabled) throw new InvalidOperationException("Dialog session has ended.");
-
-                return _owner.DialogContent;
-            }
-        }
+        public object Content => _owner.DialogContent;
 
         /// <summary>
         /// Update the currrent content in the dialog.
         /// </summary>
         /// <param name="content"></param>
-        /// <exception cref="InvalidOperationException">Thrown if the dialog content is currently set via a binding, or if the dialog session has ended.</exception>
         public void UpdateContent(object content)
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
-            if (IsDisabled) throw new InvalidOperationException("Dialog session has ended.");
-
+            
             _owner.AssertTargetableContent();
             _owner.DialogContent = content;
         }
@@ -53,6 +42,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (IsDisabled) throw new InvalidOperationException("Dialog session has ended.");
 
+            _owner.Close(null);
         }
 
         /// <summary>
@@ -64,6 +54,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (IsDisabled) throw new InvalidOperationException("Dialog session has ended.");
 
+            _owner.Close(parameter);
         }
     }
 }
