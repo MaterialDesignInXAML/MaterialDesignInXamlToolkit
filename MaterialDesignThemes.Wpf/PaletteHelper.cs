@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
-
+using System.Windows.Media.Animation;
+using System.Runtime.InteropServices;
 namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
@@ -115,7 +116,34 @@ namespace MaterialDesignThemes.Wpf
 
             ReplaceAccentColor(swatch);
         }
+        #region Pinvoke
+            public struct PowerState
+            {
+                public ACLineStatus ACLineStatus;
+                public byte BatteryFlag;
+                public Byte BatteryLifePercent;
+                public Byte Reserved1;
+                public Int32 BatteryLifeTime;
+                public Int32 BatteryFullLifeTime;
+            }
+            [DllImport("Kernel32", EntryPoint = "GetSystemPowerStatus")]
+            private static extern bool GetSystemPowerStatusRef(PowerState sps);
+            
+        #endregion
+        public static PowerState GetPowerState()
+        {
+            PowerState state = new PowerState();
+            if (GetSystemPowerStatusRef(state))
+                return state;
 
+            throw new ApplicationException("Unable to get power state");
+        }
+        // Note: Underlying type of byte to match Win32 header
+        public enum ACLineStatus : byte
+        {
+            Offline = 0, Online = 1, Unknown = 255
+        }
+        public static bool DisableAnimationOnBattery = true;
         /// <summary>
         /// Replaces a certain entry anywhere in the parent dictionary and its merged dictionaries
         /// </summary>
@@ -123,24 +151,34 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="newValue">The new entry value</param>
         /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
         /// <returns>Weather the value was replaced (true) or not (false)</returns>
-        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
+        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null, bool animate = true)
         {
+            const int DURATION_MS = 500; //Change the value if needed
             if (parentDictionary == null)
                 parentDictionary = Application.Current.Resources;
-
+            
             if (parentDictionary.Contains(entryName))
             {
-                parentDictionary[entryName] = newValue;
+                bool battery = GetPowerState().ACLineStatus == ACLineStatus.Online | !DisableAnimationOnBattery;
+                if (animate & parentDictionary[entryName] != null & battery & parentDictionary[entryName] as SolidColorBrush != null) //Fade animation is enabled , type is solidcolorbrush and value is not null.
+                {
+                    ColorAnimation animation = new ColorAnimation()
+                    {
+                        From = ((SolidColorBrush)parentDictionary[entryName]).Color,//The old color
+                        To = ((SolidColorBrush)newValue).Color, //The new color
+                        Duration = new Duration(new TimeSpan(0,0,0,0,DURATION_MS)) //Set the duration
+                    };
+                    (parentDictionary[entryName] as SolidColorBrush).BeginAnimation(SolidColorBrush.ColorProperty, animation); //Begin the animation
+                }
+                else
+                    parentDictionary[entryName] = newValue; //Set value normally
                 return true;
             }
-
             foreach (var dictionary in parentDictionary.MergedDictionaries)
-            {
                 if (ReplaceEntry(entryName, newValue, dictionary))
                     return true;
-            }
-
+                    
             return false;
         }
-    }
+    }    
 }
