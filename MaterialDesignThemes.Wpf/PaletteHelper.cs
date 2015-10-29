@@ -60,8 +60,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("PrimaryHueDarkBrush", new SolidColorBrush(dark.Color));
             ReplaceEntry("PrimaryHueDarkForegroundBrush", new SolidColorBrush(dark.Foreground));
 
-            //mahapps brushes
-            /*
+            //mahapps brushes            
             ReplaceEntry("HighlightBrush", new SolidColorBrush(dark.Color));
             ReplaceEntry("AccentColorBrush", new SolidColorBrush(list[5].Color));
             ReplaceEntry("AccentColorBrush2", new SolidColorBrush(list[4].Color));
@@ -73,8 +72,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("CheckmarkFill", new SolidColorBrush(list[5].Color));
             ReplaceEntry("RightArrowFill", new SolidColorBrush(list[5].Color));
             ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(list[5].Foreground));
-            ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark.Color) { Opacity = .4 });        
-           */    
+            ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark.Color) { Opacity = .4 });                   
         }
 
         public void ReplacePrimaryColor(string name)
