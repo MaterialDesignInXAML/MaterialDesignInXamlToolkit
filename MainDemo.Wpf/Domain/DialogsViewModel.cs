@@ -20,7 +20,7 @@ namespace MaterialDesignColors.WpfExample.Domain
             {
                 DataContext = new object()
             };
-
+            
             //show the dialog
             var result = await DialogHost.Show(view, "RootDialog", ClosingEventHandler);
 

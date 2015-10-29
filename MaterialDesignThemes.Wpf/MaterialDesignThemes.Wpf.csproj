@@ -229,6 +229,9 @@
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="DialogClosingEventArgs.cs" />
     <Compile Include="DialogClosingEventHandler.cs" />
+    <Compile Include="DialogOpenedEventArgs.cs" />
+    <Compile Include="DialogOpenedEventHandler.cs" />
+    <Compile Include="DialogSession.cs" />
     <Compile Include="DialogHost.cs" />
     <Compile Include="DrawerHost.cs" />
     <Compile Include="ListSortDirectionIndicator.cs" />
