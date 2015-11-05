@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
              mc:Ignorable="d"               
-             d:DesignHeight="300" d:DesignWidth="600" Loaded="UserControl_Loaded">
+             d:DesignHeight="300" d:DesignWidth="600" Loaded="UserControl_Loaded"
+             d:DataContext="{d:DesignInstance domain:TextFieldsViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -132,8 +134,9 @@
 
         <StackPanel Grid.Row="4" Grid.Column="4" Orientation="Horizontal">
             <ComboBox wpf:TextFieldAssist.Hint="Virtualisation" 
-                  HorizontalAlignment="Left" Margin="16 0 0 0"
-                  ItemsSource="{Binding LongListToTestComboVirtualization}">
+                      HorizontalAlignment="Left" Margin="16 0 0 0"
+                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                      SelectedValue="{Binding SelectedValueOne}">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />

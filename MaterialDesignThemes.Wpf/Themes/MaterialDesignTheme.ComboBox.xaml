@@ -124,7 +124,7 @@
                     <Condition Property="Tag" Value="1.0"/>
                     <Condition Property="IsSelected" Value="True"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="Visibility" Value="Collapsed"/>
+                <Setter Property="Height" Value="0"/>
             </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
