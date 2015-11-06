@@ -2,56 +2,57 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                    xmlns:Actions="clr-namespace:MahApps.Metro.Actions;assembly=MahApps.Metro" >
-
-    <ResourceDictionary.MergedDictionaries>
-
-    </ResourceDictionary.MergedDictionaries>
+                    xmlns:Actions="clr-namespace:MahApps.Metro.Actions;assembly=MahApps.Metro"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+                    xmlns:mahApps="clr-namespace:MaterialDesignThemes.MahApps">
 
     <DataTemplate x:Key="HeaderTemplate"
                   x:Shared="False">
-        <DockPanel x:Name="dpHeader"
-                   Margin="10,25,10,10"
-                   VerticalAlignment="Center"
-                   LastChildFill="True">
-            <Button x:Name="nav"
-                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}"
-                    DockPanel.Dock="Left"
-                    Style="{DynamicResource MaterialDesignToolButton}"
-                    Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonVisibility}"
-                    Height="40"
-                    Width="40"
-                    FontFamily="Segoe UI Symbol"
-                    FontSize="16"
-                    VerticalAlignment="Bottom">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <Actions:SetFlyoutOpenAction TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}}"
-                                                     Value="False" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                <Viewbox Width="24" Height="24" RenderTransformOrigin="0.5,0.5">
-                    <Viewbox.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="1" ScaleX="-1"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="0"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Viewbox.RenderTransform>
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" 
-                              Fill="{DynamicResource MaterialDesignBody}" />
-                    </Canvas>
-                </Viewbox>
-            </Button>
-            <TextBlock Text="{Binding}"
-                       x:Name="PART_BackButton"
-                       Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=TitleVisibility}"
-                       FontSize="{StaticResource FlyoutHeaderFontSize}"
-                       Margin="15,0,0,0"
-                       VerticalAlignment="Center" />
-        </DockPanel>
+        <wpf:ColorZone 
+            Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mahApps:FlyoutAssist.HeaderColorMode)}"
+            wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mahApps:FlyoutAssist.HeaderShadowDepth)}">
+            <DockPanel x:Name="dpHeader"
+                       Margin="10,25,10,10"
+                       VerticalAlignment="Center"
+                       LastChildFill="True">
+                <Button x:Name="nav"
+                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}"
+                        DockPanel.Dock="Left"
+                        Style="{DynamicResource MaterialDesignToolButton}"
+                        Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonVisibility}"
+                        Height="40"
+                        Width="40"
+                        FontSize="16"
+                        VerticalAlignment="Bottom">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <Actions:SetFlyoutOpenAction TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}}"
+                                                         Value="False" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Viewbox Width="24" Height="24" RenderTransformOrigin="0.5,0.5">
+                        <Viewbox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                                <SkewTransform AngleY="0" AngleX="0"/>
+                                <RotateTransform Angle="0"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Viewbox.RenderTransform>
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" 
+                                  Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:ColorZone}, Path=Foreground}" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <TextBlock Text="{Binding}"
+                           x:Name="PART_BackButton"
+                           Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=TitleVisibility}"
+                           FontSize="{StaticResource FlyoutHeaderFontSize}"
+                           Margin="15,0,0,0"
+                           VerticalAlignment="Center" />
+            </DockPanel>
+        </wpf:ColorZone>
         <DataTemplate.Triggers>
             <DataTrigger Binding="{Binding Position, RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}}"
                          Value="Left">
@@ -258,6 +259,10 @@
                 Value="Stretch" />
         <Setter Property="VerticalContentAlignment"
                 Value="Stretch" />
+        <Setter Property="mahApps:FlyoutAssist.HeaderShadowDepth"
+                Value="Depth2" />
+        <Setter Property="mahApps:FlyoutAssist.HeaderColorMode" 
+                Value="PrimaryMid" />
         <Setter Property="HeaderTemplate"
                 Value="{StaticResource HeaderTemplate}" />
         <Setter Property="Template"
@@ -267,6 +272,16 @@
         <Setter Property="Foreground"
                 Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="Background"
-                Value="{DynamicResource MaterialDesignPaper}" />
+                Value="{DynamicResource MaterialDesignPaper}" />                
+        <Style.Triggers>
+            <Trigger Property="TitleVisibility" Value="Collapsed">
+                <Setter Property="mahApps:FlyoutAssist.HeaderShadowDepth" Value="Depth0" />
+                <Setter Property="mahApps:FlyoutAssist.HeaderColorMode" Value="Standard" />
+            </Trigger>
+            <Trigger Property="TitleVisibility" Value="Hidden">
+                <Setter Property="mahApps:FlyoutAssist.HeaderShadowDepth" Value="Depth0" />
+                <Setter Property="mahApps:FlyoutAssist.HeaderColorMode" Value="Standard" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
