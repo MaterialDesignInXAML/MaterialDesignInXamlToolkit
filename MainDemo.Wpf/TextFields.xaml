@@ -152,7 +152,5 @@
         </StackPanel>
         <Slider Grid.Row="7" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True" />
         <Slider Grid.Row="8" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsEnabled="False" />
-
-        <wpf:MultipleSelectionDropDown x:Name="multipleSelectionDropDown" Grid.Column="4" Grid.Row="3" Height="30" Width="100"></wpf:MultipleSelectionDropDown>
     </Grid>
 </UserControl>

@@ -28,16 +28,6 @@ namespace MaterialDesignColors.WpfExample
         {
             InitializeComponent();	        
 			DataContext = new TextFieldsViewModel();
-
-            List<string> items = new List<string>();
-            items.Add("item A");
-            items.Add("item B");
-            items.Add("item C");
-            items.Add("item D");
-            items.Add("item E");
-            items.Add("item F");
-            items.Add("item G");
-            multipleSelectionDropDown.ItemsSource = items;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
