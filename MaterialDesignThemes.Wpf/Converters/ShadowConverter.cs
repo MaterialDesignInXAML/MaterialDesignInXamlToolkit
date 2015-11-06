@@ -21,6 +21,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 
             ShadowsDictionary = new Dictionary<ShadowDepth, DropShadowEffect>
             {
+                { ShadowDepth.Depth0, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth0"] },
                 { ShadowDepth.Depth1, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth1"] },
                 { ShadowDepth.Depth2, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth2"] },
                 { ShadowDepth.Depth3, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth3"] },

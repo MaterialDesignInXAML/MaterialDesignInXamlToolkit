@@ -24,8 +24,6 @@ namespace MaterialDesignThemes.Wpf
             Key.Enter,
             Key.Home,
             Key.End,
-            //Key.Right,
-            //Key.Left,
             Key.PageUp,
             Key.PageDown,
             Key.Oem5
