@@ -84,8 +84,6 @@
     <Compile Include="Domain\AnotherCommandImplementation.cs" />
     <Compile Include="Domain\DemoItem.cs" />
     <Compile Include="Domain\DialogsViewModel.cs" />
-    <Compile Include="Domain\GridViewItemViewModel.cs" />
-    <Compile Include="Domain\GridViewViewModel.cs" />
     <Compile Include="Domain\ListFieldsViewModel.cs" />
     <Compile Include="Domain\SampleDialog.xaml.cs">
       <DependentUpon>SampleDialog.xaml</DependentUpon>
