@@ -130,7 +130,8 @@
             <ComboBoxItem>Windows</ComboBoxItem>
         </ComboBox>
 
-        <StackPanel Grid.Row="4" Grid.Column="4" Orientation="Horizontal">
+        <StackPanel Grid.Row="4" Grid.Column="4" Orientation="Horizontal"
+                    Height="40">
             <ComboBox wpf:TextFieldAssist.Hint="Virtualisation" 
                   HorizontalAlignment="Left" Margin="16 0 0 0"
                   ItemsSource="{Binding LongListToTestComboVirtualization}">
@@ -152,6 +153,17 @@
             </ComboBox>
             <ComboBox wpf:TextFieldAssist.Hint="Virt (float hint)" 
                       HorizontalAlignment="Left" Margin="16 0 0 0"
+                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <ComboBox wpf:TextFieldAssist.Hint="Virt (float hint)" 
+                      HorizontalAlignment="Left" Margin="16 0 0 0"
+                      IsEditable="True"
                       ItemsSource="{Binding LongListToTestComboVirtualization}"
                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 <ComboBox.ItemsPanel>
