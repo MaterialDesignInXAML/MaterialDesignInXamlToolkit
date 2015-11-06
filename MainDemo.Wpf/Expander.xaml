@@ -30,7 +30,10 @@
                 <Expander.Header>
                     <TextBlock Text="Expander Example 2" />
                 </Expander.Header>
-                <TextBlock Text="A short text to proof functionality." />
+                <StackPanel Orientation="Vertical" Margin="8">
+                    <TextBlock Text="A short text to proof functionality." />
+                    <TextBlock Margin="0,150,0,0" Text="A short text to proof functionality." />
+                </StackPanel>
             </Expander>
             <TextBlock Text="Text after the expander." Margin="0,8,0,0" />
         </StackPanel>
