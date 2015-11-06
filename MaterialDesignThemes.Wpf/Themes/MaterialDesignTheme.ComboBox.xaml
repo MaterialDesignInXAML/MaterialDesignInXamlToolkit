@@ -567,7 +567,7 @@
     </ControlTemplate>
 
     <Style x:Key="MaterialDesignComboBox" TargetType="{x:Type ComboBox}">
-        <!--Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/-->
+        <Setter Property="wpf:ComboBoxAssist.ManagedOverlay" Value="True"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>
