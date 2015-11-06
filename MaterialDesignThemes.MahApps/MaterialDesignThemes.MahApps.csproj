@@ -81,6 +81,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FlyoutAssist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
