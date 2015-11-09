@@ -437,7 +437,20 @@ namespace MaterialDesignThemes.Wpf
             if (executedRoutedEventArgs.Parameter != null)
             {
                 AssertTargetableContent();
-                DialogContent = executedRoutedEventArgs.Parameter;
+
+                //TODO enhancement: make the following configurable, so that the data context can be pulled from the dialog host if desired.
+                //      (leave the current behaviour as the default; most developers will find this logical, as the data context will "inherit" from button containing the content)
+
+                var contentElement = executedRoutedEventArgs.Parameter as FrameworkElement;
+                var senderElement = executedRoutedEventArgs.OriginalSource as FrameworkElement;
+                if (contentElement != null && senderElement != null && contentElement.DataContext == null && BindingOperations.GetBindingExpression(contentElement, DataContextProperty) == null)
+                {
+                    DialogContent = executedRoutedEventArgs.Parameter;
+                    contentElement.SetCurrentValue(DataContextProperty, senderElement.DataContext);
+                }
+                else
+                    DialogContent = executedRoutedEventArgs.Parameter;
+
             }
 
             SetCurrentValue(IsOpenProperty, true);

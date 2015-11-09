@@ -105,7 +105,7 @@
                             wpf:DialogHost.DialogClosingAttached="Sample2_DialogHost_OnDialogClosing"
                             Width="128">
                         <Button.CommandParameter>
-                            <StackPanel Margin="16">
+                            <StackPanel Margin="16" DataContext="HelloWorld">
                                 <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0" />
                                 <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True" 
                                         Command="{x:Static wpf:DialogHost.CloseDialogCommand}"
