@@ -13,6 +13,7 @@
     <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
 
     <Storyboard x:Key="MaterialDesignComboBoxPopupAnimationExpand">
+        <!--
         <ThicknessAnimation AccelerationRatio="0.7"
                             DecelerationRatio="0.3"
                             Duration="0:0:0.3"
@@ -20,7 +21,6 @@
                             Storyboard.TargetName="shadow"
                             Storyboard.TargetProperty="Margin"
                             To="0 0 0 0" />
-        <!--
         <DoubleAnimation AccelerationRatio="0.7"
                          DecelerationRatio="0.3"
                          Duration="0:0:0.4"
@@ -37,11 +37,11 @@
                          Storyboard.TargetName="PopupTemplateRootGrid"
                          Storyboard.TargetProperty="Opacity"
                          To="0" />
-        -->
         <ThicknessAnimation Duration="0:0:0.3"
                             Storyboard.TargetName="shadow"
                             Storyboard.TargetProperty="Margin"
                             To="11 0 11 0" />
+        -->
     </Storyboard>
 
     <Style x:Key="FocusVisual">
@@ -317,71 +317,72 @@
             <Popup x:Name="PART_Popup"
                    AllowsTransparency="true"
                    Focusable="False"
-                   HorizontalOffset="-16"
+                   HorizontalOffset="-17"
                    IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                    PlacementTarget="{Binding ElementName=templateRoot}"
                    SnapsToDevicePixels="True"
                    UseLayoutRounding="True"
                    Placement="RelativePoint"
                    PopupAnimation="Fade"
-                   VerticalOffset="-8">
+                   VerticalOffset="-17">
                 <Grid MinWidth="{Binding ActualWidth, ElementName=templateRoot, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
                       MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                      Margin="5">
+                      Margin="6">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Border x:Name="shadow"
-                            Grid.RowSpan="3"
-                            Background="{DynamicResource MaterialDesignPaper}"
-                            CornerRadius="2"
-                            Effect="{StaticResource MaterialDesignShadowDepth2}" />
-                    <Border x:Name="dropDownBorder"
-                            Grid.RowSpan="3"
-                            Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}"
                             Background="Transparent"
-                            CornerRadius="2" />
-                    <Grid Grid.Row="0" Margin="16 8 16 4">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Visibility="{Binding ElementName=PART_EditableTextBox, Path=Visibility}"/>
-                        <Grid Margin="{Binding ElementName=ContentWrapper, Path=Margin}"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
-                            <TextBox x:Name="EditableTextBoxClone"
-                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                     UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                     Visibility="{Binding ElementName=PART_EditableTextBox, Path=Visibility}"
-                                     IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
-                                     Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
-                                     Text="{Binding ElementName=PART_EditableTextBox, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            <ContentPresenter Content="{TemplateBinding SelectionBoxItem}"
-                                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                              IsHitTestVisible="False"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                              UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                              Visibility="{Binding ElementName=contentPresenter, Path=Visibility}" />
-                            <TextBlock IsHitTestVisible="False"
-                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                       UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                                       Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
-                                       Visibility="{Binding ElementName=Hint, Path=Visibility}" />
+                            BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
+                            Opacity="0.72"
+                            BorderThickness="1"
+                            CornerRadius="2">
+                        <Border.Effect>
+                            <BlurEffect Radius="3"/>
+                        </Border.Effect>
+                    </Border>
+                    <Grid Margin="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Rectangle Grid.Row="0"
+                                       Fill="{DynamicResource MaterialDesignPaper}"
+                                       Height="16"/>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="0"
+                                           Width="16"
+                                           Fill="{DynamicResource MaterialDesignPaper}"/>
+                            <Grid Grid.Column="1"
+                                      Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
+                                      Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
+                            <Rectangle Grid.Column="2"
+                                           MinWidth="16"
+                                           Fill="{DynamicResource MaterialDesignPaper}"/>
                         </Grid>
-                        <wpf:Underline IsActive="{Binding ElementName=EditableTextBoxClone, Path=IsKeyboardFocused}"
-                                       Visibility="{Binding ElementName=PART_EditableTextBox, Path=Visibility}"/>
+
+                        <Rectangle Grid.Row="2"
+                                       Fill="{DynamicResource MaterialDesignPaper}"
+                                       Height="4"/>
+
+                        <ScrollViewer Grid.Row="3"
+                                  Background="{DynamicResource MaterialDesignPaper}">
+                            <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
+                        </ScrollViewer>
+
+                        <Rectangle Grid.Row="4"
+                                       Height="8"
+                                       Fill="{DynamicResource MaterialDesignPaper}" />
                     </Grid>
-                    <ScrollViewer Grid.Row="1">
-                        <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
-                    </ScrollViewer>
-                    <Rectangle Grid.Row="2"
-                               Height="8"
-                               HorizontalAlignment="Stretch"
-                               Fill="Transparent" />
                 </Grid>
             </Popup>
         </Grid>
@@ -391,6 +392,14 @@
                 <Setter TargetName="Underline" Property="Visibility" Value="Visible" />
                 <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed" />
             </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEditable" Value="False"/>
+                    <Condition Property="IsDropDownOpen" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Underline" Property="Visibility" Value="Hidden"/>
+                <Setter TargetName="toggleButton" Property="Visibility" Value="Hidden"/>
+            </MultiTrigger>
             <Trigger Property="IsDropDownOpen" Value="True">
                 <Trigger.EnterActions>
                     <BeginStoryboard Storyboard="{DynamicResource MaterialDesignComboBoxPopupAnimationExpand}" />
@@ -403,7 +412,7 @@
                 <Setter TargetName="shadow" Property="Margin" Value="0" />
             </Trigger>
             <Trigger Property="HasItems" Value="false">
-                <Setter TargetName="dropDownBorder" Property="Height" Value="95" />
+                <Setter TargetName="shadow" Property="Height" Value="95" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -514,98 +523,84 @@
                                Visibility="Collapsed" />
 
                 <Popup x:Name="PART_Popup"
-                       Grid.ColumnSpan="2"
                        AllowsTransparency="true"
                        Focusable="False"
-                       HorizontalOffset="-16"
+                       HorizontalOffset="-17"
                        IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                       Placement="RelativePoint"
-                       UseLayoutRounding="True"
+                       PlacementTarget="{Binding ElementName=templateRoot}"
                        SnapsToDevicePixels="True"
+                       UseLayoutRounding="True"
+                       Placement="RelativePoint"
                        PopupAnimation="Fade"
-                       VerticalOffset="-16">
+                       VerticalOffset="-21">
                     <Grid MinWidth="{Binding ActualWidth, ElementName=templateRoot, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
                           MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                          Margin="5">
+                          Margin="6">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Border x:Name="shadow"
-                                Grid.RowSpan="3"
-                                Background="{DynamicResource MaterialDesignPaper}"
-                                CornerRadius="2"
-                                Effect="{StaticResource MaterialDesignShadowDepth2}" />
-                        <Border x:Name="dropDownBorder"
-                                Grid.RowSpan="3"
-                                Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}"
-                                VerticalAlignment="Top"
                                 Background="Transparent"
-                                CornerRadius="2" />
-                        <Grid x:Name="GridContentCloneWrapper"
-                              Grid.Row="0"
-                              Margin="16 0 16 4"
-                              Height="{Binding ElementName=templateRoot, Path=ActualHeight}">
-                            <Grid Margin="0 16 0 0" Height="{Binding ElementName=MarginWrapper, Path=ActualHeight}">
-                                <ToggleButton Visibility="Hidden"
-                                              Background="{TemplateBinding Background}"
-                                              BorderBrush="{TemplateBinding BorderBrush}"
-                                              BorderThickness="{TemplateBinding BorderThickness}"
-                                              Style="{StaticResource MaterialDesignComboBoxToggleButton}" />
-                                <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        Visibility="{Binding ElementName=PART_EditableTextBox, Path=Visibility}"/>
-                                <Grid Margin="{Binding ElementName=ContentWrapper, Path=Margin}"
-                                      Height="{Binding ElementName=ContentWrapper, Path=ActualHeight}"
-                                      VerticalAlignment="{Binding ElementName=ContentWrapper, Path=VerticalAlignment}"
-                                      HorizontalAlignment="{Binding ElementName=ContentWrapper, Path=HorizontalAlignment}">
-                                    <ContentPresenter Content="{TemplateBinding SelectionBoxItem}"
-                                                      ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                                      IsHitTestVisible="False"
-                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                      UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                                      Visibility="{Binding ElementName=contentPresenter,  Path=Visibility}" />
-                                    <TextBox x:Name="EditableTextBoxClone"
-                                             IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
-                                             Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
-                                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                             UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                             Visibility="{Binding ElementName=PART_EditableTextBox, Path=Visibility}"
-                                             Text="{Binding ElementName=PART_EditableTextBox, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                </Grid>
-                                <TextBlock x:Name="HintClone"
-                                           Margin="{Binding ElementName=Hint, Path=Margin}"
-                                           HorizontalAlignment="{Binding ElementName=Hint, Path=HorizontalAlignment}"
-                                           FontSize="{Binding ElementName=Hint, Path=FontSize}"
-                                           Foreground="{Binding ElementName=Hint, Path=Foreground}"
-                                           IsHitTestVisible="False"
-                                           SnapsToDevicePixels="True"
-                                           UseLayoutRounding="True"
-                                           Opacity="{Binding ElementName=Hint, Path=Opacity}"
-                                           Text="{TemplateBinding wpf:TextFieldAssist.Hint}" />
+                                BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
+                                Opacity="0.72"
+                                BorderThickness="1"
+                                CornerRadius="2">
+                            <Border.Effect>
+                                <BlurEffect Radius="3"/>
+                            </Border.Effect>
+                        </Border>
+                        <Grid Margin="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Rectangle Grid.Row="0"
+                                       Fill="{DynamicResource MaterialDesignPaper}"
+                                       Height="20"/>
 
-                                <wpf:Underline IsActive="{Binding ElementName=EditableTextBoxClone, Path=IsKeyboardFocused}"
-                                               Visibility="{Binding ElementName=Underline, Path=Visibility}" />
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Grid.Column="0"
+                                           Width="16"
+                                           Fill="{DynamicResource MaterialDesignPaper}"/>
+                                <Grid Grid.Column="1"
+                                      Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
+                                      Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
+                                <Rectangle Grid.Column="2"
+                                           MinWidth="16"
+                                           Fill="{DynamicResource MaterialDesignPaper}"/>
                             </Grid>
+
+                            <Rectangle Grid.Row="2"
+                                       Fill="{DynamicResource MaterialDesignPaper}"
+                                       Height="4"/>
+
+                            <ScrollViewer Grid.Row="3"
+                                  Background="{DynamicResource MaterialDesignPaper}">
+                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
+                            </ScrollViewer>
+
+                            <Rectangle Grid.Row="4"
+                                       Height="8"
+                                       Fill="{DynamicResource MaterialDesignPaper}" />
                         </Grid>
-                        <ScrollViewer Grid.Row="1">
-                            <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
-                        </ScrollViewer>
-                        <Rectangle Grid.Row="2"
-                                   Height="8"
-                                   HorizontalAlignment="Stretch"
-                                   Fill="Transparent" />
                     </Grid>
                 </Popup>
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False">
+                <!--
                 <Setter TargetName="GridContentCloneWrapper" Property="Margin" Value="16 4 16 4" />
                 <Setter TargetName="PART_Popup" Property="VerticalOffset" Value="-20" />
+                -->
                 <Trigger.EnterActions>
                     <BeginStoryboard x:Name="MoveHintAsideStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintAsideStoryboard}" />
                 </Trigger.EnterActions>
@@ -615,8 +610,10 @@
             </Trigger>
 
             <Trigger Property="IsEditable" Value="True">
+                <!--
                 <Setter TargetName="GridContentCloneWrapper" Property="Margin" Value="16 4 16 4" />
                 <Setter TargetName="PART_Popup" Property="VerticalOffset" Value="-20" />
+                -->
 
                 <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
                 <Setter TargetName="Underline" Property="Visibility" Value="Visible" />
@@ -644,7 +641,7 @@
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </MultiTrigger>
             <Trigger Property="HasItems" Value="false">
-                <Setter TargetName="dropDownBorder" Property="Height" Value="95" />
+                <Setter TargetName="shadow" Property="Height" Value="95" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
