@@ -156,9 +156,9 @@ namespace MaterialDesignThemes.Wpf
 
             targets[0].AssertTargetableContent();
             targets[0].DialogContent = content;
-            targets[0].SetCurrentValue(IsOpenProperty, true);
             targets[0]._asyncShowOpenedEventHandler = openedEventHandler;
             targets[0]._asyncShowClosingEventHandler = closingEventHandler;
+            targets[0].SetCurrentValue(IsOpenProperty, true);
 
             var task = new Task(() =>
             {
