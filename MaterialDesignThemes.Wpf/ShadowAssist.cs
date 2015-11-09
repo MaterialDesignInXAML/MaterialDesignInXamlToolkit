@@ -8,6 +8,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public enum ShadowDepth
     {
+        Depth0,
         Depth1,
         Depth2,
         Depth3,

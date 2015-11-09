@@ -203,6 +203,8 @@
     <Compile Include="ClockChoiceMadeEventArgs.cs" />
     <Compile Include="ClockItemButton.cs" />
     <Compile Include="ColorZone.cs" />
+    <Compile Include="ComboBoxAssist.cs" />
+    <Compile Include="ComboBoxAssistManagedOverlayInfo.cs" />
     <Compile Include="Converters\BrushRoundConverter.cs" />
     <Compile Include="Converters\BrushToRadialGradientBrushConverter.cs" />
     <Compile Include="Converters\CalendarDateCoalesceConverter.cs" />
@@ -229,6 +231,9 @@
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="DialogClosingEventArgs.cs" />
     <Compile Include="DialogClosingEventHandler.cs" />
+    <Compile Include="DialogOpenedEventArgs.cs" />
+    <Compile Include="DialogOpenedEventHandler.cs" />
+    <Compile Include="DialogSession.cs" />
     <Compile Include="DialogHost.cs" />
     <Compile Include="DrawerHost.cs" />
     <Compile Include="ListSortDirectionIndicator.cs" />

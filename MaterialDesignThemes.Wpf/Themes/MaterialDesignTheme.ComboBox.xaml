@@ -171,7 +171,7 @@
                     <Condition Property="Tag" Value="1.0" />
                     <Condition Property="IsSelected" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Visibility" Value="Collapsed" />
+                <Setter Property="Height" Value="0"/>
             </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -657,12 +657,12 @@
     </ControlTemplate>
 
     <Style x:Key="MaterialDesignComboBox" TargetType="{x:Type ComboBox}">
-        <!--  Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/  -->
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
-        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
-        <Setter Property="BorderThickness" Value="0 0 0 1" />
+        <Setter Property="wpf:ComboBoxAssist.ManagedOverlay" Value="True"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemSelectedCollapsedStyle}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
