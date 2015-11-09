@@ -208,7 +208,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 dialogHost._asyncShowWaitHandle.Set();
                 dialogHost._attachedDialogClosingEventHandler = null;
-                dialogHost._session.IsDisabled = true;
+                dialogHost._session.IsEnded = true;
                 dialogHost._session = null;
                 return;
             }
@@ -403,7 +403,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var dialogClosingEventArgs = new DialogClosingEventArgs(_session, parameter, DialogClosingEvent);
 
-            _session.IsDisabled = true;
+            _session.IsEnded = true;
 
             //multiple ways of calling back that the dialog is closing:
             // * routed event
@@ -418,7 +418,7 @@ namespace MaterialDesignThemes.Wpf
             if (!dialogClosingEventArgs.IsCancelled)
                 SetCurrentValue(IsOpenProperty, false);
             else
-                _session.IsDisabled = false;
+                _session.IsEnded = false;
 
             _closeDialogExecutionParameter = parameter;
         }
