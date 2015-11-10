@@ -7,8 +7,7 @@ namespace MaterialDesignThemes.Wpf
     /// </summary>
     public class DialogSession
     {
-        private readonly DialogHost _owner;
-        internal bool IsDisabled;
+        private readonly DialogHost _owner;    
 
         internal DialogSession(DialogHost owner)
         {
@@ -16,6 +15,14 @@ namespace MaterialDesignThemes.Wpf
 
             _owner = owner;
         }
+
+        /// <summary>
+        /// Indicates if the dialog session has ended.  Once ended no further method calls will be permitted.
+        /// </summary>
+        /// <remarks>
+        /// Client code cannot set this directly, this is internally managed.  To end the dicalog session use <see cref="Close()"/>.
+        /// </remarks>
+        public bool IsEnded { get; internal set; }
 
         /// <summary>
         /// Gets the <see cref="DialogHost.DialogContent"/> which is currently displayed, so this could be a view model or a UI element.
@@ -40,7 +47,7 @@ namespace MaterialDesignThemes.Wpf
         /// <exception cref="InvalidOperationException">Thrown if the dialog session has ended, or a close operation is currently in progress.</exception>
         public void Close()
         {
-            if (IsDisabled) throw new InvalidOperationException("Dialog session has ended.");
+            if (IsEnded) throw new InvalidOperationException("Dialog session has ended.");
 
             _owner.Close(null);
         }
@@ -52,7 +59,7 @@ namespace MaterialDesignThemes.Wpf
         /// <exception cref="InvalidOperationException">Thrown if the dialog session has ended, or a close operation is currently in progress.</exception>
         public void Close(object parameter)
         {
-            if (IsDisabled) throw new InvalidOperationException("Dialog session has ended.");
+            if (IsEnded) throw new InvalidOperationException("Dialog session has ended.");
 
             _owner.Close(parameter);
         }

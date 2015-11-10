@@ -37,10 +37,10 @@ namespace MaterialDesignThemes.Wpf
         private DialogClosingEventHandler _asyncShowClosingEventHandler;
 
         private Popup _popup;
-        private DialogSession _session;
         private DialogOpenedEventHandler _attachedDialogOpenedEventHandler;
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;        
         private object _closeDialogExecutionParameter;
+        private DialogSession _session;
 
         static DialogHost()
         {
@@ -156,9 +156,9 @@ namespace MaterialDesignThemes.Wpf
 
             targets[0].AssertTargetableContent();
             targets[0].DialogContent = content;
-            targets[0].SetCurrentValue(IsOpenProperty, true);
             targets[0]._asyncShowOpenedEventHandler = openedEventHandler;
             targets[0]._asyncShowClosingEventHandler = closingEventHandler;
+            targets[0].SetCurrentValue(IsOpenProperty, true);
 
             var task = new Task(() =>
             {
@@ -173,13 +173,13 @@ namespace MaterialDesignThemes.Wpf
 
             return targets[0]._closeDialogExecutionParameter;
         }
-        
+
         public DialogHost()
         {
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
 
-            CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler));
+            CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler, CloseDialogCanExecute));
             CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));
         }
 
@@ -208,7 +208,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 dialogHost._asyncShowWaitHandle.Set();
                 dialogHost._attachedDialogClosingEventHandler = null;
-                dialogHost._session.IsDisabled = true;
+                dialogHost._session.IsEnded = true;
                 dialogHost._session = null;
                 return;
             }
@@ -403,7 +403,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var dialogClosingEventArgs = new DialogClosingEventArgs(_session, parameter, DialogClosingEvent);
 
-            _session.IsDisabled = true;
+            _session.IsEnded = true;
 
             //multiple ways of calling back that the dialog is closing:
             // * routed event
@@ -418,7 +418,7 @@ namespace MaterialDesignThemes.Wpf
             if (!dialogClosingEventArgs.IsCancelled)
                 SetCurrentValue(IsOpenProperty, false);
             else
-                _session.IsDisabled = false;
+                _session.IsEnded = false;
 
             _closeDialogExecutionParameter = parameter;
         }
@@ -437,12 +437,30 @@ namespace MaterialDesignThemes.Wpf
             if (executedRoutedEventArgs.Parameter != null)
             {
                 AssertTargetableContent();
-                DialogContent = executedRoutedEventArgs.Parameter;
+
+                //TODO enhancement: make the following configurable, so that the data context can be pulled from the dialog host if desired.
+                //      (leave the current behaviour as the default; most developers will find this logical, as the data context will "inherit" from button containing the content)
+
+                var contentElement = executedRoutedEventArgs.Parameter as FrameworkElement;
+                var senderElement = executedRoutedEventArgs.OriginalSource as FrameworkElement;
+                if (contentElement != null && senderElement != null && contentElement.DataContext == null && BindingOperations.GetBindingExpression(contentElement, DataContextProperty) == null)
+                {
+                    DialogContent = executedRoutedEventArgs.Parameter;
+                    contentElement.SetCurrentValue(DataContextProperty, senderElement.DataContext);
+                }
+                else
+                    DialogContent = executedRoutedEventArgs.Parameter;
+
             }
 
             SetCurrentValue(IsOpenProperty, true);
 
             executedRoutedEventArgs.Handled = true;
+        }
+
+        private void CloseDialogCanExecute(object sender, CanExecuteRoutedEventArgs canExecuteRoutedEventArgs)
+        {
+            canExecuteRoutedEventArgs.CanExecute = _session != null;
         }
 
         private void CloseDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)

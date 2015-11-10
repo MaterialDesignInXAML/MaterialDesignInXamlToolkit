@@ -57,10 +57,15 @@ namespace MaterialDesignColors.WpfExample.Domain
             };
 
             //show the dialog
-            var result = await DialogHost.Show(view, "RootDialog", ExtendedClosingEventHandler);
+            var result = await DialogHost.Show(view, "RootDialog", ExtendedOpenedEventHandler, ExtendedClosingEventHandler);
 
             //check the result...
             Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
+        }
+
+        private void ExtendedOpenedEventHandler(object sender, DialogOpenedEventArgs eventargs)
+        {
+            Console.WriteLine("You could intercept the open and affect the dialog using eventArgs.Session.");
         }
 
         private void ExtendedClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
