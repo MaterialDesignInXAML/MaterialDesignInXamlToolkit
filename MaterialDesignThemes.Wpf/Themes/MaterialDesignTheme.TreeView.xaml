@@ -214,14 +214,10 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
+                                                             To="1" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer"
+                                                             To="1" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition GeneratedDuration="0" To="Collapsed">
@@ -229,25 +225,19 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Collapsed}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
+                                                             To="0" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer"
+                                                             To="0" Duration="0:0:0.5"/>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Expanded">
                                     <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
-                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
+                                                             To="1" Duration="0"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer"
+                                                             To="1" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -255,12 +245,10 @@
                                 </VisualState>
                                 <VisualState x:Name="Collapsed">
                                     <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
+                                                             To="0" Duration="0"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer"
+                                                             To="0" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -314,6 +302,7 @@
                                 </MultiBinding>
                             </ScrollViewer.Height>
                             <ItemsPresenter x:Name="ItemsHost"
+                                            VerticalAlignment="Top"
                                             Opacity="0"
                                             Visibility="Collapsed"/>
                         </ScrollViewer>
