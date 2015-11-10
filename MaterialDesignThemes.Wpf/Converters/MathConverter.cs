@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -9,14 +8,22 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    public sealed class MathMultipleConverter : IMultiValueConverter
+    public enum MathOperation
+    {
+        Add,
+        Subtract,
+        Multiply,
+        Divide
+    }
+
+    public sealed class MathConverter : IValueConverter
     {
         public MathOperation Operation { get; set; }
-        
-        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double value1, value2;
-            if (Double.TryParse(value[0].ToString(), out value1) && Double.TryParse(value[1].ToString(), out value2))
+            if (Double.TryParse(value.ToString(), out value1) && Double.TryParse(parameter.ToString(), out value2))
             {
                 switch (Operation)
                 {
@@ -35,9 +42,9 @@ namespace MaterialDesignThemes.Wpf.Converters
             return Binding.DoNothing;
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return Binding.DoNothing;
         }
     }
 }

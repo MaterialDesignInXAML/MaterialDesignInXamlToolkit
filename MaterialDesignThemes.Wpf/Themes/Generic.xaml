@@ -355,7 +355,7 @@
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ColorZone}">
@@ -570,9 +570,11 @@
                                 </local:Card.RenderTransform>
                             </local:Card>
                         </controlz:PopupEx>
-                        <ContentPresenter 
-                                x:Name="ContentPresenter" Opacity="1"                    
-                                Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
+                        <AdornerDecorator>
+                            <ContentPresenter 
+                                    x:Name="ContentPresenter" Opacity="1"                    
+                                    Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
+                        </AdornerDecorator>
                         <Grid x:Name="ContentGrid" Background="Black" Opacity="0" IsHitTestVisible="False" Focusable="False" />
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -695,9 +697,11 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter 
-                                x:Name="ContentPresenter" Opacity="1"                    
-                                Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
+                        <AdornerDecorator>
+                            <ContentPresenter 
+                                    x:Name="ContentPresenter" Opacity="1"                    
+                                    Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
+                        </AdornerDecorator>
                         <Grid x:Name="PART_ContentCover" Background="Black" Opacity="0" IsHitTestVisible="False" Focusable="False" />
                         <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch">
                             <Grid.RenderTransform>

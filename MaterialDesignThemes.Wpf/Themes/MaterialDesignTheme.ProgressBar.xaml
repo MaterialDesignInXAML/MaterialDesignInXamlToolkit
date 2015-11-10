@@ -181,20 +181,25 @@
                         </Canvas>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsIndeterminate" Value="True">
-                            <Trigger.EnterActions>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsIndeterminate" Value="True" />                                
+                                <Condition Property="IsVisible" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
                                 <RemoveStoryboard BeginStoryboardName="IsFullyIndeterminateStoryboard" />
                                 <BeginStoryboard Storyboard="{StaticResource IsIndeterminateStoryboard}"
                                                          Name="IsIndeterminateStoryboard"/>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
                                 <RemoveStoryboard BeginStoryboardName="IsIndeterminateStoryboard" />
-                            </Trigger.ExitActions>
-                        </Trigger>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsIndeterminate" Value="True" />
                                 <Condition Property="Value" Value="0" />
+                                <Condition Property="IsVisible" Value="True" />
                             </MultiTrigger.Conditions>
                             <MultiTrigger.EnterActions>
                                 <RemoveStoryboard BeginStoryboardName="IsIndeterminateStoryboard" />
