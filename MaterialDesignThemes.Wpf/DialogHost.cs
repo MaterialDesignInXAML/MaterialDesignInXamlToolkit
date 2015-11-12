@@ -12,12 +12,35 @@ using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
 {
+    /// <summary>
+    /// Defines how a data context is sourced for a dialog if a <see cref="FrameworkElement"/>
+    /// is passed as the command parameter when using <see cref="DialogHost.OpenDialogCommand"/>.
+    /// </summary>
+    public enum DialogHostOpenDialogCommandDataContextSource
+    {
+        /// <summary>
+        /// The data context from the sender element (typically a <see cref="Button"/>) 
+        /// is applied to the content.
+        /// </summary>
+        SenderElement,
+        /// <summary>
+        /// The data context from the <see cref="DialogHost"/> is applied to the content.
+        /// </summary>
+        DialogHostInstance,
+        /// <summary>
+        /// The data context is explicitly set to <c>null</c>.
+        /// </summary>
+        None
+    }
+
     [TemplatePart(Name = PopupPartName, Type = typeof(Popup))]
+    [TemplatePart(Name = PopupPartName, Type = typeof(ContentControl))]
     [TemplateVisualState(GroupName = "PopupStates", Name = OpenStateName)]
     [TemplateVisualState(GroupName = "PopupStates", Name = ClosedStateName)]
     public class DialogHost : ContentControl
     {
         public const string PopupPartName = "PART_Popup";
+        public const string PopupContentPartName = "PART_PopupContentElement";
         public const string OpenStateName = "Open";
         public const string ClosedStateName = "Closed";
 
@@ -37,6 +60,7 @@ namespace MaterialDesignThemes.Wpf
         private DialogClosingEventHandler _asyncShowClosingEventHandler;
 
         private Popup _popup;
+        private ContentControl _popupContentControl;
         private DialogSession _session;
         private DialogOpenedEventHandler _attachedDialogOpenedEventHandler;
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;        
@@ -276,9 +300,23 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(DialogContentStringFormatProperty, value); }
         }
 
+        public static readonly DependencyProperty OpenDialogCommandDataContextSourceProperty = DependencyProperty.Register(
+            "OpenDialogCommandDataContextSource", typeof (DialogHostOpenDialogCommandDataContextSource), typeof (DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource)));
+
+        /// <summary>
+        /// Defines how a data context is sourced for a dialog if a <see cref="FrameworkElement"/>
+        /// is passed as the command parameter when using <see cref="DialogHost.OpenDialogCommand"/>.
+        /// </summary>
+        public DialogHostOpenDialogCommandDataContextSource OpenDialogCommandDataContextSource
+        {
+            get { return (DialogHostOpenDialogCommandDataContextSource) GetValue(OpenDialogCommandDataContextSourceProperty); }
+            set { SetValue(OpenDialogCommandDataContextSourceProperty, value); }
+        }
+
         public override void OnApplyTemplate()
         {
-            _popup = GetTemplateChild(PopupPartName) as Popup;            
+            _popup = GetTemplateChild(PopupPartName) as Popup;
+            _popupContentControl = GetTemplateChild(PopupContentPartName) as ContentControl;
 
             VisualStateManager.GoToState(this, SelectState(), false);
 
@@ -373,7 +411,7 @@ namespace MaterialDesignThemes.Wpf
         }        
 
         public static readonly DependencyProperty DialogClosingCallbackProperty = DependencyProperty.Register(
-            "DialogClosingCallback", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
+            "DialogClosingCallback", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));        
 
         /// <summary>
         /// Callback fired when the <see cref="DialogClosing"/> event is fired, allowing the event to be processed from a binding/view model.
@@ -438,19 +476,26 @@ namespace MaterialDesignThemes.Wpf
             {
                 AssertTargetableContent();
 
-                //TODO enhancement: make the following configurable, so that the data context can be pulled from the dialog host if desired.
-                //      (leave the current behaviour as the default; most developers will find this logical, as the data context will "inherit" from button containing the content)
-
-                var contentElement = executedRoutedEventArgs.Parameter as FrameworkElement;
-                var senderElement = executedRoutedEventArgs.OriginalSource as FrameworkElement;
-                if (contentElement != null && senderElement != null && contentElement.DataContext == null && BindingOperations.GetBindingExpression(contentElement, DataContextProperty) == null)
+                if (_popupContentControl != null)
                 {
-                    DialogContent = executedRoutedEventArgs.Parameter;
-                    contentElement.SetCurrentValue(DataContextProperty, senderElement.DataContext);
+                    switch (OpenDialogCommandDataContextSource)
+                    {
+                        case DialogHostOpenDialogCommandDataContextSource.SenderElement:
+                            _popupContentControl.DataContext =
+                                (executedRoutedEventArgs.Parameter as FrameworkElement)?.DataContext;
+                            break;
+                        case DialogHostOpenDialogCommandDataContextSource.DialogHostInstance:
+                            _popupContentControl.DataContext = DataContext;
+                            break;
+                        case DialogHostOpenDialogCommandDataContextSource.None:
+                            _popupContentControl.DataContext = null;
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
                 }
-                else
-                    DialogContent = executedRoutedEventArgs.Parameter;
 
+                DialogContent = executedRoutedEventArgs.Parameter;
             }
 
             SetCurrentValue(IsOpenProperty, true);
@@ -462,7 +507,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (executedRoutedEventArgs.Handled) return;
 
-            Close(executedRoutedEventArgs.Parameter);            
+            Close(executedRoutedEventArgs.Parameter);
 
             executedRoutedEventArgs.Handled = true;
         }
