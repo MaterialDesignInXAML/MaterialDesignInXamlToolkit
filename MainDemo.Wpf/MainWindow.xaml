@@ -70,6 +70,11 @@
                                 <wpfExample:TextFields />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Sliders">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Sliders />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Cards">
                             <domain:DemoItem.Content>
                                 <wpfExample:Cards />

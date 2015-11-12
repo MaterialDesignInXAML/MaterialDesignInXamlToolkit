@@ -51,9 +51,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Viewbox Grid.Row="0" Grid.Column="0">
             <Canvas Width="24" Height="24">
@@ -180,14 +177,6 @@
                     wpf:TextFieldAssist.Hint="Pick Date"/>
         <wpf:TimePicker Grid.Row="5" Grid.Column="3" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
                         wpf:TextFieldAssist.Hint="Custom hint" />
-        <wpf:TimePicker Grid.Row="5" Grid.Column="4" Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 8 0 8" />
-        <Slider Grid.Row="6" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
-        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="3" Grid.RowSpan="3" >
-            <Slider TickFrequency="5" TickPlacement="BottomRight" Orientation="Vertical" Minimum="1" Maximum="50" />
-            <Slider TickFrequency="25" TickPlacement="TopLeft" Orientation="Vertical" Minimum="1" Maximum="50" IsEnabled="False" Margin="24 8 0 8" />
-        </StackPanel>
-        <Slider Grid.Row="7" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True" />
-        <Slider Grid.Row="8" Grid.Column="1" TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsEnabled="False" />
-
+        <wpf:TimePicker Grid.Row="5" Grid.Column="4" Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 8 0 8" />        
     </Grid>
 </UserControl>
