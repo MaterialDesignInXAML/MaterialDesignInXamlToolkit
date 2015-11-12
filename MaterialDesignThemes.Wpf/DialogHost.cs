@@ -197,13 +197,13 @@ namespace MaterialDesignThemes.Wpf
 
             return targets[0]._closeDialogExecutionParameter;
         }
-        
+
         public DialogHost()
         {
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
 
-            CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler));
+            CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler, CloseDialogCanExecute));
             CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));
         }
 
@@ -501,6 +501,11 @@ namespace MaterialDesignThemes.Wpf
             SetCurrentValue(IsOpenProperty, true);
 
             executedRoutedEventArgs.Handled = true;
+        }
+
+        private void CloseDialogCanExecute(object sender, CanExecuteRoutedEventArgs canExecuteRoutedEventArgs)
+        {
+            canExecuteRoutedEventArgs.CanExecute = _session != null;
         }
 
         private void CloseDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
