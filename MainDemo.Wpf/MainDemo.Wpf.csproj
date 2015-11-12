@@ -119,6 +119,9 @@
     <Compile Include="ProvingGround.xaml.cs">
       <DependentUpon>ProvingGround.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProvingGroundTemp.xaml.cs">
+      <DependentUpon>ProvingGroundTemp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Shadows.xaml.cs">
       <DependentUpon>Shadows.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProvingGroundTemp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Shadows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -273,6 +280,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ProvingGroundStuff\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DetministicSliders.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
