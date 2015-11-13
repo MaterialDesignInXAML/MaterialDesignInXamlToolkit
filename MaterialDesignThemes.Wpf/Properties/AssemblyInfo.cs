@@ -16,7 +16,7 @@ using System.Windows.Markup;
 [assembly: AssemblyCopyright("Copyright © 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: XmlnsPrefix("http://materialdesigninxaml.net/winfx/xaml/themes", "MaterialDesignThemes.Wpf")]
+[assembly: XmlnsPrefix("http://materialdesigninxaml.net/winfx/xaml/themes", "materialDesignTheme")]
 [assembly: XmlnsDefinition("http://materialdesigninxaml.net/winfx/xaml/themes", "MaterialDesignThemes.Wpf")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
