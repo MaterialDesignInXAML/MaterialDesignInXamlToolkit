@@ -41,83 +41,88 @@
                                   IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
                     <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
                              PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="domain:DemoItem">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="domain:DemoItem">
                                 <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <domain:DemoItem Name="Home">
-                <domain:DemoItem.Content>
-                    <wpfExample:Home />
-                </domain:DemoItem.Content>
-            </domain:DemoItem>
-            <domain:DemoItem Name="Palette">
-                <domain:DemoItem.Content>
-                    <wpfExample:PaletteSelector>
-                        <wpfExample:PaletteSelector.DataContext>
-                            <wpfExample:PaletteSelectorViewModel />
-                        </wpfExample:PaletteSelector.DataContext>
-                    </wpfExample:PaletteSelector>
-                </domain:DemoItem.Content>
-            </domain:DemoItem>
-            <domain:DemoItem Name="Buttons &amp; Toggles">
-                <domain:DemoItem.Content>
-                    <wpfExample:Buttons />
-                </domain:DemoItem.Content>
-            </domain:DemoItem>
-            <domain:DemoItem Name="Fields">
-                <domain:DemoItem.Content>
-                    <wpfExample:TextFields />
-                </domain:DemoItem.Content>
-            </domain:DemoItem>
-            <domain:DemoItem Name="Cards">
-                <domain:DemoItem.Content>
-                    <wpfExample:Cards />
-                </domain:DemoItem.Content>
-            </domain:DemoItem>
-            <domain:DemoItem Name="Colour Zones">
-                <domain:DemoItem.Content>
-                    <wpfExample:ColorZones />
-                </domain:DemoItem.Content>
-            </domain:DemoItem>
-            <domain:DemoItem Name="Lists">
-                <domain:DemoItem.Content>
-                    <wpfExample:Lists>
-                        <wpfExample:Lists.DataContext>
-                            <domain:ListsAndGridsViewModel />
-                        </wpfExample:Lists.DataContext>
-                    </wpfExample:Lists>
-                </domain:DemoItem.Content>
-            </domain:DemoItem>
-            <domain:DemoItem Name="Trees">
-                <domain:DemoItem.Content>
-                    <wpfExample:Trees />
-                </domain:DemoItem.Content>
-            </domain:DemoItem>
-            <domain:DemoItem Name="Grids">
-                <domain:DemoItem.Content>
-                    <wpfExample:Grids>
-                        <wpfExample:Grids.DataContext>
-                            <domain:ListsAndGridsViewModel />
-                        </wpfExample:Grids.DataContext>
-                    </wpfExample:Grids>
-                </domain:DemoItem.Content>
-            </domain:DemoItem>
-            <domain:DemoItem Name="Expander">
-                <domain:DemoItem.Content>
-                    <wpfExample:Expander />
-                </domain:DemoItem.Content>
-            </domain:DemoItem>
-            <domain:DemoItem Name="Menus &amp; Tool Bars">
-                <domain:DemoItem.Content>
-                    <wpfExample:MenusAndToolBars />
-                </domain:DemoItem.Content>
-            </domain:DemoItem>
-            <domain:DemoItem Name="Progress Indicators">
-                <domain:DemoItem.Content>
-                    <wpfExample:Progress />
-                </domain:DemoItem.Content>
-            </domain:DemoItem>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <domain:DemoItem Name="Home">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Home />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Palette">
+                            <domain:DemoItem.Content>
+                                <wpfExample:PaletteSelector>
+                                    <wpfExample:PaletteSelector.DataContext>
+                                        <wpfExample:PaletteSelectorViewModel />
+                                    </wpfExample:PaletteSelector.DataContext>
+                                </wpfExample:PaletteSelector>
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Buttons &amp; Toggles">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Buttons />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Fields">
+                            <domain:DemoItem.Content>
+                                <wpfExample:TextFields />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Sliders">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Sliders />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Cards">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Cards />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Colour Zones">
+                            <domain:DemoItem.Content>
+                                <wpfExample:ColorZones />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Lists">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Lists>
+                                    <wpfExample:Lists.DataContext>
+                                        <domain:ListsAndGridsViewModel />
+                                    </wpfExample:Lists.DataContext>
+                                </wpfExample:Lists>
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Trees">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Trees />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Grids">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Grids>
+                                    <wpfExample:Grids.DataContext>
+                                        <domain:ListsAndGridsViewModel />
+                                    </wpfExample:Grids.DataContext>
+                                </wpfExample:Grids>
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Expander">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Expander />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Menus &amp; Tool Bars">
+                            <domain:DemoItem.Content>
+                                <wpfExample:MenusAndToolBars />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Progress Indicators">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Progress />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Dialogs">
                             <domain:DemoItem.Content>
                                 <wpfExample:Dialogs>
@@ -132,7 +137,7 @@
                                 <wpfExample:Shadows />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
-        </ListBox>
+                    </ListBox>
                 </StackPanel>
             </wpf:DrawerHost.LeftDrawerContent>
             <DockPanel>
@@ -144,8 +149,8 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
                     </DockPanel>
                 </wpf:ColorZone>
-        <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
-    </DockPanel>
+                <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
+            </DockPanel>
         </wpf:DrawerHost>
     </wpf:DialogHost>
 </Window>
