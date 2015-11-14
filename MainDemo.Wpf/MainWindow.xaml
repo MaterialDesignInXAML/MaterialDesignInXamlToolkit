@@ -75,6 +75,11 @@
                                 <wpfExample:Sliders />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Spinners">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Spinners />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Cards">
                             <domain:DemoItem.Content>
                                 <wpfExample:Cards />

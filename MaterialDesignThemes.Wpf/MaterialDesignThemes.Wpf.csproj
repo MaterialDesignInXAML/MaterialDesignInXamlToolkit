@@ -60,6 +60,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\MaterialDesignTheme.OversizedNumberSpinner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.MahApps.Dialogs.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -244,6 +248,7 @@
     <Compile Include="MaterialDataGridComboBoxColumn.cs" />
     <Compile Include="MaterialDataGridTextColumn.cs" />
     <Compile Include="MaterialDateDisplay.cs" />
+    <Compile Include="OversizedNumberSpinner.cs" />
     <Compile Include="PaletteHelper.cs" />
     <Compile Include="PasswordFieldAssist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
