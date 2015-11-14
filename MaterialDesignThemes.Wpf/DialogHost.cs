@@ -12,12 +12,35 @@ using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
 {
+    /// <summary>
+    /// Defines how a data context is sourced for a dialog if a <see cref="FrameworkElement"/>
+    /// is passed as the command parameter when using <see cref="DialogHost.OpenDialogCommand"/>.
+    /// </summary>
+    public enum DialogHostOpenDialogCommandDataContextSource
+    {
+        /// <summary>
+        /// The data context from the sender element (typically a <see cref="Button"/>) 
+        /// is applied to the content.
+        /// </summary>
+        SenderElement,
+        /// <summary>
+        /// The data context from the <see cref="DialogHost"/> is applied to the content.
+        /// </summary>
+        DialogHostInstance,
+        /// <summary>
+        /// The data context is explicitly set to <c>null</c>.
+        /// </summary>
+        None
+    }
+
     [TemplatePart(Name = PopupPartName, Type = typeof(Popup))]
+    [TemplatePart(Name = PopupPartName, Type = typeof(ContentControl))]
     [TemplateVisualState(GroupName = "PopupStates", Name = OpenStateName)]
     [TemplateVisualState(GroupName = "PopupStates", Name = ClosedStateName)]
     public class DialogHost : ContentControl
     {
         public const string PopupPartName = "PART_Popup";
+        public const string PopupContentPartName = "PART_PopupContentElement";
         public const string OpenStateName = "Open";
         public const string ClosedStateName = "Closed";
 
@@ -37,6 +60,7 @@ namespace MaterialDesignThemes.Wpf
         private DialogClosingEventHandler _asyncShowClosingEventHandler;
 
         private Popup _popup;
+        private ContentControl _popupContentControl;
         private DialogSession _session;
         private DialogOpenedEventHandler _attachedDialogOpenedEventHandler;
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;        
@@ -156,9 +180,9 @@ namespace MaterialDesignThemes.Wpf
 
             targets[0].AssertTargetableContent();
             targets[0].DialogContent = content;
-            targets[0].SetCurrentValue(IsOpenProperty, true);
             targets[0]._asyncShowOpenedEventHandler = openedEventHandler;
             targets[0]._asyncShowClosingEventHandler = closingEventHandler;
+            targets[0].SetCurrentValue(IsOpenProperty, true);
 
             var task = new Task(() =>
             {
@@ -173,13 +197,13 @@ namespace MaterialDesignThemes.Wpf
 
             return targets[0]._closeDialogExecutionParameter;
         }
-        
+
         public DialogHost()
         {
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
 
-            CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler));
+            CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler, CloseDialogCanExecute));
             CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));
         }
 
@@ -208,7 +232,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 dialogHost._asyncShowWaitHandle.Set();
                 dialogHost._attachedDialogClosingEventHandler = null;
-                dialogHost._session.IsDisabled = true;
+                dialogHost._session.IsEnded = true;
                 dialogHost._session = null;
                 return;
             }
@@ -276,9 +300,23 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(DialogContentStringFormatProperty, value); }
         }
 
+        public static readonly DependencyProperty OpenDialogCommandDataContextSourceProperty = DependencyProperty.Register(
+            "OpenDialogCommandDataContextSource", typeof (DialogHostOpenDialogCommandDataContextSource), typeof (DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource)));
+
+        /// <summary>
+        /// Defines how a data context is sourced for a dialog if a <see cref="FrameworkElement"/>
+        /// is passed as the command parameter when using <see cref="DialogHost.OpenDialogCommand"/>.
+        /// </summary>
+        public DialogHostOpenDialogCommandDataContextSource OpenDialogCommandDataContextSource
+        {
+            get { return (DialogHostOpenDialogCommandDataContextSource) GetValue(OpenDialogCommandDataContextSourceProperty); }
+            set { SetValue(OpenDialogCommandDataContextSourceProperty, value); }
+        }
+
         public override void OnApplyTemplate()
         {
-            _popup = GetTemplateChild(PopupPartName) as Popup;            
+            _popup = GetTemplateChild(PopupPartName) as Popup;
+            _popupContentControl = GetTemplateChild(PopupContentPartName) as ContentControl;
 
             VisualStateManager.GoToState(this, SelectState(), false);
 
@@ -373,7 +411,7 @@ namespace MaterialDesignThemes.Wpf
         }        
 
         public static readonly DependencyProperty DialogClosingCallbackProperty = DependencyProperty.Register(
-            "DialogClosingCallback", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
+            "DialogClosingCallback", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));        
 
         /// <summary>
         /// Callback fired when the <see cref="DialogClosing"/> event is fired, allowing the event to be processed from a binding/view model.
@@ -403,7 +441,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var dialogClosingEventArgs = new DialogClosingEventArgs(_session, parameter, DialogClosingEvent);
 
-            _session.IsDisabled = true;
+            _session.IsEnded = true;
 
             //multiple ways of calling back that the dialog is closing:
             // * routed event
@@ -418,7 +456,7 @@ namespace MaterialDesignThemes.Wpf
             if (!dialogClosingEventArgs.IsCancelled)
                 SetCurrentValue(IsOpenProperty, false);
             else
-                _session.IsDisabled = false;
+                _session.IsEnded = false;
 
             _closeDialogExecutionParameter = parameter;
         }
@@ -437,6 +475,26 @@ namespace MaterialDesignThemes.Wpf
             if (executedRoutedEventArgs.Parameter != null)
             {
                 AssertTargetableContent();
+
+                if (_popupContentControl != null)
+                {
+                    switch (OpenDialogCommandDataContextSource)
+                    {
+                        case DialogHostOpenDialogCommandDataContextSource.SenderElement:
+                            _popupContentControl.DataContext =
+                                (executedRoutedEventArgs.Parameter as FrameworkElement)?.DataContext;
+                            break;
+                        case DialogHostOpenDialogCommandDataContextSource.DialogHostInstance:
+                            _popupContentControl.DataContext = DataContext;
+                            break;
+                        case DialogHostOpenDialogCommandDataContextSource.None:
+                            _popupContentControl.DataContext = null;
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                }
+
                 DialogContent = executedRoutedEventArgs.Parameter;
             }
 
@@ -445,11 +503,16 @@ namespace MaterialDesignThemes.Wpf
             executedRoutedEventArgs.Handled = true;
         }
 
+        private void CloseDialogCanExecute(object sender, CanExecuteRoutedEventArgs canExecuteRoutedEventArgs)
+        {
+            canExecuteRoutedEventArgs.CanExecute = _session != null;
+        }
+
         private void CloseDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
             if (executedRoutedEventArgs.Handled) return;
 
-            Close(executedRoutedEventArgs.Parameter);            
+            Close(executedRoutedEventArgs.Parameter);
 
             executedRoutedEventArgs.Handled = true;
         }

@@ -57,5 +57,7 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 
 ![Alt text](web/images/Dialogs.gif "Dialogs")
 
+![Alt text](web/images/SliderDemo.gif "Sliders")
+
 ![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo23.png "Material Design Themes")
 
