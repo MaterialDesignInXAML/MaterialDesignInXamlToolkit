@@ -205,6 +205,7 @@
     <Compile Include="ColorZone.cs" />
     <Compile Include="ComboBoxAssist.cs" />
     <Compile Include="ComboBoxAssistManagedOverlayInfo.cs" />
+    <Compile Include="ComboBoxPopup.cs" />
     <Compile Include="Converters\BrushRoundConverter.cs" />
     <Compile Include="Converters\BrushToRadialGradientBrushConverter.cs" />
     <Compile Include="Converters\CalendarDateCoalesceConverter.cs" />
