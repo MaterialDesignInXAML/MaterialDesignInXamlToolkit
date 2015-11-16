@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
     <Style x:Key="MaterialDesignHorizontalTrackRepeatButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -13,12 +13,31 @@
                         <Rectangle x:Name="PART_SelectionRange" Fill="{TemplateBinding Background}" Height="2.0"                                   
                                    Canvas.Top="8"
                                    Width="{TemplateBinding ActualWidth}"/>
-                    </Canvas>                    
+                    </Canvas>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-	<Style x:Key="MaterialDesignVerticalTrackRepeatButton" TargetType="{x:Type RepeatButton}">
+
+    <Style x:Key="MaterialDesignHorizontalTrackDiscreteRepeatButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Canvas Background="Transparent" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+                        <Rectangle x:Name="PART_SelectionRange" Fill="{TemplateBinding Background}" Height="2.0"                                   
+                                   Canvas.Top="44"
+                                   Width="{TemplateBinding ActualWidth}"/>
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignVerticalTrackRepeatButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Focusable" Value="false"/>
@@ -30,11 +49,12 @@
                         <Rectangle x:Name="PART_SelectionRange" Fill="{TemplateBinding Background}" Width="2.0"                                   
                                    Canvas.Left="8"
                                    Height="{TemplateBinding ActualHeight}"/>
-                    </Canvas>                    
+                    </Canvas>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+    
     <ControlTemplate x:Key="MaterialDesignSliderThumb" TargetType="{x:Type Thumb}">
         <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
             <Ellipse x:Name="shadow" 
@@ -43,80 +63,80 @@
                      Opacity=".0"
                      UseLayoutRounding="True" />
             <Ellipse x:Name="grip" Width="12" Height="12" Fill="{TemplateBinding Foreground}"
-                     UseLayoutRounding="True" RenderTransformOrigin=".5,.5">            
-				<Ellipse.RenderTransform>
-					<ScaleTransform ScaleX="1" ScaleY="1"></ScaleTransform>
-				</Ellipse.RenderTransform>
-			</Ellipse>
+                     UseLayoutRounding="True" RenderTransformOrigin=".5,.5">
+                <Ellipse.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"></ScaleTransform>
+                </Ellipse.RenderTransform>
+            </Ellipse>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-				<Trigger.EnterActions>
-					<BeginStoryboard>
-						<Storyboard>
-							<DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
 											 To=".26" Duration="0:0:0.2" />
-						</Storyboard>													
-					</BeginStoryboard>
-				</Trigger.EnterActions>
-				<Trigger.ExitActions>
-					<BeginStoryboard>
-						<Storyboard>
-							<DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
 											 To=".0" Duration="0:0:0.2" />
-						</Storyboard>
-					</BeginStoryboard>
-				</Trigger.ExitActions>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
             </Trigger>
             <Trigger Property="IsDragging" Value="true">
-				<Trigger.EnterActions>
-					<BeginStoryboard>
-						<Storyboard>
-							<Storyboard>
-								<DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleX">
-									<EasingDoubleKeyFrame KeyTime="0:0:0" Value="1" />
-									<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1.5">
-										<EasingDoubleKeyFrame.EasingFunction>
-											<SineEase EasingMode="EaseInOut" />
-										</EasingDoubleKeyFrame.EasingFunction>
-									</EasingDoubleKeyFrame>
-								</DoubleAnimationUsingKeyFrames>
-								<DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleY">
-									<EasingDoubleKeyFrame KeyTime="0:0:0" Value="1" />
-									<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1.5">
-										<EasingDoubleKeyFrame.EasingFunction>
-											<SineEase EasingMode="EaseInOut" />
-										</EasingDoubleKeyFrame.EasingFunction>
-									</EasingDoubleKeyFrame>
-								</DoubleAnimationUsingKeyFrames>
-							</Storyboard>													
-						</Storyboard>
-					</BeginStoryboard>
-				</Trigger.EnterActions>
-				<Trigger.ExitActions>
-					<BeginStoryboard>
-						<Storyboard>
-							<Storyboard>
-								<DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleX">
-									<EasingDoubleKeyFrame KeyTime="0:0:0" Value="1.5" />
-									<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1">
-										<EasingDoubleKeyFrame.EasingFunction>
-											<SineEase EasingMode="EaseInOut" />
-										</EasingDoubleKeyFrame.EasingFunction>
-									</EasingDoubleKeyFrame>
-								</DoubleAnimationUsingKeyFrames>
-								<DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleY">
-									<EasingDoubleKeyFrame KeyTime="0:0:0" Value="1.5" />
-									<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1">
-										<EasingDoubleKeyFrame.EasingFunction>
-											<SineEase EasingMode="EaseInOut" />
-										</EasingDoubleKeyFrame.EasingFunction>
-									</EasingDoubleKeyFrame>
-								</DoubleAnimationUsingKeyFrames>
-							</Storyboard>													
-						</Storyboard>
-					</BeginStoryboard>
-				</Trigger.ExitActions>
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleX">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1.5">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleY">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1.5">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleX">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1.5" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleY">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1.5" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Fill" TargetName="grip" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
@@ -124,52 +144,237 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-	<ControlTemplate x:Key="MaterialDesignSliderHorizontal" TargetType="{x:Type Slider}">
-		<Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
-					<RowDefinition Height="Auto"/>
-				</Grid.RowDefinitions>
-				<TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,0,0,2" Placement="Top" Grid.Row="0" Visibility="Collapsed"/>
-				<TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,2,0,0" Placement="Bottom" Grid.Row="2" Visibility="Collapsed"/>
-				<Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden" Grid.Row="1" />
-				<Track x:Name="PART_Track" Grid.Row="1" OpacityMask="{x:Null}">
-					<Track.DecreaseRepeatButton>
-						<RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource MaterialDesignHorizontalTrackRepeatButton}" Background="{TemplateBinding Foreground}" />
-					</Track.DecreaseRepeatButton>
-					<Track.IncreaseRepeatButton>
-						<RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource MaterialDesignHorizontalTrackRepeatButton}" Background="{DynamicResource MaterialDesignCheckBoxOff}"
+
+    <ControlTemplate x:Key="MaterialDesignDiscreteSliderThumb" TargetType="{x:Type Thumb}">
+        <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" Width="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Viewbox x:Name="Pin" RenderTransformOrigin=".5,1">
+                <Grid>
+                    <Path Data="M13.437011,33.065002 C9.7268463,29.334181 7.812011,26.379009 4.874511,23.379009 1.687011,19.566509 0.12600673,17.206803 5.6843419E-14,14.127608 0.062010996,2.0027046 11.158781,-0.062991121 13.43702,0.0014351187 M13.438011,33.065016 C17.148173,29.334199 19.063008,26.379023 22.00051,23.379017 25.188007,19.566519 26.749013,17.206806 26.875018,14.127613 26.813007,2.002704 15.716239,-0.062987381 13.438,0.0014388781"
+                          Fill="{TemplateBinding Foreground}"
+                          Grid.Row="0" Margin="-7,2,-8,4" />
+                    <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=Value}" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               FontWeight="Normal" FontSize="11"
+                               Margin="-7 -6 -7 0"/>
+                </Grid>
+                <Viewbox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="0" ScaleY="0" />
+                        <TranslateTransform Y="4" />
+                    </TransformGroup>
+                </Viewbox.RenderTransform>
+            </Viewbox>
+            <Grid Grid.Row="1" Margin="0 0 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Height="2" Width="6" Fill="{TemplateBinding Foreground}" />
+                <Rectangle Height="2" Width="6" Fill="{DynamicResource MaterialDesignCheckBoxOff}" Grid.Column="1" />
+            </Grid>
+            <Ellipse x:Name="shadow" 
+                     Grid.Row="1"
+                     Width="24" Height="24" Margin="-12"
+                     Fill="{TemplateBinding Foreground}"
+                     Opacity=".0"
+                     UseLayoutRounding="True" />
+            <Ellipse x:Name="grip" Width="12" Height="12" Fill="{TemplateBinding Foreground}"
+                     Grid.Row="1"
+                     UseLayoutRounding="True" RenderTransformOrigin=".5,.5">
+                <Ellipse.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"></ScaleTransform>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
+                                             To=".26" Duration="0:0:0.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
+                                             To=".0" Duration="0:0:0.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+            <Trigger Property="IsDragging" Value="true">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleX">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1.5">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleY">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1.5">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
+                                                 To=".0" Duration="0:0:0.1" />
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Pin" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Pin" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Pin" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.Y)">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="4" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleX">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1.5" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grip" Storyboard.TargetProperty="RenderTransform.ScaleY">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1.5" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
+                                                 Duration="0:0:0.1" />
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Pin" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Pin" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Pin" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.Y)">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="4">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Fill" TargetName="grip" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
+                <Setter Property="Stroke" TargetName="grip" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="MaterialDesignSliderHorizontal" TargetType="{x:Type Slider}">
+        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,0,0,2" Placement="Top" Grid.Row="0" Visibility="Collapsed"/>
+                <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,2,0,0" Placement="Bottom" Grid.Row="2" Visibility="Collapsed"/>
+                <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden" Grid.Row="1" />
+                <Track x:Name="PART_Track" Grid.Row="1" OpacityMask="{x:Null}">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource MaterialDesignHorizontalTrackRepeatButton}" Background="{TemplateBinding Foreground}" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource MaterialDesignHorizontalTrackRepeatButton}" Background="{DynamicResource MaterialDesignCheckBoxOff}"
 									  x:Name="IncreaseRepeatButton" />
-					</Track.IncreaseRepeatButton>
-					<Track.Thumb>
-						<Thumb x:Name="Thumb" Focusable="False" Height="18" OverridesDefaultStyle="True" Template="{StaticResource MaterialDesignSliderThumb}" 
+                    </Track.IncreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb x:Name="Thumb" Focusable="False" Height="18" OverridesDefaultStyle="True" Template="{StaticResource MaterialDesignSliderThumb}" 
 							   VerticalAlignment="Center" Width="12"/>
-					</Track.Thumb>
-				</Track>
-			</Grid>
-		</Border>
-		<ControlTemplate.Triggers>
-			<Trigger Property="TickPlacement" Value="TopLeft">
-				<Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
-			</Trigger>
-			<Trigger Property="TickPlacement" Value="BottomRight">
-				<Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
-			</Trigger>
-			<Trigger Property="TickPlacement" Value="Both">
-				<Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
-				<Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
-			</Trigger>
-			<Trigger Property="IsSelectionRangeEnabled" Value="true">
-				<Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
-			</Trigger>
-			<Trigger Property="IsEnabled" Value="False">
-				<Setter Property="Background" TargetName="IncreaseRepeatButton" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
-			</Trigger>
-		</ControlTemplate.Triggers>
-	</ControlTemplate>
-	<ControlTemplate x:Key="MaterialDesignSliderVertical" TargetType="{x:Type Slider}">
+                    </Track.Thumb>
+                </Track>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="TickPlacement" Value="TopLeft">
+                <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="BottomRight">
+                <Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="Both">
+                <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+                <Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="IsSelectionRangeEnabled" Value="true">
+                <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" TargetName="IncreaseRepeatButton" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="MaterialDesignSliderVertical" TargetType="{x:Type Slider}">
         <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -179,7 +384,7 @@
                 </Grid.ColumnDefinitions>
                 <TickBar x:Name="TopTick" Grid.Column="0" Fill="{TemplateBinding Foreground}" Margin="0,0,2,0" Placement="Left" Visibility="Collapsed" Width="4"/>
                 <TickBar x:Name="BottomTick" Grid.Column="2" Fill="{TemplateBinding Foreground}" Margin="2,0,0,0" Placement="Right" Visibility="Collapsed" Width="4"/>
-				<Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden" Grid.Column="1" />
+                <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden" Grid.Column="1" />
                 <Track x:Name="PART_Track" Grid.Column="1">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource MaterialDesignVerticalTrackRepeatButton}" Background="{TemplateBinding Foreground}"/>
@@ -208,11 +413,50 @@
             <Trigger Property="IsSelectionRangeEnabled" Value="true">
                 <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
             </Trigger>
-			<Trigger Property="IsEnabled" Value="False">
-				<Setter Property="Background" TargetName="IncreaseRepeatButton" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
-			</Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" TargetName="IncreaseRepeatButton" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+            </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
+
+    <ControlTemplate x:Key="MaterialDesignDiscreteSliderHorizontal" TargetType="{x:Type Slider}">
+        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+            <Grid>
+                <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden" Grid.Row="1" />
+                <Track x:Name="PART_Track" OpacityMask="{x:Null}" Margin="7 0 8 0">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource MaterialDesignHorizontalTrackDiscreteRepeatButton}" Background="{TemplateBinding Foreground}" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource MaterialDesignHorizontalTrackDiscreteRepeatButton}" Background="{DynamicResource MaterialDesignCheckBoxOff}"
+                                      x:Name="IncreaseRepeatButton" />
+                    </Track.IncreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb x:Name="Thumb" Focusable="False" OverridesDefaultStyle="True" Template="{StaticResource MaterialDesignDiscreteSliderThumb}" 
+                               VerticalAlignment="Center" />
+                    </Track.Thumb>
+                </Track>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="TickPlacement" Value="TopLeft">
+
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="BottomRight">
+
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="Both">
+
+            </Trigger>
+            <Trigger Property="IsSelectionRangeEnabled" Value="true">
+                <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" TargetName="IncreaseRepeatButton" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
     <Style x:Key="MaterialDesignSlider" TargetType="{x:Type Slider}">
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -223,9 +467,22 @@
             <Trigger Property="Orientation" Value="Vertical">
                 <Setter Property="Template" Value="{StaticResource MaterialDesignSliderVertical}"/>
             </Trigger>
-			<Trigger Property="IsEnabled" Value="False">
-				<Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />				
-			</Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MaterialDesignDiscreteSlider" TargetType="{x:Type Slider}">
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="IsSnapToTickEnabled" Value="True"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="Template" Value="{StaticResource MaterialDesignDiscreteSliderHorizontal}"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 

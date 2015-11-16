@@ -434,7 +434,7 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Card" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_PopupContentElement" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0" />
                                                 <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3">
                                                     <EasingDoubleKeyFrame.EasingFunction>
@@ -474,7 +474,7 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Card" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_PopupContentElement" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="1" KeyTime="0" />
                                                 <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.18" />
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.3">
@@ -511,7 +511,7 @@
                                         </BooleanAnimationUsingKeyFrames>
                                         <DoubleAnimation Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="Opacity"
                                                          To=".56" />
-                                        <DoubleAnimation Storyboard.TargetName="Card" Storyboard.TargetProperty="Opacity"
+                                        <DoubleAnimation Storyboard.TargetName="PART_PopupContentElement" Storyboard.TargetProperty="Opacity"
                                                          To="1" />
                                         <DoubleAnimation Storyboard.TargetName="CardScaleTransform" Storyboard.TargetProperty="ScaleX"
                                                          To="1" />
@@ -543,7 +543,8 @@
                                     </ResourceDictionary.MergedDictionaries>
                                 </ResourceDictionary>
                             </Popup.Resources>
-                            <local:Card Margin="22"
+                            <local:Card x:Name="PART_PopupContentElement" 
+                                        Margin="22"
                                         local:ShadowAssist.ShadowDepth="Depth5"
                                         UniformCornerRadius="4"
                                         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -554,7 +555,6 @@
                                         Foreground="{DynamicResource MaterialDesignBody}"
                                         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
                                         IsTabStop="False"
-                                        x:Name="Card"
                                         Opacity="0"
                                         RenderTransformOrigin=".5,.5"
                                         Content="{TemplateBinding DialogContent}"
