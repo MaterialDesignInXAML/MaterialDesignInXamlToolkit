@@ -26,6 +26,9 @@
         </Setter>
     </Style>
 
+    <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
+    <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
+    <system:Double x:Key="PopupLeftRightMargin">16</system:Double>
 
     <ControlTemplate x:Key="PopupContentUpTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
@@ -50,14 +53,12 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Rectangle Grid.Row="0"
-                                   Fill="{DynamicResource MaterialDesignPaper}"
-                                   Height="8"/>
-
+                           Fill="{DynamicResource MaterialDesignPaper}"
+                           Height="{StaticResource PopupTopBottomMargin}"/>
                 <ContentPresenter Grid.Row="1"/>
-
                 <Rectangle Grid.Row="2"
-                                   Fill="{DynamicResource MaterialDesignPaper}"
-                                   Height="4"/>
+                           Fill="{DynamicResource MaterialDesignPaper}"
+                           Height="{StaticResource PopupContentPresenterExtend}"/>
 
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
@@ -66,19 +67,19 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0"
-                                       Width="16"
-                                       Fill="{DynamicResource MaterialDesignPaper}"/>
+                               Width="{StaticResource PopupLeftRightMargin}"
+                               Fill="{DynamicResource MaterialDesignPaper}"/>
                     <Grid Grid.Column="1"
-                                      Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
-                                      Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
+                          Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
+                          Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
                     <Rectangle Grid.Column="2"
-                                       MinWidth="16"
-                                       Fill="{DynamicResource MaterialDesignPaper}"/>
+                               MinWidth="{StaticResource PopupLeftRightMargin}"
+                               Fill="{DynamicResource MaterialDesignPaper}"/>
                 </Grid>
 
                 <Rectangle Grid.Row="4"
-                                       Height="8"
-                                       Fill="{DynamicResource MaterialDesignPaper}" />
+                           Height="{StaticResource PopupTopBottomMargin}"
+                           Fill="{DynamicResource MaterialDesignPaper}" />
             </Grid>
         </Grid>
     </ControlTemplate>
@@ -107,7 +108,7 @@
                 </Grid.RowDefinitions>
                 <Rectangle Grid.Row="0"
                                    Fill="{DynamicResource MaterialDesignPaper}"
-                                   Height="8"/>
+                                   Height="{StaticResource PopupTopBottomMargin}"/>
 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -116,24 +117,24 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0"
-                                       Width="16"
+                                       Width="{StaticResource PopupLeftRightMargin}"
                                        Fill="{DynamicResource MaterialDesignPaper}"/>
                     <Grid Grid.Column="1"
                                       Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
                                       Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
                     <Rectangle Grid.Column="2"
-                                       MinWidth="16"
+                                       MinWidth="{StaticResource PopupLeftRightMargin}"
                                        Fill="{DynamicResource MaterialDesignPaper}"/>
                 </Grid>
 
                 <Rectangle Grid.Row="2"
                                    Fill="{DynamicResource MaterialDesignPaper}"
-                                   Height="4"/>
+                                   Height="{StaticResource PopupContentPresenterExtend}"/>
 
                 <ContentPresenter Grid.Row="3"/>
 
                 <Rectangle Grid.Row="4"
-                                   Height="8"
+                                   Height="{StaticResource PopupTopBottomMargin}"
                                    Fill="{DynamicResource MaterialDesignPaper}" />
             </Grid>
         </Grid>
@@ -160,13 +161,13 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Rectangle Grid.Row="0"
-                                   Fill="{DynamicResource MaterialDesignPaper}"
-                                   Height="8"/>
+                           Fill="{DynamicResource MaterialDesignPaper}"
+                           Height="{StaticResource PopupTopBottomMargin}"/>
 
                 <ContentPresenter Grid.Row="1"/>
 
                 <Rectangle Grid.Row="2"
-                                   Height="8"
+                                   Height="{StaticResource PopupTopBottomMargin}"
                                    Fill="{DynamicResource MaterialDesignPaper}" />
             </Grid>
         </Grid>
