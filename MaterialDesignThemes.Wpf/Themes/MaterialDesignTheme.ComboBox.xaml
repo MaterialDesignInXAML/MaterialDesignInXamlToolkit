@@ -385,9 +385,7 @@
     <ControlTemplate x:Key="MaterialDesignComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid x:Name="templateRoot"
               SnapsToDevicePixels="True"
-              UseLayoutRounding="True"
-              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-              VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+              UseLayoutRounding="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
@@ -399,8 +397,9 @@
                               Grid.ColumnSpan="2"
                               IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                               Style="{StaticResource MaterialDesignComboBoxToggleButton}" />
-            <Grid x:Name="ContentWrapper"
-                      Margin="{TemplateBinding Padding}">
+            <Grid Margin="{TemplateBinding Padding}"
+                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                 <TextBlock x:Name="Hint"
                            IsHitTestVisible="False"
                            Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
@@ -507,7 +506,7 @@
                 <ThicknessAnimation Duration="0:0:0.3"
                                     Storyboard.TargetName="Hint"
                                     Storyboard.TargetProperty="(FrameworkElement.Margin)"
-                                    To="0,-14,0,0">
+                                    To="0,-12,0,0">
                     <ThicknessAnimation.EasingFunction>
                         <SineEase EasingMode="EaseOut" />
                     </ThicknessAnimation.EasingFunction>
@@ -537,11 +536,10 @@
                 </ThicknessAnimation>
             </Storyboard>
         </ControlTemplate.Resources>
-        <Grid x:Name="templateRoot"
-              UseLayoutRounding="True"
-              SnapsToDevicePixels="True">
-            <Grid Margin="0 16 0 0"
-                  x:Name="MarginWrapper">
+        <Grid x:Name="templateRoot">
+            <Grid Margin="0 12 0 0"
+                  SnapsToDevicePixels="True"
+              UseLayoutRounding="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
@@ -552,27 +550,28 @@
                               BorderBrush="{TemplateBinding BorderBrush}"
                               BorderThickness="{TemplateBinding BorderThickness}"
                               IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                              Style="{StaticResource MaterialDesignComboBoxToggleButton}" />
+                              Style="{StaticResource MaterialDesignComboBoxToggleButton}"/>
                 <TextBlock x:Name="Hint"
                            Margin="{TemplateBinding Padding}"
                            FontSize="{TemplateBinding FontSize}"
-                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                           HorizontalAlignment="Left"
                            IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                           UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                            Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                           SnapsToDevicePixels="True"
-                           UseLayoutRounding="True"
                            Text="{TemplateBinding wpf:TextFieldAssist.Hint}" />
-                <Grid x:Name="ContentWrapper"
+                <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                       Margin="{TemplateBinding Padding}"
-                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                      UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                     <ContentPresenter x:Name="contentPresenter"
                                       Content="{TemplateBinding SelectionBoxItem}"
                                       ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
                                       ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                       ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                      IsHitTestVisible="false"
-                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                      IsHitTestVisible="False"/>
                     <TextBox x:Name="PART_EditableTextBox"
                              IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
                              Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
@@ -672,15 +671,13 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemSelectedCollapsedStyle}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-        <Setter Property="Padding" Value="0 4 0 4" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0 4 0 5" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
-        <Setter Property="UseLayoutRounding" Value="False"/>
-        <Setter Property="SnapsToDevicePixels" Value="False"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignComboBoxTemplate}" />
         <Style.Triggers>
