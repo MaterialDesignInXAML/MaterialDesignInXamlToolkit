@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
@@ -81,17 +81,17 @@
                      Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12" />
             <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" TextWrapping="Wrap">An indeterminate job transitioning to a determinate job, completing to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value and .IsIndeterminate properties.</TextBlock>
 
-            <wpf:Card UniformCornerRadius="14" Padding="4"
+            <materialDesign:Card UniformCornerRadius="14" Padding="4"
                       Grid.Row="5" Grid.Column="0"
                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12">
                 <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
                          Value="50"
                          IsIndeterminate="True"                         
                       />
-            </wpf:Card>
+            </materialDesign:Card>
             <TextBlock Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap">Wrap in a Card control to raise the material.</TextBlock>
 
-            <wpf:Card UniformCornerRadius="14" 
+            <materialDesign:Card UniformCornerRadius="14" 
                       RenderTransformOrigin=".5,.5"
                       Padding="4" 
                       Grid.Row="6" Grid.Column="0"
@@ -99,13 +99,13 @@
                 <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                          
                              x:Name="AnimatedProgressInCard"
                       />
-                <wpf:Card.RenderTransform>
+                <materialDesign:Card.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
                     </TransformGroup>
-                </wpf:Card.RenderTransform>
-                <wpf:Card.Style>
-                    <Style TargetType="wpf:Card" BasedOn="{StaticResource {x:Type wpf:Card}}">
+                </materialDesign:Card.RenderTransform>
+                <materialDesign:Card.Style>
+                    <Style TargetType="materialDesign:Card" BasedOn="{StaticResource {x:Type materialDesign:Card}}">
                         <Style.Resources>
                             <Storyboard x:Key="FadeIn" FillBehavior="HoldEnd">
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
@@ -159,9 +159,9 @@
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </wpf:Card.Style>
+                </materialDesign:Card.Style>
 
-            </wpf:Card>
+            </materialDesign:Card>
             <TextBlock Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap">Apply some animations to the card to get funky!</TextBlock>
 
         </Grid>

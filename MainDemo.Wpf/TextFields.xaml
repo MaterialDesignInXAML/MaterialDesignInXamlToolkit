@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"               
              d:DesignHeight="300" d:DesignWidth="600" Loaded="UserControl_Loaded"
              d:DataContext="{d:DesignInstance domain:TextFieldsViewModel, d:IsDesignTimeCreatable=False}">
@@ -60,7 +60,7 @@
         </Viewbox>
         <TextBox Grid.Row="0" Grid.Column="1" 
 				    x:Name="NameTextBox"
-				    wpf:TextFieldAssist.Hint="Name">
+				    materialDesign:TextFieldAssist.Hint="Name">
             <TextBox.Text>
                 <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -70,7 +70,7 @@
             </TextBox.Text>
         </TextBox>
         <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">OS</TextBlock>
-        <ComboBox Grid.Row="0" Grid.Column="3" wpf:TextFieldAssist.Hint="OS">
+        <ComboBox Grid.Row="0" Grid.Column="3" materialDesign:TextFieldAssist.Hint="OS">
             <ComboBoxItem>Andoid</ComboBoxItem>
             <ComboBoxItem>iOS</ComboBoxItem>
             <ComboBoxItem>Linux</ComboBoxItem>
@@ -80,7 +80,7 @@
                     MinWidth="280"
                     AcceptsReturn="True"                 
                     VerticalScrollBarVisibility="Auto"
-                    wpf:TextFieldAssist.Hint="Multiline text"
+                    materialDesign:TextFieldAssist.Hint="Multiline text"
                     Height="80">Multiline.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The quick brown fox jumps over the lazy dog. War and peace. Keep going. Go on. For how long? Not long. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TextBox>
         <Viewbox Grid.Row="1" Grid.Column="0">
             <Canvas Width="24" Height="24">
@@ -90,10 +90,10 @@
         </Viewbox>
         <TextBox Grid.Row="1" Grid.Column="1" 
 				    x:Name="PhoneTextBox"
-				    wpf:TextFieldAssist.Hint="Phone"
+				    materialDesign:TextFieldAssist.Hint="Phone"
 				    />
         <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">Fruit</TextBlock>
-        <ComboBox Grid.Row="1" Grid.Column="3" wpf:TextFieldAssist.Hint="Search" IsEditable="True" wpf:TextFieldAssist.HintOpacity=".26">
+        <ComboBox Grid.Row="1" Grid.Column="3" materialDesign:TextFieldAssist.Hint="Search" IsEditable="True" materialDesign:TextFieldAssist.HintOpacity=".26">
             <ComboBoxItem>Apple</ComboBoxItem>
             <ComboBoxItem>Banana</ComboBoxItem>
             <ComboBoxItem>Pear</ComboBoxItem>
@@ -107,7 +107,7 @@
         </Viewbox>
         <TextBox Grid.Row="2" Grid.Column="1" 		
 				    x:Name="CommentTextBox"
-				    wpf:TextFieldAssist.Hint="Comment"
+				    materialDesign:TextFieldAssist.Hint="Comment"
 				    />
         <Viewbox Grid.Row="2" Grid.Column="2">
             <Canvas Width="24" Height="24">
@@ -117,11 +117,11 @@
         </Viewbox>
         <PasswordBox Grid.Row="2" Grid.Column="3" 		
                         x:Name="PasswordBox"
-                        wpf:TextFieldAssist.Hint="Password" />
+                        materialDesign:TextFieldAssist.Hint="Password" />
 
-        <TextBox Grid.Row="3" Grid.Column="1" wpf:TextFieldAssist.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+        <TextBox Grid.Row="3" Grid.Column="1" materialDesign:TextFieldAssist.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     Margin="0 8 0 8"/>
-        <ComboBox Grid.Row="3" Grid.Column="3" wpf:TextFieldAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+        <ComboBox Grid.Row="3" Grid.Column="3" materialDesign:TextFieldAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                     Margin="0 8 0 8">
             <ComboBoxItem>Andoid</ComboBoxItem>
             <ComboBoxItem>iOS</ComboBoxItem>
@@ -130,7 +130,7 @@
         </ComboBox>
 
         <StackPanel Grid.Row="4" Grid.Column="4" Orientation="Horizontal">
-            <ComboBox wpf:TextFieldAssist.Hint="Virtualisation" 
+            <ComboBox materialDesign:TextFieldAssist.Hint="Virtualisation" 
                         HorizontalAlignment="Left" Margin="16 0 0 0"
                         ItemsSource="{Binding LongListToTestComboVirtualization}"                          
                         SelectedValue="{Binding SelectedValueOne}">
@@ -140,7 +140,7 @@
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <ComboBox wpf:TextFieldAssist.Hint="Virt (editable)" 
+            <ComboBox materialDesign:TextFieldAssist.Hint="Virt (editable)" 
                         HorizontalAlignment="Left" Margin="16 0 0 0"
                         IsEditable="True"
                         ItemsSource="{Binding LongListToTestComboVirtualization}">
@@ -150,7 +150,7 @@
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <ComboBox wpf:TextFieldAssist.Hint="Virt (float hint)" 
+            <ComboBox materialDesign:TextFieldAssist.Hint="Virt (float hint)" 
                         HorizontalAlignment="Left" Margin="16 0 0 0"
                         ItemsSource="{Binding LongListToTestComboVirtualization}"
                         Style="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -162,9 +162,9 @@
             </ComboBox>
         </StackPanel>
 
-        <TextBox Grid.Row="4" Grid.Column="1" wpf:TextFieldAssist.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff"
+        <TextBox Grid.Row="4" Grid.Column="1" materialDesign:TextFieldAssist.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff"
                     Margin="0 8 0 8"/>
-        <ComboBox Grid.Row="4" Grid.Column="3" wpf:TextFieldAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+        <ComboBox Grid.Row="4" Grid.Column="3" materialDesign:TextFieldAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                     Margin="0 8 0 8">
             <ComboBoxItem>Apple</ComboBoxItem>
             <ComboBoxItem>Banana</ComboBoxItem>
@@ -173,9 +173,9 @@
         </ComboBox>
 
         <DatePicker Grid.Row="5" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
-                    wpf:TextFieldAssist.Hint="Pick Date"/>
-        <wpf:TimePicker Grid.Row="5" Grid.Column="3" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
-                        wpf:TextFieldAssist.Hint="Custom hint" />
-        <wpf:TimePicker Grid.Row="5" Grid.Column="4" Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 8 0 8" />        
+                    materialDesign:TextFieldAssist.Hint="Pick Date"/>
+        <materialDesign:TimePicker Grid.Row="5" Grid.Column="3" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
+                        materialDesign:TextFieldAssist.Hint="Custom hint" />
+        <materialDesign:TimePicker Grid.Row="5" Grid.Column="4" Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 8 0 8" />        
     </Grid>
 </UserControl>
