@@ -162,7 +162,6 @@
             </ComboBox>
         </StackPanel>
 
-
         <TextBox Grid.Row="4" Grid.Column="1" wpf:TextFieldAssist.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff"
                     Margin="0 8 0 8"/>
         <ComboBox Grid.Row="4" Grid.Column="3" wpf:TextFieldAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
