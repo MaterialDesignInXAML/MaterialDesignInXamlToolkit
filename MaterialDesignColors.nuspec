@@ -11,7 +11,7 @@
     <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ResourceDictionary instances containing standard Google Material Design swatches, for inclusion in a XAML application.</description>
-    <releaseNotes>Google spec at http://www.google.co.uk/design/spec/style/color.html</releaseNotes>
+    <releaseNotes>https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/releases</releaseNotes>
     <copyright>Copyright 2015 James Willock/Mulholland Software Ltd</copyright>
     <tags>WPF XAML WinRT Material Design Colour Color UI UX</tags>
   </metadata>

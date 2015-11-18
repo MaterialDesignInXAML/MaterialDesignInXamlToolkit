@@ -11,12 +11,12 @@
     <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ResourceDictionary instances containing Material Design templates and styles for WPF controls in the MahApps library.</description>
-    <releaseNotes>Google spec at http://www.google.co.uk/design/spec/style/color.html</releaseNotes>
+    <releaseNotes>https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/releases</releaseNotes>
     <copyright>Copyright 2015 James Willock/Mulholland Software Ltd</copyright>
     <tags>WPF XAML WinRT Material Design Theme Colour Color UI UX</tags>
     <dependencies>
       <dependency id="MaterialDesignColors" version="1.1.1" />    
-      <dependency id="MaterialDesignThemes" version="1.1.0" />    
+      <dependency id="MaterialDesignThemes" version="1.2.0" />    
       <dependency id="MahApps.Metro" version="1.1.2" />    
     </dependencies>
   </metadata>
