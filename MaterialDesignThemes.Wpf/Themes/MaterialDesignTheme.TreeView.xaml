@@ -178,7 +178,7 @@
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
                                         <VisualTransition.GeneratedEasingFunction>
-                                            <CircleEase EasingMode="EaseOut"/>
+                                            <CubicEase EasingMode="EaseOut"/>
                                         </VisualTransition.GeneratedEasingFunction>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -223,12 +223,12 @@
                                     <VisualTransition GeneratedDuration="0" To="Collapsed">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Collapsed}" />
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
                                                              To="0" Duration="0:0:0.3"/>
                                             <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer"
-                                                             To="0" Duration="0:0:0.5"/>
+                                                             To="0" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
