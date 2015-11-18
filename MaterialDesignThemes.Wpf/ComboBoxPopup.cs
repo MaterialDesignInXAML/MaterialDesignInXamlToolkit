@@ -108,7 +108,7 @@ namespace MaterialDesignThemes.Wpf
             int locationX = (int) locationFromScreen.X%(int) SystemParameters.PrimaryScreenWidth;
             int locationY = (int) locationFromScreen.Y%(int) SystemParameters.PrimaryScreenHeight;
 
-            if (locationX + popupSize.Width > SystemParameters.PrimaryScreenWidth)
+            if (locationX + popupSize.Width > SystemParameters.PrimaryScreenWidth || locationX < 0)
             {
                 SetChildTemplateIfNeed(DefaultContentTemplate);
 
