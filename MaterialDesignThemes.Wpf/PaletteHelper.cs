@@ -13,6 +13,45 @@ namespace MaterialDesignThemes.Wpf
         public static Swatch Primary;
         public static Swatch Accent;
 
+        /// <summary>
+        /// Primary color generated from DWM color
+        /// </summary>
+        public static Swatch AutoPrimary
+        {
+            get
+            {
+                var color = (System.Drawing.Color.FromArgb((int)Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM","ColorizationColor", null)));
+                return GetClosestSwatch(Color.FromArgb(color.A, color.R, color.G, color.B), false);
+            }
+        }
+        /// <summary>
+        /// Accent color generated from DWM color
+        /// </summary>
+        public static Swatch AutoAccent
+        {
+            get
+            {
+                var color = (System.Drawing.Color.FromArgb((int)Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM","ColorizationColor", null)));
+                return GetClosestSwatch(Color.FromArgb(color.A, color.R, color.G, color.B), true);
+            }
+        }
+        
+
+        private static Swatch GetClosestSwatch(Color baseColor, bool accent)
+        {
+            var colors = new SwatchesProvider().Swatches.Select(x => new {Value = x, Diff = GetDiff(x.ExemplarHue.Color, baseColor)}).ToList();
+            var min = colors.Min(x => x.Diff);
+            var color = colors.FindIndex(x => x.Diff == min);
+            return accent ? new SwatchesProvider().Swatches.ElementAtOrDefault(color + 1) != null ? new SwatchesProvider().Swatches.ElementAtOrDefault(color + 1) : new SwatchesProvider().Swatches.ElementAtOrDefault(color - 1) : new SwatchesProvider().Swatches.ElementAt(color);
+        }
+        private static int GetDiff(Color color, Color baseColor)
+        {
+            int a = color.A - baseColor.A,
+                r = color.R - baseColor.R,
+                g = color.G - baseColor.G,
+                b = color.B - baseColor.B;
+            return a*a + r*r + g*g + b*b;
+        }
         public void SetLightDark(bool? isDark)
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
