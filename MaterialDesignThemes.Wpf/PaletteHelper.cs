@@ -10,7 +10,10 @@ namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
     {
-        public void SetLightDark(bool isDark)
+        public static Swatch Primary;
+        public static Swatch Accent;
+
+        public void SetLightDark(bool? isDark)
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
                 .Where(rd => rd.Source != null)
@@ -19,7 +22,7 @@ namespace MaterialDesignThemes.Wpf
                 throw new ApplicationException("Unable to find Light/Dark base theme in Application resources.");
 
             var source =
-                $"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{(isDark ? "Dark" : "Light")}.xaml";
+                $"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{(isDark.Value ? "Dark" : "Light")}.xaml";
             var newResourceDictionary = new ResourceDictionary() { Source = new Uri(source) };
 
             Application.Current.Resources.MergedDictionaries.Remove(existingResourceDictionary);
@@ -31,7 +34,7 @@ namespace MaterialDesignThemes.Wpf
             if (existingMahAppsResourceDictionary == null) return;
 
             source =
-                $"pack://application:,,,/MahApps.Metro;component/Styles/Accents/{(isDark ? "BaseDark" : "BaseLight")}.xaml";
+                $"pack://application:,,,/MahApps.Metro;component/Styles/Accents/{(isDark.Value ? "BaseDark" : "BaseLight")}.xaml";
             var newMahAppsResourceDictionary = new ResourceDictionary { Source = new Uri(source) };
 
             Application.Current.Resources.MergedDictionaries.Remove(existingMahAppsResourceDictionary);
@@ -41,6 +44,8 @@ namespace MaterialDesignThemes.Wpf
         public void ReplacePrimaryColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
+
+            Primary = swatch;
 
             var list = swatch.PrimaryHues.ToList();
             var light = list[2];
@@ -91,6 +96,8 @@ namespace MaterialDesignThemes.Wpf
         public void ReplaceAccentColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
+
+            Accent = swatch;
 
             foreach (var color in swatch.AccentHues)
             {

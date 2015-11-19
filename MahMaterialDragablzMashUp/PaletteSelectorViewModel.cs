@@ -1,5 +1,7 @@
-﻿using MaterialDesignColors;
+﻿using System;
+using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
+using Prism.Commands;
 using System.Collections.Generic;
 using System.Windows.Input;
 
@@ -12,27 +14,23 @@ namespace MahMaterialDragablzMashUp
             Swatches = new SwatchesProvider().Swatches;
         }
 
-        public ICommand ToggleBaseCommand { get; } = new AnotherCommandImplementation(o => ApplyBase((bool)o));
-
-        private static void ApplyBase(bool isDark)
-        {
-            new PaletteHelper().SetLightDark(isDark);
-        }
-
+        public ICommand ToggleBaseCommand { get; } = new DelegateCommand<bool?>(new PaletteHelper().SetLightDark);
         public IEnumerable<Swatch> Swatches { get; }
 
-        public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o));
+        public static DelegateCommand<Swatch> ApplyPrimaryCommand { get; } = new DelegateCommand<Swatch>(ApplyPrimary, new Func<Swatch, bool>(s => s != PaletteHelper.Primary));
 
         private static void ApplyPrimary(Swatch swatch)
         {
             new PaletteHelper().ReplacePrimaryColor(swatch);
+            ApplyPrimaryCommand.RaiseCanExecuteChanged();
         }
 
-        public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o));
+        public static DelegateCommand<Swatch> ApplyAccentCommand { get; } = new DelegateCommand<Swatch>(ApplyAccent, new Func<Swatch, bool>(s => s != PaletteHelper.Accent));
 
         private static void ApplyAccent(Swatch swatch)
         {
             new PaletteHelper().ReplaceAccentColor(swatch);
+            ApplyAccentCommand.RaiseCanExecuteChanged();
         }
     }
 }
