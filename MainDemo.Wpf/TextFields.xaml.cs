@@ -27,8 +27,8 @@ namespace MaterialDesignColors.WpfExample
         public TextFields()
         {
             InitializeComponent();	        
-			DataContext = new TextFieldsViewModel();			
-		}
+			DataContext = new TextFieldsViewModel();
+        }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {

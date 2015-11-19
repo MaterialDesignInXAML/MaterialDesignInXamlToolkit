@@ -108,6 +108,11 @@
                                 </wpfExample:Grids>
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Expander">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Expander />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Menus &amp; Tool Bars">
                             <domain:DemoItem.Content>
                                 <wpfExample:MenusAndToolBars />
