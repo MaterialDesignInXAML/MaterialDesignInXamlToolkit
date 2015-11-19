@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
@@ -23,15 +23,8 @@
 
 
     <StackPanel Margin="24 0 0 0" HorizontalAlignment="Stretch">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock VerticalAlignment="Bottom">Try me</TextBlock>
-            <Slider Minimum="0" Maximum="100" Style="{StaticResource MaterialDesignDiscreteSlider}" 
-                    Value="50"
-                    Width="280" 
-                    Margin="8 0 0 0"/>
-        </StackPanel>
-        <Slider Minimum="0" Maximum="10" Margin="0 24 0 0" Style="{StaticResource MaterialDesignDiscreteSlider}"  />
-        <Slider Minimum="0" Maximum="10" Margin="0 24 0 0" Style="{StaticResource MaterialDesignDiscreteSlider}"  />
+        <materialDesign:PopupBox IsPopupOpen="True" />
+        <Button Margin="0 8 0 0">Hello</Button>
     </StackPanel>
 
 </UserControl>

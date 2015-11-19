@@ -720,4 +720,25 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type local:PopupBox}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PopupBox}">
+                    <Grid>
+                        <ToggleButton x:Name="PART_Toggle" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}">T</ToggleButton>
+                        <controlz:PopupEx x:Name="PART_Popup" IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
+                                          PlacementTarget="{Binding ElementName=PART_Toggle}"
+                                          Placement="Bottom"
+                                          AllowsTransparency="True">
+                            <Border Background="Green" Padding="8">
+                                <TextBlock>POPS</TextBlock>    
+                            </Border>
+                        </controlz:PopupEx>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
 </ResourceDictionary>
