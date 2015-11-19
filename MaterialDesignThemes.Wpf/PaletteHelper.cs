@@ -10,7 +10,13 @@ namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
     {
+        /// <summary>
+        /// The primary swatch
+        /// </summary>
         public static Swatch Primary;
+        /// <summary>
+        /// The accent swatch
+        /// </summary>
         public static Swatch Accent;
 
         /// <summary>
@@ -20,7 +26,7 @@ namespace MaterialDesignThemes.Wpf
         {
             get
             {
-                var color = (System.Drawing.Color.FromArgb((int)Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM","ColorizationColor", null)));
+                var color = (System.Drawing.Color.FromArgb((int)Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM","ColorizationColor", Colors.Purple)));
                 return GetClosestSwatch(Color.FromArgb(color.A, color.R, color.G, color.B), false);
             }
         }
@@ -31,13 +37,18 @@ namespace MaterialDesignThemes.Wpf
         {
             get
             {
-                var color = (System.Drawing.Color.FromArgb((int)Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM","ColorizationColor", null)));
+                var color = (System.Drawing.Color.FromArgb((int)Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM","ColorizationColor", Colors.Green)));
                 return GetClosestSwatch(Color.FromArgb(color.A, color.R, color.G, color.B), true);
             }
         }
         
-
-        private static Swatch GetClosestSwatch(Color baseColor, bool accent)
+        /// <summary>
+        /// Matches a non material color to a material color
+        /// </summary>
+        /// <param name="baseColor">The color to match</param>
+        /// <param name="accent">If the color is accent</param>
+        /// <returns></returns>
+        public static Swatch GetClosestSwatch(Color baseColor, bool accent)
         {
             var colors = new SwatchesProvider().Swatches.Select(x => new {Value = x, Diff = GetDiff(x.ExemplarHue.Color, baseColor)}).ToList();
             var min = colors.Min(x => x.Diff);
