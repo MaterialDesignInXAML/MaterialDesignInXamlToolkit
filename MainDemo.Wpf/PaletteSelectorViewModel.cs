@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Expression.Interactivity.Core;
+using Prism.Commands;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -16,30 +17,30 @@ namespace MaterialDesignColors.WpfExample
     {
         public PaletteSelectorViewModel()
         {
-            Swatches = new SwatchesProvider().Swatches;            
+            Swatches = new SwatchesProvider().Swatches;        
+		    ApplyPrimary(PaletteHelper.AutoPrimary);
+            ApplyAccent(PaletteHelper.AutoAccent);
+            ApplyAccentCommand.RaiseCanExecuteChanged();
+            ApplyPrimaryCommand.RaiseCanExecuteChanged();
         }
 
-        public ICommand ToggleBaseCommand { get; } = new ActionCommand(o => ApplyBase((bool)o));
-
-        private static void ApplyBase(bool isDark)
-        {
-            new PaletteHelper().SetLightDark(isDark);
-        }
-
+        public ICommand ToggleBaseCommand { get; } = new DelegateCommand<bool?>(new PaletteHelper().SetLightDark);
         public IEnumerable<Swatch> Swatches { get; }
 
-        public ICommand ApplyPrimaryCommand { get; } = new ActionCommand(o => ApplyPrimary((Swatch)o));
+        public static DelegateCommand<Swatch> ApplyPrimaryCommand { get; } = new DelegateCommand<Swatch>(ApplyPrimary, new Func<Swatch, bool>(s => s != PaletteHelper.Primary));
 
         private static void ApplyPrimary(Swatch swatch)
         {
             new PaletteHelper().ReplacePrimaryColor(swatch);
+            ApplyPrimaryCommand.RaiseCanExecuteChanged();
         }
 
-        public ICommand ApplyAccentCommand { get; } = new ActionCommand(o => ApplyAccent((Swatch)o));
+        public static DelegateCommand<Swatch> ApplyAccentCommand { get; } = new DelegateCommand<Swatch>(ApplyAccent, new Func<Swatch, bool>(s => s != PaletteHelper.Accent));
 
         private static void ApplyAccent(Swatch swatch)
         {
             new PaletteHelper().ReplaceAccentColor(swatch);
+            ApplyAccentCommand.RaiseCanExecuteChanged();
         }
     }
 }
