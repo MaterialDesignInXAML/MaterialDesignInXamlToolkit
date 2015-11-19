@@ -70,6 +70,15 @@
                                 <wpfExample:TextFields />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Pickers">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Pickers>
+                                    <wpfExample:Pickers.DataContext>
+                                        <wpfExample:PickersViewModel />
+                                    </wpfExample:Pickers.DataContext>
+                                </wpfExample:Pickers>
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Sliders">
                             <domain:DemoItem.Content>
                                 <wpfExample:Sliders />
