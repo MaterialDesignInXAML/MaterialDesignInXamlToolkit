@@ -45,8 +45,7 @@ namespace MaterialDesignThemes.Wpf
 
                 var colorizationParams = new DWMCOLORIZATIONPARAMS();
                 DwmGetColorizationParameters(ref colorizationParams);
-                var frameColor = ToColor(colorizationParams.ColorizationColor)
-                return GetClosestSwatch(Color.FromArgb(color.A, color.R, color.G, color.B), false);
+                return GetClosestSwatch(ToColor(colorizationParams.ColorizationColor), false);
             }
         }
         /// <summary>
@@ -58,11 +57,14 @@ namespace MaterialDesignThemes.Wpf
             {
                 var colorizationParams = new DWMCOLORIZATIONPARAMS();
                 DwmGetColorizationParameters(ref colorizationParams);
-                var color = (System.Drawing.Color.FromArgb((int)Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM","ColorizationColor", Colors.Green)));
-                return GetClosestSwatch(Color.FromArgb(color.A, color.R, color.G, color.B), true);
+                return GetClosestSwatch(ToColor(colorizationParams.ColorizationColor), true);
             }
         }
-        
+        private static Color ToColor(UInt32 value) => Color.FromArgb(255,
+                (byte) (value >> 16),
+                (byte) (value >> 8),
+                (byte) value
+                );
         /// <summary>
         /// Matches a non material color to a material color
         /// </summary>
