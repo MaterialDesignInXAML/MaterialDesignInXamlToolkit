@@ -13,7 +13,11 @@ namespace MaterialDesignColors
 {
     public class SwatchesProvider
     {
-        public SwatchesProvider()
+        public SwatchesProvider ()
+	    {
+            new SwatchesProvider(true);
+	    }
+        public SwatchesProvider(bool overflow)
         {
             var assembly = Assembly.GetExecutingAssembly();
             var resourcesName = assembly.GetName().Name + ".g";
@@ -24,7 +28,10 @@ namespace MaterialDesignColors
 
             var regex = new Regex(@"^themes\/materialdesigncolor\.(?<name>[a-z]+)\.(?<type>primary|accent)\.baml$");
 
-            Swatches =
+            Swatches = new List<Swatch>();
+            if (overflow)
+                Swatches.Add(new Swatch("Auto", Swatch.AutoPrimary, Swatch.AutoAccent));
+            Swatches.InsertRange(0,
                 dictionaryEntries
                 .Select(x => new { key = x.Key.ToString(), match = regex.Match(x.Key.ToString()) })
                 .Where(x => x.match.Success && x.match.Groups["name"].Value != "black")
@@ -36,11 +43,10 @@ namespace MaterialDesignColors
                     Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "primary")?.key),
                     Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "accent")?.key)
                 ))
-                .ToList();
-
+                .ToList());
         }
 
-        public IEnumerable<Swatch> Swatches { get; }
+        public List<Swatch> Swatches { get; }
 
         private static Swatch CreateSwatch(string name, ResourceDictionary primaryDictionary, ResourceDictionary accentDictionary)
         {

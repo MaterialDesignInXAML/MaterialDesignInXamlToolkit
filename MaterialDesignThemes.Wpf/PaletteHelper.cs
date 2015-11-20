@@ -10,25 +10,6 @@ namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
     {
-        #region Win32
-            [DllImport("dwmapi.dll", PreserveSig = false)]
-            private static extern bool DwmIsCompositionEnabled();
-
-            [DllImport("dwmapi.dll", EntryPoint = "#127")]
-            static extern void DwmGetColorizationParameters(ref DWMCOLORIZATIONPARAMS dp);
-
-            [StructLayout(LayoutKind.Sequential)]
-            struct DWMCOLORIZATIONPARAMS
-            {
-                public UInt32 ColorizationColor;
-                public UInt32 ColorizationAfterglow;
-                public UInt32 ColorizationColorBalance;
-                public UInt32 ColorizationAfterglowBalance;
-                public UInt32 ColorizationBlurBalance;
-                public UInt32 ColorizationGlassReflectionIntensity;
-                public UInt32 ColorizationOpaqueBlend;
-            }
-        #endregion
         /// <summary>
         /// The primary swatch
         /// </summary>
@@ -38,66 +19,6 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public Swatch Accent;
 
-        /// <summary>
-        /// Primary color generated from DWM color
-        /// </summary>
-        public Swatch AutoPrimary
-        {
-            get
-            {
-                if (DwmIsCompositionEnabled())
-                {
-                    var colorizationParams = new DWMCOLORIZATIONPARAMS();
-                    DwmGetColorizationParameters(ref colorizationParams);
-                    return GetClosestSwatch(ToColor(colorizationParams.ColorizationColor), false);
-                }
-                else
-                    return GetClosestSwatch(Colors.Purple, false); //If you use a slow old computer.
-            }
-        }
-        /// <summary>
-        /// Accent color generated from DWM color
-        /// </summary>
-        public Swatch AutoAccent
-        {
-            get
-            {
-                if (DwmIsCompositionEnabled())
-                {
-                    var colorizationParams = new DWMCOLORIZATIONPARAMS();
-                    DwmGetColorizationParameters(ref colorizationParams);
-                    return GetClosestSwatch(ToColor(colorizationParams.ColorizationColor), true);
-                }
-                else
-                    return GetClosestSwatch(Colors.Green, true); //If you use a slow old computer.
-            }
-        }
-        private static Color ToColor(UInt32 value) => Color.FromArgb(255,
-                (byte) (value >> 16),
-                (byte) (value >> 8),
-                (byte) value
-                );
-        /// <summary>
-        /// Matches a non material color to a material color
-        /// </summary>
-        /// <param name="baseColor">The color to match</param>
-        /// <param name="accent">If the color is accent</param>
-        /// <returns></returns>
-        public Swatch GetClosestSwatch(Color baseColor, bool accent)
-        {
-            var colors = new SwatchesProvider().Swatches.Select(x => new {Value = x, Diff = GetDiff(x.ExemplarHue.Color, baseColor)}).ToList();
-            var min = colors.Min(x => x.Diff);
-            var color = colors.FindIndex(x => x.Diff == min);
-            return accent ? new SwatchesProvider().Swatches.ElementAtOrDefault(color + 1) != null ? new SwatchesProvider().Swatches.ElementAtOrDefault(color + 1) : new SwatchesProvider().Swatches.ElementAtOrDefault(color - 1) : new SwatchesProvider().Swatches.ElementAt(color);
-        }
-        private int GetDiff(Color color, Color baseColor)
-        {
-            int a = color.A - baseColor.A,
-                r = color.R - baseColor.R,
-                g = color.G - baseColor.G,
-                b = color.B - baseColor.B;
-            return a*a + r*r + g*g + b*b;
-        }
         public void SetLightDark(bool? isDark)
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
