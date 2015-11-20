@@ -10,6 +10,22 @@ namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
     {
+        #region Win32
+            [DllImport("dwmapi.dll", EntryPoint = "#127")]
+            static extern void DwmGetColorizationParameters(ref DWMCOLORIZATIONPARAMS dp);
+
+            [StructLayout(LayoutKind.Sequential)]
+            public struct DWMCOLORIZATIONPARAMS
+            {
+                public UInt32 ColorizationColor;
+                public UInt32 ColorizationAfterglow;
+                public UInt32 ColorizationColorBalance;
+                public UInt32 ColorizationAfterglowBalance;
+                public UInt32 ColorizationBlurBalance;
+                public UInt32 ColorizationGlassReflectionIntensity;
+                public UInt32 ColorizationOpaqueBlend;
+            }
+        #endregion
         /// <summary>
         /// The primary swatch
         /// </summary>
@@ -26,7 +42,10 @@ namespace MaterialDesignThemes.Wpf
         {
             get
             {
-                var color = (System.Drawing.Color.FromArgb((int)Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM","ColorizationColor", Colors.Purple)));
+
+                var colorizationParams = new DWMCOLORIZATIONPARAMS();
+                DwmGetColorizationParameters(ref colorizationParams);
+                var frameColor = ToColor(colorizationParams.ColorizationColor)
                 return GetClosestSwatch(Color.FromArgb(color.A, color.R, color.G, color.B), false);
             }
         }
@@ -37,6 +56,8 @@ namespace MaterialDesignThemes.Wpf
         {
             get
             {
+                var colorizationParams = new DWMCOLORIZATIONPARAMS();
+                DwmGetColorizationParameters(ref colorizationParams);
                 var color = (System.Drawing.Color.FromArgb((int)Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM","ColorizationColor", Colors.Green)));
                 return GetClosestSwatch(Color.FromArgb(color.A, color.R, color.G, color.B), true);
             }
