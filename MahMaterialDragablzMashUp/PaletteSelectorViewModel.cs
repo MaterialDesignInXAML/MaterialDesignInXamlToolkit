@@ -1,7 +1,6 @@
 ﻿using System;
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
-using Prism.Commands;
 using System.Collections.Generic;
 using System.Windows.Input;
 
@@ -12,8 +11,8 @@ namespace MahMaterialDragablzMashUp
         public PaletteSelectorViewModel()
         {
             Swatches = new SwatchesProvider().Swatches;  
-            ApplyPrimaryCommand = new DelegateCommand<Swatch>(ApplyPrimary, new Func<Swatch, bool>(s => s != Primary));
-            ApplyAccentCommand = new DelegateCommand<Swatch>(ApplyAccent, new Func<Swatch, bool>(s => s != Accent));
+            ApplyPrimaryCommand = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != Primary));
+            ApplyAccentCommand = new DelegateCommand<Swatch>(ApplyAccent, new Predicate<Swatch>(s => s != Accent));
             ToggleBaseCommand = new DelegateCommand<bool?>(SetLightDark);
 		    ApplyPrimary(this.AutoPrimary);
             ApplyAccent(this.AutoAccent);

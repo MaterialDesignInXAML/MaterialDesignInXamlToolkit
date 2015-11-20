@@ -25,9 +25,9 @@ namespace MahMaterialDragablzMashUp
 
         public DialogsViewModel()
         {
-            ShowInputDialogCommand = new AnotherCommandImplementation(_ => InputDialog());
-            ShowProgressDialogCommand = new AnotherCommandImplementation(_ => ProgressDialog());
-            ShowLeftFlyoutCommand = new AnotherCommandImplementation(_ => ShowLeftFlyout());
+            ShowInputDialogCommand = new DelegateCommand<object>(_ => InputDialog());
+            ShowProgressDialogCommand = new DelegateCommand<object>(_ => ProgressDialog());
+            ShowLeftFlyoutCommand = new DelegateCommand<object>(_ => ShowLeftFlyout());
         }
 
         public Flyout LeftFlyout { get; set; }

@@ -82,6 +82,7 @@
     <Compile Include="ColorZones.xaml.cs">
       <DependentUpon>ColorZones.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DelegateCommand.cs" />
     <Compile Include="Dialogs.xaml.cs">
       <DependentUpon>Dialogs.xaml</DependentUpon>
     </Compile>
