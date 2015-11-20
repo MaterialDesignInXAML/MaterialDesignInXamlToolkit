@@ -50,7 +50,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Viewbox Grid.Row="0" Grid.Column="0">
             <Canvas Width="24" Height="24">
@@ -172,10 +171,5 @@
             <ComboBoxItem>Orange</ComboBoxItem>
         </ComboBox>
 
-        <DatePicker Grid.Row="5" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
-                    materialDesign:TextFieldAssist.Hint="Pick Date"/>
-        <materialDesign:TimePicker Grid.Row="5" Grid.Column="3" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 8 0 8"
-                        materialDesign:TextFieldAssist.Hint="Custom hint" />
-        <materialDesign:TimePicker Grid.Row="5" Grid.Column="4" Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 8 0 8" />        
     </Grid>
 </UserControl>
