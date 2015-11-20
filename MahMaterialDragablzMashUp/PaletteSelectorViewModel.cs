@@ -7,33 +7,36 @@ using System.Windows.Input;
 
 namespace MahMaterialDragablzMashUp
 {
-    public class PaletteSelectorViewModel
+    public class PaletteSelectorViewModel : PaletteHelper
     {
         public PaletteSelectorViewModel()
         {
-            Swatches = new SwatchesProvider().Swatches;        
-		    ApplyPrimary(PaletteHelper.AutoPrimary);
-            ApplyAccent(PaletteHelper.AutoAccent);
+            Swatches = new SwatchesProvider().Swatches;  
+            ApplyPrimaryCommand = new DelegateCommand<Swatch>(ApplyPrimary, new Func<Swatch, bool>(s => s != Primary));
+            ApplyAccentCommand = new DelegateCommand<Swatch>(ApplyAccent, new Func<Swatch, bool>(s => s != Accent));
+            ToggleBaseCommand = new DelegateCommand<bool?>(SetLightDark);
+		    ApplyPrimary(this.AutoPrimary);
+            ApplyAccent(this.AutoAccent);
             ApplyPrimaryCommand.RaiseCanExecuteChanged();
             ApplyAccentCommand.RaiseCanExecuteChanged();
         }
 
-        public ICommand ToggleBaseCommand { get; } = new DelegateCommand<bool?>(new PaletteHelper().SetLightDark);
+        public ICommand ToggleBaseCommand { get; }
         public IEnumerable<Swatch> Swatches { get; }
 
-        public static DelegateCommand<Swatch> ApplyPrimaryCommand { get; } = new DelegateCommand<Swatch>(ApplyPrimary, new Func<Swatch, bool>(s => s != PaletteHelper.Primary));
+        public DelegateCommand<Swatch> ApplyPrimaryCommand { get; }
 
-        private static void ApplyPrimary(Swatch swatch)
+        private void ApplyPrimary(Swatch swatch)
         {
-            new PaletteHelper().ReplacePrimaryColor(swatch);
+            ReplacePrimaryColor(swatch);
             ApplyPrimaryCommand.RaiseCanExecuteChanged();
         }
 
-        public static DelegateCommand<Swatch> ApplyAccentCommand { get; } = new DelegateCommand<Swatch>(ApplyAccent, new Func<Swatch, bool>(s => s != PaletteHelper.Accent));
+        public DelegateCommand<Swatch> ApplyAccentCommand { get; }
 
-        private static void ApplyAccent(Swatch swatch)
+        private void ApplyAccent(Swatch swatch)
         {
-            new PaletteHelper().ReplaceAccentColor(swatch);
+            ReplaceAccentColor(swatch);
             ApplyAccentCommand.RaiseCanExecuteChanged();
         }
     }
