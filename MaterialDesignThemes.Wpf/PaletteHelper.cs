@@ -18,7 +18,7 @@ namespace MaterialDesignThemes.Wpf
             static extern void DwmGetColorizationParameters(ref DWMCOLORIZATIONPARAMS dp);
 
             [StructLayout(LayoutKind.Sequential)]
-            public struct DWMCOLORIZATIONPARAMS
+            struct DWMCOLORIZATIONPARAMS
             {
                 public UInt32 ColorizationColor;
                 public UInt32 ColorizationAfterglow;
