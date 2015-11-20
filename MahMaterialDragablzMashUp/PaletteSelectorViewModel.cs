@@ -10,7 +10,7 @@ namespace MahMaterialDragablzMashUp
     {
         public PaletteSelectorViewModel()
         {
-            Swatches = new SwatchesProvider().Swatches;  
+            Swatches = new SwatchesProvider(true).Swatches;
             ApplyPrimaryCommand = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != Primary));
             ApplyAccentCommand = new DelegateCommand<Swatch>(ApplyAccent, new Predicate<Swatch>(s => s != Accent));
             ToggleBaseCommand = new DelegateCommand<bool?>(SetLightDark);
