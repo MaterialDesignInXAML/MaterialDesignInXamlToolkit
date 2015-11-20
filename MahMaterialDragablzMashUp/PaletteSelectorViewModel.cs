@@ -6,14 +6,15 @@ using System.Windows.Input;
 
 namespace MahMaterialDragablzMashUp
 {
-    public class PaletteSelectorViewModel : PaletteHelper
+    public class PaletteSelectorViewModel
     {
+        PaletteHelper palette = new PaletteHelper();
         public PaletteSelectorViewModel()
         {
             Swatches = new SwatchesProvider(true).Swatches;
-            ApplyPrimaryCommand = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != Primary));
-            ApplyAccentCommand = new DelegateCommand<Swatch>(ApplyAccent, new Predicate<Swatch>(s => s != Accent));
-            ToggleBaseCommand = new DelegateCommand<bool?>(SetLightDark);
+            ApplyPrimaryCommand = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != palette.Primary));
+            ApplyAccentCommand = new DelegateCommand<Swatch>(ApplyAccent, new Predicate<Swatch>(s => s != palette.Accent));
+            ToggleBaseCommand = new DelegateCommand<bool?>(palette.SetLightDark);
         }
 
         public ICommand ToggleBaseCommand { get; }
@@ -23,7 +24,7 @@ namespace MahMaterialDragablzMashUp
 
         private void ApplyPrimary(Swatch swatch)
         {
-            ReplacePrimaryColor(swatch);
+            palette.ReplacePrimaryColor(swatch);
             ApplyPrimaryCommand.RaiseCanExecuteChanged();
         }
 
@@ -31,7 +32,7 @@ namespace MahMaterialDragablzMashUp
 
         private void ApplyAccent(Swatch swatch)
         {
-            ReplaceAccentColor(swatch);
+            palette.ReplaceAccentColor(swatch);
             ApplyAccentCommand.RaiseCanExecuteChanged();
         }
     }
