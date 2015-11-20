@@ -13,16 +13,16 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// The primary swatch
         /// </summary>
-        public static Swatch Primary;
+        public Swatch Primary;
         /// <summary>
         /// The accent swatch
         /// </summary>
-        public static Swatch Accent;
+        public Swatch Accent;
 
         /// <summary>
         /// Primary color generated from DWM color
         /// </summary>
-        public static Swatch AutoPrimary
+        public Swatch AutoPrimary
         {
             get
             {
@@ -33,7 +33,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Accent color generated from DWM color
         /// </summary>
-        public static Swatch AutoAccent
+        public Swatch AutoAccent
         {
             get
             {
@@ -48,14 +48,14 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="baseColor">The color to match</param>
         /// <param name="accent">If the color is accent</param>
         /// <returns></returns>
-        public static Swatch GetClosestSwatch(Color baseColor, bool accent)
+        public Swatch GetClosestSwatch(Color baseColor, bool accent)
         {
             var colors = new SwatchesProvider().Swatches.Select(x => new {Value = x, Diff = GetDiff(x.ExemplarHue.Color, baseColor)}).ToList();
             var min = colors.Min(x => x.Diff);
             var color = colors.FindIndex(x => x.Diff == min);
             return accent ? new SwatchesProvider().Swatches.ElementAtOrDefault(color + 1) != null ? new SwatchesProvider().Swatches.ElementAtOrDefault(color + 1) : new SwatchesProvider().Swatches.ElementAtOrDefault(color - 1) : new SwatchesProvider().Swatches.ElementAt(color);
         }
-        private static int GetDiff(Color color, Color baseColor)
+        private int GetDiff(Color color, Color baseColor)
         {
             int a = color.A - baseColor.A,
                 r = color.R - baseColor.R,
