@@ -13,7 +13,6 @@
  * Small sample apps within solution showing how to include chosen colours and use the resources:
    * MaterialDesignColors.WpfExample - illustrates palette use and control themes in WPF
    * MahMaterialDragablzMashUp - illustrates combination of [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro), and Material Design for saweet UI.
-   * MaterialDesignColors.UniversalExample - illustrates palette use in WinRT
  * Compatible with [MahApps](http://mahapps.com) and [Dragablz](https://github.com/ButchersBoy/Dragablz).  See demo app in source and [Mash Up! blog](http://dragablz.net/2015/02/25/material-design-in-xaml-mash-up/).
  * Includes hacky console app which was used to generate the XAML colour definitions
 

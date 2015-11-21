@@ -311,8 +311,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="2"
-                                ClipToBounds="True">
+                        <wpf:Card UniformCornerRadius="2"  Background="{TemplateBinding Background}" wpf:ShadowAssist.ShadowDepth="Depth0">
                             <Grid>
                                 <Grid.Resources>
                                     <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="{x:Type Button}">
@@ -492,7 +491,7 @@
                                     </Grid>
                                 </Grid>
                             </Grid>
-                        </Border>
+                        </wpf:Card>
                         <Rectangle x:Name="PART_DisabledVisual" Fill="{StaticResource DisabledColor}" Opacity="0" RadiusY="2" RadiusX="2" Stretch="Fill" Stroke="{StaticResource DisabledColor}" StrokeThickness="1" Visibility="Collapsed"/>
                     </Grid>
                     <ControlTemplate.Triggers>

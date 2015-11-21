@@ -10,7 +10,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
     {
-        public void SetLightDark(bool isDark)
+        public virtual void SetLightDark(bool isDark)
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
                 .Where(rd => rd.Source != null)
@@ -38,7 +38,7 @@ namespace MaterialDesignThemes.Wpf
             Application.Current.Resources.MergedDictionaries.Add(newMahAppsResourceDictionary);
         }
 
-        public void ReplacePrimaryColor(Swatch swatch)
+        public virtual void ReplacePrimaryColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
 
@@ -75,7 +75,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark.Color) { Opacity = .4 });                   
         }
 
-        public void ReplacePrimaryColor(string name)
+        public virtual void ReplacePrimaryColor(string name)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
@@ -88,7 +88,7 @@ namespace MaterialDesignThemes.Wpf
             ReplacePrimaryColor(swatch);
         }
 
-        public void ReplaceAccentColor(Swatch swatch)
+        public virtual void ReplaceAccentColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
 
@@ -102,7 +102,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(swatch.AccentExemplarHue.Foreground));
         }
 
-        public void ReplaceAccentColor(string name)
+        public virtual void ReplaceAccentColor(string name)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 

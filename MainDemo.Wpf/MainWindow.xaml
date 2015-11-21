@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
         xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
         xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
-        xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Material Design in XAML" Height="800" Width="1100"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Medium"
@@ -26,15 +26,15 @@
                     <TextBlock>England win the World Cup:</TextBlock>
                     <TextBlock Margin="0 8 0 0" Text="{Binding }" />
                     <TextBlock Margin="0 8 0 0" >You will never see that again.</TextBlock>
-                    <Button  Margin="0 8 0 0" IsDefault="True" Command="{x:Static wpf:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">AWESOME</Button>
+                    <Button  Margin="0 8 0 0" IsDefault="True" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">AWESOME</Button>
                 </StackPanel>
             </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
 
-    <wpf:DialogHost Identifier="RootDialog">
-        <wpf:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
-            <wpf:DrawerHost.LeftDrawerContent>
+    <materialDesign:DialogHost Identifier="RootDialog">
+        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
                 <StackPanel Orientation="Vertical">
                     <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
                                   HorizontalAlignment="Right" Margin="16"
@@ -68,6 +68,15 @@
                         <domain:DemoItem Name="Fields">
                             <domain:DemoItem.Content>
                                 <wpfExample:TextFields />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Pickers">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Pickers>
+                                    <wpfExample:Pickers.DataContext>
+                                        <wpfExample:PickersViewModel />
+                                    </wpfExample:Pickers.DataContext>
+                                </wpfExample:Pickers>
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
                         <domain:DemoItem Name="Sliders">
@@ -108,6 +117,11 @@
                                 </wpfExample:Grids>
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Expander">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Expander />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Menus &amp; Tool Bars">
                             <domain:DemoItem.Content>
                                 <wpfExample:MenusAndToolBars />
@@ -134,18 +148,18 @@
                         </domain:DemoItem>
                     </ListBox>
                 </StackPanel>
-            </wpf:DrawerHost.LeftDrawerContent>
+            </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
-                <wpf:ColorZone Padding="16" wpf:ShadowAssist.ShadowDepth="Depth2"
+                <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                Mode="PrimaryMid" DockPanel.Dock="Top">
                     <DockPanel>
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
                                       x:Name="MenuToggleButton"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
                     </DockPanel>
-                </wpf:ColorZone>
+                </materialDesign:ColorZone>
                 <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
             </DockPanel>
-        </wpf:DrawerHost>
-    </wpf:DialogHost>
+        </materialDesign:DrawerHost>
+    </materialDesign:DialogHost>
 </Window>
