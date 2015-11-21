@@ -8,9 +8,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
     <Grid>
-        <WrapPanel HorizontalAlignment="Stretch" Margin="16" Orientation="Horizontal" VerticalAlignment="Stretch">
-            <wpf:OversizedNumberSpinner />
-            <wpf:OversizedNumberSpinner Margin="32,0,0,0" IsEnabled="False" Value="3" />
-        </WrapPanel>
+        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Stretch">
+            <TextBlock Text="Click on the number to show the editing text box. Afterwards press Enter to apply the new value." />
+            <WrapPanel HorizontalAlignment="Stretch" Margin="16" Orientation="Horizontal" VerticalAlignment="Stretch">
+                <wpf:OversizedNumberSpinner />
+                <wpf:OversizedNumberSpinner Margin="32,0,0,0" IsEnabled="False" Value="3" />
+                <wpf:OversizedNumberSpinner Background="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource SecondaryAccentForegroundBrush}" Margin="32,0,0,0" Min="-3" Value="3" Max="15" />
+            </WrapPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
