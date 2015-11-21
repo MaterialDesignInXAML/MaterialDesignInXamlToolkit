@@ -10,7 +10,6 @@ namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
     {
-<<<<<<< HEAD
         /// <summary>
         /// The primary swatch
         /// </summary>
@@ -20,10 +19,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public Swatch Accent;
 
-        public void SetLightDark(bool? isDark)
-=======
         public virtual void SetLightDark(bool isDark)
->>>>>>> refs/remotes/ButchersBoy/master
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
                 .Where(rd => rd.Source != null)
@@ -32,7 +28,7 @@ namespace MaterialDesignThemes.Wpf
                 throw new ApplicationException("Unable to find Light/Dark base theme in Application resources.");
 
             var source =
-                $"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{(isDark.Value ? "Dark" : "Light")}.xaml";
+                $"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{(isDark ? "Dark" : "Light")}.xaml";
             var newResourceDictionary = new ResourceDictionary() { Source = new Uri(source) };
 
             Application.Current.Resources.MergedDictionaries.Remove(existingResourceDictionary);
@@ -44,7 +40,7 @@ namespace MaterialDesignThemes.Wpf
             if (existingMahAppsResourceDictionary == null) return;
 
             source =
-                $"pack://application:,,,/MahApps.Metro;component/Styles/Accents/{(isDark.Value ? "BaseDark" : "BaseLight")}.xaml";
+                $"pack://application:,,,/MahApps.Metro;component/Styles/Accents/{(isDark ? "BaseDark" : "BaseLight")}.xaml";
             var newMahAppsResourceDictionary = new ResourceDictionary { Source = new Uri(source) };
 
             Application.Current.Resources.MergedDictionaries.Remove(existingMahAppsResourceDictionary);

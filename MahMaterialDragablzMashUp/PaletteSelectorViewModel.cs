@@ -14,7 +14,7 @@ namespace MahMaterialDragablzMashUp
             Swatches = new SwatchesProvider(true).Swatches;
             ApplyPrimaryCommand = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != palette.Primary));
             ApplyAccentCommand = new DelegateCommand<Swatch>(ApplyAccent, new Predicate<Swatch>(s => s != palette.Accent));
-            ToggleBaseCommand = new DelegateCommand<bool?>(palette.SetLightDark);
+            ToggleBaseCommand = new DelegateCommand<bool>(palette.SetLightDark);
         }
 
         public ICommand ToggleBaseCommand { get; }
