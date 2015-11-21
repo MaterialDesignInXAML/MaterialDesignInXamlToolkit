@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -20,7 +20,7 @@
             <StackPanel Grid.Column="1" Margin="24 0 0 0">
                 <TextBlock FontSize="32" TextWrapping="Wrap">Welcome to Material Design In XAML Toolkit</TextBlock>
                 <TextBlock Margin="0 8 0 10" TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBodyLight}">Click EXPLORE to checkout the various controls &amp; themes.</TextBlock>
-                <Button Command="{x:Static wpf:DrawerHost.OpenDrawerCommand}">EXPLORE</Button>
+                <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}">EXPLORE</Button>
             </StackPanel>
         </Grid>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
@@ -28,7 +28,7 @@
                       VerticalAlignment="Bottom"
                       Margin="0 0 0 32">
             <StackPanel Orientation="Horizontal">
-                <wpf:Card Width="420" Margin="4 2 8 16" Height="280">
+                <materialDesign:Card Width="420" Margin="4 2 8 16" Height="280">
                     <Grid VerticalAlignment="Stretch" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -101,8 +101,8 @@
                             </Grid>
                         </Border>
                     </Grid>
-                </wpf:Card>
-                <wpf:Card Width="420" Margin="8 2 4 16" Height="280">
+                </materialDesign:Card>
+                <materialDesign:Card Width="420" Margin="8 2 4 16" Height="280">
                     <Grid VerticalAlignment="Stretch">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -122,7 +122,7 @@
                                        VerticalAlignment="Top">This project is completely open source. If you like it and want to say thanks you could hit the GitHub Star button, tweet or post about it, or tell your mum about it!</TextBlock>
                         </StackPanel>
                     </Grid>
-                </wpf:Card>
+                </materialDesign:Card>
             </StackPanel>
         </ScrollViewer>
     </Grid>

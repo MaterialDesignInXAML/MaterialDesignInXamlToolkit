@@ -17,7 +17,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
-        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="AllowDrop" Value="true"/>        
@@ -27,14 +27,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Grid VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Grid>
                         <Border x:Name="border"
                                 BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
                                 SnapsToDevicePixels="True"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Padding="0 4 0 4">
-                            <Grid Margin="{TemplateBinding Padding}">
+                            <Grid Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                                               />
                                 <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
@@ -123,16 +124,21 @@
                             </ThicknessAnimation>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Grid VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Grid>
                         <Border x:Name="border"
-                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
                                 SnapsToDevicePixels="True"
                                 Padding="0 4 0 4">
-                            <Grid Margin="0 12 0 0">
+                            <Grid Margin="0 12 0 0"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
                                 <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
                                               HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-                                            />
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                              />
                                 <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                            IsHitTestVisible="False"
                                            FontSize="{TemplateBinding FontSize}"
@@ -140,7 +146,8 @@
                                            VerticalAlignment="Top"
                                            x:Name="Hint"
                                            Margin="1 0 1 0"
-                                           Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                           Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                           />
                             </Grid>
                         </Border>
                         <wpf:Underline x:Name="Underline"/>

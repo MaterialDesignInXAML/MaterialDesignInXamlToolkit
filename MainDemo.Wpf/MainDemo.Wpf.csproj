@@ -116,6 +116,10 @@
       <DependentUpon>PaletteSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="PaletteSelectorViewModel.cs" />
+    <Compile Include="Pickers.xaml.cs">
+      <DependentUpon>Pickers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PickersViewModel.cs" />
     <Compile Include="Progress.xaml.cs">
       <DependentUpon>Progress.xaml</DependentUpon>
     </Compile>
@@ -202,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PaletteSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pickers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

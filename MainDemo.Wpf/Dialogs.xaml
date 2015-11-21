@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -39,9 +39,9 @@
                 <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"
                            Margin="8 0 8 0"
                            >SAMPLE 1: Localised dialog encapsulating specific content, launched from a routed command, response handled in code-behind.</TextBlock>
-                <wpf:DialogHost DialogClosing="Sample1_DialogHost_OnDialogClosing"
+                <materialDesign:DialogHost DialogClosing="Sample1_DialogHost_OnDialogClosing"
                                 Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <wpf:DialogHost.DialogContent>
+                    <materialDesign:DialogHost.DialogContent>
                         <StackPanel Margin="16">
                             <TextBlock>Add a new fruit.</TextBlock>
                             <TextBox Margin="0 8 0 0" HorizontalAlignment="Stretch" x:Name="FruitTextBox" />
@@ -49,7 +49,7 @@
                                 <Button Style="{StaticResource MaterialDesignFlatButton}"
                                         IsDefault="True"
                                         Margin="0 8 8 0"
-                                        Command="wpf:DialogHost.CloseDialogCommand">
+                                        Command="materialDesign:DialogHost.CloseDialogCommand">
                                     <Button.CommandParameter>
                                         <system:Boolean>True</system:Boolean>
                                     </Button.CommandParameter>
@@ -58,7 +58,7 @@
                                 <Button Style="{StaticResource MaterialDesignFlatButton}"
                                         IsCancel="True"
                                         Margin="0 8 8 0"
-                                        Command="wpf:DialogHost.CloseDialogCommand">
+                                        Command="materialDesign:DialogHost.CloseDialogCommand">
                                     <Button.CommandParameter>
                                         <system:Boolean>False</system:Boolean>
                                     </Button.CommandParameter>
@@ -66,7 +66,7 @@
                                 </Button>
                             </StackPanel>
                         </StackPanel>
-                    </wpf:DialogHost.DialogContent>
+                    </materialDesign:DialogHost.DialogContent>
                     <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                             MinWidth="256" MinHeight="256" ClipToBounds="True">
                         <Grid>
@@ -79,11 +79,11 @@
                                 <ListBoxItem>Banana</ListBoxItem>
                                 <ListBoxItem>Pear</ListBoxItem>
                             </ListBox>
-                            <wpf:ColorZone Mode="PrimaryMid" Grid.Row="1" Effect="{DynamicResource MaterialDesignShadowDepth5}">
+                            <materialDesign:ColorZone Mode="PrimaryMid" Grid.Row="1" Effect="{DynamicResource MaterialDesignShadowDepth5}">
                                 <TextBlock Margin="16">Fruit Bowl</TextBlock>
-                            </wpf:ColorZone>
+                            </materialDesign:ColorZone>
                             <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"                                
-                                    Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
+                                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                     VerticalAlignment="Bottom" HorizontalAlignment="Right" 
                                     Grid.Row="0" Margin="0 0 28 -20">
                                 <Viewbox Width="22" Height="22">
@@ -94,28 +94,28 @@
                             </Button>
                         </Grid>
                     </Border>
-                </wpf:DialogHost>
+                </materialDesign:DialogHost>
                 <!--#endregion -->
 
                 <!--#region SAMPLE 2-->
                 <TextBlock Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Margin="8 0 8 0">SAMPLE 2: Top level dialog,  using OpenDialog, passing content via the Parameter. You can pass a view model, provided a corresponding DataTemplate can be found in the scope of the root DialogHost.</TextBlock>
                 <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
                     <!--the request to open the dialog will bubble up to the top-most DialogHost, but we can used the attached property based event to handle the response -->
-                    <Button Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
-                            wpf:DialogHost.DialogClosingAttached="Sample2_DialogHost_OnDialogClosing"
+                    <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                            materialDesign:DialogHost.DialogClosingAttached="Sample2_DialogHost_OnDialogClosing"
                             Width="128">
                         <Button.CommandParameter>
                             <StackPanel Margin="16">
                                 <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0" />
                                 <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True" 
-                                        Command="{x:Static wpf:DialogHost.CloseDialogCommand}"
+                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                         CommandParameter="Sample2Cancel"
                                         HorizontalAlignment="Center">CANCEL</Button>
                             </StackPanel>
                         </Button.CommandParameter>
                         PASS VIEW
                     </Button>
-                    <Button Command="{x:Static wpf:DialogHost.OpenDialogCommand}"
+                    <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                             Width="128" Margin="0 32 0 0">
                         <Button.CommandParameter>
                             <!-- the simplest view model of all, a DateTime. the view can be found in the resources of MainWindow.xaml  -->
@@ -146,7 +146,7 @@
                 <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"
                            Grid.Column="3" Margin="8 0 8 0"
                            >SAMPLE 4: Dialog managed managed from view model using IsOpen and custom commands (ignoring the provided routed commands).</TextBlock>
-                <wpf:DialogHost Grid.Column="3" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                <materialDesign:DialogHost Grid.Column="3" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                 IsOpen="{Binding IsSample4DialogOpen}"
                                 DialogContent="{Binding Sample4Content}">
                     <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
@@ -155,7 +155,7 @@
                                 Command="{Binding OpenSample4DialogCommand}"
                                 >RUN</Button>
                     </Border>
-                </wpf:DialogHost>
+                </materialDesign:DialogHost>
                 <!--#endregion-->
             </Grid>
         </ScrollViewer>

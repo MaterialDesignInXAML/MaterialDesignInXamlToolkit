@@ -31,8 +31,7 @@ namespace MaterialDesignColors.WpfExample
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            PresetTimePicker.SelectedTime = DateTime.Now.Date.AddHours(13).AddMinutes(37);
+        {            
         }		
     }
 
