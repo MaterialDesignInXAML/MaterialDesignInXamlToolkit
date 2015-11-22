@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
@@ -13,6 +14,8 @@ namespace MaterialDesignColors
 {
     public class SwatchesProvider
     {
+        [DllImport("dwmapi.dll", PreserveSig = false)]
+        private static extern bool DwmIsCompositionEnabled();
         public SwatchesProvider ()
 	    {
             new SwatchesProvider(true);
@@ -29,9 +32,9 @@ namespace MaterialDesignColors
             var regex = new Regex(@"^themes\/materialdesigncolor\.(?<name>[a-z]+)\.(?<type>primary|accent)\.baml$");
 
             Swatches = new List<Swatch>();
-            if (overflow)
+            if (overflow && DwmIsCompositionEnabled())
                 Swatches.Add(new Swatch("Auto", Swatch.AutoPrimary, Swatch.AutoAccent));
-            Swatches.InsertRange(0,
+            Swatches.AddRange(
                 dictionaryEntries
                 .Select(x => new { key = x.Key.ToString(), match = regex.Match(x.Key.ToString()) })
                 .Where(x => x.match.Success && x.match.Groups["name"].Value != "black")

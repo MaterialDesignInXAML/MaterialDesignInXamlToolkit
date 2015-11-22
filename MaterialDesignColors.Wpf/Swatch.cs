@@ -12,9 +12,6 @@ namespace MaterialDesignColors
     {
         #region Private
         #region Win32
-            [DllImport("dwmapi.dll", PreserveSig = false)]
-            private static extern bool DwmIsCompositionEnabled();
-
             [DllImport("dwmapi.dll", EntryPoint = "#127")]
             static extern void DwmGetColorizationParameters(ref DWMCOLORIZATIONPARAMS dp);
 
@@ -57,7 +54,6 @@ namespace MaterialDesignColors
             return a*a + r*r + g*g + b*b;
         }
 #endregion
-
         /// <summary>
         /// Primary color generated from DWM color
         /// </summary>
@@ -65,14 +61,9 @@ namespace MaterialDesignColors
         {
             get
             {
-                if (DwmIsCompositionEnabled())
-                {
-                    var colorizationParams = new DWMCOLORIZATIONPARAMS();
-                    DwmGetColorizationParameters(ref colorizationParams);
-                    return GetClosestSwatch(ToColor(colorizationParams.ColorizationColor), false).PrimaryHues;
-                }
-                else
-                    return GetClosestSwatch(Colors.Purple, false).PrimaryHues; //If you use a slow old computer.
+                var colorizationParams = new DWMCOLORIZATIONPARAMS();
+                DwmGetColorizationParameters(ref colorizationParams);
+                return GetClosestSwatch(ToColor(colorizationParams.ColorizationColor), false).PrimaryHues;
             }
         }
         /// <summary>
@@ -82,14 +73,9 @@ namespace MaterialDesignColors
         {
             get
             {
-                if (DwmIsCompositionEnabled())
-                {
-                    var colorizationParams = new DWMCOLORIZATIONPARAMS();
-                    DwmGetColorizationParameters(ref colorizationParams);
-                    return GetClosestSwatch(ToColor(colorizationParams.ColorizationColor), true).AccentHues;
-                }
-                else
-                    return GetClosestSwatch(Colors.Green, true).AccentHues; //If you use a slow old computer.
+                var colorizationParams = new DWMCOLORIZATIONPARAMS();
+                DwmGetColorizationParameters(ref colorizationParams);
+                return GetClosestSwatch(ToColor(colorizationParams.ColorizationColor), true).PrimaryHues;
             }
         }
 
