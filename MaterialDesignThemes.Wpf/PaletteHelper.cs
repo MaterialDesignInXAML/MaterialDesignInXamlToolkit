@@ -13,11 +13,19 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// The primary swatch
         /// </summary>
-        public Swatch Primary;
+        public Swatch Primary
+        {
+            get;
+            set;
+        }
         /// <summary>
         /// The accent swatch
         /// </summary>
-        public Swatch Accent;
+        public Swatch Accent
+        {
+            get;
+            set;
+        }
 
         public virtual void SetLightDark(bool isDark)
         {
