@@ -32,6 +32,15 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 * Configure App.xaml according to the [example](MainDemo.Wpf/App.xaml).
 * For more information see the [Get Started guide](http://materialdesigninxaml.net/#getStarted).
 
+# ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
+
+* Before contributing code read the [Contribution Guidelines](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Contribution-Guidelines)
+* Want to say thanks?
+  *  Hit the :star: Star :star: button
+  *  Make a small donation to one of my favourite charities
+    * NSPCC https://www.nspcc.org.uk/
+    * RNIB http://www.rnib.org.uk/
+
 # ![Alt text](web/images/MD4XAML28.png "Mentions") Mentions
 
 * Logo courtesy of GitHub user [Snalty](https://github.com/snalty), and you can see more of him;
