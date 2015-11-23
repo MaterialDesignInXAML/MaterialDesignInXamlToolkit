@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
@@ -13,6 +14,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// The primary swatch
         /// </summary>
+        [EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public Swatch Primary
         {
             get;
@@ -21,6 +23,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// The accent swatch
         /// </summary>
+        [EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public Swatch Accent
         {
             get;

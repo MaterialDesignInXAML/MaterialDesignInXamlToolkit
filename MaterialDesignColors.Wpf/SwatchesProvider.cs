@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
@@ -33,8 +34,8 @@ namespace MaterialDesignColors
 
             Swatches = new List<Swatch>();
             if (overflow && DwmIsCompositionEnabled())
-                Swatches.Add(new Swatch("Auto", Swatch.AutoPrimary, Swatch.AutoAccent));
-            Swatches.AddRange(
+                (Swatches as List<Swatch>).Add(new Swatch("Auto", Swatch.AutoPrimary, Swatch.AutoAccent));
+            (Swatches as List<Swatch>).AddRange(
                 dictionaryEntries
                 .Select(x => new { key = x.Key.ToString(), match = regex.Match(x.Key.ToString()) })
                 .Where(x => x.match.Success && x.match.Groups["name"].Value != "black")
@@ -45,11 +46,10 @@ namespace MaterialDesignColors
                     x.Key,
                     Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "primary")?.key),
                     Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "accent")?.key)
-                ))
-                .ToList());
+                )));
         }
 
-        public List<Swatch> Swatches { get; }
+        public IEnumerable<Swatch> Swatches { get; }
 
         private static Swatch CreateSwatch(string name, ResourceDictionary primaryDictionary, ResourceDictionary accentDictionary)
         {

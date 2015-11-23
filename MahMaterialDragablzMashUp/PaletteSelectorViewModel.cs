@@ -9,18 +9,12 @@ namespace MahMaterialDragablzMashUp
     public class PaletteSelectorViewModel
     {
         PaletteHelper palette = new PaletteHelper();
-        public PaletteSelectorViewModel()
-        {
-            Swatches = new SwatchesProvider(true).Swatches;
-            ApplyPrimaryCommand = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != palette.Primary));
-            ApplyAccentCommand = new DelegateCommand<Swatch>(ApplyAccent, new Predicate<Swatch>(s => s != palette.Accent));
-            ToggleBaseCommand = new DelegateCommand<bool>(palette.SetLightDark);
-        }
 
-        public ICommand ToggleBaseCommand { get; }
-        public IEnumerable<Swatch> Swatches { get; }
+        public ICommand ToggleBaseCommand { get; } = new DelegateCommand<bool>(palette.SetLightDark);
 
-        public DelegateCommand<Swatch> ApplyPrimaryCommand { get; }
+        public IEnumerable<Swatch> Swatches { get; } = new SwatchesProvider(true).Swatches
+
+        public DelegateCommand<Swatch> ApplyPrimaryCommand { get; } = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != palette.Primary))
 
         private void ApplyPrimary(Swatch swatch)
         {
@@ -28,7 +22,7 @@ namespace MahMaterialDragablzMashUp
             ApplyPrimaryCommand.RaiseCanExecuteChanged();
         }
 
-        public DelegateCommand<Swatch> ApplyAccentCommand { get; }
+        public DelegateCommand<Swatch> ApplyAccentCommand { get; } = new DelegateCommand<Swatch>(ApplyAccent, new Predicate<Swatch>(s => s != palette.Accent))
 
         private void ApplyAccent(Swatch swatch)
         {
