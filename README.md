@@ -34,7 +34,7 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
-* Before contributing code read the [Contribution Guidelines](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Contribution-Guidelines)
+* Before contributing code read the [Contribution Guidelines](CONTRIBUTING.md)
 * Want to say thanks?
   *  Hit the :star: Star :star: button
   *  Make a small donation to one of my favourite charities
