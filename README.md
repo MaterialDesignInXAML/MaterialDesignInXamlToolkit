@@ -29,8 +29,9 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") How Can I Use The Themes?
 
 * Install [NuGet package](https://www.nuget.org/packages/MaterialDesignThemes/) ```Install-Package MaterialDesignThemes```
-* Configure App.xaml according to the [example](MainDemo.Wpf/App.xaml).
-* For more information see the [Get Started guide](http://materialdesigninxaml.net/#getStarted).
+* Configure App.xaml according to the [example](MainDemo.Wpf/App.xaml)
+* For more information see the [Get Started guide](http://materialdesigninxaml.net/#getStarted)
+* Check out the [wiki](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki)
 
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
