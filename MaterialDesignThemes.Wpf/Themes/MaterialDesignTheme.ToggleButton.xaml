@@ -38,56 +38,94 @@
 								</VisualState>
 							</VisualStateGroup>
 							<VisualStateGroup x:Name="CheckStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="*" To="Checked">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="UncheckedEllipse">
+                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+                                                <LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse">
+                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+                                                <LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckMark">
+                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+                                                <LinearDoubleKeyFrame Value="24" KeyTime="0:0:0.2" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckMark">
+                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+                                                <LinearDoubleKeyFrame Value="24" KeyTime="0:0:0.2" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.025" Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="contentPresenter">
+                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.025" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CheckMark">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Visible}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Checked" To="Unchecked">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse">
+                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+                                                <LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="UncheckedEllipse">
+                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+                                                <LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.1" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckMark">
+                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.1" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckMark">
+                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="contentPresenter">
+                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+                                                <LinearDoubleKeyFrame Value="1" KeyTime="0:0:0.2" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CheckMark">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Hidden}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
 								<VisualState x:Name="Checked">
 									<Storyboard>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="UncheckedEllipse">
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-											<LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse">
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-											<LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckMark">
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-											<LinearDoubleKeyFrame Value="24" KeyTime="0:0:0.2" />
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckMark">
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-											<LinearDoubleKeyFrame Value="24" KeyTime="0:0:0.2" />
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.025" Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="contentPresenter">
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.025" />
-										</DoubleAnimationUsingKeyFrames>
-										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CheckMark">
-											<DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Visible}" />
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="UncheckedEllipse"
+                                                         To="32" />
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse"
+                                                         To="32" />
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckMark"
+                                                         To="24" />										
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckMark"
+                                                         To="24" />
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="contentPresenter"
+                                                         To="0" />
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CheckMark"
+                                                                       Duration="0">
+											<DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
 										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
 								</VisualState>
 								<VisualState x:Name="Unchecked">
 									<Storyboard>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse">
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-											<LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="UncheckedEllipse">
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-											<LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.1" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckMark">
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.1" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckMark">
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="contentPresenter">
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-											<LinearDoubleKeyFrame Value="1" KeyTime="0:0:0.2" />
-										</DoubleAnimationUsingKeyFrames>
-										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CheckMark">
-											<DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Hidden}" />
-										</ObjectAnimationUsingKeyFrames>
-									</Storyboard>
+                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="UncheckedEllipse"
+                                                         To="32" />
+                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse"
+                                                         To="32" />
+                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckMark"
+                                                         To="0" />
+                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckMark"
+                                                         To="0" />
+                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="contentPresenter"
+                                                         To="1" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CheckMark"
+                                                                       Duration="0">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Hidden}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
 								</VisualState>
 								<VisualState x:Name="Indeterminate">
 									<Storyboard>

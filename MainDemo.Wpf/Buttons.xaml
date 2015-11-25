@@ -92,13 +92,20 @@
         </StackPanel>
         <TextBlock Margin="0 24 0 0" Grid.Row="4">Toggles</TextBlock>
         <StackPanel Grid.Row="5" Margin="0 24 0 0" Orientation="Horizontal">
-            <ToggleButton Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionLightToggleButton}" IsChecked="True" />
-            <ToggleButton Content="H" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}"/>
+            <ToggleButton Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionLightToggleButton}" IsChecked="True"
+                          ToolTip="MaterialDesignActionLightToggleButton"/>
+            <ToggleButton Content="H" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}"
+                          ToolTip="MaterialDesignActionToggleButton"/>
             <!-- checkbox style same as toggle button -->
-            <CheckBox Content="E" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionDarkCheckBox}"/>
-            <ToggleButton Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionAccentToggleButton}"/>
-            <ToggleButton Content="K" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}" IsEnabled="False"/>
-            <ToggleButton Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}">
+            <CheckBox Content="E" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionDarkCheckBox}"
+                      ToolTip="MaterialDesignActionDarkCheckBox"/>
+            <ToggleButton Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionAccentToggleButton}"
+                          IsChecked="True"
+                          ToolTip="MaterialDesignActionAccentToggleButton"/>
+            <ToggleButton Content="K" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}" IsEnabled="False"
+                          ToolTip="MaterialDesignActionToggleButton"/>
+            <ToggleButton Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}"                          
+                          ToolTip="MaterialDesignActionToggleButton">
                 <Image Source="Resources/ProfilePic.jpg"></Image>
             </ToggleButton>
         </StackPanel>
