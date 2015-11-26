@@ -14,7 +14,7 @@ namespace MahMaterialDragablzMashUp
 
         public IEnumerable<Swatch> Swatches { get; } = new SwatchesProvider(true).Swatches
 
-        public DelegateCommand<Swatch> ApplyPrimaryCommand { get; } = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != palette.Primary))
+        public DelegateCommand<Swatch> ApplyPrimaryCommand { get; } = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != palette.Primary));
 
         private void ApplyPrimary(Swatch swatch)
         {
@@ -22,7 +22,7 @@ namespace MahMaterialDragablzMashUp
             ApplyPrimaryCommand.RaiseCanExecuteChanged();
         }
 
-        public DelegateCommand<Swatch> ApplyAccentCommand { get; } = new DelegateCommand<Swatch>(ApplyAccent, new Predicate<Swatch>(s => s != palette.Accent))
+        public DelegateCommand<Swatch> ApplyAccentCommand { get; } = new DelegateCommand<Swatch>(ApplyAccent, new Predicate<Swatch>(s => s != palette.Accent));
 
         private void ApplyAccent(Swatch swatch)
         {
