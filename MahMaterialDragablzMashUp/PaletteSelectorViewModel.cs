@@ -12,7 +12,7 @@ namespace MahMaterialDragablzMashUp
 
         public ICommand ToggleBaseCommand { get; } = new DelegateCommand<bool>(palette.SetLightDark);
 
-        public IEnumerable<Swatch> Swatches { get; } = new SwatchesProvider(true).Swatches
+        public IEnumerable<Swatch> Swatches { get; } = new SwatchesProvider(true).Swatches;
 
         public DelegateCommand<Swatch> ApplyPrimaryCommand { get; } = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != palette.Primary));
 
