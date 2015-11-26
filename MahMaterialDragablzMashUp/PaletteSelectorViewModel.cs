@@ -1,4 +1,5 @@
-﻿using MaterialDesignColors;
+﻿using System;
+using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -7,32 +8,26 @@ namespace MahMaterialDragablzMashUp
 {
     public class PaletteSelectorViewModel
     {
-        public PaletteSelectorViewModel()
-        {
-            Swatches = new SwatchesProvider().Swatches;
-        }
+        static PaletteHelper palette = new PaletteHelper();
 
-        public ICommand ToggleBaseCommand { get; } = new AnotherCommandImplementation(o => ApplyBase((bool)o));
+        public ICommand ToggleBaseCommand { get; } = new DelegateCommand<bool>(palette.SetLightDark);
 
-        private static void ApplyBase(bool isDark)
-        {
-            new PaletteHelper().SetLightDark(isDark);
-        }
+        public IEnumerable<Swatch> Swatches { get; } = new SwatchesProvider(true).Swatches;
 
-        public IEnumerable<Swatch> Swatches { get; }
-
-        public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o));
+        public static DelegateCommand<Swatch> ApplyPrimaryCommand { get; } = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != palette.Primary));
 
         private static void ApplyPrimary(Swatch swatch)
         {
-            new PaletteHelper().ReplacePrimaryColor(swatch);
+            palette.ReplacePrimaryColor(swatch);
+            ApplyPrimaryCommand.RaiseCanExecuteChanged();
         }
 
-        public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o));
+        public static DelegateCommand<Swatch> ApplyAccentCommand { get; } = new DelegateCommand<Swatch>(ApplyAccent, new Predicate<Swatch>(s => s != palette.Accent));
 
         private static void ApplyAccent(Swatch swatch)
         {
-            new PaletteHelper().ReplaceAccentColor(swatch);
+            palette.ReplaceAccentColor(swatch);
+            ApplyAccentCommand.RaiseCanExecuteChanged();
         }
     }
 }

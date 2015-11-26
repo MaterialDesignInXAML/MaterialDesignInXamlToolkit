@@ -6,10 +6,30 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
     {
+        /// <summary>
+        /// The primary swatch
+        /// </summary>
+        [EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public Swatch Primary
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// The accent swatch
+        /// </summary>
+        [EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public Swatch Accent
+        {
+            get;
+            set;
+        }
+
         public virtual void SetLightDark(bool isDark)
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
@@ -41,6 +61,8 @@ namespace MaterialDesignThemes.Wpf
         public virtual void ReplacePrimaryColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
+
+            Primary = swatch;
 
             var list = swatch.PrimaryHues.ToList();
             var light = list[2];
@@ -91,6 +113,8 @@ namespace MaterialDesignThemes.Wpf
         public virtual void ReplaceAccentColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
+
+            Accent = swatch;
 
             foreach (var color in swatch.AccentHues)
             {

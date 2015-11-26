@@ -5,7 +5,9 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
@@ -13,7 +15,13 @@ namespace MaterialDesignColors
 {
     public class SwatchesProvider
     {
-        public SwatchesProvider()
+        [DllImport("dwmapi.dll", PreserveSig = false)]
+        private static extern bool DwmIsCompositionEnabled();
+        public SwatchesProvider ()
+	    {
+            new SwatchesProvider(true);
+	    }
+        public SwatchesProvider(bool overflow)
         {
             var assembly = Assembly.GetExecutingAssembly();
             var resourcesName = assembly.GetName().Name + ".g";
@@ -24,7 +32,10 @@ namespace MaterialDesignColors
 
             var regex = new Regex(@"^themes\/materialdesigncolor\.(?<name>[a-z]+)\.(?<type>primary|accent)\.baml$");
 
-            Swatches =
+            Swatches = new List<Swatch>();
+            if (overflow && DwmIsCompositionEnabled())
+                (Swatches as List<Swatch>).Add(new Swatch("Auto", Swatch.AutoPrimary, Swatch.AutoAccent));
+            (Swatches as List<Swatch>).AddRange(
                 dictionaryEntries
                 .Select(x => new { key = x.Key.ToString(), match = regex.Match(x.Key.ToString()) })
                 .Where(x => x.match.Success && x.match.Groups["name"].Value != "black")
@@ -35,9 +46,7 @@ namespace MaterialDesignColors
                     x.Key,
                     Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "primary")?.key),
                     Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "accent")?.key)
-                ))
-                .ToList();
-
+                )));
         }
 
         public IEnumerable<Swatch> Swatches { get; }

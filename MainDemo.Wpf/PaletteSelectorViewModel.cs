@@ -14,32 +14,32 @@ namespace MaterialDesignColors.WpfExample
 {
     public class PaletteSelectorViewModel
     {
+        PaletteHelper palette = new PaletteHelper();
         public PaletteSelectorViewModel()
         {
-            Swatches = new SwatchesProvider().Swatches;            
+            Swatches = new SwatchesProvider(true).Swatches;
+            ApplyPrimaryCommand = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != palette.Primary));
+            ApplyAccentCommand = new DelegateCommand<Swatch>(ApplyAccent, new Predicate<Swatch>(s => s != palette.Accent));
+            ToggleBaseCommand = new DelegateCommand<bool>(palette.SetLightDark);
         }
 
-        public ICommand ToggleBaseCommand { get; } = new ActionCommand(o => ApplyBase((bool)o));
-
-        private static void ApplyBase(bool isDark)
-        {
-            new PaletteHelper().SetLightDark(isDark);
-        }
-
+        public ICommand ToggleBaseCommand { get; }
         public IEnumerable<Swatch> Swatches { get; }
 
-        public ICommand ApplyPrimaryCommand { get; } = new ActionCommand(o => ApplyPrimary((Swatch)o));
+        public DelegateCommand<Swatch> ApplyPrimaryCommand { get; }
 
-        private static void ApplyPrimary(Swatch swatch)
+        private void ApplyPrimary(Swatch swatch)
         {
-            new PaletteHelper().ReplacePrimaryColor(swatch);
+            palette.ReplacePrimaryColor(swatch);
+            ApplyPrimaryCommand.RaiseCanExecuteChanged();
         }
 
-        public ICommand ApplyAccentCommand { get; } = new ActionCommand(o => ApplyAccent((Swatch)o));
+        public DelegateCommand<Swatch> ApplyAccentCommand { get; }
 
-        private static void ApplyAccent(Swatch swatch)
+        private void ApplyAccent(Swatch swatch)
         {
-            new PaletteHelper().ReplaceAccentColor(swatch);
+            palette.ReplaceAccentColor(swatch);
+            ApplyAccentCommand.RaiseCanExecuteChanged();
         }
     }
 }
