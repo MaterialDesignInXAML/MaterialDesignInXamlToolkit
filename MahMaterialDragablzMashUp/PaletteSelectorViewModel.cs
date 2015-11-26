@@ -16,7 +16,7 @@ namespace MahMaterialDragablzMashUp
 
         public DelegateCommand<Swatch> ApplyPrimaryCommand { get; } = new DelegateCommand<Swatch>(ApplyPrimary, new Predicate<Swatch>(s => s != palette.Primary));
 
-        private void ApplyPrimary(Swatch swatch)
+        private static void ApplyPrimary(Swatch swatch)
         {
             palette.ReplacePrimaryColor(swatch);
             ApplyPrimaryCommand.RaiseCanExecuteChanged();
@@ -24,7 +24,7 @@ namespace MahMaterialDragablzMashUp
 
         public DelegateCommand<Swatch> ApplyAccentCommand { get; } = new DelegateCommand<Swatch>(ApplyAccent, new Predicate<Swatch>(s => s != palette.Accent));
 
-        private void ApplyAccent(Swatch swatch)
+        private static void ApplyAccent(Swatch swatch)
         {
             palette.ReplaceAccentColor(swatch);
             ApplyAccentCommand.RaiseCanExecuteChanged();
