@@ -8,7 +8,7 @@ namespace MahMaterialDragablzMashUp
 {
     public class PaletteSelectorViewModel
     {
-        PaletteHelper palette = new PaletteHelper();
+        static PaletteHelper palette = new PaletteHelper();
 
         public ICommand ToggleBaseCommand { get; } = new DelegateCommand<bool>(palette.SetLightDark);
 
