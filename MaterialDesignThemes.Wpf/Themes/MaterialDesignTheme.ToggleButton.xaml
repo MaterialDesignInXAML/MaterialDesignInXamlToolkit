@@ -413,79 +413,111 @@
 					<Border Background="{TemplateBinding Property=Background}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CheckStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="*" To="Checked">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="45"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.581"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="4.875"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.875"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle2">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-45"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle2">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.581"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="4.832"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle2">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-2.082"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle1">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.889"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="canvas">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-180"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Checked" To="Unchecked">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle2">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle2">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle2">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle1">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="canvas">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
 								<VisualState x:Name="Checked">
 									<Storyboard>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="45"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.581"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="4.875"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.875"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle2">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-45"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle2">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.581"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="4.832"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle2">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-2.082"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle1">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.889"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-1"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="canvas">
-											<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-180"/>
-										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimation Duration="0" To="45" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle" />
+                                        <DoubleAnimation Duration="0" To="0.581" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle" />
+                                        <DoubleAnimation Duration="0" To="4.875" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle" />
+                                        <DoubleAnimation Duration="0" To="1.875" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle" />
+                                        <DoubleAnimation Duration="0" To="-45" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle2" />
+                                        <DoubleAnimation Duration="0" To="0.581" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle2" />
+                                        <DoubleAnimation Duration="0" To="4.832" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2" />
+                                        <DoubleAnimation Duration="0" To="-2.082" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle2" />
+                                        <DoubleAnimation Duration="0" To="0.889" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle1" />
+                                        <DoubleAnimation Duration="0" To="-1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1" />
+                                        <DoubleAnimation Duration="0" To="-180" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="canvas" />
 									</Storyboard>
 								</VisualState>
 								<VisualState x:Name="Unchecked">
 									<Storyboard>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle2">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle2">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle2">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle1">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="canvas">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-										</DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle" />
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle" />
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle" />
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle" />
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle2" />
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle2" />
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2" />
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle2" />
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle1" />
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1" />
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="canvas" />
 									</Storyboard>
 								</VisualState>
 							</VisualStateGroup>
