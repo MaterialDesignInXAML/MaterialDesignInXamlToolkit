@@ -184,6 +184,23 @@ namespace MaterialDesignThemes.Wpf
 
         private static void TextPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
+            var frameworkElement = (FrameworkElement)dependencyObject;
+
+            if (frameworkElement == null) return;
+
+            var state = string.IsNullOrEmpty((dependencyPropertyChangedEventArgs.NewValue ?? "").ToString())
+                ? "MaterialDesignStateTextEmpty"
+                : "MaterialDesignStateTextNotEmpty";
+
+            if (frameworkElement.IsLoaded)
+            {
+                VisualStateManager.GoToState(frameworkElement, state, true);
+            }
+            else
+            {
+                frameworkElement.Loaded += (sender, args) => VisualStateManager.GoToState(frameworkElement, state, false);
+            }
+
             SetIsNullOrEmpty(dependencyObject, string.IsNullOrEmpty((dependencyPropertyChangedEventArgs.NewValue ?? "").ToString()));
         }
 

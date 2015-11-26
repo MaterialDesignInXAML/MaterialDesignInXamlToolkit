@@ -486,61 +486,80 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="MaterialDesignFloatingHintComboBoxTemplate" TargetType="{x:Type ComboBox}">
-        <ControlTemplate.Resources>
-            <Storyboard x:Key="MoveHintAsideStoryboard">
-                <DoubleAnimation Duration="0:0:0.3"
-                                 Storyboard.TargetName="Hint"
-                                 Storyboard.TargetProperty="FontSize"
-                                 To="10">
-                    <DoubleAnimation.EasingFunction>
-                        <SineEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Duration="0:0:0.3"
-                                 Storyboard.TargetName="Hint"
-                                 Storyboard.TargetProperty="Opacity"
-                                 To="1">
-                    <DoubleAnimation.EasingFunction>
-                        <SineEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <ThicknessAnimation Duration="0:0:0.3"
-                                    Storyboard.TargetName="Hint"
-                                    Storyboard.TargetProperty="(FrameworkElement.Margin)"
-                                    To="0,-12,0,0">
-                    <ThicknessAnimation.EasingFunction>
-                        <SineEase EasingMode="EaseOut" />
-                    </ThicknessAnimation.EasingFunction>
-                </ThicknessAnimation>
-            </Storyboard>
-            <Storyboard x:Key="MoveHintBackStoryboard">
-                <DoubleAnimation Duration="0:0:0.3"
-                                 Storyboard.TargetName="Hint"
-                                 Storyboard.TargetProperty="FontSize">
-                    <DoubleAnimation.EasingFunction>
-                        <SineEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Duration="0:0:0.3"
-                                 Storyboard.TargetName="Hint"
-                                 Storyboard.TargetProperty="Opacity">
-                    <DoubleAnimation.EasingFunction>
-                        <SineEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <ThicknessAnimation Duration="0:0:0.3"
-                                    Storyboard.TargetName="Hint"
-                                    Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                    <ThicknessAnimation.EasingFunction>
-                        <SineEase EasingMode="EaseOut" />
-                    </ThicknessAnimation.EasingFunction>
-                </ThicknessAnimation>
-            </Storyboard>
-        </ControlTemplate.Resources>
         <Grid x:Name="templateRoot">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="MaterialDesignStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition From="*" To="MaterialDesignStateTextNotEmpty">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
+                                                             Duration="0:0:0.3" To="10">
+                                    <DoubleAnimation.EasingFunction>
+                                        <SineEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
+                                                             Duration="0:0:0.3" To="1">
+                                    <DoubleAnimation.EasingFunction>
+                                        <SineEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
+                                                                Duration="0:0:0.3" To="1,-12,1,0">
+                                    <ThicknessAnimation.EasingFunction>
+                                        <SineEase EasingMode="EaseOut" />
+                                    </ThicknessAnimation.EasingFunction>
+                                </ThicknessAnimation>
+                            </Storyboard>
+                        </VisualTransition>
+                        <VisualTransition From="*" To="MaterialDesignStateTextEmpty">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
+                                                             Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <SineEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
+                                                             Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <SineEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
+                                                                Duration="0:0:0.3">
+                                    <ThicknessAnimation.EasingFunction>
+                                        <SineEase EasingMode="EaseOut" />
+                                    </ThicknessAnimation.EasingFunction>
+                                </ThicknessAnimation>
+                            </Storyboard>
+                        </VisualTransition>
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="MaterialDesignStateTextNotEmpty">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
+                                                         Duration="0" To="10" />
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
+                                                         Duration="0" To="1" />
+                            <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
+                                                            Duration="0" To="1,-12,1,0" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MaterialDesignStateTextEmpty">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
+                                                         Duration="0" />
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
+                                                         Duration="0" />
+                            <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
+                                                            Duration="0" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
             <Grid Margin="0 12 0 0"
                   SnapsToDevicePixels="True"
-              UseLayoutRounding="True">
+                  UseLayoutRounding="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
@@ -610,14 +629,6 @@
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False">
-                <Trigger.EnterActions>
-                    <BeginStoryboard x:Name="MoveHintAsideStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintAsideStoryboard}" />
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <BeginStoryboard x:Name="MoveHintBackStoryboard_BeginStoryboard" Storyboard="{StaticResource MoveHintBackStoryboard}" />
-                </Trigger.ExitActions>
-            </Trigger>
 
             <Trigger Property="IsEditable" Value="True">
                 <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
