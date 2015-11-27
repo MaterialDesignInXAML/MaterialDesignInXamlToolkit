@@ -33,7 +33,8 @@
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="ClipToBounds" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:RippleAssist.ClipToBounds)}" />
+        <Setter Property="ClipToBounds" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:RippleAssist.ClipToBounds)}" />        
+        <Setter Property="local:RippleAssist.IsCentered" Value="True" />
         <Setter Property="Feedback" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -228,8 +229,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-		<Style.Triggers>
-        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type local:ListSortDirectionIndicator}">
@@ -725,22 +724,54 @@
     </Style>
 
     <Style TargetType="{x:Type local:PopupBox}">
+        <Setter Property="ToggleContent">
+            <Setter.Value>
+                <Path Data="M4.1239999,2.0625 C4.1239999,3.2015873 3.2008111,4.125 2.062,4.125 C0.92318883,4.125 0,3.2015873 0,2.0625 C0,0.9234127 0.92318883,0 2.062,0 C3.2008111,0 4.1239999,0.9234127 4.1239999,2.0625 z M4.1859999,8.0465 C4.1859999,9.1855873 3.2628111,10.109 2.124,10.109 C0.98518883,10.109 0.062,9.1855873 0.062,8.0465 C0.062,6.9074127 0.98518883,5.984 2.124,5.984 C3.2628111,5.984 4.1859999,6.9074127 4.1859999,8.0465 z M4.1859999,13.9215 C4.1859999,15.060587 3.2628111,15.984 2.124,15.984 C0.98518883,15.984 0.062,15.060587 0.062,13.9215 C0.062,12.782413 0.98518883,11.859 2.124,11.859 C3.2628111,11.859 4.1859999,12.782413 4.1859999,13.9215 z"                      
+                      Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:PopupBox}, Path=Foreground}"
+                      Margin="4 0 4 0"/>
+            </Setter.Value>
+        </Setter>
         <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="local:ShadowAssist.ShadowDepth" Value="Depth3" />
+        <Setter Property="TextElement.FontWeight" Value="Normal" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PopupBox}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="ToggleButton" x:Key="ToggleButtonStyle">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <local:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                          
+                                                    ClipToBounds="False"
+                                                    Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
+                                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    Padding="{TemplateBinding Padding}" 
+                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />                                        
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ControlTemplate.Resources>
                     <Grid>
-                        <ToggleButton x:Name="PART_Toggle" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}">T</ToggleButton>
+                        <ToggleButton x:Name="PART_Toggle" Style="{StaticResource ToggleButtonStyle}" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
+                                      Content="{TemplateBinding ToggleContent}" ContentTemplate="{TemplateBinding ToggleContentTemplate}"
+                                      Cursor="Hand"
+                                      VerticalAlignment="Center"
+                                      />
                         <controlz:PopupEx x:Name="PART_Popup" IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
+                                          CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
+                                          HorizontalOffset="5"
+                                          VerticalOffset="5"
                                           PlacementTarget="{Binding ElementName=PART_Toggle}"
-                                          Placement="Bottom"
+                                          Placement="Custom"
                                           AllowsTransparency="True">
-                            <Border Background="Green" Padding="8">
-                                <TextBlock>POPS</TextBlock>    
-                            </Border>
+                            <local:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"                                        
+                                        Margin="5" />
                         </controlz:PopupEx>
                     </Grid>
-                </ControlTemplate>
+                </ControlTemplate>              
             </Setter.Value>
         </Setter>
     </Style>

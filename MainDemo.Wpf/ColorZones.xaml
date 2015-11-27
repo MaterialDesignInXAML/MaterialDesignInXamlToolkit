@@ -13,18 +13,17 @@
             <TextBlock Margin="0 16 0 0" FontSize="10">Invert the basic paper/body colours.</TextBlock>
             <materialDesign:ColorZone Mode="Inverted" Padding="16">
                 <DockPanel>
+                    <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges">
+                        <ListBox>
+                            <ListBoxItem>Hello World</ListBoxItem>
+                            <ListBoxItem>Nice Popup</ListBoxItem>
+                            <ListBoxItem>Goodbye.</ListBoxItem>
+                        </ListBox>
+                    </materialDesign:PopupBox>
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                         <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
                     </StackPanel>
-                    <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" DockPanel.Dock="Right" HorizontalAlignment="Right"
-                            materialDesign:RippleAssist.IsCentered="True">
-                        <Viewbox Width="16" Height="16">
-                            <Canvas Width="24" Height="24">
-                                <Path Data="M2,21L23,12L2,3V10L17,12L2,14V21Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
-                            </Canvas>
-                        </Viewbox>
-                    </Button>
                 </DockPanel>
             </materialDesign:ColorZone>
             <TextBlock Margin="0 16 0 0" FontSize="10">Use primary light back and fore colours.</TextBlock>
