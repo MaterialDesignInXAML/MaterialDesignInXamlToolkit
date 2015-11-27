@@ -117,10 +117,10 @@ namespace MaterialDesignThemes.Wpf
             var anyOpen = IsLeftDrawerOpen;
             
             VisualStateManager.GoToState(this,
-                !anyOpen ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, useTransitions);
+                !anyOpen ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, !TransitionAssist.GetDisableTransitions(this));
 
             VisualStateManager.GoToState(this,
-                IsLeftDrawerOpen ? TemplateLeftOpenStateName : TemplateLeftClosedStateName, useTransitions);
+                IsLeftDrawerOpen ? TemplateLeftOpenStateName : TemplateLeftClosedStateName, !TransitionAssist.GetDisableTransitions(this));
         }
 
         private static void IsLeftDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)

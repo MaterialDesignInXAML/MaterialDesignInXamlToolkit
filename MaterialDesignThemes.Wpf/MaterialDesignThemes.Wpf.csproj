@@ -41,9 +41,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\paket-files\punker76\Controlz\src\Controlz\PopupEx.cs">
+    <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\Controlz\PopupEx.cs">
       <Paket>True</Paket>
-      <Link>Controlz/PopupEx.cs</Link>
+      <Link>ControlzEx/PopupEx.cs</Link>
     </Compile>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -93,6 +93,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\MaterialDesignTheme.DatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MaterialDesignTheme.Expander.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,8 +207,7 @@
     <Compile Include="ClockChoiceMadeEventArgs.cs" />
     <Compile Include="ClockItemButton.cs" />
     <Compile Include="ColorZone.cs" />
-    <Compile Include="ComboBoxAssist.cs" />
-    <Compile Include="ComboBoxAssistManagedOverlayInfo.cs" />
+    <Compile Include="ComboBoxPopup.cs" />
     <Compile Include="Converters\BrushRoundConverter.cs" />
     <Compile Include="Converters\BrushToRadialGradientBrushConverter.cs" />
     <Compile Include="Converters\CalendarDateCoalesceConverter.cs" />
@@ -267,6 +270,7 @@
     <Compile Include="ToolTipAssist.cs" />
     <Compile Include="RippleAssist.cs" />
     <Compile Include="Ripple.cs" />
+    <Compile Include="TransitionAssist.cs" />
     <Compile Include="Underline.cs" />
     <Compile Include="ValidationAssist.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

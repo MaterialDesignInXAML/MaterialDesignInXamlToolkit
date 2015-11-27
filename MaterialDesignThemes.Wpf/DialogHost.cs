@@ -226,7 +226,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var dialogHost = (DialogHost)dependencyObject;            
 
-            VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), true);
+            VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
             if (!dialogHost.IsOpen)
             {

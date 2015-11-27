@@ -13,7 +13,6 @@
  * Small sample apps within solution showing how to include chosen colours and use the resources:
    * MaterialDesignColors.WpfExample - illustrates palette use and control themes in WPF
    * MahMaterialDragablzMashUp - illustrates combination of [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro), and Material Design for saweet UI.
-   * MaterialDesignColors.UniversalExample - illustrates palette use in WinRT
  * Compatible with [MahApps](http://mahapps.com) and [Dragablz](https://github.com/ButchersBoy/Dragablz).  See demo app in source and [Mash Up! blog](http://dragablz.net/2015/02/25/material-design-in-xaml-mash-up/).
  * Includes hacky console app which was used to generate the XAML colour definitions
 
@@ -30,8 +29,18 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") How Can I Use The Themes?
 
 * Install [NuGet package](https://www.nuget.org/packages/MaterialDesignThemes/) ```Install-Package MaterialDesignThemes```
-* Configure App.xaml according to the [example](MainDemo.Wpf/App.xaml).
-* For more information see the [Get Started guide](http://materialdesigninxaml.net/#getStarted).
+* Configure App.xaml according to the [example](MainDemo.Wpf/App.xaml)
+* For more information see the [Get Started guide](http://materialdesigninxaml.net/#getStarted)
+* Check out the [wiki](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki)
+
+# ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
+
+* Before contributing code read the [Contribution Guidelines](CONTRIBUTING.md)
+* Want to say thanks?
+  *  Hit the :star: Star :star: button
+  *  Make a small donation to one of my favourite charities
+    * NSPCC https://www.nspcc.org.uk/
+    * RNIB http://www.rnib.org.uk/
 
 # ![Alt text](web/images/MD4XAML28.png "Mentions") Mentions
 
