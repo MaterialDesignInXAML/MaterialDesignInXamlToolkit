@@ -42,11 +42,15 @@ namespace MaterialDesignThemes.Wpf
     /// </summary>
     [TemplatePart(Name = PopupPartName, Type = typeof(Popup))]
     [TemplatePart(Name = TogglePartName, Type = typeof(ToggleButton))]
+    [TemplateVisualState(GroupName = "PopupStates", Name = PopupIsOpenStateName)]
+    [TemplateVisualState(GroupName = "PopupStates", Name = PopupIsClosedStateName)]
     [ContentProperty("PopupContent")]
     public class PopupBox : ContentControl
     {
         public const string PopupPartName = "PART_Popup";
         public const string TogglePartName = "PART_Toggle";
+        public const string PopupIsOpenStateName = "IsOpen";
+        public const string PopupIsClosedStateName = "IsClosed";
         private PopupEx _popup;
         private ToggleButton _toggleButton;
         
@@ -129,6 +133,8 @@ namespace MaterialDesignThemes.Wpf
                 Mouse.Capture(popupBox, CaptureMode.SubTree);
             else
                 Mouse.Capture(null);
+
+            VisualStateManager.GoToState(popupBox, newValue ? PopupIsOpenStateName : PopupIsClosedStateName, true);
         }
 
         /// <summary>
@@ -172,6 +178,8 @@ namespace MaterialDesignThemes.Wpf
 
             _popup = GetTemplateChild(PopupPartName) as PopupEx;
             _toggleButton = GetTemplateChild(TogglePartName) as ToggleButton;
+
+            VisualStateManager.GoToState(this, IsPopupOpen ? PopupIsOpenStateName : PopupIsClosedStateName, false);
         }
 
         protected override void OnIsKeyboardFocusWithinChanged(DependencyPropertyChangedEventArgs e)
@@ -196,7 +204,7 @@ namespace MaterialDesignThemes.Wpf
             switch (PlacementMode)
             {
                 case PopupBoxPlacementMode.BottomAndAlignLeftEdges:
-                    x = 0 - Math.Abs(offset.X*2);
+                    x = 0 - Math.Abs(offset.X*3);
                     y = targetSize.Height - Math.Abs(offset.Y);                    
                     break;
                 case PopupBoxPlacementMode.BottomAndAlignRightEdges:
@@ -204,7 +212,7 @@ namespace MaterialDesignThemes.Wpf
                     y = targetSize.Height - Math.Abs(offset.Y);
                     break;
                 case PopupBoxPlacementMode.TopAndAlignLeftEdges:
-                    x = 0 - Math.Abs(offset.X * 2);
+                    x = 0 - Math.Abs(offset.X * 3);
                     y = 0 - popupSize.Height - Math.Abs(offset.Y*2);
                     break;
                 case PopupBoxPlacementMode.TopAndAlignRightEdges:

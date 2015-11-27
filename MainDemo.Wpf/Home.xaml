@@ -135,6 +135,10 @@
                 <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
                                          HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                          Margin="32">
+                    <ItemsControl>
+                        <Button>Hello</Button>
+                        <Button>World</Button>
+                    </ItemsControl>
                 </materialDesign:PopupBox>
             </Grid>
         </ScrollViewer>

@@ -66,6 +66,8 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth2" />
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:PopupBox}">
@@ -75,8 +77,54 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ToggleButton">
                                         <Grid>
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CheckedStates">
+                                                    <VisualStateGroup.Transitions>
+                                                        <VisualTransition From="*" To="Checked">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                                                 Storyboard.TargetProperty="Angle"
+                                                                                 To="45"
+                                                                                 Duration="0:0:0.3">
+                                                                    <DoubleAnimation.EasingFunction>
+                                                                        <QuadraticEase EasingMode="EaseInOut" />
+                                                                    </DoubleAnimation.EasingFunction>
+                                                                </DoubleAnimation>
+                                                            </Storyboard>
+                                                        </VisualTransition>
+                                                        <VisualTransition From="Checked" To="Unchecked">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                                                 Storyboard.TargetProperty="Angle"
+                                                                                 To="0"
+                                                                                 Duration="0:0:0.3">
+                                                                    <DoubleAnimation.EasingFunction>
+                                                                        <QuadraticEase EasingMode="EaseInOut" />
+                                                                    </DoubleAnimation.EasingFunction>
+                                                                </DoubleAnimation>
+                                                            </Storyboard>
+                                                        </VisualTransition>
+                                                    </VisualStateGroup.Transitions>
+                                                    <VisualState x:Name="Checked">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                                             Storyboard.TargetProperty="Angle"
+                                                                             To="45"
+                                                                             Duration="0" />
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Unchecked">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                                             Storyboard.TargetProperty="Angle"
+                                                                             To="0"
+                                                                             Duration="0" />
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
                                             <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
-                                                     Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                                     Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                                                      x:Name="border" />
                                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
                                                         Feedback="White"
@@ -84,7 +132,12 @@
                                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                         Padding="{TemplateBinding Padding}" 
-                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                        RenderTransformOrigin=".5,.5">
+                                                <wpf:Ripple.RenderTransform>
+                                                    <RotateTransform x:Name="RippleRotateTransform" Angle="0" />
+                                                </wpf:Ripple.RenderTransform>
+                                            </wpf:Ripple>
                                             <Ellipse x:Name="GeometryEllipse" Fill="Transparent" IsHitTestVisible="False" Focusable="False" />
                                         </Grid>
                                         <ControlTemplate.Triggers>
@@ -104,7 +157,11 @@
                         <ToggleButton x:Name="PART_Toggle" Style="{StaticResource ToggleButtonStyle}" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                                       Content="{TemplateBinding ToggleContent}" ContentTemplate="{TemplateBinding ToggleContentTemplate}"
                                       Cursor="Hand"
-                                      VerticalAlignment="Center"
+                                      Background="{TemplateBinding Background}"
+                                      BorderBrush="{TemplateBinding BorderBrush}"
+                                      Foreground="{TemplateBinding Foreground}"
+                                      VerticalAlignment="Stretch"
+                                      HorizontalAlignment="Stretch"                                      
                                       />
                         <controlz:PopupEx x:Name="PART_Popup" IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                                           CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
@@ -114,8 +171,8 @@
                                           Placement="Custom"
                                           PopupAnimation="Fade"
                                           AllowsTransparency="True">
-                            <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"                                        
-                                        Margin="5" />
+                            <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"                                      
+                                      Margin="5" Padding="8" />
                         </controlz:PopupEx>
                     </Grid>
                 </ControlTemplate>
@@ -123,7 +180,11 @@
         </Setter>
         <Setter Property="ToggleContent">
             <Setter.Value>
-                <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=Foreground}" />
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=Foreground}" />
+                    </Canvas>
+                </Viewbox>
             </Setter.Value>
         </Setter>
     </Style>
