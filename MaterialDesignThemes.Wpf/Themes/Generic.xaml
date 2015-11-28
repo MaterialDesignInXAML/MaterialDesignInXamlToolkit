@@ -36,7 +36,6 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="ClipToBounds" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:RippleAssist.ClipToBounds)}" />        
-        <Setter Property="local:RippleAssist.IsCentered" Value="True" />
         <Setter Property="Feedback" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground}" />
         <Setter Property="Template">
             <Setter.Value>

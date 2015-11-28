@@ -25,6 +25,7 @@
                                     <ControlTemplate TargetType="ToggleButton">
                                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                          
                                                     ClipToBounds="False"
+                                                    wpf:RippleAssist.IsCentered="True"
                                                     Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
                                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -50,7 +51,7 @@
                                           PopupAnimation="Fade"
                                           AllowsTransparency="True">
                             <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"                                        
-                                        Margin="5" />
+                                      Margin="5" />
                         </controlz:PopupEx>
                     </Grid>
                 </ControlTemplate>
@@ -129,6 +130,7 @@
                                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
                                                         Feedback="White"
                                                         Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
+                                                        wpf:RippleAssist.IsCentered="True"
                                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                         Padding="{TemplateBinding Padding}" 
@@ -171,8 +173,39 @@
                                           Placement="Custom"
                                           PopupAnimation="Fade"
                                           AllowsTransparency="True">
-                            <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"                                      
-                                      Margin="5" Padding="8" />
+                            <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"      
+                                      Margin="5" Padding="8">
+                                <wpf:Card.Resources>
+                                    <ResourceDictionary>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Style.Setters>
+                                                <Setter Property="Background" Value="{DynamicResource MaterialDesignPrimaryLightBrush}" />
+                                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignPrimaryLightForegroundBrush}" />
+                                                <Setter Property="ToolTipService.IsEnabled" Value="False" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <StackPanel Orientation="Horizontal" Margin="8">
+                                                                <Grid Clip="{Binding ElementName=UncheckedEllipse, Path=RenderedGeometry}" ClipToBounds="True" Background="{TemplateBinding Background}"
+                                                                      Width="30" Height="30">
+                                                                    <Ellipse Fill="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="UncheckedEllipse"  />
+                                                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                                </Grid>
+                                                                <Border Background="{DynamicResource MaterialDesignToolTipBackground}" Margin="8 0 0 0" Padding="8">
+                                                                    <ContentControl Foreground="{DynamicResource MaterialDesignPaper}" Content="{TemplateBinding ToolTip}" VerticalAlignment="Center" />
+                                                                </Border>
+                                                            </StackPanel>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style.Setters>
+                                        </Style>
+                                    </ResourceDictionary>
+                                </wpf:Card.Resources>
+                                <wpf:Card.Background>
+                                    <SolidColorBrush Color="White" Opacity=".6" />
+                                </wpf:Card.Background>
+                            </wpf:Card>
                         </controlz:PopupEx>
                     </Grid>
                 </ControlTemplate>

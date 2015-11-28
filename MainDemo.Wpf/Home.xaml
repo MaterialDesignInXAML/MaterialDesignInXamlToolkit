@@ -136,8 +136,8 @@
                                          HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                          Margin="32">
                     <ItemsControl>
-                        <Button>Hello</Button>
-                        <Button>World</Button>
+                        <Button ToolTip="Mail">@</Button>
+                        <Button ToolTip="Hashtag">#</Button>
                     </ItemsControl>
                 </materialDesign:PopupBox>
             </Grid>
