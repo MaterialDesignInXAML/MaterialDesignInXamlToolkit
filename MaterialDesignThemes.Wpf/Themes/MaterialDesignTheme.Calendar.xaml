@@ -89,56 +89,40 @@
                                 <VisualState x:Name="Active"/>
                                 <VisualState x:Name="Inactive" />
                             </VisualStateGroup>
-                            <VisualStateGroup x:Name="DayStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0"/>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="RegularDay"/>
-                                <VisualState x:Name="Today">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TodayBackground"/>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText">
-                                            <DiscreteObjectKeyFrame Value="{DynamicResource PrimaryHueLightForegroundBrush}" KeyTime="0" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="BlackoutDayStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0"/>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="NormalDay"/>
-                                <VisualState x:Name="BlackoutDay">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HighlightingBorder" />
-                                        <DoubleAnimation Duration="0" To="0.38" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="NormalText" />
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Ellipse x:Name="TodayBackground" Fill="{DynamicResource PrimaryHueLightBrush}" Opacity="0" />
-                        <Ellipse x:Name="SelectedBackground" Fill="{DynamicResource PrimaryHueMidBrush}" Opacity="0" />
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" />
-                        <Border x:Name="HighlightingBorder" Opacity="1">
-                            <Ellipse x:Name="HighlightBackground" Fill="{DynamicResource PrimaryHueDarkBrush}" Opacity="0" />
-                        </Border>
-                        <ContentPresenter x:Name="NormalText" 
-                                          TextElement.Foreground="{TemplateBinding Foreground}" 
+                        <Ellipse x:Name="TodayBackground"
+                                 Fill="{DynamicResource PrimaryHueLightBrush}"
+                                 Opacity="0" />
+                        <Ellipse x:Name="SelectedBackground"
+                                 Fill="{DynamicResource PrimaryHueMidBrush}"
+                                 Opacity="0" />
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" />
+                        <Ellipse x:Name="HighlightBackground"
+                                 Fill="{DynamicResource PrimaryHueDarkBrush}"
+                                 Opacity="0" />
+                        <ContentPresenter x:Name="NormalText"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          Margin="5,1,5,1" 
+                                          Margin="5,1,5,1"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Ellipse x:Name="DayButtonFocusVisual" Stroke="{DynamicResource PrimaryHueDarkBrush}" Opacity="0" Visibility="Collapsed" StrokeThickness="1" />
+                        <Ellipse x:Name="DayButtonFocusVisual"
+                                 Stroke="{DynamicResource PrimaryHueDarkBrush}"
+                                 Opacity="0"
+                                 Visibility="Collapsed"
+                                 StrokeThickness="1" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsInactive" Value="True">
-                <Setter Property="MinHeight" Value="0" />
-                <Setter Property="MaxHeight" Value="0" />
-            </Trigger>
-            <Trigger Property="IsBlackedOut" Value="True">
-                <Setter Property="Cursor" Value="No" />
+            <Trigger Property="IsInactive"
+                     Value="True">
+                <Setter Property="MinHeight"
+                        Value="0" />
+                <Setter Property="MaxHeight"
+                        Value="0" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -261,25 +245,47 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Ellipse x:Name="TodayBackground" Fill="{DynamicResource PrimaryHueLightBrush}" Opacity="0" />
-                        <Ellipse x:Name="SelectedBackground" Fill="{DynamicResource PrimaryHueMidBrush}" Opacity="0" />
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
-                        <Border x:Name="HighlightingBorder" Opacity="1">
-                            <Ellipse x:Name="HighlightBackground" Fill="{DynamicResource PrimaryHueDarkBrush}" Opacity="0"/>
+                        <Ellipse x:Name="TodayBackground"
+                                 Fill="{DynamicResource PrimaryHueLightBrush}"
+                                 Opacity="0" />
+                        <Ellipse x:Name="SelectedBackground"
+                                 Fill="{DynamicResource PrimaryHueMidBrush}"
+                                 Opacity="0" />
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"/>
+                        <Border x:Name="HighlightingBorder"
+                                Opacity="1">
+                            <Ellipse x:Name="HighlightBackground"
+                                     Fill="{DynamicResource PrimaryHueDarkBrush}"
+                                     Opacity="0"/>
                         </Border>
-                        <ContentPresenter x:Name="NormalText" TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        <Ellipse x:Name="DayButtonFocusVisual" Stroke="{DynamicResource PrimaryHueDarkBrush}" Opacity="0" Visibility="Collapsed" StrokeThickness="1"/>
+                        <ContentPresenter x:Name="NormalText"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="5,1,5,1"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <Ellipse x:Name="DayButtonFocusVisual"
+                                 Stroke="{DynamicResource PrimaryHueDarkBrush}"
+                                 Opacity="0"
+                                 Visibility="Collapsed"
+                                 StrokeThickness="1"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsInactive" Value="True">
-                <Setter Property="MinHeight" Value="0" />
-                <Setter Property="MaxHeight" Value="0" />
+            <Trigger Property="IsInactive"
+                     Value="True">
+                <Setter Property="MinHeight"
+                        Value="0" />
+                <Setter Property="MaxHeight"
+                        Value="0" />
             </Trigger>
-            <Trigger Property="IsBlackedOut" Value="True">
-                <Setter Property="Cursor" Value="No" />
+            <Trigger Property="IsBlackedOut"
+                     Value="True">
+                <Setter Property="Cursor"
+                        Value="No" />
             </Trigger>
         </Style.Triggers>
     </Style>
