@@ -28,13 +28,21 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         BottomAndAlignRightEdges,
         /// <summary>
+        /// Display the popup below the toggle, and align the center of the popup with the center of the toggle.
+        /// </summary>
+        BottomAndAlignCentres,
+        /// <summary>
         /// Display the popup above the toggle, and align the left edges.
         /// </summary>
         TopAndAlignLeftEdges,
         /// <summary>
         /// Display the popup above the toggle, and align the right edges.
         /// </summary>
-        TopAndAlignRightEdges
+        TopAndAlignRightEdges,
+        /// <summary>
+        /// Display the popup above the toggle, and align the center of the popup with the center of the toggle.
+        /// </summary>
+        TopAndAlignCentres
     }
 
     /// <summary>
@@ -211,12 +219,20 @@ namespace MaterialDesignThemes.Wpf
                     x = 0 - popupSize.Width + targetSize.Width - offset.X;
                     y = targetSize.Height - Math.Abs(offset.Y);
                     break;
+                case PopupBoxPlacementMode.BottomAndAlignCentres:
+                    x = targetSize.Width/2 - popupSize.Width/2;
+                    y = targetSize.Height - Math.Abs(offset.Y);
+                    break;
                 case PopupBoxPlacementMode.TopAndAlignLeftEdges:
                     x = 0 - Math.Abs(offset.X * 3);
                     y = 0 - popupSize.Height - Math.Abs(offset.Y*2);
                     break;
                 case PopupBoxPlacementMode.TopAndAlignRightEdges:
                     x = 0 - popupSize.Width + targetSize.Width - offset.X;
+                    y = 0 - popupSize.Height - Math.Abs(offset.Y * 2);
+                    break;
+                case PopupBoxPlacementMode.TopAndAlignCentres:
+                    x = targetSize.Width / 2 - popupSize.Width / 2;
                     y = 0 - popupSize.Height - Math.Abs(offset.Y * 2);
                     break;
                 default:
