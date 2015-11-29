@@ -439,7 +439,7 @@
                                             <TranslateTransform X="0"/>
                                         </Border.RenderTransform>
                                     </Border>
-                                    <Grid x:Name="PART_MonthView" RenderTransformOrigin="0, 0.5" MinHeight="254">
+                                    <Grid x:Name="PART_MonthView" RenderTransformOrigin="0, 0.5">
                                         <Grid.RenderTransform>
                                             <TranslateTransform X="0" />
                                         </Grid.RenderTransform>
