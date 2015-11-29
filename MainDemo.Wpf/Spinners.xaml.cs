@@ -15,9 +15,9 @@ using System.Windows.Shapes;
 
 namespace MaterialDesignColors.WpfExample
 {
-    public partial class Expander : UserControl
+    public partial class Spinners : UserControl
     {
-        public Expander()
+        public Spinners()
         {
             InitializeComponent();
         }
