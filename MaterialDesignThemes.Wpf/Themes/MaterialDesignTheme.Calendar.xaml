@@ -226,7 +226,7 @@
                                 <VisualState x:Name="Active"/>
                                 <VisualState x:Name="Inactive">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To="0.2" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation Duration="0" To="0.35" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="NormalText"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -251,7 +251,7 @@
                                 <VisualState x:Name="NormalDay"/>
                                 <VisualState x:Name="BlackoutDay">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To=".2" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Blackout"/>
+                                        <DoubleAnimation Duration="0" To="0.2" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Blackout"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -262,12 +262,14 @@
                         <Ellipse x:Name="HighlightBackground" Fill="{DynamicResource PrimaryHueDarkBrush}" Opacity="0" />
                         <ContentPresenter x:Name="NormalText" TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         <Path x:Name="Blackout"
-                              Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z"
-                              Fill="#FF000000"
-                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              Data="M 16 0 l -16 16"
+                              StrokeThickness="1.5" 
+                              Stroke="#FF000000"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch" 
                               Margin="3"
-                              Opacity="0"
-                              RenderTransformOrigin="0.5,0.5"
+                              Opacity="0" 
+                              RenderTransformOrigin="0.5,0.5" 
                               Stretch="Fill"/>
                         <Ellipse x:Name="DayButtonFocusVisual" Stroke="{DynamicResource PrimaryHueDarkBrush}" Opacity="0" Visibility="Collapsed" StrokeThickness="1"/>
                     </Grid>
