@@ -1,6 +1,6 @@
-
-
 # ![Alt text](web/images/MD4XAML64.png "Material Design In XAML Toolkit") Material Design In XAML Toolkit
+
+Comphrehensive and easy to use Material Design theme and control library for the Windows desktop.
 
 ![Alt text](web/images/MashUp.gif "Material Design Demo")
 
