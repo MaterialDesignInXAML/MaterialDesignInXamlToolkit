@@ -220,7 +220,7 @@ namespace MaterialDesignThemes.Wpf
                     y = targetSize.Height - Math.Abs(offset.Y);
                     break;
                 case PopupBoxPlacementMode.BottomAndAlignCentres:
-                    x = targetSize.Width/2 - popupSize.Width/2;
+                    x = targetSize.Width/2 - popupSize.Width/2 - Math.Abs(offset.X*2);
                     y = targetSize.Height - Math.Abs(offset.Y);
                     break;
                 case PopupBoxPlacementMode.TopAndAlignLeftEdges:
@@ -232,7 +232,7 @@ namespace MaterialDesignThemes.Wpf
                     y = 0 - popupSize.Height - Math.Abs(offset.Y * 2);
                     break;
                 case PopupBoxPlacementMode.TopAndAlignCentres:
-                    x = targetSize.Width / 2 - popupSize.Width / 2;
+                    x = targetSize.Width/2 - popupSize.Width/2 - Math.Abs(offset.X*2);
                     y = 0 - popupSize.Height - Math.Abs(offset.Y * 2);
                     break;
                 default:

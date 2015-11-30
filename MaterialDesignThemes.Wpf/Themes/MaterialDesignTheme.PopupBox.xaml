@@ -4,6 +4,11 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolTip.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
     <Style TargetType="{x:Type wpf:PopupBox}" x:Key="MaterialDesignPopupBox">
         <Setter Property="ToggleContent">
             <Setter.Value>
@@ -64,6 +69,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="PlacementMode" Value="TopAndAlignCentres" />
+        <Setter Property="ToolTipService.Placement" Value="Left" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -167,46 +173,31 @@
                                       HorizontalAlignment="Stretch"                                      
                                       />
                         <controlz:PopupEx x:Name="PART_Popup" IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
-                                          CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
-                                          HorizontalOffset="5"
-                                          VerticalOffset="5"
+                                          CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"                                                                                    
                                           PlacementTarget="{Binding ElementName=PART_Toggle}"
                                           Placement="Custom"
                                           PopupAnimation="Fade"
                                           AllowsTransparency="True">
-                            <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"      
+                            <Border Background="Transparent">
+                                <ContentControl Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"      
                                       Margin="5" Padding="8">
-                                <wpf:Card.Resources>
-                                    <ResourceDictionary>
-                                        <Style TargetType="{x:Type Button}">
-                                            <Style.Setters>
-                                                <Setter Property="Background" Value="{DynamicResource MaterialDesignPrimaryLightBrush}" />
-                                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignPrimaryLightForegroundBrush}" />
-                                                <Setter Property="ToolTipService.IsEnabled" Value="False" />
-                                                <Setter Property="Template">
-                                                    <Setter.Value>
-                                                        <ControlTemplate TargetType="{x:Type Button}">
-                                                            <StackPanel Orientation="Horizontal" Margin="8">
-                                                                <Grid Clip="{Binding ElementName=UncheckedEllipse, Path=RenderedGeometry}" ClipToBounds="True" Background="{TemplateBinding Background}"
-                                                                      Width="30" Height="30">
-                                                                    <Ellipse Fill="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="UncheckedEllipse"  />
-                                                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                                                </Grid>
-                                                                <Border Background="{DynamicResource MaterialDesignToolTipBackground}" Margin="8 0 0 0" Padding="8">
-                                                                    <ContentControl Foreground="{DynamicResource MaterialDesignPaper}" Content="{TemplateBinding ToolTip}" VerticalAlignment="Center" />
-                                                                </Border>
-                                                            </StackPanel>
-                                                        </ControlTemplate>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Style.Setters>
-                                        </Style>
-                                    </ResourceDictionary>
-                                </wpf:Card.Resources>
-                                <wpf:Card.Background>
-                                    <SolidColorBrush Color="White" Opacity=".6" />
-                                </wpf:Card.Background>
-                            </wpf:Card>
+                                    <ContentControl.Resources>
+                                        <ResourceDictionary>
+                                            <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource MaterialDesignToolTip}">
+                                                <Style.Setters>
+                                                    <Setter Property="Margin" Value="16 4 16 4" />
+                                                </Style.Setters>
+                                            </Style>
+                                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+                                                <Style.Setters>
+                                                    <Setter Property="ToolTipService.Placement" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(ToolTipService.Placement)}"/>
+                                                    <Setter Property="Margin" Value="4" />
+                                                </Style.Setters>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </ContentControl.Resources>
+                                </ContentControl>
+                            </Border>
                         </controlz:PopupEx>
                     </Grid>
                 </ControlTemplate>
