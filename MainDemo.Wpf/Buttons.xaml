@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -106,6 +107,16 @@
                     </Canvas>
                 </Viewbox>
             </Button>
+            <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+                                     PlacementMode="BottomAndAlignCentres"
+                                     ToolTipService.Placement="Right"
+                                     ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox">
+                <StackPanel>
+                    <Button ToolTip="One">1</Button>
+                    <Button ToolTip="Two">2</Button>
+                    <Button ToolTip="Three">3</Button>
+                </StackPanel>
+            </materialDesign:PopupBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 16 0 0">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 0" Width="100"

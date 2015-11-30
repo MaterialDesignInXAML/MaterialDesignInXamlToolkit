@@ -70,6 +70,7 @@ namespace MaterialDesignThemes.Wpf
     /// </summary>
     [TemplatePart(Name = PopupPartName, Type = typeof(Popup))]
     [TemplatePart(Name = PopupContentControlPartName, Type = typeof(ContentControl))]
+    [TemplatePart(Name = TogglePartName, Type = typeof(ToggleButton))]
     [TemplateVisualState(GroupName = "PopupStates", Name = PopupIsOpenStateName)]
     [TemplateVisualState(GroupName = "PopupStates", Name = PopupIsClosedStateName)]
     [ContentProperty("PopupContent")]
@@ -82,6 +83,7 @@ namespace MaterialDesignThemes.Wpf
         public const string PopupIsClosedStateName = "IsClosed";
         private PopupEx _popup;
         private ContentControl _popupContentControl;
+        private ToggleButton _toggleButton;
 
         static PopupBox()
         {
@@ -166,10 +168,8 @@ namespace MaterialDesignThemes.Wpf
                     Mouse.Capture(null);
             }
 
-            if (newValue)
-            {                
-                popupBox.AnimateChildren();
-            }
+            if (newValue)            
+                popupBox.AnimateChildren();            
 
             VisualStateManager.GoToState(popupBox, newValue ? PopupIsOpenStateName : PopupIsClosedStateName, true);
         }        
@@ -228,14 +228,19 @@ namespace MaterialDesignThemes.Wpf
         {
             if (_popup != null)
                 _popup.Loaded -= PopupOnLoaded;
+            if (_toggleButton != null)
+                _toggleButton.PreviewMouseLeftButtonUp -= ToggleButtonOnPreviewMouseLeftButtonUp;
 
             base.OnApplyTemplate();
 
             _popup = GetTemplateChild(PopupPartName) as PopupEx;
             _popupContentControl = GetTemplateChild(PopupContentControlPartName) as ContentControl;
+            _toggleButton = GetTemplateChild(TogglePartName) as ToggleButton;
 
             if (_popup != null)
                 _popup.Loaded += PopupOnLoaded;
+            if (_toggleButton != null)
+                _toggleButton.PreviewMouseLeftButtonUp += ToggleButtonOnPreviewMouseLeftButtonUp;                                
 
             VisualStateManager.GoToState(this, IsPopupOpen ? PopupIsOpenStateName : PopupIsClosedStateName, false);
         }
@@ -254,12 +259,12 @@ namespace MaterialDesignThemes.Wpf
         {
             if (PopupMode == PopupBoxPopupMode.MouseOverEager
                 || PopupMode == PopupBoxPopupMode.MouseOver)
-
+            
                 SetCurrentValue(IsPopupOpenProperty, true);
 
             base.OnMouseEnter(e);
         }
-
+        
         protected override void OnMouseLeave(MouseEventArgs e)
         {
             if (PopupMode == PopupBoxPopupMode.MouseOverEager
@@ -419,7 +424,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
-        {
+        {            
             if (IsPopupOpen && !StaysOpen)
             {
                 Close();
@@ -435,6 +440,15 @@ namespace MaterialDesignThemes.Wpf
         {
             if (PopupMode == PopupBoxPopupMode.MouseOverEager)
                 _popup.IsOpen = true;
+        }
+
+        private void ToggleButtonOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
+        {
+            if (PopupMode == PopupBoxPopupMode.Click || !IsPopupOpen) return;
+
+            Close();
+            Mouse.Capture(null);
+            mouseButtonEventArgs.Handled = true;
         }
 
         private static object CoerceToolTipIsEnabled(DependencyObject dependencyObject, object value)
