@@ -56,6 +56,8 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 
 ![Alt text](web/images/ClockDemo.gif "Clock Demo")
 
+![Alt text](web/images/MultiFloatingActionButton.gif "Floating Action Button")
+
 ![Alt text](web/images/DatePicker.gif "Date Picker & Calendar")
 
 ![Alt text](web/images/Cards.png "Cards")
