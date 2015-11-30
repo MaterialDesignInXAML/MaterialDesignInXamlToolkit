@@ -10,6 +10,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using Controlz;
 
 namespace MaterialDesignThemes.Wpf
@@ -46,10 +47,29 @@ namespace MaterialDesignThemes.Wpf
     }
 
     /// <summary>
+    /// Defines what causes the <see cref="PopupBox"/> to open it's popup.
+    /// </summary>
+    public enum PopupBoxPopupMode
+    {
+        /// <summary>
+        /// Open when the toggle button is clicked.
+        /// </summary>
+        Click,
+        /// <summary>
+        /// Open when the mouse goes over the toggle button.
+        /// </summary>
+        MouseOver,
+        /// <summary>
+        /// Open when the mouse goes over the toggle button, or the space in which the popup box would occupy should it be open.
+        /// </summary>
+        MouseOverEager
+    }
+
+    /// <summary>
     /// Popup box, similar to a <see cref="ComboBox"/>, but allows more customizable content.    
     /// </summary>
     [TemplatePart(Name = PopupPartName, Type = typeof(Popup))]
-    [TemplatePart(Name = TogglePartName, Type = typeof(ToggleButton))]
+    [TemplatePart(Name = PopupContentControlPartName, Type = typeof(ContentControl))]
     [TemplateVisualState(GroupName = "PopupStates", Name = PopupIsOpenStateName)]
     [TemplateVisualState(GroupName = "PopupStates", Name = PopupIsClosedStateName)]
     [ContentProperty("PopupContent")]
@@ -57,11 +77,12 @@ namespace MaterialDesignThemes.Wpf
     {
         public const string PopupPartName = "PART_Popup";
         public const string TogglePartName = "PART_Toggle";
+        public const string PopupContentControlPartName = "PART_PopupContentControl";
         public const string PopupIsOpenStateName = "IsOpen";
         public const string PopupIsClosedStateName = "IsClosed";
         private PopupEx _popup;
-        private ToggleButton _toggleButton;
-        
+        private ContentControl _popupContentControl;
+
         static PopupBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PopupBox), new FrameworkPropertyMetadata(typeof(PopupBox)));
@@ -137,13 +158,21 @@ namespace MaterialDesignThemes.Wpf
         {
             var popupBox = (PopupBox) dependencyObject;
             var newValue = (bool)dependencyPropertyChangedEventArgs.NewValue;
+            if (popupBox.PopupMode == PopupBoxPopupMode.Click)
+            {
+                if (newValue)
+                    Mouse.Capture(popupBox, CaptureMode.SubTree);
+                else
+                    Mouse.Capture(null);
+            }
+
             if (newValue)
-                Mouse.Capture(popupBox, CaptureMode.SubTree);
-            else
-                Mouse.Capture(null);
+            {                
+                popupBox.AnimateChildren();
+            }
 
             VisualStateManager.GoToState(popupBox, newValue ? PopupIsOpenStateName : PopupIsClosedStateName, true);
-        }
+        }        
 
         /// <summary>
         /// Gets or sets whether the popup is currently open.
@@ -169,10 +198,25 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty PropertyTypeProperty = DependencyProperty.Register(
             "PlacementMode", typeof (PopupBoxPlacementMode), typeof (PopupBox), new PropertyMetadata(default(PopupBoxPlacementMode)));
 
+        /// <summary>
+        /// Gets or sets how the popup is aligned in relation to the toggle.
+        /// </summary>
         public PopupBoxPlacementMode PlacementMode
         {
             get { return (PopupBoxPlacementMode) GetValue(PropertyTypeProperty); }
             set { SetValue(PropertyTypeProperty, value); }
+        }
+
+        public static readonly DependencyProperty PopupModeProperty = DependencyProperty.Register(
+            "PopupMode", typeof (PopupBoxPopupMode), typeof (PopupBox), new PropertyMetadata(default(PopupBoxPopupMode)));        
+
+        /// <summary>
+        /// Gets or sets what trigger causes the popup to open.
+        /// </summary>
+        public PopupBoxPopupMode PopupMode
+        {
+            get { return (PopupBoxPopupMode) GetValue(PopupModeProperty); }
+            set { SetValue(PopupModeProperty, value); }
         }
 
         /// <summary>
@@ -182,10 +226,16 @@ namespace MaterialDesignThemes.Wpf
 
         public override void OnApplyTemplate()
         {
+            if (_popup != null)
+                _popup.Loaded -= PopupOnLoaded;
+
             base.OnApplyTemplate();
 
             _popup = GetTemplateChild(PopupPartName) as PopupEx;
-            _toggleButton = GetTemplateChild(TogglePartName) as ToggleButton;
+            _popupContentControl = GetTemplateChild(PopupContentControlPartName) as ContentControl;
+
+            if (_popup != null)
+                _popup.Loaded += PopupOnLoaded;
 
             VisualStateManager.GoToState(this, IsPopupOpen ? PopupIsOpenStateName : PopupIsClosedStateName, false);
         }
@@ -200,7 +250,27 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private void Close()
+        protected override void OnMouseEnter(MouseEventArgs e)
+        {
+            if (PopupMode == PopupBoxPopupMode.MouseOverEager
+                || PopupMode == PopupBoxPopupMode.MouseOver)
+
+                SetCurrentValue(IsPopupOpenProperty, true);
+
+            base.OnMouseEnter(e);
+        }
+
+        protected override void OnMouseLeave(MouseEventArgs e)
+        {
+            if (PopupMode == PopupBoxPopupMode.MouseOverEager
+                || PopupMode == PopupBoxPopupMode.MouseOver)
+
+                Close();
+
+            base.OnMouseEnter(e);
+        }
+
+        protected void Close()
         {
             if (IsPopupOpen)
                 SetCurrentValue(IsPopupOpenProperty, false);
@@ -241,6 +311,57 @@ namespace MaterialDesignThemes.Wpf
 
             var point = new Point(x, y);            
             return new[] {new CustomPopupPlacement(point, PopupPrimaryAxis.Horizontal)};
+        }
+
+        private void AnimateChildren()
+        {
+            if (_popupContentControl == null) return;
+            if (VisualTreeHelper.GetChildrenCount(_popupContentControl) != 1) return;
+            var contentPresenter = VisualTreeHelper.GetChild(_popupContentControl, 0) as ContentPresenter;
+
+            var controls = contentPresenter.VisualDepthFirstTraversal().OfType<ButtonBase>();
+            double translateYFrom;
+            if (PlacementMode == PopupBoxPlacementMode.TopAndAlignCentres
+                || PlacementMode == PopupBoxPlacementMode.TopAndAlignLeftEdges
+                || PlacementMode == PopupBoxPlacementMode.TopAndAlignRightEdges)
+            {
+                controls = controls.Reverse();
+                translateYFrom = 40;
+            }
+            else
+                translateYFrom = -40;
+
+            var i = 0;
+            foreach (var uiElement in controls)
+            {
+                var transformGroup = new TransformGroup
+                {
+                    Children = new TransformCollection(new Transform[]
+                    {
+                        new ScaleTransform(.5, .5),
+                        new TranslateTransform(0, translateYFrom)
+                    })
+                };
+                uiElement.SetCurrentValue(RenderTransformOriginProperty, new Point(.5, .5));
+                uiElement.RenderTransform = transformGroup;
+
+                var scaleXAnimation = new DoubleAnimation(.5, 1, new Duration(TimeSpan.FromMilliseconds(100)));
+                Storyboard.SetTargetProperty(scaleXAnimation, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"));
+                Storyboard.SetTarget(scaleXAnimation, uiElement);
+                var scaleYAnimation = new DoubleAnimation(.5, 1, new Duration(TimeSpan.FromMilliseconds(100)));
+                Storyboard.SetTargetProperty(scaleYAnimation, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"));
+                Storyboard.SetTarget(scaleYAnimation, uiElement);
+                var translateYAnimation = new DoubleAnimation(translateYFrom, 0, new Duration(TimeSpan.FromMilliseconds(100)));
+                Storyboard.SetTargetProperty(translateYAnimation, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.Y)"));
+                Storyboard.SetTarget(translateYAnimation, uiElement);
+                var storyboard = new Storyboard();
+                storyboard.Children.Add(scaleXAnimation);
+                storyboard.Children.Add(scaleYAnimation);
+                storyboard.Children.Add(translateYAnimation);
+                storyboard.BeginTime = TimeSpan.FromMilliseconds(i++ * 20);
+
+                storyboard.Begin();
+            }            
         }
 
         #region Capture
@@ -309,6 +430,12 @@ namespace MaterialDesignThemes.Wpf
         }
 
         #endregion
+
+        private void PopupOnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            if (PopupMode == PopupBoxPopupMode.MouseOverEager)
+                _popup.IsOpen = true;
+        }
 
         private static object CoerceToolTipIsEnabled(DependencyObject dependencyObject, object value)
         {

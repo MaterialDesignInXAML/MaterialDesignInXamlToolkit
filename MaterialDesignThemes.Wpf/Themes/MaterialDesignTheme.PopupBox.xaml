@@ -69,6 +69,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="PlacementMode" Value="TopAndAlignCentres" />
+        <Setter Property="PopupMode" Value="MouseOverEager" />
         <Setter Property="ToolTipService.Placement" Value="Left" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="BorderThickness" Value="1"/>
@@ -84,7 +85,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ToggleButton">
-                                        <Grid>
+                                        <Grid x:Name="RootGrid" Background="{x:Null}">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup Name="CheckedStates">
                                                     <VisualStateGroup.Transitions>
@@ -93,7 +94,7 @@
                                                                 <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
                                                                                  Storyboard.TargetProperty="Angle"
                                                                                  To="45"
-                                                                                 Duration="0:0:0.3">
+                                                                                 Duration="0:0:0.1">
                                                                     <DoubleAnimation.EasingFunction>
                                                                         <QuadraticEase EasingMode="EaseInOut" />
                                                                     </DoubleAnimation.EasingFunction>
@@ -105,7 +106,7 @@
                                                                 <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
                                                                                  Storyboard.TargetProperty="Angle"
                                                                                  To="0"
-                                                                                 Duration="0:0:0.3">
+                                                                                 Duration="0:0:0.1">
                                                                     <DoubleAnimation.EasingFunction>
                                                                         <QuadraticEase EasingMode="EaseInOut" />
                                                                     </DoubleAnimation.EasingFunction>
@@ -156,11 +157,35 @@
                                             <Trigger Property="IsMouseOver" Value="True">
                                                 <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
                                             </Trigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=PopupMode}"
+                                                         Value="{x:Static wpf:PopupBoxPopupMode.MouseOver}">
+                                                <Setter TargetName="RootGrid" Property="Background" Value="Transparent" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=PopupMode}"
+                                                         Value="{x:Static wpf:PopupBoxPopupMode.MouseOverEager}">
+                                                <Setter TargetName="RootGrid" Property="Background" Value="Transparent" />
+                                            </DataTrigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
                         </Style>
+                        <Storyboard x:Key="Open">
+                            <DoubleAnimation Storyboard.TargetName="PART_PopupContentControl" Storyboard.TargetProperty="Opacity"
+                                             To="1" Duration="0:0:0.1">
+                                <DoubleAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseInOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                        <Storyboard x:Key="Close">
+                            <DoubleAnimation Storyboard.TargetName="PART_PopupContentControl" Storyboard.TargetProperty="Opacity"
+                                             Duration="0:0:0.1">
+                                <DoubleAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseInOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid>
                         <ToggleButton x:Name="PART_Toggle" Style="{StaticResource ToggleButtonStyle}" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
@@ -172,15 +197,22 @@
                                       VerticalAlignment="Stretch"
                                       HorizontalAlignment="Stretch"                                      
                                       />
-                        <controlz:PopupEx x:Name="PART_Popup" IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
+                        <controlz:PopupEx x:Name="PART_Popup" 
+                                          IsOpen="False"
                                           CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"                                                                                    
                                           PlacementTarget="{Binding ElementName=PART_Toggle}"
                                           Placement="Custom"
-                                          PopupAnimation="Fade"
+                                          PopupAnimation="None"
                                           AllowsTransparency="True">
-                            <Border Background="Transparent">
+                            <Grid>
+                                <!-- with PopupBox.PopupMode == MouseOverEager the popup is always open, with 
+                                     content hidden. but Transparent doesnt seem to register hit test in the popup.
+                                     this opacity is the lowest I could get to register hit test. might try and speak
+                                     to MS about this one, I *think* it is a bug -->
+                                <Border Background="White" Opacity="0.002" />                                
                                 <ContentControl Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"      
-                                      Margin="5" Padding="8">
+                                                Margin="5" Padding="8"
+                                                Opacity="0" x:Name="PART_PopupContentControl">
                                     <ContentControl.Resources>
                                         <ResourceDictionary>
                                             <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource MaterialDesignToolTip}">
@@ -191,15 +223,30 @@
                                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
                                                 <Style.Setters>
                                                     <Setter Property="ToolTipService.Placement" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(ToolTipService.Placement)}"/>
+                                                    <Setter Property="ToolTipService.InitialShowDelay" Value="0" />
                                                     <Setter Property="Margin" Value="4" />
                                                 </Style.Setters>
                                             </Style>
                                         </ResourceDictionary>
                                     </ContentControl.Resources>
                                 </ContentControl>
-                            </Border>
+                            </Grid>
                         </controlz:PopupEx>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPopupOpen" Value="True">
+                            <Setter TargetName="PART_Popup" Property="IsOpen" Value="True" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Open}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource Close}" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="PopupMode" Value="MouseOverEager">
+                            <Setter TargetName="PART_Popup" Property="IsOpen" Value="True" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
