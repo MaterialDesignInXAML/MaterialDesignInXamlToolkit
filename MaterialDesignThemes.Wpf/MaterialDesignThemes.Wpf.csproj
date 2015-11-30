@@ -116,6 +116,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.PopupBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.ProgressBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -224,7 +228,7 @@
     <Compile Include="Converters\MathConverter.cs" />
     <Compile Include="Converters\MathMultipleConverter.cs" />
     <Compile Include="Converters\NotConverter.cs" />
-    <Compile Include="Converters\NotNullToVisibilityConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\NotZeroToVisibilityConverter.cs" />
     <Compile Include="Converters\ShadowConverter.cs" />
     <Compile Include="Converters\SizeToRectConverter.cs" />
@@ -232,6 +236,7 @@
     <Compile Include="CustomPopupPlacementCallbackHelper.cs" />
     <Compile Include="DataGridAssist.cs" />
     <Compile Include="DateTimeEx.cs" />
+    <Compile Include="DependencyObjectExtensions.cs" />
     <Compile Include="DialogClosingEventArgs.cs" />
     <Compile Include="DialogClosingEventHandler.cs" />
     <Compile Include="DialogOpenedEventArgs.cs" />
@@ -239,10 +244,12 @@
     <Compile Include="DialogSession.cs" />
     <Compile Include="DialogHost.cs" />
     <Compile Include="DrawerHost.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="ListSortDirectionIndicator.cs" />
     <Compile Include="MaterialDataGridComboBoxColumn.cs" />
     <Compile Include="MaterialDataGridTextColumn.cs" />
     <Compile Include="MaterialDateDisplay.cs" />
+    <Compile Include="PopupBox.cs" />
     <Compile Include="PaletteHelper.cs" />
     <Compile Include="PasswordFieldAssist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

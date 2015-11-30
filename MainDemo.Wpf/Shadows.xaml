@@ -29,22 +29,22 @@
                     >DEPTH 5</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0 32 0 0">
-            <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"                   
+            <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"                   
                     materialDesign:ShadowAssist.ShadowDepth="Depth1"
                     >1</Button>
-            <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"
+            <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                     Margin="16 0 0 0"
                     materialDesign:ShadowAssist.ShadowDepth="Depth2"
                     >2</Button>
-            <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"
+            <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                     Margin="16 0 0 0"                    
                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
                     >3</Button>
-            <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"
+            <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                     Margin="16 0 0 0"
                     materialDesign:ShadowAssist.ShadowDepth="Depth4"
                     >4</Button>
-            <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"
+            <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                     Margin="16 0 0 0"
                     materialDesign:ShadowAssist.ShadowDepth="Depth5"
                     >5</Button>

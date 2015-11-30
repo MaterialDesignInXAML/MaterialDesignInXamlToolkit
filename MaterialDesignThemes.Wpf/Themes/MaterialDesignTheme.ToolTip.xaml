@@ -10,10 +10,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToolTip}">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="2">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="2" Margin="{TemplateBinding Margin}">
                         <ContentPresenter x:Name="ContentPresenter"  
-                                                  Margin="{TemplateBinding Padding}"
-                                                  Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">
+                                          Margin="{TemplateBinding Padding}"
+                                          Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">
                         </ContentPresenter>
                     </Border>
                 </ControlTemplate>
