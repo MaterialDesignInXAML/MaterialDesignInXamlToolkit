@@ -117,6 +117,30 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(ToggleContentTemplateProperty, value); }
         }
 
+        public static readonly DependencyProperty ToggleCheckedContentProperty = DependencyProperty.Register(
+            "ToggleCheckedContent", typeof (object), typeof (PopupBox), new PropertyMetadata(default(object)));
+
+        /// <summary>
+        /// Content to display in the toggle when it's checked (when the popup is open). Optional; if not provided the <see cref="ToggleContent"/> is used.
+        /// </summary>
+        public object ToggleCheckedContent
+        {
+            get { return (object) GetValue(ToggleCheckedContentProperty); }
+            set { SetValue(ToggleCheckedContentProperty, value); }
+        }
+
+        public static readonly DependencyProperty ToggleCheckedContentTemplateProperty = DependencyProperty.Register(
+            "ToggleCheckedContentTemplate", typeof (DataTemplate), typeof (PopupBox), new PropertyMetadata(default(DataTemplate)));
+
+        /// <summary>
+        /// Template for <see cref="ToggleCheckedContent"/>.
+        /// </summary>
+        public DataTemplate ToggleCheckedContentTemplate
+        {
+            get { return (DataTemplate) GetValue(ToggleCheckedContentTemplateProperty); }
+            set { SetValue(ToggleCheckedContentTemplateProperty, value); }
+        }
+
         public static readonly DependencyProperty PopupContentProperty = DependencyProperty.Register(
             "PopupContent", typeof (object), typeof (PopupBox), new PropertyMetadata(default(object)));
 
