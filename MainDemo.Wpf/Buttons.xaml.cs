@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignColors.WpfExample.Domain;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -20,12 +21,26 @@ namespace MaterialDesignColors.WpfExample
     /// </summary>
     public partial class Buttons : UserControl
     {
+        private readonly ICommand _floatingActionDemoCommand;
+
         public Buttons()
         {
-            InitializeComponent();            
+            InitializeComponent();
+
+            _floatingActionDemoCommand = new AnotherCommandImplementation(Execute);
         }
 
-	    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        public ICommand FloatingActionDemoCommand
+        {
+            get { return _floatingActionDemoCommand; }
+        }
+
+        private void Execute(object o)
+        {
+            Console.WriteLine("Floating action button command. - " + (o ?? "NULL").ToString());
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
 	    {
 			System.Diagnostics.Debug.WriteLine("Just checking we haven't suppressed the button.");
 		}

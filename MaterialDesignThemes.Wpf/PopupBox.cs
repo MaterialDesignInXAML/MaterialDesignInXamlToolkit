@@ -141,6 +141,30 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(ToggleCheckedContentTemplateProperty, value); }
         }
 
+        public static readonly DependencyProperty ToggleCheckedContentCommandProperty = DependencyProperty.Register(
+            "ToggleCheckedContentCommand", typeof (ICommand), typeof (PopupBox), new PropertyMetadata(default(ICommand)));
+
+        /// <summary>
+        /// Command to execute if toggle is checked (popup is open) and <see cref="ToggleCheckedContent"/> is set.
+        /// </summary>
+        public ICommand ToggleCheckedContentCommand
+        {
+            get { return (ICommand) GetValue(ToggleCheckedContentCommandProperty); }
+            set { SetValue(ToggleCheckedContentCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty ToggleCheckedContentCommandParameterProperty = DependencyProperty.Register(
+            "ToggleCheckedContentCommandParameter", typeof (object), typeof (PopupBox), new PropertyMetadata(default(object)));
+
+        /// <summary>
+        /// Command parameter to use in conjunction with <see cref="ToggleCheckedContentCommand"/>.
+        /// </summary>
+        public object ToggleCheckedContentCommandParameter
+        {
+            get { return (object) GetValue(ToggleCheckedContentCommandParameterProperty); }
+            set { SetValue(ToggleCheckedContentCommandParameterProperty, value); }
+        }
+
         public static readonly DependencyProperty PopupContentProperty = DependencyProperty.Register(
             "PopupContent", typeof (object), typeof (PopupBox), new PropertyMetadata(default(object)));
 
@@ -469,6 +493,14 @@ namespace MaterialDesignThemes.Wpf
         private void ToggleButtonOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             if (PopupMode == PopupBoxPopupMode.Click || !IsPopupOpen) return;
+
+            if (ToggleCheckedContent != null 
+                && ToggleCheckedContentCommand != null
+                && ToggleCheckedContentCommand.CanExecute(ToggleCheckedContentCommandParameter)
+                )
+            {
+                ToggleCheckedContentCommand.Execute(ToggleCheckedContentCommandParameter);
+            }
 
             Close();
             Mouse.Capture(null);
