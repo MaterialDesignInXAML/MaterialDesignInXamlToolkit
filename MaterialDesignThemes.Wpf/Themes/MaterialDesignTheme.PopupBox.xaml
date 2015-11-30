@@ -71,6 +71,7 @@
         <Setter Property="PlacementMode" Value="TopAndAlignCentres" />
         <Setter Property="PopupMode" Value="MouseOverEager" />
         <Setter Property="ToolTipService.Placement" Value="Left" />
+        <Setter Property="ToolTipService.IsEnabled" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -201,6 +202,8 @@
                                       Foreground="{TemplateBinding Foreground}"
                                       VerticalAlignment="Stretch"
                                       HorizontalAlignment="Stretch"                                      
+                                      ToolTip="{TemplateBinding ToolTip}"
+                                      ToolTipService.Placement="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(ToolTipService.Placement)}"
                                       />
                         <controlz:PopupEx x:Name="PART_Popup" 
                                           IsOpen="False"
@@ -266,5 +269,59 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type wpf:PopupBox}" 
+           x:Key="MaterialDesignMultiFloatingActionLightPopupBox"
+           BasedOn="{StaticResource MaterialDesignMultiFloatingActionPopupBox}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+        <Setter Property="ToggleContent">
+            <Setter.Value>
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" 
+                              Fill="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                    </Canvas>
+                </Viewbox>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type wpf:PopupBox}" 
+           x:Key="MaterialDesignMultiFloatingActionDarkPopupBox"
+           BasedOn="{StaticResource MaterialDesignMultiFloatingActionPopupBox}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+        <Setter Property="ToggleContent">
+            <Setter.Value>
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" 
+                              Fill="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                    </Canvas>
+                </Viewbox>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type wpf:PopupBox}" 
+           x:Key="MaterialDesignMultiFloatingActionAccentPopupBox"
+           BasedOn="{StaticResource MaterialDesignMultiFloatingActionPopupBox}">
+        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="ToggleContent">
+            <Setter.Value>
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" 
+                              Fill="{DynamicResource SecondaryAccentForegroundBrush}" />
+                    </Canvas>
+                </Viewbox>
+            </Setter.Value>
+        </Setter>
+    </Style>    
 
 </ResourceDictionary>

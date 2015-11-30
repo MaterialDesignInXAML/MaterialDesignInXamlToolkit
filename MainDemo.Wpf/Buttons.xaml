@@ -117,6 +117,16 @@
                     <Button ToolTip="Three">3</Button>
                 </StackPanel>
             </materialDesign:PopupBox>
+            <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                     PlacementMode="BottomAndAlignCentres"                                 
+                                     Margin="48 0 0 0"
+                                     ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+                <StackPanel>
+                    <Button ToolTip="One">1</Button>
+                    <Button ToolTip="Two">2</Button>
+                    <Button ToolTip="Three">3</Button>
+                </StackPanel>
+            </materialDesign:PopupBox>            
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 16 0 0">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 0" Width="100"
