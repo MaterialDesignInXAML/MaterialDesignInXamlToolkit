@@ -86,7 +86,7 @@
     
     <ControlTemplate x:Key="PopupContentDownTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
-                          Margin="6">
+              Margin="6">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -98,7 +98,8 @@
                     <BlurEffect Radius="6"/>
                 </Border.Effect>
             </Border>
-            <Grid Margin="1">
+            <Grid Margin="1"
+                  SnapsToDevicePixels="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -107,9 +108,9 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Rectangle Grid.Row="0"
-                                   Fill="{DynamicResource MaterialDesignPaper}"
-                                   Height="{StaticResource PopupTopBottomMargin}"/>
-
+                           Fill="{DynamicResource MaterialDesignPaper}"
+                           Height="{StaticResource PopupTopBottomMargin}"/>
+                
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -117,25 +118,27 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0"
-                                       Width="{StaticResource PopupLeftRightMargin}"
-                                       Fill="{DynamicResource MaterialDesignPaper}"/>
+                               Width="{StaticResource PopupLeftRightMargin}"
+                               Fill="{DynamicResource MaterialDesignPaper}"
+                               />
                     <Grid Grid.Column="1"
-                                      Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
-                                      Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
+                          Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
+                          Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
                     <Rectangle Grid.Column="2"
-                                       MinWidth="{StaticResource PopupLeftRightMargin}"
-                                       Fill="{DynamicResource MaterialDesignPaper}"/>
+                               MinWidth="{StaticResource PopupLeftRightMargin}"
+                               Fill="{DynamicResource MaterialDesignPaper}"
+                               />
                 </Grid>
 
                 <Rectangle Grid.Row="2"
-                                   Fill="{DynamicResource MaterialDesignPaper}"
-                                   Height="{StaticResource PopupContentPresenterExtend}"/>
+                           Fill="{DynamicResource MaterialDesignPaper}"
+                           Height="{StaticResource PopupContentPresenterExtend}"/>
 
                 <ContentPresenter Grid.Row="3"/>
 
                 <Rectangle Grid.Row="4"
-                                   Height="{StaticResource PopupTopBottomMargin}"
-                                   Fill="{DynamicResource MaterialDesignPaper}" />
+                           Height="{StaticResource PopupTopBottomMargin}"
+                           Fill="{DynamicResource MaterialDesignPaper}" />
             </Grid>
         </Grid>
     </ControlTemplate>
@@ -385,8 +388,7 @@
 
     <ControlTemplate x:Key="MaterialDesignComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid x:Name="templateRoot"
-              SnapsToDevicePixels="True"
-              UseLayoutRounding="True">
+              SnapsToDevicePixels="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
@@ -434,9 +436,8 @@
                                HorizontalOffset="-11"
                                IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                PlacementTarget="{Binding ElementName=templateRoot}"
-                               SnapsToDevicePixels="True"
-                               UseLayoutRounding="True"
                                Placement="Custom"
+                               SnapsToDevicePixels="True"
                                PopupAnimation="Fade"
                                VerticalOffset="0"
                                DefaultVerticalOffset="5"
@@ -486,7 +487,8 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="MaterialDesignFloatingHintComboBoxTemplate" TargetType="{x:Type ComboBox}">
-        <Grid x:Name="templateRoot">
+        <Grid x:Name="templateRoot"
+              SnapsToDevicePixels="True">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="MaterialDesignStates">
                     <VisualStateGroup.Transitions>
@@ -557,9 +559,7 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Grid Margin="0 12 0 0"
-                  SnapsToDevicePixels="True"
-                  UseLayoutRounding="True">
+            <Grid Margin="0 12 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
