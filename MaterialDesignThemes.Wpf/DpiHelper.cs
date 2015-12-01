@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -23,6 +24,28 @@ namespace MaterialDesignThemes.Wpf
 
             _dpiX = (int)dpiXProperty.GetValue(null, null);
             _dpiY = (int)dpiYProperty.GetValue(null, null);
+        }
+
+        public static double TransformToDeviceY(Visual visual, double y)
+        {
+            var source = PresentationSource.FromVisual(visual);
+            if (source != null)
+            {
+                return y * source.CompositionTarget.TransformToDevice.M22;
+            }
+
+            return TransformToDeviceY(y);
+        }
+
+        public static double TransformToDeviceX(Visual visual, double x)
+        {
+            var source = PresentationSource.FromVisual(visual);
+            if (source != null)
+            {
+                return x * source.CompositionTarget.TransformToDevice.M11;
+            }
+
+            return TransformToDeviceX(x);
         }
 
         public static double TransformToDeviceY(double y)

@@ -277,6 +277,7 @@
     <Compile Include="RippleAssist.cs" />
     <Compile Include="Ripple.cs" />
     <Compile Include="TransitionAssist.cs" />
+    <Compile Include="TreeHelper.cs" />
     <Compile Include="Underline.cs" />
     <Compile Include="ValidationAssist.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

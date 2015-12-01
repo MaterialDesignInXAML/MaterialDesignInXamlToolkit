@@ -105,17 +105,19 @@ namespace MaterialDesignThemes.Wpf
             Point offset)
         {
             var locationFromScreen = this.PlacementTarget.PointToScreen(new Point(0, 0));
-
+            
             int locationX = (int)locationFromScreen.X % (int)DpiHelper.TransformToDeviceX(SystemParameters.PrimaryScreenWidth);
             int locationY = (int)locationFromScreen.Y % (int)DpiHelper.TransformToDeviceY(SystemParameters.PrimaryScreenHeight);
+
+            var mainVisual = TreeHelper.FindMainTreeVisual(this.PlacementTarget);
             double realOffsetX = (popupSize.Width - targetSize.Width) / 2.0;
+            double offsetX = DpiHelper.TransformToDeviceX(mainVisual, offset.X);
+            double defaultVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DefaultVerticalOffset);
+            double upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
+            double downVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);
 
-            double offsetX = DpiHelper.TransformToDeviceX(offset.X);
-            double defaultVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(DefaultVerticalOffset);
-            double upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(UpVerticalOffset);
-            double downVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(DownVerticalOffset);
-
-            if (locationX + popupSize.Width - realOffsetX > SystemParameters.PrimaryScreenWidth || locationX + realOffsetX < 0)
+            if (locationX + popupSize.Width - realOffsetX > SystemParameters.PrimaryScreenWidth
+                || locationX + realOffsetX < 0)
             {
                 SetChildTemplateIfNeed(DefaultContentTemplate);
 
