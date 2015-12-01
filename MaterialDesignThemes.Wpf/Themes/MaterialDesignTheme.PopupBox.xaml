@@ -9,6 +9,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolTip.xaml" />
     </ResourceDictionary.MergedDictionaries>
         
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:NullableToVisibilityConverter x:Key="NullVisibilityConverter" />
     <converters:NullableToVisibilityConverter x:Key="InvertedNullVisibilityConverter" NullValue="Visible" NotNullValue="Collapsed" />    
     
@@ -251,15 +252,16 @@
                                           CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"                                                                                    
                                           PlacementTarget="{Binding ElementName=PART_Toggle}"
                                           Placement="Custom"
-                                          PopupAnimation="None"
+                                          PopupAnimation="None"                                          
                                           AllowsTransparency="True">
                             <Grid>
                                 <!-- with PopupBox.PopupMode == MouseOverEager the popup is always open, with 
                                      content hidden. but Transparent doesnt seem to register hit test in the popup.
                                      this opacity is the lowest I could get to register hit test. might try and speak
                                      to MS about this one, I *think* it is a bug -->
-                                <Border Background="White" Opacity="0.002" />                                
+                                <Border Background="White" Opacity="0.002" />
                                 <ContentControl Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"      
+                                                Visibility="{TemplateBinding IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                 Margin="5" Padding="8"
                                                 Opacity="0" x:Name="PART_PopupContentControl">
                                     <ContentControl.Resources>
