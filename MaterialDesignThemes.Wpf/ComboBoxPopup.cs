@@ -105,29 +105,33 @@ namespace MaterialDesignThemes.Wpf
             Point offset)
         {
             var locationFromScreen = this.PlacementTarget.PointToScreen(new Point(0, 0));
-            
-            int locationX = (int)locationFromScreen.X % (int)DpiHelper.TransformToDeviceX(SystemParameters.PrimaryScreenWidth);
-            int locationY = (int)locationFromScreen.Y % (int)DpiHelper.TransformToDeviceY(SystemParameters.PrimaryScreenHeight);
 
             var mainVisual = TreeHelper.FindMainTreeVisual(this.PlacementTarget);
+
+            int screenWidth = (int) DpiHelper.TransformToDeviceX(mainVisual, SystemParameters.PrimaryScreenWidth);
+            int screenHeight = (int) DpiHelper.TransformToDeviceY(mainVisual, SystemParameters.PrimaryScreenHeight);
+
+            int locationX = (int)locationFromScreen.X % screenWidth;
+            int locationY = (int)locationFromScreen.Y % screenHeight;
+
             double realOffsetX = (popupSize.Width - targetSize.Width) / 2.0;
             double offsetX = DpiHelper.TransformToDeviceX(mainVisual, offset.X);
             double defaultVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DefaultVerticalOffset);
             double upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
             double downVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);
 
-            if (locationX + popupSize.Width - realOffsetX > SystemParameters.PrimaryScreenWidth
+            if (locationX + popupSize.Width - realOffsetX > screenWidth
                 || locationX + realOffsetX < 0)
             {
                 SetChildTemplateIfNeed(DefaultContentTemplate);
 
-                double newY = locationY + popupSize.Height > SystemParameters.PrimaryScreenHeight
+                double newY = locationY + popupSize.Height > screenHeight
                     ? -(defaultVerticalOffsetIndepent + popupSize.Height)
                     : defaultVerticalOffsetIndepent + targetSize.Height;
 
                 return new[] { new CustomPopupPlacement(new Point(offsetX, newY), PopupPrimaryAxis.Horizontal) };
             }
-            else if (locationY + popupSize.Height > SystemParameters.PrimaryScreenHeight)
+            else if (locationY + popupSize.Height > screenHeight)
             {
                 SetChildTemplateIfNeed(UpContentTemplate);
 
