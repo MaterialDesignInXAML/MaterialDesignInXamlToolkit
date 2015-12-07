@@ -21,19 +21,14 @@ namespace MaterialDesignColors.WpfExample
     /// </summary>
     public partial class Buttons : UserControl
     {
-        private readonly ICommand _floatingActionDemoCommand;
-
         public Buttons()
         {
             InitializeComponent();
 
-            _floatingActionDemoCommand = new AnotherCommandImplementation(Execute);
+            FloatingActionDemoCommand = new AnotherCommandImplementation(Execute);
         }
 
-        public ICommand FloatingActionDemoCommand
-        {
-            get { return _floatingActionDemoCommand; }
-        }
+        public ICommand FloatingActionDemoCommand { get; }
 
         private void Execute(object o)
         {
@@ -42,7 +37,7 @@ namespace MaterialDesignColors.WpfExample
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
 	    {
-			System.Diagnostics.Debug.WriteLine("Just checking we haven't suppressed the button.");
+            Console.WriteLine("Just checking we haven't suppressed the button.");
 		}
     }
 }

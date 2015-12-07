@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -272,6 +273,27 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public CustomPopupPlacementCallback PopupPlacementMethod => GetPopupPlacement;
 
+        /// <summary>
+        /// Event raised when the checked toggled content (if set) is clicked.
+        /// </summary>
+        public static readonly RoutedEvent ToggleCheckedContentClickEvent = EventManager.RegisterRoutedEvent("ToggleCheckedContentClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PopupBox));
+
+        /// <summary>
+        /// Event raised when the checked toggled content (if set) is clicked.
+        /// </summary>
+        [Category("Behavior")]
+        public event RoutedEventHandler ToggleCheckedContentClick { add { AddHandler(ToggleCheckedContentClickEvent, value); } remove { RemoveHandler(ToggleCheckedContentClickEvent, value); } }
+
+
+        /// <summary>
+        /// Raises <see cref="ToggleCheckedContentClickEvent"/>.
+        /// </summary>
+        protected virtual void OnToggleCheckedContentClick()
+        {
+            var newEvent = new RoutedEventArgs(ToggleCheckedContentClickEvent, this);
+            RaiseEvent(newEvent);
+        }
+
         public override void OnApplyTemplate()
         {
             if (_popup != null)
@@ -495,12 +517,16 @@ namespace MaterialDesignThemes.Wpf
         {
             if (PopupMode == PopupBoxPopupMode.Click || !IsPopupOpen) return;
 
-            if (ToggleCheckedContent != null 
-                && ToggleCheckedContentCommand != null
-                && ToggleCheckedContentCommand.CanExecute(ToggleCheckedContentCommandParameter)
-                )
+            if (ToggleCheckedContent != null)
             {
-                ToggleCheckedContentCommand.Execute(ToggleCheckedContentCommandParameter);
+                OnToggleCheckedContentClick();
+
+                if (ToggleCheckedContentCommand != null
+                    && ToggleCheckedContentCommand.CanExecute(ToggleCheckedContentCommandParameter)
+                    )
+                {
+                    ToggleCheckedContentCommand.Execute(ToggleCheckedContentCommandParameter);
+                }
             }
 
             Close();
