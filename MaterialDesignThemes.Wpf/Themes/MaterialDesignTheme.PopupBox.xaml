@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controlz="clr-namespace:Controlz"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:controlzEx="clr-namespace:ControlzEx">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
@@ -51,7 +51,7 @@
                                       Cursor="Hand"
                                       VerticalAlignment="Center"
                                       />
-                        <controlz:PopupEx x:Name="PART_Popup" IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
+                        <controlzEx:PopupEx x:Name="PART_Popup" IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                                           CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
                                           HorizontalOffset="5"
                                           VerticalOffset="5"
@@ -61,7 +61,7 @@
                                           AllowsTransparency="True">
                             <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"                                        
                                       Margin="5" />
-                        </controlz:PopupEx>
+                        </controlzEx:PopupEx>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -247,7 +247,7 @@
                                 </ContentControl>
                             </Grid>
                         </ToggleButton>
-                        <controlz:PopupEx x:Name="PART_Popup" 
+                        <controlzEx:PopupEx x:Name="PART_Popup" 
                                           IsOpen="False"
                                           CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"                                                                                    
                                           PlacementTarget="{Binding ElementName=PART_Toggle}"
@@ -282,7 +282,7 @@
                                     </ContentControl.Resources>
                                 </ContentControl>
                             </Grid>
-                        </controlz:PopupEx>
+                        </controlzEx:PopupEx>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPopupOpen" Value="True">

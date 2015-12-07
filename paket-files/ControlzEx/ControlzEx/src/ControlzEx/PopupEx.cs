@@ -8,7 +8,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
 
-namespace Controlz
+namespace ControlzEx
 {
     /// <summary>
     /// This custom popup can be used by validation error templates or something else.
@@ -21,9 +21,9 @@ namespace Controlz
     {
         public static readonly DependencyProperty CloseOnMouseLeftButtonDownProperty
             = DependencyProperty.Register("CloseOnMouseLeftButtonDown",
-                typeof(bool),
-                typeof(PopupEx),
-                new PropertyMetadata(false));
+                                          typeof(bool),
+                                          typeof(PopupEx),
+                                          new PropertyMetadata(false));
 
         /// <summary>
         /// Gets/sets if the popup can be closed by left mouse button down.
@@ -38,6 +38,17 @@ namespace Controlz
         {
             this.Loaded += this.PopupEx_Loaded;
             this.Opened += this.PopupEx_Opened;
+        }
+
+        /// <summary>
+        /// Causes the popup to update it's position according to it's current settings.
+        /// </summary>
+        public void RefreshPosition()
+        {
+            var offset = this.HorizontalOffset;
+            // "bump" the offset to cause the popup to reposition itself on its own
+            SetCurrentValue(HorizontalOffsetProperty, offset + 1);
+            SetCurrentValue(HorizontalOffsetProperty, offset);
         }
 
         private void PopupEx_Loaded(object sender, RoutedEventArgs e)
@@ -126,10 +137,7 @@ namespace Controlz
 
         private void hostWindow_SizeOrLocationChanged(object sender, EventArgs e)
         {
-            var offset = this.HorizontalOffset;
-            // "bump" the offset to cause the popup to reposition itself on its own
-            this.HorizontalOffset = offset + 1;
-            this.HorizontalOffset = offset;
+            RefreshPosition();
         }
 
         private void SetTopmostState(bool isTop)
