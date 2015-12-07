@@ -228,6 +228,7 @@
     <Compile Include="Converters\MathConverter.cs" />
     <Compile Include="Converters\MathMultipleConverter.cs" />
     <Compile Include="Converters\NotConverter.cs" />
+    <Compile Include="Converters\NullableDateTimeToCurrentDateConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\NotZeroToVisibilityConverter.cs" />
     <Compile Include="Converters\ShadowConverter.cs" />
