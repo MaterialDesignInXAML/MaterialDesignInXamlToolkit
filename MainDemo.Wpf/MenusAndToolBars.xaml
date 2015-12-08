@@ -136,5 +136,22 @@
                 </Menu>
             </ToolBar>
         </ToolBarTray>
+        
+        <TextBox Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
+            With Default Context Menu
+        </TextBox>
+
+        <TextBox Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <TextBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Hello World" />
+                    <MenuItem Header="Clickety Click">                    
+                        <MenuItem Header="Clackety Clack" />                    
+                    </MenuItem>
+                </ContextMenu>
+            </TextBox.ContextMenu>
+            With Custom Context Menu
+        </TextBox>
+
     </DockPanel>       
 </UserControl>
