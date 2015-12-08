@@ -236,7 +236,6 @@
     <Compile Include="CustomPopupPlacementCallbackHelper.cs" />
     <Compile Include="DataGridAssist.cs" />
     <Compile Include="DateTimeEx.cs" />
-    <Compile Include="DependencyObjectExtensions.cs" />
     <Compile Include="DialogClosingEventArgs.cs" />
     <Compile Include="DialogClosingEventHandler.cs" />
     <Compile Include="DialogOpenedEventArgs.cs" />

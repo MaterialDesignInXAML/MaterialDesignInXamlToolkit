@@ -11,8 +11,8 @@ namespace MaterialDesignThemes.Wpf
 {
     internal static class DpiHelper
     {
-        private static readonly int _dpiX;
-        private static readonly int _dpiY;
+        private static readonly int DpiX;
+        private static readonly int DpiY;
 
         private const double StandartDpiX = 96.0;
         private const double StandartDpiY = 96.0;
@@ -22,17 +22,14 @@ namespace MaterialDesignThemes.Wpf
             var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static);
             var dpiYProperty = typeof(SystemParameters).GetProperty("Dpi", BindingFlags.NonPublic | BindingFlags.Static);
 
-            _dpiX = (int)dpiXProperty.GetValue(null, null);
-            _dpiY = (int)dpiYProperty.GetValue(null, null);
+            DpiX = (int)dpiXProperty.GetValue(null, null);
+            DpiY = (int)dpiYProperty.GetValue(null, null);
         }
 
         public static double TransformToDeviceY(Visual visual, double y)
         {
             var source = PresentationSource.FromVisual(visual);
-            if (source != null)
-            {
-                return y * source.CompositionTarget.TransformToDevice.M22;
-            }
+            if (source?.CompositionTarget != null) return y * source.CompositionTarget.TransformToDevice.M22;
 
             return TransformToDeviceY(y);
         }
@@ -40,22 +37,19 @@ namespace MaterialDesignThemes.Wpf
         public static double TransformToDeviceX(Visual visual, double x)
         {
             var source = PresentationSource.FromVisual(visual);
-            if (source != null)
-            {
-                return x * source.CompositionTarget.TransformToDevice.M11;
-            }
+            if (source?.CompositionTarget != null) return x * source.CompositionTarget.TransformToDevice.M11;
 
             return TransformToDeviceX(x);
         }
 
         public static double TransformToDeviceY(double y)
         {
-            return y * _dpiY / StandartDpiY;
+            return y * DpiY / StandartDpiY;
         }
 
         public static double TransformToDeviceX(double x)
         {
-            return x * _dpiX / StandartDpiX;
+            return x * DpiX / StandartDpiX;
         }
     }
 }

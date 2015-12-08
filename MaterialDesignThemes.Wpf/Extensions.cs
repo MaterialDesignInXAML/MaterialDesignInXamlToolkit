@@ -28,5 +28,19 @@ namespace MaterialDesignThemes.Wpf
         {
             return node != null && parent.VisualDepthFirstTraversal().Contains(node);
         }
+
+        /// <summary>
+        /// Returns full visual ancestory, starting at the leaf.
+        /// </summary>
+        /// <param name="leaf"></param>
+        /// <returns></returns>
+        public static IEnumerable<DependencyObject> GetVisualAncestory(this DependencyObject leaf)
+        {
+            while (leaf != null)
+            {
+                yield return leaf;
+                leaf = VisualTreeHelper.GetParent(leaf);
+            }
+        } 
     }
 }

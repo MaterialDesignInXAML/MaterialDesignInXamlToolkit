@@ -106,36 +106,37 @@ namespace MaterialDesignThemes.Wpf
         {
             var locationFromScreen = this.PlacementTarget.PointToScreen(new Point(0, 0));
 
-            var mainVisual = TreeHelper.FindMainTreeVisual(this.PlacementTarget);
+            var mainVisual = PlacementTarget.GetVisualAncestory().OfType<System.Windows.Media.Visual>().LastOrDefault();
+            if (mainVisual == null) return new CustomPopupPlacement[0];
 
-            int screenWidth = (int) DpiHelper.TransformToDeviceX(mainVisual, SystemParameters.PrimaryScreenWidth);
-            int screenHeight = (int) DpiHelper.TransformToDeviceY(mainVisual, SystemParameters.PrimaryScreenHeight);
+            var screenWidth = (int) DpiHelper.TransformToDeviceX(mainVisual, SystemParameters.PrimaryScreenWidth);
+            var screenHeight = (int) DpiHelper.TransformToDeviceY(mainVisual, SystemParameters.PrimaryScreenHeight);
 
-            int locationX = (int)locationFromScreen.X % screenWidth;
-            int locationY = (int)locationFromScreen.Y % screenHeight;
+            var locationX = (int)locationFromScreen.X % screenWidth;
+            var locationY = (int)locationFromScreen.Y % screenHeight;
 
-            double realOffsetX = (popupSize.Width - targetSize.Width) / 2.0;
-            double offsetX = DpiHelper.TransformToDeviceX(mainVisual, offset.X);
-            double defaultVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DefaultVerticalOffset);
-            double upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
-            double downVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);
+            var realOffsetX = (popupSize.Width - targetSize.Width) / 2.0;
+            var offsetX = DpiHelper.TransformToDeviceX(mainVisual, offset.X);
+            var defaultVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DefaultVerticalOffset);
+            var upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
+            var downVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);
 
             if (locationX + popupSize.Width - realOffsetX > screenWidth
                 || locationX + realOffsetX < 0)
             {
                 SetChildTemplateIfNeed(DefaultContentTemplate);
 
-                double newY = locationY + popupSize.Height > screenHeight
+                var newY = locationY + popupSize.Height > screenHeight
                     ? -(defaultVerticalOffsetIndepent + popupSize.Height)
                     : defaultVerticalOffsetIndepent + targetSize.Height;
 
                 return new[] { new CustomPopupPlacement(new Point(offsetX, newY), PopupPrimaryAxis.Horizontal) };
             }
-            else if (locationY + popupSize.Height > screenHeight)
+            if (locationY + popupSize.Height > screenHeight)
             {
                 SetChildTemplateIfNeed(UpContentTemplate);
 
-                double newY = upVerticalOffsetIndepent - popupSize.Height + targetSize.Height;
+                var newY = upVerticalOffsetIndepent - popupSize.Height + targetSize.Height;
 
                 return new[] { new CustomPopupPlacement(new Point(offsetX, newY), PopupPrimaryAxis.None) };
             }
@@ -143,7 +144,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 SetChildTemplateIfNeed(DownContentTemplate);
 
-                double newY = downVerticalOffsetIndepent;
+                var newY = downVerticalOffsetIndepent;
 
                 return new[] { new CustomPopupPlacement(new Point(offsetX, newY), PopupPrimaryAxis.None) };
             }
