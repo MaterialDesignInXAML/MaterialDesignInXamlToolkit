@@ -42,10 +42,10 @@
         <TextBlock Grid.Row="3" Grid.Column="0" Margin="0 8 0 0">Display 1 - MaterialDesignDisplay1TextBlock</TextBlock>
         <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Margin="0 4 0 4">Regular 34sp</TextBlock>
 
-        <TextBlock Grid.Row="4" Grid.Column="0" Margin="0 7 0 0">Headline - MaterialDesignHeadlineTextBlock</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="0 8 0 0">Headline - MaterialDesignHeadlineTextBlock</TextBlock>
         <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 4 0 6">Regular 24sp</TextBlock>
 
-        <TextBlock Grid.Row="5" Grid.Column="0" Margin="0 7 0 0">Title - MaterialDesignTitleTextBlock</TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="0" Margin="0 8 0 0">Title - MaterialDesignTitleTextBlock</TextBlock>
         <TextBlock Grid.Row="5" Grid.Column="2" Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="0 6 0 8">Medium 20sp</TextBlock>
 
         <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center">Subheading - MaterialDesignSubheadingTextBlock</TextBlock>
