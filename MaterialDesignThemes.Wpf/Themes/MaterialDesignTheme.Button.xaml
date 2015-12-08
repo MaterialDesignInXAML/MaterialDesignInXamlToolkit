@@ -28,7 +28,7 @@
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
         <Setter Property="TextBlock.FontWeight" Value="DemiBold"/>
-        <Setter Property="TextBlock.FontSize" Value="15"/>
+        <Setter Property="TextBlock.FontSize" Value="14"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
