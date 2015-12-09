@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -105,34 +106,47 @@ namespace MaterialDesignThemes.Wpf
         {
             var locationFromScreen = this.PlacementTarget.PointToScreen(new Point(0, 0));
 
-            int locationX = (int) locationFromScreen.X%(int) SystemParameters.PrimaryScreenWidth;
-            int locationY = (int) locationFromScreen.Y%(int) SystemParameters.PrimaryScreenHeight;
+            var mainVisual = PlacementTarget.GetVisualAncestory().OfType<System.Windows.Media.Visual>().LastOrDefault();
+            if (mainVisual == null) return new CustomPopupPlacement[0];
 
-            if (locationX + popupSize.Width > SystemParameters.PrimaryScreenWidth || locationX < 0)
+            var screenWidth = (int) DpiHelper.TransformToDeviceX(mainVisual, SystemParameters.PrimaryScreenWidth);
+            var screenHeight = (int) DpiHelper.TransformToDeviceY(mainVisual, SystemParameters.PrimaryScreenHeight);
+
+            var locationX = (int)locationFromScreen.X % screenWidth;
+            var locationY = (int)locationFromScreen.Y % screenHeight;
+
+            var realOffsetX = (popupSize.Width - targetSize.Width) / 2.0;
+            var offsetX = DpiHelper.TransformToDeviceX(mainVisual, offset.X);
+            var defaultVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DefaultVerticalOffset);
+            var upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
+            var downVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);
+
+            if (locationX + popupSize.Width - realOffsetX > screenWidth
+                || locationX + realOffsetX < 0)
             {
                 SetChildTemplateIfNeed(DefaultContentTemplate);
 
-                double newY = locationY + popupSize.Height > SystemParameters.PrimaryScreenHeight
-                    ? -(DefaultVerticalOffset + popupSize.Height)
-                    : DefaultVerticalOffset + targetSize.Height;
+                var newY = locationY + popupSize.Height > screenHeight
+                    ? -(defaultVerticalOffsetIndepent + popupSize.Height)
+                    : defaultVerticalOffsetIndepent + targetSize.Height;
 
-                return new[] { new CustomPopupPlacement(new Point(offset.X, newY), PopupPrimaryAxis.Horizontal) };
+                return new[] { new CustomPopupPlacement(new Point(offsetX, newY), PopupPrimaryAxis.Horizontal) };
             }
-            if (locationY + popupSize.Height > SystemParameters.PrimaryScreenHeight)
+            if (locationY + popupSize.Height > screenHeight)
             {
                 SetChildTemplateIfNeed(UpContentTemplate);
 
-                double newY = UpVerticalOffset - popupSize.Height + targetSize.Height;
+                var newY = upVerticalOffsetIndepent - popupSize.Height + targetSize.Height;
 
-                return new[] { new CustomPopupPlacement(new Point(offset.X, newY), PopupPrimaryAxis.None) };
+                return new[] { new CustomPopupPlacement(new Point(offsetX, newY), PopupPrimaryAxis.None) };
             }
             else
             {
                 SetChildTemplateIfNeed(DownContentTemplate);
 
-                double newY = DownVerticalOffset;
+                var newY = downVerticalOffsetIndepent;
 
-                return new[] { new CustomPopupPlacement(new Point(offset.X, newY), PopupPrimaryAxis.None) };
+                return new[] { new CustomPopupPlacement(new Point(offsetX, newY), PopupPrimaryAxis.None) };
             }
         }
     }

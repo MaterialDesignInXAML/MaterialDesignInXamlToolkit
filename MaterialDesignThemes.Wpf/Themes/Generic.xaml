@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:MaterialDesignThemes.Wpf"
     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
-    xmlns:controlz="clr-namespace:Controlz">
+    xmlns:controlzEx="clr-namespace:ControlzEx">
 
 	<ResourceDictionary.MergedDictionaries>
 		<!--	we only bring in the dictionaries for controls which were "invented"
@@ -533,20 +533,20 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <controlz:PopupEx IsOpen="False"
+                        <controlzEx:PopupEx IsOpen="False"
                                           PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"
                                           StaysOpen="True"
                                           AllowsTransparency="True"
                                           PopupAnimation="None"
                                           x:Name="PART_Popup"
                                           Placement="Center">
-                            <Popup.Resources>
+                            <controlzEx:PopupEx.Resources>
                                 <ResourceDictionary>
                                     <ResourceDictionary.MergedDictionaries>
                                         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                                     </ResourceDictionary.MergedDictionaries>
                                 </ResourceDictionary>
-                            </Popup.Resources>
+                            </controlzEx:PopupEx.Resources>
                             <local:Card x:Name="PART_PopupContentElement" 
                                         Margin="22"
                                         local:ShadowAssist.ShadowDepth="Depth5"
@@ -573,7 +573,7 @@
                                     </TransformGroup>
                                 </local:Card.RenderTransform>
                             </local:Card>
-                        </controlz:PopupEx>
+                        </controlzEx:PopupEx>
                         <AdornerDecorator>
                             <ContentPresenter 
                                     x:Name="ContentPresenter" Opacity="1"                    

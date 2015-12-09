@@ -138,6 +138,9 @@
     <Compile Include="Trees.xaml.cs">
       <DependentUpon>Trees.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Typography.xaml.cs">
+      <DependentUpon>Typography.xaml</DependentUpon>
+    </Compile>
     <Page Include="Buttons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Trees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Typography.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

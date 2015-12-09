@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -11,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using Controlz;
+using ControlzEx;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -43,7 +44,31 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Display the popup above the toggle, and align the center of the popup with the center of the toggle.
         /// </summary>
-        TopAndAlignCentres
+        TopAndAlignCentres,
+        /// <summary>
+        /// Display the popup to the left of the toggle, and align the top edges.
+        /// </summary>
+        LeftAndAlignTopEdges,
+        /// <summary>
+        /// Display the popup to the left of the toggle, and align the bottom edges.
+        /// </summary>
+        LeftAndAlignBottomEdges,
+        /// <summary>
+        /// Display the popup to the left of the toggle, and align the middles.
+        /// </summary>
+        LeftAndAlignMiddles,
+        /// <summary>
+        /// Display the popup to the right of the toggle, and align the top edges.
+        /// </summary>
+        RightAndAlignTopEdges,
+        /// <summary>
+        /// Display the popup to the right of the toggle, and align the bottom edges.
+        /// </summary>
+        RightAndAlignBottomEdges,
+        /// <summary>
+        /// Display the popup to the right of the toggle, and align the middles.
+        /// </summary>
+        RightAndAlignMiddles,
     }
 
     /// <summary>
@@ -243,16 +268,21 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(StaysOpenProperty, value); }
         }
 
-        public static readonly DependencyProperty PropertyTypeProperty = DependencyProperty.Register(
-            "PlacementMode", typeof (PopupBoxPlacementMode), typeof (PopupBox), new PropertyMetadata(default(PopupBoxPlacementMode)));
+        public static readonly DependencyProperty PlacementModeProperty = DependencyProperty.Register(
+            "PlacementMode", typeof (PopupBoxPlacementMode), typeof (PopupBox), new PropertyMetadata(default(PopupBoxPlacementMode), PlacementModePropertyChangedCallback));
+
+        private static void PlacementModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            ((PopupBox)dependencyObject)._popup?.RefreshPosition();
+        }
 
         /// <summary>
         /// Gets or sets how the popup is aligned in relation to the toggle.
         /// </summary>
         public PopupBoxPlacementMode PlacementMode
         {
-            get { return (PopupBoxPlacementMode) GetValue(PropertyTypeProperty); }
-            set { SetValue(PropertyTypeProperty, value); }
+            get { return (PopupBoxPlacementMode) GetValue(PlacementModeProperty); }
+            set { SetValue(PlacementModeProperty, value); }
         }
 
         public static readonly DependencyProperty PopupModeProperty = DependencyProperty.Register(
@@ -271,6 +301,27 @@ namespace MaterialDesignThemes.Wpf
         /// Framework use. Provides the method used to position the popup.
         /// </summary>
         public CustomPopupPlacementCallback PopupPlacementMethod => GetPopupPlacement;
+
+        /// <summary>
+        /// Event raised when the checked toggled content (if set) is clicked.
+        /// </summary>
+        public static readonly RoutedEvent ToggleCheckedContentClickEvent = EventManager.RegisterRoutedEvent("ToggleCheckedContentClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PopupBox));
+
+        /// <summary>
+        /// Event raised when the checked toggled content (if set) is clicked.
+        /// </summary>
+        [Category("Behavior")]
+        public event RoutedEventHandler ToggleCheckedContentClick { add { AddHandler(ToggleCheckedContentClickEvent, value); } remove { RemoveHandler(ToggleCheckedContentClickEvent, value); } }
+
+
+        /// <summary>
+        /// Raises <see cref="ToggleCheckedContentClickEvent"/>.
+        /// </summary>
+        protected virtual void OnToggleCheckedContentClick()
+        {
+            var newEvent = new RoutedEventArgs(ToggleCheckedContentClickEvent, this);
+            RaiseEvent(newEvent);
+        }
 
         public override void OnApplyTemplate()
         {
@@ -305,9 +356,10 @@ namespace MaterialDesignThemes.Wpf
 
         protected override void OnMouseEnter(MouseEventArgs e)
         {
-            if (PopupMode == PopupBoxPopupMode.MouseOverEager
-                || PopupMode == PopupBoxPopupMode.MouseOver)
-            
+            if (IsEnabled &&
+                (PopupMode == PopupBoxPopupMode.MouseOverEager
+                 || PopupMode == PopupBoxPopupMode.MouseOver))
+
                 SetCurrentValue(IsPopupOpenProperty, true);
 
             base.OnMouseEnter(e);
@@ -358,6 +410,30 @@ namespace MaterialDesignThemes.Wpf
                     x = targetSize.Width/2 - popupSize.Width/2 - Math.Abs(offset.X*2);
                     y = 0 - popupSize.Height - Math.Abs(offset.Y * 2);
                     break;
+                case PopupBoxPlacementMode.LeftAndAlignTopEdges:
+                    x = 0 - popupSize.Width - Math.Abs(offset.X * 2);
+                    y = 0 - Math.Abs(offset.Y * 3);
+                    break;
+                case PopupBoxPlacementMode.LeftAndAlignBottomEdges:
+                    x = 0 - popupSize.Width - Math.Abs(offset.X * 2);
+                    y = 0 - (popupSize.Height - targetSize.Height);
+                    break;
+                case PopupBoxPlacementMode.LeftAndAlignMiddles:
+                    x = 0 - popupSize.Width - Math.Abs(offset.X * 2);
+                    y = targetSize.Height / 2 - popupSize.Height / 2 - Math.Abs(offset.Y * 2);
+                    break;
+                case PopupBoxPlacementMode.RightAndAlignTopEdges:
+                    x = targetSize.Width;
+                    y = 0 - Math.Abs(offset.X * 3);
+                    break;
+                case PopupBoxPlacementMode.RightAndAlignBottomEdges:
+                    x = targetSize.Width;
+                    y = 0 - (popupSize.Height - targetSize.Height);
+                    break;
+                case PopupBoxPlacementMode.RightAndAlignMiddles:
+                    x = targetSize.Width;
+                    y = targetSize.Height / 2 - popupSize.Height / 2 - Math.Abs(offset.Y * 2);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -376,7 +452,9 @@ namespace MaterialDesignThemes.Wpf
             double translateYFrom;
             if (PlacementMode == PopupBoxPlacementMode.TopAndAlignCentres
                 || PlacementMode == PopupBoxPlacementMode.TopAndAlignLeftEdges
-                || PlacementMode == PopupBoxPlacementMode.TopAndAlignRightEdges)
+                || PlacementMode == PopupBoxPlacementMode.TopAndAlignRightEdges
+                || PlacementMode == PopupBoxPlacementMode.LeftAndAlignBottomEdges
+                || PlacementMode == PopupBoxPlacementMode.RightAndAlignBottomEdges)
             {
                 controls = controls.Reverse();
                 translateYFrom = 40;
@@ -494,12 +572,16 @@ namespace MaterialDesignThemes.Wpf
         {
             if (PopupMode == PopupBoxPopupMode.Click || !IsPopupOpen) return;
 
-            if (ToggleCheckedContent != null 
-                && ToggleCheckedContentCommand != null
-                && ToggleCheckedContentCommand.CanExecute(ToggleCheckedContentCommandParameter)
-                )
+            if (ToggleCheckedContent != null)
             {
-                ToggleCheckedContentCommand.Execute(ToggleCheckedContentCommandParameter);
+                OnToggleCheckedContentClick();
+
+                if (ToggleCheckedContentCommand != null
+                    && ToggleCheckedContentCommand.CanExecute(ToggleCheckedContentCommandParameter)
+                    )
+                {
+                    ToggleCheckedContentCommand.Execute(ToggleCheckedContentCommandParameter);
+                }
             }
 
             Close();

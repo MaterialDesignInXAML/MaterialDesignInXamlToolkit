@@ -38,6 +38,10 @@
     </Style>
     <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignDisplay4TextBlock">
         <Setter Property="FontSize" Value="112"/>
-        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontWeight" Value="Light"/>
     </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignButtonTextBlock">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+    </Style>    
 </ResourceDictionary>

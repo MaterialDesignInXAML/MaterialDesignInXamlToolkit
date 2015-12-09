@@ -62,7 +62,7 @@ namespace MaterialDesignThemes.Wpf
 		public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(
 			"Time", typeof (DateTime), typeof (Clock), new FrameworkPropertyMetadata(default(DateTime), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TimePropertyChangedCallback));
 
-		private static void TimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+	    private static void TimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
 		    var clock = (Clock) dependencyObject;
 		    SetFlags(clock);
