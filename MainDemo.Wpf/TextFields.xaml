@@ -92,7 +92,8 @@
 				    materialDesign:TextFieldAssist.Hint="Phone"
 				    />
         <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">Fruit</TextBlock>
-        <ComboBox Grid.Row="1" Grid.Column="3" materialDesign:TextFieldAssist.Hint="Search" IsEditable="True" materialDesign:TextFieldAssist.HintOpacity=".26">
+        <ComboBox Grid.Row="1" Grid.Column="3" materialDesign:TextFieldAssist.Hint="Search"
+                  IsEditable="True" materialDesign:TextFieldAssist.HintOpacity=".26">
             <ComboBoxItem>Apple</ComboBoxItem>
             <ComboBoxItem>Banana</ComboBoxItem>
             <ComboBoxItem>Pear</ComboBoxItem>
