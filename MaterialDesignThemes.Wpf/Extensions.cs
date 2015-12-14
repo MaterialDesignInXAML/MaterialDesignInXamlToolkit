@@ -41,6 +41,28 @@ namespace MaterialDesignThemes.Wpf
                 yield return leaf;
                 leaf = VisualTreeHelper.GetParent(leaf);
             }
-        } 
+        }
+
+        public static IEnumerable<DependencyObject> GetLogicalAncestory(this DependencyObject leaf)
+        {
+            while (leaf != null)
+            {
+                yield return leaf;
+                leaf = LogicalTreeHelper.GetParent(leaf);
+            }
+        }
+
+        public static bool HasAncestor(this DependencyObject leaf, DependencyObject ancestor)
+        {
+            var visualAncestry = leaf.GetVisualAncestory().ToArray();
+            if (visualAncestry.Contains(ancestor))
+            {
+                return true;
+            }
+
+            var lastVisualAncestor = visualAncestry.LastOrDefault();
+            var logicalAncestry = GetLogicalAncestory(lastVisualAncestor);
+            return logicalAncestry.Contains(ancestor);
+        }
     }
 }

@@ -17,5 +17,10 @@ namespace MaterialDesignColors.WpfExample
         {
             MenuToggleButton.IsChecked = false;
         }
+
+        private void PopupButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("PopupButton Clicked");
+        }
     } 
 }

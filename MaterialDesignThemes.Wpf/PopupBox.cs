@@ -578,7 +578,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 if (e.OriginalSource == popupBox)
                 {
-                    if (Mouse.Captured == null || popupBox._popup == null || !(Mouse.Captured as DependencyObject).GetVisualAncestory().Contains(popupBox._popup))
+                    if (Mouse.Captured == null || popupBox._popup == null || !(Mouse.Captured as DependencyObject).HasAncestor(popupBox._popup))
                     {
                         popupBox.Close();
                     }

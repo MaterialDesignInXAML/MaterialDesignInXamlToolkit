@@ -169,6 +169,7 @@
                                 <ListBoxItem>Hello World</ListBoxItem>
                                 <ListBoxItem>Nice Popup</ListBoxItem>
                                 <ListBoxItem>Goodbye.</ListBoxItem>
+                                <ListBoxItem><Button x:Name="PopupButton" Content="Button" Click="PopupButton_OnClick"/></ListBoxItem>
                             </ListBox>
                         </materialDesign:PopupBox>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
