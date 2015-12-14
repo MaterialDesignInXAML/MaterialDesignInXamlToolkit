@@ -82,7 +82,7 @@
       <DependentUpon>Dialogs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Domain\AnotherCommandImplementation.cs" />
-    <Compile Include="Domain\BindableBase.cs" />
+    <Compile Include="Domain\NotifyPropertyChangedExtension.cs" />
     <Compile Include="Domain\DemoItem.cs" />
     <Compile Include="Domain\DialogsViewModel.cs" />
     <Compile Include="Domain\ListFieldsViewModel.cs" />

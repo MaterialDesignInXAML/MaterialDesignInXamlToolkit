@@ -10,62 +10,48 @@ using System.Threading.Tasks;
 
 namespace MaterialDesignColors.WpfExample.Domain
 {
-    public sealed class Movie : BindableBase
+    public sealed class Movie
     {
-        private string _name;
-
-        public string Name
+        public Movie(string name, string director)
         {
-            get { return _name; }
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
+            Name = name;
+            Director = director;
         }
 
-        private string _director;
+        public string Name { get; }
 
-        public string Director
-        {
-            get { return _director; }
-            set
-            {
-                _director = value;
-                OnPropertyChanged();
-            }
-        }
+        public string Director { get; }
     }
 
-    public sealed class MovieCategory : BindableBase
+    public sealed class MovieCategory
     {
+        public MovieCategory(string name, params Movie[] movies)
+        {
+            Name = name;
+            Movies = new ObservableCollection<Movie>(movies);
+        }
+
         public string Name { get; }
 
         public ObservableCollection<Movie> Movies { get; }
-
-        public MovieCategory(string name)
-        {
-            Name = name;
-            Movies = new ObservableCollection<Movie>();
-        }
     }
 
-    public sealed class TreesViewModel : BindableBase
+    public sealed class TreesViewModel : INotifyPropertyChanged
     {
+        private object _selectedItem;
+
         public ObservableCollection<MovieCategory> MovieCategories { get; }
 
         public AnotherCommandImplementation AddCommand { get; }
 
         public AnotherCommandImplementation RemoveSelectedItemCommand { get; }
 
-        private object _selectedItem;
         public object SelectedItem
         {
             get { return _selectedItem; }
             set
             {
-                _selectedItem = value;
-                OnPropertyChanged();
+                this.MutateVerbose(ref _selectedItem, value, args => PropertyChanged?.Invoke(this, args));
             }
         }
 
@@ -73,43 +59,14 @@ namespace MaterialDesignColors.WpfExample.Domain
         {
             MovieCategories = new ObservableCollection<MovieCategory>
             {
-                new MovieCategory("Action")
-                {
-                    Movies =
-                    {
-                        new Movie
-                        {
-                            Name = "Predator",
-                            Director = "John McTiernan"
-                        },
-                        new Movie
-                        {
-                            Name = "Alien",
-                            Director = "Ridley Scott"
-                        },
-                        new Movie
-                        {
-                            Name = "Prometheus",
-                            Director = "Ridley Scott"
-                        }
-                    }
-                },
-                new MovieCategory("Comedy")
-                {
-                    Movies =
-                    {
-                        new Movie
-                        {
-                            Name = "EuroTrip",
-                            Director = "Jeff Schaffer"
-                        },
-                        new Movie
-                        {
-                            Name = "EuroTrip",
-                            Director = "Jeff Schaffer"
-                        }
-                    }
-                }
+                new MovieCategory("Action",                
+                    new Movie ("Predator", "John McTiernan"),
+                    new Movie("Alien", "Ridley Scott"),
+                    new Movie("Prometheus", "Ridley Scott")),
+                new MovieCategory("Comedy",
+                    new Movie("EuroTrip", "Jeff Schaffer"),
+                    new Movie("EuroTrip", "Jeff Schaffer")                                            
+                )
             };
 
             AddCommand = new AnotherCommandImplementation(
@@ -121,27 +78,25 @@ namespace MaterialDesignColors.WpfExample.Domain
                     }
                     else
                     {
-                        int index = new Random().Next(0, MovieCategories.Count);
+                        var index = new Random().Next(0, MovieCategories.Count);
 
                         MovieCategories[index].Movies.Add(
-                            new Movie
-                            {
-                                Name = GenerateString(15),
-                                Director = GenerateString(20)
-                            });
+                            new Movie(GenerateString(15), GenerateString(20)));
                     }
                 });
 
             RemoveSelectedItemCommand = new AnotherCommandImplementation(
                 _ =>
                 {
-                    if (SelectedItem is MovieCategory)
+                    var movieCategory = SelectedItem as MovieCategory;
+                    if (movieCategory != null)
                     {
-                        MovieCategories.Remove(SelectedItem as MovieCategory);
+                        MovieCategories.Remove(movieCategory);
                     }
-                    else if (SelectedItem is Movie)
+                    else
                     {
                         var movie = SelectedItem as Movie;
+                        if (movie == null) return;
                         MovieCategories.FirstOrDefault(v => v.Movies.Contains(movie))?.Movies.Remove(movie);
                     }
                 },
@@ -152,9 +107,11 @@ namespace MaterialDesignColors.WpfExample.Domain
         {
             var random = new Random();
 
-            return String.Join(String.Empty,
+            return string.Join(string.Empty,
                 Enumerable.Range(0, length)
-                .Select(v => (char) random.Next((int)'a', (int)'z' + 1)));
+                .Select(v => (char) random.Next('a', 'z' + 1)));
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
