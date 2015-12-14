@@ -110,7 +110,11 @@
                         </domain:DemoItem>
                         <domain:DemoItem Name="Trees">
                             <domain:DemoItem.Content>
-                                <wpfExample:Trees />
+                                <wpfExample:Trees>
+                                    <wpfExample:Trees.DataContext>
+                                        <domain:TreesViewModel/>
+                                    </wpfExample:Trees.DataContext>
+                                </wpfExample:Trees>
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
                         <domain:DemoItem Name="Grids">
