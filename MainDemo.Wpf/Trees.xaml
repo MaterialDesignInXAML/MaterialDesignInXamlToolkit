@@ -112,12 +112,11 @@
             </TreeView>
             <materialDesign:PopupBox Grid.Row="1"
                                      Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
-                                     PlacementMode="LeftAndAlignTopEdges"
-                                     ToolTipService.Placement="Bottom"
+                                     PlacementMode="LeftAndAlignMiddles"                                     
                                      ToolTip="Manage items"
                                      Margin="0 0 10 10"
                                      HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <StackPanel>
+                <StackPanel Orientation="Horizontal">
                     <Button ToolTip="Add an item"
                             Command="{Binding AddCommand}">
                         <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"

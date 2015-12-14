@@ -242,7 +242,9 @@ namespace MaterialDesignThemes.Wpf
             }
 
             if (newValue)            
-                popupBox.AnimateChildren();            
+                popupBox.AnimateChildren();          
+            
+            popupBox._popup?.RefreshPosition();
 
             VisualStateManager.GoToState(popupBox, newValue ? PopupIsOpenStateName : PopupIsClosedStateName, true);
         }        
