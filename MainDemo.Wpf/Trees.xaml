@@ -112,7 +112,8 @@
             </TreeView>
             <materialDesign:PopupBox Grid.Row="1"
                                      Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
-                                     PlacementMode="LeftAndAlignMiddles"                                     
+                                     PlacementMode="LeftAndAlignMiddles"
+                                     UnfurlOrientation="Horizontal"
                                      ToolTip="Manage items"
                                      Margin="0 0 10 10"
                                      HorizontalAlignment="Right" VerticalAlignment="Bottom">

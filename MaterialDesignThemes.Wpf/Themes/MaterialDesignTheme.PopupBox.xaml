@@ -202,7 +202,7 @@
                         </Storyboard>
                         <Storyboard x:Key="Close">
                             <DoubleAnimation Storyboard.TargetName="PART_PopupContentControl" Storyboard.TargetProperty="Opacity"
-                                             Duration="0:0:0.1">
+                                             Duration="0:0:0.8">
                                 <DoubleAnimation.EasingFunction>
                                     <SineEase EasingMode="EaseInOut" />
                                 </DoubleAnimation.EasingFunction>
@@ -311,6 +311,11 @@
                 </Viewbox>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="UnfurlOrientation" Value="Horizontal">
+                <Setter Property="ToolTipService.Placement" Value="Custom" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type wpf:PopupBox}" 

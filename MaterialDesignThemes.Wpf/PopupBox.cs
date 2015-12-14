@@ -241,9 +241,8 @@ namespace MaterialDesignThemes.Wpf
                     Mouse.Capture(null);
             }
 
-            if (newValue)            
-                popupBox.AnimateChildren();          
             
+            popupBox.AnimateChildrenIn(!newValue);                 
             popupBox._popup?.RefreshPosition();
 
             VisualStateManager.GoToState(popupBox, newValue ? PopupIsOpenStateName : PopupIsClosedStateName, true);
@@ -297,6 +296,21 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (PopupBoxPopupMode) GetValue(PopupModeProperty); }
             set { SetValue(PopupModeProperty, value); }
+        }
+
+        /// <summary>
+        /// Get or sets how to unfurl controls when opening the popups. Only child elements of type <see cref="ButtonBase"/> are animated.
+        /// </summary>
+        public static readonly DependencyProperty UnfurlOrientationProperty = DependencyProperty.Register(
+            "UnfurlOrientation", typeof (Orientation), typeof (PopupBox), new PropertyMetadata(Orientation.Vertical));
+
+        /// <summary>
+        /// Gets or sets how to unfurl controls when opening the popups. Only child elements of type <see cref="ButtonBase"/> are animated.
+        /// </summary>
+        public Orientation UnfurlOrientation
+        {
+            get { return (Orientation) GetValue(UnfurlOrientationProperty); }
+            set { SetValue(UnfurlOrientationProperty, value); }
         }
 
         /// <summary>
@@ -444,56 +458,110 @@ namespace MaterialDesignThemes.Wpf
             return new[] {new CustomPopupPlacement(point, PopupPrimaryAxis.Horizontal)};
         }
 
-        private void AnimateChildren()
+        private void AnimateChildrenIn(bool reverse)
         {
             if (_popupContentControl == null) return;
             if (VisualTreeHelper.GetChildrenCount(_popupContentControl) != 1) return;
             var contentPresenter = VisualTreeHelper.GetChild(_popupContentControl, 0) as ContentPresenter;
 
             var controls = contentPresenter.VisualDepthFirstTraversal().OfType<ButtonBase>();
-            double translateYFrom;
-            if (PlacementMode == PopupBoxPlacementMode.TopAndAlignCentres
-                || PlacementMode == PopupBoxPlacementMode.TopAndAlignLeftEdges
-                || PlacementMode == PopupBoxPlacementMode.TopAndAlignRightEdges
-                || PlacementMode == PopupBoxPlacementMode.LeftAndAlignBottomEdges
-                || PlacementMode == PopupBoxPlacementMode.RightAndAlignBottomEdges)
+            double translateCoordinateFrom;
+            if ((PlacementMode == PopupBoxPlacementMode.TopAndAlignCentres
+                 || PlacementMode == PopupBoxPlacementMode.TopAndAlignLeftEdges
+                 || PlacementMode == PopupBoxPlacementMode.TopAndAlignRightEdges
+                 || PlacementMode == PopupBoxPlacementMode.LeftAndAlignBottomEdges
+                 || PlacementMode == PopupBoxPlacementMode.RightAndAlignBottomEdges
+                 || (UnfurlOrientation == Orientation.Horizontal &&
+                     (
+                         PlacementMode == PopupBoxPlacementMode.LeftAndAlignBottomEdges
+                         || PlacementMode == PopupBoxPlacementMode.LeftAndAlignMiddles
+                         || PlacementMode == PopupBoxPlacementMode.LeftAndAlignTopEdges
+                         ))
+                ))
             {
                 controls = controls.Reverse();
-                translateYFrom = 40;
+                translateCoordinateFrom = 80;
             }
             else
-                translateYFrom = -40;
+                translateCoordinateFrom = -80;
+
+            var translateCoordinatePath =
+                "(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform."
+                + (UnfurlOrientation == Orientation.Horizontal ? "X)" : "Y)");
+
+            var sineEase = new SineEase();
 
             var i = 0;
             foreach (var uiElement in controls)
-            {
+            {                
+                var deferredStart = i++*20;
+                var deferredEnd = deferredStart+200.0;                
+
+                var absoluteZeroKeyTime = KeyTime.FromPercent(0.0);
+                var deferredStartKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(deferredStart));
+                var deferredEndKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(deferredEnd));
+
+                var elementTranslateCoordinateFrom = translateCoordinateFrom * i;
+                var translateTransform = new TranslateTransform(
+                    UnfurlOrientation == Orientation.Vertical ? 0 : elementTranslateCoordinateFrom,
+                    UnfurlOrientation == Orientation.Vertical ? elementTranslateCoordinateFrom : 0);
+
                 var transformGroup = new TransformGroup
-                {
+                {                    
                     Children = new TransformCollection(new Transform[]
                     {
-                        new ScaleTransform(.5, .5),
-                        new TranslateTransform(0, translateYFrom)
+                        new ScaleTransform(0, 0),
+                        translateTransform
                     })
                 };
                 uiElement.SetCurrentValue(RenderTransformOriginProperty, new Point(.5, .5));
                 uiElement.RenderTransform = transformGroup;
 
-                var scaleXAnimation = new DoubleAnimation(.5, 1, new Duration(TimeSpan.FromMilliseconds(100)));
+                var opacityAnimation = new DoubleAnimationUsingKeyFrames();                
+                opacityAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, absoluteZeroKeyTime, sineEase));
+                opacityAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, deferredStartKeyTime, sineEase));
+                opacityAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, deferredEndKeyTime, sineEase));                
+                Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath("Opacity"));
+                Storyboard.SetTarget(opacityAnimation, uiElement);
+
+                var scaleXAnimation = new DoubleAnimationUsingKeyFrames();
+                scaleXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, absoluteZeroKeyTime, sineEase));
+                scaleXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, deferredStartKeyTime, sineEase));
+                scaleXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, deferredEndKeyTime, sineEase));
                 Storyboard.SetTargetProperty(scaleXAnimation, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"));
                 Storyboard.SetTarget(scaleXAnimation, uiElement);
-                var scaleYAnimation = new DoubleAnimation(.5, 1, new Duration(TimeSpan.FromMilliseconds(100)));
+
+                var scaleYAnimation = new DoubleAnimationUsingKeyFrames();
+                scaleYAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, absoluteZeroKeyTime, sineEase));
+                scaleYAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, deferredStartKeyTime, sineEase));
+                scaleYAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, deferredEndKeyTime, sineEase));
                 Storyboard.SetTargetProperty(scaleYAnimation, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"));
                 Storyboard.SetTarget(scaleYAnimation, uiElement);
-                var translateYAnimation = new DoubleAnimation(translateYFrom, 0, new Duration(TimeSpan.FromMilliseconds(100)));
-                Storyboard.SetTargetProperty(translateYAnimation, new PropertyPath("(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.Y)"));
-                Storyboard.SetTarget(translateYAnimation, uiElement);
+
+                var translateCoordinateAnimation = new DoubleAnimationUsingKeyFrames();
+                translateCoordinateAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(elementTranslateCoordinateFrom, absoluteZeroKeyTime, sineEase));
+                translateCoordinateAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(elementTranslateCoordinateFrom, deferredStartKeyTime, sineEase));
+                translateCoordinateAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, deferredEndKeyTime, sineEase));
+
+                Storyboard.SetTargetProperty(translateCoordinateAnimation, new PropertyPath(translateCoordinatePath));
+                Storyboard.SetTarget(translateCoordinateAnimation, uiElement);
+
                 var storyboard = new Storyboard();
+                storyboard.Children.Add(opacityAnimation);
                 storyboard.Children.Add(scaleXAnimation);
                 storyboard.Children.Add(scaleYAnimation);
-                storyboard.Children.Add(translateYAnimation);
-                storyboard.BeginTime = TimeSpan.FromMilliseconds(i++ * 20);
+                storyboard.Children.Add(translateCoordinateAnimation);
 
-                storyboard.Begin();
+                if (reverse)
+                {
+                    storyboard.AutoReverse = true;
+                    storyboard.Begin();
+                    storyboard.Seek(TimeSpan.FromMilliseconds(deferredEnd));
+                    storyboard.Resume();
+
+                }
+                else
+                    storyboard.Begin();                
             }            
         }
 
