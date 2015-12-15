@@ -12,7 +12,7 @@
                       Title="Material-MahApps-Dragablz Mash Up" Height="350" Width="525">
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>
-            <controls:Flyout x:Name="LeftFlyout" Position="Left">
+            <controls:Flyout x:Name="LeftFlyout" Position="Left" Header="Settings">
                 <mahMaterialDragablzMashUp:FlyoutContent />
             </controls:Flyout>
         </controls:FlyoutsControl>

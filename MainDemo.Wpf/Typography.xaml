@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="MaterialDesignColors.WpfExample.Typography"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+            <Setter Property="Opacity" Value=".68"></Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Margin="32">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="64" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 26 0 0">Display 4  - MaterialDesignDisplay4TextBlock</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay4TextBlock}" Margin="0 4 0 4">Light 112sp</TextBlock>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="0 12 0 0">Display 3 - MaterialDesignDisplay3TextBlock</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay3TextBlock}" Margin="0 4 0 4">Regular 56sp</TextBlock>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="0 8 0 0">Display 2 - MaterialDesignDisplay2TextBlock</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay2TextBlock}" Margin="0 4 0 4">Regular 45sp</TextBlock>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="0 8 0 0">Display 1 - MaterialDesignDisplay1TextBlock</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Margin="0 4 0 4">Regular 34sp</TextBlock>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="0 8 0 0">Headline - MaterialDesignHeadlineTextBlock</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 4 0 6">Regular 24sp</TextBlock>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Margin="0 8 0 0">Title - MaterialDesignTitleTextBlock</TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="2" Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="0 6 0 8">Medium 20sp</TextBlock>
+
+        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center">Subheading - MaterialDesignSubheadingTextBlock</TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="2" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Margin="0 8 0 8">Regular 15sp</TextBlock>
+
+        <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center">Body 2 - MaterialDesignBody2TextBlock</TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="2" Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="0 8 0 8">Medium 13sp</TextBlock>
+
+        <TextBlock Grid.Row="8" Grid.Column="0" VerticalAlignment="Center">Body 1 - MaterialDesignBody1TextBlock</TextBlock>
+        <TextBlock Grid.Row="8" Grid.Column="2" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 8 0 8">Regular 13sp</TextBlock>
+
+        <TextBlock Grid.Row="9" Grid.Column="0" VerticalAlignment="Center">Caption - MaterialDesignCaptionTextBlock</TextBlock>
+        <TextBlock Grid.Row="9" Grid.Column="2" Style="{StaticResource MaterialDesignCaptionTextBlock}" Margin="0 8 0 8">Regular 12sp</TextBlock>
+
+        <TextBlock Grid.Row="10" Grid.Column="0" VerticalAlignment="Center">Button - MaterialDesignButtonTextBlock</TextBlock>
+        <TextBlock Grid.Row="10" Grid.Column="2" Style="{StaticResource MaterialDesignButtonTextBlock}" Margin="0 8 0 8">MEDIUM (ALL CAPS) 14sp</TextBlock>
+
+
+
+    </Grid>
+</UserControl>

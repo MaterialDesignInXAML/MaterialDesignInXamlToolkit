@@ -6,6 +6,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
+using MaterialDesignThemes.Wpf.Converters;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -93,6 +94,15 @@ namespace MaterialDesignThemes.Wpf
 			get { return (bool) GetValue(IsDropDownOpenProperty); }
 			set { SetValue(IsDropDownOpenProperty, value); }
 		}
+
+	    public static readonly DependencyProperty Is24HoursProperty = DependencyProperty.Register(
+	        "Is24Hours", typeof (bool), typeof (TimePicker), new PropertyMetadata(default(bool)));
+
+	    public bool Is24Hours
+	    {
+	        get { return (bool) GetValue(Is24HoursProperty); }
+	        set { SetValue(Is24HoursProperty, value); }
+	    }
 
 		private static object OnCoerceIsDropDownOpen(DependencyObject d, object baseValue)
 		{
@@ -343,7 +353,8 @@ namespace MaterialDesignThemes.Wpf
 			_clock.AddHandler(Clock.ClockChoiceMadeEvent, new ClockChoiceMadeEventHandler(ClockChoiceMadeHandler));
             _clock.SetBinding(ForegroundProperty, GetBinding(ForegroundProperty));
 			_clock.SetBinding(StyleProperty, GetBinding(ClockStyleProperty));
-			_clock.SetBinding(Clock.TimeProperty, GetBinding(SelectedTimeProperty));
+			_clock.SetBinding(Clock.TimeProperty, GetBinding(SelectedTimeProperty, new NullableDateTimeToCurrentDateConverter()));
+		    _clock.SetBinding(Clock.Is24HoursProperty, GetBinding(Is24HoursProperty));
 			_clockHostContentControl.SetBinding(StyleProperty, GetBinding(ClockHostContentControlStyleProperty));
 		}
 
@@ -374,10 +385,14 @@ namespace MaterialDesignThemes.Wpf
 			}
 		}
 
-		private BindingBase GetBinding(DependencyProperty property)
+		private BindingBase GetBinding(DependencyProperty property, IValueConverter converter = null)
 		{
-			var binding = new Binding(property.Name) {Source = this};
-			return binding;
+		    var binding = new Binding(property.Name)
+		    {
+		        Source = this,
+		        Converter = converter
+		    };
+		    return binding;
 		}
 	}
 }

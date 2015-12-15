@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
-             xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
-             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -15,6 +14,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -35,41 +35,112 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock>Buttons</TextBlock>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 24 0 0">
-            <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    Margin="0 0 8 0" HorizontalAlignment="Left"
-                    ToolTip="X">
-                <Viewbox Width="24" Height="24">
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
-                    </Canvas>
-                </Viewbox>
-            </Button>
-            <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
-                    Margin="0 0 8 0" HorizontalAlignment="Left">
-                <Viewbox Width="24" Height="24">
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
-                    </Canvas>
-                </Viewbox>
-            </Button>
-            <Button Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                    Margin="0 0 8 0" HorizontalAlignment="Left">
-                <Viewbox Width="24" Height="24">
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
-                    </Canvas>
-                </Viewbox>
-            </Button>
-            <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
-                    Margin="0 0 8 0" HorizontalAlignment="Left">
-                <Viewbox Width="24" Height="24">
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
-                    </Canvas>
-                </Viewbox>
-            </Button>
-        </StackPanel>
+        <Grid Grid.Row="1" >
+            <StackPanel Orientation="Horizontal" Margin="0 24 0 0">
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                        Margin="0 0 8 0" HorizontalAlignment="Left"
+                        ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                    <Viewbox Width="24" Height="24">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        Margin="0 0 8 0" HorizontalAlignment="Left"
+                        ToolTip="MaterialDesignFloatingActionMiniButton">
+                    <Viewbox Width="24" Height="24">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                        Margin="0 0 8 0" HorizontalAlignment="Left"
+                        ToolTip="MaterialDesignFloatingActionMiniDarkButton">
+                    <Viewbox Width="24" Height="24">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        Margin="0 0 8 0" HorizontalAlignment="Left"
+                        ToolTip="MaterialDesignFloatingActionMiniAccentButton">
+                    <Viewbox Width="24" Height="24">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                        Margin="0 0 8 0" HorizontalAlignment="Left"
+                        ToolTip="MaterialDesignFloatingActionLightButton">
+                    <Viewbox Width="24" Height="24">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
+                        Margin="0 0 8 0" HorizontalAlignment="Left"
+                        ToolTip="MaterialDesignFloatingActionButton">
+                    <Viewbox Width="24" Height="24">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                        Margin="0 0 8 0" HorizontalAlignment="Left"
+                        ToolTip="MaterialDesignFloatingActionDarkButton">
+                    <Viewbox Width="24" Height="24">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                        Margin="0 0 8 0" HorizontalAlignment="Left"
+                        ToolTip="MaterialDesignFloatingActionAccentButton">
+                    <Viewbox Width="24" Height="24">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+                                         PlacementMode="BottomAndAlignCentres"
+                                         ToolTipService.Placement="Right"
+                                         ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox">
+                    <StackPanel>
+                        <Button ToolTip="One">1</Button>
+                        <Button ToolTip="Two">2</Button>
+                        <Button ToolTip="Three">3</Button>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+            <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                     PlacementMode="BottomAndAlignCentres"                                 
+                                     HorizontalAlignment="Right"
+                                     ToggleCheckedContentCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpfExample:Buttons}, Path=FloatingActionDemoCommand}"
+                                     ToggleCheckedContentCommandParameter="wowsers"
+                                     Margin="0 0 48 0"
+                                     ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+                <materialDesign:PopupBox.ToggleCheckedContent>
+                    <Viewbox Width="24" Height="24">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" Fill="Black" />
+                        </Canvas>
+                    </Viewbox>
+                </materialDesign:PopupBox.ToggleCheckedContent>
+                <StackPanel>
+                    <Button ToolTip="One">1</Button>
+                    <Button ToolTip="Two">2</Button>
+                    <Button ToolTip="Three">3</Button>
+                </StackPanel>
+            </materialDesign:PopupBox>
+        </Grid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 16 0 0">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedLightButton">
@@ -94,13 +165,20 @@
         </StackPanel>
         <TextBlock Margin="0 24 0 0" Grid.Row="4">Toggles</TextBlock>
         <StackPanel Grid.Row="5" Margin="0 24 0 0" Orientation="Horizontal">
-            <ToggleButton Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionLightToggleButton}" IsChecked="True" />
-            <ToggleButton Content="H" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}"/>
+            <ToggleButton Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionLightToggleButton}" IsChecked="True"
+                          ToolTip="MaterialDesignActionLightToggleButton"/>
+            <ToggleButton Content="H" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}"
+                          ToolTip="MaterialDesignActionToggleButton"/>
             <!-- checkbox style same as toggle button -->
-            <CheckBox Content="E" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionDarkCheckBox}"/>
-            <ToggleButton Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionAccentToggleButton}"/>
-            <ToggleButton Content="K" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}" IsEnabled="False"/>
-            <ToggleButton Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}">
+            <CheckBox Content="E" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionDarkCheckBox}"
+                      ToolTip="MaterialDesignActionDarkCheckBox"/>
+            <ToggleButton Content="C" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionAccentToggleButton}"
+                          IsChecked="True"
+                          ToolTip="MaterialDesignActionAccentToggleButton"/>
+            <ToggleButton Content="K" Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}" IsEnabled="False"
+                          ToolTip="MaterialDesignActionToggleButton"/>
+            <ToggleButton Margin="0 0 8 8" Style="{StaticResource MaterialDesignActionToggleButton}"                          
+                          ToolTip="MaterialDesignActionToggleButton">
                 <Image Source="Resources/ProfilePic.jpg"></Image>
             </ToggleButton>
         </StackPanel>
@@ -155,10 +233,10 @@
         </StackPanel>
         <TextBlock Margin="0 24 0 0" Grid.Row="9">Rating bar</TextBlock>
         <StackPanel Grid.Row="10" Margin="0 16 0 0" Orientation="Horizontal">
-            <wpf:RatingBar Value="3" x:Name="BasicRatingBar" />
+            <materialDesign:RatingBar Value="3" x:Name="BasicRatingBar" />
             <TextBlock Text="{Binding ElementName=BasicRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />            
-            <wpf:RatingBar x:Name="CustomRatingBar" Max="3" Value="2" Margin="24 0 0 0" Orientation="Vertical">
-                <wpf:RatingBar.ValueItemTemplate>
+            <materialDesign:RatingBar x:Name="CustomRatingBar" Max="3" Value="2" Margin="24 0 0 0" Orientation="Vertical">
+                <materialDesign:RatingBar.ValueItemTemplate>
                     <DataTemplate DataType="system:Int32">
                         <Grid>
                             <Viewbox Width="24" Height="24">
@@ -172,8 +250,8 @@
                                        Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
                         </Grid>
                     </DataTemplate>
-                </wpf:RatingBar.ValueItemTemplate>
-            </wpf:RatingBar>
+                </materialDesign:RatingBar.ValueItemTemplate>
+            </materialDesign:RatingBar>
             <TextBlock Text="{Binding ElementName=CustomRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />
         </StackPanel>
     </Grid>

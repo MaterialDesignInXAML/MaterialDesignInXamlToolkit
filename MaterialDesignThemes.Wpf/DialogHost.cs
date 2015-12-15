@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,50 +12,157 @@ using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
 {
+    /// <summary>
+    /// Defines how a data context is sourced for a dialog if a <see cref="FrameworkElement"/>
+    /// is passed as the command parameter when using <see cref="DialogHost.OpenDialogCommand"/>.
+    /// </summary>
+    public enum DialogHostOpenDialogCommandDataContextSource
+    {
+        /// <summary>
+        /// The data context from the sender element (typically a <see cref="Button"/>) 
+        /// is applied to the content.
+        /// </summary>
+        SenderElement,
+        /// <summary>
+        /// The data context from the <see cref="DialogHost"/> is applied to the content.
+        /// </summary>
+        DialogHostInstance,
+        /// <summary>
+        /// The data context is explicitly set to <c>null</c>.
+        /// </summary>
+        None
+    }
+
     [TemplatePart(Name = PopupPartName, Type = typeof(Popup))]
+    [TemplatePart(Name = PopupPartName, Type = typeof(ContentControl))]
     [TemplateVisualState(GroupName = "PopupStates", Name = OpenStateName)]
     [TemplateVisualState(GroupName = "PopupStates", Name = ClosedStateName)]
     public class DialogHost : ContentControl
     {
         public const string PopupPartName = "PART_Popup";
+        public const string PopupContentPartName = "PART_PopupContentElement";
         public const string OpenStateName = "Open";
         public const string ClosedStateName = "Closed";
 
+        /// <summary>
+        /// Routed command to be used somewhere inside an instance to trigger showing of the dialog. Content can be passed to the dialog via a <see cref="Button.CommandParameter"/>.
+        /// </summary>
         public static RoutedCommand OpenDialogCommand = new RoutedCommand();
+        /// <summary>
+        /// Routed command to be used inside dialog content to close a dialog. Use a <see cref="Button.CommandParameter"/> to indicate the result of the parameter.
+        /// </summary>
         public static RoutedCommand CloseDialogCommand = new RoutedCommand();
 
         private static readonly HashSet<DialogHost> LoadedInstances = new HashSet<DialogHost>();
 
         private readonly ManualResetEvent _asyncShowWaitHandle = new ManualResetEvent(false);
-        private DialogClosingEventHandler _asyncShowClosingEventHandler = null;
+        private DialogOpenedEventHandler _asyncShowOpenedEventHandler;
+        private DialogClosingEventHandler _asyncShowClosingEventHandler;
 
         private Popup _popup;
-        private Window _window;
-        private DialogClosingEventHandler _attachedDialogClosingEventHandler;
-        private bool _removeContentOnClose;
-        private object _closeDialogExecutionParameter = null;
+        private ContentControl _popupContentControl;
+        private DialogSession _session;
+        private DialogOpenedEventHandler _attachedDialogOpenedEventHandler;
+        private DialogClosingEventHandler _attachedDialogClosingEventHandler;        
+        private object _closeDialogExecutionParameter;
 
         static DialogHost()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(DialogHost), new FrameworkPropertyMetadata(typeof(DialogHost)));            
         }
 
+        #region .Show overloads
+
+        /// <summary>
+        /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
+        /// </summary>
+        /// <param name="content">Content to show (can be a control or view model).</param>
+        /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
         public static object Show(object content)
         {
             return Show(content, null, null);
         }
 
+        /// <summary>
+        /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
+        /// </summary>
+        /// <param name="content">Content to show (can be a control or view model).</param>        
+        /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>        
+        /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
+        public static object Show(object content, DialogOpenedEventHandler openedEventHandler)
+        {
+            return Show(content, null, openedEventHandler, null);
+        }
+
+        /// <summary>
+        /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
+        /// </summary>
+        /// <param name="content">Content to show (can be a control or view model).</param>
+        /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
+        /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
         public static object Show(object content, DialogClosingEventHandler closingEventHandler)
         {
-            return Show(content, null, closingEventHandler);
+            return Show(content, null, null, closingEventHandler);
         }
 
+        /// <summary>
+        /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
+        /// </summary>
+        /// <param name="content">Content to show (can be a control or view model).</param>        
+        /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
+        /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
+        /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
+        public static object Show(object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
+        {
+            return Show(content, null, openedEventHandler, closingEventHandler);
+        }
+
+        /// <summary>
+        /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
+        /// </summary>
+        /// <param name="content">Content to show (can be a control or view model).</param>
+        /// <param name="dialogIndetifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
+        /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
         public static object Show(object content, object dialogIndetifier)
         {
-            return Show(content, dialogIndetifier, null);
+            return Show(content, dialogIndetifier, null, null);
         }
 
+        /// <summary>
+        /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
+        /// </summary>
+        /// <param name="content">Content to show (can be a control or view model).</param>
+        /// <param name="dialogIndetifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
+        /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
+        /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
+        public static object Show(object content, object dialogIndetifier, DialogOpenedEventHandler openedEventHandler)
+        {
+            return Show(content, dialogIndetifier, openedEventHandler, null);
+        }
+
+        /// <summary>
+        /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
+        /// </summary>
+        /// <param name="content">Content to show (can be a control or view model).</param>
+        /// <param name="dialogIndetifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>        
+        /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
+        /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
         public static object Show(object content, object dialogIndetifier, DialogClosingEventHandler closingEventHandler)
+        {
+            return Show(content, dialogIndetifier, null, closingEventHandler);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
+        /// </summary>
+        /// <param name="content">Content to show (can be a control or view model).</param>
+        /// <param name="dialogIndetifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
+        /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
+        /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
+        /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
+        public static object Show(object content, object dialogIndetifier, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
 
@@ -74,8 +180,9 @@ namespace MaterialDesignThemes.Wpf
 
             targets[0].AssertTargetableContent();
             targets[0].DialogContent = content;
-            targets[0].SetCurrentValue(IsOpenProperty, true);
+            targets[0]._asyncShowOpenedEventHandler = openedEventHandler;
             targets[0]._asyncShowClosingEventHandler = closingEventHandler;
+            targets[0].SetCurrentValue(IsOpenProperty, true);
 
             var task = new Task(() =>
             {
@@ -84,19 +191,18 @@ namespace MaterialDesignThemes.Wpf
             task.Start();
             task.Wait();
 
-            targets[0].DialogContent = null;
+            targets[0]._asyncShowOpenedEventHandler = null;
             targets[0]._asyncShowClosingEventHandler = null;
 
             return targets[0]._closeDialogExecutionParameter;
         }
-        
+
         public DialogHost()
         {
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
-            SizeChanged += (sender, args) => TriggerPopupReposition();            
 
-            CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler));
+            CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler, CloseDialogCanExecute));
             CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));
         }
 
@@ -104,7 +210,7 @@ namespace MaterialDesignThemes.Wpf
             "Identifier", typeof (object), typeof (DialogHost), new PropertyMetadata(default(object)));
 
         /// <summary>
-        /// Identifier which is used in conjunction with <see cref="Show"/> to determine where a dialog should be shown.
+        /// Identifier which is used in conjunction with <see cref="Show(object)"/> to determine where a dialog should be shown.
         /// </summary>
         public object Identifier
         {
@@ -119,21 +225,30 @@ namespace MaterialDesignThemes.Wpf
         {
             var dialogHost = (DialogHost)dependencyObject;            
 
-            VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), true);
+            VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
             if (!dialogHost.IsOpen)
             {
                 dialogHost._asyncShowWaitHandle.Set();
                 dialogHost._attachedDialogClosingEventHandler = null;
-                if (dialogHost._removeContentOnClose)
-                {
-                    dialogHost.DialogContent = null;
-                    dialogHost._removeContentOnClose = false;
-                }
+                dialogHost._session.IsEnded = true;
+                dialogHost._session = null;
                 return;
             }
 
             dialogHost._asyncShowWaitHandle.Reset();
+            dialogHost._session = new DialogSession(dialogHost);
+
+            //multiple ways of calling back that the dialog has opened:
+            // * routed event
+            // * the attached property (which should be applied to the button which opened the dialog
+            // * straight forward dependency property 
+            // * handler provided to the async show method
+            var dialogOpenedEventArgs = new DialogOpenedEventArgs(dialogHost._session, DialogOpenedEvent);
+            dialogHost.OnDialogOpened(dialogOpenedEventArgs);
+            dialogHost._attachedDialogOpenedEventHandler?.Invoke(dialogHost, dialogOpenedEventArgs);
+            dialogHost.DialogOpenedCallback?.Invoke(dialogHost, dialogOpenedEventArgs);
+            dialogHost._asyncShowOpenedEventHandler?.Invoke(dialogHost, dialogOpenedEventArgs);
 
             dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() =>
             {
@@ -184,14 +299,83 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(DialogContentStringFormatProperty, value); }
         }
 
+        public static readonly DependencyProperty OpenDialogCommandDataContextSourceProperty = DependencyProperty.Register(
+            "OpenDialogCommandDataContextSource", typeof (DialogHostOpenDialogCommandDataContextSource), typeof (DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource)));
+
+        /// <summary>
+        /// Defines how a data context is sourced for a dialog if a <see cref="FrameworkElement"/>
+        /// is passed as the command parameter when using <see cref="DialogHost.OpenDialogCommand"/>.
+        /// </summary>
+        public DialogHostOpenDialogCommandDataContextSource OpenDialogCommandDataContextSource
+        {
+            get { return (DialogHostOpenDialogCommandDataContextSource) GetValue(OpenDialogCommandDataContextSourceProperty); }
+            set { SetValue(OpenDialogCommandDataContextSourceProperty, value); }
+        }
+
         public override void OnApplyTemplate()
         {
-            _popup = GetTemplateChild(PopupPartName) as Popup;            
+            _popup = GetTemplateChild(PopupPartName) as Popup;
+            _popupContentControl = GetTemplateChild(PopupContentPartName) as ContentControl;
 
             VisualStateManager.GoToState(this, SelectState(), false);
 
             base.OnApplyTemplate();            
         }
+
+        #region open dialog events/callbacks
+
+        public static readonly RoutedEvent DialogOpenedEvent =
+            EventManager.RegisterRoutedEvent(
+                "DialogOpened",
+                RoutingStrategy.Bubble,
+                typeof (DialogOpenedEventHandler),
+                typeof (DialogHost));
+
+        /// <summary>
+        /// Raised when a dialog is opened.
+        /// </summary>
+        public event DialogOpenedEventHandler DialogOpened
+        {
+            add { AddHandler(DialogOpenedEvent, value); }
+            remove { RemoveHandler(DialogOpenedEvent, value); }
+        }
+
+        /// <summary>
+        /// Attached property which can be used on the <see cref="Button"/> which instigated the <see cref="OpenDialogCommand"/> to process the event.
+        /// </summary>
+        public static readonly DependencyProperty DialogOpenedAttachedProperty = DependencyProperty.RegisterAttached(
+            "DialogOpenedAttached", typeof(DialogOpenedEventHandler), typeof(DialogHost), new PropertyMetadata(default(DialogOpenedEventHandler)));
+
+        public static void SetDialogOpenedAttached(DependencyObject element, DialogOpenedEventHandler value)
+        {
+            element.SetValue(DialogOpenedAttachedProperty, value);
+        }
+
+        public static DialogOpenedEventHandler GetDialogOpenedAttached(DependencyObject element)
+        {
+            return (DialogOpenedEventHandler)element.GetValue(DialogOpenedAttachedProperty);
+        }
+
+        public static readonly DependencyProperty DialogOpenedCallbackProperty = DependencyProperty.Register(
+            "DialogOpenedCallback", typeof(DialogOpenedEventHandler), typeof(DialogHost), new PropertyMetadata(default(DialogOpenedEventHandler)));
+
+        /// <summary>
+        /// Callback fired when the <see cref="DialogOpened"/> event is fired, allowing the event to be processed from a binding/view model.
+        /// </summary>
+        public DialogOpenedEventHandler DialogOpenedCallback
+        {
+            get { return (DialogOpenedEventHandler)GetValue(DialogOpenedCallbackProperty); }
+            set { SetValue(DialogOpenedCallbackProperty, value); }
+        }
+
+        protected void OnDialogOpened(DialogOpenedEventArgs eventArgs)
+        {
+            RaiseEvent(eventArgs);
+        }
+
+        #endregion
+
+        #region close dialog events/callbacks
 
         public static readonly RoutedEvent DialogClosingEvent =
             EventManager.RegisterRoutedEvent(
@@ -201,32 +385,32 @@ namespace MaterialDesignThemes.Wpf
                 typeof (DialogHost));
 
         /// <summary>
-        /// Raised just beforee a dialog is closed.
+        /// Raised just before a dialog is closed.
         /// </summary>
         public event DialogClosingEventHandler DialogClosing
         {
             add { AddHandler(DialogClosingEvent, value); }
             remove { RemoveHandler(DialogClosingEvent, value); }
         }
-
+        
         /// <summary>
         /// Attached property which can be used on the <see cref="Button"/> which instigated the <see cref="OpenDialogCommand"/> to process the closing event.
         /// </summary>
-        public static readonly DependencyProperty DialogClosingProperty = DependencyProperty.RegisterAttached(
-            "DialogClosing", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
+        public static readonly DependencyProperty DialogClosingAttachedProperty = DependencyProperty.RegisterAttached(
+            "DialogClosingAttached", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
 
-        public static void SetDialogClosing(DependencyObject element, DialogClosingEventHandler value)
+        public static void SetDialogClosingAttached(DependencyObject element, DialogClosingEventHandler value)
         {
-            element.SetValue(DialogClosingProperty, value);
+            element.SetValue(DialogClosingAttachedProperty, value);
         }
 
-        public static DialogClosingEventHandler GetDialogClosing(DependencyObject element)
+        public static DialogClosingEventHandler GetDialogClosingAttached(DependencyObject element)
         {
-            return (DialogClosingEventHandler) element.GetValue(DialogClosingProperty);
-        }
+            return (DialogClosingEventHandler) element.GetValue(DialogClosingAttachedProperty);
+        }        
 
         public static readonly DependencyProperty DialogClosingCallbackProperty = DependencyProperty.Register(
-            "DialogClosingCallback", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
+            "DialogClosingCallback", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));        
 
         /// <summary>
         /// Callback fired when the <see cref="DialogClosing"/> event is fired, allowing the event to be processed from a binding/view model.
@@ -238,10 +422,42 @@ namespace MaterialDesignThemes.Wpf
         }
 
         protected void OnDialogClosing(DialogClosingEventArgs eventArgs)
-        {
-            eventArgs.RoutedEvent = DialogClosingEvent; 
-            eventArgs.Source = eventArgs.Source ?? this;
+        {            
             RaiseEvent(eventArgs);
+        }
+
+        #endregion
+
+        internal void AssertTargetableContent()
+        {
+            var existindBinding = BindingOperations.GetBindingExpression(this, DialogContentProperty);
+            if (existindBinding != null)
+                throw new InvalidOperationException(
+                    "Content cannot be passed to a dialog via the OpenDialog if DialogContent already has a binding.");
+        }
+
+        internal void Close(object parameter)
+        {
+            var dialogClosingEventArgs = new DialogClosingEventArgs(_session, parameter, DialogClosingEvent);
+
+            _session.IsEnded = true;
+
+            //multiple ways of calling back that the dialog is closing:
+            // * routed event
+            // * the attached property (which should be applied to the button which opened the dialog
+            // * straight forward dependency property 
+            // * handler provided to the async show method
+            OnDialogClosing(dialogClosingEventArgs);
+            _attachedDialogClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
+            DialogClosingCallback?.Invoke(this, dialogClosingEventArgs);
+            _asyncShowClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
+
+            if (!dialogClosingEventArgs.IsCancelled)
+                SetCurrentValue(IsOpenProperty, false);
+            else
+                _session.IsEnded = false;
+
+            _closeDialogExecutionParameter = parameter;
         }
 
         private void OpenDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
@@ -251,14 +467,34 @@ namespace MaterialDesignThemes.Wpf
             var dependencyObject = executedRoutedEventArgs.OriginalSource as DependencyObject;
             if (dependencyObject != null)
             {
-                _attachedDialogClosingEventHandler = GetDialogClosing(dependencyObject);
+                _attachedDialogOpenedEventHandler = GetDialogOpenedAttached(dependencyObject);
+                _attachedDialogClosingEventHandler = GetDialogClosingAttached(dependencyObject);
             }
 
             if (executedRoutedEventArgs.Parameter != null)
             {
                 AssertTargetableContent();
+
+                if (_popupContentControl != null)
+                {
+                    switch (OpenDialogCommandDataContextSource)
+                    {
+                        case DialogHostOpenDialogCommandDataContextSource.SenderElement:
+                            _popupContentControl.DataContext =
+                                (executedRoutedEventArgs.Parameter as FrameworkElement)?.DataContext;
+                            break;
+                        case DialogHostOpenDialogCommandDataContextSource.DialogHostInstance:
+                            _popupContentControl.DataContext = DataContext;
+                            break;
+                        case DialogHostOpenDialogCommandDataContextSource.None:
+                            _popupContentControl.DataContext = null;
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                }
+
                 DialogContent = executedRoutedEventArgs.Parameter;
-                _removeContentOnClose = true;
             }
 
             SetCurrentValue(IsOpenProperty, true);
@@ -266,34 +502,16 @@ namespace MaterialDesignThemes.Wpf
             executedRoutedEventArgs.Handled = true;
         }
 
-        private void AssertTargetableContent()
+        private void CloseDialogCanExecute(object sender, CanExecuteRoutedEventArgs canExecuteRoutedEventArgs)
         {
-            var existindBinding = BindingOperations.GetBindingExpression(this, DialogContentProperty);
-            if (existindBinding != null || DialogContent != null)
-                throw new InvalidOperationException(
-                    "Content cannot be passed to a dialog via the OpenDialog of DialogContent is already set, or has a binding.");
+            canExecuteRoutedEventArgs.CanExecute = _session != null;
         }
 
         private void CloseDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
             if (executedRoutedEventArgs.Handled) return;
 
-            var dialogClosingEventArgs = new DialogClosingEventArgs(executedRoutedEventArgs.Parameter, DialogContent);
-
-            //multiple ways of calling back that the dialog is closing:
-            // * the attached property (which should be applied to the button which opened the dialog
-            // * straight forward dependency property 
-            // * handler provided to the async show method
-            // * routed event
-            _attachedDialogClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
-            DialogClosingCallback?.Invoke(this, dialogClosingEventArgs);
-            _asyncShowClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
-            OnDialogClosing(dialogClosingEventArgs);
-
-            if (!dialogClosingEventArgs.IsCancelled)
-                SetCurrentValue(IsOpenProperty, false);
-
-            _closeDialogExecutionParameter = executedRoutedEventArgs.Parameter;
+            Close(executedRoutedEventArgs.Parameter);
 
             executedRoutedEventArgs.Handled = true;
         }
@@ -303,45 +521,15 @@ namespace MaterialDesignThemes.Wpf
             return IsOpen ? OpenStateName : ClosedStateName;
         }
 
-        private void TriggerPopupReposition()
-        {
-            if (_popup == null) return;
-
-            _popup.HorizontalOffset++;
-            _popup.HorizontalOffset--;
-        }
-
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
             LoadedInstances.Remove(this);
-
-            if (_window != null)
-            {
-                _window.LocationChanged -= WindowOnLocationChanged;
-                _window.SizeChanged -= WindowOnSizeChanged;
-            }
             SetCurrentValue(IsOpenProperty, false);
         }
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             LoadedInstances.Add(this);
-
-            _window = Window.GetWindow(this);
-            if (_window == null) return;
-
-            _window.LocationChanged += WindowOnLocationChanged;
-            _window.SizeChanged += WindowOnSizeChanged;
-        }
-
-        private void WindowOnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
-        {
-            TriggerPopupReposition();
-        }
-
-        private void WindowOnLocationChanged(object sender, EventArgs eventArgs)
-        {
-            TriggerPopupReposition();
         }
     }
 }

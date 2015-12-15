@@ -1,20 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
-using System.Windows;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
-{
-    public class NotNullToVisibilityConverter : IValueConverter
+{    
+    public class DrawerOffsetConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null ? Visibility.Visible : Visibility.Collapsed;
+            var d = value as double? ?? 0;
+            if (double.IsInfinity(d) || double.IsNaN(d)) d = 0;
+            return 0 - d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Binding.DoNothing;
+            throw new NotImplementedException();
         }
     }
 }

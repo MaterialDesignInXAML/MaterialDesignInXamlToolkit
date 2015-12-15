@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
-
+using System.Windows.Media.Animation;
+using System.Runtime.InteropServices;
 namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
     {
-        public void SetLightDark(bool isDark)
+        public virtual void SetLightDark(bool isDark)
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
                 .Where(rd => rd.Source != null)
@@ -31,13 +32,13 @@ namespace MaterialDesignThemes.Wpf
 
             source =
                 $"pack://application:,,,/MahApps.Metro;component/Styles/Accents/{(isDark ? "BaseDark" : "BaseLight")}.xaml";
-            var newMahAppsResourceDictionary = new ResourceDictionary() { Source = new Uri(source) };
+            var newMahAppsResourceDictionary = new ResourceDictionary { Source = new Uri(source) };
 
             Application.Current.Resources.MergedDictionaries.Remove(existingMahAppsResourceDictionary);
             Application.Current.Resources.MergedDictionaries.Add(newMahAppsResourceDictionary);
         }
 
-        public void ReplacePrimaryColor(Swatch swatch, bool mahapps = false)
+        public virtual void ReplacePrimaryColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
 
@@ -59,24 +60,22 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("PrimaryHueDarkBrush", new SolidColorBrush(dark.Color));
             ReplaceEntry("PrimaryHueDarkForegroundBrush", new SolidColorBrush(dark.Foreground));
 
-            if (mahapps)
-            {
-                ReplaceEntry("HighlightBrush", new SolidColorBrush(dark.Color));
-                ReplaceEntry("AccentColorBrush", new SolidColorBrush(list[5].Color));
-                ReplaceEntry("AccentColorBrush2", new SolidColorBrush(list[4].Color));
-                ReplaceEntry("AccentColorBrush3", new SolidColorBrush(list[3].Color));
-                ReplaceEntry("AccentColorBrush4", new SolidColorBrush(list[2].Color));
-                ReplaceEntry("WindowTitleColorBrush", new SolidColorBrush(dark.Color));
-                ReplaceEntry("AccentSelectedColorBrush", new SolidColorBrush(list[5].Foreground));
-                ReplaceEntry("ProgressBrush", new LinearGradientBrush(dark.Color, list[3].Color, 90.0));
-                ReplaceEntry("CheckmarkFill", new SolidColorBrush(list[5].Color));
-                ReplaceEntry("RightArrowFill", new SolidColorBrush(list[5].Color));
-                ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(list[5].Foreground));
-                ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark.Color) { Opacity = .4 });
-            }
+            //mahapps brushes            
+            ReplaceEntry("HighlightBrush", new SolidColorBrush(dark.Color));
+            ReplaceEntry("AccentColorBrush", new SolidColorBrush(list[5].Color));
+            ReplaceEntry("AccentColorBrush2", new SolidColorBrush(list[4].Color));
+            ReplaceEntry("AccentColorBrush3", new SolidColorBrush(list[3].Color));
+            ReplaceEntry("AccentColorBrush4", new SolidColorBrush(list[2].Color));
+            ReplaceEntry("WindowTitleColorBrush", new SolidColorBrush(dark.Color));
+            ReplaceEntry("AccentSelectedColorBrush", new SolidColorBrush(list[5].Foreground));
+            ReplaceEntry("ProgressBrush", new LinearGradientBrush(dark.Color, list[3].Color, 90.0));
+            ReplaceEntry("CheckmarkFill", new SolidColorBrush(list[5].Color));
+            ReplaceEntry("RightArrowFill", new SolidColorBrush(list[5].Color));
+            ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(list[5].Foreground));
+            ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark.Color) { Opacity = .4 });                   
         }
 
-        public void ReplacePrimaryColor(string name, bool mahapps = false)
+        public virtual void ReplacePrimaryColor(string name)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
@@ -86,10 +85,10 @@ namespace MaterialDesignThemes.Wpf
             if (swatch == null)
                 throw new ArgumentException($"No such swatch '{name}'", nameof(name));
 
-            ReplacePrimaryColor(swatch, mahapps);
+            ReplacePrimaryColor(swatch);
         }
 
-        public void ReplaceAccentColor(Swatch swatch)
+        public virtual void ReplaceAccentColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
 
@@ -103,7 +102,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(swatch.AccentExemplarHue.Foreground));
         }
 
-        public void ReplaceAccentColor(string name)
+        public virtual void ReplaceAccentColor(string name)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
@@ -115,32 +114,37 @@ namespace MaterialDesignThemes.Wpf
 
             ReplaceAccentColor(swatch);
         }
-
+        
         /// <summary>
         /// Replaces a certain entry anywhere in the parent dictionary and its merged dictionaries
         /// </summary>
         /// <param name="entryName">The entry to replace</param>
         /// <param name="newValue">The new entry value</param>
         /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
-        /// <returns>Weather the value was replaced (true) or not (false)</returns>
-        private static bool ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
-        {
+        private static void ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
+        {            
             if (parentDictionary == null)
                 parentDictionary = Application.Current.Resources;
-
+            
             if (parentDictionary.Contains(entryName))
             {
-                parentDictionary[entryName] = newValue;
-                return true;
+                var brush = parentDictionary[entryName] as SolidColorBrush;
+                if (brush != null && !brush.IsFrozen)
+                {                 
+                    var animation = new ColorAnimation
+                    {
+                        From = ((SolidColorBrush)parentDictionary[entryName]).Color,
+                        To = ((SolidColorBrush)newValue).Color,
+                        Duration = new Duration(TimeSpan.FromMilliseconds(300))
+                    };
+                    brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                }
+                else
+                    parentDictionary[entryName] = newValue; //Set value normally
             }
 
             foreach (var dictionary in parentDictionary.MergedDictionaries)
-            {
-                if (ReplaceEntry(entryName, newValue, dictionary))
-                    return true;
-            }
-
-            return false;
+                ReplaceEntry(entryName, newValue, dictionary);
         }
-    }
+    }    
 }

@@ -83,11 +83,20 @@
     <Compile Include="Domain\DemoItem.cs" />
     <Compile Include="Domain\DialogsViewModel.cs" />
     <Compile Include="Domain\ListFieldsViewModel.cs" />
+    <Compile Include="Domain\Sample4Dialog.xaml.cs">
+      <DependentUpon>Sample4Dialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Domain\SampleDialog.xaml.cs">
       <DependentUpon>SampleDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Domain\SampleProgressDialog.xaml.cs">
+      <DependentUpon>SampleProgressDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Domain\SelectableViewModel.cs" />
     <Compile Include="Domain\TextFieldsViewModel.cs" />
+    <Compile Include="Expander.xaml.cs">
+      <DependentUpon>Expander.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Grids.xaml.cs">
       <DependentUpon>Grids.xaml</DependentUpon>
     </Compile>
@@ -105,6 +114,10 @@
       <DependentUpon>PaletteSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="PaletteSelectorViewModel.cs" />
+    <Compile Include="Pickers.xaml.cs">
+      <DependentUpon>Pickers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PickersViewModel.cs" />
     <Compile Include="Progress.xaml.cs">
       <DependentUpon>Progress.xaml</DependentUpon>
     </Compile>
@@ -114,11 +127,17 @@
     <Compile Include="Shadows.xaml.cs">
       <DependentUpon>Shadows.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sliders.xaml.cs">
+      <DependentUpon>Sliders.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TextFields.xaml.cs">
       <DependentUpon>TextFields.xaml</DependentUpon>
     </Compile>
     <Compile Include="Trees.xaml.cs">
       <DependentUpon>Trees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Typography.xaml.cs">
+      <DependentUpon>Typography.xaml</DependentUpon>
     </Compile>
     <Page Include="Buttons.xaml">
       <SubType>Designer</SubType>
@@ -132,11 +151,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Expander.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Domain\Sample4Dialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Domain\SampleDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Domain\SampleProgressDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,6 +207,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pickers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Progress.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -188,11 +223,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Sliders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TextFields.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Trees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Typography.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

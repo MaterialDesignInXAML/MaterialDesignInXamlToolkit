@@ -25,7 +25,7 @@ namespace MahMaterialDragablzMashUp
 
         private static void ApplyPrimary(Swatch swatch)
         {
-            new PaletteHelper().ReplacePrimaryColor(swatch, true);
+            new PaletteHelper().ReplacePrimaryColor(swatch);
         }
 
         public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o));
