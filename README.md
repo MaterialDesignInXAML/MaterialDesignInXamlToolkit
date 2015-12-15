@@ -49,6 +49,7 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
  * and on [Twitter](https://twitter.com/snalty)
 * Marc Angers - I pulled some oh his shadows straight in from this [blog post](http://marcangers.com/material-design-shadows-in-wpf/)
 * Most of the icons come from [Material Design Icons](https://materialdesignicons.com/)...check it!
+* Utilises [ControlzEx](https://github.com/ControlzEx/ControlzEx)
 * Ignace Maes, whose [Material Skin](https://github.com/IgnaceMaes/MaterialSkin) project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
 * **[Contributors!](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)**  Thanks for the PRs which have helped add some extra polish.  
 
