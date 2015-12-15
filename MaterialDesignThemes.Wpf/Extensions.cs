@@ -24,17 +24,17 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public static bool IsDescendant(this DependencyObject parent, DependencyObject node)
+        public static bool IsAncestorOf(this DependencyObject parent, DependencyObject node)
         {
             return node != null && parent.VisualDepthFirstTraversal().Contains(node);
         }
 
         /// <summary>
-        /// Returns full visual ancestory, starting at the leaf.
+        /// Returns full visual ancestry, starting at the leaf.
         /// </summary>
         /// <param name="leaf"></param>
         /// <returns></returns>
-        public static IEnumerable<DependencyObject> GetVisualAncestory(this DependencyObject leaf)
+        public static IEnumerable<DependencyObject> GetVisualAncestry(this DependencyObject leaf)
         {
             while (leaf != null)
             {
@@ -43,7 +43,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public static IEnumerable<DependencyObject> GetLogicalAncestory(this DependencyObject leaf)
+        public static IEnumerable<DependencyObject> GetLogicalAncestry(this DependencyObject leaf)
         {
             while (leaf != null)
             {
@@ -52,17 +52,18 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public static bool HasAncestor(this DependencyObject leaf, DependencyObject ancestor)
+        public static bool IsDescendantOf(this DependencyObject leaf, DependencyObject ancestor)
         {
-            var visualAncestry = leaf.GetVisualAncestory().ToArray();
-            if (visualAncestry.Contains(ancestor))
+            DependencyObject parent = null;
+            foreach (var node in leaf.GetVisualAncestry())
             {
-                return true;
+                if (Equals(node, ancestor))
+                    return true;
+
+                parent = node;
             }
 
-            var lastVisualAncestor = visualAncestry.LastOrDefault();
-            var logicalAncestry = GetLogicalAncestory(lastVisualAncestor);
-            return logicalAncestry.Contains(ancestor);
+            return parent != null && parent.GetLogicalAncestry().Contains(ancestor);
         }
     }
 }

@@ -578,14 +578,14 @@ namespace MaterialDesignThemes.Wpf
             {
                 if (e.OriginalSource == popupBox)
                 {
-                    if (Mouse.Captured == null || popupBox._popup == null || !(Mouse.Captured as DependencyObject).HasAncestor(popupBox._popup))
+                    if (Mouse.Captured == null || popupBox._popup == null || !(Mouse.Captured as DependencyObject).IsDescendantOf(popupBox._popup))
                     {
                         popupBox.Close();
                     }
                 }
                 else
                 {
-                    if ((Mouse.Captured as DependencyObject).GetVisualAncestory().Contains(popupBox._popup))
+                    if ((Mouse.Captured as DependencyObject).GetVisualAncestry().Contains(popupBox._popup))
                     {
                         // Take capture if one of our children gave up capture (by closing their drop down)
                         if (popupBox.IsPopupOpen && Mouse.Captured == null && GetCapture() == IntPtr.Zero)
