@@ -155,20 +155,6 @@
                 <ControlTemplate>
                     <ControlTemplate.Resources>
                         <CircleEase x:Key="UnderlineEasingFunction" EasingMode="EaseOut"/>
-                        <Storyboard x:Key="ExpandUnderlineBorderStoryboard">
-                            <DoubleAnimation Storyboard.TargetName="UnderlineBorder"
-                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                                 Duration="0:0:0.3"
-                                                 EasingFunction="{StaticResource UnderlineEasingFunction}"
-                                                 To="1"/>
-                        </Storyboard>
-                        <Storyboard x:Key="CollapseUnderlineBorderStoryboard">
-                            <DoubleAnimation Storyboard.TargetName="UnderlineBorder"
-                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                                 Duration="0:0:0.3"
-                                                 EasingFunction="{StaticResource UnderlineEasingFunction}"
-                                                 To="0"/>
-                        </Storyboard>
                     </ControlTemplate.Resources>
                     <Border x:Name="UnderlineBorder"
                             Background="{TemplateBinding Background}"
@@ -178,20 +164,50 @@
                             HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                             RenderTransformOrigin="0.5,0.5">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ActivationStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Inactive" To="Active">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                             Storyboard.TargetProperty="ScaleX"
+                                                             Duration="0:0:0.3"
+                                                             EasingFunction="{StaticResource UnderlineEasingFunction}"
+                                                             To="1"/>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Active" To="Inactive">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                             Storyboard.TargetProperty="ScaleX"
+                                                             Duration="0:0:0.3"
+                                                             EasingFunction="{StaticResource UnderlineEasingFunction}"
+                                                             To="0"/>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Active">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         Duration="0"
+                                                         To="1"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Inactive">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         Duration="0"
+                                                         To="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <Border.RenderTransform>
-                            <ScaleTransform ScaleX="0" ScaleY="1"/>
+                            <ScaleTransform ScaleX="0" ScaleY="1" x:Name="ScaleTransform" />
                         </Border.RenderTransform>
                     </Border>
-                    <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsActive}" Value="True">
-                            <DataTrigger.EnterActions>
-                                <BeginStoryboard Storyboard="{StaticResource ExpandUnderlineBorderStoryboard}"/>
-                            </DataTrigger.EnterActions>
-                            <DataTrigger.ExitActions>
-                                <BeginStoryboard Storyboard="{StaticResource CollapseUnderlineBorderStoryboard}"/>
-                            </DataTrigger.ExitActions>
-                        </DataTrigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

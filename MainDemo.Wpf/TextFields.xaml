@@ -88,8 +88,8 @@
             </Canvas>
         </Viewbox>
         <TextBox Grid.Row="1" Grid.Column="1" 
-				    x:Name="PhoneTextBox"
-				    materialDesign:TextFieldAssist.Hint="Phone"
+				 x:Name="PhoneTextBox"				 
+                 materialDesign:TransitionAssist.DisableTransitions="True"
 				    />
         <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">Fruit</TextBlock>
         <ComboBox Grid.Row="1" Grid.Column="3" materialDesign:TextFieldAssist.Hint="Search"
