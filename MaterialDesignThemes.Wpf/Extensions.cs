@@ -63,7 +63,7 @@ namespace MaterialDesignThemes.Wpf
                 parent = node;
             }
 
-            return parent != null && parent.GetLogicalAncestry().Contains(ancestor);
+            return parent.GetLogicalAncestry().Contains(ancestor);
         }
     }
 }
