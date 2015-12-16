@@ -53,24 +53,26 @@
                                       VerticalAlignment="Center"
                                       />
                         <controlzEx:PopupEx x:Name="PART_Popup" IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
-                                          CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
-                                          HorizontalOffset="5"
-                                          VerticalOffset="5"
-                                          PlacementTarget="{Binding ElementName=PART_Toggle}"
-                                          Placement="Custom"
-                                          PopupAnimation="Fade"
-                                          AllowsTransparency="True">
+                                            CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"                                            
+                                            HorizontalOffset="5"
+                                            VerticalOffset="5"
+                                            PlacementTarget="{Binding ElementName=PART_Toggle}"
+                                            Placement="Custom"
+                                            PopupAnimation="Fade"
+                                            AllowsTransparency="True">
                             <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"
+                                      Foreground="{DynamicResource MaterialDesignBody}"
                                       FontSize="15"
                                       FontWeight="Regular"
                                       Padding="0 8 0 8"
-                                      RenderOptions.ClearTypeHint="Enabled"
+                                      RenderOptions.ClearTypeHint="Enabled"                                      
                                       Margin="5">
                                 <wpf:Card.Resources>
                                     <Style TargetType="{x:Type Button}">
                                         <Setter Property="VerticalContentAlignment" Value="Bottom" />
                                         <Setter Property="HorizontalContentAlignment" Value="Left" />
                                         <Setter Property="Padding" Value="16 0 16 16" />
+                                        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type Button}">
