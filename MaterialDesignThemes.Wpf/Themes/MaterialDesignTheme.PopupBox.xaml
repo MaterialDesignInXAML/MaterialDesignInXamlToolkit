@@ -11,8 +11,9 @@
         
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:NullableToVisibilityConverter x:Key="NullVisibilityConverter" />
-    <converters:NullableToVisibilityConverter x:Key="InvertedNullVisibilityConverter" NullValue="Visible" NotNullValue="Collapsed" />    
-    
+    <converters:NullableToVisibilityConverter x:Key="InvertedNullVisibilityConverter" NullValue="Visible" NotNullValue="Collapsed" />
+    <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
+
     <Style TargetType="{x:Type wpf:PopupBox}" x:Key="MaterialDesignPopupBox">
         <Setter Property="ToggleContent">
             <Setter.Value>
@@ -59,8 +60,60 @@
                                           Placement="Custom"
                                           PopupAnimation="Fade"
                                           AllowsTransparency="True">
-                            <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"                                        
-                                      Margin="5" />
+                            <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"
+                                      FontSize="15"
+                                      FontWeight="Regular"
+                                      Padding="0 8 0 8"
+                                      RenderOptions.ClearTypeHint="Enabled"
+                                      Margin="5">
+                                <wpf:Card.Resources>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="VerticalContentAlignment" Value="Bottom" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                        <Setter Property="Padding" Value="16 0 16 16" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Grid>
+                                                        <VisualStateManager.VisualStateGroups>
+                                                            <VisualStateGroup Name="CommonStates">
+                                                                <VisualStateGroup.Transitions>
+                                                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                                                                        <VisualTransition.GeneratedEasingFunction>
+                                                                            <CircleEase EasingMode="EaseOut"/>
+                                                                        </VisualTransition.GeneratedEasingFunction>
+                                                                    </VisualTransition>
+                                                                </VisualStateGroup.Transitions>
+                                                                <VisualState Name="Normal"/>
+                                                                <VisualState Name="MouseOver">
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
+                                                                                         To="0.1" Duration="0"/>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                                <VisualState Name="Disabled"/>
+                                                            </VisualStateGroup>
+                                                        </VisualStateManager.VisualStateGroups>
+                                                        <Border x:Name="MouseOverBorder"
+                                                                Opacity="0"
+                                                                Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+                                                        <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                                                    Focusable="False"
+                                                                    MinHeight="48"
+                                                                    Content="{TemplateBinding Content}"
+                                                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"                                                                
+                                                                    Padding="{TemplateBinding Padding}"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </wpf:Card.Resources>
+                            </wpf:Card>
                         </controlzEx:PopupEx>
                     </Grid>
                 </ControlTemplate>

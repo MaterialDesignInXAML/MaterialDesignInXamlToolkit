@@ -1,5 +1,9 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -18,9 +22,14 @@ namespace MaterialDesignColors.WpfExample
             MenuToggleButton.IsChecked = false;
         }
 
-        private void PopupButton_OnClick(object sender, RoutedEventArgs e)
+        private async void MenuPopupButton_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("PopupButton Clicked");
+            var sampleMessageDialog = new SampleMessageDialog
+            {
+                Message = {Text = ((ButtonBase) sender).Content.ToString()}
+            };
+
+            await DialogHost.Show(sampleMessageDialog, "RootDialog");            
         }
     } 
 }
