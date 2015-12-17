@@ -24,7 +24,7 @@
 
     <Style x:Key="MaterialDesignMenu" TargetType="{x:Type MenuBase}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
-        <Setter Property="FontFamily" Value="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"/>
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="TextBlock.FontSize" Value="15"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>

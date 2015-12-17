@@ -20,6 +20,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RatingBar.xaml" />
 		<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TimePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Fonts.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 	
 	<!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
@@ -573,7 +574,7 @@
                                         TextOptions.TextFormattingMode="Ideal"
                                         TextOptions.TextRenderingMode="Auto"
                                         Foreground="{DynamicResource MaterialDesignBody}"
-                                        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+                                        FontFamily="{StaticResource DefaultFont}"
                                         IsTabStop="False"
                                         Opacity="0"
                                         RenderTransformOrigin=".5,.5"

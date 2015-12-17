@@ -8,7 +8,7 @@
                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                       Background="{DynamicResource MaterialDesignPaper}"					  
                       GlowBrush="{DynamicResource AccentColorBrush}"					  
-                      FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+                      FontFamily="{StaticResource DefaultFont}"
                       Title="Material-MahApps-Dragablz Mash Up" Height="350" Width="525">
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>

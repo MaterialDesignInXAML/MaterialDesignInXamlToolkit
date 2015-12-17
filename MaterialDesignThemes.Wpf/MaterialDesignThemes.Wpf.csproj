@@ -289,6 +289,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Page Include="Themes\MaterialDesignTheme.Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Resource Include="Resources\Roboto\RobotoCondensed-Regular.ttf" />
     <Resource Include="Resources\Roboto\RobotoCondensed-LightItalic.ttf" />
     <Resource Include="Resources\Roboto\RobotoCondensed-Light.ttf" />
