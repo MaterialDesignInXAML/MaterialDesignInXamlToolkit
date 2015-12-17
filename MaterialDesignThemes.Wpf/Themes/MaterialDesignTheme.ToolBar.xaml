@@ -10,7 +10,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.ToggleButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.Fonts.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.Font.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
     <Style x:Key="MaterialDesignToolBarVerticalOverflowButtonStyle" TargetType="{x:Type ToggleButton}">
@@ -117,7 +117,7 @@
     
     <Style x:Key="MaterialDesignToolBar" TargetType="{x:Type ToolBar}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
-        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+        <Setter Property="FontFamily" Value="{StaticResource MaterialDesignFont}"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="ClipToBounds" Value="True"/>
         <Setter Property="Template">

@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{StaticResource DefaultFont}"
+             FontFamily="{StaticResource MaterialDesignFont}"
              mc:Ignorable="d"              
 			 d:DesignWidth="477" d:DesignHeight="272">
     <UserControl.Resources>

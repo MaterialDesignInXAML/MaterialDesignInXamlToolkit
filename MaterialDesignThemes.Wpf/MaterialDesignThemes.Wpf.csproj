@@ -289,7 +289,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <Page Include="Themes\MaterialDesignTheme.Fonts.xaml">
+    <Page Include="Themes\MaterialDesignTheme.Font.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

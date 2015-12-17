@@ -12,7 +12,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{StaticResource DefaultFont}" Icon="favicon.ico">
+        FontFamily="{StaticResource MaterialDesignFont}" Icon="favicon.ico">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

@@ -2,6 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     >
 
-  <FontFamily x:Key="DefaultFont">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+  <FontFamily x:Key="MaterialDesignFont">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
   
 </ResourceDictionary>
