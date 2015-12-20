@@ -14,7 +14,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
                 .Where(rd => rd.Source != null)
-                .SingleOrDefault(rd => Regex.Match(rd.Source.AbsolutePath, @"(\/MaterialDesignThemes.Wpf;component\/Themes\/MaterialDesignTheme\.)((Light)|(Dark))").Success);
+                .SingleOrDefault(rd => Regex.Match(rd.Source.OriginalString, @"(\/MaterialDesignThemes.Wpf;component\/Themes\/MaterialDesignTheme\.)((Light)|(Dark))").Success);
             if (existingResourceDictionary == null)
                 throw new ApplicationException("Unable to find Light/Dark base theme in Application resources.");
 
