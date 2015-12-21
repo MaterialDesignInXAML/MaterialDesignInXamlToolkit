@@ -5,6 +5,9 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class PasswordFieldAssist
     {
+        private static readonly DependencyPropertyKey IsNullOrEmptyPropertyKey = DependencyProperty.RegisterAttachedReadOnly("IsNullOrEmpty", typeof(bool), typeof(PasswordFieldAssist), new PropertyMetadata(true));
+        private static readonly DependencyProperty IsNullOrEmptyProperty = IsNullOrEmptyPropertyKey.DependencyProperty;
+
         public static readonly DependencyProperty ManagedProperty = DependencyProperty.RegisterAttached(
             "Managed", typeof(PasswordBox), typeof(PasswordFieldAssist), new PropertyMetadata(default(PasswordBox), ManagedPropertyChangedCallback));
 
@@ -26,7 +29,26 @@ namespace MaterialDesignThemes.Wpf
 
         private static void PasswordBoxOnPasswordChanged(object sender, RoutedEventArgs routedEventArgs)
         {
-            ConfigureHint((PasswordBox)sender);
+            var passwordBox = (PasswordBox)sender;
+            ConfigureHint(passwordBox);
+
+            var frameworkElement = (FrameworkElement)sender;
+            if (frameworkElement == null)
+                return;
+
+            var state = string.IsNullOrEmpty((passwordBox.Password ?? ""))
+                ? "MaterialDesignStateTextEmpty"
+                : "MaterialDesignStateTextNotEmpty";
+
+            if (frameworkElement.IsLoaded)
+            {
+                VisualStateManager.GoToState(frameworkElement, state, true);
+            }
+            else
+            {
+                frameworkElement.Loaded += (s, args) => VisualStateManager.GoToState(frameworkElement, state, false);
+            }
+            SetIsNullOrEmpty(frameworkElement, string.IsNullOrEmpty((passwordBox.Password ?? "")));
         }
 
         private static void ConfigureHint(PasswordBox passwordBox)
@@ -56,11 +78,21 @@ namespace MaterialDesignThemes.Wpf
         {
             return (PasswordBox)element.GetValue(ManagedProperty);
         }
+
+        private static void SetIsNullOrEmpty(DependencyObject element, bool value)
+        {
+            element.SetValue(IsNullOrEmptyPropertyKey, value);
+        }
+
+        public static bool GetIsNullOrEmpty(DependencyObject element)
+        {
+            return (bool)element.GetValue(IsNullOrEmptyProperty);
+        }
     }
 
     public static class ProgressBarAssist
     {
 
-        
+
     }
 }
