@@ -18,6 +18,10 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Viewbox x:Key="Sample" x:Shared="False" Width="{Binding Path=Width, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Height="{Binding Path=Height, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}">
+                <Path Data="M14,20A2,2 0 0,1 12,22A2,2 0 0,1 10,20H14M12,2A1,1 0 0,1 13,3V4.08C15.84,4.56 18,7.03 18,10V16L21,19H3L6,16V10C6,7.03 8.16,4.56 11,4.08V3A1,1 0 0,1 12,2Z" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" />
+            </Viewbox>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid VerticalAlignment="Top">
@@ -158,6 +162,10 @@
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton">
                 ACCENT
             </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 0" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedAccentButton" materialDesign:ButtonAssist.Icon="{DynamicResource Sample}">
+                With Icon
+            </Button>
         </StackPanel>
         <StackPanel Grid.Row="3"  Margin="256 16 0 0" Orientation="Horizontal">
             <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick">ACCEPT</Button>
@@ -234,7 +242,7 @@
         <TextBlock Margin="0 24 0 0" Grid.Row="9">Rating bar</TextBlock>
         <StackPanel Grid.Row="10" Margin="0 16 0 0" Orientation="Horizontal">
             <materialDesign:RatingBar Value="3" x:Name="BasicRatingBar" />
-            <TextBlock Text="{Binding ElementName=BasicRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />            
+            <TextBlock Text="{Binding ElementName=BasicRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />
             <materialDesign:RatingBar x:Name="CustomRatingBar" Max="3" Value="2" Margin="24 0 0 0" Orientation="Vertical">
                 <materialDesign:RatingBar.ValueItemTemplate>
                     <DataTemplate DataType="system:Int32">
