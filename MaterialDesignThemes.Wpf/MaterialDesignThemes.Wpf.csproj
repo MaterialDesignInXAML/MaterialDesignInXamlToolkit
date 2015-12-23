@@ -206,6 +206,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ButtonAssist.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Clock.cs" />
     <Compile Include="ClockChoiceMadeEventArgs.cs" />

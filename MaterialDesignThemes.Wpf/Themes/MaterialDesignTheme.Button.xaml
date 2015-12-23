@@ -75,19 +75,35 @@
                                 </TransformGroup>
                             </Border.RenderTransform>
                         </Border>
-                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"     
-                                                            Feedback="White"
-                                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                            Padding="{TemplateBinding Padding}" 
-                                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <wpf:Ripple Focusable="False"     
+                                    Feedback="White"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Padding="{TemplateBinding Padding}" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" >
+                            <wpf:Ripple.Content>
+                                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <ContentPresenter x:Name="Icon"
+                                          Content="{TemplateBinding wpf:ButtonAssist.Icon}"
+                                          ContentSource="Icon"
+                                          HorizontalAlignment="Left" VerticalAlignment="Center"
+                                          Height="16" Width="16"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="5"/>
+                                    <ContentPresenter x:Name="Content"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"></ContentPresenter>
+                                </StackPanel>
+                            </wpf:Ripple.Content>
+                        </wpf:Ripple>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefaulted" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />                            
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />
                             <Setter TargetName="ShadowBorder" Property="wpf:ShadowAssist.Darken" Value="True" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
@@ -201,7 +217,7 @@
     <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Foreground" Value="#616161"/>
         <Setter Property="Padding" Value="4"/>
-        <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>        
+        <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -241,7 +257,7 @@
                                  Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                                  x:Name="border" />
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
-                                    Feedback="White"
+                                 Feedback="White"
                                     Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -269,7 +285,7 @@
         <Setter Property="Width" Value="56"/>
         <Setter Property="Height" Value="56"/>
     </Style>
-    
+
     <Style x:Key="MaterialDesignFloatingActionMiniLightButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
