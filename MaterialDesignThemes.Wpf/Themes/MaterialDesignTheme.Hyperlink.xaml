@@ -11,7 +11,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
-                    Value="{DynamicResource PrimaryHueLightBrush}" />
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="true">
                 <Setter Property="Cursor" Value="Hand" />
@@ -29,7 +29,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
-                    Value="{DynamicResource PrimaryHueLightBrush}" />
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="true">
                 <Setter Property="Cursor" Value="Hand" />
@@ -47,7 +47,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
-                    Value="{DynamicResource PrimaryHueLightBrush}" />
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="true">
                 <Setter Property="Cursor" Value="Hand" />
@@ -65,7 +65,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
-                    Value="{DynamicResource PrimaryHueLightBrush}" />
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="true">
                 <Setter Property="Cursor" Value="Hand" />
@@ -83,7 +83,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
-                    Value="{DynamicResource PrimaryHueLightBrush}" />
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="true">
                 <Setter Property="Cursor" Value="Hand" />
@@ -101,7 +101,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
-                    Value="{DynamicResource PrimaryHueLightBrush}" />
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="true">
                 <Setter Property="Cursor" Value="Hand" />
@@ -119,7 +119,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
-                    Value="{DynamicResource PrimaryHueLightBrush}" />
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="true">
                 <Setter Property="Cursor" Value="Hand" />
@@ -137,7 +137,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
-                    Value="{DynamicResource PrimaryHueLightBrush}" />
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="true">
                 <Setter Property="Cursor" Value="Hand" />
@@ -155,7 +155,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
-                    Value="{DynamicResource PrimaryHueLightBrush}" />
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="true">
                 <Setter Property="Cursor" Value="Hand" />
@@ -173,7 +173,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
-                    Value="{DynamicResource PrimaryHueLightBrush}" />
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="true">
                 <Setter Property="Cursor" Value="Hand" />
