@@ -4,6 +4,7 @@
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Regular"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="TextDecorations" Value="None" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -21,6 +22,7 @@
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="Regular"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="TextDecorations" Value="None" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -38,6 +40,7 @@
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="TextDecorations" Value="None" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -55,6 +58,7 @@
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontWeight" Value="Regular"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="TextDecorations" Value="None" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -72,6 +76,7 @@
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="TextDecorations" Value="None" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -89,6 +94,7 @@
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="FontWeight" Value="Regular"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="TextDecorations" Value="None" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -106,6 +112,7 @@
         <Setter Property="FontSize" Value="34"/>
         <Setter Property="FontWeight" Value="Regular"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="TextDecorations" Value="None" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -123,6 +130,7 @@
         <Setter Property="FontSize" Value="45"/>
         <Setter Property="FontWeight" Value="Regular"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="TextDecorations" Value="None" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -140,6 +148,7 @@
         <Setter Property="FontSize" Value="56"/>
         <Setter Property="FontWeight" Value="Regular"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="TextDecorations" Value="None" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -157,6 +166,7 @@
         <Setter Property="FontSize" Value="112"/>
         <Setter Property="FontWeight" Value="Light"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="TextDecorations" Value="None" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
