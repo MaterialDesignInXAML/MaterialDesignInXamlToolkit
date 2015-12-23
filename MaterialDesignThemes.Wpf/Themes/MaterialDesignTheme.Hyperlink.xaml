@@ -6,7 +6,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
@@ -23,7 +23,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
@@ -40,7 +40,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
@@ -57,7 +57,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
@@ -74,7 +74,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
@@ -91,7 +91,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
@@ -108,7 +108,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
@@ -125,7 +125,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
@@ -142,7 +142,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
@@ -159,7 +159,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground"
