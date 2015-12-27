@@ -304,8 +304,7 @@
                             <TextBlock Foreground="{DynamicResource MaterialDesignToolTipBackground}"
                                        Opacity="0.65"
                                        FontWeight="Bold"
-                                       FontSize="9.5"
-                                       FontFamily="Verdana"
+                                       FontSize="9.5"                                       
                                        HorizontalAlignment="Center" VerticalAlignment="Center"
                                        Margin="0,6,0,6"
                                        Text="{Binding [0]}"/>

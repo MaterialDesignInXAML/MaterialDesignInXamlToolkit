@@ -13,7 +13,7 @@ namespace MaterialDesignColors.WpfExample.Domain
     public class TextFieldsViewModel : INotifyPropertyChanged
     {
         private readonly IList<int> _longListToTestComboVirtualization;
-            
+
         private string _name;
         private int _selectedValueOne;
 
@@ -54,3 +54,4 @@ namespace MaterialDesignColors.WpfExample.Domain
         }
     }
 }
+

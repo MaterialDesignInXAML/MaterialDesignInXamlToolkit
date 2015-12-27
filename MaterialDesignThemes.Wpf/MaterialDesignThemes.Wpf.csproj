@@ -61,10 +61,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Themes\MaterialDesignTheme.MahApps.Dialogs.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -144,6 +140,10 @@
     <Page Include="Themes\MaterialDesignTheme.Slider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MaterialDesignTheme.Hyperlink.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\MaterialDesignTheme.TextBox.xaml">
       <SubType>Designer</SubType>
@@ -294,6 +294,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Page Include="Themes\MaterialDesignTheme.Font.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Resource Include="Resources\Roboto\RobotoCondensed-Regular.ttf" />
     <Resource Include="Resources\Roboto\RobotoCondensed-LightItalic.ttf" />
     <Resource Include="Resources\Roboto\RobotoCondensed-Light.ttf" />

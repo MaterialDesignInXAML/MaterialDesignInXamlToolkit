@@ -50,6 +50,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Viewbox Grid.Row="0" Grid.Column="0">
             <Canvas Width="24" Height="24">
@@ -88,11 +89,12 @@
             </Canvas>
         </Viewbox>
         <TextBox Grid.Row="1" Grid.Column="1" 
-				    x:Name="PhoneTextBox"
-				    materialDesign:TextFieldAssist.Hint="Phone"
+				 x:Name="PhoneTextBox"				 
+                 materialDesign:TransitionAssist.DisableTransitions="True"
 				    />
         <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">Fruit</TextBlock>
-        <ComboBox Grid.Row="1" Grid.Column="3" materialDesign:TextFieldAssist.Hint="Search" IsEditable="True" materialDesign:TextFieldAssist.HintOpacity=".26">
+        <ComboBox Grid.Row="1" Grid.Column="3" materialDesign:TextFieldAssist.Hint="Search"
+                  IsEditable="True" materialDesign:TextFieldAssist.HintOpacity=".26">
             <ComboBoxItem>Apple</ComboBoxItem>
             <ComboBoxItem>Banana</ComboBoxItem>
             <ComboBoxItem>Pear</ComboBoxItem>
@@ -171,5 +173,14 @@
             <ComboBoxItem>Orange</ComboBoxItem>
         </ComboBox>
 
+        <Viewbox Grid.Row="5" Grid.Column="0">
+            <Canvas Width="24" Height="24">
+                <Path Data="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z" 
+					    Fill="{Binding ElementName=PasswordBox, Path=BorderBrush}" />
+            </Canvas>
+        </Viewbox>
+        <PasswordBox Grid.Row="5" Grid.Column="1" 		
+                        x:Name="FloatingPasswordBox"
+                        materialDesign:TextFieldAssist.Hint="Floating Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
     </Grid>
 </UserControl>

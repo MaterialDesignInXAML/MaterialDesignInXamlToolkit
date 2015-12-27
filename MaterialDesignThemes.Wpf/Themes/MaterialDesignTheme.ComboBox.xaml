@@ -325,15 +325,13 @@
                         <Border x:Name="templateRoot"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                UseLayoutRounding="True">
+                                BorderThickness="{TemplateBinding BorderThickness}">
                             <Border x:Name="splitBorder"
                                     Margin="0"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     BorderBrush="Transparent"
-                                    BorderThickness="0"
-                                    UseLayoutRounding="true">
+                                    BorderThickness="0">
                                 <Path x:Name="arrow"
                                               Width="8" Height="8"
                                               Margin="0"
@@ -394,12 +392,12 @@
                 <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
             </Grid.ColumnDefinitions>
             <ToggleButton x:Name="toggleButton"
-                              Background="{TemplateBinding Background}"
-                              BorderBrush="{TemplateBinding BorderBrush}"
-                              BorderThickness="{TemplateBinding BorderThickness}"
-                              Grid.ColumnSpan="2"
-                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                              Style="{StaticResource MaterialDesignComboBoxToggleButton}" />
+                          Grid.ColumnSpan="2"
+                          Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                          Style="{StaticResource MaterialDesignComboBoxToggleButton}" />
             <Grid Margin="{TemplateBinding Padding}"
                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}">

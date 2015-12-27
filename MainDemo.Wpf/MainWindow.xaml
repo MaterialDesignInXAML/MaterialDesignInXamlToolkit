@@ -12,10 +12,11 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" Icon="favicon.ico">
+        FontFamily="{StaticResource MaterialDesignFont}" Icon="favicon.ico">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -110,7 +111,11 @@
                         </domain:DemoItem>
                         <domain:DemoItem Name="Trees">
                             <domain:DemoItem.Content>
-                                <wpfExample:Trees />
+                                <wpfExample:Trees>
+                                    <wpfExample:Trees.DataContext>
+                                        <domain:TreesViewModel/>
+                                    </wpfExample:Trees.DataContext>
+                                </wpfExample:Trees>
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
                         <domain:DemoItem Name="Grids">
@@ -161,11 +166,11 @@
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
                                       x:Name="MenuToggleButton"/>
                         <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges">
-                            <ListBox Margin="0 6 0 6">
-                                <ListBoxItem>Hello World</ListBoxItem>
-                                <ListBoxItem>Nice Popup</ListBoxItem>
-                                <ListBoxItem>Goodbye.</ListBoxItem>
-                            </ListBox>
+                            <StackPanel>
+                                <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
+                                <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
+                                <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
+                            </StackPanel>
                         </materialDesign:PopupBox>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
                     </DockPanel>

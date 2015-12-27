@@ -106,7 +106,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var locationFromScreen = this.PlacementTarget.PointToScreen(new Point(0, 0));
 
-            var mainVisual = PlacementTarget.GetVisualAncestory().OfType<System.Windows.Media.Visual>().LastOrDefault();
+            var mainVisual = PlacementTarget.GetVisualAncestry().OfType<System.Windows.Media.Visual>().LastOrDefault();
             if (mainVisual == null) return new CustomPopupPlacement[0];
 
             var screenWidth = (int) DpiHelper.TransformToDeviceX(mainVisual, SystemParameters.PrimaryScreenWidth);

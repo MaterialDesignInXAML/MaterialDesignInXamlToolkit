@@ -62,7 +62,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty SelectedTimeProperty = DependencyProperty.Register(
-			"SelectedTime", typeof (DateTime?), typeof (TimePicker), new PropertyMetadata(default(DateTime?), SelectedTimePropertyChangedCallback));
+			"SelectedTime", typeof (DateTime?), typeof (TimePicker), new FrameworkPropertyMetadata(default(DateTime?), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, SelectedTimePropertyChangedCallback));
 
 		private static void SelectedTimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
