@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mdresgen", "mdresgen\mdresg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.Wpf", "MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj", "{F079FB0A-A8ED-4216-B6A5-345756751A04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainDemo.Wpf", "MainDemo.Wpf\MainDemo.Wpf.csproj", "{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignDemo", "MainDemo.Wpf\MaterialDesignDemo.csproj", "{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignColors.Wpf", "MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj", "{90B53209-C60C-4655-B28D-A1B3E1044BA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahMaterialDragablzMashUp", "MahMaterialDragablzMashUp\MahMaterialDragablzMashUp.csproj", "{803954E5-3A35-4D8B-95A7-F6E9B63EC0DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahAppsDragablzDemo", "MahMaterialDragablzMashUp\MahAppsDragablzDemo.csproj", "{803954E5-3A35-4D8B-95A7-F6E9B63EC0DF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{7D0AC158-FD01-4EA3-8F8A-D19C085C77DF}"
 	ProjectSection(SolutionItems) = preProject
