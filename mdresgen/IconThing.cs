@@ -6,6 +6,10 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Humanizer;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Text;
 using Newtonsoft.Json.Linq;
 
 namespace mdresgen
@@ -14,15 +18,17 @@ namespace mdresgen
     {
         public void Run()
         {
-            var nameDataPairs = GetNameDataPairs(GetSourceData()).ToList();
+            Console.WriteLine("Downloading icon data...");
 
-            Console.WriteLine(nameDataPairs.Count);
+            //var nameDataPairs = GetNameDataPairs(GetSourceData()).ToList();
+
+//            Console.WriteLine(nameDataPairs.Count);
+
+            UpdateEnum("IconType.template.cs");
         }
 
         private static string GetSourceData()
         {
-            Console.WriteLine("Downloading icon data...");
-
             var webRequest = WebRequest.CreateDefault(
                 new Uri("https://materialdesignicons.com/api/package/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B"));
             webRequest.UseDefaultCredentials = true;
@@ -44,12 +50,25 @@ namespace mdresgen
                 t["data"].ToString()));
         }
 
-         
 
-        private void UpdateEnum()
+
+        private void UpdateEnum(string sourceFile)
         {
-            //SyntaxNode
+            var sourceText = SourceText.From(new FileStream(sourceFile, FileMode.Open));
+            var syntaxTree = CSharpSyntaxTree.ParseText(sourceText);
+
+            var enumDeclarationSyntax = syntaxTree.GetRoot().ChildNodes()
+                //should be the root name space
+                .Single()
+                .ChildNodes().OfType<EnumDeclarationSyntax>()
+                .Last();
+
+            var enumMemberDeclarationSyntax = enumDeclarationSyntax.ChildNodes().OfType<EnumMemberDeclarationSyntax>().Single();
+
+            
+
+
         }
-        
+
     }
 }
