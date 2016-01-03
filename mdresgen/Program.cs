@@ -51,6 +51,8 @@ namespace mdresgen
                 GenerateOldXaml(xDocument, true);
             else if (args.Contains("old"))
                 GenerateOldXaml(xDocument, false);
+            else if (args.Contains("icons"))
+                new IconThing().Run();
             else
                 GenerateXaml(xDocument, false);
 
