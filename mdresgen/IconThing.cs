@@ -51,61 +51,22 @@ namespace mdresgen
         }
 
 
-
         private void UpdateEnum(string sourceFile)
         {
             var sourceText = SourceText.From(new FileStream(sourceFile, FileMode.Open));
             var syntaxTree = CSharpSyntaxTree.ParseText(sourceText);
 
-            var newSyntaxTree = CSharpSyntaxTree.ParseText("Red, Green, Blue");
-            var syntaxNodes = newSyntaxTree.GetRoot().ChildNodes().ToList();            
+            var rootNode = syntaxTree.GetRoot();
+            var namespaceDeclarationNode = rootNode.ChildNodes().Single();
+            var enumDeclarationSyntaxNode = namespaceDeclarationNode.ChildNodes().OfType<EnumDeclarationSyntax>().Single();
 
-            var enumDeclarationSyntax = syntaxTree.GetRoot().ChildNodes()
-                //should be the root name space
-                .Single()
-                .ChildNodes().OfType<EnumDeclarationSyntax>()
-                .Last();
-            
-
-            var emptyEnumDeclarationSyntax = enumDeclarationSyntax.RemoveNodes(enumDeclarationSyntax.ChildNodes().OfType<EnumMemberDeclarationSyntax>(), SyntaxRemoveOptions.KeepNoTrivia);
-
-            var generatedEnumDeclarationSyntax = emptyEnumDeclarationSyntax.AddMembers(
+            var emptyEnumDeclarationSyntaxNode = enumDeclarationSyntaxNode.RemoveNodes(enumDeclarationSyntaxNode.ChildNodes().OfType<EnumMemberDeclarationSyntax>(), SyntaxRemoveOptions.KeepNoTrivia);
+            var generatedEnumDeclarationSyntax = emptyEnumDeclarationSyntaxNode.AddMembers(
                 SyntaxFactory.EnumMemberDeclaration("Aston"),
                 SyntaxFactory.EnumMemberDeclaration("Villa"));
 
-            var generatedSyntaxTree = generatedEnumDeclarationSyntax.SyntaxTree;
-
-            var rootSyntaxNode = enumDeclarationSyntax.SyntaxTree.GetRoot();
-            var replaceNode = rootSyntaxNode.ReplaceNode(rootSyntaxNode.ChildNodes().Single(), generatedSyntaxTree.GetRoot());
-
-
-
-            var modifiedSyntaxTree = syntaxTree.GetRoot().ReplaceNode(emptyEnumDeclarationSyntax, generatedEnumDeclarationSyntax);
-
-
-            var nodes = emptyEnumDeclarationSyntax.ChildNodes().ToList();
-            //emptyEnumDeclarationSyntax.InsertNodesAfter()
-
-
-
-            //emptyEnumDeclarationSyntax.AddMembers(new EnumMemberDeclarationSyntax(new CSharpSyntaxNode(new GreenNode(), ))
-
-            //enumDeclarationSyntax.ReplaceNodes(enumDeclarationSyntax.ChildNodes().OfType<EnumMemberDeclarationSyntax>(), ).ReplaceSyntax(enumDeclarationSyntax.SyntaxTree,)
-
-            //            enumDeclarationSyntax.
-
-            //          enumDeclarationSyntax.Re
-
-
-
-            //EnumMemberDeclarationSyntax.P
-
-            //var enumMemberDeclarationSyntax = enumDeclarationSyntax.ChildNodes().OfType<EnumMemberDeclarationSyntax>().Single();
-
-
-
-
-        }
-
+            var generatedNamespaceDeclarationSyntaxNode = namespaceDeclarationNode.ReplaceNode(enumDeclarationSyntaxNode, generatedEnumDeclarationSyntax);
+            var generatedRootNode = rootNode.ReplaceNode(namespaceDeclarationNode, generatedNamespaceDeclarationSyntaxNode);            
+        }       
     }
 }
