@@ -95,6 +95,11 @@
                                 <wpfExample:Cards />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Chips">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Chips />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Colour Zones">
                             <domain:DemoItem.Content>
                                 <wpfExample:ColorZones />

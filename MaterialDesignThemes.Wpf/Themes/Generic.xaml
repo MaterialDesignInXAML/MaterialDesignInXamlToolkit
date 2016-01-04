@@ -366,6 +366,27 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type local:Chip}">
+        <Setter Property="Height" Value="32" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Chip}">
+                    <Grid>
+                        <Border CornerRadius="16" Background="#12000000"></Border>
+                        <TextBlock Text="{TemplateBinding Text}"
+                                   VerticalAlignment="Center"
+                                   Margin="12 0 12 0" />
+                        <!-- button Bg #89000000 -->
+                        <!--
+                        <Button></Button>
+                        -->
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     
     <Style TargetType="{x:Type local:ColorZone}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
