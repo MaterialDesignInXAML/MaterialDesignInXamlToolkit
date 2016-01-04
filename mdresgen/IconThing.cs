@@ -58,15 +58,19 @@ namespace mdresgen
 
             var rootNode = syntaxTree.GetRoot();
             var namespaceDeclarationNode = rootNode.ChildNodes().Single();
-            var enumDeclarationSyntaxNode = namespaceDeclarationNode.ChildNodes().OfType<EnumDeclarationSyntax>().Single();
+            var enumDeclarationSyntaxNode = namespaceDeclarationNode.ChildNodes().OfType<EnumDeclarationSyntax>().Single();            
 
-            var emptyEnumDeclarationSyntaxNode = enumDeclarationSyntaxNode.RemoveNodes(enumDeclarationSyntaxNode.ChildNodes().OfType<EnumMemberDeclarationSyntax>(), SyntaxRemoveOptions.KeepNoTrivia);
+            var emptyEnumDeclarationSyntaxNode = enumDeclarationSyntaxNode.RemoveNodes(enumDeclarationSyntaxNode.ChildNodes().OfType<EnumMemberDeclarationSyntax>(), SyntaxRemoveOptions.KeepDirectives);
             var generatedEnumDeclarationSyntax = emptyEnumDeclarationSyntaxNode.AddMembers(
                 SyntaxFactory.EnumMemberDeclaration("Aston"),
                 SyntaxFactory.EnumMemberDeclaration("Villa"));
 
             var generatedNamespaceDeclarationSyntaxNode = namespaceDeclarationNode.ReplaceNode(enumDeclarationSyntaxNode, generatedEnumDeclarationSyntax);
-            var generatedRootNode = rootNode.ReplaceNode(namespaceDeclarationNode, generatedNamespaceDeclarationSyntaxNode);            
+            var generatedRootNode = rootNode.ReplaceNode(namespaceDeclarationNode, generatedNamespaceDeclarationSyntaxNode);
+
+            //TODO checkout http://roslyn.codeplex.com/wikipage?title=Syntax%20Visualizer&referringTitle=Home  for Roslyn SDK
+
+            Console.WriteLine(generatedRootNode.ToFullString());
         }       
     }
 }
