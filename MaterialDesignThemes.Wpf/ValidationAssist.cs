@@ -54,5 +54,29 @@ namespace MaterialDesignThemes.Wpf
         }
 
         #endregion
+
+        /// <summary>
+        /// Framework use only.
+        /// </summary>
+        public static readonly DependencyProperty SuppressProperty = DependencyProperty.RegisterAttached(
+            "Suppress", typeof (bool), typeof (ValidationAssist), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits));
+
+        /// <summary>
+        /// Framework use only.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetSuppress(DependencyObject element, bool value)
+        {
+            element.SetValue(SuppressProperty, value);
+        }
+
+        /// <summary>
+        /// Framework use only.
+        /// </summary>
+        public static bool GetSuppress(DependencyObject element)
+        {
+            return (bool) element.GetValue(SuppressProperty);
+        }
     }
 }

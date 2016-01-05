@@ -5,6 +5,7 @@
         xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
         Title="Material Design in XAML" Height="800" Width="1100"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -146,7 +147,7 @@
                             <domain:DemoItem.Content>
                                 <wpfExample:Dialogs>
                                     <wpfExample:Dialogs.DataContext>
-                                        <domain:DialogsViewModel />
+                                        <domain1:DialogsViewModel />
                                     </wpfExample:Dialogs.DataContext>
                                 </wpfExample:Dialogs>
                             </domain:DemoItem.Content>

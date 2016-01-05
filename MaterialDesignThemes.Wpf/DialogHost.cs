@@ -224,8 +224,9 @@ namespace MaterialDesignThemes.Wpf
 
         private static void IsOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var dialogHost = (DialogHost)dependencyObject;            
+            var dialogHost = (DialogHost)dependencyObject;
 
+            ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
             VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
             if (!dialogHost.IsOpen)
@@ -441,7 +442,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var dialogClosingEventArgs = new DialogClosingEventArgs(_session, parameter, DialogClosingEvent);
 
-            _session.IsEnded = true;
+            _session.IsEnded = true;            
 
             //multiple ways of calling back that the dialog is closing:
             // * routed event
@@ -456,7 +457,7 @@ namespace MaterialDesignThemes.Wpf
             if (!dialogClosingEventArgs.IsCancelled)
                 SetCurrentValue(IsOpenProperty, false);
             else
-                _session.IsEnded = false;
+                _session.IsEnded = false;            
 
             _closeDialogExecutionParameter = parameter;
         }
@@ -497,8 +498,8 @@ namespace MaterialDesignThemes.Wpf
 
                 DialogContent = executedRoutedEventArgs.Parameter;
             }
-
-            SetCurrentValue(IsOpenProperty, true);
+                        
+            ValidationAssist.SetSuppress(_popupContentControl, false);
 
             executedRoutedEventArgs.Handled = true;
         }
