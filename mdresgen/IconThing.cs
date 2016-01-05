@@ -61,16 +61,42 @@ namespace mdresgen
             var enumDeclarationSyntaxNode = namespaceDeclarationNode.ChildNodes().OfType<EnumDeclarationSyntax>().Single();            
 
             var emptyEnumDeclarationSyntaxNode = enumDeclarationSyntaxNode.RemoveNodes(enumDeclarationSyntaxNode.ChildNodes().OfType<EnumMemberDeclarationSyntax>(), SyntaxRemoveOptions.KeepDirectives);
-            var generatedEnumDeclarationSyntax = emptyEnumDeclarationSyntaxNode.AddMembers(
-                SyntaxFactory.EnumMemberDeclaration("Aston"),
-                SyntaxFactory.EnumMemberDeclaration("Villa"));
 
+            var leadingTriviaList = SyntaxTriviaList.Create(SyntaxFactory.Whitespace("        "));
+            var generatedEnumDeclarationSyntax = emptyEnumDeclarationSyntaxNode.AddMembers(
+                SyntaxFactory.EnumMemberDeclaration(SyntaxFactory.Identifier(leadingTriviaList, "Aston", SyntaxTriviaList.Empty)),
+                SyntaxFactory.EnumMemberDeclaration(SyntaxFactory.Identifier(leadingTriviaList, "Villa", SyntaxTriviaList.Empty)));
+
+            generatedEnumDeclarationSyntax = AddLineFeedsToCommas(generatedEnumDeclarationSyntax);
+                
             var generatedNamespaceDeclarationSyntaxNode = namespaceDeclarationNode.ReplaceNode(enumDeclarationSyntaxNode, generatedEnumDeclarationSyntax);
             var generatedRootNode = rootNode.ReplaceNode(namespaceDeclarationNode, generatedNamespaceDeclarationSyntaxNode);
-
-            //TODO checkout http://roslyn.codeplex.com/wikipage?title=Syntax%20Visualizer&referringTitle=Home  for Roslyn SDK
-
+            
             Console.WriteLine(generatedRootNode.ToFullString());
-        }       
+        }
+
+        private static EnumDeclarationSyntax AddLineFeedsToCommas(EnumDeclarationSyntax enumDeclarationSyntax)
+        {
+            var none = new SyntaxToken();
+            var trailingTriviaList = SyntaxTriviaList.Create(SyntaxFactory.ElasticCarriageReturnLineFeed);
+
+            Func<EnumDeclarationSyntax, SyntaxToken> next = enumSyntax => enumSyntax.ChildNodesAndTokens()
+                .Where(nodeOrToken => nodeOrToken.IsToken)
+                .Select(nodeOrToken => nodeOrToken.AsToken())
+                .FirstOrDefault(
+                    token =>
+                        token.Value.Equals(",") &&
+                        (!token.HasTrailingTrivia || !token.TrailingTrivia.Any(SyntaxKind.EndOfLineTrivia)));
+
+            SyntaxToken current;
+            while ((current = next(enumDeclarationSyntax)) != none)
+            {
+                enumDeclarationSyntax = enumDeclarationSyntax.ReplaceToken(current,
+                    SyntaxFactory.Identifier(SyntaxTriviaList.Empty, ",", trailingTriviaList)
+                    );
+            }
+
+            return enumDeclarationSyntax;
+        }
     }
 }
