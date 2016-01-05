@@ -235,6 +235,7 @@ namespace MaterialDesignThemes.Wpf
                 dialogHost._attachedDialogClosingEventHandler = null;
                 dialogHost._session.IsEnded = true;
                 dialogHost._session = null;
+                
                 return;
             }
 
@@ -252,10 +253,17 @@ namespace MaterialDesignThemes.Wpf
             dialogHost.DialogOpenedCallback?.Invoke(dialogHost, dialogOpenedEventArgs);
             dialogHost._asyncShowOpenedEventHandler?.Invoke(dialogHost, dialogOpenedEventArgs);
 
-            dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() =>
+            dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                dialogHost._popup?.Child?.Focus();
-                dialogHost._popup?.Child?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                var child = dialogHost._popup?.Child;
+                if (child == null) return;
+
+                child.Focus();
+                child.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+
+                //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
+                //totally not happy about this, but on immediate validation we can get some wierd looking stuff...give WPF a kick to refresh...
+                Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));                
             }));
         }
 
@@ -498,8 +506,8 @@ namespace MaterialDesignThemes.Wpf
 
                 DialogContent = executedRoutedEventArgs.Parameter;
             }
-                        
-            ValidationAssist.SetSuppress(_popupContentControl, false);
+
+            SetCurrentValue(IsOpenProperty, true);
 
             executedRoutedEventArgs.Handled = true;
         }
