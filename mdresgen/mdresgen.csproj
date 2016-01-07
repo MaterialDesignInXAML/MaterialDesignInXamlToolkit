@@ -110,8 +110,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="PackIconDataFactory.template.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="IconThing.cs" />
-    <None Include="IconType.template.cs">
+    <None Include="PackIconType.template.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="Program.cs" />
@@ -129,7 +132,6 @@
   <ItemGroup>
     <None Include="RecommendedAccentTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="RecommendedPrimaryTemplate.xaml">
