@@ -190,62 +190,62 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ToggleButton}">
 					<Grid ClipToBounds="True" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
-					<VisualStateManager.VisualStateGroups>
-						<VisualStateGroup x:Name="CommonStates">
-							<VisualState x:Name="Normal"/>
-							<VisualState x:Name="Disabled">
-								<Storyboard>
-									<DoubleAnimation Duration="0" To="0.23" Storyboard.TargetProperty="(UIElement.Opacity)" />
-								</Storyboard>
-							</VisualState>
-						</VisualStateGroup>
-						<VisualStateGroup x:Name="CheckStates">
-							<VisualStateGroup.Transitions>
-								<VisualTransition From="*" To="Checked">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal"/>
+								<VisualState x:Name="Disabled">
 									<Storyboard>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="CheckedEllipseScale">
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.0" />
-											<LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:0.1" />
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="CheckedEllipseScale">
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.0" />
-											<LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:0.1" />
-										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimation Duration="0" To="0.23" Storyboard.TargetProperty="(UIElement.Opacity)" />
 									</Storyboard>
-								</VisualTransition>
-								<VisualTransition From="Checked" To="Unchecked">
+								</VisualState>
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="CheckStates">
+								<VisualStateGroup.Transitions>
+									<VisualTransition From="*" To="Checked">
+										<Storyboard>
+											<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="CheckedEllipseScale">
+												<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.0" />
+												<LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:0.1" />
+											</DoubleAnimationUsingKeyFrames>
+											<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="CheckedEllipseScale">
+												<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.0" />
+												<LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:0.1" />
+											</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualTransition>
+									<VisualTransition From="Checked" To="Unchecked">
+										<Storyboard>
+											<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="CheckedEllipseScale">
+												<LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:0.0" />
+												<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+											</DoubleAnimationUsingKeyFrames>
+											<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="CheckedEllipseScale">
+												<LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:0.0" />
+												<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+											</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualTransition>
+								</VisualStateGroup.Transitions>
+								<VisualState x:Name="Checked">
 									<Storyboard>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="CheckedEllipseScale">
-											<LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:0.0" />
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="CheckedEllipseScale">
-											<LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:0.0" />
-											<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="CheckedEllipseScale" To="1.0" />
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="CheckedEllipseScale" To="1.0" />
 									</Storyboard>
-								</VisualTransition>
-							</VisualStateGroup.Transitions>
-							<VisualState x:Name="Checked">
-								<Storyboard>
-									<DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="CheckedEllipseScale" To="1.0" />
-									<DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="CheckedEllipseScale" To="1.0" />
-								</Storyboard>
-							</VisualState>
-							<VisualState x:Name="Unchecked">
-								<Storyboard>
-									<DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="CheckedEllipseScale" To="0" />
-									<DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="CheckedEllipseScale" To="0" />
-								</Storyboard>
-							</VisualState>
-						</VisualStateGroup>
-					</VisualStateManager.VisualStateGroups>
-					<Ellipse Fill="Transparent" x:Name="HoverEllipse" Stroke="Transparent" StrokeThickness="1" />
-					<Ellipse Fill="{TemplateBinding Background}" x:Name="CheckedEllipse" RenderTransformOrigin="0.5, 0.5">
-						<Ellipse.RenderTransform>
-							<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.0" ScaleY="1.0" x:Name="CheckedEllipseScale"/>
-						</Ellipse.RenderTransform>
-					</Ellipse>
+								</VisualState>
+								<VisualState x:Name="Unchecked">
+									<Storyboard>
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="CheckedEllipseScale" To="0" />
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="CheckedEllipseScale" To="0" />
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Ellipse Fill="Transparent" x:Name="HoverEllipse" Stroke="Transparent" StrokeThickness="1" />
+						<Ellipse Fill="{TemplateBinding Background}" x:Name="CheckedEllipse" RenderTransformOrigin="0.5, 0.5">
+							<Ellipse.RenderTransform>
+								<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.0" ScaleY="1.0" x:Name="CheckedEllipseScale"/>
+							</Ellipse.RenderTransform>
+						</Ellipse>
 						<ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
 					</Grid>
 					<ControlTemplate.Triggers>
