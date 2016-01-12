@@ -35,7 +35,7 @@ namespace MaterialDesignThemes.Wpf
         private static void MouseButtonEventHandler(object sender, MouseButtonEventArgs e)
         {
             foreach (var ripple in PressedInstances)
-                VisualStateManager.GoToState(ripple, TemplateStateNormal, false);
+                VisualStateManager.GoToState(ripple, TemplateStateNormal, true);
             PressedInstances.Clear();
         }
 
