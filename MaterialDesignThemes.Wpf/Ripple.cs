@@ -35,7 +35,7 @@ namespace MaterialDesignThemes.Wpf
         private static void MouseButtonEventHandler(object sender, MouseButtonEventArgs e)
         {
             foreach (var ripple in PressedInstances)
-                VisualStateManager.GoToState(ripple, TemplateStateNormal, false);
+                VisualStateManager.GoToState(ripple, TemplateStateNormal, true);
             PressedInstances.Clear();
         }
 
@@ -140,7 +140,25 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (double)GetValue(RippleYProperty); }
             private set { SetValue(RippleYPropertyKey, value); }
-        }       
+        }
+
+        /// <summary>
+        ///   The DependencyProperty for the RecognizesAccessKey property. 
+        ///   Default Value: false 
+        /// </summary> 
+        public static readonly DependencyProperty RecognizesAccessKeyProperty =
+            DependencyProperty.Register(
+                "RecognizesAccessKey", typeof(bool), typeof(Ripple),
+                new PropertyMetadata(default(bool)));
+
+        /// <summary> 
+        ///   Determine if Ripple should use AccessText in its style
+        /// </summary> 
+        public bool RecognizesAccessKey
+        {
+            get { return (bool)GetValue(RecognizesAccessKeyProperty); }
+            set { SetValue(RecognizesAccessKeyProperty, value); }
+        }
 
         public override void OnApplyTemplate()
         {
