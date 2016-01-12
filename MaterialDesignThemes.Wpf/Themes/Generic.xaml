@@ -377,9 +377,15 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ColorZone}">
                     <Grid Background="Transparent">
-                        <Border Background="{TemplateBinding Background}"
-                                CornerRadius="{TemplateBinding CornerRadius}"
-                                Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" />
+                        <AdornerDecorator>
+                            <AdornerDecorator.CacheMode>
+                                <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                            </AdornerDecorator.CacheMode>
+                            <Border Background="{TemplateBinding Background}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"                                
+                                    Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
+                            </Border>
+                        </AdornerDecorator>
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -729,10 +735,17 @@
                                 <TranslateTransform x:Name="LeftDrawerTranslateTransform"
                                                     X="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Grid}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}}" />
                             </Grid.RenderTransform>
-                            <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                    Opacity="0"
-                                    Background="{TemplateBinding LeftDrawerBackground}"
-                                    x:Name="LeftDrawerShadow" />
+                            <AdornerDecorator>
+                                <AdornerDecorator.CacheMode>
+                                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                </AdornerDecorator.CacheMode>
+                                <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                        Opacity="0"
+                                        Background="{TemplateBinding LeftDrawerBackground}"
+                                        x:Name="LeftDrawerShadow">
+                                </Border>
+                            </AdornerDecorator>
+
                             <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}" />
                         </Grid>
                     </Grid>

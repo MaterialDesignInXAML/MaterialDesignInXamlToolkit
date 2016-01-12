@@ -61,9 +61,15 @@
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid>
-                        <Border Background="{TemplateBinding Background}" 
-                                x:Name="ShadowBorder"                                
-                                Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" />
+                        <AdornerDecorator>
+                            <AdornerDecorator.CacheMode>
+                                <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                            </AdornerDecorator.CacheMode>
+                            <Border Background="{TemplateBinding Background}" 
+                                    x:Name="ShadowBorder"                                
+                                    Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
+                            </Border>
+                        </AdornerDecorator>
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2" />
                         <Border Background="White" CornerRadius="2" x:Name="ClickBorder" Opacity="0" RenderTransformOrigin="0.5,0.5" >
                             <Border.RenderTransform>
@@ -237,9 +243,15 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
-                        <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
-                                 Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                 x:Name="border" />
+                        <AdornerDecorator>
+                            <AdornerDecorator.CacheMode>
+                                <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                            </AdornerDecorator.CacheMode>
+                            <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
+                                     Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                     x:Name="border">
+                            </Ellipse>
+                        </AdornerDecorator>
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
                                     Feedback="White"
                                     Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
