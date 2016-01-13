@@ -93,9 +93,9 @@
                                 SnapsToDevicePixels="True"
                                 Opacity="0"/>
                         <wpf:Ripple Background="Transparent"
-                                        HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                                        Focusable="False"
-                                        Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}">
+                                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                                    Focusable="False"
+                                    Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}">
                             <Grid Height="{TemplateBinding Height}" Background="Transparent">
                                 <Grid VerticalAlignment="Center"
                                           Background="Transparent"

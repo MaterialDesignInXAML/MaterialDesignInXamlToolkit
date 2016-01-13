@@ -4,7 +4,7 @@
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
 	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="MaterialDesignTheme.Calendar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Calendar.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />

@@ -34,6 +34,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="White"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -50,7 +51,6 @@
                             </Border>
                         </AdornerDecorator>
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"     
-                                    Feedback="White"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                     Padding="{TemplateBinding Padding}" 
@@ -102,13 +102,13 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
-                                        Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Padding="{TemplateBinding Padding}" 
@@ -135,12 +135,12 @@
     <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Foreground" Value="#616161"/>
         <Setter Property="Padding" Value="4"/>
-        <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>        
+        <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>
+        <Setter Property="wpf:RippleAssist.IsCentered" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
-                                Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Padding="{TemplateBinding Padding}" 
@@ -167,6 +167,7 @@
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Width" Value="40" />
         <Setter Property="Height" Value="40" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="White"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -181,7 +182,6 @@
                             </Ellipse>
                         </AdornerDecorator>
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
-                                    Feedback="White"
                                     Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"

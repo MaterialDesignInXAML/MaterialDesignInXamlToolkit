@@ -206,9 +206,9 @@ namespace MaterialDesignThemes.Wpf
                 height = sizeChangedEventArgs.NewSize.Height;
             }
 
-            var radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
+            var diameter = Math.Max(width, height);
 
-            RippleSize = 2 * radius * RippleAssist.GetRippleSizeMultiplier(this);
+            RippleSize = 2.0 * diameter * RippleAssist.GetRippleSizeMultiplier(this);
         }
     }
 }
