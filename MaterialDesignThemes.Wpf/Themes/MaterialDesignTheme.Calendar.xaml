@@ -327,46 +327,6 @@
                         <wpf:Card UniformCornerRadius="2"  Background="{TemplateBinding Background}" wpf:ShadowAssist.ShadowDepth="Depth0">
                             <Grid>
                                 <Grid.Resources>
-                                    <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="{x:Type Button}">
-                                        <Grid Cursor="Hand">
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup x:Name="CommonStates">
-                                                    <VisualState x:Name="Normal"/>
-                                                    <VisualState x:Name="MouseOver" />
-                                                    <VisualState x:Name="Disabled">
-                                                        <Storyboard>
-                                                            <DoubleAnimation Duration="0" To=".56" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="path"/>
-                                                        </Storyboard>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                            <wpf:Ripple HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                <Viewbox Height="12" Margin="8">
-                                                    <Path x:Name="path" Data="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" Fill="{TemplateBinding Foreground}" Stretch="Fill" />
-                                                </Viewbox>
-                                            </wpf:Ripple>
-                                        </Grid>
-                                    </ControlTemplate>
-                                    <ControlTemplate x:Key="NextButtonTemplate" TargetType="{x:Type Button}">
-                                        <Grid Cursor="Hand">
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup x:Name="CommonStates">
-                                                    <VisualState x:Name="Normal"/>
-                                                    <VisualState x:Name="MouseOver"/>
-                                                    <VisualState x:Name="Disabled">
-                                                        <Storyboard>
-                                                            <DoubleAnimation Duration="0" To=".5" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="path"/>
-                                                        </Storyboard>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                            <wpf:Ripple HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                <Viewbox Height="12" Margin="8">
-                                                    <Path x:Name="path" Data="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" Fill="{TemplateBinding Foreground}" Stretch="Fill"  />
-                                                </Viewbox>
-                                            </wpf:Ripple>
-                                        </Grid>
-                                    </ControlTemplate>
                                     <ControlTemplate x:Key="HeaderButtonTemplate" TargetType="{x:Type Button}">
                                         <Grid Cursor="Hand">
                                             <VisualStateManager.VisualStateGroups>
@@ -411,8 +371,19 @@
                                         Template="{StaticResource HeaderButtonTemplate}"
                                         Height="Auto"
                                         Margin="20 15"/>
-                                <Button x:Name="PART_PreviousButton" Grid.Row="1" Grid.Column="0" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
-                                            Margin="6 0 0 0" Foreground="{TemplateBinding Foreground}" />
+                                <Button x:Name="PART_PreviousButton"
+                                        Grid.Row="1" Grid.Column="0" 
+                                        Focusable="False" 
+                                        HorizontalAlignment="Left" 
+                                        Height="36" 
+                                        Width="32"
+                                        Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                                        Margin="6 0 0 0" 
+                                        Foreground="{TemplateBinding Foreground}">
+                                    <Viewbox Height="12" Margin="8">
+                                        <Path Data="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" Fill="{TemplateBinding Foreground}" Stretch="Fill" />
+                                    </Viewbox>
+                                </Button>
                                 <TextBlock x:Name="CurrentDateTextBlock"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"
                                            Margin="8"
@@ -425,8 +396,20 @@
                                         <TranslateTransform X="0" Y="0"/>
                                     </TextBlock.RenderTransform>
                                 </TextBlock>
-                                <Button x:Name="PART_NextButton" Grid.Row="1" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="36" Template="{StaticResource NextButtonTemplate}" Width="32"
-                                            Margin="0 0 6 0" Foreground="{TemplateBinding Foreground}" />
+                                <Button x:Name="PART_NextButton" 
+                                        Grid.Row="1" 
+                                        Grid.Column="2" 
+                                        Focusable="False" 
+                                        HorizontalAlignment="Right" 
+                                        Height="36" 
+                                        Width="32"
+                                        Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                                        Margin="0 0 6 0" 
+                                        Foreground="{TemplateBinding Foreground}">
+                                    <Viewbox Height="12" Margin="8">
+                                        <Path Data="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" Fill="{TemplateBinding Foreground}" Stretch="Fill"  />
+                                    </Viewbox>
+                                </Button>
 
                                 <Grid x:Name="MonthViewWrapperGrid"
                                       Grid.ColumnSpan="3"

@@ -26,12 +26,11 @@
                         <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
                         <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>
                         <Setter Property="wpf:RippleAssist.IsCentered" Value="True"/>
-                        <Setter Property="wpf:RippleAssist.RippleSizeMultiplier" Value="0.5"/>
+                        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="wpf:RatingBarButton">
                                     <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"     
-                                                Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
                                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                 Padding="{TemplateBinding Padding}" 
