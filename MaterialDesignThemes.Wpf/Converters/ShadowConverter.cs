@@ -21,7 +21,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 
             ShadowsDictionary = new Dictionary<ShadowDepth, DropShadowEffect>
             {
-                { ShadowDepth.Depth0, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth0"] },
+                { ShadowDepth.Depth0, null },
                 { ShadowDepth.Depth1, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth1"] },
                 { ShadowDepth.Depth2, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth2"] },
                 { ShadowDepth.Depth3, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth3"] },
@@ -44,6 +44,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 
         private static DropShadowEffect Clone(DropShadowEffect dropShadowEffect)
         {
+            if (dropShadowEffect == null) return null;
             return new DropShadowEffect()
             {
                 BlurRadius = dropShadowEffect.BlurRadius,
