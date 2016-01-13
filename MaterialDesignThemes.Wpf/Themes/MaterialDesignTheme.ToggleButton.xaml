@@ -354,13 +354,19 @@
                                         <ScaleTransform ScaleX="1" ScaleY="1"/>
                                     </Ellipse.RenderTransform>
                                 </Ellipse>
-                                <Ellipse x:Name="Thumb"
-                                         Fill="#FFFAFAFA" Stroke="{x:Null}" 
-                                         HorizontalAlignment="Center" VerticalAlignment="Center"
-                                         Width="25" Height="25"
-                                         Margin="0,0,0,0"
-                                         RenderTransformOrigin="0.5,0.5"
-                                         Effect="{DynamicResource MaterialDesignShadowDepth1}"/>
+                                <AdornerDecorator>
+                                    <AdornerDecorator.CacheMode>
+                                        <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                    </AdornerDecorator.CacheMode>
+                                    <Ellipse x:Name="Thumb"
+                                             Fill="#FFFAFAFA" Stroke="{x:Null}" 
+                                             HorizontalAlignment="Center" VerticalAlignment="Center"
+                                             Width="25" Height="25"
+                                             Margin="0,0,0,0"
+                                             RenderTransformOrigin="0.5,0.5"
+                                             Effect="{DynamicResource MaterialDesignShadowDepth1}">
+                                    </Ellipse>
+                                </AdornerDecorator>
                                 <Grid.RenderTransform>
                                     <TranslateTransform X="0" Y="0"/>
                                 </Grid.RenderTransform>
