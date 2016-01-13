@@ -102,9 +102,7 @@
     <ControlTemplate x:Key="FlyoutTemplate"
                      TargetType="{x:Type Controls:Flyout}">
         <Grid x:Name="root"
-              Margin="{TemplateBinding Margin}"
-              Background="{TemplateBinding Background}"
-              Effect="{DynamicResource MaterialDesignShadowDepth5}">
+              Margin="{TemplateBinding Margin}">
             <Grid.RenderTransform>
                 <TranslateTransform />
             </Grid.RenderTransform>
@@ -212,6 +210,12 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
+            <AdornerDecorator>
+                <AdornerDecorator.CacheMode>
+                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                </AdornerDecorator.CacheMode>
+                <Border Background="{TemplateBinding Background}" Effect="{DynamicResource MaterialDesignShadowDepth5}"/>
+            </AdornerDecorator>
             <AdornerDecorator>
                 <DockPanel FocusVisualStyle="{x:Null}"
                            Focusable="False">

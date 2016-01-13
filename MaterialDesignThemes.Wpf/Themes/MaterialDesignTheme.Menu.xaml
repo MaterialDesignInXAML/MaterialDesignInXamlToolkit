@@ -47,22 +47,28 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuBase}">
-                    <Border Background="{TemplateBinding Background}"
-                            Effect="{DynamicResource MaterialDesignShadowDepth1}"
-                            Margin="3"
-                            CornerRadius="2">
-                        <Border Background="Transparent">
-                            <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
-                                <Grid RenderOptions.ClearTypeHint="Enabled" Margin="0 16">
-                                    <ItemsPresenter x:Name="ItemsPresenter"
-                                                            KeyboardNavigation.DirectionalNavigation="Cycle"
-                                                            Grid.IsSharedSizeScope="True"
-                                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                            KeyboardNavigation.TabNavigation="Cycle"/>
-                                </Grid>
-                            </ScrollViewer>
+                    <AdornerDecorator>
+                        <!-- warning, this will cache the inner item as well, consider separating the shadow from the item if possible -->
+                        <AdornerDecorator.CacheMode>
+                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                        </AdornerDecorator.CacheMode>
+                        <Border Background="{TemplateBinding Background}"
+                                Effect="{DynamicResource MaterialDesignShadowDepth1}"
+                                Margin="3"
+                                CornerRadius="2">
+                            <Border Background="Transparent">
+                                <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                    <Grid RenderOptions.ClearTypeHint="Enabled" Margin="0 16">
+                                        <ItemsPresenter x:Name="ItemsPresenter"
+                                                                KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                                Grid.IsSharedSizeScope="True"
+                                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                                KeyboardNavigation.TabNavigation="Cycle"/>
+                                    </Grid>
+                                </ScrollViewer>
+                            </Border>
                         </Border>
-                    </Border>
+                    </AdornerDecorator>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -87,9 +93,9 @@
                                 SnapsToDevicePixels="True"
                                 Opacity="0"/>
                         <wpf:Ripple Background="Transparent"
-                                        HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                                        Focusable="False"
-                                        Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}">
+                                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                                    Focusable="False"
+                                    Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}">
                             <Grid Height="{TemplateBinding Height}" Background="Transparent">
                                 <Grid VerticalAlignment="Center"
                                           Background="Transparent"
@@ -171,10 +177,15 @@
                                IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
                                PopupAnimation="Slide"
                                Placement="Bottom">
+                            <!-- warning, this will cache the inner item as well, consider separating the shadow from the item if possible -->
+                            <Popup.CacheMode>
+                                <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                            </Popup.CacheMode>
                             <Border x:Name="SubMenuBorder"
                                     Background="{Binding Path=Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuBase}}"
                                     Effect="{DynamicResource MaterialDesignShadowDepth1}"
                                     CornerRadius="2">
+
                                 <Border Background="Transparent">
                                     <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                         <Grid RenderOptions.ClearTypeHint="Enabled" Margin="0 16">

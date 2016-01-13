@@ -25,6 +25,7 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="TextElement.FontWeight" Value="Normal" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:PopupBox}">
@@ -36,7 +37,6 @@
                                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                          
                                                     ClipToBounds="False"
                                                     wpf:RippleAssist.IsCentered="True"
-                                                    Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
                                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                     Padding="{TemplateBinding Padding}" 
@@ -137,6 +137,7 @@
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth2" />
         <Setter Property="Width" Value="56" />
         <Setter Property="Height" Value="56" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:PopupBox}">
@@ -156,7 +157,7 @@
                                                     <VisualStateGroup.Transitions>
                                                         <VisualTransition From="*" To="Checked">
                                                             <Storyboard>
-                                                                <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                                <DoubleAnimation Storyboard.TargetName="ContentRotateTransform"
                                                                                  Storyboard.TargetProperty="Angle"
                                                                                  To="45"
                                                                                  Duration="0:0:0.1">
@@ -168,7 +169,7 @@
                                                         </VisualTransition>
                                                         <VisualTransition From="Checked" To="Unchecked">
                                                             <Storyboard>
-                                                                <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                                <DoubleAnimation Storyboard.TargetName="ContentRotateTransform"
                                                                                  Storyboard.TargetProperty="Angle"
                                                                                  To="0"
                                                                                  Duration="0:0:0.1">
@@ -181,7 +182,7 @@
                                                     </VisualStateGroup.Transitions>
                                                     <VisualState x:Name="Checked">
                                                         <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                            <DoubleAnimation Storyboard.TargetName="ContentRotateTransform"
                                                                              Storyboard.TargetProperty="Angle"
                                                                              To="45"
                                                                              Duration="0" />
@@ -189,7 +190,7 @@
                                                     </VisualState>
                                                     <VisualState x:Name="Unchecked">
                                                         <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                            <DoubleAnimation Storyboard.TargetName="ContentRotateTransform"
                                                                              Storyboard.TargetProperty="Angle"
                                                                              To="0"
                                                                              Duration="0" />
@@ -197,21 +198,30 @@
                                                     </VisualState>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                            <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
-                                                     Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                                     x:Name="border" />
-                                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
-                                                        Feedback="White"
+                                            <AdornerDecorator>
+                                                <AdornerDecorator.CacheMode>
+                                                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                                </AdornerDecorator.CacheMode>
+                                                <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
+                                                                               Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                                                               x:Name="border">
+                                                </Ellipse>
+                                            </AdornerDecorator>
+                                            <wpf:Ripple Focusable="False"  
                                                         Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
-                                                        wpf:RippleAssist.IsCentered="True"
-                                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                        wpf:RippleAssist.IsCentered="False"
+                                                        HorizontalContentAlignment="Stretch"
+                                                        VerticalContentAlignment="Stretch"
                                                         Padding="{TemplateBinding Padding}" 
-                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                        RenderTransformOrigin=".5,.5">
-                                                <wpf:Ripple.RenderTransform>
-                                                    <RotateTransform x:Name="RippleRotateTransform" Angle="0" />
-                                                </wpf:Ripple.RenderTransform>
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                                <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                  RenderTransformOrigin=".5,.5">
+                                                    <ContentPresenter.RenderTransform>
+                                                        <RotateTransform x:Name="ContentRotateTransform" Angle="0" />
+                                                    </ContentPresenter.RenderTransform>
+                                                </ContentPresenter>
                                             </wpf:Ripple>
                                             <Ellipse x:Name="GeometryEllipse" Fill="Transparent" IsHitTestVisible="False" Focusable="False" />
                                         </Grid>

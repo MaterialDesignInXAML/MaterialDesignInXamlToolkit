@@ -11,12 +11,17 @@
 
     <ControlTemplate TargetType="{x:Type wpf:Card}" x:Key="CardTemplate">
         <Grid Margin="{TemplateBinding Margin}" Background="Transparent">
-            <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                    CornerRadius="{TemplateBinding UniformCornerRadius}">
-                <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
-                        x:Name="PART_ClipBorder"
-                        Clip="{TemplateBinding ContentClip}" />                        
-            </Border>
+            <AdornerDecorator>
+                <AdornerDecorator.CacheMode>
+                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                </AdornerDecorator.CacheMode>
+                <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                        CornerRadius="{TemplateBinding UniformCornerRadius}">
+                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
+                            x:Name="PART_ClipBorder"
+                            Clip="{TemplateBinding ContentClip}" />                        
+                </Border>
+            </AdornerDecorator>
             <ContentPresenter 
                 x:Name="ContentPresenter"                    
                 Margin="{TemplateBinding Padding}"
