@@ -93,14 +93,12 @@
                                     <VisualTransition From="MousePressed" To="Normal">
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="1">
-                                                </EasingDoubleKeyFrame>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="1" x:Name="MousePressedToNormalScaleXKeyFrame"/>
                                                 <EasingDoubleKeyFrame KeyTime="0:0:0.50" Value="1"/>
                                                 <EasingDoubleKeyFrame KeyTime="0:0:0.50" Value="0"/>
                                             </DoubleAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="1">
-                                                </EasingDoubleKeyFrame>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="1" x:Name="MousePressedToNormalScaleYKeyFrame"/>
                                                 <EasingDoubleKeyFrame KeyTime="0:0:0.50" Value="1"/>
                                                 <EasingDoubleKeyFrame KeyTime="0:0:0.50" Value="0"/>
                                             </DoubleAnimationUsingKeyFrames>
