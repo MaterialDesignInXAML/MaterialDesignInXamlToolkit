@@ -256,6 +256,9 @@
     <Compile Include="MaterialDataGridComboBoxColumn.cs" />
     <Compile Include="MaterialDataGridTextColumn.cs" />
     <Compile Include="MaterialDateDisplay.cs" />
+    <Compile Include="PackIcon.cs" />
+    <Compile Include="PackIconDataFactory.cs" />
+    <Compile Include="PackIconKind.cs" />
     <Compile Include="PopupBox.cs" />
     <Compile Include="PaletteHelper.cs" />
     <Compile Include="PasswordFieldAssist.cs" />
