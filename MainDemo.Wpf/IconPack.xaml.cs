@@ -24,5 +24,11 @@ namespace MaterialDesignDemo
         {
             InitializeComponent();
         }
+
+        private void TextBox_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            var textBox = (TextBox)sender;
+            textBox.Dispatcher.BeginInvoke(new Action(textBox.SelectAll));
+        }
     }
 }
