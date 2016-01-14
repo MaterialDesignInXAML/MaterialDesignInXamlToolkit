@@ -122,7 +122,7 @@
                 <Button ToolTip="Twitter" Click="TwitterButton_OnClick"
                         Background="{DynamicResource PrimaryHueMidBrush}"
                         Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
-                    <materialDesign:PackIcon Kind="Twitter" Height="20" Width="20" />
+                    <materialDesign:PackIcon Kind="Twitter" />
                 </Button>
                 <Button ToolTip="Chat" Click="ChatButton_OnClick">
                     <!-- mix up the colours by brinking in a named palette (see merged dictionaries at top) -->
@@ -132,13 +132,13 @@
                     <Button.Foreground>
                         <SolidColorBrush Color="{StaticResource GreenPrimary500Foreground}"></SolidColorBrush>
                     </Button.Foreground>
-                    <materialDesign:PackIcon Kind="Message" Height="20" Width="20" />
+                    <materialDesign:PackIcon Kind="Message" />
                 </Button>
                 <Button ToolTip="Email" Click="EmailButton_OnClick"
                         Background="{DynamicResource SecondaryAccentBrush}"
                         Foreground="{DynamicResource SecondaryAccentForegroundBrush}"
                         >
-                    <materialDesign:PackIcon Kind="Email" Height="20" Width="20" />
+                    <materialDesign:PackIcon Kind="Email" />
                 </Button>
             </StackPanel>
         </materialDesign:PopupBox>

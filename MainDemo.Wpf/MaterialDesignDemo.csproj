@@ -109,6 +109,10 @@
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IconPack.xaml.cs">
+      <DependentUpon>IconPack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IconsViewModel.cs" />
     <Compile Include="Lists.xaml.cs">
       <DependentUpon>Lists.xaml</DependentUpon>
     </Compile>
@@ -186,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IconPack.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

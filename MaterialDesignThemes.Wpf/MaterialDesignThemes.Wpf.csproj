@@ -41,6 +41,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\PackIconBase.cs">
+      <Link>ControlzEx\PackIconBase.cs</Link>
+    </Compile>
     <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\PopupEx.cs">
       <Paket>True</Paket>
       <Link>ControlzEx/PopupEx.cs</Link>
