@@ -23,7 +23,8 @@ namespace MaterialDesignThemes.Wpf
             if (passwordBox != null)
             {
                 passwordBox.PasswordChanged += PasswordBoxOnPasswordChanged;
-                ConfigureHint(passwordBox);
+                // call listener immediately, maybe passwordbox was not empty
+                PasswordBoxOnPasswordChanged(passwordBox, new RoutedEventArgs());
             }
         }
 
@@ -89,10 +90,5 @@ namespace MaterialDesignThemes.Wpf
             return (bool)element.GetValue(IsNullOrEmptyProperty);
         }
     }
-
-    public static class ProgressBarAssist
-    {
-
-
-    }
+    
 }
