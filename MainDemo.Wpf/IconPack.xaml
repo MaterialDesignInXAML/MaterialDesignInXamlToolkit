@@ -28,7 +28,7 @@
                        Margin="0 8 0 0">
                 Material Design In XAML Toolkit includes the Material Design Icons collection.
             </TextBlock>
-            <TextBlock Margin="0 8 0 0">
+            <TextBlock Margin="0 12 0 0">
                 For more information on Material Design Icons see the official website: 
                 <Hyperlink Command="{Binding OpenDotComCommand}">materialdesignicons.com</Hyperlink>
             </TextBlock>
@@ -55,6 +55,8 @@
             <StackPanel Orientation="Horizontal" Margin="8">
                 <TextBlock Margin="8 0 0 0" Style="{StaticResource MaterialDesignSubheadingTextBlock}" VerticalAlignment="Center">Usage:</TextBlock>
                 <TextBox IsReadOnly="True" Margin="8 0 8 0"
+                         FontFamily="Courier New"
+                         FontWeight="Bold"
                          GotFocus="TextBox_OnGotFocus"
                          Text="{Binding  ElementName=KindsListBox, Path=SelectedValue, StringFormat='&lt;materialDesign:PackIcon Kind=&quot;{0}&quot; \/>'}" />
                 <materialDesign:PackIcon Kind="{Binding ElementName=KindsListBox, Path=SelectedValue}" VerticalAlignment="Center" />
