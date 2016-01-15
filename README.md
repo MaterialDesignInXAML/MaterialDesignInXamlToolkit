@@ -8,13 +8,12 @@ Comphrehensive and easy to use Material Design theme and control library for the
 
 # ![Alt text](web/images/MD4XAML28.png "Summary") Summary
 
- * XAML Resources for [Google swatches displayed](http://www.google.co.uk/design/spec/style/color.html#color-ui-color-application)
- * WPF control themes
- * Small sample apps within solution showing how to include chosen colours and use the resources:
-   * MaterialDesignColors.WpfExample - illustrates palette use and control themes in WPF
-   * MahMaterialDragablzMashUp - illustrates combination of [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro), and Material Design for saweet UI.
- * Compatible with [MahApps](http://mahapps.com) and [Dragablz](https://github.com/ButchersBoy/Dragablz).  See demo app in source and [Mash Up! blog](http://dragablz.net/2015/02/25/material-design-in-xaml-mash-up/).
- * Includes hacky console app which was used to generate the XAML colour definitions
+ * Material Design styles for all major WPF Framework controls
+ * Additional controls to support the theme, including Multi Action Button, Cards, Dialogs
+ * Easy configuration of palette (at design _and_ runtime), according to [Google's guidelines](http://www.google.co.uk/design/spec/style/color.html#color-ui-color-application)
+ * Full [Material Design Icons](https://materialdesignicons.com/) icon pack
+ * Compatible with [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro)
+ * Demo applications included in the source project
 
 [![Gitter](https://img.shields.io/badge/Gitter-Join%20Chat-green.svg?style=flat-square)](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit)
 [![Build](https://img.shields.io/appveyor/ci/ButchersBoy/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://ci.appveyor.com/project/ButchersBoy/materialdesigninxamltoolkit)
