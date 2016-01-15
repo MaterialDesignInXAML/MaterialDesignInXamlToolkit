@@ -54,11 +54,15 @@
         <materialDesign:ColorZone Mode="PrimaryLight" Grid.Row="2" Margin="0 8 0 0" CornerRadius="2" materialDesign:ShadowAssist.ShadowDepth="Depth2">
             <StackPanel Orientation="Horizontal" Margin="8">
                 <TextBlock Margin="8 0 0 0" Style="{StaticResource MaterialDesignSubheadingTextBlock}" VerticalAlignment="Center">Usage:</TextBlock>
-                <TextBox IsReadOnly="True" Margin="8 0 8 0"
-                         FontFamily="Courier New"
-                         FontWeight="Bold"
-                         GotFocus="TextBox_OnGotFocus"
-                         Text="{Binding  ElementName=KindsListBox, Path=SelectedValue, StringFormat='&lt;materialDesign:PackIcon Kind=&quot;{0}&quot; \/>'}" />
+                <materialDesign:ColorZone Mode="Standard" Margin="8" CornerRadius="2" Padding="6 2 6 2">
+                    <TextBox IsReadOnly="True"
+                             materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
+                             BorderThickness="0"
+                             FontFamily="Courier New"
+                             FontWeight="Bold"
+                             GotFocus="TextBox_OnGotFocus"
+                             Text="{Binding  ElementName=KindsListBox, Path=SelectedValue, StringFormat='&lt;materialDesign:PackIcon Kind=&quot;{0}&quot; \/>'}" />
+                </materialDesign:ColorZone>
                 <materialDesign:PackIcon Kind="{Binding ElementName=KindsListBox, Path=SelectedValue}" VerticalAlignment="Center" />
             </StackPanel>
         </materialDesign:ColorZone>
