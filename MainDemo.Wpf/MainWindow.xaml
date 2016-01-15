@@ -6,6 +6,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
+        xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
         Title="Material Design in XAML" Height="800" Width="1100"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -94,6 +95,15 @@
                         <domain:DemoItem Name="Cards">
                             <domain:DemoItem.Content>
                                 <wpfExample:Cards />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Icon Pack">
+                            <domain:DemoItem.Content>
+                                <materialDesignDemo:IconPack>
+                                    <materialDesignDemo:IconPack.DataContext>
+                                        <materialDesignDemo:IconPackViewModel />
+                                    </materialDesignDemo:IconPack.DataContext>
+                                </materialDesignDemo:IconPack>
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
                         <domain:DemoItem Name="Colour Zones">
