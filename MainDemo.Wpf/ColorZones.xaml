@@ -55,7 +55,9 @@
                                     </Canvas>
                                 </Viewbox>
                             </Button>
-                            <TextBox Grid.Column="1" Margin="8 0 0 0" materialDesign:TextFieldAssist.Hint="Build a search bar" MinWidth="200" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="1" Margin="8 0 0 0" materialDesign:TextFieldAssist.Hint="Build a search bar" 
+                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
+                                     MinWidth="200" VerticalAlignment="Center" />
                             <Button Style="{DynamicResource MaterialDesignToolButton}" Grid.Column="2">
                                 <Viewbox Width="16" Height="16" Margin="8 0 0 0" Opacity=".56">
                                     <Canvas Width="24" Height="24">

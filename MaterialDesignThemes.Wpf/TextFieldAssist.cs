@@ -105,6 +105,30 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
+        /// Controls the visibility of the underline decoration.
+        /// </summary>
+        public static readonly DependencyProperty DecorationVisibilityProperty = DependencyProperty.RegisterAttached(
+            "DecorationVisibility", typeof (Visibility), typeof (TextFieldAssist), new PropertyMetadata(default(Visibility)));
+
+        /// <summary>
+        /// Controls the visibility of the underline decoration.
+        /// </summary>
+        public static void SetDecorationVisibility(DependencyObject element, Visibility value)
+        {
+            element.SetValue(DecorationVisibilityProperty, value);
+        }
+
+        /// <summary>
+        /// Controls the visibility of the underline decoration.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Visibility GetDecorationVisibility(DependencyObject element)
+        {
+            return (Visibility) element.GetValue(DecorationVisibilityProperty);
+        }
+
+        /// <summary>
         /// Internal framework use only.
         /// </summary>
         public static readonly DependencyProperty TextProperty = DependencyProperty.RegisterAttached(
@@ -165,9 +189,7 @@ namespace MaterialDesignThemes.Wpf
         public static TextBox GetManaged(DependencyObject element)
         {
             return (TextBox) element.GetValue(ManagedProperty);
-        }
-
-        
+        }        
 
         #region Methods
 

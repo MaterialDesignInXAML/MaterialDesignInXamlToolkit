@@ -169,7 +169,7 @@
 					    			   PopupAnimation="Fade"  />
                             </Grid>
                         </Border>
-                        <wpf:Underline x:Name="Underline" />
+                        <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
 						<Trigger Property="IsEnabled" Value="false">
