@@ -153,8 +153,14 @@
             </Grid.ColumnDefinitions>
             <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
                 <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" UseLayoutRounding="True">
-                    <Border x:Name="shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2" BorderThickness="1"
-                                        Effect="{DynamicResource MaterialDesignShadowDepth2}" />
+                    <AdornerDecorator>
+                        <AdornerDecorator.CacheMode>
+                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                        </AdornerDecorator.CacheMode>
+                        <Border x:Name="shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2" BorderThickness="1"
+                                Effect="{DynamicResource MaterialDesignShadowDepth2}">
+                        </Border>
+                    </AdornerDecorator>
                     <Border x:Name="dropDownBorder" Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}" Background="Transparent"
                             CornerRadius="2" BorderThickness="1" BorderBrush="{DynamicResource MaterialDesignDivider}">
                         <ScrollViewer x:Name="DropDownScrollViewer">
@@ -231,8 +237,14 @@
             </Grid.ColumnDefinitions>
             <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
                 <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" UseLayoutRounding="True">
-                    <Border x:Name="shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2" BorderThickness="1"
-                                        Effect="{DynamicResource MaterialDesignShadowDepth2}" />
+                    <AdornerDecorator>
+                        <AdornerDecorator.CacheMode>
+                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                        </AdornerDecorator.CacheMode>
+                        <Border x:Name="shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2" BorderThickness="1"
+                                                Effect="{DynamicResource MaterialDesignShadowDepth2}">
+                        </Border>
+                    </AdornerDecorator>
                     <Border x:Name="dropDownBorder" Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}" Background="Transparent"
                             CornerRadius="2" BorderThickness="1" BorderBrush="{DynamicResource MaterialDesignDivider}">
                         <ScrollViewer x:Name="DropDownScrollViewer">

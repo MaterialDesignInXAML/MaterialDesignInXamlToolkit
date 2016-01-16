@@ -194,9 +194,15 @@
                                                     </VisualState>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                            <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
-                                                     Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                                     x:Name="border" />
+                                            <AdornerDecorator>
+                                                <AdornerDecorator.CacheMode>
+                                                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                                </AdornerDecorator.CacheMode>
+                                                <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
+                                                                               Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                                                               x:Name="border">
+                                                </Ellipse>
+                                            </AdornerDecorator>
                                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
                                                         Feedback="White"
                                                         Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"

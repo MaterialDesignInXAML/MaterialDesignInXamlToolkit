@@ -29,7 +29,7 @@ namespace MaterialDesignThemes.Wpf
     public static class ShadowAssist
     {
         public static readonly DependencyProperty ShadowDepthProperty = DependencyProperty.RegisterAttached(
-            "ShadowDepth", typeof (ShadowDepth), typeof (ShadowAssist), new PropertyMetadata(default(ShadowDepth)));
+            "ShadowDepth", typeof (ShadowDepth), typeof (ShadowAssist), new FrameworkPropertyMetadata(default(ShadowDepth), FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static void SetShadowDepth(DependencyObject element, ShadowDepth value)
         {
@@ -55,7 +55,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DarkenProperty = DependencyProperty.RegisterAttached(
-            "Darken", typeof (bool), typeof (ShadowAssist), new PropertyMetadata(default(bool), DarkenPropertyChangedCallback));
+            "Darken", typeof (bool), typeof (ShadowAssist), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.AffectsRender, DarkenPropertyChangedCallback));
 
         private static void DarkenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
