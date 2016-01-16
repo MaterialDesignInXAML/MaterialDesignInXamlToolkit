@@ -754,12 +754,16 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PackIcon}">
-                    <Viewbox>
-                        <Canvas Width="24" Height="24">
-                            <Path Data="{Binding Data, RelativeSource={RelativeSource TemplatedParent}}"                                   
-                                  Fill="{TemplateBinding Foreground}" />
-                        </Canvas>
-                    </Viewbox>
+                    <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Viewbox>
+                            <Canvas Width="24" Height="24">
+                                <Path Data="{Binding Data, RelativeSource={RelativeSource TemplatedParent}}"                                   
+                                      Fill="{TemplateBinding Foreground}" />
+                            </Canvas>
+                        </Viewbox>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
