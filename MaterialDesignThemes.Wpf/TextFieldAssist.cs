@@ -170,7 +170,7 @@ namespace MaterialDesignThemes.Wpf
         /// Framework use only.
         /// </summary>
         public static readonly DependencyProperty ManagedProperty = DependencyProperty.RegisterAttached(
-            "Managed", typeof(TextBox), typeof(TextFieldAssist), new PropertyMetadata(default(TextBox), ManagedPropertyChangedCallback));                
+            "Managed", typeof(Control), typeof(TextFieldAssist), new PropertyMetadata(default(Control), ManagedPropertyChangedCallback));                
 
 
         /// <summary>
@@ -264,34 +264,41 @@ namespace MaterialDesignThemes.Wpf
 
         private static void ManagedPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var textBox = dependencyPropertyChangedEventArgs.OldValue as TextBox;
-            if (textBox != null)
+            var control = dependencyPropertyChangedEventArgs.OldValue as Control;
+            if (control != null)
             {
-                textBox.IsVisibleChanged -= ManagedTextBoxOnIsVisibleChanged;                
+                control.IsVisibleChanged -= ManagedTextBoxOnIsVisibleChanged;                
             }
 
-            textBox = dependencyPropertyChangedEventArgs.NewValue as TextBox;
-            if (textBox != null)
+            control = dependencyPropertyChangedEventArgs.NewValue as Control;
+            if (control != null)
             {
-                textBox.IsVisibleChanged += ManagedTextBoxOnIsVisibleChanged;                
+                control.IsVisibleChanged += ManagedTextBoxOnIsVisibleChanged;                
             }
         }
 
         private static void ManagedTextBoxOnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var textBox = (TextBox)sender;
+            if (!RefreshState(sender as TextBox, textBox => textBox.Text))
+                RefreshState(sender as ComboBox, comboBox => comboBox.Text);
+        }
 
-            if (!textBox.IsVisible) return;
+        private static bool RefreshState<TControl>(TControl control, Func<TControl,  string> textAccessor) where TControl : Control
+        {
+            if (control == null) return false;
+            if (!control.IsVisible) return true;
 
-            var state = string.IsNullOrEmpty(textBox.Text)
+            var state = string.IsNullOrEmpty(textAccessor(control))
                 ? "MaterialDesignStateTextEmpty"
                 : "MaterialDesignStateTextNotEmpty";
 
             //yep, had to invoke post this to trigger refresh
-            textBox.Dispatcher.BeginInvoke(new Action(() =>
+            control.Dispatcher.BeginInvoke(new Action(() =>
             {
-                VisualStateManager.GoToState(textBox, state, false);
+                VisualStateManager.GoToState(control, state, false);
             }));
+
+            return true;
         }
 
         #endregion
