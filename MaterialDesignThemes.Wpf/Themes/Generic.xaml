@@ -50,7 +50,7 @@
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform">
                                                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1">
                                                     <EasingDoubleKeyFrame.EasingFunction>
                                                         <SineEase EasingMode="EaseIn" />
                                                     </EasingDoubleKeyFrame.EasingFunction>
@@ -58,7 +58,7 @@
                                             </DoubleAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform">
                                                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1">
                                                     <EasingDoubleKeyFrame.EasingFunction>
                                                         <SineEase EasingMode="EaseIn" />
                                                     </EasingDoubleKeyFrame.EasingFunction>
