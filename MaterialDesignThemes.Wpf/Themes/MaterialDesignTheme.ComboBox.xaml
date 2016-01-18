@@ -455,7 +455,7 @@
         <ControlTemplate.Triggers>
             <Trigger Property="IsEditable" Value="True">
                 <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
-                <Setter TargetName="Underline" Property="Visibility" Value="Visible" />
+                <Setter TargetName="Underline" Property="Visibility" Value="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <MultiTrigger>
@@ -630,7 +630,7 @@
 
             <Trigger Property="IsEditable" Value="True">
                 <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
-                <Setter TargetName="Underline" Property="Visibility" Value="Visible" />
+                <Setter TargetName="Underline" Property="Visibility" Value="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <MultiTrigger>
@@ -712,6 +712,7 @@
            TargetType="{x:Type ComboBox}">
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
         <Setter Property="wpf:TextFieldAssist.Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+        <Setter Property="wpf:TextFieldAssist.Managed" Value="{Binding RelativeSource={RelativeSource Self}}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />

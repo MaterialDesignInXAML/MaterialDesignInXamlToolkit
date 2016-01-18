@@ -7,12 +7,10 @@ using System.Windows.Media;
 namespace MaterialDesignThemes.Wpf
 {
     /// <summary>
-    /// The text field.
+    /// Helper properties for working with text fields.
     /// </summary>
     public static class TextFieldAssist
     {
-        #region Static Fields
-
         /// <summary>
         /// The hint property
         /// </summary>
@@ -23,44 +21,14 @@ namespace MaterialDesignThemes.Wpf
             new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// The text box view margin property
+        /// Sets the hint.
         /// </summary>
-        public static readonly DependencyProperty TextBoxViewMarginProperty = DependencyProperty.RegisterAttached(
-            "TextBoxViewMargin",
-            typeof(Thickness),
-            typeof(TextFieldAssist),
-            new PropertyMetadata(new Thickness(double.NegativeInfinity), TextBoxViewMarginPropertyChangedCallback));
-
-        /// <summary>
-        /// The hint opacity property
-        /// </summary>
-        public static readonly DependencyProperty HintOpacityProperty = DependencyProperty.RegisterAttached(
-            "HintOpacity",
-            typeof(double),
-            typeof(TextFieldAssist),
-            new PropertyMetadata(.48));
-
-        /// <summary>
-        /// Internal framework use only.
-        /// </summary>
-        public static readonly DependencyProperty TextProperty = DependencyProperty.RegisterAttached(
-            "Text", typeof (string), typeof (TextFieldAssist), new PropertyMetadata(default(string), TextPropertyChangedCallback));
-
-        private static readonly DependencyPropertyKey IsNullOrEmptyPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
-            "IsNullOrEmpty", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(true));
-
-        private static readonly DependencyProperty IsNullOrEmptyProperty =
-            IsNullOrEmptyPropertyKey.DependencyProperty;
-
-        /// <summary>
-        /// Framework use only.
-        /// </summary>
-        public static readonly DependencyProperty ManagedProperty = DependencyProperty.RegisterAttached(
-            "Managed", typeof(TextBox), typeof(TextFieldAssist), new PropertyMetadata(default(TextBox), ManagedPropertyChangedCallback));        
-
-        #endregion
-
-        #region Public Methods and Operators
+        /// <param name="element">The element.</param>
+        /// <param name="value">The value.</param>
+        public static void SetHint(DependencyObject element, string value)
+        {
+            element.SetValue(HintProperty, value);
+        }
 
         /// <summary>
         /// Gets the hint.
@@ -72,6 +40,25 @@ namespace MaterialDesignThemes.Wpf
         public static string GetHint(DependencyObject element)
         {
             return (string)element.GetValue(HintProperty);
+        }
+
+        /// <summary>
+        /// The text box view margin property
+        /// </summary>
+        public static readonly DependencyProperty TextBoxViewMarginProperty = DependencyProperty.RegisterAttached(
+            "TextBoxViewMargin",
+            typeof(Thickness),
+            typeof(TextFieldAssist),
+            new PropertyMetadata(new Thickness(double.NegativeInfinity), TextBoxViewMarginPropertyChangedCallback));
+
+        /// <summary>
+        /// Sets the text box view margin.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <param name="value">The value.</param>
+        public static void SetTextBoxViewMargin(DependencyObject element, Thickness value)
+        {
+            element.SetValue(TextBoxViewMarginProperty, value);
         }
 
         /// <summary>
@@ -87,6 +74,15 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
+        /// The hint opacity property
+        /// </summary>
+        public static readonly DependencyProperty HintOpacityProperty = DependencyProperty.RegisterAttached(
+            "HintOpacity",
+            typeof(double),
+            typeof(TextFieldAssist),
+            new PropertyMetadata(.48));
+
+        /// <summary>
         /// Gets the text box view margin.
         /// </summary>
         /// <param name="element">The element.</param>
@@ -99,26 +95,6 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Sets the hint.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="value">The value.</param>
-        public static void SetHint(DependencyObject element, string value)
-        {
-            element.SetValue(HintProperty, value);
-        }
-
-        /// <summary>
-        /// Sets the text box view margin.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="value">The value.</param>
-        public static void SetTextBoxViewMargin(DependencyObject element, Thickness value)
-        {
-            element.SetValue(TextBoxViewMarginProperty, value);
-        }
-
-        /// <summary>
         /// Sets the hint opacity.
         /// </summary>
         /// <param name="element">The element.</param>
@@ -128,15 +104,74 @@ namespace MaterialDesignThemes.Wpf
             element.SetValue(HintOpacityProperty, value);
         }
 
+        /// <summary>
+        /// Controls the visibility of the underline decoration.
+        /// </summary>
+        public static readonly DependencyProperty DecorationVisibilityProperty = DependencyProperty.RegisterAttached(
+            "DecorationVisibility", typeof (Visibility), typeof (TextFieldAssist), new PropertyMetadata(default(Visibility)));
+
+        /// <summary>
+        /// Controls the visibility of the underline decoration.
+        /// </summary>
+        public static void SetDecorationVisibility(DependencyObject element, Visibility value)
+        {
+            element.SetValue(DecorationVisibilityProperty, value);
+        }
+
+        /// <summary>
+        /// Controls the visibility of the underline decoration.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Visibility GetDecorationVisibility(DependencyObject element)
+        {
+            return (Visibility) element.GetValue(DecorationVisibilityProperty);
+        }
+
+        /// <summary>
+        /// Internal framework use only.
+        /// </summary>
+        public static readonly DependencyProperty TextProperty = DependencyProperty.RegisterAttached(
+            "Text", typeof (string), typeof (TextFieldAssist), new PropertyMetadata(default(string), TextPropertyChangedCallback));
+
+        /// <summary>
+        /// Internal framework use only.
+        /// </summary>
         public static void SetText(DependencyObject element, string value)
         {
             element.SetValue(TextProperty, value);
         }
 
+        /// <summary>
+        /// Internal framework use only.
+        /// </summary>
         public static string GetText(DependencyObject element)
         {
             return (string)element.GetValue(TextProperty);
         }
+
+        private static readonly DependencyPropertyKey IsNullOrEmptyPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
+            "IsNullOrEmpty", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(true));
+
+        private static readonly DependencyProperty IsNullOrEmptyProperty =
+            IsNullOrEmptyPropertyKey.DependencyProperty;
+
+        private static void SetIsNullOrEmpty(DependencyObject element, bool value)
+        {
+            element.SetValue(IsNullOrEmptyPropertyKey, value);
+        }
+
+        public static bool GetIsNullOrEmpty(DependencyObject element)
+        {
+            return (bool)element.GetValue(IsNullOrEmptyProperty);
+        }
+
+        /// <summary>
+        /// Framework use only.
+        /// </summary>
+        public static readonly DependencyProperty ManagedProperty = DependencyProperty.RegisterAttached(
+            "Managed", typeof(Control), typeof(TextFieldAssist), new PropertyMetadata(default(Control), ManagedPropertyChangedCallback));                
+
 
         /// <summary>
         /// Framework use only.
@@ -154,9 +189,7 @@ namespace MaterialDesignThemes.Wpf
         public static TextBox GetManaged(DependencyObject element)
         {
             return (TextBox) element.GetValue(ManagedProperty);
-        }
-
-        #endregion
+        }        
 
         #region Methods
 
@@ -231,44 +264,41 @@ namespace MaterialDesignThemes.Wpf
 
         private static void ManagedPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var textBox = dependencyPropertyChangedEventArgs.OldValue as TextBox;
-            if (textBox != null)
+            var control = dependencyPropertyChangedEventArgs.OldValue as Control;
+            if (control != null)
             {
-                textBox.IsVisibleChanged -= ManagedTextBoxOnIsVisibleChanged;                
+                control.IsVisibleChanged -= ManagedTextBoxOnIsVisibleChanged;                
             }
 
-            textBox = dependencyPropertyChangedEventArgs.NewValue as TextBox;
-            if (textBox != null)
+            control = dependencyPropertyChangedEventArgs.NewValue as Control;
+            if (control != null)
             {
-                textBox.IsVisibleChanged += ManagedTextBoxOnIsVisibleChanged;                
+                control.IsVisibleChanged += ManagedTextBoxOnIsVisibleChanged;                
             }
         }
 
         private static void ManagedTextBoxOnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var textBox = (TextBox)sender;
+            if (!RefreshState(sender as TextBox, textBox => textBox.Text))
+                RefreshState(sender as ComboBox, comboBox => comboBox.Text);
+        }
 
-            if (!textBox.IsVisible) return;
+        private static bool RefreshState<TControl>(TControl control, Func<TControl,  string> textAccessor) where TControl : Control
+        {
+            if (control == null) return false;
+            if (!control.IsVisible) return true;
 
-            var state = string.IsNullOrEmpty(textBox.Text)
+            var state = string.IsNullOrEmpty(textAccessor(control))
                 ? "MaterialDesignStateTextEmpty"
                 : "MaterialDesignStateTextNotEmpty";
 
             //yep, had to invoke post this to trigger refresh
-            textBox.Dispatcher.BeginInvoke(new Action(() =>
+            control.Dispatcher.BeginInvoke(new Action(() =>
             {
-                VisualStateManager.GoToState(textBox, state, false);
+                VisualStateManager.GoToState(control, state, false);
             }));
-        }
 
-        private static void SetIsNullOrEmpty(DependencyObject element, bool value)
-        {
-            element.SetValue(IsNullOrEmptyPropertyKey, value);
-        }
-
-        public static bool GetIsNullOrEmpty(DependencyObject element)
-        {
-            return (bool)element.GetValue(IsNullOrEmptyProperty);
+            return true;
         }
 
         #endregion

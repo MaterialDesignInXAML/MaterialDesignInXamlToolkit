@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="MaterialDesignDemo.IconPack"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:virtualCollection="clr-namespace:VirtualCollection.VirtualCollection"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignData="{d:DesignInstance materialDesignDemo:IconPackViewModel, IsDesignTimeCreatable=False}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Style="{StaticResource MaterialDesignDisplay2TextBlock}">Icon Pack</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+                       Margin="0 8 0 0">
+                Material Design In XAML Toolkit includes the Material Design Icons collection.
+            </TextBlock>
+            <TextBlock Margin="0 12 0 0">
+                For more information on Material Design Icons see the official website: 
+                <Hyperlink Command="{Binding OpenDotComCommand}">materialdesignicons.com</Hyperlink>
+            </TextBlock>
+        </StackPanel>
+        <ListBox ItemsSource="{Binding Kinds}" Grid.Row="1" Margin="0 8 0 0"
+                 x:Name="KindsListBox">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <virtualCollection:VirtualizingWrapPanel ItemHeight="80" ItemWidth="80" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="materialDesign:PackIconKind">
+                    <DockPanel ToolTip="{Binding }" Width="64" Height="64" Background="Transparent">
+                        <TextBlock Text="{Binding }" DockPanel.Dock="Bottom" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" />
+                        <materialDesign:PackIcon Kind="{Binding }" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                 Width="32" Height="32"                                                 
+                                                 />
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <materialDesign:ColorZone Mode="PrimaryLight" Grid.Row="2" Margin="0 8 0 0" CornerRadius="2" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+            <StackPanel Orientation="Horizontal" Margin="8">
+                <TextBlock Margin="8 0 0 0" Style="{StaticResource MaterialDesignSubheadingTextBlock}" VerticalAlignment="Center">Usage:</TextBlock>
+                <materialDesign:ColorZone Mode="Standard" Margin="8" CornerRadius="2" Padding="6 2 6 2">
+                    <TextBox IsReadOnly="True"
+                             materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
+                             BorderThickness="0"
+                             FontFamily="Courier New"
+                             FontWeight="Bold"
+                             GotFocus="TextBox_OnGotFocus"
+                             Text="{Binding  ElementName=KindsListBox, Path=SelectedValue, StringFormat='&lt;materialDesign:PackIcon Kind=&quot;{0}&quot; \/>'}" />
+                </materialDesign:ColorZone>
+                <materialDesign:PackIcon Kind="{Binding ElementName=KindsListBox, Path=SelectedValue}" VerticalAlignment="Center" />
+            </StackPanel>
+        </materialDesign:ColorZone>
+    </Grid>
+</UserControl>

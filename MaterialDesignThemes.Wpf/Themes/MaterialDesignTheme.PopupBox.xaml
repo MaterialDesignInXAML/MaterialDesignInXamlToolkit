@@ -14,11 +14,8 @@
     <converters:NullableToVisibilityConverter x:Key="InvertedNullVisibilityConverter" NullValue="Visible" NotNullValue="Collapsed" />
     <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
 
-    <Path x:Key="MaterialDesignPopupBoxToggleContent" 
-          x:Shared="False"
-          Data="M4.1239999,2.0625 C4.1239999,3.2015873 3.2008111,4.125 2.062,4.125 C0.92318883,4.125 0,3.2015873 0,2.0625 C0,0.9234127 0.92318883,0 2.062,0 C3.2008111,0 4.1239999,0.9234127 4.1239999,2.0625 z M4.1859999,8.0465 C4.1859999,9.1855873 3.2628111,10.109 2.124,10.109 C0.98518883,10.109 0.062,9.1855873 0.062,8.0465 C0.062,6.9074127 0.98518883,5.984 2.124,5.984 C3.2628111,5.984 4.1859999,6.9074127 4.1859999,8.0465 z M4.1859999,13.9215 C4.1859999,15.060587 3.2628111,15.984 2.124,15.984 C0.98518883,15.984 0.062,15.060587 0.062,13.9215 C0.062,12.782413 0.98518883,11.859 2.124,11.859 C3.2628111,11.859 4.1859999,12.782413 4.1859999,13.9215 z"                      
-          Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=Foreground}"
-          Margin="4 0 4 0"/>
+    <wpf:PackIcon Kind="DotsVertical" x:Key="MaterialDesignPopupBoxToggleContent" x:Shared="False" Margin="4 0 4 0" Width="24" Height="24"
+                  Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=Foreground}" />
     
     <Style TargetType="{x:Type wpf:PopupBox}" x:Key="MaterialDesignPopupBox">
         <Setter Property="ToggleContent" Value="{StaticResource MaterialDesignPopupBoxToggleContent}" />
@@ -197,9 +194,15 @@
                                                     </VisualState>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                            <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
-                                                     Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                                     x:Name="border" />
+                                            <AdornerDecorator>
+                                                <AdornerDecorator.CacheMode>
+                                                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                                </AdornerDecorator.CacheMode>
+                                                <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
+                                                                               Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                                                               x:Name="border">
+                                                </Ellipse>
+                                            </AdornerDecorator>
                                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
                                                         Feedback="White"
                                                         Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
@@ -358,12 +361,8 @@
         </Setter>
         <Setter Property="ToggleContent">
             <Setter.Value>
-                <Viewbox Width="24" Height="24">
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" 
-                              Fill="{DynamicResource PrimaryHueMidForegroundBrush}" />
-                    </Canvas>
-                </Viewbox>
+                <wpf:PackIcon Kind="Plus" Width="24" Height="24"
+                              Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" />
             </Setter.Value>
         </Setter>
         <Style.Triggers>
@@ -381,12 +380,8 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}"/>
         <Setter Property="ToggleContent">
             <Setter.Value>
-                <Viewbox Width="24" Height="24">
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" 
-                              Fill="{DynamicResource PrimaryHueLightForegroundBrush}" />
-                    </Canvas>
-                </Viewbox>
+                <wpf:PackIcon Kind="Plus" Width="24" Height="24"
+                              Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -399,12 +394,8 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
         <Setter Property="ToggleContent">
             <Setter.Value>
-                <Viewbox Width="24" Height="24">
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" 
-                              Fill="{DynamicResource PrimaryHueDarkForegroundBrush}" />
-                    </Canvas>
-                </Viewbox>
+                <wpf:PackIcon Kind="Plus" Width="24" Height="24"
+                              Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -417,12 +408,8 @@
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
         <Setter Property="ToggleContent">
             <Setter.Value>
-                <Viewbox Width="24" Height="24">
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" 
-                              Fill="{DynamicResource SecondaryAccentForegroundBrush}" />
-                    </Canvas>
-                </Viewbox>
+                <wpf:PackIcon Kind="Plus" Width="24" Height="24"
+                              Foreground="{DynamicResource SecondaryAccentForegroundBrush}" />
             </Setter.Value>
         </Setter>
     </Style>    
