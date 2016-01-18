@@ -82,7 +82,7 @@
                             <materialDesign:ColorZone Mode="PrimaryMid" Grid.Row="1" Effect="{DynamicResource MaterialDesignShadowDepth5}">
                                 <TextBlock Margin="16">Fruit Bowl</TextBlock>
                             </materialDesign:ColorZone>
-                            <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"                                
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"                                
                                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                     VerticalAlignment="Bottom" HorizontalAlignment="Right" 
                                     Grid.Row="0" Margin="0 0 28 -20">

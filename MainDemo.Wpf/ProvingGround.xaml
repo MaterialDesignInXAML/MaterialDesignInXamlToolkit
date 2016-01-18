@@ -1,12 +1,12 @@
-﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+             FontFamily="{StaticResource MaterialDesignFont}"
              mc:Ignorable="d"              
 			 d:DesignWidth="477" d:DesignHeight="272">
     <UserControl.Resources>
@@ -21,16 +21,21 @@
     </UserControl.Resources>
 
 
-    <StackPanel Margin="24 0 0 0" HorizontalAlignment="Stretch">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock VerticalAlignment="Bottom">Try me</TextBlock>
-            <Slider Minimum="0" Maximum="100" Style="{StaticResource MaterialDesignDiscreteSlider}" 
-                    Value="50"
-                    Width="280" 
-                    Margin="8 0 0 0"/>
-        </StackPanel>
-        <Slider Minimum="0" Maximum="10" Margin="0 24 0 0" Style="{StaticResource MaterialDesignDiscreteSlider}"  />
-        <Slider Minimum="0" Maximum="10" Margin="0 24 0 0" Style="{StaticResource MaterialDesignDiscreteSlider}"  />
+    <StackPanel Margin="24" HorizontalAlignment="Stretch">
+        <materialDesign:PopupBox x:Name="PopupBox" HorizontalAlignment="Right">
+            <ListBox>
+                <ListBoxItem>One One One</ListBoxItem>
+                <ListBoxItem>Two Two Two</ListBoxItem>
+                <ListBoxItem>Three Three Three</ListBoxItem>
+            </ListBox>
+        </materialDesign:PopupBox>
+        <Button Margin="0 8 0 0">Hello</Button>
+        <ComboBox Margin="0 8 0 0">
+            <ComboBoxItem>One One One</ComboBoxItem>
+            <ComboBoxItem>Two Two Two</ComboBoxItem>
+            <ComboBoxItem>Three Three Three</ComboBoxItem>
+        </ComboBox>
+        <TextBlock Margin="0 8 0 0" Text="{Binding ElementName=PopupBox, Path=IsPopupOpen}" />
     </StackPanel>
 
 </UserControl>

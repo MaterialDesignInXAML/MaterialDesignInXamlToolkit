@@ -24,6 +24,7 @@ namespace MaterialDesignColors.WpfExample
         public Pickers()
         {
             InitializeComponent();
+            FutureDatePicker.BlackoutDates.AddDatesInPast();
         }
 
         public void CalendarDialogOpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)

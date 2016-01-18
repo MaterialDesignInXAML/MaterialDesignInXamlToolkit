@@ -35,12 +35,17 @@ namespace MaterialDesignThemes.Wpf
     [TemplatePart(Name = MinutesCanvasPartName, Type = typeof(Canvas))]
 	[TemplatePart(Name = MinuteReadOutPartName, Type = typeof(TextBlock))]
 	[TemplatePart(Name = HourReadOutPartName, Type = typeof(TextBlock))]
+    [TemplateVisualState(GroupName = "DisplayModeStates", Name = HoursVisualStateName)]
+    [TemplateVisualState(GroupName = "DisplayModeStates", Name = MinutesVisualStateName)]
     public class Clock : Control
 	{
 		public const string HoursCanvasPartName = "PART_HoursCanvas";
         public const string MinutesCanvasPartName = "PART_MinutesCanvas";
 		public const string MinuteReadOutPartName = "PART_MinuteReadOut";
 		public const string HourReadOutPartName = "PART_HourReadOut";
+
+	    public const string HoursVisualStateName = "Hours";
+        public const string MinutesVisualStateName = "Minutes";
 
         private Point _centreCanvas = new Point(0, 0);
         private Point _currentStartPosition = new Point(0, 0);
@@ -62,7 +67,7 @@ namespace MaterialDesignThemes.Wpf
 		public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(
 			"Time", typeof (DateTime), typeof (Clock), new FrameworkPropertyMetadata(default(DateTime), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TimePropertyChangedCallback));
 
-		private static void TimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+	    private static void TimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
 		    var clock = (Clock) dependencyObject;
 		    SetFlags(clock);
@@ -131,9 +136,14 @@ namespace MaterialDesignThemes.Wpf
 
 
 		public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(
-			"DisplayMode", typeof (ClockDisplayMode), typeof (Clock), new PropertyMetadata(ClockDisplayMode.Hours));
+			"DisplayMode", typeof (ClockDisplayMode), typeof (Clock), new FrameworkPropertyMetadata(ClockDisplayMode.Hours, DisplayModePropertyChangedCallback));
 
-		public ClockDisplayMode DisplayMode
+	    private static void DisplayModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+	    {
+	        ((Clock)dependencyObject).GotoVisualState(!TransitionAssist.GetDisableTransitions(dependencyObject));
+	    }
+
+	    public ClockDisplayMode DisplayMode
 		{
 			get { return (ClockDisplayMode) GetValue(DisplayModeProperty); }
 			set { SetValue(DisplayModeProperty, value); }
@@ -235,7 +245,15 @@ namespace MaterialDesignThemes.Wpf
 				_minuteReadOutPartName.PreviewMouseLeftButtonDown += MinuteReadOutPartNameOnPreviewMouseLeftButtonDown;
 
 			base.OnApplyTemplate();
+
+            GotoVisualState(false);
 		}
+
+	    private void GotoVisualState(bool useTransitions)
+	    {
+	        VisualStateManager.GoToState(this,
+	            DisplayMode == ClockDisplayMode.Minutes ? MinutesVisualStateName : HoursVisualStateName, useTransitions);
+	    }
 
 	    private void GenerateButtons()
 	    {

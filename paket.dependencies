@@ -1,3 +1,5 @@
 source https://nuget.org/api/v2
 
-github punker76/Controlz:2f2f5ebc5ce30069cb05774f03fcee722c284fd4 src/Controlz/PopupEx.cs
+github ControlzEx/ControlzEx:40a2be62474f0b78f2fd125a5b321e011acd5bb5 src/ControlzEx/PopupEx.cs
+github ControlzEx/ControlzEx:82ebaec4b7e2862baf74ab0cc53df6fffdb5e5c5 src/ControlzEx/PackIconBase.cs
+github samueldjack/VirtualCollection:e63d891c252c2ac1a3ebb26dddb9a3d89effe3f2 VirtualCollection/VirtualCollection/VirtualizingWrapPanel.cs

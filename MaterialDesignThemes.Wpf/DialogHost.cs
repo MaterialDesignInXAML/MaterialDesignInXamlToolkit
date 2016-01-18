@@ -224,9 +224,10 @@ namespace MaterialDesignThemes.Wpf
 
         private static void IsOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var dialogHost = (DialogHost)dependencyObject;            
+            var dialogHost = (DialogHost)dependencyObject;
 
-            VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), true);
+            ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
+            VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
             if (!dialogHost.IsOpen)
             {
@@ -234,6 +235,7 @@ namespace MaterialDesignThemes.Wpf
                 dialogHost._attachedDialogClosingEventHandler = null;
                 dialogHost._session.IsEnded = true;
                 dialogHost._session = null;
+                
                 return;
             }
 
@@ -251,10 +253,17 @@ namespace MaterialDesignThemes.Wpf
             dialogHost.DialogOpenedCallback?.Invoke(dialogHost, dialogOpenedEventArgs);
             dialogHost._asyncShowOpenedEventHandler?.Invoke(dialogHost, dialogOpenedEventArgs);
 
-            dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() =>
+            dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                dialogHost._popup?.Child?.Focus();
-                dialogHost._popup?.Child?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                var child = dialogHost._popup?.Child;
+                if (child == null) return;
+
+                child.Focus();
+                child.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+
+                //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
+                //totally not happy about this, but on immediate validation we can get some wierd looking stuff...give WPF a kick to refresh...
+                Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));                
             }));
         }
 
@@ -441,7 +450,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var dialogClosingEventArgs = new DialogClosingEventArgs(_session, parameter, DialogClosingEvent);
 
-            _session.IsEnded = true;
+            _session.IsEnded = true;            
 
             //multiple ways of calling back that the dialog is closing:
             // * routed event
@@ -456,7 +465,7 @@ namespace MaterialDesignThemes.Wpf
             if (!dialogClosingEventArgs.IsCancelled)
                 SetCurrentValue(IsOpenProperty, false);
             else
-                _session.IsEnded = false;
+                _session.IsEnded = false;            
 
             _closeDialogExecutionParameter = parameter;
         }

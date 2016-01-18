@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:MaterialDesignThemes.Wpf"
     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
-    xmlns:controlz="clr-namespace:Controlz">
+    xmlns:controlzEx="clr-namespace:ControlzEx">
 
 	<ResourceDictionary.MergedDictionaries>
 		<!--	we only bring in the dictionaries for controls which were "invented"
@@ -16,24 +16,28 @@
 		-->
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Clock.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RatingBar.xaml" />
 		<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TimePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Font.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 	
 	<!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
 	<Style TargetType="{x:Type local:Clock}" BasedOn="{StaticResource MaterialDesignClock}" />
+    <Style TargetType="{x:Type local:PopupBox}" BasedOn="{StaticResource MaterialDesignPopupBox}" />
 	<Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />
 		
 	<converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
     <converters:DrawerOffsetConverter x:Key="DrawerOffsetConverter" />
     
     <Style TargetType="{x:Type local:Ripple}">
+        <Setter Property="RecognizesAccessKey" Value="True" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="ClipToBounds" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:RippleAssist.ClipToBounds)}" />
+        <Setter Property="ClipToBounds" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:RippleAssist.ClipToBounds)}" />        
         <Setter Property="Feedback" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -130,11 +134,14 @@
                             </Ellipse>
                         </Canvas>
                         <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                           Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="{TemplateBinding RecognizesAccessKey}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -153,20 +160,6 @@
                 <ControlTemplate>
                     <ControlTemplate.Resources>
                         <CircleEase x:Key="UnderlineEasingFunction" EasingMode="EaseOut"/>
-                        <Storyboard x:Key="ExpandUnderlineBorderStoryboard">
-                            <DoubleAnimation Storyboard.TargetName="UnderlineBorder"
-                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                                 Duration="0:0:0.3"
-                                                 EasingFunction="{StaticResource UnderlineEasingFunction}"
-                                                 To="1"/>
-                        </Storyboard>
-                        <Storyboard x:Key="CollapseUnderlineBorderStoryboard">
-                            <DoubleAnimation Storyboard.TargetName="UnderlineBorder"
-                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                                 Duration="0:0:0.3"
-                                                 EasingFunction="{StaticResource UnderlineEasingFunction}"
-                                                 To="0"/>
-                        </Storyboard>
                     </ControlTemplate.Resources>
                     <Border x:Name="UnderlineBorder"
                             Background="{TemplateBinding Background}"
@@ -176,20 +169,50 @@
                             HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                             RenderTransformOrigin="0.5,0.5">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ActivationStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Inactive" To="Active">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                             Storyboard.TargetProperty="ScaleX"
+                                                             Duration="0:0:0.3"
+                                                             EasingFunction="{StaticResource UnderlineEasingFunction}"
+                                                             To="1"/>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Active" To="Inactive">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                             Storyboard.TargetProperty="ScaleX"
+                                                             Duration="0:0:0.3"
+                                                             EasingFunction="{StaticResource UnderlineEasingFunction}"
+                                                             To="0"/>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Active">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         Duration="0"
+                                                         To="1"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Inactive">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         Duration="0"
+                                                         To="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <Border.RenderTransform>
-                            <ScaleTransform ScaleX="0" ScaleY="1"/>
+                            <ScaleTransform ScaleX="0" ScaleY="1" x:Name="ScaleTransform" />
                         </Border.RenderTransform>
                     </Border>
-                    <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsActive}" Value="True">
-                            <DataTrigger.EnterActions>
-                                <BeginStoryboard Storyboard="{StaticResource ExpandUnderlineBorderStoryboard}"/>
-                            </DataTrigger.EnterActions>
-                            <DataTrigger.ExitActions>
-                                <BeginStoryboard Storyboard="{StaticResource CollapseUnderlineBorderStoryboard}"/>
-                            </DataTrigger.ExitActions>
-                        </DataTrigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -228,8 +251,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-		<Style.Triggers>
-        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type local:ListSortDirectionIndicator}">
@@ -360,9 +381,15 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ColorZone}">
                     <Grid Background="Transparent">
-                        <Border Background="{TemplateBinding Background}"
-                                CornerRadius="{TemplateBinding CornerRadius}"
-                                Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" />
+                        <AdornerDecorator>
+                            <AdornerDecorator.CacheMode>
+                                <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                            </AdornerDecorator.CacheMode>
+                            <Border Background="{TemplateBinding Background}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"                                
+                                    Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
+                            </Border>
+                        </AdornerDecorator>
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -507,15 +534,19 @@
                                 <VisualState x:Name="Open">
                                     <Storyboard>
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
-                                            <DiscreteBooleanKeyFrame Value="True" />
+                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
                                         <DoubleAnimation Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="Opacity"
+                                                         Duration="0"
                                                          To=".56" />
                                         <DoubleAnimation Storyboard.TargetName="PART_PopupContentElement" Storyboard.TargetProperty="Opacity"
+                                                         Duration="0"
                                                          To="1" />
                                         <DoubleAnimation Storyboard.TargetName="CardScaleTransform" Storyboard.TargetProperty="ScaleX"
+                                                         Duration="0"
                                                          To="1" />
                                         <DoubleAnimation Storyboard.TargetName="CardScaleTransform" Storyboard.TargetProperty="ScaleY"
+                                                         Duration="0"
                                                          To="1" />
                                     </Storyboard>
                                 </VisualState>
@@ -529,31 +560,31 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <controlz:PopupEx IsOpen="False"
+                        <controlzEx:PopupEx IsOpen="False"
                                           PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"
                                           StaysOpen="True"
                                           AllowsTransparency="True"
                                           PopupAnimation="None"
                                           x:Name="PART_Popup"
                                           Placement="Center">
-                            <Popup.Resources>
+                            <controlzEx:PopupEx.Resources>
                                 <ResourceDictionary>
                                     <ResourceDictionary.MergedDictionaries>
                                         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                                     </ResourceDictionary.MergedDictionaries>
                                 </ResourceDictionary>
-                            </Popup.Resources>
+                            </controlzEx:PopupEx.Resources>
                             <local:Card x:Name="PART_PopupContentElement" 
                                         Margin="22"
                                         local:ShadowAssist.ShadowDepth="Depth5"
                                         UniformCornerRadius="4"
                                         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-                                        TextElement.FontWeight="Medium"
-                                        TextElement.FontSize="14"
+                                        TextElement.FontWeight="Regular"
+                                        TextElement.FontSize="13"
                                         TextOptions.TextFormattingMode="Ideal"
                                         TextOptions.TextRenderingMode="Auto"
                                         Foreground="{DynamicResource MaterialDesignBody}"
-                                        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+                                        FontFamily="{StaticResource MaterialDesignFont}"
                                         IsTabStop="False"
                                         Opacity="0"
                                         RenderTransformOrigin=".5,.5"
@@ -569,7 +600,7 @@
                                     </TransformGroup>
                                 </local:Card.RenderTransform>
                             </local:Card>
-                        </controlz:PopupEx>
+                        </controlzEx:PopupEx>
                         <AdornerDecorator>
                             <ContentPresenter 
                                     x:Name="ContentPresenter" Opacity="1"                    
@@ -632,7 +663,7 @@
                                 <VisualState x:Name="AnyOpen">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Opacity"
-                                                         To=".56" Duration="0" />                                        
+                                                         To=".56" Duration="0" />
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="IsHitTestVisible">
                                             <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
@@ -708,13 +739,44 @@
                                 <TranslateTransform x:Name="LeftDrawerTranslateTransform"
                                                     X="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Grid}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}}" />
                             </Grid.RenderTransform>
-                            <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                    Opacity="0"
-                                    Background="{TemplateBinding LeftDrawerBackground}"
-                                    x:Name="LeftDrawerShadow" />
+                            <AdornerDecorator>
+                                <AdornerDecorator.CacheMode>
+                                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                </AdornerDecorator.CacheMode>
+                                <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                        Opacity="0"
+                                        Background="{TemplateBinding LeftDrawerBackground}"
+                                        x:Name="LeftDrawerShadow">
+                                </Border>
+                            </AdornerDecorator>
+
                             <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}" />
                         </Grid>
                     </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:PackIcon}">
+        <Setter Property="Height" Value="16" />
+        <Setter Property="Width" Value="16" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PackIcon}">
+                    <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Viewbox>
+                            <Canvas Width="24" Height="24">
+                                <Path Data="{Binding Data, RelativeSource={RelativeSource TemplatedParent}}"                                   
+                                      Fill="{TemplateBinding Foreground}" />
+                            </Canvas>
+                        </Viewbox>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

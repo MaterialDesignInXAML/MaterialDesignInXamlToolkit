@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:circularProgressBar="clr-namespace:MaterialDesignThemes.Wpf.Converters.CircularProgressBar">
+                    xmlns:circularProgressBar="clr-namespace:MaterialDesignThemes.Wpf.Converters.CircularProgressBar"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+    
     <Style x:Key="MaterialDesignLinearProgressBar" TargetType="{x:Type ProgressBar}">
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
@@ -24,11 +26,16 @@
                                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
+                        <Storyboard x:Key="OnLoadedNoAnimation">
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="TemplateRoot" To="1" />
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="TemplateRoot" To="1" />
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="TemplateRoot" To="1" />
+                        </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid x:Name="TemplateRoot" RenderTransformOrigin="0,0.5" Opacity="0" Height="4">
                         <Grid.RenderTransform>
                             <TransformGroup>
-                                <ScaleTransform ScaleX="0" ScaleY="0"/>
+                                <ScaleTransform ScaleX="0" ScaleY="0" />
                                 <SkewTransform/>
                                 <RotateTransform/>
                                 <TranslateTransform/>
@@ -70,11 +77,26 @@
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsVisible" Value="True">
+                        <Trigger Property="wpf:TransitionAssist.DisableTransitions" Value="True">
                             <Trigger.EnterActions>
-                                <BeginStoryboard Storyboard="{StaticResource OnLoaded}"/>
+                                <BeginStoryboard Storyboard="{StaticResource OnLoadedNoAnimation}" Name="BeginStoryboardOnLoadedNoAnimation" />
                             </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <RemoveStoryboard BeginStoryboardName="BeginStoryboardOnLoadedNoAnimation" />
+                            </Trigger.ExitActions>
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsVisible" Value="True" />
+                                <Condition Property="wpf:TransitionAssist.DisableTransitions" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource OnLoaded}" Name="BeginStoryboardOnLoaded" />
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <RemoveStoryboard BeginStoryboardName="BeginStoryboardOnLoaded" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
                         <Trigger Property="Orientation" Value="Vertical">
                             <Setter Property="LayoutTransform" TargetName="TemplateRoot">
                                 <Setter.Value>

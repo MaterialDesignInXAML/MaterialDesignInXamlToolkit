@@ -72,10 +72,16 @@
                                PlacementTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}}"                                                              
                                PopupAnimation="Fade">
                             <Grid>
-                                <Border Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
-                                        Margin="5,5,5,5"
-                                        Effect="{StaticResource MaterialDesignShadowDepth2}"
-                                        BorderThickness="1" />
+                                <AdornerDecorator>
+                                    <AdornerDecorator.CacheMode>
+                                        <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                    </AdornerDecorator.CacheMode>
+                                    <Border Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
+                                            Margin="5,5,5,5"
+                                            Effect="{StaticResource MaterialDesignShadowDepth2}"
+                                            BorderThickness="1">
+                                    </Border>
+                                </AdornerDecorator>
                                 <Border Padding="16" Background="Transparent" CornerRadius="2"
                                         Margin="5,5,5,5"
                                         BorderBrush="{DynamicResource MaterialDesignDivider}"
@@ -141,7 +147,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignDataGridCell" TargetType="{x:Type DataGridCell}">
-        <Setter Property="TextBlock.FontSize" Value="13" />
+        <!--Setter Property="TextBlock.FontSize" Value="13" /-->
         <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:DataGridAssist.CellPadding)}" />
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -336,6 +342,7 @@
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="13"/>
         <Setter Property="GridLinesVisibility" Value="Horizontal" />
         <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
         <Setter Property="HeadersVisibility" Value="Column" />

@@ -25,7 +25,7 @@
                             <TextBlock Text="{Binding StringFormat=m}" FontWeight="Bold" />
                             <TextBlock Text="{Binding StringFormat=T}" />
                         </StackPanel>
-                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                                     Grid.Column="1" Margin="-20 0 0 0" HorizontalAlignment="Left">
                             <Viewbox Width="24" Height="24">
                                 <Canvas Width="24" Height="24">

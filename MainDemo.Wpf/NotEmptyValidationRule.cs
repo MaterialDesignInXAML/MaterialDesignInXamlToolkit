@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Controls;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
 	public class NotEmptyValidationRule : ValidationRule
 	{

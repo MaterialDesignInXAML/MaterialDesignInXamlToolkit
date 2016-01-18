@@ -5,17 +5,20 @@
         xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
+        xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
         Title="Material Design in XAML" Height="800" Width="1100"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextElement.FontWeight="Medium"
-        TextElement.FontSize="14"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" Icon="favicon.ico">
+        FontFamily="{StaticResource MaterialDesignFont}" Icon="favicon.ico">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -84,9 +87,23 @@
                                 <wpfExample:Sliders />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Typography">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Typography />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Cards">
                             <domain:DemoItem.Content>
                                 <wpfExample:Cards />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Icon Pack">
+                            <domain:DemoItem.Content>
+                                <materialDesignDemo:IconPack>
+                                    <materialDesignDemo:IconPack.DataContext>
+                                        <materialDesignDemo:IconPackViewModel />
+                                    </materialDesignDemo:IconPack.DataContext>
+                                </materialDesignDemo:IconPack>
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
                         <domain:DemoItem Name="Colour Zones">
@@ -105,7 +122,11 @@
                         </domain:DemoItem>
                         <domain:DemoItem Name="Trees">
                             <domain:DemoItem.Content>
-                                <wpfExample:Trees />
+                                <wpfExample:Trees>
+                                    <wpfExample:Trees.DataContext>
+                                        <domain:TreesViewModel/>
+                                    </wpfExample:Trees.DataContext>
+                                </wpfExample:Trees>
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
                         <domain:DemoItem Name="Grids">
@@ -136,7 +157,7 @@
                             <domain:DemoItem.Content>
                                 <wpfExample:Dialogs>
                                     <wpfExample:Dialogs.DataContext>
-                                        <domain:DialogsViewModel />
+                                        <domain1:DialogsViewModel />
                                     </wpfExample:Dialogs.DataContext>
                                 </wpfExample:Dialogs>
                             </domain:DemoItem.Content>
@@ -151,14 +172,21 @@
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
                 <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                               Mode="PrimaryMid" DockPanel.Dock="Top">
+                                          Mode="PrimaryMid" DockPanel.Dock="Top">
                     <DockPanel>
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
                                       x:Name="MenuToggleButton"/>
+                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges">
+                            <StackPanel>
+                                <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
+                                <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
+                                <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
                     </DockPanel>
                 </materialDesign:ColorZone>
-                <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
+                <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />                
             </DockPanel>
         </materialDesign:DrawerHost>
     </materialDesign:DialogHost>

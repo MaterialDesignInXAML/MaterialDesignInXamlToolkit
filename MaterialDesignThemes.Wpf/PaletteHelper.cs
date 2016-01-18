@@ -14,7 +14,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
                 .Where(rd => rd.Source != null)
-                .SingleOrDefault(rd => Regex.Match(rd.Source.AbsolutePath, @"(\/MaterialDesignThemes.Wpf;component\/Themes\/MaterialDesignTheme\.)((Light)|(Dark))").Success);
+                .SingleOrDefault(rd => Regex.Match(rd.Source.OriginalString, @"(\/MaterialDesignThemes.Wpf;component\/Themes\/MaterialDesignTheme\.)((Light)|(Dark))").Success);
             if (existingResourceDictionary == null)
                 throw new ApplicationException("Unable to find Light/Dark base theme in Application resources.");
 
@@ -27,7 +27,7 @@ namespace MaterialDesignThemes.Wpf
 
             var existingMahAppsResourceDictionary = Application.Current.Resources.MergedDictionaries
                 .Where(rd => rd.Source != null)
-                .SingleOrDefault(rd => Regex.Match(rd.Source.AbsolutePath, @"(\/MahApps.Metro;component\/Styles\/Accents\/)((BaseLight)|(BaseDark))").Success);
+                .SingleOrDefault(rd => Regex.Match(rd.Source.OriginalString, @"(\/MahApps.Metro;component\/Styles\/Accents\/)((BaseLight)|(BaseDark))").Success);
             if (existingMahAppsResourceDictionary == null) return;
 
             source =
