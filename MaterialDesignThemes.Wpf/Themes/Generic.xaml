@@ -430,12 +430,12 @@
                 <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
             </Trigger>
             <Trigger Property="Mode" Value="Light">
-                <Setter Property="Background" Value="#FFfafafa" />
-                <Setter Property="Foreground" Value="#DD000000" />
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignLightBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignLightForeground}" />
             </Trigger>
             <Trigger Property="Mode" Value="Dark">
-                <Setter Property="Background" Value="#FF37474f" />
-                <Setter Property="Foreground" Value="#DDFFFFFF" />
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignDarkBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignDarkForeground}" />
             </Trigger>
         </Style.Triggers>
     </Style>
