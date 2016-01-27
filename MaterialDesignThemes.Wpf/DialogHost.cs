@@ -65,6 +65,8 @@ namespace MaterialDesignThemes.Wpf
         private DialogOpenedEventHandler _attachedDialogOpenedEventHandler;
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;        
         private object _closeDialogExecutionParameter;
+        private IInputElement _restoreFocus;
+        private Action _closeCleanUp = () => { };
 
         static DialogHost()
         {
@@ -204,7 +206,7 @@ namespace MaterialDesignThemes.Wpf
             Unloaded += OnUnloaded;
 
             CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler, CloseDialogCanExecute));
-            CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));
+            CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));            
         }
 
         public static readonly DependencyProperty IdentifierProperty = DependencyProperty.Register(
@@ -220,7 +222,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register(
-            "IsOpen", typeof (bool), typeof (DialogHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsOpenPropertyChangedCallback));
+            "IsOpen", typeof (bool), typeof (DialogHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsOpenPropertyChangedCallback));        
 
         private static void IsOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -229,12 +231,18 @@ namespace MaterialDesignThemes.Wpf
             ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
             VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
-            if (!dialogHost.IsOpen)
+
+            if (dialogHost.IsOpen)
+            {
+                WatchWindowActivation(dialogHost);
+            }
+            else
             {
                 dialogHost._asyncShowWaitHandle.Set();
                 dialogHost._attachedDialogClosingEventHandler = null;
                 dialogHost._session.IsEnded = true;
                 dialogHost._session = null;
+                dialogHost._closeCleanUp();
                 
                 return;
             }
@@ -265,7 +273,7 @@ namespace MaterialDesignThemes.Wpf
                 //totally not happy about this, but on immediate validation we can get some wierd looking stuff...give WPF a kick to refresh...
                 Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));                
             }));
-        }
+        }        
 
         public bool IsOpen
         {
@@ -470,6 +478,14 @@ namespace MaterialDesignThemes.Wpf
             _closeDialogExecutionParameter = parameter;
         }
 
+        protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            if (window != null && !window.IsActive)
+                window.Activate();
+            base.OnPreviewMouseDown(e);
+        }
+
         private void OpenDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
             if (executedRoutedEventArgs.Handled) return;
@@ -540,6 +556,39 @@ namespace MaterialDesignThemes.Wpf
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             LoadedInstances.Add(this);
+        }
+
+        private static void WatchWindowActivation(DialogHost dialogHost)
+        {
+            var window = Window.GetWindow(dialogHost);
+            if (window != null)
+            {
+                window.Activated += dialogHost.WindowOnActivated;
+                window.Deactivated += dialogHost.WindowOnDeactivated;
+                dialogHost._closeCleanUp = () =>
+                {
+                    window.Activated -= dialogHost.WindowOnActivated;
+                    window.Deactivated -= dialogHost.WindowOnDeactivated;
+                };
+            }
+            else
+            {
+                dialogHost._closeCleanUp = () => { };
+            }
+        }
+
+        private void WindowOnDeactivated(object sender, EventArgs eventArgs)
+        {
+            _restoreFocus = _popupContentControl != null ? FocusManager.GetFocusedElement(_popupContentControl) : null;
+        }
+
+        private void WindowOnActivated(object sender, EventArgs eventArgs)
+        {
+            if (_restoreFocus != null)
+            {
+                Dispatcher.BeginInvoke(new Action(() => Keyboard.Focus(_restoreFocus)));
+
+            }
         }
     }
 }

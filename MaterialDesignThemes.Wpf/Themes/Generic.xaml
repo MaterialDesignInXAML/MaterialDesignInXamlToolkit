@@ -608,6 +608,8 @@
                                         TextOptions.TextRenderingMode="Auto"
                                         Foreground="{DynamicResource MaterialDesignBody}"
                                         FontFamily="{StaticResource MaterialDesignFont}"
+                                        FocusManager.IsFocusScope="True"
+                                        KeyboardNavigation.TabNavigation="Contained"
                                         IsTabStop="False"
                                         Opacity="0"
                                         RenderTransformOrigin=".5,.5"
