@@ -584,7 +584,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <controlzEx:PopupEx IsOpen="False"
-                                          PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"
+                                          PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"                                            
                                           StaysOpen="True"
                                           AllowsTransparency="True"
                                           PopupAnimation="None"
@@ -608,8 +608,6 @@
                                         TextOptions.TextRenderingMode="Auto"
                                         Foreground="{DynamicResource MaterialDesignBody}"
                                         FontFamily="{StaticResource MaterialDesignFont}"
-                                        FocusManager.IsFocusScope="True"
-                                        KeyboardNavigation.TabNavigation="Contained"
                                         IsTabStop="False"
                                         Opacity="0"
                                         RenderTransformOrigin=".5,.5"

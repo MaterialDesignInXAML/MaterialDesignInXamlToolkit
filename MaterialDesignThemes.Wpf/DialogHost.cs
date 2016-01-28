@@ -231,7 +231,6 @@ namespace MaterialDesignThemes.Wpf
             ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
             VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
-
             if (dialogHost.IsOpen)
             {
                 WatchWindowActivation(dialogHost);
@@ -578,16 +577,18 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void WindowOnDeactivated(object sender, EventArgs eventArgs)
-        {
-            _restoreFocus = _popupContentControl != null ? FocusManager.GetFocusedElement(_popupContentControl) : null;
+        {            
+            _restoreFocus = _popup != null ? FocusManager.GetFocusedElement((Window)sender) : null;
         }
 
         private void WindowOnActivated(object sender, EventArgs eventArgs)
         {
             if (_restoreFocus != null)
             {
-                Dispatcher.BeginInvoke(new Action(() => Keyboard.Focus(_restoreFocus)));
-
+                Dispatcher.BeginInvoke(new Action(() =>
+                {                    
+                    Keyboard.Focus(_restoreFocus);
+                }));
             }
         }
     }
