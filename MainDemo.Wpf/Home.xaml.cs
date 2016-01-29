@@ -45,5 +45,10 @@ namespace MaterialDesignColors.WpfExample
         {
             Process.Start("mailto://james@dragablz.net");
         }
+
+        private void DonateButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://pledgie.com/campaigns/31029");
+        }
     }
 }
