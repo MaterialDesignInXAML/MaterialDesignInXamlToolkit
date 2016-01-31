@@ -3,10 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MaterialDesignColors.WpfExample.Domain"
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -51,7 +49,5 @@
                 CANCEL
             </Button>
         </StackPanel>
-        
-            
     </Grid>
 </UserControl>

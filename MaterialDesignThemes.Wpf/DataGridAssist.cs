@@ -5,6 +5,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
 using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
@@ -191,7 +192,9 @@ namespace MaterialDesignThemes.Wpf
                     return;
                 }
 
-                inputHitTest = VisualTreeHelper.GetParent(inputHitTest);
+                inputHitTest = (inputHitTest is Visual || inputHitTest is Visual3D)
+                    ? VisualTreeHelper.GetParent(inputHitTest)
+                    : null;                
             }
         }
 
