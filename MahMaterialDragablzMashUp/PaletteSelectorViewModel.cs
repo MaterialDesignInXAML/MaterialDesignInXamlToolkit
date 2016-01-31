@@ -1,6 +1,8 @@
-﻿using MaterialDesignColors;
+﻿using System;
+using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MahMaterialDragablzMashUp
@@ -22,9 +24,20 @@ namespace MahMaterialDragablzMashUp
 
         public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o));
 
-        private void ApplyStyle(bool b)
+        private static void ApplyStyle(bool alternate)
         {
-            throw new System.NotImplementedException();
+            var resourceDictionary = new ResourceDictionary
+            {
+                Source = new Uri(@"pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml")
+            };
+
+            var styleKey = alternate ? "MaterialDesignAlternateTabablzControlStyle" : "MaterialDesignTabablzControlStyle";
+            var style = (Style) resourceDictionary[styleKey];
+
+            foreach (var tabablzControl in Dragablz.TabablzControl.GetLoadedInstances())
+            {
+                tabablzControl.Style = style;
+            }                        
         }
 
         private static void ApplyBase(bool isDark)

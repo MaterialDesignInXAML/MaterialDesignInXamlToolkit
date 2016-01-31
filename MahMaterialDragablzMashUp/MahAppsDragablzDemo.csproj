@@ -81,23 +81,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Buttons.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Cards.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Dialogs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FlyoutContent.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TextFields.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,12 +102,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Buttons.xaml.cs">
-      <DependentUpon>Buttons.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Cards.xaml.cs">
-      <DependentUpon>Cards.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs.xaml.cs">
       <DependentUpon>Dialogs.xaml</DependentUpon>
     </Compile>
@@ -128,9 +110,6 @@
       <DependentUpon>FlyoutContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="PaletteSelectorViewModel.cs" />
-    <Compile Include="TextFields.xaml.cs">
-      <DependentUpon>TextFields.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Mah.xaml.cs">
       <DependentUpon>Mah.xaml</DependentUpon>
     </Compile>
