@@ -136,7 +136,7 @@
 						</VisualStateManager.VisualStateGroups>
 						<Ellipse Fill="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="UncheckedEllipse" Opacity=".54" />
 						<Ellipse Fill="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="CheckedEllipse" />
-						<Viewbox Width="24" Height="24" x:Name="CheckMark" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center">
+						<Viewbox Width="24" Height="24" x:Name="CheckMark" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="LeftToRight">
 							<Canvas Width="24" Height="24">
 								<Path Data="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" Fill="{TemplateBinding Foreground}" />
 							</Canvas>
