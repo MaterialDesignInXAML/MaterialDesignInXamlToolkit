@@ -794,7 +794,7 @@
                     <Border Background="{TemplateBinding Background}" 
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <Viewbox FlowDirection="LeftToRight">
+                        <Viewbox FlowDirection="{TemplateBinding FlowDirection}">
                             <Canvas Width="24" Height="24">
                                 <Path Data="{Binding Data, RelativeSource={RelativeSource TemplatedParent}}"                                   
                                       Fill="{TemplateBinding Foreground}" />
