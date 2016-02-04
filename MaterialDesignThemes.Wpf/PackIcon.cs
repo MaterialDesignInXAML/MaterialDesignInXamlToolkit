@@ -19,9 +19,6 @@ namespace MaterialDesignThemes.Wpf
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PackIcon), new FrameworkPropertyMetadata(typeof(PackIcon)));
         }
 
-        public PackIcon() : base(PackIconDataFactory.Create)
-        {
-            FlowDirection = FlowDirection.LeftToRight;
-        }    
+        public PackIcon() : base(PackIconDataFactory.Create) { }    
     }
 }
