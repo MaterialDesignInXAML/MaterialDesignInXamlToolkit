@@ -787,13 +787,14 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="FlowDirection" Value="LeftToRight" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PackIcon}">
                     <Border Background="{TemplateBinding Background}" 
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <Viewbox>
+                        <Viewbox FlowDirection="{TemplateBinding FlowDirection}">
                             <Canvas Width="24" Height="24">
                                 <Path Data="{Binding Data, RelativeSource={RelativeSource TemplatedParent}}"                                   
                                       Fill="{TemplateBinding Foreground}" />
