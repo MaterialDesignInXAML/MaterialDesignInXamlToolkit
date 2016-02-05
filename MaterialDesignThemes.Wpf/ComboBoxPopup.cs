@@ -116,7 +116,16 @@ namespace MaterialDesignThemes.Wpf
             var locationY = (int)locationFromScreen.Y % screenHeight;
 
             var realOffsetX = (popupSize.Width - targetSize.Width) / 2.0;
-            var offsetX = DpiHelper.TransformToDeviceX(mainVisual, offset.X);
+
+            double offsetX;
+            const int rtlHorizontalOffset = 20;
+
+            if (FlowDirection == FlowDirection.LeftToRight)
+                offsetX = DpiHelper.TransformToDeviceX(mainVisual, offset.X);
+            else
+                offsetX = DpiHelper.TransformToDeviceX(mainVisual,
+                    offset.X - targetSize.Width - rtlHorizontalOffset);
+
             var defaultVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DefaultVerticalOffset);
             var upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
             var downVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);

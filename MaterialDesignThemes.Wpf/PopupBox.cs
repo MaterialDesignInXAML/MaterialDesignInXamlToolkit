@@ -22,7 +22,7 @@ namespace MaterialDesignThemes.Wpf
     public enum PopupBoxPlacementMode
     {
         /// <summary>
-        /// Display the popup below the toggle, and align the left edges.
+        /// Display the popup below the toggle, and align the left edges.3
         /// </summary>
         BottomAndAlignLeftEdges,
         /// <summary>
@@ -400,6 +400,12 @@ namespace MaterialDesignThemes.Wpf
         private CustomPopupPlacement[] GetPopupPlacement(Size popupSize, Size targetSize, Point offset)
         {
             double x, y;
+			
+			
+            if (FlowDirection == FlowDirection.RightToLeft)
+                offset.X += targetSize.Width / 2;
+
+			
             switch (PlacementMode)
             {
                 case PopupBoxPlacementMode.BottomAndAlignLeftEdges:
