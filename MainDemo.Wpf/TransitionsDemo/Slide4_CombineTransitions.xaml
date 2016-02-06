@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="MaterialDesignDemo.TransitionsDemo.Slide4_CombineTransitions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignDemo.TransitionsDemo"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <materialDesign:ColorZone Mode="Dark" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Margin="64">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Style="{DynamicResource MaterialDesignHeadlineTextBlock}" TextWrapping="Wrap">You can combine some transition effects to.  Did you see how this page slid in from the bottom and left?</TextBlock>
+            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" TextWrapping="Wrap" Grid.Row="1">Next we will look at some granular transitions on individual elements.</TextBlock>
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" 
+                    Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                    VerticalAlignment="Center" HorizontalAlignment="Left" 
+                    Margin="16">
+                    <materialDesign:PackIcon Kind="StepBackward" />
+                </Button>
+                <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"                     
+                    Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                    VerticalAlignment="Top"
+                    Margin="16">
+                    <materialDesign:PackIcon Kind="StepForward" />
+                </Button>
+            </StackPanel>
+        </Grid>
+    </materialDesign:ColorZone>
+</UserControl>

@@ -398,6 +398,7 @@
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="IsTabStop" Value="False" />        
         <Setter Property="Template">
@@ -805,5 +806,79 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type local:Transitioner}">
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <Grid IsItemsHost="True" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Transitioner}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ItemsPresenter x:Name="ItemsPresenter" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="SelectedIndex" Value="-1">
+                            <Setter TargetName="ItemsPresenter" Property="Visibility" Value="Hidden" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:TransitioningContentBase}">
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:TransitioningContentBase}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                            x:Name="Border">
+                        <ContentPresenter 
+                                x:Name="ContentPresenter"                    
+                                Margin="{TemplateBinding Padding}"                            
+                                Content="{TemplateBinding ContentControl.Content}" 
+                                ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
+                                ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" 
+                                ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                                RenderTransformOrigin=".5,.5">
+                            <ContentPresenter.RenderTransform>
+                                <TransformGroup>
+                                    <MatrixTransform x:Name="PART_MatrixTransform" />
+                                    <RotateTransform x:Name="PART_RotateTransform" Angle="0" />
+                                    <ScaleTransform  x:Name="PART_ScaleTransform" ScaleX="1" ScaleY="1" />
+                                    <SkewTransform x:Name="PART_SkewTransform" AngleX="0" AngleY="0" />
+                                    <TranslateTransform x:Name="PART_TranslateTransform" X="0" Y="0" />
+                                </TransformGroup>
+                            </ContentPresenter.RenderTransform>
+                        </ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:TransitioningContent}" BasedOn="{StaticResource {x:Type local:TransitioningContentBase}}" />
+
+    <Style TargetType="{x:Type local:TransitionerSlide}" BasedOn="{StaticResource {x:Type local:TransitioningContentBase}}">
+        <Setter Property="IsEnabled" Value="False" />
+        <Setter Property="Visibility" Value="Hidden" />
+        <Style.Triggers>
+            <Trigger Property="State" Value="Current">
+                <Setter Property="Visibility" Value="Visible" />
+                <Setter Property="IsEnabled" Value="True" />
+            </Trigger>
+            <Trigger Property="State" Value="Previous">
+                <Setter Property="Visibility" Value="Visible" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 
 </ResourceDictionary>

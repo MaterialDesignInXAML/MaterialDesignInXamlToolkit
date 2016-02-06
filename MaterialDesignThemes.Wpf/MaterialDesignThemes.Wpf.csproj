@@ -255,6 +255,8 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
+    <Compile Include="ITransitionEffect.cs" />
+    <Compile Include="ITransitionEffectSubject.cs" />
     <Compile Include="ListSortDirectionIndicator.cs" />
     <Compile Include="MaterialDataGridComboBoxColumn.cs" />
     <Compile Include="MaterialDataGridTextColumn.cs" />
@@ -289,6 +291,16 @@
     <Compile Include="RippleAssist.cs" />
     <Compile Include="Ripple.cs" />
     <Compile Include="TransitionAssist.cs" />
+    <Compile Include="TransitionEffect.cs" />
+    <Compile Include="TransitionEffectBase.cs" />
+    <Compile Include="TransitionEffectExtension.cs" />
+    <Compile Include="TransitionEffectKind.cs" />
+    <Compile Include="TransitionEffectTypeConverter.cs" />
+    <Compile Include="Transitioner.cs" />
+    <Compile Include="TransitionerSlide.cs" />
+    <Compile Include="TransitionerSlideState.cs" />
+    <Compile Include="TransitioningContent.cs" />
+    <Compile Include="TransitioningContentBase.cs" />
     <Compile Include="TreeHelper.cs" />
     <Compile Include="Underline.cs" />
     <Compile Include="ValidationAssist.cs" />
