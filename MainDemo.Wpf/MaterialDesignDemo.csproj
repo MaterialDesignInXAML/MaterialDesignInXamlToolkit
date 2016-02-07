@@ -165,6 +165,16 @@
     <Compile Include="TransitionsDemo\Slide5_TransitioningContent.xaml.cs">
       <DependentUpon>Slide5_TransitioningContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TransitionsDemo\Slide6_MVVM.xaml.cs">
+      <DependentUpon>Slide6_MVVM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransitionsDemo\Slide7_Master.xaml.cs">
+      <DependentUpon>Slide7_Master.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransitionsDemo\Slide7_MasterModel.cs" />
+    <Compile Include="TransitionsDemo\Slide8_Details.xaml.cs">
+      <DependentUpon>Slide8_Details.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TransitionsDemo\TransitionsDemoHome.xaml.cs">
       <DependentUpon>TransitionsDemoHome.xaml</DependentUpon>
     </Compile>
@@ -295,6 +305,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TransitionsDemo\Slide5_TransitioningContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransitionsDemo\Slide6_MVVM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransitionsDemo\Slide7_Master.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransitionsDemo\Slide8_Details.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -102,7 +102,7 @@
             </materialDesign:TransitioningContent>
 
         </UniformGrid>
-        <StackPanel Orientation="Horizontal" Grid.Row="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
             <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" 
                     Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
                     VerticalAlignment="Center" HorizontalAlignment="Left" 

@@ -38,9 +38,13 @@
                 <local:Slide4_CombineTransitions />
             </materialDesign:TransitionerSlide>
 
-            <materialDesign:TransitionerSlide>
-                <local:Slide5_TransitioningContent />
-            </materialDesign:TransitionerSlide>
+            <local:Slide5_TransitioningContent />
+
+            <local:Slide6_MVVM />
+            
+            <local:Slide7_Master />
+
+            <local:Slide8_Details />
 
         </materialDesign:Transitioner>
 
