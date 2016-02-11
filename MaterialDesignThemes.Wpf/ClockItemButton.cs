@@ -12,7 +12,7 @@ namespace MaterialDesignThemes.Wpf
 		public const string ThumbPartName = "PART_Thumb";
 		
 		public static readonly DependencyProperty CentreXProperty = DependencyProperty.Register(
-			"CentreX", typeof (double), typeof (ClockItemButton), new PropertyMetadata(default(double)));
+            nameof(CentreX), typeof (double), typeof (ClockItemButton), new PropertyMetadata(default(double)));
 
 		public double CentreX
 		{
@@ -21,7 +21,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty CentreYProperty = DependencyProperty.Register(
-			"CentreY", typeof (double), typeof (ClockItemButton), new PropertyMetadata(default(double)));
+            nameof(CentreY), typeof (double), typeof (ClockItemButton), new PropertyMetadata(default(double)));
 
 		public double CentreY
 		{

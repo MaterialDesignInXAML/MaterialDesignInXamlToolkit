@@ -79,7 +79,7 @@ namespace MaterialDesignThemes.Wpf
         }        
 
         public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
-            "Feedback", typeof(Brush), typeof(Ripple), new PropertyMetadata(default(Brush)));
+            nameof(Feedback), typeof(Brush), typeof(Ripple), new PropertyMetadata(default(Brush)));
 
         public Brush Feedback
         {
@@ -170,7 +170,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary> 
         public static readonly DependencyProperty RecognizesAccessKeyProperty =
             DependencyProperty.Register(
-                "RecognizesAccessKey", typeof(bool), typeof(Ripple),
+                nameof(RecognizesAccessKey), typeof(bool), typeof(Ripple),
                 new PropertyMetadata(default(bool)));
 
         /// <summary> 

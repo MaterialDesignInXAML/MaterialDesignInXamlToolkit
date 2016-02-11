@@ -210,7 +210,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IdentifierProperty = DependencyProperty.Register(
-            "Identifier", typeof (object), typeof (DialogHost), new PropertyMetadata(default(object)));
+            nameof(Identifier), typeof (object), typeof (DialogHost), new PropertyMetadata(default(object)));
 
         /// <summary>
         /// Identifier which is used in conjunction with <see cref="Show(object)"/> to determine where a dialog should be shown.
@@ -222,7 +222,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register(
-            "IsOpen", typeof (bool), typeof (DialogHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsOpenPropertyChangedCallback));        
+            nameof(IsOpen), typeof (bool), typeof (DialogHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsOpenPropertyChangedCallback));
 
         private static void IsOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -281,7 +281,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DialogContentProperty = DependencyProperty.Register(
-            "DialogContent", typeof (object), typeof (DialogHost), new PropertyMetadata(default(object)));
+            nameof(DialogContent), typeof (object), typeof (DialogHost), new PropertyMetadata(default(object)));
 
         public object DialogContent
         {
@@ -290,7 +290,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DialogContentTemplateProperty = DependencyProperty.Register(
-            "DialogContentTemplate", typeof (DataTemplate), typeof (DialogHost), new PropertyMetadata(default(DataTemplate)));
+            nameof(DialogContentTemplate), typeof (DataTemplate), typeof (DialogHost), new PropertyMetadata(default(DataTemplate)));
 
         public DataTemplate DialogContentTemplate
         {
@@ -299,7 +299,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DialogContentTemplateSelectorProperty = DependencyProperty.Register(
-            "DialogContentTemplateSelector", typeof (DataTemplateSelector), typeof (DialogHost), new PropertyMetadata(default(DataTemplateSelector)));
+            nameof(DialogContentTemplateSelector), typeof (DataTemplateSelector), typeof (DialogHost), new PropertyMetadata(default(DataTemplateSelector)));
 
         public DataTemplateSelector DialogContentTemplateSelector
         {
@@ -308,7 +308,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DialogContentStringFormatProperty = DependencyProperty.Register(
-            "DialogContentStringFormat", typeof (string), typeof (DialogHost), new PropertyMetadata(default(string)));
+            nameof(DialogContentStringFormat), typeof (string), typeof (DialogHost), new PropertyMetadata(default(string)));
 
         public string DialogContentStringFormat
         {
@@ -317,7 +317,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty OpenDialogCommandDataContextSourceProperty = DependencyProperty.Register(
-            "OpenDialogCommandDataContextSource", typeof (DialogHostOpenDialogCommandDataContextSource), typeof (DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource)));
+            nameof(OpenDialogCommandDataContextSource), typeof (DialogHostOpenDialogCommandDataContextSource), typeof (DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource)));
 
         /// <summary>
         /// Defines how a data context is sourced for a dialog if a <see cref="FrameworkElement"/>
@@ -374,7 +374,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DialogOpenedCallbackProperty = DependencyProperty.Register(
-            "DialogOpenedCallback", typeof(DialogOpenedEventHandler), typeof(DialogHost), new PropertyMetadata(default(DialogOpenedEventHandler)));
+            nameof(DialogOpenedCallback), typeof(DialogOpenedEventHandler), typeof(DialogHost), new PropertyMetadata(default(DialogOpenedEventHandler)));
 
         /// <summary>
         /// Callback fired when the <see cref="DialogOpened"/> event is fired, allowing the event to be processed from a binding/view model.
@@ -427,7 +427,7 @@ namespace MaterialDesignThemes.Wpf
         }        
 
         public static readonly DependencyProperty DialogClosingCallbackProperty = DependencyProperty.Register(
-            "DialogClosingCallback", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));        
+            nameof(DialogClosingCallback), typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
 
         /// <summary>
         /// Callback fired when the <see cref="DialogClosing"/> event is fired, allowing the event to be processed from a binding/view model.
