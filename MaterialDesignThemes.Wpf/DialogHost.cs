@@ -174,9 +174,9 @@ namespace MaterialDesignThemes.Wpf
 
             var targets = LoadedInstances.Where(dh => Equals(dh.Identifier, dialogIndetifier)).ToList();
             if (targets.Count == 0)
-                throw new InvalidOperationException("No loaded DialogHost matches identifier.");
+                throw new InvalidOperationException("No loaded DialogHost have an Identifier property matching dialogIndetifier argument.");
             if (targets.Count > 1)
-                throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique identifier.");
+                throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
             if (targets[0].IsOpen)
                 throw new InvalidOperationException("DialogHost is already open.");
 
