@@ -25,7 +25,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
-            "IsActive", typeof(bool), typeof(Underline),
+            nameof(IsActive), typeof(bool), typeof(Underline),
             new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.AffectsRender, IsActivePropertyChangedCallback));
 
         private static void IsActivePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)

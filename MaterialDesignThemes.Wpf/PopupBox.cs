@@ -119,7 +119,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ToggleContentProperty = DependencyProperty.Register(
-            "ToggleContent", typeof (object), typeof (PopupBox), new PropertyMetadata(default(object)));
+            nameof(ToggleContent), typeof (object), typeof (PopupBox), new PropertyMetadata(default(object)));
 
         /// <summary>
         /// Content to display in the toggle button.
@@ -131,7 +131,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ToggleContentTemplateProperty = DependencyProperty.Register(
-            "ToggleContentTemplate", typeof (DataTemplate), typeof (PopupBox), new PropertyMetadata(default(DataTemplate)));
+            nameof(ToggleContentTemplate), typeof (DataTemplate), typeof (PopupBox), new PropertyMetadata(default(DataTemplate)));
 
         /// <summary>
         /// Template for <see cref="ToggleContent"/>.
@@ -143,7 +143,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ToggleCheckedContentProperty = DependencyProperty.Register(
-            "ToggleCheckedContent", typeof (object), typeof (PopupBox), new PropertyMetadata(default(object)));
+            nameof(ToggleCheckedContent), typeof (object), typeof (PopupBox), new PropertyMetadata(default(object)));
 
         /// <summary>
         /// Content to display in the toggle when it's checked (when the popup is open). Optional; if not provided the <see cref="ToggleContent"/> is used.
@@ -155,7 +155,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ToggleCheckedContentTemplateProperty = DependencyProperty.Register(
-            "ToggleCheckedContentTemplate", typeof (DataTemplate), typeof (PopupBox), new PropertyMetadata(default(DataTemplate)));
+            nameof(ToggleCheckedContentTemplate), typeof (DataTemplate), typeof (PopupBox), new PropertyMetadata(default(DataTemplate)));
 
         /// <summary>
         /// Template for <see cref="ToggleCheckedContent"/>.
@@ -167,7 +167,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ToggleCheckedContentCommandProperty = DependencyProperty.Register(
-            "ToggleCheckedContentCommand", typeof (ICommand), typeof (PopupBox), new PropertyMetadata(default(ICommand)));
+            nameof(ToggleCheckedContentCommand), typeof (ICommand), typeof (PopupBox), new PropertyMetadata(default(ICommand)));
 
         /// <summary>
         /// Command to execute if toggle is checked (popup is open) and <see cref="ToggleCheckedContent"/> is set.
@@ -179,7 +179,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ToggleCheckedContentCommandParameterProperty = DependencyProperty.Register(
-            "ToggleCheckedContentCommandParameter", typeof (object), typeof (PopupBox), new PropertyMetadata(default(object)));
+            nameof(ToggleCheckedContentCommandParameter), typeof (object), typeof (PopupBox), new PropertyMetadata(default(object)));
 
         /// <summary>
         /// Command parameter to use in conjunction with <see cref="ToggleCheckedContentCommand"/>.
@@ -191,7 +191,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty PopupContentProperty = DependencyProperty.Register(
-            "PopupContent", typeof (object), typeof (PopupBox), new PropertyMetadata(default(object)));
+            nameof(PopupContent), typeof (object), typeof (PopupBox), new PropertyMetadata(default(object)));
 
         /// <summary>
         /// Content to display in the content.
@@ -203,7 +203,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty PopupContentTemplateProperty = DependencyProperty.Register(
-            "PopupContentTemplate", typeof (DataTemplate), typeof (PopupBox), new PropertyMetadata(default(DataTemplate)));
+            nameof(PopupContentTemplate), typeof (DataTemplate), typeof (PopupBox), new PropertyMetadata(default(DataTemplate)));
 
         /// <summary>
         /// Popup content template.
@@ -215,7 +215,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty StaysOpenOnEditProperty = DependencyProperty.Register(
-            "StaysOpenOnEdit", typeof (bool), typeof (PopupBox), new PropertyMetadata(default(bool)));
+            nameof(StaysOpenOnEdit), typeof (bool), typeof (PopupBox), new PropertyMetadata(default(bool)));
 
         /// <summary>
         /// Indicates if the opup should stay open after a click is made inside the popup.
@@ -227,7 +227,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsPopupOpenProperty = DependencyProperty.Register(
-            "IsPopupOpen", typeof (bool), typeof (PopupBox), new FrameworkPropertyMetadata(default(bool), IsPopupOpenPropertyChangedCallback));
+            nameof(IsPopupOpen), typeof (bool), typeof (PopupBox), new FrameworkPropertyMetadata(default(bool), IsPopupOpenPropertyChangedCallback));
 
         private static void IsPopupOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -258,7 +258,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty StaysOpenProperty = DependencyProperty.Register(
-            "StaysOpen", typeof (bool), typeof (PopupBox), new PropertyMetadata(default(bool)));
+            nameof(StaysOpen), typeof (bool), typeof (PopupBox), new PropertyMetadata(default(bool)));
 
         /// <summary>
         /// Indicates of the popup should stay open if a click occurs inside the popup.
@@ -270,7 +270,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty PlacementModeProperty = DependencyProperty.Register(
-            "PlacementMode", typeof (PopupBoxPlacementMode), typeof (PopupBox), new PropertyMetadata(default(PopupBoxPlacementMode), PlacementModePropertyChangedCallback));
+            nameof(PlacementMode), typeof (PopupBoxPlacementMode), typeof (PopupBox), new PropertyMetadata(default(PopupBoxPlacementMode), PlacementModePropertyChangedCallback));
 
         private static void PlacementModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -287,7 +287,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty PopupModeProperty = DependencyProperty.Register(
-            "PopupMode", typeof (PopupBoxPopupMode), typeof (PopupBox), new PropertyMetadata(default(PopupBoxPopupMode)));        
+            nameof(PopupMode), typeof (PopupBoxPopupMode), typeof (PopupBox), new PropertyMetadata(default(PopupBoxPopupMode)));
 
         /// <summary>
         /// Gets or sets what trigger causes the popup to open.
@@ -302,7 +302,7 @@ namespace MaterialDesignThemes.Wpf
         /// Get or sets how to unfurl controls when opening the popups. Only child elements of type <see cref="ButtonBase"/> are animated.
         /// </summary>
         public static readonly DependencyProperty UnfurlOrientationProperty = DependencyProperty.Register(
-            "UnfurlOrientation", typeof (Orientation), typeof (PopupBox), new PropertyMetadata(Orientation.Vertical));
+            nameof(UnfurlOrientation), typeof (Orientation), typeof (PopupBox), new PropertyMetadata(Orientation.Vertical));
 
         /// <summary>
         /// Gets or sets how to unfurl controls when opening the popups. Only child elements of type <see cref="ButtonBase"/> are animated.
