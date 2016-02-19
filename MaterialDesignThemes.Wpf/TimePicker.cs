@@ -25,8 +25,9 @@ namespace MaterialDesignThemes.Wpf
 	    private Popup _popup;
 		private Button _dropDownButton;
 		private bool _disablePopupReopen;
+        private DateTime? _lastValidTime;
 
-		static TimePicker()
+        static TimePicker()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(TimePicker), new FrameworkPropertyMetadata(typeof(TimePicker)));
 		}
@@ -67,10 +68,11 @@ namespace MaterialDesignThemes.Wpf
 		private static void SelectedTimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
 			var timePicker = (TimePicker) dependencyObject;
-			timePicker.SetCurrentValue(TextProperty, timePicker.DateTimeToString(timePicker.SelectedTime));			
-		}
+			timePicker.SetCurrentValue(TextProperty, timePicker.DateTimeToString(timePicker.SelectedTime));		
+            timePicker._lastValidTime = timePicker.SelectedTime;
+        }
 
-		public DateTime? SelectedTime
+        public DateTime? SelectedTime
 		{
 			get { return (DateTime?) GetValue(SelectedTimeProperty); }
 			set { SetValue(SelectedTimeProperty, value); }
@@ -212,10 +214,36 @@ namespace MaterialDesignThemes.Wpf
 
 		private void TextBoxOnLostFocus(object sender, RoutedEventArgs routedEventArgs)
 		{
-			SetSelectedTime();
-		}
+			if (_textBox == null) return;
 
-		private void TextBoxOnKeyDown(object sender, KeyEventArgs keyEventArgs)
+            if (!string.IsNullOrEmpty(_textBox.Text))
+            {
+                DateTime time;
+                if (IsTimeValid(_textBox.Text, out time))
+                    SetCurrentValue(SelectedTimeProperty, time);
+
+                else // Invalid time, jump back to previous good time
+                    SetInvalidTime();
+            }
+        }
+
+        private void SetInvalidTime()
+        {
+            if (_lastValidTime != null)
+            {
+                SetCurrentValue(SelectedTimeProperty, (DateTime)_lastValidTime);
+                _textBox.Text = SelectedTime.Value.ToString(SelectedTime.Value.Hour % 12 > 9 ? "hh:mm tt" : "h:mm tt");
+            }
+
+            else
+            {
+                SetCurrentValue(SelectedTimeProperty, null);
+                _textBox.Text = "";
+            }
+
+        }
+
+        private void TextBoxOnKeyDown(object sender, KeyEventArgs keyEventArgs)
 		{
 			keyEventArgs.Handled = ProcessKey(keyEventArgs) || keyEventArgs.Handled;
 		}
@@ -255,8 +283,9 @@ namespace MaterialDesignThemes.Wpf
 
 		private void TextBoxOnTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
 		{
-			SetCurrentValue(TextProperty, _textBox.Text);
-		}
+            if (_popup?.IsOpen == true)
+			    SetCurrentValue(TextProperty, _textBox.Text);
+        }
 
 		private void SetSelectedTime()
 		{
@@ -268,18 +297,24 @@ namespace MaterialDesignThemes.Wpf
 			}
 		}
 
-		private static void ParseTime(string s, Action<DateTime> successContinuation)
+		private void ParseTime(string s, Action<DateTime> successContinuation)
 		{
 			var dtfi = CultureInfo.CurrentCulture.GetDateFormat();
 
 			DateTime time;
-			if (DateTime.TryParseExact(
-				s, new [] { dtfi.ShortTimePattern, dtfi.LongTimePattern }, 
-				CultureInfo.CurrentCulture, DateTimeStyles.None, out time))
+            if (IsTimeValid(s, out time))
 				successContinuation(time);
 		}
 
-		private string DateTimeToString(DateTime? d)
+        private bool IsTimeValid(string s, out DateTime time)
+        {
+            return DateTime.TryParse(s,
+                                     CultureInfo.CurrentCulture,
+                                     DateTimeStyles.AssumeLocal | DateTimeStyles.AllowWhiteSpaces,
+                                     out time);
+        }
+
+        private string DateTimeToString(DateTime? d)
 		{
 			return d.HasValue ? DateTimeToString(d.Value) : null;
 		}
