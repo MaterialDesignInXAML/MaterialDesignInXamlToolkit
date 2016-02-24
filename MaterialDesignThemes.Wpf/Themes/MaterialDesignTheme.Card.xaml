@@ -26,7 +26,10 @@
                 x:Name="ContentPresenter"                    
                 Margin="{TemplateBinding Padding}"
                 Clip="{TemplateBinding ContentClip}"
-                Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">                    
+                Content="{TemplateBinding ContentControl.Content}" 
+                ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
+                ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" 
+                ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">                    
             </ContentPresenter>
         </Grid>
     </ControlTemplate>

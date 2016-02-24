@@ -288,13 +288,13 @@ namespace MaterialDesignThemes.Wpf
             if (control == null) return false;
             if (!control.IsVisible) return true;
 
-            var state = string.IsNullOrEmpty(textAccessor(control))
-                ? "MaterialDesignStateTextEmpty"
-                : "MaterialDesignStateTextNotEmpty";
-
             //yep, had to invoke post this to trigger refresh
             control.Dispatcher.BeginInvoke(new Action(() =>
             {
+                var state = string.IsNullOrEmpty(textAccessor(control))
+                    ? "MaterialDesignStateTextEmpty"
+                    : "MaterialDesignStateTextNotEmpty";
+
                 VisualStateManager.GoToState(control, state, false);
             }));
 

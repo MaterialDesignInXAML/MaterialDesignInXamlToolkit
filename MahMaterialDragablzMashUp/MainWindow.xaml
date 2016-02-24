@@ -19,29 +19,11 @@
         </controls:FlyoutsControl>
     </controls:MetroWindow.Flyouts>
     <dockablz:Layout>
-        <dragablz:TabablzControl TextElement.Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, Path=(TextElement.Foreground)}" 
-                                 Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, Path=Background}"
-                                 BorderThickness="0"
+        <dragablz:TabablzControl BorderThickness="0"
                                  Margin="0,-1,0,1">
             <dragablz:TabablzControl.InterTabController>
                 <dragablz:InterTabController />
             </dragablz:TabablzControl.InterTabController>
-            <TabItem Header="CARDS">
-                <mahMaterialDragablzMashUp:Cards Margin="8" />
-            </TabItem>
-            <TabItem Header="BUTTONS">
-                <mahMaterialDragablzMashUp:Buttons Margin="8" />
-            </TabItem>
-            <TabItem Header="FIELDS">
-                <mahMaterialDragablzMashUp:TextFields Margin="8" />
-            </TabItem>
-            <TabItem Header="PALETTE">
-                <mahMaterialDragablzMashUp:PaletteSelector Margin="16">
-                    <mahMaterialDragablzMashUp:PaletteSelector.DataContext>
-                        <mahMaterialDragablzMashUp:PaletteSelectorViewModel />
-                    </mahMaterialDragablzMashUp:PaletteSelector.DataContext>
-                </mahMaterialDragablzMashUp:PaletteSelector>
-            </TabItem>
             <TabItem Header="DIALOGS">
                 <mahMaterialDragablzMashUp:Dialogs Margin="8">
                     <mahMaterialDragablzMashUp:Dialogs.DataContext>
@@ -50,8 +32,15 @@
                 </mahMaterialDragablzMashUp:Dialogs>
             </TabItem>
             <TabItem Header="MAHAPPS">
-                <mahMaterialDragablzMashUp:Mah Margin="8" />
+                <mahMaterialDragablzMashUp:Mah Margin="16" />
             </TabItem>
+            <TabItem Header="PALETTE">
+                <mahMaterialDragablzMashUp:PaletteSelector Margin="16">
+                    <mahMaterialDragablzMashUp:PaletteSelector.DataContext>
+                        <mahMaterialDragablzMashUp:PaletteSelectorViewModel />
+                    </mahMaterialDragablzMashUp:PaletteSelector.DataContext>
+                </mahMaterialDragablzMashUp:PaletteSelector>
+            </TabItem>           
         </dragablz:TabablzControl>
     </dockablz:Layout>
 </controls:MetroWindow>

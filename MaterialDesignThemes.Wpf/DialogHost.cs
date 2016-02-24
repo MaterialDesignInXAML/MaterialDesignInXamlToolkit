@@ -65,6 +65,8 @@ namespace MaterialDesignThemes.Wpf
         private DialogOpenedEventHandler _attachedDialogOpenedEventHandler;
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;        
         private object _closeDialogExecutionParameter;
+        private IInputElement _restoreFocus;
+        private Action _closeCleanUp = () => { };
 
         static DialogHost()
         {
@@ -172,9 +174,9 @@ namespace MaterialDesignThemes.Wpf
 
             var targets = LoadedInstances.Where(dh => Equals(dh.Identifier, dialogIndetifier)).ToList();
             if (targets.Count == 0)
-                throw new InvalidOperationException("No loaded DialogHost matches identifier.");
+                throw new InvalidOperationException("No loaded DialogHost have an Identifier property matching dialogIndetifier argument.");
             if (targets.Count > 1)
-                throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique identifier.");
+                throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
             if (targets[0].IsOpen)
                 throw new InvalidOperationException("DialogHost is already open.");
 
@@ -204,11 +206,11 @@ namespace MaterialDesignThemes.Wpf
             Unloaded += OnUnloaded;
 
             CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler, CloseDialogCanExecute));
-            CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));
+            CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));            
         }
 
         public static readonly DependencyProperty IdentifierProperty = DependencyProperty.Register(
-            "Identifier", typeof (object), typeof (DialogHost), new PropertyMetadata(default(object)));
+            nameof(Identifier), typeof (object), typeof (DialogHost), new PropertyMetadata(default(object)));
 
         /// <summary>
         /// Identifier which is used in conjunction with <see cref="Show(object)"/> to determine where a dialog should be shown.
@@ -220,7 +222,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register(
-            "IsOpen", typeof (bool), typeof (DialogHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsOpenPropertyChangedCallback));
+            nameof(IsOpen), typeof (bool), typeof (DialogHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsOpenPropertyChangedCallback));
 
         private static void IsOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -229,12 +231,17 @@ namespace MaterialDesignThemes.Wpf
             ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
             VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
-            if (!dialogHost.IsOpen)
+            if (dialogHost.IsOpen)
+            {
+                WatchWindowActivation(dialogHost);
+            }
+            else
             {
                 dialogHost._asyncShowWaitHandle.Set();
                 dialogHost._attachedDialogClosingEventHandler = null;
                 dialogHost._session.IsEnded = true;
                 dialogHost._session = null;
+                dialogHost._closeCleanUp();
                 
                 return;
             }
@@ -265,7 +272,7 @@ namespace MaterialDesignThemes.Wpf
                 //totally not happy about this, but on immediate validation we can get some wierd looking stuff...give WPF a kick to refresh...
                 Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));                
             }));
-        }
+        }        
 
         public bool IsOpen
         {
@@ -274,7 +281,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DialogContentProperty = DependencyProperty.Register(
-            "DialogContent", typeof (object), typeof (DialogHost), new PropertyMetadata(default(object)));
+            nameof(DialogContent), typeof (object), typeof (DialogHost), new PropertyMetadata(default(object)));
 
         public object DialogContent
         {
@@ -283,7 +290,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DialogContentTemplateProperty = DependencyProperty.Register(
-            "DialogContentTemplate", typeof (DataTemplate), typeof (DialogHost), new PropertyMetadata(default(DataTemplate)));
+            nameof(DialogContentTemplate), typeof (DataTemplate), typeof (DialogHost), new PropertyMetadata(default(DataTemplate)));
 
         public DataTemplate DialogContentTemplate
         {
@@ -292,7 +299,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DialogContentTemplateSelectorProperty = DependencyProperty.Register(
-            "DialogContentTemplateSelector", typeof (DataTemplateSelector), typeof (DialogHost), new PropertyMetadata(default(DataTemplateSelector)));
+            nameof(DialogContentTemplateSelector), typeof (DataTemplateSelector), typeof (DialogHost), new PropertyMetadata(default(DataTemplateSelector)));
 
         public DataTemplateSelector DialogContentTemplateSelector
         {
@@ -301,7 +308,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DialogContentStringFormatProperty = DependencyProperty.Register(
-            "DialogContentStringFormat", typeof (string), typeof (DialogHost), new PropertyMetadata(default(string)));
+            nameof(DialogContentStringFormat), typeof (string), typeof (DialogHost), new PropertyMetadata(default(string)));
 
         public string DialogContentStringFormat
         {
@@ -310,7 +317,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty OpenDialogCommandDataContextSourceProperty = DependencyProperty.Register(
-            "OpenDialogCommandDataContextSource", typeof (DialogHostOpenDialogCommandDataContextSource), typeof (DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource)));
+            nameof(OpenDialogCommandDataContextSource), typeof (DialogHostOpenDialogCommandDataContextSource), typeof (DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource)));
 
         /// <summary>
         /// Defines how a data context is sourced for a dialog if a <see cref="FrameworkElement"/>
@@ -367,7 +374,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DialogOpenedCallbackProperty = DependencyProperty.Register(
-            "DialogOpenedCallback", typeof(DialogOpenedEventHandler), typeof(DialogHost), new PropertyMetadata(default(DialogOpenedEventHandler)));
+            nameof(DialogOpenedCallback), typeof(DialogOpenedEventHandler), typeof(DialogHost), new PropertyMetadata(default(DialogOpenedEventHandler)));
 
         /// <summary>
         /// Callback fired when the <see cref="DialogOpened"/> event is fired, allowing the event to be processed from a binding/view model.
@@ -420,7 +427,7 @@ namespace MaterialDesignThemes.Wpf
         }        
 
         public static readonly DependencyProperty DialogClosingCallbackProperty = DependencyProperty.Register(
-            "DialogClosingCallback", typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));        
+            nameof(DialogClosingCallback), typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
 
         /// <summary>
         /// Callback fired when the <see cref="DialogClosing"/> event is fired, allowing the event to be processed from a binding/view model.
@@ -468,6 +475,14 @@ namespace MaterialDesignThemes.Wpf
                 _session.IsEnded = false;            
 
             _closeDialogExecutionParameter = parameter;
+        }
+
+        protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            if (window != null && !window.IsActive)
+                window.Activate();
+            base.OnPreviewMouseDown(e);
         }
 
         private void OpenDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
@@ -540,6 +555,41 @@ namespace MaterialDesignThemes.Wpf
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             LoadedInstances.Add(this);
+        }
+
+        private static void WatchWindowActivation(DialogHost dialogHost)
+        {
+            var window = Window.GetWindow(dialogHost);
+            if (window != null)
+            {
+                window.Activated += dialogHost.WindowOnActivated;
+                window.Deactivated += dialogHost.WindowOnDeactivated;
+                dialogHost._closeCleanUp = () =>
+                {
+                    window.Activated -= dialogHost.WindowOnActivated;
+                    window.Deactivated -= dialogHost.WindowOnDeactivated;
+                };
+            }
+            else
+            {
+                dialogHost._closeCleanUp = () => { };
+            }
+        }
+
+        private void WindowOnDeactivated(object sender, EventArgs eventArgs)
+        {            
+            _restoreFocus = _popup != null ? FocusManager.GetFocusedElement((Window)sender) : null;
+        }
+
+        private void WindowOnActivated(object sender, EventArgs eventArgs)
+        {
+            if (_restoreFocus != null)
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {                    
+                    Keyboard.Focus(_restoreFocus);
+                }));
+            }
         }
     }
 }

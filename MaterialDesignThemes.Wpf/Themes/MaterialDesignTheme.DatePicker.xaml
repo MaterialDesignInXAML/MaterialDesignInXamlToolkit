@@ -189,7 +189,7 @@
 						</Trigger>
 						<Trigger Property="Validation.HasError" Value="true">
 							<Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
-                            <Setter TargetName="Underline" Property="IsActive" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>

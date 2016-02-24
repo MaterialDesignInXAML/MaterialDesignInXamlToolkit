@@ -9,8 +9,10 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
-                <!-- throw in some extra colour for out floating action button -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <!-- throw in some extra colour for our floating action button -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -26,10 +28,15 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Image Source="Resources/ms-icon-310x310.png" Stretch="Uniform" Width="100" Height="100" />
-            <StackPanel Grid.Column="1" Margin="24 0 0 0">
-                <TextBlock FontSize="32" TextWrapping="Wrap">Welcome to Material Design In XAML Toolkit</TextBlock>
-                <TextBlock Margin="0 8 0 10" TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBodyLight}">Click EXPLORE to checkout the various controls &amp; themes.</TextBlock>
-                <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}">EXPLORE</Button>
+            <StackPanel Grid.Column="1" Margin="24 0 0 0" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource MaterialDesignDisplay1TextBlock}" TextWrapping="Wrap">Welcome to Material Design In XAML Toolkit</TextBlock>
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Binoculars" />
+                        <TextBlock Margin="8 0 0 0">EXPLORE</TextBlock>
+                    </StackPanel>
+                </Button>
             </StackPanel>
         </Grid>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
@@ -38,22 +45,22 @@
                       Margin="0 0 0 32">
             <Grid>
                 <StackPanel Orientation="Horizontal">
-                    <materialDesign:Card Width="420" Margin="4 2 8 16" Height="280">
+                    <materialDesign:Card Width="420" Margin="4 2 8 16" Height="270">
                         <Grid VerticalAlignment="Stretch" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />                                
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="200" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image Source="Resources/Contact.png" Grid.RowSpan="4" StretchDirection="Both" VerticalAlignment="Stretch" Stretch="UniformToFill" />
-                            <TextBlock Grid.Column="1" FontSize="28" Margin="16 16 16 8"  FontWeight="Light">Get In Touch</TextBlock>
+                            <Image Source="Resources/Contact.png" Grid.RowSpan="5" StretchDirection="Both" VerticalAlignment="Stretch" Stretch="UniformToFill" />
+                            <TextBlock Grid.Column="1" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="16 16 16 2">Get In Touch</TextBlock>
                             <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Margin="16 0 16 8" Foreground="{DynamicResource MaterialDesignBodyLight}"
-                                       VerticalAlignment="Top">Say hello, make a feature request, or raise a bug through one of these channels:</TextBlock>
+                                       VerticalAlignment="Center">Say hello, make a feature request, or raise a bug through one of these channels:</TextBlock>
                             <Border Grid.Column="1" Grid.Row="2" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Margin="0 8 0 0">
                                 <Grid Margin="8">
                                     <Button Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left"
@@ -92,9 +99,10 @@
                             </Border>
                         </Grid>
                     </materialDesign:Card>
-                    <materialDesign:Card Width="420" Margin="8 2 4 16" Height="280">
+                    <materialDesign:Card Width="420" Margin="8 2 4 16" Height="270">
                         <Grid VerticalAlignment="Stretch">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
@@ -103,10 +111,25 @@
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon Kind="GithubCircle" Width="160" Height="160" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             <StackPanel Grid.Column="1">
-                                <TextBlock FontSize="28" Margin="16 16 16 8"  FontWeight="Light">Open Source</TextBlock>
+                                <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="16 16 16 8">Open Source</TextBlock>
                                 <TextBlock TextWrapping="Wrap" Margin="16 0 16 8" Foreground="{DynamicResource MaterialDesignBodyLight}"
                                            VerticalAlignment="Top">This project is completely open source. If you like it and want to say thanks you could hit the GitHub Star button, tweet or post about it, or tell your mum about it!</TextBlock>
                             </StackPanel>
+                            <Border Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Padding="8">
+                                <DockPanel>
+                                    <Button Style="{DynamicResource MaterialDesignFlatButton}" 
+                                            DockPanel.Dock="Right"
+                                            x:Name="DonateButton" Click="DonateButton_OnClick">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Gift" />
+                                            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">Donate</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                    <TextBlock Foreground="{DynamicResource MaterialDesignBodyLight}" TextWrapping="Wrap" Margin="16" VerticalAlignment="Center">
+                                        Feel like you want to make a donation?  It would be gratefully received.  Click the button to donate via Pledgie.
+                                    </TextBlock>
+                                </DockPanel>
+                            </Border>
                         </Grid>
                     </materialDesign:Card>
                 </StackPanel>
@@ -127,10 +150,10 @@
                 <Button ToolTip="Chat" Click="ChatButton_OnClick">
                     <!-- mix up the colours by brinking in a named palette (see merged dictionaries at top) -->
                     <Button.Background>
-                        <SolidColorBrush Color="{StaticResource GreenPrimary500}"></SolidColorBrush>
+                        <SolidColorBrush Color="{StaticResource GreenPrimary500}" />
                     </Button.Background>
                     <Button.Foreground>
-                        <SolidColorBrush Color="{StaticResource GreenPrimary500Foreground}"></SolidColorBrush>
+                        <SolidColorBrush Color="{StaticResource GreenPrimary500Foreground}" />
                     </Button.Foreground>
                     <materialDesign:PackIcon Kind="Message" />
                 </Button>
@@ -139,6 +162,16 @@
                         Foreground="{DynamicResource SecondaryAccentForegroundBrush}"
                         >
                     <materialDesign:PackIcon Kind="Email" />
+                </Button>
+                <Button ToolTip="Feel like you want to make a donation?  It would be gratefully received.  Click the button to donate via Pledgie." 
+                        Click="DonateButton_OnClick">
+                    <Button.Background>
+                        <SolidColorBrush Color="{StaticResource GreenPrimary200}" />
+                    </Button.Background>
+                    <Button.Foreground>
+                        <SolidColorBrush Color="{StaticResource GreenPrimary200Foreground}" />
+                    </Button.Foreground>
+                    <materialDesign:PackIcon Kind="Gift" />
                 </Button>
             </StackPanel>
         </materialDesign:PopupBox>
