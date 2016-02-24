@@ -123,35 +123,35 @@ namespace MaterialDesignThemes.Wpf
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
         /// </summary>
         /// <param name="content">Content to show (can be a control or view model).</param>
-        /// <param name="dialogIndetifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
+        /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-        public static async Task<object> Show(object content, object dialogIndetifier)
+        public static async Task<object> Show(object content, object dialogIdentifier)
         {
-            return await Show(content, dialogIndetifier, null, null);
+            return await Show(content, dialogIdentifier, null, null);
         }
 
         /// <summary>
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
         /// </summary>
         /// <param name="content">Content to show (can be a control or view model).</param>
-        /// <param name="dialogIndetifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
+        /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
         /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-        public static Task<object> Show(object content, object dialogIndetifier, DialogOpenedEventHandler openedEventHandler)
+        public static Task<object> Show(object content, object dialogIdentifier, DialogOpenedEventHandler openedEventHandler)
         {
-            return Show(content, dialogIndetifier, openedEventHandler, null);
+            return Show(content, dialogIdentifier, openedEventHandler, null);
         }
 
         /// <summary>
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
         /// </summary>
         /// <param name="content">Content to show (can be a control or view model).</param>
-        /// <param name="dialogIndetifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>        
+        /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>        
         /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-        public static Task<object> Show(object content, object dialogIndetifier, DialogClosingEventHandler closingEventHandler)
+        public static Task<object> Show(object content, object dialogIdentifier, DialogClosingEventHandler closingEventHandler)
         {
-            return Show(content, dialogIndetifier, null, closingEventHandler);
+            return Show(content, dialogIdentifier, null, closingEventHandler);
         }
 
         #endregion
@@ -160,11 +160,11 @@ namespace MaterialDesignThemes.Wpf
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
         /// </summary>
         /// <param name="content">Content to show (can be a control or view model).</param>
-        /// <param name="dialogIndetifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
+        /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
         /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
         /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-        public static async Task<object> Show(object content, object dialogIndetifier, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
+        public static async Task<object> Show(object content, object dialogIdentifier, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
 
@@ -172,7 +172,7 @@ namespace MaterialDesignThemes.Wpf
                 throw new InvalidOperationException("No loaded DialogHost instances.");
             LoadedInstances.First().Dispatcher.VerifyAccess();
 
-            var targets = LoadedInstances.Where(dh => Equals(dh.Identifier, dialogIndetifier)).ToList();
+            var targets = LoadedInstances.Where(dh => Equals(dh.Identifier, dialogIdentifier)).ToList();
             if (targets.Count == 0)
                 throw new InvalidOperationException("No loaded DialogHost have an Identifier property matching dialogIndetifier argument.");
             if (targets.Count > 1)
@@ -269,7 +269,7 @@ namespace MaterialDesignThemes.Wpf
                 child.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
 
                 //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
-                //totally not happy about this, but on immediate validation we can get some wierd looking stuff...give WPF a kick to refresh...
+                //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
                 Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));                
             }));
         }        
