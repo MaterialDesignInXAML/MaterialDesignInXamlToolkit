@@ -147,7 +147,8 @@
             </ToggleButton>
         </StackPanel>
         <StackPanel Grid.Row="6" Margin="0 16 0 0" Orientation="Horizontal">
-            <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
+            <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True"
+                         IsEnabled="False">
                 Radio
             </RadioButton>
             <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center">
