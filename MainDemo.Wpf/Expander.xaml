@@ -16,8 +16,10 @@
                 <Expander.Header>
                     <TextBlock Text="Expander Example 1" />
                 </Expander.Header>
-                <Border Background="{StaticResource MaterialDesignBackground}" CornerRadius="5" Padding="5">
-                    <StackPanel Orientation="Vertical">
+                <Border Background="{DynamicResource MaterialDesignBody}"
+                        CornerRadius="5" Padding="5">
+                    <StackPanel Orientation="Vertical"
+                                TextBlock.Foreground="{DynamicResource MaterialDesignPaper}">
                         <TextBlock Text="A short text to proof functionality." />
                         <TextBlock Margin="0,50,0,0" Text="A short text to proof functionality." />
                     </StackPanel>
