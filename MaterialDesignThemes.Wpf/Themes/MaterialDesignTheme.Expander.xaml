@@ -167,7 +167,7 @@
                             <RowDefinition MinHeight="25" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Border BorderThickness="0">
+                        <Border BorderThickness="0" Cursor="Hand">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="16" />
