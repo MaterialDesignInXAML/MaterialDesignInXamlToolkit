@@ -117,7 +117,7 @@
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Margin="0 8 0 8"/>
         <ComboBox Grid.Row="4" Grid.Column="3" materialDesign:TextFieldAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                    Margin="0 8 0 8">
+                  Margin="0 8 0 8">
             <ComboBoxItem>Andoid</ComboBoxItem>
             <ComboBoxItem>iOS</ComboBoxItem>
             <ComboBoxItem>Linux</ComboBoxItem>
@@ -168,8 +168,8 @@
         <TextBox Grid.Row="5" Grid.Column="1" materialDesign:TextFieldAssist.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff"
                     Margin="0 8 0 8"/>
         <ComboBox Grid.Row="5" Grid.Column="3" materialDesign:TextFieldAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                    Margin="0 8 0 8">
-            <ComboBoxItem>Apple</ComboBoxItem>
+                  Margin="0 8 0 8">
+            <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
             <ComboBoxItem>Banana</ComboBoxItem>
             <ComboBoxItem>Pear</ComboBoxItem>
             <ComboBoxItem>Orange</ComboBoxItem>
