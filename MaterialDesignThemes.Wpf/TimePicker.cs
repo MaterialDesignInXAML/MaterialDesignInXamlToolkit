@@ -214,25 +214,22 @@ namespace MaterialDesignThemes.Wpf
 
 		private void TextBoxOnLostFocus(object sender, RoutedEventArgs routedEventArgs)
 		{
-			if (_textBox == null) return;
+		    if (string.IsNullOrEmpty(_textBox?.Text)) return;
 
-            if (!string.IsNullOrEmpty(_textBox.Text))
-            {
-                DateTime time;
-                if (IsTimeValid(_textBox.Text, out time))
-                    SetCurrentValue(SelectedTimeProperty, time);
+		    DateTime time;
+		    if (IsTimeValid(_textBox.Text, out time))
+		        SetCurrentValue(SelectedTimeProperty, time);
 
-                else // Invalid time, jump back to previous good time
-                    SetInvalidTime();
-            }
-        }
+		    else // Invalid time, jump back to previous good time
+		        SetInvalidTime();
+		}
 
         private void SetInvalidTime()
         {
             if (_lastValidTime != null)
             {
-                SetCurrentValue(SelectedTimeProperty, (DateTime)_lastValidTime);
-                _textBox.Text = SelectedTime.Value.ToString(SelectedTime.Value.Hour % 12 > 9 ? "hh:mm tt" : "h:mm tt");
+                SetCurrentValue(SelectedTimeProperty, _lastValidTime.Value);
+                _textBox.Text = _lastValidTime.Value.ToString(_lastValidTime.Value.Hour % 12 > 9 ? "hh:mm tt" : "h:mm tt");
             }
 
             else
@@ -289,9 +286,7 @@ namespace MaterialDesignThemes.Wpf
 
 		private void SetSelectedTime()
 		{
-			if (_textBox == null) return;
-
-			if (!string.IsNullOrEmpty(_textBox.Text))
+		    if (!string.IsNullOrEmpty(_textBox?.Text))
 			{
 				ParseTime(_textBox.Text, t => SetCurrentValue(SelectedTimeProperty, t));			
 			}
@@ -306,7 +301,7 @@ namespace MaterialDesignThemes.Wpf
 				successContinuation(time);
 		}
 
-        private bool IsTimeValid(string s, out DateTime time)
+        private static bool IsTimeValid(string s, out DateTime time)
         {
             return DateTime.TryParse(s,
                                      CultureInfo.CurrentCulture,
@@ -339,9 +334,7 @@ namespace MaterialDesignThemes.Wpf
 			var popup = sender as Popup;
 			if (popup == null || popup.StaysOpen) return;
 
-			if (_dropDownButton == null) return;
-
-			if (_dropDownButton.InputHitTest(mouseButtonEventArgs.GetPosition(_dropDownButton)) != null)
+		    if (_dropDownButton?.InputHitTest(mouseButtonEventArgs.GetPosition(_dropDownButton)) != null)
 			{
 				// This popup is being closed by a mouse press on the drop down button 
 				// The following mouse release will cause the closed popup to immediately reopen. 
