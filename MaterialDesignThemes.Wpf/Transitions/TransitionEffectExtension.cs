@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Markup;
 
-namespace MaterialDesignThemes.Wpf
+namespace MaterialDesignThemes.Wpf.Transitions
 {
     [MarkupExtensionReturnType(typeof(TransitionEffectBase))]
     public class TransitionEffectExtension : MarkupExtension

@@ -1,4 +1,4 @@
-namespace MaterialDesignThemes.Wpf
+namespace MaterialDesignThemes.Wpf.Transitions
 {
     public enum TransitionerSlideState
     {        

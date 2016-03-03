@@ -9,6 +9,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
+using MaterialDesignThemes.Wpf.Transitions;
 
 namespace MaterialDesignThemes.Wpf
 {

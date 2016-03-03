@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using MaterialDesignThemes.Wpf.Transitions;
 
 namespace MaterialDesignThemes.Wpf
 {

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MaterialDesignThemes.Wpf
+namespace MaterialDesignThemes.Wpf.Transitions
 {
     /// <summary>
     /// Content control to enable easier transitions.

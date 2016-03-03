@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Markup;
 
-namespace MaterialDesignThemes.Wpf
+namespace MaterialDesignThemes.Wpf.Transitions
 {
     public class TransitionEffectTypeConverter : TypeConverter
     {

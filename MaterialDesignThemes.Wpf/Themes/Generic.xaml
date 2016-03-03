@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:MaterialDesignThemes.Wpf"
     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
-    xmlns:controlzEx="clr-namespace:ControlzEx">
+    xmlns:controlzEx="clr-namespace:ControlzEx"
+    xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions">
 
 	<ResourceDictionary.MergedDictionaries>
 		<!--	we only bring in the dictionaries for controls which were "invented"
@@ -807,7 +808,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:Transitioner}">
+    <Style TargetType="{x:Type transitions:Transitioner}">
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -817,7 +818,7 @@
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:Transitioner}">
+                <ControlTemplate TargetType="{x:Type transitions:Transitioner}">
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
@@ -833,11 +834,11 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:TransitioningContentBase}">
+    <Style TargetType="{x:Type transitions:TransitioningContentBase}">
         
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:TransitioningContentBase}">
+                <ControlTemplate TargetType="{x:Type transitions:TransitioningContentBase}">
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
                             x:Name="Border">
                         <ContentPresenter 
@@ -864,9 +865,9 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:TransitioningContent}" BasedOn="{StaticResource {x:Type local:TransitioningContentBase}}" />
+    <Style TargetType="{x:Type transitions:TransitioningContent}" BasedOn="{StaticResource {x:Type transitions:TransitioningContentBase}}" />
 
-    <Style TargetType="{x:Type local:TransitionerSlide}" BasedOn="{StaticResource {x:Type local:TransitioningContentBase}}">
+    <Style TargetType="{x:Type transitions:TransitionerSlide}" BasedOn="{StaticResource {x:Type transitions:TransitioningContentBase}}">
         <Setter Property="IsEnabled" Value="False" />
         <Setter Property="Visibility" Value="Hidden" />
         <Style.Triggers>

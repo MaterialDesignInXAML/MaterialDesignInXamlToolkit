@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace MaterialDesignThemes.Wpf
+namespace MaterialDesignThemes.Wpf.Transitions
 {
     public class TransitioningContentBase : ContentControl, ITransitionEffectSubject
     {

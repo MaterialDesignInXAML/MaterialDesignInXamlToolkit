@@ -4,8 +4,9 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using MaterialDesignThemes.Wpf.Transitions;
 
-namespace MaterialDesignThemes.Wpf
+namespace MaterialDesignThemes.Wpf.Transitions
 {
     /// <summary>
     /// Content control to host the content of an individual page within a <see cref="Transitioner"/>.
