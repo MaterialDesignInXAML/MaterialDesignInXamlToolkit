@@ -153,11 +153,19 @@
             <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center">
                 Ga Ga
             </RadioButton>
+            <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center"
+                         IsEnabled="False">
+                Disabled
+            </RadioButton>
             <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center">
                 Check
             </CheckBox>
             <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
                 Mate
+            </CheckBox>
+            <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" 
+                      IsEnabled="False">
+                Disabled
             </CheckBox>
         </StackPanel>
         <StackPanel Grid.Row="7"  Margin="0 16 0 0" Orientation="Horizontal">

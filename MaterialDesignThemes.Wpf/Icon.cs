@@ -13,7 +13,7 @@ namespace MaterialDesignThemes.Wpf
     public class Icon : Control
     {
         public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
-            "Type", typeof (IconType), typeof (Icon), new PropertyMetadata(default(IconType)));
+            nameof(Type), typeof (IconType), typeof (Icon), new PropertyMetadata(default(IconType)));
 
         /// <summary>
         /// Gets or sets the name of icon being displayed.

@@ -66,7 +66,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(
-			"Time", typeof (DateTime), typeof (Clock), new FrameworkPropertyMetadata(default(DateTime), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TimePropertyChangedCallback));
+            nameof(Time), typeof (DateTime), typeof (Clock), new FrameworkPropertyMetadata(default(DateTime), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TimePropertyChangedCallback));
 
 	    private static void TimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
@@ -109,7 +109,7 @@ namespace MaterialDesignThemes.Wpf
 	    }	    
 
 		public static readonly DependencyProperty IsPostMeridiemProperty = DependencyProperty.Register(
-			"IsPostMeridiem", typeof (bool), typeof (Clock), new PropertyMetadata(default(bool), IsPostMeridiemPropertyChangedCallback));
+            nameof(IsPostMeridiem), typeof (bool), typeof (Clock), new PropertyMetadata(default(bool), IsPostMeridiemPropertyChangedCallback));
 
 		private static void IsPostMeridiemPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
@@ -127,7 +127,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 	    public static readonly DependencyProperty Is24HoursProperty = DependencyProperty.Register(
-	        "Is24Hours", typeof (bool), typeof (Clock), new PropertyMetadata(default(bool)));
+            nameof(Is24Hours), typeof (bool), typeof (Clock), new PropertyMetadata(default(bool)));
 
 	    public bool Is24Hours
 	    {
@@ -137,7 +137,7 @@ namespace MaterialDesignThemes.Wpf
 
 
 		public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(
-			"DisplayMode", typeof (ClockDisplayMode), typeof (Clock), new FrameworkPropertyMetadata(ClockDisplayMode.Hours, DisplayModePropertyChangedCallback));
+            nameof(DisplayMode), typeof (ClockDisplayMode), typeof (Clock), new FrameworkPropertyMetadata(ClockDisplayMode.Hours, DisplayModePropertyChangedCallback));
 
 	    private static void DisplayModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 	    {
@@ -151,7 +151,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty DisplayAutomationProperty = DependencyProperty.Register(
-			"DisplayAutomation", typeof (ClockDisplayAutomation), typeof (Clock), new PropertyMetadata(default(ClockDisplayAutomation)));
+            nameof(DisplayAutomation), typeof (ClockDisplayAutomation), typeof (Clock), new PropertyMetadata(default(ClockDisplayAutomation)));
 
 		public ClockDisplayAutomation DisplayAutomation
 		{
@@ -160,7 +160,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register(
-			"ButtonStyle", typeof (Style), typeof (Clock), new PropertyMetadata(default(Style)));		
+            nameof(ButtonStyle), typeof (Style), typeof (Clock), new PropertyMetadata(default(Style)));
 
 		public Style ButtonStyle
 		{
@@ -169,7 +169,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty LesserButtonStyleProperty = DependencyProperty.Register(
-			"LesserButtonStyle", typeof (Style), typeof (Clock), new PropertyMetadata(default(Style)));
+            nameof(LesserButtonStyle), typeof (Style), typeof (Clock), new PropertyMetadata(default(Style)));
 
 		public Style LesserButtonStyle
 		{
@@ -178,7 +178,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty ButtonRadiusRatioProperty = DependencyProperty.Register(
-			"ButtonRadiusRatio", typeof (double), typeof (Clock), new PropertyMetadata(default(double)));
+            nameof(ButtonRadiusRatio), typeof (double), typeof (Clock), new PropertyMetadata(default(double)));
 
 		public double ButtonRadiusRatio
 		{
@@ -187,7 +187,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 	    public static readonly DependencyProperty ButtonRadiusInnerRatioProperty = DependencyProperty.Register(
-	        "ButtonRadiusInnerRatio", typeof (double), typeof (Clock), new PropertyMetadata(default(double)));
+            nameof(ButtonRadiusInnerRatio), typeof (double), typeof (Clock), new PropertyMetadata(default(double)));
 
 	    public double ButtonRadiusInnerRatio
 	    {

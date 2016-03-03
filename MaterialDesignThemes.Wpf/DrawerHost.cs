@@ -40,7 +40,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty LeftDrawerContentProperty = DependencyProperty.Register(
-            "LeftDrawerContent", typeof (object), typeof (DrawerHost), new PropertyMetadata(default(object)));
+            nameof(LeftDrawerContent), typeof (object), typeof (DrawerHost), new PropertyMetadata(default(object)));
 
         public object LeftDrawerContent
         {
@@ -49,7 +49,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty LeftDrawerContentTemplateProperty = DependencyProperty.Register(
-            "LeftDrawerContentTemplate", typeof (DataTemplate), typeof (DrawerHost), new PropertyMetadata(default(DataTemplate)));
+            nameof(LeftDrawerContentTemplate), typeof (DataTemplate), typeof (DrawerHost), new PropertyMetadata(default(DataTemplate)));
 
         public DataTemplate LeftDrawerContentTemplate
         {
@@ -58,7 +58,7 @@ namespace MaterialDesignThemes.Wpf
         }
         
         public static readonly DependencyProperty LeftDrawerContentTemplateSelectorProperty = DependencyProperty.Register(
-            "LeftDrawerContentTemplateSelector", typeof (DataTemplateSelector), typeof (DrawerHost), new PropertyMetadata(default(DataTemplateSelector)));
+            nameof(LeftDrawerContentTemplateSelector), typeof (DataTemplateSelector), typeof (DrawerHost), new PropertyMetadata(default(DataTemplateSelector)));
 
         public DataTemplateSelector LeftDrawerContentTemplateSelector
         {
@@ -67,7 +67,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty LeftDrawerContentStringFormatProperty = DependencyProperty.Register(
-            "LeftDrawerContentStringFormat", typeof (string), typeof (DrawerHost), new PropertyMetadata(default(string)));
+            nameof(LeftDrawerContentStringFormat), typeof (string), typeof (DrawerHost), new PropertyMetadata(default(string)));
 
         public string LeftDrawerContentStringFormat
         {
@@ -76,7 +76,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty LeftDrawerBackgroundProperty = DependencyProperty.Register(
-            "LeftDrawerBackground", typeof (Brush), typeof (DrawerHost), new PropertyMetadata(default(Brush)));
+            nameof(LeftDrawerBackground), typeof (Brush), typeof (DrawerHost), new PropertyMetadata(default(Brush)));
 
         public Brush LeftDrawerBackground
         {
@@ -85,7 +85,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsLeftDrawerOpenProperty = DependencyProperty.Register(
-            "IsLeftDrawerOpen", typeof (bool), typeof (DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsLeftDrawerOpenPropertyChangedCallback));        
+            nameof(IsLeftDrawerOpen), typeof (bool), typeof (DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsLeftDrawerOpenPropertyChangedCallback));
 
         public bool IsLeftDrawerOpen
         {

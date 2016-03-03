@@ -20,7 +20,7 @@ namespace ControlzEx
     public class PopupEx : Popup
     {
         public static readonly DependencyProperty CloseOnMouseLeftButtonDownProperty
-            = DependencyProperty.Register("CloseOnMouseLeftButtonDown",
+            = DependencyProperty.Register(nameof(CloseOnMouseLeftButtonDown),
                                           typeof(bool),
                                           typeof(PopupEx),
                                           new PropertyMetadata(false));
