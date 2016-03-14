@@ -145,6 +145,16 @@
                           ToolTip="MaterialDesignActionToggleButton">
                 <Image Source="Resources/ProfilePic.jpg"></Image>
             </ToggleButton>
+            <TextBlock Margin="16 0 8 0" VerticalAlignment="Center">Customise On Content:</TextBlock>
+            <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}"
+                          ToolTip="MaterialDesignActionLightToggleButton">
+                <ToggleButton.Content>
+                    <materialDesign:PackIcon Kind="EmoticonSad" />
+                </ToggleButton.Content>
+                <materialDesign:ToggleButtonAssist.OnContent>
+                    <materialDesign:PackIcon Kind="EmoticonHappy" />
+                </materialDesign:ToggleButtonAssist.OnContent>
+            </ToggleButton>
         </StackPanel>
         <StackPanel Grid.Row="6" Margin="0 16 0 0" Orientation="Horizontal">
             <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
