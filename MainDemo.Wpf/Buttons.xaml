@@ -124,8 +124,8 @@
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="3"  Margin="256 16 0 0" Orientation="Horizontal">
-            <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick">ACCEPT</Button>
-            <Button Style="{StaticResource MaterialDesignFlatButton}">CANCEL</Button>
+            <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick" ToolTip="MaterialDesignFlatButton">ACCEPT</Button>
+            <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton">CANCEL</Button>
         </StackPanel>
         <TextBlock Margin="0 24 0 0" Grid.Row="4">Toggles</TextBlock>
         <StackPanel Grid.Row="5" Margin="0 24 0 0" Orientation="Horizontal">
@@ -169,20 +169,30 @@
             </CheckBox>
         </StackPanel>
         <StackPanel Grid.Row="7"  Margin="0 16 0 0" Orientation="Horizontal">
-            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" />
-            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" IsChecked="True" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center"
+                          ToolTip="Default ToggleButton Style"/>
             <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" IsEnabled="False" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchLightToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0"
+                          ToolTip="MaterialDesignSwitchLightToggleButton" IsChecked="True" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0"
+                          ToolTip="MaterialDesignSwitchToggleButton" IsChecked="True" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchDarkToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0"
+                          ToolTip="MaterialDesignSwitchDarkToggleButton" IsChecked="True" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0"
+                          ToolTip="MaterialDesignSwitchAccentToggleButton" IsChecked="True" />
         </StackPanel>
         <StackPanel Grid.Row="8"  Margin="0 16 0 0" Orientation="Horizontal">
-            <ToggleButton Style="{StaticResource MaterialDesignFlatToggleButton}">
+            <ToggleButton Style="{StaticResource MaterialDesignFlatToggleButton}" ToolTip="MaterialDesignFlatToggleButton">
                 <materialDesign:PackIcon Kind="Paperclip" Height="21" Width="21" />
             </ToggleButton>
             <ToggleButton Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
                           Margin="8 0 0 0" 
+                          ToolTip="MaterialDesignFlatPrimaryToggleButton"
                           IsChecked="True">
                 <materialDesign:PackIcon Kind="Heart" Height="21" Width="21" />
             </ToggleButton>
             <ToggleButton Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+                          ToolTip="MaterialDesignFlatPrimaryToggleButton"
                           IsEnabled="False" Margin="8 0 0 0">
                 <materialDesign:PackIcon Kind="Heart" Height="21" Width="21" />
             </ToggleButton>
