@@ -39,7 +39,7 @@
                                               ClipToBounds="True">
                 <materialDesign:TransitionerSlide.OpeningEffects>
                     <materialDesign:TransitionEffect Kind="SlideInFromLeft" Duration="0:0:0.8" />
-                    <materialDesign:TransitionEffect Kind="SlideInFromBottom" Duration="0:0:0.8" BeginTime="0:0:0.15" />
+                    <materialDesign:TransitionEffect Kind="SlideInFromBottom" Duration="0:0:0.8" OffsetTime="0:0:0.15" />
                 </materialDesign:TransitionerSlide.OpeningEffects>
                 <local:Slide4_CombineTransitions />
             </materialDesign:TransitionerSlide>

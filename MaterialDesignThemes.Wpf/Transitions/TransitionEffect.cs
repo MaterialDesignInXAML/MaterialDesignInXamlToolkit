@@ -24,7 +24,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         public TransitionEffectKind Kind { get; set; }
 
-        public TimeSpan BeginTime { get; set; } = TimeSpan.Zero;
+        public TimeSpan OffsetTime { get; set; } = TimeSpan.Zero;
 
         public TimeSpan Duration { get; set; } = TimeSpan.FromMilliseconds(400);        
 
@@ -44,36 +44,35 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 case TransitionEffectKind.ExpandIn:
                     return CreateExpandIn(effectSubject);
                 case TransitionEffectKind.SlideInFromLeft:
-                    timeline = new DoubleAnimation { EasingFunction = new SineEase(), From = -300, To = 0 };
+                    timeline = CreateSlide(-300, 0);
                     property = TranslateTransform.XProperty;
                     targetName = effectSubject.TranslateTransformName;
                     break;
                 case TransitionEffectKind.SlideInFromTop:
-                    timeline = new DoubleAnimation { EasingFunction = new SineEase(), From = -300, To = 0 };
+                    timeline = CreateSlide(-300, 0);
                     property = TranslateTransform.YProperty;
                     targetName = effectSubject.TranslateTransformName;
                     break;
                 case TransitionEffectKind.SlideInFromRight:
-                    timeline = new DoubleAnimation { EasingFunction = new SineEase(), From = 300, To = 0 };
+                    timeline = CreateSlide(300, 0);
                     property = TranslateTransform.XProperty;
                     targetName = effectSubject.TranslateTransformName;
                     break;
                 case TransitionEffectKind.SlideInFromBottom:
-                    timeline = new DoubleAnimation { EasingFunction = new SineEase(), From = 300, To = 0,  };
+                    timeline = CreateSlide(300, 0);
                     property = TranslateTransform.YProperty;
                     targetName = effectSubject.TranslateTransformName;
                     break;
                 case TransitionEffectKind.FadeIn:
                     timeline = new DoubleAnimation { EasingFunction = new SineEase(), From = 0, To = 1};
-                    property = UIElement.OpacityProperty;
+                    property = OpacityProperty;
                     target = effectSubject;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (timeline == null || (target == null && targetName == null)) return null;
-            timeline.BeginTime = BeginTime;
+            if (timeline == null || (target == null && targetName == null)) return null;            
             timeline.Duration = Duration;
             if (target != null)
                 Storyboard.SetTarget(timeline, target);
@@ -85,12 +84,25 @@ namespace MaterialDesignThemes.Wpf.Transitions
             return timeline;
         }
 
+        private Timeline CreateSlide(double from, double to)
+        {
+            var zeroFrame = new DiscreteDoubleKeyFrame(from);
+            var startFrame = new DiscreteDoubleKeyFrame(from, OffsetTime);
+            var endFrame = new EasingDoubleKeyFrame(to, OffsetTime + Duration) { EasingFunction = new SineEase() };
+            var slideAnimation = new DoubleAnimationUsingKeyFrames();
+            slideAnimation.KeyFrames.Add(zeroFrame);
+            slideAnimation.KeyFrames.Add(startFrame);
+            slideAnimation.KeyFrames.Add(endFrame);
+
+            return slideAnimation;
+        }
+
         private Timeline CreateExpandIn(ITransitionEffectSubject effectSubject)
         {            
             var scaleXAnimation = new DoubleAnimationUsingKeyFrames();
             var zeroFrame = new DiscreteDoubleKeyFrame(0.0);
-            var startFrame = new DiscreteDoubleKeyFrame(.5, BeginTime);
-            var endFrame = new EasingDoubleKeyFrame(1, BeginTime + Duration);
+            var startFrame = new DiscreteDoubleKeyFrame(.5, OffsetTime);
+            var endFrame = new EasingDoubleKeyFrame(1, OffsetTime + Duration) { EasingFunction = new SineEase() };
             scaleXAnimation.KeyFrames.Add(zeroFrame);
             scaleXAnimation.KeyFrames.Add(startFrame);
             scaleXAnimation.KeyFrames.Add(endFrame);

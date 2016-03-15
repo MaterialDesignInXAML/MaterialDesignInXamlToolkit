@@ -150,12 +150,12 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 if (index == selectedIndex)
                 {
                     newSlide = slide;
-                   // slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Current);
+                    slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Current);
                 }
                 else if (index == unselectedIndex)
                 {
                     oldSlide = slide;
-                    //slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Previous);
+                    slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Previous);
                 }
                 else
                 {                    
@@ -175,10 +175,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
             else if (oldSlide != null || newSlide != null)
             {
                 DoStack(oldSlide ?? newSlide);
-            }
-
-            newSlide?.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Current);
-            oldSlide?.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Previous);
+            }            
 
             _nextTransitionOrigin = null;
         }

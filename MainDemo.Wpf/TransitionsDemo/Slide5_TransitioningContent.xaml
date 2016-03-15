@@ -40,7 +40,7 @@
 
             <materialDesign:TransitioningContent>
                 <materialDesign:TransitioningContent.OpeningEffects>
-                    <materialDesign:TransitionEffect Kind="ExpandIn" BeginTime="0:0:0.05" />
+                    <materialDesign:TransitionEffect Kind="ExpandIn" OffsetTime="0:0:0.05" />
                 </materialDesign:TransitioningContent.OpeningEffects>
                 <materialDesign:ColorZone>
                     <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -49,7 +49,7 @@
 
             <materialDesign:TransitioningContent>
                 <materialDesign:TransitioningContent.OpeningEffects>
-                    <materialDesign:TransitionEffect Kind="ExpandIn" BeginTime="0:0:0.1" />
+                    <materialDesign:TransitionEffect Kind="ExpandIn" OffsetTime="0:0:0.1" />
                 </materialDesign:TransitioningContent.OpeningEffects>
                 <materialDesign:ColorZone>
                     <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -58,7 +58,7 @@
 
             <materialDesign:TransitioningContent>
                 <materialDesign:TransitioningContent.OpeningEffects>
-                    <materialDesign:TransitionEffect Kind="ExpandIn" BeginTime="0:0:0.15" />
+                    <materialDesign:TransitionEffect Kind="ExpandIn" OffsetTime="0:0:0.15" />
                 </materialDesign:TransitioningContent.OpeningEffects>
                 <materialDesign:ColorZone>
                     <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -67,7 +67,7 @@
 
             <materialDesign:TransitioningContent>
                 <materialDesign:TransitioningContent.OpeningEffects>
-                    <materialDesign:TransitionEffect Kind="ExpandIn" BeginTime="0:0:0.2" />
+                    <materialDesign:TransitionEffect Kind="ExpandIn" OffsetTime="0:0:0.2" />
                 </materialDesign:TransitioningContent.OpeningEffects>
                 <materialDesign:ColorZone>
                     <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -76,7 +76,7 @@
             
             <materialDesign:TransitioningContent>
                 <materialDesign:TransitioningContent.OpeningEffects>
-                    <materialDesign:TransitionEffect Kind="ExpandIn" BeginTime="0:0:0.25" />
+                    <materialDesign:TransitionEffect Kind="ExpandIn" OffsetTime="0:0:0.25" />
                 </materialDesign:TransitioningContent.OpeningEffects>
                 <materialDesign:ColorZone>
                     <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -85,7 +85,7 @@
             
             <materialDesign:TransitioningContent>
                 <materialDesign:TransitioningContent.OpeningEffects>
-                    <materialDesign:TransitionEffect Kind="ExpandIn" BeginTime="0:0:0.3" />
+                    <materialDesign:TransitionEffect Kind="ExpandIn" OffsetTime="0:0:0.3" />
                 </materialDesign:TransitioningContent.OpeningEffects>
                 <materialDesign:ColorZone>
                     <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -94,7 +94,7 @@
             
             <materialDesign:TransitioningContent>
                 <materialDesign:TransitioningContent.OpeningEffects>
-                    <materialDesign:TransitionEffect Kind="ExpandIn" BeginTime="0:0:0.35" />
+                    <materialDesign:TransitionEffect Kind="ExpandIn" OffsetTime="0:0:0.35" />
                 </materialDesign:TransitioningContent.OpeningEffects>
                 <materialDesign:ColorZone>
                     <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />

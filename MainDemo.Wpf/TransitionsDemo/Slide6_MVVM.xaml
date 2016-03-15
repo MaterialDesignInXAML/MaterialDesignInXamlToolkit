@@ -13,7 +13,10 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            <TextBlock Style="{DynamicResource MaterialDesignHeadlineTextBlock}" TextWrapping="Wrap" TextAlignment="Center">That's the end of the demo for now; a full MVVM demo coming soon!</TextBlock>
+            <!--
             <TextBlock Style="{DynamicResource MaterialDesignHeadlineTextBlock}" TextWrapping="Wrap" TextAlignment="Center">Finally, we will put it all together to create full master &amp; details pages, controlled via MVVM.</TextBlock>
+            -->
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
                 <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" 
                     Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
@@ -21,12 +24,14 @@
                     Margin="16">
                     <materialDesign:PackIcon Kind="StepBackward" />
                 </Button>
+                <!--
                 <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"                     
                     Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
                     VerticalAlignment="Top"
                     Margin="16">
                     <materialDesign:PackIcon Kind="StepForward" />
                 </Button>
+                -->
             </StackPanel>
         </Grid>
     </materialDesign:ColorZone>
