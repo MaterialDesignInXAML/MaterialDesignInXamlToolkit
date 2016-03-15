@@ -254,6 +254,7 @@
     <Compile Include="DpiHelper.cs" />
     <Compile Include="DrawerHost.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="HintAssist.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
     <Compile Include="ListSortDirectionIndicator.cs" />
