@@ -59,7 +59,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
                     targetName = effectSubject.TranslateTransformName;
                     break;
                 case TransitionEffectKind.SlideInFromBottom:
-                    timeline = new DoubleAnimation { EasingFunction = new SineEase(), From = 300, To = 0 };
+                    timeline = new DoubleAnimation { EasingFunction = new SineEase(), From = 300, To = 0,  };
                     property = TranslateTransform.YProperty;
                     targetName = effectSubject.TranslateTransformName;
                     break;

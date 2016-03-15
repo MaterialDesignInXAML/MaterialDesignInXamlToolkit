@@ -13,8 +13,6 @@ namespace MaterialDesignThemes.Wpf.Transitions
     /// </summary>
     public class TransitionerSlide : TransitioningContentBase
     {
-        private Point? _overrideTransitionOrigin;
-
         static TransitionerSlide()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TransitionerSlide), new FrameworkPropertyMetadata(typeof(TransitionerSlide)));
@@ -40,68 +38,31 @@ namespace MaterialDesignThemes.Wpf.Transitions
         {
             get { return (TransitionerSlideState) GetValue(StateProperty); }
             set { SetValue(StateProperty, value); }
-        }        
-
-        //TODO validate inputs
-        public static readonly DependencyProperty TransitionOriginProperty = DependencyProperty.Register("TransitionOrigin", typeof (Point), typeof (TransitionerSlide), new PropertyMetadata(new Point(.5, .5)));
-
-        public Point TransitionOrigin
-        {
-            get { return (Point) GetValue(TransitionOriginProperty); }
-            set { SetValue(TransitionOriginProperty, value); }
         }
 
-        internal void OverrideOnce(Point transitionOrigin)
+        public static readonly DependencyProperty ForwardWipeProperty = DependencyProperty.Register(
+            "ForwardWipe", typeof (ITransitionWipe), typeof (TransitionerSlide), new PropertyMetadata(new CircleWipe()));
+
+        public ITransitionWipe ForwardWipe
         {
-            _overrideTransitionOrigin = transitionOrigin;
+            get { return (ITransitionWipe) GetValue(ForwardWipeProperty); }
+            set { SetValue(ForwardWipeProperty, value); }
+        }
+
+        public static readonly DependencyProperty BackwardWipeProperty = DependencyProperty.Register(
+            "BackwardWipe", typeof (ITransitionWipe), typeof (TransitionerSlide), new PropertyMetadata(new SlideOutWipe()));
+
+        public ITransitionWipe BackwardWipe
+        {
+            get { return (ITransitionWipe) GetValue(BackwardWipeProperty); }
+            set { SetValue(BackwardWipeProperty, value); }
         }
 
         private void AnimateToState()
         {
-            if (State != TransitionerSlideState.Current) return;                        
-            
-            RunInTransitionIn();
+            if (State != TransitionerSlideState.Current) return;                                              
 
             RunOpeningEffects();
-        }
-
-        protected virtual void RunInTransitionIn()
-        {
-            var transitionOrigin = _overrideTransitionOrigin ?? TransitionOrigin;
-            _overrideTransitionOrigin = null;
-
-            var horizontalProportion = Math.Max(1.0 - transitionOrigin.X, 1.0*transitionOrigin.X);
-            var verticalProportion = Math.Max(1.0 - transitionOrigin.Y, 1.0*transitionOrigin.Y);
-            var radius = Math.Sqrt(Math.Pow(ActualWidth*horizontalProportion, 2) + Math.Pow(ActualHeight*verticalProportion, 2));
-
-            var scaleTransform = new ScaleTransform(0, 0);
-            var translateTransform = new TranslateTransform(ActualWidth*transitionOrigin.X, ActualHeight*transitionOrigin.Y);
-            var transformGroup = new TransformGroup();
-            transformGroup.Children.Add(scaleTransform);
-            transformGroup.Children.Add(translateTransform);
-            var ellipseGeomotry = new EllipseGeometry()
-            {
-                RadiusX = radius,
-                RadiusY = radius,
-                Transform = transformGroup
-            };
-            Clip = ellipseGeomotry;
-
-            var zeroKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
-            var endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(400));
-
-            var scaleAnimation = new DoubleAnimationUsingKeyFrames();
-            scaleAnimation.Completed += ScaleAnimationOnCompleted;
-            scaleAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, zeroKeyTime));
-            scaleAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, endKeyTime));
-            scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);
-            scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
-        }
-
-        private void ScaleAnimationOnCompleted(object sender, EventArgs eventArgs)
-        {
-            Clip = null;
-            OnInTransitionFinished(new RoutedEventArgs(InTransitionFinished) { Source = this });
-        }
+        }        
     }
 }

@@ -1,9 +1,9 @@
+using System.Windows;
+
 namespace MaterialDesignThemes.Wpf.Transitions
 {
     public interface ITransitionWipe
     {
-        bool IsDestinationTopmostForDuration { get; }
-
-        void Wipe(TransitionerSlide from, TransitionerSlide to);
+        void Wipe(TransitionerSlide fromSlide, TransitionerSlide toSlide, Point origin, IZIndexController zIndexController);
     }
 }

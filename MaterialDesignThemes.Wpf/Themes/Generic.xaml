@@ -809,6 +809,7 @@
     </Style>
 
     <Style TargetType="{x:Type transitions:Transitioner}">
+        <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -868,6 +869,7 @@
     <Style TargetType="{x:Type transitions:TransitioningContent}" BasedOn="{StaticResource {x:Type transitions:TransitioningContentBase}}" />
 
     <Style TargetType="{x:Type transitions:TransitionerSlide}" BasedOn="{StaticResource {x:Type transitions:TransitioningContentBase}}">
+        <Setter Property="RenderTransformOrigin" Value=".5,.5" />
         <Setter Property="IsEnabled" Value="False" />
         <Setter Property="Visibility" Value="Hidden" />
         <Style.Triggers>

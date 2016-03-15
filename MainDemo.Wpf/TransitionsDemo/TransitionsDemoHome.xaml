@@ -25,7 +25,13 @@
             <!-- but you can use bare xaml too -->
             <local:Slide2_Intro />
 
-            <local:Slide3_Intro />
+            <!-- you can control (and create your own) wipes -->
+            <materialDesign:TransitionerSlide>
+                <materialDesign:TransitionerSlide.BackwardWipe>
+                    <materialDesign:CircleWipe />
+                </materialDesign:TransitionerSlide.BackwardWipe>
+                <local:Slide3_Intro />
+            </materialDesign:TransitionerSlide>
 
             <!-- now we are going to slide this in by combining some extra effects.  the inner content slides in, so we'll set the outer background and clip, to keep things nice -->
             <materialDesign:TransitionerSlide Background="{DynamicResource MaterialDesignDarkBackground}"

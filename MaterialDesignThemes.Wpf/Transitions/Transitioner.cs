@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,7 +11,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
     /// <summary>
     /// The transitioner provides an easy way to move between content with a default in-place circular transition.
     /// </summary>
-    public class Transitioner : Selector
+    public class Transitioner : Selector, IZIndexController
     {
         private Point? _nextTransitionOrigin;
 
@@ -140,31 +141,62 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         private void ActivateFrame(int selectedIndex, int unselectedIndex)
         {
-            if (!IsLoaded) return;            
+            if (!IsLoaded) return;
 
+            TransitionerSlide oldSlide = null, newSlide = null;
             for (var index = 0; index < Items.Count; index++)
             {
                 var slide = GetSlide(Items[index]);
                 if (index == selectedIndex)
                 {
-                    Panel.SetZIndex(slide, 2);
-                    if (_nextTransitionOrigin != null)
-                        slide.OverrideOnce(_nextTransitionOrigin.Value);
-                    slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Current);
+                    newSlide = slide;
+                   // slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Current);
                 }
                 else if (index == unselectedIndex)
                 {
-                    Panel.SetZIndex(slide, 1);
-                    slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Previous);
+                    oldSlide = slide;
+                    //slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Previous);
                 }
                 else
-                {
-                    Panel.SetZIndex(slide, 0);
+                {                    
                     slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.None);
                 }
+                Panel.SetZIndex(slide, 0);                
             }
 
+            if (oldSlide != null && newSlide != null)
+            {
+                var wipe = selectedIndex > unselectedIndex ? oldSlide.ForwardWipe : oldSlide.BackwardWipe;
+                if (wipe != null)
+                    wipe.Wipe(oldSlide, newSlide, _nextTransitionOrigin ?? new Point(.5, .5), this);
+                else
+                    DoStack(newSlide, oldSlide);
+            }
+            else if (oldSlide != null || newSlide != null)
+            {
+                DoStack(oldSlide ?? newSlide);
+            }
+
+            newSlide?.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Current);
+            oldSlide?.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Previous);
+
             _nextTransitionOrigin = null;
-        }        
+        }
+
+        void IZIndexController.Stack(params TransitionerSlide[] highestToLowest)
+        {
+            DoStack(highestToLowest);
+        }
+
+        private static void DoStack(params TransitionerSlide[] highestToLowest)
+        {
+            if (highestToLowest == null) return;
+
+            var pos = highestToLowest.Length;
+            foreach (var slide in highestToLowest.Where(s => s != null))
+            {
+                Panel.SetZIndex(slide, pos--);
+            }
+        }
     }
 }
