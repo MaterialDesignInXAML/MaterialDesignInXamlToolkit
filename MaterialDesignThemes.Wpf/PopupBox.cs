@@ -214,12 +214,14 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(PopupContentTemplateProperty, value); }
         }
 
+        [Obsolete]
         public static readonly DependencyProperty StaysOpenOnEditProperty = DependencyProperty.Register(
             nameof(StaysOpenOnEdit), typeof (bool), typeof (PopupBox), new PropertyMetadata(default(bool)));
 
         /// <summary>
-        /// Indicates if the opup should stay open after a click is made inside the popup.
+        /// Prefer <see cref="StaysOpen"/>.
         /// </summary>
+        [Obsolete]
         public bool StaysOpenOnEdit
         {
             get { return (bool) GetValue(StaysOpenOnEditProperty); }
@@ -585,7 +587,7 @@ namespace MaterialDesignThemes.Wpf
                 if (e.OriginalSource == popupBox)
                 {
                     if (Mouse.Captured == null || popupBox._popup == null || !(Mouse.Captured as DependencyObject).IsDescendantOf(popupBox._popup))
-                    {
+                    {                        
                         popupBox.Close();
                     }
                 }
@@ -601,8 +603,9 @@ namespace MaterialDesignThemes.Wpf
                         }
                     }
                     else
-                    {
-                        popupBox.Close();
+                    {                        
+                        if (!popupBox.StaysOpen)
+                            popupBox.Close();
                     }
                 }
             }
