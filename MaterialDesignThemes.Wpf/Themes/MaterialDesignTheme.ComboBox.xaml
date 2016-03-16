@@ -491,76 +491,6 @@
     <ControlTemplate x:Key="MaterialDesignFloatingHintComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid x:Name="templateRoot"
               SnapsToDevicePixels="True">
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup x:Name="MaterialDesignStates">
-                    <VisualStateGroup.Transitions>
-                        <VisualTransition From="*" To="MaterialDesignStateTextNotEmpty">
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                                             Duration="0:0:0.3" To="10">
-                                    <DoubleAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                                             Duration="0:0:0.3" To="1">
-                                    <DoubleAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                                <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                                                Duration="0:0:0.3" To="1,-12,1,0">
-                                    <ThicknessAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </ThicknessAnimation.EasingFunction>
-                                </ThicknessAnimation>
-                            </Storyboard>
-                        </VisualTransition>
-                        <VisualTransition From="*" To="MaterialDesignStateTextEmpty">
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                                             Duration="0:0:0.3">
-                                    <DoubleAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                                             Duration="0:0:0.3">
-                                    <DoubleAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                                <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                                                Duration="0:0:0.3">
-                                    <ThicknessAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </ThicknessAnimation.EasingFunction>
-                                </ThicknessAnimation>
-                            </Storyboard>
-                        </VisualTransition>
-                    </VisualStateGroup.Transitions>
-                    <VisualState x:Name="MaterialDesignStateTextNotEmpty">
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                                         Duration="0" To="10" />
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                                         Duration="0" To="1" />
-                            <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                                            Duration="0" To="1,-12,1,0" />
-                        </Storyboard>
-                    </VisualState>
-                    <VisualState x:Name="MaterialDesignStateTextEmpty">
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                                         Duration="0" />
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                                         Duration="0" />
-                            <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                                            Duration="0" />
-                        </Storyboard>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
             <Grid Margin="0 12 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -573,16 +503,6 @@
                               BorderThickness="{TemplateBinding BorderThickness}"
                               IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                               Style="{StaticResource MaterialDesignComboBoxToggleButton}"/>
-                <TextBlock x:Name="Hint"
-                           Margin="{TemplateBinding Padding}"
-                           FontSize="{TemplateBinding FontSize}"
-                           HorizontalAlignment="Left"
-                           IsHitTestVisible="False"
-                           VerticalAlignment="Top"
-                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                           UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                           Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                           Text="{TemplateBinding wpf:TextFieldAssist.Hint}" />
                 <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                       Margin="{TemplateBinding Padding}"
@@ -598,6 +518,13 @@
                              IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
                              Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
                              Visibility="Collapsed" />
+                    <wpf:SmartHint x:Name="Hint"
+                                   HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                   UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                   HintOpacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                   Hint="{TemplateBinding wpf:TextFieldAssist.Hint}" />
                 </Grid>
                 <wpf:Underline x:Name="Underline"
                                Grid.ColumnSpan="2"
@@ -649,21 +576,21 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
+                    <Condition SourceName="Hint" Property="IsTextNullOrEmpty" Value="False" />
                     <Condition Property="IsKeyboardFocused" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
+                    <Condition SourceName="Hint" Property="IsTextNullOrEmpty" Value="False" />
                     <Condition SourceName="PART_EditableTextBox" Property="IsKeyboardFocused" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
+                    <Condition SourceName="Hint" Property="IsTextNullOrEmpty" Value="False" />
                     <Condition Property="IsDropDownOpen" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -718,8 +645,6 @@
            BasedOn="{StaticResource MaterialDesignComboBox}"
            TargetType="{x:Type ComboBox}">
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
-        <Setter Property="wpf:TextFieldAssist.Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
-        <Setter Property="wpf:TextFieldAssist.Managed" Value="{Binding RelativeSource={RelativeSource Self}}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />

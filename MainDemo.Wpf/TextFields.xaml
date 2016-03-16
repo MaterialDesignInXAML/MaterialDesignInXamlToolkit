@@ -115,9 +115,9 @@
                      materialDesign:TextFieldAssist.Hint="Password" />
         <TextBox Grid.Row="4" Grid.Column="1" materialDesign:TextFieldAssist.Hint="Floating Hint" 
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 Margin="0 8 0 8"/>
+                 Margin="0 16 0 8"/>
         <ComboBox Grid.Row="4" Grid.Column="3" materialDesign:TextFieldAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                  Margin="0 8 0 8">
+                  Margin="0 16 0 8">
             <ComboBoxItem>Andoid</ComboBoxItem>
             <ComboBoxItem>iOS</ComboBoxItem>
             <ComboBoxItem>Linux</ComboBoxItem>
@@ -177,8 +177,9 @@
 
         <materialDesign:PackIcon Grid.Row="6" Grid.Column="0" Kind="Key" Foreground="{Binding ElementName=FloatingPasswordBox, Path=BorderBrush}" />
         <PasswordBox Grid.Row="6" Grid.Column="1" 		
-                        x:Name="FloatingPasswordBox"
-                        materialDesign:TextFieldAssist.Hint="Floating Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                     x:Name="FloatingPasswordBox"
+                     materialDesign:TextFieldAssist.Hint="Floating Password"
+                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
         <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
                    Margin="0 48 0 0">DataTemplate Test</TextBlock>

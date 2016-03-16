@@ -80,7 +80,7 @@ namespace MaterialDesignThemes.Wpf
             "HintOpacity",
             typeof(double),
             typeof(TextFieldAssist),
-            new PropertyMetadata(.48));
+            new PropertyMetadata(.56));
 
         /// <summary>
         /// Gets the text box view margin.
@@ -127,70 +127,7 @@ namespace MaterialDesignThemes.Wpf
         {
             return (Visibility) element.GetValue(DecorationVisibilityProperty);
         }
-
-        /// <summary>
-        /// Internal framework use only.
-        /// </summary>
-        public static readonly DependencyProperty TextProperty = DependencyProperty.RegisterAttached(
-            "Text", typeof (string), typeof (TextFieldAssist), new PropertyMetadata(default(string), TextPropertyChangedCallback));
-
-        /// <summary>
-        /// Internal framework use only.
-        /// </summary>
-        public static void SetText(DependencyObject element, string value)
-        {
-            element.SetValue(TextProperty, value);
-        }
-
-        /// <summary>
-        /// Internal framework use only.
-        /// </summary>
-        public static string GetText(DependencyObject element)
-        {
-            return (string)element.GetValue(TextProperty);
-        }
-
-        private static readonly DependencyPropertyKey IsNullOrEmptyPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
-            "IsNullOrEmpty", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(true));
-
-        private static readonly DependencyProperty IsNullOrEmptyProperty =
-            IsNullOrEmptyPropertyKey.DependencyProperty;
-
-        private static void SetIsNullOrEmpty(DependencyObject element, bool value)
-        {
-            element.SetValue(IsNullOrEmptyPropertyKey, value);
-        }
-
-        public static bool GetIsNullOrEmpty(DependencyObject element)
-        {
-            return (bool)element.GetValue(IsNullOrEmptyProperty);
-        }
-
-        /// <summary>
-        /// Framework use only.
-        /// </summary>
-        public static readonly DependencyProperty ManagedProperty = DependencyProperty.RegisterAttached(
-            "Managed", typeof(Control), typeof(TextFieldAssist), new PropertyMetadata(default(Control), ManagedPropertyChangedCallback));                
-
-
-        /// <summary>
-        /// Framework use only.
-        /// </summary>
-        public static void SetManaged(DependencyObject element, TextBox value)
-        {
-            element.SetValue(ManagedProperty, value);
-        }
-
-        /// <summary>
-        /// Framework use only.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        public static TextBox GetManaged(DependencyObject element)
-        {
-            return (TextBox) element.GetValue(ManagedProperty);
-        }        
-
+        
         #region Methods
 
         /// <summary>
@@ -237,68 +174,6 @@ namespace MaterialDesignThemes.Wpf
                 var textBox = (Control) sender;
                 ApplyTextBoxViewMargin(textBox, GetTextBoxViewMargin(textBox));
             };
-        }
-
-        private static void TextPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var frameworkElement = (FrameworkElement)dependencyObject;
-
-            if (frameworkElement == null) return;
-
-            var state = string.IsNullOrEmpty((dependencyPropertyChangedEventArgs.NewValue ?? "").ToString())
-                ? "MaterialDesignStateTextEmpty"
-                : "MaterialDesignStateTextNotEmpty";
-
-            if (frameworkElement.IsLoaded)
-            {
-                VisualStateManager.GoToState(frameworkElement, state, true);
-            }
-            else
-            {
-                frameworkElement.Loaded += (sender, args) => VisualStateManager.GoToState(frameworkElement, state, false);
-                frameworkElement.IsVisibleChanged += (sender, args) => VisualStateManager.GoToState(frameworkElement, state, true);
-            }
-
-            SetIsNullOrEmpty(dependencyObject, string.IsNullOrEmpty((dependencyPropertyChangedEventArgs.NewValue ?? "").ToString()));
-        }
-
-        private static void ManagedPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var control = dependencyPropertyChangedEventArgs.OldValue as Control;
-            if (control != null)
-            {
-                control.IsVisibleChanged -= ManagedTextBoxOnIsVisibleChanged;                
-            }
-
-            control = dependencyPropertyChangedEventArgs.NewValue as Control;
-            if (control != null)
-            {
-                control.IsVisibleChanged += ManagedTextBoxOnIsVisibleChanged;                
-            }
-        }
-
-        private static void ManagedTextBoxOnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            if (!RefreshState(sender as TextBox, textBox => textBox.Text))
-                RefreshState(sender as ComboBox, comboBox => comboBox.Text);
-        }
-
-        private static bool RefreshState<TControl>(TControl control, Func<TControl,  string> textAccessor) where TControl : Control
-        {
-            if (control == null) return false;
-            if (!control.IsVisible) return true;
-
-            //yep, had to invoke post this to trigger refresh
-            control.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                var state = string.IsNullOrEmpty(textAccessor(control))
-                    ? "MaterialDesignStateTextEmpty"
-                    : "MaterialDesignStateTextNotEmpty";
-
-                VisualStateManager.GoToState(control, state, false);
-            }));
-
-            return true;
         }
 
         #endregion
