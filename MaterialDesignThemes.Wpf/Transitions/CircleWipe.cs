@@ -51,6 +51,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
             scaleAnimation.Completed  += (sender, args) =>
             {
                 toSlide.SetCurrentValue(UIElement.ClipProperty, null);
+                fromSlide.BeginAnimation(UIElement.OpacityProperty, null);
                 fromSlide.Opacity = 0;
             };
             scaleAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, zeroKeyTime));

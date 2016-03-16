@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MaterialDesignThemes.Wpf
+namespace MaterialDesignThemes.Wpf.Transitions
 {
     /// <summary>
     /// Allows transitions to be disabled where supported.

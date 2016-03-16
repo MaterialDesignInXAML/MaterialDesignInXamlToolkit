@@ -181,8 +181,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
             }
 
             if (newSlide != null)
-                newSlide.Opacity = 1;
-                
+                newSlide.Opacity = 1;                
             if (oldSlide != null && newSlide != null)
             {
                 var wipe = selectedIndex > unselectedIndex ? oldSlide.ForwardWipe : oldSlide.BackwardWipe;
