@@ -115,14 +115,15 @@ namespace MaterialDesignThemes.Wpf
         //FrameworkElement.LanguageProperty.OverrideMetadata(typeof (Calendar), (PropertyMetadata) new FrameworkPropertyMetadata(new PropertyChangedCallback(Calendar.OnLanguageChanged)));
         private void UpdateComponents()
         {
-            var dateTimeFormatInfo = CultureInfo.CurrentUICulture.GetDateFormat();
+            var culture = Language.GetSpecificCulture();
+            var dateTimeFormatInfo = culture.GetDateFormat();
 
             foreach (var component in dateTimeFormatInfo.ShortDatePattern.Split(new[] {dateTimeFormatInfo.DateSeparator},
                 StringSplitOptions.RemoveEmptyEntries).Select((s, index) => new {code = s.ToLower()[0], index}))
             {
 	            if (component.index == 0)
 		            IsDayInFirstComponent = component.code == 'd';
-				_setters[component.index](DisplayDate.ToString(_formats[component.code], CultureInfo.CurrentUICulture).ToTitleCase());
+				_setters[component.index](DisplayDate.ToString(_formats[component.code], culture).ToTitleCase(culture));
             }					       
         }
 

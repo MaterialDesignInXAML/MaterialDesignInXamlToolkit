@@ -420,7 +420,7 @@
                                            Grid.Row="1" Grid.Column="1"
                                            FontWeight="SemiBold"
                                            RenderTransformOrigin="0, 0.5"
-                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=DisplayDate, ConverterCulture={x:Static globalization:CultureInfo.CurrentUICulture}, StringFormat=MMMM yyyy}">
+                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=DisplayDate, StringFormat=MMMM yyyy}">
                                     <TextBlock.RenderTransform>
                                         <TranslateTransform X="0" Y="0"/>
                                     </TextBlock.RenderTransform>
@@ -611,7 +611,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Calendar}">
-                    <CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItemPortrait}"/>
+                    <CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItemPortrait}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
