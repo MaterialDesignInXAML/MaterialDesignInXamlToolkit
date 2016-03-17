@@ -33,8 +33,8 @@ namespace MaterialDesignThemes.Wpf.Transitions
             zIndexController.Stack(toSlide, fromSlide);
 
             var zeroKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
-            var midKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(150));
-            var endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(300));
+            var midKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(200));
+            var endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(400));
 
             var opacityAnimation = new DoubleAnimationUsingKeyFrames();
             opacityAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, zeroKeyTime));

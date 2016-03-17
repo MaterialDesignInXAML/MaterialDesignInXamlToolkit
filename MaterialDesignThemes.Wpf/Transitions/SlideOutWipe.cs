@@ -16,8 +16,8 @@ namespace MaterialDesignThemes.Wpf.Transitions
             if (zIndexController == null) throw new ArgumentNullException(nameof(zIndexController));
 
             var zeroKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
-            var midishKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(100));
-            var endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(300));
+            var midishKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(200));
+            var endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(400));
 
             //back out old slide setup
             var scaleTransform = new ScaleTransform(1, 1);
