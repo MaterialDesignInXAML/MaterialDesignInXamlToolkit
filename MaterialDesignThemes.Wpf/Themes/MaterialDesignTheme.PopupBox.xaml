@@ -19,6 +19,7 @@
     
     <Style TargetType="{x:Type wpf:PopupBox}" x:Key="MaterialDesignPopupBox">
         <Setter Property="ToggleContent" Value="{StaticResource MaterialDesignPopupBoxToggleContent}" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="TextElement.FontWeight" Value="Normal" />
@@ -33,7 +34,6 @@
                                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                          
                                                     ClipToBounds="False"
                                                     wpf:RippleAssist.IsCentered="True"
-                                                    Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
                                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                     Padding="{TemplateBinding Padding}" 
@@ -124,6 +124,7 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+        <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
         <Setter Property="PlacementMode" Value="TopAndAlignCentres" />
         <Setter Property="PopupMode" Value="MouseOverEager" />
         <Setter Property="ToolTipService.Placement" Value="Left" />
@@ -199,12 +200,11 @@
                                                     <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
                                                 </AdornerDecorator.CacheMode>
                                                 <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
-                                                                               Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                                                               x:Name="border">
+                                                         Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                                         x:Name="border">
                                                 </Ellipse>
                                             </AdornerDecorator>
                                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
-                                                        Feedback="White"
                                                         Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
                                                         wpf:RippleAssist.IsCentered="True"
                                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -288,8 +288,7 @@
                                       VerticalAlignment="Stretch"
                                       HorizontalAlignment="Stretch"                                      
                                       ToolTip="{TemplateBinding ToolTip}"
-                                      ToolTipService.Placement="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(ToolTipService.Placement)}"
-                                      >
+                                      ToolTipService.Placement="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(ToolTipService.Placement)}">
                             <Grid>
                                 <ContentControl x:Name="StandardToggleContent" Content="{TemplateBinding ToggleContent}" ContentTemplate="{TemplateBinding ToggleContentTemplate}"
                                                 Visibility="{TemplateBinding ToggleCheckedContent, Converter={StaticResource InvertedNullVisibilityConverter}}"/>

@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -7,7 +8,7 @@ namespace MaterialDesignThemes.Wpf
         #region ClipToBound
 
         public static readonly DependencyProperty ClipToBoundsProperty = DependencyProperty.RegisterAttached(
-            "ClipToBounds", typeof (bool), typeof (RippleAssist), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
+            "ClipToBounds", typeof(bool), typeof(RippleAssist), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
         public static void SetClipToBounds(DependencyObject element, bool value)
         {
@@ -16,7 +17,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static bool GetClipToBounds(DependencyObject element)
         {
-            return (bool) element.GetValue(ClipToBoundsProperty);
+            return (bool)element.GetValue(ClipToBoundsProperty);
         }
 
         #endregion
@@ -69,6 +70,24 @@ namespace MaterialDesignThemes.Wpf
         }
 
         #endregion
+
+        #region Feedback
+
+        public static readonly DependencyProperty FeedbackProperty = DependencyProperty.RegisterAttached(
+            "Feedback", typeof(Brush), typeof(RippleAssist), new FrameworkPropertyMetadata(default(Brush), FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static void SetFeedback(DependencyObject element, Brush value)
+        {
+            element.SetValue(FeedbackProperty, value);
+        }
+
+        public static Brush GetFeedback(DependencyObject element)
+        {
+            return (Brush)element.GetValue(FeedbackProperty);
+        }
+
+        #endregion
+
 
     }
 }
