@@ -44,27 +44,27 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 case TransitionEffectKind.ExpandIn:
                     return CreateExpandIn(effectSubject);
                 case TransitionEffectKind.SlideInFromLeft:
-                    timeline = CreateSlide(-300, 0);
+                    timeline = CreateSlide(-300, 0, effectSubject.Offset);
                     property = TranslateTransform.XProperty;
                     targetName = effectSubject.TranslateTransformName;
                     break;
                 case TransitionEffectKind.SlideInFromTop:
-                    timeline = CreateSlide(-300, 0);
+                    timeline = CreateSlide(-300, 0, effectSubject.Offset);
                     property = TranslateTransform.YProperty;
                     targetName = effectSubject.TranslateTransformName;
                     break;
                 case TransitionEffectKind.SlideInFromRight:
-                    timeline = CreateSlide(300, 0);
+                    timeline = CreateSlide(300, 0, effectSubject.Offset);
                     property = TranslateTransform.XProperty;
                     targetName = effectSubject.TranslateTransformName;
                     break;
                 case TransitionEffectKind.SlideInFromBottom:
-                    timeline = CreateSlide(300, 0);
+                    timeline = CreateSlide(300, 0, effectSubject.Offset);
                     property = TranslateTransform.YProperty;
                     targetName = effectSubject.TranslateTransformName;
                     break;
                 case TransitionEffectKind.FadeIn:
-                    timeline = new DoubleAnimation { EasingFunction = new SineEase(), From = 0, To = 1};
+                    timeline = CreateFadeIn(effectSubject.Offset);
                     property = OpacityProperty;
                     target = effectSubject;
                     break;
@@ -72,23 +72,27 @@ namespace MaterialDesignThemes.Wpf.Transitions
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (timeline == null || (target == null && targetName == null)) return null;            
-            timeline.Duration = Duration;
+            if (timeline == null || (target == null && targetName == null)) return null;
+            timeline.Duration = Duration + effectSubject.Offset;
             if (target != null)
                 Storyboard.SetTarget(timeline, target);
             if (targetName != null)
-                Storyboard.SetTargetName(timeline, targetName);            
-            
+                Storyboard.SetTargetName(timeline, targetName);
+
             Storyboard.SetTargetProperty(timeline, new PropertyPath(property));
 
             return timeline;
         }
+        private Timeline CreateFadeIn(TimeSpan initialOffset)
+        {
+            return CreateSlide(0, 1, initialOffset);
+        }
 
-        private Timeline CreateSlide(double from, double to)
+        private Timeline CreateSlide(double from, double to, TimeSpan initialOffset)
         {
             var zeroFrame = new DiscreteDoubleKeyFrame(from);
-            var startFrame = new DiscreteDoubleKeyFrame(from, OffsetTime);
-            var endFrame = new EasingDoubleKeyFrame(to, OffsetTime + Duration) { EasingFunction = new SineEase() };
+            var startFrame = new DiscreteDoubleKeyFrame(from, initialOffset + OffsetTime);
+            var endFrame = new EasingDoubleKeyFrame(to, initialOffset + OffsetTime + Duration) { EasingFunction = new SineEase() };
             var slideAnimation = new DoubleAnimationUsingKeyFrames();
             slideAnimation.KeyFrames.Add(zeroFrame);
             slideAnimation.KeyFrames.Add(startFrame);
@@ -101,8 +105,8 @@ namespace MaterialDesignThemes.Wpf.Transitions
         {            
             var scaleXAnimation = new DoubleAnimationUsingKeyFrames();
             var zeroFrame = new DiscreteDoubleKeyFrame(0.0);
-            var startFrame = new DiscreteDoubleKeyFrame(.5, OffsetTime);
-            var endFrame = new EasingDoubleKeyFrame(1, OffsetTime + Duration) { EasingFunction = new SineEase() };
+            var startFrame = new DiscreteDoubleKeyFrame(.5, effectSubject.Offset + OffsetTime);
+            var endFrame = new EasingDoubleKeyFrame(1, effectSubject.Offset + OffsetTime + Duration) { EasingFunction = new SineEase() };
             scaleXAnimation.KeyFrames.Add(zeroFrame);
             scaleXAnimation.KeyFrames.Add(startFrame);
             scaleXAnimation.KeyFrames.Add(endFrame);
@@ -119,30 +123,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
             parallelTimeline.Children.Add(scaleXAnimation);
             parallelTimeline.Children.Add(scaleYAnimation);
 
-            return parallelTimeline;
-
-            /*
-            var scaleXAnimation = new DoubleAnimation { EasingFunction = new SineEase(), From = .5, To = 1 };
-            scaleXAnimation.BeginTime = BeginTime;
-            scaleXAnimation.Duration = Duration;
-            
-
-            Storyboard.SetTargetName(scaleXAnimation, effectSubject.ScaleTransformName);
-            Storyboard.SetTargetProperty(scaleXAnimation, new PropertyPath(ScaleTransform.ScaleXProperty));
-
-            var scaleYAnimation = new DoubleAnimation { EasingFunction = new SineEase(), From = .5, To = 1 };
-            scaleYAnimation.BeginTime = BeginTime;
-            scaleYAnimation.Duration = Duration;
-            Storyboard.SetTargetName(scaleYAnimation, effectSubject.ScaleTransformName);
-            Storyboard.SetTargetProperty(scaleYAnimation, new PropertyPath(ScaleTransform.ScaleYProperty.Name));
-            
-            var parallelTimeline = new ParallelTimeline();
-            parallelTimeline.Children.Add(scaleXAnimation);
-            parallelTimeline.Children.Add(scaleYAnimation);
-
-            return parallelTimeline;
-
-    */
+            return parallelTimeline;           
         }
     }
 }

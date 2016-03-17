@@ -1,3 +1,5 @@
+using System;
+
 namespace MaterialDesignThemes.Wpf.Transitions
 {
     public interface ITransitionEffectSubject
@@ -7,5 +9,6 @@ namespace MaterialDesignThemes.Wpf.Transitions
         string ScaleTransformName { get; }
         string SkewTransformName { get; }
         string TranslateTransformName { get; }
+        TimeSpan Offset { get; }
     }
 }

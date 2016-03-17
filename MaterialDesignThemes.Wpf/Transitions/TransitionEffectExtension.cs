@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Markup;
 
 namespace MaterialDesignThemes.Wpf.Transitions
