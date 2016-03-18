@@ -20,7 +20,8 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="AllowDrop" Value="true"/>        
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="Margin" Value="0 12 0 0" />
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
@@ -68,7 +69,7 @@
                                 Background="{TemplateBinding Background}"
                                 SnapsToDevicePixels="True"
                                 Padding="0 4 0 4">
-                            <Grid Margin="0 12 0 0"
+                            <Grid Margin="{TemplateBinding Padding}"
                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
                                 <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
@@ -125,7 +126,6 @@
 
     <Style x:Key="MaterialDesignFloatingHintTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
         <Setter Property="wpf:HintAssist.UseFloating" Value="True"/>
-        <Setter Property="Padding" Value="0 12 0 0"/>
     </Style>
 
 </ResourceDictionary>

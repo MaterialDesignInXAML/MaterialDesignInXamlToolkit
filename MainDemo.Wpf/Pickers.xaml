@@ -24,6 +24,7 @@
             <DatePicker x:Name="FutureDatePicker" Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:TextFieldAssist.Hint="Future Date" />
         </StackPanel>
         <materialDesign:TimePicker Grid.Row="1" Grid.Column="1"  VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0"
+                                   Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                                    materialDesign:TextFieldAssist.Hint="Custom hint" />
         <materialDesign:TimePicker Grid.Row="1" Grid.Column="2"  Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" />
         

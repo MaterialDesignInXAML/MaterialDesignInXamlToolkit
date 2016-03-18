@@ -126,7 +126,7 @@
 
         <StackPanel Grid.Row="3" Grid.Column="4" Grid.RowSpan="3" Margin="32 16 0 0">
             <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Virtualised Comboboxes</TextBlock>
-            <StackPanel Orientation="Horizontal" Margin="0 2 0 0">
+            <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
                 <ComboBox materialDesign:TextFieldAssist.Hint="Virtualisation" 
                           MinWidth="72"
                           Margin="0 0 0 0"
@@ -175,9 +175,12 @@
             <ComboBoxItem>Orange</ComboBoxItem>
         </ComboBox>
 
-        <materialDesign:PackIcon Grid.Row="6" Grid.Column="0" Kind="Key" Foreground="{Binding ElementName=FloatingPasswordBox, Path=BorderBrush}" />
+        <materialDesign:PackIcon Grid.Row="6" Grid.Column="0" Kind="Key"
+                                 Margin="0 12 0 0"
+                                 Foreground="{Binding ElementName=FloatingPasswordBox, Path=BorderBrush}" />
         <PasswordBox Grid.Row="6" Grid.Column="1" 		
                      x:Name="FloatingPasswordBox"
+                     Margin="0 12 0 0"
                      materialDesign:TextFieldAssist.Hint="Floating Password"
                      Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
@@ -185,7 +188,7 @@
                    Margin="0 48 0 0">DataTemplate Test</TextBlock>
         <ContentControl Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="4"
                         Content="{Binding DemoItem}"
-                        Margin="0 4 0 0">
+                        Margin="0 12 0 0">
             <ContentControl.ContentTemplate>
                 <DataTemplate DataType="domain:DemoItem">
                     <StackPanel Orientation="Horizontal">
@@ -201,7 +204,7 @@
                    Margin="0 16 0 0">DataTemplateSelector Test</TextBlock>
         <ContentControl Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="4" 
                         Content="{Binding DemoItem}"
-                        Margin="0 4 0 0">
+                        Margin="0 12 0 0">
             <ContentControl.ContentTemplateSelector>
                 <domain1:SimpleDataTemplateSelector>
                     <domain1:SimpleDataTemplateSelector.FixedTemplate>
