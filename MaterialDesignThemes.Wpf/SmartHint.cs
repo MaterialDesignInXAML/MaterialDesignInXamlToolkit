@@ -5,9 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using MaterialDesignThemes.Wpf.Converters;
 
 namespace MaterialDesignThemes.Wpf
 {
+
+    /// <summary>
+    /// A control that implement placeholder behavior. Can work as a simple placeholder either as a floating hint, see <see cref="UseFloating"/> property.
+    /// <para/>
+    /// To set a target control you should set the HintProxy property. Use the <see cref="HintProxyFabricConverter.Instance"/> converter which converts a control into the IHintProxy interface.
+    /// </summary>
     [TemplateVisualState(GroupName = MaterialDesignTextStatesGroupName, Name = MaterialDesignStateTextEmptyName)]
     [TemplateVisualState(GroupName = MaterialDesignTextStatesGroupName, Name = MaterialDesignStateTextNotEmptyName)]
     public class SmartHint : Control
@@ -114,6 +121,7 @@ namespace MaterialDesignThemes.Wpf
                 hintProxy.IsVisibleChanged += smartHint.OnHintProxyIsVisibleChanged;
                 hintProxy.TextChanged += smartHint.OnHintProxyTextChanged;
                 hintProxy.Loaded += smartHint.OnHintProxyTextChanged;
+                smartHint.RefreshState(false);
             }
         }
 
