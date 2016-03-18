@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:MaterialDesignThemes.Wpf"
     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
-    xmlns:controlzEx="clr-namespace:ControlzEx">
+    xmlns:controlzEx="clr-namespace:ControlzEx"
+    xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions">
 
 	<ResourceDictionary.MergedDictionaries>
 		<!--	we only bring in the dictionaries for controls which were "invented"
@@ -399,6 +400,7 @@
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="IsTabStop" Value="False" />        
         <Setter Property="Template">
@@ -477,7 +479,7 @@
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
                                                 <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
                                             </BooleanAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0" />
                                                 <EasingDoubleKeyFrame Value="0.56" KeyTime="0:0:0.3">
                                                     <EasingDoubleKeyFrame.EasingFunction>
@@ -517,7 +519,7 @@
                                                 <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
                                                 <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.3" />
                                             </BooleanAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="0.56" KeyTime="0" />
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.3">
                                                     <EasingDoubleKeyFrame.EasingFunction>
@@ -560,7 +562,7 @@
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
                                             <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="Opacity"
+                                        <DoubleAnimation Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
                                                          To=".56" />
                                         <DoubleAnimation Storyboard.TargetName="PART_PopupContentElement" Storyboard.TargetProperty="Opacity"
@@ -609,6 +611,7 @@
                                         TextOptions.TextRenderingMode="Auto"
                                         Foreground="{DynamicResource MaterialDesignBody}"
                                         FontFamily="{StaticResource MaterialDesignFont}"
+                                        Focusable="False"
                                         IsTabStop="False"
                                         Opacity="0"
                                         RenderTransformOrigin=".5,.5"
@@ -630,11 +633,12 @@
                                     x:Name="ContentPresenter" Opacity="1"                    
                                     Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
                         </AdornerDecorator>
-                        <Grid x:Name="ContentGrid" Background="Black" Opacity="0" IsHitTestVisible="False" Focusable="False" />
+                        <Grid x:Name="PART_ContentCoverGrid" Background="Black" Opacity="0" IsHitTestVisible="False" Focusable="False" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsOpen" Value="True">
                             <Setter TargetName="ContentPresenter" Property="IsEnabled" Value="False" />
+                            <Setter TargetName="PART_ContentCoverGrid" Property="IsHitTestVisible" Value="True" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -806,5 +810,81 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type transitions:Transitioner}">
+        <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <Grid IsItemsHost="True" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type transitions:Transitioner}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ItemsPresenter x:Name="ItemsPresenter" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="SelectedIndex" Value="-1">
+                            <Setter TargetName="ItemsPresenter" Property="Visibility" Value="Hidden" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type transitions:TransitioningContentBase}">
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type transitions:TransitioningContentBase}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                            x:Name="Border">
+                        <ContentPresenter 
+                                x:Name="ContentPresenter"                    
+                                Margin="{TemplateBinding Padding}"                            
+                                Content="{TemplateBinding ContentControl.Content}" 
+                                ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
+                                ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" 
+                                ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                                RenderTransformOrigin=".5,.5">
+                            <ContentPresenter.RenderTransform>
+                                <TransformGroup>
+                                    <MatrixTransform x:Name="PART_MatrixTransform" />
+                                    <RotateTransform x:Name="PART_RotateTransform" Angle="0" />
+                                    <ScaleTransform  x:Name="PART_ScaleTransform" ScaleX="1" ScaleY="1" />
+                                    <SkewTransform x:Name="PART_SkewTransform" AngleX="0" AngleY="0" />
+                                    <TranslateTransform x:Name="PART_TranslateTransform" X="0" Y="0" />
+                                </TransformGroup>
+                            </ContentPresenter.RenderTransform>
+                        </ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type transitions:TransitioningContent}" BasedOn="{StaticResource {x:Type transitions:TransitioningContentBase}}" />
+
+    <Style TargetType="{x:Type transitions:TransitionerSlide}" BasedOn="{StaticResource {x:Type transitions:TransitioningContentBase}}">
+        <Setter Property="RenderTransformOrigin" Value=".5,.5" />
+        <Setter Property="IsEnabled" Value="False" />
+        <Setter Property="Visibility" Value="Hidden" />
+        <Style.Triggers>
+            <Trigger Property="State" Value="Current">
+                <Setter Property="Visibility" Value="Visible" />
+                <Setter Property="IsEnabled" Value="True" />
+            </Trigger>
+            <Trigger Property="State" Value="Previous">
+                <Setter Property="Visibility" Value="Visible" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 
 </ResourceDictionary>

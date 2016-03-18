@@ -9,6 +9,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
+using MaterialDesignThemes.Wpf.Transitions;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -35,12 +36,14 @@ namespace MaterialDesignThemes.Wpf
 
     [TemplatePart(Name = PopupPartName, Type = typeof(Popup))]
     [TemplatePart(Name = PopupPartName, Type = typeof(ContentControl))]
+    [TemplatePart(Name = ContentCoverGridName, Type = typeof(Grid))]
     [TemplateVisualState(GroupName = "PopupStates", Name = OpenStateName)]
     [TemplateVisualState(GroupName = "PopupStates", Name = ClosedStateName)]
     public class DialogHost : ContentControl
     {
         public const string PopupPartName = "PART_Popup";
         public const string PopupContentPartName = "PART_PopupContentElement";
+        public const string ContentCoverGridName = "PART_ContentCoverGrid";
         public const string OpenStateName = "Open";
         public const string ClosedStateName = "Closed";
 
@@ -61,6 +64,7 @@ namespace MaterialDesignThemes.Wpf
 
         private Popup _popup;
         private ContentControl _popupContentControl;
+        private Grid _contentCoverGrid;
         private DialogSession _session;
         private DialogOpenedEventHandler _attachedDialogOpenedEventHandler;
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;        
@@ -329,10 +333,41 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(OpenDialogCommandDataContextSourceProperty, value); }
         }
 
+        public static readonly DependencyProperty CloseOnClickAwayProperty = DependencyProperty.Register(
+            "CloseOnClickAway", typeof (bool), typeof (DialogHost), new PropertyMetadata(default(bool)));
+
+        /// <summary>
+        /// Indicates whether the dialog will close if the user clicks off the dialog, on the obscured background.
+        /// </summary>
+        public bool CloseOnClickAway
+        {
+            get { return (bool) GetValue(CloseOnClickAwayProperty); }
+            set { SetValue(CloseOnClickAwayProperty, value); }
+        }
+
+        public static readonly DependencyProperty CloseOnClickAwayParameterProperty = DependencyProperty.Register(
+            "CloseOnClickAwayParameter", typeof (object), typeof (DialogHost), new PropertyMetadata(default(object)));
+
+        /// <summary>
+        /// Parameter to provide to close handlers if an close due to click away is instigated.
+        /// </summary>
+        public object CloseOnClickAwayParameter
+        {
+            get { return (object) GetValue(CloseOnClickAwayParameterProperty); }
+            set { SetValue(CloseOnClickAwayParameterProperty, value); }
+        }
+
         public override void OnApplyTemplate()
         {
+            if (_contentCoverGrid != null)
+                _contentCoverGrid.MouseLeftButtonUp -= ContentCoverGridOnMouseLeftButtonUp;
+
             _popup = GetTemplateChild(PopupPartName) as Popup;
             _popupContentControl = GetTemplateChild(PopupContentPartName) as ContentControl;
+            _contentCoverGrid = GetTemplateChild(ContentCoverGridName) as Grid;
+
+            if (_contentCoverGrid != null)
+                _contentCoverGrid.MouseLeftButtonUp += ContentCoverGridOnMouseLeftButtonUp;
 
             VisualStateManager.GoToState(this, SelectState(), false);
 
@@ -483,6 +518,12 @@ namespace MaterialDesignThemes.Wpf
             if (window != null && !window.IsActive)
                 window.Activate();
             base.OnPreviewMouseDown(e);
+        }
+
+        private void ContentCoverGridOnMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
+        {
+            if (CloseOnClickAway)
+                Close(CloseOnClickAwayParameter);
         }
 
         private void OpenDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
