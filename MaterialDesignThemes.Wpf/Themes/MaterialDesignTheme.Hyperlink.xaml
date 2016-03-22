@@ -3,17 +3,13 @@
     <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesignBody1Hyperlink">
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="Regular"/>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Setter Property="TextDecorations" Value="None" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
             </Trigger>
-            <Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Foreground"
-                        Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="true">
+            <Trigger Property="IsEnabled" Value="True">
                 <Setter Property="Cursor" Value="Hand" />
             </Trigger>
             <MultiTrigger>
