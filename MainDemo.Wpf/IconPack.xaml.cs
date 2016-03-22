@@ -30,5 +30,12 @@ namespace MaterialDesignDemo
             var textBox = (TextBox)sender;
             textBox.Dispatcher.BeginInvoke(new Action(textBox.SelectAll));
         }
+
+        private void Search_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            var textBox = (TextBox)sender;
+            if (e.Key == Key.Enter)
+                SearchButton.Command.Execute(textBox.Text);
+        }
     }
 }

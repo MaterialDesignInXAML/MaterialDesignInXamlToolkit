@@ -34,7 +34,6 @@
         </Grid>
     </ControlTemplate>
     <Style TargetType="{x:Type wpf:Card}">
-        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />        
         <Setter Property="Template" Value="{StaticResource CardTemplate}" />
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="VerticalAlignment" Value="Top" />

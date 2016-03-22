@@ -82,7 +82,8 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Viewbox Width="18" Height="18"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <Viewbox Width="18" Height="18"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                 FlowDirection="LeftToRight">
                             <Canvas Width="24" Height="24">
                                 <Path x:Name="Graphic"
                                       Data="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z" 
@@ -110,8 +111,9 @@
                             <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}"/>
                             <Setter Property="Padding" Value="4,2,0,0"/>
                         </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
+                        <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+                            <Setter TargetName="contentPresenter" Property="Opacity" Value="0.79"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true"/>
                         <Trigger Property="IsChecked" Value="true">

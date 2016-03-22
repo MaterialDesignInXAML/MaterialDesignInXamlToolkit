@@ -37,7 +37,7 @@
     <SolidColorBrush x:Key="MaterialDesignLightBackground" Color="#FFFAFAFA"/>
     <SolidColorBrush x:Key="MaterialDesignLightForeground" Color="#DD000000"/>
     <SolidColorBrush x:Key="MaterialDesignDarkBackground" Color="#FF37474f"/>
-    <SolidColorBrush x:Key="MaterialDesignDarkForeground" Color="#DDFFFFFF"/>
+    <SolidColorBrush x:Key="MaterialDesignDarkForeground" Color="#FFFAFAFA"/>
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}" />
 	<Style TargetType="{x:Type Calendar}" BasedOn="{StaticResource MaterialDesignCalendarPortrait}" />
     <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}" />

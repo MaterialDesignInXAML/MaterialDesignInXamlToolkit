@@ -35,33 +35,37 @@
             </materialDesign:ColorZone>
             <TextBlock Margin="0 16 0 0" FontSize="10">Use primary mid colours, and nest colour zones!</TextBlock>
             <materialDesign:ColorZone Mode="PrimaryMid" Padding="16">
-                <StackPanel Orientation="Horizontal"
+                <DockPanel>
+                    <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" VerticalAlignment="Center"
+                                  DockPanel.Dock="Right" />
+                    <StackPanel Orientation="Horizontal"
                             materialDesign:RippleAssist.IsCentered="True">
-                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                    <materialDesign:ColorZone Mode="Standard" Padding="8 4 8 4" CornerRadius="2" Panel.ZIndex="1"
+                        <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                        <materialDesign:ColorZone Mode="Standard" Padding="8 4 8 4" CornerRadius="2" Panel.ZIndex="1"
                                    Margin="16 0 0 0"
                                    materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Button Style="{DynamicResource MaterialDesignToolButton}">
-                                <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
-                            </Button>
-                            <TextBox Grid.Column="1" Margin="8 0 0 0" materialDesign:TextFieldAssist.Hint="Build a search bar" 
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Button Style="{DynamicResource MaterialDesignToolButton}">
+                                    <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
+                                </Button>
+                                <TextBox Grid.Column="1" Margin="8 0 0 0" materialDesign:TextFieldAssist.Hint="Build a search bar" 
                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
                                      MinWidth="200" VerticalAlignment="Center" />
-                            <Button Style="{DynamicResource MaterialDesignToolButton}" Grid.Column="2">
-                                <materialDesign:PackIcon Kind="Microphone" Opacity=".56" Margin="8 0 0 0" />
-                            </Button>
-                        </Grid>
-                    </materialDesign:ColorZone>
-                    <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" Margin="8 0 0 0" Panel.ZIndex="0">
-                        <materialDesign:PackIcon Kind="Send" />
-                    </Button>
-                </StackPanel>
+                                <Button Style="{DynamicResource MaterialDesignToolButton}" Grid.Column="2">
+                                    <materialDesign:PackIcon Kind="Microphone" Opacity=".56" Margin="8 0 0 0" />
+                                </Button>
+                            </Grid>
+                        </materialDesign:ColorZone>
+                        <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" Margin="8 0 0 0" Panel.ZIndex="0">
+                            <materialDesign:PackIcon Kind="Send" />
+                        </Button>
+                    </StackPanel>
+                </DockPanel>
             </materialDesign:ColorZone>
             <TextBlock Margin="0 16 0 0" FontSize="10">Add in a corner radius and shadow.</TextBlock>
             <materialDesign:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="3" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="2">

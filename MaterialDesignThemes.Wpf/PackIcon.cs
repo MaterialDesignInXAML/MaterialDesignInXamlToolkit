@@ -17,9 +17,8 @@ namespace MaterialDesignThemes.Wpf
         static PackIcon()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PackIcon), new FrameworkPropertyMetadata(typeof(PackIcon)));
-        }     
+        }
 
-        public PackIcon() : base(PackIconDataFactory.Create)
-        { }    
+        public PackIcon() : base(PackIconDataFactory.Create) { }
     }
 }

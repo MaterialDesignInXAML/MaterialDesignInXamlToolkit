@@ -31,6 +31,7 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 * Configure App.xaml according to the [example](MainDemo.Wpf/App.xaml)
 * For more information see the [Get Started guide](http://materialdesigninxaml.net/#getStarted)
 * Check out the [wiki](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki)
+* Watch the [introduction video](https://youtu.be/-n5yeEOsbCk)
 
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
@@ -44,7 +45,7 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 * Logo courtesy of GitHub user [Snalty](https://github.com/snalty), and you can see more of him;
  * on his [blog](http://holothere.tumblr.com/)
  * and on [Twitter](https://twitter.com/snalty)
-* Marc Angers - I pulled some oh his shadows straight in from this [blog post](http://marcangers.com/material-design-shadows-in-wpf/)
+* Marc Angers - I pulled some of his shadows straight in from this [blog post](http://marcangers.com/material-design-shadows-in-wpf/)
 * Icon pack sourced from [Material Design Icons](https://materialdesignicons.com/)
 * Utilises [ControlzEx](https://github.com/ControlzEx/ControlzEx)
 * Ignace Maes, whose [Material Skin](https://github.com/IgnaceMaes/MaterialSkin) project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
