@@ -27,7 +27,7 @@
   - path: '**\MaterialDesignThemes.*.nupkg'
   - path: bin\**\*.*
 
-  version: 1.5.1-ci{build}
+  version: 2.0.0-ci{build}
   deploy:
   - provider: NuGet
     api_key:
@@ -62,4 +62,4 @@
   - path: '**\MaterialDesignThemes.*.nupkg'
   - path: bin\**\*.*
 
-  version: 1.5.1.{build}
+  version: 2.0.0.{build}
