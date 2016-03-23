@@ -122,14 +122,15 @@
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton">
                 ACCENT
             </Button>
+            
+        </StackPanel>
+        <StackPanel Grid.Row="3"  Margin="0 16 0 0" Orientation="Horizontal">
             <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
                     Margin="0 0 8 0"
                     Width="150"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton"
                     materialDesign:RippleAssist.Feedback="#DD000000">CUSTOM RIPPLE</Button>
-        </StackPanel>
-        <StackPanel Grid.Row="3"  Margin="256 16 0 0" Orientation="Horizontal">
-            <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick" ToolTip="MaterialDesignFlatButton">ACCEPT</Button>
+            <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick" ToolTip="MaterialDesignFlatButton" Margin="200 0 0 0">ACCEPT</Button>
             <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton">CANCEL</Button>
         </StackPanel>
         <TextBlock Margin="0 24 0 0" Grid.Row="4">Toggles</TextBlock>
