@@ -13,6 +13,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
@@ -22,20 +23,7 @@
 
 
     <StackPanel Margin="24" HorizontalAlignment="Stretch">
-        <materialDesign:PopupBox x:Name="PopupBox" HorizontalAlignment="Right">
-            <ListBox>
-                <ListBoxItem>One One One</ListBoxItem>
-                <ListBoxItem>Two Two Two</ListBoxItem>
-                <ListBoxItem>Three Three Three</ListBoxItem>
-            </ListBox>
-        </materialDesign:PopupBox>
-        <Button Margin="0 8 0 0">Hello</Button>
-        <ComboBox Margin="0 8 0 0">
-            <ComboBoxItem>One One One</ComboBoxItem>
-            <ComboBoxItem>Two Two Two</ComboBoxItem>
-            <ComboBoxItem>Three Three Three</ComboBoxItem>
-        </ComboBox>
-        <TextBlock Margin="0 8 0 0" Text="{Binding ElementName=PopupBox, Path=IsPopupOpen}" />
+        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" Value="20"  />
     </StackPanel>
 
 </UserControl>

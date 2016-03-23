@@ -30,7 +30,7 @@ namespace MaterialDesignThemes.Wpf
 
 
         public static readonly DependencyProperty ListSortDirectionProperty = DependencyProperty.Register(
-            "ListSortDirection", typeof (ListSortDirection?), typeof (ListSortDirectionIndicator), new PropertyMetadata(default(ListSortDirection?), ListSortDirectionPropertyChangedCallback));
+            nameof(ListSortDirection), typeof (ListSortDirection?), typeof (ListSortDirectionIndicator), new PropertyMetadata(default(ListSortDirection?), ListSortDirectionPropertyChangedCallback));
 
         private static void ListSortDirectionPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {

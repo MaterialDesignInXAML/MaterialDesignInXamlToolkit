@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -35,7 +36,28 @@ namespace MaterialDesignThemes.Wpf
         private static void MouseButtonEventHandler(object sender, MouseButtonEventArgs e)
         {
             foreach (var ripple in PressedInstances)
-                VisualStateManager.GoToState(ripple, TemplateStateNormal, false);
+            {
+                // adjust the transition scale time according to the current animated scale
+                var scaleTrans = ripple.Template.FindName("ScaleTransform", ripple) as ScaleTransform;
+                if (scaleTrans != null)
+                {
+                    double currentScale = scaleTrans.ScaleX;
+                    var newTime = TimeSpan.FromMilliseconds(300 * (1.0 - currentScale));
+
+                    // change the scale animation according to the current scale
+                    var scaleXKeyFrame = ripple.Template.FindName("MousePressedToNormalScaleXKeyFrame", ripple) as EasingDoubleKeyFrame;
+                    if (scaleXKeyFrame != null)
+                    {
+                        scaleXKeyFrame.KeyTime = KeyTime.FromTimeSpan(newTime);
+                    }
+                    var scaleYKeyFrame = ripple.Template.FindName("MousePressedToNormalScaleYKeyFrame", ripple) as EasingDoubleKeyFrame;
+                    if (scaleYKeyFrame != null) {
+                        scaleYKeyFrame.KeyTime = KeyTime.FromTimeSpan(newTime);
+                    }
+                }
+
+                VisualStateManager.GoToState(ripple, TemplateStateNormal, true);
+            }
             PressedInstances.Clear();
         }
 
@@ -57,7 +79,7 @@ namespace MaterialDesignThemes.Wpf
         }        
 
         public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
-            "Feedback", typeof(Brush), typeof(Ripple), new PropertyMetadata(default(Brush)));
+            nameof(Feedback), typeof(Brush), typeof(Ripple), new PropertyMetadata(default(Brush)));
 
         public Brush Feedback
         {
@@ -140,7 +162,25 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (double)GetValue(RippleYProperty); }
             private set { SetValue(RippleYPropertyKey, value); }
-        }       
+        }
+
+        /// <summary>
+        ///   The DependencyProperty for the RecognizesAccessKey property. 
+        ///   Default Value: false 
+        /// </summary> 
+        public static readonly DependencyProperty RecognizesAccessKeyProperty =
+            DependencyProperty.Register(
+                nameof(RecognizesAccessKey), typeof(bool), typeof(Ripple),
+                new PropertyMetadata(default(bool)));
+
+        /// <summary> 
+        ///   Determine if Ripple should use AccessText in its style
+        /// </summary> 
+        public bool RecognizesAccessKey
+        {
+            get { return (bool)GetValue(RecognizesAccessKeyProperty); }
+            set { SetValue(RecognizesAccessKeyProperty, value); }
+        }
 
         public override void OnApplyTemplate()
         {

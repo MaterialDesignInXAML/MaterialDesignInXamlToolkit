@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -14,7 +9,7 @@ namespace MaterialDesignThemes.Wpf
     public class ComboBoxPopup : Popup
     {
         public static readonly DependencyProperty UpContentTemplateProperty
-            = DependencyProperty.Register(nameof(UpContentTemplateProperty),
+            = DependencyProperty.Register(nameof(UpContentTemplate),
                 typeof(ControlTemplate),
                 typeof(ComboBoxPopup),
                 new UIPropertyMetadata(null));
@@ -26,7 +21,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DownContentTemplateProperty
-            = DependencyProperty.Register(nameof(DownContentTemplateProperty),
+            = DependencyProperty.Register(nameof(DownContentTemplate),
                 typeof(ControlTemplate),
                 typeof(ComboBoxPopup),
                 new UIPropertyMetadata(null));
@@ -38,7 +33,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DefaultContentTemplateProperty
-            = DependencyProperty.Register(nameof(DefaultContentTemplateProperty),
+            = DependencyProperty.Register(nameof(DefaultContentTemplate),
                 typeof(ControlTemplate),
                 typeof(ComboBoxPopup),
                 new UIPropertyMetadata(null));
@@ -50,7 +45,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty UpVerticalOffsetProperty
-            = DependencyProperty.Register(nameof(UpVerticalOffsetProperty),
+            = DependencyProperty.Register(nameof(UpVerticalOffset),
                 typeof(double),
                 typeof(ComboBoxPopup),
                 new PropertyMetadata(0.0));
@@ -62,7 +57,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DownVerticalOffsetProperty
-            = DependencyProperty.Register(nameof(DownVerticalOffsetProperty),
+            = DependencyProperty.Register(nameof(DownVerticalOffset),
                 typeof(double),
                 typeof(ComboBoxPopup),
                 new PropertyMetadata(0.0));
@@ -74,7 +69,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DefaultVerticalOffsetProperty
-            = DependencyProperty.Register(nameof(DefaultVerticalOffsetProperty),
+            = DependencyProperty.Register(nameof(DefaultVerticalOffset),
                 typeof(double),
                 typeof(ComboBoxPopup),
                 new PropertyMetadata(0.0));
@@ -116,7 +111,16 @@ namespace MaterialDesignThemes.Wpf
             var locationY = (int)locationFromScreen.Y % screenHeight;
 
             var realOffsetX = (popupSize.Width - targetSize.Width) / 2.0;
-            var offsetX = DpiHelper.TransformToDeviceX(mainVisual, offset.X);
+
+            double offsetX;
+            const int rtlHorizontalOffset = 20;
+
+            if (FlowDirection == FlowDirection.LeftToRight)
+                offsetX = DpiHelper.TransformToDeviceX(mainVisual, offset.X);
+            else
+                offsetX = DpiHelper.TransformToDeviceX(mainVisual,
+                    offset.X - targetSize.Width - rtlHorizontalOffset);
+
             var defaultVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DefaultVerticalOffset);
             var upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
             var downVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);

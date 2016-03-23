@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MahMaterialDragablzMashUp
+namespace MaterialDesignDemo.TransitionsDemo
 {
     /// <summary>
-    /// Interaction logic for Buttons.xaml
+    /// Interaction logic for TransitionsDemoHome.xaml
     /// </summary>
-    public partial class Buttons : UserControl
+    public partial class TransitionsDemoHome : UserControl
     {
-        public Buttons()
+        public TransitionsDemoHome()
         {
             InitializeComponent();
         }

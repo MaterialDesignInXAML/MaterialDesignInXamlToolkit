@@ -5,6 +5,8 @@
         xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
+        xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
         Title="Material Design in XAML" Height="800" Width="1100"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -36,10 +38,11 @@
     <materialDesign:DialogHost Identifier="RootDialog">
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
-                <StackPanel Orientation="Vertical">
+                <DockPanel MinWidth="212">
                     <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                                  DockPanel.Dock="Top"
                                   HorizontalAlignment="Right" Margin="16"
-                                  IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+                                  IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />                    
                     <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
                              PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
                         <ListBox.ItemTemplate>
@@ -95,9 +98,13 @@
                                 <wpfExample:Cards />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
-                        <domain:DemoItem Name="Chips">
+                        <domain:DemoItem Name="Icon Pack">
                             <domain:DemoItem.Content>
-                                <wpfExample:Chips />
+                                <materialDesignDemo:IconPack>
+                                    <materialDesignDemo:IconPack.DataContext>
+                                        <materialDesignDemo:IconPackViewModel />
+                                    </materialDesignDemo:IconPack.DataContext>
+                                </materialDesignDemo:IconPack>
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
                         <domain:DemoItem Name="Colour Zones">
@@ -151,9 +158,14 @@
                             <domain:DemoItem.Content>
                                 <wpfExample:Dialogs>
                                     <wpfExample:Dialogs.DataContext>
-                                        <domain:DialogsViewModel />
+                                        <domain1:DialogsViewModel />
                                     </wpfExample:Dialogs.DataContext>
                                 </wpfExample:Dialogs>
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Transitions">
+                            <domain:DemoItem.Content>
+                                <materialDesignDemo:Transitions />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
                         <domain:DemoItem Name="Shadows">
@@ -162,7 +174,7 @@
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
                     </ListBox>
-                </StackPanel>
+                </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
                 <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
@@ -170,11 +182,11 @@
                     <DockPanel>
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
                                       x:Name="MenuToggleButton"/>
-                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges">
+                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="True">
                             <StackPanel>
                                 <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
                                 <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
-                                <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
+                                <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>                                
                             </StackPanel>
                         </materialDesign:PopupBox>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>

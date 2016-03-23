@@ -14,7 +14,7 @@
     <SolidColorBrush x:Key="MaterialDesignColumnHeader" Color="#BCFFFFFF"/><!-- 74% -->
 
     <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89FFFFFF" />
-    <SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#4CFFFFFF" />
+    <SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#FF647076" />
 	
 	<SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#89FFFFFF" />
     

@@ -7,8 +7,8 @@
     <ProjectGuid>{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MaterialDesignColors.WpfExample</RootNamespace>
-    <AssemblyName>MaterialDesignColors.WpfExample</AssemblyName>
+    <RootNamespace>MaterialDesignDemo</RootNamespace>
+    <AssemblyName>MaterialDesignDemo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -47,11 +47,9 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -69,6 +67,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\paket-files\samueldjack\VirtualCollection\VirtualCollection\VirtualCollection\VirtualizingWrapPanel.cs">
+      <Link>VirtualCollection\VirtualizingWrapPanel.cs</Link>
+    </Compile>
     <Compile Include="Buttons.xaml.cs">
       <DependentUpon>Buttons.xaml</DependentUpon>
     </Compile>
@@ -95,6 +96,7 @@
     <Compile Include="Domain\SampleDialog.xaml.cs">
       <DependentUpon>SampleDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Domain\SampleDialogViewModel.cs" />
     <Compile Include="Domain\SampleMessageDialog.xaml.cs">
       <DependentUpon>SampleMessageDialog.xaml</DependentUpon>
     </Compile>
@@ -102,6 +104,7 @@
       <DependentUpon>SampleProgressDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Domain\SelectableViewModel.cs" />
+    <Compile Include="Domain\SimpleDataTemplateSelector.cs" />
     <Compile Include="Domain\TextFieldsViewModel.cs" />
     <Compile Include="Domain\TreesViewModel.cs" />
     <Compile Include="Expander.xaml.cs">
@@ -113,6 +116,10 @@
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IconPack.xaml.cs">
+      <DependentUpon>IconPack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IconPackViewModel.cs" />
     <Compile Include="Lists.xaml.cs">
       <DependentUpon>Lists.xaml</DependentUpon>
     </Compile>
@@ -142,6 +149,37 @@
     </Compile>
     <Compile Include="TextFields.xaml.cs">
       <DependentUpon>TextFields.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Transitions.xaml.cs">
+      <DependentUpon>Transitions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransitionsDemo\Slide1_Intro.xaml.cs">
+      <DependentUpon>Slide1_Intro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransitionsDemo\Slide2_Intro.xaml.cs">
+      <DependentUpon>Slide2_Intro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransitionsDemo\Slide3_Intro.xaml.cs">
+      <DependentUpon>Slide3_Intro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransitionsDemo\Slide4_CombineTransitions.xaml.cs">
+      <DependentUpon>Slide4_CombineTransitions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransitionsDemo\Slide5_TransitioningContent.xaml.cs">
+      <DependentUpon>Slide5_TransitioningContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransitionsDemo\Slide6_MVVM.xaml.cs">
+      <DependentUpon>Slide6_MVVM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransitionsDemo\Slide7_Master.xaml.cs">
+      <DependentUpon>Slide7_Master.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransitionsDemo\Slide7_MasterModel.cs" />
+    <Compile Include="TransitionsDemo\Slide8_Details.xaml.cs">
+      <DependentUpon>Slide8_Details.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransitionsDemo\TransitionsDemoHome.xaml.cs">
+      <DependentUpon>TransitionsDemoHome.xaml</DependentUpon>
     </Compile>
     <Compile Include="Trees.xaml.cs">
       <DependentUpon>Trees.xaml</DependentUpon>
@@ -197,6 +235,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="IconPack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Lists.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -246,6 +288,46 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TextFields.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Transitions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransitionsDemo\Slide1_Intro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransitionsDemo\Slide2_Intro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransitionsDemo\Slide3_Intro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransitionsDemo\Slide4_CombineTransitions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransitionsDemo\Slide5_TransitioningContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransitionsDemo\Slide6_MVVM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransitionsDemo\Slide7_Master.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransitionsDemo\Slide8_Details.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransitionsDemo\TransitionsDemoHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

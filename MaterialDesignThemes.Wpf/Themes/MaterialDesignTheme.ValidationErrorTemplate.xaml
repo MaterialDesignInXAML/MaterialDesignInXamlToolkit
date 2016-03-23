@@ -39,6 +39,7 @@
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.OnlyShowOnFocus)}" Value="False"/>
                     <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.UsePopup)}" Value="True"/>
+                    <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Suppress)}" Value="False"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter TargetName="ValidationPopup" Property="IsOpen" Value="True"/>
@@ -49,6 +50,7 @@
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.OnlyShowOnFocus)}" Value="False"/>
                     <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.UsePopup)}" Value="False"/>
+                    <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Suppress)}" Value="False"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter TargetName="DefaultErrorViewer" Property="Visibility" Value="Visible"/>

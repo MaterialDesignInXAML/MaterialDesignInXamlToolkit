@@ -22,9 +22,16 @@
 						<Setter Property="Template">
 							<Setter.Value>
 								<ControlTemplate TargetType="{x:Type ContentControl}">
-									<Border Effect="{DynamicResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
-										<ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
-									</Border>
+                    <AdornerDecorator>
+                        <!-- warning, this will cache the inner item as well, consider separating the shadow from the item if possible -->
+                        <AdornerDecorator.CacheMode>
+                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                        </AdornerDecorator.CacheMode>
+
+                        <Border Effect="{DynamicResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
+									      </Border>
+                    </AdornerDecorator>
 								</ControlTemplate>
 							</Setter.Value>
 						</Setter>
@@ -70,7 +77,7 @@
 							</Grid>
 						</ControlTemplate>
 					</ControlTemplate.Resources>
-                    <Grid>
+                    <Grid x:Name="TemplateRoot">
 					    <Border BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}" 
@@ -98,10 +105,13 @@
 						    		   PopupAnimation="Fade"/>
 						    </Grid>
                         </Border>
-                        <wpf:Underline x:Name="Underline" />
+                        <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
-						<Trigger Property="IsMouseOver" Value="true">
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="TemplateRoot" Value="0.56"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
 							<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
 						</Trigger>
 						<Trigger Property="IsKeyboardFocusWithin" Value="true">

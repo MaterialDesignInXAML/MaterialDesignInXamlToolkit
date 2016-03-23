@@ -24,8 +24,8 @@
             <DatePicker x:Name="FutureDatePicker" Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:TextFieldAssist.Hint="Future Date" />
         </StackPanel>
         <materialDesign:TimePicker Grid.Row="1" Grid.Column="1"  VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0"
-                        materialDesign:TextFieldAssist.Hint="Custom hint" />
-        <materialDesign:TimePicker Grid.Row="1" Grid.Column="2"  Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" />                                
+                                   materialDesign:TextFieldAssist.Hint="Custom hint" />
+        <materialDesign:TimePicker Grid.Row="1" Grid.Column="2"  Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" />
         
         <TextBlock Grid.Row="2" Grid.ColumnSpan="3" Margin="0 128 0 0">By combining the DialogHost (see MainWindow.xaml) and the Calendar and Clock controls, custom popups can be built.</TextBlock>
         <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" Margin="0 32 0 0">
