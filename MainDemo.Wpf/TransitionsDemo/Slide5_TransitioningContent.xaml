@@ -36,7 +36,7 @@
                     <Setter Property="Mode" Value="PrimaryLight" />
                 </Style>
             </ItemsControl.Resources>
-            <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
+            <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn}">
                 <materialDesign:ColorZone>
                     <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </materialDesign:ColorZone>
