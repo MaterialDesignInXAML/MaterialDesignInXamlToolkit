@@ -257,6 +257,7 @@
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
+    <Compile Include="Transitions\IndexedItemOffsetMultiplierExtension.cs" />
     <Compile Include="Transitions\ITransitionEffect.cs" />
     <Compile Include="Transitions\ITransitionEffectSubject.cs" />
     <Compile Include="Transitions\ITransitionWipe.cs" />

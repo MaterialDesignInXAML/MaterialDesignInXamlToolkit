@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -75,6 +76,18 @@ namespace MaterialDesignThemes.Wpf.Transitions
             set { SetValue(OpeningEffectProperty, value); }
         }
 
+        public static readonly DependencyProperty OpeningEffectsOffsetProperty = DependencyProperty.Register(
+            "OpeningEffectsOffset", typeof (TimeSpan), typeof (TransitioningContentBase), new PropertyMetadata(default(TimeSpan)));
+
+        /// <summary>
+        /// Delay offset to be applied to all opening effect transitions.
+        /// </summary>
+        public TimeSpan OpeningEffectsOffset
+        {
+            get { return (TimeSpan) GetValue(OpeningEffectsOffsetProperty); }
+            set { SetValue(OpeningEffectsOffsetProperty, value); }
+        }
+
         /// <summary>
         /// Allows multiple transition effects to be combined and run upon the content loading or being made visible.
         /// </summary>
@@ -89,6 +102,8 @@ namespace MaterialDesignThemes.Wpf.Transitions
         string ITransitionEffectSubject.SkewTransformName => SkewTransformPartName;
 
         string ITransitionEffectSubject.TranslateTransformName => TranslateTransformPartName;
+
+        TimeSpan ITransitionEffectSubject.Offset => OpeningEffectsOffset;
 
         protected virtual void RunOpeningEffects()
         {

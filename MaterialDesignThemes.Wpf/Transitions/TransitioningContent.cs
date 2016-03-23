@@ -1,7 +1,17 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace MaterialDesignThemes.Wpf.Transitions
 {
+    [Flags]
+    public enum TransitioningContentRunHint
+    {
+        Loaded = 1,
+        IsVisibleChanged = 2,
+        All = Loaded | IsVisibleChanged
+    }
+
+
     /// <summary>
     /// Content control to enable easier transitions.
     /// </summary>
@@ -14,8 +24,23 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         public TransitioningContent()
         {
-            Loaded += (sender, args) => RunOpeningEffects();
-            IsVisibleChanged += (sender, args) => RunOpeningEffects();
+            Loaded += (sender, args) => Run(TransitioningContentRunHint.Loaded);
+            IsVisibleChanged += (sender, args) => Run(TransitioningContentRunHint.IsVisibleChanged);
+        }
+
+        public static readonly DependencyProperty RunHintProperty = DependencyProperty.Register(
+            "RunHint", typeof(TransitioningContentRunHint), typeof(TransitioningContent), new PropertyMetadata(TransitioningContentRunHint.All));
+
+        public TransitioningContentRunHint RunHint
+        {
+            get { return (TransitioningContentRunHint)GetValue(RunHintProperty); }
+            set { SetValue(RunHintProperty, value); }
+        }
+
+        private void Run(TransitioningContentRunHint requiredHint)
+        {
+            if ((RunHint & requiredHint) == requiredHint)
+                RunOpeningEffects();
         }
     }
 }
