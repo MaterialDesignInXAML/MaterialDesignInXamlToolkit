@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}" x:Key="Caption">
             <Setter Property="Opacity" Value=".68"></Setter>
         </Style>
     </UserControl.Resources>
@@ -33,47 +33,49 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 26 0 0">Display 4  - MaterialDesignDisplay4TextBlock</TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 26 0 0" Style="{StaticResource Caption}">Display 4  - MaterialDesignDisplay4TextBlock</TextBlock>
             <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay4TextBlock}" Margin="0 4 0 4">Light 112sp</TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="4" Margin="0 4 0 4"><Hyperlink IsEnabled="False" Style="{StaticResource MaterialDesignDisplay4Hyperlink}">Light 112sp (Disabled)</Hyperlink></TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource MaterialDesignDisplay4TextBlock}" Margin="0 4 0 4"><Hyperlink IsEnabled="False">Light 112sp (Disabled)</Hyperlink></TextBlock>
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="0 12 0 0">Display 3 - MaterialDesignDisplay3TextBlock</TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="0 12 0 0" Style="{StaticResource Caption}">Display 3 - MaterialDesignDisplay3TextBlock</TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay3TextBlock}" Margin="0 4 0 4">Regular 56sp</TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignDisplay3Hyperlink}">Regular 56sp</Hyperlink></TextBlock>
+            <!-- hyperlinks will pick up owner text block style... -->
+            <TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource MaterialDesignDisplay3TextBlock}" Margin="0 4 0 4"><Hyperlink>Regular 56sp</Hyperlink></TextBlock>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Margin="0 8 0 0">Display 2 - MaterialDesignDisplay2TextBlock</TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="0" Margin="0 8 0 0" Style="{StaticResource Caption}">Display 2 - MaterialDesignDisplay2TextBlock</TextBlock>
             <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay2TextBlock}" Margin="0 4 0 4">Regular 45sp</TextBlock>
+            <!-- ...or hyperlink style can be ste manually -->
             <TextBlock Grid.Row="2" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignDisplay2Hyperlink}">Regular 45sp</Hyperlink></TextBlock>
 
-            <TextBlock Grid.Row="3" Grid.Column="0" Margin="0 8 0 0">Display 1 - MaterialDesignDisplay1TextBlock</TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="0" Margin="0 8 0 0" Style="{StaticResource Caption}">Display 1 - MaterialDesignDisplay1TextBlock</TextBlock>
             <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Margin="0 4 0 4">Regular 34sp</TextBlock>
             <TextBlock Grid.Row="3" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignDisplay1Hyperlink}">Regular 34sp</Hyperlink></TextBlock>
 
-            <TextBlock Grid.Row="4" Grid.Column="0" Margin="0 8 0 0">Headline - MaterialDesignHeadlineTextBlock</TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="0" Margin="0 8 0 0" Style="{StaticResource Caption}">Headline - MaterialDesignHeadlineTextBlock</TextBlock>
             <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 4 0 6">Regular 24sp</TextBlock>
             <TextBlock Grid.Row="4" Grid.Column="4" Margin="0 4 0 4"><Hyperlink IsEnabled="False" Style="{StaticResource MaterialDesignHeadlineHyperlink}">Regular 24sp (Disabled)</Hyperlink></TextBlock>
 
-            <TextBlock Grid.Row="5" Grid.Column="0" Margin="0 8 0 0">Title - MaterialDesignTitleTextBlock</TextBlock>
+            <TextBlock Grid.Row="5" Grid.Column="0" Margin="0 8 0 0" Style="{StaticResource Caption}">Title - MaterialDesignTitleTextBlock</TextBlock>
             <TextBlock Grid.Row="5" Grid.Column="2" Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="0 6 0 8">Medium 20sp</TextBlock>
             <TextBlock Grid.Row="5" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignTitleHyperlink}">Medium 20sp</Hyperlink></TextBlock>
 
-            <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center">Subheading - MaterialDesignSubheadingTextBlock</TextBlock>
+            <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource Caption}">Subheading - MaterialDesignSubheadingTextBlock</TextBlock>
             <TextBlock Grid.Row="6" Grid.Column="2" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Margin="0 8 0 8">Regular 15sp</TextBlock>
             <TextBlock Grid.Row="6" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignSubheadingHyperlink}">Regular 15sp</Hyperlink></TextBlock>
 
-            <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center">Body 2 - MaterialDesignBody2TextBlock</TextBlock>
+            <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource Caption}">Body 2 - MaterialDesignBody2TextBlock</TextBlock>
             <TextBlock Grid.Row="7" Grid.Column="2" Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="0 8 0 8">Medium 13sp</TextBlock>
             <TextBlock Grid.Row="7" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignBody2Hyperlink}">Medium 13sp</Hyperlink></TextBlock>
 
-            <TextBlock Grid.Row="8" Grid.Column="0" VerticalAlignment="Center">Body 1 - MaterialDesignBody1TextBlock</TextBlock>
+            <TextBlock Grid.Row="8" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource Caption}">Body 1 - MaterialDesignBody1TextBlock</TextBlock>
             <TextBlock Grid.Row="8" Grid.Column="2" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 8 0 8">Regular 13sp</TextBlock>
             <TextBlock Grid.Row="8" Grid.Column="4" Margin="0 4 0 4"><Hyperlink IsEnabled="False" Style="{StaticResource MaterialDesignBody1Hyperlink}">Regular 13sp (Disabled)</Hyperlink></TextBlock>
 
-            <TextBlock Grid.Row="9" Grid.Column="0" VerticalAlignment="Center">Caption - MaterialDesignCaptionTextBlock</TextBlock>
+            <TextBlock Grid.Row="9" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource Caption}">Caption - MaterialDesignCaptionTextBlock</TextBlock>
             <TextBlock Grid.Row="9" Grid.Column="2" Style="{StaticResource MaterialDesignCaptionTextBlock}" Margin="0 8 0 8">Regular 12sp</TextBlock>
             <TextBlock Grid.Row="9" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignCaptionHyperlink}">Regular 12sp</Hyperlink></TextBlock>
 
-            <TextBlock Grid.Row="10" Grid.Column="0" VerticalAlignment="Center">Button - MaterialDesignButtonTextBlock</TextBlock>
+            <TextBlock Grid.Row="10" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource Caption}">Button - MaterialDesignButtonTextBlock</TextBlock>
             <TextBlock Grid.Row="10" Grid.Column="2" Style="{StaticResource MaterialDesignButtonTextBlock}" Margin="0 8 0 8">MEDIUM (ALL CAPS) 14sp</TextBlock>
 
         </Grid>
