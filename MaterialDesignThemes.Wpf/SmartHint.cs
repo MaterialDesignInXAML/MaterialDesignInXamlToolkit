@@ -165,15 +165,4 @@ namespace MaterialDesignThemes.Wpf
             }));
         }
     }
-
-    public interface IHintProxy : IDisposable
-    {
-        string Text { get; }
-        bool IsLoaded { get; }
-        bool IsVisible { get; }
-
-        event EventHandler TextChanged;
-        event EventHandler IsVisibleChanged;
-        event EventHandler Loaded;
-    }
 }
