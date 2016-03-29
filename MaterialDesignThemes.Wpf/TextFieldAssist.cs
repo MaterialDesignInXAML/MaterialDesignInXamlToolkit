@@ -12,37 +12,6 @@ namespace MaterialDesignThemes.Wpf
     public static class TextFieldAssist
     {
         /// <summary>
-        /// The hint property
-        /// </summary>
-        public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
-            "Hint",
-            typeof(string),
-            typeof(TextFieldAssist),
-            new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
-
-        /// <summary>
-        /// Sets the hint.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="value">The value.</param>
-        public static void SetHint(DependencyObject element, string value)
-        {
-            element.SetValue(HintProperty, value);
-        }
-
-        /// <summary>
-        /// Gets the hint.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <returns>
-        /// The <see cref="string" />.
-        /// </returns>
-        public static string GetHint(DependencyObject element)
-        {
-            return (string)element.GetValue(HintProperty);
-        }
-
-        /// <summary>
         /// The text box view margin property
         /// </summary>
         public static readonly DependencyProperty TextBoxViewMarginProperty = DependencyProperty.RegisterAttached(
@@ -73,36 +42,6 @@ namespace MaterialDesignThemes.Wpf
             return (Thickness)element.GetValue(TextBoxViewMarginProperty);
         }
 
-        /// <summary>
-        /// The hint opacity property
-        /// </summary>
-        public static readonly DependencyProperty HintOpacityProperty = DependencyProperty.RegisterAttached(
-            "HintOpacity",
-            typeof(double),
-            typeof(TextFieldAssist),
-            new PropertyMetadata(.56));
-
-        /// <summary>
-        /// Gets the text box view margin.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <returns>
-        /// The <see cref="Thickness" />.
-        /// </returns>
-        public static double GetHintOpacityProperty(DependencyObject element)
-        {
-            return (double)element.GetValue(HintOpacityProperty);
-        }
-
-        /// <summary>
-        /// Sets the hint opacity.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="value">The value.</param>
-        public static void SetHintOpacity(DependencyObject element, double value)
-        {
-            element.SetValue(HintOpacityProperty, value);
-        }
 
         /// <summary>
         /// Controls the visibility of the underline decoration.

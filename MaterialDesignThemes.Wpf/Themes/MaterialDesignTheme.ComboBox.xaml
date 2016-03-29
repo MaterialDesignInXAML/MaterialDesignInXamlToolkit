@@ -421,8 +421,8 @@
                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                    UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                                    UseFloating="{Binding Path=(wpf:HintAssist.UseFloating), RelativeSource={RelativeSource TemplatedParent}}"
-                                   HintOpacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                                   Hint="{TemplateBinding wpf:TextFieldAssist.Hint}" />
+                                   HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                   Hint="{TemplateBinding wpf:HintAssist.Hint}" />
                 </Grid>
                 <wpf:Underline x:Name="Underline"
                                Grid.ColumnSpan="2"

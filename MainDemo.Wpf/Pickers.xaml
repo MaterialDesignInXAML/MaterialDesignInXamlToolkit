@@ -20,12 +20,12 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.ColumnSpan="3">Classic WPF DatePicker control with Material Design theme, and new TimePicker control:</TextBlock>
         <StackPanel Grid.Row="1" Grid.Column="0">
-            <DatePicker Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:TextFieldAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-            <DatePicker x:Name="FutureDatePicker" Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:TextFieldAssist.Hint="Future Date" />
+            <DatePicker Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+            <DatePicker x:Name="FutureDatePicker" Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="Future Date" />
         </StackPanel>
         <materialDesign:TimePicker Grid.Row="1" Grid.Column="1"  VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0"
                                    Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
-                                   materialDesign:TextFieldAssist.Hint="Custom hint" />
+                                   materialDesign:HintAssist.Hint="Custom hint" />
         <materialDesign:TimePicker Grid.Row="1" Grid.Column="2"  Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" />
         
         <TextBlock Grid.Row="2" Grid.ColumnSpan="3" Margin="0 128 0 0">By combining the DialogHost (see MainWindow.xaml) and the Calendar and Clock controls, custom popups can be built.</TextBlock>

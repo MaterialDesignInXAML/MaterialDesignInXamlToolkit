@@ -10,7 +10,7 @@
             <RowDefinition />
             <RowDefinition />            
         </Grid.RowDefinitions>
-        <TextBox wpf:TextFieldAssist.Hint="Name" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+        <TextBox wpf:HintAssist.Hint="Name" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                  Margin="0 6 0 0"
                  FontSize="18" Grid.Row="0"
                  />

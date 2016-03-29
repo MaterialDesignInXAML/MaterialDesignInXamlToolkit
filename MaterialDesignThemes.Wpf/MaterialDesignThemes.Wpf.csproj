@@ -268,6 +268,7 @@
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
+    <Compile Include="IHintProxy.cs" />
     <Compile Include="Transitions\IndexedItemOffsetMultiplierExtension.cs" />
     <Compile Include="Transitions\ITransitionEffect.cs" />
     <Compile Include="Transitions\ITransitionEffectSubject.cs" />
@@ -281,7 +282,6 @@
     <Compile Include="PackIconKind.cs" />
     <Compile Include="PopupBox.cs" />
     <Compile Include="PaletteHelper.cs" />
-    <Compile Include="PasswordFieldAssist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
