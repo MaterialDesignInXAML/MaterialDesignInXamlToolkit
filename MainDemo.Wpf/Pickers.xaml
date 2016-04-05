@@ -22,6 +22,7 @@
         <StackPanel Grid.Row="1" Grid.Column="0">
             <DatePicker Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:TextFieldAssist.Hint="Pick Date" />
             <DatePicker x:Name="FutureDatePicker" Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:TextFieldAssist.Hint="Future Date" />
+            <DatePicker x:Name="HebrewDatePicker" Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:TextFieldAssist.Hint="Hebrew Date" Language="he-IL" FlowDirection="RightToLeft" />
         </StackPanel>
         <materialDesign:TimePicker Grid.Row="1" Grid.Column="1"  VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0"
                                    materialDesign:TextFieldAssist.Hint="Custom hint" />
