@@ -23,7 +23,8 @@ namespace MaterialDesignThemes.Wpf.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double value1, value2;
-            if (Double.TryParse(value.ToString(), out value1) && Double.TryParse(parameter.ToString(), out value2))
+            if (Double.TryParse(value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out value1) 
+				&& Double.TryParse(parameter.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out value2))
             {
                 switch (Operation)
                 {
