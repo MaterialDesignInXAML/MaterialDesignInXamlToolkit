@@ -10,11 +10,11 @@ namespace MaterialDesignThemes.Wpf
         {
             private readonly TextBox _textBox;
 
-            public string Text => _textBox.Text;
+            public object Content => _textBox.Text;
             public bool IsLoaded => _textBox.IsLoaded;
             public bool IsVisible => _textBox.IsVisible;
 
-            public event EventHandler TextChanged;
+            public event EventHandler ContentChanged;
             public event EventHandler IsVisibleChanged;
             public event EventHandler Loaded;
 
@@ -40,7 +40,7 @@ namespace MaterialDesignThemes.Wpf
 
             private void TextBoxTextChanged(object sender, TextChangedEventArgs e)
             {
-                TextChanged?.Invoke(sender, EventArgs.Empty);
+                ContentChanged?.Invoke(sender, EventArgs.Empty);
             }
 
             public void Dispose()

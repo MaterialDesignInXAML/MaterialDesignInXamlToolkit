@@ -420,7 +420,7 @@
                                    FontSize="{TemplateBinding FontSize}"
                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                    UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                   UseFloating="{Binding Path=(wpf:HintAssist.UseFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                   UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
                                    HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                                    Hint="{TemplateBinding wpf:HintAssist.Hint}" />
                 </Grid>
@@ -474,21 +474,21 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition SourceName="Hint" Property="IsTextNullOrEmpty" Value="False" />
+                    <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
                     <Condition Property="IsKeyboardFocused" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition SourceName="Hint" Property="IsTextNullOrEmpty" Value="False" />
+                    <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
                     <Condition SourceName="PART_EditableTextBox" Property="IsKeyboardFocused" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition SourceName="Hint" Property="IsTextNullOrEmpty" Value="False" />
+                    <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
                     <Condition Property="IsDropDownOpen" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -543,7 +543,7 @@
     <Style x:Key="MaterialDesignFloatingHintComboBox"
            BasedOn="{StaticResource MaterialDesignComboBox}"
            TargetType="{x:Type ComboBox}">
-        <Setter Property="wpf:HintAssist.UseFloating" Value="True"/>
+        <Setter Property="wpf:HintAssist.IsFloating" Value="True"/>
     </Style>
 
 </ResourceDictionary>

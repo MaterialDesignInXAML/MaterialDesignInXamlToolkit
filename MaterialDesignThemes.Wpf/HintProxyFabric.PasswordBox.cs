@@ -9,11 +9,11 @@ namespace MaterialDesignThemes.Wpf
         {
             private readonly PasswordBox _passwordBox;
 
-            public string Text => _passwordBox.Password;
+            public object Content => _passwordBox.Password;
             public bool IsLoaded => _passwordBox.IsLoaded;
             public bool IsVisible => _passwordBox.IsVisible;
 
-            public event EventHandler TextChanged;
+            public event EventHandler ContentChanged;
             public event EventHandler IsVisibleChanged;
             public event EventHandler Loaded;
 
@@ -39,7 +39,7 @@ namespace MaterialDesignThemes.Wpf
 
             private void PasswordBoxPasswordChanged(object sender, System.Windows.RoutedEventArgs e)
             {
-                TextChanged?.Invoke(this, EventArgs.Empty);
+                ContentChanged?.Invoke(this, EventArgs.Empty);
             }
 
             public void Dispose()

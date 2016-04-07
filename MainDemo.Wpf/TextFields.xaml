@@ -165,8 +165,15 @@
             </StackPanel>
         </StackPanel>
 
-        <TextBox Grid.Row="5" Grid.Column="1" materialDesign:HintAssist.Hint="Floating Hint" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff"
-                    Margin="0 8 0 8"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff"
+                 Margin="0 8 0 8">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                    <materialDesign:PackIcon Kind="AccessPoint" /> 
+                    <TextBlock>WiFi</TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
         <ComboBox Grid.Row="5" Grid.Column="3" materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                   Margin="0 8 0 8">
             <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>

@@ -50,7 +50,7 @@
 											  />
                                 <wpf:SmartHint x:Name="Hint"
                                                FontSize="{TemplateBinding FontSize}"
-                                               UseFloating="{Binding Path=(wpf:HintAssist.UseFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                               UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
                                                Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                                HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                                HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
@@ -128,6 +128,6 @@
 
 
     <Style x:Key="MaterialDesignFloatingHintTimePicker" TargetType="{x:Type wpf:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}">
-        <Setter Property="wpf:HintAssist.UseFloating" Value="True"/>
+        <Setter Property="wpf:HintAssist.IsFloating" Value="True"/>
     </Style>
 </ResourceDictionary>

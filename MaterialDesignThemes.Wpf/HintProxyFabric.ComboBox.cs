@@ -16,11 +16,11 @@ namespace MaterialDesignThemes.Wpf
             private readonly ComboBox _comboBox;
             private readonly TextChangedEventHandler _comboBoxTextChangedEventHandler;
 
-            public string Text => _comboBox.Text;
+            public object Content => _comboBox.Text;
             public bool IsLoaded => _comboBox.IsLoaded;
             public bool IsVisible => _comboBox.IsVisible;
 
-            public event EventHandler TextChanged;
+            public event EventHandler ContentChanged;
             public event EventHandler IsVisibleChanged;
             public event EventHandler Loaded;
 
@@ -38,7 +38,7 @@ namespace MaterialDesignThemes.Wpf
 
             private void ComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
             {
-                TextChanged?.Invoke(sender, EventArgs.Empty);
+                ContentChanged?.Invoke(sender, EventArgs.Empty);
             }
 
             private void ComboBoxIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -53,7 +53,7 @@ namespace MaterialDesignThemes.Wpf
 
             private void ComboBoxTextChanged(object sender, TextChangedEventArgs e)
             {
-                TextChanged?.Invoke(sender, EventArgs.Empty);
+                ContentChanged?.Invoke(sender, EventArgs.Empty);
             }
 
             public void Dispose()

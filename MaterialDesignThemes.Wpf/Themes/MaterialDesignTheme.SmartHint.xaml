@@ -95,27 +95,28 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <TextBlock x:Name="FloatingHintTextBlock"
-                                   Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}"
-                                   Text="{TemplateBinding Hint}"
-                                   FontSize="{TemplateBinding FontSize}"
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   Opacity="{TemplateBinding HintOpacity}"
-                                   IsHitTestVisible="False"
-                                   RenderTransformOrigin="0,1">
-                            <TextBlock.RenderTransform>
+                        
+                        <ContentControl x:Name="FloatingHintTextBlock"
+                                        Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}"
+                                        Content="{TemplateBinding Hint}"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Opacity="{TemplateBinding HintOpacity}"
+                                        IsHitTestVisible="False"
+                                        RenderTransformOrigin="0,1">
+                            <ContentControl.RenderTransform>
                                 <TranslateTransform X="0" Y="0"/>
-                            </TextBlock.RenderTransform>
-                        </TextBlock>
-                        <TextBlock x:Name="SimpleHintTextBlock"
-                                   Visibility="{TemplateBinding UseFloating, Converter={StaticResource InverseBoolToVisConverter}}"
-                                   Text="{TemplateBinding Hint}"
-                                   FontSize="{TemplateBinding FontSize}"
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   Opacity="{TemplateBinding HintOpacity}"
-                                   IsHitTestVisible="False"/>
+                            </ContentControl.RenderTransform>
+                        </ContentControl>
+                        <ContentControl x:Name="SimpleHintTextBlock"
+                                        Visibility="{TemplateBinding UseFloating, Converter={StaticResource InverseBoolToVisConverter}}"
+                                        Content="{TemplateBinding Hint}"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Opacity="{TemplateBinding HintOpacity}"
+                                        IsHitTestVisible="False"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

@@ -6,20 +6,20 @@ namespace MaterialDesignThemes.Wpf
     {
         #region UseFloating
 
-        public static readonly DependencyProperty UseFloatingProperty = DependencyProperty.RegisterAttached(
-            "UseFloating",
+        public static readonly DependencyProperty IsFloatingProperty = DependencyProperty.RegisterAttached(
+            "IsFloating",
             typeof(bool),
             typeof(HintAssist),
             new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits));
 
-        public static bool GetUseFloating(DependencyObject element)
+        public static bool GetIsFloating(DependencyObject element)
         {
-            return (bool) element.GetValue(UseFloatingProperty);
+            return (bool) element.GetValue(IsFloatingProperty);
         }
 
-        public static void SetUseFloating(DependencyObject element, bool value)
+        public static void SetIsFloating(DependencyObject element, bool value)
         {
-            element.SetValue(UseFloatingProperty, value);
+            element.SetValue(IsFloatingProperty, value);
         }
 
         #endregion
@@ -31,7 +31,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
             "Hint",
-            typeof(string),
+            typeof(object),
             typeof(HintAssist),
             new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
 
@@ -40,7 +40,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         /// <param name="element">The element.</param>
         /// <param name="value">The value.</param>
-        public static void SetHint(DependencyObject element, string value)
+        public static void SetHint(DependencyObject element, object value)
         {
             element.SetValue(HintProperty, value);
         }
@@ -52,9 +52,9 @@ namespace MaterialDesignThemes.Wpf
         /// <returns>
         /// The <see cref="string" />.
         /// </returns>
-        public static string GetHint(DependencyObject element)
+        public static object GetHint(DependencyObject element)
         {
-            return (string)element.GetValue(HintProperty);
+            return element.GetValue(HintProperty);
         }
 
         #endregion

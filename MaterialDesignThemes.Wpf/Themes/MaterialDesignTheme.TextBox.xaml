@@ -82,7 +82,7 @@
                                                HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                                FontSize="{TemplateBinding FontSize}"
                                                HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                                               UseFloating="{Binding Path=(wpf:HintAssist.UseFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                               UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
                                                />
                             </Grid>
                         </Border>
@@ -91,7 +91,7 @@
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition SourceName="Hint" Property="IsTextNullOrEmpty" Value="False" />
+                                <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
                                 <Condition Property="IsKeyboardFocused" Value="True" />
                             </MultiTrigger.Conditions>
                             <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -125,7 +125,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignFloatingHintTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
-        <Setter Property="wpf:HintAssist.UseFloating" Value="True"/>
+        <Setter Property="wpf:HintAssist.IsFloating" Value="True"/>
     </Style>
 
 </ResourceDictionary>

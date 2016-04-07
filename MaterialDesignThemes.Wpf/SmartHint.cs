@@ -39,25 +39,25 @@ namespace MaterialDesignThemes.Wpf
         #region HintProperty
 
         public static readonly DependencyProperty HintProperty = DependencyProperty.Register(
-            nameof(Hint), typeof(string), typeof(SmartHint), new PropertyMetadata(default(string)));
+            nameof(Hint), typeof(object), typeof(SmartHint), new PropertyMetadata(null));
 
-        public string Hint
+        public object Hint
         {
-            get { return (string)GetValue(HintProperty); }
+            get { return GetValue(HintProperty); }
             set { SetValue(HintProperty, value); }
         }
 
         #endregion
 
-        #region IsTextNullOrEmpty
+        #region IsContentNullOrEmpty
 
-        public static readonly DependencyProperty IsTextNullOrEmptyProperty = DependencyProperty.Register(
-            nameof(IsTextNullOrEmpty), typeof(bool), typeof(SmartHint), new PropertyMetadata(default(bool)));
+        public static readonly DependencyProperty IsContentNullOrEmptyProperty = DependencyProperty.Register(
+            nameof(IsContentNullOrEmpty), typeof(bool), typeof(SmartHint), new PropertyMetadata(default(bool)));
 
-        public bool IsTextNullOrEmpty
+        public bool IsContentNullOrEmpty
         {
-            get { return (bool)GetValue(IsTextNullOrEmptyProperty); }
-            set { SetValue(IsTextNullOrEmptyProperty, value); }
+            get { return (bool)GetValue(IsContentNullOrEmptyProperty); }
+            set { SetValue(IsContentNullOrEmptyProperty, value); }
         }
 
         #endregion
@@ -110,8 +110,8 @@ namespace MaterialDesignThemes.Wpf
             if (hintProxy != null)
             {
                 hintProxy.IsVisibleChanged -= smartHint.OnHintProxyIsVisibleChanged;
-                hintProxy.TextChanged -= smartHint.OnHintProxyTextChanged;
-                hintProxy.Loaded -= smartHint.OnHintProxyTextChanged;
+                hintProxy.ContentChanged -= smartHint.OnHintProxyContentChanged;
+                hintProxy.Loaded -= smartHint.OnHintProxyContentChanged;
                 hintProxy.Dispose();
             }
 
@@ -119,15 +119,15 @@ namespace MaterialDesignThemes.Wpf
             if (hintProxy != null)
             {
                 hintProxy.IsVisibleChanged += smartHint.OnHintProxyIsVisibleChanged;
-                hintProxy.TextChanged += smartHint.OnHintProxyTextChanged;
-                hintProxy.Loaded += smartHint.OnHintProxyTextChanged;
+                hintProxy.ContentChanged += smartHint.OnHintProxyContentChanged;
+                hintProxy.Loaded += smartHint.OnHintProxyContentChanged;
                 smartHint.RefreshState(false);
             }
         }
 
-        protected virtual void OnHintProxyTextChanged(object sender, EventArgs e)
+        protected virtual void OnHintProxyContentChanged(object sender, EventArgs e)
         {
-            IsTextNullOrEmpty = String.IsNullOrEmpty(HintProxy.Text);
+            IsContentNullOrEmpty = string.IsNullOrEmpty((HintProxy.Content ?? "").ToString());
 
             if (HintProxy.IsLoaded)
             {
@@ -157,7 +157,7 @@ namespace MaterialDesignThemes.Wpf
 
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                var state = string.IsNullOrEmpty(HintProxy.Text)
+                var state = string.IsNullOrEmpty((HintProxy.Content ?? "").ToString())
                     ? MaterialDesignStateTextEmptyName
                     : MaterialDesignStateTextNotEmptyName;
 

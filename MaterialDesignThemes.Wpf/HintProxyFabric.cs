@@ -27,23 +27,23 @@ namespace MaterialDesignThemes.Wpf
             public IHintProxy Build(Control control) => _build(control);
         }
 
-        private static readonly List<HintProxyBuilder> _builders = new List<HintProxyBuilder>();
+        private static readonly List<HintProxyBuilder> Builders = new List<HintProxyBuilder>();
 
         static HintProxyFabric()
         {
-            _builders.Add(new HintProxyBuilder(c => c is ComboBox, c => new ComboBoxHintProxy((ComboBox) c)));
-            _builders.Add(new HintProxyBuilder(c => c is TextBox, c => new TextBoxHintProxy((TextBox)c)));
-            _builders.Add(new HintProxyBuilder(c => c is PasswordBox, c => new PasswordBoxHintProxy((PasswordBox)c)));
+            Builders.Add(new HintProxyBuilder(c => c is ComboBox, c => new ComboBoxHintProxy((ComboBox) c)));
+            Builders.Add(new HintProxyBuilder(c => c is TextBox, c => new TextBoxHintProxy((TextBox)c)));
+            Builders.Add(new HintProxyBuilder(c => c is PasswordBox, c => new PasswordBoxHintProxy((PasswordBox)c)));
         }
 
         public static void RegisterBuilder(Func<Control, bool> canBuild, Func<Control, IHintProxy> build)
         {
-            _builders.Add(new HintProxyBuilder(canBuild, build));
+            Builders.Add(new HintProxyBuilder(canBuild, build));
         }
 
         public static IHintProxy Get(Control control)
         {
-            var builder = _builders.FirstOrDefault(v => v.CanBuild(control));
+            var builder = Builders.FirstOrDefault(v => v.CanBuild(control));
 
             if (builder == null) throw new NotImplementedException();
 

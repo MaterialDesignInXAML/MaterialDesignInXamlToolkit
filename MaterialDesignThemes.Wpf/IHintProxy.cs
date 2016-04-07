@@ -14,12 +14,16 @@ namespace MaterialDesignThemes.Wpf
     /// </summary>
     public interface IHintProxy : IDisposable
     {
-        string Text { get; }
+        object Content { get; }
+
         bool IsLoaded { get; }
+
         bool IsVisible { get; }
 
-        event EventHandler TextChanged;
+        event EventHandler ContentChanged;
+
         event EventHandler IsVisibleChanged;
+
         event EventHandler Loaded;
     }
 }
