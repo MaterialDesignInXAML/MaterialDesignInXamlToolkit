@@ -177,14 +177,15 @@
             <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource MaterialDesignDataGridComboBoxToggleButton}"
                                   />
 
-            <TextBlock x:Name="Hint"
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                            IsHitTestVisible="False"                       
-                            Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
-                            Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
+            <wpf:SmartHint x:Name="Hint"
+                           Margin="{TemplateBinding Padding}"
+                                   HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                   UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                   UseFloating="{Binding Path=(wpf:HintAssist.UseFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                   HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                   Hint="{TemplateBinding wpf:HintAssist.Hint}" />
             <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>            
         </Grid>
         <ControlTemplate.Triggers>
@@ -261,14 +262,15 @@
             <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource MaterialDesignDataGridComboBoxToggleButton}"/>
             <Border x:Name="border" Background="Transparent" Margin="{TemplateBinding BorderThickness}">
                 <Grid>
-                    <TextBlock x:Name="Hint"
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                            Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
-                            IsHitTestVisible="False"
-                            Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
+                    <wpf:SmartHint x:Name="Hint"
+                                   Margin="{TemplateBinding Padding}"
+                                   HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                   UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                   UseFloating="{Binding Path=(wpf:HintAssist.UseFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                   HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                   Hint="{TemplateBinding wpf:HintAssist.Hint}" />
                     <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource MaterialDesignDataGridComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 </Grid>
             </Border>

@@ -33,7 +33,7 @@
 
     <ControlTemplate x:Key="PopupContentUpTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
-                          Margin="6">
+              Margin="6">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -72,7 +72,7 @@
                                Fill="{DynamicResource MaterialDesignPaper}"/>
                     <Grid Grid.Column="1"
                           Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
-                          Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
+                          Height="{Binding ElementName=templateRoot, Path=ActualHeight, Converter={StaticResource MathAddConverter}, ConverterParameter=12}"/>
                     <Rectangle Grid.Column="2"
                                MinWidth="{StaticResource PopupLeftRightMargin}"
                                Fill="{DynamicResource MaterialDesignPaper}"/>
@@ -124,7 +124,7 @@
                                />
                     <Grid Grid.Column="1"
                           Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
-                          Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
+                          Height="{Binding ElementName=templateRoot, Path=ActualHeight, Converter={StaticResource MathAddConverter}, ConverterParameter=12}"/>
                     <Rectangle Grid.Column="2"
                                MinWidth="{StaticResource PopupLeftRightMargin}"
                                Fill="{DynamicResource MaterialDesignPaper}"
@@ -146,7 +146,7 @@
     
     <ControlTemplate x:Key="PopupContentDefaultTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
-                          Margin="6">
+              Margin="6">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -385,183 +385,10 @@
         </Setter>
     </Style>
 
-    <ControlTemplate x:Key="MaterialDesignComboBoxTemplate" TargetType="{x:Type ComboBox}">
-        <Grid x:Name="templateRoot"
-              SnapsToDevicePixels="True">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
-            </Grid.ColumnDefinitions>
-            <ToggleButton x:Name="toggleButton"
-                          Grid.ColumnSpan="2"
-                          Background="{TemplateBinding Background}"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                          Style="{StaticResource MaterialDesignComboBoxToggleButton}" />
-            <Grid Margin="{TemplateBinding Padding}"
-                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                <TextBlock x:Name="Hint"
-                           IsHitTestVisible="False"
-                           Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                           Text="{TemplateBinding wpf:TextFieldAssist.Hint}"
-                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                           UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                           Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}" />
-                <ContentPresenter x:Name="contentPresenter"
-                                  Content="{TemplateBinding SelectionBoxItem}"
-                                  ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                  IsHitTestVisible="false"
-                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                  UseLayoutRounding="{TemplateBinding UseLayoutRounding}" />
-                <TextBox x:Name="PART_EditableTextBox"
-                         IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
-                         Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
-                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                         UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                         Visibility="Collapsed" />
-            </Grid>
-            <wpf:Underline x:Name="Underline"
-                           Grid.ColumnSpan="2"
-                           IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
-                           Visibility="Collapsed" />
-
-            <wpf:ComboBoxPopup x:Name="PART_Popup"
-                               AllowsTransparency="true"
-                               Focusable="False"
-                               HorizontalOffset="-11"
-                               IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                               PlacementTarget="{Binding ElementName=templateRoot}"
-                               Placement="Custom"
-                               SnapsToDevicePixels="True"
-                               PopupAnimation="Fade"
-                               VerticalOffset="0"
-                               DefaultVerticalOffset="5"
-                               DownVerticalOffset="-15"
-                               UpVerticalOffset="15"
-                               UpContentTemplate="{StaticResource PopupContentUpTemplate}"
-                               DownContentTemplate="{StaticResource PopupContentDownTemplate}"
-                               DefaultContentTemplate="{StaticResource PopupContentDefaultTemplate}">
-                <ContentControl>
-                    <ScrollViewer Background="{DynamicResource MaterialDesignPaper}"
-                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                        <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
-                    </ScrollViewer>
-                </ContentControl>
-            </wpf:ComboBoxPopup>
-        </Grid>
-        <ControlTemplate.Triggers>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter TargetName="templateRoot" Property="Opacity" Value="0.56"/>
-            </Trigger>
-            <Trigger Property="IsEditable" Value="True">
-                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
-                <Setter TargetName="Underline" Property="Visibility" Value="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}" />
-                <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed" />
-            </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsEditable" Value="False"/>
-                    <Condition Property="IsDropDownOpen" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter TargetName="Underline" Property="Visibility" Value="Hidden"/>
-                <Setter TargetName="toggleButton" Property="Visibility" Value="Hidden"/>
-            </MultiTrigger>
-            <!--
-            <Trigger SourceName="PART_Popup" Property="HasDropShadow" Value="true">
-                <Setter TargetName="shadow" Property="Margin" Value="0" />
-            </Trigger>
-            <Trigger Property="HasItems" Value="false">
-                <Setter TargetName="shadow" Property="Height" Value="95" />
-            </Trigger>
-            -->
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsGrouping" Value="true" />
-                    <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false" />
-                </MultiTrigger.Conditions>
-                <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
-            </MultiTrigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
-
     <ControlTemplate x:Key="MaterialDesignFloatingHintComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid x:Name="templateRoot"
               SnapsToDevicePixels="True">
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup x:Name="MaterialDesignStates">
-                    <VisualStateGroup.Transitions>
-                        <VisualTransition From="*" To="MaterialDesignStateTextNotEmpty">
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                                             Duration="0:0:0.3" To="10">
-                                    <DoubleAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                                             Duration="0:0:0.3" To="1">
-                                    <DoubleAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                                <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                                                Duration="0:0:0.3" To="1,-12,1,0">
-                                    <ThicknessAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </ThicknessAnimation.EasingFunction>
-                                </ThicknessAnimation>
-                            </Storyboard>
-                        </VisualTransition>
-                        <VisualTransition From="*" To="MaterialDesignStateTextEmpty">
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                                             Duration="0:0:0.3">
-                                    <DoubleAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                                             Duration="0:0:0.3">
-                                    <DoubleAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                                <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                                                Duration="0:0:0.3">
-                                    <ThicknessAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </ThicknessAnimation.EasingFunction>
-                                </ThicknessAnimation>
-                            </Storyboard>
-                        </VisualTransition>
-                    </VisualStateGroup.Transitions>
-                    <VisualState x:Name="MaterialDesignStateTextNotEmpty">
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                                         Duration="0" To="10" />
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                                         Duration="0" To="1" />
-                            <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                                            Duration="0" To="1,-12,1,0" />
-                        </Storyboard>
-                    </VisualState>
-                    <VisualState x:Name="MaterialDesignStateTextEmpty">
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="Hint"
-                                                         Duration="0" />
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Hint"
-                                                         Duration="0" />
-                            <ThicknessAnimation Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Hint"
-                                                            Duration="0" />
-                        </Storyboard>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-            <Grid Margin="0 12 0 0">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
@@ -573,16 +400,6 @@
                               BorderThickness="{TemplateBinding BorderThickness}"
                               IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                               Style="{StaticResource MaterialDesignComboBoxToggleButton}"/>
-                <TextBlock x:Name="Hint"
-                           Margin="{TemplateBinding Padding}"
-                           FontSize="{TemplateBinding FontSize}"
-                           HorizontalAlignment="Left"
-                           IsHitTestVisible="False"
-                           VerticalAlignment="Top"
-                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                           UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                           Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                           Text="{TemplateBinding wpf:TextFieldAssist.Hint}" />
                 <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                       Margin="{TemplateBinding Padding}"
@@ -598,6 +415,14 @@
                              IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
                              Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
                              Visibility="Collapsed" />
+                    <wpf:SmartHint x:Name="Hint"
+                                   HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                   UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                   UseFloating="{Binding Path=(wpf:HintAssist.UseFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                   HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                   Hint="{TemplateBinding wpf:HintAssist.Hint}" />
                 </Grid>
                 <wpf:Underline x:Name="Underline"
                                Grid.ColumnSpan="2"
@@ -616,7 +441,7 @@
                                PopupAnimation="Fade"
                                VerticalOffset="0"
                                DefaultVerticalOffset="5"
-                               DownVerticalOffset="-15"
+                               DownVerticalOffset="-27"
                                UpVerticalOffset="15"
                                UpContentTemplate="{StaticResource PopupContentUpTemplate}"
                                DownContentTemplate="{StaticResource PopupContentDownTemplate}"
@@ -649,21 +474,21 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
+                    <Condition SourceName="Hint" Property="IsTextNullOrEmpty" Value="False" />
                     <Condition Property="IsKeyboardFocused" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
+                    <Condition SourceName="Hint" Property="IsTextNullOrEmpty" Value="False" />
                     <Condition SourceName="PART_EditableTextBox" Property="IsKeyboardFocused" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="wpf:TextFieldAssist.IsNullOrEmpty" Value="False" />
+                    <Condition SourceName="Hint" Property="IsTextNullOrEmpty" Value="False" />
                     <Condition Property="IsDropDownOpen" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -687,6 +512,7 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemSelectedCollapsedStyle}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="Margin" Value="0 12 0 0" />
         <Setter Property="Padding" Value="0 4 0 5" />
         <Setter Property="VerticalContentAlignment" Value="Top" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -696,7 +522,7 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
-        <Setter Property="Template" Value="{StaticResource MaterialDesignComboBoxTemplate}" />
+        <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -717,23 +543,7 @@
     <Style x:Key="MaterialDesignFloatingHintComboBox"
            BasedOn="{StaticResource MaterialDesignComboBox}"
            TargetType="{x:Type ComboBox}">
-        <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
-        <Setter Property="wpf:TextFieldAssist.Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
-        <Setter Property="wpf:TextFieldAssist.Managed" Value="{Binding RelativeSource={RelativeSource Self}}" />
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-            </Trigger>
-            <Trigger Property="IsKeyboardFocused" Value="true">
-                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-            </Trigger>
-            <Trigger Property="IsKeyboardFocusWithin" Value="true">
-                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-            </Trigger>
-            <Trigger Property="IsEditable" Value="true">
-                <Setter Property="IsTabStop" Value="false" />
-            </Trigger>
-        </Style.Triggers>
+        <Setter Property="wpf:HintAssist.UseFloating" Value="True"/>
     </Style>
 
 </ResourceDictionary>
