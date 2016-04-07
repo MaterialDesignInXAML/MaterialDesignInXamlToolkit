@@ -15,13 +15,13 @@ namespace MaterialDesignThemes.Wpf
     /// <para/>
     /// To set a target control you should set the HintProxy property. Use the <see cref="HintProxyFabricConverter.Instance"/> converter which converts a control into the IHintProxy interface.
     /// </summary>
-    [TemplateVisualState(GroupName = MaterialDesignTextStatesGroupName, Name = MaterialDesignStateTextEmptyName)]
-    [TemplateVisualState(GroupName = MaterialDesignTextStatesGroupName, Name = MaterialDesignStateTextNotEmptyName)]
+    [TemplateVisualState(GroupName = ContentStatesGroupName, Name = ContentEmptyName)]
+    [TemplateVisualState(GroupName = ContentStatesGroupName, Name = ContentNotEmptyName)]
     public class SmartHint : Control
     {
-        public const string MaterialDesignTextStatesGroupName = "MaterialDesignTextStates";
-        public const string MaterialDesignStateTextEmptyName = "MaterialDesignStateTextEmpty";
-        public const string MaterialDesignStateTextNotEmptyName = "MaterialDesignStateTextNotEmpty";
+        public const string ContentStatesGroupName = "ContentStates";
+        public const string ContentEmptyName = "ContentEmpty";
+        public const string ContentNotEmptyName = "ContentNotEmpty";
 
         #region ManagedProperty
 
@@ -158,8 +158,8 @@ namespace MaterialDesignThemes.Wpf
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 var state = string.IsNullOrEmpty((HintProxy.Content ?? "").ToString())
-                    ? MaterialDesignStateTextEmptyName
-                    : MaterialDesignStateTextNotEmptyName;
+                    ? ContentEmptyName
+                    : ContentNotEmptyName;
 
                 VisualStateManager.GoToState(this, state, useTransitions);
             }));

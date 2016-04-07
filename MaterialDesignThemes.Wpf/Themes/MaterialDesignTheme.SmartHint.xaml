@@ -21,75 +21,81 @@
                           HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalAlignment}">
                         <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="MaterialDesignTextStates">
+                            <VisualStateGroup x:Name="ContentStates">
                                 <VisualStateGroup.Transitions>
-                                    <VisualTransition From="*" To="MaterialDesignStateTextNotEmpty">
+                                    <VisualTransition From="*" To="ContentNotEmpty">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="SimpleHintTextBlock" Storyboard.TargetProperty="Opacity"
                                                              Duration="0:0:0" To="0" />
-                                            
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="FontSize"
-                                                             Duration="0:0:0.3" To="10"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                             <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="Opacity"
                                                              Duration="0:0:0.3" To="1"
                                                              EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TranslateTransform.X)"
+                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
+                                                             Duration="0:0:0.3" To=".74"
+                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
+                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
+                                                             Duration="0:0:0.3" To=".74"
+                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
+                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)"
                                                              Duration="0:0:0.3" To="1"
                                                              EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TranslateTransform.Y)"
-                                                             Duration="0:0:0.3" To="-16"
+                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.Y)"
+                                                             Duration="0:0:0.3" To="-27"
                                                              EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                         </Storyboard>
                                     </VisualTransition>
-                                    <VisualTransition From="*" To="MaterialDesignStateTextEmpty">
+                                    <VisualTransition From="*" To="ContentEmpty">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="SimpleHintTextBlock" Storyboard.TargetProperty="Opacity"
                                                              Duration="0:0:0.3"
                                                              EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="FontSize"
-                                                             Duration="0:0:0.3"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                             <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="Opacity"
                                                              Duration="0:0:0.3"
                                                              EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TranslateTransform.X)"
+                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
+                                                             Duration="0:0:0.3" 
+                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
+                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
+                                                             Duration="0:0:0.3" 
+                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
+                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)"
                                                              Duration="0:0:0.3"
                                                              EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TranslateTransform.Y)"
+                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.Y)"
                                                              Duration="0:0:0.3"
                                                              EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
-                                <VisualState x:Name="MaterialDesignStateTextNotEmpty">
+                                <VisualState x:Name="ContentNotEmpty">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SimpleHintTextBlock"
                                                          Duration="0" To="0" />
-                                        
-                                        <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="FloatingHintTextBlock"
-                                                         Duration="0" To="10" />
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FloatingHintTextBlock"
                                                          Duration="0" To="1" />
-                                        <DoubleAnimation Storyboard.TargetProperty="(Control.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="FloatingHintTextBlock"
+                                        <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
+                                                         Duration="0" To=".74" />
+                                        <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
+                                                         Duration="0" To=".74" />
+                                        <DoubleAnimation Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)" Storyboard.TargetName="FloatingHintTextBlock"
                                                          Duration="0" To="1" />
-                                        <DoubleAnimation Storyboard.TargetProperty="(Control.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="FloatingHintTextBlock"
-                                                         Duration="0" To="-16" />
+                                        <DoubleAnimation Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.Y)" Storyboard.TargetName="FloatingHintTextBlock"
+                                                         Duration="0" To="-27" />
                                     </Storyboard>
                                 </VisualState>
-                                <VisualState x:Name="MaterialDesignStateTextEmpty">
+                                <VisualState x:Name="ContentEmpty">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SimpleHintTextBlock"
                                                          Duration="0" />
-                                        
-                                        <DoubleAnimation Storyboard.TargetProperty="FontSize" Storyboard.TargetName="FloatingHintTextBlock"
-                                                         Duration="0" />
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FloatingHintTextBlock"
                                                          Duration="0" />
-                                        <DoubleAnimation Storyboard.TargetProperty="(Control.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="FloatingHintTextBlock"
+                                        <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
                                                          Duration="0" />
-                                        <DoubleAnimation Storyboard.TargetProperty="(Control.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="FloatingHintTextBlock"
+                                        <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
+                                                         Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)" Storyboard.TargetName="FloatingHintTextBlock"
+                                                         Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.Y)" Storyboard.TargetName="FloatingHintTextBlock"
                                                          Duration="0" />
                                     </Storyboard>
                                 </VisualState>
@@ -106,7 +112,10 @@
                                         IsHitTestVisible="False"
                                         RenderTransformOrigin="0,1">
                             <ContentControl.RenderTransform>
-                                <TranslateTransform X="0" Y="0"/>
+                                <TransformGroup>
+                                    <TranslateTransform X="0" Y="0"/>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </TransformGroup>
                             </ContentControl.RenderTransform>
                         </ContentControl>
                         <ContentControl x:Name="SimpleHintTextBlock"
