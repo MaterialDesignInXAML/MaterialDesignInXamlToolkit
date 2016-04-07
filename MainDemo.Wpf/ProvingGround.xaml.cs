@@ -35,6 +35,16 @@ namespace MaterialDesignColors.WpfExample
             System.Diagnostics.Process.Start("https://twitter.com/James_Willock");
 
         }
+
+        private void ButtonsDemoChip_OnClick(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Chip clicked.");
+        }
+
+        private void ButtonsDemoChip_OnDeleteClick(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Chip delete clicked.");
+        }
     }
 
     public class ProvingGroundViewModel : INotifyPropertyChanged

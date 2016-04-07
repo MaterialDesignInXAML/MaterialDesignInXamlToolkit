@@ -22,8 +22,63 @@
     </UserControl.Resources>
 
 
-    <StackPanel Margin="24" HorizontalAlignment="Stretch">
-        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" Value="20"  />
+    <StackPanel>
+        <WrapPanel Margin="24" Orientation="Horizontal">
+            <materialDesign:Chip Text="James Willock" 
+                             Margin="0 0 6 4">
+                <materialDesign:Chip.Icon>
+                    <Image Source="Resources/ProfilePic.jpg"></Image>
+                </materialDesign:Chip.Icon>
+            </materialDesign:Chip>
+            <materialDesign:Chip Text="Example Chip" 
+                             Margin="0 0 4 4" />
+            <materialDesign:Chip Text="ANZ Bank" 
+                             Icon="A" 
+                             Margin="0 0 4 4" />
+            <materialDesign:Chip Text="ZNA Inc" 
+                             Icon="Z" 
+                             IconBackground="{DynamicResource PrimaryHueMidBrush}"
+                             IconForeground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                             Margin="0 0 4 4" />
+            <materialDesign:Chip Text="Twitter"                                  
+                                 IconBackground="{DynamicResource PrimaryHueMidBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                 Margin="0 0 4 4">
+                <materialDesign:Chip.Icon>
+                    <materialDesign:PackIcon Kind="Twitter"></materialDesign:PackIcon>
+                </materialDesign:Chip.Icon>
+            </materialDesign:Chip>
+        </WrapPanel>
+        <WrapPanel Margin="24" Orientation="Horizontal">
+            <materialDesign:Chip Text="James Willock"
+                                 IsDeletable="True"
+                                 Margin="0 0 4 4"
+                                 x:Name="ButtonsDemoChip"
+                                 Click="ButtonsDemoChip_OnClick"
+                                 DeleteClick="ButtonsDemoChip_OnDeleteClick"
+                                 ToolTip="Just a tool tip"
+                                 DeleteToolTip="Your friendly neighbour delete button"
+                                 >
+                <materialDesign:Chip.Icon>
+                    <Image Source="Resources/ProfilePic.jpg"></Image>
+                </materialDesign:Chip.Icon>
+            </materialDesign:Chip>
+            <materialDesign:Chip Text="Example Chip"
+                                 IsDeletable="True"
+                                 ToolTip="This is an example chip"
+                                 Margin="0 0 4 4">
+            </materialDesign:Chip>
+            <materialDesign:Chip Text="ANZ Bank" 
+                                 Icon="A"
+                                 IsDeletable="True"
+                                 Margin="0 0 4 4" />
+            <materialDesign:Chip Text="ZNA Inc" 
+                                 Icon="Z" 
+                                 IsDeletable="True"
+                                 IconBackground="{DynamicResource PrimaryHueMidBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                 Margin="0 0 4 4" />
+        </WrapPanel>
     </StackPanel>
 
 </UserControl>
