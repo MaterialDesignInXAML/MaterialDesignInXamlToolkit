@@ -13,7 +13,8 @@
 		<Setter Property="BorderThickness" Value="0 0 0 1"/>
 		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="IsTabStop" Value="False"/>
-        <Setter Property="wpf:TextFieldAssist.Hint" Value="Select time" />
+        <Setter Property="Margin" Value="0 12 0 0" />
+        <Setter Property="wpf:HintAssist.Hint" Value="Select time" />
 		<Setter Property="ClockStyle" Value="{DynamicResource MaterialDesignClock}" />
 		<Setter Property="ClockHostContentControlStyle">
 			<Setter.Value>
@@ -47,11 +48,12 @@
 							<Grid>
 								<ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"											  
 											  />
-								<TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
-										   Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
-										   x:Name="Hint"
-                                           IsHitTestVisible="False"
-										   Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <wpf:SmartHint x:Name="Hint"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                               Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                               HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                               HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
 							</Grid>
 						</ControlTemplate>
 						<ControlTemplate x:Key="DropDownButtonTemplate" TargetType="{x:Type Button}">
@@ -123,4 +125,9 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+
+
+    <Style x:Key="MaterialDesignFloatingHintTimePicker" TargetType="{x:Type wpf:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}">
+        <Setter Property="wpf:HintAssist.IsFloating" Value="True"/>
+    </Style>
 </ResourceDictionary>

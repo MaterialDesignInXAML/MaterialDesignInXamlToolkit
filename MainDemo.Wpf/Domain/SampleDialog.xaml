@@ -17,7 +17,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock>New contact:</TextBlock>
-        <TextBox wpf:TextFieldAssist.Hint="Name" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
+        <TextBox wpf:HintAssist.Hint="Name" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
                  Margin="0 6 0 0"
                  FontSize="18" Grid.Row="1">
             <TextBox.Text>
@@ -28,7 +28,7 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <TextBox wpf:TextFieldAssist.Hint="Number" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+        <TextBox wpf:HintAssist.Hint="Number" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                  Margin="0 8 0 0"
                  FontSize="16" Grid.Row="2"
                  />
