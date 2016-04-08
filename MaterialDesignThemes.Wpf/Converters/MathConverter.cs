@@ -22,13 +22,12 @@ namespace MaterialDesignThemes.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double value1, value2;
-            if (Double.TryParse(value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out value1) 
-				&& Double.TryParse(parameter.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out value2))
+            try
             {
+                double value1 = System.Convert.ToDouble(value, CultureInfo.InvariantCulture);
+                double value2 = System.Convert.ToDouble(parameter, CultureInfo.InvariantCulture);
                 switch (Operation)
                 {
-                    default:
                     case MathOperation.Add:
                         return value1 + value2;
                     case MathOperation.Divide:
@@ -37,10 +36,14 @@ namespace MaterialDesignThemes.Wpf.Converters
                         return value1 * value2;
                     case MathOperation.Subtract:
                         return value1 - value2;
+                    default:
+                        return Binding.DoNothing;
                 }
             }
-
-            return Binding.DoNothing;
+            catch (FormatException)
+            {
+                return Binding.DoNothing;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
