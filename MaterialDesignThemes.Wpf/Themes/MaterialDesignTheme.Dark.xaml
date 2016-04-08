@@ -26,4 +26,6 @@
 
     <SolidColorBrush x:Key="MaterialDesignToolTipBackground" Color="#eeeeee" />
 
+    <SolidColorBrush x:Key="MaterialDesignChipBackground" Color="#FF2E3C43" />
+
 </ResourceDictionary>

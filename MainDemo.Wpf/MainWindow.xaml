@@ -88,6 +88,11 @@
                                 <wpfExample:Sliders />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Chips">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Chips />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Typography">
                             <domain:DemoItem.Content>
                                 <wpfExample:Typography />
