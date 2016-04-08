@@ -24,25 +24,23 @@
 
     <StackPanel>
         <WrapPanel Margin="24" Orientation="Horizontal">
-            <materialDesign:Chip Text="James Willock" 
-                             Margin="0 0 6 4">
+            <materialDesign:Chip Content="James Willock" Margin="0 0 6 4">
                 <materialDesign:Chip.Icon>
-                    <Image Source="Resources/ProfilePic.jpg"></Image>
+                    <Image Source="Resources/ProfilePic.jpg" />
                 </materialDesign:Chip.Icon>
             </materialDesign:Chip>
-            <materialDesign:Chip Text="Example Chip" 
-                             Margin="0 0 4 4" />
-            <materialDesign:Chip Text="ANZ Bank" 
+            <materialDesign:Chip Margin="0 0 4 4">
+                Example Chip
+            </materialDesign:Chip>
+            <materialDesign:Chip Content="ANZ Bank" 
                              Icon="A" 
                              Margin="0 0 4 4" />
-            <materialDesign:Chip Text="ZNA Inc" 
+            <materialDesign:Chip Content="ZNA Inc" 
                              Icon="Z" 
-                             IconBackground="{DynamicResource PrimaryHueMidBrush}"
-                             IconForeground="{DynamicResource PrimaryHueMidForegroundBrush}"
                              Margin="0 0 4 4" />
-            <materialDesign:Chip Text="Twitter"                                  
-                                 IconBackground="{DynamicResource PrimaryHueMidBrush}"
-                                 IconForeground="{DynamicResource PrimaryHueMidForegroundBrush}"
+            <materialDesign:Chip Content="Twitter"                                  
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                  Margin="0 0 4 4">
                 <materialDesign:Chip.Icon>
                     <materialDesign:PackIcon Kind="Twitter"></materialDesign:PackIcon>
@@ -50,7 +48,7 @@
             </materialDesign:Chip>
         </WrapPanel>
         <WrapPanel Margin="24" Orientation="Horizontal">
-            <materialDesign:Chip Text="James Willock"
+            <materialDesign:Chip Content="James Willock"
                                  IsDeletable="True"
                                  Margin="0 0 4 4"
                                  x:Name="ButtonsDemoChip"
@@ -63,20 +61,20 @@
                     <Image Source="Resources/ProfilePic.jpg"></Image>
                 </materialDesign:Chip.Icon>
             </materialDesign:Chip>
-            <materialDesign:Chip Text="Example Chip"
+            <materialDesign:Chip Content="Example Chip"
                                  IsDeletable="True"
                                  ToolTip="This is an example chip"
                                  Margin="0 0 4 4">
             </materialDesign:Chip>
-            <materialDesign:Chip Text="ANZ Bank" 
+            <materialDesign:Chip Content="ANZ Bank" 
                                  Icon="A"
                                  IsDeletable="True"
                                  Margin="0 0 4 4" />
-            <materialDesign:Chip Text="ZNA Inc" 
+            <materialDesign:Chip Content="ZNA Inc" 
                                  Icon="Z" 
                                  IsDeletable="True"
-                                 IconBackground="{DynamicResource PrimaryHueMidBrush}"
-                                 IconForeground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                 IconBackground="{DynamicResource PrimaryHueLightBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}"
                                  Margin="0 0 4 4" />
         </WrapPanel>
     </StackPanel>

@@ -23,5 +23,7 @@
     <SolidColorBrush x:Key="MaterialDesignFlatButtonRipple" Color="#FFB6B6B6" />
 
     <SolidColorBrush x:Key="MaterialDesignToolTipBackground" Color="#757575" />
-
+    
+    <SolidColorBrush x:Key="MaterialDesignChipBackground" Color="#12000000" />
+    
 </ResourceDictionary>

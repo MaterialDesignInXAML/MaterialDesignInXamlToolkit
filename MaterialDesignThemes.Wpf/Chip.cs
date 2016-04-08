@@ -13,7 +13,7 @@ using System.Windows.Media;
 namespace MaterialDesignThemes.Wpf
 {
     [TemplatePart(Name = DeleteButtonPartName, Type = typeof(Button))]
-    public class Chip : Button
+    public class Chip : ButtonBase
     {
         private ButtonBase _deleteButton;
 
@@ -51,15 +51,6 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(IconForegroundProperty, value); }
         }
     
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-            "Text", typeof (string), typeof (Chip), new PropertyMetadata(default(string)));
-
-        public string Text
-        {
-            get { return (string) GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
-
         public static readonly DependencyProperty IsDeletableProperty = DependencyProperty.Register(
             "IsDeletable", typeof (bool), typeof (Chip), new PropertyMetadata(default(bool)));
 
@@ -98,7 +89,7 @@ namespace MaterialDesignThemes.Wpf
             get { return (object) GetValue(DeleteToolTipProperty); }
             set { SetValue(DeleteToolTipProperty, value); }
         }
-
+        
         /// <summary>
         /// Event correspond to delete button left mouse button click 
         /// </summary>

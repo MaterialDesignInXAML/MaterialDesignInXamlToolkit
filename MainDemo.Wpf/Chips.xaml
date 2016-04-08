@@ -8,6 +8,66 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Margin="32">
-        <materialDesign:Chip Text="Butcher's Boy" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}">Chips</TextBlock>
+        <StackPanel Grid.Row="1" Margin="0 16 0 0">
+            <WrapPanel Orientation="Horizontal">
+                <materialDesign:Chip Content="James Willock" Margin="0 0 6 4">
+                    <materialDesign:Chip.Icon>
+                        <Image Source="Resources/ProfilePic.jpg" />
+                    </materialDesign:Chip.Icon>
+                </materialDesign:Chip>
+                <materialDesign:Chip Margin="0 0 4 4">
+                    Example Chip
+                </materialDesign:Chip>
+                <materialDesign:Chip Content="ANZ Bank" 
+                             Icon="A" 
+                             Margin="0 0 4 4" />
+                <materialDesign:Chip Content="ZNA Inc" 
+                             Icon="Z" 
+                             Margin="0 0 4 4" />
+                <materialDesign:Chip Content="Twitter"                                  
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                 Margin="0 0 4 4">
+                    <materialDesign:Chip.Icon>
+                        <materialDesign:PackIcon Kind="Twitter"></materialDesign:PackIcon>
+                    </materialDesign:Chip.Icon>
+                </materialDesign:Chip>
+            </WrapPanel>
+            <WrapPanel Margin="0 12 0 0" Orientation="Horizontal">
+                <materialDesign:Chip Content="James Willock"
+                                 IsDeletable="True"
+                                 Margin="0 0 4 4"
+                                 x:Name="ButtonsDemoChip"
+                                 Click="ButtonsDemoChip_OnClick"
+                                 DeleteClick="ButtonsDemoChip_OnDeleteClick"
+                                 ToolTip="Just a tool tip"
+                                 DeleteToolTip="Your friendly neighbour delete button"
+                                 >
+                    <materialDesign:Chip.Icon>
+                        <Image Source="Resources/ProfilePic.jpg"></Image>
+                    </materialDesign:Chip.Icon>
+                </materialDesign:Chip>
+                <materialDesign:Chip Content="Example Chip"
+                                 IsDeletable="True"
+                                 ToolTip="This is an example chip"
+                                 Margin="0 0 4 4">
+                </materialDesign:Chip>
+                <materialDesign:Chip Content="ANZ Bank" 
+                                 Icon="A"
+                                 IsDeletable="True"
+                                 Margin="0 0 4 4" />
+                <materialDesign:Chip Content="ZNA Inc" 
+                                 Icon="Z" 
+                                 IsDeletable="True"
+                                 IconBackground="{DynamicResource PrimaryHueLightBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                                 Margin="0 0 4 4" />
+            </WrapPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
