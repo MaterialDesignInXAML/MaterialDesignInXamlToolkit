@@ -65,6 +65,13 @@
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState Name="Unselected"/>
+                                <VisualState Name="SelectedUnfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.03" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid>
