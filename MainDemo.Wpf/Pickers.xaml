@@ -4,9 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Margin="32">
+    <!-- for some reason to get the validation templates to show on this page need an extra decorator.  haven't figure out why yet -->
+    <AdornerDecorator>
+        <Grid Margin="32">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -17,16 +20,38 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.ColumnSpan="3">Classic WPF DatePicker control with Material Design theme, and new TimePicker control:</TextBlock>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <DatePicker Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-            <DatePicker x:Name="FutureDatePicker" Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="Future Date" />
+            <DatePicker x:Name="FutureDatePicker" Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" 
+                        materialDesign:HintAssist.Hint="Future Date">
+                <DatePicker.SelectedDate>
+                    <Binding Path="FutureValidatingDate" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <domain:FutureDateValidationRule ValidatesOnTargetUpdated="True" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </DatePicker.SelectedDate>
+            </DatePicker>
         </StackPanel>
         <materialDesign:TimePicker Grid.Row="1" Grid.Column="1"  VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0"
                                    Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                                    materialDesign:HintAssist.Hint="Custom hint" />
         <materialDesign:TimePicker Grid.Row="1" Grid.Column="2"  Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" />
+        <materialDesign:TimePicker Grid.Row="1" Grid.Column="3"                
+                                   materialDesign:HintAssist.Hint="Validates"
+                                   IsInvalidTextAllowed="True"
+                                   Is24Hours="True" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0">
+            <materialDesign:TimePicker.Text>
+                <Binding Path="ValidatingTime" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <domain:SimpleDateValidationRule ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </materialDesign:TimePicker.Text>
+        </materialDesign:TimePicker>
         
         <TextBlock Grid.Row="2" Grid.ColumnSpan="3" Margin="0 128 0 0">By combining the DialogHost (see MainWindow.xaml) and the Calendar and Clock controls, custom popups can be built.</TextBlock>
         <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" Margin="0 32 0 0">
@@ -75,4 +100,5 @@
 
 
     </Grid>
+    </AdornerDecorator>
 </UserControl>

@@ -51,7 +51,12 @@ namespace MaterialDesignColors.WpfExample
 	{
 		private string _name;
         private readonly ObservableCollection<SelectableViewModel> _items = CreateData();
+        public ICommand ClearItems { get; }
 
+        public ProvingGroundViewModel()
+        {
+             ClearItems = new AnotherCommandImplementation(_ => Items.Clear());
+        }
 
         public string Name
 		{

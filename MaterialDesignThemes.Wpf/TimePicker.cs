@@ -46,7 +46,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-            nameof(Text), typeof (string), typeof (TimePicker), new PropertyMetadata(default(string), TextPropertyChangedCallback));
+            nameof(Text), typeof (string), typeof (TimePicker), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TextPropertyChangedCallback));
 
 		private static void TextPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
@@ -161,6 +161,19 @@ namespace MaterialDesignThemes.Wpf
 			set { SetValue(ClockHostContentControlStyleProperty, value); }
 		}
 
+	    public static readonly DependencyProperty IsInvalidTextAllowedProperty = DependencyProperty.Register(
+	        "IsInvalidTextAllowed", typeof (bool), typeof (TimePicker), new PropertyMetadata(default(bool)));
+
+        /// <summary>
+        /// Set to true to stop invalid text reverting back to previous valid value. Useful in cases where you
+        /// want to display validation messages and allow the user to correct the data without it reverting.
+        /// </summary>
+	    public bool IsInvalidTextAllowed
+	    {
+	        get { return (bool) GetValue(IsInvalidTextAllowedProperty); }
+	        set { SetValue(IsInvalidTextAllowedProperty, value); }
+	    }
+
 	    public override void OnApplyTemplate()
 		{
 			if (_popup != null)
@@ -226,6 +239,8 @@ namespace MaterialDesignThemes.Wpf
 
         private void SetInvalidTime()
         {
+            if (IsInvalidTextAllowed) return;
+
             if (_lastValidTime != null)
             {
                 SetCurrentValue(SelectedTimeProperty, _lastValidTime.Value);
@@ -280,7 +295,7 @@ namespace MaterialDesignThemes.Wpf
 
 		private void TextBoxOnTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
 		{
-            if (_popup?.IsOpen == true)
+            if (_popup?.IsOpen == true || IsInvalidTextAllowed)
 			    SetCurrentValue(TextProperty, _textBox.Text);
         }
 

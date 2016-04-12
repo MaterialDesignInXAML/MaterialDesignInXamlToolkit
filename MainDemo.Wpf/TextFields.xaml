@@ -72,7 +72,7 @@
             <TextBox.Text>
                 <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <materialDesignDemo:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
