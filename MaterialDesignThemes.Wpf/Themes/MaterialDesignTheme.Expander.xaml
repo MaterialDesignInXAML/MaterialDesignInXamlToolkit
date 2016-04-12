@@ -124,7 +124,7 @@
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content"
                                                              To="1" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer"
+                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ContentPanel"
                                                              To="1" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
@@ -138,7 +138,7 @@
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content"
                                                              To="0" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer"
+                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ContentPanel"
                                                              To="0" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
@@ -146,7 +146,7 @@
                                 <VisualState x:Name="Expanded">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="1" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer" To="1" Duration="0"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ContentPanel" To="1" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -155,7 +155,7 @@
                                 <VisualState x:Name="Collapsed">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="0" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer" To="0" Duration="0"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ContentPanel" To="0" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -184,19 +184,18 @@
                             </Grid>
                         </Border>
                         <Border Grid.Row="1">
-                            <ScrollViewer x:Name="ItemsScrollViewer"
-                                          VerticalScrollBarVisibility="Hidden">
-                                <ScrollViewer.Tag>
+                            <StackPanel x:Name="ContentPanel">
+                                <StackPanel.Tag>
                                     <system:Double>0.0</system:Double>
-                                </ScrollViewer.Tag>
-                                <ScrollViewer.Height>
+                                </StackPanel.Tag>
+                                <StackPanel.Height>
                                     <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
                                         <Binding ElementName="PART_Content" Path="ActualHeight"/>
                                         <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
                                     </MultiBinding>
-                                </ScrollViewer.Height>
+                                </StackPanel.Height>
                                 <ContentPresenter Name="PART_Content" />
-                            </ScrollViewer>
+                            </StackPanel>
                         </Border>
                     </Grid>
                 </ControlTemplate>

@@ -216,7 +216,7 @@
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
                                                              To="1" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer"
+                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsPanel"
                                                              To="1" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
@@ -230,7 +230,7 @@
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
                                                              To="0" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer"
+                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsPanel"
                                                              To="0" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
@@ -239,7 +239,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
                                                              To="1" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer"
+                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsPanel"
                                                              To="1" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
@@ -250,7 +250,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
                                                              To="0" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsScrollViewer"
+                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsPanel"
                                                              To="0" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
@@ -290,25 +290,24 @@
                             </wpf:Ripple>
                         </Grid>
 
-                        <ScrollViewer Grid.Column="1" Grid.Row="1"
-                                      x:Name="ItemsScrollViewer"
-                                      Margin="-16 0 0 0"
-                                      VerticalScrollBarVisibility="Hidden"
-                                      Grid.ColumnSpan="2">
-                            <ScrollViewer.Tag>
+                        <StackPanel Grid.Column="1" Grid.Row="1"
+                                    x:Name="ItemsPanel"
+                                    Margin="-16 0 0 0"
+                                    Grid.ColumnSpan="2">
+                            <StackPanel.Tag>
                                 <system:Double>0.0</system:Double>
-                            </ScrollViewer.Tag>
-                            <ScrollViewer.Height>
+                            </StackPanel.Tag>
+                            <StackPanel.Height>
                                 <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
                                     <Binding ElementName="ItemsHost" Path="ActualHeight"/>
                                     <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
                                 </MultiBinding>
-                            </ScrollViewer.Height>
+                            </StackPanel.Height>
                             <ItemsPresenter x:Name="ItemsHost"
                                             VerticalAlignment="Top"
                                             Opacity="0"
                                             Visibility="Collapsed"/>
-                        </ScrollViewer>
+                        </StackPanel>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="HasItems" Value="false">
