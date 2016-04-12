@@ -119,6 +119,9 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <wpf:PackIcon x:Shared="False" x:Key="MaterialDesignMultiFloatingActionPopupBoxIcon"
+                  Kind="Plus" Width="24" Height="24" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=Foreground}" />
     
     <Style TargetType="{x:Type wpf:PopupBox}" x:Key="MaterialDesignMultiFloatingActionPopupBox">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
@@ -358,12 +361,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="ToggleContent">
-            <Setter.Value>
-                <wpf:PackIcon Kind="Plus" Width="24" Height="24"
-                              Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" />
-            </Setter.Value>
-        </Setter>
+        <Setter Property="ToggleContent" Value="{StaticResource MaterialDesignMultiFloatingActionPopupBoxIcon}" />
         <Style.Triggers>
             <Trigger Property="UnfurlOrientation" Value="Horizontal">
                 <Setter Property="ToolTipService.Placement" Value="Custom" />
@@ -377,12 +375,6 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}"/>
-        <Setter Property="ToggleContent">
-            <Setter.Value>
-                <wpf:PackIcon Kind="Plus" Width="24" Height="24"
-                              Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" />
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style TargetType="{x:Type wpf:PopupBox}" 
@@ -391,12 +383,6 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
-        <Setter Property="ToggleContent">
-            <Setter.Value>
-                <wpf:PackIcon Kind="Plus" Width="24" Height="24"
-                              Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" />
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style TargetType="{x:Type wpf:PopupBox}" 
@@ -405,12 +391,6 @@
         <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
-        <Setter Property="ToggleContent">
-            <Setter.Value>
-                <wpf:PackIcon Kind="Plus" Width="24" Height="24"
-                              Foreground="{DynamicResource SecondaryAccentForegroundBrush}" />
-            </Setter.Value>
-        </Setter>
     </Style>    
 
 </ResourceDictionary>
