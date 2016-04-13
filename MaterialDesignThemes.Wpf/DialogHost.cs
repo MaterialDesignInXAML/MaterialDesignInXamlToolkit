@@ -266,17 +266,13 @@ namespace MaterialDesignThemes.Wpf
 
             dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                var child = dialogHost._popup?.Child;
-                if (child == null) return;
-
-                child.Focus();
-                child.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                var child = dialogHost.FocusPopup();
 
                 //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
                 //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
-                Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));                
+                Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));
             }));
-        }        
+        }
 
         public bool IsOpen
         {
@@ -510,6 +506,20 @@ namespace MaterialDesignThemes.Wpf
                 _session.IsEnded = false;            
 
             _closeDialogExecutionParameter = parameter;
+        }
+
+        /// <summary>
+        /// Attempts to focus the content of a popup.
+        /// </summary>
+        /// <returns>The popup content.</returns>
+        internal UIElement FocusPopup()
+        {
+            var child = _popup?.Child;
+            if (child == null) return null;
+
+            child.Focus();
+            child.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+            return child;
         }
 
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
