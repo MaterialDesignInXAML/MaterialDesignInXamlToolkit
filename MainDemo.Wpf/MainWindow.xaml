@@ -74,6 +74,11 @@
                                 <wpfExample:TextFields />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Group Boxes">
+                            <domain:DemoItem.Content>
+                                <wpfExample:GroupBoxes />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Pickers">
                             <domain:DemoItem.Content>
                                 <wpfExample:Pickers>

@@ -116,6 +116,9 @@
     <Compile Include="Grids.xaml.cs">
       <DependentUpon>Grids.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GroupBoxes.xaml.cs">
+      <DependentUpon>GroupBoxes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -230,6 +233,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Grids.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupBoxes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
