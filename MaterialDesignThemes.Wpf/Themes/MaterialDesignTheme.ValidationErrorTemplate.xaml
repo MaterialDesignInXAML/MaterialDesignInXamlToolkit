@@ -9,7 +9,8 @@
             <DataTemplate DataType="{x:Type ValidationError}">
                 <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
                                        FontSize="10"
-                                       MaxWidth="250"
+                                       MaxWidth="{Binding ElementName=Placeholder, Path=ActualWidth}"
+                                       HorizontalAlignment="Left"
                                        Margin="2"
                                        TextWrapping="Wrap"
                                        Text="{Binding ErrorContent}"
