@@ -11,6 +11,7 @@
         <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+        <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:SmartHint}">
@@ -110,6 +111,7 @@
                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Opacity="{TemplateBinding HintOpacity}"
                                         IsHitTestVisible="False"
+                                        IsTabStop="False"
                                         RenderTransformOrigin="0,1">
                             <ContentControl.RenderTransform>
                                 <TransformGroup>
@@ -119,6 +121,7 @@
                             </ContentControl.RenderTransform>
                         </ContentControl>
                         <ContentControl x:Name="SimpleHintTextBlock"
+                                        IsTabStop="False"
                                         Visibility="{TemplateBinding UseFloating, Converter={StaticResource InverseBoolToVisConverter}}"
                                         Content="{TemplateBinding Hint}"
                                         FontSize="{TemplateBinding FontSize}"
