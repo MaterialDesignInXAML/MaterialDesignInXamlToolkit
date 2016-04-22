@@ -97,7 +97,7 @@
 						    		<ColumnDefinition Width="Auto" />
 						    	</Grid.ColumnDefinitions>							
 						    	<TextBox BorderThickness="0" x:Name="PART_TextBox"											 									 
-						    			 wpf:TextFieldAssist.TextBoxViewMargin="1 0 0 0"
+						    			 wpf:TextFieldAssist.TextBoxViewMargin=".5 0 0 0"
 						    			 Margin="0"                                     
 						    			 Template="{StaticResource TextBoxTemplate}"									 
 						    			 />
