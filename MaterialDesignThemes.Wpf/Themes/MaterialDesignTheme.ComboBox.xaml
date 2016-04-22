@@ -427,7 +427,7 @@
                 <wpf:Underline x:Name="Underline"
                                Grid.ColumnSpan="2"
                                IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
-                               Visibility="Collapsed" />
+                               Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
 
                 <wpf:ComboBoxPopup x:Name="PART_Popup"
                                AllowsTransparency="true"
@@ -500,6 +500,9 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
             </MultiTrigger>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter TargetName="Underline" Property="IsActive" Value="True"/>
+            </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
