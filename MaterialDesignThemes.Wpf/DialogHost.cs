@@ -557,7 +557,7 @@ namespace MaterialDesignThemes.Wpf
                     {
                         case DialogHostOpenDialogCommandDataContextSource.SenderElement:
                             _popupContentControl.DataContext =
-                                (executedRoutedEventArgs.Parameter as FrameworkElement)?.DataContext;
+                                (executedRoutedEventArgs.OriginalSource as FrameworkElement)?.DataContext;
                             break;
                         case DialogHostOpenDialogCommandDataContextSource.DialogHostInstance:
                             _popupContentControl.DataContext = DataContext;
