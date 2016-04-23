@@ -80,7 +80,9 @@
                 <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
                                          PlacementMode="BottomAndAlignCentres"
                                          ToolTipService.Placement="Right"
-                                         ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox">
+                                         ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox"
+                                         PopupOpened="PopupBox_OnPopupOpened"
+                                         PopupClosed="PopupBox_OnPopupClosed">
                     <StackPanel>
                         <Button ToolTip="One">1</Button>
                         <Button ToolTip="Two">2</Button>
