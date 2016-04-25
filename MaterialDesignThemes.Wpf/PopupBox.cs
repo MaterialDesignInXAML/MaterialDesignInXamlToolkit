@@ -603,9 +603,17 @@ namespace MaterialDesignThemes.Wpf
                         }
                     }
                     else
-                    {                        
-                        if (!popupBox.StaysOpen)
+                    {
+                        if (popupBox.StaysOpen)
+                        {
+                            // Take capture back because click happend outside of control
+                            Mouse.Capture(popupBox, CaptureMode.SubTree);
+                            e.Handled = true;
+                        }
+                        else
+                        {
                             popupBox.Close();
+                        }
                     }
                 }
             }
