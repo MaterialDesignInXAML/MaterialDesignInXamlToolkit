@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -152,17 +153,28 @@ namespace MaterialDesignThemes.Wpf
 
         private void RefreshState(bool useTransitions)
         {
-            if (HintProxy == null) return;
-            if (!HintProxy.IsVisible) return;
+            var proxy = HintProxy;
 
-            Dispatcher.BeginInvoke(new Action(() =>
+            if (proxy == null) return;
+            if (!proxy.IsVisible) return;
+
+            var action = new Action(() =>
             {
-                var state = string.IsNullOrEmpty((HintProxy.Content ?? "").ToString())
+                var state = String.IsNullOrEmpty((proxy.Content ?? String.Empty).ToString())
                     ? ContentEmptyName
                     : ContentNotEmptyName;
-
+            
                 VisualStateManager.GoToState(this, state, useTransitions);
-            }));
+            });
+
+            if (DesignerProperties.GetIsInDesignMode(this))
+            {
+                action();
+            }
+            else
+            {
+                Dispatcher.BeginInvoke(action);
+            }
         }
     }
 }
