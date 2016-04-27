@@ -38,9 +38,9 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Border Background="Transparent"
-                                BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
-                                BorderThickness="1"
-                                CornerRadius="2">
+                    BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
+                    BorderThickness="1"
+                    CornerRadius="2">
                 <Border.Effect>
                     <BlurEffect Radius="6"/>
                 </Border.Effect>
@@ -53,12 +53,13 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Rectangle Grid.Row="0"
-                           Fill="{DynamicResource MaterialDesignPaper}"
-                           Height="{StaticResource PopupTopBottomMargin}"/>
+                <Border Grid.Row="0"
+                        CornerRadius="2 2 0 0"
+                        Background="{Binding ElementName=templateRoot, Path=Background}"
+                        Height="{StaticResource PopupTopBottomMargin}"/>
                 <ContentPresenter Grid.Row="1"/>
                 <Rectangle Grid.Row="2"
-                           Fill="{DynamicResource MaterialDesignPaper}"
+                           Fill="{Binding ElementName=templateRoot, Path=Background}"
                            Height="{StaticResource PopupContentPresenterExtend}"/>
 
                 <Grid Grid.Row="3">
@@ -69,18 +70,19 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0"
                                Width="{StaticResource PopupLeftRightMargin}"
-                               Fill="{DynamicResource MaterialDesignPaper}"/>
+                               Fill="{Binding ElementName=templateRoot, Path=Background}"/>
                     <Grid Grid.Column="1"
                           Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
-                          Height="{Binding ElementName=templateRoot, Path=ActualHeight, Converter={StaticResource MathAddConverter}, ConverterParameter=12}"/>
+                          Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
                     <Rectangle Grid.Column="2"
                                MinWidth="{StaticResource PopupLeftRightMargin}"
-                               Fill="{DynamicResource MaterialDesignPaper}"/>
+                               Fill="{Binding ElementName=templateRoot, Path=Background}"/>
                 </Grid>
 
-                <Rectangle Grid.Row="4"
-                           Height="{StaticResource PopupTopBottomMargin}"
-                           Fill="{DynamicResource MaterialDesignPaper}" />
+                <Border Grid.Row="4"
+                        CornerRadius="0 0 2 2"
+                        Height="{StaticResource PopupTopBottomMargin}"
+                        Background="{Binding ElementName=templateRoot, Path=Background}" />
             </Grid>
         </Grid>
     </ControlTemplate>
@@ -92,9 +94,9 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Border Background="Transparent"
-                                BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
-                                BorderThickness="1"
-                                CornerRadius="2">
+                    BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
+                    BorderThickness="1"
+                    CornerRadius="2">
                 <Border.Effect>
                     <BlurEffect Radius="6"/>
                 </Border.Effect>
@@ -108,9 +110,10 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Rectangle Grid.Row="0"
-                           Fill="{DynamicResource MaterialDesignPaper}"
-                           Height="{StaticResource PopupTopBottomMargin}"/>
+                <Border Grid.Row="0"
+                        CornerRadius="2 2 0 0"
+                        Background="{Binding ElementName=templateRoot, Path=Background}"
+                        Height="{StaticResource PopupTopBottomMargin}"/>
                 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -120,26 +123,27 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0"
                                Width="{StaticResource PopupLeftRightMargin}"
-                               Fill="{DynamicResource MaterialDesignPaper}"
+                               Fill="{Binding ElementName=templateRoot, Path=Background}"
                                />
                     <Grid Grid.Column="1"
                           Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
-                          Height="{Binding ElementName=templateRoot, Path=ActualHeight, Converter={StaticResource MathAddConverter}, ConverterParameter=12}"/>
+                          Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
                     <Rectangle Grid.Column="2"
                                MinWidth="{StaticResource PopupLeftRightMargin}"
-                               Fill="{DynamicResource MaterialDesignPaper}"
+                               Fill="{Binding ElementName=templateRoot, Path=Background}"
                                />
                 </Grid>
 
                 <Rectangle Grid.Row="2"
-                           Fill="{DynamicResource MaterialDesignPaper}"
+                           Fill="{Binding ElementName=templateRoot, Path=Background}"
                            Height="{StaticResource PopupContentPresenterExtend}"/>
 
                 <ContentPresenter Grid.Row="3"/>
 
-                <Rectangle Grid.Row="4"
-                           Height="{StaticResource PopupTopBottomMargin}"
-                           Fill="{DynamicResource MaterialDesignPaper}" />
+                <Border Grid.Row="4"
+                        CornerRadius="0 0 2 2"
+                        Height="{StaticResource PopupTopBottomMargin}"
+                        Background="{Binding ElementName=templateRoot, Path=Background}" />
             </Grid>
         </Grid>
     </ControlTemplate>
@@ -151,9 +155,9 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Border Background="Transparent"
-                                BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
-                                BorderThickness="1"
-                                CornerRadius="2">
+                    BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
+                    BorderThickness="1"
+                    CornerRadius="2">
                 <Border.Effect>
                     <BlurEffect Radius="6"/>
                 </Border.Effect>
@@ -164,15 +168,17 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Rectangle Grid.Row="0"
-                           Fill="{DynamicResource MaterialDesignPaper}"
+                <Border Grid.Row="0"
+                        CornerRadius="2 2 0 0"
+                        Background="{Binding ElementName=templateRoot, Path=Background}"
                            Height="{StaticResource PopupTopBottomMargin}"/>
 
                 <ContentPresenter Grid.Row="1"/>
 
-                <Rectangle Grid.Row="2"
-                                   Height="{StaticResource PopupTopBottomMargin}"
-                                   Fill="{DynamicResource MaterialDesignPaper}" />
+                <Border Grid.Row="2"
+                        CornerRadius="0 0 2 2"
+                        Height="{StaticResource PopupTopBottomMargin}"
+                        Background="{Binding ElementName=templateRoot, Path=Background}" />
             </Grid>
         </Grid>
     </ControlTemplate>
@@ -387,6 +393,7 @@
 
     <ControlTemplate x:Key="MaterialDesignFloatingHintComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid x:Name="templateRoot"
+              Background="{TemplateBinding Background}"
               SnapsToDevicePixels="True">
             <Grid x:Name="InnerRoot">
                 <Grid.ColumnDefinitions>
@@ -432,7 +439,7 @@
                 <wpf:ComboBoxPopup x:Name="PART_Popup"
                                AllowsTransparency="true"
                                Focusable="False"
-                               HorizontalOffset="-11"
+                               HorizontalOffset="-11.5"
                                IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                PlacementTarget="{Binding ElementName=templateRoot}"
                                SnapsToDevicePixels="True"
@@ -441,14 +448,14 @@
                                PopupAnimation="Fade"
                                VerticalOffset="0"
                                DefaultVerticalOffset="5"
-                               DownVerticalOffset="-27"
+                               DownVerticalOffset="-15.5"
                                UpVerticalOffset="15"
                                UpContentTemplate="{StaticResource PopupContentUpTemplate}"
                                DownContentTemplate="{StaticResource PopupContentDownTemplate}"
                                DefaultContentTemplate="{StaticResource PopupContentDefaultTemplate}">
                     <ContentControl>
-                        <ScrollViewer Background="{DynamicResource MaterialDesignPaper}"
-                                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                        <ScrollViewer MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                      Background="{TemplateBinding Background}">
                             <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
                         </ScrollViewer>
                     </ContentControl>
@@ -465,7 +472,7 @@
                 <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
-                <Setter TargetName="InnerRoot" Property="Margin" Value="0 12 0 0" />
+                <Setter TargetName="InnerRoot" Property="Margin" Value="0 11.5 0 0" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -511,7 +518,7 @@
 
     <Style x:Key="MaterialDesignComboBox" TargetType="{x:Type ComboBox}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
