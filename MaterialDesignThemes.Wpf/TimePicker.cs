@@ -227,9 +227,13 @@ namespace MaterialDesignThemes.Wpf
 
 		private void TextBoxOnLostFocus(object sender, RoutedEventArgs routedEventArgs)
 		{
-		    if (string.IsNullOrEmpty(_textBox?.Text)) return;
+		    if (string.IsNullOrEmpty(_textBox?.Text))
+            {
+                SetCurrentValue(SelectedTimeProperty, null);
+                return;
+            }
 
-		    DateTime time;
+            DateTime time;
 		    if (IsTimeValid(_textBox.Text, out time))
 		        SetCurrentValue(SelectedTimeProperty, time);
 
@@ -305,6 +309,10 @@ namespace MaterialDesignThemes.Wpf
 			{
 				ParseTime(_textBox.Text, t => SetCurrentValue(SelectedTimeProperty, t));			
 			}
+            else
+            {
+                SetCurrentValue(SelectedTimeProperty, null);
+            }
 		}
 
 		private void ParseTime(string s, Action<DateTime> successContinuation)
