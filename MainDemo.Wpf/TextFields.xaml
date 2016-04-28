@@ -114,10 +114,8 @@
                      x:Name="PasswordBox"
                      materialDesign:HintAssist.Hint="Password" />
         <TextBox Grid.Row="4" Grid.Column="1" materialDesign:HintAssist.Hint="Floating Hint" 
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 Margin="0 2 0 0" />
-        <ComboBox Grid.Row="4" Grid.Column="3" materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                  Margin="0 2 0 0" >
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        <ComboBox Grid.Row="4" Grid.Column="3" materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
             <ComboBoxItem>Andoid</ComboBoxItem>
             <ComboBoxItem>iOS</ComboBoxItem>
             <ComboBoxItem>Linux</ComboBoxItem>
