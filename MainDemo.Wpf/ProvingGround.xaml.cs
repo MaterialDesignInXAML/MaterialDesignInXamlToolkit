@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -44,6 +45,11 @@ namespace MaterialDesignColors.WpfExample
         private void ButtonsDemoChip_OnDeleteClick(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Chip delete clicked.");
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            new PaletteHelper().QueryPalette();
         }
     }
 

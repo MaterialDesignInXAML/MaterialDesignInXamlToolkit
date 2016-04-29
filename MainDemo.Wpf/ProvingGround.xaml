@@ -23,25 +23,8 @@
 
 
     <StackPanel>
-        <ListBox>
-            <Expander>
-                <ListBox ItemsSource="{Binding Items}">
-
-                </ListBox>
-            </Expander>
-            <Expander>
-                <ListBox ItemsSource="{Binding Items}">
-
-                </ListBox>
-            </Expander>
-            <Expander>
-                <ListBox ItemsSource="{Binding Items}">
-
-                </ListBox>
-            </Expander>
-        </ListBox>
-        
-        <Button Command="{Binding ClearItems}">Clear</Button>
+ 
+        <Button Click="ButtonBase_OnClick">Query Palette</Button>
     </StackPanel>
 
 </UserControl>
