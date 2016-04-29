@@ -24,12 +24,15 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Focusable" Value="false"/>
         <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Height" Value="8"/>
+        <Setter Property="Margin" Value="0 0 0 2"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                     <Canvas Background="Transparent" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
                         <Rectangle x:Name="PART_SelectionRange" Fill="{TemplateBinding Background}" Height="2.0"                                   
-                                   Canvas.Top="44"
+                                   Canvas.Top="3"
                                    Width="{TemplateBinding ActualWidth}"/>
                     </Canvas>
                 </ControlTemplate>
