@@ -23,10 +23,19 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-
     <StackPanel>
-        <materialDesign:TimePicker SelectedTime="{Binding SelectedTime}" HorizontalAlignment="Left" />
-            <DatePicker />
+        <materialDesign:ColorZone Mode="PrimaryDark" Padding="8">
+            <StackPanel>
+                <materialDesign:TimePicker SelectedTime="{Binding SelectedTime}" HorizontalAlignment="Left" />
+                <DatePicker HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Some date"/>
+                <Calendar />
+            </StackPanel>
+        </materialDesign:ColorZone>
+        <StackPanel>
+            <materialDesign:TimePicker SelectedTime="{Binding SelectedTime}" HorizontalAlignment="Left" />
+            <DatePicker HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Some date"/>
+        </StackPanel>
+        
     </StackPanel>
 
 </UserControl>
