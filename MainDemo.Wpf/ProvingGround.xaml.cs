@@ -56,7 +56,7 @@ namespace MaterialDesignColors.WpfExample
     public class ProvingGroundViewModel : INotifyPropertyChanged
 	{
 		private string _name;
-        private readonly ObservableCollection<SelectableViewModel> _items = CreateData();
+        private DateTime? _selectedTime;
         public ICommand ClearItems { get; }
 
         public ProvingGroundViewModel()
@@ -74,9 +74,17 @@ namespace MaterialDesignColors.WpfExample
 			}
 		}
 
-        public ObservableCollection<SelectableViewModel> Items
+        public ObservableCollection<SelectableViewModel> Items { get; } = CreateData();
+
+        public DateTime? SelectedTime
         {
-            get { return _items; }
+            get { return _selectedTime; }
+            set
+            {
+                _selectedTime = value;
+                System.Diagnostics.Debug.WriteLine(((object)_selectedTime ?? "NULL").ToString());
+                OnPropertyChanged();
+            }
         }
 
         private static ObservableCollection<SelectableViewModel> CreateData()
@@ -108,9 +116,7 @@ namespace MaterialDesignColors.WpfExample
 
 		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
-			if (PropertyChanged != null)
-				PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
