@@ -246,7 +246,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 var popupOpenedEventArgs = new RoutedEventArgs()
                 {
-                    RoutedEvent = PopupOpenedEvent,
+                    RoutedEvent = OnPopupOpenedEvent,
                     Source = popupBox
                 };
                 popupBox.RaiseEvent(popupOpenedEventArgs);
@@ -255,7 +255,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 var popupClosedEventArgs = new RoutedEventArgs()
                 {
-                    RoutedEvent = PopupClosedEvent,
+                    RoutedEvent = OnPopupClosedEvent,
                     Source = popupBox
                 };
                 popupBox.RaiseEvent(popupClosedEventArgs);
@@ -279,9 +279,9 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Event corresponds to the popup opening
         /// </summary>
-        public static readonly RoutedEvent PopupOpenedEvent = 
+        public static readonly RoutedEvent OnPopupOpenedEvent = 
             EventManager.RegisterRoutedEvent(
-                "PopupOpened", 
+                "OnPopupOpened", 
                 RoutingStrategy.Bubble, 
                 typeof(RoutedEventHandler), 
                 typeof(PopupBox));
@@ -289,29 +289,29 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Event corresponds to the popup closing
         /// </summary>
-        public static readonly RoutedEvent PopupClosedEvent = 
+        public static readonly RoutedEvent OnPopupClosedEvent = 
             EventManager.RegisterRoutedEvent(
-                "PopupClosed", 
+                "OnPopupClosed", 
                 RoutingStrategy.Bubble, 
                 typeof(RoutedEventHandler), 
                 typeof(PopupBox));
 
         /// <summary>
-        /// Add / Remove PopupOpenedEvent handler 
+        /// Add / Remove OnPopupOpenedEvent handler 
         /// </summary>
-        public event RoutedEventHandler PopupOpened
+        public event RoutedEventHandler OnPopupOpened
         {
-            add { AddHandler(PopupOpenedEvent, value); }
-            remove { RemoveHandler(PopupOpenedEvent, value); }
+            add { AddHandler(OnPopupOpenedEvent, value); }
+            remove { RemoveHandler(OnPopupOpenedEvent, value); }
         }
 
         /// <summary>
-        /// Add / Remove PopupClosedEvent handler 
+        /// Add / Remove OnPopupClosedEvent handler 
         /// </summary>
-        public event RoutedEventHandler PopupClosed
+        public event RoutedEventHandler OnPopupClosed
         {
-            add { AddHandler(PopupClosedEvent, value); }
-            remove { RemoveHandler(PopupClosedEvent, value); }
+            add { AddHandler(OnPopupClosedEvent, value); }
+            remove { RemoveHandler(OnPopupClosedEvent, value); }
         }
 
 
