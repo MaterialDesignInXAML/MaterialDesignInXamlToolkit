@@ -22,7 +22,7 @@ namespace MaterialDesignThemes.Wpf
         /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situtation where a screen has multiple <see cref="DialogHost"/>s.
         /// </remarks>
         /// <returns></returns>
-        public static async Task<object> Show(this Window window, object content)
+        public static async Task<object> ShowDialog(this Window window, object content)
         {
             return await GetFirstDialogHost(window).ShowInternal(content, null, null);
         }
@@ -40,7 +40,7 @@ namespace MaterialDesignThemes.Wpf
         /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situtation where a screen has multiple <see cref="DialogHost"/>s.
         /// </remarks>
         /// <returns></returns>
-        public static async Task<object> Show(this Window window, object content, DialogOpenedEventHandler openedEventHandler)
+        public static async Task<object> ShowDialog(this Window window, object content, DialogOpenedEventHandler openedEventHandler)
         {
             return await GetFirstDialogHost(window).ShowInternal(content, openedEventHandler, null);
         }
@@ -58,7 +58,7 @@ namespace MaterialDesignThemes.Wpf
         /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situtation where a screen has multiple <see cref="DialogHost"/>s.
         /// </remarks>
         /// <returns></returns>
-        public static async Task<object> Show(this Window window, object content, DialogClosingEventHandler closingEventHandler)
+        public static async Task<object> ShowDialog(this Window window, object content, DialogClosingEventHandler closingEventHandler)
         {
             return await GetFirstDialogHost(window).ShowInternal(content, null, closingEventHandler);
         }
@@ -77,7 +77,7 @@ namespace MaterialDesignThemes.Wpf
         /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situtation where a screen has multiple <see cref="DialogHost"/>s.
         /// </remarks>
         /// <returns></returns>
-        public static async Task<object> Show(this Window window, object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
+        public static async Task<object> ShowDialog(this Window window, object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         {
             return await GetFirstDialogHost(window).ShowInternal(content, openedEventHandler, closingEventHandler);
         }
@@ -91,7 +91,7 @@ namespace MaterialDesignThemes.Wpf
         /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
         /// </exception>
         /// <returns></returns>
-        public static async Task<object> Show(this DependencyObject childDependencyObject, object content)
+        public static async Task<object> ShowDialog(this DependencyObject childDependencyObject, object content)
         {
             return await GetOwningDialogHost(childDependencyObject).ShowInternal(content, null, null);
         }
@@ -106,7 +106,7 @@ namespace MaterialDesignThemes.Wpf
         /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
         /// </exception>
         /// <returns></returns>
-        public static async Task<object> Show(this DependencyObject childDependencyObject, object content, DialogOpenedEventHandler openedEventHandler)
+        public static async Task<object> ShowDialog(this DependencyObject childDependencyObject, object content, DialogOpenedEventHandler openedEventHandler)
         {
             return await GetOwningDialogHost(childDependencyObject).ShowInternal(content, null, null);
         }
@@ -121,7 +121,7 @@ namespace MaterialDesignThemes.Wpf
         /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
         /// </exception>
         /// <returns></returns>
-        public static async Task<object> Show(this DependencyObject childDependencyObject, object content, DialogClosingEventHandler closingEventHandler)
+        public static async Task<object> ShowDialog(this DependencyObject childDependencyObject, object content, DialogClosingEventHandler closingEventHandler)
         {
             return await GetOwningDialogHost(childDependencyObject).ShowInternal(content, null, null);
         }
@@ -137,7 +137,7 @@ namespace MaterialDesignThemes.Wpf
         /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
         /// </exception>
         /// <returns></returns>
-        public static async Task<object> Show(this DependencyObject childDependencyObject, object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
+        public static async Task<object> ShowDialog(this DependencyObject childDependencyObject, object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         {
             return await GetOwningDialogHost(childDependencyObject).ShowInternal(content, null, null);
         }
