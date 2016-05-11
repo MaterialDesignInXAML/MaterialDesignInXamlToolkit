@@ -263,6 +263,7 @@
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="DialogClosingEventArgs.cs" />
     <Compile Include="DialogClosingEventHandler.cs" />
+    <Compile Include="DialogHostEx.cs" />
     <Compile Include="DialogOpenedEventArgs.cs" />
     <Compile Include="DialogOpenedEventHandler.cs" />
     <Compile Include="DialogSession.cs" />
