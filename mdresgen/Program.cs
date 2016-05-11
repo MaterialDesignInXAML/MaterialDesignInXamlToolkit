@@ -30,6 +30,7 @@ namespace mdresgen
         private static readonly IDictionary<string, Color> ClassNameToForegroundIndex = new Dictionary<string, Color>()
         {
             {"color", Color.FromArgb((int) (255*0.87), 255, 255, 255)},
+            {"color ", Color.FromArgb((int) (255*0.87), 255, 255, 255)},
             {"color dark divide", Color.FromArgb((int) (255*0.87), 0, 0, 0)},
             {"color dark", Color.FromArgb((int) (255*0.87), 0, 0, 0)},
             {"color dark-strong", Color.FromArgb((int) (255*0.87), 0, 0, 0)},
