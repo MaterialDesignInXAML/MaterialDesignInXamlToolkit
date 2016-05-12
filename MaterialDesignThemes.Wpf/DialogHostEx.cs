@@ -108,7 +108,7 @@ namespace MaterialDesignThemes.Wpf
         /// <returns></returns>
         public static async Task<object> ShowDialog(this DependencyObject childDependencyObject, object content, DialogOpenedEventHandler openedEventHandler)
         {
-            return await GetOwningDialogHost(childDependencyObject).ShowInternal(content, null, null);
+            return await GetOwningDialogHost(childDependencyObject).ShowInternal(content, openedEventHandler, null);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace MaterialDesignThemes.Wpf
         /// <returns></returns>
         public static async Task<object> ShowDialog(this DependencyObject childDependencyObject, object content, DialogClosingEventHandler closingEventHandler)
         {
-            return await GetOwningDialogHost(childDependencyObject).ShowInternal(content, null, null);
+            return await GetOwningDialogHost(childDependencyObject).ShowInternal(content, null, closingEventHandler);
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace MaterialDesignThemes.Wpf
         /// <returns></returns>
         public static async Task<object> ShowDialog(this DependencyObject childDependencyObject, object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         {
-            return await GetOwningDialogHost(childDependencyObject).ShowInternal(content, null, null);
+            return await GetOwningDialogHost(childDependencyObject).ShowInternal(content, openedEventHandler, closingEventHandler);
         }
 
         private static DialogHost GetFirstDialogHost(Window window)
