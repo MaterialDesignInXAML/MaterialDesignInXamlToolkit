@@ -17,5 +17,6 @@
   </metadata>
   <files>
     <file src="MaterialDesignColors.Wpf\bin\Release\MaterialDesignColors.dll" target="lib\net45" />
+    <file src="MaterialDesignColors.Wpf\bin\Release\MaterialDesignColors.pdb" target="lib\net45" />
   </files>  
 </package>

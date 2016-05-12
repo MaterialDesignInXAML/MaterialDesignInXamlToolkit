@@ -11,13 +11,13 @@
   <Color x:Key="CyanPrimary400">#26c6da</Color>
   <Color x:Key="CyanPrimary400Foreground">#DD000000</Color>
   <Color x:Key="CyanPrimary500">#00bcd4</Color>
-  <Color x:Key="CyanPrimary500Foreground">#FFFFFFFF</Color>
+  <Color x:Key="CyanPrimary500Foreground">#DD000000</Color>
   <Color x:Key="CyanPrimary600">#00acc1</Color>
-  <Color x:Key="CyanPrimary600Foreground">#FFFFFFFF</Color>
+  <Color x:Key="CyanPrimary600Foreground">#DD000000</Color>
   <Color x:Key="CyanPrimary700">#0097a7</Color>
-  <Color x:Key="CyanPrimary700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="CyanPrimary700Foreground">#DDFFFFFF</Color>
   <Color x:Key="CyanPrimary800">#00838f</Color>
-  <Color x:Key="CyanPrimary800Foreground">#FFFFFFFF</Color>
+  <Color x:Key="CyanPrimary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="CyanPrimary900">#006064</Color>
   <Color x:Key="CyanPrimary900Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>
