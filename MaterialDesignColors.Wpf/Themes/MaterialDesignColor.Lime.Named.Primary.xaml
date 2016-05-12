@@ -15,9 +15,9 @@
   <Color x:Key="LimePrimary600">#c0ca33</Color>
   <Color x:Key="LimePrimary600Foreground">#DD000000</Color>
   <Color x:Key="LimePrimary700">#afb42b</Color>
-  <Color x:Key="LimePrimary700Foreground">#FF000000</Color>
+  <Color x:Key="LimePrimary700Foreground">#DD000000</Color>
   <Color x:Key="LimePrimary800">#9e9d24</Color>
-  <Color x:Key="LimePrimary800Foreground">#FF000000</Color>
+  <Color x:Key="LimePrimary800Foreground">#DD000000</Color>
   <Color x:Key="LimePrimary900">#827717</Color>
-  <Color x:Key="LimePrimary900Foreground">#FFFFFFFF</Color>
+  <Color x:Key="LimePrimary900Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

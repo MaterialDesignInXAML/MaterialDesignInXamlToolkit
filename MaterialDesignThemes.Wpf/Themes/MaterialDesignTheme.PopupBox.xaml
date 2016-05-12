@@ -157,7 +157,7 @@
                                                     <VisualStateGroup.Transitions>
                                                         <VisualTransition From="*" To="Checked">
                                                             <Storyboard>
-                                                                <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                                <DoubleAnimation Storyboard.TargetName="ContentRotateTransform"
                                                                                  Storyboard.TargetProperty="Angle"
                                                                                  To="45"
                                                                                  Duration="0:0:0.1">
@@ -169,7 +169,7 @@
                                                         </VisualTransition>
                                                         <VisualTransition From="Checked" To="Unchecked">
                                                             <Storyboard>
-                                                                <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                                <DoubleAnimation Storyboard.TargetName="ContentRotateTransform"
                                                                                  Storyboard.TargetProperty="Angle"
                                                                                  To="0"
                                                                                  Duration="0:0:0.1">
@@ -182,7 +182,7 @@
                                                     </VisualStateGroup.Transitions>
                                                     <VisualState x:Name="Checked">
                                                         <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                            <DoubleAnimation Storyboard.TargetName="ContentRotateTransform"
                                                                              Storyboard.TargetProperty="Angle"
                                                                              To="45"
                                                                              Duration="0" />
@@ -190,7 +190,7 @@
                                                     </VisualState>
                                                     <VisualState x:Name="Unchecked">
                                                         <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                            <DoubleAnimation Storyboard.TargetName="ContentRotateTransform"
                                                                              Storyboard.TargetProperty="Angle"
                                                                              To="0"
                                                                              Duration="0" />
@@ -207,17 +207,20 @@
                                                          x:Name="border">
                                                 </Ellipse>
                                             </AdornerDecorator>
-                                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
+                                            <wpf:Ripple Focusable="False"  
                                                         Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
                                                         wpf:RippleAssist.IsCentered="True"
                                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                         Padding="{TemplateBinding Padding}" 
-                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                        RenderTransformOrigin=".5,.5">
-                                                <wpf:Ripple.RenderTransform>
-                                                    <RotateTransform x:Name="RippleRotateTransform" Angle="0" />
-                                                </wpf:Ripple.RenderTransform>
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                                <!-- additional layer so we don't rotate the ripple directly which can cause jumpyness under certain layouts -->
+                                                <ContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                                RenderTransformOrigin=".5,.5">
+                                                    <ContentControl.RenderTransform>
+                                                        <RotateTransform x:Name="ContentRotateTransform" Angle="0" />
+                                                    </ContentControl.RenderTransform>
+                                                </ContentControl>
                                             </wpf:Ripple>
                                             <Ellipse x:Name="GeometryEllipse" Fill="Transparent" IsHitTestVisible="False" Focusable="False" />
                                         </Grid>

@@ -4,11 +4,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{StaticResource MaterialDesignFont}"
              mc:Ignorable="d"              
-			 d:DesignWidth="477" d:DesignHeight="272">
+			 d:DesignWidth="477" d:DesignHeight="272"
+             d:DataContext="{d:DesignInstance wpfExample:ProvingGroundViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -21,27 +23,19 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-
     <StackPanel>
-        <ListBox>
-            <Expander>
-                <ListBox ItemsSource="{Binding Items}">
-
-                </ListBox>
-            </Expander>
-            <Expander>
-                <ListBox ItemsSource="{Binding Items}">
-
-                </ListBox>
-            </Expander>
-            <Expander>
-                <ListBox ItemsSource="{Binding Items}">
-
-                </ListBox>
-            </Expander>
-        </ListBox>
+        <materialDesign:ColorZone Mode="PrimaryDark" Padding="8">
+            <StackPanel>
+                <materialDesign:TimePicker SelectedTime="{Binding SelectedTime}" HorizontalAlignment="Left" />
+                <DatePicker HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Some date"/>
+                <Calendar />
+            </StackPanel>
+        </materialDesign:ColorZone>
+        <StackPanel>
+            <materialDesign:TimePicker SelectedTime="{Binding SelectedTime}" HorizontalAlignment="Left" />
+            <DatePicker HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Some date"/>
+        </StackPanel>
         
-        <Button Command="{Binding ClearItems}">Clear</Button>
     </StackPanel>
 
 </UserControl>

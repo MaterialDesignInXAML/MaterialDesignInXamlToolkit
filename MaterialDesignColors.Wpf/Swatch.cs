@@ -7,6 +7,9 @@ using System.Windows;
 
 namespace MaterialDesignColors
 {
+    /// <summary>
+    /// Defines a single colour swatch.
+    /// </summary>
     public class Swatch
     {
         public Swatch(string name, IEnumerable<Hue> primaryHues, IEnumerable<Hue> accentHues)
@@ -38,5 +41,10 @@ namespace MaterialDesignColors
         public IEnumerable<Hue> AccentHues { get; }
 
         public bool IsAccented => AccentHues.Any();
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

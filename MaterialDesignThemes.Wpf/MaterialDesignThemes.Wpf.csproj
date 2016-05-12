@@ -263,6 +263,7 @@
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="DialogClosingEventArgs.cs" />
     <Compile Include="DialogClosingEventHandler.cs" />
+    <Compile Include="DialogHostEx.cs" />
     <Compile Include="DialogOpenedEventArgs.cs" />
     <Compile Include="DialogOpenedEventHandler.cs" />
     <Compile Include="DialogSession.cs" />
@@ -277,6 +278,7 @@
     <Compile Include="HintProxyFabric.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
+    <Compile Include="Palette.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
     <Compile Include="Transitions\IndexedItemOffsetMultiplierExtension.cs" />

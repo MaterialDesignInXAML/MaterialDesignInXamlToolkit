@@ -11,11 +11,18 @@ using System.Windows.Media;
 
 namespace MaterialDesignColors
 {
+    /// <summary>
+    /// Provides access to all colour swatches.  For information regarding Material Design colours see https://www.google.com/design/spec/style/color.html
+    /// </summary>
     public class SwatchesProvider
     {
-        public SwatchesProvider()
+        /// <summary>
+        /// Generates an instance reading swatches from the provided assembly, allowing 
+        /// colours outside of the standard material palette to be loaded provided the are stored in the expected XAML format.
+        /// </summary>
+        /// <param name="assembly"></param>
+        public SwatchesProvider(Assembly assembly)
         {
-            var assembly = Assembly.GetExecutingAssembly();
             var resourcesName = assembly.GetName().Name + ".g";
             var manager = new ResourceManager(resourcesName, assembly);
             var resourceSet = manager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
@@ -37,8 +44,13 @@ namespace MaterialDesignColors
                     Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "accent")?.key)
                 ))
                 .ToList();
-
         }
+
+        /// <summary>
+        /// Creates a new swatch provider based on standard Material Design colors.
+        /// </summary>
+        public SwatchesProvider() : this(Assembly.GetExecutingAssembly())
+        { }
 
         public IEnumerable<Swatch> Swatches { get; }
 

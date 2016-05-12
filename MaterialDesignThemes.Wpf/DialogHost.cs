@@ -156,9 +156,7 @@ namespace MaterialDesignThemes.Wpf
         public static Task<object> Show(object content, object dialogIdentifier, DialogClosingEventHandler closingEventHandler)
         {
             return Show(content, dialogIdentifier, null, closingEventHandler);
-        }
-
-        #endregion
+        }        
 
         /// <summary>
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -181,28 +179,36 @@ namespace MaterialDesignThemes.Wpf
                 throw new InvalidOperationException("No loaded DialogHost have an Identifier property matching dialogIndetifier argument.");
             if (targets.Count > 1)
                 throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
-            if (targets[0].IsOpen)
+
+            return await targets[0].ShowInternal(content, openedEventHandler, closingEventHandler);
+        }
+
+        internal async Task<object> ShowInternal(object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
+        {
+            if (IsOpen)
                 throw new InvalidOperationException("DialogHost is already open.");
 
-            targets[0].AssertTargetableContent();
-            targets[0].DialogContent = content;
-            targets[0]._asyncShowOpenedEventHandler = openedEventHandler;
-            targets[0]._asyncShowClosingEventHandler = closingEventHandler;
-            targets[0].SetCurrentValue(IsOpenProperty, true);
+            AssertTargetableContent();
+            DialogContent = content;
+            _asyncShowOpenedEventHandler = openedEventHandler;
+            _asyncShowClosingEventHandler = closingEventHandler;
+            SetCurrentValue(IsOpenProperty, true);
 
             var task = new Task(() =>
             {
-                targets[0]._asyncShowWaitHandle.WaitOne();
+                _asyncShowWaitHandle.WaitOne();
             });
             task.Start();
 
             await task;
 
-            targets[0]._asyncShowOpenedEventHandler = null;
-            targets[0]._asyncShowClosingEventHandler = null;
+            _asyncShowOpenedEventHandler = null;
+            _asyncShowClosingEventHandler = null;
 
-            return targets[0]._closeDialogExecutionParameter;
+            return _closeDialogExecutionParameter;
         }
+
+        #endregion
 
         public DialogHost()
         {

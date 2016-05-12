@@ -242,7 +242,6 @@ namespace MaterialDesignThemes.Wpf
                 else
                     Mouse.Capture(null);
             }
-
             
             popupBox.AnimateChildrenIn(!newValue);                 
             popupBox._popup?.RefreshPosition();
@@ -582,38 +581,36 @@ namespace MaterialDesignThemes.Wpf
         {
             var popupBox = (PopupBox) sender;
 
-            if (Mouse.Captured != popupBox)
+            if (Equals(Mouse.Captured, popupBox)) return;
+
+            if (Equals(e.OriginalSource, popupBox))
             {
-                if (e.OriginalSource == popupBox)
+                if (Mouse.Captured == null || popupBox._popup == null || !(Mouse.Captured as DependencyObject).IsDescendantOf(popupBox._popup))
                 {
-                    if (Mouse.Captured == null || popupBox._popup == null || !(Mouse.Captured as DependencyObject).IsDescendantOf(popupBox._popup))
-                    {                        
-                        popupBox.Close();
-                    }
+                    popupBox.Close();
+                }
+            }
+            else
+            {                
+                if ((Mouse.Captured as DependencyObject).GetVisualAncestry().Contains(popupBox._popup.Child))
+                {
+                    // Take capture if one of our children gave up capture (by closing their drop down)
+                    if (!popupBox.IsPopupOpen || Mouse.Captured != null || GetCapture() != IntPtr.Zero) return;
+
+                    Mouse.Capture(popupBox, CaptureMode.SubTree);
+                    e.Handled = true;
                 }
                 else
                 {
-                    if ((Mouse.Captured as DependencyObject).GetVisualAncestry().Contains(popupBox._popup))
+                    if (popupBox.StaysOpen)
                     {
-                        // Take capture if one of our children gave up capture (by closing their drop down)
-                        if (popupBox.IsPopupOpen && Mouse.Captured == null && GetCapture() == IntPtr.Zero)
-                        {
-                            Mouse.Capture(popupBox, CaptureMode.SubTree);
-                            e.Handled = true;
-                        }
+                        // Take capture back because click happend outside of control
+                        Mouse.Capture(popupBox, CaptureMode.SubTree);
+                        e.Handled = true;
                     }
                     else
                     {
-                        if (popupBox.StaysOpen)
-                        {
-                            // Take capture back because click happend outside of control
-                            Mouse.Capture(popupBox, CaptureMode.SubTree);
-                            e.Handled = true;
-                        }
-                        else
-                        {
-                            popupBox.Close();
-                        }
+                        popupBox.Close();
                     }
                 }
             }
@@ -658,7 +655,7 @@ namespace MaterialDesignThemes.Wpf
         private void ToggleButtonOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             if (PopupMode == PopupBoxPopupMode.Click || !IsPopupOpen) return;
-
+            
             if (ToggleCheckedContent != null)
             {
                 OnToggleCheckedContentClick();
@@ -670,10 +667,10 @@ namespace MaterialDesignThemes.Wpf
                     ToggleCheckedContentCommand.Execute(ToggleCheckedContentCommandParameter);
                 }
             }
-
+            
             Close();
             Mouse.Capture(null);
-            mouseButtonEventArgs.Handled = true;
+            mouseButtonEventArgs.Handled = true;            
         }
 
         private static object CoerceToolTipIsEnabled(DependencyObject dependencyObject, object value)

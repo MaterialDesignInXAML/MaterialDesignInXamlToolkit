@@ -227,9 +227,13 @@ namespace MaterialDesignThemes.Wpf
 
 		private void TextBoxOnLostFocus(object sender, RoutedEventArgs routedEventArgs)
 		{
-		    if (string.IsNullOrEmpty(_textBox?.Text)) return;
+		    if (string.IsNullOrEmpty(_textBox?.Text))
+            {
+                SetCurrentValue(SelectedTimeProperty, null);
+                return;
+            }
 
-		    DateTime time;
+            DateTime time;
 		    if (IsTimeValid(_textBox.Text, out time))
 		        SetCurrentValue(SelectedTimeProperty, time);
 
@@ -297,20 +301,29 @@ namespace MaterialDesignThemes.Wpf
 		{
             if (_popup?.IsOpen == true || IsInvalidTextAllowed)
 			    SetCurrentValue(TextProperty, _textBox.Text);
+
+            if (_popup?.IsOpen == false)
+                SetSelectedTime(true);
         }
 
-		private void SetSelectedTime()
-		{
-		    if (!string.IsNullOrEmpty(_textBox?.Text))
+	    private void SetSelectedTime(bool beCautious = false)
+        {
+            if (!string.IsNullOrEmpty(_textBox?.Text))
 			{
-				ParseTime(_textBox.Text, t => SetCurrentValue(SelectedTimeProperty, t));			
-			}
-		}
+                ParseTime(_textBox.Text, t =>
+                {
+                    if (!beCautious || DateTimeToString(t) == _textBox.Text)
+                        SetCurrentValue(SelectedTimeProperty, t);
+                });
+            }
+            else
+            {
+                SetCurrentValue(SelectedTimeProperty, null);
+            }
+        }
 
-		private void ParseTime(string s, Action<DateTime> successContinuation)
+		private static void ParseTime(string s, Action<DateTime> successContinuation)
 		{
-			var dtfi = CultureInfo.CurrentCulture.GetDateFormat();
-
 			DateTime time;
             if (IsTimeValid(s, out time))
 				successContinuation(time);

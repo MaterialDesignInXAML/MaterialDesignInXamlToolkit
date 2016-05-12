@@ -30,6 +30,7 @@ namespace mdresgen
         private static readonly IDictionary<string, Color> ClassNameToForegroundIndex = new Dictionary<string, Color>()
         {
             {"color", Color.FromArgb((int) (255*0.87), 255, 255, 255)},
+            {"color ", Color.FromArgb((int) (255*0.87), 255, 255, 255)},
             {"color dark divide", Color.FromArgb((int) (255*0.87), 0, 0, 0)},
             {"color dark", Color.FromArgb((int) (255*0.87), 0, 0, 0)},
             {"color dark-strong", Color.FromArgb((int) (255*0.87), 0, 0, 0)},
@@ -43,6 +44,13 @@ namespace mdresgen
 
             if (args.Length == 0)
                 GenerateXaml(xDocument, false);
+            else if (args.Contains("all-swatches"))
+            {
+                GenerateXaml(xDocument);
+                GenerateXaml(xDocument, true);
+                GenerateOldXaml(xDocument);
+                GenerateOldXaml(xDocument, true);
+            }
             else if (args.Contains("json"))
                 GenerateJson(xDocument);
             else if (args.Contains("named"))
@@ -121,7 +129,7 @@ namespace mdresgen
 
             bool dummy;
 
-            foreach (var color in xDocument.Root.Elements("section").Select(el => ToResourceDictionary(el, out dummy)))
+            foreach (var color in xDocument.Root.Elements("section").Select(el => ToResourceDictionary(el, out dummy, named)))
             {
                 color.Item2.Save(
                     string.Format(
