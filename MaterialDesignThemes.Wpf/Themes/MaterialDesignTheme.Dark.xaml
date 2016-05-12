@@ -1,30 +1,28 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    >
-    
-    <!-- plan is to add all of the light/dark specific brushes, quite granular at first. can then consolodate any repition later on if necessary -->
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
 
     <Color x:Key="ValidationErrorColor">#f44336</Color>
     <SolidColorBrush x:Key="ValidationErrorBrush" Color="{StaticResource ValidationErrorColor}"/>
-    
-    <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FF000000"/>
-    <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF37474f"/>        
-    <SolidColorBrush x:Key="MaterialDesignBody" Color="#DDFFFFFF"/>
-    <SolidColorBrush x:Key="MaterialDesignBodyLight" Color="#89FFFFFF"/>
-    <SolidColorBrush x:Key="MaterialDesignColumnHeader" Color="#BCFFFFFF"/><!-- 74% -->
 
-    <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89FFFFFF" />
-    <SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#FF647076" />
-	
-	<SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#89FFFFFF" />
-    <SolidColorBrush x:Key="MaterialDesignDivider" Color="#1FFFFFFF" /><!-- 12% -->
-    <SolidColorBrush x:Key="MaterialDesignSelection" Color="#757575" />
+    <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FF000000" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF37474f" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignBody" Color="#DDFFFFFF" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignBodyLight" Color="#89FFFFFF" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignColumnHeader" Color="#BCFFFFFF" po:Freeze="True" /><!-- 74% -->
 
-    <SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#757575" />
-    <SolidColorBrush x:Key="MaterialDesignFlatButtonRipple" Color="#FFB6B6B6" />
+    <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89FFFFFF" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#FF647076" po:Freeze="True" />
 
-    <SolidColorBrush x:Key="MaterialDesignToolTipBackground" Color="#eeeeee" />
+    <SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#89FFFFFF" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignDivider" Color="#1FFFFFFF" po:Freeze="True" /><!-- 12% -->
+    <SolidColorBrush x:Key="MaterialDesignSelection" Color="#757575" po:Freeze="True" />
 
-    <SolidColorBrush x:Key="MaterialDesignChipBackground" Color="#FF2E3C43" />
+    <SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#757575" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignFlatButtonRipple" Color="#FFB6B6B6" po:Freeze="True" />
+
+    <SolidColorBrush x:Key="MaterialDesignToolTipBackground" Color="#eeeeee" po:Freeze="True" />
+
+    <SolidColorBrush x:Key="MaterialDesignChipBackground" Color="#FF2E3C43" po:Freeze="True" />
 
 </ResourceDictionary>
