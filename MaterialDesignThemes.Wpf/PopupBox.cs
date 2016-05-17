@@ -242,6 +242,25 @@ namespace MaterialDesignThemes.Wpf
                 else
                     Mouse.Capture(null);
             }
+
+            if (newValue)
+            {
+                var popupOpenedEventArgs = new RoutedEventArgs()
+                {
+                    RoutedEvent = OnPopupOpenedEvent,
+                    Source = popupBox
+                };
+                popupBox.RaiseEvent(popupOpenedEventArgs);
+            }
+            else
+            {
+                var popupClosedEventArgs = new RoutedEventArgs()
+                {
+                    RoutedEvent = OnPopupClosedEvent,
+                    Source = popupBox
+                };
+                popupBox.RaiseEvent(popupClosedEventArgs);
+            }
             
             popupBox.AnimateChildrenIn(!newValue);                 
             popupBox._popup?.RefreshPosition();
@@ -257,6 +276,45 @@ namespace MaterialDesignThemes.Wpf
             get { return (bool) GetValue(IsPopupOpenProperty); }
             set { SetValue(IsPopupOpenProperty, value); }
         }
+
+        /// <summary>
+        /// Event corresponds to the popup opening
+        /// </summary>
+        public static readonly RoutedEvent OnPopupOpenedEvent = 
+            EventManager.RegisterRoutedEvent(
+                "OnPopupOpened", 
+                RoutingStrategy.Bubble, 
+                typeof(RoutedEventHandler), 
+                typeof(PopupBox));
+
+        /// <summary>
+        /// Event corresponds to the popup closing
+        /// </summary>
+        public static readonly RoutedEvent OnPopupClosedEvent = 
+            EventManager.RegisterRoutedEvent(
+                "OnPopupClosed", 
+                RoutingStrategy.Bubble, 
+                typeof(RoutedEventHandler), 
+                typeof(PopupBox));
+
+        /// <summary>
+        /// Add / Remove OnPopupOpenedEvent handler 
+        /// </summary>
+        public event RoutedEventHandler OnPopupOpened
+        {
+            add { AddHandler(OnPopupOpenedEvent, value); }
+            remove { RemoveHandler(OnPopupOpenedEvent, value); }
+        }
+
+        /// <summary>
+        /// Add / Remove OnPopupClosedEvent handler 
+        /// </summary>
+        public event RoutedEventHandler OnPopupClosed
+        {
+            add { AddHandler(OnPopupClosedEvent, value); }
+            remove { RemoveHandler(OnPopupClosedEvent, value); }
+        }
+
 
         public static readonly DependencyProperty StaysOpenProperty = DependencyProperty.Register(
             nameof(StaysOpen), typeof (bool), typeof (PopupBox), new PropertyMetadata(default(bool)));
