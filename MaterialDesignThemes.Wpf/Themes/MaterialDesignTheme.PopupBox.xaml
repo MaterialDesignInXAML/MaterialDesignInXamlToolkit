@@ -23,6 +23,7 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="TextElement.FontWeight" Value="Normal" />
+        <Setter Property="Padding" Value="0 8 0 8" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:PopupBox}">
@@ -61,7 +62,7 @@
                                       Foreground="{DynamicResource MaterialDesignBody}"
                                       FontSize="15"
                                       FontWeight="Regular"
-                                      Padding="0 8 0 8"
+                                      Padding="{TemplateBinding Padding}"
                                       RenderOptions.ClearTypeHint="Enabled"                                      
                                       Margin="5">
                                 <wpf:Card.Resources>
