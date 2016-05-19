@@ -72,7 +72,7 @@
                                Width="{StaticResource PopupLeftRightMargin}"
                                Fill="{Binding ElementName=templateRoot, Path=Background}"/>
                     <Grid Grid.Column="1"
-                          Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
+                          Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth}"
                           Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
                     <Rectangle Grid.Column="2"
                                MinWidth="{StaticResource PopupLeftRightMargin}"
@@ -126,7 +126,7 @@
                                Fill="{Binding ElementName=templateRoot, Path=Background}"
                                />
                     <Grid Grid.Column="1"
-                          Width="{Binding ElementName=templateRoot, Path=ActualWidth}"
+                          Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth}"
                           Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
                     <Rectangle Grid.Column="2"
                                MinWidth="{StaticResource PopupLeftRightMargin}"
@@ -329,7 +329,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Grid>
-                        <Border x:Name="templateRoot"
+                        <Border x:Name="ToggleTemplateRoot"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
@@ -375,14 +375,14 @@
                                 <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false" />
                                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="templateRoot" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+                            <Setter TargetName="ToggleTemplateRoot" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false" />
                                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="templateRoot" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+                            <Setter TargetName="ToggleTemplateRoot" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
                             <Setter TargetName="splitBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
                         </MultiDataTrigger>
                     </ControlTemplate.Triggers>
@@ -412,24 +412,28 @@
                       Margin="{TemplateBinding Padding}"
                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                       UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                    <ContentPresenter x:Name="contentPresenter"
-                                      Content="{TemplateBinding SelectionBoxItem}"
-                                      ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                      IsHitTestVisible="False"/>
-                    <TextBox x:Name="PART_EditableTextBox"
-                             IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
-                             Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
-                             Visibility="Collapsed" />
-                    <wpf:SmartHint x:Name="Hint"
-                                   HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                   FontSize="{TemplateBinding FontSize}"
-                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                   UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                   UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
-                                   HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                                   Hint="{TemplateBinding wpf:HintAssist.Hint}" />
+                    <Grid x:Name="InputRoot"
+                          HorizontalAlignment="Left">
+                        <ContentPresenter x:Name="contentPresenter"
+                                          Content="{TemplateBinding SelectionBoxItem}"
+                                          ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                          IsHitTestVisible="False"/>
+                        <TextBox x:Name="PART_EditableTextBox"
+                                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                                 Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                                 Visibility="Collapsed" />
+                        
+                        <wpf:SmartHint x:Name="Hint"
+                                       HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                       UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                       UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                       HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                       Hint="{TemplateBinding wpf:HintAssist.Hint}" />
+                    </Grid>
                 </Grid>
                 <wpf:Underline x:Name="Underline"
                                Grid.ColumnSpan="2"
