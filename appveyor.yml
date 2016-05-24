@@ -9,9 +9,9 @@
   assembly_info:
     patch: true
     file: '**\AssemblyInfo.*'
-    assembly_version: '{version}'
-    assembly_file_version: '{version}'
-    assembly_informational_version: '{version}'
+    assembly_version: '{stamp_version}'
+    assembly_file_version: '{stamp_version}'
+    assembly_informational_version: '{stamp_version}'
   environment:
     RestorePackages: false
   install:
@@ -28,6 +28,7 @@
   - path: bin\**\*.*
 
   version: 2.0.0-ci{build}
+  stamp_version: 2.0.0.{build}
   deploy:
   - provider: NuGet
     api_key:
