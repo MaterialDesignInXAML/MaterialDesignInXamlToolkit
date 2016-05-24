@@ -22,5 +22,6 @@
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.dll" target="lib\net45" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.pdb" target="lib\net45" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.xml" target="lib\net45" />
+    <file src="MaterialDesignThemes.Wpf\**\*.cs" target="src\net45" />
   </files>    
 </package>
