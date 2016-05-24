@@ -237,8 +237,9 @@ namespace MaterialDesignThemes.Wpf
         private static void IsOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var dialogHost = (DialogHost)dependencyObject;
-
-            ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
+            
+            if (dialogHost._popupContentControl != null)
+                ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
             VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
             if (dialogHost.IsOpen)
