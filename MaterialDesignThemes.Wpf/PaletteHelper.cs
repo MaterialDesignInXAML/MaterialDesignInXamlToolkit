@@ -183,18 +183,18 @@ namespace MaterialDesignThemes.Wpf
 
             //mahapps brushes            
             ReplaceEntry("HighlightBrush", new SolidColorBrush(dark.Color));
-            ReplaceEntry("AccentColorBrush", new SolidColorBrush(allHues[5].Color));
-            ReplaceEntry("AccentColorBrush2", new SolidColorBrush(allHues[4].Color));
-            ReplaceEntry("AccentColorBrush3", new SolidColorBrush(allHues[3].Color));
-            ReplaceEntry("AccentColorBrush4", new SolidColorBrush(allHues[2].Color));
+            ReplaceEntry("AccentColorBrush", new SolidColorBrush(dark.Color));
+            ReplaceEntry("AccentColorBrush2", new SolidColorBrush(mid.Color));
+            ReplaceEntry("AccentColorBrush3", new SolidColorBrush(light.Color));
+            ReplaceEntry("AccentColorBrush4", new SolidColorBrush(light.Color) { Opacity = .82 });
             ReplaceEntry("WindowTitleColorBrush", new SolidColorBrush(dark.Color));
-            ReplaceEntry("AccentSelectedColorBrush", new SolidColorBrush(allHues[5].Foreground));
-            ReplaceEntry("ProgressBrush", new LinearGradientBrush(dark.Color, allHues[3].Color, 90.0));
-            ReplaceEntry("CheckmarkFill", new SolidColorBrush(allHues[5].Color));
-            ReplaceEntry("RightArrowFill", new SolidColorBrush(allHues[5].Color));
-            ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(allHues[5].Foreground));
+            ReplaceEntry("AccentSelectedColorBrush", new SolidColorBrush(dark.Foreground));
+            ReplaceEntry("ProgressBrush", new LinearGradientBrush(dark.Color, mid.Color, 90.0));
+            ReplaceEntry("CheckmarkFill", new SolidColorBrush(dark.Color));
+            ReplaceEntry("RightArrowFill", new SolidColorBrush(dark.Color));
+            ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(dark.Foreground));
             ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark.Color) { Opacity = .4 });
-        }
+        }        
 
         private static int GetHueIndex(Swatch swatch, Color color, bool isAccent)
         {
