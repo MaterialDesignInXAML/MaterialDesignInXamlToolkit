@@ -146,7 +146,7 @@
                     </materialDesign:PopupBox.ToggleCheckedContent>
                     <StackPanel>
                         <Button ToolTip="One">1</Button>
-                        <Button ToolTip="Two">2</Button>
+                        <Button ToolTip="Two" IsEnabled="False">2</Button>
                         <Button ToolTip="Three">3</Button>
                     </StackPanel>
                 </materialDesign:PopupBox>
