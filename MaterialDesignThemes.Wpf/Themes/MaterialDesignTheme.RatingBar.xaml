@@ -26,7 +26,7 @@
                         <Setter Property="Command" Value="{x:Static wpf:RatingBar.SelectRatingCommand}"/>
                         <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
                         <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>
-                        <Setter Property="wpf:RippleAssist.Effect" Value="Centered"/>
+                        <Setter Property="wpf:RippleAssist.IsCentered" Value="True"/>
                         <Setter Property="wpf:RippleAssist.RippleSizeMultiplier" Value="0.5"/>
                         <Setter Property="Template">
                             <Setter.Value>

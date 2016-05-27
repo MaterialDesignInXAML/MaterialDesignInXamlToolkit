@@ -39,7 +39,7 @@
                     <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" VerticalAlignment="Center"
                                   DockPanel.Dock="Right" />
                     <StackPanel Orientation="Horizontal"
-                            materialDesign:RippleAssist.Effect="Centered">
+                            materialDesign:RippleAssist.IsCentered="True">
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                         <materialDesign:ColorZone Mode="Standard" Padding="8 4 8 4" CornerRadius="2" Panel.ZIndex="1"
                                    Margin="16 0 0 0"
