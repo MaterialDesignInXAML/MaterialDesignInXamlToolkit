@@ -93,8 +93,8 @@ namespace MaterialDesignThemes.Wpf
 
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-
-            switch (RippleAssist.GetEffect(this))
+            RippleEffect rippleEffect = RippleAssist.GetEffect(this);
+            switch (rippleEffect)
             {
                 case RippleEffect.Standard:
                     var point = e.GetPosition(this);
@@ -123,11 +123,12 @@ namespace MaterialDesignThemes.Wpf
                 default:
                     break;
             }
-
-            VisualStateManager.GoToState(this, TemplateStateNormal, false);
-            VisualStateManager.GoToState(this, TemplateStateMousePressed, true);
-            PressedInstances.Add(this);
-
+            if (rippleEffect != RippleEffect.None)
+            {
+                VisualStateManager.GoToState(this, TemplateStateNormal, false);
+                VisualStateManager.GoToState(this, TemplateStateMousePressed, true);
+                PressedInstances.Add(this);
+            }
             base.OnPreviewMouseLeftButtonDown(e);
         }
 
@@ -217,7 +218,6 @@ namespace MaterialDesignThemes.Wpf
 
             radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
             RippleSize = 2 * radius * RippleAssist.GetRippleSizeMultiplier(this);
-
         }
     }
 }
