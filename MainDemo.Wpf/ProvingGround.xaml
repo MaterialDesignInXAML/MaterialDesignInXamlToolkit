@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
@@ -21,12 +22,15 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <converters:EqualityToVisibilityConverter x:Key="EqualityToVisibilityConverter" />
+
             <Style x:Key="MaterialDesignToggleListBoxItem" TargetType="{x:Type ListBoxItem}">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}"/>
                 <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
                 <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-                <Setter Property="Padding" Value="8" />
+                <Setter Property="Padding" Value="14 6 14 6" />
                 <Setter Property="SnapsToDevicePixels" Value="True"/>
                 <Setter Property="Template">
                     <Setter.Value>
@@ -60,9 +64,12 @@
                                         </VisualStateGroup.Transitions>
                                         <VisualState Name="Selected">
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                                <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0.18" Duration="0"/>
+                                                <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" Duration="0"/>
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState Name="Unselected"/>
@@ -79,15 +86,15 @@
                                     <Border x:Name="MouseOverBorder"
                                     Opacity="0"
                                     Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
-
-                                    <Border x:Name="SelectedBorder"
-                                    Opacity="0"
-                                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                    RenderTransformOrigin="0.5,0.5">
+                                    <Border x:Name="SelectedBackgroundBorder"
+                                            Opacity="0"
+                                            Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                            RenderTransformOrigin="0.5,0.5">
                                         <Border.RenderTransform>
                                             <ScaleTransform ScaleX="1"/>
                                         </Border.RenderTransform>
                                     </Border>
+
                                     <materialDesign:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                                         Focusable="False"
                                         Content="{TemplateBinding Content}"
@@ -97,14 +104,13 @@
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Padding="{TemplateBinding Padding}">
-                                        <materialDesign:Ripple.Resources>
-                                            <Style TargetType="{x:Type materialDesign:PackIcon}" >
-                                                <Setter Property="Width" Value="220" />
-                                                <Setter Property="Height" Value="220" />
-                                                <Setter Property="Foreground" Value="Red" />
-                                            </Style>
-                                        </materialDesign:Ripple.Resources>
+                                        
                                     </materialDesign:Ripple>
+                                    <Border x:Name="SelectedBorder"
+                                            Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectionMode, Converter={StaticResource EqualityToVisibilityConverter}, ConverterParameter={x:Static SelectionMode.Extended}, Mode=OneWay}"
+                                            Opacity="0"
+                                            BorderThickness="1 0 1 0"
+                                            BorderBrush="{DynamicResource MaterialDesignDivider}" />
                                 </Grid>
                             </Border>
                         </ControlTemplate>
@@ -134,10 +140,17 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ListBox}">
-                            <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                                <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
-                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                                </ScrollViewer>
+                            <ControlTemplate.Resources>
+                                <Style TargetType="{x:Type materialDesign:PackIcon}" >
+                                    <Setter Property="Width" Value="22" />
+                                    <Setter Property="Height" Value="22" />
+                                </Style>
+                            </ControlTemplate.Resources>
+                            <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true"
+                                    Padding="{TemplateBinding Padding}">
+                                <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left">
+                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>    
+                                </materialDesign:Card>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <MultiTrigger>
@@ -156,10 +169,10 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <StackPanel>
+    <StackPanel Margin="8">
         <ListBox Style="{StaticResource MaterialDesignToggleListBox}">
             <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatAlignLeft"/> 
+                <materialDesign:PackIcon Kind="FormatAlignLeft"/>
             </ListBoxItem>
             <ListBoxItem>
                 <materialDesign:PackIcon Kind="FormatAlignCenter"/>
@@ -171,7 +184,21 @@
                 <materialDesign:PackIcon Kind="FormatAlignJustify"/>
             </ListBoxItem>
         </ListBox>
-        
+
+        <ListBox Style="{StaticResource MaterialDesignToggleListBox}" 
+                 SelectionMode="Extended"
+                 Margin="0 8 0 0">
+            <ListBoxItem>
+                <materialDesign:PackIcon Kind="FormatBold"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <materialDesign:PackIcon Kind="FormatItalic"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <materialDesign:PackIcon Kind="FormatUnderline"/>
+            </ListBoxItem>
+        </ListBox>
+
     </StackPanel>
 
 </UserControl>
