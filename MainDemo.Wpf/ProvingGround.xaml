@@ -128,6 +128,7 @@
                 <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
                 <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
                 <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+                <Setter Property="materialDesign:ListBoxAssist.IsQuickUnselectEnabled" Value="True" />
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
                 <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignToggleListBoxItem}"/>
                 <Setter Property="ItemsPanel">

@@ -285,6 +285,7 @@
     <Compile Include="HintProxyFabric.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
+    <Compile Include="ListBoxAssist.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
