@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,33 @@ namespace MaterialDesignColors.WpfExample
         {
             InitializeComponent();
             FutureDatePicker.BlackoutDates.AddDatesInPast();
+            LoadLocales();
+            cboLocale.SelectionChanged += CboLocale_SelectionChanged;
+            cboLocale.SelectedItem = "fr-CA";
+        }
+
+        private void CboLocale_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var lang = System.Windows.Markup.XmlLanguage.GetLanguage(cboLocale.SelectedItem as string);
+            LocaleDatePicker.Language = lang;
+            LocaleDatePickerRTL.Language = lang;
+
+            //HACK: The calendar only refresh when we change the date
+            LocaleDatePicker.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(1);
+            LocaleDatePicker.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(-1);
+            LocaleDatePickerRTL.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(1);
+            LocaleDatePickerRTL.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(-1);
+        }
+
+        private void LoadLocales()
+        {
+            foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.AllCultures).OrderBy(ci => ci.Name))
+            {
+                if (ci.Calendar is GregorianCalendar)
+                {
+                    cboLocale.Items.Add(ci.Name);
+                }
+            }
         }
 
         public void CalendarDialogOpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)
