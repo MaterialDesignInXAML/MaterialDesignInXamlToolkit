@@ -84,7 +84,7 @@
                                          Opened="PopupBox_OnOpened"
                                          Closed="PopupBox_OnClosed">
                     <StackPanel>
-                        <Button ToolTip="One">1</Button>
+                        <Button ToolTip="One with custom opacity" Opacity="0.5">1 </Button>
                         <Button ToolTip="Two">2</Button>
                         <Button ToolTip="Three">3</Button>
                     </StackPanel>
@@ -146,7 +146,7 @@
                     </materialDesign:PopupBox.ToggleCheckedContent>
                     <StackPanel>
                         <Button ToolTip="One">1</Button>
-                        <Button ToolTip="Two">2</Button>
+                        <Button ToolTip="Two" IsEnabled="False">2</Button>
                         <Button ToolTip="Three">3</Button>
                     </StackPanel>
                 </materialDesign:PopupBox>
