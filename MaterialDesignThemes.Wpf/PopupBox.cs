@@ -579,6 +579,12 @@ namespace MaterialDesignThemes.Wpf
                 uiElement.SetCurrentValue(RenderTransformOriginProperty, new Point(.5, .5));
                 uiElement.RenderTransform = transformGroup;
 
+                var opacityAnimation = new DoubleAnimationUsingKeyFrames();
+                opacityAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, absoluteZeroKeyTime, sineEase));
+                opacityAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, deferredStartKeyTime, sineEase));
+                opacityAnimation.KeyFrames.Add(new EasingDoubleKeyFrame((double)uiElement.GetAnimationBaseValue(OpacityProperty), deferredEndKeyTime, sineEase));
+                Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath("Opacity"));
+                Storyboard.SetTarget(opacityAnimation, uiElement);
 
                 var scaleXAnimation = new DoubleAnimationUsingKeyFrames();
                 scaleXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, absoluteZeroKeyTime, sineEase));
@@ -603,6 +609,8 @@ namespace MaterialDesignThemes.Wpf
                 Storyboard.SetTarget(translateCoordinateAnimation, uiElement);
 
                 var storyboard = new Storyboard();
+                
+                storyboard.Children.Add(opacityAnimation);
                 storyboard.Children.Add(scaleXAnimation);
                 storyboard.Children.Add(scaleYAnimation);
                 storyboard.Children.Add(translateCoordinateAnimation);
@@ -613,7 +621,6 @@ namespace MaterialDesignThemes.Wpf
                     storyboard.Begin();
                     storyboard.Seek(TimeSpan.FromMilliseconds(deferredEnd));
                     storyboard.Resume();
-
                 }
                 else
                     storyboard.Begin();                
