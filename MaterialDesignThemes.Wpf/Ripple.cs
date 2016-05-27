@@ -22,7 +22,7 @@ namespace MaterialDesignThemes.Wpf
         private static readonly HashSet<Ripple> PressedInstances = new HashSet<Ripple>();
 
         static Ripple()
-        {                        
+        {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Ripple), new FrameworkPropertyMetadata(typeof(Ripple)));
 
             EventManager.RegisterClassHandler(typeof(ContentControl), Mouse.PreviewMouseUpEvent, new MouseButtonEventHandler(MouseButtonEventHandler), true);
@@ -32,9 +32,9 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public Ripple()
-        {            
-            SizeChanged += OnSizeChanged;            
-        }        
+        {
+            SizeChanged += OnSizeChanged;
+        }
 
         private static void MouseButtonEventHandler(object sender, MouseButtonEventArgs e)
         {
@@ -54,7 +54,8 @@ namespace MaterialDesignThemes.Wpf
                         scaleXKeyFrame.KeyTime = KeyTime.FromTimeSpan(newTime);
                     }
                     var scaleYKeyFrame = ripple.Template.FindName("MousePressedToNormalScaleYKeyFrame", ripple) as EasingDoubleKeyFrame;
-                    if (scaleYKeyFrame != null) {
+                    if (scaleYKeyFrame != null)
+                    {
                         scaleYKeyFrame.KeyTime = KeyTime.FromTimeSpan(newTime);
                     }
                 }
@@ -79,7 +80,7 @@ namespace MaterialDesignThemes.Wpf
                     PressedInstances.Remove(ripple);
                 }
             }
-        }        
+        }
 
         public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
             nameof(Feedback), typeof(Brush), typeof(Ripple), new PropertyMetadata(default(Brush)));
@@ -92,35 +93,40 @@ namespace MaterialDesignThemes.Wpf
 
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            var point = e.GetPosition(this);
-            
-            if (RippleAssist.GetIsCentered(this))
-            {
-                var innerContent = (Content as FrameworkElement);
 
-                if (innerContent != null)
-                {
-                    var position = innerContent.TransformToAncestor(this)
-                        .Transform(new Point(0, 0));
-
-                    RippleX = position.X + innerContent.ActualWidth / 2 - RippleSize / 2;
-                    RippleY = position.Y + innerContent.ActualHeight / 2 - RippleSize / 2;
-                }
-                else
-                {
-                    RippleX = ActualWidth / 2 - RippleSize / 2;
-                    RippleY = ActualHeight / 2 - RippleSize / 2;
-                }
-            }
-            else
+            switch (RippleAssist.GetEffect(this))
             {
-                RippleX = point.X - RippleSize / 2;
-                RippleY = point.Y - RippleSize / 2;
+                case RippleEffect.Standard:
+                    var point = e.GetPosition(this);
+                    RippleX = point.X - RippleSize / 2;
+                    RippleY = point.Y - RippleSize / 2;
+                    break;
+                case RippleEffect.Centered:
+                    var innerContent = (Content as FrameworkElement);
+
+                    if (innerContent != null)
+                    {
+                        var position = innerContent.TransformToAncestor(this)
+                            .Transform(new Point(0, 0));
+
+                        RippleX = position.X + innerContent.ActualWidth / 2 - RippleSize / 2;
+                        RippleY = position.Y + innerContent.ActualHeight / 2 - RippleSize / 2;
+                    }
+                    else
+                    {
+                        RippleX = ActualWidth / 2 - RippleSize / 2;
+                        RippleY = ActualHeight / 2 - RippleSize / 2;
+                    }
+                    break;
+                case RippleEffect.None:
+                    break;
+                default:
+                    break;
             }
 
             VisualStateManager.GoToState(this, TemplateStateNormal, false);
             VisualStateManager.GoToState(this, TemplateStateMousePressed, true);
-            PressedInstances.Add(this);            
+            PressedInstances.Add(this);
 
             base.OnPreviewMouseLeftButtonDown(e);
         }
@@ -188,17 +194,17 @@ namespace MaterialDesignThemes.Wpf
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-                        
+
             VisualStateManager.GoToState(this, TemplateStateNormal, false);
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
             var innerContent = (Content as FrameworkElement);
-
             double width, height;
 
-            if (RippleAssist.GetIsCentered(this) && innerContent != null)
+            Double radius;
+            if (RippleEffect.Centered == RippleAssist.GetEffect(this) && innerContent != null)
             {
                 width = innerContent.ActualWidth;
                 height = innerContent.ActualHeight;
@@ -209,9 +215,9 @@ namespace MaterialDesignThemes.Wpf
                 height = sizeChangedEventArgs.NewSize.Height;
             }
 
-            var radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
-
+            radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
             RippleSize = 2 * radius * RippleAssist.GetRippleSizeMultiplier(this);
+
         }
     }
 }

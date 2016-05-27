@@ -34,11 +34,11 @@
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
                     <Button Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
-                            materialDesign:RippleAssist.IsCentered="True">
+                            materialDesign:RippleAssist.Effect="Centered">
                         <materialDesign:PackIcon Kind="ShareVariant" />
                     </Button>
                     <Button Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
-                            materialDesign:RippleAssist.IsCentered="True">
+                            materialDesign:RippleAssist.Effect="Centered">
                         <materialDesign:PackIcon Kind="Heart" />
                     </Button>
                 </StackPanel>

@@ -34,7 +34,7 @@
                                     <ControlTemplate TargetType="ToggleButton">
                                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                          
                                                     ClipToBounds="False"
-                                                    wpf:RippleAssist.IsCentered="True"
+                                                    wpf:RippleAssist.Effect="Centered"
                                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                     Padding="{TemplateBinding Padding}" 
@@ -210,7 +210,7 @@
                                             </AdornerDecorator>
                                             <wpf:Ripple Focusable="False"  
                                                         Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
-                                                        wpf:RippleAssist.IsCentered="True"
+                                                         wpf:RippleAssist.Effect="Centered"
                                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                         Padding="{TemplateBinding Padding}" 
