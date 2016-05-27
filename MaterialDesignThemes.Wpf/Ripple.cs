@@ -93,42 +93,39 @@ namespace MaterialDesignThemes.Wpf
 
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            RippleEffect rippleEffect = RippleAssist.GetEffect(this);
-            switch (rippleEffect)
+            var point = e.GetPosition(this);
+
+            if (RippleAssist.GetIsCentered(this))
             {
-                case RippleEffect.Standard:
-                    var point = e.GetPosition(this);
-                    RippleX = point.X - RippleSize / 2;
-                    RippleY = point.Y - RippleSize / 2;
-                    break;
-                case RippleEffect.Centered:
-                    var innerContent = (Content as FrameworkElement);
+                var innerContent = (Content as FrameworkElement);
 
-                    if (innerContent != null)
-                    {
-                        var position = innerContent.TransformToAncestor(this)
-                            .Transform(new Point(0, 0));
+                if (innerContent != null)
+                {
+                    var position = innerContent.TransformToAncestor(this)
+                        .Transform(new Point(0, 0));
 
-                        RippleX = position.X + innerContent.ActualWidth / 2 - RippleSize / 2;
-                        RippleY = position.Y + innerContent.ActualHeight / 2 - RippleSize / 2;
-                    }
-                    else
-                    {
-                        RippleX = ActualWidth / 2 - RippleSize / 2;
-                        RippleY = ActualHeight / 2 - RippleSize / 2;
-                    }
-                    break;
-                case RippleEffect.None:
-                    break;
-                default:
-                    break;
+                    RippleX = position.X + innerContent.ActualWidth / 2 - RippleSize / 2;
+                    RippleY = position.Y + innerContent.ActualHeight / 2 - RippleSize / 2;
+                }
+                else
+                {
+                    RippleX = ActualWidth / 2 - RippleSize / 2;
+                    RippleY = ActualHeight / 2 - RippleSize / 2;
+                }
             }
-            if (rippleEffect != RippleEffect.None)
+            else
+            {
+                RippleX = point.X - RippleSize / 2;
+                RippleY = point.Y - RippleSize / 2;
+            }
+
+            if (RippleAssist.GetIsRippleDisabled(this))
             {
                 VisualStateManager.GoToState(this, TemplateStateNormal, false);
                 VisualStateManager.GoToState(this, TemplateStateMousePressed, true);
                 PressedInstances.Add(this);
             }
+
             base.OnPreviewMouseLeftButtonDown(e);
         }
 
@@ -202,10 +199,10 @@ namespace MaterialDesignThemes.Wpf
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
             var innerContent = (Content as FrameworkElement);
+
             double width, height;
 
-            Double radius;
-            if (RippleEffect.Centered == RippleAssist.GetEffect(this) && innerContent != null)
+            if (RippleAssist.GetIsCentered(this) && innerContent != null)
             {
                 width = innerContent.ActualWidth;
                 height = innerContent.ActualHeight;
@@ -216,7 +213,8 @@ namespace MaterialDesignThemes.Wpf
                 height = sizeChangedEventArgs.NewSize.Height;
             }
 
-            radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
+            var radius = Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
+
             RippleSize = 2 * radius * RippleAssist.GetRippleSizeMultiplier(this);
         }
     }

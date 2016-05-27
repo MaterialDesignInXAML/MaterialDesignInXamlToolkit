@@ -3,12 +3,6 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public enum RippleEffect
-    {
-        Standard,
-        Centered,
-        None
-    }
     public static class RippleAssist
     {
         #region ClipToBound
@@ -29,22 +23,62 @@ namespace MaterialDesignThemes.Wpf
         #endregion
 
         #region StayOnCenter
-        /// <summary>
-        /// Set to <c>RippleEffect.Standard</c> to cause the ripple to originate from the centre of the 
-        /// content.  
-        /// Set to <c>RippleEffect.Centered</c> to cause the ripple to originate from the mouse down position.        
-        /// Set to <c>RippleEffect.None</c> to disalbe the ripple effect.        
-        /// </summary>
-        public static readonly DependencyProperty EffectProperty = DependencyProperty.RegisterAttached(
-    "Effect", typeof(RippleEffect), typeof(RippleAssist), new FrameworkPropertyMetadata(RippleEffect.Standard, FrameworkPropertyMetadataOptions.Inherits));
 
-        public static void SetEffect(DependencyObject element, RippleEffect value)
+        /// <summary>
+        /// Set to <c>true</c> to cause the ripple to originate from the centre of the 
+        /// content.  Otherwise the effect will originate from the mouse down position.        
+        /// </summary>
+        public static readonly DependencyProperty IsCenteredProperty = DependencyProperty.RegisterAttached(
+            "IsCentered", typeof(bool), typeof(RippleAssist), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
+
+        /// <summary>
+        /// Set to <c>true</c> to cause the ripple to originate from the centre of the 
+        /// content.  Otherwise the effect will originate from the mouse down position.        
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetIsCentered(DependencyObject element, bool value)
         {
-            element.SetValue(EffectProperty, value);
+            element.SetValue(IsCenteredProperty, value);
         }
-        public static RippleEffect GetEffect(DependencyObject element)
+
+        /// <summary>
+        /// Set to <c>true</c> to cause the ripple to originate from the centre of the 
+        /// content.  Otherwise the effect will originate from the mouse down position.        
+        /// </summary>
+        /// <param name="element"></param>        
+        public static bool GetIsCentered(DependencyObject element)
         {
-            return (RippleEffect)element.GetValue(EffectProperty);
+            return (bool)element.GetValue(IsCenteredProperty);
+        }
+
+        #endregion
+
+        #region disable ripple
+
+        /// <summary>
+        /// Set to <c>True</c> to disable ripple effect
+        /// </summary>
+        public static readonly DependencyProperty IsRippleDisabledProperty = DependencyProperty.RegisterAttached(
+            "IsRippleDisabled", typeof(bool), typeof(RippleAssist), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
+
+        /// <summary>
+        /// Set to <c>True</c> to disable ripple effect
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetIsRippleDisabled(DependencyObject element, bool value)
+        {
+            element.SetValue(IsRippleDisabledProperty, value);
+        }
+
+        /// <summary>
+        /// Set to <c>True</c> to disable ripple effect
+        /// </summary>
+        /// <param name="element"></param>        
+        public static bool GetIsRippleDisabled(DependencyObject element)
+        {
+            return (bool)element.GetValue(IsRippleDisabledProperty);
         }
 
         #endregion
