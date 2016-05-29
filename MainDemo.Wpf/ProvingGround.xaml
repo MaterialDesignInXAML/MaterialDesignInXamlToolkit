@@ -24,7 +24,7 @@
 
             <converters:EqualityToVisibilityConverter x:Key="EqualityToVisibilityConverter" />
 
-            <Style x:Key="MaterialDesignToggleListBoxItem" TargetType="{x:Type ListBoxItem}">
+            <Style x:Key="MaterialDesignToolToggleListBoxItem" TargetType="{x:Type ListBoxItem}">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}"/>
@@ -60,13 +60,33 @@
                                     </VisualStateGroup>
                                     <VisualStateGroup Name="SelectionStates">
                                         <VisualStateGroup.Transitions>
-                                            <VisualTransition GeneratedDuration="0:0:0.6"/>
+                                            <VisualTransition From="*" To="Selected">
+                                                <Storyboard>
+                                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBackgroundBorder">
+                                                        <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                    </DoubleAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualTransition>
+                                            <VisualTransition From="*" To="SelectedUnfocused">
+                                                <Storyboard>
+                                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBackgroundBorder">
+                                                        <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                    </DoubleAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualTransition>
+                                            <VisualTransition From="Selected" To="Unselected">
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     To="0" Duration="1"/>
+                                                </Storyboard>
+                                            </VisualTransition>
                                         </VisualStateGroup.Transitions>
                                         <VisualState Name="Selected">
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         To="0.18" Duration="0"/>
+                                                         To="1" Duration="0"/>
                                                 <DoubleAnimation Storyboard.TargetName="SelectedBorder"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="1" Duration="0"/>
@@ -75,27 +95,25 @@
                                         <VisualState Name="Unselected"/>
                                         <VisualState Name="SelectedUnfocused">
                                             <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" Duration="0"/>
                                                 <DoubleAnimation Storyboard.TargetName="SelectedBorder"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         To="0.03" Duration="0"/>
+                                                         To="1" Duration="0"/>
                                             </Storyboard>
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-                                <Grid>
+                                <Grid Margin="0 0 -1 0">
                                     <Border x:Name="MouseOverBorder"
                                     Opacity="0"
                                     Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
                                     <Border x:Name="SelectedBackgroundBorder"
                                             Opacity="0"
-                                            Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                            RenderTransformOrigin="0.5,0.5">
-                                        <Border.RenderTransform>
-                                            <ScaleTransform ScaleX="1"/>
-                                        </Border.RenderTransform>
-                                    </Border>
-
-                                    <materialDesign:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                            Background="{DynamicResource MaterialDesignDivider}" />
+                                    <materialDesign:Ripple x:Name="Ripple" Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                                           Opacity=".56"
                                         Focusable="False"
                                         Content="{TemplateBinding Content}"
                                         ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -113,12 +131,17 @@
                                             BorderBrush="{DynamicResource MaterialDesignDivider}" />
                                 </Grid>
                             </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Ripple" Property="Opacity" Value=".92" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
 
-            <Style x:Key="MaterialDesignToggleListBox" TargetType="{x:Type ListBox}">
+            <Style x:Key="MaterialDesignToolToggleListBox" TargetType="{x:Type ListBox}">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="0"/>
@@ -128,9 +151,9 @@
                 <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
                 <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
                 <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-                <Setter Property="materialDesign:ListBoxAssist.IsQuickUnselectEnabled" Value="True" />
+                <Setter Property="materialDesign:ListBoxAssist.IsToggle" Value="True" />
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignToggleListBoxItem}"/>
+                <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignToolToggleListBoxItem}"/>
                 <Setter Property="ItemsPanel">
                     <Setter.Value>
                         <ItemsPanelTemplate>
@@ -171,7 +194,7 @@
     </UserControl.Resources>
 
     <StackPanel Margin="8">
-        <ListBox Style="{StaticResource MaterialDesignToggleListBox}">
+        <ListBox Style="{StaticResource MaterialDesignToolToggleListBox}">
             <ListBoxItem>
                 <materialDesign:PackIcon Kind="FormatAlignLeft"/>
             </ListBoxItem>
@@ -186,7 +209,7 @@
             </ListBoxItem>
         </ListBox>
 
-        <ListBox Style="{StaticResource MaterialDesignToggleListBox}" 
+        <ListBox Style="{StaticResource MaterialDesignToolToggleListBox}" 
                  SelectionMode="Extended"
                  Margin="0 8 0 0">
             <ListBoxItem>
@@ -195,10 +218,12 @@
             <ListBoxItem>
                 <materialDesign:PackIcon Kind="FormatItalic"/>
             </ListBoxItem>
-            <ListBoxItem>
+            <ListBoxItem x:Name="UnderlineCheckbox">
                 <materialDesign:PackIcon Kind="FormatUnderline"/>
             </ListBoxItem>
         </ListBox>
+
+        <CheckBox IsChecked="{Binding ElementName=UnderlineCheckbox, Path=IsSelected}">Underline?</CheckBox>
 
     </StackPanel>
 
