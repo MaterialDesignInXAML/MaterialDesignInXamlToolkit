@@ -13,11 +13,11 @@
   <Color x:Key="Deep OrangePrimary500">#ff5722</Color>
   <Color x:Key="Deep OrangePrimary500Foreground">#FFFFFFFF</Color>
   <Color x:Key="Deep OrangePrimary600">#f4511e</Color>
-  <Color x:Key="Deep OrangePrimary600Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep OrangePrimary600Foreground">#DDFFFFFF</Color>
   <Color x:Key="Deep OrangePrimary700">#e64a19</Color>
-  <Color x:Key="Deep OrangePrimary700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep OrangePrimary700Foreground">#DDFFFFFF</Color>
   <Color x:Key="Deep OrangePrimary800">#d84315</Color>
-  <Color x:Key="Deep OrangePrimary800Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep OrangePrimary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="Deep OrangePrimary900">#bf360c</Color>
-  <Color x:Key="Deep OrangePrimary900Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep OrangePrimary900Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -80,30 +80,77 @@
                 <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
                                          PlacementMode="BottomAndAlignCentres"
                                          ToolTipService.Placement="Right"
-                                         ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox">
+                                         ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox"
+                                         Opened="PopupBox_OnOpened"
+                                         Closed="PopupBox_OnClosed">
                     <StackPanel>
-                        <Button ToolTip="One">1</Button>
+                        <Button ToolTip="One with custom opacity" Opacity="0.5">1 </Button>
                         <Button ToolTip="Two">2</Button>
                         <Button ToolTip="Three">3</Button>
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
-            <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                                     PlacementMode="BottomAndAlignCentres"                                 
-                                     HorizontalAlignment="Right"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PopupBox Margin="16,0,16,0" StaysOpen="True">
+                    <Grid Width="300" Margin="8,8,8,8">
+                        <Grid.Resources>
+                            <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
+                                <Setter Property="Margin" Value="8,8,10,8"/>
+                            </Style>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                                <Setter Property="materialDesign:HintAssist.IsFloating" Value="True"/>
+                                <Setter Property="Margin" Value="8,8,8,8"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="8,8,8,16">OPTIONS</TextBlock>
+                        <TextBox Grid.Column="0" Grid.Row="1" materialDesign:HintAssist.Hint="Setting 1" Text="200"/>
+                        <TextBox Grid.Column="0" Grid.Row="2" materialDesign:HintAssist.Hint="Setting 2" Text="400"/>
+                        <TextBox Grid.Column="0" Grid.Row="3" materialDesign:HintAssist.Hint="Setting 3" Text="600"/>
+                        <CheckBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" />
+                        <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="True" VerticalAlignment="Bottom" />
+                        <CheckBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" />
+                        <ComboBox Grid.Column="0" Grid.Row="4" materialDesign:HintAssist.Hint="Setting 4" materialDesign:HintAssist.IsFloating="True"
+                                  Margin="8 8 8 8">
+                            <ComboBoxItem>25%</ComboBoxItem>
+                            <ComboBoxItem>50%</ComboBoxItem>
+                            <ComboBoxItem>75%</ComboBoxItem>
+                            <ComboBoxItem>100%</ComboBoxItem>
+                            <ComboBoxItem>150%</ComboBoxItem>
+                            <ComboBoxItem>200%</ComboBoxItem>
+                            <ComboBoxItem>250%</ComboBoxItem>
+                            <ComboBoxItem>500%</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+
+                </materialDesign:PopupBox>
+
+                <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                     PlacementMode="BottomAndAlignCentres"                                                                      
                                      ToggleCheckedContentCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpfExample:Buttons}, Path=FloatingActionDemoCommand}"
                                      ToggleCheckedContentCommandParameter="wowsers"
                                      Margin="0 0 48 0"
                                      ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
-                <materialDesign:PopupBox.ToggleCheckedContent>
-                    <materialDesign:PackIcon Kind="Pencil" Width="24" Height="24" />
-                </materialDesign:PopupBox.ToggleCheckedContent>
-                <StackPanel>
-                    <Button ToolTip="One">1</Button>
-                    <Button ToolTip="Two">2</Button>
-                    <Button ToolTip="Three">3</Button>
-                </StackPanel>
-            </materialDesign:PopupBox>
+                    <materialDesign:PopupBox.ToggleCheckedContent>
+                        <materialDesign:PackIcon Kind="Pencil" Width="24" Height="24" />
+                    </materialDesign:PopupBox.ToggleCheckedContent>
+                    <StackPanel>
+                        <Button ToolTip="One">1</Button>
+                        <Button ToolTip="Two" IsEnabled="False">2</Button>
+                        <Button ToolTip="Three">3</Button>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
         </Grid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 16 0 0">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 0" Width="100"
@@ -122,10 +169,16 @@
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton">
                 ACCENT
             </Button>
+
         </StackPanel>
-        <StackPanel Grid.Row="3"  Margin="256 16 0 0" Orientation="Horizontal">
-            <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick">ACCEPT</Button>
-            <Button Style="{StaticResource MaterialDesignFlatButton}">CANCEL</Button>
+        <StackPanel Grid.Row="3"  Margin="0 16 0 0" Orientation="Horizontal">
+            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    Margin="0 0 8 0"
+                    Width="150"
+                    ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                    materialDesign:RippleAssist.Feedback="#DD000000">CUSTOM RIPPLE</Button>
+            <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick" ToolTip="MaterialDesignFlatButton" Margin="200 0 0 0">ACCEPT</Button>
+            <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton">CANCEL</Button>
         </StackPanel>
         <TextBlock Margin="0 24 0 0" Grid.Row="4">Toggles</TextBlock>
         <StackPanel Grid.Row="5" Margin="0 24 0 0" Orientation="Horizontal">
@@ -145,6 +198,16 @@
                           ToolTip="MaterialDesignActionToggleButton">
                 <Image Source="Resources/ProfilePic.jpg"></Image>
             </ToggleButton>
+            <TextBlock Margin="16 0 8 0" VerticalAlignment="Center">Customise On Content:</TextBlock>
+            <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}"
+                          ToolTip="MaterialDesignActionLightToggleButton">
+                <ToggleButton.Content>
+                    <materialDesign:PackIcon Kind="EmoticonSad" />
+                </ToggleButton.Content>
+                <materialDesign:ToggleButtonAssist.OnContent>
+                    <materialDesign:PackIcon Kind="EmoticonHappy" />
+                </materialDesign:ToggleButtonAssist.OnContent>
+            </ToggleButton>
         </StackPanel>
         <StackPanel Grid.Row="6" Margin="0 16 0 0" Orientation="Horizontal">
             <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
@@ -153,28 +216,46 @@
             <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center">
                 Ga Ga
             </RadioButton>
+            <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center"
+                         IsEnabled="False">
+                Disabled
+            </RadioButton>
             <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center">
                 Check
             </CheckBox>
             <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
                 Mate
             </CheckBox>
+            <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" 
+                      IsEnabled="False">
+                Disabled
+            </CheckBox>
         </StackPanel>
         <StackPanel Grid.Row="7"  Margin="0 16 0 0" Orientation="Horizontal">
-            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" />
-            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" IsChecked="True" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center"
+                          ToolTip="Default ToggleButton Style"/>
             <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" IsEnabled="False" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchLightToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0"
+                          ToolTip="MaterialDesignSwitchLightToggleButton" IsChecked="True" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0"
+                          ToolTip="MaterialDesignSwitchToggleButton" IsChecked="True" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchDarkToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0"
+                          ToolTip="MaterialDesignSwitchDarkToggleButton" IsChecked="True" />
+            <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0"
+                          ToolTip="MaterialDesignSwitchAccentToggleButton" IsChecked="True" />
         </StackPanel>
         <StackPanel Grid.Row="8"  Margin="0 16 0 0" Orientation="Horizontal">
-            <ToggleButton Style="{StaticResource MaterialDesignFlatToggleButton}">
+            <ToggleButton Style="{StaticResource MaterialDesignFlatToggleButton}" ToolTip="MaterialDesignFlatToggleButton">
                 <materialDesign:PackIcon Kind="Paperclip" Height="21" Width="21" />
             </ToggleButton>
             <ToggleButton Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
                           Margin="8 0 0 0" 
+                          ToolTip="MaterialDesignFlatPrimaryToggleButton"
                           IsChecked="True">
                 <materialDesign:PackIcon Kind="Heart" Height="21" Width="21" />
             </ToggleButton>
             <ToggleButton Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+                          ToolTip="MaterialDesignFlatPrimaryToggleButton"
                           IsEnabled="False" Margin="8 0 0 0">
                 <materialDesign:PackIcon Kind="Heart" Height="21" Width="21" />
             </ToggleButton>
@@ -182,7 +263,7 @@
         <TextBlock Margin="0 24 0 0" Grid.Row="9">Rating bar</TextBlock>
         <StackPanel Grid.Row="10" Margin="0 16 0 0" Orientation="Horizontal">
             <materialDesign:RatingBar Value="3" x:Name="BasicRatingBar" />
-            <TextBlock Text="{Binding ElementName=BasicRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />            
+            <TextBlock Text="{Binding ElementName=BasicRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />
             <materialDesign:RatingBar x:Name="CustomRatingBar" Max="3" Value="2" Margin="24 0 0 0" Orientation="Vertical">
                 <materialDesign:RatingBar.ValueItemTemplate>
                     <DataTemplate DataType="system:Int32">

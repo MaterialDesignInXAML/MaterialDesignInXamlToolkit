@@ -9,6 +9,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
+using MaterialDesignThemes.Wpf.Transitions;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -35,12 +36,14 @@ namespace MaterialDesignThemes.Wpf
 
     [TemplatePart(Name = PopupPartName, Type = typeof(Popup))]
     [TemplatePart(Name = PopupPartName, Type = typeof(ContentControl))]
+    [TemplatePart(Name = ContentCoverGridName, Type = typeof(Grid))]
     [TemplateVisualState(GroupName = "PopupStates", Name = OpenStateName)]
     [TemplateVisualState(GroupName = "PopupStates", Name = ClosedStateName)]
     public class DialogHost : ContentControl
     {
         public const string PopupPartName = "PART_Popup";
         public const string PopupContentPartName = "PART_PopupContentElement";
+        public const string ContentCoverGridName = "PART_ContentCoverGrid";
         public const string OpenStateName = "Open";
         public const string ClosedStateName = "Closed";
 
@@ -61,6 +64,7 @@ namespace MaterialDesignThemes.Wpf
 
         private Popup _popup;
         private ContentControl _popupContentControl;
+        private Grid _contentCoverGrid;
         private DialogSession _session;
         private DialogOpenedEventHandler _attachedDialogOpenedEventHandler;
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;        
@@ -123,48 +127,46 @@ namespace MaterialDesignThemes.Wpf
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
         /// </summary>
         /// <param name="content">Content to show (can be a control or view model).</param>
-        /// <param name="dialogIndetifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
+        /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-        public static async Task<object> Show(object content, object dialogIndetifier)
+        public static async Task<object> Show(object content, object dialogIdentifier)
         {
-            return await Show(content, dialogIndetifier, null, null);
+            return await Show(content, dialogIdentifier, null, null);
         }
 
         /// <summary>
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
         /// </summary>
         /// <param name="content">Content to show (can be a control or view model).</param>
-        /// <param name="dialogIndetifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
+        /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
         /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-        public static Task<object> Show(object content, object dialogIndetifier, DialogOpenedEventHandler openedEventHandler)
+        public static Task<object> Show(object content, object dialogIdentifier, DialogOpenedEventHandler openedEventHandler)
         {
-            return Show(content, dialogIndetifier, openedEventHandler, null);
+            return Show(content, dialogIdentifier, openedEventHandler, null);
         }
 
         /// <summary>
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
         /// </summary>
         /// <param name="content">Content to show (can be a control or view model).</param>
-        /// <param name="dialogIndetifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>        
+        /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>        
         /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-        public static Task<object> Show(object content, object dialogIndetifier, DialogClosingEventHandler closingEventHandler)
+        public static Task<object> Show(object content, object dialogIdentifier, DialogClosingEventHandler closingEventHandler)
         {
-            return Show(content, dialogIndetifier, null, closingEventHandler);
-        }
-
-        #endregion
+            return Show(content, dialogIdentifier, null, closingEventHandler);
+        }        
 
         /// <summary>
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
         /// </summary>
         /// <param name="content">Content to show (can be a control or view model).</param>
-        /// <param name="dialogIndetifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
+        /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
         /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
         /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-        public static async Task<object> Show(object content, object dialogIndetifier, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
+        public static async Task<object> Show(object content, object dialogIdentifier, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
 
@@ -172,33 +174,41 @@ namespace MaterialDesignThemes.Wpf
                 throw new InvalidOperationException("No loaded DialogHost instances.");
             LoadedInstances.First().Dispatcher.VerifyAccess();
 
-            var targets = LoadedInstances.Where(dh => Equals(dh.Identifier, dialogIndetifier)).ToList();
+            var targets = LoadedInstances.Where(dh => Equals(dh.Identifier, dialogIdentifier)).ToList();
             if (targets.Count == 0)
                 throw new InvalidOperationException("No loaded DialogHost have an Identifier property matching dialogIndetifier argument.");
             if (targets.Count > 1)
                 throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
-            if (targets[0].IsOpen)
+
+            return await targets[0].ShowInternal(content, openedEventHandler, closingEventHandler);
+        }
+
+        internal async Task<object> ShowInternal(object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
+        {
+            if (IsOpen)
                 throw new InvalidOperationException("DialogHost is already open.");
 
-            targets[0].AssertTargetableContent();
-            targets[0].DialogContent = content;
-            targets[0]._asyncShowOpenedEventHandler = openedEventHandler;
-            targets[0]._asyncShowClosingEventHandler = closingEventHandler;
-            targets[0].SetCurrentValue(IsOpenProperty, true);
+            AssertTargetableContent();
+            DialogContent = content;
+            _asyncShowOpenedEventHandler = openedEventHandler;
+            _asyncShowClosingEventHandler = closingEventHandler;
+            SetCurrentValue(IsOpenProperty, true);
 
             var task = new Task(() =>
             {
-                targets[0]._asyncShowWaitHandle.WaitOne();
+                _asyncShowWaitHandle.WaitOne();
             });
             task.Start();
 
             await task;
 
-            targets[0]._asyncShowOpenedEventHandler = null;
-            targets[0]._asyncShowClosingEventHandler = null;
+            _asyncShowOpenedEventHandler = null;
+            _asyncShowClosingEventHandler = null;
 
-            return targets[0]._closeDialogExecutionParameter;
+            return _closeDialogExecutionParameter;
         }
+
+        #endregion
 
         public DialogHost()
         {
@@ -227,8 +237,9 @@ namespace MaterialDesignThemes.Wpf
         private static void IsOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var dialogHost = (DialogHost)dependencyObject;
-
-            ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
+            
+            if (dialogHost._popupContentControl != null)
+                ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
             VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
             if (dialogHost.IsOpen)
@@ -262,17 +273,13 @@ namespace MaterialDesignThemes.Wpf
 
             dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                var child = dialogHost._popup?.Child;
-                if (child == null) return;
-
-                child.Focus();
-                child.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                var child = dialogHost.FocusPopup();
 
                 //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
-                //totally not happy about this, but on immediate validation we can get some wierd looking stuff...give WPF a kick to refresh...
-                Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));                
+                //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
+                Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));
             }));
-        }        
+        }
 
         public bool IsOpen
         {
@@ -329,10 +336,41 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(OpenDialogCommandDataContextSourceProperty, value); }
         }
 
+        public static readonly DependencyProperty CloseOnClickAwayProperty = DependencyProperty.Register(
+            "CloseOnClickAway", typeof (bool), typeof (DialogHost), new PropertyMetadata(default(bool)));
+
+        /// <summary>
+        /// Indicates whether the dialog will close if the user clicks off the dialog, on the obscured background.
+        /// </summary>
+        public bool CloseOnClickAway
+        {
+            get { return (bool) GetValue(CloseOnClickAwayProperty); }
+            set { SetValue(CloseOnClickAwayProperty, value); }
+        }
+
+        public static readonly DependencyProperty CloseOnClickAwayParameterProperty = DependencyProperty.Register(
+            "CloseOnClickAwayParameter", typeof (object), typeof (DialogHost), new PropertyMetadata(default(object)));
+
+        /// <summary>
+        /// Parameter to provide to close handlers if an close due to click away is instigated.
+        /// </summary>
+        public object CloseOnClickAwayParameter
+        {
+            get { return (object) GetValue(CloseOnClickAwayParameterProperty); }
+            set { SetValue(CloseOnClickAwayParameterProperty, value); }
+        }
+
         public override void OnApplyTemplate()
         {
+            if (_contentCoverGrid != null)
+                _contentCoverGrid.MouseLeftButtonUp -= ContentCoverGridOnMouseLeftButtonUp;
+
             _popup = GetTemplateChild(PopupPartName) as Popup;
             _popupContentControl = GetTemplateChild(PopupContentPartName) as ContentControl;
+            _contentCoverGrid = GetTemplateChild(ContentCoverGridName) as Grid;
+
+            if (_contentCoverGrid != null)
+                _contentCoverGrid.MouseLeftButtonUp += ContentCoverGridOnMouseLeftButtonUp;
 
             VisualStateManager.GoToState(this, SelectState(), false);
 
@@ -477,12 +515,32 @@ namespace MaterialDesignThemes.Wpf
             _closeDialogExecutionParameter = parameter;
         }
 
+        /// <summary>
+        /// Attempts to focus the content of a popup.
+        /// </summary>
+        /// <returns>The popup content.</returns>
+        internal UIElement FocusPopup()
+        {
+            var child = _popup?.Child;
+            if (child == null) return null;
+
+            child.Focus();
+            child.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+            return child;
+        }
+
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
         {
             var window = Window.GetWindow(this);
             if (window != null && !window.IsActive)
                 window.Activate();
             base.OnPreviewMouseDown(e);
+        }
+
+        private void ContentCoverGridOnMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
+        {
+            if (CloseOnClickAway)
+                Close(CloseOnClickAwayParameter);
         }
 
         private void OpenDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
@@ -506,7 +564,7 @@ namespace MaterialDesignThemes.Wpf
                     {
                         case DialogHostOpenDialogCommandDataContextSource.SenderElement:
                             _popupContentControl.DataContext =
-                                (executedRoutedEventArgs.Parameter as FrameworkElement)?.DataContext;
+                                (executedRoutedEventArgs.OriginalSource as FrameworkElement)?.DataContext;
                             break;
                         case DialogHostOpenDialogCommandDataContextSource.DialogHostInstance:
                             _popupContentControl.DataContext = DataContext;

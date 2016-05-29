@@ -25,8 +25,9 @@ namespace MaterialDesignThemes.Wpf
 	    private Popup _popup;
 		private Button _dropDownButton;
 		private bool _disablePopupReopen;
+        private DateTime? _lastValidTime;
 
-		static TimePicker()
+        static TimePicker()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(TimePicker), new FrameworkPropertyMetadata(typeof(TimePicker)));
 		}
@@ -45,7 +46,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-            nameof(Text), typeof (string), typeof (TimePicker), new PropertyMetadata(default(string), TextPropertyChangedCallback));
+            nameof(Text), typeof (string), typeof (TimePicker), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TextPropertyChangedCallback));
 
 		private static void TextPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
@@ -67,10 +68,11 @@ namespace MaterialDesignThemes.Wpf
 		private static void SelectedTimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
 			var timePicker = (TimePicker) dependencyObject;
-			timePicker.SetCurrentValue(TextProperty, timePicker.DateTimeToString(timePicker.SelectedTime));			
-		}
+			timePicker.SetCurrentValue(TextProperty, timePicker.DateTimeToString(timePicker.SelectedTime));		
+            timePicker._lastValidTime = timePicker.SelectedTime;
+        }
 
-		public DateTime? SelectedTime
+        public DateTime? SelectedTime
 		{
 			get { return (DateTime?) GetValue(SelectedTimeProperty); }
 			set { SetValue(SelectedTimeProperty, value); }
@@ -159,6 +161,19 @@ namespace MaterialDesignThemes.Wpf
 			set { SetValue(ClockHostContentControlStyleProperty, value); }
 		}
 
+	    public static readonly DependencyProperty IsInvalidTextAllowedProperty = DependencyProperty.Register(
+	        "IsInvalidTextAllowed", typeof (bool), typeof (TimePicker), new PropertyMetadata(default(bool)));
+
+        /// <summary>
+        /// Set to true to stop invalid text reverting back to previous valid value. Useful in cases where you
+        /// want to display validation messages and allow the user to correct the data without it reverting.
+        /// </summary>
+	    public bool IsInvalidTextAllowed
+	    {
+	        get { return (bool) GetValue(IsInvalidTextAllowedProperty); }
+	        set { SetValue(IsInvalidTextAllowedProperty, value); }
+	    }
+
 	    public override void OnApplyTemplate()
 		{
 			if (_popup != null)
@@ -212,10 +227,39 @@ namespace MaterialDesignThemes.Wpf
 
 		private void TextBoxOnLostFocus(object sender, RoutedEventArgs routedEventArgs)
 		{
-			SetSelectedTime();
+		    if (string.IsNullOrEmpty(_textBox?.Text))
+            {
+                SetCurrentValue(SelectedTimeProperty, null);
+                return;
+            }
+
+            DateTime time;
+		    if (IsTimeValid(_textBox.Text, out time))
+		        SetCurrentValue(SelectedTimeProperty, time);
+
+		    else // Invalid time, jump back to previous good time
+		        SetInvalidTime();
 		}
 
-		private void TextBoxOnKeyDown(object sender, KeyEventArgs keyEventArgs)
+        private void SetInvalidTime()
+        {
+            if (IsInvalidTextAllowed) return;
+
+            if (_lastValidTime != null)
+            {
+                SetCurrentValue(SelectedTimeProperty, _lastValidTime.Value);
+                _textBox.Text = _lastValidTime.Value.ToString(_lastValidTime.Value.Hour % 12 > 9 ? "hh:mm tt" : "h:mm tt");
+            }
+
+            else
+            {
+                SetCurrentValue(SelectedTimeProperty, null);
+                _textBox.Text = "";
+            }
+
+        }
+
+        private void TextBoxOnKeyDown(object sender, KeyEventArgs keyEventArgs)
 		{
 			keyEventArgs.Handled = ProcessKey(keyEventArgs) || keyEventArgs.Handled;
 		}
@@ -255,31 +299,45 @@ namespace MaterialDesignThemes.Wpf
 
 		private void TextBoxOnTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
 		{
-			SetCurrentValue(TextProperty, _textBox.Text);
-		}
+            if (_popup?.IsOpen == true || IsInvalidTextAllowed)
+			    SetCurrentValue(TextProperty, _textBox.Text);
 
-		private void SetSelectedTime()
-		{
-			if (_textBox == null) return;
+            if (_popup?.IsOpen == false)
+                SetSelectedTime(true);
+        }
 
-			if (!string.IsNullOrEmpty(_textBox.Text))
+	    private void SetSelectedTime(bool beCautious = false)
+        {
+            if (!string.IsNullOrEmpty(_textBox?.Text))
 			{
-				ParseTime(_textBox.Text, t => SetCurrentValue(SelectedTimeProperty, t));			
-			}
-		}
+                ParseTime(_textBox.Text, t =>
+                {
+                    if (!beCautious || DateTimeToString(t) == _textBox.Text)
+                        SetCurrentValue(SelectedTimeProperty, t);
+                });
+            }
+            else
+            {
+                SetCurrentValue(SelectedTimeProperty, null);
+            }
+        }
 
 		private static void ParseTime(string s, Action<DateTime> successContinuation)
 		{
-			var dtfi = CultureInfo.CurrentCulture.GetDateFormat();
-
 			DateTime time;
-			if (DateTime.TryParseExact(
-				s, new [] { dtfi.ShortTimePattern, dtfi.LongTimePattern }, 
-				CultureInfo.CurrentCulture, DateTimeStyles.None, out time))
+            if (IsTimeValid(s, out time))
 				successContinuation(time);
 		}
 
-		private string DateTimeToString(DateTime? d)
+        private static bool IsTimeValid(string s, out DateTime time)
+        {
+            return DateTime.TryParse(s,
+                                     CultureInfo.CurrentCulture,
+                                     DateTimeStyles.AssumeLocal | DateTimeStyles.AllowWhiteSpaces,
+                                     out time);
+        }
+
+        private string DateTimeToString(DateTime? d)
 		{
 			return d.HasValue ? DateTimeToString(d.Value) : null;
 		}
@@ -304,9 +362,7 @@ namespace MaterialDesignThemes.Wpf
 			var popup = sender as Popup;
 			if (popup == null || popup.StaysOpen) return;
 
-			if (_dropDownButton == null) return;
-
-			if (_dropDownButton.InputHitTest(mouseButtonEventArgs.GetPosition(_dropDownButton)) != null)
+		    if (_dropDownButton?.InputHitTest(mouseButtonEventArgs.GetPosition(_dropDownButton)) != null)
 			{
 				// This popup is being closed by a mouse press on the drop down button 
 				// The following mouse release will cause the closed popup to immediately reopen. 

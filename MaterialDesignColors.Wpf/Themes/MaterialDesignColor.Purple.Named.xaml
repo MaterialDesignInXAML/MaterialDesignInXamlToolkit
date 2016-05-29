@@ -25,7 +25,7 @@
   <Color x:Key="PurpleAccent200">#e040fb</Color>
   <Color x:Key="PurpleAccent200Foreground">#FFFFFFFF</Color>
   <Color x:Key="PurpleAccent400">#d500f9</Color>
-  <Color x:Key="PurpleAccent400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="PurpleAccent400Foreground">#DDFFFFFF</Color>
   <Color x:Key="PurpleAccent700">#aa00ff</Color>
-  <Color x:Key="PurpleAccent700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="PurpleAccent700Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

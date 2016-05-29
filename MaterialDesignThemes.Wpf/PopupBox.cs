@@ -214,12 +214,14 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(PopupContentTemplateProperty, value); }
         }
 
+        [Obsolete]
         public static readonly DependencyProperty StaysOpenOnEditProperty = DependencyProperty.Register(
             nameof(StaysOpenOnEdit), typeof (bool), typeof (PopupBox), new PropertyMetadata(default(bool)));
 
         /// <summary>
-        /// Indicates if the opup should stay open after a click is made inside the popup.
+        /// Prefer <see cref="StaysOpen"/>.
         /// </summary>
+        [Obsolete]
         public bool StaysOpenOnEdit
         {
             get { return (bool) GetValue(StaysOpenOnEditProperty); }
@@ -240,13 +242,18 @@ namespace MaterialDesignThemes.Wpf
                 else
                     Mouse.Capture(null);
             }
-
-            
+                        
             popupBox.AnimateChildrenIn(!newValue);                 
             popupBox._popup?.RefreshPosition();
 
             VisualStateManager.GoToState(popupBox, newValue ? PopupIsOpenStateName : PopupIsClosedStateName, true);
-        }        
+
+            if (newValue)
+                popupBox.OnOpened();
+            else
+                popupBox.OnClosed();
+
+        }
 
         /// <summary>
         /// Gets or sets whether the popup is currently open.
@@ -255,7 +262,7 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (bool) GetValue(IsPopupOpenProperty); }
             set { SetValue(IsPopupOpenProperty, value); }
-        }
+        }        
 
         public static readonly DependencyProperty StaysOpenProperty = DependencyProperty.Register(
             nameof(StaysOpen), typeof (bool), typeof (PopupBox), new PropertyMetadata(default(bool)));
@@ -329,13 +336,62 @@ namespace MaterialDesignThemes.Wpf
         [Category("Behavior")]
         public event RoutedEventHandler ToggleCheckedContentClick { add { AddHandler(ToggleCheckedContentClickEvent, value); } remove { RemoveHandler(ToggleCheckedContentClickEvent, value); } }
 
-
         /// <summary>
         /// Raises <see cref="ToggleCheckedContentClickEvent"/>.
         /// </summary>
         protected virtual void OnToggleCheckedContentClick()
         {
             var newEvent = new RoutedEventArgs(ToggleCheckedContentClickEvent, this);
+            RaiseEvent(newEvent);
+        }
+
+        public static readonly RoutedEvent OpenedEvent =
+            EventManager.RegisterRoutedEvent(
+                "Opened",
+                RoutingStrategy.Bubble,
+                typeof(EventHandler),
+                typeof(PopupBox));
+
+        /// <summary>
+        /// Raised when the popup is opened.
+        /// </summary>
+        public event RoutedEventHandler Opened
+        {
+            add { AddHandler(OpenedEvent, value); }
+            remove { RemoveHandler(OpenedEvent, value); }
+        }
+
+        /// <summary>
+        /// Raises <see cref="OpenedEvent"/>.
+        /// </summary>
+        protected virtual void OnOpened()
+        {
+            var newEvent = new RoutedEventArgs(OpenedEvent, this);
+            RaiseEvent(newEvent);
+        }
+
+        public static readonly RoutedEvent ClosedEvent =
+            EventManager.RegisterRoutedEvent(
+                "Closed",
+                RoutingStrategy.Bubble,
+                typeof(EventHandler),
+                typeof(PopupBox));
+
+        /// <summary>
+        /// Raised when the popup is opened.
+        /// </summary>
+        public event RoutedEventHandler Closed
+        {
+            add { AddHandler(ClosedEvent, value); }
+            remove { RemoveHandler(ClosedEvent, value); }
+        }
+
+        /// <summary>
+        /// Raises <see cref="ClosedEvent"/>.
+        /// </summary>
+        protected virtual void OnClosed()
+        {
+            var newEvent = new RoutedEventArgs(ClosedEvent, this);
             RaiseEvent(newEvent);
         }
 
@@ -523,10 +579,10 @@ namespace MaterialDesignThemes.Wpf
                 uiElement.SetCurrentValue(RenderTransformOriginProperty, new Point(.5, .5));
                 uiElement.RenderTransform = transformGroup;
 
-                var opacityAnimation = new DoubleAnimationUsingKeyFrames();                
+                var opacityAnimation = new DoubleAnimationUsingKeyFrames();
                 opacityAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, absoluteZeroKeyTime, sineEase));
                 opacityAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, deferredStartKeyTime, sineEase));
-                opacityAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, deferredEndKeyTime, sineEase));                
+                opacityAnimation.KeyFrames.Add(new EasingDoubleKeyFrame((double)uiElement.GetAnimationBaseValue(OpacityProperty), deferredEndKeyTime, sineEase));
                 Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath("Opacity"));
                 Storyboard.SetTarget(opacityAnimation, uiElement);
 
@@ -553,6 +609,7 @@ namespace MaterialDesignThemes.Wpf
                 Storyboard.SetTarget(translateCoordinateAnimation, uiElement);
 
                 var storyboard = new Storyboard();
+                
                 storyboard.Children.Add(opacityAnimation);
                 storyboard.Children.Add(scaleXAnimation);
                 storyboard.Children.Add(scaleYAnimation);
@@ -564,7 +621,6 @@ namespace MaterialDesignThemes.Wpf
                     storyboard.Begin();
                     storyboard.Seek(TimeSpan.FromMilliseconds(deferredEnd));
                     storyboard.Resume();
-
                 }
                 else
                     storyboard.Begin();                
@@ -580,25 +636,32 @@ namespace MaterialDesignThemes.Wpf
         {
             var popupBox = (PopupBox) sender;
 
-            if (Mouse.Captured != popupBox)
+            if (Equals(Mouse.Captured, popupBox)) return;
+
+            if (Equals(e.OriginalSource, popupBox))
             {
-                if (e.OriginalSource == popupBox)
+                if (Mouse.Captured == null || popupBox._popup == null || !(Mouse.Captured as DependencyObject).IsDescendantOf(popupBox._popup))
                 {
-                    if (Mouse.Captured == null || popupBox._popup == null || !(Mouse.Captured as DependencyObject).IsDescendantOf(popupBox._popup))
-                    {
-                        popupBox.Close();
-                    }
+                    popupBox.Close();
+                }
+            }
+            else
+            {                
+                if ((Mouse.Captured as DependencyObject).GetVisualAncestry().Contains(popupBox._popup.Child))
+                {
+                    // Take capture if one of our children gave up capture (by closing their drop down)
+                    if (!popupBox.IsPopupOpen || Mouse.Captured != null || GetCapture() != IntPtr.Zero) return;
+
+                    Mouse.Capture(popupBox, CaptureMode.SubTree);
+                    e.Handled = true;
                 }
                 else
                 {
-                    if ((Mouse.Captured as DependencyObject).GetVisualAncestry().Contains(popupBox._popup))
+                    if (popupBox.StaysOpen)
                     {
-                        // Take capture if one of our children gave up capture (by closing their drop down)
-                        if (popupBox.IsPopupOpen && Mouse.Captured == null && GetCapture() == IntPtr.Zero)
-                        {
-                            Mouse.Capture(popupBox, CaptureMode.SubTree);
-                            e.Handled = true;
-                        }
+                        // Take capture back because click happend outside of control
+                        Mouse.Capture(popupBox, CaptureMode.SubTree);
+                        e.Handled = true;
                     }
                     else
                     {
@@ -647,7 +710,7 @@ namespace MaterialDesignThemes.Wpf
         private void ToggleButtonOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             if (PopupMode == PopupBoxPopupMode.Click || !IsPopupOpen) return;
-
+            
             if (ToggleCheckedContent != null)
             {
                 OnToggleCheckedContentClick();
@@ -659,10 +722,10 @@ namespace MaterialDesignThemes.Wpf
                     ToggleCheckedContentCommand.Execute(ToggleCheckedContentCommandParameter);
                 }
             }
-
+            
             Close();
             Mouse.Capture(null);
-            mouseButtonEventArgs.Handled = true;
+            mouseButtonEventArgs.Handled = true;            
         }
 
         private static object CoerceToolTipIsEnabled(DependencyObject dependencyObject, object value)

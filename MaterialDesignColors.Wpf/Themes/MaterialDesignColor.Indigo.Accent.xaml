@@ -3,9 +3,9 @@
   <Color x:Key="Accent100">#8c9eff</Color>
   <Color x:Key="Accent100Foreground">#DD000000</Color>
   <Color x:Key="Accent200">#536dfe</Color>
-  <Color x:Key="Accent200Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Accent200Foreground">#DDFFFFFF</Color>
   <Color x:Key="Accent400">#3d5afe</Color>
-  <Color x:Key="Accent400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Accent400Foreground">#DDFFFFFF</Color>
   <Color x:Key="Accent700">#304ffe</Color>
   <Color x:Key="Accent700Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>
