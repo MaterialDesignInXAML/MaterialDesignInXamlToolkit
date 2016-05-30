@@ -54,31 +54,31 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
-        #region disable ripple
+        #region disable 
 
         /// <summary>
         /// Set to <c>True</c> to disable ripple effect
         /// </summary>
-        public static readonly DependencyProperty IsRippleDisabledProperty = DependencyProperty.RegisterAttached(
-            "IsRippleDisabled", typeof(bool), typeof(RippleAssist), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
+        public static readonly DependencyProperty IsDisabledProperty = DependencyProperty.RegisterAttached(
+            "IsDisabled", typeof(bool), typeof(RippleAssist), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Set to <c>True</c> to disable ripple effect
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetIsRippleDisabled(DependencyObject element, bool value)
+        public static void SetIsDisabled(DependencyObject element, bool value)
         {
-            element.SetValue(IsRippleDisabledProperty, value);
+            element.SetValue(IsDisabledProperty, value);
         }
 
         /// <summary>
         /// Set to <c>True</c> to disable ripple effect
         /// </summary>
         /// <param name="element"></param>        
-        public static bool GetIsRippleDisabled(DependencyObject element)
+        public static bool GetIsDisabled(DependencyObject element)
         {
-            return (bool)element.GetValue(IsRippleDisabledProperty);
+            return (bool)element.GetValue(IsDisabledProperty);
         }
 
         #endregion
