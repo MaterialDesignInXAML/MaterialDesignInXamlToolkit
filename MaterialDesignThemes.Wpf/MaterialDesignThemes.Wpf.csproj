@@ -253,6 +253,7 @@
     <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
     <Compile Include="Converters\ClockLineConverter.cs" />
     <Compile Include="Converters\DrawerOffsetConverter.cs" />
+    <Compile Include="Converters\EqualityToVisibilityConverter.cs" />
     <Compile Include="Converters\HintProxyFabricConverter.cs" />
     <Compile Include="Converters\MathConverter.cs" />
     <Compile Include="Converters\MathMultipleConverter.cs" />
@@ -284,6 +285,7 @@
     <Compile Include="HintProxyFabric.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
+    <Compile Include="ListBoxAssist.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
