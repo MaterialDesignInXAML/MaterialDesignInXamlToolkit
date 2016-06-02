@@ -27,13 +27,13 @@ namespace MaterialDesignColors.WpfExample
             InitializeComponent();
             FutureDatePicker.BlackoutDates.AddDatesInPast();
             LoadLocales();
-            cboLocale.SelectionChanged += CboLocale_SelectionChanged;
-            cboLocale.SelectedItem = "fr-CA";
+            LocaleCombo.SelectionChanged += LocaleCombo_SelectionChanged;
+            LocaleCombo.SelectedItem = "fr-CA";
         }
 
-        private void CboLocale_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LocaleCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var lang = System.Windows.Markup.XmlLanguage.GetLanguage(cboLocale.SelectedItem as string);
+            var lang = System.Windows.Markup.XmlLanguage.GetLanguage((string)LocaleCombo.SelectedItem);
             LocaleDatePicker.Language = lang;
             LocaleDatePickerRTL.Language = lang;
 
@@ -46,12 +46,11 @@ namespace MaterialDesignColors.WpfExample
 
         private void LoadLocales()
         {
-            foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.AllCultures).OrderBy(ci => ci.Name))
+            foreach (var ci in CultureInfo.GetCultures(CultureTypes.AllCultures)
+                .Where(ci => ci.Calendar is GregorianCalendar)
+                .OrderBy(ci => ci.Name))
             {
-                if (ci.Calendar is GregorianCalendar)
-                {
-                    cboLocale.Items.Add(ci.Name);
-                }
+                LocaleCombo.Items.Add(ci.Name);
             }
         }
 

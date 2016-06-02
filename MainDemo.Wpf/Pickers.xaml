@@ -35,7 +35,13 @@
                     </Binding>
                 </DatePicker.SelectedDate>
             </DatePicker>
-            <ComboBox Name="cboLocale" HorizontalAlignment="Left" Width="50" Margin="0 32 0 0"/>
+            <ComboBox Name="LocaleCombo" HorizontalAlignment="Left" Width="50" Margin="0 32 0 0">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
             <DatePicker Name="LocaleDatePicker" Width="120" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="Locale Date" />
             <DatePicker Name="LocaleDatePickerRTL" Width="120" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="RTL Locale Date" FlowDirection="RightToLeft" />
         </StackPanel>
