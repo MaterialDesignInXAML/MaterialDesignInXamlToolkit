@@ -35,6 +35,9 @@
                     </Binding>
                 </DatePicker.SelectedDate>
             </DatePicker>
+            <ComboBox Name="cboLocale" HorizontalAlignment="Left" Width="50" Margin="0 32 0 0"/>
+            <DatePicker Name="LocaleDatePicker" Width="120" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="Locale Date" />
+            <DatePicker Name="LocaleDatePickerRTL" Width="120" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="RTL Locale Date" FlowDirection="RightToLeft" />
         </StackPanel>
         <materialDesign:TimePicker Grid.Row="1" Grid.Column="1"  VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0"
                                    Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
