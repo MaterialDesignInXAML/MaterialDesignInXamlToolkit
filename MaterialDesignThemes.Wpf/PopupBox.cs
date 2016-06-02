@@ -657,7 +657,7 @@ namespace MaterialDesignThemes.Wpf
                 }
                 else
                 {
-                    if (popupBox.StaysOpen)
+                    if (popupBox.StaysOpen && popupBox.IsPopupOpen)
                     {
                         // Take capture back because click happend outside of control
                         Mouse.Capture(popupBox, CaptureMode.SubTree);
