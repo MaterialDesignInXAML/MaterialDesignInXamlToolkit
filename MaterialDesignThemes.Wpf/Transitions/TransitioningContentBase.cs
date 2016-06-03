@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
@@ -53,8 +52,6 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 RegisterName(SkewTransformPartName, _skewTransform);
             if (_translateTransform != null)
                 RegisterName(TranslateTransformPartName, _translateTransform);
-
-			KeyboardNavigation.SetIsTabStop(this, false);
 
             base.OnApplyTemplate();
         }
