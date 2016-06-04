@@ -865,7 +865,7 @@
     </Style>
 
     <Style TargetType="{x:Type transitions:TransitioningContentBase}">
-        
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type transitions:TransitioningContentBase}">

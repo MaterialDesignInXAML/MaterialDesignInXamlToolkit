@@ -118,9 +118,12 @@ namespace MaterialDesignThemes.Wpf
                 RippleY = point.Y - RippleSize / 2;
             }
 
-            VisualStateManager.GoToState(this, TemplateStateNormal, false);
-            VisualStateManager.GoToState(this, TemplateStateMousePressed, true);
-            PressedInstances.Add(this);            
+            if (!RippleAssist.GetIsDisabled(this))
+            {
+                VisualStateManager.GoToState(this, TemplateStateNormal, false);
+                VisualStateManager.GoToState(this, TemplateStateMousePressed, true);
+                PressedInstances.Add(this);
+            }
 
             base.OnPreviewMouseLeftButtonDown(e);
         }
