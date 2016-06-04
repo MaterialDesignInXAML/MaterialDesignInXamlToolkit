@@ -52,6 +52,35 @@ namespace MaterialDesignThemes.Wpf
 
         public SnackbarActionEventHandler ActionHandler { get; internal set; }
 
+        private SnackbarState _state;
+
+        private SnackbarState State
+        {
+            get
+            {
+                return _state;
+            }
+
+            set
+            {
+                _state = value;
+
+                // set the according visual state to trigger the animations
+                if (_state == SnackbarState.Initialized)
+                {
+                    VisualStateManager.GoToState(this, HiddenStateName, false);
+                }
+                else if (_state == SnackbarState.Visible)
+                {
+                    VisualStateManager.GoToState(this, VisibleStateName, true);
+                }
+                else if (_state == SnackbarState.Hidden)
+                {
+                    VisualStateManager.GoToState(this, HiddenStateName, true);
+                }
+            }
+        }
+
         private DispatcherTimer _timer;
 
         static Snackbar()
@@ -66,15 +95,21 @@ namespace MaterialDesignThemes.Wpf
             Button actionButton = (Button)GetTemplateChild(PartActionButtonName);
             actionButton.Click += ActionButtonClickHandler;
 
-            VisualStateManager.GoToState(this, HiddenStateName, false);
+            State = SnackbarState.Initialized;
 
             base.OnApplyTemplate();
         }
 
         public async Task Show()
         {
-            // trigger animation and wait for it
-            VisualStateManager.GoToState(this, VisibleStateName, true);
+            if (State != SnackbarState.Initialized)
+            {
+                // only a fresh initialized Snackbar can be shown
+                return;
+            }
+
+            // set the state, trigger the animation and wait for it
+            State = SnackbarState.Visible;
 
             await Task.Delay(300);
 
@@ -90,11 +125,17 @@ namespace MaterialDesignThemes.Wpf
 
         public async Task Hide()
         {
+            if (State != SnackbarState.Visible)
+            {
+                // only a visible Snackbar can be hidden
+                return;
+            }
+
             // stop the timer
             _timer.Stop();
 
-            // trigger animation and wait for it
-            VisualStateManager.GoToState(this, HiddenStateName, true);
+            // set the state, trigger the animation and wait for it
+            State = SnackbarState.Hidden;
 
             await Task.Delay(300);
 
@@ -125,6 +166,13 @@ namespace MaterialDesignThemes.Wpf
             }
 
             return null;
+        }
+
+        private enum SnackbarState : byte
+        {
+            Initialized,
+            Visible,
+            Hidden
         }
     }
 }

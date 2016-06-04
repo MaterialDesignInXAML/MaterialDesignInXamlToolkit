@@ -115,7 +115,11 @@ namespace MaterialDesignThemes.Wpf
             List<Snackbar> visibleSnackbars = _snackbarHostRoot.Children.OfType<Snackbar>().ToList();
 
             // if there is one, first hide it (should be at most one)
-            visibleSnackbars.ForEach(async visibleSnackbar => await visibleSnackbar.Hide());
+            //     use a foreach loop, because visibleSnackbars.ForEach(async visibleSnackbar => await visibleSnackbar.Hide()); will not work correctly on the UI
+            foreach(Snackbar visibleSnackbar in visibleSnackbars)
+            {
+                await visibleSnackbar.Hide();
+            }
 
             // create a new Snackbar, place it inside the host and show it
             Snackbar snackbar = new Snackbar() { Message = message, ActionLabel = actionLabel, ActionHandler = actionHandler };
