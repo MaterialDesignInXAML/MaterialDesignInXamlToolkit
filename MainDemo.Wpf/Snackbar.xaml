@@ -12,6 +12,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250" />
                     <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="250" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
@@ -22,6 +23,8 @@
                 <Button Grid.Row="2" Content="SHOW" Width="80" Click="ShowSimpleSnackbarButtonClickHandler" />
                 <TextBlock Grid.Column="1" Margin="8,0" Text="This button shows a Snackbar with an action. The action will show another Snackbar after a short delay." TextWrapping="WrapWithOverflow" />
                 <Button Grid.Column="1" Grid.Row="2" Content="SHOW" Width="80" Click="ShowSnackbarButtonClickHandler" />
+                <TextBlock Grid.Column="2" Margin="8,0" Text="A click on the button shows a multiline Snackbar." TextWrapping="WrapWithOverflow" />
+                <Button Grid.Column="2" Grid.Row="2" Content="SHOW" Width="80" Click="ShowMultilineSnackbarButtonClickHandler" />
             </Grid>
         </ScrollViewer>
     </Grid>

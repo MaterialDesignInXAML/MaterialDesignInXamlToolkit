@@ -31,11 +31,19 @@ namespace MaterialDesignColors.WpfExample
 
         private async void ShowSnackbarButtonClickHandler(object sender, RoutedEventArgs args)
         {
-            await SnackbarHost.ShowAsync("RootSnackbarHost", "Hello from the Snackbar!", new SnackbarAction("GOT IT", async (object s, RoutedEventArgs a) => {
+            await SnackbarHost.ShowAsync("RootSnackbarHost", "Hello from the Snackbar!", new SnackbarAction("HELLO", async (object s, RoutedEventArgs a) => {
                 await Task.Delay(2000);
 
                 await SnackbarHost.ShowAsync("RootSnackbarHost", "A second hello from the Snackbar!", new SnackbarAction("BYE"));
             }));
+        }
+
+        private async void ShowMultilineSnackbarButtonClickHandler(object sender, RoutedEventArgs args)
+        {
+            await SnackbarHost.ShowAsync(
+                    "RootSnackbarHost",
+                    "The specs says that the maximum with should be 568dp. However there sould be at most only two lines of text.",
+                    new SnackbarAction("GOT IT"));
         }
     }
 }
