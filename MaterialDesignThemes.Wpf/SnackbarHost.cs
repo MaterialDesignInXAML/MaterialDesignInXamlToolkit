@@ -8,6 +8,9 @@ using System.Windows.Controls;
 
 namespace MaterialDesignThemes.Wpf
 {
+    /// <summary>
+    /// A control which wraps itself around content and hosts the popup of <see cref="Snackbar"/> instances over this content.
+    /// </summary>
     public class SnackbarHost : ContentControl
     {
         public const string SnackbarHostRootName = "SnackbarHostRoot";
@@ -17,15 +20,17 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty IdentifierProperty = DependencyProperty.Register(nameof(Identifier), typeof(object), typeof(SnackbarHost), new PropertyMetadata(default(object)));
 
         /// <summary>
-        /// Identifier which is used in conjunction with <see cref="Show(object)"/> to determine where a dialog should be shown.
+        /// Identifier which is used in conjunction with <see cref="Show(object)"/> to determine where a <see cref="Snackbar"/> should be shown.
         /// </summary>
         public object Identifier
         {
-            get {
+            get
+            {
                 return GetValue(IdentifierProperty);
             }
 
-            set {
+            set
+            {
                 SetValue(IdentifierProperty, value);
             }
         }
@@ -60,21 +65,45 @@ namespace MaterialDesignThemes.Wpf
             LoadedInstances.Remove(this);
         }
 
+        /// <summary>
+        /// Shows a <see cref="Snackbar"/>. To use, <see cref="SnackbarHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
+        /// </summary>
+        /// <param name="message">The message to show in the Snackbar.</param>
+        /// <returns></returns>
         public static async Task ShowAsync(string message)
         {
             await ShowAsync(null, message, null);
         }
 
+        /// <summary>
+        /// Shows a <see cref="Snackbar"/>. To use, <see cref="SnackbarHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
+        /// </summary>
+        /// <param name="hostIdentifier"><see cref="Identifier"/> of the instance where the Snackbar should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
+        /// <param name="message">The message to show in the Snackbar.</param>
+        /// <returns></returns>
         public static async Task ShowAsync(object hostIdentifier, string message)
         {
             await ShowAsync(hostIdentifier, message, null);
         }
 
+        /// <summary>
+        /// Shows a <see cref="Snackbar"/>. To use, <see cref="SnackbarHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
+        /// </summary>
+        /// <param name="message">The message to show in the Snackbar.</param>
+        /// <param name="snackbarAction">Optional action for the Snackbar. See <see cref="SnackbarAction"/> for details.</param>
+        /// <returns></returns>
         public static async Task ShowAsync(string message, SnackbarAction snackbarAction)
         {
             await ShowAsync(null, message, snackbarAction);
         }
 
+        /// <summary>
+        /// Shows a <see cref="Snackbar"/>. To use, <see cref="SnackbarHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
+        /// </summary>
+        /// <param name="hostIdentifier"><see cref="Identifier"/> of the instance where the Snackbar should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
+        /// <param name="message">The message to show in the Snackbar.</param>
+        /// <param name="snackbarAction">Optional action for the Snackbar. See <see cref="SnackbarAction"/> for details.</param>
+        /// <returns></returns>
         public static async Task ShowAsync(object hostIdentifier, string message, SnackbarAction snackbarAction)
         {
             if (string.IsNullOrWhiteSpace(message))

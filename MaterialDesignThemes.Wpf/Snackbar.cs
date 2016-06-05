@@ -10,6 +10,9 @@ using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
 {
+    /// <summary>
+    /// Implements a <see cref="Snackbar"/> according to the Material Design specs. Instances are considered for a single-use Snackbar.
+    /// </summary>
     [TemplateVisualState(GroupName = VisibilityStatesGroupName, Name = HiddenStateName)]
     [TemplateVisualState(GroupName = VisibilityStatesGroupName, Name = VisibleStateName)]
     public class Snackbar : Control
@@ -100,6 +103,10 @@ namespace MaterialDesignThemes.Wpf
             base.OnApplyTemplate();
         }
 
+        /// <summary>
+        /// Shows this <see cref="Snackbar"/> inside its parent <see cref="SnackbarHost"/>.
+        /// </summary>
+        /// <returns></returns>
         public async Task Show()
         {
             if (State != SnackbarState.Initialized)
@@ -123,6 +130,10 @@ namespace MaterialDesignThemes.Wpf
             _timer.Start();
         }
 
+        /// <summary>
+        /// Hides this <see cref="Snackbar"/>.
+        /// </summary>
+        /// <returns></returns>
         public async Task Hide()
         {
             if (State != SnackbarState.Visible)
