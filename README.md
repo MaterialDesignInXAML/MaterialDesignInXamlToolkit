@@ -51,7 +51,7 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 * Ignace Maes, whose [Material Skin](https://github.com/IgnaceMaes/MaterialSkin) project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
 * **[Contributors!](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)**  Thanks for the PRs which have helped add some extra polish.  
 
-# <a name="MorePics"></a>![Alt text](web/images/MD4XAML28.png "Screenshots") Screenshots
+# <a name="Screenshots"></a>![Alt text](web/images/MD4XAML28.png "Screenshots") Screenshots
 
 ![Alt text](web/images/screen-buttons.png "Buttons")
 
