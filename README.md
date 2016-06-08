@@ -9,9 +9,10 @@ Comphrehensive and easy to use Material Design theme and control library for the
 # ![Alt text](web/images/MD4XAML28.png "Summary") Summary
 
  * Material Design styles for all major WPF Framework controls
- * Additional controls to support the theme, including Multi Action Button, Cards, Dialogs
+ * Additional controls to support the theme, including Multi Action Button, Cards, Dialogs, Clock
  * Easy configuration of palette (at design _and_ runtime), according to [Google's guidelines](http://www.google.co.uk/design/spec/style/color.html#color-ui-color-application)
  * Full [Material Design Icons](https://materialdesignicons.com/) icon pack
+ * Easy transition effects
  * Compatible with [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro)
  * Demo applications included in the source project
 
@@ -33,7 +34,8 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 
 # ![Alt text](web/images/MD4XAML28.png "In Action") See It Action
 
-Checkout [F1_ix_](http://materialdesigninxaml.net/f1ix)
+* Download the source and run the demo.
+* Checkout [F1ix](http://materialdesigninxaml.net/f1ix).
 
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
