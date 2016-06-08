@@ -26,7 +26,6 @@ Comphrehensive and easy to use Material Design theme and control library for the
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") How Can I Use The Themes?
 
 * Checkout the [Super Quick Start](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Super-Quick-Start)
-
 * Or, the more comprehensive [Starting Guide](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Getting-Started) guide.
 
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Source Code
