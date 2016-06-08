@@ -2,9 +2,9 @@
 
 Comphrehensive and easy to use Material Design theme and control library for the Windows desktop.
 
-![Alt text](web/images/MashUp.gif "Material Design Demo")
+![Alt text](web/images/screen-home.png "Material Design Demo")
 
-###### [More pics below](#MorePics)
+###### [More screenshots below](#Screenshots)
 
 # ![Alt text](web/images/MD4XAML28.png "Summary") Summary
 
@@ -51,23 +51,36 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 * Ignace Maes, whose [Material Skin](https://github.com/IgnaceMaes/MaterialSkin) project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
 * **[Contributors!](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)**  Thanks for the PRs which have helped add some extra polish.  
 
-# <a name="MorePics"></a>![Alt text](web/images/MD4XAML28.png "More Pics") More Pics
+# <a name="MorePics"></a>![Alt text](web/images/MD4XAML28.png "Screenshots") Screenshots
 
-![Alt text](web/images/ClockDemo.gif "Clock Demo")
+![Alt text](web/images/screen-buttons.png "Buttons")
 
-![Alt text](web/images/MultiFloatingActionButton.gif "Floating Action Button")
+![Alt text](web/images/screen-fields.png "Fields")
 
-![Alt text](web/images/DatePicker.gif "Date Picker & Calendar")
+![Alt text](web/images/screen-palette.png "Palette")
 
-![Alt text](web/images/Cards.png "Cards")
+![Alt text](web/images/screen-pickers.png "Pickers")
 
-![Alt text](web/images/FieldsDemo.gif "Fields Demo")
+![Alt text](web/images/screen-iconpack.png "Icons")
 
-![Alt text](web/images/MenusDemo.jpg "Menus")
+![Alt text](web/images/screen-cards.png "Cards")
 
-![Alt text](web/images/Dialogs.gif "Dialogs")
+![Alt text](web/images/screen-menutoolbar.png "Menus and Toolbars")
 
-![Alt text](web/images/SliderDemo.gif "Sliders")
+![Alt text](web/images/screen-progress.png "Progress Bars")
 
-![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo23.png "Material Design Themes")
+![Alt text](web/images/screen-dialogs.png "Dialogs")
 
+![Alt text](web/images/screen-lists.png "Lists")
+
+![Alt text](web/images/screen-treeview.png "Tree View")
+
+![Alt text](web/images/screen-progress.png "Progress Bars")
+
+![Alt text](web/images/screen-sliders.png "Sliders")
+
+![Alt text](web/images/screen-typography.png "Typography")
+
+![Alt text](web/images/screen-groupbox.png "Group Box")
+
+![Alt text](web/images/screen-shadows.png "Shadows")
