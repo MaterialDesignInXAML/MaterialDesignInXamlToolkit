@@ -22,16 +22,18 @@ Comphrehensive and easy to use Material Design theme and control library for the
 [![Issues](https://img.shields.io/github/issues/ButchersBoy/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues)
 [![Twitter](https://img.shields.io/badge/twitter-%40james__willock-55acee.svg?style=flat-square)](https://twitter.com/James_Willock)
 
-# ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Source Code
-To load the source project you will need Visual Studio 2015.  Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (see below).  There are two demo projects in the solution, restore the NuGet packages and fire them both up.  One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
-
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") How Can I Use The Themes?
 
-* Install [NuGet package](https://www.nuget.org/packages/MaterialDesignThemes/) ```Install-Package MaterialDesignThemes```
-* Configure App.xaml according to the [example](MainDemo.Wpf/App.xaml)
-* For more information see the [Get Started guide](http://materialdesigninxaml.net/#getStarted)
-* Check out the [wiki](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki)
-* Watch the [introduction video](https://youtu.be/-n5yeEOsbCk)
+* Checkout the [Super Quick Start](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Super-Quick-Start)
+
+* Or, the more comprehensive [Starting Guide](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Getting-Started) guide.
+
+# ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Source Code
+To load the source project you will need Visual Studio 2015.  Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (``` Install-Package MaterialDesignThemes ```).  There are two demo projects in the solution, restore the NuGet packages and fire them both up.  One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
+
+# ![Alt text](web/images/MD4XAML28.png "In Action") See It Action
+
+Checkout [F1_ix_](http://materialdesigninxaml.net/f1ix)
 
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
