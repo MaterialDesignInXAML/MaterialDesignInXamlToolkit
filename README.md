@@ -79,6 +79,8 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 
 ![Alt text](web/images/screen-treeview.png "Tree View")
 
+![Alt text](web/images/screen-progress.png "Progress Bars")
+
 ![Alt text](web/images/screen-sliders.png "Sliders")
 
 ![Alt text](web/images/screen-typography.png "Typography")
