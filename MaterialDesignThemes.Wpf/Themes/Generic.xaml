@@ -648,6 +648,20 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type local:SnackbarHost}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:SnackbarHost}">
+                    <Grid x:Name="SnackbarHostRoot">
+                        <AdornerDecorator>
+                            <ContentPresenter Opacity="1" Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
+                        </AdornerDecorator>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <SolidColorBrush x:Key="BlackBackground" Color="Black" />
 
     <Style TargetType="{x:Type local:DrawerHost}">
