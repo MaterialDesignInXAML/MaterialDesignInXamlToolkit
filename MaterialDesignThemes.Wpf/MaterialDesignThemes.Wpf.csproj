@@ -165,6 +165,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.Stepper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.TextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -287,6 +291,11 @@
     <Compile Include="IconType.cs" />
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="Palette.cs" />
+    <Compile Include="Step.cs" />
+    <Compile Include="Stepper.cs" />
+    <Compile Include="StepperController.cs" />
+    <Compile Include="StepperOrientation.cs" />
+    <Compile Include="StepperStepViewModel.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
     <Compile Include="Transitions\IndexedItemOffsetMultiplierExtension.cs" />

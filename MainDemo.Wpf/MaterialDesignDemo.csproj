@@ -108,6 +108,8 @@
     <Compile Include="Domain\SelectableViewModel.cs" />
     <Compile Include="Domain\SimpleDataTemplateSelector.cs" />
     <Compile Include="Domain\SimpleDateValidationRule.cs" />
+    <Compile Include="Domain\StepperTutorialOneViewModel.cs" />
+    <Compile Include="Domain\StepperTutorialTwoViewModel.cs" />
     <Compile Include="Domain\TextFieldsViewModel.cs" />
     <Compile Include="Domain\TreesViewModel.cs" />
     <Compile Include="Expander.xaml.cs">
@@ -151,6 +153,9 @@
     </Compile>
     <Compile Include="Sliders.xaml.cs">
       <DependentUpon>Sliders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StepperDemo.xaml.cs">
+      <DependentUpon>StepperDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="TextFields.xaml.cs">
       <DependentUpon>TextFields.xaml</DependentUpon>
@@ -293,6 +298,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sliders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StepperDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
