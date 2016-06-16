@@ -94,6 +94,7 @@
                                 <Condition Property="IsKeyboardFocused" Value="True" />
                             </MultiTrigger.Conditions>
                             <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
                         </MultiTrigger>
                         <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
                             <Setter TargetName="border" Property="Margin" Value="0 12 0 0" />
