@@ -45,10 +45,15 @@
             <DatePicker Name="LocaleDatePicker" Width="120" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="Locale Date" />
             <DatePicker Name="LocaleDatePickerRTL" Width="120" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="RTL Locale Date" FlowDirection="RightToLeft" />
         </StackPanel>
-        <materialDesign:TimePicker Grid.Row="1" Grid.Column="1"  VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0"
+            <StackPanel Grid.Row="1" Grid.Column="1"  VerticalAlignment="Top">
+            <materialDesign:TimePicker  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0"
                                    Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                                    materialDesign:HintAssist.Hint="Custom hint" />
-        <materialDesign:TimePicker Grid.Row="1" Grid.Column="2"  Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" />
+             <materialDesign:TimePicker SelectedTime="{Binding BindingDateTime}" Width="100" HorizontalAlignment="Left" Margin="0 26 0 0"
+                                   Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
+                                   materialDesign:HintAssist.Hint="SelectedTime Binding" />
+            </StackPanel>
+            <materialDesign:TimePicker Grid.Row="1" Grid.Column="2"  Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" />
         <materialDesign:TimePicker Grid.Row="1" Grid.Column="3"                
                                    materialDesign:HintAssist.Hint="Validates"
                                    IsInvalidTextAllowed="True"
