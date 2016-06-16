@@ -12,10 +12,6 @@ namespace MaterialDesignThemes.Wpf
 {
     public class ComboBoxPopup : Popup
     {
-        public const double ContentPresenterExtend = 4;
-        public const double TopBottomMargin = 8;
-        public const double LeftRightMargin = 32;
-
         public static readonly DependencyProperty UpContentTemplateProperty
             = DependencyProperty.Register(nameof(UpContentTemplate),
                 typeof(ControlTemplate),

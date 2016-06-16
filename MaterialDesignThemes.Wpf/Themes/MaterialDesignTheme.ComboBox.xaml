@@ -12,6 +12,10 @@
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" IsNotEmptyValue="Collapsed" />
     <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
     <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
+    
+    <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
+    <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
+    <system:Double x:Key="PopupLeftRightMargin">16</system:Double>
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -26,11 +30,9 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    <system:Double x:Key="PopupLeftRightMargin">16</system:Double>
 
     <ControlTemplate x:Key="PopupContentUpTemplate" TargetType="ContentControl">
-        <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter={x:Static wpf:ComboBoxPopup.LeftRightMargin}}"
+        <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
               Margin="6">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -54,11 +56,11 @@
                 <Border Grid.Row="0"
                         CornerRadius="2 2 0 0"
                         Background="{Binding ElementName=PART_Popup, Path=Background}"
-                        Height="{x:Static wpf:ComboBoxPopup.TopBottomMargin}"/>
+                        Height="{StaticResource PopupTopBottomMargin}"/>
                 <ContentPresenter Grid.Row="1"/>
                 <Border Grid.Row="2"
                         Background="{Binding ElementName=PART_Popup, Path=Background}"
-                        Height="{x:Static wpf:ComboBoxPopup.ContentPresenterExtend}"/>
+                        Height="{StaticResource PopupContentPresenterExtend}"/>
 
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
@@ -79,14 +81,14 @@
 
                 <Border Grid.Row="4"
                         CornerRadius="0 0 2 2"
-                        Height="{x:Static wpf:ComboBoxPopup.TopBottomMargin}"
+                        Height="{StaticResource PopupTopBottomMargin}"
                         Background="{Binding ElementName=PART_Popup, Path=Background}" />
             </Grid>
         </Grid>
     </ControlTemplate>
     
     <ControlTemplate x:Key="PopupContentDownTemplate" TargetType="ContentControl">
-        <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter={x:Static wpf:ComboBoxPopup.LeftRightMargin}}"
+        <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
               Margin="6">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -111,7 +113,7 @@
                 <Border Grid.Row="0"
                         CornerRadius="2 2 0 0"
                         Background="{Binding ElementName=PART_Popup, Path=Background}"
-                        Height="{x:Static wpf:ComboBoxPopup.TopBottomMargin}"/>
+                        Height="{StaticResource PopupTopBottomMargin}"/>
                 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -134,20 +136,20 @@
 
                 <Border Grid.Row="2"
                         Background="{Binding ElementName=PART_Popup, Path=Background}"
-                        Height="{x:Static wpf:ComboBoxPopup.ContentPresenterExtend}"/>
+                        Height="{StaticResource PopupContentPresenterExtend}"/>
 
                 <ContentPresenter Grid.Row="3"/>
 
                 <Border Grid.Row="4"
                         CornerRadius="0 0 2 2"
-                        Height="{x:Static wpf:ComboBoxPopup.TopBottomMargin}"
+                        Height="{StaticResource PopupTopBottomMargin}"
                         Background="{Binding ElementName=PART_Popup, Path=Background}" />
             </Grid>
         </Grid>
     </ControlTemplate>
     
     <ControlTemplate x:Key="PopupContentDefaultTemplate" TargetType="ContentControl">
-        <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter={x:Static wpf:ComboBoxPopup.LeftRightMargin}}"
+        <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
               Margin="6">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -169,13 +171,13 @@
                 <Border Grid.Row="0"
                         CornerRadius="2 2 0 0"
                         Background="{Binding ElementName=PART_Popup, Path=Background}"
-                        Height="{x:Static wpf:ComboBoxPopup.TopBottomMargin}"/>
+                        Height="{StaticResource PopupTopBottomMargin}"/>
 
                 <ContentPresenter Grid.Row="1"/>
 
                 <Border Grid.Row="2"
                         CornerRadius="0 0 2 2"
-                        Height="{x:Static wpf:ComboBoxPopup.TopBottomMargin}"
+                        Height="{StaticResource PopupTopBottomMargin}"
                         Background="{Binding ElementName=PART_Popup, Path=Background}" />
             </Grid>
         </Grid>
