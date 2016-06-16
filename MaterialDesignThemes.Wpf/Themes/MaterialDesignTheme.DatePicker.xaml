@@ -70,6 +70,7 @@
                                 <Condition Property="IsKeyboardFocused" Value="True" />
                             </MultiTrigger.Conditions>
                             <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

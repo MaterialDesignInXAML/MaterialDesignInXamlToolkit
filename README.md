@@ -2,16 +2,17 @@
 
 Comphrehensive and easy to use Material Design theme and control library for the Windows desktop.
 
-![Alt text](web/images/MashUp.gif "Material Design Demo")
+![Alt text](web/images/screen-home.png "Material Design Demo")
 
-###### [More pics below](#MorePics)
+###### [More screenshots below](#Screenshots)
 
 # ![Alt text](web/images/MD4XAML28.png "Summary") Summary
 
  * Material Design styles for all major WPF Framework controls
- * Additional controls to support the theme, including Multi Action Button, Cards, Dialogs
+ * Additional controls to support the theme, including Multi Action Button, Cards, Dialogs, Clock
  * Easy configuration of palette (at design _and_ runtime), according to [Google's guidelines](http://www.google.co.uk/design/spec/style/color.html#color-ui-color-application)
  * Full [Material Design Icons](https://materialdesignicons.com/) icon pack
+ * Easy transition effects
  * Compatible with [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro)
  * Demo applications included in the source project
 
@@ -21,17 +22,20 @@ Comphrehensive and easy to use Material Design theme and control library for the
 [![NuGet-Themes](https://img.shields.io/nuget/dt/MaterialDesignColors.svg?label=NuGet-Colors&style=flat-square)](https://www.nuget.org/packages/MaterialDesignColors/)
 [![Issues](https://img.shields.io/github/issues/ButchersBoy/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues)
 [![Twitter](https://img.shields.io/badge/twitter-%40james__willock-55acee.svg?style=flat-square)](https://twitter.com/James_Willock)
-
-# ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Source Code
-To load the source project you will need Visual Studio 2015.  Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (see below).  There are two demo projects in the solution, restore the NuGet packages and fire them both up.  One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
-
+ 
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") How Can I Use The Themes?
 
-* Install [NuGet package](https://www.nuget.org/packages/MaterialDesignThemes/) ```Install-Package MaterialDesignThemes```
-* Configure App.xaml according to the [example](MainDemo.Wpf/App.xaml)
-* For more information see the [Get Started guide](http://materialdesigninxaml.net/#getStarted)
-* Check out the [wiki](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki)
-* Watch the [introduction video](https://youtu.be/-n5yeEOsbCk)
+* Checkout the [Super Quick Start](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Super-Quick-Start)
+* Or, the more comprehensive [Starting Guide](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Getting-Started) guide.
+
+# ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Source Code
+To load the source project you will need Visual Studio 2015.  Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (``` Install-Package MaterialDesignThemes ```).  There are two demo projects in the solution, restore the NuGet packages and fire them both up.  One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
+
+# ![Alt text](web/images/MD4XAML28.png "In Action") See It Action
+
+* Download the source and run the demo.
+* Checkout [F1ix](http://materialdesigninxaml.net/f1ix).
+* Checkout [Motion List](https://github.com/MaterialDesignInXAML/MotionList).
 
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
@@ -51,23 +55,36 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 * Ignace Maes, whose [Material Skin](https://github.com/IgnaceMaes/MaterialSkin) project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
 * **[Contributors!](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)**  Thanks for the PRs which have helped add some extra polish.  
 
-# <a name="MorePics"></a>![Alt text](web/images/MD4XAML28.png "More Pics") More Pics
+# <a name="Screenshots"></a>![Alt text](web/images/MD4XAML28.png "Screenshots") Screenshots
 
-![Alt text](web/images/ClockDemo.gif "Clock Demo")
+![Alt text](web/images/screen-buttons.png "Buttons")
 
-![Alt text](web/images/MultiFloatingActionButton.gif "Floating Action Button")
+![Alt text](web/images/screen-fields.png "Fields")
 
-![Alt text](web/images/DatePicker.gif "Date Picker & Calendar")
+![Alt text](web/images/screen-palette.png "Palette")
 
-![Alt text](web/images/Cards.png "Cards")
+![Alt text](web/images/screen-pickers.png "Pickers")
 
-![Alt text](web/images/FieldsDemo.gif "Fields Demo")
+![Alt text](web/images/screen-iconpack.png "Icons")
 
-![Alt text](web/images/MenusDemo.jpg "Menus")
+![Alt text](web/images/screen-cards.png "Cards")
 
-![Alt text](web/images/Dialogs.gif "Dialogs")
+![Alt text](web/images/screen-menutoolbar.png "Menus and Toolbars")
 
-![Alt text](web/images/SliderDemo.gif "Sliders")
+![Alt text](web/images/screen-progress.png "Progress Bars")
 
-![Alt text](https://dragablz.files.wordpress.com/2015/02/materialdesigndemo23.png "Material Design Themes")
+![Alt text](web/images/screen-dialogs.png "Dialogs")
 
+![Alt text](web/images/screen-lists.png "Lists")
+
+![Alt text](web/images/screen-treeview.png "Tree View")
+
+![Alt text](web/images/screen-progress.png "Progress Bars")
+
+![Alt text](web/images/screen-sliders.png "Sliders")
+
+![Alt text](web/images/screen-typography.png "Typography")
+
+![Alt text](web/images/screen-groupbox.png "Group Box")
+
+![Alt text](web/images/screen-shadows.png "Shadows")

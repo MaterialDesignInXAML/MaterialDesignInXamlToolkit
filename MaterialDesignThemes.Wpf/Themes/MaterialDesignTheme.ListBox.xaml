@@ -76,7 +76,7 @@
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
                                                              Storyboard.TargetProperty="Opacity"
-                                                             To="0" Duration="1"/>
+                                                             To="0" Duration="0"/>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
