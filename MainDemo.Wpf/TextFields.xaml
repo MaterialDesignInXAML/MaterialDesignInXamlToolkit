@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
              xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
              mc:Ignorable="d"               
              d:DesignHeight="300" d:DesignWidth="600" Loaded="UserControl_Loaded"
@@ -225,5 +224,19 @@
                 </domain1:SimpleDataTemplateSelector>
             </ContentControl.ContentTemplateSelector>
         </ContentControl>
+        <TextBlock Grid.Row="7" Grid.Column="4" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+                   Margin="0 48 0 0">Tight Space Validation</TextBlock>
+        <TextBox Grid.Row="8" Grid.Column="4" Width="20"
+                 materialDesign:ValidationAssist.UsePopup="True"
+                 HorizontalAlignment="Left"
+                 ToolTip="Use a popup which can escape the bounds of the control where space is limited">
+            <TextBox.Text>
+                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
     </Grid>
 </UserControl>

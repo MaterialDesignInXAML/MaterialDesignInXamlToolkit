@@ -280,7 +280,7 @@
                 </ToggleButton>
             </StackPanel>
 
-            <ListBox Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignToolToggleListBox}">
+            <ListBox Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignToolToggleListBox}" SelectedIndex="0">
                 <ListBox.ToolTip>
                     <StackPanel>
                         <TextBlock Text="MaterialDesignToolToggleListBox" />

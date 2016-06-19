@@ -526,7 +526,7 @@
                                     <DoubleAnimation Storyboard.TargetName="CurrentDateTextBlock"
                                                      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                                      EasingFunction="{StaticResource EasingFunction}"
-                                                     AccelerationRatio="0.1" DecelerationRatio="0.9"
+                                                     AccelerationRatio="0.1" DecelerationRatio="0.89"
                                                      From="240" To="0" Duration="0:0:0.450"/>
 
                                     <DoubleAnimation Storyboard.TargetName="PART_MonthViewCopy"
@@ -536,12 +536,12 @@
                                     <DoubleAnimation Storyboard.TargetName="PART_MonthViewCopy"
                                                      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                                      From="0" To="-270" Duration="0:0:0.450"
-                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.69"/>
 
                                     <DoubleAnimation Storyboard.TargetName="PART_MonthView"
                                                      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                                      From="270" To="0" Duration="0:0:0.450"
-                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.69"/>
 
                                     <DoubleAnimation Storyboard.TargetName="PART_YearViewCopy"
                                                      Storyboard.TargetProperty="(UIElement.Opacity)"
@@ -550,12 +550,12 @@
                                     <DoubleAnimation Storyboard.TargetName="PART_YearViewCopy"
                                                      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                                      From="0" To="-240" Duration="0:0:0.450"
-                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.69"/>
 
                                     <DoubleAnimation Storyboard.TargetName="PART_YearView"
                                                      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                                      From="240" To="0" Duration="0:0:0.450"
-                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.69"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -565,7 +565,7 @@
                                     <DoubleAnimation Storyboard.TargetName="CurrentDateTextBlock"
                                                      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                                      EasingFunction="{StaticResource EasingFunction}"
-                                                     AccelerationRatio="0.1" DecelerationRatio="0.9"
+                                                     AccelerationRatio="0.1" DecelerationRatio="0.89"
                                                      From="-240" To="0" Duration="0:0:0.450"/>
 
                                     <DoubleAnimation Storyboard.TargetName="PART_MonthViewCopy"
@@ -575,12 +575,12 @@
                                     <DoubleAnimation Storyboard.TargetName="PART_MonthViewCopy"
                                                      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                                      From="0" To="270" Duration="0:0:0.450"
-                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.69"/>
 
                                     <DoubleAnimation Storyboard.TargetName="PART_MonthView"
                                                      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                                      From="-270" To="0" Duration="0:0:0.450"
-                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.69"/>
 
                                     <DoubleAnimation Storyboard.TargetName="PART_YearViewCopy"
                                                      Storyboard.TargetProperty="(UIElement.Opacity)"
@@ -589,12 +589,12 @@
                                     <DoubleAnimation Storyboard.TargetName="PART_YearViewCopy"
                                                      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                                      From="0" To="240" Duration="0:0:0.450"
-                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.69"/>
 
                                     <DoubleAnimation Storyboard.TargetName="PART_YearView"
                                                      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                                      From="-240" To="0" Duration="0:0:0.450"
-                                                     AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+                                                     AccelerationRatio="0.3" DecelerationRatio="0.69"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
