@@ -4,8 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MaterialDesignDemo"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600" Background="Transparent">
+    <UserControl.Resources>
+        <Border x:Key="dialogContent" Margin="8">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="So you clicked on the button. Did you really got it?" />
+                <Button Content="OK" Margin="0,16,0,0" IsDefault="True" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" />
+            </StackPanel>
+        </Border>
+    </UserControl.Resources>
     <Grid>
         <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
             <Grid>
@@ -13,18 +22,27 @@
                     <ColumnDefinition Width="250" />
                     <ColumnDefinition Width="250" />
                     <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="16" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="100*" />
                 </Grid.RowDefinitions>
-                <TextBlock Margin="8,0" Text="Click the button to show a simple Snackbar." TextWrapping="WrapWithOverflow" />
+                <TextBlock Margin="8,0" Text="Click the button to show a simple Snackbar by setting the Content property." TextWrapping="WrapWithOverflow" />
                 <Button Grid.Row="2" Content="SHOW" Width="80" Click="ShowSimpleSnackbarButtonClickHandler" />
-                <TextBlock Grid.Column="1" Margin="8,0" Text="This button shows a Snackbar with an action. The action will show another Snackbar after a short delay." TextWrapping="WrapWithOverflow" />
+                <TextBlock Grid.Column="1" Margin="8,0" Text="This button shows a Snackbar with an action by setting the ActionLabel Property. The action will show another Snackbar after a short delay." TextWrapping="WrapWithOverflow" />
                 <Button Grid.Column="1" Grid.Row="2" Content="SHOW" Width="80" Click="ShowSnackbarButtonClickHandler" />
                 <TextBlock Grid.Column="2" Margin="8,0" Text="A click on the button shows a multiline Snackbar." TextWrapping="WrapWithOverflow" />
                 <Button Grid.Column="2" Grid.Row="2" Content="SHOW" Width="80" Click="ShowMultilineSnackbarButtonClickHandler" />
+                <TextBlock Grid.Column="3" Margin="8,0" Text="By setting the Mode property to Manual you have the full control over the visibility. You just need to set the IsOpen property. Have a look in the XAML." TextWrapping="WrapWithOverflow" />
+                <ToggleButton Grid.Column="3" Grid.Row="2" x:Name="manualToggle" HorizontalAlignment="Center" />
+                
+                <materialDesign:Snackbar Grid.ColumnSpan="3" Grid.Row="4" x:Name="snackbar" Mode="HalfAutomatic" ActionClick="SnackbarActionClickHandler" />
+                <!-- properties will be set in the order in the xaml, so set the Mode property first for the manual mode -->
+                <materialDesign:Snackbar Grid.Column="3" Grid.Row="4" x:Name="manualSnackbar" Mode="Manual" Content="This is a manually controlled Snackbar." IsOpen="{Binding Path=IsChecked}" />
             </Grid>
         </ScrollViewer>
     </Grid>

@@ -15,8 +15,14 @@ namespace MaterialDesignThemes.Wpf.Converters
         
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
-            double value1, value2;
-            if (Double.TryParse(value[0].ToString(), out value1) && Double.TryParse(value[1].ToString(), out value2))
+            if (value == null || value.Length != 2 || value[0]==null || value[1] == null)
+            {
+                return 0.0;
+            }
+
+            double value1, value2 = 0.0;
+
+            if (double.TryParse(value[0].ToString(), out value1) && double.TryParse(value[1].ToString(), out value2))
             {
                 switch (Operation)
                 {

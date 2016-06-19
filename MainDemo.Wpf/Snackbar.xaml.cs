@@ -19,31 +19,70 @@ namespace MaterialDesignColors.WpfExample
 {
     public partial class Snackbar : UserControl
     {
+        private enum SnackbarDemoMode
+        {
+            Simple,
+            ShowSecondAfterDelay,
+            Multiline
+        }
+
+        private SnackbarDemoMode? _mode;
+
         public Snackbar()
         {
+            _mode = null;
+
             InitializeComponent();
+
+            manualSnackbar.DataContext = manualToggle;
         }
 
-        private async void ShowSimpleSnackbarButtonClickHandler(object sender, RoutedEventArgs args)
+        private void ShowSimpleSnackbarButtonClickHandler(object sender, RoutedEventArgs args)
         {
-            await SnackbarHost.ShowAsync("RootSnackbarHost", "This is a simple Snackbar.");
+            _mode = SnackbarDemoMode.Simple;
+
+            snackbar.ActionLabel = null;
+            snackbar.VisibilityTimeout = 3000;
+
+            // .NET caches and reuses string constants
+            //     without explicitly create a new string object, calling the setter will not raise a property changed after the second call
+            //     (reference to same string in memory)
+            snackbar.Content = new string("This is a simple Snackbar.".ToCharArray());
         }
 
-        private async void ShowSnackbarButtonClickHandler(object sender, RoutedEventArgs args)
+        private void ShowSnackbarButtonClickHandler(object sender, RoutedEventArgs args)
         {
-            await SnackbarHost.ShowAsync("RootSnackbarHost", "Hello from the Snackbar!", new SnackbarAction("HELLO", async (object s, RoutedEventArgs a) => {
+            _mode = SnackbarDemoMode.ShowSecondAfterDelay;
+
+            snackbar.ActionLabel = "HELLO";
+            snackbar.VisibilityTimeout = 3000;
+            snackbar.Content = new string("Hello from the Snackbar!".ToCharArray());
+        }
+
+        private void ShowMultilineSnackbarButtonClickHandler(object sender, RoutedEventArgs args)
+        {
+            _mode = SnackbarDemoMode.Multiline;
+
+            snackbar.ActionLabel = "GOT IT";
+            snackbar.VisibilityTimeout = 6000;
+            snackbar.Content = new string("The specs says that the maximum with should be 568dp. However there sould be at most only two lines of text.".ToCharArray());
+        }
+
+        private async void SnackbarActionClickHandler(object sender, RoutedEventArgs args)
+        {
+            if (_mode == SnackbarDemoMode.Simple || _mode == SnackbarDemoMode.Multiline)
+            {
+                await DialogHost.Show(Resources["dialogContent"], "RootDialog");
+            }
+            else if (_mode == SnackbarDemoMode.ShowSecondAfterDelay)
+            {
                 await Task.Delay(2000);
 
-                await SnackbarHost.ShowAsync("RootSnackbarHost", "A second hello from the Snackbar!", new SnackbarAction("BYE"));
-            }));
-        }
+                _mode = null;
 
-        private async void ShowMultilineSnackbarButtonClickHandler(object sender, RoutedEventArgs args)
-        {
-            await SnackbarHost.ShowAsync(
-                    "RootSnackbarHost",
-                    "The specs says that the maximum with should be 568dp. However there sould be at most only two lines of text.",
-                    new SnackbarAction("GOT IT"));
+                snackbar.ActionLabel = "BYE";
+                snackbar.Content = new string("A second hello from the Snackbar!".ToCharArray());
+            }
         }
     }
 }

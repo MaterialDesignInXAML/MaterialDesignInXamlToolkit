@@ -292,9 +292,6 @@
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Snackbar.cs" />
-    <Compile Include="SnackbarAction.cs" />
-    <Compile Include="SnackbarActionEventHandler.cs" />
-    <Compile Include="SnackbarHost.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
     <Compile Include="Transitions\IndexedItemOffsetMultiplierExtension.cs" />
