@@ -238,6 +238,7 @@
     <Compile Include="ClockItemButton.cs" />
     <Compile Include="ColorZone.cs" />
     <Compile Include="ColorZoneAssist.cs" />
+    <Compile Include="ComboBoxAssist.cs" />
     <Compile Include="ComboBoxPopup.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BrushRoundConverter.cs" />

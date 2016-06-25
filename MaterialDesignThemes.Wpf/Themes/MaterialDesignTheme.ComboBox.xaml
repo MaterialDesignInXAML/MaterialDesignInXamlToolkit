@@ -554,6 +554,9 @@
             </Trigger>
             <Trigger Property="IsEditable" Value="true">
                 <Setter Property="IsTabStop" Value="false" />
+                <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True"/>
+            </Trigger>
+            <Trigger Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True">
                 <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
             </Trigger>
         </Style.Triggers>
