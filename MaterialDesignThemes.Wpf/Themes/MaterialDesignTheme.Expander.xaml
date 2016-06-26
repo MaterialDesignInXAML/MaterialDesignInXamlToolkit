@@ -299,7 +299,10 @@
                                             <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
                                         </MultiBinding>
                                     </StackPanel.Width>
-                                    <ContentPresenter Name="PART_Content" Focusable="False"/>
+                                    <ContentPresenter Name="PART_Content" Focusable="False"
+                                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                      ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                      ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
                                 </StackPanel>
                             </Border>
                         </DockPanel>
