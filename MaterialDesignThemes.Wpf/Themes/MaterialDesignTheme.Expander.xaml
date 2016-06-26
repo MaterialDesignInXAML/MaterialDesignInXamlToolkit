@@ -6,6 +6,8 @@
 
     <converters:MathMultipleConverter x:Key="MathMlpMultipleConverter" Operation="Multiply" />
 
+
+
     <Style x:Key="MaterialDesignExpanderToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="Width" Value="16"/>
         <Setter Property="Height" Value="16"/>
@@ -90,15 +92,119 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignExpanderHeaderToggleButton" TargetType="{x:Type ToggleButton}">
+    <Style x:Key="MaterialDesignRightHeaderStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Margin" Value="16,0,0,0" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <ToggleButton Grid.Row="0"
+                                      HorizontalAlignment="Left"
+                                      IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                      Style="{StaticResource MaterialDesignExpanderToggleButton}"
+                                      RenderTransformOrigin="0.5,0.5">
+                            <ToggleButton.RenderTransform>
+                                <RotateTransform Angle="90"/>
+                            </ToggleButton.RenderTransform>
+                        </ToggleButton>
+                        <ContentPresenter Grid.Row="1"
+                                          HorizontalAlignment="Center"
+                                          Content="{TemplateBinding Content}" VerticalAlignment="Top" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignLeftHeaderStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <ToggleButton Grid.Row="0"
+                                      HorizontalAlignment="Left"
+                                      IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                      Style="{StaticResource MaterialDesignExpanderToggleButton}"
+                                      RenderTransformOrigin="0.5,0.5">
+                            <ToggleButton.RenderTransform>
+                                <RotateTransform Angle="-90"/>
+                            </ToggleButton.RenderTransform>
+                        </ToggleButton>
+                        <ContentPresenter Grid.Row="1"
+                                          HorizontalAlignment="Center"
+                                          Content="{TemplateBinding Content}" VerticalAlignment="Top" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignDownHeaderStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Margin="16 0 16 0">
+                            <ToggleButton Grid.Column="0"
+                                          VerticalAlignment="Center"
+                                          IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Style="{StaticResource MaterialDesignExpanderToggleButton}"/>
+                        </Grid>
+                        <ContentPresenter Grid.Column="1"
+                                          Content="{TemplateBinding Content}"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignUpHeaderStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Margin="16 0 16 0">
+                            <ToggleButton IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          VerticalAlignment="Center"
+                                          Style="{StaticResource MaterialDesignExpanderToggleButton}"
+                                          RenderTransformOrigin="0.5,0.5">
+                                <ToggleButton.RenderTransform>
+                                    <RotateTransform Angle="-180"/>
+                                </ToggleButton.RenderTransform>
+                            </ToggleButton>
+                        </Grid>
+                        <ContentPresenter Grid.Column="1"
+                                          VerticalAlignment="Center"
+                                          Content="{TemplateBinding Content}" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -110,7 +216,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
-                    <Grid>
+                    <Grid HorizontalAlignment="Left">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ExpansionStates">
                                 <VisualStateGroup.Transitions>
@@ -163,41 +269,76 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid.RowDefinitions>
-                            <RowDefinition MinHeight="25" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Border BorderThickness="0" Cursor="Hand">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="16" />
-                                    <ColumnDefinition Width="100*" />
-                                </Grid.ColumnDefinitions>
-                                <ToggleButton IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                              OverridesDefaultStyle="True"
-                                              Style="{StaticResource MaterialDesignExpanderToggleButton}" />
-                                <ToggleButton Grid.Column="1"
-                                              IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                              Style="{StaticResource MaterialDesignExpanderHeaderToggleButton}">
-                                    <ContentPresenter ContentSource="Header" HorizontalAlignment="Stretch" RecognizesAccessKey="True" VerticalAlignment="Top" />
-                                </ToggleButton>
-                            </Grid>
-                        </Border>
-                        <Border Grid.Row="1">
-                            <StackPanel x:Name="ContentPanel">
-                                <StackPanel.Tag>
-                                    <system:Double>0.0</system:Double>
-                                </StackPanel.Tag>
-                                <StackPanel.Height>
-                                    <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
-                                        <Binding ElementName="PART_Content" Path="ActualHeight"/>
-                                        <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
-                                    </MultiBinding>
-                                </StackPanel.Height>
-                                <ContentPresenter Name="PART_Content" />
-                            </StackPanel>
-                        </Border>
+                        <DockPanel>
+                            <ToggleButton Name="HeaderSite"
+                                          DockPanel.Dock="Top"
+                                          BorderThickness="0" Cursor="Hand"
+                                          MinHeight="25"
+                                          IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Style="{StaticResource MaterialDesignDownHeaderStyle}"
+                                          Content="{TemplateBinding Header}"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                                          ContentStringFormat="{TemplateBinding HeaderStringFormat}"/>
+                            <Border Name="ContentSite"
+                                    DockPanel.Dock="Bottom">
+                                <StackPanel Name="ContentPanel"
+                                            HorizontalAlignment="Left">
+                                    <StackPanel.Tag>
+                                        <system:Double>0.0</system:Double>
+                                    </StackPanel.Tag>
+                                    <StackPanel.Height>
+                                        <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
+                                            <Binding ElementName="PART_Content" Path="ActualHeight"/>
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
+                                        </MultiBinding>
+                                    </StackPanel.Height>
+                                    <StackPanel.Width>
+                                        <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
+                                            <Binding ElementName="PART_Content" Path="ActualWidth"/>
+                                            <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
+                                        </MultiBinding>
+                                    </StackPanel.Width>
+                                    <ContentPresenter Name="PART_Content" Focusable="False"/>
+                                </StackPanel>
+                            </Border>
+                        </DockPanel>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ExpandDirection" Value="Right">
+                            <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Left"/>
+                            <Setter Property="DockPanel.Dock" TargetName="ContentSite" Value="Right"/>
+                            <Setter Property="Orientation" TargetName="ContentPanel" Value="Horizontal"/>
+                            <!--Setter Property="MinWidth" TargetName="ContentSite" Value="{Binding ElementName=PART_Content, Path=ActualWidth}"/-->
+                            <Setter Property="Height" TargetName="ContentPanel" Value="Auto"/>
+                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignRightHeaderStyle}"/>
+                        </Trigger>
+
+                        <Trigger Property="ExpandDirection" Value="Left">
+                            <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Right"/>
+                            <Setter Property="DockPanel.Dock" TargetName="ContentSite" Value="Left"/>
+                            <Setter Property="Orientation" TargetName="ContentPanel" Value="Horizontal"/>
+                            <Setter Property="Height" TargetName="ContentPanel" Value="Auto"/>
+                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignLeftHeaderStyle}"/>
+                        </Trigger>
+
+                        <Trigger Property="ExpandDirection" Value="Up">
+                            <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Bottom"/>
+                            <Setter Property="DockPanel.Dock" TargetName="ContentSite" Value="Top"/>
+                            <!--Setter Property="MinHeight" TargetName="ContentSite" Value="{Binding ElementName=PART_Content, Path=ActualHeight}"/-->
+                            <Setter Property="Orientation" TargetName="ContentPanel" Value="Vertical"/>
+                            <Setter Property="Width" TargetName="ContentPanel" Value="Auto"/>
+                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignUpHeaderStyle}"/>
+                        </Trigger>
+
+                        <Trigger Property="ExpandDirection" Value="Down">
+                            <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Top"/>
+                            <Setter Property="DockPanel.Dock" TargetName="ContentSite" Value="Bottom"/>
+                            <Setter Property="Orientation" TargetName="ContentPanel" Value="Vertical"/>
+                            <Setter Property="Width" TargetName="ContentPanel" Value="Auto"/>
+                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignDownHeaderStyle}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
