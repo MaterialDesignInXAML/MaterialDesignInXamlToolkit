@@ -29,7 +29,7 @@
                                             <DoubleAnimation Storyboard.TargetName="SimpleHintTextBlock" Storyboard.TargetProperty="Opacity"
                                                              Duration="0:0:0" To="0" />
                                             <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="Opacity"
-                                                             Duration="0:0:0.3" To="1"
+                                                             Duration="0:0:0.3" To="{TemplateBinding HintOpacity}"
                                                              EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                             <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
                                                              Duration="0:0:0.3" To=".74"
@@ -73,7 +73,7 @@
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SimpleHintTextBlock"
                                                          Duration="0" To="0" />
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FloatingHintTextBlock"
-                                                         Duration="0" To="1" />
+                                                         Duration="0" To="{TemplateBinding HintOpacity}" />
                                         <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
                                                          Duration="0" To=".74" />
                                         <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
