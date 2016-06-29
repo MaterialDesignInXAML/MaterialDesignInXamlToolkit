@@ -604,7 +604,7 @@
                                 </ResourceDictionary>
                             </controlzEx:PopupEx.Resources>
                             <local:Card x:Name="PART_PopupContentElement" 
-                                        Margin="22"
+                                        Margin="{TemplateBinding DialogMargin}"
                                         local:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth)}"
                                         UniformCornerRadius="4"
                                         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
