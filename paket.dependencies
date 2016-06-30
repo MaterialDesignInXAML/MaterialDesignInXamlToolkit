@@ -2,7 +2,7 @@ source https://nuget.org/api/v2
 framework >= net45
 
 nuget MahApps.Metro ~> 1.2.4
-nuget Dragablz 0.0.3.151
+nuget Dragablz 0.0.3.165
 nuget Moq 4.2.1510.2205 framework: = net452
 nuget NSubstitute 1.9.2.0 framework: = net452
 nuget RhinoMocks 3.6.1 framework: = net452

@@ -1,7 +1,7 @@
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
-    Dragablz (0.0.3.151)
+    Dragablz (0.0.3.165)
     MahApps.Metro (1.2.4)
     Moq (4.2.1510.2205) - framework: net452
     NSubstitute (1.9.2) - framework: net452
