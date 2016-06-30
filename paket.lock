@@ -1,12 +1,14 @@
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
+    Castle.Core (3.3.3) - framework: net452
     Dragablz (0.0.3.165)
     MahApps.Metro (1.2.4)
-    Moq (4.2.1510.2205) - framework: net452
-    NSubstitute (1.9.2) - framework: net452
+    Moq (4.5.10) - framework: net452
+      Castle.Core (>= 3.3.3)
+    NSubstitute (1.10) - framework: net452
     RhinoMocks (3.6.1) - framework: net452
-    Shouldly (2.5) - framework: net452
+    Shouldly (2.8) - framework: net452
     xunit (2.1) - framework: net452
       xunit.assert (2.1)
       xunit.core (2.1)
