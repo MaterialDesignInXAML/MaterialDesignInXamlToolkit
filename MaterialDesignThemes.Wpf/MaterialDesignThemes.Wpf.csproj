@@ -48,7 +48,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\PackIconBase.cs">
-      <Link>ControlzEx\PackIconBase.cs</Link>
+      <Paket>True</Paket>
+      <Link>ControlzEx/PackIconBase.cs</Link>
     </Compile>
     <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\PopupEx.cs">
       <Paket>True</Paket>
@@ -347,6 +348,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="paket.references" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
