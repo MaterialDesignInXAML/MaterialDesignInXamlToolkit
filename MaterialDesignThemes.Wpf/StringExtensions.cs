@@ -9,9 +9,9 @@ namespace MaterialDesignThemes.Wpf
 {
     internal static class StringExtensions
     {
-        public static string ToTitleCase(this string text, string separator = " ")
+        public static string ToTitleCase(this string text, CultureInfo culture, string separator = " ")
         {
-            TextInfo textInfo = CultureInfo.CurrentUICulture.TextInfo;
+            TextInfo textInfo = culture.TextInfo;
 
             string lowerText = textInfo.ToLower(text);
             string[] words = lowerText.Split(new[] { separator }, StringSplitOptions.None);

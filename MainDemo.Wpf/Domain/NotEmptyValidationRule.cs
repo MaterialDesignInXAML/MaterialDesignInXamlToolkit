@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Controls;
 
-namespace MaterialDesignDemo
+namespace MaterialDesignDemo.Domain
 {
 	public class NotEmptyValidationRule : ValidationRule
 	{

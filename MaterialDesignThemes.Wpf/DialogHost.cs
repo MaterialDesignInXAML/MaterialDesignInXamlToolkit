@@ -156,9 +156,7 @@ namespace MaterialDesignThemes.Wpf
         public static Task<object> Show(object content, object dialogIdentifier, DialogClosingEventHandler closingEventHandler)
         {
             return Show(content, dialogIdentifier, null, closingEventHandler);
-        }
-
-        #endregion
+        }        
 
         /// <summary>
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -181,28 +179,36 @@ namespace MaterialDesignThemes.Wpf
                 throw new InvalidOperationException("No loaded DialogHost have an Identifier property matching dialogIndetifier argument.");
             if (targets.Count > 1)
                 throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
-            if (targets[0].IsOpen)
+
+            return await targets[0].ShowInternal(content, openedEventHandler, closingEventHandler);
+        }
+
+        internal async Task<object> ShowInternal(object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
+        {
+            if (IsOpen)
                 throw new InvalidOperationException("DialogHost is already open.");
 
-            targets[0].AssertTargetableContent();
-            targets[0].DialogContent = content;
-            targets[0]._asyncShowOpenedEventHandler = openedEventHandler;
-            targets[0]._asyncShowClosingEventHandler = closingEventHandler;
-            targets[0].SetCurrentValue(IsOpenProperty, true);
+            AssertTargetableContent();
+            DialogContent = content;
+            _asyncShowOpenedEventHandler = openedEventHandler;
+            _asyncShowClosingEventHandler = closingEventHandler;
+            SetCurrentValue(IsOpenProperty, true);
 
             var task = new Task(() =>
             {
-                targets[0]._asyncShowWaitHandle.WaitOne();
+                _asyncShowWaitHandle.WaitOne();
             });
             task.Start();
 
             await task;
 
-            targets[0]._asyncShowOpenedEventHandler = null;
-            targets[0]._asyncShowClosingEventHandler = null;
+            _asyncShowOpenedEventHandler = null;
+            _asyncShowClosingEventHandler = null;
 
-            return targets[0]._closeDialogExecutionParameter;
+            return _closeDialogExecutionParameter;
         }
+
+        #endregion
 
         public DialogHost()
         {
@@ -231,8 +237,9 @@ namespace MaterialDesignThemes.Wpf
         private static void IsOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var dialogHost = (DialogHost)dependencyObject;
-
-            ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
+            
+            if (dialogHost._popupContentControl != null)
+                ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
             VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
             if (dialogHost.IsOpen)
@@ -266,17 +273,13 @@ namespace MaterialDesignThemes.Wpf
 
             dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                var child = dialogHost._popup?.Child;
-                if (child == null) return;
-
-                child.Focus();
-                child.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                var child = dialogHost.FocusPopup();
 
                 //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
                 //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
-                Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));                
+                Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));
             }));
-        }        
+        }
 
         public bool IsOpen
         {
@@ -318,6 +321,15 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (string) GetValue(DialogContentStringFormatProperty); }
             set { SetValue(DialogContentStringFormatProperty, value); }
+        }
+
+        public static readonly DependencyProperty DialogMarginProperty = DependencyProperty.Register(
+            "DialogMargin", typeof(Thickness), typeof(DialogHost), new PropertyMetadata(default(Thickness)));
+
+        public Thickness DialogMargin
+        {
+            get { return (Thickness) GetValue(DialogMarginProperty); }
+            set { SetValue(DialogMarginProperty, value); }
         }
 
         public static readonly DependencyProperty OpenDialogCommandDataContextSourceProperty = DependencyProperty.Register(
@@ -512,6 +524,20 @@ namespace MaterialDesignThemes.Wpf
             _closeDialogExecutionParameter = parameter;
         }
 
+        /// <summary>
+        /// Attempts to focus the content of a popup.
+        /// </summary>
+        /// <returns>The popup content.</returns>
+        internal UIElement FocusPopup()
+        {
+            var child = _popup?.Child;
+            if (child == null) return null;
+
+            child.Focus();
+            child.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+            return child;
+        }
+
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
         {
             var window = Window.GetWindow(this);
@@ -547,7 +573,7 @@ namespace MaterialDesignThemes.Wpf
                     {
                         case DialogHostOpenDialogCommandDataContextSource.SenderElement:
                             _popupContentControl.DataContext =
-                                (executedRoutedEventArgs.Parameter as FrameworkElement)?.DataContext;
+                                (executedRoutedEventArgs.OriginalSource as FrameworkElement)?.DataContext;
                             break;
                         case DialogHostOpenDialogCommandDataContextSource.DialogHostInstance:
                             _popupContentControl.DataContext = DataContext;

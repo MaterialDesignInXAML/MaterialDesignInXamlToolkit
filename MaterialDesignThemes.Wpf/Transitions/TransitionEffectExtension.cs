@@ -6,6 +6,11 @@ namespace MaterialDesignThemes.Wpf.Transitions
     [MarkupExtensionReturnType(typeof(TransitionEffectBase))]
     public class TransitionEffectExtension : MarkupExtension
     {
+        public TransitionEffectExtension()
+        {
+            Kind = TransitionEffectKind.None;
+        }
+
         public TransitionEffectExtension(TransitionEffectKind kind)
         {
             Kind = kind;

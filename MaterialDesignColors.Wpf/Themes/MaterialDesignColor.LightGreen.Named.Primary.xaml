@@ -11,13 +11,13 @@
   <Color x:Key="Light GreenPrimary400">#9ccc65</Color>
   <Color x:Key="Light GreenPrimary400Foreground">#DD000000</Color>
   <Color x:Key="Light GreenPrimary500">#8bc34a</Color>
-  <Color x:Key="Light GreenPrimary500Foreground">#FF000000</Color>
+  <Color x:Key="Light GreenPrimary500Foreground">#DD000000</Color>
   <Color x:Key="Light GreenPrimary600">#7cb342</Color>
-  <Color x:Key="Light GreenPrimary600Foreground">#FF000000</Color>
+  <Color x:Key="Light GreenPrimary600Foreground">#DD000000</Color>
   <Color x:Key="Light GreenPrimary700">#689f38</Color>
-  <Color x:Key="Light GreenPrimary700Foreground">#FF000000</Color>
+  <Color x:Key="Light GreenPrimary700Foreground">#FFFFFFFF</Color>
   <Color x:Key="Light GreenPrimary800">#558b2f</Color>
-  <Color x:Key="Light GreenPrimary800Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Light GreenPrimary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="Light GreenPrimary900">#33691e</Color>
-  <Color x:Key="Light GreenPrimary900Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Light GreenPrimary900Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

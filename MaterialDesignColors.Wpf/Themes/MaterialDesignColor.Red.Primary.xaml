@@ -9,13 +9,13 @@
   <Color x:Key="Primary300">#e57373</Color>
   <Color x:Key="Primary300Foreground">#DD000000</Color>
   <Color x:Key="Primary400">#ef5350</Color>
-  <Color x:Key="Primary400Foreground">#DD000000</Color>
+  <Color x:Key="Primary400Foreground">#DDFFFFFF</Color>
   <Color x:Key="Primary500">#f44336</Color>
-  <Color x:Key="Primary500Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Primary500Foreground">#DDFFFFFF</Color>
   <Color x:Key="Primary600">#e53935</Color>
-  <Color x:Key="Primary600Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Primary600Foreground">#DDFFFFFF</Color>
   <Color x:Key="Primary700">#d32f2f</Color>
-  <Color x:Key="Primary700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Primary700Foreground">#DDFFFFFF</Color>
   <Color x:Key="Primary800">#c62828</Color>
   <Color x:Key="Primary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="Primary900">#b71c1c</Color>

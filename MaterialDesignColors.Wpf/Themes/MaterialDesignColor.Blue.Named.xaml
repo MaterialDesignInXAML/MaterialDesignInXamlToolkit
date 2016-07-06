@@ -13,9 +13,9 @@
   <Color x:Key="BluePrimary500">#2196f3</Color>
   <Color x:Key="BluePrimary500Foreground">#FFFFFFFF</Color>
   <Color x:Key="BluePrimary600">#1e88e5</Color>
-  <Color x:Key="BluePrimary600Foreground">#FFFFFFFF</Color>
+  <Color x:Key="BluePrimary600Foreground">#DDFFFFFF</Color>
   <Color x:Key="BluePrimary700">#1976d2</Color>
-  <Color x:Key="BluePrimary700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="BluePrimary700Foreground">#DDFFFFFF</Color>
   <Color x:Key="BluePrimary800">#1565c0</Color>
   <Color x:Key="BluePrimary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="BluePrimary900">#0d47a1</Color>
@@ -25,7 +25,7 @@
   <Color x:Key="BlueAccent200">#448aff</Color>
   <Color x:Key="BlueAccent200Foreground">#FFFFFFFF</Color>
   <Color x:Key="BlueAccent400">#2979ff</Color>
-  <Color x:Key="BlueAccent400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="BlueAccent400Foreground">#DDFFFFFF</Color>
   <Color x:Key="BlueAccent700">#2962ff</Color>
-  <Color x:Key="BlueAccent700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="BlueAccent700Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

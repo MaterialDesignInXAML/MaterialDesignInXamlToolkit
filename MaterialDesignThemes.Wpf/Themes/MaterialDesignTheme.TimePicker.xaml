@@ -3,7 +3,11 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
-	<converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="MaterialDesignTheme.ValidationErrorTemplate.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
 	
 	<Style x:Key="MaterialDesignTimePicker" TargetType="{x:Type wpf:TimePicker}">
 		<Setter Property="VerticalAlignment" Value="Top"/>
@@ -13,27 +17,29 @@
 		<Setter Property="BorderThickness" Value="0 0 0 1"/>
 		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="IsTabStop" Value="False"/>
-        <Setter Property="wpf:TextFieldAssist.Hint" Value="Select time" />
+        <Setter Property="Margin" Value="0 12 0 0" />
+        <Setter Property="wpf:HintAssist.Hint" Value="Select time" />
 		<Setter Property="ClockStyle" Value="{DynamicResource MaterialDesignClock}" />
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
 		<Setter Property="ClockHostContentControlStyle">
 			<Setter.Value>
 				<Style TargetType="{x:Type ContentControl}">
 					<Style.Setters>
 						<Setter Property="Template">
 							<Setter.Value>
-								<ControlTemplate TargetType="{x:Type ContentControl}">
-                    <AdornerDecorator>
-                        <!-- warning, this will cache the inner item as well, consider separating the shadow from the item if possible -->
-                        <AdornerDecorator.CacheMode>
-                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                        </AdornerDecorator.CacheMode>
+                                <ControlTemplate TargetType="{x:Type ContentControl}">
+                                    <AdornerDecorator>
+                                        <!-- warning, this will cache the inner item as well, consider separating the shadow from the item if possible -->
+                                        <AdornerDecorator.CacheMode>
+                                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                        </AdornerDecorator.CacheMode>
 
-                        <Border Effect="{DynamicResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
-                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
-									      </Border>
-                    </AdornerDecorator>
-								</ControlTemplate>
-							</Setter.Value>
+                                        <Border Effect="{DynamicResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
+                                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
+                                        </Border>
+                                    </AdornerDecorator>
+                                </ControlTemplate>
+                            </Setter.Value>
 						</Setter>
 					</Style.Setters>
 				</Style>
@@ -47,13 +53,24 @@
 							<Grid>
 								<ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"											  
 											  />
-								<TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
-										   Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
-										   x:Name="Hint"
-                                           IsHitTestVisible="False"
-										   Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <wpf:SmartHint x:Name="Hint"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                               Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                               HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                               HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
 							</Grid>
-						</ControlTemplate>
+                            <ControlTemplate.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
+                                        <Condition Property="IsKeyboardFocused" Value="True" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                    <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
+                                </MultiTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
 						<ControlTemplate x:Key="DropDownButtonTemplate" TargetType="{x:Type Button}">
 							<Grid Background="Transparent">
 								<VisualStateManager.VisualStateGroups>
@@ -90,7 +107,7 @@
 						    		<ColumnDefinition Width="Auto" />
 						    	</Grid.ColumnDefinitions>							
 						    	<TextBox BorderThickness="0" x:Name="PART_TextBox"											 									 
-						    			 wpf:TextFieldAssist.TextBoxViewMargin="1 0 0 0"
+						    			 wpf:TextFieldAssist.TextBoxViewMargin=".5 0 0 0"
 						    			 Margin="0"                                     
 						    			 Template="{StaticResource TextBoxTemplate}"									 
 						    			 />
@@ -118,9 +135,18 @@
                             <Setter Property="IsActive" TargetName="Underline" Value="True"/>
 							<Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
 						</Trigger>
+                        <Trigger Property="Validation.HasError" Value="true">
+                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
+                        </Trigger>                        
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
 	</Style>
+
+
+    <Style x:Key="MaterialDesignFloatingHintTimePicker" TargetType="{x:Type wpf:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}">
+        <Setter Property="wpf:HintAssist.IsFloating" Value="True"/>
+    </Style>
 </ResourceDictionary>

@@ -6,6 +6,7 @@
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
+             xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Margin="16">
@@ -17,18 +18,18 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock>New contact:</TextBlock>
-        <TextBox wpf:TextFieldAssist.Hint="Name" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
+        <TextBox wpf:HintAssist.Hint="Name" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
                  Margin="0 6 0 0"
                  FontSize="18" Grid.Row="1">
             <TextBox.Text>
                 <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <materialDesignDemo:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                        <domain:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <TextBox wpf:TextFieldAssist.Hint="Number" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+        <TextBox wpf:HintAssist.Hint="Number" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                  Margin="0 8 0 0"
                  FontSize="16" Grid.Row="2"
                  />

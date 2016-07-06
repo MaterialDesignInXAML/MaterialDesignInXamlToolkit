@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -24,8 +25,10 @@ namespace MaterialDesignThemes.Wpf
         {                        
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Ripple), new FrameworkPropertyMetadata(typeof(Ripple)));
 
-            EventManager.RegisterClassHandler(typeof(Window), Mouse.PreviewMouseUpEvent, new MouseButtonEventHandler(MouseButtonEventHandler), true);
-            EventManager.RegisterClassHandler(typeof (Window), Mouse.MouseMoveEvent, new MouseEventHandler(MouseMouveEventHandler), true);
+            EventManager.RegisterClassHandler(typeof(ContentControl), Mouse.PreviewMouseUpEvent, new MouseButtonEventHandler(MouseButtonEventHandler), true);
+            EventManager.RegisterClassHandler(typeof(ContentControl), Mouse.MouseMoveEvent, new MouseEventHandler(MouseMouveEventHandler), true);
+            EventManager.RegisterClassHandler(typeof(Popup), Mouse.PreviewMouseUpEvent, new MouseButtonEventHandler(MouseButtonEventHandler), true);
+            EventManager.RegisterClassHandler(typeof(Popup), Mouse.MouseMoveEvent, new MouseEventHandler(MouseMouveEventHandler), true);
         }
 
         public Ripple()
@@ -115,9 +118,12 @@ namespace MaterialDesignThemes.Wpf
                 RippleY = point.Y - RippleSize / 2;
             }
 
-            VisualStateManager.GoToState(this, TemplateStateNormal, false);
-            VisualStateManager.GoToState(this, TemplateStateMousePressed, true);
-            PressedInstances.Add(this);            
+            if (!RippleAssist.GetIsDisabled(this))
+            {
+                VisualStateManager.GoToState(this, TemplateStateNormal, false);
+                VisualStateManager.GoToState(this, TemplateStateMousePressed, true);
+                PressedInstances.Add(this);
+            }
 
             base.OnPreviewMouseLeftButtonDown(e);
         }

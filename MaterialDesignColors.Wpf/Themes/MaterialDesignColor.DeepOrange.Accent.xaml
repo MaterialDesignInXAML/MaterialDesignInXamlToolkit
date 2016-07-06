@@ -5,7 +5,7 @@
   <Color x:Key="Accent200">#ff6e40</Color>
   <Color x:Key="Accent200Foreground">#DD000000</Color>
   <Color x:Key="Accent400">#ff3d00</Color>
-  <Color x:Key="Accent400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Accent400Foreground">#DDFFFFFF</Color>
   <Color x:Key="Accent700">#dd2c00</Color>
-  <Color x:Key="Accent700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Accent700Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

@@ -4,11 +4,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+             xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{StaticResource MaterialDesignFont}"
              mc:Ignorable="d"              
-			 d:DesignWidth="477" d:DesignHeight="272">
+			 d:DesignWidth="477" d:DesignHeight="272"
+             d:DataContext="{d:DesignInstance wpfExample:ProvingGroundViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,12 +21,46 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            
+
+            
+
         </ResourceDictionary>
     </UserControl.Resources>
 
+    <StackPanel Margin="8">
+        <ListBox Style="{StaticResource MaterialDesignToolToggleListBox}">
+            <ListBoxItem>
+                <materialDesign:PackIcon Kind="FormatAlignLeft"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <materialDesign:PackIcon Kind="FormatAlignCenter"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <materialDesign:PackIcon Kind="FormatAlignRight"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <materialDesign:PackIcon Kind="FormatAlignJustify"/>
+            </ListBoxItem>
+        </ListBox>
 
-    <StackPanel Margin="24" HorizontalAlignment="Stretch">
-        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" Value="20"  />
+        <ListBox Style="{StaticResource MaterialDesignToolToggleListBox}" 
+                 SelectionMode="Extended"
+                 Margin="0 8 0 0">
+            <ListBoxItem>
+                <materialDesign:PackIcon Kind="FormatBold"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <materialDesign:PackIcon Kind="FormatItalic"/>
+            </ListBoxItem>
+            <ListBoxItem x:Name="UnderlineCheckbox">
+                <materialDesign:PackIcon Kind="FormatUnderline"/>
+            </ListBoxItem>
+        </ListBox>
+
+        <CheckBox IsChecked="{Binding ElementName=UnderlineCheckbox, Path=IsSelected}">Underline?</CheckBox>
+
     </StackPanel>
 
 </UserControl>

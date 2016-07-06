@@ -66,7 +66,7 @@
                             <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
                         </Button>
                         <TextBox Grid.Column="1" Margin="5 0 0 0" KeyDown="Search_OnKeyDown"
-                             materialDesign:TextFieldAssist.Hint="Search" x:Name="SearchBox"
+                             materialDesign:HintAssist.Hint="Search" x:Name="SearchBox"
                              materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
                              MinWidth="200" VerticalAlignment="Center" />
                     </Grid>

@@ -13,19 +13,19 @@
   <Color x:Key="Deep OrangePrimary500">#ff5722</Color>
   <Color x:Key="Deep OrangePrimary500Foreground">#FFFFFFFF</Color>
   <Color x:Key="Deep OrangePrimary600">#f4511e</Color>
-  <Color x:Key="Deep OrangePrimary600Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep OrangePrimary600Foreground">#DDFFFFFF</Color>
   <Color x:Key="Deep OrangePrimary700">#e64a19</Color>
-  <Color x:Key="Deep OrangePrimary700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep OrangePrimary700Foreground">#DDFFFFFF</Color>
   <Color x:Key="Deep OrangePrimary800">#d84315</Color>
-  <Color x:Key="Deep OrangePrimary800Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep OrangePrimary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="Deep OrangePrimary900">#bf360c</Color>
-  <Color x:Key="Deep OrangePrimary900Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep OrangePrimary900Foreground">#DDFFFFFF</Color>
   <Color x:Key="Deep OrangeAccent100">#ff9e80</Color>
   <Color x:Key="Deep OrangeAccent100Foreground">#DD000000</Color>
   <Color x:Key="Deep OrangeAccent200">#ff6e40</Color>
   <Color x:Key="Deep OrangeAccent200Foreground">#DD000000</Color>
   <Color x:Key="Deep OrangeAccent400">#ff3d00</Color>
-  <Color x:Key="Deep OrangeAccent400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep OrangeAccent400Foreground">#DDFFFFFF</Color>
   <Color x:Key="Deep OrangeAccent700">#dd2c00</Color>
-  <Color x:Key="Deep OrangeAccent700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Deep OrangeAccent700Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

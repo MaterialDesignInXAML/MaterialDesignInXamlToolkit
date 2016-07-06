@@ -7,9 +7,9 @@
   <Color x:Key="Primary200">#9fa8da</Color>
   <Color x:Key="Primary200Foreground">#DD000000</Color>
   <Color x:Key="Primary300">#7986cb</Color>
-  <Color x:Key="Primary300Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Primary300Foreground">#DDFFFFFF</Color>
   <Color x:Key="Primary400">#5c6bc0</Color>
-  <Color x:Key="Primary400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Primary400Foreground">#DDFFFFFF</Color>
   <Color x:Key="Primary500">#3f51b5</Color>
   <Color x:Key="Primary500Foreground">#DDFFFFFF</Color>
   <Color x:Key="Primary600">#3949ab</Color>

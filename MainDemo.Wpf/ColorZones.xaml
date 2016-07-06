@@ -53,7 +53,7 @@
                                 <Button Style="{DynamicResource MaterialDesignToolButton}">
                                     <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
                                 </Button>
-                                <TextBox Grid.Column="1" Margin="8 0 0 0" materialDesign:TextFieldAssist.Hint="Build a search bar" 
+                                <TextBox Grid.Column="1" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Build a search bar" 
                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
                                      MinWidth="200" VerticalAlignment="Center" />
                                 <Button Style="{DynamicResource MaterialDesignToolButton}" Grid.Column="2">

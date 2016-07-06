@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -35,13 +36,33 @@ namespace MaterialDesignColors.WpfExample
             System.Diagnostics.Process.Start("https://twitter.com/James_Willock");
 
         }
+
+        private void ButtonsDemoChip_OnClick(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Chip clicked.");
+        }
+
+        private void ButtonsDemoChip_OnDeleteClick(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Chip delete clicked.");
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            new PaletteHelper().QueryPalette();
+        }
     }
 
     public class ProvingGroundViewModel : INotifyPropertyChanged
 	{
 		private string _name;
-        private readonly ObservableCollection<SelectableViewModel> _items = CreateData();
+        private DateTime? _selectedTime;
+        public ICommand ClearItems { get; }
 
+        public ProvingGroundViewModel()
+        {
+             ClearItems = new AnotherCommandImplementation(_ => Items.Clear());
+        }
 
         public string Name
 		{
@@ -53,9 +74,17 @@ namespace MaterialDesignColors.WpfExample
 			}
 		}
 
-        public ObservableCollection<SelectableViewModel> Items
+        public ObservableCollection<SelectableViewModel> Items { get; } = CreateData();
+
+        public DateTime? SelectedTime
         {
-            get { return _items; }
+            get { return _selectedTime; }
+            set
+            {
+                _selectedTime = value;
+                System.Diagnostics.Debug.WriteLine(((object)_selectedTime ?? "NULL").ToString());
+                OnPropertyChanged();
+            }
         }
 
         private static ObservableCollection<SelectableViewModel> CreateData()
@@ -87,9 +116,7 @@ namespace MaterialDesignColors.WpfExample
 
 		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
-			if (PropertyChanged != null)
-				PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

@@ -108,25 +108,29 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         private void MoveNextHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
-            _nextTransitionOrigin = GetNavigationSourcePoint(executedRoutedEventArgs);
+            if (AutoApplyTransitionOrigins)
+                _nextTransitionOrigin = GetNavigationSourcePoint(executedRoutedEventArgs);
             SetCurrentValue(SelectedIndexProperty, Math.Min(Items.Count - 1, SelectedIndex + 1));
         }
 
         private void MovePreviousHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
-            _nextTransitionOrigin = GetNavigationSourcePoint(executedRoutedEventArgs);
+            if (AutoApplyTransitionOrigins)
+                _nextTransitionOrigin = GetNavigationSourcePoint(executedRoutedEventArgs);
             SetCurrentValue(SelectedIndexProperty, Math.Max(0, SelectedIndex - 1));
         }
 
         private void MoveFirstHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
-            _nextTransitionOrigin = GetNavigationSourcePoint(executedRoutedEventArgs);
+            if (AutoApplyTransitionOrigins)
+                _nextTransitionOrigin = GetNavigationSourcePoint(executedRoutedEventArgs);
             SetCurrentValue(SelectedIndexProperty, 0);
         }
 
         private void MoveLastHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
-            _nextTransitionOrigin = GetNavigationSourcePoint(executedRoutedEventArgs);
+            if (AutoApplyTransitionOrigins)
+                _nextTransitionOrigin = GetNavigationSourcePoint(executedRoutedEventArgs);
             SetCurrentValue(SelectedIndexProperty, Items.Count - 1);
         }
 

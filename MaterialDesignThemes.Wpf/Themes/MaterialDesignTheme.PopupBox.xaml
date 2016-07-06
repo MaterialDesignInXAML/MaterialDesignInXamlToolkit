@@ -19,9 +19,11 @@
     
     <Style TargetType="{x:Type wpf:PopupBox}" x:Key="MaterialDesignPopupBox">
         <Setter Property="ToggleContent" Value="{StaticResource MaterialDesignPopupBoxToggleContent}" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="TextElement.FontWeight" Value="Normal" />
+        <Setter Property="Padding" Value="0 8 0 8" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:PopupBox}">
@@ -33,7 +35,6 @@
                                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"                                                          
                                                     ClipToBounds="False"
                                                     wpf:RippleAssist.IsCentered="True"
-                                                    Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
                                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                     Padding="{TemplateBinding Padding}" 
@@ -61,7 +62,7 @@
                                       Foreground="{DynamicResource MaterialDesignBody}"
                                       FontSize="15"
                                       FontWeight="Regular"
-                                      Padding="0 8 0 8"
+                                      Padding="{TemplateBinding Padding}"
                                       RenderOptions.ClearTypeHint="Enabled"                                      
                                       Margin="5">
                                 <wpf:Card.Resources>
@@ -119,11 +120,15 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <wpf:PackIcon x:Shared="False" x:Key="MaterialDesignMultiFloatingActionPopupBoxIcon"
+                  Kind="Plus" Width="24" Height="24" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=Foreground}" />
     
     <Style TargetType="{x:Type wpf:PopupBox}" x:Key="MaterialDesignMultiFloatingActionPopupBox">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+        <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
         <Setter Property="PlacementMode" Value="TopAndAlignCentres" />
         <Setter Property="PopupMode" Value="MouseOverEager" />
         <Setter Property="ToolTipService.Placement" Value="Left" />
@@ -153,7 +158,7 @@
                                                     <VisualStateGroup.Transitions>
                                                         <VisualTransition From="*" To="Checked">
                                                             <Storyboard>
-                                                                <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                                <DoubleAnimation Storyboard.TargetName="ContentRotateTransform"
                                                                                  Storyboard.TargetProperty="Angle"
                                                                                  To="45"
                                                                                  Duration="0:0:0.1">
@@ -165,7 +170,7 @@
                                                         </VisualTransition>
                                                         <VisualTransition From="Checked" To="Unchecked">
                                                             <Storyboard>
-                                                                <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                                <DoubleAnimation Storyboard.TargetName="ContentRotateTransform"
                                                                                  Storyboard.TargetProperty="Angle"
                                                                                  To="0"
                                                                                  Duration="0:0:0.1">
@@ -178,7 +183,7 @@
                                                     </VisualStateGroup.Transitions>
                                                     <VisualState x:Name="Checked">
                                                         <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                            <DoubleAnimation Storyboard.TargetName="ContentRotateTransform"
                                                                              Storyboard.TargetProperty="Angle"
                                                                              To="45"
                                                                              Duration="0" />
@@ -186,7 +191,7 @@
                                                     </VisualState>
                                                     <VisualState x:Name="Unchecked">
                                                         <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="RippleRotateTransform"
+                                                            <DoubleAnimation Storyboard.TargetName="ContentRotateTransform"
                                                                              Storyboard.TargetProperty="Angle"
                                                                              To="0"
                                                                              Duration="0" />
@@ -199,22 +204,24 @@
                                                     <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
                                                 </AdornerDecorator.CacheMode>
                                                 <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
-                                                                               Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                                                               x:Name="border">
+                                                         Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                                         x:Name="border">
                                                 </Ellipse>
                                             </AdornerDecorator>
-                                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
-                                                        Feedback="White"
+                                            <wpf:Ripple Focusable="False"  
                                                         Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
                                                         wpf:RippleAssist.IsCentered="True"
                                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                         Padding="{TemplateBinding Padding}" 
-                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                        RenderTransformOrigin=".5,.5">
-                                                <wpf:Ripple.RenderTransform>
-                                                    <RotateTransform x:Name="RippleRotateTransform" Angle="0" />
-                                                </wpf:Ripple.RenderTransform>
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                                <!-- additional layer so we don't rotate the ripple directly which can cause jumpyness under certain layouts -->
+                                                <ContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                                RenderTransformOrigin=".5,.5">
+                                                    <ContentControl.RenderTransform>
+                                                        <RotateTransform x:Name="ContentRotateTransform" Angle="0" />
+                                                    </ContentControl.RenderTransform>
+                                                </ContentControl>
                                             </wpf:Ripple>
                                             <Ellipse x:Name="GeometryEllipse" Fill="Transparent" IsHitTestVisible="False" Focusable="False" />
                                         </Grid>
@@ -288,8 +295,7 @@
                                       VerticalAlignment="Stretch"
                                       HorizontalAlignment="Stretch"                                      
                                       ToolTip="{TemplateBinding ToolTip}"
-                                      ToolTipService.Placement="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(ToolTipService.Placement)}"
-                                      >
+                                      ToolTipService.Placement="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(ToolTipService.Placement)}">
                             <Grid>
                                 <ContentControl x:Name="StandardToggleContent" Content="{TemplateBinding ToggleContent}" ContentTemplate="{TemplateBinding ToggleContentTemplate}"
                                                 Visibility="{TemplateBinding ToggleCheckedContent, Converter={StaticResource InvertedNullVisibilityConverter}}"/>
@@ -359,12 +365,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="ToggleContent">
-            <Setter.Value>
-                <wpf:PackIcon Kind="Plus" Width="24" Height="24"
-                              Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" />
-            </Setter.Value>
-        </Setter>
+        <Setter Property="ToggleContent" Value="{StaticResource MaterialDesignMultiFloatingActionPopupBoxIcon}" />
         <Style.Triggers>
             <Trigger Property="UnfurlOrientation" Value="Horizontal">
                 <Setter Property="ToolTipService.Placement" Value="Custom" />
@@ -378,12 +379,6 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}"/>
-        <Setter Property="ToggleContent">
-            <Setter.Value>
-                <wpf:PackIcon Kind="Plus" Width="24" Height="24"
-                              Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" />
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style TargetType="{x:Type wpf:PopupBox}" 
@@ -392,12 +387,6 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
-        <Setter Property="ToggleContent">
-            <Setter.Value>
-                <wpf:PackIcon Kind="Plus" Width="24" Height="24"
-                              Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" />
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style TargetType="{x:Type wpf:PopupBox}" 
@@ -406,12 +395,6 @@
         <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
-        <Setter Property="ToggleContent">
-            <Setter.Value>
-                <wpf:PackIcon Kind="Plus" Width="24" Height="24"
-                              Foreground="{DynamicResource SecondaryAccentForegroundBrush}" />
-            </Setter.Value>
-        </Setter>
     </Style>    
 
 </ResourceDictionary>

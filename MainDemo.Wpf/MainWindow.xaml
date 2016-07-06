@@ -88,6 +88,11 @@
                                 <wpfExample:Sliders />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Chips">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Chips />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Typography">
                             <domain:DemoItem.Content>
                                 <wpfExample:Typography />
@@ -144,6 +149,11 @@
                                 <wpfExample:Expander />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Group Boxes">
+                            <domain:DemoItem.Content>
+                                <wpfExample:GroupBoxes />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Menus &amp; Tool Bars">
                             <domain:DemoItem.Content>
                                 <wpfExample:MenusAndToolBars />
@@ -182,7 +192,7 @@
                     <DockPanel>
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
                                       x:Name="MenuToggleButton"/>
-                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="True">
+                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                             <StackPanel>
                                 <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
                                 <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
