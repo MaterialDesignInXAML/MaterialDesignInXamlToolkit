@@ -18,6 +18,8 @@ namespace MaterialDesignThemes.Wpf
         private int _number;
         private bool _needsSpacer;
         private bool _isActive;
+        private bool _isFirstStep;
+        private bool _isLastStep;
 
         public StepperController Controller
         {
@@ -46,6 +48,36 @@ namespace MaterialDesignThemes.Wpf
                 _isActive = value;
 
                 OnPropertyChanged(nameof(IsActive));
+            }
+        }
+
+        public bool IsFirstStep
+        {
+            get
+            {
+                return _isFirstStep;
+            }
+
+            set
+            {
+                _isFirstStep = value;
+
+                OnPropertyChanged(nameof(IsFirstStep));
+            }
+        }
+
+        public bool IsLastStep
+        {
+            get
+            {
+                return _isLastStep;
+            }
+
+            set
+            {
+                _isLastStep = value;
+
+                OnPropertyChanged(nameof(IsLastStep));
             }
         }
 

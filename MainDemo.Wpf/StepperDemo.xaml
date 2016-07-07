@@ -10,10 +10,13 @@
              d:DesignHeight="500" d:DesignWidth="700">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type domain:StepperTutorialOneViewModel}">
-            <TextBlock Text="juhuuu" />
+            <TextBlock Text="step 1" />
         </DataTemplate>
         <DataTemplate DataType="{x:Type domain:StepperTutorialTwoViewModel}">
-            <TextBlock Text="juhuuu asfasdfsdf" />
+            <TextBlock Text="step 2" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type domain:StepperTutorialThreeViewModel}">
+            <TextBlock Text="step 3" />
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -21,6 +24,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="100*" />
         </Grid.RowDefinitions>
-        <materialDesign:Stepper x:Name="stepper" Grid.Row="1" HorizontalAlignment="Stretch" Orientation="Vertical" Steps="{Binding Path=Steps, Mode=OneTime}" VerticalAlignment="Stretch" />
+        <ComboBox x:Name="cbOrientation" Height="25" HorizontalAlignment="Left" ItemsSource="{Binding Path=Orientations, Mode=OneTime}" Margin="4,4,4,16" SelectedItem="{Binding Path=Orientation, Mode=TwoWay}" VerticalAlignment="Center" Width="120" />
+        <materialDesign:Stepper x:Name="stepper" Grid.Row="1" HorizontalAlignment="Stretch" Orientation="{Binding Path=Orientation}" Steps="{Binding Path=Steps, Mode=OneTime}" VerticalAlignment="Stretch" />
     </Grid>
 </UserControl>

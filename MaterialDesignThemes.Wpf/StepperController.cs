@@ -15,6 +15,14 @@ namespace MaterialDesignThemes.Wpf
         private StepperStepViewModel[] _stepViewModels;
         private ObservableCollection<StepperStepViewModel> _observableStepViewModels;
 
+        public object ActiveStepContent
+        {
+            get
+            {
+                return ActiveStepViewModel?.Step.Content;
+            }
+        }
+
         public StepperStepViewModel ActiveStepViewModel
         {
             get
@@ -24,7 +32,7 @@ namespace MaterialDesignThemes.Wpf
                     return null;
                 }
 
-                return _stepViewModels.Where(stepViewModel => stepViewModel.IsActive).FirstOrDefault(null);
+                return _stepViewModels.Where(stepViewModel => stepViewModel.IsActive).FirstOrDefault();
             }
         }
 
@@ -63,7 +71,9 @@ namespace MaterialDesignThemes.Wpf
                         Step = steps[i],
                         IsActive = false,
                         Number = (i + 1),
-                        NeedsSpacer = i < (steps.Length - 1)
+                        NeedsSpacer = i < (steps.Length - 1),
+                        IsFirstStep = i == 0,
+                        IsLastStep = i == (steps.Length - 1)
                     };
 
                     _observableStepViewModels.Add(_stepViewModels[i]);
@@ -75,6 +85,8 @@ namespace MaterialDesignThemes.Wpf
                 }
 
                 OnPropertyChanged(nameof(steps));
+                OnPropertyChanged(nameof(ActiveStepViewModel));
+                OnPropertyChanged(nameof(ActiveStepContent));
             }
         }
 
@@ -138,6 +150,9 @@ namespace MaterialDesignThemes.Wpf
             {
                 stepViewModelItem.IsActive = stepViewModelItem == stepViewModel;
             }
+
+            OnPropertyChanged(nameof(ActiveStepViewModel));
+            OnPropertyChanged(nameof(ActiveStepContent));
         }
 
         private void OnPropertyChanged(string propertyName)

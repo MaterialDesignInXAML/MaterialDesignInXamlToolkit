@@ -14,6 +14,7 @@ namespace MaterialDesignThemes.Wpf
     public class Stepper : Control
     {
         public static RoutedCommand CancelCommand = new RoutedCommand();
+        public static RoutedCommand ContinueCommand = new RoutedCommand();
         public static RoutedCommand StepSelectedCommand = new RoutedCommand();
 
         public static readonly DependencyProperty IsLinearProperty = DependencyProperty.Register(
@@ -85,6 +86,7 @@ namespace MaterialDesignThemes.Wpf
             _controller = new StepperController();
 
             CommandBindings.Add(new CommandBinding(CancelCommand, CancelHandler, CanExecuteCancel));
+            CommandBindings.Add(new CommandBinding(ContinueCommand, ContinueHandler, CanExecuteContinue));
             CommandBindings.Add(new CommandBinding(StepSelectedCommand, StepSelectedHandler, CanExecuteStepSelectedHandler));
         }
 
@@ -106,7 +108,17 @@ namespace MaterialDesignThemes.Wpf
                 return;
             }
 
-            //Close(executedRoutedEventArgs.Parameter);
+            args.Handled = true;
+        }
+
+        private void CanExecuteContinue(object sender, CanExecuteRoutedEventArgs args)
+        {
+            args.CanExecute = true;
+        }
+
+        private void ContinueHandler(object sender, ExecutedRoutedEventArgs args)
+        {
+            _controller.Next();
 
             args.Handled = true;
         }
@@ -119,6 +131,8 @@ namespace MaterialDesignThemes.Wpf
         private void StepSelectedHandler(object sender, ExecutedRoutedEventArgs args)
         {
             _controller.GotoStep((StepperStepViewModel)args.Parameter);
+
+            args.Handled = true;
         }
     }
 }

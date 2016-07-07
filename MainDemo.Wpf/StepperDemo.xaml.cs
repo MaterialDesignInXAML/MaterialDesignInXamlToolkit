@@ -21,13 +21,38 @@ namespace MaterialDesignDemo
 {
     public partial class StepperDemo : UserControl
     {
+        public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
+                nameof(Orientation), typeof(StepperOrientation), typeof(StepperDemo), new PropertyMetadata(StepperOrientation.Horizontal));
+
+        public StepperOrientation Orientation
+        {
+            get
+            {
+                return (StepperOrientation)GetValue(OrientationProperty);
+            }
+
+            set
+            {
+                SetValue(OrientationProperty, value);
+            }
+        }
+
+        public StepperOrientation[] Orientations
+        {
+            get
+            {
+                return new StepperOrientation[] { StepperOrientation.Horizontal, StepperOrientation.Vertical };
+            }
+        }
+
         public List<Step> Steps
         {
             get
             {
                 List<Step> steps = new List<Step>();
-                steps.Add(new Step() { FirstLevelLabel = "First", Content = new StepperTutorialOneViewModel() });
-                steps.Add(new Step() { FirstLevelLabel = "Two", SecondLevelLabel = "Second level header", Content = new StepperTutorialTwoViewModel() });
+                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "One" }, Content = new StepperTutorialOneViewModel() });
+                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "Two", SecondLevelTitle = "Second level header" }, Content = new StepperTutorialTwoViewModel() });
+                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "Three" }, Content = new StepperTutorialThreeViewModel() });
 
                 return steps;
             }
@@ -37,6 +62,7 @@ namespace MaterialDesignDemo
         {
             InitializeComponent();
 
+            cbOrientation.DataContext = this;
             stepper.DataContext = this;
         }
     }

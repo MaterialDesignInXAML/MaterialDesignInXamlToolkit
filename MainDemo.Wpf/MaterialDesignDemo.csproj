@@ -109,6 +109,7 @@
     <Compile Include="Domain\SimpleDataTemplateSelector.cs" />
     <Compile Include="Domain\SimpleDateValidationRule.cs" />
     <Compile Include="Domain\StepperTutorialOneViewModel.cs" />
+    <Compile Include="Domain\StepperTutorialThreeViewModel.cs" />
     <Compile Include="Domain\StepperTutorialTwoViewModel.cs" />
     <Compile Include="Domain\TextFieldsViewModel.cs" />
     <Compile Include="Domain\TreesViewModel.cs" />

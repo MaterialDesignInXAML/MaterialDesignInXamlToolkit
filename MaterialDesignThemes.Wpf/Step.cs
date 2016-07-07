@@ -11,9 +11,9 @@ namespace MaterialDesignThemes.Wpf
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _firstLevelLabel;
-        private string _secondLevelLabel;
+        private object _header;
         private object _content;
+        private bool _hasValidationErrors;
 
         public object Content
         {
@@ -30,40 +30,41 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public string FirstLevelLabel
+        public bool HasValidationErrors
         {
             get
             {
-                return _firstLevelLabel;
+                return _hasValidationErrors;
             }
 
             set
             {
-                _firstLevelLabel = value;
+                _hasValidationErrors = value;
 
-                OnPropertyChanged(nameof(FirstLevelLabel));
+                OnPropertyChanged(nameof(HasValidationErrors));
             }
         }
 
-        public string SecondLevelLabel
+        public object Header
         {
             get
             {
-                return _secondLevelLabel;
+                return _header;
             }
 
             set
             {
-                _secondLevelLabel = value;
+                _header = value;
 
-                OnPropertyChanged(nameof(SecondLevelLabel));
+                OnPropertyChanged(nameof(Header));
             }
         }
 
         public Step()
         {
-            _firstLevelLabel = null;
+            _header = null;
             _content = null;
+            _hasValidationErrors = false;
         }
 
         private void OnPropertyChanged(string propertyName)
