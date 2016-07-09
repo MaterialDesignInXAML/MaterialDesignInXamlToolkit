@@ -13,6 +13,7 @@ namespace MaterialDesignThemes.Wpf
     [ContentProperty(nameof(Steps))]
     public class Stepper : Control
     {
+        public static RoutedCommand BackCommand = new RoutedCommand();
         public static RoutedCommand CancelCommand = new RoutedCommand();
         public static RoutedCommand ContinueCommand = new RoutedCommand();
         public static RoutedCommand StepSelectedCommand = new RoutedCommand();
@@ -85,6 +86,7 @@ namespace MaterialDesignThemes.Wpf
         {
             _controller = new StepperController();
 
+            CommandBindings.Add(new CommandBinding(BackCommand, BackHandler, CanExecuteBack));
             CommandBindings.Add(new CommandBinding(CancelCommand, CancelHandler, CanExecuteCancel));
             CommandBindings.Add(new CommandBinding(ContinueCommand, ContinueHandler, CanExecuteContinue));
             CommandBindings.Add(new CommandBinding(StepSelectedCommand, StepSelectedHandler, CanExecuteStepSelectedHandler));
@@ -94,6 +96,18 @@ namespace MaterialDesignThemes.Wpf
         {
             Stepper stepper = (Stepper)obj;
             stepper.Controller.InitSteps(args.NewValue as IList<Step>);
+        }
+
+        private void CanExecuteBack(object sender, CanExecuteRoutedEventArgs args)
+        {
+            args.CanExecute = true;
+        }
+
+        private void BackHandler(object sender, ExecutedRoutedEventArgs args)
+        {
+            _controller.Back();
+
+            args.Handled = true;
         }
 
         private void CanExecuteCancel(object sender, CanExecuteRoutedEventArgs args)
@@ -118,7 +132,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void ContinueHandler(object sender, ExecutedRoutedEventArgs args)
         {
-            _controller.Next();
+            _controller.Continue();
 
             args.Handled = true;
         }
@@ -130,9 +144,12 @@ namespace MaterialDesignThemes.Wpf
 
         private void StepSelectedHandler(object sender, ExecutedRoutedEventArgs args)
         {
-            _controller.GotoStep((StepperStepViewModel)args.Parameter);
+            if (!IsLinear)
+            {
+                _controller.GotoStep((StepperStepViewModel)args.Parameter);
 
-            args.Handled = true;
+                args.Handled = true;
+            }
         }
     }
 }

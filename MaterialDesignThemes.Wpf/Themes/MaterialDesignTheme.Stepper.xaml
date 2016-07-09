@@ -319,4 +319,60 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="{x:Type wpf:StepButtonBar}">
+        <!-- styling and layout partially guessed, because the specs only show pictures without mentioning every detail -->
+        <Setter Property="Height" Value="48" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="0,16,0,0" />
+        <Style.Triggers>
+            <Trigger Property="Mode" Value="Horizontal">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type wpf:StepButtonBar}">
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="100*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                        Content="{Binding Path=Back, RelativeSource={RelativeSource TemplatedParent}}" Command="{x:Static wpf:Stepper.BackCommand}"
+                                        Visibility="{Binding Path=Back, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}"
+                                        Content="{Binding Path=Cancel, RelativeSource={RelativeSource TemplatedParent}}" Command="{x:Static wpf:Stepper.CancelCommand}"
+                                        Visibility="{Binding Path=Cancel, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
+                                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Margin="8,0,0,0"
+                                        Content="{Binding Path=Continue, RelativeSource={RelativeSource TemplatedParent}}" Command="{x:Static wpf:Stepper.ContinueCommand}"
+                                        Visibility="{Binding Path=Continue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
+                                </StackPanel>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Mode" Value="Vertical">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type wpf:StepButtonBar}">
+                            <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" VerticalAlignment="Center">
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,10,0"
+                                        Content="{Binding Path=Back, RelativeSource={RelativeSource TemplatedParent}}" Command="{x:Static wpf:Stepper.BackCommand}"
+                                        Visibility="{Binding Path=Back, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
+                                <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,0,10,0"
+                                        Content="{Binding Path=Continue, RelativeSource={RelativeSource TemplatedParent}}" Command="{x:Static wpf:Stepper.ContinueCommand}"
+                                        Visibility="{Binding Path=Continue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}"
+                                        Content="{Binding Path=Cancel, RelativeSource={RelativeSource TemplatedParent}}" Command="{x:Static wpf:Stepper.CancelCommand}"
+                                        Visibility="{Binding Path=Cancel, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

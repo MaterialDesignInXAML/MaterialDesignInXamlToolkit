@@ -21,6 +21,22 @@ namespace MaterialDesignDemo
 {
     public partial class StepperDemo : UserControl
     {
+        public static readonly DependencyProperty IsLinearProperty = DependencyProperty.Register(
+                nameof(IsLinear), typeof(Boolean), typeof(StepperDemo), new PropertyMetadata(false));
+
+        public StepperOrientation IsLinear
+        {
+            get
+            {
+                return (StepperOrientation)GetValue(IsLinearProperty);
+            }
+
+            set
+            {
+                SetValue(IsLinearProperty, value);
+            }
+        }
+
         public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
                 nameof(Orientation), typeof(StepperOrientation), typeof(StepperDemo), new PropertyMetadata(StepperOrientation.Horizontal));
 
@@ -63,6 +79,7 @@ namespace MaterialDesignDemo
             InitializeComponent();
 
             cbOrientation.DataContext = this;
+            cbIsLinear.DataContext = this;
             stepper.DataContext = this;
         }
     }

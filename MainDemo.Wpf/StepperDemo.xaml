@@ -10,13 +10,22 @@
              d:DesignHeight="500" d:DesignWidth="700">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type domain:StepperTutorialOneViewModel}">
-            <TextBlock Text="step 1" />
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="step 1" />
+                <materialDesign:StepButtonBar Continue="CONTINUE" Cancel="CANCEL" />
+            </StackPanel>
         </DataTemplate>
         <DataTemplate DataType="{x:Type domain:StepperTutorialTwoViewModel}">
-            <TextBlock Text="step 2" />
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="step 2" />
+                <materialDesign:StepButtonBar Back="BACK" Continue="CONTINUE" Cancel="CANCEL" />
+            </StackPanel>
         </DataTemplate>
         <DataTemplate DataType="{x:Type domain:StepperTutorialThreeViewModel}">
-            <TextBlock Text="step 3" />
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="step 3" />
+                <materialDesign:StepButtonBar Back="BACK" Continue="FINISH" Cancel="CANCEL" />
+            </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -24,7 +33,12 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="100*" />
         </Grid.RowDefinitions>
-        <ComboBox x:Name="cbOrientation" Height="25" HorizontalAlignment="Left" ItemsSource="{Binding Path=Orientations, Mode=OneTime}" Margin="4,4,4,16" SelectedItem="{Binding Path=Orientation, Mode=TwoWay}" VerticalAlignment="Center" Width="120" />
-        <materialDesign:Stepper x:Name="stepper" Grid.Row="1" HorizontalAlignment="Stretch" Orientation="{Binding Path=Orientation}" Steps="{Binding Path=Steps, Mode=OneTime}" VerticalAlignment="Stretch" />
+        <StackPanel Margin="4,4,4,16" Orientation="Horizontal">
+            <TextBlock Margin="0,0,8,0" Text="Orientation" VerticalAlignment="Center" />
+            <ComboBox x:Name="cbOrientation" Height="25" HorizontalAlignment="Left" ItemsSource="{Binding Path=Orientations, Mode=OneTime}" SelectedItem="{Binding Path=Orientation, Mode=TwoWay}" VerticalAlignment="Center" Width="120" />
+            <TextBlock Margin="48,0,8,0" Text="Is linear" VerticalAlignment="Center" />
+            <CheckBox x:Name="cbIsLinear" IsChecked="{Binding Path=IsLinear, Mode=TwoWay}" VerticalAlignment="Center" />
+        </StackPanel>
+        <materialDesign:Stepper x:Name="stepper" Grid.Row="1" HorizontalAlignment="Stretch" IsLinear="{Binding Path=IsLinear}" Orientation="{Binding Path=Orientation}" Steps="{Binding Path=Steps, Mode=OneTime}" VerticalAlignment="Stretch" />
     </Grid>
 </UserControl>

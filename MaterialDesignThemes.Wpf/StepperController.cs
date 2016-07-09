@@ -65,10 +65,17 @@ namespace MaterialDesignThemes.Wpf
 
                 for (int i = 0; i < steps.Length; i++)
                 {
+                    Step step = steps[i];
+
+                    if (step == null)
+                    {
+                        throw new ArgumentNullException("null is not a valid step");
+                    }
+
                     _stepViewModels[i] = new StepperStepViewModel()
                     {
                         Controller = this,
-                        Step = steps[i],
+                        Step = step,
                         IsActive = false,
                         Number = (i + 1),
                         NeedsSpacer = i < (steps.Length - 1),
@@ -90,62 +97,84 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public void Next()
+        private int GetActiveStepIndex()
+        {
+            if (_stepViewModels != null)
+            {
+                for (int i = 0; i < _stepViewModels.Length; i++)
+                {
+                    if (_stepViewModels[i].IsActive)
+                    {
+                        return i;
+                    }
+                }
+            }
+
+            return -1;
+        }
+
+        public void Continue()
         {
             if (_stepViewModels == null)
             {
                 return;
             }
 
-            // find the active step
-            int activeStepIndex = -1;
+            // find the active step and go to the next one
+            int activeStepIndex = GetActiveStepIndex();
 
-            for (int i = 0; i < _stepViewModels.Length && activeStepIndex == -1; i++)
-            {
-                if (_stepViewModels[i].IsActive)
-                {
-                    activeStepIndex = i;
-                }
-            }
-
-            if (activeStepIndex > -1)
+            if (activeStepIndex >= 0 && activeStepIndex  < (_stepViewModels.Length - 1))
             {
                 GotoStep(activeStepIndex + 1);
-
-                /*// set all steps inactive
-                foreach (StepperStepViewModel stepViewModel in _stepViewModels)
-                {
-                    stepViewModel.IsActive = false;
-                }
-
-                // set the next step active
-                activeStepIndex++;
-
-                if (activeStepIndex < _stepViewModels.Length)
-                {
-                    _stepViewModels[activeStepIndex].IsActive = true;
-                }*/
             }
         }
 
-        public void Previous()
+        public void Back()
         {
-            //
+            if (_stepViewModels == null)
+            {
+                return;
+            }
+
+            // find the active step and go to the previous one
+            int activeStepIndex = GetActiveStepIndex();
+
+            if (activeStepIndex > 0 && activeStepIndex < _stepViewModels.Length)
+            {
+                GotoStep(activeStepIndex - 1);
+            }
         }
 
         public void GotoStep(int index)
         {
-            GotoStep(_stepViewModels[index]);
+            if (_stepViewModels != null && index >= 0 && index < _stepViewModels.Length)
+            {
+                GotoStep(_stepViewModels[index]);
+            }
+            else
+            {
+                throw new ArgumentException("there is no step with the index " + index);
+            }
         }
 
         public void GotoStep(Step step)
         {
-            GotoStep(_stepViewModels.Where(stepViewModel => stepViewModel.Step == step).FirstOrDefault(null));
+            if (step == null)
+            {
+                throw new ArgumentNullException("null is not a valid step");
+            }
+
+            GotoStep(_stepViewModels.Where(stepViewModel => stepViewModel.Step == step).FirstOrDefault());
         }
 
         public void GotoStep(StepperStepViewModel stepViewModel)
         {
-            // set all steps inactive exepct the next one to show
+            if (stepViewModel == null)
+            {
+                throw new ArgumentNullException(nameof(stepViewModel) + " must not be null");
+            }
+
+            // set all steps inactive except the next one to show
             foreach (StepperStepViewModel stepViewModelItem in _stepViewModels)
             {
                 stepViewModelItem.IsActive = stepViewModelItem == stepViewModel;

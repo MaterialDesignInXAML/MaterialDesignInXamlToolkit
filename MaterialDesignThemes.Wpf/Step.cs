@@ -69,7 +69,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void OnPropertyChanged(string propertyName)
         {
-            if (PropertyChanged!=null && !string.IsNullOrWhiteSpace(propertyName))
+            if (PropertyChanged != null && !string.IsNullOrWhiteSpace(propertyName))
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }

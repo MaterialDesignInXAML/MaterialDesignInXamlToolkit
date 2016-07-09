@@ -294,6 +294,7 @@
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Step.cs" />
+    <Compile Include="StepButtonBar.cs" />
     <Compile Include="Stepper.cs" />
     <Compile Include="StepperController.cs" />
     <Compile Include="StepperOrientation.cs" />
