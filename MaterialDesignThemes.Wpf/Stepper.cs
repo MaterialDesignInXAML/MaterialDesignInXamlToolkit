@@ -18,6 +18,37 @@ namespace MaterialDesignThemes.Wpf
         public static RoutedCommand ContinueCommand = new RoutedCommand();
         public static RoutedCommand StepSelectedCommand = new RoutedCommand();
 
+        public static readonly RoutedEvent StepValidationEvent = EventManager.RegisterRoutedEvent(nameof(StepValidation), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Stepper));
+
+        public event RoutedEventHandler StepValidation
+        {
+            add
+            {
+                AddHandler(StepValidationEvent, value);
+            }
+
+            remove
+            {
+                RemoveHandler(StepValidationEvent, value);
+            }
+        }
+
+        public static readonly DependencyProperty BlockNavigationOnValidationErrorsProperty = DependencyProperty.Register(
+                nameof(BlockNavigationOnValidationErrors), typeof(bool), typeof(Stepper), new PropertyMetadata(false));
+
+        public bool BlockNavigationOnValidationErrors
+        {
+            get
+            {
+                return (bool)GetValue(BlockNavigationOnValidationErrorsProperty);
+            }
+
+            set
+            {
+                SetValue(BlockNavigationOnValidationErrorsProperty, value);
+            }
+        }
+
         public static readonly DependencyProperty IsLinearProperty = DependencyProperty.Register(
                 nameof(IsLinear), typeof(bool), typeof(Stepper), new PropertyMetadata(false));
 
@@ -66,6 +97,25 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        public static readonly DependencyProperty StepValidationCommandProperty = DependencyProperty.Register(
+            nameof(StepValidationCommand), typeof(ICommand), typeof(Stepper), new PropertyMetadata(null));
+
+        /// <summary>
+        /// A command by clicking on the action button.
+        /// </summary>
+        public ICommand StepValidationCommand
+        {
+            get
+            {
+                return (ICommand)GetValue(StepValidationCommandProperty);
+            }
+
+            set
+            {
+                SetValue(StepValidationCommandProperty, value);
+            }
+        }
+
         public StepperController Controller
         {
             get
@@ -92,6 +142,30 @@ namespace MaterialDesignThemes.Wpf
             CommandBindings.Add(new CommandBinding(StepSelectedCommand, StepSelectedHandler, CanExecuteStepSelectedHandler));
         }
 
+        private bool ValidateActiveStep()
+        {
+            Step step = _controller.ActiveStepViewModel?.Step;
+
+            if (step != null)
+            {
+                // raise the event and call the command
+                StepValidationEventArgs eventArgs = new StepValidationEventArgs(StepValidationEvent, this, step);
+                RaiseEvent(eventArgs);
+
+                if (StepValidationCommand != null && StepValidationCommand.CanExecute(step))
+                {
+                    StepValidationCommand.Execute(step);
+                }
+
+                // the event handlers can set the validation state on the step
+                return !step.HasValidationErrors;
+            } else
+            {
+                // no active step to validate
+                return true;
+            }
+        }
+
         private static void StepsChangedHandler(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             Stepper stepper = (Stepper)obj;
@@ -105,6 +179,13 @@ namespace MaterialDesignThemes.Wpf
 
         private void BackHandler(object sender, ExecutedRoutedEventArgs args)
         {
+            bool isValid = ValidateActiveStep();
+
+            if (BlockNavigationOnValidationErrors && !isValid)
+            {
+                return;
+            }
+
             _controller.Back();
 
             args.Handled = true;
@@ -132,6 +213,13 @@ namespace MaterialDesignThemes.Wpf
 
         private void ContinueHandler(object sender, ExecutedRoutedEventArgs args)
         {
+            bool isValid = ValidateActiveStep();
+
+            if (BlockNavigationOnValidationErrors && !isValid)
+            {
+                return;
+            }
+
             _controller.Continue();
 
             args.Handled = true;
@@ -146,10 +234,28 @@ namespace MaterialDesignThemes.Wpf
         {
             if (!IsLinear)
             {
+                bool isValid = ValidateActiveStep();
+
+                if (BlockNavigationOnValidationErrors && !isValid)
+                {
+                    return;
+                }
+
                 _controller.GotoStep((StepperStepViewModel)args.Parameter);
 
                 args.Handled = true;
             }
+        }
+    }
+
+    public class StepValidationEventArgs : RoutedEventArgs
+    {
+        public Step Step { get; }
+
+        public StepValidationEventArgs(RoutedEvent routedEvent, object source, Step step)
+            : base(routedEvent, source)
+        {
+            Step = step;
         }
     }
 }
