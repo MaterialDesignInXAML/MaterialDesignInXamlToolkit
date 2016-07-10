@@ -71,11 +71,11 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// A parameter for the <see cref="ActionCommand"/>.
         /// </summary>
-        public ICommand ActionCommandParameter
+        public object ActionCommandParameter
         {
             get
             {
-                return (ICommand)GetValue(ActionCommandParameterProperty);
+                return GetValue(ActionCommandParameterProperty);
             }
 
             set
