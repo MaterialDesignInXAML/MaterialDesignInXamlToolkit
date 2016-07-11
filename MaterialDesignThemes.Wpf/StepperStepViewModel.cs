@@ -13,7 +13,7 @@ namespace MaterialDesignThemes.Wpf
 
         private StepperController _controller;
 
-        private Step _step;
+        private IStep _step;
 
         private int _number;
         private bool _needsSpacer;
@@ -111,7 +111,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public Step Step
+        public IStep Step
         {
             get
             {

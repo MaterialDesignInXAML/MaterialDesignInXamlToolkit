@@ -82,13 +82,13 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty StepsProperty = DependencyProperty.Register(
-                nameof(Steps), typeof(IList<Step>), typeof(Stepper), new PropertyMetadata(null, StepsChangedHandler));
+                nameof(Steps), typeof(IList<IStep>), typeof(Stepper), new PropertyMetadata(null, StepsChangedHandler));
 
-        public IList<Step> Steps
+        public IList<IStep> Steps
         {
             get
             {
-                return (IList<Step>)GetValue(StepsProperty);
+                return (IList<IStep>)GetValue(StepsProperty);
             }
 
             set
@@ -144,10 +144,13 @@ namespace MaterialDesignThemes.Wpf
 
         private bool ValidateActiveStep()
         {
-            Step step = _controller.ActiveStepViewModel?.Step;
+            IStep step = _controller.ActiveStepViewModel?.Step;
 
             if (step != null)
             {
+                // call the validation method on the step itself
+                step.Validate();
+
                 // raise the event and call the command
                 StepValidationEventArgs eventArgs = new StepValidationEventArgs(StepValidationEvent, this, step);
                 RaiseEvent(eventArgs);
@@ -169,7 +172,7 @@ namespace MaterialDesignThemes.Wpf
         private static void StepsChangedHandler(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             Stepper stepper = (Stepper)obj;
-            stepper.Controller.InitSteps(args.NewValue as IList<Step>);
+            stepper.Controller.InitSteps(args.NewValue as IList<IStep>);
         }
 
         private void CanExecuteBack(object sender, CanExecuteRoutedEventArgs args)
@@ -250,9 +253,9 @@ namespace MaterialDesignThemes.Wpf
 
     public class StepValidationEventArgs : RoutedEventArgs
     {
-        public Step Step { get; }
+        public IStep Step { get; }
 
-        public StepValidationEventArgs(RoutedEvent routedEvent, object source, Step step)
+        public StepValidationEventArgs(RoutedEvent routedEvent, object source, IStep step)
             : base(routedEvent, source)
         {
             Step = step;

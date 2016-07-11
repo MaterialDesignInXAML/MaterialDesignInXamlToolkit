@@ -7,15 +7,26 @@ using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public class Step : INotifyPropertyChanged
+    public interface IStep : INotifyPropertyChanged
+    {
+        object Content { get; set; }
+
+        bool HasValidationErrors { get; set; }
+
+        object Header { get; set; }
+
+        void Validate();
+    }
+
+    public class Step : IStep
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private object _header;
-        private object _content;
-        private bool _hasValidationErrors;
+        protected object _header;
+        protected object _content;
+        protected bool _hasValidationErrors;
 
-        public object Content
+        public virtual object Content
         {
             get
             {
@@ -30,7 +41,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public bool HasValidationErrors
+        public virtual bool HasValidationErrors
         {
             get
             {
@@ -45,7 +56,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public object Header
+        public virtual object Header
         {
             get
             {
@@ -67,7 +78,9 @@ namespace MaterialDesignThemes.Wpf
             _hasValidationErrors = false;
         }
 
-        private void OnPropertyChanged(string propertyName)
+        public virtual void Validate() { }
+
+        protected virtual void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null && !string.IsNullOrWhiteSpace(propertyName))
             {

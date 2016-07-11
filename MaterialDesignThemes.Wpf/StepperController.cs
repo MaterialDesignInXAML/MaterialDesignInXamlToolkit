@@ -50,12 +50,12 @@ namespace MaterialDesignThemes.Wpf
             _observableStepViewModels = new ObservableCollection<StepperStepViewModel>();
         }
 
-        public void InitSteps(IList<Step> steps)
+        public void InitSteps(IList<IStep> steps)
         {
             InitSteps(steps?.ToArray());
         }
 
-        public void InitSteps(Step[] steps)
+        public void InitSteps(IStep[] steps)
         {
             _observableStepViewModels.Clear();
 
@@ -65,7 +65,7 @@ namespace MaterialDesignThemes.Wpf
 
                 for (int i = 0; i < steps.Length; i++)
                 {
-                    Step step = steps[i];
+                    IStep step = steps[i];
 
                     if (step == null)
                     {

@@ -22,13 +22,13 @@ namespace MaterialDesignDemo
     public partial class StepperDemo : UserControl
     {
         public static readonly DependencyProperty IsLinearProperty = DependencyProperty.Register(
-                nameof(IsLinear), typeof(Boolean), typeof(StepperDemo), new PropertyMetadata(false));
+                nameof(IsLinear), typeof(bool), typeof(StepperDemo), new PropertyMetadata(false));
 
-        public StepperOrientation IsLinear
+        public bool IsLinear
         {
             get
             {
-                return (StepperOrientation)GetValue(IsLinearProperty);
+                return (bool)GetValue(IsLinearProperty);
             }
 
             set
@@ -61,11 +61,11 @@ namespace MaterialDesignDemo
             }
         }
 
-        public List<Step> Steps
+        public List<IStep> Steps
         {
             get
             {
-                List<Step> steps = new List<Step>();
+                List<IStep> steps = new List<IStep>();
                 steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "One" }, Content = new StepperTutorialOneViewModel() });
                 steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "Two", SecondLevelTitle = "Second level header" }, Content = new StepperTutorialTwoViewModel() });
                 steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "Three" }, Content = new StepperTutorialThreeViewModel() });
