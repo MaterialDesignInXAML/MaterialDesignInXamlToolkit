@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
+using System.Windows.Media.Animation;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -136,10 +138,30 @@ namespace MaterialDesignThemes.Wpf
         {
             _controller = new StepperController();
 
+            Loaded += LoadedHandler;
+            Unloaded += UnloadedHandler;
+
             CommandBindings.Add(new CommandBinding(BackCommand, BackHandler, CanExecuteBack));
             CommandBindings.Add(new CommandBinding(CancelCommand, CancelHandler, CanExecuteCancel));
             CommandBindings.Add(new CommandBinding(ContinueCommand, ContinueHandler, CanExecuteContinue));
             CommandBindings.Add(new CommandBinding(StepSelectedCommand, StepSelectedHandler, CanExecuteStepSelectedHandler));
+        }
+
+        private void LoadedHandler(object sender, RoutedEventArgs args)
+        {
+            _controller.PropertyChanged += PropertyChangedHandler;
+
+            // there is no event raised if the Content of a ContentControl changes
+            //     therefore trigger the animation in code
+            PlayHorizontalContentAnimation();
+        }
+
+        private void UnloadedHandler(object sender, RoutedEventArgs args)
+        {
+            _controller.PropertyChanged -= PropertyChangedHandler;
+
+            Loaded -= LoadedHandler;
+            Unloaded -= UnloadedHandler;
         }
 
         private bool ValidateActiveStep()
@@ -248,6 +270,26 @@ namespace MaterialDesignThemes.Wpf
 
                 args.Handled = true;
             }
+        }
+
+        private void PropertyChangedHandler(object sender, PropertyChangedEventArgs args)
+        {
+            if (sender == _controller && args.PropertyName == nameof(_controller.ActiveStepContent)
+                && _controller.ActiveStepContent != null && Orientation == StepperOrientation.Horizontal)
+            {
+                // there is no event raised if the Content of a ContentControl changes
+                //     therefore trigger the animation in code
+                PlayHorizontalContentAnimation();
+            }
+        }
+
+        private void PlayHorizontalContentAnimation()
+        {
+            // there is no event raised if the Content of a ContentControl changes
+            //     therefore trigger the animation in code
+            Storyboard storyboard = (Storyboard)FindResource("horizontalContentChangedStoryboard");
+            FrameworkElement element = GetTemplateChild("PART_horizontalContent") as FrameworkElement;
+            storyboard.Begin(element);
         }
     }
 

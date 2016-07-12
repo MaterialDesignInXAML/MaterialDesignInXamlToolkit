@@ -3,7 +3,6 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
-    <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
     <converters:BooleanOrConverter x:Key="booleanOrConverter" />
     <converters:NullableToVisibilityConverter x:Key="nullableToVisibilityConverter" />
 
@@ -124,8 +123,6 @@
         </Style.Triggers>
     </Style>
 
-    <ControlTemplate x:Key="VerticalStepActive" TargetType="{x:Type wpf:Step}"></ControlTemplate>
-    
     <Style TargetType="{x:Type wpf:Stepper}">
         <Style.Resources>
             <DataTemplate DataType="{x:Type wpf:StepTitleHeader}">
@@ -145,6 +142,31 @@
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
+            <Storyboard x:Key="horizontalContentChangedStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3" />
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                    <EasingDoubleKeyFrame Value="0.75" KeyTime="0:0:0.0" />
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                    <EasingDoubleKeyFrame Value="0.75" KeyTime="0:0:0.0" />
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="verticalContentShowStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3" />
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.0" />
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="verticalContentHideStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.3" />
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.0" />
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.3" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
         </Style.Resources>
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Horizontal">
@@ -232,7 +254,13 @@
                                 </Border>
                                 <!-- content -->
                                 <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" Margin="0,24,0,0" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
-                                    <ContentControl Content="{Binding Path=Controller.ActiveStepContent, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <ContentControl x:Name="PART_horizontalContent" Content="{Binding Path=Controller.ActiveStepContent, RelativeSource={RelativeSource TemplatedParent}}" RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True">
+                                        <ContentControl.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform />
+                                            </TransformGroup>
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
                                 </ScrollViewer>
                             </Grid>
                         </ControlTemplate>
@@ -302,8 +330,27 @@
                                                         </Style.Triggers>
                                                     </Style>
                                                 </Border.Style>
-                                                <ContentControl Content="{Binding Path=Step.Content}" HorizontalAlignment="Stretch"
-                                                                Visibility="{Binding Path=IsActive, Converter={StaticResource booleanToVisibilityConverter}}" />
+                                                <ContentControl x:Name="PART_verticalContent" Content="{Binding Path=Step.Content}" HorizontalAlignment="Stretch" SnapsToDevicePixels="True">
+                                                    <ContentControl.LayoutTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform x:Name="verticalContentScaleTransform" ScaleY="0" />
+                                                        </TransformGroup>
+                                                    </ContentControl.LayoutTransform>
+                                                    <ContentControl.Style>
+                                                        <Style TargetType="{x:Type ContentControl}">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Path=IsActive}" Value="True">
+                                                                    <DataTrigger.EnterActions>
+                                                                        <BeginStoryboard Storyboard="{StaticResource verticalContentShowStoryboard}" />
+                                                                    </DataTrigger.EnterActions>
+                                                                    <DataTrigger.ExitActions>
+                                                                        <BeginStoryboard Storyboard="{StaticResource verticalContentHideStoryboard}" />
+                                                                    </DataTrigger.ExitActions>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </ContentControl.Style>
+                                                </ContentControl>
                                             </Border>
                                         </Grid>
                                     </DataTemplate>

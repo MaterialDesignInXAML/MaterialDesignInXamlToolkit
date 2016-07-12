@@ -39,6 +39,8 @@
             <TextBlock Margin="48,0,8,0" Text="Is linear" VerticalAlignment="Center" />
             <CheckBox x:Name="cbIsLinear" IsChecked="{Binding Path=IsLinear, Mode=TwoWay}" VerticalAlignment="Center" />
         </StackPanel>
-        <materialDesign:Stepper x:Name="stepper" Grid.Row="1" HorizontalAlignment="Stretch" IsLinear="{Binding Path=IsLinear}" Orientation="{Binding Path=Orientation}" Steps="{Binding Path=Steps, Mode=OneTime}" VerticalAlignment="Stretch" />
+        <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
+            <materialDesign:Stepper x:Name="stepper" HorizontalAlignment="Stretch" IsLinear="{Binding Path=IsLinear}" Orientation="{Binding Path=Orientation}" Steps="{Binding Path=Steps, Mode=OneTime}" VerticalAlignment="Stretch" />
+        </ScrollViewer>
     </Grid>
 </UserControl>
