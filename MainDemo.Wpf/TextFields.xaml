@@ -130,6 +130,13 @@
                           VerticalAlignment="Bottom"                           
                           ItemsSource="{Binding LongListToTestComboVirtualization}"                          
                           SelectedValue="{Binding SelectedValueOne}">
+                    <ComboBox.SelectedItem>
+                        <Binding Path="SelectedValueOne" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <domain1:NotNullValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel />
@@ -142,6 +149,13 @@
                           VerticalAlignment="Bottom" 
                           IsEditable="True"                          
                           ItemsSource="{Binding LongListToTestComboVirtualization}">
+                    <ComboBox.SelectedItem>
+                        <Binding Path="SelectedValueTwo" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <domain1:NotNullValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel />
