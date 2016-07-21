@@ -11,6 +11,11 @@ namespace MaterialDesignThemes.Wpf
     {
         #region ShowSelectedItem
 
+        /// <summary>
+        /// By default the selected item his hidden from the drop down list, as per Material Design specifications. 
+        /// To revert to a more classic Windows desktop behaviour, and show the currently selected item again in the drop
+        /// down, set this attached propety to true.
+        /// </summary>
         public static readonly DependencyProperty ShowSelectedItemProperty = DependencyProperty.RegisterAttached(
             "ShowSelectedItem",
             typeof (bool),
