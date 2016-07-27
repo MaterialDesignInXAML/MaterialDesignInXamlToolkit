@@ -7,17 +7,37 @@ using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf
 {
+    /// <summary>
+    /// Represents a step inside a <see cref="Stepper"/>.
+    /// </summary>
     public interface IStep : INotifyPropertyChanged
     {
+        /// <summary>
+        /// The content of this step.
+        /// </summary>
         object Content { get; set; }
 
+        /// <summary>
+        /// True, if this step is in an invalid semantic state.
+        /// </summary>
         bool HasValidationErrors { get; set; }
 
+        /// <summary>
+        /// The header of this step.
+        /// </summary>
         object Header { get; set; }
 
+        /// <summary>
+        /// Validates this steps.
+        /// Inherited classes may implement this method.
+        /// </summary>
         void Validate();
     }
 
+    /// <summary>
+    /// Basic implementation of <see cref="IStep"/>.
+    /// Consider to inherit every of your steps from <see cref="Step"/> and define a data template for them.
+    /// </summary>
     public class Step : IStep
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -26,6 +46,9 @@ namespace MaterialDesignThemes.Wpf
         protected object _content;
         protected bool _hasValidationErrors;
 
+        /// <summary>
+        /// The content of this step.
+        /// </summary>
         public virtual object Content
         {
             get
@@ -41,6 +64,9 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        /// <summary>
+        /// True, if this step is in an invalid semantic state.
+        /// </summary>
         public virtual bool HasValidationErrors
         {
             get
@@ -56,6 +82,9 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        /// <summary>
+        /// The header of this step.
+        /// </summary>
         public virtual object Header
         {
             get
@@ -78,6 +107,10 @@ namespace MaterialDesignThemes.Wpf
             _hasValidationErrors = false;
         }
 
+        /// <summary>
+        /// Validates this steps.
+        /// Inherited classes may implement this method.
+        /// </summary>
         public virtual void Validate() { }
 
         protected virtual void OnPropertyChanged(string propertyName)

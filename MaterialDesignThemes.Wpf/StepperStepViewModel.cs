@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf
 {
+    /// <summary>
+    /// A view model for an <see cref="IStep"/>.
+    /// It is considered for internal use only.
+    /// </summary>
     public class StepperStepViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

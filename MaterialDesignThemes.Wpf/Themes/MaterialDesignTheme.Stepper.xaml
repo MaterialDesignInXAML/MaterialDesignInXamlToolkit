@@ -179,7 +179,7 @@
                                     <RowDefinition Height="100*" />
                                 </Grid.RowDefinitions>
                                 <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0,0,0,1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True">
-                                    <ItemsControl HorizontalAlignment="Stretch" ItemsSource="{Binding Path=Controller.Steps, RelativeSource={RelativeSource TemplatedParent}}"
+                                    <ItemsControl HorizontalAlignment="Stretch" ItemsSource="{Binding Path=Controller.InternalSteps, RelativeSource={RelativeSource TemplatedParent}}"
                                                   ItemTemplateSelector="{StaticResource horizontalStepperHeaderTemplateSelector}" VerticalAlignment="Top">
                                         <ItemsControl.Resources>
                                             <DataTemplate x:Key="firstHorizontalStepHeaderTemplate" DataType="{x:Type wpf:StepperStepViewModel}">
@@ -271,7 +271,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type wpf:Stepper}">
-                            <ItemsControl HorizontalAlignment="Stretch" ItemsSource="{Binding Path=Controller.Steps, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Top">
+                            <ItemsControl HorizontalAlignment="Stretch" ItemsSource="{Binding Path=Controller.InternalSteps, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Top">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <VirtualizingStackPanel Grid.Column="1" HorizontalAlignment="Stretch" IsItemsHost="True" Orientation="Vertical" VerticalAlignment="Top" />

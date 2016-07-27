@@ -9,11 +9,18 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
+    /// <summary>
+    /// Convenience control for the navigation buttons inside a <see cref="Stepper"/>.
+    /// Setting the content for a button will show it. Otherwise the button will be collapsed.
+    /// </summary>
     public class StepButtonBar : Control
     {
         public static readonly DependencyProperty BackProperty = DependencyProperty.Register(
                 nameof(Back), typeof(object), typeof(StepButtonBar), new PropertyMetadata(null));
 
+        /// <summary>
+        /// The content for the back button.
+        /// </summary>
         public object Back
         {
             get
@@ -30,6 +37,7 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty CancelProperty = DependencyProperty.Register(
                 nameof(Cancel), typeof(object), typeof(StepButtonBar), new PropertyMetadata(null));
 
+        // The content for the cancel button.
         public object Cancel
         {
             get
@@ -46,6 +54,9 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty ContinueProperty = DependencyProperty.Register(
                 nameof(Continue), typeof(object), typeof(StepButtonBar), new PropertyMetadata(null));
 
+        /// <summary>
+        /// The content for the continue button.
+        /// </summary>
         public object Continue
         {
             get
@@ -84,7 +95,7 @@ namespace MaterialDesignThemes.Wpf
 
         public override void OnApplyTemplate()
         {
-            // read the Orientation of the Stepper and set as the Mode
+            // read the Orientation of the Stepper and set it as the Mode
             //     - changing the Orientation throws the UI of the Stepper and builds a new one
             //     - therefore this method will be called for a new instance and the changes of Orientation will be applied to Mode
             Stepper stepper = FindStepper();

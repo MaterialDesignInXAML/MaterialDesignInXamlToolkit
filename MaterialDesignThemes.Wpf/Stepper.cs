@@ -12,6 +12,9 @@ using System.Windows.Media.Animation;
 
 namespace MaterialDesignThemes.Wpf
 {
+    /// <summary>
+    /// A control which implements the Stepper of the Material design specification (https://material.google.com/components/steppers.html).
+    /// </summary>
     [ContentProperty(nameof(Steps))]
     public class Stepper : Control
     {
@@ -22,6 +25,9 @@ namespace MaterialDesignThemes.Wpf
 
         public static readonly RoutedEvent StepValidationEvent = EventManager.RegisterRoutedEvent(nameof(StepValidation), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Stepper));
 
+        /// <summary>
+        /// An event raised by starting the validation of an <see cref="IStep"/>.
+        /// </summary>
         public event RoutedEventHandler StepValidation
         {
             add
@@ -38,6 +44,9 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty BlockNavigationOnValidationErrorsProperty = DependencyProperty.Register(
                 nameof(BlockNavigationOnValidationErrors), typeof(bool), typeof(Stepper), new PropertyMetadata(false));
 
+        /// <summary>
+        /// Specifies whether validation errors will block the navigation or not.
+        /// </summary>
         public bool BlockNavigationOnValidationErrors
         {
             get
@@ -54,6 +63,10 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty IsLinearProperty = DependencyProperty.Register(
                 nameof(IsLinear), typeof(bool), typeof(Stepper), new PropertyMetadata(false));
 
+        /// <summary>
+        /// Enables the linear mode by disabling the buttons of the header.
+        /// The navigation must be accomplished by using the navigation commands.
+        /// </summary>
         public bool IsLinear
         {
             get
@@ -67,6 +80,9 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        /// <summary>
+        /// Defines this <see cref="Stepper"/> as either horizontal or vertical.
+        /// </summary>
         public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
                 nameof(Orientation), typeof(StepperOrientation), typeof(Stepper), new PropertyMetadata(StepperOrientation.Horizontal));
 
@@ -86,6 +102,9 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty StepsProperty = DependencyProperty.Register(
                 nameof(Steps), typeof(IList<IStep>), typeof(Stepper), new PropertyMetadata(null, StepsChangedHandler));
 
+        /// <summary>
+        /// Gets or sets the steps which will be shown inside this <see cref="Stepper"/>.
+        /// </summary>
         public IList<IStep> Steps
         {
             get
@@ -103,7 +122,7 @@ namespace MaterialDesignThemes.Wpf
             nameof(StepValidationCommand), typeof(ICommand), typeof(Stepper), new PropertyMetadata(null));
 
         /// <summary>
-        /// A command by clicking on the action button.
+        /// A command called by starting the validation of an <see cref="IStep"/>.
         /// </summary>
         public ICommand StepValidationCommand
         {
@@ -118,6 +137,9 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        /// <summary>
+        /// Gets the controller for this <see cref="Stepper"/>.
+        /// </summary>
         public StepperController Controller
         {
             get
@@ -293,6 +315,19 @@ namespace MaterialDesignThemes.Wpf
         }
     }
 
+    /// <summary>
+    /// The orientation of a <see cref="Stepper"/>.
+    /// </summary>
+    public enum StepperOrientation
+    {
+        Horizontal,
+        Vertical
+    }
+
+    /// <summary>
+    /// The argument for the <see cref="Stepper.StepValidation"/> event and the <see cref="Stepper.StepValidationCommand"/> command.
+    /// It holds the <see cref="IStep"/> to validate.
+    /// </summary>
     public class StepValidationEventArgs : RoutedEventArgs
     {
         public IStep Step { get; }

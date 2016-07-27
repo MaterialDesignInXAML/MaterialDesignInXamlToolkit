@@ -297,7 +297,6 @@
     <Compile Include="StepButtonBar.cs" />
     <Compile Include="Stepper.cs" />
     <Compile Include="StepperController.cs" />
-    <Compile Include="StepperOrientation.cs" />
     <Compile Include="StepperStepViewModel.cs" />
     <Compile Include="StepTitleHeader.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />

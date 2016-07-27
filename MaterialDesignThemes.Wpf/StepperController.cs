@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf
 {
+    /// <summary>
+    /// Controller which holds the steps and implements the navigation between them.
+    /// </summary>
     public class StepperController : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -15,14 +18,31 @@ namespace MaterialDesignThemes.Wpf
         private StepperStepViewModel[] _stepViewModels;
         private ObservableCollection<StepperStepViewModel> _observableStepViewModels;
 
+        /// <summary>
+        /// Gets the active <see cref="IStep"/> or null.
+        /// </summary>
+        public IStep ActiveStep
+        {
+            get
+            {
+                return ActiveStepViewModel?.Step;
+            }
+        }
+
+        /// <summary>
+        /// Gets the content of the active <see cref="IStep"/> or null.
+        /// </summary>
         public object ActiveStepContent
         {
             get
             {
-                return ActiveStepViewModel?.Step.Content;
+                return ActiveStep?.Content;
             }
         }
 
+        /// <summary>
+        /// Gets the view model of the active <see cref="IStep"/> or null.
+        /// </summary>
         public StepperStepViewModel ActiveStepViewModel
         {
             get
@@ -36,11 +56,31 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public ObservableCollection<StepperStepViewModel> Steps
+        /// <summary>
+        /// Internal getter for the binding in the XAML of the <see cref="Stepper"/>.
+        /// It is considered for internal use only.
+        /// </summary>
+        public ObservableCollection<StepperStepViewModel> InternalSteps
         {
             get
             {
                 return _observableStepViewModels;
+            }
+        }
+
+        /// <summary>
+        /// Gets all the steps of the <see cref="Stepper"/>.
+        /// </summary>
+        public IStep[] Steps
+        {
+            get
+            {
+                if (_stepViewModels == null)
+                {
+                    return null;
+                }
+
+                return _stepViewModels.Select(viewModel => viewModel.Step).ToArray();
             }
         }
 
@@ -50,11 +90,20 @@ namespace MaterialDesignThemes.Wpf
             _observableStepViewModels = new ObservableCollection<StepperStepViewModel>();
         }
 
+        /// <summary>
+        /// Initialises the steps which will be shown inside the <see cref="Stepper"/>.
+        /// </summary>
+        /// <param name="steps"></param>
         public void InitSteps(IList<IStep> steps)
         {
             InitSteps(steps?.ToArray());
         }
 
+        /// <summary>
+        /// Initialises the steps which will be shown inside the <see cref="Stepper"/>.
+        /// Throws an <see cref="ArgumentNullException"/> if any of the steps is null.
+        /// </summary>
+        /// <param name="steps"></param>
         public void InitSteps(IStep[] steps)
         {
             _observableStepViewModels.Clear();
@@ -91,8 +140,10 @@ namespace MaterialDesignThemes.Wpf
                     _stepViewModels[0].IsActive = true;
                 }
 
-                OnPropertyChanged(nameof(steps));
+                OnPropertyChanged(nameof(Steps));
+                OnPropertyChanged(nameof(InternalSteps));
                 OnPropertyChanged(nameof(ActiveStepViewModel));
+                OnPropertyChanged(nameof(ActiveStep));
                 OnPropertyChanged(nameof(ActiveStepContent));
             }
         }
@@ -113,6 +164,9 @@ namespace MaterialDesignThemes.Wpf
             return -1;
         }
 
+        /// <summary>
+        /// Goes to the next <see cref="IStep"/> if the active <see cref="IStep"/> is not the last one.
+        /// </summary>
         public void Continue()
         {
             if (_stepViewModels == null)
@@ -129,6 +183,9 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        /// <summary>
+        /// Goes to the previous <see cref="IStep"/> if the active <see cref="IStep"/> is not the first one.
+        /// </summary>
         public void Back()
         {
             if (_stepViewModels == null)
@@ -145,6 +202,10 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        /// <summary>
+        /// Goes to the <see cref="IStep"/> specified by the index.
+        /// </summary>
+        /// <param name="index"></param>
         public void GotoStep(int index)
         {
             if (_stepViewModels != null && index >= 0 && index < _stepViewModels.Length)
@@ -157,7 +218,12 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public void GotoStep(Step step)
+        /// <summary>
+        /// Goes to the specified <see cref="IStep"/>.
+        /// Throws an <see cref="ArgumentNullException"/> if step is null or step is not inside the <see cref="Stepper"/>.
+        /// </summary>
+        /// <param name="step"></param>
+        public void GotoStep(IStep step)
         {
             if (step == null)
             {
@@ -167,6 +233,11 @@ namespace MaterialDesignThemes.Wpf
             GotoStep(_stepViewModels.Where(stepViewModel => stepViewModel.Step == step).FirstOrDefault());
         }
 
+        /// <summary>
+        /// Goes to the specified <see cref="StepperStepViewModel"/>.
+        /// Throws an <see cref="ArgumentNullException"/> if stepViewModel is null.
+        /// </summary>
+        /// <param name="stepViewModel"></param>
         public void GotoStep(StepperStepViewModel stepViewModel)
         {
             if (stepViewModel == null)
@@ -181,6 +252,7 @@ namespace MaterialDesignThemes.Wpf
             }
 
             OnPropertyChanged(nameof(ActiveStepViewModel));
+            OnPropertyChanged(nameof(ActiveStep));
             OnPropertyChanged(nameof(ActiveStepContent));
         }
 
