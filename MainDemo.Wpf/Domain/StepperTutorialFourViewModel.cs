@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace MaterialDesignDemo.Domain
 {
-    public class StepperTutorialOneViewModel
+    public class StepperTutorialFourViewModel
     {
-        public StepperTutorialOneViewModel() { }
+        public StepperTutorialFourViewModel() { }
     }
 }

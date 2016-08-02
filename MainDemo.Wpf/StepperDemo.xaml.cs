@@ -66,9 +66,10 @@ namespace MaterialDesignDemo
             get
             {
                 List<IStep> steps = new List<IStep>();
-                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "One" }, Content = new StepperTutorialOneViewModel() });
-                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "Two", SecondLevelTitle = "Second level header" }, Content = new StepperTutorialTwoViewModel() });
-                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "Three" }, Content = new StepperTutorialThreeViewModel() });
+                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "What is a Stepper?" }, Content = new StepperTutorialOneViewModel() });
+                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "Layout and navigation" }, Content = new StepperTutorialTwoViewModel() });
+                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "Steps", SecondLevelTitle = "Header and content" }, Content = new StepperTutorialThreeViewModel() });
+                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "Validation" }, Content = new StepperTutorialFourViewModel() });
 
                 return steps;
             }

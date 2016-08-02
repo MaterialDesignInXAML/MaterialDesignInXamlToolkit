@@ -181,9 +181,6 @@ namespace MaterialDesignThemes.Wpf
         private void UnloadedHandler(object sender, RoutedEventArgs args)
         {
             _controller.PropertyChanged -= PropertyChangedHandler;
-
-            Loaded -= LoadedHandler;
-            Unloaded -= UnloadedHandler;
         }
 
         private bool ValidateActiveStep()
