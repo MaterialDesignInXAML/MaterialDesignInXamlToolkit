@@ -12,7 +12,7 @@
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" IsNotEmptyValue="Collapsed" />
     <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
     <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-    
+
     <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
     <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
     <system:Double x:Key="PopupLeftRightMargin">16</system:Double>
@@ -86,7 +86,7 @@
             </Grid>
         </Grid>
     </ControlTemplate>
-    
+
     <ControlTemplate x:Key="PopupContentDownTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
               Margin="6">
@@ -114,7 +114,7 @@
                         CornerRadius="2 2 0 0"
                         Background="{Binding ElementName=PART_Popup, Path=Background}"
                         Height="{StaticResource PopupTopBottomMargin}"/>
-                
+
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -147,7 +147,7 @@
             </Grid>
         </Grid>
     </ControlTemplate>
-    
+
     <ControlTemplate x:Key="PopupContentDefaultTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
               Margin="6">
@@ -424,7 +424,7 @@
                                  IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
                                  Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
                                  Visibility="Collapsed" />
-                        
+
                         <wpf:SmartHint x:Name="Hint"
                                        HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                        FontSize="{TemplateBinding FontSize}"
@@ -520,6 +520,26 @@
             <Trigger Property="IsKeyboardFocused" Value="true">
                 <Setter TargetName="Underline" Property="IsActive" Value="True"/>
             </Trigger>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="true" />
+                    <Condition Property="Validation.HasError" Value="true" />
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="true" />
+                    <Condition Property="Validation.HasError" Value="false" />
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+            </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -543,9 +563,6 @@
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
         <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-            </Trigger>
             <Trigger Property="IsKeyboardFocused" Value="true">
                 <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Trigger>
