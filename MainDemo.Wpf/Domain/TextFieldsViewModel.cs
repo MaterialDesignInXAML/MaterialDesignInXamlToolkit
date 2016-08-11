@@ -13,13 +13,15 @@ namespace MaterialDesignColors.WpfExample.Domain
     public class TextFieldsViewModel : INotifyPropertyChanged
     {
         private string _name;
-        private int _selectedValueOne;
+        private int? _selectedValueOne;
+        private string _selectedTextTwo;
 
         public TextFieldsViewModel()
         {
             LongListToTestComboVirtualization = new List<int>(Enumerable.Range(0, 1000));
 
             SelectedValueOne = LongListToTestComboVirtualization.Skip(2).First();
+            SelectedTextTwo = null;
         }
 
         public string Name
@@ -31,12 +33,21 @@ namespace MaterialDesignColors.WpfExample.Domain
             }
         }
 
-        public int SelectedValueOne
+        public int? SelectedValueOne
         {
             get { return _selectedValueOne; }
             set
             {
                 this.MutateVerbose(ref _selectedValueOne, value, RaisePropertyChanged());
+            }
+        }        
+
+        public string SelectedTextTwo
+        {
+            get { return _selectedTextTwo; }
+            set
+            {
+                this.MutateVerbose(ref _selectedTextTwo, value, RaisePropertyChanged());
             }
         }
 

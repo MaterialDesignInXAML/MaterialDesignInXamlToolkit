@@ -15,7 +15,7 @@ namespace MaterialDesignThemes.Wpf.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {            
             var solidColorBrush = value as SolidColorBrush;
-            if (solidColorBrush == null) return Binding.DoNothing;
+            if (solidColorBrush == null) return null;
 
             var color = solidColorBrush.Color;
 

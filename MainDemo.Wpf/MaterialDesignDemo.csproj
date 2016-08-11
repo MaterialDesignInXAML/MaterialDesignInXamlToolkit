@@ -47,6 +47,10 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\paket-files\samueldjack\VirtualCollection\VirtualCollection\VirtualCollection\VirtualizingWrapPanel.cs">
+      <Paket>True</Paket>
+      <Link>VirtualCollection/VirtualizingWrapPanel.cs</Link>
+    </Compile>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -67,9 +71,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="..\paket-files\samueldjack\VirtualCollection\VirtualCollection\VirtualCollection\VirtualizingWrapPanel.cs">
-      <Link>VirtualCollection\VirtualizingWrapPanel.cs</Link>
-    </Compile>
     <Compile Include="Buttons.xaml.cs">
       <DependentUpon>Buttons.xaml</DependentUpon>
     </Compile>
@@ -381,6 +382,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="paket.references" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -429,4 +431,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="..\.paket\paket.targets" />
 </Project>
