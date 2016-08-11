@@ -5,6 +5,7 @@
                       xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
                       xmlns:mahMaterialDragablzMashUp="clr-namespace:MahMaterialDragablzMashUp"
                       xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
+                      xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
                       WindowTransitionsEnabled="False"
                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                       Background="{DynamicResource MaterialDesignPaper}"					  
@@ -18,7 +19,18 @@
             </controls:Flyout>
         </controls:FlyoutsControl>
     </controls:MetroWindow.Flyouts>
-    <dockablz:Layout>
+    <controls:MetroWindow.LeftWindowCommands>
+        <controls:WindowCommands>
+            <wpf:PopupBox Style="{StaticResource WindowCommandsPopupBoxStyle}">
+                <StackPanel>
+                    <Button Content="Hello World"/>
+                    <Button Content="Nice Popup"/>
+                    <Button Content="Goodbye"/>
+                </StackPanel>
+            </wpf:PopupBox>
+        </controls:WindowCommands>
+    </controls:MetroWindow.LeftWindowCommands>
+        <dockablz:Layout>
         <dragablz:TabablzControl BorderThickness="0"
                                  Margin="0,-1,0,1">
             <dragablz:TabablzControl.InterTabController>

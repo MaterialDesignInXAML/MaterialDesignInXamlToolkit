@@ -27,7 +27,7 @@ namespace MaterialDesignThemes.Wpf
                 return width;
             }
 
-            //BinarySearch there
+            //BinarySearch here
             int end = (int) Math.Floor(element.ActualWidth);
             int start = 0;
 

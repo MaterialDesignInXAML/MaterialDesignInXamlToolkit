@@ -48,7 +48,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\PackIconBase.cs">
-      <Link>ControlzEx\PackIconBase.cs</Link>
+      <Paket>True</Paket>
+      <Link>ControlzEx/PackIconBase.cs</Link>
     </Compile>
     <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\PopupEx.cs">
       <Paket>True</Paket>
@@ -238,6 +239,7 @@
     <Compile Include="ClockItemButton.cs" />
     <Compile Include="ColorZone.cs" />
     <Compile Include="ColorZoneAssist.cs" />
+    <Compile Include="ComboBoxAssist.cs" />
     <Compile Include="ComboBoxPopup.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BrushRoundConverter.cs" />
@@ -347,6 +349,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="paket.references" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -389,4 +392,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="..\.paket\paket.targets" />
 </Project>
