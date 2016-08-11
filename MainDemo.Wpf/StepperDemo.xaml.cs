@@ -37,27 +37,27 @@ namespace MaterialDesignDemo
             }
         }
 
-        public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
-                nameof(Orientation), typeof(StepperOrientation), typeof(StepperDemo), new PropertyMetadata(StepperOrientation.Horizontal));
+        public static readonly DependencyProperty LayoutProperty = DependencyProperty.Register(
+                nameof(Layout), typeof(StepperLayout), typeof(StepperDemo), new PropertyMetadata(StepperLayout.Horizontal));
 
-        public StepperOrientation Orientation
+        public StepperLayout Layout
         {
             get
             {
-                return (StepperOrientation)GetValue(OrientationProperty);
+                return (StepperLayout)GetValue(LayoutProperty);
             }
 
             set
             {
-                SetValue(OrientationProperty, value);
+                SetValue(LayoutProperty, value);
             }
         }
 
-        public StepperOrientation[] Orientations
+        public StepperLayout[] Layouts
         {
             get
             {
-                return new StepperOrientation[] { StepperOrientation.Horizontal, StepperOrientation.Vertical };
+                return new StepperLayout[] { StepperLayout.Horizontal, StepperLayout.Vertical };
             }
         }
 

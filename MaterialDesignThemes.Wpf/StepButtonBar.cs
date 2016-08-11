@@ -71,13 +71,13 @@ namespace MaterialDesignThemes.Wpf
         }
 
         internal static readonly DependencyProperty ModeProperty = DependencyProperty.Register(
-                nameof(Mode), typeof(StepperOrientation), typeof(StepButtonBar), new PropertyMetadata(StepperOrientation.Horizontal));
+                nameof(Mode), typeof(StepperLayout), typeof(StepButtonBar), new PropertyMetadata(StepperLayout.Horizontal));
 
-        internal StepperOrientation Mode
+        internal StepperLayout Mode
         {
             get
             {
-                return (StepperOrientation)GetValue(ModeProperty);
+                return (StepperLayout)GetValue(ModeProperty);
             }
 
             set
@@ -102,7 +102,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (stepper != null)
             {
-                Mode = stepper.Orientation;
+                Mode = stepper.Layout;
             }
 
             base.OnApplyTemplate();

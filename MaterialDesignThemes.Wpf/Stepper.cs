@@ -83,19 +83,19 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Defines this <see cref="Stepper"/> as either horizontal or vertical.
         /// </summary>
-        public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
-                nameof(Orientation), typeof(StepperOrientation), typeof(Stepper), new PropertyMetadata(StepperOrientation.Horizontal));
+        public static readonly DependencyProperty LayoutProperty = DependencyProperty.Register(
+                nameof(Layout), typeof(StepperLayout), typeof(Stepper), new PropertyMetadata(StepperLayout.Horizontal));
 
-        public StepperOrientation Orientation
+        public StepperLayout Layout
         {
             get
             {
-                return (StepperOrientation)GetValue(OrientationProperty);
+                return (StepperLayout)GetValue(LayoutProperty);
             }
 
             set
             {
-                SetValue(OrientationProperty, value);
+                SetValue(LayoutProperty, value);
             }
         }
 
@@ -294,7 +294,7 @@ namespace MaterialDesignThemes.Wpf
         private void PropertyChangedHandler(object sender, PropertyChangedEventArgs args)
         {
             if (sender == _controller && args.PropertyName == nameof(_controller.ActiveStepContent)
-                && _controller.ActiveStepContent != null && Orientation == StepperOrientation.Horizontal)
+                && _controller.ActiveStepContent != null && Layout == StepperLayout.Horizontal)
             {
                 // there is no event raised if the Content of a ContentControl changes
                 //     therefore trigger the animation in code
@@ -306,16 +306,23 @@ namespace MaterialDesignThemes.Wpf
         {
             // there is no event raised if the Content of a ContentControl changes
             //     therefore trigger the animation in code
-            Storyboard storyboard = (Storyboard)FindResource("horizontalContentChangedStoryboard");
-            FrameworkElement element = GetTemplateChild("PART_horizontalContent") as FrameworkElement;
-            storyboard.Begin(element);
+            if (Layout == StepperLayout.Horizontal)
+            {
+                Storyboard storyboard = (Storyboard)FindResource("horizontalContentChangedStoryboard");
+                FrameworkElement element = GetTemplateChild("PART_horizontalContent") as FrameworkElement;
+
+                if (storyboard != null && element != null)
+                {
+                    storyboard.Begin(element);
+                }
+            }
         }
     }
 
     /// <summary>
-    /// The orientation of a <see cref="Stepper"/>.
+    /// The layout of a <see cref="Stepper"/>.
     /// </summary>
-    public enum StepperOrientation
+    public enum StepperLayout
     {
         Horizontal,
         Vertical
