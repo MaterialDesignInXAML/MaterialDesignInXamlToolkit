@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
@@ -69,6 +72,24 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(DownVerticalOffsetProperty, value); }
         }
 
+        #region Background property
+
+        private static readonly DependencyPropertyKey BackgroundPropertyKey =
+            DependencyProperty.RegisterReadOnly(
+                "Background", typeof(Brush), typeof(ComboBoxPopup),
+                new PropertyMetadata(default(Brush)));
+
+        public static readonly DependencyProperty BackgroundProperty =
+            BackgroundPropertyKey.DependencyProperty;
+
+        public Brush Background
+        {
+            get { return (Brush) GetValue(BackgroundProperty); }
+            private set { SetValue(BackgroundPropertyKey, value); }
+        }
+
+        #endregion
+
         #region DefaultVerticalOffset
 
         public static readonly DependencyProperty DefaultVerticalOffsetProperty
@@ -117,12 +138,36 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private CustomPopupPlacement[] ComboBoxCustomPopupPlacementCallback(Size popupSize, Size targetSize,
-            Point offset)
+        private void SetupBackground(IEnumerable<DependencyObject> visualAncestry)
         {
-            var locationFromScreen = this.PlacementTarget.PointToScreen(new Point(0, 0));
+            var background = visualAncestry
+                .Select(v => (v as Control)?.Background ?? (v as Panel)?.Background ?? (v as Border)?.Background)
+                .FirstOrDefault(v => v != null && !Equals(v, Brushes.Transparent) && v is SolidColorBrush);
 
-            var mainVisual = PlacementTarget.GetVisualAncestry().OfType<Visual>().LastOrDefault();
+            if (background != null)
+            {
+                Background = background;
+            }
+        }
+
+        private void SetupVisiblePlacementWidth(IEnumerable<DependencyObject> visualAncestry)
+        {
+            var parent = visualAncestry.OfType<Panel>().ElementAt(1);
+            VisiblePlacementWidth = TreeHelper.GetVisibleWidth((FrameworkElement)PlacementTarget, parent);
+        }
+
+        private CustomPopupPlacement[] ComboBoxCustomPopupPlacementCallback(
+            Size popupSize, Size targetSize, Point offset)
+        {
+            var visualAncestry = PlacementTarget.GetVisualAncestry().ToList();
+
+            SetupBackground(visualAncestry);
+
+            SetupVisiblePlacementWidth(visualAncestry);
+
+            var locationFromScreen = PlacementTarget.PointToScreen(new Point(0, 0));
+
+            var mainVisual = visualAncestry.OfType<Visual>().LastOrDefault();
             if (mainVisual == null) return new CustomPopupPlacement[0];
 
             var screenWidth = (int) DpiHelper.TransformToDeviceX(mainVisual, SystemParameters.PrimaryScreenWidth);
@@ -142,28 +187,25 @@ namespace MaterialDesignThemes.Wpf
                 offsetX = DpiHelper.TransformToDeviceX(mainVisual,
                     offset.X - targetSize.Width - rtlHorizontalOffset);
 
-            var defaultVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DefaultVerticalOffset);
-            var upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
-            var downVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);
-            var parent = this.PlacementTarget.GetVisualAncestry().OfType<Panel>().ElementAt(1);
-
-            VisiblePlacementWidth = TreeHelper.GetVisibleWidth((FrameworkElement)PlacementTarget, parent);
 
             if (locationX + popupSize.Width - realOffsetX > screenWidth
-                || locationX + realOffsetX < 0)
+                || locationX - realOffsetX < 0)
             {
                 SetChildTemplateIfNeed(DefaultContentTemplate);
 
+                var defaultVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DefaultVerticalOffset);
                 var newY = locationY + popupSize.Height > screenHeight
                     ? -(defaultVerticalOffsetIndepent + popupSize.Height)
                     : defaultVerticalOffsetIndepent + targetSize.Height;
 
                 return new[] { new CustomPopupPlacement(new Point(offsetX, newY), PopupPrimaryAxis.Horizontal) };
             }
+
             if (locationY + popupSize.Height > screenHeight)
             {
                 SetChildTemplateIfNeed(UpContentTemplate);
 
+                var upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
                 var newY = upVerticalOffsetIndepent - popupSize.Height + targetSize.Height;
 
                 return new[] { new CustomPopupPlacement(new Point(offsetX, newY), PopupPrimaryAxis.None) };
@@ -172,6 +214,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 SetChildTemplateIfNeed(DownContentTemplate);
 
+                var downVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);
                 var newY = downVerticalOffsetIndepent;
 
                 return new[] { new CustomPopupPlacement(new Point(offsetX, newY), PopupPrimaryAxis.None) };

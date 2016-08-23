@@ -13,6 +13,10 @@
     <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
     <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
 
+    <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
+    <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
+    <system:Double x:Key="PopupLeftRightMargin">16</system:Double>
+
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -26,10 +30,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
-    <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
-    <system:Double x:Key="PopupLeftRightMargin">16</system:Double>
 
     <ControlTemplate x:Key="PopupContentUpTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
@@ -55,12 +55,12 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0"
                         CornerRadius="2 2 0 0"
-                        Background="{Binding ElementName=templateRoot, Path=Background}"
+                        Background="{Binding ElementName=PART_Popup, Path=Background}"
                         Height="{StaticResource PopupTopBottomMargin}"/>
                 <ContentPresenter Grid.Row="1"/>
-                <Rectangle Grid.Row="2"
-                           Fill="{Binding ElementName=templateRoot, Path=Background}"
-                           Height="{StaticResource PopupContentPresenterExtend}"/>
+                <Border Grid.Row="2"
+                        Background="{Binding ElementName=PART_Popup, Path=Background}"
+                        Height="{StaticResource PopupContentPresenterExtend}"/>
 
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
@@ -68,25 +68,25 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Rectangle Grid.Column="0"
-                               Width="{StaticResource PopupLeftRightMargin}"
-                               Fill="{Binding ElementName=templateRoot, Path=Background}"/>
+                    <Border Grid.Column="0"
+                            Width="{StaticResource PopupLeftRightMargin}"
+                           Background="{Binding ElementName=PART_Popup, Path=Background}"/>
                     <Grid Grid.Column="1"
                           Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth}"
                           Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
-                    <Rectangle Grid.Column="2"
-                               MinWidth="{StaticResource PopupLeftRightMargin}"
-                               Fill="{Binding ElementName=templateRoot, Path=Background}"/>
+                    <Border Grid.Column="2"
+                            MinWidth="{StaticResource PopupLeftRightMargin}"
+                            Background="{Binding ElementName=PART_Popup, Path=Background}"/>
                 </Grid>
 
                 <Border Grid.Row="4"
                         CornerRadius="0 0 2 2"
                         Height="{StaticResource PopupTopBottomMargin}"
-                        Background="{Binding ElementName=templateRoot, Path=Background}" />
+                        Background="{Binding ElementName=PART_Popup, Path=Background}" />
             </Grid>
         </Grid>
     </ControlTemplate>
-    
+
     <ControlTemplate x:Key="PopupContentDownTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
               Margin="6">
@@ -112,42 +112,42 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0"
                         CornerRadius="2 2 0 0"
-                        Background="{Binding ElementName=templateRoot, Path=Background}"
+                        Background="{Binding ElementName=PART_Popup, Path=Background}"
                         Height="{StaticResource PopupTopBottomMargin}"/>
-                
+
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Rectangle Grid.Column="0"
-                               Width="{StaticResource PopupLeftRightMargin}"
-                               Fill="{Binding ElementName=templateRoot, Path=Background}"
+                    <Border Grid.Column="0"
+                            Width="{StaticResource PopupLeftRightMargin}"
+                            Background="{Binding ElementName=PART_Popup, Path=Background}"
                                />
                     <Grid Grid.Column="1"
                           Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth}"
                           Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
-                    <Rectangle Grid.Column="2"
-                               MinWidth="{StaticResource PopupLeftRightMargin}"
-                               Fill="{Binding ElementName=templateRoot, Path=Background}"
+                    <Border Grid.Column="2"
+                            MinWidth="{StaticResource PopupLeftRightMargin}"
+                            Background="{Binding ElementName=PART_Popup, Path=Background}"
                                />
                 </Grid>
 
-                <Rectangle Grid.Row="2"
-                           Fill="{Binding ElementName=templateRoot, Path=Background}"
-                           Height="{StaticResource PopupContentPresenterExtend}"/>
+                <Border Grid.Row="2"
+                        Background="{Binding ElementName=PART_Popup, Path=Background}"
+                        Height="{StaticResource PopupContentPresenterExtend}"/>
 
                 <ContentPresenter Grid.Row="3"/>
 
                 <Border Grid.Row="4"
                         CornerRadius="0 0 2 2"
                         Height="{StaticResource PopupTopBottomMargin}"
-                        Background="{Binding ElementName=templateRoot, Path=Background}" />
+                        Background="{Binding ElementName=PART_Popup, Path=Background}" />
             </Grid>
         </Grid>
     </ControlTemplate>
-    
+
     <ControlTemplate x:Key="PopupContentDefaultTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
               Margin="6">
@@ -170,15 +170,15 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0"
                         CornerRadius="2 2 0 0"
-                        Background="{Binding ElementName=templateRoot, Path=Background}"
-                           Height="{StaticResource PopupTopBottomMargin}"/>
+                        Background="{Binding ElementName=PART_Popup, Path=Background}"
+                        Height="{StaticResource PopupTopBottomMargin}"/>
 
                 <ContentPresenter Grid.Row="1"/>
 
                 <Border Grid.Row="2"
                         CornerRadius="0 0 2 2"
                         Height="{StaticResource PopupTopBottomMargin}"
-                        Background="{Binding ElementName=templateRoot, Path=Background}" />
+                        Background="{Binding ElementName=PART_Popup, Path=Background}" />
             </Grid>
         </Grid>
     </ControlTemplate>
@@ -424,7 +424,7 @@
                                  IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
                                  Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
                                  Visibility="Collapsed" />
-                        
+
                         <wpf:SmartHint x:Name="Hint"
                                        HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                        FontSize="{TemplateBinding FontSize}"
@@ -441,25 +441,25 @@
                                Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
 
                 <wpf:ComboBoxPopup x:Name="PART_Popup"
-                               AllowsTransparency="true"
-                               Focusable="False"
-                               HorizontalOffset="-11.5"
-                               IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                               PlacementTarget="{Binding ElementName=templateRoot}"
-                               SnapsToDevicePixels="True"
-                               UseLayoutRounding="True"
-                               Placement="Custom"
-                               PopupAnimation="Fade"
-                               VerticalOffset="0"
-                               DefaultVerticalOffset="5"
-                               DownVerticalOffset="-15.5"
-                               UpVerticalOffset="15"
-                               UpContentTemplate="{StaticResource PopupContentUpTemplate}"
-                               DownContentTemplate="{StaticResource PopupContentDownTemplate}"
-                               DefaultContentTemplate="{StaticResource PopupContentDefaultTemplate}">
+                                   AllowsTransparency="true"
+                                   Focusable="False"
+                                   HorizontalOffset="-11.5"
+                                   IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                   PlacementTarget="{Binding ElementName=templateRoot}"
+                                   SnapsToDevicePixels="True"
+                                   UseLayoutRounding="True"
+                                   Placement="Custom"
+                                   PopupAnimation="Fade"
+                                   VerticalOffset="0"
+                                   DefaultVerticalOffset="5"
+                                   DownVerticalOffset="-15.5"
+                                   UpVerticalOffset="15"
+                                   UpContentTemplate="{StaticResource PopupContentUpTemplate}"
+                                   DownContentTemplate="{StaticResource PopupContentDownTemplate}"
+                                   DefaultContentTemplate="{StaticResource PopupContentDefaultTemplate}">
                     <ContentControl>
                         <ScrollViewer MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                                      Background="{TemplateBinding Background}">
+                                      Background="{Binding Background, ElementName=PART_Popup}">
                             <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
                         </ScrollViewer>
                     </ContentControl>
@@ -520,12 +520,32 @@
             <Trigger Property="IsKeyboardFocused" Value="true">
                 <Setter TargetName="Underline" Property="IsActive" Value="True"/>
             </Trigger>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="true" />
+                    <Condition Property="Validation.HasError" Value="true" />
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="true" />
+                    <Condition Property="Validation.HasError" Value="false" />
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+            </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style x:Key="MaterialDesignComboBox" TargetType="{x:Type ComboBox}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
@@ -543,9 +563,6 @@
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
         <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-            </Trigger>
             <Trigger Property="IsKeyboardFocused" Value="true">
                 <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Trigger>
@@ -554,6 +571,9 @@
             </Trigger>
             <Trigger Property="IsEditable" Value="true">
                 <Setter Property="IsTabStop" Value="false" />
+                <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True"/>
+            </Trigger>
+            <Trigger Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True">
                 <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
             </Trigger>
         </Style.Triggers>
