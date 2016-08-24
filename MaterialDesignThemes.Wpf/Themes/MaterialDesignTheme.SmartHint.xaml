@@ -38,21 +38,6 @@
                                             <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock"  Storyboard.TargetProperty="Tag"
                                                              Duration="0:0:0.3" To="1"
                                                              EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            
-                                            <!--
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
-                                                             Duration="0:0:0.3" To="{TemplateBinding FloatingScale}"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
-                                                             Duration="0:0:0.3" To="{TemplateBinding FloatingScale}"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)"
-                                                             Duration="0:0:0.3" To="{TemplateBinding FloatingOffsetX}"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.Y)"
-                                                             Duration="0:0:0.3" To="{TemplateBinding FloatingOffsetY}"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            -->
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="*" To="ContentEmpty">
@@ -66,20 +51,6 @@
                                             <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock"  Storyboard.TargetProperty="Tag"
                                                              Duration="0:0:0.3"
                                                              EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            <!--
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
-                                                             Duration="0:0:0.3" 
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
-                                                             Duration="0:0:0.3" 
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)"
-                                                             Duration="0:0:0.3"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.Y)"
-                                                             Duration="0:0:0.3"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                            -->
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -91,16 +62,6 @@
                                                          Duration="0" To="{TemplateBinding HintOpacity}" />
                                         <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock"  Storyboard.TargetProperty="Tag"
                                                          Duration="0" To="1"/>
-                                        <!--
-                                        <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
-                                                         Duration="0" To="{TemplateBinding FloatingScale}" />
-                                        <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
-                                                         Duration="0" To="{TemplateBinding FloatingScale}" />
-                                        <DoubleAnimation Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)" Storyboard.TargetName="FloatingHintTextBlock"
-                                                         Duration="0" To="{TemplateBinding FloatingOffsetX}" />
-                                        <DoubleAnimation Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.Y)" Storyboard.TargetName="FloatingHintTextBlock"
-                                                         Duration="0" To="{TemplateBinding FloatingOffsetY}" />
-                                        -->
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="ContentEmpty">
@@ -111,16 +72,6 @@
                                                          Duration="0" />
                                         <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock"  Storyboard.TargetProperty="Tag"
                                                          Duration="0" />
-                                        <!--
-                                        <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
-                                                         Duration="0" />
-                                        <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
-                                                         Duration="0" />
-                                        <DoubleAnimation Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)" Storyboard.TargetName="FloatingHintTextBlock"
-                                                         Duration="0" />
-                                        <DoubleAnimation Storyboard.TargetProperty="(Control.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.Y)" Storyboard.TargetName="FloatingHintTextBlock"
-                                                         Duration="0" />
-                                        -->
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
