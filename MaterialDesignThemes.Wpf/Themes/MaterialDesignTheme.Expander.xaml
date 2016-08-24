@@ -92,7 +92,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignRightHeaderStyle" TargetType="{x:Type ToggleButton}">
+    <Style x:Key="MaterialDesignExpanderRightHeaderStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -122,7 +122,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignLeftHeaderStyle" TargetType="{x:Type ToggleButton}">
+    <Style x:Key="MaterialDesignExpanderLeftHeaderStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -152,7 +152,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignDownHeaderStyle" TargetType="{x:Type ToggleButton}">
+    <Style x:Key="MaterialDesignExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -179,7 +179,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignUpHeaderStyle" TargetType="{x:Type ToggleButton}">
+    <Style x:Key="MaterialDesignExpanderUpHeaderStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -275,7 +275,7 @@
                                           BorderThickness="0" Cursor="Hand"
                                           MinHeight="25"
                                           IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                          Style="{StaticResource MaterialDesignDownHeaderStyle}"
+                                          Style="{StaticResource MaterialDesignExpanderDownHeaderStyle}"
                                           Content="{TemplateBinding Header}"
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"
                                           ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
@@ -314,7 +314,7 @@
                             <Setter Property="Orientation" TargetName="ContentPanel" Value="Horizontal"/>
                             <!--Setter Property="MinWidth" TargetName="ContentSite" Value="{Binding ElementName=PART_Content, Path=ActualWidth}"/-->
                             <Setter Property="Height" TargetName="ContentPanel" Value="Auto"/>
-                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignRightHeaderStyle}"/>
+                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignExpanderRightHeaderStyle}"/>
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Left">
@@ -322,7 +322,7 @@
                             <Setter Property="DockPanel.Dock" TargetName="ContentSite" Value="Left"/>
                             <Setter Property="Orientation" TargetName="ContentPanel" Value="Horizontal"/>
                             <Setter Property="Height" TargetName="ContentPanel" Value="Auto"/>
-                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignLeftHeaderStyle}"/>
+                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignExpanderLeftHeaderStyle}"/>
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Up">
@@ -331,7 +331,7 @@
                             <!--Setter Property="MinHeight" TargetName="ContentSite" Value="{Binding ElementName=PART_Content, Path=ActualHeight}"/-->
                             <Setter Property="Orientation" TargetName="ContentPanel" Value="Vertical"/>
                             <Setter Property="Width" TargetName="ContentPanel" Value="Auto"/>
-                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignUpHeaderStyle}"/>
+                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignExpanderUpHeaderStyle}"/>
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Down">
@@ -339,7 +339,7 @@
                             <Setter Property="DockPanel.Dock" TargetName="ContentSite" Value="Bottom"/>
                             <Setter Property="Orientation" TargetName="ContentPanel" Value="Vertical"/>
                             <Setter Property="Width" TargetName="ContentPanel" Value="Auto"/>
-                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignDownHeaderStyle}"/>
+                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignExpanderDownHeaderStyle}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
