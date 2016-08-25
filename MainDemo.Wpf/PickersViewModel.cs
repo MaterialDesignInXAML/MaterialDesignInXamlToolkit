@@ -12,6 +12,7 @@ namespace MaterialDesignColors.WpfExample
     {
         private DateTime _date;
         private DateTime _time;
+        private DateTime? _bindingDateTime;
         private string _validatingTime;
         private DateTime? _futureValidatingDate;
 
@@ -19,6 +20,7 @@ namespace MaterialDesignColors.WpfExample
         {
             Date = DateTime.Now;
             Time = DateTime.Now;
+            BindingDateTime = DateTime.Now;
         }
 
         public DateTime Date
@@ -61,6 +63,15 @@ namespace MaterialDesignColors.WpfExample
             }
         }
 
+        public DateTime? BindingDateTime
+        {
+            get { return _bindingDateTime; }
+            set
+            {
+                _bindingDateTime = value;
+                OnPropertyChanged();
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

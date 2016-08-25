@@ -51,9 +51,11 @@ namespace MaterialDesignThemes.Wpf
 		private static void TextPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
 			var timePicker = (TimePicker) dependencyObject;
-			timePicker.SetSelectedTime();
-			if (timePicker._textBox != null)
-				timePicker._textBox.Text = dependencyPropertyChangedEventArgs.NewValue as string;
+		    if (timePicker._textBox != null)
+		    {
+                timePicker.SetSelectedTime();
+                timePicker._textBox.Text = dependencyPropertyChangedEventArgs.NewValue as string;
+		    }
 		}
 
 		public string Text
