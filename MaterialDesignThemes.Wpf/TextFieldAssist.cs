@@ -18,7 +18,7 @@ namespace MaterialDesignThemes.Wpf
             "TextBoxViewMargin",
             typeof(Thickness),
             typeof(TextFieldAssist),
-            new PropertyMetadata(new Thickness(double.NegativeInfinity), TextBoxViewMarginPropertyChangedCallback));
+            new FrameworkPropertyMetadata(new Thickness(double.NegativeInfinity), FrameworkPropertyMetadataOptions.Inherits, TextBoxViewMarginPropertyChangedCallback));
 
         /// <summary>
         /// Sets the text box view margin.
