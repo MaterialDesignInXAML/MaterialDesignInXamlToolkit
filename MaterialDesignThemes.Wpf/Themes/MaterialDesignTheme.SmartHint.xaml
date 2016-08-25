@@ -6,7 +6,7 @@
 
     <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
     <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
-    <converters:DoubleRangeMultiConverter x:Key="ScaleConverter"/>
+    <converters:RangePositionConverterConverter x:Key="ScaleConverter"/>
     <converters:MathMultipleConverter x:Key="TranslateConverter" Operation="Multiply"/>
     <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
     
@@ -110,15 +110,15 @@
                                         <ScaleTransform.ScaleX>
                                             <MultiBinding Converter="{StaticResource ScaleConverter}">
                                                 <Binding Path="Tag" ElementName="FloatingHintTextBlock"/>
-                                                <Binding Source="{StaticResource NoContentFloatingScale}"/>
                                                 <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                <Binding Source="{StaticResource NoContentFloatingScale}"/>
                                             </MultiBinding>
                                         </ScaleTransform.ScaleX>
                                         <ScaleTransform.ScaleY>
                                             <MultiBinding Converter="{StaticResource ScaleConverter}">
                                                 <Binding Path="Tag" ElementName="FloatingHintTextBlock"/>
-                                                <Binding Source="{StaticResource NoContentFloatingScale}"/>
                                                 <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                <Binding Source="{StaticResource NoContentFloatingScale}"/>
                                             </MultiBinding>
                                         </ScaleTransform.ScaleY>
                                     </ScaleTransform>
