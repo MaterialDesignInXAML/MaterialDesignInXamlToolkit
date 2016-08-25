@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    public class RangePositionConverterConverter : IMultiValueConverter
+    public class RangePositionConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -22,9 +22,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 
                 return Binding.DoNothing;
 
-            var result = upper + (lower - upper)*positionAsScaleFactor;
-
-            System.Diagnostics.Debug.WriteLine($"percantage={positionAsScaleFactor}, from={upper}, to={lower}, result={result}");
+            var result = upper + (lower - upper)*positionAsScaleFactor;            
 
             return result;
         }

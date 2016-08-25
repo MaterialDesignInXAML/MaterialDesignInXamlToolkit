@@ -6,7 +6,7 @@
 
     <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
     <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
-    <converters:RangePositionConverterConverter x:Key="ScaleConverter"/>
+    <converters:RangePositionConverter x:Key="RangePositionConverter"/>
     <converters:MathMultipleConverter x:Key="TranslateConverter" Operation="Multiply"/>
     <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
     
@@ -108,14 +108,14 @@
                                     </TranslateTransform>
                                     <ScaleTransform>
                                         <ScaleTransform.ScaleX>
-                                            <MultiBinding Converter="{StaticResource ScaleConverter}">
+                                            <MultiBinding Converter="{StaticResource RangePositionConverter}">
                                                 <Binding Path="Tag" ElementName="FloatingHintTextBlock"/>
                                                 <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}"/>
                                                 <Binding Source="{StaticResource NoContentFloatingScale}"/>
                                             </MultiBinding>
                                         </ScaleTransform.ScaleX>
                                         <ScaleTransform.ScaleY>
-                                            <MultiBinding Converter="{StaticResource ScaleConverter}">
+                                            <MultiBinding Converter="{StaticResource RangePositionConverter}">
                                                 <Binding Path="Tag" ElementName="FloatingHintTextBlock"/>
                                                 <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}"/>
                                                 <Binding Source="{StaticResource NoContentFloatingScale}"/>
