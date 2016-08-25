@@ -659,6 +659,9 @@ namespace MaterialDesignThemes.Wpf
                 {
                     if (popupBox.StaysOpen && popupBox.IsPopupOpen)
                     {
+            	        // Fix for ComboBox scrolling          
+			if (GetCapture() != IntPtr.Zero) return;
+			
                         // Take capture back because click happend outside of control
                         Mouse.Capture(popupBox, CaptureMode.SubTree);
                         e.Handled = true;
