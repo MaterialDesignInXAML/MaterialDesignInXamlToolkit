@@ -26,6 +26,7 @@ namespace MaterialDesignThemes.Wpf
 		private Button _dropDownButton;
 		private bool _disablePopupReopen;
         private DateTime? _lastValidTime;
+	    private bool _isManuallyMutatingText;
 
         static TimePicker()
 		{
@@ -51,7 +52,8 @@ namespace MaterialDesignThemes.Wpf
 		private static void TextPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
 			var timePicker = (TimePicker) dependencyObject;
-			timePicker.SetSelectedTime();
+            if (!timePicker._isManuallyMutatingText)
+			    timePicker.SetSelectedTime();
 			if (timePicker._textBox != null)
 				timePicker._textBox.Text = dependencyPropertyChangedEventArgs.NewValue as string;
 		}
@@ -68,7 +70,9 @@ namespace MaterialDesignThemes.Wpf
 		private static void SelectedTimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
 			var timePicker = (TimePicker) dependencyObject;
-			timePicker.SetCurrentValue(TextProperty, timePicker.DateTimeToString(timePicker.SelectedTime));		
+		    timePicker._isManuallyMutatingText = true;
+			timePicker.SetCurrentValue(TextProperty, timePicker.DateTimeToString(timePicker.SelectedTime));
+            timePicker._isManuallyMutatingText = false;
             timePicker._lastValidTime = timePicker.SelectedTime;
         }
 

@@ -24,6 +24,41 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
+        #region FloatingScale & FloatingOffset
+
+        public static readonly DependencyProperty FloatingScaleProperty = DependencyProperty.RegisterAttached(
+            "FloatingScale",
+            typeof(double),
+            typeof(HintAssist),
+            new FrameworkPropertyMetadata(0.74d, FrameworkPropertyMetadataOptions.Inherits));
+
+        public static double GetFloatingScale(DependencyObject element)
+        {
+            return (double)element.GetValue(FloatingScaleProperty);
+        }
+
+        public static void SetFloatingScale(DependencyObject element, double value)
+        {
+            element.SetValue(FloatingScaleProperty, value);
+        }
+
+        public static readonly DependencyProperty FloatingOffsetProperty = DependencyProperty.RegisterAttached(
+            "FloatingOffset",
+            typeof(Point),
+            typeof(HintAssist),
+            new FrameworkPropertyMetadata(new Point(1, -27), FrameworkPropertyMetadataOptions.Inherits));
+
+        public static Point GetFloatingOffset(DependencyObject element)
+        {
+            return (Point)element.GetValue(FloatingOffsetProperty);
+        }
+
+        public static void SetFloatingOffset(DependencyObject element, Point value)
+        {
+            element.SetValue(FloatingOffsetProperty, value);
+        }
+        #endregion
+
         #region Hint
 
         /// <summary>
