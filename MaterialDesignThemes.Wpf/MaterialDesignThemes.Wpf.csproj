@@ -239,6 +239,7 @@
     <Compile Include="ClockItemButton.cs" />
     <Compile Include="ColorZone.cs" />
     <Compile Include="ColorZoneAssist.cs" />
+    <Compile Include="ComboBoxAssist.cs" />
     <Compile Include="ComboBoxPopup.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BrushRoundConverter.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="Converters\CircularProgressBar\StartPointConverter.cs" />
     <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
     <Compile Include="Converters\ClockLineConverter.cs" />
+    <Compile Include="Converters\RangePositionConverterConverter.cs" />
     <Compile Include="Converters\DrawerOffsetConverter.cs" />
     <Compile Include="Converters\EqualityToVisibilityConverter.cs" />
     <Compile Include="Converters\HintProxyFabricConverter.cs" />

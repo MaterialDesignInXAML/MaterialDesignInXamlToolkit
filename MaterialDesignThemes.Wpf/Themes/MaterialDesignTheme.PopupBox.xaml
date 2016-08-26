@@ -6,6 +6,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolTip.xaml" />
     </ResourceDictionary.MergedDictionaries>
         
@@ -28,6 +29,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:PopupBox}">
                     <ControlTemplate.Resources>
+                        <Style TargetType="Separator" BasedOn="{StaticResource MaterialDesignSeparator}"/>
                         <Style TargetType="ToggleButton" x:Key="ToggleButtonStyle">
                             <Setter Property="Template">
                                 <Setter.Value>
