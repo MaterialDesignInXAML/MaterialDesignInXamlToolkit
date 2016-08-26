@@ -214,20 +214,6 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(PopupContentTemplateProperty, value); }
         }
 
-        [Obsolete]
-        public static readonly DependencyProperty StaysOpenOnEditProperty = DependencyProperty.Register(
-            nameof(StaysOpenOnEdit), typeof (bool), typeof (PopupBox), new PropertyMetadata(default(bool)));
-
-        /// <summary>
-        /// Prefer <see cref="StaysOpen"/>.
-        /// </summary>
-        [Obsolete]
-        public bool StaysOpenOnEdit
-        {
-            get { return (bool) GetValue(StaysOpenOnEditProperty); }
-            set { SetValue(StaysOpenOnEditProperty, value); }
-        }
-
         public static readonly DependencyProperty IsPopupOpenProperty = DependencyProperty.Register(
             nameof(IsPopupOpen), typeof (bool), typeof (PopupBox), new FrameworkPropertyMetadata(default(bool), IsPopupOpenPropertyChangedCallback));
 
