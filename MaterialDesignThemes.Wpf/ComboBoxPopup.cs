@@ -74,17 +74,18 @@ namespace MaterialDesignThemes.Wpf
 
         #region Background property
 
-        public static readonly DependencyProperty BackgroundProperty
-            = DependencyProperty.Register(nameof(Background),
-                typeof(Brush),
-                typeof(ComboBoxPopup),
-                new FrameworkPropertyMetadata(Brushes.Transparent, FrameworkPropertyMetadataOptions.AffectsRender));
+        private static readonly DependencyPropertyKey BackgroundPropertyKey =
+            DependencyProperty.RegisterReadOnly(
+                "Background", typeof(Brush), typeof(ComboBoxPopup),
+                new PropertyMetadata(default(Brush)));
 
+        public static readonly DependencyProperty BackgroundProperty =
+            BackgroundPropertyKey.DependencyProperty;
 
         public Brush Background
         {
             get { return (Brush) GetValue(BackgroundProperty); }
-            set { SetValue(BackgroundProperty, value); }
+            private set { SetValue(BackgroundPropertyKey, value); }
         }
 
         #endregion
@@ -140,8 +141,8 @@ namespace MaterialDesignThemes.Wpf
         private void SetupBackground(IEnumerable<DependencyObject> visualAncestry)
         {
             var background = visualAncestry
-                .Select(v => (v as Control)?.Background ?? (v as Border)?.Background)
-                .FirstOrDefault(v => v != null && v != Brushes.Transparent && v is SolidColorBrush);
+                .Select(v => (v as Control)?.Background ?? (v as Panel)?.Background ?? (v as Border)?.Background)
+                .FirstOrDefault(v => v != null && !Equals(v, Brushes.Transparent) && v is SolidColorBrush);
 
             if (background != null)
             {

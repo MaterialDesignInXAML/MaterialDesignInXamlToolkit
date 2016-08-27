@@ -9,9 +9,9 @@
   assembly_info:
     patch: true
     file: '**\AssemblyInfo.*'
-    assembly_version: '2.0.0.{build}'
-    assembly_file_version: '2.0.0.{build}'
-    assembly_informational_version: '2.0.0.{build}'
+    assembly_version: '2.2.0.{build}'
+    assembly_file_version: '2.2.0.{build}'
+    assembly_informational_version: '2.2.0.{build}'
   environment:
     RestorePackages: false
   install:
@@ -27,7 +27,7 @@
   - path: '**\MaterialDesignThemes.*.nupkg'
   - path: bin\**\*.*
 
-  version: 2.0.0-ci{build}
+  version: 2.2.0-ci{build}
   deploy:
   - provider: NuGet
     api_key:
@@ -62,4 +62,4 @@
   - path: '**\MaterialDesignThemes.*.nupkg'
   - path: bin\**\*.*
 
-  version: 2.0.0.{build}
+  version: 2.2.0.{build}
