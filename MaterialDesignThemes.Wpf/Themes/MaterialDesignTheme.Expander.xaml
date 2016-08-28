@@ -70,7 +70,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <wpf:PackIcon Kind="ChevronDown" Opacity=".38" x:Name="ExpandPath" RenderTransformOrigin="0.5,0.5"
-                                      Height="24" Width="24">
+                                      Height="24" Width="24" Foreground="{TemplateBinding Foreground}">
                             <wpf:PackIcon.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -101,6 +101,7 @@
                         <ToggleButton Grid.Row="0"
                                       Margin="0 16 0 16"
                                       HorizontalAlignment="Center"
+                                      Foreground="{TemplateBinding Foreground}"
                                       IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                       Style="{StaticResource MaterialDesignExpanderToggleButton}"
                                       RenderTransformOrigin="0.5,0.5">
@@ -134,6 +135,7 @@
                         <ToggleButton Grid.Row="0"
                                       Margin="0 16 0 16"
                                       HorizontalAlignment="Center"
+                                      Foreground="{TemplateBinding Foreground}"
                                       IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                       Style="{StaticResource MaterialDesignExpanderToggleButton}"
                                       RenderTransformOrigin="0.5,0.5">
@@ -170,6 +172,7 @@
                         <ToggleButton Grid.Column="1"
                                       Margin="16 0 16 0"
                                       VerticalAlignment="Center"
+                                      Foreground="{TemplateBinding Foreground}"
                                       IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                       Style="{StaticResource MaterialDesignExpanderToggleButton}"/>
                         <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 1" Grid.ColumnSpan="2" SnapsToDevicePixels="True" />
@@ -197,6 +200,7 @@
                         <ToggleButton IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                           Margin="16 0 16 0"
                                           VerticalAlignment="Center"
+                                          Foreground="{TemplateBinding Foreground}"
                                           Style="{StaticResource MaterialDesignExpanderToggleButton}"
                                           RenderTransformOrigin="0.5,0.5"
                                           Grid.Column="1">
@@ -278,6 +282,7 @@
                                           Style="{StaticResource MaterialDesignExpanderDownHeaderStyle}"
                                           TextElement.FontSize="15"
                                           Opacity=".87"
+                                          Foreground="{TemplateBinding Foreground}"
                                           Content="{TemplateBinding Header}"
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"
                                           ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
