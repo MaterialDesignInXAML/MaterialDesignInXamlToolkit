@@ -60,6 +60,8 @@
         </ListBox>
 
         <CheckBox IsChecked="{Binding ElementName=UnderlineCheckbox, Path=IsSelected}">Underline?</CheckBox>
+        
+        <materialDesign:TimePicker Margin="0 16 0 0" SelectedTime="{Binding SelectedTime}" HorizontalAlignment="Left" />
 
     </StackPanel>
 
