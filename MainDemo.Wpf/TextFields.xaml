@@ -204,8 +204,7 @@
 
         <TextBox Grid.Row="6" Grid.Column="3"
                    materialDesign:HintAssist.Hint="Large Font Size"
-                   materialDesign:HintAssist.FloatingScale="0.54"
-                   materialDesign:HintAssist.FloatingOffset="1,-54"
+                   materialDesign:HintAssist.FloatingScale="0.50"                   
                    Text="Some Text"
                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                    FontSize="24"/>

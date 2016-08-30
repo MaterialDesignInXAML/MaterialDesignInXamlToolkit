@@ -46,7 +46,7 @@ namespace MaterialDesignThemes.Wpf
             "FloatingOffset",
             typeof(Point),
             typeof(HintAssist),
-            new FrameworkPropertyMetadata(new Point(1, -27), FrameworkPropertyMetadataOptions.Inherits));
+            new FrameworkPropertyMetadata(new Point(1, -16), FrameworkPropertyMetadataOptions.Inherits));
 
         public static Point GetFloatingOffset(DependencyObject element)
         {

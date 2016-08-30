@@ -88,7 +88,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty FloatingOffsetProperty = DependencyProperty.Register(
-            nameof(FloatingOffset), typeof(Point), typeof(SmartHint), new PropertyMetadata(new Point(1, -27)));
+            nameof(FloatingOffset), typeof(Point), typeof(SmartHint), new PropertyMetadata(new Point(1, -16)));
 
         public Point FloatingOffset
         {
