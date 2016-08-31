@@ -89,7 +89,8 @@
                 </materialDesign:PopupBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <materialDesign:PopupBox Margin="16,0,16,0" StaysOpen="True">
+                <CheckBox Name="PopupEnabled">Enable Popup</CheckBox>
+                <materialDesign:PopupBox Margin="16,0,16,0" StaysOpen="True" IsEnabled="{Binding IsChecked, ElementName=PopupEnabled}">
                     <Grid Width="300" Margin="8,8,8,8">
                         <Grid.Resources>
                             <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
@@ -303,7 +304,29 @@
                 </ListBoxItem>
             </ListBox>
 
-            <ListBox Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignToolToggleListBox}" 
+            <ListBox Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignFlatToggleListBox}" SelectedIndex="0">
+                <ListBox.ToolTip>
+                    <StackPanel>
+                        <TextBlock Text="MaterialDesignFlatToggleListBox" />
+                        <TextBlock Text="Exclusive selection" />
+                        <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                    </StackPanel>
+                </ListBox.ToolTip>
+                <ListBoxItem>
+                    <TextBlock Text="00:00"/>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <TextBlock Text="06:00"/>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <TextBlock Text="12:00"/>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <TextBlock Text="18:00"/>
+                </ListBoxItem>
+            </ListBox>
+
+            <ListBox Grid.Column="1" Grid.Row="2" Style="{StaticResource MaterialDesignToolToggleListBox}" 
                  SelectionMode="Extended"
                  Margin="0 8 0 0">
                 <ListBox.ToolTip>
