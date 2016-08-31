@@ -290,7 +290,7 @@
                             <Border Name="ContentSite"
                                     DockPanel.Dock="Bottom">
                                 <StackPanel Name="ContentPanel"
-                                            HorizontalAlignment="Left">
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
                                     <StackPanel.Tag>
                                         <system:Double>0.0</system:Double>
                                     </StackPanel.Tag>
@@ -306,8 +306,8 @@
                                             <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
                                         </MultiBinding>
                                     </StackPanel.Width>
-                                    <ContentPresenter Name="PART_Content" Focusable="False"
-                                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    <ContentPresenter Name="PART_Content" Focusable="False"                                                      
+                                                      ContentTemplate="{TemplateBinding ContentTemplate}"                                                      
                                                       ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
                                 </StackPanel>
