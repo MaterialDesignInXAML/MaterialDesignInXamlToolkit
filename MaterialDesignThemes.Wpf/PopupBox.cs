@@ -109,6 +109,7 @@ namespace MaterialDesignThemes.Wpf
         private PopupEx _popup;
         private ContentControl _popupContentControl;
         private ToggleButton _toggleButton;
+        private Point _popupPointFromLastRequest;
 
         static PopupBox()
         {
@@ -212,20 +213,6 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (DataTemplate) GetValue(PopupContentTemplateProperty); }
             set { SetValue(PopupContentTemplateProperty, value); }
-        }
-
-        [Obsolete]
-        public static readonly DependencyProperty StaysOpenOnEditProperty = DependencyProperty.Register(
-            nameof(StaysOpenOnEdit), typeof (bool), typeof (PopupBox), new PropertyMetadata(default(bool)));
-
-        /// <summary>
-        /// Prefer <see cref="StaysOpen"/>.
-        /// </summary>
-        [Obsolete]
-        public bool StaysOpenOnEdit
-        {
-            get { return (bool) GetValue(StaysOpenOnEditProperty); }
-            set { SetValue(StaysOpenOnEditProperty, value); }
         }
 
         public static readonly DependencyProperty IsPopupOpenProperty = DependencyProperty.Register(
@@ -431,8 +418,23 @@ namespace MaterialDesignThemes.Wpf
             if (IsEnabled &&
                 (PopupMode == PopupBoxPopupMode.MouseOverEager
                  || PopupMode == PopupBoxPopupMode.MouseOver))
+            {
+                if (_popupContentControl != null)
+                {
+                    //if the invisible popup that is watching the mouse, isn't where we expected it to be
+                    //then the main popup toggle has been moved off screen...so we shouldn't show the popup content
+                    var popupScreenPoint = _popupContentControl.PointToScreen(new Point());
+                    popupScreenPoint.Offset(-_popupContentControl.Margin.Left, -_popupContentControl.Margin.Top);
+                    var expectedPopupScreenPoint = PointToScreen(_popupPointFromLastRequest);
+
+                    if (Math.Abs(popupScreenPoint.X - expectedPopupScreenPoint.X) > ActualWidth/3
+                        ||
+                        Math.Abs(popupScreenPoint.Y - expectedPopupScreenPoint.Y) > ActualHeight/3)
+                        return;
+                }
 
                 SetCurrentValue(IsPopupOpenProperty, true);
+            }
 
             base.OnMouseEnter(e);
         }
@@ -452,15 +454,13 @@ namespace MaterialDesignThemes.Wpf
             if (IsPopupOpen)
                 SetCurrentValue(IsPopupOpenProperty, false);
         }
-
+        
         private CustomPopupPlacement[] GetPopupPlacement(Size popupSize, Size targetSize, Point offset)
         {
-            double x, y;
-			
+            double x, y;			
 			
             if (FlowDirection == FlowDirection.RightToLeft)
                 offset.X += targetSize.Width / 2;
-
 			
             switch (PlacementMode)
             {
@@ -515,9 +515,9 @@ namespace MaterialDesignThemes.Wpf
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            var point = new Point(x, y);            
-            return new[] {new CustomPopupPlacement(point, PopupPrimaryAxis.Horizontal)};
+            
+            _popupPointFromLastRequest = new Point(x, y);
+            return new[] {new CustomPopupPlacement(_popupPointFromLastRequest, PopupPrimaryAxis.Horizontal)};
         }
 
         private void AnimateChildrenIn(bool reverse)
@@ -659,6 +659,9 @@ namespace MaterialDesignThemes.Wpf
                 {
                     if (popupBox.StaysOpen && popupBox.IsPopupOpen)
                     {
+                        // allow scrolling
+                        if (GetCapture() != IntPtr.Zero) return;
+
                         // Take capture back because click happend outside of control
                         Mouse.Capture(popupBox, CaptureMode.SubTree);
                         e.Handled = true;
