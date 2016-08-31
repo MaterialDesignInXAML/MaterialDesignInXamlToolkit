@@ -303,10 +303,10 @@
                 </ListBoxItem>
             </ListBox>
 
-            <ListBox Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignFlatToggleListBox}" SelectedIndex="0">
+            <ListBox Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignToolToggleFlatListBox}" SelectedIndex="0">
                 <ListBox.ToolTip>
                     <StackPanel>
-                        <TextBlock Text="MaterialDesignFlatToggleListBox" />
+                        <TextBlock Text="MaterialDesignToolToggleFlatListBox" />
                         <TextBlock Text="Exclusive selection" />
                         <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
                     </StackPanel>
