@@ -194,7 +194,7 @@
                                       x:Name="MenuToggleButton"/>
                         <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                             <StackPanel>
-                                <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
+                                <Button Content="Hello World" Click="MenuPopupButton_OnClick" IsEnabled="False"/>
                                 <Separator/>
                                 <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
                                 <Separator/>

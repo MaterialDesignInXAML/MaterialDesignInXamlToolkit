@@ -110,6 +110,11 @@
                                                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"                                                                
                                                                     Padding="{TemplateBinding Padding}"/>
                                                     </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsEnabled" Value="false">
+                                                            <Setter Property="Opacity" Value="0.23"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
