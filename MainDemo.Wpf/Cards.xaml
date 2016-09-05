@@ -5,17 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="1200">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <WrapPanel Margin="0 0 8 8" ItemWidth="200">
-        <materialDesign:Card Margin="4 4 0 0">
+    <WrapPanel Margin="0 0 8 8">
+        <materialDesign:Card Margin="4 4 0 0" Width="200">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="140" />
@@ -41,6 +43,74 @@
                             materialDesign:RippleAssist.IsCentered="True">
                         <materialDesign:PackIcon Kind="Heart" />
                     </Button>
+                    <materialDesign:PopupBox Style="{StaticResource MaterialDesignToolPopupBox}" Padding="2 0 2 0">
+                        <StackPanel>
+                            <Button Content="More"/>
+                            <Button Content="Options"/>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+        
+        <materialDesign:Card Margin="4 4 0 0" Width="220">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Image Source="Resources/Contact.png" Height="140" Stretch="UniformToFill"/>
+                <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Margin="0 0 16 -20">
+                    <materialDesign:PackIcon Kind="ShareVariant" />
+                </Button>
+                <StackPanel Grid.Row="1" Margin="8 24 8 4" >
+                    <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" Margin="0">E.T. the Extra-Terrestrial</TextBlock>
+                    <Viewbox Margin="0 4 0 8" Height="16" HorizontalAlignment="Left">
+                        <materialDesign:RatingBar Value="3" Orientation="Horizontal" Foreground="Gold" Margin="0" />
+                    </Viewbox>
+                    <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" TextWrapping="Wrap" VerticalAlignment="Center">After a gentle alien becomes stranded on Earth, the being is discovered and befriended by a young boy named Elliott.</TextBlock>
+                </StackPanel>
+                <Separator Grid.Row="2" Style="{StaticResource MaterialDesignDarkSeparator}" Margin="8 0 8 0"/>
+                <TextBlock Grid.Row="3" Margin="8 4 8 4" Style="{StaticResource MaterialDesignBody2TextBlock}">Tonight's availability</TextBlock>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Grid.Column="0" Kind="Clock" VerticalAlignment="Center" Margin="8 4 4 4"/>
+                    <ListBox Grid.Column="1" Style="{StaticResource MaterialDesignToolToggleFlatListBox}" SelectedIndex="0" Margin="4 8 8 4">
+                        <ListBox.Resources>
+                            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}">
+                                <Setter Property="Padding" Value="4 6 4 6" />
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ToolTip>
+                            <StackPanel>
+                                <TextBlock Text="MaterialDesignFlatToggleListBox" />
+                                <TextBlock Text="Exclusive selection" />
+                                <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                            </StackPanel>
+                        </ListBox.ToolTip>
+                        <ListBoxItem>
+                            <TextBlock Text="18:00"/>
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            <TextBlock Text="19:00"/>
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            <TextBlock Text="22:00"/>
+                        </ListBoxItem>
+                    </ListBox>
+                </Grid>
+                               
+                <StackPanel Grid.Row="5">
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Left" Margin="8 4 8 8">RESERVE</Button>
                 </StackPanel>
             </Grid>
         </materialDesign:Card>
@@ -55,24 +125,32 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Margin="16 16 16 4" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Call Jennifer</TextBlock>
-                <Separator Grid.Row="1" Style="{StaticResource MaterialDesignDarkSeparator}"/>
-                <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody1TextBlock}">March 19, 2016</TextBlock>
+                <Separator Grid.Row="1" Style="{StaticResource MaterialDesignLightSeparator}"/>
+                <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody2TextBlock}">March 19, 2016</TextBlock>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="16 0 16 8" HorizontalAlignment="Right">
                     <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundButton}" Width="30" Padding="2 0 2 0"
                             materialDesign:RippleAssist.IsCentered="True">
                         <materialDesign:PackIcon Kind="Phone" />
                     </Button>
+                    <materialDesign:PopupBox HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundPopupBox}" Padding="2 0 2 0">
+                        <StackPanel>
+                            <Button Content="More"/>
+                            <Button Content="Options"/>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
                 </StackPanel>
             </Grid>
         </materialDesign:Card>
         <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueLightBrush}"
                   Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                  Width="200"
                   Padding="8">
             <TextBlock FontSize="16">Boring Text</TextBlock>
         </materialDesign:Card>
         <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueDarkBrush}"
                   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                  >
+                  Width="200"
+                  Padding="8">
             <StackPanel>
                 <TextBlock Margin="16 16 12 8" FontSize="16">Notes</TextBlock>
                 <CheckBox Margin="16 4 16 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Do something good</CheckBox>
@@ -89,6 +167,7 @@
         </materialDesign:Card>
         <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueDarkBrush}"
                   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                  Width="200"
                   Padding="8" UniformCornerRadius="6">
             <TextBlock TextWrapping="Wrap">You can adjust the corner radius</TextBlock>
         </materialDesign:Card>
