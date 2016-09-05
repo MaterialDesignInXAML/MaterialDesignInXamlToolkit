@@ -423,14 +423,18 @@ namespace MaterialDesignThemes.Wpf
                 {
                     //if the invisible popup that is watching the mouse, isn't where we expected it to be
                     //then the main popup toggle has been moved off screen...so we shouldn't show the popup content
-                    var popupScreenPoint = _popupContentControl.PointToScreen(new Point());
-                    popupScreenPoint.Offset(-_popupContentControl.Margin.Left, -_popupContentControl.Margin.Top);
-                    var expectedPopupScreenPoint = PointToScreen(_popupPointFromLastRequest);
+                    var inputSource = PresentationSource.FromVisual(_popupContentControl);
+                    if (inputSource != null)
+                    {
+                        var popupScreenPoint = _popupContentControl.PointToScreen(new Point());
+                        popupScreenPoint.Offset(-_popupContentControl.Margin.Left, -_popupContentControl.Margin.Top);
+                        var expectedPopupScreenPoint = PointToScreen(_popupPointFromLastRequest);
 
-                    if (Math.Abs(popupScreenPoint.X - expectedPopupScreenPoint.X) > ActualWidth/3
-                        ||
-                        Math.Abs(popupScreenPoint.Y - expectedPopupScreenPoint.Y) > ActualHeight/3)
-                        return;
+                        if (Math.Abs(popupScreenPoint.X - expectedPopupScreenPoint.X) > ActualWidth/3
+                            ||
+                            Math.Abs(popupScreenPoint.Y - expectedPopupScreenPoint.Y) > ActualHeight/3)
+                            return;
+                    }
                 }
 
                 SetCurrentValue(IsPopupOpenProperty, true);
