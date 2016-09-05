@@ -150,6 +150,7 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="wpf:ListBoxAssist.IsToggle" Value="True" />
+        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignToolToggleListBoxItem}"/>
         <Setter Property="ItemsPanel">
@@ -174,7 +175,7 @@
                             Background="{TemplateBinding Background}" 
                             SnapsToDevicePixels="true"
                             Padding="{TemplateBinding Padding}">
-                        <wpf:Card wpf:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left">
+                        <wpf:Card wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}" HorizontalAlignment="Left">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </wpf:Card>
                     </Border>
@@ -190,6 +191,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignToolToggleFlatListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignToolToggleListBox}">
+        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
     </Style>
 
     <Style x:Key="MaterialDesignListBoxItem" TargetType="{x:Type ListBoxItem}">
