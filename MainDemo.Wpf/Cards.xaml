@@ -44,6 +44,27 @@
                 </StackPanel>
             </Grid>
         </materialDesign:Card>
+        <materialDesign:Card Margin="4 4 0 0" Background="#03a9f4"
+                  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                  Padding="0"
+                  Width="200">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Margin="16 16 16 4" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Call Jennifer</TextBlock>
+                <Separator Grid.Row="1" Style="{StaticResource MaterialDesignDarkSeparator}"/>
+                <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody1TextBlock}">March 19, 2016</TextBlock>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="16 0 16 8" HorizontalAlignment="Right">
+                    <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundButton}" Width="30" Padding="2 0 2 0"
+                            materialDesign:RippleAssist.IsCentered="True">
+                        <materialDesign:PackIcon Kind="Phone" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
         <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueLightBrush}"
                   Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
                   Padding="8">
@@ -51,12 +72,19 @@
         </materialDesign:Card>
         <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueDarkBrush}"
                   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                  Padding="8">
+                  >
             <StackPanel>
-                <TextBlock FontSize="16">Notes</TextBlock>
-                <CheckBox Margin="0 4 0 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Do something good</CheckBox>
-                <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Take a breather</CheckBox>
-                <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">And go create</CheckBox>
+                <TextBlock Margin="16 16 12 8" FontSize="16">Notes</TextBlock>
+                <CheckBox Margin="16 4 16 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Do something good</CheckBox>
+                <CheckBox Margin="16 4 16 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Take a breather</CheckBox>
+                <CheckBox Margin="16 4 16 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">And go create</CheckBox>
+                <Separator Style="{StaticResource MaterialDesignLightSeparator}"/>
+                <StackPanel Margin="8 0 8 8" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundButton}" Width="30" Padding="2 0 0 0"
+                            materialDesign:RippleAssist.IsCentered="True">
+                        <materialDesign:PackIcon Kind="CheckAll" />
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </materialDesign:Card>
         <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueDarkBrush}"
