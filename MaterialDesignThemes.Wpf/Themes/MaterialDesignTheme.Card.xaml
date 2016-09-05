@@ -40,14 +40,4 @@
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth2" />
     </Style>
 
-    <Style x:Key="MaterialDesignDarkSeparator" TargetType="{x:Type Separator}" BasedOn="{StaticResource MaterialDesignSeparator}">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignDarkSeparatorBackground}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDarkSeparatorBackground}"/>
-    </Style>
-
-    <Style x:Key="MaterialDesignLightSeparator" TargetType="{x:Type Separator}" BasedOn="{StaticResource MaterialDesignSeparator}">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignLightSeparatorBackground}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignLightSeparatorBackground}"/>
-    </Style>
-
 </ResourceDictionary>
