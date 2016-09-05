@@ -50,15 +50,18 @@
         <materialDesign:Card Grid.Row="1" Background="{DynamicResource MaterialDesignBackground}"
                              Margin="0 24 0 0">
             <StackPanel>
-                <Expander HorizontalAlignment="Stretch"
+                <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsExpanded="True"
                       Header="Expander Example 2a">
-                    <StackPanel Orientation="Vertical"
-                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
-                            Margin="16">
-                        <TextBlock Text="Your Content" />
-                        <TextBlock Opacity=".68" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                               TextWrapping="Wrap"/>
-                    </StackPanel>
+                    <materialDesign:ColorZone Mode="PrimaryMid">
+                        <Grid Margin="16">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock VerticalAlignment="Center">This background spans the whole expander.</TextBlock>
+                            <Button Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource MaterialDesignToolForegroundButton}">More Info</Button>
+                        </Grid>
+                    </materialDesign:ColorZone>
                 </Expander>
                 <Expander HorizontalAlignment="Stretch"
                       Header="Expander Example 2b">
