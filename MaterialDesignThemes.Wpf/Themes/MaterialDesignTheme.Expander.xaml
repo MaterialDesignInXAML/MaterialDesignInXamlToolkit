@@ -238,10 +238,7 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content"
-                                                             To="1" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ContentPanel"
-                                                             To="1" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="1" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition GeneratedDuration="0" To="Collapsed">
@@ -252,17 +249,13 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content"
-                                                             To="0" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ContentPanel"
-                                                             To="0" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="0" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Expanded">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="1" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ContentPanel" To="1" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -271,7 +264,6 @@
                                 <VisualState x:Name="Collapsed">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="0" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ContentPanel" To="0" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -298,19 +290,16 @@
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             Margin="{TemplateBinding Padding}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                    <StackPanel.Tag>
-                                        <system:Double>0.0</system:Double>
-                                    </StackPanel.Tag>
                                     <StackPanel.Height>
                                         <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
                                             <Binding ElementName="PART_Content" Path="ActualHeight"/>
-                                            <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
+                                            <Binding ElementName="PART_Content" Path="Opacity"/>
                                         </MultiBinding>
                                     </StackPanel.Height>
                                     <StackPanel.Width>
                                         <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
                                             <Binding ElementName="PART_Content" Path="ActualWidth"/>
-                                            <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
+                                            <Binding ElementName="PART_Content" Path="Opacity"/>
                                         </MultiBinding>
                                     </StackPanel.Width>
                                     <ContentPresenter Name="PART_Content" Focusable="False"
