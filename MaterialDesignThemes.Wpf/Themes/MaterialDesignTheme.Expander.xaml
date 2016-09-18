@@ -70,7 +70,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <wpf:PackIcon Kind="ChevronDown" Opacity=".38" x:Name="ExpandPath" RenderTransformOrigin="0.5,0.5"
-                                      Height="24" Width="24">
+                                      Height="24" Width="24" Foreground="{TemplateBinding Foreground}">
                             <wpf:PackIcon.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -101,6 +101,7 @@
                         <ToggleButton Grid.Row="0"
                                       Margin="0 16 0 16"
                                       HorizontalAlignment="Center"
+                                      Foreground="{TemplateBinding Foreground}"
                                       IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                       Style="{StaticResource MaterialDesignExpanderToggleButton}"
                                       RenderTransformOrigin="0.5,0.5">
@@ -134,6 +135,7 @@
                         <ToggleButton Grid.Row="0"
                                       Margin="0 16 0 16"
                                       HorizontalAlignment="Center"
+                                      Foreground="{TemplateBinding Foreground}"
                                       IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                       Style="{StaticResource MaterialDesignExpanderToggleButton}"
                                       RenderTransformOrigin="0.5,0.5">
@@ -165,11 +167,15 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                           VerticalAlignment="Center"
                                           Margin="16 16 0 16" />                        
                         <ToggleButton Grid.Column="1"
                                       Margin="16 0 16 0"
                                       VerticalAlignment="Center"
+                                      Foreground="{TemplateBinding Foreground}"
                                       IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                       Style="{StaticResource MaterialDesignExpanderToggleButton}"/>
                         <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 1" Grid.ColumnSpan="2" SnapsToDevicePixels="True" />
@@ -197,6 +203,7 @@
                         <ToggleButton IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                           Margin="16 0 16 0"
                                           VerticalAlignment="Center"
+                                          Foreground="{TemplateBinding Foreground}"
                                           Style="{StaticResource MaterialDesignExpanderToggleButton}"
                                           RenderTransformOrigin="0.5,0.5"
                                           Grid.Column="1">
@@ -214,6 +221,8 @@
     <Style x:Key="MaterialDesignExpander" TargetType="{x:Type Expander}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
@@ -229,10 +238,7 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content"
-                                                             To="1" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ContentPanel"
-                                                             To="1" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="1" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition GeneratedDuration="0" To="Collapsed">
@@ -243,17 +249,13 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content"
-                                                             To="0" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ContentPanel"
-                                                             To="0" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="0" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Expanded">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="1" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ContentPanel" To="1" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -262,7 +264,6 @@
                                 <VisualState x:Name="Collapsed">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="0" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ContentPanel" To="0" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -278,27 +279,27 @@
                                           Style="{StaticResource MaterialDesignExpanderDownHeaderStyle}"
                                           TextElement.FontSize="15"
                                           Opacity=".87"
+                                          Foreground="{TemplateBinding Foreground}"
                                           Content="{TemplateBinding Header}"
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"
                                           ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
                                           ContentStringFormat="{TemplateBinding HeaderStringFormat}"/>
                             <Border Name="ContentSite"
-                                    DockPanel.Dock="Bottom">
+                                    DockPanel.Dock="Bottom"                                    >
                                 <StackPanel Name="ContentPanel"
-                                            HorizontalAlignment="Left">
-                                    <StackPanel.Tag>
-                                        <system:Double>0.0</system:Double>
-                                    </StackPanel.Tag>
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            Margin="{TemplateBinding Padding}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                     <StackPanel.Height>
                                         <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
                                             <Binding ElementName="PART_Content" Path="ActualHeight"/>
-                                            <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
+                                            <Binding ElementName="PART_Content" Path="Opacity"/>
                                         </MultiBinding>
                                     </StackPanel.Height>
                                     <StackPanel.Width>
                                         <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
                                             <Binding ElementName="PART_Content" Path="ActualWidth"/>
-                                            <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
+                                            <Binding ElementName="PART_Content" Path="Opacity"/>
                                         </MultiBinding>
                                     </StackPanel.Width>
                                     <ContentPresenter Name="PART_Content" Focusable="False"

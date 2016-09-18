@@ -90,22 +90,8 @@
                             <ContentControl.Tag>
                                 <system:Double>0.0</system:Double>
                             </ContentControl.Tag>
-                            <ContentControl.RenderTransform>
+                            <ContentControl.LayoutTransform>
                                 <TransformGroup>
-                                    <TranslateTransform>
-                                        <TranslateTransform.X>
-                                            <MultiBinding Converter="{StaticResource TranslateConverter}">
-                                                <Binding Path="Tag" ElementName="FloatingHintTextBlock"/>
-                                                <Binding Path="FloatingOffset.X" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                            </MultiBinding>
-                                        </TranslateTransform.X>
-                                        <TranslateTransform.Y>
-                                            <MultiBinding Converter="{StaticResource TranslateConverter}">
-                                                <Binding Path="Tag" ElementName="FloatingHintTextBlock"/>
-                                                <Binding Path="FloatingOffset.Y" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                            </MultiBinding>
-                                        </TranslateTransform.Y>
-                                    </TranslateTransform>
                                     <ScaleTransform>
                                         <ScaleTransform.ScaleX>
                                             <MultiBinding Converter="{StaticResource RangePositionConverter}">
@@ -122,6 +108,24 @@
                                             </MultiBinding>
                                         </ScaleTransform.ScaleY>
                                     </ScaleTransform>
+                                </TransformGroup>
+                            </ContentControl.LayoutTransform>
+                            <ContentControl.RenderTransform>
+                                <TransformGroup>
+                                    <TranslateTransform>
+                                        <TranslateTransform.X>
+                                            <MultiBinding Converter="{StaticResource TranslateConverter}">
+                                                <Binding Path="Tag" ElementName="FloatingHintTextBlock"/>
+                                                <Binding Path="FloatingOffset.X" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                            </MultiBinding>
+                                        </TranslateTransform.X>
+                                        <TranslateTransform.Y>
+                                            <MultiBinding Converter="{StaticResource TranslateConverter}">
+                                                <Binding Path="Tag" ElementName="FloatingHintTextBlock"/>
+                                                <Binding Path="FloatingOffset.Y" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                            </MultiBinding>
+                                        </TranslateTransform.Y>
+                                    </TranslateTransform>
                                 </TransformGroup>
                             </ContentControl.RenderTransform>
                         </ContentControl>

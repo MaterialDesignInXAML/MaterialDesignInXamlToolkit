@@ -6,63 +6,44 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
-             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{StaticResource MaterialDesignFont}"
              mc:Ignorable="d"              
 			 d:DesignWidth="477" d:DesignHeight="272"
              d:DataContext="{d:DesignInstance wpfExample:ProvingGroundViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!--
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                -->
             </ResourceDictionary.MergedDictionaries>
 
-            
 
-            
+
+
 
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <StackPanel Margin="8">
-        <ListBox Style="{StaticResource MaterialDesignToolToggleListBox}">
-            <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatAlignLeft"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatAlignCenter"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatAlignRight"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatAlignJustify"/>
-            </ListBoxItem>
-        </ListBox>
-
-        <ListBox Style="{StaticResource MaterialDesignToolToggleListBox}" 
-                 SelectionMode="Extended"
-                 Margin="0 8 0 0">
-            <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatBold"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatItalic"/>
-            </ListBoxItem>
-            <ListBoxItem x:Name="UnderlineCheckbox">
-                <materialDesign:PackIcon Kind="FormatUnderline"/>
-            </ListBoxItem>
-        </ListBox>
-
-        <CheckBox IsChecked="{Binding ElementName=UnderlineCheckbox, Path=IsSelected}">Underline?</CheckBox>
-        
-        <materialDesign:TimePicker Margin="0 16 0 0" SelectedTime="{Binding SelectedTime}" HorizontalAlignment="Left" />
-
-    </StackPanel>
+    <materialDesign:DialogHost Identifier="RootDialog">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Background="White">
+            <Grid>
+                <TextBox x:Name="loginText" 
+                         materialDesign:HintAssist.FloatingScale=".56" 
+                         materialDesign:HintAssist.FloatingOffset="1,-42"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0" Margin="0,350,0,0" materialDesign:HintAssist.IsFloating="True" HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" FontSize="36" Height="100" Background="White" Padding="6,0,0,2">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                            <materialDesign:PackIcon Kind="Account" Width="50" Height="50" />
+                            <TextBlock Padding="5,0,0,0">Enter login</TextBlock>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
+            </Grid>
+        </ScrollViewer>
+    </materialDesign:DialogHost>
 
 </UserControl>
