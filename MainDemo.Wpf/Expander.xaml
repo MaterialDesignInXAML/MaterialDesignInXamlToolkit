@@ -26,6 +26,7 @@
                                TextWrapping="Wrap"/>
                 </StackPanel>
             </Expander>
+            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
             <Expander HorizontalAlignment="Stretch"
                       Header="Expander Example 1b">
                 <StackPanel Orientation="Vertical"
@@ -36,6 +37,7 @@
                                TextWrapping="Wrap"/>
                 </StackPanel>
             </Expander>
+            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
             <Expander HorizontalAlignment="Stretch"
                       Header="Expander Example 1c">
                 <StackPanel Orientation="Vertical"
@@ -60,6 +62,7 @@
                                TextWrapping="Wrap"/>
                     </StackPanel>
                 </Expander>
+                <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
                 <Expander HorizontalAlignment="Stretch"
                       Header="Expander Example 2b">
                     <StackPanel Orientation="Vertical"
@@ -70,6 +73,7 @@
                                TextWrapping="Wrap"/>
                     </StackPanel>
                 </Expander>
+                <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
                 <Expander HorizontalAlignment="Stretch"
                       Header="Expander Example 2c">
                     <StackPanel Orientation="Vertical"
@@ -101,6 +105,7 @@
                                TextWrapping="Wrap"/>
                 </StackPanel>
             </Expander>
+            <Border Background="{DynamicResource MaterialDesignDivider}" Width="1" VerticalAlignment="Stretch" SnapsToDevicePixels="True" />
             <Expander ExpandDirection="Right">
                 <Expander.Header>
                     <TextBlock Text="Expander Example 3b" RenderTransformOrigin=".5,.5">
@@ -118,6 +123,7 @@
                                TextWrapping="Wrap"/>
                 </StackPanel>
             </Expander>
+            <Border Background="{DynamicResource MaterialDesignDivider}" Width="1" VerticalAlignment="Stretch" SnapsToDevicePixels="True" />
             <Expander ExpandDirection="Right">
                 <Expander.Header>
                     <TextBlock Text="Expander Example 3c" RenderTransformOrigin=".5,.5">

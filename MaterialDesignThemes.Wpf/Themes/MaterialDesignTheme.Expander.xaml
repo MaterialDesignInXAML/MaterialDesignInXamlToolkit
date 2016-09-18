@@ -113,7 +113,6 @@
                                           HorizontalAlignment="Center"
                                           Margin="16 16 16 0"
                                           Content="{TemplateBinding Content}" VerticalAlignment="Top" />
-                        <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 1 0" Grid.RowSpan="2" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -147,7 +146,6 @@
                                           HorizontalAlignment="Center"
                                           Margin="16 16 16 0"
                                           Content="{TemplateBinding Content}" VerticalAlignment="Top" />
-                        <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1 0 0 0" Grid.RowSpan="2" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -171,14 +169,13 @@
                                           ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                           VerticalAlignment="Center"
-                                          Margin="16 16 0 16" />                        
+                                          Margin="16 16 0 16" />
                         <ToggleButton Grid.Column="1"
                                       Margin="16 0 16 0"
                                       VerticalAlignment="Center"
                                       Foreground="{TemplateBinding Foreground}"
                                       IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                       Style="{StaticResource MaterialDesignExpanderToggleButton}"/>
-                        <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 1" Grid.ColumnSpan="2" SnapsToDevicePixels="True" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -211,7 +208,6 @@
                                 <RotateTransform Angle="-180"/>
                             </ToggleButton.RenderTransform>
                         </ToggleButton>
-                        <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 1" Grid.ColumnSpan="2" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
