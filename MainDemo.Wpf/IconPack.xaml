@@ -7,8 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:virtualCollection="clr-namespace:VirtualCollection.VirtualCollection"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
-             d:DesignData="{d:DesignInstance materialDesignDemo:IconPackViewModel, IsDesignTimeCreatable=False}">
+             d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

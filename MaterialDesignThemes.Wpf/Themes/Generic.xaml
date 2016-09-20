@@ -468,6 +468,8 @@
     </Style>
 
     <Style TargetType="{x:Type local:DialogHost}">
+        <Setter Property="DialogMargin" Value="22" />
+        <Setter Property="local:ShadowAssist.ShadowDepth" Value="Depth5" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DialogHost">
@@ -602,8 +604,8 @@
                                 </ResourceDictionary>
                             </controlzEx:PopupEx.Resources>
                             <local:Card x:Name="PART_PopupContentElement" 
-                                        Margin="22"
-                                        local:ShadowAssist.ShadowDepth="Depth5"
+                                        Margin="{TemplateBinding DialogMargin}"
+                                        local:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth)}"
                                         UniformCornerRadius="4"
                                         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                                         TextElement.FontWeight="Regular"

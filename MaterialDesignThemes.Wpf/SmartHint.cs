@@ -76,6 +76,28 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
+        #region FloatingScale & FloatingOffset
+
+        public static readonly DependencyProperty FloatingScaleProperty = DependencyProperty.Register(
+            nameof(FloatingScale), typeof(double), typeof(SmartHint), new PropertyMetadata(.74));
+
+        public double FloatingScale
+        {
+            get { return (double)GetValue(FloatingScaleProperty); }
+            set { SetValue(FloatingScaleProperty, value); }
+        }
+
+        public static readonly DependencyProperty FloatingOffsetProperty = DependencyProperty.Register(
+            nameof(FloatingOffset), typeof(Point), typeof(SmartHint), new PropertyMetadata(new Point(1, -16)));
+
+        public Point FloatingOffset
+        {
+            get { return (Point)GetValue(FloatingOffsetProperty); }
+            set { SetValue(FloatingOffsetProperty, value); }
+        }        
+
+        #endregion
+
         #region HintOpacity
 
         public static readonly DependencyProperty HintOpacityProperty = DependencyProperty.Register(

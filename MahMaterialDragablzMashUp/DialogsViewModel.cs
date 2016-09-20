@@ -44,7 +44,7 @@ namespace MahMaterialDragablzMashUp
             DialogCoordinator.Instance.ShowInputAsync(this, "MahApps Dialog", "Using Material Design Themes", metroDialogSettings);
         }
 
-        private void ProgressDialog()
+        private async void ProgressDialog()
         {
             var metroDialogSettings = new MetroDialogSettings
             {
@@ -53,12 +53,15 @@ namespace MahMaterialDragablzMashUp
                 SuppressDefaultResources = true
             };
 
-            DialogCoordinator.Instance.ShowProgressAsync(this, "MahApps Dialog", "Using Material Design Themes (WORK IN PROGRESS)", true, metroDialogSettings);
+            var controller = await DialogCoordinator.Instance.ShowProgressAsync(this, "MahApps Dialog", "Using Material Design Themes (WORK IN PROGRESS)", true, metroDialogSettings);
+            controller.SetIndeterminate();
+            await Task.Delay(3000);
+            await controller.CloseAsync();
         }
 
         private void ShowLeftFlyout()
         {
-            ((MainWindow)Application.Current.MainWindow).LeftFlyout.IsOpen = true;
+            ((MainWindow)Application.Current.MainWindow).LeftFlyout.IsOpen = !((MainWindow)Application.Current.MainWindow).LeftFlyout.IsOpen;
         }
     }
 }

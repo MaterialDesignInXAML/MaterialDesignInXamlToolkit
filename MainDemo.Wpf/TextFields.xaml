@@ -130,6 +130,13 @@
                           VerticalAlignment="Bottom"                           
                           ItemsSource="{Binding LongListToTestComboVirtualization}"                          
                           SelectedValue="{Binding SelectedValueOne}">
+                    <ComboBox.SelectedItem>
+                        <Binding Path="SelectedValueOne" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel />
@@ -142,6 +149,13 @@
                           VerticalAlignment="Bottom" 
                           IsEditable="True"                          
                           ItemsSource="{Binding LongListToTestComboVirtualization}">
+                    <ComboBox.Text>
+                        <Binding Path="SelectedTextTwo" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.Text>
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel />
@@ -188,6 +202,14 @@
                      materialDesign:HintAssist.Hint="Floating Password"
                      Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
+        <TextBox Grid.Row="6" Grid.Column="3"
+                 materialDesign:HintAssist.Hint="Large Font"
+                 materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                 materialDesign:HintAssist.FloatingScale="0.50"                 
+                 Text="Some Text"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 FontSize="24"/>
+                          
         <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
                    Margin="0 48 0 0">DataTemplate Test</TextBlock>
         <ContentControl Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="4"
@@ -238,5 +260,17 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
+        <CheckBox Grid.Row="9" Grid.Column="4"
+                  x:Name="DisplaySelectedItemCheckBox"
+                  Margin="0 8 0 0">Display Selected Item In Drop Down</CheckBox>
+        <ComboBox Grid.Row="10" Grid.Column="4" 
+                  materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=DisplaySelectedItemCheckBox, Path=IsChecked}"
+                  Margin="0 8 0 8" HorizontalAlignment="Left">
+            <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
+            <ComboBoxItem>Banana</ComboBoxItem>
+            <ComboBoxItem>Pear</ComboBoxItem>
+            <ComboBoxItem>Orange</ComboBoxItem>
+        </ComboBox>
+
     </Grid>
 </UserControl>

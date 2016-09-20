@@ -18,7 +18,7 @@ namespace MaterialDesignThemes.Wpf
             "TextBoxViewMargin",
             typeof(Thickness),
             typeof(TextFieldAssist),
-            new PropertyMetadata(new Thickness(double.NegativeInfinity), TextBoxViewMarginPropertyChangedCallback));
+            new FrameworkPropertyMetadata(new Thickness(double.NegativeInfinity), FrameworkPropertyMetadataOptions.Inherits, TextBoxViewMarginPropertyChangedCallback));
 
         /// <summary>
         /// Sets the text box view margin.
@@ -84,7 +84,7 @@ namespace MaterialDesignThemes.Wpf
             var frameworkElement = (textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content as FrameworkElement;
             if (frameworkElement != null)
             {
-                frameworkElement.Margin = margin;
+                frameworkElement.Margin = margin;                
             }
         }
 
