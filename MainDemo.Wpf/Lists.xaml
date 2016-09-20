@@ -14,17 +14,22 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0">
+        <ListBox Grid.Column="0" IsEnabled="{Binding IsChecked, ElementName=EnableListBox}">
             <TextBlock>Plain</TextBlock>
             <TextBlock>Old</TextBlock>
             <TextBlock>ListBox</TextBlock>
             <TextBlock>Full of junk</TextBlock>
         </ListBox>
+        <CheckBox Name="EnableListBox" Grid.Row="1" IsChecked="True">Enabled</CheckBox>
         <!-- piece together your own items control to create some nice stuff that will make everyone think you are cool. and rightly so, because you are cool.  you might even be a hipster for all I know -->
         <ItemsControl Grid.Column="1" ItemsSource="{Binding Items1}"
                       Grid.IsSharedSizeScope="True"

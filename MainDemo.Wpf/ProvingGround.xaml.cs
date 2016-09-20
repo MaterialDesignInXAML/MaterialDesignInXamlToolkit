@@ -28,7 +28,10 @@ namespace MaterialDesignColors.WpfExample
         public ProvingGround()
         {
             InitializeComponent();
-	        DataContext = new ProvingGroundViewModel();
+            DataContext = new ProvingGroundViewModel
+            {
+                SelectedTime = new DateTime(2000, 1, 1, 3, 15, 0)
+            };
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -202,6 +202,14 @@
                      materialDesign:HintAssist.Hint="Floating Password"
                      Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
+        <TextBox Grid.Row="6" Grid.Column="3"
+                 materialDesign:HintAssist.Hint="Large Font"
+                 materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                 materialDesign:HintAssist.FloatingScale="0.50"                 
+                 Text="Some Text"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 FontSize="24"/>
+                          
         <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
                    Margin="0 48 0 0">DataTemplate Test</TextBlock>
         <ContentControl Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="4"

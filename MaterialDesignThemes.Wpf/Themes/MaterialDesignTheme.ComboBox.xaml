@@ -16,6 +16,7 @@
     <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
     <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
     <system:Double x:Key="PopupLeftRightMargin">16</system:Double>
+    <system:Boolean x:Key="TrueValue">True</system:Boolean>
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -191,7 +192,6 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
-        <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 0 0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -422,7 +422,10 @@
                                           IsHitTestVisible="False"/>
                         <TextBox x:Name="PART_EditableTextBox"
                                  IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                                 HorizontalAlignment="Left"
+                                 HorizontalContentAlignment="Stretch"
                                  Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                                 CaretBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}"                                 
                                  Visibility="Collapsed" />
 
                         <wpf:SmartHint x:Name="Hint"
@@ -561,6 +564,7 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
+        <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 1 0" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
         <Style.Triggers>
             <Trigger Property="IsKeyboardFocused" Value="true">
@@ -571,9 +575,11 @@
             </Trigger>
             <Trigger Property="IsEditable" Value="true">
                 <Setter Property="IsTabStop" Value="false" />
-                <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True"/>
+                <!-- designer prefers hard bool -->
+                <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="{StaticResource TrueValue}" />
             </Trigger>
-            <Trigger Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True">
+            <!-- designer prefers hard bool -->
+            <Trigger Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="{StaticResource TrueValue}" >
                 <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
             </Trigger>
         </Style.Triggers>

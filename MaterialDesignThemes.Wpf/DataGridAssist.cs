@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -160,8 +161,8 @@ namespace MaterialDesignThemes.Wpf
 
             while (inputHitTest != null)
             {
-                var dataGridCell = inputHitTest as DataGridCell;
-                if (dataGridCell != null)
+                var dataGridCell = inputHitTest as DataGridCell;                
+                if (dataGridCell != null && dataGrid.Equals(dataGridCell.GetVisualAncestry().OfType<DataGrid>().FirstOrDefault()))
                 {
                     ToggleButton toggleButton;
                     ComboBox comboBox;

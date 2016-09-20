@@ -41,6 +41,8 @@
     <SolidColorBrush x:Key="MaterialDesignLightForeground" Color="#DD000000"/>
     <SolidColorBrush x:Key="MaterialDesignDarkBackground" Color="#FF37474f"/>
     <SolidColorBrush x:Key="MaterialDesignDarkForeground" Color="#FFFAFAFA"/>
+    <SolidColorBrush x:Key="MaterialDesignDarkSeparatorBackground" Color="#1F000000" />
+    <SolidColorBrush x:Key="MaterialDesignLightSeparatorBackground" Color="#1FFFFFFF" />
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}" />
 	<Style TargetType="{x:Type Calendar}" BasedOn="{StaticResource MaterialDesignCalendarPortrait}" />
     <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}" />
@@ -74,4 +76,12 @@
     <Style TargetType="{x:Type Menu}" BasedOn="{StaticResource MaterialDesignMenu}" />
     <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}" />
     <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="{x:Type Separator}" BasedOn="{StaticResource MaterialDesignSeparator}" />
+    <Style x:Key="MaterialDesignDarkSeparator" TargetType="{x:Type Separator}" BasedOn="{StaticResource MaterialDesignSeparator}">
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignDarkSeparatorBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDarkSeparatorBackground}"/>
+    </Style>
+    <Style x:Key="MaterialDesignLightSeparator" TargetType="{x:Type Separator}" BasedOn="{StaticResource MaterialDesignSeparator}">
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignLightSeparatorBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignLightSeparatorBackground}"/>
+    </Style>
 </ResourceDictionary>
