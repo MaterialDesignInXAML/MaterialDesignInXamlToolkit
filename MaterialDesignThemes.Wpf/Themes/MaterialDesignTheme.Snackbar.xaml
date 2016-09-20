@@ -71,16 +71,28 @@
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_contentPanel" Storyboard.TargetProperty="Tag" From="0" To="1" Duration="0:0:0.3" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_contentPanel" Storyboard.TargetProperty="Tag" From="0" To="1" Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuarticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
                                         <DoubleAnimation Storyboard.TargetName="PART_contentGrid" Storyboard.TargetProperty="Opacity" To="0" BeginTime="0" Duration="0" />
-                                        <DoubleAnimation Storyboard.TargetName="PART_contentGrid" Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0.15" Duration="0:0:0.15" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_contentGrid" Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0" Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuarticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_contentPanel" Storyboard.TargetProperty="Tag" From="1" To="0" Duration="0:0:0.3"/>
+                                        <DoubleAnimation Storyboard.TargetName="PART_contentPanel" Storyboard.TargetProperty="Tag" From="1" To="0" Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuarticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>

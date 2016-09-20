@@ -65,7 +65,7 @@ namespace MaterialDesignColors.WpfExample
 
             snackbar.ActionLabel = "GOT IT";
             snackbar.VisibilityTimeout = 6000;
-            snackbar.Content = new string("The specs says that the maximum with should be 568dp. However there sould be at most only two lines of text.".ToCharArray());
+            snackbar.Content = new string("The specs says that the maximum width should be 568dp. However there sould be at most only two lines of text.".ToCharArray());
         }
 
         private async void SnackbarActionClickHandler(object sender, RoutedEventArgs args)
