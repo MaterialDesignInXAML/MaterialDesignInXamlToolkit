@@ -23,6 +23,8 @@ namespace MaterialDesignThemes.Wpf.Transitions
         private SkewTransform _skewTransform;
         private TranslateTransform _translateTransform;
 
+        private bool _isOpeningEffectPending = false;
+
         static TransitioningContentBase()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof (TransitioningContentBase), new FrameworkPropertyMetadata(typeof (TransitioningContentBase)));
@@ -51,9 +53,11 @@ namespace MaterialDesignThemes.Wpf.Transitions
             if (_skewTransform != null)
                 RegisterName(SkewTransformPartName, _skewTransform);
             if (_translateTransform != null)
-                RegisterName(TranslateTransformPartName, _translateTransform);
+                RegisterName(TranslateTransformPartName, _translateTransform);            
 
             base.OnApplyTemplate();
+
+            RunOpeningEffects();
         }
 
         private void UnregisterNames(params string[] names)
@@ -107,7 +111,12 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         protected virtual void RunOpeningEffects()
         {
-            if (!IsLoaded) return;
+            if (!IsLoaded || _matrixTransform == null)
+            {
+                _isOpeningEffectPending = true;
+                return;
+            }
+            _isOpeningEffectPending = false;
 
             var storyboard = new Storyboard();
             var openingEffect = OpeningEffect?.Build(this);
