@@ -37,7 +37,9 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty CancelProperty = DependencyProperty.Register(
                 nameof(Cancel), typeof(object), typeof(StepButtonBar), new PropertyMetadata(null));
 
-        // The content for the cancel button.
+        /// <summary>
+        /// The content for the cancel button.
+        /// </summary>
         public object Cancel
         {
             get
@@ -96,8 +98,8 @@ namespace MaterialDesignThemes.Wpf
         public override void OnApplyTemplate()
         {
             // read the Orientation of the Stepper and set it as the Mode
-            //     - changing the Orientation throws the UI of the Stepper and builds a new one
-            //     - therefore this method will be called for a new instance and the changes of Orientation will be applied to Mode
+            //     - changing the Layout throws the UI of the Stepper and builds a new one
+            //     - therefore this method will be called for a new instance and the changes of the Layout will be applied to Mode
             Stepper stepper = FindStepper();
 
             if (stepper != null)

@@ -28,7 +28,7 @@ namespace MaterialDesignThemes.Wpf
         object Header { get; set; }
 
         /// <summary>
-        /// Validates this steps.
+        /// Validates this step.
         /// Inherited classes may implement this method.
         /// </summary>
         void Validate();
@@ -108,7 +108,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Validates this steps.
+        /// Validates this step.
         /// Inherited classes may implement this method.
         /// </summary>
         public virtual void Validate() { }

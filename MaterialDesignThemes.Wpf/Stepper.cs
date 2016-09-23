@@ -322,7 +322,7 @@ namespace MaterialDesignThemes.Wpf
     /// <summary>
     /// The layout of a <see cref="Stepper"/>.
     /// </summary>
-    public enum StepperLayout
+    public enum StepperLayout : byte
     {
         Horizontal,
         Vertical
