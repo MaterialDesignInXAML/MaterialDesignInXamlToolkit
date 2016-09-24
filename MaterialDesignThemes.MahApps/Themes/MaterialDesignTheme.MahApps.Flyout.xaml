@@ -127,6 +127,13 @@
                                                       Value="0"
                                                       x:Name="fadeOutFrame" />
                             </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                           Storyboard.TargetName="PART_Border">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.750"
+                                                      KeySpline="0.25,1,0.05,1"
+                                                      Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Show">
@@ -207,7 +214,8 @@
                     <BitmapCache EnableClearType="True"
                                  SnapsToDevicePixels="False" />
                 </AdornerDecorator.CacheMode>
-                <Border Background="{TemplateBinding Background}"
+                <Border x:Name="PART_Border"
+                        Background="{TemplateBinding Background}"
                         Effect="{DynamicResource MaterialDesignShadowDepth5}" />
             </AdornerDecorator>
             <AdornerDecorator>
