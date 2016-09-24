@@ -209,13 +209,12 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <AdornerDecorator>
+            <AdornerDecorator x:Name="PART_Border">
                 <AdornerDecorator.CacheMode>
                     <BitmapCache EnableClearType="True"
                                  SnapsToDevicePixels="False" />
                 </AdornerDecorator.CacheMode>
-                <Border x:Name="PART_Border"
-                        Background="{TemplateBinding Background}"
+                <Border Background="{TemplateBinding Background}"
                         Effect="{DynamicResource MaterialDesignShadowDepth5}" />
             </AdornerDecorator>
             <AdornerDecorator>
