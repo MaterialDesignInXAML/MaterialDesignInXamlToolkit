@@ -271,7 +271,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <DockPanel>
+                        <DockPanel Background="{TemplateBinding Background}">
                             <ToggleButton Name="HeaderSite"
                                           DockPanel.Dock="Top"
                                           BorderThickness="0" Cursor="Hand"
