@@ -26,7 +26,6 @@
                                TextWrapping="Wrap"/>
                 </StackPanel>
             </Expander>
-            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
             <Expander HorizontalAlignment="Stretch"
                       Header="Expander Example 1b">
                 <StackPanel Orientation="Vertical"
@@ -37,7 +36,6 @@
                                TextWrapping="Wrap"/>
                 </StackPanel>
             </Expander>
-            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
             <Expander HorizontalAlignment="Stretch"
                       Header="Expander Example 1c">
                 <StackPanel Orientation="Vertical"
