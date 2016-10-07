@@ -28,22 +28,17 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <materialDesign:DialogHost Identifier="RootDialog">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Background="White">
-            <Grid>
-                <TextBox x:Name="loginText" 
-                         materialDesign:HintAssist.FloatingScale=".56" 
-                         materialDesign:HintAssist.FloatingOffset="1,-42"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0" Margin="0,350,0,0" materialDesign:HintAssist.IsFloating="True" HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" FontSize="36" Height="100" Background="White" Padding="6,0,0,2">
-                    <materialDesign:HintAssist.Hint>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
-                            <materialDesign:PackIcon Kind="Account" Width="50" Height="50" />
-                            <TextBlock Padding="5,0,0,0">Enter login</TextBlock>
-                        </StackPanel>
-                    </materialDesign:HintAssist.Hint>
-                </TextBox>
+    <materialDesign:DrawerHost>
+        <materialDesign:DrawerHost.RightDrawerContent>
+            <Grid Margin="16">
+                <TextBlock> Hello World</TextBlock>
             </Grid>
-        </ScrollViewer>
-    </materialDesign:DialogHost>
+        </materialDesign:DrawerHost.RightDrawerContent>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}">
+                Open sesame
+            </Button>
+        </StackPanel>
+    </materialDesign:DrawerHost>
 
 </UserControl>

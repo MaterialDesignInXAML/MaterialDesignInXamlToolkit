@@ -11,6 +11,8 @@ namespace MaterialDesignThemes.Wpf
     [TemplateVisualState(GroupName = TemplateAllDrawersGroupName, Name = TemplateAllDrawersAnyOpenStateName)]
     [TemplateVisualState(GroupName = TemplateLeftDrawerGroupName, Name = TemplateLeftClosedStateName)]
     [TemplateVisualState(GroupName = TemplateLeftDrawerGroupName, Name = TemplateLeftOpenStateName)]
+    [TemplateVisualState(GroupName = TemplateRightDrawerGroupName, Name = TemplateRightClosedStateName)]
+    [TemplateVisualState(GroupName = TemplateRightDrawerGroupName, Name = TemplateRightOpenStateName)]
     [TemplatePart(Name = TemplateContentCoverPartName, Type = typeof(FrameworkElement))]
     public class DrawerHost : ContentControl
     {
@@ -20,6 +22,9 @@ namespace MaterialDesignThemes.Wpf
         public const string TemplateLeftDrawerGroupName = "LeftDrawer";
         public const string TemplateLeftClosedStateName = "LeftDrawerClosed";
         public const string TemplateLeftOpenStateName = "LeftDrawerOpen";
+        public const string TemplateRightDrawerGroupName = "RightDrawer";
+        public const string TemplateRightClosedStateName = "RightDrawerClosed";
+        public const string TemplateRightOpenStateName = "RightDrawerOpen";
 
         public const string TemplateContentCoverPartName = "PART_ContentCover";
 
@@ -93,6 +98,60 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(IsLeftDrawerOpenProperty, value); }
         }
 
+        public static readonly DependencyProperty RightDrawerContentProperty = DependencyProperty.Register(
+            nameof(RightDrawerContent), typeof(object), typeof(DrawerHost), new PropertyMetadata(default(object)));
+
+        public object RightDrawerContent
+        {
+            get { return (object)GetValue(RightDrawerContentProperty); }
+            set { SetValue(RightDrawerContentProperty, value); }
+        }
+
+        public static readonly DependencyProperty RightDrawerContentTemplateProperty = DependencyProperty.Register(
+            nameof(RightDrawerContentTemplate), typeof(DataTemplate), typeof(DrawerHost), new PropertyMetadata(default(DataTemplate)));
+
+        public DataTemplate RightDrawerContentTemplate
+        {
+            get { return (DataTemplate)GetValue(RightDrawerContentTemplateProperty); }
+            set { SetValue(RightDrawerContentTemplateProperty, value); }
+        }
+
+        public static readonly DependencyProperty RightDrawerContentTemplateSelectorProperty = DependencyProperty.Register(
+            nameof(RightDrawerContentTemplateSelector), typeof(DataTemplateSelector), typeof(DrawerHost), new PropertyMetadata(default(DataTemplateSelector)));
+
+        public DataTemplateSelector RightDrawerContentTemplateSelector
+        {
+            get { return (DataTemplateSelector)GetValue(RightDrawerContentTemplateSelectorProperty); }
+            set { SetValue(RightDrawerContentTemplateSelectorProperty, value); }
+        }
+
+        public static readonly DependencyProperty RightDrawerContentStringFormatProperty = DependencyProperty.Register(
+            nameof(RightDrawerContentStringFormat), typeof(string), typeof(DrawerHost), new PropertyMetadata(default(string)));
+
+        public string RightDrawerContentStringFormat
+        {
+            get { return (string)GetValue(RightDrawerContentStringFormatProperty); }
+            set { SetValue(RightDrawerContentStringFormatProperty, value); }
+        }
+
+        public static readonly DependencyProperty RightDrawerBackgroundProperty = DependencyProperty.Register(
+            nameof(RightDrawerBackground), typeof(Brush), typeof(DrawerHost), new PropertyMetadata(default(Brush)));
+
+        public Brush RightDrawerBackground
+        {
+            get { return (Brush)GetValue(RightDrawerBackgroundProperty); }
+            set { SetValue(RightDrawerBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsRightDrawerOpenProperty = DependencyProperty.Register(
+            nameof(IsRightDrawerOpen), typeof(bool), typeof(DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsRightDrawerOpenPropertyChangedCallback));
+
+        public bool IsRightDrawerOpen
+        {
+            get { return (bool)GetValue(IsRightDrawerOpenProperty); }
+            set { SetValue(IsRightDrawerOpenProperty, value); }
+        }
+
         public override void OnApplyTemplate()
         {
             if (_templateContentCoverElement != null)
@@ -105,7 +164,7 @@ namespace MaterialDesignThemes.Wpf
                 _templateContentCoverElement.PreviewMouseLeftButtonUp += TemplateContentCoverElementOnPreviewMouseLeftButtonUp;
 
 
-            UpdateVisualStates(false);
+            UpdateVisualStates();
         }
 
         private void TemplateContentCoverElementOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
@@ -113,27 +172,36 @@ namespace MaterialDesignThemes.Wpf
             SetCurrentValue(IsLeftDrawerOpenProperty, false);
         }
 
-        private void UpdateVisualStates(bool useTransitions)
+        private void UpdateVisualStates()
         {
-            var anyOpen = IsLeftDrawerOpen;
+            var anyOpen = IsLeftDrawerOpen || IsRightDrawerOpen;
             
             VisualStateManager.GoToState(this,
                 !anyOpen ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, !TransitionAssist.GetDisableTransitions(this));
 
             VisualStateManager.GoToState(this,
                 IsLeftDrawerOpen ? TemplateLeftOpenStateName : TemplateLeftClosedStateName, !TransitionAssist.GetDisableTransitions(this));
+
+            VisualStateManager.GoToState(this,
+                IsRightDrawerOpen ? TemplateRightOpenStateName : TemplateRightClosedStateName, !TransitionAssist.GetDisableTransitions(this));
         }
 
         private static void IsLeftDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            ((DrawerHost)dependencyObject).UpdateVisualStates(true);            
+            ((DrawerHost)dependencyObject).UpdateVisualStates();            
         }
+
+        private static void IsRightDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            ((DrawerHost)dependencyObject).UpdateVisualStates();
+        }
+
 
         private void CloseDrawerHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
             if (executedRoutedEventArgs.Handled) return;
 
-            SetCurrentValue(IsLeftDrawerOpenProperty, false);
+            SetOpenFlag(executedRoutedEventArgs, false);
 
             executedRoutedEventArgs.Handled = true;
         }
@@ -142,9 +210,36 @@ namespace MaterialDesignThemes.Wpf
         {
             if (executedRoutedEventArgs.Handled) return;
 
-            SetCurrentValue(IsLeftDrawerOpenProperty, true);
+            SetOpenFlag(executedRoutedEventArgs, true);
 
             executedRoutedEventArgs.Handled = true;
+        }
+
+        private void SetOpenFlag(ExecutedRoutedEventArgs executedRoutedEventArgs, bool value)
+        {
+            if (executedRoutedEventArgs.Parameter is Dock)
+            {
+                switch ((Dock)executedRoutedEventArgs.Parameter)
+                {
+                    case Dock.Left:
+                        SetCurrentValue(IsLeftDrawerOpenProperty, value);
+                        break;
+                    case Dock.Top:
+                        break;
+                    case Dock.Right:
+                        SetCurrentValue(IsRightDrawerOpenProperty, value);
+                        break;
+                    case Dock.Bottom:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            else
+            {
+                SetCurrentValue(IsLeftDrawerOpenProperty, value);
+                SetCurrentValue(IsRightDrawerOpenProperty, value);
+            }
         }
     }
 }

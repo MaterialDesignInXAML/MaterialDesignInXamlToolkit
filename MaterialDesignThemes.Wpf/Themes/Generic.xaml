@@ -6,32 +6,32 @@
     xmlns:controlzEx="clr-namespace:ControlzEx"
     xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions">
 
-	<ResourceDictionary.MergedDictionaries>
-		<!--	we only bring in the dictionaries for controls which were "invented"
-				as part of Material Design in XAML Toolkit. Other themes, for existing controls
-				must be selected manually by the user, so that they override default styles.
-				The easiest way to do this is include:
-		
-					MaterialDesignTheme.Defaults.xaml 
-				in your App.xaml
-		-->
+    <ResourceDictionary.MergedDictionaries>
+        <!--    we only bring in the dictionaries for controls which were "invented"
+                as part of Material Design in XAML Toolkit. Other themes, for existing controls
+                must be selected manually by the user, so that they override default styles.
+                The easiest way to do this is include:
+        
+                    MaterialDesignTheme.Defaults.xaml 
+                in your App.xaml
+        -->
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Chip.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Clock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RatingBar.xaml" />
-	    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TimePicker.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TimePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Font.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SmartHint.xaml" />
-	</ResourceDictionary.MergedDictionaries>
-	
-	<!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
-	<Style TargetType="{x:Type local:Clock}" BasedOn="{StaticResource MaterialDesignClock}" />
-    	<Style TargetType="{x:Type local:PopupBox}" BasedOn="{StaticResource MaterialDesignPopupBox}" />
-	<Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />
-		
-	<converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
+    <Style TargetType="{x:Type local:Clock}" BasedOn="{StaticResource MaterialDesignClock}" />
+    <Style TargetType="{x:Type local:PopupBox}" BasedOn="{StaticResource MaterialDesignPopupBox}" />
+    <Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />
+        
+    <converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
     <converters:DrawerOffsetConverter x:Key="DrawerOffsetConverter" />
 
     <Style TargetType="{x:Type local:Ripple}">
@@ -381,7 +381,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Path x:Name="path" Data="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" Fill="{TemplateBinding Foreground}" 
-                        			RenderTransformOrigin="0.5,0.5" Height="24" Stretch="Fill" Width="24" >
+                                    RenderTransformOrigin="0.5,0.5" Height="24" Stretch="Fill" Width="24" >
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="0"/>
@@ -756,6 +756,39 @@
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="RightDrawer">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="RightDrawerClosed" To="RightDrawerOpen">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X" Storyboard.TargetName="RightDrawerTranslateTransform">
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.4">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimation Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.04" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="RightDrawerOpen" To="RightDrawerClosed">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="RightDrawerTranslateTransform" Duration="0:0:0.4">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <SineEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity">
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.36" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.4">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
                                 <VisualState x:Name="LeftDrawerOpen">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="LeftDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
@@ -766,6 +799,18 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="LeftDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="0" Duration="0" />
                                         <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="LeftDrawerTranslateTransform" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="RightDrawerOpen">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="RightDrawerTranslateTransform" To="0" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="RightDrawerClosed">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="0" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="RightDrawerTranslateTransform" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -791,8 +836,24 @@
                                         x:Name="LeftDrawerShadow">
                                 </Border>
                             </AdornerDecorator>
-
                             <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}" />
+                        </Grid>
+                        <Grid HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                            <Grid.RenderTransform>
+                                <TranslateTransform x:Name="RightDrawerTranslateTransform"
+                                                    X="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Grid}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}}" />
+                            </Grid.RenderTransform>
+                            <AdornerDecorator>
+                                <AdornerDecorator.CacheMode>
+                                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                </AdornerDecorator.CacheMode>
+                                <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                        Opacity="0"
+                                        Background="{TemplateBinding RightDrawerBackground}"
+                                        x:Name="RightDrawerShadow">
+                                </Border>
+                            </AdornerDecorator>
+                            <ContentPresenter Content="{TemplateBinding RightDrawerContent}" ContentTemplate="{TemplateBinding RightDrawerContentTemplate}" ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}" />
                         </Grid>
                     </Grid>
                 </ControlTemplate>
