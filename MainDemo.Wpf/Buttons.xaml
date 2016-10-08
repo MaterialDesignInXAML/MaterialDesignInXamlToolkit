@@ -247,7 +247,7 @@
                     Mate
                 </CheckBox>
                 <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" 
-                      IsEnabled="False">
+                          IsEnabled="False"  IsChecked="True">
                     Disabled
                 </CheckBox>
             </StackPanel>
