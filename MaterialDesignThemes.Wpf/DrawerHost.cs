@@ -163,8 +163,7 @@ namespace MaterialDesignThemes.Wpf
             if (_templateContentCoverElement != null)
                 _templateContentCoverElement.PreviewMouseLeftButtonUp += TemplateContentCoverElementOnPreviewMouseLeftButtonUp;
 
-
-            UpdateVisualStates();
+            UpdateVisualStates(false);
         }
 
         private void TemplateContentCoverElementOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
@@ -172,18 +171,18 @@ namespace MaterialDesignThemes.Wpf
             SetCurrentValue(IsLeftDrawerOpenProperty, false);
         }
 
-        private void UpdateVisualStates()
+        private void UpdateVisualStates(bool? useTransitions = null)
         {
             var anyOpen = IsLeftDrawerOpen || IsRightDrawerOpen;
             
             VisualStateManager.GoToState(this,
-                !anyOpen ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, !TransitionAssist.GetDisableTransitions(this));
+                !anyOpen ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
 
             VisualStateManager.GoToState(this,
-                IsLeftDrawerOpen ? TemplateLeftOpenStateName : TemplateLeftClosedStateName, !TransitionAssist.GetDisableTransitions(this));
+                IsLeftDrawerOpen ? TemplateLeftOpenStateName : TemplateLeftClosedStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
 
             VisualStateManager.GoToState(this,
-                IsRightDrawerOpen ? TemplateRightOpenStateName : TemplateRightClosedStateName, !TransitionAssist.GetDisableTransitions(this));
+                IsRightDrawerOpen ? TemplateRightOpenStateName : TemplateRightClosedStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
         }
 
         private static void IsLeftDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
@@ -195,7 +194,6 @@ namespace MaterialDesignThemes.Wpf
         {
             ((DrawerHost)dependencyObject).UpdateVisualStates();
         }
-
 
         private void CloseDrawerHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {

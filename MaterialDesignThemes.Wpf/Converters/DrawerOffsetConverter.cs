@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
@@ -14,6 +15,13 @@ namespace MaterialDesignThemes.Wpf.Converters
         {
             var d = value as double? ?? 0;
             if (double.IsInfinity(d) || double.IsNaN(d)) d = 0;
+
+            if (parameter is bool && (bool)parameter)
+            {
+                return 0 - d;
+                //return new Thickness(0, 0, 0 - d, 0);
+            }
+                        
             return 0 - d;
         }
 

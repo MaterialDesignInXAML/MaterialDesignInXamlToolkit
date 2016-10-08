@@ -4,6 +4,7 @@
     xmlns:local="clr-namespace:MaterialDesignThemes.Wpf"
     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
     xmlns:controlzEx="clr-namespace:ControlzEx"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions">
 
     <ResourceDictionary.MergedDictionaries>
@@ -33,6 +34,7 @@
         
     <converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
     <converters:DrawerOffsetConverter x:Key="DrawerOffsetConverter" />
+    <sys:Boolean x:Key="True">True</sys:Boolean>
 
     <Style TargetType="{x:Type local:Ripple}">
         <Setter Property="RecognizesAccessKey" Value="True" />
@@ -655,6 +657,7 @@
     <Style TargetType="{x:Type local:DrawerHost}">
         <Setter Property="local:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="LeftDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="RightDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
@@ -677,7 +680,7 @@
                                                     <EasingDoubleKeyFrame.EasingFunction>
                                                         <SineEase EasingMode="EaseOut" />
                                                     </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
+                                                </EasingDoubleKeyFrame> 
                                             </DoubleAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
                                                                            Storyboard.TargetProperty="Background">
@@ -728,7 +731,7 @@
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="LeftDrawerClosed" To="LeftDrawerOpen">
                                         <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X" Storyboard.TargetName="LeftDrawerTranslateTransform">
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X" Storyboard.TargetName="LeftDrawerTranslateTransform_">
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.4">
                                                     <EasingDoubleKeyFrame.EasingFunction>
                                                         <SineEase EasingMode="EaseOut" />
@@ -759,6 +762,7 @@
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="RightDrawer">
                                 <VisualStateGroup.Transitions>
+                                    <!--
                                     <VisualTransition From="RightDrawerClosed" To="RightDrawerOpen">
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X" Storyboard.TargetName="RightDrawerTranslateTransform">
@@ -788,6 +792,7 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
+                                    -->
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="LeftDrawerOpen">
                                     <Storyboard>
@@ -801,6 +806,7 @@
                                         <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="LeftDrawerTranslateTransform" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
+                                <!--
                                 <VisualState x:Name="RightDrawerOpen">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
@@ -813,12 +819,14 @@
                                         <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="RightDrawerTranslateTransform" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
+                                -->
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <AdornerDecorator>
                             <ContentPresenter 
-                                    x:Name="ContentPresenter" Opacity="1"                    
-                                    Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
+                                x:Name="ContentPresenter" 
+                                Opacity="1"                    
+                                Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
                         </AdornerDecorator>
                         <Grid x:Name="PART_ContentCover" Background="{x:Null}" Opacity="0" IsHitTestVisible="False" Focusable="False" />
                         <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch">
@@ -838,10 +846,11 @@
                             </AdornerDecorator>
                             <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}" />
                         </Grid>
-                        <Grid HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                        <!--
+                        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right">
                             <Grid.RenderTransform>
                                 <TranslateTransform x:Name="RightDrawerTranslateTransform"
-                                                    X="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Grid}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}}" />
+                                                    X="{Binding ElementName=RootGrid, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={StaticResource True}}" />
                             </Grid.RenderTransform>
                             <AdornerDecorator>
                                 <AdornerDecorator.CacheMode>
@@ -855,6 +864,7 @@
                             </AdornerDecorator>
                             <ContentPresenter Content="{TemplateBinding RightDrawerContent}" ContentTemplate="{TemplateBinding RightDrawerContentTemplate}" ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}" />
                         </Grid>
+                        -->
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
