@@ -3,7 +3,7 @@ NUGET
   remote: https://www.nuget.org/api/v2
     Castle.Core (3.3.3) - framework: net452
     Dragablz (0.0.3.165)
-    MahApps.Metro (1.2.4)
+    MahApps.Metro (1.3)
     Moq (4.5.10) - framework: net452
       Castle.Core (>= 3.3.3)
     NSubstitute (1.10) - framework: net452
