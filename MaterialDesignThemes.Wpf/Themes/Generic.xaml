@@ -658,6 +658,7 @@
     <Style TargetType="{x:Type local:DrawerHost}">
         <Setter Property="local:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="LeftDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="RightDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
@@ -776,23 +777,23 @@
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="RightDrawerClosed" To="RightDrawerOpen">
                                         <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X" Storyboard.TargetName="RightDrawerTranslateTransform">
-                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.4">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="RightDrawerGrid">
+                                                <EasingThicknessKeyFrame Value="0" KeyTime="0:0:0.4">
+                                                    <EasingThicknessKeyFrame.EasingFunction>
                                                         <SineEase EasingMode="EaseOut" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
+                                                    </EasingThicknessKeyFrame.EasingFunction>
+                                                </EasingThicknessKeyFrame>
+                                            </ThicknessAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.04" />
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="RightDrawerOpen" To="RightDrawerClosed">
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="RightDrawerTranslateTransform" Duration="0:0:0.4">
-                                                <DoubleAnimation.EasingFunction>
+                                            <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="RightDrawerGrid" Duration="0:0:0.4">
+                                                <ThicknessAnimation.EasingFunction>
                                                     <SineEase EasingMode="EaseOut" />
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
+                                                </ThicknessAnimation.EasingFunction>
+                                            </ThicknessAnimation>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.36" />
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.4">
@@ -807,13 +808,13 @@
                                 <VisualState x:Name="RightDrawerOpen">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
-                                        <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="RightDrawerTranslateTransform" To="0" Duration="0"/>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="RightDrawerGrid" To="0 0 0 0" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="RightDrawerClosed">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="0" Duration="0" />
-                                        <DoubleAnimation Storyboard.TargetProperty="X" Storyboard.TargetName="RightDrawerTranslateTransform" Duration="0"/>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="RightDrawerGrid" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -841,11 +842,9 @@
                             </AdornerDecorator>
                             <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}" />
                         </Grid>
-                        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right">
-                            <Grid.RenderTransform>
-                                <TranslateTransform x:Name="RightDrawerTranslateTransform"
-                                                    X="{Binding ElementName=RootGrid, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={StaticResource True}}" />
-                            </Grid.RenderTransform>
+                        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                              x:Name="RightDrawerGrid"
+                              Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={StaticResource True}}">
                             <AdornerDecorator>
                                 <AdornerDecorator.CacheMode>
                                     <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>

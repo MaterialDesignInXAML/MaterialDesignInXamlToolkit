@@ -18,8 +18,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 
             if (parameter is bool && (bool)parameter)
             {
-                return 0 - d;
-                //return new Thickness(0, 0, 0 - d, 0);
+                return new Thickness(0, 0, 0 - d, 0);
             }
                         
             return 0 - d;
