@@ -169,6 +169,7 @@ namespace MaterialDesignThemes.Wpf
         private void TemplateContentCoverElementOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             SetCurrentValue(IsLeftDrawerOpenProperty, false);
+            SetCurrentValue(IsRightDrawerOpenProperty, false);
         }
 
         private void UpdateVisualStates(bool? useTransitions = null)
