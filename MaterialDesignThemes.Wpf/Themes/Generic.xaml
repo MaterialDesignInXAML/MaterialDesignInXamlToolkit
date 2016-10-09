@@ -657,6 +657,7 @@
 
     <Style TargetType="{x:Type local:DrawerHost}">
         <Setter Property="local:ShadowAssist.ShadowDepth" Value="Depth3" />
+        <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="LeftDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="TopDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="RightDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
@@ -665,7 +666,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:DrawerHost}">
-                    <Grid x:Name="RootGrid">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="AllDrawers">
                                 <VisualStateGroup.Transitions>
@@ -686,7 +687,7 @@
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
-                                                                           Storyboard.TargetProperty="Background">
+                                                                               Storyboard.TargetProperty="Background">
                                                 <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
@@ -707,7 +708,7 @@
                                 <VisualState x:Name="AnyOpen">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Opacity"
-                                                         To=".56" Duration="0" />
+                                                             To=".56" Duration="0" />
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="IsHitTestVisible">
                                             <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
@@ -715,7 +716,7 @@
                                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
-                                                                       Storyboard.TargetProperty="Background">
+                                                                           Storyboard.TargetProperty="Background">
                                             <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -723,7 +724,7 @@
                                 <VisualState x:Name="AllClosed">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Opacity"
-                                                         To="0" />
+                                                             To="0" />
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="IsHitTestVisible">
                                             <DiscreteBooleanKeyFrame Value="False" />
                                         </BooleanAnimationUsingKeyFrames>
@@ -911,79 +912,81 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <AdornerDecorator>
-                            <ContentPresenter 
-                                    x:Name="ContentPresenter" Opacity="1"                    
-                                    Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
-                        </AdornerDecorator>
-                        <Grid x:Name="PART_ContentCover" Background="{x:Null}" Opacity="0" IsHitTestVisible="False" Focusable="False" />
-                        <Grid>
-                            <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch"
-                                  x:Name="PART_LeftDrawer"
-                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Left}}"
-                                  Panel.ZIndex="{TemplateBinding LeftDrawerZIndex}">
-                                <AdornerDecorator>
-                                    <AdornerDecorator.CacheMode>
-                                        <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                    </AdornerDecorator.CacheMode>
-                                    <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                        <Grid x:Name="RootGrid">
+                            <AdornerDecorator>
+                                <ContentPresenter 
+                                        x:Name="ContentPresenter" Opacity="1"                    
+                                        Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
+                            </AdornerDecorator>
+                            <Grid x:Name="PART_ContentCover" Background="{x:Null}" Opacity="0" IsHitTestVisible="False" Focusable="False" />
+                            <Grid>
+                                <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                                      x:Name="PART_LeftDrawer"
+                                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Left}}"
+                                      Panel.ZIndex="{TemplateBinding LeftDrawerZIndex}">
+                                    <AdornerDecorator>
+                                        <AdornerDecorator.CacheMode>
+                                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                        </AdornerDecorator.CacheMode>
+                                        <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                                Opacity="0"
+                                                Background="{TemplateBinding LeftDrawerBackground}"
+                                                x:Name="LeftDrawerShadow">
+                                        </Border>
+                                    </AdornerDecorator>
+                                    <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}" />
+                                </Grid>
+                                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                                      x:Name="PART_RightDrawer"
+                                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Right}}"
+                                      Panel.ZIndex="{TemplateBinding RightDrawerZIndex}">
+                                    <AdornerDecorator>
+                                        <AdornerDecorator.CacheMode>
+                                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                        </AdornerDecorator.CacheMode>
+                                        <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                                Opacity="0"
+                                                Background="{TemplateBinding RightDrawerBackground}"
+                                                x:Name="RightDrawerShadow">
+                                        </Border>
+                                    </AdornerDecorator>
+                                    <ContentPresenter Content="{TemplateBinding RightDrawerContent}" ContentTemplate="{TemplateBinding RightDrawerContentTemplate}" ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}" />
+                                </Grid>
+                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                                      x:Name="PART_TopDrawer"
+                                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Top}}"
+                                      Panel.ZIndex="{TemplateBinding TopDrawerZIndex}">
+                                    <AdornerDecorator>
+                                        <AdornerDecorator.CacheMode>
+                                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                        </AdornerDecorator.CacheMode>
+                                        <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                                Opacity="0"
+                                                Background="{TemplateBinding TopDrawerBackground}"
+                                                x:Name="TopDrawerShadow">
+                                        </Border>
+                                    </AdornerDecorator>
+                                    <ContentPresenter Content="{TemplateBinding TopDrawerContent}" ContentTemplate="{TemplateBinding TopDrawerContentTemplate}" ContentStringFormat="{TemplateBinding TopDrawerContentStringFormat}" />
+                                </Grid>
+                                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
+                                      x:Name="PART_BottomDrawer"
+                                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Bottom}}"
+                                      Panel.ZIndex="{TemplateBinding BottomDrawerZIndex}">
+                                    <AdornerDecorator>
+                                        <AdornerDecorator.CacheMode>
+                                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                        </AdornerDecorator.CacheMode>
+                                        <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                                             Opacity="0"
-                                            Background="{TemplateBinding LeftDrawerBackground}"
-                                            x:Name="LeftDrawerShadow">
-                                    </Border>
-                                </AdornerDecorator>
-                                <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}" />
-                            </Grid>
-                            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right"
-                                  x:Name="PART_RightDrawer"
-                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Right}}"
-                                  Panel.ZIndex="{TemplateBinding RightDrawerZIndex}">
-                                <AdornerDecorator>
-                                    <AdornerDecorator.CacheMode>
-                                        <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                    </AdornerDecorator.CacheMode>
-                                    <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                            Opacity="0"
-                                            Background="{TemplateBinding RightDrawerBackground}"
-                                            x:Name="RightDrawerShadow">
-                                    </Border>
-                                </AdornerDecorator>
-                                <ContentPresenter Content="{TemplateBinding RightDrawerContent}" ContentTemplate="{TemplateBinding RightDrawerContentTemplate}" ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}" />
-                            </Grid>
-                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top"
-                                  x:Name="PART_TopDrawer"
-                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Top}}"
-                                  Panel.ZIndex="{TemplateBinding TopDrawerZIndex}">
-                                <AdornerDecorator>
-                                    <AdornerDecorator.CacheMode>
-                                        <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                    </AdornerDecorator.CacheMode>
-                                    <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                            Opacity="0"
-                                            Background="{TemplateBinding TopDrawerBackground}"
-                                            x:Name="TopDrawerShadow">
-                                    </Border>
-                                </AdornerDecorator>
-                                <ContentPresenter Content="{TemplateBinding TopDrawerContent}" ContentTemplate="{TemplateBinding TopDrawerContentTemplate}" ContentStringFormat="{TemplateBinding TopDrawerContentStringFormat}" />
-                            </Grid>
-                            <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
-                                  x:Name="PART_BottomDrawer"
-                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Bottom}}"
-                                  Panel.ZIndex="{TemplateBinding BottomDrawerZIndex}">
-                                <AdornerDecorator>
-                                    <AdornerDecorator.CacheMode>
-                                        <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                    </AdornerDecorator.CacheMode>
-                                    <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                        Opacity="0"
-                                        Background="{TemplateBinding BottomDrawerBackground}"
-                                        x:Name="BottomDrawerShadow">
-                                    </Border>
-                                </AdornerDecorator>
-                                <ContentPresenter Content="{TemplateBinding BottomDrawerContent}" ContentTemplate="{TemplateBinding BottomDrawerContentTemplate}" ContentStringFormat="{TemplateBinding BottomDrawerContentStringFormat}" />
+                                            Background="{TemplateBinding BottomDrawerBackground}"
+                                            x:Name="BottomDrawerShadow">
+                                        </Border>
+                                    </AdornerDecorator>
+                                    <ContentPresenter Content="{TemplateBinding BottomDrawerContent}" ContentTemplate="{TemplateBinding BottomDrawerContentTemplate}" ContentStringFormat="{TemplateBinding BottomDrawerContentStringFormat}" />
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
