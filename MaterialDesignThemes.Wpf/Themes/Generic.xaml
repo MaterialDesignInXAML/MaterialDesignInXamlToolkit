@@ -734,7 +734,7 @@
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="LeftDrawerClosed" To="LeftDrawerOpen">
                                         <Storyboard>
-                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="LeftDrawerGrid">
+                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_LeftDrawer">
                                                 <EasingThicknessKeyFrame Value="0" KeyTime="0:0:0.4">
                                                     <EasingThicknessKeyFrame.EasingFunction>
                                                         <SineEase EasingMode="EaseOut" />
@@ -746,7 +746,7 @@
                                     </VisualTransition>
                                     <VisualTransition From="LeftDrawerOpen" To="LeftDrawerClosed">
                                         <Storyboard>
-                                            <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="LeftDrawerGrid" Duration="0:0:0.4">
+                                            <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_LeftDrawer" Duration="0:0:0.4">
                                                 <ThicknessAnimation.EasingFunction>
                                                     <SineEase EasingMode="EaseOut" />
                                                 </ThicknessAnimation.EasingFunction>
@@ -765,13 +765,13 @@
                                 <VisualState x:Name="LeftDrawerOpen">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="LeftDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="LeftDrawerGrid" To="0" Duration="0"/>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_LeftDrawer" To="0" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="LeftDrawerClosed">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="LeftDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="0" Duration="0" />
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="LeftDrawerGrid" Duration="0"/>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_LeftDrawer" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -779,7 +779,7 @@
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="RightDrawerClosed" To="RightDrawerOpen">
                                         <Storyboard>
-                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="RightDrawerGrid">
+                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_RightDrawer">
                                                 <EasingThicknessKeyFrame Value="0" KeyTime="0:0:0.4">
                                                     <EasingThicknessKeyFrame.EasingFunction>
                                                         <SineEase EasingMode="EaseOut" />
@@ -791,7 +791,7 @@
                                     </VisualTransition>
                                     <VisualTransition From="RightDrawerOpen" To="RightDrawerClosed">
                                         <Storyboard>
-                                            <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="RightDrawerGrid" Duration="0:0:0.4">
+                                            <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_RightDrawer" Duration="0:0:0.4">
                                                 <ThicknessAnimation.EasingFunction>
                                                     <SineEase EasingMode="EaseOut" />
                                                 </ThicknessAnimation.EasingFunction>
@@ -810,13 +810,13 @@
                                 <VisualState x:Name="RightDrawerOpen">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="RightDrawerGrid" To="0 0 0 0" Duration="0"/>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_RightDrawer" To="0 0 0 0" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="RightDrawerClosed">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="0" Duration="0" />
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="RightDrawerGrid" Duration="0"/>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_RightDrawer" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -824,7 +824,7 @@
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="TopDrawerClosed" To="TopDrawerOpen">
                                         <Storyboard>
-                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="TopDrawerGrid">
+                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_TopDrawer">
                                                 <EasingThicknessKeyFrame Value="0" KeyTime="0:0:0.4">
                                                     <EasingThicknessKeyFrame.EasingFunction>
                                                         <SineEase EasingMode="EaseOut" />
@@ -836,7 +836,7 @@
                                     </VisualTransition>
                                     <VisualTransition From="TopDrawerOpen" To="TopDrawerClosed">
                                         <Storyboard>
-                                            <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="TopDrawerGrid" Duration="0:0:0.4">
+                                            <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_TopDrawer" Duration="0:0:0.4">
                                                 <ThicknessAnimation.EasingFunction>
                                                     <SineEase EasingMode="EaseOut" />
                                                 </ThicknessAnimation.EasingFunction>
@@ -855,13 +855,13 @@
                                 <VisualState x:Name="TopDrawerOpen">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="TopDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="TopDrawerGrid" To="0" Duration="0"/>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_TopDrawer" To="0" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="TopDrawerClosed">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="TopDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="0" Duration="0" />
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="TopDrawerGrid" Duration="0"/>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_TopDrawer" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -869,7 +869,7 @@
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="BottomDrawerClosed" To="BottomDrawerOpen">
                                         <Storyboard>
-                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="BottomDrawerGrid">
+                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_BottomDrawer">
                                                 <EasingThicknessKeyFrame Value="0" KeyTime="0:0:0.4">
                                                     <EasingThicknessKeyFrame.EasingFunction>
                                                         <SineEase EasingMode="EaseOut" />
@@ -881,7 +881,7 @@
                                     </VisualTransition>
                                     <VisualTransition From="BottomDrawerOpen" To="BottomDrawerClosed">
                                         <Storyboard>
-                                            <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="BottomDrawerGrid" Duration="0:0:0.4">
+                                            <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_BottomDrawer" Duration="0:0:0.4">
                                                 <ThicknessAnimation.EasingFunction>
                                                     <SineEase EasingMode="EaseOut" />
                                                 </ThicknessAnimation.EasingFunction>
@@ -900,13 +900,13 @@
                                 <VisualState x:Name="BottomDrawerOpen">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="BottomDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="BottomDrawerGrid" To="0 0 0 0" Duration="0"/>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_BottomDrawer" To="0 0 0 0" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="BottomDrawerClosed">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="BottomDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="0" Duration="0" />
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="BottomDrawerGrid" Duration="0"/>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_BottomDrawer" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -919,8 +919,9 @@
                         <Grid x:Name="PART_ContentCover" Background="{x:Null}" Opacity="0" IsHitTestVisible="False" Focusable="False" />
                         <Grid>
                             <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch"
-                                  x:Name="LeftDrawerGrid"
-                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Left}}">
+                                  x:Name="PART_LeftDrawer"
+                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Left}}"
+                                  Panel.ZIndex="{TemplateBinding LeftDrawerZIndex}">
                                 <AdornerDecorator>
                                     <AdornerDecorator.CacheMode>
                                         <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
@@ -934,23 +935,25 @@
                                 <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}" />
                             </Grid>
                             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right"
-                              x:Name="RightDrawerGrid"
-                              Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Right}}">
-                            <AdornerDecorator>
-                                <AdornerDecorator.CacheMode>
-                                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                </AdornerDecorator.CacheMode>
-                                <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                        Opacity="0"
-                                        Background="{TemplateBinding RightDrawerBackground}"
-                                        x:Name="RightDrawerShadow">
-                                </Border>
-                            </AdornerDecorator>
-                            <ContentPresenter Content="{TemplateBinding RightDrawerContent}" ContentTemplate="{TemplateBinding RightDrawerContentTemplate}" ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}" />
-                        </Grid>
+                                  x:Name="PART_RightDrawer"
+                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Right}}"
+                                  Panel.ZIndex="{TemplateBinding RightDrawerZIndex}">
+                                <AdornerDecorator>
+                                    <AdornerDecorator.CacheMode>
+                                        <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                    </AdornerDecorator.CacheMode>
+                                    <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                            Opacity="0"
+                                            Background="{TemplateBinding RightDrawerBackground}"
+                                            x:Name="RightDrawerShadow">
+                                    </Border>
+                                </AdornerDecorator>
+                                <ContentPresenter Content="{TemplateBinding RightDrawerContent}" ContentTemplate="{TemplateBinding RightDrawerContentTemplate}" ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}" />
+                            </Grid>
                             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top"
-                                  x:Name="TopDrawerGrid"
-                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Top}}">
+                                  x:Name="PART_TopDrawer"
+                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Top}}"
+                                  Panel.ZIndex="{TemplateBinding TopDrawerZIndex}">
                                 <AdornerDecorator>
                                     <AdornerDecorator.CacheMode>
                                         <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
@@ -964,8 +967,9 @@
                                 <ContentPresenter Content="{TemplateBinding TopDrawerContent}" ContentTemplate="{TemplateBinding TopDrawerContentTemplate}" ContentStringFormat="{TemplateBinding TopDrawerContentStringFormat}" />
                             </Grid>
                             <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
-                              x:Name="BottomDrawerGrid"
-                              Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Bottom}}">
+                                  x:Name="PART_BottomDrawer"
+                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Bottom}}"
+                                  Panel.ZIndex="{TemplateBinding BottomDrawerZIndex}">
                                 <AdornerDecorator>
                                     <AdornerDecorator.CacheMode>
                                         <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>

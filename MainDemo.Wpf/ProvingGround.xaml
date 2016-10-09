@@ -12,6 +12,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <!--
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
@@ -29,7 +30,6 @@
     </UserControl.Resources>
 
     <materialDesign:DrawerHost>
-        <!--
         <materialDesign:DrawerHost.LeftDrawerContent>
             <StackPanel Margin="16">
                 <TextBlock>LEFT STUFF</TextBlock>
@@ -38,16 +38,15 @@
                 </Button>
             </StackPanel>
         </materialDesign:DrawerHost.LeftDrawerContent>
-        -->
         <materialDesign:DrawerHost.TopDrawerContent>
             <StackPanel Margin="16" HorizontalAlignment="Center">
                 <TextBlock>TOP STUFF</TextBlock>
-                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}">
+                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
                     Close
                 </Button>
             </StackPanel>
         </materialDesign:DrawerHost.TopDrawerContent>
-        <!--
         <materialDesign:DrawerHost.RightDrawerContent>
             <StackPanel Margin="16">
                 <TextBlock> Hello World</TextBlock>
@@ -56,7 +55,15 @@
                 </Button>
             </StackPanel>
         </materialDesign:DrawerHost.RightDrawerContent>
-        -->
+        <materialDesign:DrawerHost.BottomDrawerContent>
+            <StackPanel Margin="16" HorizontalAlignment="Center">
+                <TextBlock>BOTTOM STUFF</TextBlock>
+                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                    Close
+                </Button>
+            </StackPanel>
+        </materialDesign:DrawerHost.BottomDrawerContent>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}">
                 Open sesame

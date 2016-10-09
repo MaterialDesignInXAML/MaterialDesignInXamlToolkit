@@ -1,9 +1,11 @@
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf.Transitions;
+using System.Collections.Generic;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -18,6 +20,10 @@ namespace MaterialDesignThemes.Wpf
     [TemplateVisualState(GroupName = TemplateBottomDrawerGroupName, Name = TemplateBottomClosedStateName)]
     [TemplateVisualState(GroupName = TemplateBottomDrawerGroupName, Name = TemplateBottomOpenStateName)]
     [TemplatePart(Name = TemplateContentCoverPartName, Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = TemplateLeftDrawerPartName, Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = TemplateTopDrawerPartName, Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = TemplateRightDrawerPartName, Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = TemplateBottomDrawerPartName, Type = typeof(FrameworkElement))]
     public class DrawerHost : ContentControl
     {
         public const string TemplateAllDrawersGroupName = "AllDrawers";
@@ -37,11 +43,29 @@ namespace MaterialDesignThemes.Wpf
         public const string TemplateBottomOpenStateName = "BottomDrawerOpen";
 
         public const string TemplateContentCoverPartName = "PART_ContentCover";
+        public const string TemplateLeftDrawerPartName = "PART_LeftDrawer";
+        public const string TemplateTopDrawerPartName = "PART_TopDrawer";
+        public const string TemplateRightDrawerPartName = "PART_RightDrawer";
+        public const string TemplateBottomDrawerPartName = "PART_BottomDrawer";
 
         public static RoutedCommand OpenDrawerCommand = new RoutedCommand();
         public static RoutedCommand CloseDrawerCommand = new RoutedCommand();
 
         private FrameworkElement _templateContentCoverElement;
+        private FrameworkElement _leftDrawerElement;
+        private FrameworkElement _topDrawerElement;
+        private FrameworkElement _rightDrawerElement;
+        private FrameworkElement _bottomDrawerElement;
+
+        private bool _lockZIndexes;
+
+        private readonly IDictionary<DependencyProperty, DependencyPropertyKey> _zIndexPropertyLookup = new Dictionary<DependencyProperty, DependencyPropertyKey>
+        {
+            { IsLeftDrawerOpenProperty, LeftDrawerZIndexPropertyKey },
+            { IsTopDrawerOpenProperty, TopDrawerZIndexPropertyKey },
+            { IsRightDrawerOpenProperty, RightDrawerZIndexPropertyKey },
+            { IsBottomDrawerOpenProperty, BottomDrawerZIndexPropertyKey }
+        };
 
         static DrawerHost()
         {
@@ -53,6 +77,8 @@ namespace MaterialDesignThemes.Wpf
             CommandBindings.Add(new CommandBinding(OpenDrawerCommand, OpenDrawerHandler));
             CommandBindings.Add(new CommandBinding(CloseDrawerCommand, CloseDrawerHandler));
         }
+
+        #region top drawer
 
         public static readonly DependencyProperty TopDrawerContentProperty = DependencyProperty.Register(
             nameof(TopDrawerContent), typeof(object), typeof(DrawerHost), new PropertyMetadata(default(object)));
@@ -108,6 +134,23 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(IsTopDrawerOpenProperty, value); }
         }
 
+        private static readonly DependencyPropertyKey TopDrawerZIndexPropertyKey =
+                                    DependencyProperty.RegisterReadOnly(
+                                    "TopDrawerZIndex", typeof(int), typeof(DrawerHost),
+                                    new PropertyMetadata(4));
+
+        public static readonly DependencyProperty TopDrawerZIndexProperty = TopDrawerZIndexPropertyKey.DependencyProperty;
+
+        public int TopDrawerZIndex
+        {
+            get { return (int)GetValue(TopDrawerZIndexProperty); }
+            private set { SetValue(TopDrawerZIndexPropertyKey, value); }
+        }
+
+        #endregion
+
+        #region left drawer
+
         public static readonly DependencyProperty LeftDrawerContentProperty = DependencyProperty.Register(
             nameof(LeftDrawerContent), typeof (object), typeof (DrawerHost), new PropertyMetadata(default(object)));
 
@@ -161,6 +204,23 @@ namespace MaterialDesignThemes.Wpf
             get { return (bool) GetValue(IsLeftDrawerOpenProperty); }
             set { SetValue(IsLeftDrawerOpenProperty, value); }
         }
+
+        private static readonly DependencyPropertyKey LeftDrawerZIndexPropertyKey =
+                                            DependencyProperty.RegisterReadOnly(
+                                            "LeftDrawerZIndex", typeof(int), typeof(DrawerHost),
+                                            new PropertyMetadata(2));
+
+        public static readonly DependencyProperty LeftDrawerZIndexProperty = LeftDrawerZIndexPropertyKey.DependencyProperty;
+
+        public int LeftDrawerZIndex
+        {
+            get { return (int)GetValue(LeftDrawerZIndexProperty); }
+            private set { SetValue(LeftDrawerZIndexPropertyKey, value); }
+        }
+
+        #endregion
+
+        #region right drawer
 
         public static readonly DependencyProperty RightDrawerContentProperty = DependencyProperty.Register(
             nameof(RightDrawerContent), typeof(object), typeof(DrawerHost), new PropertyMetadata(default(object)));
@@ -216,6 +276,23 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(IsRightDrawerOpenProperty, value); }
         }
 
+        private static readonly DependencyPropertyKey RightDrawerZIndexPropertyKey =
+                                    DependencyProperty.RegisterReadOnly(
+                                    "RightDrawerZIndex", typeof(int), typeof(DrawerHost),
+                                    new PropertyMetadata(1));
+
+        public static readonly DependencyProperty RightDrawerZIndexProperty = RightDrawerZIndexPropertyKey.DependencyProperty;
+
+        public int RightDrawerZIndex
+        {
+            get { return (int)GetValue(RightDrawerZIndexProperty); }
+            private set { SetValue(RightDrawerZIndexPropertyKey, value); }
+        }
+
+        #endregion
+
+        #region bottom drawer
+
         public static readonly DependencyProperty BottomDrawerContentProperty = DependencyProperty.Register(
             nameof(BottomDrawerContent), typeof(object), typeof(DrawerHost), new PropertyMetadata(default(object)));
 
@@ -270,18 +347,81 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(IsBottomDrawerOpenProperty, value); }
         }
 
+        private static readonly DependencyPropertyKey BottomDrawerZIndexPropertyKey =
+                                    DependencyProperty.RegisterReadOnly(
+                                    "BottomDrawerZIndex", typeof(int), typeof(DrawerHost),
+                                    new PropertyMetadata(3));
+
+        public static readonly DependencyProperty BottomDrawerZIndexProperty = BottomDrawerZIndexPropertyKey.DependencyProperty;
+
+        public int BottomDrawerZIndex
+        {
+            get { return (int)GetValue(BottomDrawerZIndexProperty); }
+            private set { SetValue(BottomDrawerZIndexPropertyKey, value); }
+        }
+
+        #endregion
+
         public override void OnApplyTemplate()
         {
             if (_templateContentCoverElement != null)
                 _templateContentCoverElement.PreviewMouseLeftButtonUp += TemplateContentCoverElementOnPreviewMouseLeftButtonUp;
+            WireDrawer(_leftDrawerElement, true);
+            WireDrawer(_topDrawerElement, true);
+            WireDrawer(_rightDrawerElement, true);
+            WireDrawer(_bottomDrawerElement, true);
 
             base.OnApplyTemplate();
 
             _templateContentCoverElement = GetTemplateChild(TemplateContentCoverPartName) as FrameworkElement;
             if (_templateContentCoverElement != null)
                 _templateContentCoverElement.PreviewMouseLeftButtonUp += TemplateContentCoverElementOnPreviewMouseLeftButtonUp;
+            _leftDrawerElement = WireDrawer(GetTemplateChild(TemplateLeftDrawerPartName) as FrameworkElement, false);
+            _topDrawerElement = WireDrawer(GetTemplateChild(TemplateTopDrawerPartName) as FrameworkElement, false);
+            _rightDrawerElement = WireDrawer(GetTemplateChild(TemplateRightDrawerPartName) as FrameworkElement, false);
+            _bottomDrawerElement = WireDrawer(GetTemplateChild(TemplateBottomDrawerPartName) as FrameworkElement, false);
 
             UpdateVisualStates(false);
+        }
+
+        private FrameworkElement WireDrawer(FrameworkElement drawerElement, bool unwire)
+        {
+            if (drawerElement == null) return null;
+
+            if (unwire)
+            {
+                drawerElement.GotFocus -= DrawerElement_GotFocus;
+                drawerElement.MouseDown -= DrawerElement_MouseDown;
+
+                return drawerElement;
+            }
+
+            drawerElement.GotFocus += DrawerElement_GotFocus;
+            drawerElement.MouseDown += DrawerElement_MouseDown;
+
+            return drawerElement;
+        }
+
+        private void DrawerElement_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ReactToFocus(sender);
+        }
+
+        private void DrawerElement_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ReactToFocus(sender);
+        }
+
+        private void ReactToFocus(object sender)
+        {
+            if (sender == _leftDrawerElement)
+                PrepareZIndexes(LeftDrawerZIndexPropertyKey);
+            else if (sender == _topDrawerElement)
+                PrepareZIndexes(TopDrawerZIndexPropertyKey);
+            else if (sender == _rightDrawerElement)
+                PrepareZIndexes(RightDrawerZIndexPropertyKey);
+            else if (sender == _bottomDrawerElement)
+                PrepareZIndexes(BottomDrawerZIndexPropertyKey);
         }
 
         private void TemplateContentCoverElementOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
@@ -314,7 +454,22 @@ namespace MaterialDesignThemes.Wpf
 
         private static void IsDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            ((DrawerHost)dependencyObject).UpdateVisualStates();            
+            var drawerHost = (DrawerHost)dependencyObject;
+            if (!drawerHost._lockZIndexes && (bool)dependencyPropertyChangedEventArgs.NewValue)
+                drawerHost.PrepareZIndexes(drawerHost._zIndexPropertyLookup[dependencyPropertyChangedEventArgs.Property]);
+            drawerHost.UpdateVisualStates();
+        }
+
+        private void PrepareZIndexes(DependencyPropertyKey zIndexDependencyPropertyKey)
+        {
+            var newOrder = new[] { zIndexDependencyPropertyKey }
+                .Concat(_zIndexPropertyLookup.Values.Except(new[] { zIndexDependencyPropertyKey })
+                .OrderByDescending(dpk => (int)GetValue(dpk.DependencyProperty)))
+                .Reverse()
+                .Select((dpk, idx) => new { dpk, idx });
+
+            foreach (var a in newOrder)
+                SetValue(a.dpk, a.idx);
         }
 
         private void CloseDrawerHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
@@ -359,10 +514,18 @@ namespace MaterialDesignThemes.Wpf
             }
             else
             {
-                SetCurrentValue(IsLeftDrawerOpenProperty, value);
-                SetCurrentValue(IsTopDrawerOpenProperty, value);
-                SetCurrentValue(IsRightDrawerOpenProperty, value);
-                SetCurrentValue(IsBottomDrawerOpenProperty, value);
+                try
+                {
+                    _lockZIndexes = true;
+                    SetCurrentValue(IsLeftDrawerOpenProperty, value);
+                    SetCurrentValue(IsTopDrawerOpenProperty, value);
+                    SetCurrentValue(IsRightDrawerOpenProperty, value);
+                    SetCurrentValue(IsBottomDrawerOpenProperty, value);
+                }
+                finally
+                {
+                    _lockZIndexes = false;
+                }
             }
         }
     }
