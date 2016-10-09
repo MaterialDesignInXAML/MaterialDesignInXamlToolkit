@@ -29,22 +29,34 @@
     </UserControl.Resources>
 
     <materialDesign:DrawerHost>
-        <materialDesign:DrawerHost.RightDrawerContent>
-            <Grid Margin="16">
-                <TextBlock> Hello World</TextBlock>
-                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}">
-                    Close
-                </Button>
-            </Grid>
-        </materialDesign:DrawerHost.RightDrawerContent>
+        <!--
         <materialDesign:DrawerHost.LeftDrawerContent>
-            <Grid Margin="16">
+            <StackPanel Margin="16">
                 <TextBlock>LEFT STUFF</TextBlock>
                 <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}">
                     Close
                 </Button>
-            </Grid>
+            </StackPanel>
         </materialDesign:DrawerHost.LeftDrawerContent>
+        -->
+        <materialDesign:DrawerHost.TopDrawerContent>
+            <StackPanel Margin="16" HorizontalAlignment="Center">
+                <TextBlock>TOP STUFF</TextBlock>
+                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}">
+                    Close
+                </Button>
+            </StackPanel>
+        </materialDesign:DrawerHost.TopDrawerContent>
+        <!--
+        <materialDesign:DrawerHost.RightDrawerContent>
+            <StackPanel Margin="16">
+                <TextBlock> Hello World</TextBlock>
+                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}">
+                    Close
+                </Button>
+            </StackPanel>
+        </materialDesign:DrawerHost.RightDrawerContent>
+        -->
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}">
                 Open sesame
