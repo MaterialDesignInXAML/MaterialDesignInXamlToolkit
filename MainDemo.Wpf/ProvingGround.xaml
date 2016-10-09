@@ -32,43 +32,106 @@
     <materialDesign:DrawerHost>
         <materialDesign:DrawerHost.LeftDrawerContent>
             <StackPanel Margin="16">
-                <TextBlock>LEFT STUFF</TextBlock>
-                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}">
-                    Close
+                <TextBlock Margin="4" HorizontalAlignment="Center">LEFT FIELD</TextBlock>
+                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Left}"
+                        Margin="4" HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                    CLOSE THIS
+                </Button>
+                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        Margin="4" HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                    CLOSE ALL
                 </Button>
             </StackPanel>
         </materialDesign:DrawerHost.LeftDrawerContent>
         <materialDesign:DrawerHost.TopDrawerContent>
-            <StackPanel Margin="16" HorizontalAlignment="Center">
-                <TextBlock>TOP STUFF</TextBlock>
+            <StackPanel Margin="16" HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock Margin="4" VerticalAlignment="Center">TOP BANANA</TextBlock>
                 <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                        Style="{DynamicResource MaterialDesignFlatButton}">
-                    Close
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Margin="4" VerticalAlignment="Center">
+                    CLOSE ALL
+                </Button>
+                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Top}"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Margin="4" VerticalAlignment="Center">
+                    CLOSE THIS
                 </Button>
             </StackPanel>
         </materialDesign:DrawerHost.TopDrawerContent>
         <materialDesign:DrawerHost.RightDrawerContent>
             <StackPanel Margin="16">
-                <TextBlock> Hello World</TextBlock>
-                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}">
-                    Close
+                <TextBlock Margin="4" HorizontalAlignment="Center">THE RIGHT STUFF</TextBlock>
+                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Right}"
+                        Margin="4" HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                    CLOSE THIS
+                </Button>
+                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        Margin="4" HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                    CLOSE ALL
                 </Button>
             </StackPanel>
         </materialDesign:DrawerHost.RightDrawerContent>
         <materialDesign:DrawerHost.BottomDrawerContent>
-            <StackPanel Margin="16" HorizontalAlignment="Center">
-                <TextBlock>BOTTOM STUFF</TextBlock>
+            <StackPanel Margin="16" HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock Margin="4" VerticalAlignment="Center">BOTTOM BRACKET</TextBlock>
                 <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                        Style="{DynamicResource MaterialDesignFlatButton}">
-                    Close
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Margin="4" VerticalAlignment="Center">
+                    CLOSE ALL
+                </Button>
+                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Bottom}"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Margin="4" VerticalAlignment="Center">
+                    CLOSE THIS
                 </Button>
             </StackPanel>
         </materialDesign:DrawerHost.BottomDrawerContent>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}">
-                Open sesame
+
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                    CommandParameter="{x:Static Dock.Left}"
+                    Grid.Row="1" Grid.Column="0"  Margin="4">
+                <materialDesign:PackIcon Kind="ArrowLeft" />
             </Button>
-        </StackPanel>
+            <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                    CommandParameter="{x:Static Dock.Top}"
+                    Grid.Row="0" Grid.Column="1" Margin="4">
+                <materialDesign:PackIcon Kind="ArrowUp" />
+            </Button>
+            <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                    CommandParameter="{x:Static Dock.Right}"
+                    Grid.Row="1" Grid.Column="2" Margin="4">
+                <materialDesign:PackIcon Kind="ArrowRight" />
+            </Button>
+            <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                    CommandParameter="{x:Static Dock.Bottom}"
+                    Grid.Row="2" Grid.Column="1" Margin="4">
+                <materialDesign:PackIcon Kind="ArrowDown" />
+            </Button>
+            <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                    Grid.Row="1" Grid.Column="1" Margin="4" 
+                    Style="{DynamicResource MaterialDesignRaisedAccentButton}">
+                <materialDesign:PackIcon Kind="ArrowAll" />
+            </Button>
+        </Grid>
     </materialDesign:DrawerHost>
 
 </UserControl>
