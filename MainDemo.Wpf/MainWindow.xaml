@@ -173,6 +173,11 @@
                                 </wpfExample:Dialogs>
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Drawers">
+                            <domain:DemoItem.Content>
+                                <materialDesignDemo:Drawers />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Transitions">
                             <domain:DemoItem.Content>
                                 <materialDesignDemo:Transitions />
