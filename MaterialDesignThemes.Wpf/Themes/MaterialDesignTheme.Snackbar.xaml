@@ -20,7 +20,7 @@
                 <ControlTemplate TargetType="{x:Type wpf:Snackbar}">
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
                         <Border x:Name="PART_border" Background="#FF323232" CornerRadius="2" MaxWidth="568" MinWidth="288" SnapsToDevicePixels="True">
-                            <StackPanel x:Name="PART_contentPanel" HorizontalAlignment="Stretch" Orientation="Vertical" SnapsToDevicePixels="True">
+                            <StackPanel x:Name="PART_contentPanel" HorizontalAlignment="Stretch" Orientation="Vertical">
                                 <StackPanel.Tag>
                                     <system:Double>0.0</system:Double>
                                 </StackPanel.Tag>
@@ -52,7 +52,7 @@
                                             </DataTemplate>
                                         </ContentControl.Resources>
                                     </ContentControl>
-                                    <Button x:Name="PART_actionButton" Grid.Column="1" Content="{Binding Path=ActionLabel, RelativeSource={RelativeSource TemplatedParent}}" SnapsToDevicePixels="True">
+                                    <Button x:Name="PART_actionButton" Grid.Column="1" Content="{Binding Path=ActionLabel, RelativeSource={RelativeSource TemplatedParent}}">
                                         <Button.Style>
                                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatAccentButton}">
                                                 <Setter Property="Margin" Value="8,0,8,0" />
@@ -66,9 +66,41 @@
                             </StackPanel>
                         </Border>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsOpen" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PART_contentPanel" Storyboard.TargetProperty="Tag" From="0" To="1" Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuarticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="PART_contentGrid" Storyboard.TargetProperty="Opacity" To="0" BeginTime="0" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_contentGrid" Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0.05" Duration="0:0:0.25">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuarticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PART_contentPanel" Storyboard.TargetProperty="Tag" From="1" To="0" Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuarticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
+
 </ResourceDictionary>

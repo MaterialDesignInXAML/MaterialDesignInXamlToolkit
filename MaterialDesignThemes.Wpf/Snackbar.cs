@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
@@ -17,16 +16,12 @@ namespace MaterialDesignThemes.Wpf
     /// </summary>
     public class Snackbar : ContentControl
     {
-        private const string PartActionButtonName = "PART_actionButton";
-        private const string PartContentGridName = "PART_contentGrid";
-        private const string PartContentPanelName = "PART_contentPanel";
+        public const string PartActionButtonName = "PART_actionButton";
 
         /// <summary>
-        /// The duration of the open and close animations in milliseconds.
+        /// The duration of the animation in milliseconds.
         /// </summary>
         public const int AnimationDuration = 300;
-
-        private const int OpacityAnimationHintOffset = 50;
 
         /// <summary>
         /// The minimum timeout for a visible <see cref="Snackbar" /> in milliseconds.
@@ -155,45 +150,22 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private static void IsOpenChangedHandler(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        private async static void IsOpenChangedHandler(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            // trigger the animations
+            // the animations are triggered by the value of the IsOpen property
+
             Snackbar snackbar = (Snackbar)sender;
+
+            // stop the timer because it may mess up the behaviour of the Snackbar
+            snackbar._timer?.Stop();
 
             if ((bool)args.NewValue)
             {
-                if (snackbar._openStoryboard != null)
-                {
-                    // set the duration of the dummy visibility timeout animation as it may has changed since the last call
-                    if (snackbar._dummyVisibilityAnimation != null)
-                    {
-                        int timeout = snackbar.VisibilityTimeout;
-
-                        if (timeout < MinimumVisibilityTimeout)
-                        {
-                            timeout = MinimumVisibilityTimeout;
-                        }
-
-                        snackbar._dummyVisibilityAnimation.Duration = TimeSpan.FromMilliseconds(timeout);
-                    }
-
-                    // start the open animation
-                    snackbar._openStoryboard.Begin(snackbar, true);
-                }
+                await snackbar.ShowAsync();
             }
             else
             {
-                // stop the open animation if the Snackbar should close before the visibility timeout is reached
-                if (snackbar._openStoryboard != null)
-                {
-                    snackbar._openStoryboard.Stop(snackbar);
-                }
-
-                // start the close animation
-                if (snackbar._closeStoryboard != null)
-                {
-                    snackbar._closeStoryboard.Begin(snackbar, true);
-                }
+                await snackbar.HideAsync();
             }
         }
 
@@ -237,9 +209,8 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private Storyboard _openStoryboard;
-        private Storyboard _closeStoryboard;
-        private DoubleAnimation _dummyVisibilityAnimation;
+        // used to implement the behaviour of the HalfAutomatic mode defined in the Material Design specs
+        private DispatcherTimer _timer;
 
         private Button _actionButton;
 
@@ -248,14 +219,13 @@ namespace MaterialDesignThemes.Wpf
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Snackbar), new FrameworkPropertyMetadata(typeof(Snackbar)));
 
             ContentProperty.OverrideMetadata(typeof(Snackbar), new FrameworkPropertyMetadata(ContentChangedHandler));
-            TagProperty.OverrideMetadata(typeof(Snackbar), new FrameworkPropertyMetadata(0.0));
+            TagProperty.OverrideMetadata(typeof(Snackbar), new FrameworkPropertyMetadata("0"));
         }
 
         public Snackbar() : base() { }
 
         public override void OnApplyTemplate()
         {
-            // set the event handler for the action button from the template
             if (_actionButton != null)
             {
                 _actionButton.Click -= ActionButtonClickHandler;
@@ -268,58 +238,6 @@ namespace MaterialDesignThemes.Wpf
                 _actionButton.Click += ActionButtonClickHandler;
             }
 
-            // Storyboard for the open animation
-            _openStoryboard = new Storyboard();
-
-            // height
-            DoubleAnimation contentPanelTagAnimation = new DoubleAnimation(0.0, 1.0, TimeSpan.FromMilliseconds(AnimationDuration));
-            contentPanelTagAnimation.BeginTime = TimeSpan.FromMilliseconds(0.0);
-            contentPanelTagAnimation.EasingFunction = new QuarticEase() { EasingMode = EasingMode.EaseOut };
-            Storyboard.SetTarget(contentPanelTagAnimation, GetTemplateChild(PartContentPanelName));
-            Storyboard.SetTargetProperty(contentPanelTagAnimation, new PropertyPath(StackPanel.TagProperty));
-            _openStoryboard.Children.Add(contentPanelTagAnimation);
-
-            // opacity of the content
-            DoubleAnimation contentGridOpacityAnimation = new DoubleAnimation(0.0, TimeSpan.FromMilliseconds(0.0));
-            contentGridOpacityAnimation.BeginTime = TimeSpan.FromMilliseconds(0.0);
-            Storyboard.SetTarget(contentGridOpacityAnimation, GetTemplateChild(PartContentPanelName));
-            Storyboard.SetTargetProperty(contentGridOpacityAnimation, new PropertyPath(Grid.OpacityProperty));
-            _openStoryboard.Children.Add(contentGridOpacityAnimation);
-
-            contentGridOpacityAnimation = new DoubleAnimation(0.0, 1.0, TimeSpan.FromMilliseconds(AnimationDuration - OpacityAnimationHintOffset));
-            contentGridOpacityAnimation.BeginTime = TimeSpan.FromMilliseconds(OpacityAnimationHintOffset);
-            contentGridOpacityAnimation.EasingFunction = new QuarticEase() { EasingMode = EasingMode.EaseOut };
-            Storyboard.SetTarget(contentGridOpacityAnimation, GetTemplateChild(PartContentPanelName));
-            Storyboard.SetTargetProperty(contentGridOpacityAnimation, new PropertyPath(Grid.OpacityProperty));
-            _openStoryboard.Children.Add(contentGridOpacityAnimation);
-
-            // dummy animation to keep the HalfAutomatic mode Snackbar open during the visibility timeout
-            _dummyVisibilityAnimation = new DoubleAnimation(1.0, 1.0, TimeSpan.FromMilliseconds(VisibilityTimeout));
-            _dummyVisibilityAnimation.BeginTime = TimeSpan.FromMilliseconds(AnimationDuration);
-            Storyboard.SetTarget(_dummyVisibilityAnimation, GetTemplateChild(PartContentPanelName));
-            Storyboard.SetTargetProperty(_dummyVisibilityAnimation, new PropertyPath(StackPanel.TagProperty));
-            _openStoryboard.Children.Add(_dummyVisibilityAnimation);
-
-            _openStoryboard.Completed += (object sender, EventArgs args) =>
-            {
-                // close the Snackbar after the animation in the HalfAutomatic mode
-                if (Mode == SnackbarMode.HalfAutomatic)
-                {
-                    IsOpen = false;
-                }
-            };
-
-            // Storyboard for the close animation
-            _closeStoryboard = new Storyboard();
-
-            // height
-            contentPanelTagAnimation = new DoubleAnimation(1.0, 0.0, TimeSpan.FromMilliseconds(AnimationDuration));
-            contentPanelTagAnimation.BeginTime = TimeSpan.FromMilliseconds(0.0);
-            contentPanelTagAnimation.EasingFunction = new QuarticEase() { EasingMode = EasingMode.EaseOut };
-            Storyboard.SetTarget(contentPanelTagAnimation, GetTemplateChild(PartContentPanelName));
-            Storyboard.SetTargetProperty(contentPanelTagAnimation, new PropertyPath(StackPanel.TagProperty));
-            _closeStoryboard.Children.Add(contentPanelTagAnimation);
-
             base.OnApplyTemplate();
         }
 
@@ -327,21 +245,21 @@ namespace MaterialDesignThemes.Wpf
         {
             if (Mode == SnackbarMode.HalfAutomatic)
             {
-                // first close the Snackbar if it is already visible
+                // first hide the Snackbar if its already visible
                 if (IsOpen)
                 {
                     IsOpen = false;
 
-                    // wait for the animation, otherwise the new content will already be shown in the close animation
+                    // wait for the animation, otherwise the new content will already be shown in the hide animation
                     await Task.Delay(AnimationDuration);
                 }
 
-                // now set the new content and open the Snackbar
+                // now set the new content and show the Snackbar
                 InternalContent = content;
 
                 if (content != null)
                 {
-                    // only open it with content
+                    // only show it with content
                     IsOpen = true;
 
                     await Task.Delay(AnimationDuration);
@@ -354,6 +272,44 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        private async Task ShowAsync()
+        {
+            // wait for the animation
+            await Task.Delay(AnimationDuration);
+
+            // start the timeout in HalfAutomatic mode
+            if (Mode == SnackbarMode.HalfAutomatic)
+            {
+                // start the timer which will hide the Snackbar
+                int timeout = VisibilityTimeout;
+
+                if (timeout < MinimumVisibilityTimeout)
+                {
+                    timeout = MinimumVisibilityTimeout;
+                }
+
+                if (_timer == null)
+                {
+                    _timer = new DispatcherTimer();
+                }
+
+                _timer.Tick += async (object sender, EventArgs args) =>
+                {
+                    IsOpen = false;
+
+                    await Task.Delay(AnimationDuration);
+                };
+                _timer.Interval = new TimeSpan(0, 0, 0, 0, timeout);
+                _timer.Start();
+            }
+        }
+
+        private async Task HideAsync()
+        {
+            // wait for the animation
+            await Task.Delay(AnimationDuration);
+        }
+
         private async void ActionButtonClickHandler(object sender, RoutedEventArgs args)
         {
             // do not you raise the event if the Snackbar is not fully visible
@@ -364,7 +320,7 @@ namespace MaterialDesignThemes.Wpf
 
             Task task = null;
 
-            // close the Snackbar in HalfAutomatic mode
+            // hide the Snackbar in HalfAutomatic mode
             if (Mode == SnackbarMode.HalfAutomatic)
             {
                 IsOpen = false;
