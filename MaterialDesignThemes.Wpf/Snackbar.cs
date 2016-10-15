@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,116 @@ using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
 {
+
+    /*
+        Potential usage:
+
+        <Snackbar MessageQueue="{Binding MessageQueue}" />
+
+        //would work in both MVVM and code behind.
+
+        //with interface could be injected down in MVVM
+
+        //create default value for code behind
+
+        THOUGHTS
+        * stop consecutive identical content (within a time span)
+        * what if multiple snackbars are bound to the same queue (stop multiple assocations?)
+        * us e a controller like dragablz...this would allow plugable control:
+
+        <Snackbar>
+            <Snackbar.Controller>
+                <SnackbarController MessageQueue={Binding MessageQueue} />
+            </Snakbar.Controller>
+        </Snackbar>
+
+        ...having the controller allows us to pull a lot of interaction off the control itself...but a bit more verbose XAML
+
+        ..maybe the message queue is the controller...i dunno right now...
+
+
+        ** Just THRASHING OUT IDEAS HERE....**
+
+        Multiple windows...having the option for one shared queue is nice...if a notification comes in, we can route to the foreground window...
+
+
+
+        <Snackbar MessageQueue="{Binding MessageQueue}" />
+
+    */
+
+    public interface ISnackbarMessageQueue
+    {
+        void Post(object content);
+
+        void Post(object content, object actionContent, Action actionHandler);
+
+        void Post<TArgument>(object content, object actionContent, Action<TArgument> actionHandler, TArgument actionArgument);
+    }
+
+    internal class SnackbarMessageQueueRegistration
+    {
+        public SnackbarMessageQueueRegistration(Snackbar2 snackbar2)
+        {
+            Snackbar2 = snackbar2;
+        }
+
+        public Snackbar2 Snackbar2 { get; }
+    }
+
+    public class SnackbarMessageQueue : ISnackbarMessageQueue
+    {
+        private readonly IList<SnackbarMessageQueueRegistration> _pairedSnackbars = new List<SnackbarMessageQueueRegistration>();
+
+        //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragabalz, 
+        //but this is an internal method so no one will know my direty Action disposer...
+        internal Action Pair(Snackbar2 snackbar)
+        {
+            //assume this internal method is on Dispatcher
+
+            if (snackbar == null) throw new ArgumentNullException(nameof(snackbar));
+
+      //      if (_pairedSnackbars)
+        //    _pairedSnackbars.Add(snackbar);
+
+          //  return () => _pairedSnackbars.Remove(snackbar);
+            return null;
+
+            //TODO worry about loading unloading...could cause a little leaky if u not carefull...
+        }
+
+        public void Post(object content)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Post(object content, object actionContent, Action actionHandler)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Post<TArgument>(object content, object actionContent, Action<TArgument> actionHandler, TArgument actionArgument)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+
+
+   
+
+    /// <summary>
+    /// Implements a <see cref="Snackbar"/> inspired by the Material Design specs (https://material.google.com/components/snackbars-toasts.html).
+    /// </summary>
+    public class Snackbar2 : Control
+    {
+        static Snackbar2()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Snackbar2), new FrameworkPropertyMetadata(typeof(Snackbar2)));
+        }
+    }
+
     /// <summary>
     /// Implements a <see cref="Snackbar"/> inspired by the Material Design specs (https://material.google.com/components/snackbars-toasts.html).
     /// </summary>
@@ -100,7 +211,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 SetValue(ActionLabelProperty, value);
             }
-        }
+        }        
 
         private static async void ContentChangedHandler(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
