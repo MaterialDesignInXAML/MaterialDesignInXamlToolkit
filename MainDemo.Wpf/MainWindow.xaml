@@ -40,11 +40,11 @@
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel MinWidth="212">
                     <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
-                                  DockPanel.Dock="Top"
-                                  HorizontalAlignment="Right" Margin="16"
-                                  IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />                    
+                                    DockPanel.Dock="Top"
+                                    HorizontalAlignment="Right" Margin="16"
+                                    IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
                     <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
-                             PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
+                                PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
                         <ListBox.ItemTemplate>
                             <DataTemplate DataType="domain:DemoItem">
                                 <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />
@@ -86,6 +86,11 @@
                         <domain:DemoItem Name="Sliders">
                             <domain:DemoItem.Content>
                                 <wpfExample:Sliders />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
+                        <domain:DemoItem Name="Snackbar">
+                            <domain:DemoItem.Content>
+                                <wpfExample:Snackbar />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
                         <domain:DemoItem Name="Chips">
@@ -188,10 +193,10 @@
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
                 <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                          Mode="PrimaryMid" DockPanel.Dock="Top">
+                                            Mode="PrimaryMid" DockPanel.Dock="Top">
                     <DockPanel>
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
-                                      x:Name="MenuToggleButton"/>
+                                        x:Name="MenuToggleButton"/>
                         <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                             <StackPanel>
                                 <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
@@ -204,7 +209,7 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
                     </DockPanel>
                 </materialDesign:ColorZone>
-                <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />                
+                <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
             </DockPanel>
         </materialDesign:DrawerHost>
     </materialDesign:DialogHost>

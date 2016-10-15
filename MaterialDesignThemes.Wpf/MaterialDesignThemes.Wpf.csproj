@@ -230,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.Snackbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
@@ -290,6 +294,7 @@
     <Compile Include="IconType.cs" />
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="Palette.cs" />
+    <Compile Include="Snackbar.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
     <Compile Include="Transitions\IndexedItemOffsetMultiplierExtension.cs" />
