@@ -6,12 +6,14 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:provingGroundStuff="clr-namespace:MaterialDesignDemo.ProvingGroundStuff"
              mc:Ignorable="d"              
 			 d:DesignWidth="477" d:DesignHeight="272"
              d:DataContext="{d:DesignInstance wpfExample:ProvingGroundViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
                 <!--
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
@@ -22,34 +24,24 @@
             </ResourceDictionary.MergedDictionaries>
 
 
+            
+            <Style TargetType="{x:Type provingGroundStuff:MeasuringTextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
 
 
 
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <materialDesign:DrawerHost>
-        <materialDesign:DrawerHost.RightDrawerContent>
-            <Grid Margin="16">
-                <TextBlock> Hello World</TextBlock>
-                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}">
-                    Close
-                </Button>
-            </Grid>
-        </materialDesign:DrawerHost.RightDrawerContent>
-        <materialDesign:DrawerHost.LeftDrawerContent>
-            <Grid Margin="16">
-                <TextBlock>LEFT STUFF</TextBlock>
-                <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}">
-                    Close
-                </Button>
-            </Grid>
-        </materialDesign:DrawerHost.LeftDrawerContent>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}">
-                Open sesame
-            </Button>
+    <Grid HorizontalAlignment="Left">
+        <StackPanel>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox materialDesign:HintAssist.Hint="Float">Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Float">Hello World</provingGroundStuff:MeasuringTextBox>
         </StackPanel>
-    </materialDesign:DrawerHost>
+    </Grid>
 
 </UserControl>
