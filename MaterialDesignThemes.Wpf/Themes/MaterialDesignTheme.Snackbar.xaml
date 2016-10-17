@@ -9,80 +9,54 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <converters:MathMultipleConverter x:Key="MathMlpMultipleConverter" Operation="Multiply" />
-    
     <Style TargetType="{x:Type wpf:Snackbar}">
         <Style.Resources>
+            <converters:MathMultipleConverter x:Key="mathMlpMultipleConverter" Operation="Multiply" />
             <converters:NullableToVisibilityConverter x:Key="nullableToVisibilityConverter" />
         </Style.Resources>
+        <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:Snackbar}">
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="VisibilityStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition From="Hidden" To="Visible" GeneratedDuration="0">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <CubicEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="PART_content" Storyboard.TargetProperty="Tag" To="1" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetName="PART_textBlock" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3" />
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="Visible" To="Hidden" GeneratedDuration="0">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <CubicEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="PART_content" Storyboard.TargetProperty="Tag" To="0" Duration="0:0:0.3"/>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Visible">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_content" Storyboard.TargetProperty="Tag" To="1" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Hidden">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_content" Storyboard.TargetProperty="Tag" To="0" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="PART_border" Background="#FF323232" CornerRadius="2" MaxWidth="568" MinWidth="288">
-                            <StackPanel x:Name="PART_content" HorizontalAlignment="Stretch" Orientation="Vertical">
+                        <Border x:Name="PART_border" Background="#FF323232" CornerRadius="2" MaxWidth="568" MinWidth="288" SnapsToDevicePixels="True">
+                            <StackPanel x:Name="PART_contentPanel" HorizontalAlignment="Stretch" Orientation="Vertical">
                                 <StackPanel.Tag>
                                     <system:Double>0.0</system:Double>
                                 </StackPanel.Tag>
                                 <StackPanel.Height>
-                                    <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
-                                        <Binding ElementName="PART_content" Path="ActualHeight"/>
+                                    <MultiBinding Converter="{StaticResource mathMlpMultipleConverter}">
+                                        <Binding ElementName="PART_contentPanel" Path="ActualHeight"/>
                                         <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
                                     </MultiBinding>
                                 </StackPanel.Height>
-                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid x:Name="PART_contentGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SnapsToDevicePixels="True">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="100*" />
                                         <ColumnDefinition Width="auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock x:Name="PART_textBlock" Text="{Binding Path=Message, RelativeSource={RelativeSource TemplatedParent}}">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
-                                                <Setter Property="HorizontalAlignment" Value="Left" />
-                                                <Setter Property="Margin" Value="24,14,24,14" />
-                                                <Setter Property="FontSize" Value="14" />
-                                                <Setter Property="Foreground" Value="#DDFFFFFF" />
-                                                <Setter Property="TextWrapping" Value="WrapWithOverflow" />
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+                                    <ContentControl x:Name="PART_content" Content="{Binding Path=InternalContent, RelativeSource={RelativeSource TemplatedParent}}" Margin="24,14,24,14" SnapsToDevicePixels="True">
+                                        <ContentControl.Resources>
+                                            <DataTemplate DataType="{x:Type system:String}">
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+                                                            <Setter Property="HorizontalAlignment" Value="Left" />
+                                                            <Setter Property="FontSize" Value="14" />
+                                                            <Setter Property="Foreground" Value="#DDFFFFFF" />
+                                                            <Setter Property="SnapsToDevicePixels" Value="True" />
+                                                            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ContentControl.Resources>
+                                    </ContentControl>
                                     <Button x:Name="PART_actionButton" Grid.Column="1" Content="{Binding Path=ActionLabel, RelativeSource={RelativeSource TemplatedParent}}">
                                         <Button.Style>
                                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatAccentButton}">
                                                 <Setter Property="Margin" Value="8,0,8,0" />
+                                                <Setter Property="SnapsToDevicePixels" Value="True" />
                                                 <Setter Property="VerticalAlignment" Value="Center" />
                                                 <Setter Property="Visibility" Value="{Binding Path=ActionLabel, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
                                             </Style>
@@ -92,9 +66,41 @@
                             </StackPanel>
                         </Border>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsOpen" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PART_contentPanel" Storyboard.TargetProperty="Tag" From="0" To="1" Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuarticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="PART_contentGrid" Storyboard.TargetProperty="Opacity" To="0" BeginTime="0" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_contentGrid" Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0.05" Duration="0:0:0.25">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuarticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PART_contentPanel" Storyboard.TargetProperty="Tag" From="1" To="0" Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuarticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
+
 </ResourceDictionary>

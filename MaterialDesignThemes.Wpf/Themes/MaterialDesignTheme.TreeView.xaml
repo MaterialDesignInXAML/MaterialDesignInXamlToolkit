@@ -214,10 +214,7 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
-                                                             To="1" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsPanel"
-                                                             To="1" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="1" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition GeneratedDuration="0" To="Collapsed">
@@ -228,19 +225,13 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
-                                                             To="0" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsPanel"
-                                                             To="0" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="0" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Expanded">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
-                                                             To="1" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsPanel"
-                                                             To="1" Duration="0"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="1" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -248,10 +239,7 @@
                                 </VisualState>
                                 <VisualState x:Name="Collapsed">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost"
-                                                             To="0" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Tag" Storyboard.TargetName="ItemsPanel"
-                                                             To="0" Duration="0"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="0" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -294,13 +282,10 @@
                                     x:Name="ItemsPanel"
                                     Margin="-16 0 0 0"
                                     Grid.ColumnSpan="2">
-                            <StackPanel.Tag>
-                                <system:Double>0.0</system:Double>
-                            </StackPanel.Tag>
                             <StackPanel.Height>
                                 <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
                                     <Binding ElementName="ItemsHost" Path="ActualHeight"/>
-                                    <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
+                                    <Binding ElementName="ItemsHost" Path="Opacity"/>
                                 </MultiBinding>
                             </StackPanel.Height>
                             <ItemsPresenter x:Name="ItemsHost"

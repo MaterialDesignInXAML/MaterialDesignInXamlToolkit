@@ -47,6 +47,7 @@
     <Style x:Key="MaterialDesignCheckBox" TargetType="{x:Type CheckBox}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
@@ -113,7 +114,7 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
-                            <Setter TargetName="contentPresenter" Property="Opacity" Value="0.79"/>
+                            <Setter Property="Opacity" Value="0.26"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true"/>
                         <Trigger Property="IsChecked" Value="true">
@@ -212,7 +213,7 @@
                             <Setter Property="Padding" Value="4,2,0,0"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" TargetName="Graphic" Value=".56" />
+                            <Setter Property="Opacity" TargetName="Graphic" Value=".26" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true"/>
                         <Trigger Property="IsChecked" Value="true">

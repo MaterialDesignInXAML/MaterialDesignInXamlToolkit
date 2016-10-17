@@ -47,6 +47,10 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\paket-files\samueldjack\VirtualCollection\VirtualCollection\VirtualCollection\VirtualizingWrapPanel.cs">
+      <Paket>True</Paket>
+      <Link>VirtualCollection/VirtualizingWrapPanel.cs</Link>
+    </Compile>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -67,9 +71,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="..\paket-files\samueldjack\VirtualCollection\VirtualCollection\VirtualCollection\VirtualizingWrapPanel.cs">
-      <Link>VirtualCollection\VirtualizingWrapPanel.cs</Link>
-    </Compile>
     <Compile Include="Buttons.xaml.cs">
       <DependentUpon>Buttons.xaml</DependentUpon>
     </Compile>
@@ -110,6 +111,9 @@
     <Compile Include="Domain\SimpleDateValidationRule.cs" />
     <Compile Include="Domain\TextFieldsViewModel.cs" />
     <Compile Include="Domain\TreesViewModel.cs" />
+    <Compile Include="Drawers.xaml.cs">
+      <DependentUpon>Drawers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Expander.xaml.cs">
       <DependentUpon>Expander.xaml</DependentUpon>
     </Compile>
@@ -146,6 +150,7 @@
     <Compile Include="ProvingGround.xaml.cs">
       <DependentUpon>ProvingGround.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProvingGroundStuff\MeasuringTextBox.cs" />
     <Compile Include="Shadows.xaml.cs">
       <DependentUpon>Shadows.xaml</DependentUpon>
     </Compile>
@@ -212,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Domain\SampleMessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Drawers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,6 +386,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="paket.references" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -414,9 +424,6 @@
   <ItemGroup>
     <Resource Include="favicon.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ProvingGroundStuff\" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -425,4 +432,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="..\.paket\paket.targets" />
 </Project>

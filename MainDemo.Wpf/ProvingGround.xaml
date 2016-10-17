@@ -6,61 +6,42 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
-             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{StaticResource MaterialDesignFont}"
+             xmlns:provingGroundStuff="clr-namespace:MaterialDesignDemo.ProvingGroundStuff"
              mc:Ignorable="d"              
 			 d:DesignWidth="477" d:DesignHeight="272"
              d:DataContext="{d:DesignInstance wpfExample:ProvingGroundViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <!--
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                -->
             </ResourceDictionary.MergedDictionaries>
 
-            
 
             
+            <Style TargetType="{x:Type provingGroundStuff:MeasuringTextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
+
+
 
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <StackPanel Margin="8">
-        <ListBox Style="{StaticResource MaterialDesignToolToggleListBox}">
-            <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatAlignLeft"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatAlignCenter"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatAlignRight"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatAlignJustify"/>
-            </ListBoxItem>
-        </ListBox>
-
-        <ListBox Style="{StaticResource MaterialDesignToolToggleListBox}" 
-                 SelectionMode="Extended"
-                 Margin="0 8 0 0">
-            <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatBold"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <materialDesign:PackIcon Kind="FormatItalic"/>
-            </ListBoxItem>
-            <ListBoxItem x:Name="UnderlineCheckbox">
-                <materialDesign:PackIcon Kind="FormatUnderline"/>
-            </ListBoxItem>
-        </ListBox>
-
-        <CheckBox IsChecked="{Binding ElementName=UnderlineCheckbox, Path=IsSelected}">Underline?</CheckBox>
-
-    </StackPanel>
+    <Grid HorizontalAlignment="Left">
+        <StackPanel>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox materialDesign:HintAssist.Hint="Float">Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Float">Hello World</provingGroundStuff:MeasuringTextBox>
+        </StackPanel>
+    </Grid>
 
 </UserControl>

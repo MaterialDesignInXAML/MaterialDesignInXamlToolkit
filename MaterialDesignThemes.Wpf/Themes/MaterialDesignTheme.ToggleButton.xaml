@@ -44,7 +44,7 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ToggleButton}">
-					<Grid Clip="{Binding ElementName=UncheckedEllipse, Path=RenderedGeometry}" ClipToBounds="True">
+					<Grid ClipToBounds="True">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal"/>
