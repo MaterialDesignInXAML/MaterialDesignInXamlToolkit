@@ -1,211 +1,195 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using MaterialDesignThemes.Wpf.Converters;
 
 namespace MaterialDesignThemes.Wpf
 {
-
-    /*
-        Potential usage:
-
-        <Snackbar MessageQueue="{Binding MessageQueue}" />
-
-        //would work in both MVVM and code behind.
-
-        //with interface could be injected down in MVVM
-
-        //create default value for code behind
-
-        THOUGHTS
-        * stop consecutive identical content (within a time span)
-        * what if multiple snackbars are bound to the same queue (stop multiple assocations?)
-        * us e a controller like dragablz...this would allow plugable control:
-
-        <Snackbar>
-            <Snackbar.Controller>
-                <SnackbarController MessageQueue={Binding MessageQueue} />
-            </Snakbar.Controller>
-        </Snackbar>
-
-        ...having the controller allows us to pull a lot of interaction off the control itself...but a bit more verbose XAML
-
-        ..maybe the message queue is the controller...i dunno right now...
-
-
-        ** Just THRASHING OUT IDEAS HERE....**
-
-        Multiple windows...having the option for one shared queue is nice...if a notification comes in, we can route to the foreground window...
-
-        * need to pause timers if a dialog is shown
-
-        <Snackbar MessageQueue="{Binding MessageQueue}" />
-
-    */
-
-    public interface ISnackbarMessageQueue
-    {
-        void Post(object content);
-
-        void Post(object content, object actionContent, Action actionHandler);
-
-        void Post<TArgument>(object content, object actionContent, Action<TArgument> actionHandler, TArgument actionArgument);
-    }   
-
-    internal class SnackbarMessage
-    {
-        public SnackbarMessage(object content, object actionContent = null, object actionHandler = null, object actionArgument = null, Type argumentType = null)
-        {
-            Content = content;
-            ActionContent = actionContent;
-            ActionHandler = actionHandler;
-            ActionArgument = actionArgument;
-            ArgumentType = argumentType;
-        }
-
-        public object Content { get; }
-
-        public object ActionContent { get; }
-
-        public object ActionHandler { get; }
-
-        public object ActionArgument { get; }
-
-        public Type ArgumentType { get; }
-    }
-
-    public class SnackbarMessageQueue : ISnackbarMessageQueue, IDisposable
-    {
-        private readonly HashSet<Snackbar2> _pairedSnackbars = new HashSet<Snackbar2>();
-        private readonly Queue<SnackbarMessage> _snackbarMessages = new Queue<SnackbarMessage>();        
-        private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
-        private bool _isDisposed;
-
-        public SnackbarMessageQueue()
-        {
-            Task.Factory.StartNew(Pump);
-        }
-
-        //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragabalz, 
-        //but this is an internal method so no one will know my direty Action disposer...
-        internal Action Pair(Snackbar2 snackbar)
-        {
-            if (snackbar == null) throw new ArgumentNullException(nameof(snackbar));
-
-            _pairedSnackbars.Add(snackbar);
-
-            return () => _pairedSnackbars.Remove(snackbar);            
-        }
-
-        public void Post(object content)
-        {
-            if (content == null) throw new ArgumentNullException(nameof(content));
-
-            _snackbarMessages.Enqueue(new SnackbarMessage(content));
-            _messageWaitingEvent.Set();
-        }
-
-        public void Post(object content, object actionContent, Action actionHandler)
-        {
-            if (content == null) throw new ArgumentNullException(nameof(content));
-
-            _snackbarMessages.Enqueue(new SnackbarMessage(content, actionContent, actionHandler));
-            _messageWaitingEvent.Set();
-        }
-
-        public void Post<TArgument>(object content, object actionContent, Action<TArgument> actionHandler, TArgument actionArgument)
-        {
-            if (content == null) throw new ArgumentNullException(nameof(content));
-
-            if (actionContent != null ^ actionHandler != null ^ actionArgument != null)
-            {
-                throw new ArgumentException("All action arguments must be provided if any are provided.", nameof(actionContent));
-            }
-
-            var argumentType = actionArgument != null ? typeof(TArgument) : null;
-
-            _snackbarMessages.Enqueue(new SnackbarMessage(content, actionContent, actionHandler, actionArgument, argumentType));
-            _messageWaitingEvent.Set();
-        }
-        
-        private readonly ManualResetEvent _messageWaitingEvent = new ManualResetEvent(false);
-
-        private async void Pump()
-        {
-            while (!_isDisposed)
-            {
-                var eventId = WaitHandle.WaitAny(new WaitHandle[] {_disposedEvent, _messageWaitingEvent});
-                if (eventId == 0) continue;
-                
-                //find a target
-                var snackbar = _pairedSnackbars.FirstOrDefault(sb =>
-                {
-                    if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
-                    var window = Window.GetWindow(sb);
-                    return window != null && window.WindowState != WindowState.Minimized;
-                });
-
-                if (snackbar != null)
-                {
-                    var message = _snackbarMessages.Dequeue();
-                    //TODO check duplicates
-                    //TODO manage awaiting of animations
-                    //TODO action callbacks
-                    await Show(snackbar, message);
-
-                    //THOUGHT: I think we need a complete "SnackbarMessage" control, within the Snackbar...to ensure the callbacks are safely wired to the correct Post message 
-                }                
-
-                if (_snackbarMessages.Count > 0)
-                    _messageWaitingEvent.Set();
-            }         
-            
-        }
-
-        private async Task Show(Snackbar2 snackbar, SnackbarMessage message)
-        {
-            await Task.Run(() =>
-            {
-                //TODO set message on snackbar
-                snackbar.Dispatcher.BeginInvoke(new Action(() => { }));
-
-                //wait
-                _disposedEvent.WaitOne(3000);
-
-                //remove message on snackbar
-                snackbar.Dispatcher.BeginInvoke(new Action(() => { }));
-            });
-        }
-
-        public void Dispose()
-        {
-            _isDisposed = true;
-            _disposedEvent.Set();
-        }
-    }
-
-
-
-
-   
-
     /// <summary>
     /// Implements a <see cref="Snackbar"/> inspired by the Material Design specs (https://material.google.com/components/snackbars-toasts.html).
     /// </summary>
+    [ContentProperty("Message")]
     public class Snackbar2 : Control
     {
+        private Action _messageQueueRegistrationCleanUp = null;
+
         static Snackbar2()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Snackbar2), new FrameworkPropertyMetadata(typeof(Snackbar2)));
+        }
+
+        public static readonly DependencyProperty MessageProperty = DependencyProperty.Register(
+            "Message", typeof(SnackbarMessage), typeof(Snackbar2), new PropertyMetadata(default(SnackbarMessage)));
+
+        public SnackbarMessage Message
+        {
+            get { return (SnackbarMessage) GetValue(MessageProperty); }
+            set { SetValue(MessageProperty, value); }
+        }
+
+        public static readonly DependencyProperty MessageQueueProperty = DependencyProperty.Register(
+            "MessageQueue", typeof(SnackbarMessageQueue), typeof(Snackbar2), new PropertyMetadata(default(SnackbarMessageQueue), MessageQueuePropertyChangedCallback));
+
+        private static void MessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var snackbar = (Snackbar2) dependencyObject;
+            (snackbar._messageQueueRegistrationCleanUp ?? (() => { }))();            
+            var messageQueue = dependencyPropertyChangedEventArgs.NewValue as SnackbarMessageQueue;
+            snackbar._messageQueueRegistrationCleanUp = messageQueue?.Pair(snackbar);
+        }
+
+        public SnackbarMessageQueue MessageQueue
+        {
+            get { return (SnackbarMessageQueue) GetValue(MessageQueueProperty); }
+            set { SetValue(MessageQueueProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
+            "IsActive", typeof(bool), typeof(Snackbar2), new PropertyMetadata(default(bool), IsActivePropertyChangedCallback));
+
+        public bool IsActive
+        {
+            get { return (bool) GetValue(IsActiveProperty); }
+            set { SetValue(IsActiveProperty, value); }
+        }        
+
+        public static readonly RoutedEvent DeactivateStoryboardCompletedEvent =
+            EventManager.RegisterRoutedEvent(
+                "DeactivateStoryboardCompleted",
+                RoutingStrategy.Bubble,
+                typeof(SnackbarMessageEventArgs),
+                typeof(Snackbar2));
+
+        public event RoutedPropertyChangedEventHandler<SnackbarMessage> DeactivateStoryboardCompleted
+        {
+            add { AddHandler(DeactivateStoryboardCompletedEvent, value); }
+            remove { RemoveHandler(DeactivateStoryboardCompletedEvent, value); }
+        }
+
+        private static void OnDeactivateStoryboardCompleted(
+            IInputElement snackbar, SnackbarMessage message)
+        {
+            var args = new SnackbarMessageEventArgs(DeactivateStoryboardCompletedEvent, message);
+            snackbar.RaiseEvent(args);
+        }
+
+        public TimeSpan ActivateStoryboardDuration { get; private set; }
+
+        public TimeSpan DeactivateStoryboardDuration { get; private set; }
+
+        public override void OnApplyTemplate()
+        {
+            //we regards to notification of deactivate storyboard finishing,
+            //we either build a storyboard in code and subscribe to completed event, 
+            //or take the not 100% proof of the storyboard duration from the storyboard itself
+            //...HOWEVER...we can both methods result can work under the same public API so 
+            //we can flip the implementation if this version doesnt pan out
+
+            //(currently we have no even on the activate animation; don't 
+            // need it just now, but it would mirror the deactivate)
+
+            ActivateStoryboardDuration = GetStoryboardResourceDuration("ActivateStoryboard");
+            DeactivateStoryboardDuration = GetStoryboardResourceDuration("DeactivateStoryboard");
+            
+            base.OnApplyTemplate();
+        }
+
+        private TimeSpan GetStoryboardResourceDuration(string resourceName)
+        {
+            var storyboard = Template.Resources.Contains(resourceName)
+                ? (Storyboard)Template.Resources[resourceName]
+                : null;
+
+            return storyboard != null && storyboard.Duration.HasTimeSpan
+                ? storyboard.Duration.TimeSpan
+                : new Func<TimeSpan>(() =>
+                {
+                    System.Diagnostics.Debug.WriteLine(
+                        $"Warning, no Duration was specified at root of storyboard '{resourceName}'.");
+                    return TimeSpan.Zero;
+                })();
+        }
+
+        private static void IsActivePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            if ((bool)dependencyPropertyChangedEventArgs.NewValue) return;
+
+            var snackbar = (Snackbar2)dependencyObject;
+            if (snackbar.Message == null) return;
+
+            var dispatcherTimer = new DispatcherTimer
+            {
+                Tag = new Tuple<Snackbar2, SnackbarMessage>(snackbar, snackbar.Message),
+                Interval = snackbar.DeactivateStoryboardDuration
+            };
+            dispatcherTimer.Tick += DeactivateStoryboardDispatcherTimerOnTick;
+            dispatcherTimer.Start();            
+        }
+
+        private static void DeactivateStoryboardDispatcherTimerOnTick(object sender, EventArgs eventArgs)
+        {
+            var dispatcherTimer = (DispatcherTimer)sender;
+            dispatcherTimer.Stop(); 
+            dispatcherTimer.Tick -= DeactivateStoryboardDispatcherTimerOnTick;
+            var source = (Tuple<Snackbar2, SnackbarMessage>)dispatcherTimer.Tag;
+            OnDeactivateStoryboardCompleted(source.Item1, source.Item2);
+        }
+    }
+
+
+    [TypeConverter(typeof(SnackbarMessageTypeConverter))]
+    public class SnackbarMessage : ContentControl
+    {
+        static SnackbarMessage()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(SnackbarMessage), new FrameworkPropertyMetadata(typeof(SnackbarMessage)));
+        }
+
+        public static readonly DependencyProperty ActionContentProperty = DependencyProperty.Register(
+            "ActionContent", typeof(object), typeof(SnackbarMessage), new PropertyMetadata(default(object)));
+
+        public object ActionContent
+        {
+            get { return (object) GetValue(ActionContentProperty); }
+            set { SetValue(ActionContentProperty, value); }
+        }
+
+        public static readonly DependencyProperty ActionContentTemplateProperty = DependencyProperty.Register(
+            "ActionContentTemplate", typeof(DataTemplate), typeof(SnackbarMessage), new PropertyMetadata(default(DataTemplate)));
+
+        public DataTemplate ActionContentTemplate
+        {
+            get { return (DataTemplate) GetValue(ActionContentTemplateProperty); }
+            set { SetValue(ActionContentTemplateProperty, value); }
+        }
+
+        public static readonly DependencyProperty ActionContentStringFormatProperty = DependencyProperty.Register(
+            "ActionContentStringFormat", typeof(string ), typeof(SnackbarMessage), new PropertyMetadata(default(string )));
+
+        public string ActionContentStringFormat
+        {
+            get { return (string ) GetValue(ActionContentStringFormatProperty); }
+            set { SetValue(ActionContentStringFormatProperty, value); }
+        }
+
+        public static readonly DependencyProperty ActionContentTemplateSelectorProperty = DependencyProperty.Register(
+            "ActionContentTemplateSelector", typeof(DataTemplateSelector), typeof(SnackbarMessage), new PropertyMetadata(default(DataTemplateSelector)));
+
+        public DataTemplateSelector ActionContentTemplateSelector
+        {
+            get { return (DataTemplateSelector) GetValue(ActionContentTemplateSelectorProperty); }
+            set { SetValue(ActionContentTemplateSelectorProperty, value); }
         }
     }
 

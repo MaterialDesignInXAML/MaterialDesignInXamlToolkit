@@ -9,6 +9,99 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <Style TargetType="wpf:Snackbar2">
+        <Style.Resources>
+            <converters:MathMultipleConverter x:Key="mathMlpMultipleConverter" Operation="Multiply" />
+            <converters:NullableToVisibilityConverter x:Key="nullableToVisibilityConverter" />
+        </Style.Resources>
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <!-- TODO colours light/dark, proper resources -->
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="#FF323232" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="wpf:Snackbar2">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="ActivateStoryboard" Duration="0:0:0.3">
+                            <DoubleAnimation Storyboard.TargetName="ContainerPanel" Storyboard.TargetProperty="Tag" From="0" To="1" Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuarticEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Opacity" To="0" BeginTime="0" Duration="0" />
+                            <DoubleAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0.05" Duration="0:0:0.25">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuarticEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                        <Storyboard x:Key="DeactivateStoryboard" Duration="0:0:0.3">
+                            <DoubleAnimation Storyboard.TargetName="ContainerPanel" Storyboard.TargetProperty="Tag" From="1" To="0" Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuarticEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <!-- TODO corner radios, mac width etc, must be scrubbed in stretch mode -->
+                    <Border Background="{TemplateBinding Background}" CornerRadius="2" MaxWidth="568" MinWidth="288" SnapsToDevicePixels="True">
+                        <StackPanel x:Name="ContainerPanel" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <StackPanel.Tag>
+                                <system:Double>0.0</system:Double>
+                            </StackPanel.Tag>
+                            <StackPanel.Height>
+                                <MultiBinding Converter="{StaticResource mathMlpMultipleConverter}">
+                                    <Binding ElementName="ContentPresenter" Path="ActualHeight"/>
+                                    <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
+                                </MultiBinding>
+                            </StackPanel.Height>
+                            <ContentPresenter Content="{TemplateBinding Message}"
+                                              x:Name="ContentPresenter"/>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsActive" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource ActivateStoryboard}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource DeactivateStoryboard}" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="wpf:SnackbarMessage">
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="wpf:SnackbarMessage">
+                    <!-- this might become a grid -->
+                    <DockPanel>
+                        <ContentPresenter Content="{TemplateBinding Content}" 
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"                                      
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          DockPanel.Dock="Left"
+                                          />
+                        <!-- will become a Panel to wrap a "pretend" button -->
+                        <ContentPresenter Content="{TemplateBinding ActionContent}" 
+                                          ContentTemplate="{TemplateBinding ActionContentTemplate}"
+                                          ContentStringFormat="{TemplateBinding ActionContentStringFormat}"
+                                          ContentTemplateSelector="{TemplateBinding ActionContentTemplateSelector}"                                      
+                                          HorizontalAlignment="Right"
+                                          DockPanel.Dock="Right" />
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type wpf:Snackbar}">
         <Style.Resources>
             <converters:MathMultipleConverter x:Key="mathMlpMultipleConverter" Operation="Multiply" />

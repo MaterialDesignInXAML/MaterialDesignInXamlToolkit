@@ -33,15 +33,46 @@
     </UserControl.Resources>
 
     <Grid HorizontalAlignment="Left">
-        <StackPanel>
-            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
-            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
-            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
-            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
-            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
-            <provingGroundStuff:MeasuringTextBox materialDesign:HintAssist.Hint="Float">Hello World</provingGroundStuff:MeasuringTextBox>
-            <provingGroundStuff:MeasuringTextBox materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Float">Hello World</provingGroundStuff:MeasuringTextBox>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <materialDesign:Snackbar2 Message="hello 1" 
+                                  IsActive="False"
+                                  x:Name="SnackbarOne" />
+        
+        <ToggleButton IsChecked="{Binding ElementName=SnackbarOne, Path=IsActive, Mode=TwoWay}"
+                      Grid.Row="1" Grid.Column="0" />
+
+        <materialDesign:Snackbar2 IsActive="True"
+                                  Grid.Row="0" 
+                                  Grid.Column="1" 
+                                  x:Name="SnackbarTwo" >
+            <materialDesign:SnackbarMessage Content="Hello 2" ActionContent="UNDO" />
+        </materialDesign:Snackbar2>
+        
+        <ToggleButton IsChecked="{Binding ElementName=SnackbarTwo, Path=IsActive, Mode=TwoWay}"
+                      Grid.Row="1" Grid.Column="1" />
+
+
+        <materialDesign:Snackbar2 MessageQueue="{materialDesign:MessageQueue}"
+                                  Grid.Row="0" 
+                                  Grid.Column="2"        
+                                  x:Name="SnackbarThree" />
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1" 
+                    Grid.Column="2"                    >
+            <TextBlock>Message: </TextBlock>
+            <TextBlock x:Name="MessageTextBox">Hello World</TextBlock>
+            <Button Click="SnackBar3_OnClick">Send</Button>
         </StackPanel>
+
     </Grid>
 
 </UserControl>

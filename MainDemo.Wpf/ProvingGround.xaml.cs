@@ -54,6 +54,11 @@ namespace MaterialDesignColors.WpfExample
         {
             new PaletteHelper().QueryPalette();
         }
+
+        private void SnackBar3_OnClick(object sender, RoutedEventArgs e)
+        {
+            SnackbarThree.MessageQueue.Enqueue(MessageTextBox.Text);
+        }
     }
 
     public class ProvingGroundViewModel : INotifyPropertyChanged
