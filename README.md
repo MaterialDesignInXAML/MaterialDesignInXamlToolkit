@@ -24,13 +24,12 @@ Comphrehensive and easy to use Material Design theme and control library for the
 [![Issues](https://img.shields.io/github/issues/ButchersBoy/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues)
 [![Twitter](https://img.shields.io/badge/twitter-%40james__willock-55acee.svg?style=flat-square)](https://twitter.com/James_Willock)
  
-# ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") How Can I Use The Themes?
+# ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Getting Started
 
 * Checkout the [Super Quick Start](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Super-Quick-Start)
 * Or, the more comprehensive [Starting Guide](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Getting-Started) guide.
-
-# ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Source Code
-To load the source project you will need Visual Studio 2015.  Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (``` Install-Package MaterialDesignThemes ```).  There are two demo projects in the solution, restore the NuGet packages and fire them both up.  One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
+* Or, watch the [Material Design In XAML Toolkit An Introduction](https://www.youtube.com/watch?v=-n5yeEOsbCk) video.
+* Take 5 minutes to download the source from right here and run up the two demo projects in the solution.
 
 # ![Alt text](web/images/MD4XAML28.png "In Action") See It Action
 
@@ -39,9 +38,15 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 * Checkout [F1ix](http://materialdesigninxaml.net/f1ix).
 * Checkout [Motion List](https://github.com/MaterialDesignInXAML/MotionList).
 
+# ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Source Code
+To load the source project you will need Visual Studio 2015.  Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (``` Install-Package MaterialDesignThemes ```).  There are two demo projects in the solution, restore the NuGet packages and fire them both up.  One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
+
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
 * Before contributing code read the [Contribution Guidelines](CONTRIBUTING.md)
+  * GitHub issues are for bugs.
+  * For queries, help, and general chat stop by the [Gitter chat room](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit).
+  * Stack Overflow tag: [material-design-in-xaml](http://stackoverflow.com/questions/tagged/material-design-in-xaml)
 * Want to say thanks?
   *  Hit the :star: Star :star: button
   *  <a href='https://pledgie.com/campaigns/31029'><img alt='Click here to lend your support to: Material Design In XAML Toolkit/Dragablz and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/31029.png?skin_name=chrome' border='0' ></a>
