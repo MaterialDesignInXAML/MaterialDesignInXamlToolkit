@@ -34,7 +34,8 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 
 # ![Alt text](web/images/MD4XAML28.png "In Action") See It Action
 
-* Download the source and run the demo.
+* Download the source and run the demo (compiling source requires VS2015+).
+* Checkout [doobry](http://materialdesigninxaml.net/doobry).
 * Checkout [F1ix](http://materialdesigninxaml.net/f1ix).
 * Checkout [Motion List](https://github.com/MaterialDesignInXAML/MotionList).
 
