@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -13,6 +14,7 @@ namespace MaterialDesignThemes.Wpf
         private readonly HashSet<Snackbar2> _pairedSnackbars = new HashSet<Snackbar2>();
         private readonly Queue<SnackbarMessageQueueItem> _snackbarMessages = new Queue<SnackbarMessageQueueItem>();        
         private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
+        private readonly ManualResetEvent _notPausedEvent = new ManualResetEvent(true);
         private int _pauseCounter = 0;
         private bool _isDisposed;
 
@@ -20,7 +22,7 @@ namespace MaterialDesignThemes.Wpf
         { }
 
         public SnackbarMessageQueue(TimeSpan messageDuration)
-        {
+        {            
             _messageDuration = messageDuration;
             Task.Factory.StartNew(Pump);
         }
@@ -38,18 +40,15 @@ namespace MaterialDesignThemes.Wpf
 
         internal Action Pause()
         {
-            //TODO...dialogs, for example, can pause the "countdown" of an active message as they are hiding it
-
+            if (_isDisposed) return () => { };            
 
             if (Interlocked.Increment(ref _pauseCounter) == 1)
-                //TODO cease counting down
-                Console.WriteLine("Paused");
+                _notPausedEvent.Set();
 
             return () =>
             {
                 if (Interlocked.Decrement(ref _pauseCounter) == 0)
-                    //TODO resume counting down
-                    Console.WriteLine("Paus realesed");
+                    _notPausedEvent.Reset();
             };
         }
 
@@ -79,12 +78,13 @@ namespace MaterialDesignThemes.Wpf
             }
 
             var argumentType = actionArgument != null ? typeof(TArgument) : null;
-
-            _snackbarMessages.Enqueue(new SnackbarMessageQueueItem(content, actionContent, actionHandler, actionArgument, argumentType));
+            _snackbarMessages.Enqueue(new SnackbarMessageQueueItem(content, actionContent, actionHandler,
+                actionArgument, argumentType));
             _messageWaitingEvent.Set();
         }
         
         private readonly ManualResetEvent _messageWaitingEvent = new ManualResetEvent(false);
+        private Tuple<SnackbarMessageQueueItem, DateTime> _latestShownItem;
 
         private async void Pump()
         {
@@ -114,35 +114,102 @@ namespace MaterialDesignThemes.Wpf
                 if (snackbar != null)
                 {
                     var message = _snackbarMessages.Dequeue();
-                    await Show(snackbar, message);
+                    if (_latestShownItem == null || !Equals(_latestShownItem.Item1.Content, message.Content) ||
+                        !Equals(_latestShownItem.Item1.ActionContent, message.ActionContent) ||
+                        _latestShownItem.Item2 <= DateTime.Now.Subtract(_messageDuration))
+                    {
+                        await Show(snackbar, message);
+                        _latestShownItem = new Tuple<SnackbarMessageQueueItem, DateTime>(message, DateTime.Now);
+                    }
                 }
 
                 if (_snackbarMessages.Count > 0)
                     _messageWaitingEvent.Set();
                 else
                     _messageWaitingEvent.Reset();
-            }         
-            
+            }                     
+        }
+
+        private class MouseNotOverManagedWaitHandle : IDisposable
+        {
+            private readonly ManualResetEvent _waitHandle;
+            private Action _cleanUp;
+
+            public MouseNotOverManagedWaitHandle(UIElement uiElement)
+            {
+                if (uiElement == null) throw new ArgumentNullException(nameof(uiElement));
+
+                uiElement.MouseEnter += UiElementOnMouseEnter;
+                uiElement.MouseLeave += UiElementOnMouseLeave;
+                _waitHandle = new ManualResetEvent(!uiElement.IsMouseOver);
+
+                _cleanUp = () =>
+                {
+                    uiElement.MouseEnter -= UiElementOnMouseEnter;
+                    uiElement.MouseLeave -= UiElementOnMouseLeave;
+                    _waitHandle.Dispose();
+                    _cleanUp = () => { };
+                };
+            }
+
+            public WaitHandle WaitHandle => _waitHandle;
+
+            private void UiElementOnMouseLeave(object sender, MouseEventArgs mouseEventArgs)
+            {
+                _waitHandle.Set();
+            }
+
+            private void UiElementOnMouseEnter(object sender, MouseEventArgs mouseEventArgs)
+            {
+                _waitHandle.Reset();
+            }
+
+            public void Dispose()
+            {
+                _cleanUp();
+            }
+        }
+
+        private class TimeSpanSpinManagedHandle : IDisposable
+        {
+            public TimeSpanSpinManagedHandle(WaitHandle pausedWaitHandle)
+            {
+                //new System.Threading.Timer()
+
+
+
+            }
+
+
+
+            public void Dispose()
+            {
+                throw new NotImplementedException();
+            }
         }
 
         private async Task Show(Snackbar2 snackbar, SnackbarMessageQueueItem messageQueueItem)
         {
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
                 var completedHandle = new ManualResetEvent(false);
                 //TODO set message on snackbar
-                snackbar.Dispatcher.InvokeAsync(() =>
-                {
+
+                var mouseNotOverManagedWaitHandle = await snackbar.Dispatcher.InvokeAsync(() =>
+                {                    
                     snackbar.SetCurrentValue(Snackbar2.MessageProperty, Create(messageQueueItem));
-                    snackbar.SetCurrentValue(Snackbar2.IsActiveProperty, true);
+                    snackbar.SetCurrentValue(Snackbar2.IsActiveProperty, true);                    
+                    return new MouseNotOverManagedWaitHandle(snackbar);
                 });
 
-
                 
+                WaitHandle.WaitAll(new WaitHandle[]
+                {
+                    mouseNotOverManagedWaitHandle.WaitHandle,
+                });
 
                 //TODO wait until 3 things:
-                // (
-                // * NOT PAUSED
+                // (                
                 // * NOT MOUSE OVER
                 // * TIME SPAN COMPLETED -- PAUSE MUST KEEP UPPING TIMESPAN                
                 // )
@@ -150,7 +217,7 @@ namespace MaterialDesignThemes.Wpf
                 //  * ACTION CLICK
 
                 //quick hack implementation
-                _disposedEvent.WaitOne(snackbar.ActivateStoryboardDuration.Add(_messageDuration));
+                _disposedEvent.WaitOne(_messageDuration);
                 
 
                 //remove message on snackbar
@@ -166,7 +233,7 @@ namespace MaterialDesignThemes.Wpf
 
 
             });
-        }
+        }        
 
         private static SnackbarMessage Create(SnackbarMessageQueueItem messageQueueItem)
         {
@@ -179,8 +246,10 @@ namespace MaterialDesignThemes.Wpf
 
         public void Dispose()
         {
-            _isDisposed = true;
+            _isDisposed = true;                  
             _disposedEvent.Set();
+            _disposedEvent.Dispose();
+            _notPausedEvent.Dispose();
         }
     }
 }

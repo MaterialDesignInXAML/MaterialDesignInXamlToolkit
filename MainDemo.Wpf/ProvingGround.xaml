@@ -43,6 +43,8 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         
+        <!-- example 1 -->
+            <!-- simplest form -->
         <materialDesign:Snackbar2 Message="hello 1" 
                                   IsActive="False"
                                   x:Name="SnackbarOne" />
@@ -50,6 +52,8 @@
         <ToggleButton IsChecked="{Binding ElementName=SnackbarOne, Path=IsActive, Mode=TwoWay}"
                       Grid.Row="1" Grid.Column="0" />
 
+        <!-- example 2 -->
+            <!-- long hand form for setting the message -->
         <materialDesign:Snackbar2 IsActive="True"
                                   Grid.Row="0" 
                                   Grid.Column="1" 
@@ -61,16 +65,24 @@
                       Grid.Row="1" Grid.Column="1" />
 
 
+        <!-- example 3 -->        
+            <!--
+                * using a message queue to manage queuing of messages, and getting onto correct thread
+                * notice the shorthand syntax {materialDesign:MessageQueue} for creating a new message 
+                queue without expanded XAML. useful in code-behind scenarios if you dont want to bind 
+                a message queue in to the snackbar.
+            -->
         <materialDesign:Snackbar2 MessageQueue="{materialDesign:MessageQueue}"
                                   Grid.Row="0" 
                                   Grid.Column="2"        
                                   x:Name="SnackbarThree" />
+        
         <StackPanel Orientation="Horizontal"
                     Grid.Row="1" 
-                    Grid.Column="2"                    >
-            <TextBlock>Message: </TextBlock>
-            <TextBlock x:Name="MessageTextBox">Hello World</TextBlock>
-            <Button Click="SnackBar3_OnClick">Send</Button>
+                    Grid.Column="2">
+            <TextBlock HorizontalAlignment="Center">Message: </TextBlock>
+            <TextBox x:Name="MessageTextBox" HorizontalAlignment="Center">Hello World</TextBox>
+            <Button Click="SnackBar3_OnClick" HorizontalAlignment="Center">Send</Button>
         </StackPanel>
 
     </Grid>
