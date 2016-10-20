@@ -84,7 +84,7 @@ namespace MaterialDesignThemes.Wpf
         /// Event correspond to left mouse button click on the Action button.
         /// </summary>
         public static readonly RoutedEvent ActionClickEvent = EventManager.RegisterRoutedEvent("ActionClick",
-            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ButtonBase));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(SnackbarMessage));
 
         /// <summary>
         /// Add / Remove ActionClickEvent handler 

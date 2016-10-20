@@ -22,7 +22,8 @@
     <SolidColorBrush x:Key="MaterialDesignFlatButtonRipple" Color="#FFB6B6B6" po:Freeze="True" />
 
     <SolidColorBrush x:Key="MaterialDesignToolTipBackground" Color="#eeeeee" po:Freeze="True" />
-
     <SolidColorBrush x:Key="MaterialDesignChipBackground" Color="#FF2E3C43" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignSnackbarBackground" Color="#FFCDCDCD" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignSnackbarMouseOver" Color="#FFB9B9BD" po:Freeze="True" />
 
 </ResourceDictionary>

@@ -40,9 +40,13 @@
                 <TextBlock Grid.Column="3" Margin="8,0" Text="By setting the Mode property to Manual you have the full control over the visibility. You just need to set the IsOpen property. Have a look in the XAML." TextWrapping="WrapWithOverflow" />
                 <ToggleButton Grid.Column="3" Grid.Row="2" x:Name="manualToggle" HorizontalAlignment="Center" />
                 
+                <!--
                 <materialDesign:Snackbar Grid.ColumnSpan="3" Grid.Row="4" x:Name="snackbar" Mode="HalfAutomatic" ActionClick="SnackbarActionClickHandler" />
+                -->
                 <!-- properties will be set in the order in the xaml, so set the Mode property first for the manual mode -->
+                <!--
                 <materialDesign:Snackbar Grid.Column="3" Grid.Row="4" x:Name="manualSnackbar" Mode="Manual" Content="This is a manually controlled Snackbar." IsOpen="{Binding Path=IsChecked, Mode=TwoWay}" />
+                -->
             </Grid>
         </ScrollViewer>
     </Grid>

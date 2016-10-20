@@ -24,7 +24,7 @@
             </ResourceDictionary.MergedDictionaries>
 
 
-            
+
             <Style TargetType="{x:Type provingGroundStuff:MeasuringTextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
 
 
@@ -33,70 +33,90 @@
     </UserControl.Resources>
 
     <Grid HorizontalAlignment="Left">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
         <!-- example 1 -->
-            <!-- simplest form -->
-        <materialDesign:Snackbar2 Message="hello 1" 
-                                  IsActive="False"
-                                  x:Name="SnackbarOne" />
-        
-        <ToggleButton IsChecked="{Binding ElementName=SnackbarOne, Path=IsActive, Mode=TwoWay}"
-                      Grid.Row="1" Grid.Column="0" />
+        <Border Background="{DynamicResource MaterialDesignSelection}" Grid.RowSpan="2"
+                Padding="8 0 8 0">
+            <Grid>
+                <ToggleButton IsChecked="{Binding ElementName=SnackbarOne, Path=IsActive, Mode=TwoWay}" />
+
+                <!-- simplest form -->
+                <materialDesign:Snackbar2 Message="hello 1" 
+                                          IsActive="False"
+                                          x:Name="SnackbarOne" />
+            </Grid>
+        </Border>
 
         <!-- example 2 -->
-            <!-- long hand form for setting the message -->
-        <materialDesign:Snackbar2 IsActive="True"
-                                  Grid.Row="0" 
-                                  Grid.Column="1" 
-                                  x:Name="SnackbarTwo" >
-            <materialDesign:SnackbarMessage Content="Hello 2" ActionContent="UNDO" />
-        </materialDesign:Snackbar2>
-        
-        <ToggleButton IsChecked="{Binding ElementName=SnackbarTwo, Path=IsActive, Mode=TwoWay}"
-                      Grid.Row="1" Grid.Column="1" />
+        <Border Background="{DynamicResource MaterialDesignPaper}" 
+                Padding="8 0 8 0"
+                Grid.Column="1">
+            <Grid>
+                <ToggleButton IsChecked="{Binding ElementName=SnackbarTwo, Path=IsActive, Mode=TwoWay}" />
+                <!-- long hand form for setting the message -->
+                <materialDesign:Snackbar2 IsActive="False"
+                                          x:Name="SnackbarTwo" >
+                    <materialDesign:SnackbarMessage Content="Hello 2" ActionContent="UNDO" />
+                </materialDesign:Snackbar2>
+            </Grid>
+        </Border>
 
-
-        <!-- example 3 -->        
-            <!--
+        <!-- example 3 -->
+        <!--
                 * using a message queue to manage queuing of messages, and getting onto correct thread
                 * notice the shorthand syntax {materialDesign:MessageQueue} for creating a new message 
                 queue without expanded XAML. useful in code-behind scenarios if you dont want to bind 
                 a message queue in to the snackbar.
             -->
-        <materialDesign:Snackbar2 MessageQueue="{materialDesign:MessageQueue}"
-                                  Grid.Row="0" 
-                                  Grid.Column="2"        
-                                  x:Name="SnackbarThree" />
-        
-        <StackPanel Orientation="Horizontal"
-                    Grid.Row="1" 
-                    Grid.Column="2">
-            <TextBlock HorizontalAlignment="Center">Message: </TextBlock>
-            <TextBox x:Name="MessageTextBox" HorizontalAlignment="Center">Hello World</TextBox>
-            <Button Click="SnackBar3_OnClick" HorizontalAlignment="Center">Send</Button>
-        </StackPanel>
+        <Border Background="{DynamicResource MaterialDesignSelection}" 
+                Padding="8 0 8 0"                
+                Grid.Column="2">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Center">Message:</TextBlock>
+                    <TextBox x:Name="MessageTextBox" HorizontalAlignment="Center">Hello World</TextBox>
+                    <Button Click="SnackBar3_OnClick" HorizontalAlignment="Center">Send</Button>
+                </StackPanel>
+                <materialDesign:Snackbar2 MessageQueue="{materialDesign:MessageQueue}"
+                                          x:Name="SnackbarThree" />
+            </Grid>
+        </Border>
 
         <!-- example 4 -->
-            <!-- uses some action command call backs -->
-        <materialDesign:Snackbar2 MessageQueue="{materialDesign:MessageQueue}"
-                                  Grid.Row="0" 
-                                  Grid.Column="3"        
-                                  x:Name="SnackbarFour" />
+        <!-- uses some action command call backs -->
+        <Border Background="{DynamicResource MaterialDesignPaper}" 
+                Padding="8 0 8 0"                
+                Grid.Column="3">
+            <Grid>
+                <materialDesign:Snackbar2 MessageQueue="{materialDesign:MessageQueue}"
+                                          x:Name="SnackbarFour" />
+                <Button Click="SnackBar4_OnClick" HorizontalAlignment="Center">Send</Button>
+            </Grid>
+        </Border>
 
-        <Button Click="SnackBar4_OnClick" HorizontalAlignment="Center"
-                Grid.Row="1" Grid.Column="3"
-                >Send</Button>
-
+        <Border Background="{DynamicResource MaterialDesignSelection}" 
+                Grid.ColumnSpan="4"
+                Grid.Row="1">
+            <StackPanel VerticalAlignment="Bottom">
+                <ToggleButton IsChecked="{Binding ElementName=SnackbarFive, Path=IsActive, Mode=TwoWay}"
+                              Margin="0 0 0 24"/>
+                <materialDesign:Snackbar2 HorizontalAlignment="Stretch"
+                                          x:Name="SnackbarFive">
+                    <materialDesign:SnackbarMessage Content="This Snackbar is stretched horizontally. You should ensure your content is pushed up."                                                    
+                                                    ActionContent="OK" />
+                </materialDesign:Snackbar2>
+            </StackPanel>
+        </Border>
 
     </Grid>
 

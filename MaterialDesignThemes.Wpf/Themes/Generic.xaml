@@ -1018,7 +1018,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type transitions:Transitioner}">
+     <Style TargetType="{x:Type transitions:Transitioner}">
         <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
