@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +11,6 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using MaterialDesignThemes.Wpf.Converters;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -62,6 +60,29 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (bool) GetValue(IsActiveProperty); }
             set { SetValue(IsActiveProperty, value); }
+        }
+
+        public event RoutedPropertyChangedEventHandler<bool> IsActiveChanged
+        {
+            add { AddHandler(IsActiveChangedEvent, value); }
+            remove { RemoveHandler(IsActiveChangedEvent, value); }
+        }
+
+        public static readonly RoutedEvent IsActiveChangedEvent =
+            EventManager.RegisterRoutedEvent(
+                "IsActiveChanged",
+                RoutingStrategy.Bubble,
+                typeof(RoutedPropertyChangedEventHandler<bool>),
+                typeof(Snackbar2));
+
+        private static void OnIsActiveChanged(
+            DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var instance = d as Snackbar2;
+            var args = new RoutedPropertyChangedEventArgs<bool>(
+                (bool) e.OldValue,
+                (bool) e.NewValue) {RoutedEvent = IsActiveChangedEvent };
+            instance?.RaiseEvent(args);
         }        
 
         public static readonly RoutedEvent DeactivateStoryboardCompletedEvent =
@@ -123,6 +144,8 @@ namespace MaterialDesignThemes.Wpf
 
         private static void IsActivePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
+            OnIsActiveChanged(dependencyObject, dependencyPropertyChangedEventArgs);
+
             if ((bool)dependencyPropertyChangedEventArgs.NewValue) return;
 
             var snackbar = (Snackbar2)dependencyObject;
@@ -147,51 +170,6 @@ namespace MaterialDesignThemes.Wpf
         }
     }
 
-
-    [TypeConverter(typeof(SnackbarMessageTypeConverter))]
-    public class SnackbarMessage : ContentControl
-    {
-        static SnackbarMessage()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(SnackbarMessage), new FrameworkPropertyMetadata(typeof(SnackbarMessage)));
-        }
-
-        public static readonly DependencyProperty ActionContentProperty = DependencyProperty.Register(
-            "ActionContent", typeof(object), typeof(SnackbarMessage), new PropertyMetadata(default(object)));
-
-        public object ActionContent
-        {
-            get { return (object) GetValue(ActionContentProperty); }
-            set { SetValue(ActionContentProperty, value); }
-        }
-
-        public static readonly DependencyProperty ActionContentTemplateProperty = DependencyProperty.Register(
-            "ActionContentTemplate", typeof(DataTemplate), typeof(SnackbarMessage), new PropertyMetadata(default(DataTemplate)));
-
-        public DataTemplate ActionContentTemplate
-        {
-            get { return (DataTemplate) GetValue(ActionContentTemplateProperty); }
-            set { SetValue(ActionContentTemplateProperty, value); }
-        }
-
-        public static readonly DependencyProperty ActionContentStringFormatProperty = DependencyProperty.Register(
-            "ActionContentStringFormat", typeof(string ), typeof(SnackbarMessage), new PropertyMetadata(default(string )));
-
-        public string ActionContentStringFormat
-        {
-            get { return (string ) GetValue(ActionContentStringFormatProperty); }
-            set { SetValue(ActionContentStringFormatProperty, value); }
-        }
-
-        public static readonly DependencyProperty ActionContentTemplateSelectorProperty = DependencyProperty.Register(
-            "ActionContentTemplateSelector", typeof(DataTemplateSelector), typeof(SnackbarMessage), new PropertyMetadata(default(DataTemplateSelector)));
-
-        public DataTemplateSelector ActionContentTemplateSelector
-        {
-            get { return (DataTemplateSelector) GetValue(ActionContentTemplateSelectorProperty); }
-            set { SetValue(ActionContentTemplateSelectorProperty, value); }
-        }
-    }
 
     /// <summary>
     /// Implements a <see cref="Snackbar"/> inspired by the Material Design specs (https://material.google.com/components/snackbars-toasts.html).

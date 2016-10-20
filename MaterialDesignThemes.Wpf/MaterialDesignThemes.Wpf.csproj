@@ -298,6 +298,7 @@
     <Compile Include="MessageQueueExtension.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Snackbar.cs" />
+    <Compile Include="SnackbarMessage.cs" />
     <Compile Include="SnackbarMessageEventArgs.cs" />
     <Compile Include="SnackbarMessageQueue.cs" />
     <Compile Include="SnackbarMessageQueueItem.cs" />

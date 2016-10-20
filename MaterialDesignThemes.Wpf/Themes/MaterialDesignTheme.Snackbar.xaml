@@ -9,6 +9,8 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
+    
     <Style TargetType="wpf:Snackbar2">
         <Style.Resources>
             <converters:MathMultipleConverter x:Key="mathMlpMultipleConverter" Operation="Multiply" />
@@ -90,12 +92,16 @@
                                           DockPanel.Dock="Left"
                                           />
                         <!-- will become a Panel to wrap a "pretend" button -->
-                        <ContentPresenter Content="{TemplateBinding ActionContent}" 
-                                          ContentTemplate="{TemplateBinding ActionContentTemplate}"
-                                          ContentStringFormat="{TemplateBinding ActionContentStringFormat}"
-                                          ContentTemplateSelector="{TemplateBinding ActionContentTemplateSelector}"                                      
-                                          HorizontalAlignment="Right"
-                                          DockPanel.Dock="Right" />
+                        <Button x:Name="PART_ActionButton" 
+                                Command="{TemplateBinding ActionCommand}"
+                                CommandParameter="{TemplateBinding ActionCommandParameter}"
+                                Content="{TemplateBinding ActionContent}" 
+                                ContentTemplate="{TemplateBinding ActionContentTemplate}"
+                                ContentStringFormat="{TemplateBinding ActionContentStringFormat}"
+                                ContentTemplateSelector="{TemplateBinding ActionContentTemplateSelector}"                                      
+                                HorizontalAlignment="Right"
+                                Visibility="{TemplateBinding ActionContent, Converter={StaticResource NullableToVisibilityConverter}}"
+                                DockPanel.Dock="Right" />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>

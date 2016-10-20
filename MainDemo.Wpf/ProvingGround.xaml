@@ -41,6 +41,7 @@
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         
         <!-- example 1 -->
@@ -84,6 +85,18 @@
             <TextBox x:Name="MessageTextBox" HorizontalAlignment="Center">Hello World</TextBox>
             <Button Click="SnackBar3_OnClick" HorizontalAlignment="Center">Send</Button>
         </StackPanel>
+
+        <!-- example 4 -->
+            <!-- uses some action command call backs -->
+        <materialDesign:Snackbar2 MessageQueue="{materialDesign:MessageQueue}"
+                                  Grid.Row="0" 
+                                  Grid.Column="3"        
+                                  x:Name="SnackbarFour" />
+
+        <Button Click="SnackBar4_OnClick" HorizontalAlignment="Center"
+                Grid.Row="1" Grid.Column="3"
+                >Send</Button>
+
 
     </Grid>
 

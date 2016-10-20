@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -42,6 +43,16 @@ namespace MaterialDesignColors.WpfExample
 
             //the message queue can be called from any thread
             Task.Factory.StartNew(() => messageQueue.Enqueue(message));
+        }
+
+        private void SnackBar4_OnClick(object sender, RoutedEventArgs e)
+        {
+            var id = "A1A";
+            SnackbarFour.MessageQueue.Enqueue(
+                $"Deleted {id}", 
+                "UNDO",  
+                param => Trace.WriteLine("Undo delete of " + param),
+                id);            
         }
     }
 
