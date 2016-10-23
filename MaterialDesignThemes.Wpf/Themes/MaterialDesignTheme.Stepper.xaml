@@ -211,13 +211,13 @@
                                                   ItemTemplateSelector="{StaticResource horizontalStepperHeaderTemplateSelector}" VerticalAlignment="Top">
                                         <ItemsControl.Resources>
                                             <DataTemplate x:Key="firstHorizontalStepHeaderTemplate" DataType="{x:Type wpf:StepperStepViewModel}">
-                                                <Grid HorizontalAlignment="Stretch">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="auto" />
-                                                        <ColumnDefinition Width="100*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <!-- header as button to switch steps in non-linear steppers -->
-                                                    <Button Command="{x:Static wpf:Stepper.StepSelectedCommand}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignStepButton}">
+                                                <!-- header as button to switch steps in non-linear steppers -->
+                                                <Button Command="{x:Static wpf:Stepper.StepSelectedCommand}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignStepButton}">
+                                                    <Grid HorizontalAlignment="Stretch">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto" />
+                                                            <ColumnDefinition Width="100*" />
+                                                        </Grid.ColumnDefinitions>
                                                         <StackPanel Margin="8,24,8,24" Orientation="Horizontal">
                                                             <!-- circle -->
                                                             <Border VerticalAlignment="Center" Style="{StaticResource MaterialDesignStepperCircle}">
@@ -226,21 +226,21 @@
                                                             <!-- header -->
                                                             <ContentControl Content="{Binding Path=Step.Header}" Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource headerContentControlStyle}" />
                                                         </StackPanel>
-                                                    </Button>
-                                                    <Border Grid.Column="1" Style="{StaticResource MaterialDesignHorizontalStepperSpaceLine}" />
-                                                </Grid>
+                                                        <Border Grid.Column="1" Style="{StaticResource MaterialDesignHorizontalStepperSpaceLine}" />
+                                                    </Grid>
+                                                </Button>
                                             </DataTemplate>
                                             <DataTemplate x:Key="intermediateHorizontalStepHeaderTemplate" DataType="{x:Type wpf:StepperStepViewModel}">
-                                                <Grid HorizontalAlignment="Stretch">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="100*" />
-                                                        <ColumnDefinition Width="auto" />
-                                                        <ColumnDefinition Width="100*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <!-- header as button to switch steps in non-linear steppers -->
-                                                    <Border Style="{StaticResource MaterialDesignHorizontalStepperSpaceLine}" />
-                                                    <Button Grid.Column="1" Command="{x:Static wpf:Stepper.StepSelectedCommand}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignStepButton}">
-                                                        <StackPanel Margin="8,24,8,24" Orientation="Horizontal">
+                                                <!-- header as button to switch steps in non-linear steppers -->
+                                                <Button Command="{x:Static wpf:Stepper.StepSelectedCommand}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignStepButton}">
+                                                    <Grid HorizontalAlignment="Stretch">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="100*" />
+                                                            <ColumnDefinition Width="auto" />
+                                                            <ColumnDefinition Width="100*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Border Style="{StaticResource MaterialDesignHorizontalStepperSpaceLine}" />
+                                                        <StackPanel Grid.Column="1" Margin="8,24,8,24" Orientation="Horizontal">
                                                             <!-- circle -->
                                                             <Border VerticalAlignment="Center" Style="{StaticResource MaterialDesignStepperCircle}">
                                                                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Number}" VerticalAlignment="Center" />
@@ -248,20 +248,20 @@
                                                             <!-- header -->
                                                             <ContentControl Content="{Binding Path=Step.Header}" Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource headerContentControlStyle}" />
                                                         </StackPanel>
-                                                    </Button>
-                                                    <Border Grid.Column="2" Style="{StaticResource MaterialDesignHorizontalStepperSpaceLine}" />
-                                                </Grid>
+                                                        <Border Grid.Column="2" Style="{StaticResource MaterialDesignHorizontalStepperSpaceLine}" />
+                                                    </Grid>
+                                                </Button>
                                             </DataTemplate>
                                             <DataTemplate x:Key="lastHorizontalStepHeaderTemplate" DataType="{x:Type wpf:StepperStepViewModel}">
-                                                <Grid HorizontalAlignment="Stretch">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="100*" />
-                                                        <ColumnDefinition Width="auto" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Border Style="{StaticResource MaterialDesignHorizontalStepperSpaceLine}" />
-                                                    <!-- header as button to switch steps in non-linear steppers -->
-                                                    <Button Grid.Column="1" Command="{x:Static wpf:Stepper.StepSelectedCommand}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignStepButton}">
-                                                        <StackPanel Margin="8,24,8,24" Orientation="Horizontal">
+                                                <!-- header as button to switch steps in non-linear steppers -->
+                                                <Button Command="{x:Static wpf:Stepper.StepSelectedCommand}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignStepButton}">
+                                                    <Grid HorizontalAlignment="Stretch">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="100*" />
+                                                            <ColumnDefinition Width="auto" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Border Style="{StaticResource MaterialDesignHorizontalStepperSpaceLine}" />
+                                                        <StackPanel Grid.Column="1" Margin="8,24,8,24" Orientation="Horizontal">
                                                             <!-- circle -->
                                                             <Border VerticalAlignment="Center" Style="{StaticResource MaterialDesignStepperCircle}">
                                                                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Number}" VerticalAlignment="Center" />
@@ -269,8 +269,8 @@
                                                             <!-- header -->
                                                             <ContentControl Content="{Binding Path=Step.Header}" Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource headerContentControlStyle}" />
                                                         </StackPanel>
-                                                    </Button>
-                                                </Grid>
+                                                    </Grid>
+                                                </Button>
                                             </DataTemplate>
                                         </ItemsControl.Resources>
                                         <ItemsControl.ItemsPanel>
