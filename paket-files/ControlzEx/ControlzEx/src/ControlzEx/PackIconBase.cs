@@ -32,8 +32,8 @@ namespace ControlzEx
                 _dataIndex = new Lazy<IDictionary<TKind, string>>(dataIndexFactory);
         }
 
-        public static readonly DependencyProperty KindProperty = DependencyProperty.Register(
-            "Kind", typeof(TKind), typeof(PackIconBase<TKind>), new PropertyMetadata(default(TKind), KindPropertyChangedCallback));
+        public static readonly DependencyProperty KindProperty
+            = DependencyProperty.Register(nameof(Kind), typeof(TKind), typeof(PackIconBase<TKind>), new PropertyMetadata(default(TKind), KindPropertyChangedCallback));
 
         private static void KindPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -49,14 +49,11 @@ namespace ControlzEx
             set { SetValue(KindProperty, value); }
         }
 
-        private static readonly DependencyPropertyKey DataPropertyKey =
-            DependencyProperty.RegisterReadOnly(
-                "Data", typeof(string), typeof(PackIconBase<TKind>),
-                new PropertyMetadata(default(string)));
+        private static readonly DependencyPropertyKey DataPropertyKey
+            = DependencyProperty.RegisterReadOnly(nameof(Data), typeof(string), typeof(PackIconBase<TKind>), new PropertyMetadata(""));
 
         // ReSharper disable once StaticMemberInGenericType
-        public static readonly DependencyProperty DataProperty =
-            DataPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty DataProperty = DataPropertyKey.DependencyProperty;
 
         /// <summary>
         /// Gets the icon path data for the current <see cref="Kind"/>.

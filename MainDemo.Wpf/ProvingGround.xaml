@@ -6,12 +6,14 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:provingGroundStuff="clr-namespace:MaterialDesignDemo.ProvingGroundStuff"
              mc:Ignorable="d"              
 			 d:DesignWidth="477" d:DesignHeight="272"
              d:DataContext="{d:DesignInstance wpfExample:ProvingGroundViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
                 <!--
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
@@ -22,28 +24,24 @@
             </ResourceDictionary.MergedDictionaries>
 
 
+            
+            <Style TargetType="{x:Type provingGroundStuff:MeasuringTextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
 
 
 
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <materialDesign:DialogHost Identifier="RootDialog">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Background="White">
-            <Grid>
-                <TextBox x:Name="loginText" 
-                         materialDesign:HintAssist.FloatingScale=".56" 
-                         materialDesign:HintAssist.FloatingOffset="1,-42"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0" Margin="0,350,0,0" materialDesign:HintAssist.IsFloating="True" HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" FontSize="36" Height="100" Background="White" Padding="6,0,0,2">
-                    <materialDesign:HintAssist.Hint>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
-                            <materialDesign:PackIcon Kind="Account" Width="50" Height="50" />
-                            <TextBlock Padding="5,0,0,0">Enter login</TextBlock>
-                        </StackPanel>
-                    </materialDesign:HintAssist.Hint>
-                </TextBox>
-            </Grid>
-        </ScrollViewer>
-    </materialDesign:DialogHost>
+    <Grid HorizontalAlignment="Left">
+        <StackPanel>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox>Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox materialDesign:HintAssist.Hint="Float">Hello World</provingGroundStuff:MeasuringTextBox>
+            <provingGroundStuff:MeasuringTextBox materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Float">Hello World</provingGroundStuff:MeasuringTextBox>
+        </StackPanel>
+    </Grid>
 
 </UserControl>
