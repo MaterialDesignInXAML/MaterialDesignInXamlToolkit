@@ -264,7 +264,7 @@
                 <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0"
                           ToolTip="MaterialDesignSwitchAccentToggleButton" IsChecked="True" />
                 <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" 
-                          ToolTip="MaterialDesignSwitchToggleButton with Content" IsChecked="True">
+                          ToolTip="MaterialDesignSwitchToggleButton w/ Content" IsChecked="True">
                     <ToggleButton.Content>
                         <materialDesign:PackIcon Kind="Play"/>
                     </ToggleButton.Content>
