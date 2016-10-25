@@ -231,7 +231,7 @@ namespace MaterialDesignThemes.Wpf
 
             var argumentType = actionArgument != null ? typeof(TArgument) : null;
             _snackbarMessages.Enqueue(new SnackbarMessageQueueItem(content, actionContent, actionHandler,
-                actionArgument, argumentType));
+                actionArgument, argumentType, neverConsiderToBeDuplicate));
             _messageWaitingEvent.Set();
         }
 
