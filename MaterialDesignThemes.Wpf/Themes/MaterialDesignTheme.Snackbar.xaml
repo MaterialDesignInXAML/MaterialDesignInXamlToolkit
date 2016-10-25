@@ -1,0 +1,189 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
+    <converters:MathMultipleConverter x:Key="MathMultipleConverter" Operation="Multiply" />
+
+    <Style x:Key="MaterialDesignSnackbarActionButton" TargetType="Button">
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignSnackbarRipple}" />
+        <Setter Property="TextBlock.FontWeight" Value="Medium"/>
+        <Setter Property="TextBlock.FontSize" Value="14"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="24 0 24 0"/>
+        <Setter Property="Margin" Value="24 -14 -24 -14" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="Root" Background="{TemplateBinding Background}">
+                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Padding="{TemplateBinding Padding}" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesignSnackbarMouseOver}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.23"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignSnackbarActionLightButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignSnackbarActionButton}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+    </Style>
+
+    <Style x:Key="MaterialDesignSnackbarActionMidButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignSnackbarActionButton}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    </Style>
+
+    <Style x:Key="MaterialDesignSnackbarActionDarkButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignSnackbarActionButton}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    </Style>
+
+    <Style TargetType="wpf:SnackbarMessage">
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="wpf:SnackbarMessage">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Content="{TemplateBinding Content}" 
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"                                      
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          DockPanel.Dock="Left"
+                                          MaxHeight="36">
+                            <ContentPresenter.Resources>
+                                <DataTemplate DataType="{x:Type system:String}">
+                                    <TextBlock Text="{Binding}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+                                                <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+                                                <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ContentPresenter.Resources>
+                        </ContentPresenter>
+                        <!-- will become a Panel to wrap a "pretend" button -->
+                        <Button x:Name="PART_ActionButton"
+                                Grid.Column="1"
+                                Command="{TemplateBinding ActionCommand}"
+                                CommandParameter="{TemplateBinding ActionCommandParameter}"
+                                Content="{TemplateBinding ActionContent}" 
+                                ContentTemplate="{TemplateBinding ActionContentTemplate}"
+                                ContentStringFormat="{TemplateBinding ActionContentStringFormat}"
+                                ContentTemplateSelector="{TemplateBinding ActionContentTemplateSelector}"                                      
+                                HorizontalAlignment="Right"
+                                Visibility="{TemplateBinding ActionContent, Converter={StaticResource NullableToVisibilityConverter}}"
+                                Style="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type wpf:Snackbar}}, Path=ActionButtonStyle}"
+                                DockPanel.Dock="Right" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="wpf:Snackbar">
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignSnackbarBackground}" />
+        <Setter Property="ActionButtonStyle" Value="{StaticResource MaterialDesignSnackbarActionButton}" />
+        <Setter Property="MinWidth" Value="288" />
+        <Setter Property="MaxWidth" Value="568" />
+        <Setter Property="Padding" Value="24 14 24 14" />
+        <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="wpf:Snackbar">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="ActivateStoryboard" Duration="0:0:0.3">
+                            <DoubleAnimation Storyboard.TargetName="Root" Storyboard.TargetProperty="Tag" From="0" To="1" Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                        <Storyboard x:Key="DeactivateStoryboard" Duration="0:0:0.3">
+                            <DoubleAnimation Storyboard.TargetName="Root" Storyboard.TargetProperty="Tag" From="1" To="0" Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <StackPanel x:Name="Root">
+                        <StackPanel.Tag>
+                            <system:Double>0.0</system:Double>
+                        </StackPanel.Tag>
+                        <StackPanel.Height>
+                            <MultiBinding Converter="{StaticResource MathMultipleConverter}">
+                                <Binding ElementName="ContentBorder" Path="ActualHeight"/>
+                                <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
+                            </MultiBinding>
+                        </StackPanel.Height>
+                        <Border x:Name="ContentBorder"
+                                Background="{TemplateBinding Background}" CornerRadius="2" SnapsToDevicePixels="True"                                
+                                VerticalAlignment="Stretch"
+                                MinHeight="24">
+                            <ContentPresenter Content="{TemplateBinding Message}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}"
+                                              x:Name="ContentPresenter" />
+                        </Border>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsActive" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource ActivateStoryboard}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource DeactivateStoryboard}" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="HorizontalAlignment" Value="Stretch">
+                            <Setter TargetName="ContentBorder" Property="CornerRadius" Value="0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="HorizontalAlignment" Value="Stretch">
+                <Setter Property="MaxWidth" Value="{x:Static system:Double.MaxValue}">
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

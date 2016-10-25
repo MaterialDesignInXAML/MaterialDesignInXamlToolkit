@@ -1,45 +1,12 @@
-﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl x:Class="MaterialDesignDemo.Snackbars"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             x:Class="MaterialDesignColors.WpfExample.ProvingGround"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignDemo"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
-             xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
-             xmlns:provingGroundStuff="clr-namespace:MaterialDesignDemo.ProvingGroundStuff"
-             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             TextElement.FontWeight="Regular"
-             TextElement.FontSize="13"
-             TextOptions.TextFormattingMode="Ideal" 
-             TextOptions.TextRenderingMode="Auto"        
-             Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{StaticResource MaterialDesignFont}"
-             mc:Ignorable="d"              
-			 d:DesignWidth="477" d:DesignHeight="272"
-             d:DataContext="{d:DesignInstance wpfExample:ProvingGroundViewModel, d:IsDesignTimeCreatable=False}">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
-                <!--
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-                -->
-            </ResourceDictionary.MergedDictionaries>
-
-
-
-            <Style TargetType="{x:Type provingGroundStuff:MeasuringTextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
-
-
-
-        </ResourceDictionary>
-    </UserControl.Resources>
-
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
         <Grid Margin="0 0 0 4">
             <Grid.ColumnDefinitions>
@@ -63,7 +30,7 @@
                         <ToggleButton IsChecked="{Binding ElementName=SnackbarOne, Path=IsActive, Mode=TwoWay}"
                                       Margin="0 8 0 0"/>
                     </StackPanel>
-                    
+
 
                     <!-- simplest form -->
                     <materialDesign:Snackbar Message="hello 1" 
@@ -82,8 +49,8 @@
                         <TextBlock TextWrapping="WrapWithOverflow" >View source to see message defined in long hand, allowing action button content to be set.</TextBlock>
                         <ToggleButton IsChecked="{Binding ElementName=SnackbarTwo, Path=IsActive, Mode=TwoWay}"
                                       Margin="0 8 0 0" />
-                    </StackPanel>                    
-                    
+                    </StackPanel>
+
                     <!-- long hand form for setting the message -->
                     <materialDesign:Snackbar IsActive="False"
                                               x:Name="SnackbarTwo" >
@@ -123,8 +90,8 @@
                             <Button Click="SnackBar3_OnClick" Margin="16 0 0 0"
                                     Grid.Column="1">Send</Button>
                         </Grid>
-                        
-                        
+
+
                     </StackPanel>
                     <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
                                              x:Name="SnackbarThree" />
@@ -190,7 +157,7 @@
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Example 6.</TextBlock>
                     <TextBlock TextWrapping="WrapWithOverflow">Action button colour variations.</TextBlock>
-                    <materialDesign:Snackbar Margin="0 8 0 0" IsActive="True"> 
+                    <materialDesign:Snackbar Margin="0 8 0 0" IsActive="True">
                         <materialDesign:SnackbarMessage Content="Default - accent"                                                    
                                                         ActionContent="ACCENT" />
                     </materialDesign:Snackbar>

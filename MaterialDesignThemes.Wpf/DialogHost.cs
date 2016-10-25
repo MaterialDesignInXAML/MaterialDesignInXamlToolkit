@@ -70,6 +70,7 @@ namespace MaterialDesignThemes.Wpf
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;        
         private object _closeDialogExecutionParameter;
         private IInputElement _restoreFocus;
+        private Action _currentSnackbarMessageQueueUnPauseAction = null;
         private Action _closeCleanUp = () => { };
 
         static DialogHost()
@@ -245,11 +246,17 @@ namespace MaterialDesignThemes.Wpf
             if (dialogHost.IsOpen)
             {
                 WatchWindowActivation(dialogHost);
+                dialogHost._currentSnackbarMessageQueueUnPauseAction = dialogHost.SnackbarMessageQueue?.Pause();
             }
             else
             {
                 dialogHost._asyncShowWaitHandle.Set();
                 dialogHost._attachedDialogClosingEventHandler = null;
+                if (dialogHost._currentSnackbarMessageQueueUnPauseAction != null)
+                {
+                    dialogHost._currentSnackbarMessageQueueUnPauseAction();
+                    dialogHost._currentSnackbarMessageQueueUnPauseAction = null;
+                }
                 dialogHost._session.IsEnded = true;
                 dialogHost._session = null;
                 dialogHost._closeCleanUp();
@@ -367,6 +374,32 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (object) GetValue(CloseOnClickAwayParameterProperty); }
             set { SetValue(CloseOnClickAwayParameterProperty, value); }
+        }
+
+        public static readonly DependencyProperty SnackbarMessageQueueProperty = DependencyProperty.Register(
+            "SnackbarMessageQueue", typeof(SnackbarMessageQueue), typeof(DialogHost), new PropertyMetadata(default(SnackbarMessageQueue), SnackbarMessageQueuePropertyChangedCallback));
+
+        private static void SnackbarMessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var dialogHost = (DialogHost) dependencyObject;
+            if (dialogHost._currentSnackbarMessageQueueUnPauseAction != null)
+            {
+                dialogHost._currentSnackbarMessageQueueUnPauseAction();
+                dialogHost._currentSnackbarMessageQueueUnPauseAction = null;
+            }
+
+            if (!dialogHost.IsOpen) return;
+            var snackbarMessageQueue = dependencyPropertyChangedEventArgs.NewValue as SnackbarMessageQueue;
+            dialogHost._currentSnackbarMessageQueueUnPauseAction = snackbarMessageQueue?.Pause();
+        }        
+
+        /// <summary>
+        /// Allows association of a snackbar, so that notifications can be paused whilst a dialog is being displayed.
+        /// </summary>
+        public SnackbarMessageQueue SnackbarMessageQueue
+        {
+            get { return (SnackbarMessageQueue) GetValue(SnackbarMessageQueueProperty); }
+            set { SetValue(SnackbarMessageQueueProperty, value); }
         }
 
         public override void OnApplyTemplate()
