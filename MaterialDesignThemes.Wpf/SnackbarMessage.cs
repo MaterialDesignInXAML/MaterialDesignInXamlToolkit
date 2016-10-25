@@ -9,7 +9,7 @@ using MaterialDesignThemes.Wpf.Converters;
 namespace MaterialDesignThemes.Wpf
 {
     /// <summary>
-    /// Defines the content of a message within a <see cref="Snackbar2"/>.  Primary content should be set via the 
+    /// Defines the content of a message within a <see cref="Snackbar"/>.  Primary content should be set via the 
     /// standard <see cref="SnackbarMessage.Content"/> property.  Where an action is allowed, content
     /// can be provided in <see cref="SnackbarMessage.ActionContent"/>.  Standard button properties are 
     /// provided for actions, includiing <see cref="SnackbarMessage.ActionCommand"/>.

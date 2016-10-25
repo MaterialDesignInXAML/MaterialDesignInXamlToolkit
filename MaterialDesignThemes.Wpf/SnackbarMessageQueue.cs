@@ -12,7 +12,7 @@ namespace MaterialDesignThemes.Wpf
     public class SnackbarMessageQueue : ISnackbarMessageQueue, IDisposable
     {
         private readonly TimeSpan _messageDuration;
-        private readonly HashSet<Snackbar2> _pairedSnackbars = new HashSet<Snackbar2>();
+        private readonly HashSet<Snackbar> _pairedSnackbars = new HashSet<Snackbar>();
         private readonly Queue<SnackbarMessageQueueItem> _snackbarMessages = new Queue<SnackbarMessageQueueItem>();
         private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _pausedEvent = new ManualResetEvent(false);
@@ -29,7 +29,7 @@ namespace MaterialDesignThemes.Wpf
             private readonly ManualResetEvent _disposedWaitHandle = new ManualResetEvent(false);
             private Action _cleanUp;
             private bool _isWaitHandleDisposed;
-            private readonly object _waitHandleGate = new object();
+            private readonly object _waitHandleGate = new object();            
 
             public MouseNotOverManagedWaitHandle(UIElement uiElement)
             {
@@ -60,7 +60,21 @@ namespace MaterialDesignThemes.Wpf
             {
                 Task.Factory.StartNew(() =>
                 {
-                    _disposedWaitHandle.WaitOne(TimeSpan.FromSeconds(2));
+                    try
+                    {
+                        _disposedWaitHandle.WaitOne(TimeSpan.FromSeconds(2));
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        /* we are we suppresing this? 
+                         * as we have switched out wait onto another thread, so we don't block the UI thread, the
+                         * _cleanUp/Dispose() action might also happen, and the _disposedWaitHandle might get disposed
+                         * just before we WaitOne. We wond add a lock in the _cleanUp because it might block for 2 seconds.
+                         * We could use a Monitor.TryEnter in _cleanUp and run clean up after but oh my gosh it's just getting
+                         * too complicated for this use case, so for the rare times this happens, we can swallow safely                         
+                         */
+                    }
+
                 }).ContinueWith(t =>
                 {
                     if (((UIElement) sender).IsMouseOver) return;
@@ -147,7 +161,7 @@ namespace MaterialDesignThemes.Wpf
 
         //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragabalz, 
         //but this is an internal method so no one will know my direty Action disposer...
-        internal Action Pair(Snackbar2 snackbar)
+        internal Action Pair(Snackbar snackbar)
         {
             if (snackbar == null) throw new ArgumentNullException(nameof(snackbar));
 
@@ -251,7 +265,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private async Task ShowAsync(Snackbar2 snackbar, SnackbarMessageQueueItem messageQueueItem)
+        private async Task ShowAsync(Snackbar snackbar, SnackbarMessageQueueItem messageQueueItem)
         {
             await Task.Run(async () =>
                 {
@@ -271,7 +285,7 @@ namespace MaterialDesignThemes.Wpf
                     //close message on snackbar
                     await
                         snackbar.Dispatcher.InvokeAsync(
-                            () => snackbar.SetCurrentValue(Snackbar2.IsActiveProperty, false));
+                            () => snackbar.SetCurrentValue(Snackbar.IsActiveProperty, false));
 
                     //we could wait for the animation event, but just doing 
                     //this for now...at least it is prevent extra call back hell
@@ -279,7 +293,7 @@ namespace MaterialDesignThemes.Wpf
 
                     //remove message on snackbar
                     await snackbar.Dispatcher.InvokeAsync(
-                        () => snackbar.SetCurrentValue(Snackbar2.MessageProperty, null));
+                        () => snackbar.SetCurrentValue(Snackbar.MessageProperty, null));
 
                     mouseNotOverManagedWaitHandle.Dispose();
                     durationPassedWaitHandle.Dispose();
@@ -309,8 +323,8 @@ namespace MaterialDesignThemes.Wpf
                     DoActionCallback(messageQueueItem);
                 actionClickWaitHandle.Set();
             };
-            snackbar.SetCurrentValue(Snackbar2.MessageProperty, snackbarMessage);
-            snackbar.SetCurrentValue(Snackbar2.IsActiveProperty, true);
+            snackbar.SetCurrentValue(Snackbar.MessageProperty, snackbarMessage);
+            snackbar.SetCurrentValue(Snackbar.IsActiveProperty, true);
             return new MouseNotOverManagedWaitHandle(snackbar);
         }
 

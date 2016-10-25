@@ -35,7 +35,7 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <materialDesign:DialogHost Identifier="RootDialog">
+    <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel MinWidth="212">
@@ -86,11 +86,6 @@
                         <domain:DemoItem Name="Sliders">
                             <domain:DemoItem.Content>
                                 <wpfExample:Sliders />
-                            </domain:DemoItem.Content>
-                        </domain:DemoItem>
-                        <domain:DemoItem Name="Snackbar">
-                            <domain:DemoItem.Content>
-                                <wpfExample:Snackbar />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
                         <domain:DemoItem Name="Chips">
@@ -183,6 +178,11 @@
                                 <materialDesignDemo:Drawers />
                             </domain:DemoItem.Content>
                         </domain:DemoItem>
+                        <domain:DemoItem Name="Snackbar">
+                            <domain:DemoItem.Content>
+                                <materialDesignDemo:Snackbars />
+                            </domain:DemoItem.Content>
+                        </domain:DemoItem>
                         <domain:DemoItem Name="Transitions">
                             <domain:DemoItem.Content>
                                 <materialDesignDemo:Transitions />
@@ -214,7 +214,10 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
                     </DockPanel>
                 </materialDesign:ColorZone>
-                <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
+                <Grid>
+                    <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
+                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" />
+                </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>
     </materialDesign:DialogHost>

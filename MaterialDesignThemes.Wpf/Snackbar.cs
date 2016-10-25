@@ -18,17 +18,17 @@ namespace MaterialDesignThemes.Wpf
     /// Implements a <see cref="Snackbar"/> inspired by the Material Design specs (https://material.google.com/components/snackbars-toasts.html).
     /// </summary>
     [ContentProperty("Message")]
-    public class Snackbar2 : Control
+    public class Snackbar : Control
     {
         private Action _messageQueueRegistrationCleanUp = null;
 
-        static Snackbar2()
+        static Snackbar()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(Snackbar2), new FrameworkPropertyMetadata(typeof(Snackbar2)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Snackbar), new FrameworkPropertyMetadata(typeof(Snackbar)));
         }
 
         public static readonly DependencyProperty MessageProperty = DependencyProperty.Register(
-            "Message", typeof(SnackbarMessage), typeof(Snackbar2), new PropertyMetadata(default(SnackbarMessage)));
+            "Message", typeof(SnackbarMessage), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessage)));
 
         public SnackbarMessage Message
         {
@@ -37,11 +37,11 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty MessageQueueProperty = DependencyProperty.Register(
-            "MessageQueue", typeof(SnackbarMessageQueue), typeof(Snackbar2), new PropertyMetadata(default(SnackbarMessageQueue), MessageQueuePropertyChangedCallback));
+            "MessageQueue", typeof(SnackbarMessageQueue), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessageQueue), MessageQueuePropertyChangedCallback));
 
         private static void MessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var snackbar = (Snackbar2) dependencyObject;
+            var snackbar = (Snackbar) dependencyObject;
             (snackbar._messageQueueRegistrationCleanUp ?? (() => { }))();            
             var messageQueue = dependencyPropertyChangedEventArgs.NewValue as SnackbarMessageQueue;
             snackbar._messageQueueRegistrationCleanUp = messageQueue?.Pair(snackbar);
@@ -54,7 +54,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
-            "IsActive", typeof(bool), typeof(Snackbar2), new PropertyMetadata(default(bool), IsActivePropertyChangedCallback));
+            "IsActive", typeof(bool), typeof(Snackbar), new PropertyMetadata(default(bool), IsActivePropertyChangedCallback));
 
         public bool IsActive
         {
@@ -73,12 +73,12 @@ namespace MaterialDesignThemes.Wpf
                 "IsActiveChanged",
                 RoutingStrategy.Bubble,
                 typeof(RoutedPropertyChangedEventHandler<bool>),
-                typeof(Snackbar2));
+                typeof(Snackbar));
 
         private static void OnIsActiveChanged(
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var instance = d as Snackbar2;
+            var instance = d as Snackbar;
             var args = new RoutedPropertyChangedEventArgs<bool>(
                 (bool) e.OldValue,
                 (bool) e.NewValue) {RoutedEvent = IsActiveChangedEvent };
@@ -90,7 +90,7 @@ namespace MaterialDesignThemes.Wpf
                 "DeactivateStoryboardCompleted",
                 RoutingStrategy.Bubble,
                 typeof(SnackbarMessageEventArgs),
-                typeof(Snackbar2));
+                typeof(Snackbar));
 
         public event RoutedPropertyChangedEventHandler<SnackbarMessage> DeactivateStoryboardCompleted
         {
@@ -110,7 +110,7 @@ namespace MaterialDesignThemes.Wpf
         public TimeSpan DeactivateStoryboardDuration { get; private set; }
 
         public static readonly DependencyProperty ActionButtonStyleProperty = DependencyProperty.Register(
-            "ActionButtonStyle", typeof(Style), typeof(Snackbar2), new PropertyMetadata(default(Style)));
+            "ActionButtonStyle", typeof(Style), typeof(Snackbar), new PropertyMetadata(default(Style)));
 
         public Style ActionButtonStyle
         {
@@ -133,7 +133,7 @@ namespace MaterialDesignThemes.Wpf
             DeactivateStoryboardDuration = GetStoryboardResourceDuration("DeactivateStoryboard");
             
             base.OnApplyTemplate();
-        }
+        }        
 
         private TimeSpan GetStoryboardResourceDuration(string resourceName)
         {
@@ -157,12 +157,12 @@ namespace MaterialDesignThemes.Wpf
 
             if ((bool)dependencyPropertyChangedEventArgs.NewValue) return;
 
-            var snackbar = (Snackbar2)dependencyObject;
+            var snackbar = (Snackbar)dependencyObject;
             if (snackbar.Message == null) return;
 
             var dispatcherTimer = new DispatcherTimer
             {
-                Tag = new Tuple<Snackbar2, SnackbarMessage>(snackbar, snackbar.Message),
+                Tag = new Tuple<Snackbar, SnackbarMessage>(snackbar, snackbar.Message),
                 Interval = snackbar.DeactivateStoryboardDuration
             };
             dispatcherTimer.Tick += DeactivateStoryboardDispatcherTimerOnTick;
@@ -174,7 +174,7 @@ namespace MaterialDesignThemes.Wpf
             var dispatcherTimer = (DispatcherTimer)sender;
             dispatcherTimer.Stop(); 
             dispatcherTimer.Tick -= DeactivateStoryboardDispatcherTimerOnTick;
-            var source = (Tuple<Snackbar2, SnackbarMessage>)dispatcherTimer.Tag;
+            var source = (Tuple<Snackbar, SnackbarMessage>)dispatcherTimer.Tag;
             OnDeactivateStoryboardCompleted(source.Item1, source.Item2);
         }
     }    

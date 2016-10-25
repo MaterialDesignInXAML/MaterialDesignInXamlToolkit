@@ -157,8 +157,8 @@
     <Compile Include="Sliders.xaml.cs">
       <DependentUpon>Sliders.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Snackbar.xaml.cs">
-      <DependentUpon>Snackbar.xaml</DependentUpon>
+    <Compile Include="Snackbars.xaml.cs">
+      <DependentUpon>Snackbars.xaml</DependentUpon>
     </Compile>
     <Compile Include="TextFields.xaml.cs">
       <DependentUpon>TextFields.xaml</DependentUpon>
@@ -308,7 +308,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Snackbar.xaml">
+    <Page Include="Snackbars.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

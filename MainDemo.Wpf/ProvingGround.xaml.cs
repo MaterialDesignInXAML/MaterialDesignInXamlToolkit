@@ -47,12 +47,14 @@ namespace MaterialDesignColors.WpfExample
 
         private void SnackBar4_OnClick(object sender, RoutedEventArgs e)
         {
-            var id = "A1A";
-            SnackbarFour.MessageQueue.Enqueue(
-                $"Deleted {id}", 
-                "UNDO",  
-                param => Trace.WriteLine("Undo delete of " + param),
-                id);            
+            foreach (var s in ExampleFourTextBox.Text.Split(new []{ Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                SnackbarFour.MessageQueue.Enqueue(
+                s,
+                "TRACE",
+                param => Trace.WriteLine("Actioned: " + param),
+                s);
+            }
         }
     }
 
