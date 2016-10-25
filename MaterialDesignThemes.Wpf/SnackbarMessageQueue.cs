@@ -186,6 +186,11 @@ namespace MaterialDesignThemes.Wpf
 
         public void Enqueue(object content)
         {
+            Enqueue(content, false);
+        }
+
+        public void Enqueue(object content, bool neverConsiderToBeDuplicate)
+        {
             if (content == null) throw new ArgumentNullException(nameof(content));
 
             _snackbarMessages.Enqueue(new SnackbarMessageQueueItem(content));
@@ -193,6 +198,11 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public void Enqueue(object content, object actionContent, Action actionHandler)
+        {
+            Enqueue(content, actionContent, actionHandler, false);
+        }
+
+        public void Enqueue(object content, object actionContent, Action actionHandler, bool neverConsiderToBeDuplicate)
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
 
@@ -202,6 +212,12 @@ namespace MaterialDesignThemes.Wpf
 
         public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
             TArgument actionArgument)
+        {
+            Enqueue<TArgument>(content, actionContent, actionHandler, actionArgument, false);
+        }
+
+        public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
+            TArgument actionArgument, bool neverConsiderToBeDuplicate)
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
 
@@ -249,9 +265,11 @@ namespace MaterialDesignThemes.Wpf
                 if (snackbar != null)
                 {
                     var message = _snackbarMessages.Dequeue();
-                    if (_latestShownItem == null || !Equals(_latestShownItem.Item1.Content, message.Content) ||
-                        !Equals(_latestShownItem.Item1.ActionContent, message.ActionContent) ||
-                        _latestShownItem.Item2 <= DateTime.Now.Subtract(_messageDuration))
+                    if (_latestShownItem == null 
+                        || message.NeverConsiderToBeDuplicate
+                        || !Equals(_latestShownItem.Item1.Content, message.Content) 
+                        || !Equals(_latestShownItem.Item1.ActionContent, message.ActionContent) 
+                        || _latestShownItem.Item2 <= DateTime.Now.Subtract(_messageDuration))
                     {
                         await ShowAsync(snackbar, message);
                         _latestShownItem = new Tuple<SnackbarMessageQueueItem, DateTime>(message, DateTime.Now);
