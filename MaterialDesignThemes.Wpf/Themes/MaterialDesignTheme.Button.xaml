@@ -130,6 +130,10 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignFlatAccentButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}"/>
+    </Style>
+
     <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Foreground" Value="#616161" />
         <Setter Property="Padding" Value="4"/>
