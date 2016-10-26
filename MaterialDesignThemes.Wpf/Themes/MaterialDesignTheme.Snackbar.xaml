@@ -84,6 +84,7 @@
                                     <TextBlock Text="{Binding}">
                                         <TextBlock.Style>
                                             <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+                                                <Setter Property="FontSize" Value="14" />
                                                 <Setter Property="TextWrapping" Value="WrapWithOverflow" />
                                                 <Setter Property="TextTrimming" Value="CharacterEllipsis" />
                                             </Style>
@@ -129,6 +130,12 @@
                     <ControlTemplate.Resources>
                         <Storyboard x:Key="ActivateStoryboard" Duration="0:0:0.3">
                             <DoubleAnimation Storyboard.TargetName="Root" Storyboard.TargetProperty="Tag" From="0" To="1" Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Opacity" To="0" BeginTime="0" Duration="0" />
+                            <DoubleAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0.075" Duration="0:0:0.225">
                                 <DoubleAnimation.EasingFunction>
                                     <SineEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>

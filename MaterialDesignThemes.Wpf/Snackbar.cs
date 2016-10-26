@@ -17,9 +17,12 @@ namespace MaterialDesignThemes.Wpf
     /// <summary>
     /// Implements a <see cref="Snackbar"/> inspired by the Material Design specs (https://material.google.com/components/snackbars-toasts.html).
     /// </summary>
-    [ContentProperty("Message")]
+    [ContentProperty(nameof(Message))]
     public class Snackbar : Control
     {
+        private const string ActivateStoryboardName = "ActivateStoryboard";
+        private const string DeactivateStoryboardName = "DeactivateStoryboard";
+
         private Action _messageQueueRegistrationCleanUp = null;
 
         static Snackbar()
@@ -28,7 +31,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty MessageProperty = DependencyProperty.Register(
-            "Message", typeof(SnackbarMessage), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessage)));
+            nameof(Message), typeof(SnackbarMessage), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessage)));
 
         public SnackbarMessage Message
         {
@@ -37,7 +40,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty MessageQueueProperty = DependencyProperty.Register(
-            "MessageQueue", typeof(SnackbarMessageQueue), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessageQueue), MessageQueuePropertyChangedCallback));
+            nameof(MessageQueue), typeof(SnackbarMessageQueue), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessageQueue), MessageQueuePropertyChangedCallback));
 
         private static void MessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -54,7 +57,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
-            "IsActive", typeof(bool), typeof(Snackbar), new PropertyMetadata(default(bool), IsActivePropertyChangedCallback));
+            nameof(IsActive), typeof(bool), typeof(Snackbar), new PropertyMetadata(default(bool), IsActivePropertyChangedCallback));
 
         public bool IsActive
         {
@@ -70,7 +73,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static readonly RoutedEvent IsActiveChangedEvent =
             EventManager.RegisterRoutedEvent(
-                "IsActiveChanged",
+                nameof(IsActiveChanged),
                 RoutingStrategy.Bubble,
                 typeof(RoutedPropertyChangedEventHandler<bool>),
                 typeof(Snackbar));
@@ -87,7 +90,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static readonly RoutedEvent DeactivateStoryboardCompletedEvent =
             EventManager.RegisterRoutedEvent(
-                "DeactivateStoryboardCompleted",
+                nameof(DeactivateStoryboardCompleted),
                 RoutingStrategy.Bubble,
                 typeof(SnackbarMessageEventArgs),
                 typeof(Snackbar));
@@ -110,7 +113,7 @@ namespace MaterialDesignThemes.Wpf
         public TimeSpan DeactivateStoryboardDuration { get; private set; }
 
         public static readonly DependencyProperty ActionButtonStyleProperty = DependencyProperty.Register(
-            "ActionButtonStyle", typeof(Style), typeof(Snackbar), new PropertyMetadata(default(Style)));
+            nameof(ActionButtonStyle), typeof(Style), typeof(Snackbar), new PropertyMetadata(default(Style)));
 
         public Style ActionButtonStyle
         {
@@ -129,8 +132,8 @@ namespace MaterialDesignThemes.Wpf
             //(currently we have no even on the activate animation; don't 
             // need it just now, but it would mirror the deactivate)
 
-            ActivateStoryboardDuration = GetStoryboardResourceDuration("ActivateStoryboard");
-            DeactivateStoryboardDuration = GetStoryboardResourceDuration("DeactivateStoryboard");
+            ActivateStoryboardDuration = GetStoryboardResourceDuration(ActivateStoryboardName);
+            DeactivateStoryboardDuration = GetStoryboardResourceDuration(DeactivateStoryboardName);
             
             base.OnApplyTemplate();
         }        
