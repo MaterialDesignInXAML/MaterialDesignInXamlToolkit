@@ -281,15 +281,16 @@
                                     </ItemsControl>
                                 </Border>
                                 <!-- content -->
-                                <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" Margin="0,24,0,0" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
-                                    <ContentControl x:Name="PART_horizontalContent" Content="{Binding Path=Controller.ActiveStepContent, RelativeSource={RelativeSource TemplatedParent}}" RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True">
-                                        <ContentControl.RenderTransform>
-                                            <TransformGroup>
-                                                <ScaleTransform />
-                                            </TransformGroup>
-                                        </ContentControl.RenderTransform>
-                                    </ContentControl>
-                                </ScrollViewer>
+                                <!-- removed the ScrollViewer due to strange behaviour after switching the steps -->
+                                <ContentControl x:Name="PART_horizontalContent" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                    Content="{Binding Path=Controller.ActiveStepContent, RelativeSource={RelativeSource TemplatedParent}}"
+                                                    Margin="0,24,0,0" RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True">
+                                    <ContentControl.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                        </TransformGroup>
+                                    </ContentControl.RenderTransform>
+                                </ContentControl>
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
