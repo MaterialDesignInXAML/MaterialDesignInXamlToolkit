@@ -145,14 +145,14 @@
             <Storyboard x:Key="horizontalContentChangedStoryboard">
                 <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3">
                     <DoubleAnimation.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut" />
+                        <SineEase EasingMode="EaseOut" />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
                     <EasingDoubleKeyFrame Value="0.75" KeyTime="0:0:0.0" />
                     <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3">
                         <EasingDoubleKeyFrame.EasingFunction>
-                            <QuarticEase EasingMode="EaseOut" />
+                            <SineEase EasingMode="EaseOut" />
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
@@ -160,7 +160,7 @@
                     <EasingDoubleKeyFrame Value="0.75" KeyTime="0:0:0.0" />
                     <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3">
                         <EasingDoubleKeyFrame.EasingFunction>
-                            <QuarticEase EasingMode="EaseInOut" />
+                            <SineEase EasingMode="EaseInOut" />
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
@@ -168,14 +168,14 @@
             <Storyboard x:Key="verticalContentShowStoryboard">
                 <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3">
                     <DoubleAnimation.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut" />
+                        <SineEase EasingMode="EaseOut" />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
                     <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.0" />
                     <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3">
                         <EasingDoubleKeyFrame.EasingFunction>
-                            <QuarticEase EasingMode="EaseOut" />
+                            <SineEase EasingMode="EaseOut" />
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
@@ -183,14 +183,14 @@
             <Storyboard x:Key="verticalContentHideStoryboard">
                 <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.3">
                     <DoubleAnimation.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut" />
+                        <SineEase EasingMode="EaseOut" />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
                     <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.0" />
                     <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.3">
                         <EasingDoubleKeyFrame.EasingFunction>
-                            <QuarticEase EasingMode="EaseOut" />
+                            <SineEase EasingMode="EaseOut" />
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
