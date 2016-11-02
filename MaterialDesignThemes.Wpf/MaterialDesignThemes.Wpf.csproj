@@ -234,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.Snackbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
@@ -272,6 +276,7 @@
     <Compile Include="Converters\PointValueConverter.cs" />
     <Compile Include="Converters\ShadowConverter.cs" />
     <Compile Include="Converters\SizeToRectConverter.cs" />
+    <Compile Include="Converters\SnackbarMessageTypeConverter.cs" />
     <Compile Include="Converters\TimeToVisibilityConverter.cs" />
     <Compile Include="CustomPopupPlacementCallbackHelper.cs" />
     <Compile Include="DataGridAssist.cs" />
@@ -294,7 +299,9 @@
     <Compile Include="HorizontalStepperHeaderTemplateSelector.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
+    <Compile Include="ISnackbarMessageQueue.cs" />
     <Compile Include="ListBoxAssist.cs" />
+    <Compile Include="MessageQueueExtension.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Step.cs" />
     <Compile Include="StepButtonBar.cs" />
@@ -302,6 +309,11 @@
     <Compile Include="StepperController.cs" />
     <Compile Include="StepperStepViewModel.cs" />
     <Compile Include="StepTitleHeader.cs" />
+    <Compile Include="Snackbar.cs" />
+    <Compile Include="SnackbarMessage.cs" />
+    <Compile Include="SnackbarMessageEventArgs.cs" />
+    <Compile Include="SnackbarMessageQueue.cs" />
+    <Compile Include="SnackbarMessageQueueItem.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
     <Compile Include="Transitions\IndexedItemOffsetMultiplierExtension.cs" />
