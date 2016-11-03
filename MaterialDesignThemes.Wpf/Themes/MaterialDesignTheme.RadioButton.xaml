@@ -22,6 +22,8 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
@@ -83,11 +85,12 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+                            <Setter Property="Opacity" Value="0.26"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true"/>
                         <Trigger Property="IsChecked" Value="true">
                             <Setter Property="Data" TargetName="Graphic" Value="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7Z" />
-                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Fill" TargetName="Graphic" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="{x:Null}">
                             <Setter Property="Data" TargetName="Graphic" Value="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7Z" />
@@ -98,4 +101,23 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+	<Style x:Key="MaterialDesignLightRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}">
+		<Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+		<Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+	</Style>
+ 
+	<Style x:Key="MaterialDesignDarkRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}">
+		<Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+		<Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+	</Style>
+	
+	<Style x:Key="MaterialDesignAccentRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}">
+		<Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
+		<Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+		</Style>
+
 </ResourceDictionary>

@@ -15,13 +15,15 @@ namespace MaterialDesignColors.WpfExample.Domain
         private readonly IList<int> _longListToTestComboVirtualization;
 
         private string _name;
-        private int _selectedValueOne;
+        private int? _selectedValueOne;
+        private string _selectedTextTwo;
 
         public TextFieldsViewModel()
         {
             _longListToTestComboVirtualization = new List<int>(Enumerable.Range(0, 1000));
 
-            SelectedValueOne = _longListToTestComboVirtualization.Skip(2).First();
+            SelectedValueOne = LongListToTestComboVirtualization.Skip(2).First();
+            SelectedTextTwo = null;
         }
 
         public string Name
@@ -34,7 +36,7 @@ namespace MaterialDesignColors.WpfExample.Domain
             }
         }
 
-        public int SelectedValueOne
+        public int? SelectedValueOne
         {
             get { return _selectedValueOne; }
             set
@@ -42,15 +44,31 @@ namespace MaterialDesignColors.WpfExample.Domain
                 _selectedValueOne = value;
                 OnPropertyChanged();
             }
+        }        
+
+        public string SelectedTextTwo
+        {
+            get { return _selectedTextTwo; }
+            set
+            {
+                this.MutateVerbose(ref _selectedTextTwo, value, RaisePropertyChanged());
+            }
         }
 
         public IList<int> LongListToTestComboVirtualization => _longListToTestComboVirtualization;
+
+        public DemoItem DemoItem => new DemoItem { Name = "Mr. Test"};
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private Action<PropertyChangedEventArgs> RaisePropertyChanged()
+        {
+            return args => PropertyChanged?.Invoke(this, args);
         }
     }
 }

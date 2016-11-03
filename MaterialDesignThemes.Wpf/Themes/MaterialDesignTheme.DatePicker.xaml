@@ -3,15 +3,16 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
-	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="MaterialDesignTheme.Calendar.xaml" />
-	</ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="MaterialDesignTheme.Calendar.xaml" />
+        <ResourceDictionary Source="MaterialDesignTheme.ValidationErrorTemplate.xaml" />
+    </ResourceDictionary.MergedDictionaries>
 
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
 
     <Style x:Key="MaterialDesignDatePickerTextBox" TargetType="{x:Type DatePickerTextBox}">
 		<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
-		<Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 0 0" />
+		<Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="0 0 0 0" />
 		<Setter Property="Background" Value="Transparent"/>
 		<Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}"/>
 		<Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
@@ -51,23 +52,33 @@
 								<VisualState x:Name="Focused"/>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
-						<Grid x:Name="WatermarkContent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                            <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
-                                       Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
-                                       x:Name="Hint"
-                                       IsHitTestVisible="False"
-                                       Margin="1 0 1 0"
-                                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <Grid x:Name="WatermarkContent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <wpf:SmartHint x:Name="Hint"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                           Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                           HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                           HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
 							<ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Visibility="Collapsed" />
 							<ScrollViewer x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
 						</Grid>
-					</Grid>
-				</ControlTemplate>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
+                                <Condition Property="IsKeyboardFocused" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
 			</Setter.Value>
 		</Setter>
-	</Style>
-	
-	<Style x:Key="MaterialDesignDatePickerCalendarPortrait" TargetType="{x:Type Calendar}">
+    </Style>
+
+    <Style x:Key="MaterialDesignDatePickerCalendarPortrait" TargetType="{x:Type Calendar}">
 		<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
 		<Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />		
 		<Setter Property="CalendarDayButtonStyle" Value="{StaticResource MaterialDesignCalendarDayButton}" />
@@ -75,10 +86,15 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Calendar}">
-					<Border Effect="{DynamicResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
-						<CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItemPortrait}"
-									  />	
-					</Border>					
+          <AdornerDecorator>
+              <!-- warning, this will cache the inner item as well, consider separating the shadow from the item if possible -->
+              <AdornerDecorator.CacheMode>
+                  <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+              </AdornerDecorator.CacheMode>
+              <Border Effect="{DynamicResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
+     			    		<CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItemPortrait}"/>
+              </Border>					
+            </AdornerDecorator>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
@@ -87,13 +103,15 @@
 	<Style x:Key="MaterialDesignDatePicker" TargetType="{x:Type DatePicker}">
 		<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
 		<Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
-		<Setter Property="Background" Value="Transparent"/>
-		<Setter Property="CalendarStyle" Value="{StaticResource MaterialDesignDatePickerCalendarPortrait}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="CalendarStyle" Value="{StaticResource MaterialDesignDatePickerCalendarPortrait}"/>
 		<Setter Property="IsTodayHighlighted" Value="True"/>
 		<Setter Property="SelectedDateFormat" Value="Short"/>
-		<Setter Property="BorderThickness" Value="0 0 0 1"/>		
-		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>		        
-		<Setter Property="Template">
+		<Setter Property="BorderThickness" Value="0 0 0 1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="0 0 0 0" />
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
+        <Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type DatePicker}">
                     <Grid>
@@ -169,7 +187,7 @@
 					    			   PopupAnimation="Fade"  />
                             </Grid>
                         </Border>
-                        <wpf:Underline x:Name="Underline" />
+                        <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
 						<Trigger Property="IsEnabled" Value="false">
@@ -184,11 +202,15 @@
 						</Trigger>
 						<Trigger Property="Validation.HasError" Value="true">
 							<Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
-                            <Setter TargetName="Underline" Property="IsActive" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
 	</Style>
+
+    <Style x:Key="MaterialDesignFloatingHintDatePicker" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignDatePicker}">
+        <Setter Property="wpf:HintAssist.IsFloating" Value="True"/>
+    </Style>
 </ResourceDictionary>

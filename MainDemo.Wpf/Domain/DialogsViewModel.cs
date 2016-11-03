@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Threading;
+using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignThemes.Wpf;
 
-namespace MaterialDesignColors.WpfExample.Domain
+namespace MaterialDesignDemo.Domain
 {
     public class DialogsViewModel : INotifyPropertyChanged
     {
@@ -29,16 +25,16 @@ namespace MaterialDesignColors.WpfExample.Domain
 
         public ICommand RunExtendedDialogCommand => new AnotherCommandImplementation(ExecuteRunExtendedDialog);
 
-        private void ExecuteRunDialog(object o)
+        private async void ExecuteRunDialog(object o)
         {
             //let's set up a little MVVM, cos that's what the cool kids are doing:
             var view = new SampleDialog
             {
-                DataContext = new object()
+                DataContext = new SampleDialogViewModel()
             };
             
             //show the dialog
-            var result = DialogHost.Show(view, "RootDialog", ClosingEventHandler);
+            var result = await DialogHost.Show(view, "RootDialog", ClosingEventHandler);
 
             //check the result...
             Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
@@ -49,16 +45,16 @@ namespace MaterialDesignColors.WpfExample.Domain
             Console.WriteLine("You can intercept the closing event, and cancel here.");
         }
 
-        private void ExecuteRunExtendedDialog(object o)
+        private async void ExecuteRunExtendedDialog(object o)
         {
             //let's set up a little MVVM, cos that's what the cool kids are doing:
             var view = new SampleDialog
             {
-                DataContext = new object()
+                DataContext = new SampleDialogViewModel()
             };
 
             //show the dialog
-            var result = DialogHost.Show(view, "RootDialog", ExtendedOpenedEventHandler, ExtendedClosingEventHandler);
+            var result = await DialogHost.Show(view, "RootDialog", ExtendedOpenedEventHandler, ExtendedClosingEventHandler);
 
             //check the result...
             Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));

@@ -42,7 +42,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty MinProperty = DependencyProperty.Register(
-            "Min", typeof (int), typeof (RatingBar), new PropertyMetadata(1, MinPropertyChangedCallback));        
+            nameof(Min), typeof (int), typeof (RatingBar), new PropertyMetadata(1, MinPropertyChangedCallback));
 
         public int Min
         {
@@ -51,7 +51,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty MaxProperty = DependencyProperty.Register(
-            "Max", typeof (int), typeof (RatingBar), new PropertyMetadata(5, MaxPropertyChangedCallback));
+            nameof(Max), typeof (int), typeof (RatingBar), new PropertyMetadata(5, MaxPropertyChangedCallback));
 
         public int Max
         {
@@ -60,7 +60,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            "Value", typeof (int), typeof (RatingBar), new PropertyMetadata(0, ValuePropertyChangedCallback));
+            nameof(Value), typeof (int), typeof (RatingBar), new PropertyMetadata(0, ValuePropertyChangedCallback));
 
         private static void ValuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -77,7 +77,7 @@ namespace MaterialDesignThemes.Wpf
         public ReadOnlyObservableCollection<RatingBarButton> RatingButtons => _ratingButtons;
 
         public static readonly DependencyProperty ValueItemContainerButtonStyleProperty = DependencyProperty.Register(
-            "ValueItemContainerButtonStyle", typeof (Style), typeof (RatingBar), new PropertyMetadata(default(Style)));
+            nameof(ValueItemContainerButtonStyle), typeof (Style), typeof (RatingBar), new PropertyMetadata(default(Style)));
 
         public Style ValueItemContainerButtonStyle
         {
@@ -86,7 +86,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ValueItemTemplateProperty = DependencyProperty.Register(
-            "ValueItemTemplate", typeof (DataTemplate), typeof (RatingBar), new PropertyMetadata(default(DataTemplate)));
+            nameof(ValueItemTemplate), typeof (DataTemplate), typeof (RatingBar), new PropertyMetadata(default(DataTemplate)));
 
         public DataTemplate ValueItemTemplate
         {
@@ -95,7 +95,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ValueItemTemplateSelectorProperty = DependencyProperty.Register(
-            "ValueItemTemplateSelector", typeof (DataTemplateSelector), typeof (RatingBar), new PropertyMetadata(default(DataTemplateSelector)));
+            nameof(ValueItemTemplateSelector), typeof (DataTemplateSelector), typeof (RatingBar), new PropertyMetadata(default(DataTemplateSelector)));
 
         public DataTemplateSelector ValueItemTemplateSelector
         {
@@ -104,7 +104,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
-            "Orientation", typeof (Orientation), typeof (RatingBar), new PropertyMetadata(default(Orientation)));
+            nameof(Orientation), typeof (Orientation), typeof (RatingBar), new PropertyMetadata(default(Orientation)));
 
         public Orientation Orientation
         {

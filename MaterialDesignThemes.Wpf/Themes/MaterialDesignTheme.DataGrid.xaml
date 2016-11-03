@@ -48,11 +48,14 @@
                         <Grid>
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
 											  />
-                            <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
-                                       Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
-                                       x:Name="Hint"
-                                       Margin="1 0 1 0"
-                                       Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <wpf:SmartHint x:Name="Hint"
+                                           Margin="1 0"
+                                           Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                           HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                           UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                           />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -72,10 +75,16 @@
                                PlacementTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}}"                                                              
                                PopupAnimation="Fade">
                             <Grid>
-                                <Border Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
-                                        Margin="5,5,5,5"
-                                        Effect="{StaticResource MaterialDesignShadowDepth2}"
-                                        BorderThickness="1" />
+                                <AdornerDecorator>
+                                    <AdornerDecorator.CacheMode>
+                                        <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                    </AdornerDecorator.CacheMode>
+                                    <Border Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
+                                            Margin="5,5,5,5"
+                                            Effect="{StaticResource MaterialDesignShadowDepth2}"
+                                            BorderThickness="1">
+                                    </Border>
+                                </AdornerDecorator>
                                 <Border Padding="16" Background="Transparent" CornerRadius="2"
                                         Margin="5,5,5,5"
                                         BorderBrush="{DynamicResource MaterialDesignDivider}"
@@ -90,12 +99,14 @@
                                             <Grid>
                                                 <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
 											          />
-                                                <TextBlock Text="{Binding Path=(wpf:TextFieldAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
-                                                           Visibility="{TemplateBinding Text, Converter={StaticResource TextFieldHintVisibilityConverter}}"
-                                                           MinWidth="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}, Path=ActualWidth}"
-                                                           x:Name="Hint"
-                                                           Margin="1 0 1 0"
-                                                           Opacity="{Binding Path=(wpf:TextFieldAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                <wpf:SmartHint x:Name="Hint"
+                                                               Margin="1 0"
+                                                               Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                                               HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                                               FontSize="{TemplateBinding FontSize}"
+                                                               HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                                               UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                                               />
                                             </Grid>
                                         </Border>
                                         <TextBlock Grid.Row="1" HorizontalAlignment="Right" Opacity=".56" Visibility="{TemplateBinding MaxLength, Converter={StaticResource NotZeroToVisibilityConverter}}">
@@ -141,7 +152,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignDataGridCell" TargetType="{x:Type DataGridCell}">
-        <Setter Property="TextBlock.FontSize" Value="13" />
+        <!--Setter Property="TextBlock.FontSize" Value="13" /-->
         <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:DataGridAssist.CellPadding)}" />
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -338,6 +349,7 @@
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="13"/>
         <Setter Property="GridLinesVisibility" Value="Horizontal" />
         <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
         <Setter Property="HeadersVisibility" Value="Column" />

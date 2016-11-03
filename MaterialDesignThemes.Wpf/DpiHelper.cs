@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
 
@@ -14,8 +9,8 @@ namespace MaterialDesignThemes.Wpf
         private static readonly int DpiX;
         private static readonly int DpiY;
 
-        private const double StandartDpiX = 96.0;
-        private const double StandartDpiY = 96.0;
+        private const double StandardDpiX = 96.0;
+        private const double StandardDpiY = 96.0;
 
         static DpiHelper()
         {
@@ -44,12 +39,12 @@ namespace MaterialDesignThemes.Wpf
 
         public static double TransformToDeviceY(double y)
         {
-            return y * DpiY / StandartDpiY;
+            return y * DpiY / StandardDpiY;
         }
 
         public static double TransformToDeviceX(double x)
         {
-            return x * DpiX / StandartDpiX;
+            return x * DpiX / StandardDpiX;
         }
     }
 }

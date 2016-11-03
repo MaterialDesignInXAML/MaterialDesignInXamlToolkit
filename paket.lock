@@ -1,5 +1,29 @@
-
+FRAMEWORK: >= NET45
+NUGET
+  remote: https://www.nuget.org/api/v2
+    Castle.Core (3.3.3) - framework: net452
+    Dragablz (0.0.3.165)
+    MahApps.Metro (1.3)
+    Moq (4.5.10) - framework: net452
+      Castle.Core (>= 3.3.3)
+    NSubstitute (1.10) - framework: net452
+    RhinoMocks (3.6.1) - framework: net452
+    Shouldly (2.8) - framework: net452
+    xunit (2.1) - framework: net452
+      xunit.assert (2.1)
+      xunit.core (2.1)
+    xunit.abstractions (2.0)
+    xunit.assert (2.1)
+    xunit.core (2.1)
+      xunit.extensibility.core (2.1)
+      xunit.extensibility.execution (2.1)
+    xunit.extensibility.core (2.1)
+      xunit.abstractions (2.0)
+    xunit.extensibility.execution (2.1)
+      xunit.extensibility.core (2.1)
 GITHUB
   remote: ControlzEx/ControlzEx
-  specs:
-    src/ControlzEx/PopupEx.cs (40a2be62474f0b78f2fd125a5b321e011acd5bb5)
+    src/ControlzEx/PackIconBase.cs (10d0bab474eb73a846e3993175c8357a7fa95c07)
+    src/ControlzEx/PopupEx.cs (72aa238cd565ef63e8d52c29982a587e039d04ec)
+  remote: samueldjack/VirtualCollection
+    VirtualCollection/VirtualCollection/VirtualizingWrapPanel.cs (e63d891c252c2ac1a3ebb26dddb9a3d89effe3f2)
