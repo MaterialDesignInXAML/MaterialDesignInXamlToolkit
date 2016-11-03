@@ -13,7 +13,7 @@ namespace MaterialDesignThemes.Wpf
     {
         private readonly TimeSpan _messageDuration;
         private readonly HashSet<Snackbar> _pairedSnackbars = new HashSet<Snackbar>();
-        private readonly Queue<SnackbarMessageQueueItem> _snackbarMessages = new Queue<SnackbarMessageQueueItem>();
+        private readonly LinkedList<SnackbarMessageQueueItem> _snackbarMessages = new LinkedList<SnackbarMessageQueueItem>();
         private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _pausedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _messageWaitingEvent = new ManualResetEvent(false);
@@ -193,7 +193,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
 
-            _snackbarMessages.Enqueue(new SnackbarMessageQueueItem(content));
+            _snackbarMessages.AddLast(new SnackbarMessageQueueItem(content));
             _messageWaitingEvent.Set();
         }
 
@@ -202,11 +202,11 @@ namespace MaterialDesignThemes.Wpf
             Enqueue(content, actionContent, actionHandler, false);
         }
 
-        public void Enqueue(object content, object actionContent, Action actionHandler, bool neverConsiderToBeDuplicate)
+        public void Enqueue(object content, object actionContent, Action actionHandler, bool promote)
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
 
-            _snackbarMessages.Enqueue(new SnackbarMessageQueueItem(content, actionContent, actionHandler));
+            _snackbarMessages.AddLast(new SnackbarMessageQueueItem(content, actionContent, actionHandler));
             _messageWaitingEvent.Set();
         }
 
@@ -217,7 +217,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
-            TArgument actionArgument, bool neverConsiderToBeDuplicate)
+            TArgument actionArgument, bool promote)
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
 
@@ -230,9 +230,30 @@ namespace MaterialDesignThemes.Wpf
             }
 
             var argumentType = actionArgument != null ? typeof(TArgument) : null;
-            _snackbarMessages.Enqueue(new SnackbarMessageQueueItem(content, actionContent, actionHandler,
-                actionArgument, argumentType, neverConsiderToBeDuplicate));
+
+            var snackbarMessageQueueItem = new SnackbarMessageQueueItem(content, actionContent, actionHandler,
+                actionArgument, argumentType, promote);
+            if (promote)
+                InsertAsLastNotPromotedNode(snackbarMessageQueueItem);
+            else
+                _snackbarMessages.AddLast(snackbarMessageQueueItem);
+
             _messageWaitingEvent.Set();
+        }
+
+        private void InsertAsLastNotPromotedNode(SnackbarMessageQueueItem snackbarMessageQueueItem)
+        {
+            var node = _snackbarMessages.First;
+            while (node != null)
+            {
+                if (!node.Value.IsPromoted)
+                {
+                    _snackbarMessages.AddBefore(node, snackbarMessageQueueItem);
+                    return;
+                }
+                node = node.Next;
+            }
+            _snackbarMessages.AddLast(snackbarMessageQueueItem);
         }
 
         private async void PumpAsync()
@@ -264,9 +285,10 @@ namespace MaterialDesignThemes.Wpf
                 //show message
                 if (snackbar != null)
                 {
-                    var message = _snackbarMessages.Dequeue();
+                    var message = _snackbarMessages.First.Value;
+                    _snackbarMessages.RemoveFirst();                    
                     if (_latestShownItem == null 
-                        || message.NeverConsiderToBeDuplicate
+                        || message.IsPromoted
                         || !Equals(_latestShownItem.Item1.Content, message.Content) 
                         || !Equals(_latestShownItem.Item1.ActionContent, message.ActionContent) 
                         || _latestShownItem.Item2 <= DateTime.Now.Subtract(_messageDuration))
@@ -359,7 +381,7 @@ namespace MaterialDesignThemes.Wpf
                         durationPassedWaitHandle
                     });
                 }),
-                Task.Factory.StartNew(() => actionClickWaitHandle.WaitOne()));
+                Task.Factory.StartNew(actionClickWaitHandle.WaitOne));
         }
 
         private static void DoActionCallback(SnackbarMessageQueueItem messageQueueItem)
@@ -403,7 +425,7 @@ namespace MaterialDesignThemes.Wpf
             _isDisposed = true;                  
             _disposedEvent.Set();
             _disposedEvent.Dispose();
-            _pausedEvent.Dispose();
+            _pausedEvent.Dispose();            
         }
     }
 }

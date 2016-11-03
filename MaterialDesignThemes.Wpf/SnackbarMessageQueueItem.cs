@@ -4,14 +4,14 @@ namespace MaterialDesignThemes.Wpf
 {
     internal class SnackbarMessageQueueItem
     {
-        public SnackbarMessageQueueItem(object content, object actionContent = null, object actionHandler = null, object actionArgument = null, Type argumentType = null, bool neverConsiderToBeDuplicate = false)
+        public SnackbarMessageQueueItem(object content, object actionContent = null, object actionHandler = null, object actionArgument = null, Type argumentType = null, bool isPromoted = false)
         {
             Content = content;
             ActionContent = actionContent;
             ActionHandler = actionHandler;
             ActionArgument = actionArgument;
             ArgumentType = argumentType;
-            NeverConsiderToBeDuplicate = neverConsiderToBeDuplicate;
+            IsPromoted = isPromoted;
         }
 
         public object Content { get; }
@@ -24,6 +24,6 @@ namespace MaterialDesignThemes.Wpf
 
         public Type ArgumentType { get; }
 
-        public bool NeverConsiderToBeDuplicate { get; }
+        public bool IsPromoted { get; }
     }
 }
