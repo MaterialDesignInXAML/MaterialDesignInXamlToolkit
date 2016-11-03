@@ -38,7 +38,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ModeProperty = DependencyProperty.Register(
-            "Mode", typeof (ColorZoneMode), typeof (ColorZone), new PropertyMetadata(default(ColorZoneMode)));
+            nameof(Mode), typeof (ColorZoneMode), typeof (ColorZone), new PropertyMetadata(default(ColorZoneMode)));
 
         public ColorZoneMode Mode
         {
@@ -47,7 +47,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-            "CornerRadius", typeof (CornerRadius), typeof (ColorZone), new PropertyMetadata(default(CornerRadius)));
+            nameof(CornerRadius), typeof (CornerRadius), typeof (ColorZone), new PropertyMetadata(default(CornerRadius)));
 
         public CornerRadius CornerRadius
         {

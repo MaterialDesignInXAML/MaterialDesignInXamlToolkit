@@ -1,10 +1,12 @@
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
 using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
@@ -159,8 +161,8 @@ namespace MaterialDesignThemes.Wpf
 
             while (inputHitTest != null)
             {
-                var dataGridCell = inputHitTest as DataGridCell;
-                if (dataGridCell != null)
+                var dataGridCell = inputHitTest as DataGridCell;                
+                if (dataGridCell != null && dataGrid.Equals(dataGridCell.GetVisualAncestry().OfType<DataGrid>().FirstOrDefault()))
                 {
                     ToggleButton toggleButton;
                     ComboBox comboBox;
@@ -191,7 +193,9 @@ namespace MaterialDesignThemes.Wpf
                     return;
                 }
 
-                inputHitTest = VisualTreeHelper.GetParent(inputHitTest);
+                inputHitTest = (inputHitTest is Visual || inputHitTest is Visual3D)
+                    ? VisualTreeHelper.GetParent(inputHitTest)
+                    : null;                
             }
         }
 

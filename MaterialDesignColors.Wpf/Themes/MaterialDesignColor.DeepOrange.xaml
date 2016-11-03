@@ -13,19 +13,19 @@
   <Color x:Key="Primary500">#ff5722</Color>
   <Color x:Key="Primary500Foreground">#FFFFFFFF</Color>
   <Color x:Key="Primary600">#f4511e</Color>
-  <Color x:Key="Primary600Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Primary600Foreground">#DDFFFFFF</Color>
   <Color x:Key="Primary700">#e64a19</Color>
-  <Color x:Key="Primary700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Primary700Foreground">#DDFFFFFF</Color>
   <Color x:Key="Primary800">#d84315</Color>
-  <Color x:Key="Primary800Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Primary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="Primary900">#bf360c</Color>
-  <Color x:Key="Primary900Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Primary900Foreground">#DDFFFFFF</Color>
   <Color x:Key="Accent100">#ff9e80</Color>
   <Color x:Key="Accent100Foreground">#DD000000</Color>
   <Color x:Key="Accent200">#ff6e40</Color>
   <Color x:Key="Accent200Foreground">#DD000000</Color>
   <Color x:Key="Accent400">#ff3d00</Color>
-  <Color x:Key="Accent400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Accent400Foreground">#DDFFFFFF</Color>
   <Color x:Key="Accent700">#dd2c00</Color>
-  <Color x:Key="Accent700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Accent700Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

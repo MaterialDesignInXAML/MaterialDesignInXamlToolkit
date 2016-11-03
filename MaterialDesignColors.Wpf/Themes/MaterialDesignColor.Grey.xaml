@@ -11,7 +11,7 @@
   <Color x:Key="Primary400">#bdbdbd</Color>
   <Color x:Key="Primary400Foreground">#DD000000</Color>
   <Color x:Key="Primary500">#9e9e9e</Color>
-  <Color x:Key="Primary500Foreground">#FF000000</Color>
+  <Color x:Key="Primary500Foreground">#DD000000</Color>
   <Color x:Key="Primary600">#757575</Color>
   <Color x:Key="Primary600Foreground">#DDFFFFFF</Color>
   <Color x:Key="Primary700">#616161</Color>

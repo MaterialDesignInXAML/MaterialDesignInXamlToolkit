@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -16,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -27,21 +29,45 @@ namespace MaterialDesignColors.WpfExample
         public ProvingGround()
         {
             InitializeComponent();
-	        DataContext = new ProvingGroundViewModel();
+            DataContext = new ProvingGroundViewModel
+            {
+                SelectedTime = new DateTime(2000, 1, 1, 3, 15, 0)
+            };
+        }        
+
+        private void SnackBar3_OnClick(object sender, RoutedEventArgs e)
+        {
+            //use the message queue to send a message.
+            var messageQueue = SnackbarThree.MessageQueue;
+            var message = MessageTextBox.Text;
+
+            //the message queue can be called from any thread
+            Task.Factory.StartNew(() => messageQueue.Enqueue(message));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SnackBar4_OnClick(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://twitter.com/James_Willock");
-
+            foreach (var s in ExampleFourTextBox.Text.Split(new []{ Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                SnackbarFour.MessageQueue.Enqueue(
+                s,
+                "TRACE",
+                param => Trace.WriteLine("Actioned: " + param),
+                s);
+            }
         }
     }
 
     public class ProvingGroundViewModel : INotifyPropertyChanged
 	{
 		private string _name;
-        private readonly ObservableCollection<SelectableViewModel> _items = CreateData();
+        private DateTime? _selectedTime;
+        public ICommand ClearItems { get; }
 
+        public ProvingGroundViewModel()
+        {
+             ClearItems = new AnotherCommandImplementation(_ => Items.Clear());
+        }
 
         public string Name
 		{
@@ -53,9 +79,17 @@ namespace MaterialDesignColors.WpfExample
 			}
 		}
 
-        public ObservableCollection<SelectableViewModel> Items
+        public ObservableCollection<SelectableViewModel> Items { get; } = CreateData();
+
+        public DateTime? SelectedTime
         {
-            get { return _items; }
+            get { return _selectedTime; }
+            set
+            {
+                _selectedTime = value;
+                System.Diagnostics.Debug.WriteLine(((object)_selectedTime ?? "NULL").ToString());
+                OnPropertyChanged();
+            }
         }
 
         private static ObservableCollection<SelectableViewModel> CreateData()
@@ -87,9 +121,7 @@ namespace MaterialDesignColors.WpfExample
 
 		protected virtual void OnPropertyChanged(string propertyName = null)
 		{
-			if (PropertyChanged != null)
-				PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

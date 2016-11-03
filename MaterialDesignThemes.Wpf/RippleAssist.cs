@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -7,7 +8,7 @@ namespace MaterialDesignThemes.Wpf
         #region ClipToBound
 
         public static readonly DependencyProperty ClipToBoundsProperty = DependencyProperty.RegisterAttached(
-            "ClipToBounds", typeof (bool), typeof (RippleAssist), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
+            "ClipToBounds", typeof(bool), typeof(RippleAssist), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
         public static void SetClipToBounds(DependencyObject element, bool value)
         {
@@ -16,7 +17,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static bool GetClipToBounds(DependencyObject element)
         {
-            return (bool) element.GetValue(ClipToBoundsProperty);
+            return (bool)element.GetValue(ClipToBoundsProperty);
         }
 
         #endregion
@@ -53,6 +54,35 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
+        #region disable 
+
+        /// <summary>
+        /// Set to <c>True</c> to disable ripple effect
+        /// </summary>
+        public static readonly DependencyProperty IsDisabledProperty = DependencyProperty.RegisterAttached(
+            "IsDisabled", typeof(bool), typeof(RippleAssist), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
+
+        /// <summary>
+        /// Set to <c>True</c> to disable ripple effect
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetIsDisabled(DependencyObject element, bool value)
+        {
+            element.SetValue(IsDisabledProperty, value);
+        }
+
+        /// <summary>
+        /// Set to <c>True</c> to disable ripple effect
+        /// </summary>
+        /// <param name="element"></param>        
+        public static bool GetIsDisabled(DependencyObject element)
+        {
+            return (bool)element.GetValue(IsDisabledProperty);
+        }
+
+        #endregion
+
         #region RippleSizeMultiplier
 
         public static readonly DependencyProperty RippleSizeMultiplierProperty = DependencyProperty.RegisterAttached(
@@ -69,6 +99,24 @@ namespace MaterialDesignThemes.Wpf
         }
 
         #endregion
+
+        #region Feedback
+
+        public static readonly DependencyProperty FeedbackProperty = DependencyProperty.RegisterAttached(
+            "Feedback", typeof(Brush), typeof(RippleAssist), new FrameworkPropertyMetadata(default(Brush), FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static void SetFeedback(DependencyObject element, Brush value)
+        {
+            element.SetValue(FeedbackProperty, value);
+        }
+
+        public static Brush GetFeedback(DependencyObject element)
+        {
+            return (Brush)element.GetValue(FeedbackProperty);
+        }
+
+        #endregion
+
 
     }
 }

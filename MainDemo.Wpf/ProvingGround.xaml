@@ -4,38 +4,216 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+             xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:provingGroundStuff="clr-namespace:MaterialDesignDemo.ProvingGroundStuff"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal" 
+             TextOptions.TextRenderingMode="Auto"        
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{StaticResource MaterialDesignFont}"
              mc:Ignorable="d"              
-			 d:DesignWidth="477" d:DesignHeight="272">
+			 d:DesignWidth="477" d:DesignHeight="272"
+             d:DataContext="{d:DesignInstance wpfExample:ProvingGroundViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <!--
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                -->
             </ResourceDictionary.MergedDictionaries>
+
+
+
+            <Style TargetType="{x:Type provingGroundStuff:MeasuringTextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
+
+
+
         </ResourceDictionary>
     </UserControl.Resources>
 
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+        <Grid Margin="0 0 0 4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="340" />
+                <ColumnDefinition Width="340" />
+                <ColumnDefinition Width="340" />
+                <ColumnDefinition Width="340" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-    <StackPanel Margin="24" HorizontalAlignment="Stretch">
-        <materialDesign:PopupBox x:Name="PopupBox" HorizontalAlignment="Right">
-            <ListBox>
-                <ListBoxItem>One One One</ListBoxItem>
-                <ListBoxItem>Two Two Two</ListBoxItem>
-                <ListBoxItem>Three Three Three</ListBoxItem>
-            </ListBox>
-        </materialDesign:PopupBox>
-        <Button Margin="0 8 0 0">Hello</Button>
-        <ComboBox Margin="0 8 0 0">
-            <ComboBoxItem>One One One</ComboBoxItem>
-            <ComboBoxItem>Two Two Two</ComboBoxItem>
-            <ComboBoxItem>Three Three Three</ComboBoxItem>
-        </ComboBox>
-        <TextBlock Margin="0 8 0 0" Text="{Binding ElementName=PopupBox, Path=IsPopupOpen}" />
-    </StackPanel>
+            <!-- example 1 -->
+            <Border Background="{DynamicResource MaterialDesignSelection}" 
+                    Padding="8 0 8 0">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 1.</TextBlock>
+                        <TextBlock TextWrapping="WrapWithOverflow" >Simple definition within XAML. Use the toggle to display the message.</TextBlock>
+                        <ToggleButton IsChecked="{Binding ElementName=SnackbarOne, Path=IsActive, Mode=TwoWay}"
+                                      Margin="0 8 0 0"/>
+                    </StackPanel>
+                    
 
+                    <!-- simplest form -->
+                    <materialDesign:Snackbar Message="hello 1" 
+                                             IsActive="False"
+                                             x:Name="SnackbarOne" />
+                </Grid>
+            </Border>
+
+            <!-- example 2 -->
+            <Border Background="{DynamicResource MaterialDesignPaper}" 
+                    Padding="8 0 8 0"
+                    Grid.Column="1">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 2.</TextBlock>
+                        <TextBlock TextWrapping="WrapWithOverflow" >View source to see message defined in long hand, allowing action button content to be set.</TextBlock>
+                        <ToggleButton IsChecked="{Binding ElementName=SnackbarTwo, Path=IsActive, Mode=TwoWay}"
+                                      Margin="0 8 0 0" />
+                    </StackPanel>                    
+                    
+                    <!-- long hand form for setting the message -->
+                    <materialDesign:Snackbar IsActive="False"
+                                              x:Name="SnackbarTwo" >
+                        <materialDesign:SnackbarMessage Content="Hello 2" ActionContent="UNDO" />
+                    </materialDesign:Snackbar>
+                </Grid>
+            </Border>
+
+            <!-- example 3 -->
+            <!--
+                    * using a message queue to manage queuing of messages, and getting onto correct thread
+                    * notice the shorthand syntax {materialDesign:MessageQueue} for creating a new message 
+                    queue without expanded XAML. useful in code-behind scenarios if you dont want to bind 
+                    a message queue in to the snackbar.
+                -->
+            <Border Background="{DynamicResource MaterialDesignSelection}" 
+                    Padding="8 0 8 0"                
+                    Grid.Column="2">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 3.</TextBlock>
+                        <TextBlock TextWrapping="WrapWithOverflow">In many real world scenario, notification display must deal with threading, queuing, and potentially heavy usage. A MessageQueue can be set to handle much of this for you, gicing the following benefits:</TextBlock>
+                        <TextBlock TextWrapping="WrapWithOverflow" Margin="0 8 0 0" Text=" • Messages can be queued from any thread"/>
+                        <TextBlock TextWrapping="WrapWithOverflow" Text=" • Message will auto hide after a time out period"/>
+                        <TextBlock TextWrapping="WrapWithOverflow" Text=" • Notification will not time out if mouse is over it"/>
+                        <TextBlock TextWrapping="WrapWithOverflow" Text=" • Can be paired with a DialogHost so timeout will pause if a active dialog"/>
+                        <TextBlock TextWrapping="WrapWithOverflow" Text=" • Duplicate within a short period will be discarded"/>
+                        <TextBlock TextWrapping="WrapWithOverflow" Text=" • A single message queue can be shared acros multiple Windows"/>
+                        <TextBlock TextWrapping="WrapWithOverflow" Text=" • Works with code-behind and MVVM"/>
+                        <Grid Margin="0 16 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="MessageTextBox" VerticalAlignment="Top"
+                                     Grid.Column="0">Hello World</TextBox>
+                            <Button Click="SnackBar3_OnClick" Margin="16 0 0 0"
+                                    Grid.Column="1">Send</Button>
+                        </Grid>
+                        
+                        
+                    </StackPanel>
+                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
+                                             x:Name="SnackbarThree" />
+                </Grid>
+            </Border>
+
+            <!-- example 4 -->
+            <!-- illustrates queueing uses some action command call backs -->
+            <Border Background="{DynamicResource MaterialDesignPaper}" 
+                    Padding="8 0 8 0"                
+                    Grid.Column="3">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 4.</TextBlock>
+                        <TextBlock TextWrapping="WrapWithOverflow">Illustrates queueing (including discarding of duplicates), and handling of commands. Action a notification to see a System.Trace response..</TextBlock>
+                        <Grid Margin="0 16 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox AcceptsReturn="True" x:Name="ExampleFourTextBox" TextWrapping="Wrap"
+                                 Text="Message One&#x0d;&#x0a;Message Two&#x0d;&#x0a;Message Three&#x0d;&#x0a;Duplicate&#x0d;&#x0a;Duplicate&#x0d;&#x0a;Duplicate&#x0d;&#x0a;Start Fresh&#x0d;&#x0a;Goodbye" />
+                            <Button Click="SnackBar4_OnClick" HorizontalAlignment="Center" Grid.Column="1">Send</Button>
+                        </Grid>
+                    </StackPanel>
+                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
+                                              x:Name="SnackbarFour" />
+                </Grid>
+            </Border>
+
+            <!-- example 5 -->
+            <!-- full width snack bar -->
+            <Border Background="{DynamicResource MaterialDesignChipBackground}" 
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1">
+                <StackPanel VerticalAlignment="Bottom">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Margin="0 0 0 32">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 5.</TextBlock>
+                        <TextBlock TextWrapping="WrapWithOverflow">Illustrates a full width Snackbar.</TextBlock>
+                        <ToggleButton IsChecked="{Binding ElementName=SnackbarFive, Path=IsActive, Mode=TwoWay}"
+                                      Margin="0 8 0 0" />
+                    </StackPanel>
+                    <materialDesign:Snackbar HorizontalAlignment="Stretch"
+                                             x:Name="SnackbarFive">
+                        <materialDesign:SnackbarMessage Content="This Snackbar is stretched horizontally. Consider allowing your content to push up."                                                    
+                                                        ActionContent="OK" />
+                    </materialDesign:Snackbar>
+                </StackPanel>
+            </Border>
+
+            <!-- example 6 -->
+            <!-- colour variations -->
+            <Border Grid.Column="2" Grid.Row="1">
+                <Border.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                            <!-- here is where you can get additional snackbar button styles from -->
+                            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Snackbar.xaml" />
+                        </ResourceDictionary.MergedDictionaries>
+                    </ResourceDictionary>
+                </Border.Resources>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Example 6.</TextBlock>
+                    <TextBlock TextWrapping="WrapWithOverflow">Action button colour variations.</TextBlock>
+                    <materialDesign:Snackbar Margin="0 8 0 0" IsActive="True"> 
+                        <materialDesign:SnackbarMessage Content="Default - accent"                                                    
+                                                        ActionContent="ACCENT" />
+                    </materialDesign:Snackbar>
+                    <materialDesign:Snackbar Margin="0 8 0 0"
+                                             IsActive="True"
+                                             ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionLightButton}">
+                        <materialDesign:SnackbarMessage Content="Primary Light"                                                    
+                                                        ActionContent="LIGHT" />
+                    </materialDesign:Snackbar>
+                    <materialDesign:Snackbar Margin="0 8 0 0"
+                                             IsActive="True"
+                                             ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionMidButton}">
+                        <materialDesign:SnackbarMessage Content="Primary Mid"                                                    
+                                                        ActionContent="MID" />
+                    </materialDesign:Snackbar>
+                    <materialDesign:Snackbar Margin="0 8 0 0"
+                                             IsActive="True"
+                                             ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionDarkButton}">
+                        <materialDesign:SnackbarMessage Content="Primary Dark"                                                    
+                                                        ActionContent="DARK" />
+                    </materialDesign:Snackbar>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

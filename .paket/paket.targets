@@ -16,10 +16,11 @@
     <PaketBootStrapperExePath Condition=" '$(PaketBootStrapperExePath)' == '' ">$(PaketToolsPath)paket.bootstrapper.exe</PaketBootStrapperExePath>
     <PaketCommand Condition=" '$(OS)' == 'Windows_NT'">"$(PaketExePath)"</PaketCommand>
     <PaketCommand Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319 "$(PaketExePath)"</PaketCommand>
-    <PaketBootStrapperCommand Condition=" '$(OS)' == 'Windows_NT'">"$(PaketBootStrapperExePath)"</PaketBootStrapperCommand>
-    <PaketBootStrapperCommand Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319 $(PaketBootStrapperExePath)</PaketBootStrapperCommand>
+    <PaketBootStrapperCommand Condition=" '$(OS)' == 'Windows_NT'">"$(PaketBootStrapperExePath)" $(PaketBootStrapperCommandArgs)</PaketBootStrapperCommand>
+    <PaketBootStrapperCommand Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319 $(PaketBootStrapperExePath) $(PaketBootStrapperCommandArgs)</PaketBootStrapperCommand>
     <!-- Commands -->
     <PaketReferences Condition="!Exists('$(MSBuildProjectFullPath).paket.references')">$(MSBuildProjectDirectory)\paket.references</PaketReferences>
+    <PaketReferences Condition="!Exists('$(PaketReferences)')">$(MSBuildStartupDirectory)\paket.references</PaketReferences>
     <PaketReferences Condition="Exists('$(MSBuildProjectFullPath).paket.references')">$(MSBuildProjectFullPath).paket.references</PaketReferences>
     <RestoreCommand>$(PaketCommand) restore --references-files "$(PaketReferences)"</RestoreCommand>
     <DownloadPaketCommand>$(PaketBootStrapperCommand)</DownloadPaketCommand>
@@ -35,6 +36,6 @@
     <Exec Command="$(DownloadPaketCommand)" IgnoreStandardErrorWarningFormat="true" Condition=" '$(DownloadPaket)' == 'true' AND !Exists('$(PaketExePath)')" />
   </Target>
   <Target Name="RestorePackages" DependsOnTargets="CheckPrerequisites">
-    <Exec Command="$(RestoreCommand)" IgnoreStandardErrorWarningFormat="true" WorkingDirectory="$(PaketRootPath)" Condition="Exists('$(PaketReferences)')" />
+    <Exec Command="$(RestoreCommand)" IgnoreStandardErrorWarningFormat="true" WorkingDirectory="$(PaketRootPath)" Condition="Exists('$(PaketReferences)')" ContinueOnError="true" />
   </Target>
 </Project>
