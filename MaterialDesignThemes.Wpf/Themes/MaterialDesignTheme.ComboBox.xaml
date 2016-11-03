@@ -487,7 +487,7 @@
                     <Condition Property="IsDropDownOpen" Value="True"/>
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Underline" Property="Visibility" Value="Hidden"/>
-                <Setter TargetName="toggleButton" Property="Visibility" Value="Hidden"/>
+                <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
