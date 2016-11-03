@@ -78,7 +78,7 @@
         </TextBox>
         <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">OS</TextBlock>
         <ComboBox Grid.Row="1" Grid.Column="3" materialDesign:HintAssist.Hint="OS">
-            <ComboBoxItem>Andoid</ComboBoxItem>
+            <ComboBoxItem>Android</ComboBoxItem>
             <ComboBoxItem>iOS</ComboBoxItem>
             <ComboBoxItem>Linux</ComboBoxItem>
             <ComboBoxItem>Windows</ComboBoxItem>
@@ -115,7 +115,8 @@
         <TextBox Grid.Row="4" Grid.Column="1" materialDesign:HintAssist.Hint="Floating Hint" 
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
         <ComboBox Grid.Row="4" Grid.Column="3" materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-            <ComboBoxItem>Andoid</ComboBoxItem>
+            <ComboBoxItem />
+            <ComboBoxItem>Android</ComboBoxItem>
             <ComboBoxItem>iOS</ComboBoxItem>
             <ComboBoxItem>Linux</ComboBoxItem>
             <ComboBoxItem>Windows</ComboBoxItem>
