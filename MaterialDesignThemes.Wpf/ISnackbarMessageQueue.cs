@@ -41,9 +41,8 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="content">Message.</param>
         /// <param name="actionContent">Content for the action button.</param>
         /// <param name="actionHandler">Call back to be executed if user clicks the action button.</param>
-        /// <param name="neverConsiderToBeDuplicate">Subsequent, duplicate messages queued within a short time span will 
-        /// be discarded. To override this behaviour and ensure the message always gets displayed set to <c>true</c>.</param>
-        void Enqueue(object content, object actionContent, Action actionHandler, bool neverConsiderToBeDuplicate);
+        /// <param name="promote">The message will promoted to the front ot the queue and never considered to be a duplicate.</param>
+        void Enqueue(object content, object actionContent, Action actionHandler, bool promote);
 
         /// <summary>
         /// Queues a notificaton message for display in a snackbar.
@@ -52,11 +51,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="actionContent">Content for the action button.</param>
         /// <param name="actionHandler">Call back to be executed if user clicks the action button.</param>
         /// <param name="actionArgument">Argument to pass to <paramref name="actionHandler"/>.</param>
-        /// <param name="neverConsiderToBeDuplicate">Subsequent, duplicate messages queued within a short time span will 
-        /// be discarded. To override this behaviour and ensure the message always gets displayed set to <c>true</c>.</param>        
-        void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler, TArgument actionArgument, bool neverConsiderToBeDuplicate);
-
-        //TODO consider additional variants of Enqueue:
-        // ShowAsync(. . .)
+        /// <param name="promote">The message will promoted to the front ot the queue and never considered to be a duplicate.</param>
+        void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler, TArgument actionArgument, bool promote);
     }
 }
