@@ -150,7 +150,7 @@ namespace MaterialDesignThemes.Wpf
 
         protected virtual void OnHintProxyContentChanged(object sender, EventArgs e)
         {
-            IsContentNullOrEmpty = string.IsNullOrEmpty((HintProxy.Content ?? "").ToString());
+            IsContentNullOrEmpty = HintProxy.IsEmpty();
 
             if (HintProxy.IsLoaded)
             {
@@ -182,7 +182,7 @@ namespace MaterialDesignThemes.Wpf
 
             var action = new Action(() =>
             {
-                var state = String.IsNullOrEmpty((proxy.Content ?? String.Empty).ToString())
+                var state = proxy.IsEmpty()
                     ? ContentEmptyName
                     : ContentNotEmptyName;
             
@@ -198,5 +198,7 @@ namespace MaterialDesignThemes.Wpf
                 Dispatcher.BeginInvoke(action);
             }
         }
+
+
     }
 }
