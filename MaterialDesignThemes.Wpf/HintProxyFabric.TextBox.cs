@@ -11,8 +11,12 @@ namespace MaterialDesignThemes.Wpf
             private readonly TextBox _textBox;
 
             public object Content => _textBox.Text;
+
             public bool IsLoaded => _textBox.IsLoaded;
+
             public bool IsVisible => _textBox.IsVisible;
+
+            public bool IsEmpty() => string.IsNullOrWhiteSpace(_textBox.Text);
 
             public event EventHandler ContentChanged;
             public event EventHandler IsVisibleChanged;

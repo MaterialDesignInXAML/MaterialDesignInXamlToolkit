@@ -25,7 +25,7 @@ namespace MaterialDesignThemes.Wpf
                         return _comboBox.Text;
                     }
 
-                    ComboBoxItem comboBoxItem = _comboBox.SelectedItem as ComboBoxItem;
+                    var comboBoxItem = _comboBox.SelectedItem as ComboBoxItem;
                     return comboBoxItem != null 
                         ? comboBoxItem.Content
                         : _comboBox.SelectedItem;
@@ -33,10 +33,18 @@ namespace MaterialDesignThemes.Wpf
             }
 
             public bool IsLoaded => _comboBox.IsLoaded;
-            public bool IsVisible => _comboBox.IsVisible;
+
+            public bool IsVisible => _comboBox.IsVisible;            
+
+            public bool IsEmpty()
+            {
+                return string.IsNullOrWhiteSpace(_comboBox.Text);
+            }
 
             public event EventHandler ContentChanged;
+
             public event EventHandler IsVisibleChanged;
+
             public event EventHandler Loaded;
 
             public ComboBoxHintProxy(ComboBox comboBox)
