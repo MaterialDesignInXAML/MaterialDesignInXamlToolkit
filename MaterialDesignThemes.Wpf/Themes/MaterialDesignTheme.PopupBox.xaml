@@ -93,7 +93,12 @@
                                                                                          To="0.1" Duration="0"/>
                                                                     </Storyboard>
                                                                 </VisualState>
-                                                                <VisualState Name="Disabled"/>
+                                                                <VisualState Name="Disabled">
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                                         To="0.48" Duration="0"/>
+                                                                    </Storyboard>
+                                                                </VisualState>
                                                             </VisualStateGroup>
                                                         </VisualStateManager.VisualStateGroups>
                                                         <Border x:Name="MouseOverBorder"

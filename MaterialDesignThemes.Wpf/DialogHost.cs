@@ -69,7 +69,9 @@ namespace MaterialDesignThemes.Wpf
         private DialogOpenedEventHandler _attachedDialogOpenedEventHandler;
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;        
         private object _closeDialogExecutionParameter;
-        private IInputElement _restoreFocus;
+        private IInputElement _restoreFocusDialogClose;        
+        private IInputElement _restoreFocusWindowReactivation;
+        private Action _currentSnackbarMessageQueueUnPauseAction = null;
         private Action _closeCleanUp = () => { };
 
         static DialogHost()
@@ -236,8 +238,8 @@ namespace MaterialDesignThemes.Wpf
 
         private static void IsOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var dialogHost = (DialogHost)dependencyObject;
-            
+            var dialogHost = (DialogHost)dependencyObject;            
+
             if (dialogHost._popupContentControl != null)
                 ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
             VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
@@ -245,20 +247,29 @@ namespace MaterialDesignThemes.Wpf
             if (dialogHost.IsOpen)
             {
                 WatchWindowActivation(dialogHost);
+                dialogHost._currentSnackbarMessageQueueUnPauseAction = dialogHost.SnackbarMessageQueue?.Pause();
             }
             else
             {
                 dialogHost._asyncShowWaitHandle.Set();
                 dialogHost._attachedDialogClosingEventHandler = null;
+                if (dialogHost._currentSnackbarMessageQueueUnPauseAction != null)
+                {
+                    dialogHost._currentSnackbarMessageQueueUnPauseAction();
+                    dialogHost._currentSnackbarMessageQueueUnPauseAction = null;
+                }
                 dialogHost._session.IsEnded = true;
                 dialogHost._session = null;
                 dialogHost._closeCleanUp();
-                
+                dialogHost.Dispatcher.InvokeAsync(() => dialogHost._restoreFocusDialogClose.Focus(), DispatcherPriority.Input);
+
                 return;
             }
 
             dialogHost._asyncShowWaitHandle.Reset();
             dialogHost._session = new DialogSession(dialogHost);
+            var window = Window.GetWindow(dialogHost);
+            dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
 
             //multiple ways of calling back that the dialog has opened:
             // * routed event
@@ -369,6 +380,32 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(CloseOnClickAwayParameterProperty, value); }
         }
 
+        public static readonly DependencyProperty SnackbarMessageQueueProperty = DependencyProperty.Register(
+            "SnackbarMessageQueue", typeof(SnackbarMessageQueue), typeof(DialogHost), new PropertyMetadata(default(SnackbarMessageQueue), SnackbarMessageQueuePropertyChangedCallback));
+
+        private static void SnackbarMessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var dialogHost = (DialogHost) dependencyObject;
+            if (dialogHost._currentSnackbarMessageQueueUnPauseAction != null)
+            {
+                dialogHost._currentSnackbarMessageQueueUnPauseAction();
+                dialogHost._currentSnackbarMessageQueueUnPauseAction = null;
+            }
+
+            if (!dialogHost.IsOpen) return;
+            var snackbarMessageQueue = dependencyPropertyChangedEventArgs.NewValue as SnackbarMessageQueue;
+            dialogHost._currentSnackbarMessageQueueUnPauseAction = snackbarMessageQueue?.Pause();
+        }        
+
+        /// <summary>
+        /// Allows association of a snackbar, so that notifications can be paused whilst a dialog is being displayed.
+        /// </summary>
+        public SnackbarMessageQueue SnackbarMessageQueue
+        {
+            get { return (SnackbarMessageQueue) GetValue(SnackbarMessageQueueProperty); }
+            set { SetValue(SnackbarMessageQueueProperty, value); }
+        }
+
         public override void OnApplyTemplate()
         {
             if (_contentCoverGrid != null)
@@ -474,7 +511,7 @@ namespace MaterialDesignThemes.Wpf
         }        
 
         public static readonly DependencyProperty DialogClosingCallbackProperty = DependencyProperty.Register(
-            nameof(DialogClosingCallback), typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
+            nameof(DialogClosingCallback), typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));        
 
         /// <summary>
         /// Callback fired when the <see cref="DialogClosing"/> event is fired, allowing the event to be processed from a binding/view model.
@@ -645,16 +682,16 @@ namespace MaterialDesignThemes.Wpf
 
         private void WindowOnDeactivated(object sender, EventArgs eventArgs)
         {            
-            _restoreFocus = _popup != null ? FocusManager.GetFocusedElement((Window)sender) : null;
+            _restoreFocusWindowReactivation = _popup != null ? FocusManager.GetFocusedElement((Window)sender) : null;
         }
 
         private void WindowOnActivated(object sender, EventArgs eventArgs)
         {
-            if (_restoreFocus != null)
+            if (_restoreFocusWindowReactivation != null)
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {                    
-                    Keyboard.Focus(_restoreFocus);
+                    Keyboard.Focus(_restoreFocusWindowReactivation);
                 }));
             }
         }

@@ -60,6 +60,9 @@
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
                         </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
+                        </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
@@ -128,6 +131,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignFlatAccentButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
@@ -199,6 +206,9 @@
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
                         </Trigger>
                     </ControlTemplate.Triggers>

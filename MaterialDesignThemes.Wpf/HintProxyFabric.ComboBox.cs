@@ -16,9 +16,21 @@ namespace MaterialDesignThemes.Wpf
             private readonly ComboBox _comboBox;
             private readonly TextChangedEventHandler _comboBoxTextChangedEventHandler;
 
-            public object Content => _comboBox.IsEditable 
-                ? _comboBox.Text 
-                : _comboBox.SelectedItem != null ? " " : null;
+            public object Content
+            {
+                get
+                {
+                    if (_comboBox.IsEditable)
+                    {
+                        return _comboBox.Text;
+                    }
+
+                    ComboBoxItem comboBoxItem = _comboBox.SelectedItem as ComboBoxItem;
+                    return comboBoxItem != null 
+                        ? comboBoxItem.Content
+                        : _comboBox.SelectedItem;
+                }
+            }
 
             public bool IsLoaded => _comboBox.IsLoaded;
             public bool IsVisible => _comboBox.IsVisible;

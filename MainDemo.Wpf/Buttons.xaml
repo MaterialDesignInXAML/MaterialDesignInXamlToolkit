@@ -247,7 +247,7 @@
                     Mate
                 </CheckBox>
                 <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" 
-                      IsEnabled="False">
+                          IsEnabled="False"  IsChecked="True">
                     Disabled
                 </CheckBox>
             </StackPanel>
@@ -303,7 +303,29 @@
                 </ListBoxItem>
             </ListBox>
 
-            <ListBox Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignToolToggleListBox}" 
+            <ListBox Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignToolToggleFlatListBox}" SelectedIndex="0">
+                <ListBox.ToolTip>
+                    <StackPanel>
+                        <TextBlock Text="MaterialDesignToolToggleFlatListBox" />
+                        <TextBlock Text="Exclusive selection" />
+                        <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                    </StackPanel>
+                </ListBox.ToolTip>
+                <ListBoxItem>
+                    <materialDesign:PackIcon Kind="FormatAlignLeft"/>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <materialDesign:PackIcon Kind="FormatAlignCenter"/>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <materialDesign:PackIcon Kind="FormatAlignRight"/>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <materialDesign:PackIcon Kind="FormatAlignJustify"/>
+                </ListBoxItem>
+            </ListBox>
+            
+            <ListBox Grid.Column="1" Grid.Row="2" Style="{StaticResource MaterialDesignToolToggleListBox}" 
                  SelectionMode="Extended"
                  Margin="0 8 0 0">
                 <ListBox.ToolTip>

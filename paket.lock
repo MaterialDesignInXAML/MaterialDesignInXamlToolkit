@@ -3,7 +3,7 @@ NUGET
   remote: https://www.nuget.org/api/v2
     Castle.Core (3.3.3) - framework: net452
     Dragablz (0.0.3.165)
-    MahApps.Metro (1.2.4)
+    MahApps.Metro (1.3)
     Moq (4.5.10) - framework: net452
       Castle.Core (>= 3.3.3)
     NSubstitute (1.10) - framework: net452
@@ -23,7 +23,7 @@ NUGET
       xunit.extensibility.core (2.1)
 GITHUB
   remote: ControlzEx/ControlzEx
-    src/ControlzEx/PackIconBase.cs (72aa238cd565ef63e8d52c29982a587e039d04ec)
+    src/ControlzEx/PackIconBase.cs (10d0bab474eb73a846e3993175c8357a7fa95c07)
     src/ControlzEx/PopupEx.cs (72aa238cd565ef63e8d52c29982a587e039d04ec)
   remote: samueldjack/VirtualCollection
     VirtualCollection/VirtualCollection/VirtualizingWrapPanel.cs (e63d891c252c2ac1a3ebb26dddb9a3d89effe3f2)

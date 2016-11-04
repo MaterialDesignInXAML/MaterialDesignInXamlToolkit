@@ -16,6 +16,7 @@
     <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
     <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
     <system:Double x:Key="PopupLeftRightMargin">16</system:Double>
+    <system:Boolean x:Key="TrueValue">True</system:Boolean>
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -486,7 +487,7 @@
                     <Condition Property="IsDropDownOpen" Value="True"/>
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Underline" Property="Visibility" Value="Hidden"/>
-                <Setter TargetName="toggleButton" Property="Visibility" Value="Hidden"/>
+                <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -574,9 +575,11 @@
             </Trigger>
             <Trigger Property="IsEditable" Value="true">
                 <Setter Property="IsTabStop" Value="false" />
-                <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True"/>
+                <!-- designer prefers hard bool -->
+                <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="{StaticResource TrueValue}" />
             </Trigger>
-            <Trigger Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True">
+            <!-- designer prefers hard bool -->
+            <Trigger Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="{StaticResource TrueValue}" >
                 <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
             </Trigger>
         </Style.Triggers>

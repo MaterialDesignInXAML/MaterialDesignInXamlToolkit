@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -32,27 +33,28 @@ namespace MaterialDesignColors.WpfExample
             {
                 SelectedTime = new DateTime(2000, 1, 1, 3, 15, 0)
             };
+        }        
+
+        private void SnackBar3_OnClick(object sender, RoutedEventArgs e)
+        {
+            //use the message queue to send a message.
+            var messageQueue = SnackbarThree.MessageQueue;
+            var message = MessageTextBox.Text;
+
+            //the message queue can be called from any thread
+            Task.Factory.StartNew(() => messageQueue.Enqueue(message));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SnackBar4_OnClick(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://twitter.com/James_Willock");
-
-        }
-
-        private void ButtonsDemoChip_OnClick(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Chip clicked.");
-        }
-
-        private void ButtonsDemoChip_OnDeleteClick(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Chip delete clicked.");
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            new PaletteHelper().QueryPalette();
+            foreach (var s in ExampleFourTextBox.Text.Split(new []{ Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                SnackbarFour.MessageQueue.Enqueue(
+                s,
+                "TRACE",
+                param => Trace.WriteLine("Actioned: " + param),
+                s);
+            }
         }
     }
 
