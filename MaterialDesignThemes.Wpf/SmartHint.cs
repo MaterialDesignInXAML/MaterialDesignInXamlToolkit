@@ -52,13 +52,18 @@ namespace MaterialDesignThemes.Wpf
 
         #region IsContentNullOrEmpty
 
-        public static readonly DependencyProperty IsContentNullOrEmptyProperty = DependencyProperty.Register(
-            nameof(IsContentNullOrEmpty), typeof(bool), typeof(SmartHint), new PropertyMetadata(default(bool)));
+        private static readonly DependencyPropertyKey IsContentNullOrEmptyPropertyKey =
+            DependencyProperty.RegisterReadOnly(
+                "IsContentNullOrEmpty", typeof(bool), typeof(SmartHint),
+                new PropertyMetadata(default(bool)));
+
+        public static readonly DependencyProperty IsContentNullOrEmptyProperty =
+            IsContentNullOrEmptyPropertyKey.DependencyProperty;
 
         public bool IsContentNullOrEmpty
         {
-            get { return (bool)GetValue(IsContentNullOrEmptyProperty); }
-            set { SetValue(IsContentNullOrEmptyProperty, value); }
+            get { return (bool) GetValue(IsContentNullOrEmptyProperty); }
+            private set { SetValue(IsContentNullOrEmptyPropertyKey, value); }
         }
 
         #endregion
