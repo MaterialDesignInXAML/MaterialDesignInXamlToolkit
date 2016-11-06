@@ -6,7 +6,8 @@
     <SolidColorBrush x:Key="ValidationErrorBrush" Color="{StaticResource ValidationErrorColor}"/>
 
     <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FF000000" po:Freeze="True" />
-    <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF37474f" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF303030" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignCardBackground" Color="#FF424242" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignBody" Color="#DDFFFFFF" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignBodyLight" Color="#89FFFFFF" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignColumnHeader" Color="#BCFFFFFF" po:Freeze="True" /><!-- 74% -->
