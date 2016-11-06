@@ -9,8 +9,6 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class ComboBoxAssist
     {
-        #region ShowSelectedItem
-
         /// <summary>
         /// By default the selected item his hidden from the drop down list, as per Material Design specifications. 
         /// To revert to a more classic Windows desktop behaviour, and show the currently selected item again in the drop
@@ -32,7 +30,5 @@ namespace MaterialDesignThemes.Wpf
         {
             element.SetValue(ShowSelectedItemProperty, value);
         }
-
-        #endregion
     }
 }

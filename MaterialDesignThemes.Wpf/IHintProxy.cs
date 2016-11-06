@@ -14,6 +14,14 @@ namespace MaterialDesignThemes.Wpf
     /// </summary>
     public interface IHintProxy : IDisposable
     {
+        /// <summary>
+        /// Checks to see if the targetted control can be deemed as logically 
+        /// empty, even if not null, affecting the current hint display.
+        /// </summary>
+        /// <returns></returns>
+        bool IsEmpty();
+
+        [Obsolete]
         object Content { get; }
 
         bool IsLoaded { get; }

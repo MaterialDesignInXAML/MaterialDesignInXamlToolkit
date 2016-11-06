@@ -52,13 +52,18 @@ namespace MaterialDesignThemes.Wpf
 
         #region IsContentNullOrEmpty
 
-        public static readonly DependencyProperty IsContentNullOrEmptyProperty = DependencyProperty.Register(
-            nameof(IsContentNullOrEmpty), typeof(bool), typeof(SmartHint), new PropertyMetadata(default(bool)));
+        private static readonly DependencyPropertyKey IsContentNullOrEmptyPropertyKey =
+            DependencyProperty.RegisterReadOnly(
+                "IsContentNullOrEmpty", typeof(bool), typeof(SmartHint),
+                new PropertyMetadata(default(bool)));
+
+        public static readonly DependencyProperty IsContentNullOrEmptyProperty =
+            IsContentNullOrEmptyPropertyKey.DependencyProperty;
 
         public bool IsContentNullOrEmpty
         {
-            get { return (bool)GetValue(IsContentNullOrEmptyProperty); }
-            set { SetValue(IsContentNullOrEmptyProperty, value); }
+            get { return (bool) GetValue(IsContentNullOrEmptyProperty); }
+            private set { SetValue(IsContentNullOrEmptyPropertyKey, value); }
         }
 
         #endregion
@@ -150,7 +155,7 @@ namespace MaterialDesignThemes.Wpf
 
         protected virtual void OnHintProxyContentChanged(object sender, EventArgs e)
         {
-            IsContentNullOrEmpty = string.IsNullOrEmpty((HintProxy.Content ?? "").ToString());
+            IsContentNullOrEmpty = HintProxy.IsEmpty();
 
             if (HintProxy.IsLoaded)
             {
@@ -182,7 +187,7 @@ namespace MaterialDesignThemes.Wpf
 
             var action = new Action(() =>
             {
-                var state = String.IsNullOrEmpty((proxy.Content ?? String.Empty).ToString())
+                var state = proxy.IsEmpty()
                     ? ContentEmptyName
                     : ContentNotEmptyName;
             
@@ -198,5 +203,7 @@ namespace MaterialDesignThemes.Wpf
                 Dispatcher.BeginInvoke(action);
             }
         }
+
+
     }
 }

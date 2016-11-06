@@ -9,8 +9,12 @@ namespace MaterialDesignThemes.Wpf
         {
             private readonly PasswordBox _passwordBox;
 
+            public bool IsEmpty() => string.IsNullOrWhiteSpace(_passwordBox.Password);          
+
             public object Content => _passwordBox.Password;
+
             public bool IsLoaded => _passwordBox.IsLoaded;
+
             public bool IsVisible => _passwordBox.IsVisible;
 
             public event EventHandler ContentChanged;
