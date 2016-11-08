@@ -644,9 +644,12 @@ namespace MaterialDesignThemes.Wpf
 
             if (Equals(e.OriginalSource, popupBox))
             {
-                if (Mouse.Captured == null || popupBox._popup == null || !(Mouse.Captured as DependencyObject).IsDescendantOf(popupBox._popup))
+                if (Mouse.Captured == null || popupBox._popup == null)
                 {
-                    popupBox.Close();
+                    if (!(Mouse.Captured as DependencyObject).IsDescendantOf(popupBox._popup))
+                    {
+                        popupBox.Close();
+                    }
                 }
             }
             else
