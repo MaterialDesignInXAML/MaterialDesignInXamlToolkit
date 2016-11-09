@@ -265,10 +265,9 @@ namespace MaterialDesignThemes.Wpf
                 // Don't attempt to Invoke if _restoreFocusDialogClose hasn't been assigned yet. Can occur
                 // if the MainWindow has started up minimized. Even when Show() has been called, this doesn't
                 // seem to have been set.
-                if (dialogHost._restoreFocusDialogClose != null)
-                {
-                    dialogHost.Dispatcher.InvokeAsync(() => dialogHost._restoreFocusDialogClose.Focus(), DispatcherPriority.Input);
-                }
+
+                dialogHost.Dispatcher.InvokeAsync(() => dialogHost._restoreFocusDialogClose?.Focus(), DispatcherPriority.Input);
+
                 return;
             }
 
