@@ -9,7 +9,6 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
-using ControlzEx;
 using MaterialDesignThemes.Wpf.Transitions;
 
 namespace MaterialDesignThemes.Wpf
@@ -246,8 +245,7 @@ namespace MaterialDesignThemes.Wpf
             VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
             if (dialogHost.IsOpen)
-            {
-                dialogHost._popup.SetCurrentValue(Popup.IsOpenProperty, true);                
+            {                
                 WatchWindowActivation(dialogHost);
                 dialogHost._currentSnackbarMessageQueueUnPauseAction = dialogHost.SnackbarMessageQueue?.Pause();
             }
@@ -267,14 +265,7 @@ namespace MaterialDesignThemes.Wpf
                 // Don't attempt to Invoke if _restoreFocusDialogClose hasn't been assigned yet. Can occur
                 // if the MainWindow has started up minimized. Even when Show() has been called, this doesn't
                 // seem to have been set.
-
-                //close popup in code (previously was in a storyboard)....WPF was throwing sporadic errors in some cases
-
-                Task.Delay(TimeSpan.FromMilliseconds(300)).ContinueWith(t =>
-                {
-                    dialogHost._popup.SetCurrentValue(Popup.IsOpenProperty, false);
-                    dialogHost._restoreFocusDialogClose?.Focus();
-                }, TaskScheduler.FromCurrentSynchronizationContext());
+                dialogHost.Dispatcher.InvokeAsync(() => dialogHost._restoreFocusDialogClose?.Focus(), DispatcherPriority.Input);
 
                 return;
             }

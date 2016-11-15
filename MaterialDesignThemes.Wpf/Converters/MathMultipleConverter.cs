@@ -19,7 +19,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 
             double value1, value2;
             if (!double.TryParse(value[0].ToString(), out value1) || !double.TryParse(value[1].ToString(), out value2))
-                return Binding.DoNothing;
+                return 0;
 
             switch (Operation)
             {
