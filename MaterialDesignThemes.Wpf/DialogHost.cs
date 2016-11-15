@@ -9,6 +9,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
+using ControlzEx;
 using MaterialDesignThemes.Wpf.Transitions;
 
 namespace MaterialDesignThemes.Wpf
@@ -246,6 +247,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (dialogHost.IsOpen)
             {
+                dialogHost._popup.SetCurrentValue(Popup.IsOpenProperty, true);                
                 WatchWindowActivation(dialogHost);
                 dialogHost._currentSnackbarMessageQueueUnPauseAction = dialogHost.SnackbarMessageQueue?.Pause();
             }
@@ -266,7 +268,13 @@ namespace MaterialDesignThemes.Wpf
                 // if the MainWindow has started up minimized. Even when Show() has been called, this doesn't
                 // seem to have been set.
 
-                dialogHost.Dispatcher.InvokeAsync(() => dialogHost._restoreFocusDialogClose?.Focus(), DispatcherPriority.Input);
+                //close popup in code (previously was in a storyboard)....WPF was throwing sporadic errors in some cases
+
+                Task.Delay(TimeSpan.FromMilliseconds(300)).ContinueWith(t =>
+                {
+                    dialogHost._popup.SetCurrentValue(Popup.IsOpenProperty, false);
+                    dialogHost._restoreFocusDialogClose?.Focus();
+                }, TaskScheduler.FromCurrentSynchronizationContext());
 
                 return;
             }
@@ -424,7 +432,7 @@ namespace MaterialDesignThemes.Wpf
                 _contentCoverGrid.MouseLeftButtonUp += ContentCoverGridOnMouseLeftButtonUp;
 
             VisualStateManager.GoToState(this, SelectState(), false);
-
+            
             base.OnApplyTemplate();
         }
 
