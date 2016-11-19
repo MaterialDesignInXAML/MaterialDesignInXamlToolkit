@@ -18,6 +18,7 @@
     <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
     <system:Double x:Key="PopupLeftRightMargin">16</system:Double>
     <system:Boolean x:Key="TrueValue">True</system:Boolean>
+    <system:Boolean x:Key="FalseValue">False</system:Boolean>
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -458,6 +459,7 @@
                                    DefaultVerticalOffset="5"
                                    DownVerticalOffset="-15.5"
                                    UpVerticalOffset="15"
+                                   OnlyClassicMode="{Binding Path=(wpf:ComboBoxAssist.OnlyClassicMode), RelativeSource={RelativeSource TemplatedParent}}"
                                    UpContentTemplate="{StaticResource PopupContentUpTemplate}"
                                    DownContentTemplate="{StaticResource PopupContentDownTemplate}"
                                    ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}">
