@@ -10,8 +10,18 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public class ComboBoxPopup : Popup
+    internal enum ComboBoxPopupPlacement
     {
+        Undefined,
+        Down,
+        Up, 
+        Classic
+    }
+
+    internal class ComboBoxPopup : Popup
+    {
+        #region UpContentTemplate property
+
         public static readonly DependencyProperty UpContentTemplateProperty
             = DependencyProperty.Register(nameof(UpContentTemplate),
                 typeof(ControlTemplate),
@@ -23,6 +33,10 @@ namespace MaterialDesignThemes.Wpf
             get { return (ControlTemplate)GetValue(UpContentTemplateProperty); }
             set { SetValue(UpContentTemplateProperty, value); }
         }
+
+        #endregion
+
+        #region DownContentTemplate region
 
         public static readonly DependencyProperty DownContentTemplateProperty
             = DependencyProperty.Register(nameof(DownContentTemplate),
@@ -36,17 +50,25 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(DownContentTemplateProperty, value); }
         }
 
-        public static readonly DependencyProperty DefaultContentTemplateProperty
-            = DependencyProperty.Register(nameof(DefaultContentTemplate),
+        #endregion
+
+        #region ClassicContentTemplate property
+
+        public static readonly DependencyProperty ClassicContentTemplateProperty
+            = DependencyProperty.Register(nameof(ClassicContentTemplate),
                 typeof(ControlTemplate),
                 typeof(ComboBoxPopup),
                 new UIPropertyMetadata(null));
 
-        public ControlTemplate DefaultContentTemplate
+        public ControlTemplate ClassicContentTemplate
         {
-            get { return (ControlTemplate)GetValue(DefaultContentTemplateProperty); }
-            set { SetValue(DefaultContentTemplateProperty, value); }
+            get { return (ControlTemplate)GetValue(ClassicContentTemplateProperty); }
+            set { SetValue(ClassicContentTemplateProperty, value); }
         }
+
+        #endregion
+
+        #region UpVerticalOffset property
 
         public static readonly DependencyProperty UpVerticalOffsetProperty
             = DependencyProperty.Register(nameof(UpVerticalOffset),
@@ -60,6 +82,10 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(UpVerticalOffsetProperty, value); }
         }
 
+        #endregion
+
+        #region DownVerticalOffset property
+
         public static readonly DependencyProperty DownVerticalOffsetProperty
             = DependencyProperty.Register(nameof(DownVerticalOffset),
                 typeof(double),
@@ -72,6 +98,24 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(DownVerticalOffsetProperty, value); }
         }
 
+        #endregion
+
+        #region PopupPlacement property
+
+        public static readonly DependencyProperty PopupPlacementProperty
+            = DependencyProperty.Register(nameof(PopupPlacement),
+                typeof(ComboBoxPopupPlacement),
+                typeof(ComboBoxPopup),
+                new PropertyMetadata(ComboBoxPopupPlacement.Undefined, PopupPlacementPropertyChangedCallback));
+
+        public ComboBoxPopupPlacement PopupPlacement
+        {
+            get { return (ComboBoxPopupPlacement)GetValue(PopupPlacementProperty); }
+            set { SetValue(PopupPlacementProperty, value); }
+        }
+
+        #endregion
+        
         #region Background property
 
         private static readonly DependencyPropertyKey BackgroundPropertyKey =
@@ -127,17 +171,6 @@ namespace MaterialDesignThemes.Wpf
             this.CustomPopupPlacementCallback = ComboBoxCustomPopupPlacementCallback;
         }
 
-        private void SetChildTemplateIfNeed(ControlTemplate template)
-        {
-            var contentControl = Child as ContentControl;
-            if (contentControl == null) throw new InvalidOperationException("Child must be ContentControl");
-
-            if (!ReferenceEquals(contentControl.Template, template))
-            {
-                contentControl.Template = template;
-            }
-        }
-
         private void SetupBackground(IEnumerable<DependencyObject> visualAncestry)
         {
             var background = visualAncestry
@@ -191,7 +224,7 @@ namespace MaterialDesignThemes.Wpf
             if (locationX + popupSize.Width - realOffsetX > screenWidth
                 || locationX - realOffsetX < 0)
             {
-                SetChildTemplateIfNeed(DefaultContentTemplate);
+                PopupPlacement = ComboBoxPopupPlacement.Classic;
 
                 var defaultVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DefaultVerticalOffset);
                 var newY = locationY + popupSize.Height > screenHeight
@@ -203,7 +236,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (locationY + popupSize.Height > screenHeight)
             {
-                SetChildTemplateIfNeed(UpContentTemplate);
+                PopupPlacement = ComboBoxPopupPlacement.Up;
 
                 var upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
                 var newY = upVerticalOffsetIndepent - popupSize.Height + targetSize.Height;
@@ -212,13 +245,53 @@ namespace MaterialDesignThemes.Wpf
             }
             else
             {
-                SetChildTemplateIfNeed(DownContentTemplate);
+                PopupPlacement = ComboBoxPopupPlacement.Down;
 
                 var downVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);
                 var newY = downVerticalOffsetIndepent;
 
                 return new[] { new CustomPopupPlacement(new Point(offsetX, newY), PopupPrimaryAxis.None) };
             }
+        }
+
+        private void SetChildTemplateIfNeed(ControlTemplate template)
+        {
+            var contentControl = Child as ContentControl;
+            if (contentControl == null) throw new InvalidOperationException("Child must be ContentControl");
+
+            if (!ReferenceEquals(contentControl.Template, template))
+            {
+                contentControl.Template = template;
+            }
+        }
+
+        private void SetChildTemplate(ComboBoxPopupPlacement placement)
+        {
+            switch (placement)
+            {
+                case ComboBoxPopupPlacement.Classic:
+                    SetChildTemplateIfNeed(ClassicContentTemplate);
+                    return;
+                case ComboBoxPopupPlacement.Down:
+                    SetChildTemplateIfNeed(DownContentTemplate);
+                    return;
+                case ComboBoxPopupPlacement.Up:
+                    SetChildTemplateIfNeed(UpContentTemplate);
+                    return;
+                default:
+                    throw new NotImplementedException($"Unexpected value {placement} of the {nameof(PopupPlacement)} property inside the {nameof(ComboBoxPopup)} control.");
+            }
+        }
+
+        private static void PopupPlacementPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var popup = d as ComboBoxPopup;
+            if (popup == null) return;
+
+            if (!(e.NewValue is ComboBoxPopupPlacement)) return;
+            var placement = (ComboBoxPopupPlacement)e.NewValue;
+
+            popup.SetChildTemplate(placement);
         }
     }
 }
