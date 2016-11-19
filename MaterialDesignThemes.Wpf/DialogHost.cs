@@ -245,7 +245,7 @@ namespace MaterialDesignThemes.Wpf
             VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
             if (dialogHost.IsOpen)
-            {
+            {                
                 WatchWindowActivation(dialogHost);
                 dialogHost._currentSnackbarMessageQueueUnPauseAction = dialogHost.SnackbarMessageQueue?.Pause();
             }
@@ -265,7 +265,6 @@ namespace MaterialDesignThemes.Wpf
                 // Don't attempt to Invoke if _restoreFocusDialogClose hasn't been assigned yet. Can occur
                 // if the MainWindow has started up minimized. Even when Show() has been called, this doesn't
                 // seem to have been set.
-
                 dialogHost.Dispatcher.InvokeAsync(() => dialogHost._restoreFocusDialogClose?.Focus(), DispatcherPriority.Input);
 
                 return;
@@ -424,7 +423,7 @@ namespace MaterialDesignThemes.Wpf
                 _contentCoverGrid.MouseLeftButtonUp += ContentCoverGridOnMouseLeftButtonUp;
 
             VisualStateManager.GoToState(this, SelectState(), false);
-
+            
             base.OnApplyTemplate();
         }
 
