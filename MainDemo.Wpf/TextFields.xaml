@@ -275,11 +275,11 @@
             <ComboBoxItem>Orange</ComboBoxItem>
         </ComboBox>
         <CheckBox Grid.Row="11" Grid.Column="4"
-                  x:Name="OnlyClassicModeCheckBox"
+                  x:Name="ClassicModeCheckBox"
                   IsThreeState="False" IsChecked="True"
                   Margin="0 8 0 0">Use classic mode</CheckBox>
         <ComboBox Grid.Row="12" Grid.Column="4" 
-                  materialDesign:ComboBoxAssist.OnlyClassicMode="{Binding ElementName=OnlyClassicModeCheckBox, Path=IsChecked}"
+                  materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}"
                   Margin="0 8 0 8" HorizontalAlignment="Left">
             <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
             <ComboBoxItem>Banana</ComboBoxItem>

@@ -459,7 +459,7 @@
                                    DefaultVerticalOffset="5"
                                    DownVerticalOffset="-15.5"
                                    UpVerticalOffset="15"
-                                   OnlyClassicMode="{Binding Path=(wpf:ComboBoxAssist.OnlyClassicMode), RelativeSource={RelativeSource TemplatedParent}}"
+                                   ClassicMode="{Binding Path=(wpf:ComboBoxAssist.ClassicMode), RelativeSource={RelativeSource TemplatedParent}}"
                                    UpContentTemplate="{StaticResource PopupContentUpTemplate}"
                                    DownContentTemplate="{StaticResource PopupContentDownTemplate}"
                                    ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}">

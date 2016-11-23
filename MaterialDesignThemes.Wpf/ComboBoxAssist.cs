@@ -12,21 +12,21 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// By default ComboBox uses the wrapper popup. Popup can be switched to classic Windows desktop view by means of this attached property.
         /// </summary>
-        public static readonly DependencyProperty OnlyClassicModeProperty = DependencyProperty.RegisterAttached(
-            "OnlyClassicMode",
+        public static readonly DependencyProperty ClassicModeProperty = DependencyProperty.RegisterAttached(
+            "ClassicMode",
             typeof (bool),
             typeof (ComboBoxAssist),
             new FrameworkPropertyMetadata(false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
-        public static bool GetOnlyClassicMode(DependencyObject element, object value)
+        public static bool GetClassicMode(DependencyObject element, object value)
         {
-            return (bool)element.GetValue(OnlyClassicModeProperty);
+            return (bool)element.GetValue(ClassicModeProperty);
         }
 
-        public static void SetOnlyClassicMode(DependencyObject element, object value)
+        public static void SetClassicMode(DependencyObject element, object value)
         {
-            element.SetValue(OnlyClassicModeProperty, value);
+            element.SetValue(ClassicModeProperty, value);
         }
 
         /// <summary>

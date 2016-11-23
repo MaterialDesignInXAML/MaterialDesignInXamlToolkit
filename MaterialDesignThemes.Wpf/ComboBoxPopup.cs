@@ -167,19 +167,19 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
-        #region OnlyClassicMode property
+        #region ClassicMode property
 
-        public static readonly DependencyProperty OnlyClassicModeProperty
+        public static readonly DependencyProperty ClassicModeProperty
             = DependencyProperty.Register(
-                nameof(OnlyClassicMode),
+                nameof(ClassicMode),
                 typeof(bool),
                 typeof(ComboBoxPopup),
                 new FrameworkPropertyMetadata(true));
 
-        public bool OnlyClassicMode
+        public bool ClassicMode
         {
-            get { return (bool)GetValue(OnlyClassicModeProperty); }
-            set { SetValue(OnlyClassicModeProperty, value); }
+            get { return (bool)GetValue(ClassicModeProperty); }
+            set { SetValue(ClassicModeProperty, value); }
         }
 
         #endregion
@@ -228,7 +228,7 @@ namespace MaterialDesignThemes.Wpf
 
             var data = GetPositioningData(visualAncestry, popupSize, targetSize, offset);
 
-            if (OnlyClassicMode ||
+            if (ClassicMode ||
                 (data.LocationX + data.PopupSize.Width - data.RealOffsetX > data.ScreenWidth
                 || data.LocationX - data.RealOffsetX < 0))
             {
