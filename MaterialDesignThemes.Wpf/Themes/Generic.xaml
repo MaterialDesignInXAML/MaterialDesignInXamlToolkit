@@ -526,6 +526,10 @@
                                                 <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
                                                 <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.3" />
                                             </BooleanAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.3" />
+                                            </BooleanAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="0.56" KeyTime="0" />
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.3">

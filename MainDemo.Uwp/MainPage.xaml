@@ -32,7 +32,8 @@
                 <Button Margin="8 0 0 0" Width="100" Style="{StaticResource MaterialDesignRaisedDarkButton}">DARK</Button>
                 <Button Margin="8 0 0 0" Width="100" Style="{StaticResource MaterialDesignRaisedAccentButton}">ACCENT</Button>
             </StackPanel>
-            <ToggleSwitch Style="{StaticResource MaterialDesignToggleSwitch}" />            
+            <ToggleSwitch Style="{StaticResource MaterialDesignToggleSwitch}" />
+            <CheckBox Style="{StaticResource MaterialDesignCheckBox}">Material Design</CheckBox>
         </StackPanel>
     </Grid>
 </Page>
