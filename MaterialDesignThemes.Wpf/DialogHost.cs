@@ -201,7 +201,7 @@ namespace MaterialDesignThemes.Wpf
                 _asyncShowWaitHandle.WaitOne();
             });
             task.Start();
-            task.Wait();
+            await task;
 
             _asyncShowOpenedEventHandler = null;
             _asyncShowClosingEventHandler = null;
