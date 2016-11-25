@@ -62,6 +62,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Common Fields</TextBlock>
         <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" />
@@ -262,9 +264,22 @@
         </TextBox>
         <CheckBox Grid.Row="9" Grid.Column="4"
                   x:Name="DisplaySelectedItemCheckBox"
+                  IsThreeState="False"
                   Margin="0 8 0 0">Display Selected Item In Drop Down</CheckBox>
         <ComboBox Grid.Row="10" Grid.Column="4" 
                   materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=DisplaySelectedItemCheckBox, Path=IsChecked}"
+                  Margin="0 8 0 8" HorizontalAlignment="Left">
+            <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
+            <ComboBoxItem>Banana</ComboBoxItem>
+            <ComboBoxItem>Pear</ComboBoxItem>
+            <ComboBoxItem>Orange</ComboBoxItem>
+        </ComboBox>
+        <CheckBox Grid.Row="11" Grid.Column="4"
+                  x:Name="ClassicModeCheckBox"
+                  IsThreeState="False" IsChecked="True"
+                  Margin="0 8 0 0">Use classic mode</CheckBox>
+        <ComboBox Grid.Row="12" Grid.Column="4" 
+                  materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}"
                   Margin="0 8 0 8" HorizontalAlignment="Left">
             <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
             <ComboBoxItem>Banana</ComboBoxItem>
