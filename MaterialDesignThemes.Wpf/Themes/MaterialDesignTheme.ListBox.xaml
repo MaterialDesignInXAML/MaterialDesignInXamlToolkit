@@ -26,9 +26,12 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}"/>
-        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="TextBlock.FontWeight" Value="DemiBold"/>
+        <Setter Property="TextBlock.FontSize" Value="18"/>
+        <Setter Property="MinWidth" Value="54"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="Padding" Value="14 6 14 6" />
+        <Setter Property="Padding" Value="16" />
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -103,7 +106,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid Margin="0 0 -1 0">
+                        <Grid>
                             <Border x:Name="MouseOverBorder"
                                     Opacity="0"
                                     Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
@@ -120,12 +123,11 @@
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Padding="{TemplateBinding Padding}">
-
                             </wpf:Ripple>
                             <Border x:Name="SelectedBorder"
                                     Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectionMode, Converter={StaticResource EqualityToVisibilityConverter}, ConverterParameter={x:Static SelectionMode.Extended}, Mode=OneWay}"
                                     Opacity="0"
-                                    BorderThickness="1 0 1 0"
+                                    BorderThickness="0"
                                     BorderBrush="{DynamicResource MaterialDesignDivider}" />
                         </Grid>
                     </Border>
@@ -178,7 +180,7 @@
                             Background="{TemplateBinding Background}" 
                             SnapsToDevicePixels="true"
                             Padding="{TemplateBinding Padding}">
-                        <wpf:Card wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}" HorizontalAlignment="Left">
+                        <wpf:Card wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}" HorizontalAlignment="Left" Background="{DynamicResource MaterialDesignToolBarBackground}">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </wpf:Card>
                     </Border>
@@ -205,7 +207,7 @@
         <Setter Property="BorderThickness" Value="0"/>
 		<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
 		<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-		<Setter Property="Padding" Value="8" />
+		<Setter Property="Padding" Value="8"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
 		<Setter Property="Template">
 			<Setter.Value>
@@ -343,8 +345,7 @@
         </Setter>
     </Style>
     
-    <Style x:Key="MaterialDesignCardsListBox" TargetType="{x:Type ListBox}"
-           BasedOn="{StaticResource MaterialDesignListBox}">                
+    <Style x:Key="MaterialDesignCardsListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">                
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignCardsListBoxItem}"/>        
     </Style>
 
