@@ -76,6 +76,28 @@
                     </ListBoxItem>
                 </ListBox>
                 <Separator/>
+                <ListBox Style="{StaticResource MaterialDesignToolToggleFlatListBox}" SelectedIndex="0">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="MaterialDesignToolToggleFlatListBox" />
+                            <TextBlock Text="Exclusive selection" />
+                            <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                    <ListBoxItem >
+                        <materialDesign:PackIcon Kind="FormatAlignLeft"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatAlignCenter"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatAlignRight"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatAlignJustify"/>
+                    </ListBoxItem>
+                </ListBox>
+                <Separator/>
                 <ListBox SelectionMode="Extended" Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
                     <ListBox.ToolTip>
                         <StackPanel>
