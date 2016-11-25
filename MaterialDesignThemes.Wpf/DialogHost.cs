@@ -265,7 +265,7 @@ namespace MaterialDesignThemes.Wpf
                 // Don't attempt to Invoke if _restoreFocusDialogClose hasn't been assigned yet. Can occur
                 // if the MainWindow has started up minimized. Even when Show() has been called, this doesn't
                 // seem to have been set.
-                dialogHost.Dispatcher.InvokeAsync(() => dialogHost._restoreFocusDialogClose?.Focus(), DispatcherPriority.Input);
+                dialogHost.Dispatcher.InvokeAsync(() => dialogHost._restoreFocusDialogClose?.Focus(), DispatcherPriority.Input);                
 
                 return;
             }
@@ -289,6 +289,7 @@ namespace MaterialDesignThemes.Wpf
             dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
                 var child = dialogHost.FocusPopup();
+                CommandManager.InvalidateRequerySuggested();
 
                 //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
                 //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
