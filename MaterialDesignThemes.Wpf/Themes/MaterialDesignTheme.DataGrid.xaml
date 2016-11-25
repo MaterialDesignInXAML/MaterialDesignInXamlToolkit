@@ -75,10 +75,7 @@
                                PlacementTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}}"                                                              
                                PopupAnimation="Fade">
                             <Grid>
-                                <AdornerDecorator>
-                                    <AdornerDecorator.CacheMode>
-                                        <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                    </AdornerDecorator.CacheMode>
+                                <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                                     <Border Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
                                             Margin="5,5,5,5"
                                             Effect="{StaticResource MaterialDesignShadowDepth2}"

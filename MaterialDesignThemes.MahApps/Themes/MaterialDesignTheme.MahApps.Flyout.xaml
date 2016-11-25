@@ -209,11 +209,8 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <AdornerDecorator x:Name="PART_Border">
-                <AdornerDecorator.CacheMode>
-                    <BitmapCache EnableClearType="True"
-                                 SnapsToDevicePixels="False" />
-                </AdornerDecorator.CacheMode>
+            <AdornerDecorator x:Name="PART_Border"
+                               CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                 <Border Background="{TemplateBinding Background}"
                         Effect="{DynamicResource MaterialDesignShadowDepth5}" />
             </AdornerDecorator>

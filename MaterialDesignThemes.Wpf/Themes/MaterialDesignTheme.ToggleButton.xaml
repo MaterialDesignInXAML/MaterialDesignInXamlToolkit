@@ -345,10 +345,7 @@
                                         <ScaleTransform ScaleX="1" ScaleY="1"/>
                                     </Ellipse.RenderTransform>
                                 </Ellipse>
-                                <AdornerDecorator>
-                                    <AdornerDecorator.CacheMode>
-                                        <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                    </AdornerDecorator.CacheMode>
+                                <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                                     <Ellipse x:Name="Thumb"
                                              Fill="#FFFAFAFA" Stroke="{x:Null}" 
                                              HorizontalAlignment="Center" VerticalAlignment="Center"
