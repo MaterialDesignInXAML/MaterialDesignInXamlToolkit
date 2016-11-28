@@ -288,8 +288,8 @@ namespace MaterialDesignThemes.Wpf
 
             dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                var child = dialogHost.FocusPopup();
                 CommandManager.InvalidateRequerySuggested();
+                var child = dialogHost.FocusPopup();
 
                 //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
                 //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
@@ -575,8 +575,14 @@ namespace MaterialDesignThemes.Wpf
             var child = _popup?.Child;
             if (child == null) return null;
 
-            child.Focus();
-            child.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+            CommandManager.InvalidateRequerySuggested();
+            var focusable = child.VisualDepthFirstTraversal().OfType<UIElement>().FirstOrDefault(ui => ui.Focusable && ui.IsVisible);
+            focusable?.Dispatcher.InvokeAsync(() =>
+            {
+                if (!focusable.Focus()) return;
+                focusable.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
+            }, DispatcherPriority.Background);
+
             return child;
         }
 

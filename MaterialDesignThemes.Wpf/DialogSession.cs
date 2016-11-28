@@ -42,9 +42,8 @@ namespace MaterialDesignThemes.Wpf
             _owner.AssertTargetableContent();
             _owner.DialogContent = content;
             _owner.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-            {
-                _owner.FocusPopup();
-                CommandManager.InvalidateRequerySuggested();
+            {                
+                _owner.FocusPopup();                
             }));            
         }
 

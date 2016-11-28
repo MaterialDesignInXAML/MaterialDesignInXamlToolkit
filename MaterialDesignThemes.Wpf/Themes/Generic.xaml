@@ -617,6 +617,7 @@
                                         TextElement.FontSize="13"
                                         TextOptions.TextFormattingMode="Ideal"
                                         TextOptions.TextRenderingMode="Auto"
+                                        FocusManager.IsFocusScope="True"
                                         Foreground="{DynamicResource MaterialDesignBody}"
                                         FontFamily="{StaticResource MaterialDesignFont}"
                                         Focusable="False"
