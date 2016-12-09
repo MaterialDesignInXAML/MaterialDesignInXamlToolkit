@@ -263,7 +263,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
 		<Setter Property="BorderThickness" Value="1"/>
-		<Setter Property="Padding" Value="1"/>
+		<Setter Property="Padding" Value="0 1 0 0"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -357,8 +357,10 @@
                                     </Ellipse>
                                 </AdornerDecorator>
                                 <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                              FlowDirection="LeftToRight"/>
+                                                  Margin="{TemplateBinding Padding}"
+                                                  x:Name="ContentPresenter"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                  FlowDirection="LeftToRight"/>
                                 <Grid.RenderTransform>
                                     <TranslateTransform X="0" Y="0"/>
                                 </Grid.RenderTransform>
@@ -371,6 +373,14 @@
 							<Setter TargetName="Track" Property="Fill" Value="{DynamicResource PrimaryHueLightBrush}" />
                             <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="wpf:ToggleButtonAssist.HasOnContent" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="ContentPresenter" Property="Content" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContent)}" />
+                            <Setter TargetName="ContentPresenter" Property="ContentTemplate" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContentTemplate)}" />
+                        </MultiTrigger>
                         <Trigger Property="IsChecked" Value="False">
                             <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/> <!-- Need to set Foreground to Background here instead of hardcoded PrimaryHueMidBrush -->
                         </Trigger>

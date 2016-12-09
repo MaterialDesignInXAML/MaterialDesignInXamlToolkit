@@ -264,12 +264,14 @@
                 <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0"
                           ToolTip="MaterialDesignSwitchAccentToggleButton" IsChecked="True" />
                 <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" 
-                          ToolTip="MaterialDesignSwitchToggleButton w/ Content" IsChecked="True">
-                    <ToggleButton.Content>
-                        <materialDesign:PackIcon Kind="Play"/>
-                    </ToggleButton.Content>
+                          ToolTip="MaterialDesignSwitchToggleButton with Content and ToggleButtonAssist.OnContent">
+                    <materialDesign:PackIcon Kind="Pin" RenderTransformOrigin=".5,.5">
+                        <materialDesign:PackIcon.RenderTransform>
+                            <RotateTransform Angle="45" />
+                        </materialDesign:PackIcon.RenderTransform>
+                    </materialDesign:PackIcon>
                     <materialDesign:ToggleButtonAssist.OnContent>
-                        <materialDesign:PackIcon Kind="Headphones"/>
+                        <materialDesign:PackIcon Kind="Pin"/>
                     </materialDesign:ToggleButtonAssist.OnContent>
                 </ToggleButton>
             </StackPanel>
