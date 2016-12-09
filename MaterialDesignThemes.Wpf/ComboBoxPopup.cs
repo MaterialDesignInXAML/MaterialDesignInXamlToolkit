@@ -227,27 +227,23 @@ namespace MaterialDesignThemes.Wpf
             SetupVisiblePlacementWidth(visualAncestry);
 
             var data = GetPositioningData(visualAncestry, popupSize, targetSize, offset);
+            var preferUpIfSafe = data.LocationY + data.PopupSize.Height > data.ScreenHeight;            
 
-            if (ClassicMode ||
-                (data.LocationX + data.PopupSize.Width - data.RealOffsetX > data.ScreenWidth
-                || data.LocationX - data.RealOffsetX < 0))
+            if (ClassicMode 
+                || data.LocationX + data.PopupSize.Width - data.RealOffsetX > data.ScreenWidth
+                || data.LocationX - data.RealOffsetX < 0
+                || (!preferUpIfSafe && (data.LocationY - Math.Abs(data.NewDownY) < 0)))
             {
-                PopupPlacement = ComboBoxPopupPlacement.Classic;
-
+                SetCurrentValue(PopupPlacementProperty, ComboBoxPopupPlacement.Classic);
                 return new[] { GetClassicPopupPlacement(this, data) };
             }
-            else if (data.LocationY + data.PopupSize.Height > data.ScreenHeight)
+            if (preferUpIfSafe)
             {
-                PopupPlacement = ComboBoxPopupPlacement.Up;
-
-                return new[] { GetUpPopupPlacement(this, data) };
+                SetCurrentValue(PopupPlacementProperty, ComboBoxPopupPlacement.Up);
+                return new[] { GetUpPopupPlacement(data) };
             }
-            else
-            {
-                PopupPlacement = ComboBoxPopupPlacement.Down;
-
-                return new[] { GetDownPopupPlacement(this, data) };
-            }
+            SetCurrentValue(PopupPlacementProperty, ComboBoxPopupPlacement.Down);
+            return new[] { GetDownPopupPlacement(data) };
         }
 
         private void SetChildTemplateIfNeed(ControlTemplate template)
@@ -275,6 +271,10 @@ namespace MaterialDesignThemes.Wpf
             var locationX = (int)locationFromScreen.X % screenWidth;
             var locationY = (int)locationFromScreen.Y % screenHeight;
 
+            var upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
+            var newUpY = upVerticalOffsetIndepent - popupSize.Height + targetSize.Height;
+            var newDownY = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);
+
             double offsetX;
             const int rtlHorizontalOffset = 20;
 
@@ -286,6 +286,7 @@ namespace MaterialDesignThemes.Wpf
 
             return new PositioningData(
                 mainVisual, offsetX,
+                newUpY, newDownY,
                 popupSize, targetSize,
                 locationX, locationY,
                 screenHeight, screenWidth);
@@ -346,25 +347,22 @@ namespace MaterialDesignThemes.Wpf
             return new CustomPopupPlacement(new Point(data.OffsetX, newY), PopupPrimaryAxis.Horizontal);
         }
 
-        private static CustomPopupPlacement GetDownPopupPlacement(ComboBoxPopup popup, PositioningData data)
-        {
-            var downVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(data.MainVisual, popup.DownVerticalOffset);
-
-            return new CustomPopupPlacement(new Point(data.OffsetX, downVerticalOffsetIndepent), PopupPrimaryAxis.None);
+        private static CustomPopupPlacement GetDownPopupPlacement(PositioningData data)
+        {            
+            return new CustomPopupPlacement(new Point(data.OffsetX, data.NewDownY), PopupPrimaryAxis.None);
         }
 
-        private static CustomPopupPlacement GetUpPopupPlacement(ComboBoxPopup popup, PositioningData data)
+        private static CustomPopupPlacement GetUpPopupPlacement(PositioningData data)
         {
-            var upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(data.MainVisual, popup.UpVerticalOffset);
-            var newY = upVerticalOffsetIndepent - data.PopupSize.Height + data.TargetSize.Height;
-
-            return new CustomPopupPlacement(new Point(data.OffsetX, newY), PopupPrimaryAxis.None);
+            return new CustomPopupPlacement(new Point(data.OffsetX, data.NewUpY), PopupPrimaryAxis.None);
         }
 
         private struct PositioningData
         {
             public Visual MainVisual { get; }
             public double OffsetX { get; }
+            public double NewUpY { get; }
+            public double NewDownY { get; }
             public double RealOffsetX => (PopupSize.Width - TargetSize.Width) / 2.0;
             public Size PopupSize { get; }
             public Size TargetSize { get; }
@@ -373,15 +371,12 @@ namespace MaterialDesignThemes.Wpf
             public double ScreenHeight { get; }
             public double ScreenWidth { get; }
 
-            public PositioningData(
-                Visual mainVisual,
-                double offsetX,
-                Size popupSize, Size targetSize,
-                double locationX, double locationY,
-                double screenHeight, double screenWidth)
+            public PositioningData(Visual mainVisual, double offsetX, double newUpY, double newDownY, Size popupSize, Size targetSize, double locationX, double locationY, double screenHeight, double screenWidth)
             {
                 MainVisual = mainVisual;
                 OffsetX = offsetX;
+                NewUpY = newUpY;
+                NewDownY = newDownY;
                 PopupSize = popupSize; TargetSize = targetSize;
                 LocationX = locationX; LocationY = locationY;
                 ScreenWidth = screenWidth; ScreenHeight = screenHeight;
