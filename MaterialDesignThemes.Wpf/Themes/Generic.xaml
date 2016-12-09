@@ -412,10 +412,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ColorZone}">
                     <Grid Background="Transparent">
-                        <AdornerDecorator>
-                            <AdornerDecorator.CacheMode>
-                                <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                            </AdornerDecorator.CacheMode>
+                        <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                             <Border Background="{TemplateBinding Background}"
                                     CornerRadius="{TemplateBinding CornerRadius}"                                
                                     Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
@@ -620,6 +617,7 @@
                                         TextElement.FontSize="13"
                                         TextOptions.TextFormattingMode="Ideal"
                                         TextOptions.TextRenderingMode="Auto"
+                                        FocusManager.IsFocusScope="True"
                                         Foreground="{DynamicResource MaterialDesignBody}"
                                         FontFamily="{StaticResource MaterialDesignFont}"
                                         Focusable="False"
@@ -929,10 +927,7 @@
                                       x:Name="PART_LeftDrawer"
                                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Left}}"
                                       Panel.ZIndex="{TemplateBinding LeftDrawerZIndex}">
-                                    <AdornerDecorator>
-                                        <AdornerDecorator.CacheMode>
-                                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                        </AdornerDecorator.CacheMode>
+                                    <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                                         <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                                                 Opacity="0"
                                                 Background="{TemplateBinding LeftDrawerBackground}"
@@ -945,10 +940,7 @@
                                       x:Name="PART_RightDrawer"
                                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Right}}"
                                       Panel.ZIndex="{TemplateBinding RightDrawerZIndex}">
-                                    <AdornerDecorator>
-                                        <AdornerDecorator.CacheMode>
-                                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                        </AdornerDecorator.CacheMode>
+                                    <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                                         <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                                                 Opacity="0"
                                                 Background="{TemplateBinding RightDrawerBackground}"
@@ -961,10 +953,7 @@
                                       x:Name="PART_TopDrawer"
                                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Top}}"
                                       Panel.ZIndex="{TemplateBinding TopDrawerZIndex}">
-                                    <AdornerDecorator>
-                                        <AdornerDecorator.CacheMode>
-                                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                        </AdornerDecorator.CacheMode>
+                                    <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                                         <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                                                 Opacity="0"
                                                 Background="{TemplateBinding TopDrawerBackground}"
@@ -977,10 +966,7 @@
                                       x:Name="PART_BottomDrawer"
                                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Bottom}}"
                                       Panel.ZIndex="{TemplateBinding BottomDrawerZIndex}">
-                                    <AdornerDecorator>
-                                        <AdornerDecorator.CacheMode>
-                                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                        </AdornerDecorator.CacheMode>
+                                    <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                                         <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                                             Opacity="0"
                                             Background="{TemplateBinding BottomDrawerBackground}"

@@ -164,6 +164,8 @@ namespace MaterialDesignThemes.Wpf
                 var dataGridCell = inputHitTest as DataGridCell;                
                 if (dataGridCell != null && dataGrid.Equals(dataGridCell.GetVisualAncestry().OfType<DataGrid>().FirstOrDefault()))
                 {
+                    if (dataGridCell.IsReadOnly) return;
+
                     ToggleButton toggleButton;
                     ComboBox comboBox;
                     if (IsDirectHitOnEditComponent(dataGridCell, mouseButtonEventArgs, out toggleButton))

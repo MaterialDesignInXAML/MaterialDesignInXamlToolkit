@@ -86,15 +86,11 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Calendar}">
-          <AdornerDecorator>
-              <!-- warning, this will cache the inner item as well, consider separating the shadow from the item if possible -->
-              <AdornerDecorator.CacheMode>
-                  <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-              </AdornerDecorator.CacheMode>
-              <Border Effect="{DynamicResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
+                    <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+                        <Border Effect="{DynamicResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
      			    		<CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItemPortrait}"/>
-              </Border>					
-            </AdornerDecorator>
+                        </Border>					
+                    </AdornerDecorator>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>

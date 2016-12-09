@@ -19,6 +19,8 @@ namespace MaterialDesignColors.WpfExample
         {
             InitializeComponent();            
 
+            DataContext = new MainWindowViewModel();
+
             Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(2500);                
@@ -28,9 +30,7 @@ namespace MaterialDesignColors.WpfExample
                 //need to get the message queue from the snackbar, so need to be on the dispatcher
                 MainSnackbar.MessageQueue.Enqueue("Welcome to Material Design In XAML Tookit");
             }, TaskScheduler.FromCurrentSynchronizationContext());
-        }
-
-        
+        }        
 
         private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
