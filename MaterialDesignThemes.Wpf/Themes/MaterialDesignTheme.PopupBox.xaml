@@ -206,10 +206,7 @@
                                                     </VisualState>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                            <AdornerDecorator>
-                                                <AdornerDecorator.CacheMode>
-                                                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                                </AdornerDecorator.CacheMode>
+                                            <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                                                 <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
                                                          Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                                                          x:Name="border">

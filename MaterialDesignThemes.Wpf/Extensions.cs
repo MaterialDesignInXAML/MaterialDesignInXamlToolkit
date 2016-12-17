@@ -24,6 +24,27 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        public static IEnumerable<DependencyObject> VisualBreadthFirstTraversal(this DependencyObject node)
+        {
+            if (node == null) throw new ArgumentNullException(nameof(node));            
+
+            for (var i = 0; i < VisualTreeHelper.GetChildrenCount(node); i++)
+            {
+                var child = VisualTreeHelper.GetChild(node, i);
+                yield return child;                
+            }
+
+            for (var i = 0; i < VisualTreeHelper.GetChildrenCount(node); i++)
+            {
+                var child = VisualTreeHelper.GetChild(node, i);
+                
+                foreach (var descendant in child.VisualDepthFirstTraversal())
+                {
+                    yield return descendant;
+                }
+            }
+        }
+
         public static bool IsAncestorOf(this DependencyObject parent, DependencyObject node)
         {
             return node != null && parent.VisualDepthFirstTraversal().Contains(node);

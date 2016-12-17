@@ -54,7 +54,6 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-
                         <ContentControl x:Name="SimpleHintTextBlock"
                                         IsTabStop="False"
                                         Visibility="{TemplateBinding UseFloating, Converter={StaticResource InverseBoolToVisConverter}}"
@@ -82,43 +81,43 @@
                                             <VisualTransition From="*" To="ContentNotEmpty">
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="Opacity"
-                                                             Duration="0:0:0.3" To="{TemplateBinding HintOpacity}"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                                    <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock"  Storyboard.TargetProperty="Tag"
-                                                             Duration="0:0:0.3" To="1"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
+                                                                     Duration="0:0:0.3" To="{TemplateBinding HintOpacity}"
+                                                                     EasingFunction="{StaticResource AnimationEasingFunction}"/>
+                                                    <DoubleAnimation Storyboard.TargetName="ScaleHost"  Storyboard.TargetProperty="Scale"
+                                                                     Duration="0:0:0.3" To="1"
+                                                                     EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                                 </Storyboard>
                                             </VisualTransition>
                                             <VisualTransition From="*" To="ContentEmpty">
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="Opacity"
-                                                             Duration="0:0:0.3"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                                    <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock"  Storyboard.TargetProperty="Tag"
-                                                             Duration="0:0:0.3"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
+                                                                     Duration="0:0:0.3"
+                                                                     EasingFunction="{StaticResource AnimationEasingFunction}"/>
+                                                    <DoubleAnimation Storyboard.TargetName="ScaleHost"  Storyboard.TargetProperty="Scale"
+                                                                     Duration="0:0:0.3"
+                                                                     EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                                 </Storyboard>
                                             </VisualTransition>
                                         </VisualStateGroup.Transitions>
                                         <VisualState x:Name="ContentNotEmpty">
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FloatingHintTextBlock"
-                                                         Duration="0" To="{TemplateBinding HintOpacity}" />
-                                                <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock"  Storyboard.TargetProperty="Tag"
-                                                         Duration="0" To="1"/>
+                                                                 Duration="0" To="{TemplateBinding HintOpacity}" />
+                                                <DoubleAnimation Storyboard.TargetName="ScaleHost"  Storyboard.TargetProperty="Scale"
+                                                                 Duration="0" To="1"/>
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="ContentEmpty">
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FloatingHintTextBlock"
-                                                         Duration="0" />
-                                                <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock"  Storyboard.TargetProperty="Tag"
-                                                         Duration="0" />
+                                                                 Duration="0" />
+                                                <DoubleAnimation Storyboard.TargetName="ScaleHost"  Storyboard.TargetProperty="Scale"
+                                                                 Duration="0" />
                                             </Storyboard>
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-
+                                <wpf:ScaleHost x:Name="ScaleHost" />
                                 <ContentControl x:Name="FloatingHintTextBlock"
                                         Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}"
                                         Content="{TemplateBinding Hint}"
@@ -137,14 +136,14 @@
                                             <ScaleTransform>
                                                 <ScaleTransform.ScaleX>
                                                     <MultiBinding Converter="{StaticResource RangePositionConverter}">
-                                                        <Binding Path="Tag" ElementName="FloatingHintTextBlock"/>
+                                                        <Binding Path="Scale" ElementName="ScaleHost"/>
                                                         <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}"/>
                                                         <Binding Source="{StaticResource NoContentFloatingScale}"/>
                                                     </MultiBinding>
                                                 </ScaleTransform.ScaleX>
                                                 <ScaleTransform.ScaleY>
                                                     <MultiBinding Converter="{StaticResource RangePositionConverter}">
-                                                        <Binding Path="Tag" ElementName="FloatingHintTextBlock"/>
+                                                        <Binding Path="Scale" ElementName="ScaleHost"/>
                                                         <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}"/>
                                                         <Binding Source="{StaticResource NoContentFloatingScale}"/>
                                                     </MultiBinding>
@@ -157,13 +156,13 @@
                                             <TranslateTransform>
                                                 <TranslateTransform.X>
                                                     <MultiBinding Converter="{StaticResource TranslateConverter}">
-                                                        <Binding Path="Tag" ElementName="FloatingHintTextBlock"/>
+                                                        <Binding Path="Scale" ElementName="ScaleHost"/>
                                                         <Binding Path="FloatingOffset.X" RelativeSource="{RelativeSource TemplatedParent}"/>
                                                     </MultiBinding>
                                                 </TranslateTransform.X>
                                                 <TranslateTransform.Y>
                                                     <MultiBinding Converter="{StaticResource TranslateConverter}">
-                                                        <Binding Path="Tag" ElementName="FloatingHintTextBlock"/>
+                                                        <Binding Path="Scale" ElementName="ScaleHost"/>
                                                         <Binding Path="FloatingOffset.Y" RelativeSource="{RelativeSource TemplatedParent}"/>
                                                     </MultiBinding>
                                                 </TranslateTransform.Y>
