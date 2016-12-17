@@ -82,7 +82,7 @@
                                                 />
                     <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="16"
                                   HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <ContentControl Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
+                        <ContentControl Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
                     </ScrollViewer>
                     <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
                                              Grid.Row="1" />
