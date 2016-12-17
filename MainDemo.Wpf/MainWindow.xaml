@@ -80,8 +80,10 @@
                     <domain1:DocumentationLinks DataContext="{Binding ElementName=DemoItemsListBox, Path=SelectedItem}"
                                                 Margin="0 0 0 16"
                                                 />
-                    <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}"
-                                    Grid.Row="1" />
+                    <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="16"
+                                  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ContentControl Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
+                    </ScrollViewer>
                     <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
                                              Grid.Row="1" />
                 </Grid>
