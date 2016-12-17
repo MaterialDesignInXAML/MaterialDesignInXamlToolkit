@@ -146,6 +146,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<DialogsViewModel>("Demo View Model"),
                         DocumentationLink.ApiLink<DialogHost>()
                     }),
+                new DemoItem("Stepper", new StepperDemo(), null),
                 new DemoItem("Drawer", new Drawers(),
                     new []
                     {
