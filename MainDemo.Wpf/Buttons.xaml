@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -263,6 +263,17 @@
                           ToolTip="MaterialDesignSwitchDarkToggleButton" IsChecked="True" />
                 <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0"
                           ToolTip="MaterialDesignSwitchAccentToggleButton" IsChecked="True" />
+                <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" 
+                          ToolTip="MaterialDesignSwitchToggleButton with Content and ToggleButtonAssist.OnContent">
+                    <materialDesign:PackIcon Kind="Pin" RenderTransformOrigin=".5,.5">
+                        <materialDesign:PackIcon.RenderTransform>
+                            <RotateTransform Angle="45" />
+                        </materialDesign:PackIcon.RenderTransform>
+                    </materialDesign:PackIcon>
+                    <materialDesign:ToggleButtonAssist.OnContent>
+                        <materialDesign:PackIcon Kind="Pin"/>
+                    </materialDesign:ToggleButtonAssist.OnContent>
+                </ToggleButton>
             </StackPanel>
             <StackPanel Grid.Row="3"  Margin="0 16 0 0" Orientation="Horizontal">
                 <ToggleButton Style="{StaticResource MaterialDesignFlatToggleButton}" ToolTip="MaterialDesignFlatToggleButton">

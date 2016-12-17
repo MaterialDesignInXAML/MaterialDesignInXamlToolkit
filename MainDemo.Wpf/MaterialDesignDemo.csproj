@@ -87,7 +87,13 @@
       <DependentUpon>Dialogs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Domain\AnotherCommandImplementation.cs" />
+    <Compile Include="Domain\DocumentationLink.cs" />
+    <Compile Include="Domain\DocumentationLinks.xaml.cs">
+      <DependentUpon>DocumentationLinks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\DocumentationLinkType.cs" />
     <Compile Include="Domain\FutureDateValidationRule.cs" />
+    <Compile Include="Domain\MainWindowViewModel.cs" />
     <Compile Include="Domain\NotEmptyValidationRule.cs" />
     <Compile Include="Domain\NotifyPropertyChangedExtension.cs" />
     <Compile Include="Domain\DemoItem.cs" />
@@ -220,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ColorZones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Domain\DocumentationLinks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

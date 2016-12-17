@@ -260,9 +260,10 @@
     
 	<Style x:Key="MaterialDesignSwitchToggleButton" TargetType="{x:Type ToggleButton}">
 		<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
 		<Setter Property="BorderThickness" Value="1"/>
-		<Setter Property="Padding" Value="1"/>
+		<Setter Property="Padding" Value="0 1 0 0"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -345,10 +346,7 @@
                                         <ScaleTransform ScaleX="1" ScaleY="1"/>
                                     </Ellipse.RenderTransform>
                                 </Ellipse>
-                                <AdornerDecorator>
-                                    <AdornerDecorator.CacheMode>
-                                        <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                    </AdornerDecorator.CacheMode>
+                                <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                                     <Ellipse x:Name="Thumb"
                                              Fill="#FFFAFAFA" Stroke="{x:Null}" 
                                              HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -358,6 +356,11 @@
                                              Effect="{DynamicResource MaterialDesignShadowDepth1}">
                                     </Ellipse>
                                 </AdornerDecorator>
+                                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  x:Name="ContentPresenter"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                  FlowDirection="LeftToRight"/>
                                 <Grid.RenderTransform>
                                     <TranslateTransform X="0" Y="0"/>
                                 </Grid.RenderTransform>
@@ -366,10 +369,22 @@
 					</Viewbox>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsChecked" Value="True">
-							<Setter TargetName="Thumb" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}" />
+                            <Setter TargetName="Thumb" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
 							<Setter TargetName="Track" Property="Fill" Value="{DynamicResource PrimaryHueLightBrush}" />
-						</Trigger>
-						<Trigger Property="Button.IsDefaulted" Value="true"/>
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="wpf:ToggleButtonAssist.HasOnContent" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="ContentPresenter" Property="Content" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContent)}" />
+                            <Setter TargetName="ContentPresenter" Property="ContentTemplate" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContentTemplate)}" />
+                        </MultiTrigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/> <!-- Need to set Foreground to Background here instead of hardcoded PrimaryHueMidBrush -->
+                        </Trigger>
+                        <Trigger Property="Button.IsDefaulted" Value="true"/>
 						<Trigger Property="IsMouseOver" Value="true"/>
                         <Trigger Property="IsPressed" Value="true">
                             <Trigger.EnterActions>
@@ -394,15 +409,15 @@
 	</Style>
 
     <Style x:Key="MaterialDesignSwitchLightToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
     </Style>
 
     <Style x:Key="MaterialDesignSwitchDarkToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
     </Style>
 
     <Style x:Key="MaterialDesignSwitchAccentToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}" />
     </Style>
 
     <Style x:Key="MaterialDesignHamburgerToggleButton" TargetType="{x:Type ToggleButton}">

@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:materialdesign="clr-namespace:MaterialDesignThemes.Wpf">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
@@ -17,6 +18,7 @@
     <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
     <system:Double x:Key="PopupLeftRightMargin">16</system:Double>
     <system:Boolean x:Key="TrueValue">True</system:Boolean>
+    <system:Boolean x:Key="FalseValue">False</system:Boolean>
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -149,7 +151,7 @@
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="PopupContentDefaultTemplate" TargetType="ContentControl">
+    <ControlTemplate x:Key="PopupContentClassicTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
               Margin="6">
             <Grid.RowDefinitions>
@@ -457,9 +459,10 @@
                                    DefaultVerticalOffset="5"
                                    DownVerticalOffset="-15.5"
                                    UpVerticalOffset="15"
+                                   ClassicMode="{Binding Path=(wpf:ComboBoxAssist.ClassicMode), RelativeSource={RelativeSource TemplatedParent}}"
                                    UpContentTemplate="{StaticResource PopupContentUpTemplate}"
                                    DownContentTemplate="{StaticResource PopupContentDownTemplate}"
-                                   DefaultContentTemplate="{StaticResource PopupContentDefaultTemplate}">
+                                   ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}">
                     <ContentControl>
                         <ScrollViewer MaxHeight="{TemplateBinding MaxDropDownHeight}"
                                       Background="{Binding Background, ElementName=PART_Popup}">
@@ -470,6 +473,9 @@
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
+            <Trigger SourceName="PART_Popup" Property="PopupPlacement" Value="{x:Static materialdesign:ComboBoxPopupPlacement.Classic}">
+                <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
+            </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="templateRoot" Property="Opacity" Value="0.56"/>
             </Trigger>

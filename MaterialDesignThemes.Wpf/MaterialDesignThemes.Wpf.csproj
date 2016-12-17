@@ -303,6 +303,7 @@
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="MessageQueueExtension.cs" />
     <Compile Include="Palette.cs" />
+    <Compile Include="ScaleHost.cs" />
     <Compile Include="Step.cs" />
     <Compile Include="StepButtonBar.cs" />
     <Compile Include="Stepper.cs" />

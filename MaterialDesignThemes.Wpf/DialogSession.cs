@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
@@ -40,7 +41,10 @@ namespace MaterialDesignThemes.Wpf
             
             _owner.AssertTargetableContent();
             _owner.DialogContent = content;
-            _owner.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => _owner.FocusPopup()));            
+            _owner.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {                
+                _owner.FocusPopup();                
+            }));            
         }
 
         /// <summary>
