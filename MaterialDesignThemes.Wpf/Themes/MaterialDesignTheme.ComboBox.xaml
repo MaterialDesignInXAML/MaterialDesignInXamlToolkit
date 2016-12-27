@@ -591,4 +591,24 @@
         <Setter Property="wpf:HintAssist.IsFloating" Value="True"/>
     </Style>
 
+    <Style x:Key="MaterialDesignCardColorComboBox"
+           BasedOn="{StaticResource MaterialDesignComboBox}"
+           TargetType="{x:Type ComboBox}">
+        <Style.Triggers>
+            <Trigger Property="IsDropDownOpen" Value="True">
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignCardBackground}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MaterialDesignFloatingHintCardColorComboBox"
+           BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}"
+           TargetType="{x:Type ComboBox}">
+        <Style.Triggers>
+            <Trigger Property="IsDropDownOpen" Value="True">
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignCardBackground}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>
