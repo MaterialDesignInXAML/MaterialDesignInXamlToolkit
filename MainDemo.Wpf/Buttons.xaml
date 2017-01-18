@@ -89,7 +89,8 @@
                 </materialDesign:PopupBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <materialDesign:PopupBox Margin="16,0,16,0" StaysOpen="True">
+                <CheckBox Name="PopupEnabled">Enable Popup</CheckBox>
+                <materialDesign:PopupBox Margin="16,0,16,0" StaysOpen="True" IsEnabled="{Binding IsChecked, ElementName=PopupEnabled}">
                     <Grid Width="300" Margin="8,8,8,8">
                         <Grid.Resources>
                             <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
