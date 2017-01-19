@@ -126,6 +126,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToolBar}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="{x:Type wpf:PackIcon}" >
+                            <Setter Property="Width" Value="22" />
+                            <Setter Property="Height" Value="22" />
+                        </Style>
+                    </ControlTemplate.Resources>
                     <DockPanel x:Name="Grid" Margin="3,1,1,1" SnapsToDevicePixels="true" Background="{TemplateBinding Background}">
                         <Grid DockPanel.Dock="Right" x:Name="OverflowGrid" HorizontalAlignment="Right">
                             <ToggleButton x:Name="OverflowButton" ClickMode="Press" FocusVisualStyle="{x:Null}" 
@@ -207,10 +213,6 @@
     </Style>
     <Style x:Key="{x:Static ToolBar.RadioButtonStyleKey}" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}">
         <Setter Property="Margin" Value="8 0 8 0" />
-    </Style>
-    <Style TargetType="{x:Type wpf:PackIcon}" >
-        <Setter Property="Width" Value="22" />
-        <Setter Property="Height" Value="22" />
     </Style>
     <Style x:Key="{x:Static ToolBar.SeparatorStyleKey}" TargetType="Separator">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}"/>
