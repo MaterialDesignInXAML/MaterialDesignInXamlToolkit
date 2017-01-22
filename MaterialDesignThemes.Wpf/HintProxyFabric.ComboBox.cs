@@ -16,32 +16,52 @@ namespace MaterialDesignThemes.Wpf
             private readonly ComboBox _comboBox;
             private readonly TextChangedEventHandler _comboBoxTextChangedEventHandler;
 
-            public object Content => _comboBox.IsEditable 
-                ? _comboBox.Text 
-                : _comboBox.SelectedItem != null ? " " : null;
-
-            public bool IsLoaded => _comboBox.IsLoaded;
-            public bool IsVisible => _comboBox.IsVisible;
-
-            public event EventHandler ContentChanged;
-            public event EventHandler IsVisibleChanged;
-            public event EventHandler Loaded;
-
             public ComboBoxHintProxy(ComboBox comboBox)
             {
                 if (comboBox == null) throw new ArgumentNullException(nameof(comboBox));
 
                 _comboBox = comboBox;
-                _comboBoxTextChangedEventHandler = new TextChangedEventHandler(ComboBoxTextChanged);
+                _comboBoxTextChangedEventHandler = ComboBoxTextChanged;
                 _comboBox.AddHandler(TextBoxBase.TextChangedEvent, _comboBoxTextChangedEventHandler);
                 _comboBox.SelectionChanged += ComboBoxSelectionChanged;
                 _comboBox.Loaded += ComboBoxLoaded;
                 _comboBox.IsVisibleChanged += ComboBoxIsVisibleChanged;
             }
 
+            public object Content
+            {
+                get
+                {
+                    if (_comboBox.IsEditable)
+                    {
+                        return _comboBox.Text;
+                    }
+
+                    var comboBoxItem = _comboBox.SelectedItem as ComboBoxItem;
+                    return comboBoxItem != null 
+                        ? comboBoxItem.Content
+                        : _comboBox.SelectedItem;
+                }
+            }
+
+            public bool IsLoaded => _comboBox.IsLoaded;
+
+            public bool IsVisible => _comboBox.IsVisible;            
+
+            public bool IsEmpty()
+            {
+                return string.IsNullOrWhiteSpace(_comboBox.Text);
+            }
+
+            public event EventHandler ContentChanged;
+
+            public event EventHandler IsVisibleChanged;
+
+            public event EventHandler Loaded;
+
             private void ComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
             {
-                ContentChanged?.Invoke(sender, EventArgs.Empty);
+                _comboBox.Dispatcher.InvokeAsync(() => ContentChanged?.Invoke(sender, EventArgs.Empty));
             }
 
             private void ComboBoxIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

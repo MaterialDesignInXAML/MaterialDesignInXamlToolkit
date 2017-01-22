@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -89,7 +89,8 @@
                 </materialDesign:PopupBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <materialDesign:PopupBox Margin="16,0,16,0" StaysOpen="True">
+                <CheckBox Name="PopupEnabled">Enable Popup</CheckBox>
+                <materialDesign:PopupBox Margin="16,0,16,0" StaysOpen="True" IsEnabled="{Binding IsChecked, ElementName=PopupEnabled}">
                     <Grid Width="300" Margin="8,8,8,8">
                         <Grid.Resources>
                             <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
@@ -247,7 +248,7 @@
                     Mate
                 </CheckBox>
                 <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" 
-                      IsEnabled="False">
+                          IsEnabled="False"  IsChecked="True">
                     Disabled
                 </CheckBox>
             </StackPanel>
@@ -263,6 +264,17 @@
                           ToolTip="MaterialDesignSwitchDarkToggleButton" IsChecked="True" />
                 <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0"
                           ToolTip="MaterialDesignSwitchAccentToggleButton" IsChecked="True" />
+                <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" 
+                          ToolTip="MaterialDesignSwitchToggleButton with Content and ToggleButtonAssist.OnContent">
+                    <materialDesign:PackIcon Kind="Pin" RenderTransformOrigin=".5,.5">
+                        <materialDesign:PackIcon.RenderTransform>
+                            <RotateTransform Angle="45" />
+                        </materialDesign:PackIcon.RenderTransform>
+                    </materialDesign:PackIcon>
+                    <materialDesign:ToggleButtonAssist.OnContent>
+                        <materialDesign:PackIcon Kind="Pin"/>
+                    </materialDesign:ToggleButtonAssist.OnContent>
+                </ToggleButton>
             </StackPanel>
             <StackPanel Grid.Row="3"  Margin="0 16 0 0" Orientation="Horizontal">
                 <ToggleButton Style="{StaticResource MaterialDesignFlatToggleButton}" ToolTip="MaterialDesignFlatToggleButton">

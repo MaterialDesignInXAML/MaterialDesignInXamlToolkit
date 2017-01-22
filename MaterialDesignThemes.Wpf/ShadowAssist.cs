@@ -1,5 +1,6 @@
 using System;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Navigation;
@@ -95,6 +96,20 @@ namespace MaterialDesignThemes.Wpf
         public static bool GetDarken(DependencyObject element)
         {
             return (bool) element.GetValue(DarkenProperty);
-        }        
-    }   
+        }
+
+        public static readonly DependencyProperty CacheModeProperty = DependencyProperty.RegisterAttached(
+            "CacheMode", typeof(CacheMode), typeof(ShadowAssist), new FrameworkPropertyMetadata(new BitmapCache { EnableClearType = true, SnapsToDevicePixels = true }, FrameworkPropertyMetadataOptions.Inherits));
+
+        public static void SetCacheMode(DependencyObject element, CacheMode value)
+        {
+            element.SetValue(CacheModeProperty, value);
+        }
+
+        public static CacheMode GetCacheMode(DependencyObject element)
+        {
+            return (CacheMode)element.GetValue(CacheModeProperty);
+        }
+
+    }
 }

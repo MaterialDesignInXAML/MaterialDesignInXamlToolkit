@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -32,28 +33,7 @@ namespace MaterialDesignColors.WpfExample
             {
                 SelectedTime = new DateTime(2000, 1, 1, 3, 15, 0)
             };
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://twitter.com/James_Willock");
-
-        }
-
-        private void ButtonsDemoChip_OnClick(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Chip clicked.");
-        }
-
-        private void ButtonsDemoChip_OnDeleteClick(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Chip delete clicked.");
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            new PaletteHelper().QueryPalette();
-        }
+        }                
     }
 
     public class ProvingGroundViewModel : INotifyPropertyChanged

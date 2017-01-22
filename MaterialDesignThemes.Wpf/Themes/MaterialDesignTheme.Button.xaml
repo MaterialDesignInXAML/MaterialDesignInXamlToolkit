@@ -39,10 +39,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
                     <Grid>
-                        <AdornerDecorator>
-                            <AdornerDecorator.CacheMode>
-                                <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                            </AdornerDecorator.CacheMode>
+                        <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                             <Border Background="{TemplateBinding Background}" CornerRadius="2"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
@@ -58,6 +55,9 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
@@ -130,6 +130,10 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignFlatAccentButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}"/>
+    </Style>
+
     <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Foreground" Value="#616161" />
         <Setter Property="Padding" Value="4"/>
@@ -174,10 +178,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
-                        <AdornerDecorator>
-                            <AdornerDecorator.CacheMode>
-                                <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                            </AdornerDecorator.CacheMode>
+                        <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                             <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
                                      Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                                      x:Name="border">
@@ -199,6 +200,9 @@
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
                         </Trigger>
                     </ControlTemplate.Triggers>

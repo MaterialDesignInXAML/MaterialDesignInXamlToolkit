@@ -93,7 +93,12 @@
                                                                                          To="0.1" Duration="0"/>
                                                                     </Storyboard>
                                                                 </VisualState>
-                                                                <VisualState Name="Disabled"/>
+                                                                <VisualState Name="Disabled">
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                                         To="0.48" Duration="0"/>
+                                                                    </Storyboard>
+                                                                </VisualState>
                                                             </VisualStateGroup>
                                                         </VisualStateManager.VisualStateGroups>
                                                         <Border x:Name="MouseOverBorder"
@@ -118,11 +123,25 @@
                             </wpf:Card>
                         </controlzEx:PopupEx>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.23"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignToolPopupBox" BasedOn="{StaticResource MaterialDesignPopupBox}" TargetType="wpf:PopupBox">
+        <Setter Property="Foreground" Value="#616161" />
+        <Setter Property="Padding" Value="4"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignToolForegroundPopupBox" BasedOn="{StaticResource MaterialDesignToolPopupBox}" TargetType="wpf:PopupBox">
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
+    </Style>
+    
     <wpf:PackIcon x:Shared="False" x:Key="MaterialDesignMultiFloatingActionPopupBoxIcon"
                   Kind="Plus" Width="24" Height="24" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=Foreground}" />
     
@@ -201,10 +220,7 @@
                                                     </VisualState>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                            <AdornerDecorator>
-                                                <AdornerDecorator.CacheMode>
-                                                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                                </AdornerDecorator.CacheMode>
+                                            <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                                                 <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
                                                          Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                                                          x:Name="border">

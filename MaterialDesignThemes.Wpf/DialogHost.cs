@@ -67,14 +67,16 @@ namespace MaterialDesignThemes.Wpf
         private Grid _contentCoverGrid;
         private DialogSession _session;
         private DialogOpenedEventHandler _attachedDialogOpenedEventHandler;
-        private DialogClosingEventHandler _attachedDialogClosingEventHandler;        
+        private DialogClosingEventHandler _attachedDialogClosingEventHandler;
         private object _closeDialogExecutionParameter;
-        private IInputElement _restoreFocus;
+        private IInputElement _restoreFocusDialogClose;
+        private IInputElement _restoreFocusWindowReactivation;
+        private Action _currentSnackbarMessageQueueUnPauseAction = null;
         private Action _closeCleanUp = () => { };
 
         static DialogHost()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(DialogHost), new FrameworkPropertyMetadata(typeof(DialogHost)));            
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(DialogHost), new FrameworkPropertyMetadata(typeof(DialogHost)));
         }
 
         #region .Show overloads
@@ -156,7 +158,7 @@ namespace MaterialDesignThemes.Wpf
         public static Task<object> Show(object content, object dialogIdentifier, DialogClosingEventHandler closingEventHandler)
         {
             return Show(content, dialogIdentifier, null, closingEventHandler);
-        }        
+        }
 
         /// <summary>
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -174,7 +176,7 @@ namespace MaterialDesignThemes.Wpf
                 throw new InvalidOperationException("No loaded DialogHost instances.");
             LoadedInstances.First().Dispatcher.VerifyAccess();
 
-            var targets = LoadedInstances.Where(dh => Equals(dh.Identifier, dialogIdentifier)).ToList();
+            var targets = LoadedInstances.Where(dh => dialogIdentifier == null || Equals(dh.Identifier, dialogIdentifier)).ToList();
             if (targets.Count == 0)
                 throw new InvalidOperationException("No loaded DialogHost have an Identifier property matching dialogIndetifier argument.");
             if (targets.Count > 1)
@@ -216,7 +218,7 @@ namespace MaterialDesignThemes.Wpf
             Unloaded += OnUnloaded;
 
             CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler, CloseDialogCanExecute));
-            CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));            
+            CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));
         }
 
         public static readonly DependencyProperty IdentifierProperty = DependencyProperty.Register(
@@ -237,28 +239,41 @@ namespace MaterialDesignThemes.Wpf
         private static void IsOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var dialogHost = (DialogHost)dependencyObject;
-            
+
             if (dialogHost._popupContentControl != null)
                 ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
             VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
             if (dialogHost.IsOpen)
-            {
+            {                
                 WatchWindowActivation(dialogHost);
+                dialogHost._currentSnackbarMessageQueueUnPauseAction = dialogHost.SnackbarMessageQueue?.Pause();
             }
             else
             {
                 dialogHost._asyncShowWaitHandle.Set();
                 dialogHost._attachedDialogClosingEventHandler = null;
+                if (dialogHost._currentSnackbarMessageQueueUnPauseAction != null)
+                {
+                    dialogHost._currentSnackbarMessageQueueUnPauseAction();
+                    dialogHost._currentSnackbarMessageQueueUnPauseAction = null;
+                }
                 dialogHost._session.IsEnded = true;
                 dialogHost._session = null;
                 dialogHost._closeCleanUp();
-                
+
+                // Don't attempt to Invoke if _restoreFocusDialogClose hasn't been assigned yet. Can occur
+                // if the MainWindow has started up minimized. Even when Show() has been called, this doesn't
+                // seem to have been set.
+                dialogHost.Dispatcher.InvokeAsync(() => dialogHost._restoreFocusDialogClose?.Focus(), DispatcherPriority.Input);                
+
                 return;
             }
 
             dialogHost._asyncShowWaitHandle.Reset();
             dialogHost._session = new DialogSession(dialogHost);
+            var window = Window.GetWindow(dialogHost);
+            dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
 
             //multiple ways of calling back that the dialog has opened:
             // * routed event
@@ -273,6 +288,7 @@ namespace MaterialDesignThemes.Wpf
 
             dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
+                CommandManager.InvalidateRequerySuggested();
                 var child = dialogHost.FocusPopup();
 
                 //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
@@ -283,7 +299,7 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsOpen
         {
-            get { return (bool) GetValue(IsOpenProperty); }
+            get { return (bool)GetValue(IsOpenProperty); }
             set { SetValue(IsOpenProperty, value); }
         }
 
@@ -292,7 +308,7 @@ namespace MaterialDesignThemes.Wpf
 
         public object DialogContent
         {
-            get { return (object) GetValue(DialogContentProperty); }
+            get { return (object)GetValue(DialogContentProperty); }
             set { SetValue(DialogContentProperty, value); }
         }
 
@@ -301,7 +317,7 @@ namespace MaterialDesignThemes.Wpf
 
         public DataTemplate DialogContentTemplate
         {
-            get { return (DataTemplate) GetValue(DialogContentTemplateProperty); }
+            get { return (DataTemplate)GetValue(DialogContentTemplateProperty); }
             set { SetValue(DialogContentTemplateProperty, value); }
         }
 
@@ -310,7 +326,7 @@ namespace MaterialDesignThemes.Wpf
 
         public DataTemplateSelector DialogContentTemplateSelector
         {
-            get { return (DataTemplateSelector) GetValue(DialogContentTemplateSelectorProperty); }
+            get { return (DataTemplateSelector)GetValue(DialogContentTemplateSelectorProperty); }
             set { SetValue(DialogContentTemplateSelectorProperty, value); }
         }
 
@@ -319,7 +335,7 @@ namespace MaterialDesignThemes.Wpf
 
         public string DialogContentStringFormat
         {
-            get { return (string) GetValue(DialogContentStringFormatProperty); }
+            get { return (string)GetValue(DialogContentStringFormatProperty); }
             set { SetValue(DialogContentStringFormatProperty, value); }
         }
 
@@ -328,7 +344,7 @@ namespace MaterialDesignThemes.Wpf
 
         public Thickness DialogMargin
         {
-            get { return (Thickness) GetValue(DialogMarginProperty); }
+            get { return (Thickness)GetValue(DialogMarginProperty); }
             set { SetValue(DialogMarginProperty, value); }
         }
 
@@ -341,7 +357,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public DialogHostOpenDialogCommandDataContextSource OpenDialogCommandDataContextSource
         {
-            get { return (DialogHostOpenDialogCommandDataContextSource) GetValue(OpenDialogCommandDataContextSourceProperty); }
+            get { return (DialogHostOpenDialogCommandDataContextSource)GetValue(OpenDialogCommandDataContextSourceProperty); }
             set { SetValue(OpenDialogCommandDataContextSourceProperty, value); }
         }
 
@@ -353,7 +369,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public bool CloseOnClickAway
         {
-            get { return (bool) GetValue(CloseOnClickAwayProperty); }
+            get { return (bool)GetValue(CloseOnClickAwayProperty); }
             set { SetValue(CloseOnClickAwayProperty, value); }
         }
 
@@ -365,8 +381,34 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public object CloseOnClickAwayParameter
         {
-            get { return (object) GetValue(CloseOnClickAwayParameterProperty); }
+            get { return (object)GetValue(CloseOnClickAwayParameterProperty); }
             set { SetValue(CloseOnClickAwayParameterProperty, value); }
+        }
+
+        public static readonly DependencyProperty SnackbarMessageQueueProperty = DependencyProperty.Register(
+            "SnackbarMessageQueue", typeof(SnackbarMessageQueue), typeof(DialogHost), new PropertyMetadata(default(SnackbarMessageQueue), SnackbarMessageQueuePropertyChangedCallback));
+
+        private static void SnackbarMessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var dialogHost = (DialogHost) dependencyObject;
+            if (dialogHost._currentSnackbarMessageQueueUnPauseAction != null)
+            {
+                dialogHost._currentSnackbarMessageQueueUnPauseAction();
+                dialogHost._currentSnackbarMessageQueueUnPauseAction = null;
+            }
+
+            if (!dialogHost.IsOpen) return;
+            var snackbarMessageQueue = dependencyPropertyChangedEventArgs.NewValue as SnackbarMessageQueue;
+            dialogHost._currentSnackbarMessageQueueUnPauseAction = snackbarMessageQueue?.Pause();
+        }
+
+        /// <summary>
+        /// Allows association of a snackbar, so that notifications can be paused whilst a dialog is being displayed.
+        /// </summary>
+        public SnackbarMessageQueue SnackbarMessageQueue
+        {
+            get { return (SnackbarMessageQueue)GetValue(SnackbarMessageQueueProperty); }
+            set { SetValue(SnackbarMessageQueueProperty, value); }
         }
 
         public override void OnApplyTemplate()
@@ -382,8 +424,8 @@ namespace MaterialDesignThemes.Wpf
                 _contentCoverGrid.MouseLeftButtonUp += ContentCoverGridOnMouseLeftButtonUp;
 
             VisualStateManager.GoToState(this, SelectState(), false);
-
-            base.OnApplyTemplate();            
+            
+            base.OnApplyTemplate();
         }
 
         #region open dialog events/callbacks
@@ -456,7 +498,7 @@ namespace MaterialDesignThemes.Wpf
             add { AddHandler(DialogClosingEvent, value); }
             remove { RemoveHandler(DialogClosingEvent, value); }
         }
-        
+
         /// <summary>
         /// Attached property which can be used on the <see cref="Button"/> which instigated the <see cref="OpenDialogCommand"/> to process the closing event.
         /// </summary>
@@ -470,8 +512,8 @@ namespace MaterialDesignThemes.Wpf
 
         public static DialogClosingEventHandler GetDialogClosingAttached(DependencyObject element)
         {
-            return (DialogClosingEventHandler) element.GetValue(DialogClosingAttachedProperty);
-        }        
+            return (DialogClosingEventHandler)element.GetValue(DialogClosingAttachedProperty);
+        }
 
         public static readonly DependencyProperty DialogClosingCallbackProperty = DependencyProperty.Register(
             nameof(DialogClosingCallback), typeof (DialogClosingEventHandler), typeof (DialogHost), new PropertyMetadata(default(DialogClosingEventHandler)));
@@ -481,12 +523,12 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public DialogClosingEventHandler DialogClosingCallback
         {
-            get { return (DialogClosingEventHandler) GetValue(DialogClosingCallbackProperty); }
+            get { return (DialogClosingEventHandler)GetValue(DialogClosingCallbackProperty); }
             set { SetValue(DialogClosingCallbackProperty, value); }
         }
 
         protected void OnDialogClosing(DialogClosingEventArgs eventArgs)
-        {            
+        {
             RaiseEvent(eventArgs);
         }
 
@@ -504,7 +546,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var dialogClosingEventArgs = new DialogClosingEventArgs(_session, parameter, DialogClosingEvent);
 
-            _session.IsEnded = true;            
+            _session.IsEnded = true;
 
             //multiple ways of calling back that the dialog is closing:
             // * routed event
@@ -519,7 +561,7 @@ namespace MaterialDesignThemes.Wpf
             if (!dialogClosingEventArgs.IsCancelled)
                 SetCurrentValue(IsOpenProperty, false);
             else
-                _session.IsEnded = false;            
+                _session.IsEnded = false;
 
             _closeDialogExecutionParameter = parameter;
         }
@@ -533,8 +575,14 @@ namespace MaterialDesignThemes.Wpf
             var child = _popup?.Child;
             if (child == null) return null;
 
-            child.Focus();
-            child.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+            CommandManager.InvalidateRequerySuggested();
+            var focusable = child.VisualDepthFirstTraversal().OfType<UIElement>().FirstOrDefault(ui => ui.Focusable && ui.IsVisible);
+            focusable?.Dispatcher.InvokeAsync(() =>
+            {
+                if (!focusable.Focus()) return;
+                focusable.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
+            }, DispatcherPriority.Background);
+
             return child;
         }
 
@@ -644,17 +692,17 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void WindowOnDeactivated(object sender, EventArgs eventArgs)
-        {            
-            _restoreFocus = _popup != null ? FocusManager.GetFocusedElement((Window)sender) : null;
+        {
+            _restoreFocusWindowReactivation = _popup != null ? FocusManager.GetFocusedElement((Window)sender) : null;
         }
 
         private void WindowOnActivated(object sender, EventArgs eventArgs)
         {
-            if (_restoreFocus != null)
+            if (_restoreFocusWindowReactivation != null)
             {
                 Dispatcher.BeginInvoke(new Action(() =>
-                {                    
-                    Keyboard.Focus(_restoreFocus);
+                {
+                    Keyboard.Focus(_restoreFocusWindowReactivation);
                 }));
             }
         }
