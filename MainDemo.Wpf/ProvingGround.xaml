@@ -15,25 +15,30 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{StaticResource MaterialDesignFont}"
              mc:Ignorable="d"              
-			 d:DesignWidth="477" d:DesignHeight="272"
+             d:DesignWidth="477" d:DesignHeight="272"
              d:DataContext="{d:DesignInstance wpfExample:ProvingGroundViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+
+                <!--
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
-                <!--
+             
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                 -->
+                
             </ResourceDictionary.MergedDictionaries>
 
 
 
-            <Style TargetType="{x:Type provingGroundStuff:MeasuringTextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
+            
 
 
 
@@ -41,11 +46,26 @@
     </UserControl.Resources>
 
     <Grid>
-        <ComboBox materialDesign:HintAssist.Hint="OS">
-            <ComboBoxItem>Android</ComboBoxItem>
-            <ComboBoxItem>iOS</ComboBoxItem>
-            <ComboBoxItem>Linux</ComboBoxItem>
-            <ComboBoxItem>Windows</ComboBoxItem>
-        </ComboBox>
+        <ContentControl RenderTransformOrigin=".5,.5">
+            <materialDesign:Card Margin="4 4 0 0" Width="220">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="140" />
+                        <RowDefinition Height="140" />
+                    </Grid.RowDefinitions>
+                    <Image Source="Resources/Contact.png" Height="140" Stretch="UniformToFill"/>
+                    <Button Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" 
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Rotate3d" />
+                            <TextBlock Margin="8 0 0 0">FLIP ME!</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </materialDesign:Card>
+            <ContentControl.RenderTransform>
+                <SkewTransform AngleX="0" AngleY="45" CenterX=".5" CenterY=".5" ></SkewTransform>
+            </ContentControl.RenderTransform>
+        </ContentControl>
     </Grid>
 </UserControl>
