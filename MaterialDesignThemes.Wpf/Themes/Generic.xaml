@@ -951,7 +951,7 @@
                                 </Grid>
                                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top"
                                       x:Name="PART_TopDrawer"
-                                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Top}}"
+                                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Top}}"
                                       Panel.ZIndex="{TemplateBinding TopDrawerZIndex}">
                                     <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                                         <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
@@ -964,7 +964,7 @@
                                 </Grid>
                                 <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
                                       x:Name="PART_BottomDrawer"
-                                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Bottom}}"
+                                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Bottom}}"
                                       Panel.ZIndex="{TemplateBinding BottomDrawerZIndex}">
                                     <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                                         <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
