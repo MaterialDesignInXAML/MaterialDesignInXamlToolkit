@@ -934,7 +934,9 @@
                                                 x:Name="LeftDrawerShadow">
                                         </Border>
                                     </AdornerDecorator>
-                                    <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}" />
+                                    <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}"
+                                                      IsEnabled="{TemplateBinding IsLeftDrawerOpen}"
+                                                      />
                                 </Grid>
                                 <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right"
                                       x:Name="PART_RightDrawer"
@@ -947,7 +949,8 @@
                                                 x:Name="RightDrawerShadow">
                                         </Border>
                                     </AdornerDecorator>
-                                    <ContentPresenter Content="{TemplateBinding RightDrawerContent}" ContentTemplate="{TemplateBinding RightDrawerContentTemplate}" ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}" />
+                                    <ContentPresenter Content="{TemplateBinding RightDrawerContent}" ContentTemplate="{TemplateBinding RightDrawerContentTemplate}" ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}"
+                                                      IsEnabled="{TemplateBinding IsRightDrawerOpen}" />
                                 </Grid>
                                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top"
                                       x:Name="PART_TopDrawer"
@@ -960,7 +963,8 @@
                                                 x:Name="TopDrawerShadow">
                                         </Border>
                                     </AdornerDecorator>
-                                    <ContentPresenter Content="{TemplateBinding TopDrawerContent}" ContentTemplate="{TemplateBinding TopDrawerContentTemplate}" ContentStringFormat="{TemplateBinding TopDrawerContentStringFormat}" />
+                                    <ContentPresenter Content="{TemplateBinding TopDrawerContent}" ContentTemplate="{TemplateBinding TopDrawerContentTemplate}" ContentStringFormat="{TemplateBinding TopDrawerContentStringFormat}"
+                                                      IsEnabled="{TemplateBinding IsTopDrawerOpen}" />
                                 </Grid>
                                 <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
                                       x:Name="PART_BottomDrawer"
@@ -973,7 +977,8 @@
                                             x:Name="BottomDrawerShadow">
                                         </Border>
                                     </AdornerDecorator>
-                                    <ContentPresenter Content="{TemplateBinding BottomDrawerContent}" ContentTemplate="{TemplateBinding BottomDrawerContentTemplate}" ContentStringFormat="{TemplateBinding BottomDrawerContentStringFormat}" />
+                                    <ContentPresenter Content="{TemplateBinding BottomDrawerContent}" ContentTemplate="{TemplateBinding BottomDrawerContentTemplate}" ContentStringFormat="{TemplateBinding BottomDrawerContentStringFormat}"
+                                                      IsEnabled="{TemplateBinding IsBottomDrawerOpen}"/>
                                 </Grid>
                             </Grid>
                         </Grid>
