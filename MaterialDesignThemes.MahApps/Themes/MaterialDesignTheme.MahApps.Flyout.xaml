@@ -20,7 +20,7 @@
                         Margin="2 4 2 2"
                         VerticalAlignment="Bottom"
                         Style="{DynamicResource MaterialDesignToolButton}"
-                        Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=Foreground}"
+                        Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ColorZone}}, Path=Foreground}"
                         FontSize="16"
                         DockPanel.Dock="Left"
                         IsCancel="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsCancel}"
