@@ -11,7 +11,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
-    internal enum ComboBoxPopupPlacement
+    public enum ComboBoxPopupPlacement
     {
         Undefined,
         Down,
@@ -19,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
         Classic
     }
 
-    internal class ComboBoxPopup : Popup
+    public class ComboBoxPopup : Popup
     {
         #region UpContentTemplate property
 

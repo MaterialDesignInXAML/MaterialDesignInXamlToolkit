@@ -83,7 +83,7 @@
                     <ContentControl Margin="16" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}"
                                     Grid.Row="1" />
                     <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
-                                             Grid.Row="1" />
+                                            Grid.Row="1" />
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>

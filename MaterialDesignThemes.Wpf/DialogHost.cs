@@ -176,7 +176,7 @@ namespace MaterialDesignThemes.Wpf
                 throw new InvalidOperationException("No loaded DialogHost instances.");
             LoadedInstances.First().Dispatcher.VerifyAccess();
 
-            var targets = LoadedInstances.Where(dh => Equals(dh.Identifier, dialogIdentifier)).ToList();
+            var targets = LoadedInstances.Where(dh => dialogIdentifier == null || Equals(dh.Identifier, dialogIdentifier)).ToList();
             if (targets.Count == 0)
                 throw new InvalidOperationException("No loaded DialogHost have an Identifier property matching dialogIndetifier argument.");
             if (targets.Count > 1)
