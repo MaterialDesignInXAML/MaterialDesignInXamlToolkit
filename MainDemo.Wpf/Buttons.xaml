@@ -314,49 +314,6 @@
                     <materialDesign:PackIcon Kind="FormatAlignJustify"/>
                 </ListBoxItem>
             </ListBox>
-
-            <ListBox Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignToolToggleFlatListBox}" SelectedIndex="0">
-                <ListBox.ToolTip>
-                    <StackPanel>
-                        <TextBlock Text="MaterialDesignToolToggleFlatListBox" />
-                        <TextBlock Text="Exclusive selection" />
-                        <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
-                    </StackPanel>
-                </ListBox.ToolTip>
-                <ListBoxItem>
-                    <materialDesign:PackIcon Kind="FormatAlignLeft"/>
-                </ListBoxItem>
-                <ListBoxItem>
-                    <materialDesign:PackIcon Kind="FormatAlignCenter"/>
-                </ListBoxItem>
-                <ListBoxItem>
-                    <materialDesign:PackIcon Kind="FormatAlignRight"/>
-                </ListBoxItem>
-                <ListBoxItem>
-                    <materialDesign:PackIcon Kind="FormatAlignJustify"/>
-                </ListBoxItem>
-            </ListBox>
-            
-            <ListBox Grid.Column="1" Grid.Row="2" Style="{StaticResource MaterialDesignToolToggleListBox}" 
-                 SelectionMode="Extended"
-                 Margin="0 8 0 0">
-                <ListBox.ToolTip>
-                    <StackPanel>
-                        <TextBlock Text="MaterialDesignToolToggleListBox" />
-                        <TextBlock Text="Multiple selection" />
-                        <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
-                    </StackPanel>
-                </ListBox.ToolTip>
-                <ListBoxItem>
-                    <materialDesign:PackIcon Kind="FormatBold"/>
-                </ListBoxItem>
-                <ListBoxItem>
-                    <materialDesign:PackIcon Kind="FormatItalic"/>
-                </ListBoxItem>
-                <ListBoxItem x:Name="UnderlineCheckbox">
-                    <materialDesign:PackIcon Kind="FormatUnderline"/>
-                </ListBoxItem>
-            </ListBox>
         </Grid>
 
         <Border Grid.Row="6" Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" />
