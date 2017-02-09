@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="256" />
         </Grid.RowDefinitions>
         <TextBlock>Transitions Demo</TextBlock>
 
@@ -47,12 +48,30 @@
             <local:Slide5_TransitioningContent />
 
             <local:Slide6_MVVM />
-            
+
             <local:Slide7_Master />
 
             <local:Slide8_Details />
 
         </materialDesign:Transitioner>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <materialDesign:Transitioner Name="BackgroundTransitioner" Grid.Column="1" Margin="6" SelectedIndex="1" DefaultTransitionOrigin="{x:Static materialDesign:TransitionOrigins.TopLeft}">
+                <Border Background="#009688"/>
+                <materialDesign:TransitionerSlide TransitionOrigin="{x:Static materialDesign:TransitionOrigins.BottomRight}">
+                    <materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:CircleWipe/>
+                    </materialDesign:TransitionerSlide.BackwardWipe>
+                    <Border Background="#E64A19"/>
+                </materialDesign:TransitionerSlide>
+            </materialDesign:Transitioner>
+            <ToggleButton Name="BackgroundToggleButton" Grid.Column="0" Margin="6" Click="BackgroundToggleButton_Checked"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignDisplay3TextBlock}" Foreground="{StaticResource PrimaryHueDarkForegroundBrush}" Opacity="0.86">Material Design In XAML Toolkit</TextBlock>
+        </Grid>
 
     </Grid>
     

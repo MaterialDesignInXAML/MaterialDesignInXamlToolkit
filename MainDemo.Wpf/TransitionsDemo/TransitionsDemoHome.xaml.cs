@@ -24,5 +24,17 @@ namespace MaterialDesignDemo.TransitionsDemo
         {
             InitializeComponent();
         }
+
+        private void BackgroundToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if((bool)BackgroundToggleButton.IsChecked)
+            {
+                BackgroundTransitioner.SelectedIndex = 0;
+            }
+            else
+            {
+                BackgroundTransitioner.SelectedIndex = 1;
+            }
+        }
     }
 }
