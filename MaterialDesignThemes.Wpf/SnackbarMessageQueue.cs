@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -272,15 +273,7 @@ namespace MaterialDesignThemes.Wpf
                 }
 
                 //find a target
-                var snackbar = await exemplar.Dispatcher.InvokeAsync(() =>
-                {
-                    return _pairedSnackbars.FirstOrDefault(sb =>
-                    {
-                        if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
-                        var window = Window.GetWindow(sb);
-                        return window != null && window.WindowState != WindowState.Minimized;
-                    });
-                });
+                var snackbar = await FindSnackbar(exemplar.Dispatcher);
 
                 //show message
                 if (snackbar != null)
@@ -308,6 +301,19 @@ namespace MaterialDesignThemes.Wpf
                 else
                     _messageWaitingEvent.Reset();
             }
+        }
+
+        private DispatcherOperation<Snackbar> FindSnackbar(Dispatcher dispatcher)
+        {
+            return dispatcher.InvokeAsync(() =>
+            {
+                return _pairedSnackbars.FirstOrDefault(sb =>
+                {
+                    if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
+                    var window = Window.GetWindow(sb);
+                    return window != null && window.WindowState != WindowState.Minimized;
+                });
+            });
         }
 
         private async Task ShowAsync(Snackbar snackbar, SnackbarMessageQueueItem messageQueueItem)
