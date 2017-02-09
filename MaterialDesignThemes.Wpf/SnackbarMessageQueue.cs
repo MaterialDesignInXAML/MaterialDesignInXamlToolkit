@@ -286,16 +286,21 @@ namespace MaterialDesignThemes.Wpf
                 if (snackbar != null)
                 {
                     var message = _snackbarMessages.First.Value;
-                    _snackbarMessages.RemoveFirst();                    
-                    if (_latestShownItem == null 
+                    _snackbarMessages.RemoveFirst();
+                    if (_latestShownItem == null
                         || message.IsPromoted
-                        || !Equals(_latestShownItem.Item1.Content, message.Content) 
-                        || !Equals(_latestShownItem.Item1.ActionContent, message.ActionContent) 
+                        || !Equals(_latestShownItem.Item1.Content, message.Content)
+                        || !Equals(_latestShownItem.Item1.ActionContent, message.ActionContent)
                         || _latestShownItem.Item2 <= DateTime.Now.Subtract(_messageDuration))
                     {
                         await ShowAsync(snackbar, message);
                         _latestShownItem = new Tuple<SnackbarMessageQueueItem, DateTime>(message, DateTime.Now);
                     }
+                }
+                else
+                {
+                    //no snackbar could be found, take a break
+                    _disposedEvent.WaitOne(TimeSpan.FromSeconds(1));
                 }
 
                 if (_snackbarMessages.Count > 0)
