@@ -110,6 +110,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.Flipper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.GridSplitter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -286,6 +290,7 @@
     <Compile Include="DpiHelper.cs" />
     <Compile Include="DrawerHost.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Flipper.cs" />
     <Compile Include="HintAssist.cs" />
     <Compile Include="HintProxyFabric.PasswordBox.cs" />
     <Compile Include="HintProxyFabric.TextBox.cs" />
@@ -297,6 +302,7 @@
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="MessageQueueExtension.cs" />
     <Compile Include="Palette.cs" />
+    <Compile Include="Plane3D.cs" />
     <Compile Include="ScaleHost.cs" />
     <Compile Include="Snackbar.cs" />
     <Compile Include="SnackbarMessage.cs" />

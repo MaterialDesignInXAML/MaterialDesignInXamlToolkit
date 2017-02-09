@@ -69,7 +69,54 @@
                 <Button Command="Paste" ToolTip="Paste some stuff" ToolBar.OverflowMode="AsNeeded">
                     <materialDesign:PackIcon Kind="ContentPaste" />
                 </Button>
-                <Separator />
+                <Separator/>
+                <ListBox Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
+                    <ListBoxItem ToolTip="This is a lonley toggle with TextBlock instead of icon">
+                        <TextBlock>W</TextBlock>
+                    </ListBoxItem>
+                </ListBox>
+                <Separator/>
+                <ListBox Style="{StaticResource MaterialDesignToolToggleFlatListBox}" SelectedIndex="0">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="MaterialDesignToolToggleFlatListBox" />
+                            <TextBlock Text="Exclusive selection" />
+                            <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                    <ListBoxItem >
+                        <materialDesign:PackIcon Kind="FormatAlignLeft"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatAlignCenter"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatAlignRight"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatAlignJustify"/>
+                    </ListBoxItem>
+                </ListBox>
+                <Separator/>
+                <ListBox SelectionMode="Extended" Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="MaterialDesignToolToggleListBox" />
+                            <TextBlock Text="Multiple selection" />
+                            <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatBold"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatItalic"/>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="UnderlineCheckbox">
+                        <materialDesign:PackIcon Kind="FormatUnderline"/>
+                    </ListBoxItem>
+                </ListBox>
+                <Separator/>
                 <Label Content="Font size:" VerticalAlignment="Center"/>
                 <ComboBox>
                     <ComboBoxItem Content="10"/>
@@ -85,12 +132,7 @@
                 </Button>
                 <RadioButton GroupName="XXX" Content="Radio" />
                 <RadioButton GroupName="XXX" Content="Ga Ga" />
-                <ToggleButton>
-                    Switch
-                </ToggleButton>
-                <Menu>
-                    <MenuItem>Embedded menu</MenuItem>
-                </Menu>
+                <ToggleButton/>
             </ToolBar>
         </ToolBarTray>
         
