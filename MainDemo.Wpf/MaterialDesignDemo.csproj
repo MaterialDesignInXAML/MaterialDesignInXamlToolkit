@@ -157,7 +157,6 @@
       <DependentUpon>ProvingGround.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProvingGroundStuff\MeasuringTextBox.cs" />
-    <Compile Include="ProvingGroundStuff\Planez.cs" />
     <Compile Include="Shadows.xaml.cs">
       <DependentUpon>Shadows.xaml</DependentUpon>
     </Compile>

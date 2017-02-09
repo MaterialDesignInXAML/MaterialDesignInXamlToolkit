@@ -4,9 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
-             xmlns:provingGroundStuff="clr-namespace:MaterialDesignDemo.ProvingGroundStuff"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
@@ -46,26 +44,79 @@
     </UserControl.Resources>
 
     <Grid>
-        <ContentControl RenderTransformOrigin=".5,.5">
-            <materialDesign:Card Margin="4 4 0 0" Width="220">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="140" />
-                        <RowDefinition Height="140" />
-                    </Grid.RowDefinitions>
-                    <Image Source="Resources/Contact.png" Height="140" Stretch="UniformToFill"/>
-                    <Button Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" 
-                            HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Rotate3d" />
-                            <TextBlock Margin="8 0 0 0">FLIP ME!</TextBlock>
-                        </StackPanel>
-                    </Button>
-                </Grid>
-            </materialDesign:Card>
-            <ContentControl.RenderTransform>
-                <SkewTransform AngleX="0" AngleY="45" CenterX=".5" CenterY=".5" ></SkewTransform>
-            </ContentControl.RenderTransform>
-        </ContentControl>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Border BorderThickness="2" BorderBrush="Black">
+            <materialDesign:Plane3D HorizontalAlignment="Left" VerticalAlignment="Top">
+                <materialDesign:Card>
+                    <Border Width="{Binding ElementName=MyCardContent, Path=ActualWidth}" Height="{Binding ElementName=MyCardContent, Path=ActualHeight}">
+                        <Border.Background>
+                            <VisualBrush Visual="{Binding ElementName=MyCardContent}" Stretch="None"/>
+                        </Border.Background>
+                    </Border>
+                </materialDesign:Card>
+            </materialDesign:Plane3D>
+        </Border>
+
+
+        <Border BorderThickness="2" BorderBrush="Green" Grid.Column="1">
+            <materialDesign:Flipper>
+                <materialDesign:Flipper.FrontContent>
+                    <materialDesign:Card Width="220">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="100" />
+                            </Grid.RowDefinitions>
+                            <Image Source="Resources/Contact.png" Height="180" Stretch="UniformToFill"/>
+                            <Button Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" 
+                                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Rotate3d" />
+                                    <TextBlock Margin="8 0 0 0">FLIPPABLZ!</TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </materialDesign:Card>
+                </materialDesign:Flipper.FrontContent>
+                <materialDesign:Flipper.BackContent>
+                    <materialDesign:Card Width="220" Height="280">
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                                Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                Margin="8">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="ArrowLeft" />
+                                <TextBlock Margin="8 0 0 0">FLIP BACK</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </materialDesign:Card>
+                </materialDesign:Flipper.BackContent>
+            </materialDesign:Flipper>
+        </Border>
+        
+        <materialDesign:Card Width="220"  Grid.Column="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="100" />
+                </Grid.RowDefinitions>
+                <Image Source="Resources/Contact.png" Height="180" Stretch="UniformToFill"/>
+                <Button Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Rotate3d" />
+                        <TextBlock Margin="8 0 0 0">FLIP ME!</TextBlock>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </materialDesign:Card>
+        
     </Grid>
 </UserControl>
+
+
+
