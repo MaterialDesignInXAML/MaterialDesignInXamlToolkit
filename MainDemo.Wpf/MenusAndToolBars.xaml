@@ -70,13 +70,13 @@
                     <materialDesign:PackIcon Kind="ContentPaste" />
                 </Button>
                 <Separator/>
-                <ListBox Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
+                <ListBox>
                     <ListBoxItem ToolTip="This is a lonley toggle with TextBlock instead of icon">
                         <TextBlock>W</TextBlock>
                     </ListBoxItem>
                 </ListBox>
                 <Separator/>
-                <ListBox Style="{StaticResource MaterialDesignToolToggleFlatListBox}" SelectedIndex="0">
+                <ListBox SelectedIndex="0">
                     <ListBox.ToolTip>
                         <StackPanel>
                             <TextBlock Text="MaterialDesignToolToggleFlatListBox" />
@@ -98,7 +98,7 @@
                     </ListBoxItem>
                 </ListBox>
                 <Separator/>
-                <ListBox SelectionMode="Extended" Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
+                <ListBox SelectionMode="Extended">
                     <ListBox.ToolTip>
                         <StackPanel>
                             <TextBlock Text="MaterialDesignToolToggleListBox" />

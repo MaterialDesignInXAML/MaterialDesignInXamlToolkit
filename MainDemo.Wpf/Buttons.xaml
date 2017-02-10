@@ -293,6 +293,7 @@
                 </ToggleButton>
             </StackPanel>
 
+            <!-- the following based on https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons -->
             <ListBox Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignToolToggleListBox}" SelectedIndex="0">
                 <ListBox.ToolTip>
                     <StackPanel>
@@ -312,6 +313,24 @@
                 </ListBoxItem>
                 <ListBoxItem>
                     <materialDesign:PackIcon Kind="FormatAlignJustify"/>
+                </ListBoxItem>
+            </ListBox>
+            <ListBox  Grid.Column="1" Grid.Row="2"  SelectionMode="Extended" Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
+                <ListBox.ToolTip>
+                    <StackPanel>
+                        <TextBlock Text="MaterialDesignToolToggleListBox" />
+                        <TextBlock Text="Multiple selection" />
+                        <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                    </StackPanel>
+                </ListBox.ToolTip>
+                <ListBoxItem>
+                    <materialDesign:PackIcon Kind="FormatBold"/>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <materialDesign:PackIcon Kind="FormatItalic"/>
+                </ListBoxItem>
+                <ListBoxItem x:Name="UnderlineCheckbox">
+                    <materialDesign:PackIcon Kind="FormatUnderline"/>
                 </ListBoxItem>
             </ListBox>
         </Grid>

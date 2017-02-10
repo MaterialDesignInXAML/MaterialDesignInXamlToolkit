@@ -12,6 +12,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.Button.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.ToggleButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.Font.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.ListBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -130,6 +131,19 @@
                         <Style TargetType="{x:Type wpf:PackIcon}" >
                             <Setter Property="Width" Value="22" />
                             <Setter Property="Height" Value="22" />
+                        </Style>
+                        <Style TargetType="ListBox" BasedOn="{StaticResource MaterialDesignToolToggleFlatListBox}">
+                            <Setter Property="ItemContainerStyle">
+                                <Setter.Value>
+                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}">
+                                        <Setter Property="TextBlock.FontWeight" Value="DemiBold"/>
+                                        <Setter Property="TextBlock.FontSize" Value="18"/>
+                                        <Setter Property="MinWidth" Value="54"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                        <Setter Property="Padding" Value="16" />
+                                    </Style>
+                                </Setter.Value>
+                            </Setter>
                         </Style>
                     </ControlTemplate.Resources>
                     <DockPanel x:Name="Grid" Margin="3,1,1,1" SnapsToDevicePixels="true" Background="{TemplateBinding Background}">
