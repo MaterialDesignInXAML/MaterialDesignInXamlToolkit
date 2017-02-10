@@ -78,7 +78,10 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<Cards>(),
                         DocumentationLink.StyleLink("Card"),
                         DocumentationLink.ApiLink<Card>()
-                    }),
+                    })
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
                 new DemoItem("Icon Pack", new IconPack { DataContext = new IconPackViewModel() },
                     new []
                     {                        
