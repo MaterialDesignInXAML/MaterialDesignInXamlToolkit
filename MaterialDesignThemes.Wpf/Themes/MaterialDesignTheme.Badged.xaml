@@ -6,6 +6,7 @@
     <SineEase EasingMode="EaseOut" x:Key="BadgeEase" />
     
     <Style TargetType="{x:Type wpf:Badged}">
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="BadgeColorZoneMode" Value="PrimaryLight" />
@@ -44,6 +45,8 @@
                                 <ScaleTransform x:Name="BadgeScaleTransform" ScaleX="1" ScaleY="1" />
                             </Border.RenderTransform>
                             <ContentControl Foreground="{TemplateBinding BadgeForeground}"
+                                            IsTabStop="False"
+                                            Focusable="False"
                                             HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Margin="1 0 1 0"
                                             Content="{TemplateBinding Badge}" />
