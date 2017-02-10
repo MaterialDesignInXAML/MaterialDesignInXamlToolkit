@@ -74,6 +74,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.Badged.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.Calendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -240,6 +244,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Badged.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Chip.cs" />
     <Compile Include="Clock.cs" />
