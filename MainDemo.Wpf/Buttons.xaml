@@ -182,6 +182,12 @@
                                BadgeColorZoneMode="Dark">
                 <Button>STATUS</Button>
             </materialDesign:Badged>
+            <materialDesign:Badged Margin="0 12 28 4"               
+                                   x:Name="CountingBadge"
+                                   BadgeColorZoneMode="PrimaryDark">
+                <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                        Click="CountingButton_OnClick">CLICK ME!</Button>
+            </materialDesign:Badged>
             <Button Content="{materialDesign:PackIcon AirplaneTakeoff}"
                     Margin="0 12 8 4"                                         
                     ToolTip="Icon">

@@ -2,6 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <SineEase EasingMode="EaseOut" x:Key="BadgeEase" />
+    
     <Style TargetType="{x:Type wpf:Badged}">
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -28,13 +31,18 @@
                                 MinWidth="18" MinHeight="18"                                
                                 HorizontalAlignment="Left" VerticalAlignment="Top" Padding="2"
                                 TextElement.FontSize="11"
-                                TextElement.FontWeight="DemiBold">
+                                TextElement.FontWeight="DemiBold"
+                                RenderTransformOrigin=".5,.5"
+                                Visibility="{TemplateBinding IsBadgeSet, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Border.Resources>
                                 <Style TargetType="wpf:PackIcon">
                                     <Setter Property="Width" Value="12" />
                                     <Setter Property="Height" Value="12" />
                                 </Style>
                             </Border.Resources>
+                            <Border.RenderTransform>
+                                <ScaleTransform x:Name="BadgeScaleTransform" ScaleX="1" ScaleY="1" />
+                            </Border.RenderTransform>
                             <ContentControl Foreground="{TemplateBinding BadgeForeground}"
                                             HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Margin="1 0 1 0"
@@ -42,6 +50,22 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="BadgeChanged">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BadgeScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                            <EasingDoubleKeyFrame Value="1.4" KeyTime="0" />
+                                            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3" EasingFunction="{StaticResource BadgeEase}" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BadgeScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                            <EasingDoubleKeyFrame Value="1.4" KeyTime="0" />
+                                            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3" EasingFunction="{StaticResource BadgeEase}" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
                         <Trigger Property="BadgePlacementMode" Value="TopLeft">
                             <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
                             <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />

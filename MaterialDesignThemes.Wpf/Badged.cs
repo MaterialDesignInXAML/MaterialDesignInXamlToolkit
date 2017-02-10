@@ -20,6 +20,7 @@ namespace MaterialDesignThemes.Wpf
     public class Badged : ContentControl
     {
         public const string BadgeContainerPartName = "PART_BadgeContainer";
+        private FrameworkElement _badgeContainer;
 
         static Badged()
         {
@@ -27,7 +28,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty BadgeProperty = DependencyProperty.Register(
-            "Badge", typeof(object), typeof(Badged), new FrameworkPropertyMetadata(default(object), FrameworkPropertyMetadataOptions.AffectsArrange));
+            "Badge", typeof(object), typeof(Badged), new FrameworkPropertyMetadata(default(object), FrameworkPropertyMetadataOptions.AffectsArrange, OnBadgeChanged));
 
         public object Badge
         {
@@ -63,15 +64,52 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty BadgePlacementModeProperty = DependencyProperty.Register(
-            "BadgePlacementMode", typeof(BadgePlacementMode), typeof(Badged), new PropertyMetadata(default(BadgePlacementMode)));
-
-        private FrameworkElement _badgeContainer;
+            "BadgePlacementMode", typeof(BadgePlacementMode), typeof(Badged), new PropertyMetadata(default(BadgePlacementMode)));        
 
         public BadgePlacementMode BadgePlacementMode
         {
             get { return (BadgePlacementMode) GetValue(BadgePlacementModeProperty); }
             set { SetValue(BadgePlacementModeProperty, value); }
         }
+
+        public static readonly RoutedEvent BadgeChangedEvent =
+            EventManager.RegisterRoutedEvent(
+                "BadgeChanged",
+                RoutingStrategy.Bubble,
+                typeof(RoutedPropertyChangedEventHandler<object>),
+                typeof(Badged));
+
+        public event RoutedPropertyChangedEventHandler<object> BadgeChanged
+        {
+            add { AddHandler(BadgeChangedEvent, value); }
+            remove { RemoveHandler(BadgeChangedEvent, value); }
+        }
+
+        private static readonly DependencyPropertyKey IsBadgeSetPropertyKey =
+            DependencyProperty.RegisterReadOnly(
+                "IsBadgeSet", typeof(bool), typeof(Badged),
+                new PropertyMetadata(default(bool)));
+
+        public static readonly DependencyProperty IsBadgeSetProperty =
+            IsBadgeSetPropertyKey.DependencyProperty;
+
+        public bool IsBadgeSet
+        {
+            get { return (bool) GetValue(IsBadgeSetProperty); }
+            private set { SetValue(IsBadgeSetPropertyKey, value); }
+        }
+
+        private static void OnBadgeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {            
+            var instance = (Badged)d;
+
+            instance.IsBadgeSet = !string.IsNullOrWhiteSpace(e.NewValue as string) || (e.NewValue != null && !(e.NewValue is string));
+
+            var args = new RoutedPropertyChangedEventArgs<object>(
+                e.OldValue,
+                e.NewValue) {RoutedEvent = BadgeChangedEvent};
+            instance.RaiseEvent(args);
+        } 
 
         public override void OnApplyTemplate()
         {
