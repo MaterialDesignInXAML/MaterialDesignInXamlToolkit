@@ -86,12 +86,11 @@
                     </Grid.ColumnDefinitions>
                     <materialDesign:PackIcon Grid.Column="0" Kind="Clock" VerticalAlignment="Center" Margin="8 4 4 4"/>
                     <ListBox Grid.Column="1" Style="{StaticResource MaterialDesignToolToggleFlatListBox}" SelectedIndex="0" Margin="4 8 8 4">
-                        <ListBox.ItemContainerStyle>
+                        <ListBox.Resources>
                             <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}">
-                                <Setter Property="FontSize" Value="14" />
-                                <Setter Property="Padding" Value="6"/>
+                                <Setter Property="Padding" Value="4 6 4 6" />
                             </Style>
-                        </ListBox.ItemContainerStyle>
+                        </ListBox.Resources>
                         <ListBox.ToolTip>
                             <StackPanel>
                                 <TextBlock Text="MaterialDesignFlatToggleListBox" />
