@@ -26,10 +26,19 @@
                         <Border x:Name="PART_BadgeContainer" 
                                 CornerRadius="9" Background="{TemplateBinding BadgeBackground}"                                 
                                 MinWidth="18" MinHeight="18"                                
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Padding="2">
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Padding="2"
+                                TextElement.FontSize="11"
+                                TextElement.FontWeight="DemiBold">
+                            <Border.Resources>
+                                <Style TargetType="wpf:PackIcon">
+                                    <Setter Property="Width" Value="12" />
+                                    <Setter Property="Height" Value="12" />
+                                </Style>
+                            </Border.Resources>
                             <ContentControl Foreground="{TemplateBinding BadgeForeground}"
-                                HorizontalAlignment="Center" VerticalAlignment="Center"
-                                Content="{TemplateBinding Badge}" />
+                                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Margin="1 0 1 0"
+                                            Content="{TemplateBinding Badge}" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>

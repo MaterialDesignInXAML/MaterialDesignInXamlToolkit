@@ -50,10 +50,22 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         
-        <materialDesign:Badged Margin="64" Badge="3">
+        <materialDesign:Badged Margin="32" Badge="3">
             <Button>MAIL</Button>
         </materialDesign:Badged>
-        
+
+        <materialDesign:Badged Margin="32" Badge="{materialDesign:PackIcon Kind=Heart}"
+                               BadgeColorZoneMode="Accent"
+                               Grid.Column="1">
+            <Button>LOVE</Button>
+        </materialDesign:Badged>
+
+        <materialDesign:Badged Margin="32" Badge="DANGER"
+                               BadgeColorZoneMode="Dark"
+                               Grid.Column="2">
+            <Button>STATUS</Button>
+        </materialDesign:Badged>
+
     </Grid>
 </UserControl>
 

@@ -152,22 +152,39 @@
                 </materialDesign:PopupBox>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 16 0 0">
-            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 0 8 0" Width="100"
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 20 0 0">
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedLightButton">
                 _LIGHT
             </Button>
-            <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 8 0" Width="100"
+            <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedButton">
                 _MID
             </Button>
-            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 0 8 0" Width="100"
+            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0 12 8 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
                 _DARK
             </Button>
-            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 0 8 0" Width="100"
+            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0 12 16 0" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton">
                 ACCENT
+            </Button>
+            <materialDesign:Badged Margin="0 12 16 4" Badge="3">
+                <Button>MAIL</Button>
+            </materialDesign:Badged>
+
+            <materialDesign:Badged Margin="0 12 16 4" Badge="{materialDesign:PackIcon Heart}"
+                                   BadgeColorZoneMode="Accent">
+                <Button>LOVE</Button>
+            </materialDesign:Badged>
+
+            <materialDesign:Badged Margin="0 12 28 4" Badge="DANGER"
+                               BadgeColorZoneMode="Dark">
+                <Button>STATUS</Button>
+            </materialDesign:Badged>
+            <Button Content="{materialDesign:PackIcon AirplaneTakeoff}"
+                    Margin="0 12 8 4"                                         
+                    ToolTip="Icon">
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="3"  Margin="0 24 0 0" Orientation="Horizontal">
