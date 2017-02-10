@@ -40,15 +40,20 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.StyleLink("PopupBox"),
                         DocumentationLink.StyleLink("ToggleButton"),
                         DocumentationLink.ApiLink<PopupBox>()
-                    }
-                ),
+                    })
+                    {
+                        VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                    },
                 new DemoItem("Fields", new TextFields(),
                     new []
                     {                        
                         DocumentationLink.DemoPageLink<TextFields>(),
                         DocumentationLink.StyleLink("TextBox"),
                         DocumentationLink.StyleLink("ComboBox"),                        
-                    }),
+                    })
+                    {
+                        VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                    },
                 new DemoItem("Pickers", new Pickers { DataContext = new PickersViewModel()},
                     new []
                     {
@@ -72,7 +77,11 @@ namespace MaterialDesignColors.WpfExample.Domain
                     {
                         DocumentationLink.DemoPageLink<Typography>(),
                         DocumentationLink.StyleLink("TextBlock")
-                    }),
+                    })
+                    {
+                        VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto,
+                        HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                    },
                 new DemoItem("Cards", new Cards(), new []
                     {
                         DocumentationLink.DemoPageLink<Cards>(),
