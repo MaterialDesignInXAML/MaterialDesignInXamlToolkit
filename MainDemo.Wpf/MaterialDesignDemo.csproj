@@ -139,6 +139,9 @@
     <Compile Include="Lists.xaml.cs">
       <DependentUpon>Lists.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListViews.xaml.cs">
+      <DependentUpon>ListViews.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MenusAndToolBars.xaml.cs">
       <DependentUpon>MenusAndToolBars.xaml</DependentUpon>
     </Compile>
@@ -271,6 +274,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Lists.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListViews.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
