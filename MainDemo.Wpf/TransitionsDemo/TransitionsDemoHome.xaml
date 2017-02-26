@@ -60,9 +60,9 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <materialDesign:Transitioner Name="BackgroundTransitioner" Grid.Column="1" Margin="6" SelectedIndex="1" DefaultTransitionOrigin="{x:Static materialDesign:TransitionOrigins.TopLeft}">
+            <materialDesign:Transitioner Name="BackgroundTransitioner" Grid.Column="1" Margin="6" SelectedIndex="1" DefaultTransitionOrigin="0, 0">
                 <Border Background="#009688"/>
-                <materialDesign:TransitionerSlide TransitionOrigin="{x:Static materialDesign:TransitionOrigins.BottomRight}">
+                <materialDesign:TransitionerSlide TransitionOrigin="0, 1">
                     <materialDesign:TransitionerSlide.BackwardWipe>
                         <materialDesign:CircleWipe/>
                     </materialDesign:TransitionerSlide.BackwardWipe>
