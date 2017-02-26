@@ -219,6 +219,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignExpander" TargetType="{x:Type Expander}">
+        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -226,7 +227,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
-                    <Grid>
+                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ExpansionStates">
                                 <VisualStateGroup.Transitions>
@@ -271,45 +272,47 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <DockPanel Background="{TemplateBinding Background}">
-                            <ToggleButton Name="HeaderSite"
-                                          DockPanel.Dock="Top"
-                                          BorderThickness="0" Cursor="Hand"
-                                          IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                          Style="{StaticResource MaterialDesignExpanderDownHeaderStyle}"
-                                          TextElement.FontSize="15"
-                                          Opacity=".87"
-                                          Foreground="{TemplateBinding Foreground}"
-                                          Content="{TemplateBinding Header}"
-                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
-                                          ContentStringFormat="{TemplateBinding HeaderStringFormat}"/>
-                            <Border Name="ContentSite"
-                                    DockPanel.Dock="Bottom"                                    >
-                                <StackPanel Name="ContentPanel"
-                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                            Margin="{TemplateBinding Padding}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                    <StackPanel.Height>
-                                        <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
-                                            <Binding ElementName="PART_Content" Path="ActualHeight"/>
-                                            <Binding ElementName="PART_Content" Path="Opacity"/>
-                                        </MultiBinding>
-                                    </StackPanel.Height>
-                                    <StackPanel.Width>
-                                        <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
-                                            <Binding ElementName="PART_Content" Path="ActualWidth"/>
-                                            <Binding ElementName="PART_Content" Path="Opacity"/>
-                                        </MultiBinding>
-                                    </StackPanel.Width>
-                                    <ContentPresenter Name="PART_Content" Focusable="False"
-                                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                      ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                                      ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
-                                </StackPanel>
-                            </Border>
-                        </DockPanel>
-                    </Grid>
+                        <Grid>                            
+                            <DockPanel Background="{TemplateBinding Background}">
+                                <ToggleButton Name="HeaderSite"
+                                              DockPanel.Dock="Top"
+                                              BorderThickness="0" Cursor="Hand"
+                                              IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Style="{StaticResource MaterialDesignExpanderDownHeaderStyle}"
+                                              TextElement.FontSize="15"
+                                              Opacity=".87"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              Content="{TemplateBinding Header}"
+                                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                                              ContentStringFormat="{TemplateBinding HeaderStringFormat}"/>
+                                <Border Name="ContentSite"
+                                        DockPanel.Dock="Bottom"                                    >
+                                    <StackPanel Name="ContentPanel"
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                Margin="{TemplateBinding Padding}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                        <StackPanel.Height>
+                                            <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
+                                                <Binding ElementName="PART_Content" Path="ActualHeight"/>
+                                                <Binding ElementName="PART_Content" Path="Opacity"/>
+                                            </MultiBinding>
+                                        </StackPanel.Height>
+                                        <StackPanel.Width>
+                                            <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
+                                                <Binding ElementName="PART_Content" Path="ActualWidth"/>
+                                                <Binding ElementName="PART_Content" Path="Opacity"/>
+                                            </MultiBinding>
+                                        </StackPanel.Width>
+                                        <ContentPresenter Name="PART_Content" Focusable="False"
+                                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
+                                    </StackPanel>
+                                </Border>
+                            </DockPanel>
+                        </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ExpandDirection" Value="Right">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Left"/>
