@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Domain\DocumentationLinkType.cs" />
     <Compile Include="Domain\FutureDateValidationRule.cs" />
+    <Compile Include="Domain\IsCheckedValidationRule.cs" />
     <Compile Include="Domain\MainWindowViewModel.cs" />
     <Compile Include="Domain\NotEmptyValidationRule.cs" />
     <Compile Include="Domain\NotifyPropertyChangedExtension.cs" />
