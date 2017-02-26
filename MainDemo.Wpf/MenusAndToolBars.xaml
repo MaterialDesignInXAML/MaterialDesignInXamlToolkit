@@ -51,7 +51,7 @@
             </MenuItem>
         </Menu>
         <ToolBarTray DockPanel.Dock="Top">
-            <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+            <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
                 <Button ToolTip="Follow me on Twitter" Click="TwitterButton_OnClick">
                     <materialDesign:PackIcon Kind="TwitterBox" />
                 </Button>
@@ -69,6 +69,13 @@
                 <Button Command="Paste" ToolTip="Paste some stuff" ToolBar.OverflowMode="AsNeeded">
                     <materialDesign:PackIcon Kind="ContentPaste" />
                 </Button>
+                <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and 
+                     manually apply the button style -->
+                <materialDesign:Badged ToolBar.OverflowMode="AsNeeded" Badge="{materialDesign:PackIcon Alert}">
+                    <Button ToolTip="Badge it up!" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                        <materialDesign:PackIcon Kind="AirplaneTakeoff" />
+                    </Button>
+                </materialDesign:Badged>
                 <Separator/>
                 <ListBox>
                     <ListBoxItem ToolTip="This is a lonley toggle with TextBlock instead of icon">
