@@ -14,6 +14,7 @@ nuget xunit.core 2.1.0 framework: = net452
 nuget xunit.extensibility.core 2.1.0 framework: = net452
 nuget xunit.extensibility.execution 2.1.0 framework: = net452
 
-github ControlzEx/ControlzEx:72aa238cd565ef63e8d52c29982a587e039d04ec src/ControlzEx/PopupEx.cs
-github ControlzEx/ControlzEx:10d0bab474eb73a846e3993175c8357a7fa95c07 src/ControlzEx/PackIconBase.cs
+github ControlzEx/ControlzEx:1f4d66092fb101f3ece1dc88b36c20d815f88b2b src/ControlzEx/PopupEx.cs
+github ControlzEx/ControlzEx:1f4d66092fb101f3ece1dc88b36c20d815f88b2b src/ControlzEx/PackIconBase.cs
+github ControlzEx/ControlzEx:1f4d66092fb101f3ece1dc88b36c20d815f88b2b src/ControlzEx/BadgedEx.cs
 github samueldjack/VirtualCollection:e63d891c252c2ac1a3ebb26dddb9a3d89effe3f2 VirtualCollection/VirtualCollection/VirtualizingWrapPanel.cs

@@ -47,6 +47,10 @@
     <NoWarn>CS1591;CS1574</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\BadgedEx.cs">
+      <Paket>True</Paket>
+      <Link>ControlzEx/BadgedEx.cs</Link>
+    </Compile>
     <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\PackIconBase.cs">
       <Paket>True</Paket>
       <Link>ControlzEx/PackIconBase.cs</Link>

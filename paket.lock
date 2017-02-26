@@ -23,7 +23,8 @@ NUGET
       xunit.extensibility.core (2.1)
 GITHUB
   remote: ControlzEx/ControlzEx
-    src/ControlzEx/PackIconBase.cs (10d0bab474eb73a846e3993175c8357a7fa95c07)
-    src/ControlzEx/PopupEx.cs (72aa238cd565ef63e8d52c29982a587e039d04ec)
+    src/ControlzEx/BadgedEx.cs (c0ebf5b9937c52bb4b0012e3430aae6397e400db)
+    src/ControlzEx/PackIconBase.cs (c0ebf5b9937c52bb4b0012e3430aae6397e400db)
+    src/ControlzEx/PopupEx.cs (c0ebf5b9937c52bb4b0012e3430aae6397e400db)
   remote: samueldjack/VirtualCollection
     VirtualCollection/VirtualCollection/VirtualizingWrapPanel.cs (e63d891c252c2ac1a3ebb26dddb9a3d89effe3f2)
