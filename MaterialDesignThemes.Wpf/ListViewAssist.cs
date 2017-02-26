@@ -8,7 +8,7 @@ namespace MaterialDesignThemes.Wpf
             "ListViewItemPadding",
             typeof(Thickness),
             typeof(ListViewAssist),
-            new FrameworkPropertyMetadata(new Thickness(13, 8, 8, 8), FrameworkPropertyMetadataOptions.Inherits));
+            new FrameworkPropertyMetadata(new Thickness(8, 8, 8, 8), FrameworkPropertyMetadataOptions.Inherits));
 
         public static void SetListViewItemPadding(DependencyObject element, Thickness value)
         {
