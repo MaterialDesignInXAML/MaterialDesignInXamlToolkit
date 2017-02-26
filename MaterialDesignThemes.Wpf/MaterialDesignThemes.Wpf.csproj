@@ -372,6 +372,7 @@
     <Compile Include="Transitions\TransitionerSlideState.cs" />
     <Compile Include="Transitions\TransitioningContent.cs" />
     <Compile Include="Transitions\TransitioningContentBase.cs" />
+    <Compile Include="Transitions\TransitionOrigins.cs" />
     <Compile Include="TreeHelper.cs" />
     <Compile Include="Underline.cs" />
     <Compile Include="ValidationAssist.cs" />
