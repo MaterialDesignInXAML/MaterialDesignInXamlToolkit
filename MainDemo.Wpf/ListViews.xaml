@@ -3,7 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MaterialDesignDemo">
     <Grid Margin="8">
-        <ListView Grid.Row="0" ItemsSource="{Binding Items1}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="1">
+            <ListViewItem>
+                Hello
+            </ListViewItem>
+            <ListViewItem>
+                World
+            </ListViewItem>
+        </ListView>
+        <ListView Grid.Row="3" ItemsSource="{Binding Items1}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Code}" Header="Code" />

@@ -129,38 +129,38 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="MaterialDesignListView" TargetType="{x:Type ListView}">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="FontSize" Value="13" />
-        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
-        <Setter Property="ScrollViewer.PanningMode" Value="Both" />
-        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListView}">
-                    <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
-                        <ItemsPresenter />
-                    </ScrollViewer>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsGrouping" Value="True">
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
+   <Style x:Key="MaterialDesignListView" TargetType="{x:Type ListView}">
+       <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+       <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+       <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
+       <Setter Property="BorderThickness" Value="0" />
+       <Setter Property="FontSize" Value="13" />
+       <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+       <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+       <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+       <Setter Property="SnapsToDevicePixels" Value="True" />
+       <Setter Property="OverridesDefaultStyle" Value="False" />
+       <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+       <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+       <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+       <Setter Property="VerticalContentAlignment" Value="Center" />
+       <Setter Property="Template">
+           <Setter.Value>
+               <ControlTemplate TargetType="{x:Type ListView}">
+                   <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+                       <ItemsPresenter />
+                   </ScrollViewer>
+                   <ControlTemplate.Triggers>
+                       <Trigger Property="IsGrouping" Value="True">
+                           <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                       </Trigger>
+                   </ControlTemplate.Triggers>
+               </ControlTemplate>
+           </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignListViewItem" TargetType="ListViewItem">
+    <Style x:Key="MaterialDesignGridViewItem" TargetType="ListViewItem">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Background" Value="Transparent" />
