@@ -10,7 +10,6 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class DotNet4Extensions
     {
-
         public static async Task<T> InvokeAsync<T>(this Dispatcher dispatcher, Func<T> d)
         {
             var result = await TaskEx.Run(() => (T)dispatcher.Invoke(d));

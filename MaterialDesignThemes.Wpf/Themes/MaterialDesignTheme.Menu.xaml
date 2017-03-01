@@ -47,11 +47,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuBase}">
-                    <AdornerDecorator>
-                        <!-- warning, this will cache the inner item as well, consider separating the shadow from the item if possible -->
-                        <AdornerDecorator.CacheMode>
-                            <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                        </AdornerDecorator.CacheMode>
+                    <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                         <Border Background="{TemplateBinding Background}"
                                 Effect="{DynamicResource MaterialDesignShadowDepth1}"
                                 Margin="3"
@@ -80,6 +76,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="{x:Type wpf:PackIcon}" >
+                            <Setter Property="Width" Value="16" />
+                            <Setter Property="Height" Value="16" />
+                        </Style>
+                    </ControlTemplate.Resources>
                     <Grid ClipToBounds="True">
                         <Border x:Name="templateRoot"
                                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -176,11 +178,8 @@
                                Focusable="False"
                                IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
                                PopupAnimation="Slide"
-                               Placement="Bottom">
-                            <!-- warning, this will cache the inner item as well, consider separating the shadow from the item if possible -->
-                            <Popup.CacheMode>
-                                <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                            </Popup.CacheMode>
+                               Placement="Bottom"
+                                CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                             <Border x:Name="SubMenuBorder"
                                     Background="{Binding Path=Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuBase}}"
                                     Effect="{DynamicResource MaterialDesignShadowDepth1}"

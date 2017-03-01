@@ -68,6 +68,15 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 multiplier = itemsControl.Items.IndexOf(element);
             }
 
+            if (multiplier == -1) //still not found, repeat now using datacontext
+            {
+                var frameworkElement = element as FrameworkElement;
+                if (frameworkElement != null)
+                {
+                    multiplier = itemsControl.Items.IndexOf(frameworkElement.DataContext);
+                }
+            }
+
             return multiplier > -1 ? new TimeSpan(Unit.Ticks * multiplier) : TimeSpan.Zero;
         }
     }

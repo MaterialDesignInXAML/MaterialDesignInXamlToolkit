@@ -52,7 +52,7 @@ using System.Windows.Markup;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.7")]
-[assembly: AssemblyFileVersion("0.0.7")]
+[assembly: AssemblyVersion("0.0.10")]
+[assembly: AssemblyFileVersion("0.0.10")]
 [assembly: XmlnsPrefix("http://materialdesigninxaml.net/winfx/xaml/themes", "materialDesignMahApps")]
 [assembly: XmlnsDefinition("http://materialdesigninxaml.net/winfx/xaml/themes", "MaterialDesignThemes.MahApps")]

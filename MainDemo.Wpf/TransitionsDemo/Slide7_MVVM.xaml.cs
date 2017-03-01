@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MaterialDesignDemo.TransitionsDemo
 {
     /// <summary>
-    /// Interaction logic for Slide6_MVVM.xaml
+    /// Interaction logic for Slide7_MVVM.xaml
     /// </summary>
-    public partial class Slide6_MVVM : UserControl
+    public partial class Slide7_MVVM : UserControl
     {
-        public Slide6_MVVM()
+        public Slide7_MVVM()
         {
             InitializeComponent();
         }
