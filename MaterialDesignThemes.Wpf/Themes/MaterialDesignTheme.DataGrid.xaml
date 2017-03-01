@@ -8,7 +8,8 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.checkbox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DataGrid.ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />                
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Thumb.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -34,7 +35,6 @@
     <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ComboBox}, ResourceId=MaterialDataGridComboBoxColumnEditingStyle}"
            TargetType="{x:Type ComboBox}"
            BasedOn="{StaticResource MaterialDesignDataGridComboBox}">
-        
     </Style>
 
     <Style x:Key="MaterialDesignDataGridTextColumnEditingStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
@@ -186,20 +186,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <Style x:Key="MaterialDesignDataGridColumnHeaderGripper" TargetType="{x:Type Thumb}">
-        <Setter Property="Width" Value="8"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Cursor" Value="SizeWE"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
+  
     <Style x:Key="MaterialDesignDataGridColumnHeader" TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="TextBlock.FontSize" Value="12" />
@@ -234,8 +221,8 @@
                                                   Margin="{TemplateBinding Padding}"/>
                             </StackPanel>
                         </Border>
-                        <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignDataGridColumnHeaderGripper}"/>
-                        <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignDataGridColumnHeaderGripper}"/>
+                        <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignGridColumnHeaderGripper}"/>
+                        <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignGridColumnHeaderGripper}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -262,19 +249,6 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignDataGridRowHeaderGripper" TargetType="{x:Type Thumb}">
-        <Setter Property="Height" Value="8"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Cursor" Value="SizeNS"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style x:Key="MaterialDesignDataGridRowHeader" TargetType="{x:Type DataGridRowHeader}">
         <Setter Property="Template">
             <Setter.Value>
@@ -286,8 +260,8 @@
                                 <Control SnapsToDevicePixels="false" Template="{Binding ValidationErrorTemplate, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" Visibility="{Binding (Validation.HasError), Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
                             </StackPanel>
                         </Border>
-                        <Thumb x:Name="PART_TopHeaderGripper" Style="{StaticResource MaterialDesignDataGridRowHeaderGripper}" VerticalAlignment="Top"/>
-                        <Thumb x:Name="PART_BottomHeaderGripper" Style="{StaticResource MaterialDesignDataGridRowHeaderGripper}" VerticalAlignment="Bottom"/>
+                        <Thumb x:Name="PART_TopHeaderGripper" Style="{StaticResource MaterialDesignGridRowHeaderGripper}" VerticalAlignment="Top"/>
+                        <Thumb x:Name="PART_BottomHeaderGripper" Style="{StaticResource MaterialDesignGridRowHeaderGripper}" VerticalAlignment="Bottom"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
