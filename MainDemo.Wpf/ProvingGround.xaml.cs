@@ -33,28 +33,14 @@ namespace MaterialDesignColors.WpfExample
             {
                 SelectedTime = new DateTime(2000, 1, 1, 3, 15, 0)
             };
-        }        
-
-        private void SnackBar3_OnClick(object sender, RoutedEventArgs e)
-        {
-            //use the message queue to send a message.
-            var messageQueue = SnackbarThree.MessageQueue;
-            var message = MessageTextBox.Text;
-
-            //the message queue can be called from any thread
-            Task.Factory.StartNew(() => messageQueue.Enqueue(message));
         }
 
-        private void SnackBar4_OnClick(object sender, RoutedEventArgs e)
+        private void CounterButton_OnClick(object sender, RoutedEventArgs e)
         {
-            foreach (var s in ExampleFourTextBox.Text.Split(new []{ Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                SnackbarFour.MessageQueue.Enqueue(
-                s,
-                "TRACE",
-                param => Trace.WriteLine("Actioned: " + param),
-                s);
-            }
+            if (Counter.Badge == null || Equals(Counter.Badge, ""))
+                Counter.Badge = 0;
+
+            Counter.Badge = int.Parse(Counter.Badge.ToString()) + 1;
         }
     }
 

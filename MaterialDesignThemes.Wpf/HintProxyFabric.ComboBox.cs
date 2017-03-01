@@ -50,7 +50,7 @@ namespace MaterialDesignThemes.Wpf
 
             public bool IsEmpty()
             {
-                return string.IsNullOrWhiteSpace(_comboBox.Text);
+                return string.IsNullOrEmpty(_comboBox.Text);
             }
 
             public event EventHandler ContentChanged;

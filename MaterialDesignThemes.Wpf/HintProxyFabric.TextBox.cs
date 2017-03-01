@@ -16,7 +16,7 @@ namespace MaterialDesignThemes.Wpf
 
             public bool IsVisible => _textBox.IsVisible;
 
-            public bool IsEmpty() => string.IsNullOrWhiteSpace(_textBox.Text);
+            public bool IsEmpty() => string.IsNullOrEmpty(_textBox.Text);
 
             public event EventHandler ContentChanged;
             public event EventHandler IsVisibleChanged;

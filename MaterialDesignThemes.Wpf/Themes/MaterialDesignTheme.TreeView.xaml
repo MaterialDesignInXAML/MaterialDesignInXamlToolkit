@@ -175,6 +175,8 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
                                                              To="0.1" Duration="0"/>
+                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
+                                                             To="0.1" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState Name="Disabled"/>
@@ -203,6 +205,7 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="1" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Scale" Storyboard.TargetName="ScaleHost" To="1" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition GeneratedDuration="0" To="Collapsed">
@@ -214,12 +217,14 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="0" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Scale" Storyboard.TargetName="ScaleHost" To="0" Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Expanded">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="1" Duration="0"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Scale" Storyboard.TargetName="ScaleHost" To="1" Duration="0:0:0.3"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -228,6 +233,7 @@
                                 <VisualState x:Name="Collapsed">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsHost" To="0" Duration="0"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Scale" Storyboard.TargetName="ScaleHost" To="0" Duration="0:0:0.3"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -235,7 +241,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        
+                        <wpf:ScaleHost x:Name="ScaleHost" />
                         <ToggleButton x:Name="Expander" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" 
                                       Style="{StaticResource MaterialDesignExpandCollapseToggleStyle}"
                                       Foreground="{TemplateBinding Foreground}"
@@ -273,7 +279,7 @@
                             <StackPanel.Height>
                                 <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
                                     <Binding ElementName="ItemsHost" Path="ActualHeight"/>
-                                    <Binding ElementName="ItemsHost" Path="Opacity"/>
+                                    <Binding ElementName="ScaleHost" Path="Scale"/>
                                 </MultiBinding>
                             </StackPanel.Height>
                             <ItemsPresenter x:Name="ItemsHost"

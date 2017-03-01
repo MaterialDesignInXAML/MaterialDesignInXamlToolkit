@@ -23,7 +23,7 @@
     <Style x:Key="MaterialDesignGroupBox" TargetType="{x:Type GroupBox}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
-        <Setter Property="Padding" Value="6,6,6,6"/>
+        <Setter Property="Padding" Value="9"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
@@ -31,7 +31,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GroupBox}">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{Binding Path=Background, ElementName=PART_ColorZone}" BorderThickness="{TemplateBinding BorderThickness}">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{Binding Path=Background, ElementName=PART_ColorZone}" BorderThickness="{TemplateBinding BorderThickness}" />
                         <DockPanel Background="{TemplateBinding Background}">
                             <wpf:ColorZone UseLayoutRounding="True" x:Name="PART_ColorZone" DockPanel.Dock="Top" Padding="{TemplateBinding Padding}" Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Mode)}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                                 <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
@@ -44,7 +45,7 @@
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
                         </DockPanel>
-                    </Border>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -53,7 +54,7 @@
     <Style x:Key="MaterialDesignCardGroupBox" TargetType="{x:Type GroupBox}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
-        <Setter Property="Padding" Value="6,6,6,6"/>
+        <Setter Property="Padding" Value="9"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />

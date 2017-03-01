@@ -14,7 +14,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Style="{DynamicResource MaterialDesignHeadlineTextBlock}" TextWrapping="Wrap">You can combine some transition effects to.  Did you see how this page slid in from the bottom and left?</TextBlock>
+            <TextBlock Style="{DynamicResource MaterialDesignHeadlineTextBlock}" TextWrapping="Wrap">You can combine some transition effects too.  Did you see how this page slid in from the bottom and left?</TextBlock>
             <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" TextWrapping="Wrap" Grid.Row="1">Next we will look at some granular transitions on individual elements.</TextBlock>
             <StackPanel Orientation="Horizontal" Grid.Row="2">
                 <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" 

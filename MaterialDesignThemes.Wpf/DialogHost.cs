@@ -157,7 +157,7 @@ namespace MaterialDesignThemes.Wpf
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
         public static async Task<object> Show(object content, object dialogIdentifier, DialogClosingEventHandler closingEventHandler)
         {
-            return await Show(content, dialogIdentifier, null, closingEventHandler);
+            return Show(content, dialogIdentifier, null, closingEventHandler);
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace MaterialDesignThemes.Wpf
                 throw new InvalidOperationException("No loaded DialogHost instances.");
             LoadedInstances.First().Dispatcher.VerifyAccess();
 
-            var targets = LoadedInstances.Where(dh => Equals(dh.Identifier, dialogIdentifier)).ToList();
+            var targets = LoadedInstances.Where(dh => dialogIdentifier == null || Equals(dh.Identifier, dialogIdentifier)).ToList();
             if (targets.Count == 0)
                 throw new InvalidOperationException("No loaded DialogHost have an Identifier property matching dialogIndetifier argument.");
             if (targets.Count > 1)
@@ -264,7 +264,7 @@ namespace MaterialDesignThemes.Wpf
                 // Don't attempt to Invoke if _restoreFocusDialogClose hasn't been assigned yet. Can occur
                 // if the MainWindow has started up minimized. Even when Show() has been called, this doesn't
                 // seem to have been set.
-                dialogHost.Dispatcher.InvokeAsync(() => dialogHost._restoreFocusDialogClose?.Focus(), DispatcherPriority.Input);
+                dialogHost.Dispatcher.InvokeAsync(() => dialogHost._restoreFocusDialogClose?.Focus(), DispatcherPriority.Input);                
 
                 return;
             }
@@ -287,6 +287,7 @@ namespace MaterialDesignThemes.Wpf
 
             dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
+                CommandManager.InvalidateRequerySuggested();
                 var child = dialogHost.FocusPopup();
 
                 //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
@@ -573,8 +574,14 @@ namespace MaterialDesignThemes.Wpf
             var child = _popup?.Child;
             if (child == null) return null;
 
-            child.Focus();
-            child.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+            CommandManager.InvalidateRequerySuggested();
+            var focusable = child.VisualDepthFirstTraversal().OfType<UIElement>().FirstOrDefault(ui => ui.Focusable && ui.IsVisible);
+            focusable?.Dispatcher.InvokeAsync(() =>
+            {
+                if (!focusable.Focus()) return;
+                focusable.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
+            }, DispatcherPriority.Background);
+
             return child;
         }
 

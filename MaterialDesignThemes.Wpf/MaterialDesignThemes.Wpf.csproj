@@ -50,6 +50,10 @@
     <NoWarn>CS1591;CS1574</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\BadgedEx.cs">
+      <Paket>True</Paket>
+      <Link>ControlzEx/BadgedEx.cs</Link>
+    </Compile>
     <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\PackIconBase.cs">
       <Paket>True</Paket>
       <Link>ControlzEx/PackIconBase.cs</Link>
@@ -102,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.Badged.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.Calendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -138,6 +146,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.Flipper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.GridSplitter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +159,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\MaterialDesignTheme.Label.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MaterialDesignTheme.ListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -262,8 +278,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.Thumb.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Badged.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Chip.cs" />
     <Compile Include="Clock.cs" />
@@ -286,6 +307,7 @@
     <Compile Include="Converters\CircularProgressBar\StartPointConverter.cs" />
     <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
     <Compile Include="Converters\ClockLineConverter.cs" />
+    <Compile Include="Converters\ListViewItemContainerStyleConverter.cs" />
     <Compile Include="Converters\RangePositionConverterConverter.cs" />
     <Compile Include="Converters\DrawerOffsetConverter.cs" />
     <Compile Include="Converters\EqualityToVisibilityConverter.cs" />
@@ -315,6 +337,7 @@
     <Compile Include="DpiHelper.cs" />
     <Compile Include="DrawerHost.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Flipper.cs" />
     <Compile Include="HintAssist.cs" />
     <Compile Include="HintProxyFabric.PasswordBox.cs" />
     <Compile Include="HintProxyFabric.TextBox.cs" />
@@ -324,8 +347,11 @@
     <Compile Include="IconType.cs" />
     <Compile Include="ISnackbarMessageQueue.cs" />
     <Compile Include="ListBoxAssist.cs" />
+    <Compile Include="ListViewAssist.cs" />
     <Compile Include="MessageQueueExtension.cs" />
+    <Compile Include="PackIconExtension.cs" />
     <Compile Include="Palette.cs" />
+    <Compile Include="Plane3D.cs" />
     <Compile Include="ScaleHost.cs" />
     <Compile Include="Snackbar.cs" />
     <Compile Include="SnackbarMessage.cs" />

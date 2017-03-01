@@ -49,5 +49,16 @@ namespace MaterialDesignColors.WpfExample
         {
             Console.WriteLine("Just making sure the popup has closed.");
         }
+
+        private void CountingButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (CountingBadge.Badge == null || Equals(CountingBadge.Badge, ""))
+                CountingBadge.Badge = 0;
+
+            var next = int.Parse(CountingBadge.Badge.ToString()) + 1;
+
+            CountingBadge.Badge = next < 21 ? (object)next : null;
+
+        }
     }
 }

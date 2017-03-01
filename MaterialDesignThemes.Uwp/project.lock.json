@@ -15616,5 +15616,8 @@
     "UAP,Version=v10.0": []
   },
   "tools": {},
-  "projectFileToolGroups": {}
+  "projectFileToolGroups": {},
+  "packageFolders": {
+    "C:\\Users\\james.MS\\.nuget\\packages\\": {}
+  }
 }

@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="MaterialDesignToolBarTray" TargetType="{x:Type ToolBarTray}">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignToolBarBackground}"/>
     </Style>
 </ResourceDictionary>
