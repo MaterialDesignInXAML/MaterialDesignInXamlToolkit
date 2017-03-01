@@ -183,18 +183,45 @@
         </Style.Triggers>
     </Style>
 
-    <converters:ListViewItemContainerStyleConverter 
-        x:Key="ListViewItemContainerStyleConverter"
-        DefaultItemContainerStyle="{StaticResource MaterialDesignListBoxItem}"
-        ViewItemContainerStyle="{StaticResource MaterialDesignGridViewItem}" />
-    
+    <converters:ListViewGridViewConverter 
+        x:Key="MaterialDesignListViewItemContainerStyleConverter"
+        DefaultValue="{StaticResource MaterialDesignListBoxItem}"
+        ViewValue="{StaticResource MaterialDesignGridViewItem}" />
+
+    <converters:ListViewGridViewConverter x:Key="MaterialDesignListViewTemplateConverter">
+        <converters:ListViewGridViewConverter.DefaultValue>
+            <ControlTemplate TargetType="{x:Type ListView}">
+                <ScrollViewer>
+                    <ItemsPresenter />
+                </ScrollViewer>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsGrouping" Value="True">
+                        <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </converters:ListViewGridViewConverter.DefaultValue>
+        <converters:ListViewGridViewConverter.ViewValue>
+            <ControlTemplate TargetType="{x:Type ListView}">
+                <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+                    <ItemsPresenter />
+                </ScrollViewer>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsGrouping" Value="True">
+                        <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </converters:ListViewGridViewConverter.ViewValue>
+    </converters:ListViewGridViewConverter>
+
     <Style x:Key="MaterialDesignListView" TargetType="{x:Type ListView}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="13" />
-        <Setter Property="ItemContainerStyle" Value="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource ListViewItemContainerStyleConverter}}" /> 
+        <Setter Property="ItemContainerStyle" Value="{Binding RelativeSource={RelativeSource Self}, Path=View, Converter={StaticResource MaterialDesignListViewItemContainerStyleConverter}}" /> 
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
@@ -204,20 +231,7 @@
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListView}">
-                    <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
-                        <ItemsPresenter />
-                    </ScrollViewer>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsGrouping" Value="True">
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Template" Value="{Binding RelativeSource={RelativeSource Self}, Path=View, Converter={StaticResource MaterialDesignListViewTemplateConverter}}" />
     </Style>
 
 </ResourceDictionary>

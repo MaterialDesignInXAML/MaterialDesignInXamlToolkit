@@ -9,17 +9,17 @@ namespace MaterialDesignThemes.Wpf.Converters
     /// <summary>
     /// Helps coerce the correct item container style for a <see cref="ListView"/>, according to whether the list is displaying in standard mode, or using a <see cref="ListView.View"/>, such as a <see cref="GridView"/>.
     /// </summary>
-    public class ListViewItemContainerStyleConverter : IValueConverter
+    public class ListViewGridViewConverter : IValueConverter
     {
         /// <summary>
         /// Item container style to use when <see cref="ListView.View"/> is <c>null</c>.
         /// </summary>
-        public Style DefaultItemContainerStyle { get; set; }
+        public object DefaultValue { get; set; }
 
         /// <summary>
         /// Item container style to use when <see cref="ListView.View"/> is not <c>null</c>, typically when a <see cref="GridView"/> is applied.
         /// </summary>
-        public Style ViewItemContainerStyle { get; set; }
+        public object ViewValue { get; set; }
 
         /// <summary>
         /// Returns the item container <see cref="Style"/> to use for a <see cref="ListView"/>.
@@ -34,10 +34,10 @@ namespace MaterialDesignThemes.Wpf.Converters
             var listView = value as ListView;
             if (listView != null)
             {
-                return listView.View != null ? ViewItemContainerStyle : DefaultItemContainerStyle;
+                return listView.View != null ? ViewValue : DefaultValue;
             }
 
-            return value is ViewBase ? ViewItemContainerStyle : DefaultItemContainerStyle;
+            return value is ViewBase ? ViewValue : DefaultValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

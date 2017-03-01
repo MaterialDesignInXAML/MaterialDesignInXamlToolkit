@@ -108,14 +108,12 @@ namespace MaterialDesignColors.WpfExample.Domain
                     {
                         DocumentationLink.DemoPageLink<Lists>("Demo View"),
                         DocumentationLink.DemoPageLink<ListsAndGridsViewModel>("Demo View Model"),
-                        DocumentationLink.StyleLink("ListBox")
-                    }),
-                new DemoItem("ListViews", new ListViews { DataContext = new ListsAndGridsViewModel() },
-                    new DocumentationLink[]
-                    {
-
-                    }),
-
+                        DocumentationLink.StyleLink("ListBox"),
+                        DocumentationLink.StyleLink("ListView")
+                    })
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
                 new DemoItem("Trees", new Trees { DataContext = new TreesViewModel() },
                     new []
                     {
