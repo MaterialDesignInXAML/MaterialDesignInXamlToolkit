@@ -278,6 +278,7 @@ namespace MaterialDesignThemes.Wpf
                 //show message
                 if (snackbar != null)
                 {
+                    var message = _snackbarMessages.First.Value;
                     _snackbarMessages.RemoveFirst();
                     if (_latestShownItem == null
                         || message.IsPromoted
@@ -302,7 +303,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private DispatcherOperation<Snackbar> FindSnackbar(Dispatcher dispatcher)
+        private Task<Snackbar> FindSnackbar(Dispatcher dispatcher)
         {
             return dispatcher.InvokeAsync(() =>
             {
