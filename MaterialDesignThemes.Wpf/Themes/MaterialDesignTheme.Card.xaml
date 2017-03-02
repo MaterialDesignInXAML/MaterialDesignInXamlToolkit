@@ -35,6 +35,7 @@
         <Setter Property="Background" Value="{DynamicResource MaterialDesignCardBackground}" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth2" />
+        <Setter Property="Focusable" Value="False"/>
     </Style>
 
 </ResourceDictionary>

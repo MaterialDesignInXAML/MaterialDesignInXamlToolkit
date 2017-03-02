@@ -16,9 +16,11 @@
                     MaterialDesignTheme.Defaults.xaml 
                 in your App.xaml
         -->
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Badged.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Chip.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Clock.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RatingBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TimePicker.xaml" />
@@ -616,11 +618,11 @@
                                         TextElement.FontWeight="Regular"
                                         TextElement.FontSize="13"
                                         TextOptions.TextFormattingMode="Ideal"
-                                        TextOptions.TextRenderingMode="Auto"
-                                        FocusManager.IsFocusScope="True"
+                                        TextOptions.TextRenderingMode="Auto"                  
+                                        FocusManager.IsFocusScope="False"
                                         Foreground="{DynamicResource MaterialDesignBody}"
                                         FontFamily="{StaticResource MaterialDesignFont}"
-                                        Focusable="False"
+                                        Focusable="True"
                                         IsTabStop="False"
                                         Opacity="0"
                                         RenderTransformOrigin=".5,.5"
@@ -934,7 +936,9 @@
                                                 x:Name="LeftDrawerShadow">
                                         </Border>
                                     </AdornerDecorator>
-                                    <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}" />
+                                    <ContentPresenter Content="{TemplateBinding LeftDrawerContent}" ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}"
+                                                      IsEnabled="{TemplateBinding IsLeftDrawerOpen}"
+                                                      />
                                 </Grid>
                                 <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right"
                                       x:Name="PART_RightDrawer"
@@ -947,11 +951,12 @@
                                                 x:Name="RightDrawerShadow">
                                         </Border>
                                     </AdornerDecorator>
-                                    <ContentPresenter Content="{TemplateBinding RightDrawerContent}" ContentTemplate="{TemplateBinding RightDrawerContentTemplate}" ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}" />
+                                    <ContentPresenter Content="{TemplateBinding RightDrawerContent}" ContentTemplate="{TemplateBinding RightDrawerContentTemplate}" ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}"
+                                                      IsEnabled="{TemplateBinding IsRightDrawerOpen}" />
                                 </Grid>
                                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top"
                                       x:Name="PART_TopDrawer"
-                                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Top}}"
+                                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Top}}"
                                       Panel.ZIndex="{TemplateBinding TopDrawerZIndex}">
                                     <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                                         <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
@@ -960,11 +965,12 @@
                                                 x:Name="TopDrawerShadow">
                                         </Border>
                                     </AdornerDecorator>
-                                    <ContentPresenter Content="{TemplateBinding TopDrawerContent}" ContentTemplate="{TemplateBinding TopDrawerContentTemplate}" ContentStringFormat="{TemplateBinding TopDrawerContentStringFormat}" />
+                                    <ContentPresenter Content="{TemplateBinding TopDrawerContent}" ContentTemplate="{TemplateBinding TopDrawerContentTemplate}" ContentStringFormat="{TemplateBinding TopDrawerContentStringFormat}"
+                                                      IsEnabled="{TemplateBinding IsTopDrawerOpen}" />
                                 </Grid>
                                 <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
                                       x:Name="PART_BottomDrawer"
-                                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Bottom}}"
+                                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Bottom}}"
                                       Panel.ZIndex="{TemplateBinding BottomDrawerZIndex}">
                                     <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                                         <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
@@ -973,7 +979,8 @@
                                             x:Name="BottomDrawerShadow">
                                         </Border>
                                     </AdornerDecorator>
-                                    <ContentPresenter Content="{TemplateBinding BottomDrawerContent}" ContentTemplate="{TemplateBinding BottomDrawerContentTemplate}" ContentStringFormat="{TemplateBinding BottomDrawerContentStringFormat}" />
+                                    <ContentPresenter Content="{TemplateBinding BottomDrawerContent}" ContentTemplate="{TemplateBinding BottomDrawerContentTemplate}" ContentStringFormat="{TemplateBinding BottomDrawerContentStringFormat}"
+                                                      IsEnabled="{TemplateBinding IsBottomDrawerOpen}"/>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -1082,6 +1089,5 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
 
 </ResourceDictionary>

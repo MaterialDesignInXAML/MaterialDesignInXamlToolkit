@@ -51,7 +51,7 @@
             </MenuItem>
         </Menu>
         <ToolBarTray DockPanel.Dock="Top">
-            <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+            <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
                 <Button ToolTip="Follow me on Twitter" Click="TwitterButton_OnClick">
                     <materialDesign:PackIcon Kind="TwitterBox" />
                 </Button>
@@ -69,7 +69,61 @@
                 <Button Command="Paste" ToolTip="Paste some stuff" ToolBar.OverflowMode="AsNeeded">
                     <materialDesign:PackIcon Kind="ContentPaste" />
                 </Button>
-                <Separator />
+                <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and 
+                     manually apply the button style -->
+                <materialDesign:Badged ToolBar.OverflowMode="AsNeeded" Badge="{materialDesign:PackIcon Alert}">
+                    <Button ToolTip="Badge it up!" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                        <materialDesign:PackIcon Kind="AirplaneTakeoff" />
+                    </Button>
+                </materialDesign:Badged>
+                <Separator/>
+                <ListBox>
+                    <ListBoxItem ToolTip="This is a lonley toggle with TextBlock instead of icon">
+                        <TextBlock>W</TextBlock>
+                    </ListBoxItem>
+                </ListBox>
+                <Separator/>
+                <ListBox SelectedIndex="0">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="MaterialDesignToolToggleFlatListBox" />
+                            <TextBlock Text="Exclusive selection" />
+                            <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                    <ListBoxItem >
+                        <materialDesign:PackIcon Kind="FormatAlignLeft"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatAlignCenter"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatAlignRight"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatAlignJustify"/>
+                    </ListBoxItem>
+                </ListBox>
+                <Separator/>
+                <ListBox SelectionMode="Extended">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="MaterialDesignToolToggleListBox" />
+                            <TextBlock Text="Multiple selection" />
+                            <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatBold"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <materialDesign:PackIcon Kind="FormatItalic"/>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="UnderlineCheckbox">
+                        <materialDesign:PackIcon Kind="FormatUnderline"/>
+                    </ListBoxItem>
+                </ListBox>
+                <Separator/>
                 <Label Content="Font size:" VerticalAlignment="Center"/>
                 <ComboBox>
                     <ComboBoxItem Content="10"/>
@@ -85,12 +139,7 @@
                 </Button>
                 <RadioButton GroupName="XXX" Content="Radio" />
                 <RadioButton GroupName="XXX" Content="Ga Ga" />
-                <ToggleButton>
-                    Switch
-                </ToggleButton>
-                <Menu>
-                    <MenuItem>Embedded menu</MenuItem>
-                </Menu>
+                <ToggleButton/>
             </ToolBar>
         </ToolBarTray>
         

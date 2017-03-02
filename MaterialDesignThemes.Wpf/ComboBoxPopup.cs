@@ -11,7 +11,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
-    internal enum ComboBoxPopupPlacement
+    public enum ComboBoxPopupPlacement
     {
         Undefined,
         Down,
@@ -19,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
         Classic
     }
 
-    internal class ComboBoxPopup : Popup
+    public class ComboBoxPopup : Popup
     {
         #region UpContentTemplate property
 
@@ -187,16 +187,24 @@ namespace MaterialDesignThemes.Wpf
         public ComboBoxPopup()
         {
             CustomPopupPlacementCallback = ComboBoxCustomPopupPlacementCallback;
+            var childPropertyDescriptor = DependencyPropertyDescriptor.FromProperty(ComboBoxPopup.ChildProperty, typeof(ComboBoxPopup));
+            EventHandler childChangedHandler = (sender, x) =>
+            {
+                if (PopupPlacement != ComboBoxPopupPlacement.Undefined)
+                {
+                    UpdateChildTemplate(PopupPlacement);
+                }
+            };
 
-            DependencyPropertyDescriptor.FromProperty(ComboBoxPopup.ChildProperty, typeof(ComboBoxPopup))
-                .AddValueChanged(this,
-                    delegate
-                    {
-                        if (PopupPlacement != ComboBoxPopupPlacement.Undefined)
-                        {
-                            UpdateChildTemplate(PopupPlacement);
-                        }
-                    });
+            Loaded += (sender, args) =>
+            {
+                childPropertyDescriptor.AddValueChanged(this, childChangedHandler);
+            };
+
+            Unloaded += (sender, args) =>
+            {
+                childPropertyDescriptor.RemoveValueChanged(this, childChangedHandler);
+            };
         }
 
         private void SetupBackground(IEnumerable<DependencyObject> visualAncestry)
