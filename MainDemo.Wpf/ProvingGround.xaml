@@ -4,9 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
-             xmlns:provingGroundStuff="clr-namespace:MaterialDesignDemo.ProvingGroundStuff"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
@@ -15,25 +13,30 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{StaticResource MaterialDesignFont}"
              mc:Ignorable="d"              
-			 d:DesignWidth="477" d:DesignHeight="272"
+             d:DesignWidth="477" d:DesignHeight="272"
              d:DataContext="{d:DesignInstance wpfExample:ProvingGroundViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+
+                <!--
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
-                <!--
+             
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                 -->
+                
             </ResourceDictionary.MergedDictionaries>
 
 
 
-            <Style TargetType="{x:Type provingGroundStuff:MeasuringTextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
+            
 
 
 
@@ -41,11 +44,30 @@
     </UserControl.Resources>
 
     <Grid>
-        <ComboBox materialDesign:HintAssist.Hint="OS">
-            <ComboBoxItem>Android</ComboBoxItem>
-            <ComboBoxItem>iOS</ComboBoxItem>
-            <ComboBoxItem>Linux</ComboBoxItem>
-            <ComboBoxItem>Windows</ComboBoxItem>
-        </ComboBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <materialDesign:Badged Margin="64" Badge="" x:Name="Counter">
+            <Button Click="CounterButton_OnClick">MAIL</Button>
+        </materialDesign:Badged>
+
+        <materialDesign:Badged Margin="32" Badge="{materialDesign:PackIcon Kind=Heart}"
+                               BadgeColorZoneMode="Accent"
+                               Grid.Column="1">
+            <Button>LOVE</Button>
+        </materialDesign:Badged>
+
+        <materialDesign:Badged Margin="32" Badge="DANGER"
+                               BadgeColorZoneMode="Dark"
+                               Grid.Column="2">
+            <Button>STATUS</Button>
+        </materialDesign:Badged>
+
     </Grid>
 </UserControl>
+
+
+

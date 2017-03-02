@@ -46,22 +46,24 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <StackPanel Margin="16" Orientation="Horizontal">
-            <materialDesign:PackIcon Kind="Information" VerticalAlignment="Center" />
-            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">Information Links:</TextBlock>
-            <ItemsControl Margin="16 0 0 0" ItemsSource="{Binding Documentation}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemContainerStyle>
-                    <Style TargetType="ContentPresenter">
-                        <Setter Property="Margin" Value="0 0 32 0"></Setter>
-                    </Style>
-                </ItemsControl.ItemContainerStyle>
-            </ItemsControl>
-        </StackPanel>
+        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <StackPanel Margin="16" Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Information" VerticalAlignment="Center" />
+                <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">Information Links:</TextBlock>
+                <ItemsControl Margin="16 0 0 0" ItemsSource="{Binding Documentation}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="Margin" Value="0 0 32 0"></Setter>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
         <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 1" />
     </Grid>
 </UserControl>

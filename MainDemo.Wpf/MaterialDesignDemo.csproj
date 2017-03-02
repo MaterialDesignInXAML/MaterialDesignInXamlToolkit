@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Domain\DocumentationLinkType.cs" />
     <Compile Include="Domain\FutureDateValidationRule.cs" />
+    <Compile Include="Domain\IsCheckedValidationRule.cs" />
     <Compile Include="Domain\MainWindowViewModel.cs" />
     <Compile Include="Domain\NotEmptyValidationRule.cs" />
     <Compile Include="Domain\NotifyPropertyChangedExtension.cs" />
@@ -187,11 +188,11 @@
     <Compile Include="TransitionsDemo\Slide5_TransitioningContent.xaml.cs">
       <DependentUpon>Slide5_TransitioningContent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TransitionsDemo\Slide6_MVVM.xaml.cs">
-      <DependentUpon>Slide6_MVVM.xaml</DependentUpon>
+    <Compile Include="TransitionsDemo\Slide7_MVVM.xaml.cs">
+      <DependentUpon>Slide7_MVVM.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TransitionsDemo\Slide7_Master.xaml.cs">
-      <DependentUpon>Slide7_Master.xaml</DependentUpon>
+    <Compile Include="TransitionsDemo\Slide6_Origins.xaml.cs">
+      <DependentUpon>Slide6_Origins.xaml</DependentUpon>
     </Compile>
     <Compile Include="TransitionsDemo\Slide7_MasterModel.cs" />
     <Compile Include="TransitionsDemo\Slide8_Details.xaml.cs">
@@ -350,11 +351,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TransitionsDemo\Slide6_MVVM.xaml">
+    <Page Include="TransitionsDemo\Slide7_MVVM.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TransitionsDemo\Slide7_Master.xaml">
+    <Page Include="TransitionsDemo\Slide6_Origins.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

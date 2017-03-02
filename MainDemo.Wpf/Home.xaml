@@ -31,7 +31,8 @@
             <StackPanel Grid.Column="1" Margin="24 0 0 0" VerticalAlignment="Center">
                 <TextBlock Style="{StaticResource MaterialDesignDisplay1TextBlock}" TextWrapping="Wrap">Welcome to Material Design In XAML Toolkit</TextBlock>
                 <Button Style="{StaticResource MaterialDesignFlatButton}"
-                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}">
+                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Left}">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Binoculars" />
                         <TextBlock Margin="8 0 0 0">EXPLORE</TextBlock>
