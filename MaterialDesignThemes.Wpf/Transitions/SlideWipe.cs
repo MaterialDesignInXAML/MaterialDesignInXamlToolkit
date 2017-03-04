@@ -32,52 +32,28 @@ namespace MaterialDesignThemes.Wpf.Transitions
             var endKeyTime = KeyTime.FromTimeSpan(Duration);
 
             // Set up coordinates
-            double fromStartX, fromEndX, toStartX, toEndX;
-            double fromStartY, fromEndY, toStartY, toEndY;
+            double fromStartX = 0, fromEndX = 0, toStartX = 0, toEndX = 0;
+            double fromStartY = 0, fromEndY = 0, toStartY = 0, toEndY = 0;
 
             if (Direction == SlideDirection.Left)
             {
-                fromStartX = 0;
-                fromStartY = 0;
                 fromEndX = -fromSlide.ActualWidth;
-                fromEndY = 0;
                 toStartX = toSlide.ActualWidth;
-                toStartY = 0;
-                toEndX = 0;
-                toEndY = 0;
             }
             else if (Direction == SlideDirection.Right)
             {
-                fromStartX = 0;
-                fromStartY = 0;
                 fromEndX = fromSlide.ActualWidth;
-                fromEndY = 0;
                 toStartX = -toSlide.ActualWidth;
-                toStartY = 0;
-                toEndX = 0;
-                toEndY = 0;
             }
             else if (Direction == SlideDirection.Up)
             {
-                fromStartX = 0;
-                fromStartY = 0;
-                fromEndX = 0;
                 fromEndY = -fromSlide.ActualHeight;
-                toStartX = 0;
                 toStartY = toSlide.ActualHeight;
-                toEndX = 0;
-                toEndY = 0;
             }
-            else // if (Direction == SlideDirection.Down)
+            else if (Direction == SlideDirection.Down)
             {
-                fromStartX = 0;
-                fromStartY = 0;
-                fromEndX = 0;
                 fromEndY = fromSlide.ActualHeight;
-                toStartX = 0;
                 toStartY = -toSlide.ActualHeight;
-                toEndX = 0;
-                toEndY = 0;
             }
 
             // Old

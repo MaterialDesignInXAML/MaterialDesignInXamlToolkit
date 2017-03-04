@@ -331,6 +331,7 @@
     <Compile Include="SnackbarMessageQueueItem.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
+    <Compile Include="Transitions\FadeWipe.cs" />
     <Compile Include="Transitions\IndexedItemOffsetMultiplierExtension.cs" />
     <Compile Include="Transitions\ITransitionEffect.cs" />
     <Compile Include="Transitions\ITransitionEffectSubject.cs" />
