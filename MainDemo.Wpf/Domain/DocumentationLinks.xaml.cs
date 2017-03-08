@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MaterialDesignDemo.TransitionsDemo
+namespace MaterialDesignDemo.Domain
 {
     /// <summary>
-    /// Interaction logic for Slide7_Master.xaml
+    /// Interaction logic for DocumentationLinks.xaml
     /// </summary>
-    public partial class Slide7_Master : UserControl
+    public partial class DocumentationLinks : UserControl
     {
-        public Slide7_Master()
+        public DocumentationLinks()
         {
             InitializeComponent();
         }

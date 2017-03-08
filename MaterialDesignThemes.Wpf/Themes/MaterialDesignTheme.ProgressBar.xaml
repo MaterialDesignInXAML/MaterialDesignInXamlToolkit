@@ -9,6 +9,7 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Height" Value="4"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ProgressBar}">
@@ -33,7 +34,7 @@
                             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="TemplateRoot" To="1" />
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Grid x:Name="TemplateRoot" RenderTransformOrigin="0,0.5" Opacity="0" Height="4">
+                    <Grid x:Name="TemplateRoot" RenderTransformOrigin="0,0.5" Opacity="0">
                         <Grid.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="0" ScaleY="0" />
@@ -99,7 +100,7 @@
                             </MultiTrigger.ExitActions>
                         </MultiTrigger>
                         <Trigger Property="Orientation" Value="Vertical">
-                            <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                            <Setter Property="LayoutTransform">
                                 <Setter.Value>
                                     <RotateTransform Angle="-90"/>
                                 </Setter.Value>

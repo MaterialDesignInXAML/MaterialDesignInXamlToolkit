@@ -8,6 +8,7 @@
     <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FF000000" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF303030" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignCardBackground" Color="#FF424242" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignToolBarBackground" Color="#FF212121" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignBody" Color="#DDFFFFFF" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignBodyLight" Color="#89FFFFFF" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignColumnHeader" Color="#BCFFFFFF" po:Freeze="True" /><!-- 74% -->
@@ -19,7 +20,7 @@
     <SolidColorBrush x:Key="MaterialDesignDivider" Color="#1FFFFFFF" po:Freeze="True" /><!-- 12% -->
     <SolidColorBrush x:Key="MaterialDesignSelection" Color="#757575" po:Freeze="True" />
 
-    <SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#757575" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#19757575" po:Freeze="True" /> <!-- 25% -->
     <SolidColorBrush x:Key="MaterialDesignFlatButtonRipple" Color="#FFB6B6B6" po:Freeze="True" />
 
     <SolidColorBrush x:Key="MaterialDesignToolTipBackground" Color="#eeeeee" po:Freeze="True" />

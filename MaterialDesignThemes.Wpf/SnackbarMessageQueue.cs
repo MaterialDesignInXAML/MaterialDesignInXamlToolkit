@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -272,30 +273,27 @@ namespace MaterialDesignThemes.Wpf
                 }
 
                 //find a target
-                var snackbar = await exemplar.Dispatcher.InvokeAsync(() =>
-                {
-                    return _pairedSnackbars.FirstOrDefault(sb =>
-                    {
-                        if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
-                        var window = Window.GetWindow(sb);
-                        return window != null && window.WindowState != WindowState.Minimized;
-                    });
-                });
+                var snackbar = await FindSnackbar(exemplar.Dispatcher);
 
                 //show message
                 if (snackbar != null)
                 {
                     var message = _snackbarMessages.First.Value;
-                    _snackbarMessages.RemoveFirst();                    
-                    if (_latestShownItem == null 
+                    _snackbarMessages.RemoveFirst();
+                    if (_latestShownItem == null
                         || message.IsPromoted
-                        || !Equals(_latestShownItem.Item1.Content, message.Content) 
-                        || !Equals(_latestShownItem.Item1.ActionContent, message.ActionContent) 
+                        || !Equals(_latestShownItem.Item1.Content, message.Content)
+                        || !Equals(_latestShownItem.Item1.ActionContent, message.ActionContent)
                         || _latestShownItem.Item2 <= DateTime.Now.Subtract(_messageDuration))
                     {
                         await ShowAsync(snackbar, message);
                         _latestShownItem = new Tuple<SnackbarMessageQueueItem, DateTime>(message, DateTime.Now);
                     }
+                }
+                else
+                {
+                    //no snackbar could be found, take a break
+                    _disposedEvent.WaitOne(TimeSpan.FromSeconds(1));
                 }
 
                 if (_snackbarMessages.Count > 0)
@@ -303,6 +301,19 @@ namespace MaterialDesignThemes.Wpf
                 else
                     _messageWaitingEvent.Reset();
             }
+        }
+
+        private DispatcherOperation<Snackbar> FindSnackbar(Dispatcher dispatcher)
+        {
+            return dispatcher.InvokeAsync(() =>
+            {
+                return _pairedSnackbars.FirstOrDefault(sb =>
+                {
+                    if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
+                    var window = Window.GetWindow(sb);
+                    return window != null && window.WindowState != WindowState.Minimized;
+                });
+            });
         }
 
         private async Task ShowAsync(Snackbar snackbar, SnackbarMessageQueueItem messageQueueItem)

@@ -7,15 +7,23 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="256" />
         </Grid.RowDefinitions>
-        <TextBlock>Transitions Demo</TextBlock>
+        <TextBlock Style="{StaticResource MaterialDesignDisplay2TextBlock}">Transitions Demo</TextBlock>
 
         <!-- the transitioner will manage your transitions. notice how SelectedIndex is set to zero: the first slide (instead of the default of -1) -->
-        <materialDesign:Transitioner Grid.Row="1" SelectedIndex="0">
+        <materialDesign:Transitioner Grid.Row="1" SelectedIndex="0" AutoApplyTransitionOrigins="True">
 
             <!-- you can use a slide for each page, let's add a touch of fade for our first page  -->
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
@@ -46,11 +54,9 @@
 
             <local:Slide5_TransitioningContent />
 
-            <local:Slide6_MVVM />
+            <local:Slide6_Origins />
             
-            <local:Slide7_Master />
-
-            <local:Slide8_Details />
+            <local:Slide7_MVVM />
 
         </materialDesign:Transitioner>
 
