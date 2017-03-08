@@ -274,4 +274,18 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type wpf:SpellingSuggestionMenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Header" Value="{Binding RelativeSource={RelativeSource Self}, Path=Suggestion}" />
+    </Style>
+
+    <Style TargetType="{x:Type wpf:SpellingIgnoreAllMenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}">
+        <Setter Property="Header" Value="Ignore All" />
+    </Style>
+
+    <Style TargetType="{x:Type wpf:SpellingNoSuggestionsMenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}">
+        <Setter Property="Header" Value="(no spelling suggestions)" />
+        <Setter Property="IsEnabled" Value="False" />
+    </Style>
 </ResourceDictionary>
