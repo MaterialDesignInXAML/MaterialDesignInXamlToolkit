@@ -20,7 +20,7 @@ namespace ControlzEx
     public class BadgedEx : ContentControl
     {
         public const string BadgeContainerPartName = "PART_BadgeContainer";
-        private FrameworkElement _badgeContainer;
+        protected FrameworkElement _badgeContainer;
 
         public static readonly DependencyProperty BadgeProperty = DependencyProperty.Register(
             "Badge", typeof(object), typeof(BadgedEx), new FrameworkPropertyMetadata(default(object), FrameworkPropertyMetadataOptions.AffectsArrange, OnBadgeChanged));
