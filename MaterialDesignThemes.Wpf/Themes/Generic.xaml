@@ -470,9 +470,17 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="MaterialDesignDialogHostPopup" TargetType="{x:Type controlzEx:PopupEx}">
+        <Setter Property="StaysOpen" Value="True" />
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="PopupAnimation" Value="None" />
+        <Setter Property="Placement" Value="Center" />
+    </Style>
+    
     <Style TargetType="{x:Type local:DialogHost}">
         <Setter Property="DialogMargin" Value="22" />
         <Setter Property="local:ShadowAssist.ShadowDepth" Value="Depth5" />
+        <Setter Property="PopupStyle" Value="{StaticResource MaterialDesignDialogHostPopup}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DialogHost">
@@ -596,13 +604,9 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <controlzEx:PopupEx IsOpen="False"
-                                          PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"                                            
-                                          StaysOpen="True"
-                                          AllowsTransparency="True"
-                                          PopupAnimation="None"
-                                          x:Name="PART_Popup"
-                                          Placement="Center">
+                        <controlzEx:PopupEx PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"
+                                            x:Name="PART_Popup"
+                                            Style="{TemplateBinding PopupStyle}">
                             <controlzEx:PopupEx.Resources>
                                 <ResourceDictionary>
                                     <ResourceDictionary.MergedDictionaries>

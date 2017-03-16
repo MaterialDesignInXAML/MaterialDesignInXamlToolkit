@@ -411,6 +411,15 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(SnackbarMessageQueueProperty, value); }
         }
 
+        public static readonly DependencyProperty PopupStyleProperty = DependencyProperty.Register(
+            nameof(PopupStyle), typeof(Style), typeof(DialogHost), new PropertyMetadata(default(Style)));
+
+        public Style PopupStyle
+        {
+            get => (Style) GetValue(PopupStyleProperty);
+            set => SetValue(PopupStyleProperty, value);
+        }
+
         public override void OnApplyTemplate()
         {
             if (_contentCoverGrid != null)
