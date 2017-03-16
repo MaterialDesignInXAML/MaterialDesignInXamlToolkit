@@ -416,8 +416,8 @@ namespace MaterialDesignThemes.Wpf
 
         public Style PopupStyle
         {
-            get => (Style) GetValue(PopupStyleProperty);
-            set => SetValue(PopupStyleProperty, value);
+            get { return (Style) GetValue(PopupStyleProperty); }
+            set { SetValue(PopupStyleProperty, value); }
         }
 
         public override void OnApplyTemplate()
