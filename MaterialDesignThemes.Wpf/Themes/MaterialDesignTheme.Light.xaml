@@ -16,7 +16,7 @@
     <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89000000" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#FFBDBDBD" po:Freeze="True" />
 
-    <SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#89000000" po:Freeze="True" />
+    <SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#E6E6E6" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignDivider" Color="#1F000000" po:Freeze="True" /> <!-- 12% -->
     <SolidColorBrush x:Key="MaterialDesignSelection" Color="#FFDeDeDe" po:Freeze="True" />
 

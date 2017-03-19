@@ -15,7 +15,7 @@
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
         <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="0 0 0 0" />
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}"/>
+        <Setter Property="CaretBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
@@ -55,7 +55,7 @@
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
                                 SnapsToDevicePixels="True"
-                                Padding="0 4 0 4">
+                                Padding="0 0 0 6">
                             <Grid Margin="{TemplateBinding Padding}"
                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
@@ -72,8 +72,7 @@
                                                HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                                                UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
                                                FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
-                                               FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"                                               
-                                               />
+                                               FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"/>
                             </Grid>
                         </Border>
                         <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
@@ -88,14 +87,14 @@
                             <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
                         </MultiTrigger>
                         <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
-                            <Setter TargetName="border" Property="Margin" Value="0 12 0 0" />
+                            <Setter TargetName="border" Property="Margin" Value="0 18 0 0" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
+                        <!--<Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
-                        </Trigger>
+                        </Trigger>-->
                         <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter TargetName="Underline" Property="IsActive" Value="True"/>
                         </Trigger>

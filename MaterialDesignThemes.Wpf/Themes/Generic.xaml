@@ -208,20 +208,20 @@
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="ScaleTransform"
                                                              Storyboard.TargetProperty="ScaleX"
-                                                             Duration="0:0:0.3"
+                                                             Duration="0:0:0.1"
                                                              EasingFunction="{StaticResource UnderlineEasingFunction}"
                                                              To="1"/>
                                         </Storyboard>
                                     </VisualTransition>
-                                    <VisualTransition From="Active" To="Inactive">
+                                    <!--<VisualTransition From="Active" To="Inactive">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="ScaleTransform"
                                                              Storyboard.TargetProperty="ScaleX"
-                                                             Duration="0:0:0.3"
+                                                             Duration="0:0:0.1"
                                                              EasingFunction="{StaticResource UnderlineEasingFunction}"
                                                              To="0"/>
                                         </Storyboard>
-                                    </VisualTransition>
+                                    </VisualTransition>-->
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Active">
                                     <Storyboard>
