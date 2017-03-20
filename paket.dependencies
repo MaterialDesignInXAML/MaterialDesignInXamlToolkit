@@ -3,7 +3,7 @@ framework >= net45
 
 nuget MahApps.Metro
 nuget Dragablz 0.0.3.165
-nuget Moq 4.5.10 framework: = net452
+nuget Moq 4.7.1 framework: = net452
 nuget NSubstitute 1.10.0 framework: = net452
 nuget RhinoMocks 3.6.1 framework: = net452
 nuget Shouldly 2.8.0 framework: = net452
