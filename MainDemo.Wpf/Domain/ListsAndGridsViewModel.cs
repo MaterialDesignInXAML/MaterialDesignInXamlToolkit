@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Controls;
+using MaterialDesignColors.WpfExample.Domain;
 
-namespace MaterialDesignColors.WpfExample.Domain
+namespace MaterialDesignDemo.Domain
 {
     public class ListsAndGridsViewModel : INotifyPropertyChanged
     {
@@ -36,7 +36,7 @@ namespace MaterialDesignColors.WpfExample.Domain
             }
         }
 
-        private void SelectAll(bool select, IEnumerable<SelectableViewModel> models)
+        private static void SelectAll(bool select, IEnumerable<SelectableViewModel> models)
         {
             foreach (var model in models)
             {
@@ -70,28 +70,16 @@ namespace MaterialDesignColors.WpfExample.Domain
             };
         }
 
-        public ObservableCollection<SelectableViewModel> Items1
-        {
-            get { return _items1; }
-        }
+        public ObservableCollection<SelectableViewModel> Items1 => _items1;
+        public ObservableCollection<SelectableViewModel> Items2 => _items2;
 
-        public ObservableCollection<SelectableViewModel> Items2
-        {
-            get { return _items2; }
-        }
-
-        public ObservableCollection<SelectableViewModel> Items3
-        {
-            get { return _items3; }
-        }
+        public ObservableCollection<SelectableViewModel> Items3 => _items3;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public IEnumerable<string> Foods
