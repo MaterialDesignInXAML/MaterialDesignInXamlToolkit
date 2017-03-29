@@ -20,13 +20,12 @@
         <StackPanel>
             <AdornedElementPlaceholder Name="Placeholder" />
             <Border Name="DefaultErrorViewer"
-                    Visibility="Collapsed"
-                    Background="{DynamicResource MaterialDesignPaper}">
+                    Visibility="Collapsed">
                 <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
-                           FontSize="10"
+                           FontSize="12"
                            MaxWidth="{Binding ElementName=Placeholder, Path=ActualWidth}"
                            HorizontalAlignment="Left"
-                           Margin="0 2"
+                           Margin="0 4"
                            TextWrapping="Wrap"
                            Text="{Binding CurrentItem.ErrorContent}"
                            UseLayoutRounding="false" />
@@ -36,11 +35,11 @@
                                 Placement="Bottom"
                                 PlacementTarget="{Binding ElementName=Placeholder, Mode=OneWay}"
                                 AllowsTransparency="True">
-                <Border Background="{DynamicResource MaterialDesignPaper}">
+                <Border>
                     <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
-                               FontSize="10"
+                               FontSize="12"
                                HorizontalAlignment="Left"
-                               Margin="0 2"
+                               Margin="0 4"
                                TextWrapping="Wrap"
                                Text="{Binding CurrentItem.ErrorContent}"
                                UseLayoutRounding="false" />
