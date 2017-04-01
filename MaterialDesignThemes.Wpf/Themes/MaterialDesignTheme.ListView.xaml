@@ -27,9 +27,11 @@
                             <ScrollViewer DockPanel.Dock="Top"
                                           Focusable="false"
                                           HorizontalScrollBarVisibility="Hidden"
-                                          VerticalScrollBarVisibility="Hidden">
+                                          VerticalScrollBarVisibility="Hidden"
+                                          wpf:ScrollViewerAssist.SyncHorizontalOffset="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}">
                                 <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0,0,0,1">
-                                    <GridViewHeaderRowPresenter x:Name="PART_GridViewHeaderRowPresenter"
+                                    <StackPanel Orientation="Horizontal">
+                                        <GridViewHeaderRowPresenter x:Name="PART_GridViewHeaderRowPresenter"
                                                                 AllowsColumnReorder="{Binding Path=TemplatedParent.View.AllowsColumnReorder, RelativeSource={RelativeSource TemplatedParent}}"
                                                                 ColumnHeaderContainerStyle="{Binding Path=TemplatedParent.View.ColumnHeaderContainerStyle, RelativeSource={RelativeSource TemplatedParent}}"
                                                                 ColumnHeaderContextMenu="{Binding Path=TemplatedParent.View.ColumnHeaderContextMenu, RelativeSource={RelativeSource TemplatedParent}}"
@@ -38,7 +40,11 @@
                                                                 ColumnHeaderToolTip="{Binding Path=TemplatedParent.View.ColumnHeaderToolTip, RelativeSource={RelativeSource TemplatedParent}}"
                                                                 Columns="{Binding Path=TemplatedParent.View.Columns, RelativeSource={RelativeSource TemplatedParent}}"
                                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                        <!-- NB: Rectangle added to keep the width of the header ScrollViewer the same size as the list items -->
+                                        <Rectangle Margin="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ListViewAssist.ListViewItemPadding)}" />
+                                    </StackPanel>
                                 </Border>
+
                             </ScrollViewer>
 
                             <ScrollContentPresenter Name="PART_ScrollContentPresenter"
@@ -221,7 +227,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="13" />
-        <Setter Property="ItemContainerStyle" Value="{Binding RelativeSource={RelativeSource Self}, Path=View, Converter={StaticResource MaterialDesignListViewItemContainerStyleConverter}}" /> 
+        <Setter Property="ItemContainerStyle" Value="{Binding RelativeSource={RelativeSource Self}, Path=View, Converter={StaticResource MaterialDesignListViewItemContainerStyleConverter}}" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
