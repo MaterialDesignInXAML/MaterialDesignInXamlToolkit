@@ -217,6 +217,7 @@ namespace MaterialDesignThemes.Wpf
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
 
+
             CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler, CloseDialogCanExecute));
             CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));
         }
@@ -679,15 +680,25 @@ namespace MaterialDesignThemes.Wpf
             {
                 window.Activated += dialogHost.WindowOnActivated;
                 window.Deactivated += dialogHost.WindowOnDeactivated;
+                window.IsVisibleChanged += dialogHost.WindowIsVisibleChanged;
                 dialogHost._closeCleanUp = () =>
                 {
                     window.Activated -= dialogHost.WindowOnActivated;
                     window.Deactivated -= dialogHost.WindowOnDeactivated;
+                    window.IsVisibleChanged -= dialogHost.WindowIsVisibleChanged;
                 };
             }
             else
             {
                 dialogHost._closeCleanUp = () => { };
+            }
+        }
+
+        private void WindowIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (!(bool) e.NewValue)
+            {
+                Close(null);
             }
         }
 
