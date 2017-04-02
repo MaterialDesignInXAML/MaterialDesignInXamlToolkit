@@ -292,6 +292,8 @@
     <Compile Include="Converters\NotZeroToVisibilityConverter.cs" />
     <Compile Include="Converters\PointValueConverter.cs" />
     <Compile Include="Converters\ShadowConverter.cs" />
+    <Compile Include="Converters\ShadowEdgeConverter.cs" />
+    <Compile Include="Converters\ShadowInfo.cs" />
     <Compile Include="Converters\SizeToRectConverter.cs" />
     <Compile Include="Converters\SnackbarMessageTypeConverter.cs" />
     <Compile Include="Converters\TimeToVisibilityConverter.cs" />
