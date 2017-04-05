@@ -1,10 +1,8 @@
-﻿using System;
+﻿using ControlzEx;
+using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -12,7 +10,6 @@ using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using ControlzEx;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -230,7 +227,7 @@ namespace MaterialDesignThemes.Wpf
                     Mouse.Capture(null);
             }
                         
-            popupBox.AnimateChildrenIn(!newValue);                 
+            popupBox.AnimateChildrenIn(!newValue);
             popupBox._popup?.RefreshPosition();
 
             VisualStateManager.GoToState(popupBox, newValue ? PopupIsOpenStateName : PopupIsClosedStateName, true);
@@ -407,8 +404,8 @@ namespace MaterialDesignThemes.Wpf
         {
             base.OnIsKeyboardFocusWithinChanged(e);
 
-            if (IsPopupOpen && !IsKeyboardFocusWithin)
-            {                
+            if (IsPopupOpen && !IsKeyboardFocusWithin && !StaysOpen)
+            {
                 Close();
             }
         }
@@ -450,7 +447,7 @@ namespace MaterialDesignThemes.Wpf
 
                 Close();
 
-            base.OnMouseEnter(e);
+            base.OnMouseLeave(e);
         }
 
         protected void Close()
@@ -461,16 +458,16 @@ namespace MaterialDesignThemes.Wpf
         
         private CustomPopupPlacement[] GetPopupPlacement(Size popupSize, Size targetSize, Point offset)
         {
-            double x, y;			
-			
+            double x, y;
+
             if (FlowDirection == FlowDirection.RightToLeft)
                 offset.X += targetSize.Width / 2;
-			
+
             switch (PlacementMode)
             {
                 case PopupBoxPlacementMode.BottomAndAlignLeftEdges:
                     x = 0 - Math.Abs(offset.X*3);
-                    y = targetSize.Height - Math.Abs(offset.Y);                    
+                    y = targetSize.Height - Math.Abs(offset.Y);
                     break;
                 case PopupBoxPlacementMode.BottomAndAlignRightEdges:
                     x = 0 - popupSize.Width + targetSize.Width - offset.X;
