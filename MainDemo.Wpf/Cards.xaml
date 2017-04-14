@@ -5,17 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="1200">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <WrapPanel Margin="0 0 8 8" ItemWidth="200">
-        <materialDesign:Card Margin="4 4 0 0">
+    <WrapPanel Margin="0 0 8 8">
+        <materialDesign:Card Margin="4 4 0 0" Width="200">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="140" />
@@ -26,12 +29,7 @@
                 <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                         HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0 0 16 -20">
-                    <Viewbox Width="16" Height="16">
-                        <Canvas Width="24" Height="24">
-                            <Path Data="M5,20.5A3.5,3.5 0 0,1 1.5,17A3.5,3.5 0 0,1 5,13.5A3.5,3.5 0 0,1 8.5,17A3.5,3.5 0 0,1 5,20.5M5,12A5,5 0 0,0 0,17A5,5 0 0,0 5,22A5,5 0 0,0 10,17A5,5 0 0,0 5,12M14.8,10H19V8.2H15.8L13.86,4.93C13.57,4.43 13,4.1 12.4,4.1C11.93,4.1 11.5,4.29 11.2,4.6L7.5,8.29C7.19,8.6 7,9 7,9.5C7,10.13 7.33,10.66 7.85,10.97L11.2,13V18H13V11.5L10.75,9.85L13.07,7.5M19,20.5A3.5,3.5 0 0,1 15.5,17A3.5,3.5 0 0,1 19,13.5A3.5,3.5 0 0,1 22.5,17A3.5,3.5 0 0,1 19,20.5M19,12A5,5 0 0,0 14,17A5,5 0 0,0 19,22A5,5 0 0,0 24,17A5,5 0 0,0 19,12M16,4.8C17,4.8 17.8,4 17.8,3C17.8,2 17,1.2 16,1.2C15,1.2 14.2,2 14.2,3C14.2,4 15,4.8 16,4.8Z" 
-                                  Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground}" />
-                        </Canvas>
-                    </Viewbox>
+                    <materialDesign:PackIcon Kind="Bike" />
                 </Button>
                 <StackPanel Grid.Row="1" Margin="8 24 8 0" >
                     <TextBlock FontWeight="Bold">Cycling</TextBlock>
@@ -40,44 +38,224 @@
                 <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
                     <Button Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
                             materialDesign:RippleAssist.IsCentered="True">
-                        <Viewbox Width="16" Height="16">
-                            <Canvas Width="24" Height="24">
-                                <Path Data="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z" 
-                                      Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground}" />
-                            </Canvas>
-                        </Viewbox>
+                        <materialDesign:PackIcon Kind="ShareVariant" />
                     </Button>
                     <Button Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
                             materialDesign:RippleAssist.IsCentered="True">
-                        <Viewbox Width="16" Height="16">
-                            <Canvas Width="24" Height="24">
-                                <Path Data="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" 
-                                      Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground}" />
-                            </Canvas>
-                        </Viewbox>
+                        <materialDesign:PackIcon Kind="Heart" />
                     </Button>
+                    <materialDesign:PopupBox Style="{StaticResource MaterialDesignToolPopupBox}" Padding="2 0 2 0">
+                        <StackPanel>
+                            <Button Content="More"/>
+                            <Button Content="Options"/>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
                 </StackPanel>
             </Grid>
         </materialDesign:Card>
-        <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueLightBrush}"
-                  Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
-                  Padding="8">
-            <TextBlock FontSize="16">Boring Text</TextBlock>
+        
+        <materialDesign:Card Margin="4 4 0 0" Width="220">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Image Source="Resources/Contact.png" Height="140" Stretch="UniformToFill"/>
+                <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Margin="0 0 16 -20">
+                    <materialDesign:PackIcon Kind="ShareVariant" />
+                </Button>
+                <StackPanel Grid.Row="1" Margin="8 24 8 4" >
+                    <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" Margin="0">E.T. the Extra-Terrestrial</TextBlock>
+                    <Viewbox Margin="0 4 0 8" Height="16" HorizontalAlignment="Left">
+                        <materialDesign:RatingBar Value="3" Orientation="Horizontal" Foreground="Gold" Margin="0" />
+                    </Viewbox>
+                    <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" TextWrapping="Wrap" VerticalAlignment="Center">After a gentle alien becomes stranded on Earth, the being is discovered and befriended by a young boy named Elliott.</TextBlock>
+                </StackPanel>
+                <Separator Grid.Row="2" Style="{StaticResource MaterialDesignDarkSeparator}" Margin="8 0 8 0"/>
+                <TextBlock Grid.Row="3" Margin="8 4 8 4" Style="{StaticResource MaterialDesignBody2TextBlock}">Tonight's availability</TextBlock>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Grid.Column="0" Kind="Clock" VerticalAlignment="Center" Margin="8 4 4 4"/>
+                    <ListBox Grid.Column="1" Style="{StaticResource MaterialDesignToolToggleFlatListBox}" SelectedIndex="0" Margin="4 8 8 4">
+                        <ListBox.Resources>
+                            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}">
+                                <Setter Property="Padding" Value="4 6 4 6" />
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ToolTip>
+                            <StackPanel>
+                                <TextBlock Text="MaterialDesignFlatToggleListBox" />
+                                <TextBlock Text="Exclusive selection" />
+                                <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                            </StackPanel>
+                        </ListBox.ToolTip>
+                        <ListBoxItem>
+                            <TextBlock Text="18:00"/>
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            <TextBlock Text="19:00"/>
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            <TextBlock Text="22:00"/>
+                        </ListBoxItem>
+                    </ListBox>
+                </Grid>
+                               
+                <StackPanel Grid.Row="5">
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Left" Margin="8 4 8 8">RESERVE</Button>
+                </StackPanel>
+            </Grid>
         </materialDesign:Card>
+        <StackPanel>
+            <materialDesign:Card Margin="4 4 0 0" Background="#03a9f4"
+                      Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                      Padding="0"
+                      Width="200">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="16 16 16 4" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Call Jennifer</TextBlock>
+                    <Separator Grid.Row="1" Style="{StaticResource MaterialDesignLightSeparator}"/>
+                    <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody2TextBlock}">March 19, 2016</TextBlock>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="16 0 16 8" HorizontalAlignment="Right">
+                        <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundButton}" Width="30" Padding="2 0 2 0"
+                                materialDesign:RippleAssist.IsCentered="True">
+                            <materialDesign:PackIcon Kind="Phone" />
+                        </Button>
+                        <materialDesign:PopupBox HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundPopupBox}" Padding="2 0 2 0">
+                            <StackPanel>
+                                <Button Content="More"/>
+                                <Button Content="Options"/>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueLightBrush}"
+                      Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                      Width="200"
+                      Padding="8">
+                <TextBlock FontSize="16">Boring Text</TextBlock>
+            </materialDesign:Card>
+            <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueDarkBrush}"
+                  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                  Width="200"
+                  Padding="8" UniformCornerRadius="6">
+                <TextBlock TextWrapping="Wrap">You can adjust the corner radius</TextBlock>
+            </materialDesign:Card>
+        </StackPanel>
         <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueDarkBrush}"
                   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                  Width="200"
                   Padding="8">
             <StackPanel>
-                <TextBlock FontSize="16">Notes</TextBlock>
-                <CheckBox Margin="0 4 0 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Do something good</CheckBox>
-                <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Take a breather</CheckBox>
-                <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">And go create</CheckBox>
+                <TextBlock Margin="16 16 12 8" FontSize="16">Notes</TextBlock>
+                <CheckBox Margin="16 4 16 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Do something good</CheckBox>
+                <CheckBox Margin="16 4 16 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Take a breather</CheckBox>
+                <CheckBox Margin="16 4 16 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">And go create</CheckBox>
+                <Separator Style="{StaticResource MaterialDesignLightSeparator}"/>
+                <StackPanel Margin="8 0 8 8" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundButton}" Width="30" Padding="2 0 0 0"
+                            materialDesign:RippleAssist.IsCentered="True">
+                        <materialDesign:PackIcon Kind="CheckAll" />
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </materialDesign:Card>
-        <materialDesign:Card Margin="4 4 0 0" Background="{DynamicResource PrimaryHueDarkBrush}"
-                  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                  Padding="8" UniformCornerRadius="6">
-            <TextBlock TextWrapping="Wrap">You can adjust the corner radius</TextBlock>
-        </materialDesign:Card>
+        
+        <!--
+            For the Card styled <Flipper />, bring in this resource dictionary (see top of this file)
+            pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml        
+        -->
+        <StackPanel>
+            <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}" Margin="4 4 0 0">
+                <materialDesign:Flipper.FrontContent>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                            Margin="8"
+                            Width="184"
+                            >FLIPPABLZ!</Button>
+                </materialDesign:Flipper.FrontContent>
+                <materialDesign:Flipper.BackContent>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                            Margin="8"
+                            Width="184"
+                            >GO BACK</Button>
+                </materialDesign:Flipper.BackContent>
+            </materialDesign:Flipper>
+            <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}" Margin="4 4 0 0" >
+                <materialDesign:Flipper.FrontContent>
+                    <Grid Height="256" Width="200">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="160" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <materialDesign:ColorZone Mode="PrimaryLight" VerticalAlignment="Stretch">
+                            <materialDesign:PackIcon Kind="AccountCircle" Height="128" Width="128"
+                                                 VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </materialDesign:ColorZone>
+                        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock>James Willock</TextBlock>
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                Margin="0 4 0 0"
+                                >EDIT</Button>
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:Flipper.FrontContent>
+                <materialDesign:Flipper.BackContent>
+                    <Grid Height="256" Width="200">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <materialDesign:ColorZone Mode="Accent" Padding="6">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                HorizontalAlignment="Left">
+                                    <materialDesign:PackIcon Kind="ArrowLeft" HorizontalAlignment="Right" />
+                                </Button>
+                                <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">EDIT USER</TextBlock>
+                            </StackPanel>
+                        </materialDesign:ColorZone>
+                        <Grid Grid.Row="1" Margin="0 6 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"
+                          Width="172">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBox materialDesign:HintAssist.Hint="First name" materialDesign:HintAssist.IsFloating="True"
+                                 Margin="0 12 0 0">James</TextBox>
+                            <TextBox Grid.Row="1" materialDesign:HintAssist.Hint="Last name" materialDesign:HintAssist.IsFloating="True"
+                                 Margin="0 12 0 0">Willock</TextBox>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 12 0 0" HorizontalAlignment="Right">
+                                <TextBlock VerticalAlignment="Center">Email Contact</TextBlock>
+                                <ToggleButton Margin="8 0 0 0"></ToggleButton>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0 12 0 0" HorizontalAlignment="Right">
+                                <TextBlock VerticalAlignment="Center">Telephone Contact</TextBlock>
+                                <ToggleButton Margin="8 0 0 0"></ToggleButton>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </materialDesign:Flipper.BackContent>
+            </materialDesign:Flipper>
+        </StackPanel>
     </WrapPanel>
 </UserControl>

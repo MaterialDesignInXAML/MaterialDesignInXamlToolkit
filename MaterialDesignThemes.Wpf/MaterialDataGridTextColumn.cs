@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -9,9 +10,12 @@ namespace MaterialDesignThemes.Wpf
         {
             var textBox = editingElement as TextBox;
             if (textBox != null)
+            {                
                 textBox.MaxLength = MaxLength;
+                textBox.SelectionStart = textBox.Text.Length;
+            }
 
-            editingElement.Focus();
+            editingElement.Focus();            
 
             return null;
         }

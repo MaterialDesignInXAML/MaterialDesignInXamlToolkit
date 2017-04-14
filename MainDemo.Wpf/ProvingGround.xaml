@@ -4,38 +4,70 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              x:Class="MaterialDesignColors.WpfExample.ProvingGround"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal" 
+             TextOptions.TextRenderingMode="Auto"        
              Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+             FontFamily="{StaticResource MaterialDesignFont}"
              mc:Ignorable="d"              
-			 d:DesignWidth="477" d:DesignHeight="272">
+             d:DesignWidth="477" d:DesignHeight="272"
+             d:DataContext="{d:DesignInstance wpfExample:ProvingGroundViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+
+                <!--
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+             
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                -->
+                
             </ResourceDictionary.MergedDictionaries>
+
+
+
+            
+
+
+
         </ResourceDictionary>
     </UserControl.Resources>
 
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <materialDesign:Badged Margin="64" Badge="" x:Name="Counter">
+            <Button Click="CounterButton_OnClick">MAIL</Button>
+        </materialDesign:Badged>
 
-    <StackPanel Margin="24" HorizontalAlignment="Stretch">
-        <materialDesign:PopupBox x:Name="PopupBox" HorizontalAlignment="Right">
-            <ListBox>
-                <ListBoxItem>One One One</ListBoxItem>
-                <ListBoxItem>Two Two Two</ListBoxItem>
-                <ListBoxItem>Three Three Three</ListBoxItem>
-            </ListBox>
-        </materialDesign:PopupBox>
-        <Button Margin="0 8 0 0">Hello</Button>
-        <ComboBox Margin="0 8 0 0">
-            <ComboBoxItem>One One One</ComboBoxItem>
-            <ComboBoxItem>Two Two Two</ComboBoxItem>
-            <ComboBoxItem>Three Three Three</ComboBoxItem>
-        </ComboBox>
-        <TextBlock Margin="0 8 0 0" Text="{Binding ElementName=PopupBox, Path=IsPopupOpen}" />
-    </StackPanel>
+        <materialDesign:Badged Margin="32" Badge="{materialDesign:PackIcon Kind=Heart}"
+                               BadgeColorZoneMode="Accent"
+                               Grid.Column="1">
+            <Button>LOVE</Button>
+        </materialDesign:Badged>
 
+        <materialDesign:Badged Margin="32" Badge="DANGER"
+                               BadgeColorZoneMode="Dark"
+                               Grid.Column="2">
+            <Button>STATUS</Button>
+        </materialDesign:Badged>
+
+    </Grid>
 </UserControl>
+
+
+

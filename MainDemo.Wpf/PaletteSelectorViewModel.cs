@@ -7,8 +7,8 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignThemes.Wpf;
-using Microsoft.Expression.Interactivity.Core;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -19,7 +19,7 @@ namespace MaterialDesignColors.WpfExample
             Swatches = new SwatchesProvider().Swatches;            
         }
 
-        public ICommand ToggleBaseCommand { get; } = new ActionCommand(o => ApplyBase((bool)o));
+        public ICommand ToggleBaseCommand { get; } = new AnotherCommandImplementation(o => ApplyBase((bool)o));
 
         private static void ApplyBase(bool isDark)
         {
@@ -28,14 +28,14 @@ namespace MaterialDesignColors.WpfExample
 
         public IEnumerable<Swatch> Swatches { get; }
 
-        public ICommand ApplyPrimaryCommand { get; } = new ActionCommand(o => ApplyPrimary((Swatch)o));
+        public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o));
 
         private static void ApplyPrimary(Swatch swatch)
         {
             new PaletteHelper().ReplacePrimaryColor(swatch);
         }
 
-        public ICommand ApplyAccentCommand { get; } = new ActionCommand(o => ApplyAccent((Swatch)o));
+        public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o));
 
         private static void ApplyAccent(Swatch swatch)
         {

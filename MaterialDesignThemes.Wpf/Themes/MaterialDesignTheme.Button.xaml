@@ -20,15 +20,16 @@
 
     <SolidColorBrush x:Key="AttentionToActionBrush" Color="{StaticResource MaterialDesignShadow}" Opacity=".23" po:Freeze="True" />
 
-    <Style x:Key="MaterialDesignRaisedButton" TargetType="{x:Type Button}">
+    <Style x:Key="MaterialDesignRaisedButton" TargetType="{x:Type ButtonBase}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+        <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
-        <Setter Property="TextBlock.FontWeight" Value="DemiBold"/>
-        <Setter Property="TextBlock.FontSize" Value="15"/>
+        <Setter Property="TextBlock.FontWeight" Value="Medium"/>
+        <Setter Property="TextBlock.FontSize" Value="14"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -36,85 +37,51 @@
         <Setter Property="Height" Value="32" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <ControlTemplate.Resources>
-                        <Storyboard x:Key="OnClick">
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClickBorder" Storyboard.TargetProperty="Opacity">
-                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value=".12">
-                                    <EasingDoubleKeyFrame.EasingFunction>
-                                        <CircleEase EasingMode="EaseOut" />
-                                    </EasingDoubleKeyFrame.EasingFunction>
-                                </EasingDoubleKeyFrame>
-                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.6" Value=".12" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
-                                    <EasingDoubleKeyFrame.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </EasingDoubleKeyFrame.EasingFunction>
-                                </EasingDoubleKeyFrame>
-                            </DoubleAnimationUsingKeyFrames>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="ClickBorder">
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1"/>
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.81" Value="0"/>
-                            </DoubleAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </ControlTemplate.Resources>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
                     <Grid>
-                        <Border Background="{TemplateBinding Background}" 
-                                x:Name="ShadowBorder"                                
-                                Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" />
-                        <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2" />
-                        <Border Background="White" CornerRadius="2" x:Name="ClickBorder" Opacity="0" RenderTransformOrigin="0.5,0.5" >
-                            <Border.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleX="0"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Border.RenderTransform>
-                        </Border>
+                        <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="2"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    x:Name="border"
+                                    Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
+                            </Border>
+                        </AdornerDecorator>
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"     
-                                                            Feedback="White"
-                                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                            Padding="{TemplateBinding Padding}" 
-                                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Padding="{TemplateBinding Padding}" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsDefaulted" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />                            
-                            <Setter TargetName="ShadowBorder" Property="wpf:ShadowAssist.Darken" Value="True" />
+                            <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
-                        <EventTrigger RoutedEvent="Click">
-                            <!--BeginStoryboard Storyboard="{StaticResource OnClick}"/-->
-                        </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignRaisedLightButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+    <Style x:Key="MaterialDesignRaisedLightButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}"/>
     </Style>
 
-    <Style x:Key="MaterialDesignRaisedDarkButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+    <Style x:Key="MaterialDesignRaisedDarkButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
     </Style>
 
-    <Style x:Key="MaterialDesignRaisedAccentButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+    <Style x:Key="MaterialDesignRaisedAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
         <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
@@ -126,7 +93,9 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
-        <Setter Property="TextBlock.FontWeight" Value="DemiBold"/>
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
+        <Setter Property="TextBlock.FontWeight" Value="Medium"/>
+        <Setter Property="TextBlock.FontSize" Value="14"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -135,47 +104,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <ControlTemplate.Resources>
-                        <Storyboard x:Key="OnClick">
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ClickBorder" Storyboard.TargetProperty="Opacity">
-                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="1">
-                                    <EasingDoubleKeyFrame.EasingFunction>
-                                        <CircleEase EasingMode="EaseOut" />
-                                    </EasingDoubleKeyFrame.EasingFunction>
-                                </EasingDoubleKeyFrame>
-                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.6" Value="1" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
-                                    <EasingDoubleKeyFrame.EasingFunction>
-                                        <SineEase EasingMode="EaseOut" />
-                                    </EasingDoubleKeyFrame.EasingFunction>
-                                </EasingDoubleKeyFrame>
-                            </DoubleAnimationUsingKeyFrames>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="ClickBorder">
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1"/>
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.81" Value="0"/>
-                            </DoubleAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </ControlTemplate.Resources>
                     <Grid>
-                        <Border Background="{DynamicResource MaterialDesignFlatButtonClick}" CornerRadius="2" x:Name="ClickBorder" Opacity="0" RenderTransformOrigin="0.5,0.5" >
-                            <Border.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleX="0"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Border.RenderTransform>
-                        </Border>
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
-                                        Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
-                                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                              Padding="{TemplateBinding Padding}" 
-                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Padding="{TemplateBinding Padding}" 
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -183,34 +118,39 @@
                             <!--Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/-->
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource MaterialDesignFlatButtonClick}" />
                             <Setter Property="Background" TargetName="border" Value="{DynamicResource MaterialDesignFlatButtonClick}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
-                        <EventTrigger RoutedEvent="Click">
-                            <!--BeginStoryboard Storyboard="{StaticResource OnClick}"/-->
-                        </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignFlatAccentButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}"/>
+    </Style>
+
     <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
-        <Setter Property="Foreground" Value="#616161"/>
+        <Setter Property="Foreground" Value="#616161" />
         <Setter Property="Padding" Value="4"/>
         <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
-                                Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Padding="{TemplateBinding Padding}" 
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.23"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -225,6 +165,7 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+        <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -237,11 +178,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
-                        <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
-                                 Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                 x:Name="border" />
+                        <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+                            <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
+                                     Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                     x:Name="border">
+                            </Ellipse>
+                        </AdornerDecorator>
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
-                                    Feedback="White"
                                     Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -257,6 +200,9 @@
                             <Setter Property="Opacity" Value="0.23"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
                         </Trigger>
                     </ControlTemplate.Triggers>

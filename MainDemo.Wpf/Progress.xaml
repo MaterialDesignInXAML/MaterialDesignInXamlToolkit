@@ -28,10 +28,10 @@
         </Grid.RowDefinitions>
         <!-- linear progress bars (the default style -->
         <ProgressBar Orientation="Vertical" Value="25" Margin="24" Grid.RowSpan="2" />
-        <ProgressBar Orientation="Vertical" IsIndeterminate="True" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="24" />
+        <ProgressBar Orientation="Vertical" Height="10" IsIndeterminate="True" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="24" />
         <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch">
-            <ProgressBar Value="25" Margin="24" />
-            <ProgressBar Value="50" Margin="24" />
+            <ProgressBar Value="25" Margin="24" Height="10" />
+            <ProgressBar Value="50" Margin="24" materialDesign:TransitionAssist.DisableTransitions="True" /> <!-- should disable on 2nd transition... -->
             <ProgressBar Value="75" Margin="24" />
             <ProgressBar IsIndeterminate="True" Margin="24" />
         </StackPanel>

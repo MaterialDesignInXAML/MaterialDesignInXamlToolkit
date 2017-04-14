@@ -12,6 +12,8 @@ namespace MaterialDesignColors.WpfExample
     {
         private DateTime _date;
         private DateTime _time;
+        private string _validatingTime;
+        private DateTime? _futureValidatingDate;
 
         public PickersViewModel()
         {
@@ -35,6 +37,26 @@ namespace MaterialDesignColors.WpfExample
             set
             {
                 _time = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ValidatingTime
+        {
+            get { return _validatingTime; }
+            set
+            {
+                _validatingTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime? FutureValidatingDate
+        {
+            get { return _futureValidatingDate; }
+            set
+            {
+                _futureValidatingDate = value;
                 OnPropertyChanged();
             }
         }

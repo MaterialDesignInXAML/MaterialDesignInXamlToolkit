@@ -11,7 +11,7 @@
   <Color x:Key="Blue GreyPrimary400">#78909c</Color>
   <Color x:Key="Blue GreyPrimary400Foreground">#FFFFFFFF</Color>
   <Color x:Key="Blue GreyPrimary500">#607d8b</Color>
-  <Color x:Key="Blue GreyPrimary500Foreground">#FFFFFFFF</Color>
+  <Color x:Key="Blue GreyPrimary500Foreground">#DDFFFFFF</Color>
   <Color x:Key="Blue GreyPrimary600">#546e7a</Color>
   <Color x:Key="Blue GreyPrimary600Foreground">#DDFFFFFF</Color>
   <Color x:Key="Blue GreyPrimary700">#455a64</Color>

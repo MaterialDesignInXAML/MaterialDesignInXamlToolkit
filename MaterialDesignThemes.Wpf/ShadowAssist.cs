@@ -1,5 +1,6 @@
 using System;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Navigation;
@@ -29,7 +30,7 @@ namespace MaterialDesignThemes.Wpf
     public static class ShadowAssist
     {
         public static readonly DependencyProperty ShadowDepthProperty = DependencyProperty.RegisterAttached(
-            "ShadowDepth", typeof (ShadowDepth), typeof (ShadowAssist), new PropertyMetadata(default(ShadowDepth)));
+            "ShadowDepth", typeof (ShadowDepth), typeof (ShadowAssist), new FrameworkPropertyMetadata(default(ShadowDepth), FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static void SetShadowDepth(DependencyObject element, ShadowDepth value)
         {
@@ -55,7 +56,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DarkenProperty = DependencyProperty.RegisterAttached(
-            "Darken", typeof (bool), typeof (ShadowAssist), new PropertyMetadata(default(bool), DarkenPropertyChangedCallback));
+            "Darken", typeof (bool), typeof (ShadowAssist), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.AffectsRender, DarkenPropertyChangedCallback));
 
         private static void DarkenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -95,6 +96,20 @@ namespace MaterialDesignThemes.Wpf
         public static bool GetDarken(DependencyObject element)
         {
             return (bool) element.GetValue(DarkenProperty);
-        }        
-    }   
+        }
+
+        public static readonly DependencyProperty CacheModeProperty = DependencyProperty.RegisterAttached(
+            "CacheMode", typeof(CacheMode), typeof(ShadowAssist), new FrameworkPropertyMetadata(new BitmapCache { EnableClearType = true, SnapsToDevicePixels = true }, FrameworkPropertyMetadataOptions.Inherits));
+
+        public static void SetCacheMode(DependencyObject element, CacheMode value)
+        {
+            element.SetValue(CacheModeProperty, value);
+        }
+
+        public static CacheMode GetCacheMode(DependencyObject element)
+        {
+            return (CacheMode)element.GetValue(CacheModeProperty);
+        }
+
+    }
 }

@@ -7,21 +7,10 @@ using System.Windows.Media;
 namespace MaterialDesignThemes.Wpf
 {
     /// <summary>
-    /// The text field.
+    /// Helper properties for working with text fields.
     /// </summary>
     public static class TextFieldAssist
     {
-        #region Static Fields
-
-        /// <summary>
-        /// The hint property
-        /// </summary>
-        public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
-            "Hint",
-            typeof(string),
-            typeof(TextFieldAssist),
-            new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
-
         /// <summary>
         /// The text box view margin property
         /// </summary>
@@ -29,43 +18,16 @@ namespace MaterialDesignThemes.Wpf
             "TextBoxViewMargin",
             typeof(Thickness),
             typeof(TextFieldAssist),
-            new PropertyMetadata(new Thickness(double.NegativeInfinity), TextBoxViewMarginPropertyChangedCallback));
+            new FrameworkPropertyMetadata(new Thickness(double.NegativeInfinity), FrameworkPropertyMetadataOptions.Inherits, TextBoxViewMarginPropertyChangedCallback));
 
         /// <summary>
-        /// The hint opacity property
-        /// </summary>
-        public static readonly DependencyProperty HintOpacityProperty = DependencyProperty.RegisterAttached(
-            "HintOpacity",
-            typeof(double),
-            typeof(TextFieldAssist),
-            new PropertyMetadata(.48));
-
-        /// <summary>
-        /// Internal framework use only.
-        /// </summary>
-        public static readonly DependencyProperty TextProperty = DependencyProperty.RegisterAttached(
-            "Text", typeof (string), typeof (TextFieldAssist), new PropertyMetadata(default(string), TextPropertyChangedCallback));
-
-        private static readonly DependencyPropertyKey IsNullOrEmptyPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
-            "IsNullOrEmpty", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(true));
-
-        private static readonly DependencyProperty IsNullOrEmptyProperty =
-            IsNullOrEmptyPropertyKey.DependencyProperty;
-
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// Gets the hint.
+        /// Sets the text box view margin.
         /// </summary>
         /// <param name="element">The element.</param>
-        /// <returns>
-        /// The <see cref="string" />.
-        /// </returns>
-        public static string GetHint(DependencyObject element)
+        /// <param name="value">The value.</param>
+        public static void SetTextBoxViewMargin(DependencyObject element, Thickness value)
         {
-            return (string)element.GetValue(HintProperty);
+            element.SetValue(TextBoxViewMarginProperty, value);
         }
 
         /// <summary>
@@ -80,60 +42,31 @@ namespace MaterialDesignThemes.Wpf
             return (Thickness)element.GetValue(TextBoxViewMarginProperty);
         }
 
-        /// <summary>
-        /// Gets the text box view margin.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <returns>
-        /// The <see cref="Thickness" />.
-        /// </returns>
-        public static double GetHintOpacityProperty(DependencyObject element)
-        {
-            return (double)element.GetValue(HintOpacityProperty);
-        }
 
         /// <summary>
-        /// Sets the hint.
+        /// Controls the visibility of the underline decoration.
         /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="value">The value.</param>
-        public static void SetHint(DependencyObject element, string value)
+        public static readonly DependencyProperty DecorationVisibilityProperty = DependencyProperty.RegisterAttached(
+            "DecorationVisibility", typeof (Visibility), typeof (TextFieldAssist), new PropertyMetadata(default(Visibility)));
+
+        /// <summary>
+        /// Controls the visibility of the underline decoration.
+        /// </summary>
+        public static void SetDecorationVisibility(DependencyObject element, Visibility value)
         {
-            element.SetValue(HintProperty, value);
+            element.SetValue(DecorationVisibilityProperty, value);
         }
 
         /// <summary>
-        /// Sets the text box view margin.
+        /// Controls the visibility of the underline decoration.
         /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="value">The value.</param>
-        public static void SetTextBoxViewMargin(DependencyObject element, Thickness value)
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Visibility GetDecorationVisibility(DependencyObject element)
         {
-            element.SetValue(TextBoxViewMarginProperty, value);
+            return (Visibility) element.GetValue(DecorationVisibilityProperty);
         }
-
-        /// <summary>
-        /// Sets the hint opacity.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="value">The value.</param>
-        public static void SetHintOpacity(DependencyObject element, double value)
-        {
-            element.SetValue(HintOpacityProperty, value);
-        }
-
-        public static void SetText(DependencyObject element, string value)
-        {
-            element.SetValue(TextProperty, value);
-        }
-
-        public static string GetText(DependencyObject element)
-        {
-            return (string)element.GetValue(TextProperty);
-        }
-
-        #endregion
-
+        
         #region Methods
 
         /// <summary>
@@ -151,7 +84,7 @@ namespace MaterialDesignThemes.Wpf
             var frameworkElement = (textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content as FrameworkElement;
             if (frameworkElement != null)
             {
-                frameworkElement.Margin = margin;
+                frameworkElement.Margin = margin;                
             }
         }
 
@@ -180,38 +113,6 @@ namespace MaterialDesignThemes.Wpf
                 var textBox = (Control) sender;
                 ApplyTextBoxViewMargin(textBox, GetTextBoxViewMargin(textBox));
             };
-        }
-
-        private static void TextPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var frameworkElement = (FrameworkElement)dependencyObject;
-
-            if (frameworkElement == null) return;
-
-            var state = string.IsNullOrEmpty((dependencyPropertyChangedEventArgs.NewValue ?? "").ToString())
-                ? "MaterialDesignStateTextEmpty"
-                : "MaterialDesignStateTextNotEmpty";
-
-            if (frameworkElement.IsLoaded)
-            {
-                VisualStateManager.GoToState(frameworkElement, state, true);
-            }
-            else
-            {
-                frameworkElement.Loaded += (sender, args) => VisualStateManager.GoToState(frameworkElement, state, false);
-            }
-
-            SetIsNullOrEmpty(dependencyObject, string.IsNullOrEmpty((dependencyPropertyChangedEventArgs.NewValue ?? "").ToString()));
-        }
-
-        private static void SetIsNullOrEmpty(DependencyObject element, bool value)
-        {
-            element.SetValue(IsNullOrEmptyPropertyKey, value);
-        }
-
-        public static bool GetIsNullOrEmpty(DependencyObject element)
-        {
-            return (bool)element.GetValue(IsNullOrEmptyProperty);
         }
 
         #endregion

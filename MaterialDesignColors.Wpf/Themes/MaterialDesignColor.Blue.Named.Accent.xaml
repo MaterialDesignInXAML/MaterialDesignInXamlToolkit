@@ -5,7 +5,7 @@
   <Color x:Key="BlueAccent200">#448aff</Color>
   <Color x:Key="BlueAccent200Foreground">#FFFFFFFF</Color>
   <Color x:Key="BlueAccent400">#2979ff</Color>
-  <Color x:Key="BlueAccent400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="BlueAccent400Foreground">#DDFFFFFF</Color>
   <Color x:Key="BlueAccent700">#2962ff</Color>
-  <Color x:Key="BlueAccent700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="BlueAccent700Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

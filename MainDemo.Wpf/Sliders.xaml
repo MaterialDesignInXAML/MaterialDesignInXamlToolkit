@@ -42,6 +42,7 @@
         <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0 16 0 0">
             <TextBlock VerticalAlignment="Bottom">Try me</TextBlock>
             <Slider Minimum="0" Maximum="100" Style="{StaticResource MaterialDesignDiscreteSlider}" 
+                    ToolTip="MaterialDesignDiscreteSlider"
                     Value="50"
                     Width="280" 
                     Margin="8 0 0 0"/>

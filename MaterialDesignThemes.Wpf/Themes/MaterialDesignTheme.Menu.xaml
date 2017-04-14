@@ -22,15 +22,15 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignMenu" TargetType="{x:Type Menu}">
+    <Style x:Key="MaterialDesignMenu" TargetType="{x:Type MenuBase}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
-        <Setter Property="FontFamily" Value="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"/>
+        <Setter Property="FontFamily" Value="{StaticResource MaterialDesignFont}"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="TextBlock.FontSize" Value="15"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Menu}">
+                <ControlTemplate TargetType="{x:Type MenuBase}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
@@ -43,12 +43,45 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignContextMenu" TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource MaterialDesignMenu}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type MenuBase}">
+                    <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+                        <Border Background="{TemplateBinding Background}"
+                                Effect="{DynamicResource MaterialDesignShadowDepth1}"
+                                Margin="3"
+                                CornerRadius="2">
+                            <Border Background="Transparent">
+                                <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                    <Grid RenderOptions.ClearTypeHint="Enabled" Margin="0 16">
+                                        <ItemsPresenter x:Name="ItemsPresenter"
+                                                                KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                                Grid.IsSharedSizeScope="True"
+                                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                                KeyboardNavigation.TabNavigation="Cycle"/>
+                                    </Grid>
+                                </ScrollViewer>
+                            </Border>
+                        </Border>
+                    </AdornerDecorator>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type MenuItem}" x:Key="MaterialDesignMenuItem" BasedOn="{x:Null}">
         <Setter Property="Padding" Value="24 0 24 0"></Setter>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="{x:Type wpf:PackIcon}" >
+                            <Setter Property="Width" Value="16" />
+                            <Setter Property="Height" Value="16" />
+                        </Style>
+                    </ControlTemplate.Resources>
                     <Grid ClipToBounds="True">
                         <Border x:Name="templateRoot"
                                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -145,11 +178,13 @@
                                Focusable="False"
                                IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
                                PopupAnimation="Slide"
-                               Placement="Bottom">
+                               Placement="Bottom"
+                                CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                             <Border x:Name="SubMenuBorder"
-                                    Background="{Binding Path=Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Menu}}"
+                                    Background="{Binding Path=Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuBase}}"
                                     Effect="{DynamicResource MaterialDesignShadowDepth1}"
                                     CornerRadius="2">
+
                                 <Border Background="Transparent">
                                     <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                         <Grid RenderOptions.ClearTypeHint="Enabled" Margin="0 16">
