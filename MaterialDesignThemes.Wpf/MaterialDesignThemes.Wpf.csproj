@@ -324,6 +324,7 @@
     <Compile Include="Palette.cs" />
     <Compile Include="Plane3D.cs" />
     <Compile Include="ScaleHost.cs" />
+    <Compile Include="Screen.cs" />
     <Compile Include="Snackbar.cs" />
     <Compile Include="SnackbarMessage.cs" />
     <Compile Include="SnackbarMessageEventArgs.cs" />
