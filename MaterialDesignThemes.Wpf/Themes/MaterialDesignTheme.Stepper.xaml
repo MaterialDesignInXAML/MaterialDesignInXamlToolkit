@@ -316,7 +316,6 @@
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto" />
                                                 <RowDefinition Height="100*" />
-                                                <RowDefinition Height="8" />
                                             </Grid.RowDefinitions>
                                             <!-- header as button to switch steps in non-linear steppers -->
                                             <Button Grid.ColumnSpan="2" Command="{x:Static wpf:Stepper.StepSelectedCommand}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignStepButton}">
@@ -329,16 +328,33 @@
                                                     </Grid.ColumnDefinitions>
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="8" />
+                                                        <RowDefinition Height="auto" />
                                                         <RowDefinition Height="100*" />
                                                     </Grid.RowDefinitions>
+                                                    <!-- vertical line before the circle (it is part of the previous step) -->
+                                                    <Border Grid.Column="1" Height="6" Margin="0" Padding="0">
+                                                        <Border.Style>
+                                                            <Style TargetType="{x:Type Border}" BasedOn="{StaticResource MaterialDesignVerticalStepperSpaceLine}">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsFirstStep}" Value="False">
+                                                                        <Setter Property="Visibility" Value="Visible" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding IsFirstStep}" Value="True">
+                                                                        <Setter Property="Visibility" Value="Hidden" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Border.Style>
+                                                    </Border>
                                                     <!-- circle -->
-                                                    <Border Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource MaterialDesignStepperCircle}">
+                                                    <Border Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Style="{StaticResource MaterialDesignStepperCircle}">
                                                         <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Number}" VerticalAlignment="Center" />
                                                     </Border>
                                                     <!-- vertical line after the circle -->
-                                                    <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignVerticalStepperSpaceLine}" Margin="0,8,0,0" Padding="0" />
+                                                    <Border Grid.Column="1" Grid.Row="3" Style="{StaticResource MaterialDesignVerticalStepperSpaceLine}" Margin="0,8,0,0" Padding="0" />
                                                     <!-- header -->
-                                                    <ContentControl Grid.Column="3" Grid.RowSpan="2" Content="{Binding Path=Step.Header}" Margin="0,4,0,16" Style="{StaticResource headerContentControlStyle}" />
+                                                    <ContentControl Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Content="{Binding Path=Step.Header}" Margin="0,4,0,16" Style="{StaticResource headerContentControlStyle}" />
                                                 </Grid>
                                             </Button>
                                             <!-- vertical line at the left side -->
@@ -354,7 +370,7 @@
                                                                 <Setter Property="Padding" Value="0,0,0,0" />
                                                             </DataTrigger>
                                                             <DataTrigger Binding="{Binding Path=NeedsSpacer}" Value="True">
-                                                                <Setter Property="Padding" Value="0,0,0,40" />
+                                                                <Setter Property="Padding" Value="0,0,0,26" />
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
