@@ -134,7 +134,7 @@ namespace MaterialDesignThemes.Wpf
         /// Initialises the steps which will be shown inside the <see cref="Stepper"/>.
         /// </summary>
         /// <param name="steps"></param>
-        public void InitSteps(IList<IStep> steps)
+        public void InitSteps(IEnumerable<IStep> steps)
         {
             InitSteps(steps?.ToArray());
         }

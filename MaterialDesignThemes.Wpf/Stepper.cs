@@ -177,7 +177,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Gets or sets the steps which will be shown inside this <see cref="Stepper"/>.
         /// </summary>
-        public IList<IStep> Steps
+        public IEnumerable<IStep> Steps
         {
             get
             {
@@ -285,7 +285,7 @@ namespace MaterialDesignThemes.Wpf
         private static void StepsChangedHandler(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             Stepper stepper = (Stepper)obj;
-            stepper.Controller.InitSteps(args.NewValue as IList<IStep>);
+            stepper.Controller.InitSteps(args.NewValue as IEnumerable<IStep>);
         }
 
         private void CanExecuteBack(object sender, CanExecuteRoutedEventArgs args)
