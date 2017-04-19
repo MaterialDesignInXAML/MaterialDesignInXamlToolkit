@@ -329,6 +329,7 @@
     <Compile Include="SnackbarMessageEventArgs.cs" />
     <Compile Include="SnackbarMessageQueue.cs" />
     <Compile Include="SnackbarMessageQueueItem.cs" />
+    <Compile Include="Spelling.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
     <Compile Include="Transitions\FadeWipe.cs" />
