@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -22,14 +23,14 @@ namespace MaterialDesignColors.WpfExample.Domain
         public static DocumentationLink WikiLink(string page, string label)
         {
             return new DocumentationLink(DocumentationLinkType.Wiki,
-                "https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/" + page, label);
+                $"{ConfigurationManager.AppSettings["GitHub"]}/wiki/" + page, label);
         }
 
         public static DocumentationLink StyleLink(string nameChunk)
         {            
             return new DocumentationLink(
                 DocumentationLinkType.StyleSource,
-                $"https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/MaterialDesignThemes.Wpf/Themes/MaterialDesignTheme.{nameChunk}.xaml",
+                $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesignThemes.Wpf/Themes/MaterialDesignTheme.{nameChunk}.xaml",
                 nameChunk);
         }
 
@@ -39,7 +40,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
             return new DocumentationLink(
                 DocumentationLinkType.ControlSource,
-                $"https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/MaterialDesignThemes.Wpf/{subNamespace}/{typeName}.cs",
+                $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesignThemes.Wpf/{subNamespace}/{typeName}.cs",
                 typeName);
         }
 
@@ -50,7 +51,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
             return new DocumentationLink(
                 DocumentationLinkType.ControlSource,
-                $"https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/MaterialDesignThemes.Wpf/{typeName}.cs",
+                $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesignThemes.Wpf/{typeName}.cs",
                 typeName);
         }
 
@@ -67,7 +68,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
             return new DocumentationLink(
                 DocumentationLinkType.DemoPageSource,
-                $"https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/MainDemo.Wpf/{typeof(TDemoPage).Name}.{ext}",
+                $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MainDemo.Wpf/{typeof(TDemoPage).Name}.{ext}",
                 label ?? typeof(TDemoPage).Name);
         }
 
