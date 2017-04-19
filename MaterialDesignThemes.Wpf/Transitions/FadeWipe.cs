@@ -23,12 +23,12 @@ namespace MaterialDesignThemes.Wpf.Transitions
             var zeroKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
             var endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(Duration.TotalSeconds/2));
 
-            // Old
+            // From
             var fromAnimation = new DoubleAnimationUsingKeyFrames();
             fromAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(1, zeroKeyTime));
             fromAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, endKeyTime, _sineEase));
 
-            // New
+            // To
             var toAnimation = new DoubleAnimationUsingKeyFrames();
             toAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(0, zeroKeyTime));
             toAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, endKeyTime, _sineEase));
@@ -37,10 +37,22 @@ namespace MaterialDesignThemes.Wpf.Transitions
             fromSlide.Opacity = 1;
             toSlide.Opacity = 0;
 
-            // Animate
-            fromAnimation.Completed += (sender, args) => toSlide.BeginAnimation(UIElement.OpacityProperty, toAnimation);
-            fromSlide.BeginAnimation(UIElement.OpacityProperty, fromAnimation);
+            // Set up events
+            toAnimation.Completed += (sender, args) =>
+            {
+                toSlide.BeginAnimation(UIElement.OpacityProperty, null);
+                fromSlide.Opacity = 0;
+                toSlide.Opacity = 1;
+            };
+            fromAnimation.Completed += (sender, args) =>
+            {
+                fromSlide.BeginAnimation(UIElement.OpacityProperty, null);
+                fromSlide.Opacity = 0;
+                toSlide.BeginAnimation(UIElement.OpacityProperty, toAnimation);
+            };
 
+            // Animate
+            fromSlide.BeginAnimation(UIElement.OpacityProperty, fromAnimation);
             zIndexController.Stack(toSlide, fromSlide);
         }
     }

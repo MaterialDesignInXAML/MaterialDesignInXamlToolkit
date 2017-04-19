@@ -56,8 +56,9 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 toStartY = -toSlide.ActualHeight;
             }
 
-            // Old
-            fromSlide.RenderTransform = new TranslateTransform(fromStartX, fromStartY);
+            // From
+            var fromTransform = new TranslateTransform(fromStartX, fromStartY);
+            fromSlide.RenderTransform = fromTransform;
             var fromXAnimation = new DoubleAnimationUsingKeyFrames();
             fromXAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(fromStartX, zeroKeyTime));
             fromXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(fromEndX, endKeyTime, _sineEase));
@@ -65,8 +66,9 @@ namespace MaterialDesignThemes.Wpf.Transitions
             fromYAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(fromStartY, zeroKeyTime));
             fromYAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(fromEndY, endKeyTime, _sineEase));
 
-            // New
-            toSlide.RenderTransform = new TranslateTransform(toStartX, toStartY);
+            // To
+            var toTransform = new TranslateTransform(toStartX, toStartY);
+            toSlide.RenderTransform = toTransform;
             var toXAnimation = new DoubleAnimationUsingKeyFrames();
             toXAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(toStartX, zeroKeyTime));
             toXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(toEndX, endKeyTime, _sineEase));
@@ -74,12 +76,37 @@ namespace MaterialDesignThemes.Wpf.Transitions
             toYAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(toStartY, zeroKeyTime));
             toYAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(toEndY, endKeyTime, _sineEase));
 
-            // Animate
-            fromSlide.RenderTransform.BeginAnimation(TranslateTransform.XProperty, fromXAnimation);
-            fromSlide.RenderTransform.BeginAnimation(TranslateTransform.YProperty, fromYAnimation);
-            toSlide.RenderTransform.BeginAnimation(TranslateTransform.XProperty, toXAnimation);
-            toSlide.RenderTransform.BeginAnimation(TranslateTransform.YProperty, toYAnimation);
+            // Set up events
+            fromXAnimation.Completed += (sender, args) =>
+            {
+                fromTransform.BeginAnimation(TranslateTransform.XProperty, null);
+                fromTransform.X = fromEndX;
+                fromSlide.RenderTransform = null;
+            };
+            fromYAnimation.Completed += (sender, args) =>
+            {
+                fromTransform.BeginAnimation(TranslateTransform.YProperty, null);
+                fromTransform.Y = fromEndY;
+                fromSlide.RenderTransform = null;
+            };
+            toXAnimation.Completed += (sender, args) =>
+            {
+                toTransform.BeginAnimation(TranslateTransform.XProperty, null);
+                toTransform.X = toEndX;
+                toSlide.RenderTransform = null;
+            };
+            toYAnimation.Completed += (sender, args) =>
+            {
+                toTransform.BeginAnimation(TranslateTransform.YProperty, null);
+                toTransform.Y = toEndY;
+                toSlide.RenderTransform = null;
+            };
 
+            // Animate
+            fromTransform.BeginAnimation(TranslateTransform.XProperty, fromXAnimation);
+            fromTransform.BeginAnimation(TranslateTransform.YProperty, fromYAnimation);
+            toTransform.BeginAnimation(TranslateTransform.XProperty, toXAnimation);
+            toTransform.BeginAnimation(TranslateTransform.YProperty, toYAnimation);
             zIndexController.Stack(toSlide, fromSlide);
         }
     }
