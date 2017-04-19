@@ -116,7 +116,7 @@ namespace MaterialDesignThemes.Wpf
             if (spellingError != null)
             {
                 Style spellingSuggestionStyle =
-                    contextMenu.TryFindResource(Spelling.SpellingSuggestionMenuItemStyleKey) as Style;
+                    contextMenu.TryFindResource(Spelling.SuggestionMenuItemStyleKey) as Style;
 
                 int insertionIndex = 0;
                 bool hasSuggestion = false;
@@ -137,14 +137,14 @@ namespace MaterialDesignThemes.Wpf
                 {
                     contextMenu.Items.Insert(insertionIndex++, new MenuItem
                     {
-                        Style = contextMenu.TryFindResource(Spelling.SpellingNoSuggestionsMenuItemStyleKey) as Style,
+                        Style = contextMenu.TryFindResource(Spelling.NoSuggestionsMenuItemStyleKey) as Style,
                         Tag = typeof(Spelling)
                     });
                 }
 
                 contextMenu.Items.Insert(insertionIndex++, new Separator
                 {
-                    Style = contextMenu.TryFindResource(Spelling.SpellingSeparatorStyleKey) as Style,
+                    Style = contextMenu.TryFindResource(Spelling.SeparatorStyleKey) as Style,
                     Tag = typeof(Spelling)
                 });
 
@@ -152,13 +152,13 @@ namespace MaterialDesignThemes.Wpf
                 {
                     Command = EditingCommands.IgnoreSpellingError,
                     CommandTarget = textBoxBase,
-                    Style = contextMenu.TryFindResource(Spelling.SpellingIgnoreAllMenuItemStyleKey) as Style,
+                    Style = contextMenu.TryFindResource(Spelling.IgnoreAllMenuItemStyleKey) as Style,
                     Tag = typeof(Spelling)
                 });
 
                 contextMenu.Items.Insert(insertionIndex, new Separator
                 {
-                    Style = contextMenu.TryFindResource(Spelling.SpellingSeparatorStyleKey) as Style,
+                    Style = contextMenu.TryFindResource(Spelling.SeparatorStyleKey) as Style,
                     Tag = typeof(Spelling)
                 });
             }
