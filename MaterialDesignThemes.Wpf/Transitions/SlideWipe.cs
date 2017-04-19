@@ -6,9 +6,7 @@ using System.Windows.Media.Animation;
 namespace MaterialDesignThemes.Wpf.Transitions
 {
     public class SlideWipe : ITransitionWipe
-    {
-        public enum SlideDirection { Left, Right, Up, Down }
-
+    {        
         private readonly SineEase _sineEase = new SineEase();
 
         /// <summary>

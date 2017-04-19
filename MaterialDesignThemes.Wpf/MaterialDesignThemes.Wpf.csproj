@@ -371,6 +371,7 @@
     <Compile Include="RippleAssist.cs" />
     <Compile Include="Ripple.cs" />
     <Compile Include="Transitions\IZIndexController.cs" />
+    <Compile Include="Transitions\SlideDirection.cs" />
     <Compile Include="Transitions\SlideWipe.cs" />
     <Compile Include="Transitions\SlideOutWipe.cs" />
     <Compile Include="Transitions\TransitionAssist.cs" />
