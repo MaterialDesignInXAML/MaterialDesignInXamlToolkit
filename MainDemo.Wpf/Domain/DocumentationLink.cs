@@ -62,13 +62,19 @@ namespace MaterialDesignColors.WpfExample.Domain
 
         public static DocumentationLink DemoPageLink<TDemoPage>(string label)
         {
+            return DemoPageLink<TDemoPage>(label, null);
+        }
+
+        public static DocumentationLink DemoPageLink<TDemoPage>(string label, string nameSpace)
+        {
             var ext = typeof(UserControl).IsAssignableFrom(typeof(TDemoPage))
                 ? "xaml"
                 : "cs";
 
+
             return new DocumentationLink(
                 DocumentationLinkType.DemoPageSource,
-                $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MainDemo.Wpf/{typeof(TDemoPage).Name}.{ext}",
+                $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MainDemo.Wpf/{(string.IsNullOrWhiteSpace(nameSpace) ? "" : ("/" + nameSpace + "/" ))}{typeof(TDemoPage).Name}.{ext}",
                 label ?? typeof(TDemoPage).Name);
         }
 

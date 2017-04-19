@@ -108,7 +108,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                     new []
                     {
                         DocumentationLink.DemoPageLink<Lists>("Demo View"),
-                        DocumentationLink.DemoPageLink<ListsAndGridsViewModel>("Demo View Model"),
+                        DocumentationLink.DemoPageLink<ListsAndGridsViewModel>("Demo View Model", "Domain"),
                         DocumentationLink.StyleLink("ListBox"),
                         DocumentationLink.StyleLink("ListView")
                     })
