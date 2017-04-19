@@ -2,6 +2,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Documents;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -46,7 +47,7 @@ namespace MaterialDesignThemes.Wpf
         /// Controls the visibility of the underline decoration.
         /// </summary>
         public static readonly DependencyProperty DecorationVisibilityProperty = DependencyProperty.RegisterAttached(
-            "DecorationVisibility", typeof (Visibility), typeof (TextFieldAssist), new PropertyMetadata(default(Visibility)));
+            "DecorationVisibility", typeof(Visibility), typeof(TextFieldAssist), new PropertyMetadata(default(Visibility)));
 
         /// <summary>
         /// Controls the visibility of the underline decoration.
@@ -106,7 +107,7 @@ namespace MaterialDesignThemes.Wpf
 
             ContextMenu contextMenu = textBoxBase?.ContextMenu;
             if (contextMenu == null) return;
-            
+
             RemoveSpellingSuggestions(contextMenu);
 
             if (!SpellCheck.GetIsEnabled(textBoxBase)) return;
@@ -114,30 +115,52 @@ namespace MaterialDesignThemes.Wpf
             SpellingError spellingError = GetSpellingError(textBoxBase);
             if (spellingError != null)
             {
+                Style spellingSuggestionStyle =
+                    contextMenu.TryFindResource(Spelling.SpellingSuggestionMenuItemStyleKey) as Style;
+
                 int insertionIndex = 0;
                 bool hasSuggestion = false;
                 foreach (string suggestion in spellingError.Suggestions)
                 {
                     hasSuggestion = true;
-                    var menuItem = new SpellingSuggestionMenuItem(suggestion)
+                    var menuItem = new MenuItem
                     {
-                        CommandTarget = textBoxBase
+                        CommandTarget = textBoxBase,
+                        Command = EditingCommands.CorrectSpellingError,
+                        CommandParameter = suggestion,
+                        Style = spellingSuggestionStyle,
+                        Tag = typeof(Spelling)
                     };
                     contextMenu.Items.Insert(insertionIndex++, menuItem);
                 }
                 if (!hasSuggestion)
                 {
-                    contextMenu.Items.Insert(insertionIndex++, new SpellingNoSuggestionsMenuItem());
+                    contextMenu.Items.Insert(insertionIndex++, new MenuItem
+                    {
+                        Style = contextMenu.TryFindResource(Spelling.SpellingNoSuggestionsMenuItemStyleKey) as Style,
+                        Tag = typeof(Spelling)
+                    });
                 }
 
-                contextMenu.Items.Insert(insertionIndex++, new Separator { Tag = typeof(SpellingSuggestionMenuItem) });
-
-                contextMenu.Items.Insert(insertionIndex++, new SpellingIgnoreAllMenuItem
+                contextMenu.Items.Insert(insertionIndex++, new Separator
                 {
-                    CommandTarget = textBoxBase
+                    Style = contextMenu.TryFindResource(Spelling.SpellingSeparatorStyleKey) as Style,
+                    Tag = typeof(Spelling)
                 });
 
-                contextMenu.Items.Insert(insertionIndex, new Separator { Tag = typeof(SpellingSuggestionMenuItem) });
+                contextMenu.Items.Insert(insertionIndex++, new MenuItem
+                {
+                    Command = EditingCommands.IgnoreSpellingError,
+                    CommandTarget = textBoxBase,
+                    Style = contextMenu.TryFindResource(Spelling.SpellingIgnoreAllMenuItemStyleKey) as Style,
+                    Tag = typeof(Spelling)
+                });
+
+                contextMenu.Items.Insert(insertionIndex, new Separator
+                {
+                    Style = contextMenu.TryFindResource(Spelling.SpellingSeparatorStyleKey) as Style,
+                    Tag = typeof(Spelling)
+                });
             }
         }
 
@@ -167,12 +190,8 @@ namespace MaterialDesignThemes.Wpf
 
         private static void RemoveSpellingSuggestions(ContextMenu menu)
         {
-            foreach (object item in (from item in menu.Items.OfType<object>()
-                                     let separator = item as Separator
-                                     where item is SpellingSuggestionMenuItem ||
-                                           item is SpellingIgnoreAllMenuItem ||
-                                           item is SpellingNoSuggestionsMenuItem ||
-                                           ReferenceEquals(separator?.Tag, typeof(SpellingSuggestionMenuItem))
+            foreach (FrameworkElement item in (from item in menu.Items.OfType<FrameworkElement>()
+                                     where ReferenceEquals(item.Tag, typeof(Spelling))
                                      select item).ToList())
             {
                 menu.Items.Remove(item);
