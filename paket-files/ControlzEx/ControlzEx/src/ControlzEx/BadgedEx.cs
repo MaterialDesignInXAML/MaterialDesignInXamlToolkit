@@ -50,7 +50,7 @@ namespace ControlzEx
         }
 
         public static readonly DependencyProperty BadgePlacementModeProperty = DependencyProperty.Register(
-            "BadgePlacementMode", typeof(BadgePlacementMode), typeof(BadgedEx), new PropertyMetadata(default(BadgePlacementMode)));        
+            "BadgePlacementMode", typeof(BadgePlacementMode), typeof(BadgedEx), new PropertyMetadata(default(BadgePlacementMode)));
 
         public BadgePlacementMode BadgePlacementMode
         {
@@ -86,30 +86,32 @@ namespace ControlzEx
         }
 
         private static void OnBadgeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {            
+        {
             var instance = (BadgedEx)d;
 
             instance.IsBadgeSet = !string.IsNullOrWhiteSpace(e.NewValue as string) || (e.NewValue != null && !(e.NewValue is string));
+
+            if (!instance.IsLoaded) return;
 
             var args = new RoutedPropertyChangedEventArgs<object>(
                 e.OldValue,
                 e.NewValue) {RoutedEvent = BadgeChangedEvent};
             instance.RaiseEvent(args);
-        } 
+        }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
             _badgeContainer = GetTemplateChild(BadgeContainerPartName) as FrameworkElement;
-        }        
+        }
 
         protected override Size ArrangeOverride(Size arrangeBounds)
         {
             var result = base.ArrangeOverride(arrangeBounds);
 
             if (_badgeContainer == null) return result;
-            
+
             var containerDesiredSize = _badgeContainer.DesiredSize;
             if ((containerDesiredSize.Width <= 0.0 || containerDesiredSize.Height <= 0.0)
                 && !double.IsNaN(_badgeContainer.ActualWidth) && !double.IsInfinity(_badgeContainer.ActualWidth)
