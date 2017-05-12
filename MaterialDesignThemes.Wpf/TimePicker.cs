@@ -418,11 +418,14 @@ namespace MaterialDesignThemes.Wpf
 			_clockHostContentControl.SetBinding(StyleProperty, GetBinding(ClockHostContentControlStyleProperty));
 		}
 
-		private void ClockChoiceMadeHandler(object sender, ClockChoiceMadeEventArgs clockChoiceMadeEventArgs)
-		{
-			if (clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Minutes)
-				TogglePopup();
-		}
+        private void ClockChoiceMadeHandler(object sender, ClockChoiceMadeEventArgs clockChoiceMadeEventArgs)
+        {
+            TogglePopup();
+            if (SelectedTime == null)
+            {
+                SelectedTime = _clock.Time;
+            }
+        }
 
 		private void DropDownButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
 		{
