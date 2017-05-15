@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf.Converters;
+using MaterialDesignThemes.Wpf.Transitions;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -35,12 +36,17 @@ namespace MaterialDesignThemes.Wpf
     [TemplatePart(Name = MinutesCanvasPartName, Type = typeof(Canvas))]
 	[TemplatePart(Name = MinuteReadOutPartName, Type = typeof(TextBlock))]
 	[TemplatePart(Name = HourReadOutPartName, Type = typeof(TextBlock))]
+    [TemplateVisualState(GroupName = "DisplayModeStates", Name = HoursVisualStateName)]
+    [TemplateVisualState(GroupName = "DisplayModeStates", Name = MinutesVisualStateName)]
     public class Clock : Control
 	{
 		public const string HoursCanvasPartName = "PART_HoursCanvas";
         public const string MinutesCanvasPartName = "PART_MinutesCanvas";
 		public const string MinuteReadOutPartName = "PART_MinuteReadOut";
 		public const string HourReadOutPartName = "PART_HourReadOut";
+
+	    public const string HoursVisualStateName = "Hours";
+        public const string MinutesVisualStateName = "Minutes";
 
         private Point _centreCanvas = new Point(0, 0);
         private Point _currentStartPosition = new Point(0, 0);
@@ -60,7 +66,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(
-			"Time", typeof (DateTime), typeof (Clock), new FrameworkPropertyMetadata(default(DateTime), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TimePropertyChangedCallback));
+            nameof(Time), typeof (DateTime), typeof (Clock), new FrameworkPropertyMetadata(default(DateTime), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TimePropertyChangedCallback));
 
 	    private static void TimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
@@ -103,7 +109,7 @@ namespace MaterialDesignThemes.Wpf
 	    }	    
 
 		public static readonly DependencyProperty IsPostMeridiemProperty = DependencyProperty.Register(
-			"IsPostMeridiem", typeof (bool), typeof (Clock), new PropertyMetadata(default(bool), IsPostMeridiemPropertyChangedCallback));
+            nameof(IsPostMeridiem), typeof (bool), typeof (Clock), new PropertyMetadata(default(bool), IsPostMeridiemPropertyChangedCallback));
 
 		private static void IsPostMeridiemPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
@@ -121,7 +127,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 	    public static readonly DependencyProperty Is24HoursProperty = DependencyProperty.Register(
-	        "Is24Hours", typeof (bool), typeof (Clock), new PropertyMetadata(default(bool)));
+            nameof(Is24Hours), typeof (bool), typeof (Clock), new PropertyMetadata(default(bool)));
 
 	    public bool Is24Hours
 	    {
@@ -131,16 +137,21 @@ namespace MaterialDesignThemes.Wpf
 
 
 		public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(
-			"DisplayMode", typeof (ClockDisplayMode), typeof (Clock), new PropertyMetadata(ClockDisplayMode.Hours));
+            nameof(DisplayMode), typeof (ClockDisplayMode), typeof (Clock), new FrameworkPropertyMetadata(ClockDisplayMode.Hours, DisplayModePropertyChangedCallback));
 
-		public ClockDisplayMode DisplayMode
+	    private static void DisplayModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+	    {
+	        ((Clock)dependencyObject).GotoVisualState(!TransitionAssist.GetDisableTransitions(dependencyObject));
+	    }
+
+	    public ClockDisplayMode DisplayMode
 		{
 			get { return (ClockDisplayMode) GetValue(DisplayModeProperty); }
 			set { SetValue(DisplayModeProperty, value); }
 		}
 
 		public static readonly DependencyProperty DisplayAutomationProperty = DependencyProperty.Register(
-			"DisplayAutomation", typeof (ClockDisplayAutomation), typeof (Clock), new PropertyMetadata(default(ClockDisplayAutomation)));
+            nameof(DisplayAutomation), typeof (ClockDisplayAutomation), typeof (Clock), new PropertyMetadata(default(ClockDisplayAutomation)));
 
 		public ClockDisplayAutomation DisplayAutomation
 		{
@@ -149,7 +160,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register(
-			"ButtonStyle", typeof (Style), typeof (Clock), new PropertyMetadata(default(Style)));		
+            nameof(ButtonStyle), typeof (Style), typeof (Clock), new PropertyMetadata(default(Style)));
 
 		public Style ButtonStyle
 		{
@@ -158,7 +169,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty LesserButtonStyleProperty = DependencyProperty.Register(
-			"LesserButtonStyle", typeof (Style), typeof (Clock), new PropertyMetadata(default(Style)));
+            nameof(LesserButtonStyle), typeof (Style), typeof (Clock), new PropertyMetadata(default(Style)));
 
 		public Style LesserButtonStyle
 		{
@@ -167,7 +178,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 		public static readonly DependencyProperty ButtonRadiusRatioProperty = DependencyProperty.Register(
-			"ButtonRadiusRatio", typeof (double), typeof (Clock), new PropertyMetadata(default(double)));
+            nameof(ButtonRadiusRatio), typeof (double), typeof (Clock), new PropertyMetadata(default(double)));
 
 		public double ButtonRadiusRatio
 		{
@@ -176,7 +187,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 	    public static readonly DependencyProperty ButtonRadiusInnerRatioProperty = DependencyProperty.Register(
-	        "ButtonRadiusInnerRatio", typeof (double), typeof (Clock), new PropertyMetadata(default(double)));
+            nameof(ButtonRadiusInnerRatio), typeof (double), typeof (Clock), new PropertyMetadata(default(double)));
 
 	    public double ButtonRadiusInnerRatio
 	    {
@@ -235,7 +246,15 @@ namespace MaterialDesignThemes.Wpf
 				_minuteReadOutPartName.PreviewMouseLeftButtonDown += MinuteReadOutPartNameOnPreviewMouseLeftButtonDown;
 
 			base.OnApplyTemplate();
+
+            GotoVisualState(false);
 		}
+
+	    private void GotoVisualState(bool useTransitions)
+	    {
+	        VisualStateManager.GoToState(this,
+	            DisplayMode == ClockDisplayMode.Minutes ? MinutesVisualStateName : HoursVisualStateName, useTransitions);
+	    }
 
 	    private void GenerateButtons()
 	    {

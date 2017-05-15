@@ -11,11 +11,11 @@
   <Color x:Key="GreenPrimary400">#66bb6a</Color>
   <Color x:Key="GreenPrimary400Foreground">#DD000000</Color>
   <Color x:Key="GreenPrimary500">#4caf50</Color>
-  <Color x:Key="GreenPrimary500Foreground">#FFFFFFFF</Color>
+  <Color x:Key="GreenPrimary500Foreground">#DD000000</Color>
   <Color x:Key="GreenPrimary600">#43a047</Color>
   <Color x:Key="GreenPrimary600Foreground">#FFFFFFFF</Color>
   <Color x:Key="GreenPrimary700">#388e3c</Color>
-  <Color x:Key="GreenPrimary700Foreground">#FFFFFFFF</Color>
+  <Color x:Key="GreenPrimary700Foreground">#DDFFFFFF</Color>
   <Color x:Key="GreenPrimary800">#2e7d32</Color>
   <Color x:Key="GreenPrimary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="GreenPrimary900">#1b5e20</Color>

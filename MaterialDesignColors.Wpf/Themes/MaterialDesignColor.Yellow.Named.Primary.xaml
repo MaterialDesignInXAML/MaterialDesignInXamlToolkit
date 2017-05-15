@@ -19,5 +19,5 @@
   <Color x:Key="YellowPrimary800">#f9a825</Color>
   <Color x:Key="YellowPrimary800Foreground">#DD000000</Color>
   <Color x:Key="YellowPrimary900">#f57f17</Color>
-  <Color x:Key="YellowPrimary900Foreground">#FF000000</Color>
+  <Color x:Key="YellowPrimary900Foreground">#DD000000</Color>
 </ResourceDictionary>

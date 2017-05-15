@@ -18,14 +18,6 @@ namespace MaterialDesignThemes.Wpf
 {    
     public class MaterialDateDisplay : Control
     {
-        private readonly IDictionary<int, Action<string>> _setters;
-        private readonly IDictionary<char, string> _formats = new Dictionary<char, string>
-            {
-                {'d', "dd"},
-                {'m', "ddd, MMM"},
-                {'y', "yyyy"}
-            };
-
         static MaterialDateDisplay()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MaterialDateDisplay), new FrameworkPropertyMetadata(typeof(MaterialDateDisplay)));
@@ -33,17 +25,11 @@ namespace MaterialDesignThemes.Wpf
 
         public MaterialDateDisplay()
         {
-            _setters = new Dictionary<int, Action<string>>
-            {
-                {0, s => ComponentOneContent = s},
-                {1, s => ComponentTwoContent = s},
-                {2, s => ComponentThreeContent = s},
-            };
             SetCurrentValue(DisplayDateProperty, DateTime.Now.Date);
         }
 
         public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(
-            "DisplayDate", typeof (DateTime), typeof (MaterialDateDisplay), new PropertyMetadata(default(DateTime), DisplayDatePropertyChangedCallback));
+            nameof(DisplayDate), typeof (DateTime), typeof (MaterialDateDisplay), new PropertyMetadata(default(DateTime), DisplayDatePropertyChangedCallback));
 
         private static void DisplayDatePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -115,15 +101,12 @@ namespace MaterialDesignThemes.Wpf
         //FrameworkElement.LanguageProperty.OverrideMetadata(typeof (Calendar), (PropertyMetadata) new FrameworkPropertyMetadata(new PropertyChangedCallback(Calendar.OnLanguageChanged)));
         private void UpdateComponents()
         {
-            var dateTimeFormatInfo = CultureInfo.CurrentUICulture.GetDateFormat();
+            var culture = Language.GetSpecificCulture();
+            var dateTimeFormatInfo = culture.GetDateFormat();
 
-            foreach (var component in dateTimeFormatInfo.ShortDatePattern.Split(new[] {dateTimeFormatInfo.DateSeparator},
-                StringSplitOptions.RemoveEmptyEntries).Select((s, index) => new {code = s.ToLower()[0], index}))
-            {
-	            if (component.index == 0)
-		            IsDayInFirstComponent = component.code == 'd';
-				_setters[component.index](DisplayDate.ToString(_formats[component.code], CultureInfo.CurrentUICulture).ToTitleCase());
-            }					       
+            ComponentOneContent = DisplayDate.ToString(dateTimeFormatInfo.MonthDayPattern.Replace("MMMM", "MMM"), culture).ToTitleCase(culture);     //Day Month folowing culture order. We don't want the month to take too much space
+            ComponentTwoContent = DisplayDate.ToString("ddd,", culture).ToTitleCase(culture);       // Day of week first
+            ComponentThreeContent = DisplayDate.ToString("yyyy", culture).ToTitleCase(culture);     // Year always top
         }
 
         /// <summary>

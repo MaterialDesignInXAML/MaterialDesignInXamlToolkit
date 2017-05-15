@@ -8,12 +8,13 @@
         <ControlTemplate.Resources>
             <DataTemplate DataType="{x:Type ValidationError}">
                 <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
-                                       FontSize="10"
-                                       MaxWidth="250"
-                                       Margin="2"
-                                       TextWrapping="Wrap"
-                                       Text="{Binding ErrorContent}"
-                                       UseLayoutRounding="false" />
+                           FontSize="10"
+                           MaxWidth="{Binding ElementName=Placeholder, Path=ActualWidth}"
+                           HorizontalAlignment="Left"
+                           Margin="2"
+                           TextWrapping="Wrap"
+                           Text="{Binding ErrorContent}"
+                           UseLayoutRounding="false" />
             </DataTemplate>
         </ControlTemplate.Resources>
         <StackPanel>
@@ -21,16 +22,28 @@
             <Border Name="DefaultErrorViewer"
                     Visibility="Collapsed"
                     Background="{DynamicResource MaterialDesignPaper}">
-                <ContentPresenter Content="{Binding CurrentItem}" />
+                <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
+                           FontSize="10"
+                           MaxWidth="{Binding ElementName=Placeholder, Path=ActualWidth}"
+                           HorizontalAlignment="Left"
+                           Margin="0 2"
+                           TextWrapping="Wrap"
+                           Text="{Binding CurrentItem.ErrorContent}"
+                           UseLayoutRounding="false" />
             </Border>
-
             <controlzEx:PopupEx x:Name="ValidationPopup"
-                              IsOpen="False"
-                              Placement="Bottom"
-                              PlacementTarget="{Binding ElementName=Placeholder, Mode=OneWay}"
-                              AllowsTransparency="True">
+                                IsOpen="False"
+                                Placement="Bottom"
+                                PlacementTarget="{Binding ElementName=Placeholder, Mode=OneWay}"
+                                AllowsTransparency="True">
                 <Border Background="{DynamicResource MaterialDesignPaper}">
-                    <ContentPresenter Content="{Binding CurrentItem}" />
+                    <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
+                               FontSize="10"
+                               HorizontalAlignment="Left"
+                               Margin="0 2"
+                               TextWrapping="Wrap"
+                               Text="{Binding CurrentItem.ErrorContent}"
+                               UseLayoutRounding="false" />
                 </Border>
             </controlzEx:PopupEx>
         </StackPanel>
@@ -39,6 +52,7 @@
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.OnlyShowOnFocus)}" Value="False"/>
                     <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.UsePopup)}" Value="True"/>
+                    <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Suppress)}" Value="False"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter TargetName="ValidationPopup" Property="IsOpen" Value="True"/>
@@ -49,6 +63,7 @@
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.OnlyShowOnFocus)}" Value="False"/>
                     <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.UsePopup)}" Value="False"/>
+                    <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Suppress)}" Value="False"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter TargetName="DefaultErrorViewer" Property="Visibility" Value="Visible"/>

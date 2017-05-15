@@ -20,32 +20,31 @@
                       materialDesign:DataGridAssist.CellPadding="13 8 8 8" materialDesign:DataGridAssist.ColumnHeaderPadding="8">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Binding="{Binding IsSelected}" 
-                                                ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
-                                                EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
+                                            ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
+                                            >
                         <DataGridCheckBoxColumn.Header>
                             <!--padding to allow hit test to pass thru for sorting -->
                             <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
                                 <CheckBox HorizontalAlignment="Center"                                               
-                                              DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"
-                                              IsChecked="{Binding IsAllItems3Selected}" />
+                                          DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"
+                                          IsChecked="{Binding IsAllItems3Selected}" />
                             </Border>
                         </DataGridCheckBoxColumn.Header>
                     </DataGridCheckBoxColumn>
                     <DataGridTextColumn Binding="{Binding Code}"
-                                            Header="Code"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
+                                        Header="Code"
+                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                     <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
                     <materialDesign:MaterialDataGridTextColumn Binding="{Binding Name}"
-                                                        Header="Name"                                                        
-                                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" 
-                                                        />
+                                                               Header="Name"                                                        
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" 
+                                                               />
                     <!-- set a max length to get an indicator in the editor -->
                     <materialDesign:MaterialDataGridTextColumn Binding="{Binding Description}"
-                                                        Header="Description"                                                        
-                                                        MaxLength="255" 
-                                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" 
-                                                        />
+                                                               Header="Description"                                                        
+                                                               MaxLength="255" 
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
                     <materialDesign:MaterialDataGridTextColumn Binding="{Binding Numeric}"
                                                         Header="Numeric"                                                         
                                                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
@@ -63,8 +62,8 @@
 
                     <!-- use custom combo box column to get better combos. Use ItemsSourceBinding as your binding template to be applied to each combo -->
                     <materialDesign:MaterialDataGridComboBoxColumn Header="Food"        
-                                                            SelectedValueBinding="{Binding Food}"                                                            
-                                                            ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}" />
+                                                                   SelectedValueBinding="{Binding Food}"                                                            
+                                                                   ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}" />
                 </DataGrid.Columns>
             </DataGrid>
             <TextBlock Margin="0 24 0 0">Auto Generated Columns</TextBlock>

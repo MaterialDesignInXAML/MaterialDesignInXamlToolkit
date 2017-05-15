@@ -1,3 +1,20 @@
 source https://nuget.org/api/v2
+framework >= net45
 
-github ControlzEx/ControlzEx:40a2be62474f0b78f2fd125a5b321e011acd5bb5 src/ControlzEx/PopupEx.cs
+nuget MahApps.Metro
+nuget Dragablz 0.0.3.165
+nuget Moq 4.5.10 framework: = net452
+nuget NSubstitute 1.10.0 framework: = net452
+nuget RhinoMocks 3.6.1 framework: = net452
+nuget Shouldly 2.8.0 framework: = net452
+nuget xunit 2.1.0 framework: = net452
+nuget xunit.abstractions 2.0.0 framework: = net452
+nuget xunit.assert 2.1.0 framework: = net452
+nuget xunit.core 2.1.0 framework: = net452
+nuget xunit.extensibility.core 2.1.0 framework: = net452
+nuget xunit.extensibility.execution 2.1.0 framework: = net452
+
+github ControlzEx/ControlzEx:1f4d66092fb101f3ece1dc88b36c20d815f88b2b src/ControlzEx/PopupEx.cs
+github ControlzEx/ControlzEx:1f4d66092fb101f3ece1dc88b36c20d815f88b2b src/ControlzEx/PackIconBase.cs
+github ControlzEx/ControlzEx:1f4d66092fb101f3ece1dc88b36c20d815f88b2b src/ControlzEx/BadgedEx.cs
+github samueldjack/VirtualCollection:e63d891c252c2ac1a3ebb26dddb9a3d89effe3f2 VirtualCollection/VirtualCollection/VirtualizingWrapPanel.cs

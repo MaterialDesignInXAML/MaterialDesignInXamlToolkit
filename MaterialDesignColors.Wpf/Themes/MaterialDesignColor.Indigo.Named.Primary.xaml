@@ -7,9 +7,9 @@
   <Color x:Key="IndigoPrimary200">#9fa8da</Color>
   <Color x:Key="IndigoPrimary200Foreground">#DD000000</Color>
   <Color x:Key="IndigoPrimary300">#7986cb</Color>
-  <Color x:Key="IndigoPrimary300Foreground">#FFFFFFFF</Color>
+  <Color x:Key="IndigoPrimary300Foreground">#DDFFFFFF</Color>
   <Color x:Key="IndigoPrimary400">#5c6bc0</Color>
-  <Color x:Key="IndigoPrimary400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="IndigoPrimary400Foreground">#DDFFFFFF</Color>
   <Color x:Key="IndigoPrimary500">#3f51b5</Color>
   <Color x:Key="IndigoPrimary500Foreground">#DDFFFFFF</Color>
   <Color x:Key="IndigoPrimary600">#3949ab</Color>

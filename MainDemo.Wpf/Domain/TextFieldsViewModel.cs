@@ -12,16 +12,16 @@ namespace MaterialDesignColors.WpfExample.Domain
 {
     public class TextFieldsViewModel : INotifyPropertyChanged
     {
-        private readonly IList<int> _longListToTestComboVirtualization;
-            
         private string _name;
-        private int _selectedValueOne;
+        private int? _selectedValueOne;
+        private string _selectedTextTwo;
 
         public TextFieldsViewModel()
         {
-            _longListToTestComboVirtualization = new List<int>(Enumerable.Range(0, 1000));
+            LongListToTestComboVirtualization = new List<int>(Enumerable.Range(0, 1000));
 
-            SelectedValueOne = _longListToTestComboVirtualization.Skip(2).First();
+            SelectedValueOne = LongListToTestComboVirtualization.Skip(2).First();
+            SelectedTextTwo = null;
         }
 
         public string Name
@@ -29,28 +29,37 @@ namespace MaterialDesignColors.WpfExample.Domain
             get { return _name; }
             set
             {
-                _name = value;
-                OnPropertyChanged();
+                this.MutateVerbose(ref _name, value, RaisePropertyChanged());
             }
         }
 
-        public int SelectedValueOne
+        public int? SelectedValueOne
         {
             get { return _selectedValueOne; }
             set
             {
-                _selectedValueOne = value;
-                OnPropertyChanged();
+                this.MutateVerbose(ref _selectedValueOne, value, RaisePropertyChanged());
+            }
+        }        
+
+        public string SelectedTextTwo
+        {
+            get { return _selectedTextTwo; }
+            set
+            {
+                this.MutateVerbose(ref _selectedTextTwo, value, RaisePropertyChanged());
             }
         }
 
-        public IList<int> LongListToTestComboVirtualization => _longListToTestComboVirtualization;
+        public IList<int> LongListToTestComboVirtualization { get; }
+
+        public DemoItem DemoItem => new DemoItem("Mr. Test", null, Enumerable.Empty<DocumentationLink>());
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private Action<PropertyChangedEventArgs> RaisePropertyChanged()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            return args => PropertyChanged?.Invoke(this, args);
         }
     }
 }

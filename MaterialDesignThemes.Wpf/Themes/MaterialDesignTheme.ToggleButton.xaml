@@ -1,11 +1,16 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
 	<!-- TODO freeze, share -->
 	<SolidColorBrush x:Key="AttentionToActionBrush" Color="Black" Opacity=".23" />
 
-	<Style x:Key="FocusVisual">
+    <converters:MathConverter Operation="Divide" x:Key="DivisionMathConverter" />
+    <converters:PointValueConverter x:Key="PointValueConverter" />
+
+    <Style x:Key="FocusVisual">
 		<Setter Property="Control.Template">
 			<Setter.Value>
 				<ControlTemplate>
@@ -15,8 +20,18 @@
 		</Setter>
 	</Style>
 
-	<Style x:Key="MaterialDesignActionToggleButton" TargetType="{x:Type ToggleButton}">
-		<Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+    <wpf:PackIcon x:Key="CheckMarkIcon" x:Shared="False" Kind="Check" Width="24" Height="24" FlowDirection="LeftToRight" />
+
+    <Style x:Key="MaterialDesignActionToggleButton" TargetType="{x:Type ToggleButton}">
+        <Style.Resources>
+            <ResourceDictionary>
+                <Style TargetType="wpf:PackIcon" BasedOn="{StaticResource {x:Type wpf:PackIcon}}">
+                    <Setter Property="Width" Value="20" />
+                    <Setter Property="Height" Value="20" />
+                </Style>
+            </ResourceDictionary>
+        </Style.Resources>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
 		<Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
 		<Setter Property="Width" Value="32"/>
 		<Setter Property="Height" Value="32"/>
@@ -24,10 +39,12 @@
 		<Setter Property="HorizontalContentAlignment" Value="Center"/>
 		<Setter Property="VerticalContentAlignment" Value="Center"/>
 		<Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="wpf:ToggleButtonAssist.OnContent" Value="{StaticResource CheckMarkIcon}" />
+        <Setter Property="Cursor" Value="Hand" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ToggleButton}">
-					<Grid Clip="{Binding ElementName=UncheckedEllipse, Path=RenderedGeometry}" ClipToBounds="True">
+					<Grid ClipToBounds="True">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal"/>
@@ -40,91 +57,44 @@
 							<VisualStateGroup x:Name="CheckStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="*" To="Checked">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="UncheckedEllipse">
-                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                                <LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse">
-                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                                <LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckMark">
-                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                                <LinearDoubleKeyFrame Value="24" KeyTime="0:0:0.2" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckMark">
-                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                                <LinearDoubleKeyFrame Value="24" KeyTime="0:0:0.2" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.025" Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="contentPresenter">
-                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.025" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CheckMark">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Visible}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="Checked" To="Unchecked">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse">
-                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                                <LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="UncheckedEllipse">
-                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                                <LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.1" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckMark">
+                                        <Storyboard FillBehavior="HoldEnd">
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="OffScaleTransform">
+                                                <LinearDoubleKeyFrame Value="1" KeyTime="0:0:0.0" />
                                                 <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.1" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckMark">
-                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="contentPresenter">
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="OnScaleTransform">
                                                 <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
                                                 <LinearDoubleKeyFrame Value="1" KeyTime="0:0:0.2" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CheckMark">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Hidden}" />
-                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Checked" To="Unchecked">
+                                        <Storyboard FillBehavior="HoldEnd">
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="OnScaleTransform">
+                                                <LinearDoubleKeyFrame Value="1" KeyTime="0:0:0.0" />
+                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="OffScaleTransform">
+                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+                                                <LinearDoubleKeyFrame Value="1" KeyTime="0:0:0.2" />
+                                            </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
 								<VisualState x:Name="Checked">
 									<Storyboard>
-										<DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="UncheckedEllipse"
-                                                         To="32" />
-										<DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse"
-                                                         To="32" />
-										<DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckMark"
-                                                         To="24" />										
-										<DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckMark"
-                                                         To="24" />
-										<DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="contentPresenter"
+                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="OffScaleTransform"
                                                          To="0" />
-										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CheckMark"
-                                                                       Duration="0">
-											<DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
-										</ObjectAnimationUsingKeyFrames>
-									</Storyboard>
+                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="OnScaleTransform"
+                                                         To="1" />
+                                    </Storyboard>
 								</VisualState>
 								<VisualState x:Name="Unchecked">
 									<Storyboard>
-                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="UncheckedEllipse"
-                                                         To="32" />
-                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse"
-                                                         To="32" />
-                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckMark"
-                                                         To="0" />
-                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckMark"
-                                                         To="0" />
-                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="contentPresenter"
+                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="OffScaleTransform"
                                                          To="1" />
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CheckMark"
-                                                                       Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Hidden}" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="OnScaleTransform"
+                                                         To="0" />
                                     </Storyboard>
 								</VisualState>
 								<VisualState x:Name="Indeterminate">
@@ -134,26 +104,46 @@
 								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
-						<Ellipse Fill="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="UncheckedEllipse" Opacity=".54" />
-						<Ellipse Fill="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="CheckedEllipse" />
-						<Viewbox Width="24" Height="24" x:Name="CheckMark" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center">
-							<Canvas Width="24" Height="24">
-								<Path Data="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" Fill="{TemplateBinding Foreground}" />
-							</Canvas>
-						</Viewbox>
-						<ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-					</Grid>
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="Stroke" TargetName="CheckedEllipse" Value="{StaticResource AttentionToActionBrush}" />
-							<Setter Property="Stroke" TargetName="UncheckedEllipse" Value="{StaticResource AttentionToActionBrush}" />
-						</Trigger>
-						<!-- TODO
-							<Trigger Property="IsFocused" Value="True">
-								<Setter Property="BorderBrush" TargetName="normal" Value="{Binding (Custom:ControlsHelper.FocusBorderBrush), RelativeSource={RelativeSource TemplatedParent}}"/>
-							</Trigger>
-							-->
-					</ControlTemplate.Triggers>
+                        <Grid x:Name="OffGrid" RenderTransformOrigin=".5,.5" Background="{TemplateBinding Background}">
+                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                              FlowDirection="LeftToRight"/>
+                            <Grid.Clip>
+                                <EllipseGeometry RadiusX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}" 
+                                                 RadiusY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}">
+                                    <EllipseGeometry.Center>
+                                        <MultiBinding Converter="{StaticResource PointValueConverter}">
+                                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Width" Converter="{StaticResource DivisionMathConverter}" ConverterParameter="2.0" />
+                                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Height" Converter="{StaticResource DivisionMathConverter}" ConverterParameter="2.0" />
+                                        </MultiBinding>
+                                    </EllipseGeometry.Center>
+                                </EllipseGeometry>
+                            </Grid.Clip>
+                            <Grid.RenderTransform>
+                                <ScaleTransform x:Name="OffScaleTransform" ScaleX="1" ScaleY="1" />
+                            </Grid.RenderTransform>
+                        </Grid>
+                        <Grid x:Name="OnGrid" RenderTransformOrigin=".5,.5" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              FlowDirection="LeftToRight"
+                                              Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContent)}"
+                                              ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContentTemplate)}" />
+                            <Grid.Clip>
+                                <EllipseGeometry RadiusX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}" 
+                                                 RadiusY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}">
+                                    <EllipseGeometry.Center>
+                                        <MultiBinding Converter="{StaticResource PointValueConverter}">
+                                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Width" Converter="{StaticResource DivisionMathConverter}" ConverterParameter="2.0" />
+                                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Height" Converter="{StaticResource DivisionMathConverter}" ConverterParameter="2.0" />
+                                        </MultiBinding>
+                                    </EllipseGeometry.Center>
+                                </EllipseGeometry>
+                            </Grid.Clip>
+                            <Grid.RenderTransform>
+                                <ScaleTransform x:Name="OnScaleTransform" ScaleX="0" ScaleY="1" />
+                            </Grid.RenderTransform>
+                        </Grid>
+                    </Grid>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
@@ -177,7 +167,7 @@
 		<Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
 	</Style>
 
-    <Style x:Key="MaterialDesignFlatToggleButton" TargetType="{x:Type ToggleButton}">
+	<Style x:Key="MaterialDesignFlatToggleButton" TargetType="{x:Type ToggleButton}">
 		<Setter Property="Foreground" Value="#616161"/>
 		<Setter Property="Background" Value="#e0e0e0"/>
 		<Setter Property="Width" Value="40"/>
@@ -189,7 +179,7 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ToggleButton}">
-					<Grid Clip="{Binding ElementName=UncheckedEllipse, Path=RenderedGeometry}" ClipToBounds="True">
+					<Grid ClipToBounds="True" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal"/>
@@ -197,82 +187,83 @@
 									<Storyboard>
 										<DoubleAnimation Duration="0" To="0.23" Storyboard.TargetProperty="(UIElement.Opacity)" />
 									</Storyboard>
-								</VisualState>                                
+								</VisualState>
 							</VisualStateGroup>
 							<VisualStateGroup x:Name="CheckStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition From="*" To="Checked">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse">
-                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.0" />
-                                                <LinearDoubleKeyFrame Value="40" KeyTime="0:0:0.1" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckedEllipse">
-                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.0" />
-                                                <LinearDoubleKeyFrame Value="40" KeyTime="0:0:0.1" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="Checked" To="Unchecked">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse">
-                                                <LinearDoubleKeyFrame Value="40" KeyTime="0:0:0.0" />
-                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckedEllipse">
-                                                <LinearDoubleKeyFrame Value="40" KeyTime="0:0:0.0" />
-                                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
+								<VisualStateGroup.Transitions>
+									<VisualTransition From="*" To="Checked">
+										<Storyboard>
+											<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="CheckedEllipseScale">
+												<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.0" />
+												<LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:0.1" />
+											</DoubleAnimationUsingKeyFrames>
+											<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="CheckedEllipseScale">
+												<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.0" />
+												<LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:0.1" />
+											</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualTransition>
+									<VisualTransition From="Checked" To="Unchecked">
+										<Storyboard>
+											<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="CheckedEllipseScale">
+												<LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:0.0" />
+												<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+											</DoubleAnimationUsingKeyFrames>
+											<DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="CheckedEllipseScale">
+												<LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:0.0" />
+												<LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
+											</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualTransition>
+								</VisualStateGroup.Transitions>
 								<VisualState x:Name="Checked">
 									<Storyboard>
-                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse"
-                                                         To="40" />
-                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckedEllipse"
-                                                         To="40" />
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="CheckedEllipseScale" To="1.0" />
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="CheckedEllipseScale" To="1.0" />
 									</Storyboard>
 								</VisualState>
 								<VisualState x:Name="Unchecked">
 									<Storyboard>
-										<DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse"
-                                                         To="0" />
-                                        <DoubleAnimation Duration="0" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckedEllipse"
-                                                         To="0" />																				
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="CheckedEllipseScale" To="0" />
+										<DoubleAnimation Duration="0" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="CheckedEllipseScale" To="0" />
 									</Storyboard>
 								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
-                        <Ellipse Fill="Transparent" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="HoverEllipse"
-                                 Stroke="Transparent" StrokeThickness="1" />
-						<Ellipse Fill="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="CheckedEllipse" />
+						<Ellipse Fill="Transparent" x:Name="HoverEllipse" Stroke="Transparent" StrokeThickness="1" />
+						<Ellipse Fill="{TemplateBinding Background}" x:Name="CheckedEllipse" RenderTransformOrigin="0.5, 0.5">
+							<Ellipse.RenderTransform>
+								<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.0" ScaleY="1.0" x:Name="CheckedEllipseScale"/>
+							</Ellipse.RenderTransform>
+						</Ellipse>
 						<ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
 					</Grid>
 					<ControlTemplate.Triggers>
-						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="Stroke" TargetName="HoverEllipse" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />							
+            					<Trigger Property="IsMouseOver" Value="true">
+              						<Setter Property="Stroke" TargetName="HoverEllipse" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
+            					</Trigger>
+            					<!-- TODO
+						<Trigger Property="IsFocused" Value="True">
+							<Setter Property="BorderBrush" TargetName="normal" Value="{Binding (Custom:ControlsHelper.FocusBorderBrush), RelativeSource={RelativeSource TemplatedParent}}"/>
 						</Trigger>
-						<!-- TODO
-							<Trigger Property="IsFocused" Value="True">
-								<Setter Property="BorderBrush" TargetName="normal" Value="{Binding (Custom:ControlsHelper.FocusBorderBrush), RelativeSource={RelativeSource TemplatedParent}}"/>
-							</Trigger>
-							-->
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
+						-->
+          				</ControlTemplate.Triggers>
+        			</ControlTemplate>
+      			</Setter.Value>
 		</Setter>
-	</Style>
-    
-    <Style x:Key="MaterialDesignFlatPrimaryToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignFlatToggleButton}">
+	</Style>    
+  
+	<Style x:Key="MaterialDesignFlatPrimaryToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignFlatToggleButton}">
 		<Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>		
 		<Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}"/>
 	</Style>
     
 	<Style x:Key="MaterialDesignSwitchToggleButton" TargetType="{x:Type ToggleButton}">
 		<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
 		<Setter Property="BorderThickness" Value="1"/>
-		<Setter Property="Padding" Value="1"/>
+		<Setter Property="Padding" Value="0 1 0 0"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -355,13 +346,21 @@
                                         <ScaleTransform ScaleX="1" ScaleY="1"/>
                                     </Ellipse.RenderTransform>
                                 </Ellipse>
-                                <Ellipse x:Name="Thumb"
-                                         Fill="#FFFAFAFA" Stroke="{x:Null}" 
-                                         HorizontalAlignment="Center" VerticalAlignment="Center"
-                                         Width="25" Height="25"
-                                         Margin="0,0,0,0"
-                                         RenderTransformOrigin="0.5,0.5"
-                                         Effect="{DynamicResource MaterialDesignShadowDepth1}"/>
+                                <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+                                    <Ellipse x:Name="Thumb"
+                                             Fill="#FFFAFAFA" Stroke="{x:Null}" 
+                                             HorizontalAlignment="Center" VerticalAlignment="Center"
+                                             Width="25" Height="25"
+                                             Margin="0,0,0,0"
+                                             RenderTransformOrigin="0.5,0.5"
+                                             Effect="{DynamicResource MaterialDesignShadowDepth1}">
+                                    </Ellipse>
+                                </AdornerDecorator>
+                                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  x:Name="ContentPresenter"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                  FlowDirection="LeftToRight"/>
                                 <Grid.RenderTransform>
                                     <TranslateTransform X="0" Y="0"/>
                                 </Grid.RenderTransform>
@@ -370,10 +369,22 @@
 					</Viewbox>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsChecked" Value="True">
-							<Setter TargetName="Thumb" Property="Fill" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter TargetName="Thumb" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
 							<Setter TargetName="Track" Property="Fill" Value="{DynamicResource PrimaryHueLightBrush}" />
-						</Trigger>
-						<Trigger Property="Button.IsDefaulted" Value="true"/>
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="wpf:ToggleButtonAssist.HasOnContent" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="ContentPresenter" Property="Content" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContent)}" />
+                            <Setter TargetName="ContentPresenter" Property="ContentTemplate" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContentTemplate)}" />
+                        </MultiTrigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/> <!-- Need to set Foreground to Background here instead of hardcoded PrimaryHueMidBrush -->
+                        </Trigger>
+                        <Trigger Property="Button.IsDefaulted" Value="true"/>
 						<Trigger Property="IsMouseOver" Value="true"/>
                         <Trigger Property="IsPressed" Value="true">
                             <Trigger.EnterActions>
@@ -397,7 +408,19 @@
 		</Setter>
 	</Style>
 
-	<Style x:Key="MaterialDesignHamburgerToggleButton" TargetType="{x:Type ToggleButton}">
+    <Style x:Key="MaterialDesignSwitchLightToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+    </Style>
+
+    <Style x:Key="MaterialDesignSwitchDarkToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    </Style>
+
+    <Style x:Key="MaterialDesignSwitchAccentToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
+        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}" />
+    </Style>
+
+    <Style x:Key="MaterialDesignHamburgerToggleButton" TargetType="{x:Type ToggleButton}">
 		<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
@@ -412,6 +435,14 @@
 				<ControlTemplate TargetType="{x:Type ToggleButton}">
 					<Border Background="{TemplateBinding Property=Background}">
 						<VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState Name="Normal"/>
+                                <VisualState Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="0.23" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
 							<VisualStateGroup x:Name="CheckStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="*" To="Checked">

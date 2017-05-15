@@ -6,6 +6,7 @@
     <Style TargetType="{x:Type wpf:RatingBar}">
         <Setter Property="ClipToBounds" Value="False" />
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
         <Setter Property="ValueItemTemplate">
             <Setter.Value>
                 <DataTemplate DataType="system:Int32">
@@ -31,7 +32,6 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="wpf:RatingBarButton">
                                     <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"     
-                                                Feedback="{DynamicResource MaterialDesignFlatButtonRipple}"
                                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                 Padding="{TemplateBinding Padding}" 

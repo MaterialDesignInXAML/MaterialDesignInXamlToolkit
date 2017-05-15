@@ -11,13 +11,13 @@
   <Color x:Key="OrangePrimary400">#ffa726</Color>
   <Color x:Key="OrangePrimary400Foreground">#DD000000</Color>
   <Color x:Key="OrangePrimary500">#ff9800</Color>
-  <Color x:Key="OrangePrimary500Foreground">#FF000000</Color>
+  <Color x:Key="OrangePrimary500Foreground">#DD000000</Color>
   <Color x:Key="OrangePrimary600">#fb8c00</Color>
-  <Color x:Key="OrangePrimary600Foreground">#FF000000</Color>
+  <Color x:Key="OrangePrimary600Foreground">#DD000000</Color>
   <Color x:Key="OrangePrimary700">#f57c00</Color>
-  <Color x:Key="OrangePrimary700Foreground">#FF000000</Color>
+  <Color x:Key="OrangePrimary700Foreground">#DD000000</Color>
   <Color x:Key="OrangePrimary800">#ef6c00</Color>
   <Color x:Key="OrangePrimary800Foreground">#FFFFFFFF</Color>
   <Color x:Key="OrangePrimary900">#e65100</Color>
-  <Color x:Key="OrangePrimary900Foreground">#FFFFFFFF</Color>
+  <Color x:Key="OrangePrimary900Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

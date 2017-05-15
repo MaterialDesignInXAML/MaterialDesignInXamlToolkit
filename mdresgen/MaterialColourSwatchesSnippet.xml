@@ -22,19 +22,19 @@
         <span class="shade">300</span>
         <span class="hex">#e57373</span>
       </li>
-      <li class="color dark" style="background-color: #ef5350;">
+      <li class="color" style="background-color: #ef5350;">
         <span class="shade expanded">400</span>
         <span class="hex">#ef5350</span>
       </li>
-      <li class="color light-strong" style="background-color: #f44336;">
+      <li class="color" style="background-color: #f44336;">
         <span class="shade">500</span>
         <span class="hex">#f44336</span>
       </li>
-      <li class="color light-strong" style="background-color: #e53935;">
+      <li class="color" style="background-color: #e53935;">
         <span class="shade expanded">600</span>
         <span class="hex">#e53935</span>
       </li>
-      <li class="color light-strong" style="background-color: #d32f2f;">
+      <li class="color" style="background-color: #d32f2f;">
         <span class="shade">700</span>
         <span class="hex">#d32f2f</span>
       </li>
@@ -54,11 +54,11 @@
         <span class="shade accent expanded">A200</span>
         <span class="hex">#ff5252</span>
       </li>
-      <li class="color light-strong" style="background-color: #ff1744;">
+      <li class="color" style="background-color: #ff1744;">
         <span class="shade accent expanded">A400</span>
         <span class="hex">#ff1744</span>
       </li>
-      <li class="color light-strong" style="background-color: #d50000;">
+      <li class="color" style="background-color: #d50000;">
         <span class="shade accent">A700</span>
         <span class="hex">#d50000</span>
       </li>
@@ -85,19 +85,19 @@
         <span class="shade expanded">200</span>
         <span class="hex">#f48fb1</span>
       </li>
-      <li class="color dark" style="background-color: #f06292;">
+      <li class="color light-strong" style="background-color: #f06292;">
         <span class="shade">300</span>
         <span class="hex">#f06292</span>
       </li>
-      <li class="color dark" style="background-color: #ec407a;">
+      <li class="color " style="background-color: #ec407a;">
         <span class="shade expanded">400</span>
         <span class="hex">#ec407a</span>
       </li>
-      <li class="color light-strong" style="background-color: #e91e63;">
+      <li class="color" style="background-color: #e91e63;">
         <span class="shade">500</span>
         <span class="hex">#e91e63</span>
       </li>
-      <li class="color light-strong" style="background-color: #d81b60;">
+      <li class="color" style="background-color: #d81b60;">
         <span class="shade expanded">600</span>
         <span class="hex">#d81b60</span>
       </li>
@@ -121,11 +121,11 @@
         <span class="shade accent expanded">A200</span>
         <span class="hex">#ff4081</span>
       </li>
-      <li class="color light-strong" style="background-color: #f50057;">
+      <li class="color" style="background-color: #f50057;">
         <span class="shade accent expanded">A400</span>
         <span class="hex">#f50057</span>
       </li>
-      <li class="color light-strong" style="background-color: #c51162;">
+      <li class="color" style="background-color: #c51162;">
         <span class="shade accent">A700</span>
         <span class="hex">#c51162</span>
       </li>
@@ -188,11 +188,11 @@
         <span class="shade accent expanded">A200</span>
         <span class="hex">#e040fb</span>
       </li>
-      <li class="color light-strong" style="background-color: #d500f9;">
+      <li class="color" style="background-color: #d500f9;">
         <span class="shade accent expanded">A400</span>
         <span class="hex">#d500f9</span>
       </li>
-      <li class="color light-strong" style="background-color: #aa00ff;">
+      <li class="color" style="background-color: #aa00ff;">
         <span class="shade accent">A700</span>
         <span class="hex">#aa00ff</span>
       </li>
@@ -219,11 +219,11 @@
         <span class="shade expanded">200</span>
         <span class="hex">#b39ddb</span>
       </li>
-      <li class="color light-strong" style="background-color: #9575cd;">
+      <li class="color" style="background-color: #9575cd;">
         <span class="shade">300</span>
         <span class="hex">#9575cd</span>
       </li>
-      <li class="color light-strong" style="background-color: #7e57c2;">
+      <li class="color" style="background-color: #7e57c2;">
         <span class="shade expanded">400</span>
         <span class="hex">#7e57c2</span>
       </li>
@@ -286,11 +286,11 @@
         <span class="shade expanded">200</span>
         <span class="hex">#9fa8da</span>
       </li>
-      <li class="color light-strong" style="background-color: #7986cb;">
+      <li class="color" style="background-color: #7986cb;">
         <span class="shade">300</span>
         <span class="hex">#7986cb</span>
       </li>
-      <li class="color light-strong" style="background-color: #5c6bc0;">
+      <li class="color" style="background-color: #5c6bc0;">
         <span class="shade expanded">400</span>
         <span class="hex">#5c6bc0</span>
       </li>
@@ -318,11 +318,11 @@
         <span class="shade accent">A100</span>
         <span class="hex">#8c9eff</span>
       </li>
-      <li class="color light-strong" style="background-color: #536dfe;">
+      <li class="color" style="background-color: #536dfe;">
         <span class="shade accent expanded">A200</span>
         <span class="hex">#536dfe</span>
       </li>
-      <li class="color light-strong" style="background-color: #3d5afe;">
+      <li class="color" style="background-color: #3d5afe;">
         <span class="shade accent expanded">A400</span>
         <span class="hex">#3d5afe</span>
       </li>
@@ -365,11 +365,11 @@
         <span class="shade">500</span>
         <span class="hex">#2196f3</span>
       </li>
-      <li class="color light-strong" style="background-color: #1e88e5;">
+      <li class="color" style="background-color: #1e88e5;">
         <span class="shade expanded">600</span>
         <span class="hex">#1e88e5</span>
       </li>
-      <li class="color light-strong" style="background-color: #1976d2;">
+      <li class="color" style="background-color: #1976d2;">
         <span class="shade">700</span>
         <span class="hex">#1976d2</span>
       </li>
@@ -389,11 +389,11 @@
         <span class="shade accent expanded">A200</span>
         <span class="hex">#448aff</span>
       </li>
-      <li class="color light-strong" style="background-color: #2979ff;">
+      <li class="color" style="background-color: #2979ff;">
         <span class="shade accent expanded">A400</span>
         <span class="hex">#2979ff</span>
       </li>
-      <li class="color light-strong" style="background-color: #2962ff;">
+      <li class="color" style="background-color: #2962ff;">
         <span class="shade accent">A700</span>
         <span class="hex">#2962ff</span>
       </li>
@@ -404,9 +404,9 @@
   <section class="color-group">
     <ul>
       <li class="color main-color" style="background-color: #03a9f4;">
-        <span class="name light-strong">Light Blue</span>
-        <span class="shade light-strong">500</span>
-        <span class="hex light-strong">#03a9f4</span>
+        <span class="name dark">Light Blue</span>
+        <span class="shade dark">500</span>
+        <span class="hex dark">#03a9f4</span>
       </li>
       <li class="color dark" style="background-color: #e1f5fe;">
         <span class="shade expanded">50</span>
@@ -428,7 +428,7 @@
         <span class="shade expanded">400</span>
         <span class="hex">#29b6f6</span>
       </li>
-      <li class="color light-strong" style="background-color: #03a9f4;">
+      <li class="color dark" style="background-color: #03a9f4;">
         <span class="shade">500</span>
         <span class="hex">#03a9f4</span>
       </li>
@@ -436,11 +436,11 @@
         <span class="shade expanded">600</span>
         <span class="hex">#039be5</span>
       </li>
-      <li class="color light-strong" style="background-color: #0288d1;">
+      <li class="color" style="background-color: #0288d1;">
         <span class="shade">700</span>
         <span class="hex">#0288d1</span>
       </li>
-      <li class="color light-strong" style="background-color: #0277bd;">
+      <li class="color" style="background-color: #0277bd;">
         <span class="shade expanded">800</span>
         <span class="hex">#0277bd</span>
       </li>
@@ -471,9 +471,9 @@
   <section class="color-group">
     <ul>
       <li class="color main-color" style="background-color: #00bcd4;">
-        <span class="name light-strong">Cyan</span>
-        <span class="shade light-strong">500</span>
-        <span class="hex light-strong">#00bcd4</span>
+        <span class="name dark">Cyan</span>
+        <span class="shade dark">500</span>
+        <span class="hex dark">#00bcd4</span>
       </li>
       <li class="color dark" style="background-color: #e0f7fa;">
         <span class="shade expanded">50</span>
@@ -495,19 +495,19 @@
         <span class="shade expanded">400</span>
         <span class="hex">#26c6da</span>
       </li>
-      <li class="color light-strong" style="background-color: #00bcd4;">
+      <li class="color dark" style="background-color: #00bcd4;">
         <span class="shade">500</span>
         <span class="hex">#00bcd4</span>
       </li>
-      <li class="color light-strong" style="background-color: #00acc1;">
+      <li class="color dark" style="background-color: #00acc1;">
         <span class="shade expanded">600</span>
         <span class="hex">#00acc1</span>
       </li>
-      <li class="color light-strong" style="background-color: #0097a7;">
+      <li class="color" style="background-color: #0097a7;">
         <span class="shade">700</span>
         <span class="hex">#0097a7</span>
       </li>
-      <li class="color light-strong" style="background-color: #00838f;">
+      <li class="color" style="background-color: #00838f;">
         <span class="shade expanded">800</span>
         <span class="hex">#00838f</span>
       </li>
@@ -605,9 +605,9 @@
   <section class="color-group">
     <ul>
       <li class="color main-color" style="background-color: #4caf50;">
-        <span class="name light-strong">Green</span>
-        <span class="shade light-strong">500</span>
-        <span class="hex light-strong">#4caf50</span>
+        <span class="name dark">Green</span>
+        <span class="shade dark">500</span>
+        <span class="hex dark">#4caf50</span>
       </li>
       <li class="color dark" style="background-color: #e8f5e9;">
         <span class="shade expanded">50</span>
@@ -629,7 +629,7 @@
         <span class="shade expanded">400</span>
         <span class="hex">#66bb6a</span>
       </li>
-      <li class="color light-strong" style="background-color: #4caf50;">
+      <li class="color dark" style="background-color: #4caf50;">
         <span class="shade">500</span>
         <span class="hex">#4caf50</span>
       </li>
@@ -637,7 +637,7 @@
         <span class="shade expanded">600</span>
         <span class="hex">#43a047</span>
       </li>
-      <li class="color light-strong" style="background-color: #388e3c;">
+      <li class="color" style="background-color: #388e3c;">
         <span class="shade">700</span>
         <span class="hex">#388e3c</span>
       </li>
@@ -672,9 +672,9 @@
   <section class="color-group">
     <ul>
       <li class="color main-color" style="background-color: #8bc34a;">
-        <span class="name">Light Green</span>
-        <span class="shade">500</span>
-        <span class="hex">#8bc34a</span>
+        <span class="name dark">Light Green</span>
+        <span class="shade dark">500</span>
+        <span class="hex dark">#8bc34a</span>
       </li>
       <li class="color dark" style="background-color: #f1f8e9;">
         <span class="shade expanded">50</span>
@@ -696,23 +696,23 @@
         <span class="shade expanded">400</span>
         <span class="hex">#9ccc65</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #8bc34a;">
+      <li class="color dark" style="background-color: #8bc34a;">
         <span class="shade">500</span>
         <span class="hex">#8bc34a</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #7cb342;">
+      <li class="color dark" style="background-color: #7cb342;">
         <span class="shade expanded">600</span>
         <span class="hex">#7cb342</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #689f38;">
+      <li class="color light-strong" style="background-color: #689f38;">
         <span class="shade">700</span>
         <span class="hex">#689f38</span>
       </li>
-      <li class="color light-strong" style="background-color: #558b2f;">
+      <li class="color" style="background-color: #558b2f;">
         <span class="shade expanded">800</span>
         <span class="hex">#558b2f</span>
       </li>
-      <li class="color light-strong" style="background-color: #33691e;">
+      <li class="color" style="background-color: #33691e;">
         <span class="shade expanded">900</span>
         <span class="hex">#33691e</span>
       </li>
@@ -771,15 +771,15 @@
         <span class="shade expanded">600</span>
         <span class="hex">#c0ca33</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #afb42b;">
+      <li class="color dark" style="background-color: #afb42b;">
         <span class="shade">700</span>
         <span class="hex">#afb42b</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #9e9d24;">
+      <li class="color dark" style="background-color: #9e9d24;">
         <span class="shade expanded">800</span>
         <span class="hex">#9e9d24</span>
       </li>
-      <li class="color light-strong" style="background-color: #827717;">
+      <li class="color" style="background-color: #827717;">
         <span class="shade expanded">900</span>
         <span class="hex">#827717</span>
       </li>
@@ -846,7 +846,7 @@
         <span class="shade expanded">800</span>
         <span class="hex">#f9a825</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #f57f17;">
+      <li class="color dark" style="background-color: #f57f17;">
         <span class="shade expanded">900</span>
         <span class="hex">#f57f17</span>
       </li>
@@ -905,15 +905,15 @@
         <span class="shade expanded">600</span>
         <span class="hex">#ffb300</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #ffa000;">
+      <li class="color dark" style="background-color: #ffa000;">
         <span class="shade">700</span>
         <span class="hex">#ffa000</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #ff8f00;">
+      <li class="color dark" style="background-color: #ff8f00;">
         <span class="shade expanded">800</span>
         <span class="hex">#ff8f00</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #ff6f00;">
+      <li class="color dark" style="background-color: #ff6f00;">
         <span class="shade expanded">900</span>
         <span class="hex">#ff6f00</span>
       </li>
@@ -964,15 +964,15 @@
         <span class="shade expanded">400</span>
         <span class="hex">#ffa726</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #ff9800;">
+      <li class="color dark" style="background-color: #ff9800;">
         <span class="shade">500</span>
         <span class="hex">#ff9800</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #fb8c00;">
+      <li class="color dark" style="background-color: #fb8c00;">
         <span class="shade expanded">600</span>
         <span class="hex">#fb8c00</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #f57c00;">
+      <li class="color dark" style="background-color: #f57c00;">
         <span class="shade">700</span>
         <span class="hex">#f57c00</span>
       </li>
@@ -980,7 +980,7 @@
         <span class="shade expanded">800</span>
         <span class="hex">#ef6c00</span>
       </li>
-      <li class="color light-strong" style="background-color: #e65100;">
+      <li class="color" style="background-color: #e65100;">
         <span class="shade expanded">900</span>
         <span class="hex">#e65100</span>
       </li>
@@ -996,7 +996,7 @@
         <span class="shade accent expanded">A400</span>
         <span class="hex">#ff9100</span>
       </li>
-      <li class="color dark-strong" style="background-color: #ff6d00;">
+      <li class="color dark" style="background-color: #ff6d00;">
         <span class="shade accent">A700</span>
         <span class="hex">#ff6d00</span>
       </li>
@@ -1035,19 +1035,19 @@
         <span class="shade">500</span>
         <span class="hex">#ff5722</span>
       </li>
-      <li class="color light-strong" style="background-color: #f4511e;">
+      <li class="color" style="background-color: #f4511e;">
         <span class="shade expanded">600</span>
         <span class="hex">#f4511e</span>
       </li>
-      <li class="color light-strong" style="background-color: #e64a19;">
+      <li class="color" style="background-color: #e64a19;">
         <span class="shade">700</span>
         <span class="hex">#e64a19</span>
       </li>
-      <li class="color light-strong" style="background-color: #d84315;">
+      <li class="color" style="background-color: #d84315;">
         <span class="shade expanded">800</span>
         <span class="hex">#d84315</span>
       </li>
-      <li class="color light-strong" style="background-color: #bf360c;">
+      <li class="color" style="background-color: #bf360c;">
         <span class="shade expanded">900</span>
         <span class="hex">#bf360c</span>
       </li>
@@ -1059,11 +1059,11 @@
         <span class="shade accent expanded">A200</span>
         <span class="hex">#ff6e40</span>
       </li>
-      <li class="color light-strong" style="background-color: #ff3d00;">
+      <li class="color" style="background-color: #ff3d00;">
         <span class="shade accent expanded">A400</span>
         <span class="hex">#ff3d00</span>
       </li>
-      <li class="color light-strong" style="background-color: #dd2c00;">
+      <li class="color" style="background-color: #dd2c00;">
         <span class="shade accent">A700</span>
         <span class="hex">#dd2c00</span>
       </li>
@@ -1094,7 +1094,7 @@
         <span class="shade">300</span>
         <span class="hex">#a1887f</span>
       </li>
-      <li class="color light-strong" style="background-color: #8d6e63;">
+      <li class="color" style="background-color: #8d6e63;">
         <span class="shade expanded">400</span>
         <span class="hex">#8d6e63</span>
       </li>
@@ -1149,7 +1149,7 @@
         <span class="shade expanded">400</span>
         <span class="hex">#bdbdbd</span>
       </li>
-      <li class="color dark-when-small" style="background-color: #9e9e9e;">
+      <li class="color dark" style="background-color: #9e9e9e;">
         <span class="shade">500</span>
         <span class="hex">#9e9e9e</span>
       </li>
@@ -1200,7 +1200,7 @@
         <span class="shade expanded">400</span>
         <span class="hex">#78909c</span>
       </li>
-      <li class="color light-strong" style="background-color: #607d8b;">
+      <li class="color" style="background-color: #607d8b;">
         <span class="shade">500</span>
         <span class="hex">#607d8b</span>
       </li>
@@ -1223,17 +1223,5 @@
     </ul>
   </section>
 
-  <section class="color-group">
-    <ul>
-      <li class="color" style="background-color: #000000;">
-        <span class="shade accent">Black</span>
-        <span class="hex">#000000</span>
-      </li>
-      <li class="color dark" style="background-color: #ffffff;">
-        <span class="shade accent expanded">White</span>
-        <span class="hex">#ffffff</span>
-      </li>
-    </ul>
-  </section>
   <div class="module-end"></div>
 </div>

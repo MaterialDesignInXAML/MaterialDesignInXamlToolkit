@@ -9,7 +9,7 @@
   <Color x:Key="BrownPrimary300">#a1887f</Color>
   <Color x:Key="BrownPrimary300Foreground">#FFFFFFFF</Color>
   <Color x:Key="BrownPrimary400">#8d6e63</Color>
-  <Color x:Key="BrownPrimary400Foreground">#FFFFFFFF</Color>
+  <Color x:Key="BrownPrimary400Foreground">#DDFFFFFF</Color>
   <Color x:Key="BrownPrimary500">#795548</Color>
   <Color x:Key="BrownPrimary500Foreground">#DDFFFFFF</Color>
   <Color x:Key="BrownPrimary600">#6d4c41</Color>

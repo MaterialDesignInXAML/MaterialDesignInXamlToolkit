@@ -49,7 +49,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty UniformCornerRadiusProperty = DependencyProperty.Register(
-            "UniformCornerRadius", typeof (double), typeof (Card), new FrameworkPropertyMetadata(2.0, FrameworkPropertyMetadataOptions.AffectsMeasure));
+            nameof(UniformCornerRadius), typeof (double), typeof (Card), new FrameworkPropertyMetadata(2.0, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public double UniformCornerRadius
         {
