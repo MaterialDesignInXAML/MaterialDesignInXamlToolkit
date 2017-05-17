@@ -420,10 +420,13 @@ namespace MaterialDesignThemes.Wpf
 
         private void ClockChoiceMadeHandler(object sender, ClockChoiceMadeEventArgs clockChoiceMadeEventArgs)
         {
-            TogglePopup();
-            if (SelectedTime == null)
+            if (clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Minutes)
             {
-                SelectedTime = _clock.Time;
+                TogglePopup();
+                if (SelectedTime == null)
+                {
+                    SelectedTime = _clock.Time;
+                }
             }
         }
 
