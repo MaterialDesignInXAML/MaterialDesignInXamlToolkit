@@ -17,8 +17,7 @@ namespace MaterialDesignThemes.Wpf.Converters
         {
             if (value == null || value.Length < 2 || value[0] == null || value[1] == null) return Binding.DoNothing;
 
-            double value1, value2;
-            if (!double.TryParse(value[0].ToString(), out value1) || !double.TryParse(value[1].ToString(), out value2))
+            if (!double.TryParse(value[0].ToString(), out double value1) || !double.TryParse(value[1].ToString(), out double value2))
                 return 0;
 
             switch (Operation)
