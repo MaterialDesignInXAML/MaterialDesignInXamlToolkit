@@ -15,7 +15,7 @@
   environment:
     RestorePackages: false
   install:
-  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+  - set PATH=%programfiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\amd64;%PATH%
   before_build:
   - ps: .paket\paket.exe install
   build:
@@ -50,7 +50,7 @@
   environment:
     RestorePackages: false    
   install:
-  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+  - set PATH=%programfiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\amd64;%PATH%
   before_build:
   - ps: .paket\paket.exe install
   build:
