@@ -26,9 +26,9 @@
                         IsCancel="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsCancel}"
                         Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonVisibility}">
                     <ContentControl Style="{DynamicResource PathIconContentControlStyle}"
-                                    Content="M19,34V42H43.75L33.75,52H44.25L58.25,38L44.25,24H33.75L43.75,34H19Z"
-                                    Width="20"
-                                    Height="20" />
+                                    Content="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+                                    Width="16"
+                                    Height="16" />
                 </Button>
                 <TextBlock x:Name="PART_BackHeaderText"
                            Margin="15 0 0 0"

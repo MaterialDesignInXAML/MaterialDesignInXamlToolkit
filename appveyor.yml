@@ -4,7 +4,7 @@
     only:
       - master
 
-  os: Visual Studio 2015
+  os: Visual Studio 2017
   configuration: AppVeyor
   assembly_info:
     patch: true
@@ -14,8 +14,6 @@
     assembly_informational_version: '2.3.0.{build}'
   environment:
     RestorePackages: false
-  install:
-  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   before_build:
   - ps: .paket\paket.exe install
   build:
@@ -39,7 +37,7 @@
     only:
       - release
 
-  os: Visual Studio 2015
+  os: Visual Studio 2017
   configuration: AppVeyor
   assembly_info:
     patch: true
@@ -49,8 +47,6 @@
     assembly_informational_version: '{version}'
   environment:
     RestorePackages: false    
-  install:
-  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   before_build:
   - ps: .paket\paket.exe install
   build:

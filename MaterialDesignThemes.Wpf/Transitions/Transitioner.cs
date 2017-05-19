@@ -44,7 +44,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
             "AutoApplyTransitionOrigins", typeof (bool), typeof (Transitioner), new PropertyMetadata(default(bool)));
         
         /// <summary>
-        /// If enabled, trnaisiotns origins will be applied to wipes, according to where a transition was triggered from.  For example, the mouse point where a user clicks a button.
+        /// If enabled, transition origins will be applied to wipes, according to where a transition was triggered from.  For example, the mouse point where a user clicks a button.
         /// </summary>
         public bool AutoApplyTransitionOrigins
         {
