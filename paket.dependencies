@@ -3,7 +3,7 @@ framework >= net45
 
 nuget MahApps.Metro
 nuget Dragablz 0.0.3.165
-nuget Moq 4.5.10 framework: = net452
+nuget Moq 4.7.1 framework: = net452
 nuget NSubstitute 1.10.0 framework: = net452
 nuget RhinoMocks 3.6.1 framework: = net452
 nuget Shouldly 2.8.0 framework: = net452
@@ -14,7 +14,7 @@ nuget xunit.core 2.1.0 framework: = net452
 nuget xunit.extensibility.core 2.1.0 framework: = net452
 nuget xunit.extensibility.execution 2.1.0 framework: = net452
 
-github ControlzEx/ControlzEx:1f4d66092fb101f3ece1dc88b36c20d815f88b2b src/ControlzEx/PopupEx.cs
-github ControlzEx/ControlzEx:1f4d66092fb101f3ece1dc88b36c20d815f88b2b src/ControlzEx/PackIconBase.cs
-github ControlzEx/ControlzEx:1f4d66092fb101f3ece1dc88b36c20d815f88b2b src/ControlzEx/BadgedEx.cs
+github ControlzEx/ControlzEx:e687c6ac4279c4e513b7ef9a75622411350db874 src/ControlzEx/PopupEx.cs
+github ControlzEx/ControlzEx:e687c6ac4279c4e513b7ef9a75622411350db874 src/ControlzEx/PackIconBase.cs
+github ControlzEx/ControlzEx:e687c6ac4279c4e513b7ef9a75622411350db874 src/ControlzEx/BadgedEx.cs
 github samueldjack/VirtualCollection:e63d891c252c2ac1a3ebb26dddb9a3d89effe3f2 VirtualCollection/VirtualCollection/VirtualizingWrapPanel.cs

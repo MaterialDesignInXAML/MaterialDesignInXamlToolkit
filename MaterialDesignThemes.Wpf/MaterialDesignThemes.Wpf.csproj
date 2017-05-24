@@ -324,13 +324,17 @@
     <Compile Include="Palette.cs" />
     <Compile Include="Plane3D.cs" />
     <Compile Include="ScaleHost.cs" />
+    <Compile Include="ScrollViewerAssist.cs" />
+    <Compile Include="Screen.cs" />
     <Compile Include="Snackbar.cs" />
     <Compile Include="SnackbarMessage.cs" />
     <Compile Include="SnackbarMessageEventArgs.cs" />
     <Compile Include="SnackbarMessageQueue.cs" />
     <Compile Include="SnackbarMessageQueueItem.cs" />
+    <Compile Include="Spelling.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
+    <Compile Include="Transitions\FadeWipe.cs" />
     <Compile Include="Transitions\IndexedItemOffsetMultiplierExtension.cs" />
     <Compile Include="Transitions\ITransitionEffect.cs" />
     <Compile Include="Transitions\ITransitionEffectSubject.cs" />
@@ -370,6 +374,8 @@
     <Compile Include="RippleAssist.cs" />
     <Compile Include="Ripple.cs" />
     <Compile Include="Transitions\IZIndexController.cs" />
+    <Compile Include="Transitions\SlideDirection.cs" />
+    <Compile Include="Transitions\SlideWipe.cs" />
     <Compile Include="Transitions\SlideOutWipe.cs" />
     <Compile Include="Transitions\TransitionAssist.cs" />
     <Compile Include="Transitions\TransitionEffect.cs" />
