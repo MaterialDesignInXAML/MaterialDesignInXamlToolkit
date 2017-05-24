@@ -87,6 +87,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="GridViewColumnHeader">
                     <DockPanel>
+                        <Thumb x:Name="PART_HeaderGripper"
+                               DockPanel.Dock="Right"
+                               Style="{StaticResource MaterialDesignGridColumnHeaderGripper}" />
                         <Border x:Name="HeaderBorder"
                                 Padding="{TemplateBinding Padding}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
@@ -98,10 +101,6 @@
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
 
                         </Border>
-                        <Thumb x:Name="PART_HeaderGripper"
-                               HorizontalAlignment="Right"
-                               DockPanel.Dock="Right"
-                               Style="{StaticResource MaterialDesignGridColumnHeaderGripper}" />
                     </DockPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
