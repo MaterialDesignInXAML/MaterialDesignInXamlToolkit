@@ -8,12 +8,11 @@ using System.Windows;
 
 namespace MaterialDesignThemes.Wpf
 {
-
     ///<summary>
     /// Represents a display device or multiple display devices on a single system.
     /// Based on http://referencesource.microsoft.com/#System.Windows.Forms/winforms/Managed/System/WinForms/Screen.cs
     /// </summary>
-    public class Screen
+    internal class Screen
     {
         private static class NativeMethods
         {
