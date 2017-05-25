@@ -696,9 +696,16 @@ namespace MaterialDesignThemes.Wpf
 
         private void WindowIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (!(bool) e.NewValue)
+            if (IsOpen)
             {
-                Close(null);
+                if (!(bool) e.NewValue)
+                {
+                    VisualStateManager.GoToState(this, ClosedStateName, !TransitionAssist.GetDisableTransitions(this));
+                }
+                else if ((bool) e.NewValue)
+                {
+                    VisualStateManager.GoToState(this, OpenStateName, !TransitionAssist.GetDisableTransitions(this));
+                }
             }
         }
 
