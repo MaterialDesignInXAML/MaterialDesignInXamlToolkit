@@ -230,7 +230,7 @@
                                             </AdornerDecorator>
                                             <wpf:Ripple Focusable="False"  
                                                         Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
-                                                        wpf:RippleAssist.IsCentered="True"
+                                                         wpf:RippleAssist.IsCentered="True"
                                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                         Padding="{TemplateBinding Padding}" 

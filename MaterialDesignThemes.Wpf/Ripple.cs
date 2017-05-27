@@ -22,7 +22,7 @@ namespace MaterialDesignThemes.Wpf
         private static readonly HashSet<Ripple> PressedInstances = new HashSet<Ripple>();
 
         static Ripple()
-        {                        
+        {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Ripple), new FrameworkPropertyMetadata(typeof(Ripple)));
 
             EventManager.RegisterClassHandler(typeof(ContentControl), Mouse.PreviewMouseUpEvent, new MouseButtonEventHandler(MouseButtonEventHandler), true);
@@ -32,9 +32,9 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public Ripple()
-        {            
-            SizeChanged += OnSizeChanged;            
-        }        
+        {
+            SizeChanged += OnSizeChanged;
+        }
 
         private static void MouseButtonEventHandler(object sender, MouseButtonEventArgs e)
         {
@@ -54,7 +54,8 @@ namespace MaterialDesignThemes.Wpf
                         scaleXKeyFrame.KeyTime = KeyTime.FromTimeSpan(newTime);
                     }
                     var scaleYKeyFrame = ripple.Template.FindName("MousePressedToNormalScaleYKeyFrame", ripple) as EasingDoubleKeyFrame;
-                    if (scaleYKeyFrame != null) {
+                    if (scaleYKeyFrame != null)
+                    {
                         scaleYKeyFrame.KeyTime = KeyTime.FromTimeSpan(newTime);
                     }
                 }
@@ -79,7 +80,7 @@ namespace MaterialDesignThemes.Wpf
                     PressedInstances.Remove(ripple);
                 }
             }
-        }        
+        }
 
         public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
             nameof(Feedback), typeof(Brush), typeof(Ripple), new PropertyMetadata(default(Brush)));
@@ -93,7 +94,7 @@ namespace MaterialDesignThemes.Wpf
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             var point = e.GetPosition(this);
-            
+
             if (RippleAssist.GetIsCentered(this))
             {
                 var innerContent = (Content as FrameworkElement);
@@ -191,7 +192,7 @@ namespace MaterialDesignThemes.Wpf
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-                        
+
             VisualStateManager.GoToState(this, TemplateStateNormal, false);
         }
 
