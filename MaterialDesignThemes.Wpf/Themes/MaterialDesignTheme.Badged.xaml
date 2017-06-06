@@ -4,6 +4,16 @@
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <SineEase EasingMode="EaseOut" x:Key="BadgeEase" />
+    <Storyboard x:Key="BadgeChangedStoryboard">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+            <EasingDoubleKeyFrame KeyTime="0" Value="1.4" />
+            <EasingDoubleKeyFrame EasingFunction="{StaticResource BadgeEase}" KeyTime="0:0:0.3" Value="1" />
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+            <EasingDoubleKeyFrame KeyTime="0" Value="1.4" />
+            <EasingDoubleKeyFrame EasingFunction="{StaticResource BadgeEase}" KeyTime="0:0:0.3" Value="1" />
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
     
     <Style TargetType="{x:Type wpf:Badged}">
         <Setter Property="IsTabStop" Value="False" />
@@ -11,6 +21,7 @@
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="BadgeColorZoneMode" Value="PrimaryLight" />
         <Setter Property="BadgePlacementMode" Value="TopRight" />
+        <Setter Property="BadgeChangedStoryboard" Value="{StaticResource BadgeChangedStoryboard}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:Badged}">
@@ -42,7 +53,7 @@
                                 </Style>
                             </Border.Resources>
                             <Border.RenderTransform>
-                                <ScaleTransform x:Name="BadgeScaleTransform" ScaleX="1" ScaleY="1" />
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
                             </Border.RenderTransform>
                             <ContentControl Foreground="{TemplateBinding BadgeForeground}"
                                             IsTabStop="False"
@@ -53,22 +64,6 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <EventTrigger RoutedEvent="BadgeChanged">
-                            <EventTrigger.Actions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BadgeScaleTransform" Storyboard.TargetProperty="ScaleX">
-                                            <EasingDoubleKeyFrame Value="1.4" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3" EasingFunction="{StaticResource BadgeEase}" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BadgeScaleTransform" Storyboard.TargetProperty="ScaleY">
-                                            <EasingDoubleKeyFrame Value="1.4" KeyTime="0" />
-                                            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3" EasingFunction="{StaticResource BadgeEase}" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger.Actions>
-                        </EventTrigger>
                         <Trigger Property="BadgePlacementMode" Value="TopLeft">
                             <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
                             <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
