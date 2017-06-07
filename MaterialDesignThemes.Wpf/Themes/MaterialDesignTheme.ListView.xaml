@@ -87,20 +87,25 @@
             <Setter.Value>
                 <ControlTemplate TargetType="GridViewColumnHeader">
                     <DockPanel>
-                        <Thumb x:Name="PART_HeaderGripper"
-                               DockPanel.Dock="Right"
-                               Style="{StaticResource MaterialDesignGridColumnHeaderGripper}" />
-                        <Border x:Name="HeaderBorder"
+                        <Border
+                                x:Name="HeaderBorder"
                                 Padding="{TemplateBinding Padding}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter x:Name="HeaderContent"
-                                              Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              RecognizesAccessKey="True"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            <ContentPresenter
+                                    x:Name="HeaderContent"
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
 
                         </Border>
+                        <Thumb
+                                x:Name="PART_HeaderGripper"
+                                Margin="0,0,-8,0"
+                                HorizontalAlignment="Right"
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource MaterialDesignGridColumnHeaderGripper}" />
                     </DockPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -143,8 +148,9 @@
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="ListBoxItem">
-                    <Border x:Name="Border"
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border
+                            x:Name="Border"
                             Padding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ListViewAssist.ListViewItemPadding)}"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{DynamicResource MaterialDesignDivider}"
