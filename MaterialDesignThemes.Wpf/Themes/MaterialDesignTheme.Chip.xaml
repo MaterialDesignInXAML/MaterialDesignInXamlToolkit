@@ -100,6 +100,7 @@
                                         Foreground="{TemplateBinding IconForeground}"
                                         FontSize="17"
                                         FontWeight="Regular"
+                                        IsTabStop="False"
                                         Visibility="{TemplateBinding Icon, Converter={StaticResource NullableToVisibilityConverter}}"
                                         VerticalAlignment="Center"
                                         VerticalContentAlignment="Center"
@@ -123,6 +124,7 @@
                                         ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                         ContentStringFormat="{TemplateBinding ContentTemplateSelector}"                                        
                                         x:Name="TextBlock"
+                                        IsTabStop="False"
                                         VerticalAlignment="Center"
                                         Margin="8 0 12 0"
                                         Grid.Column="1"/>
