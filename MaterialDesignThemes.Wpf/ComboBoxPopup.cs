@@ -13,7 +13,7 @@ namespace MaterialDesignThemes.Wpf
     {
         Undefined,
         Down,
-        Up, 
+        Up,
         Classic
     }
 
@@ -114,7 +114,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         #endregion
-        
+
         #region Background property
 
         private static readonly DependencyPropertyKey BackgroundPropertyKey =
@@ -233,9 +233,9 @@ namespace MaterialDesignThemes.Wpf
             SetupVisiblePlacementWidth(visualAncestry);
 
             var data = GetPositioningData(visualAncestry, popupSize, targetSize, offset);
-            var preferUpIfSafe = data.LocationY + data.PopupSize.Height > data.ScreenHeight;            
+            var preferUpIfSafe = data.LocationY + data.PopupSize.Height > data.ScreenHeight;
 
-            if (ClassicMode 
+            if (ClassicMode
                 || data.LocationX + data.PopupSize.Width - data.RealOffsetX > data.ScreenWidth
                 || data.LocationX - data.RealOffsetX < 0
                 || !preferUpIfSafe && data.LocationY - Math.Abs(data.NewDownY) < 0)
@@ -274,10 +274,10 @@ namespace MaterialDesignThemes.Wpf
             var screen = Screen.FromPoint(locationFromScreen);
             var screenWidth = (int)DpiHelper.TransformToDeviceX(mainVisual, (int)screen.Bounds.Width);
             var screenHeight = (int)DpiHelper.TransformToDeviceY(mainVisual, (int)screen.Bounds.Height);
-
+            
             //Adjust the location to be in terms of the current screen
-            var locationX = (int)locationFromScreen.X % screenWidth - screen.Bounds.X;
-            var locationY = (int)locationFromScreen.Y % screenHeight - screen.Bounds.Y;
+            var locationX = (int)(locationFromScreen.X - screen.Bounds.X) % screenWidth;
+            var locationY = (int)(locationFromScreen.Y - screen.Bounds.Y) % screenHeight;
 
             var upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
             var newUpY = upVerticalOffsetIndepent - popupSize.Height + targetSize.Height;
@@ -330,8 +330,8 @@ namespace MaterialDesignThemes.Wpf
                 case ComboBoxPopupPlacement.Up:
                     SetChildTemplateIfNeed(UpContentTemplate);
                     break;
-//                default:
-//                    throw new NotImplementedException($"Unexpected value {placement} of the {nameof(PopupPlacement)} property inside the {nameof(ComboBoxPopup)} control.");
+                    //                default:
+                    //                    throw new NotImplementedException($"Unexpected value {placement} of the {nameof(PopupPlacement)} property inside the {nameof(ComboBoxPopup)} control.");
             }
         }
 
@@ -356,7 +356,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private static CustomPopupPlacement GetDownPopupPlacement(PositioningData data)
-        {            
+        {
             return new CustomPopupPlacement(new Point(data.OffsetX, data.NewDownY), PopupPrimaryAxis.None);
         }
 
