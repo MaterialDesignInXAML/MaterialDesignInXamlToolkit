@@ -48,10 +48,10 @@
             </Expander>
         </StackPanel>
         <materialDesign:Card Grid.Row="1" Background="{DynamicResource MaterialDesignBackground}"
-                             Margin="0 24 0 0">
+                             Margin="4 24 0 0">
             <StackPanel>
                 <Expander HorizontalAlignment="Stretch"
-                      Header="Expander Example 2a">
+                          Header="Expander Example 2a">
                     <StackPanel Orientation="Vertical"
                             TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
                             Margin="24,8,24,16">

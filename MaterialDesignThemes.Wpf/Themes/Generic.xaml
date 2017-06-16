@@ -522,12 +522,7 @@
                                     <VisualTransition From="Open" To="Closed">
                                         <Storyboard>
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
-                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
-                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.3" />
-                                            </BooleanAnimationUsingKeyFrames>
-                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
-                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
-                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.3" />
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.3" />
                                             </BooleanAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="0.56" KeyTime="0" />
@@ -589,7 +584,6 @@
                                 <VisualState x:Name="Closed">
                                     <Storyboard>
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
-                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
                                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.3" />
                                         </BooleanAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -597,7 +591,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <controlzEx:PopupEx IsOpen="False"
-                                          PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"                                            
+                                          PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"
                                           StaysOpen="True"
                                           AllowsTransparency="True"
                                           PopupAnimation="None"

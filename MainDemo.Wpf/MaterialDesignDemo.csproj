@@ -53,6 +53,7 @@
     </Compile>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -99,7 +100,7 @@
     <Compile Include="Domain\NotifyPropertyChangedExtension.cs" />
     <Compile Include="Domain\DemoItem.cs" />
     <Compile Include="Domain\DialogsViewModel.cs" />
-    <Compile Include="Domain\ListFieldsViewModel.cs" />
+    <Compile Include="Domain\ListsAndGridsViewModel.cs" />
     <Compile Include="Domain\Sample4Dialog.xaml.cs">
       <DependentUpon>Sample4Dialog.xaml</DependentUpon>
     </Compile>

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media;
+﻿using System.Windows;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -20,7 +14,7 @@ namespace MaterialDesignThemes.Wpf
             new FrameworkPropertyMetadata(false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
-        public static bool GetClassicMode(DependencyObject element, object value)
+        public static bool GetClassicMode(DependencyObject element)
         {
             return (bool)element.GetValue(ClassicModeProperty);
         }
@@ -42,7 +36,7 @@ namespace MaterialDesignThemes.Wpf
             new FrameworkPropertyMetadata(false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
-        public static bool GetShowSelectedItem(DependencyObject element, object value)
+        public static bool GetShowSelectedItem(DependencyObject element)
         {
             return (bool)element.GetValue(ShowSelectedItemProperty);
         }

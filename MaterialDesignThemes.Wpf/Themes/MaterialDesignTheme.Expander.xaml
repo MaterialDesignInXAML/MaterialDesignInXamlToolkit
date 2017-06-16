@@ -272,9 +272,8 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid>                            
-                            <DockPanel Background="{TemplateBinding Background}">
-                                <ToggleButton Name="HeaderSite"
+                        <DockPanel Background="{TemplateBinding Background}">
+                            <ToggleButton Name="HeaderSite"
                                               DockPanel.Dock="Top"
                                               BorderThickness="0" Cursor="Hand"
                                               IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
@@ -286,32 +285,31 @@
                                               ContentTemplate="{TemplateBinding HeaderTemplate}"
                                               ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
                                               ContentStringFormat="{TemplateBinding HeaderStringFormat}"/>
-                                <Border Name="ContentSite"
+                            <Border Name="ContentSite"
                                         DockPanel.Dock="Bottom"                                    >
-                                    <StackPanel Name="ContentPanel"
+                                <StackPanel Name="ContentPanel"
                                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                 Margin="{TemplateBinding Padding}"
                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                        <StackPanel.Height>
-                                            <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
-                                                <Binding ElementName="PART_Content" Path="ActualHeight"/>
-                                                <Binding ElementName="PART_Content" Path="Opacity"/>
-                                            </MultiBinding>
-                                        </StackPanel.Height>
-                                        <StackPanel.Width>
-                                            <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
-                                                <Binding ElementName="PART_Content" Path="ActualWidth"/>
-                                                <Binding ElementName="PART_Content" Path="Opacity"/>
-                                            </MultiBinding>
-                                        </StackPanel.Width>
-                                        <ContentPresenter Name="PART_Content" Focusable="False"
+                                    <StackPanel.Height>
+                                        <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
+                                            <Binding ElementName="PART_Content" Path="ActualHeight"/>
+                                            <Binding ElementName="PART_Content" Path="Opacity"/>
+                                        </MultiBinding>
+                                    </StackPanel.Height>
+                                    <StackPanel.Width>
+                                        <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
+                                            <Binding ElementName="PART_Content" Path="ActualWidth"/>
+                                            <Binding ElementName="PART_Content" Path="Opacity"/>
+                                        </MultiBinding>
+                                    </StackPanel.Width>
+                                    <ContentPresenter Name="PART_Content" Focusable="False"
                                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                                           ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
-                                    </StackPanel>
-                                </Border>
-                            </DockPanel>
-                        </Grid>
+                                </StackPanel>
+                            </Border>
+                        </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ExpandDirection" Value="Right">

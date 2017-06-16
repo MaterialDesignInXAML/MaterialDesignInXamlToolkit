@@ -90,6 +90,7 @@
                  MinWidth="280"
                  AcceptsReturn="True"                 
                  VerticalScrollBarVisibility="Auto"
+                 SpellCheck.IsEnabled="True"
                  materialDesign:HintAssist.Hint="Multiline text"
                  Height="80">Multiline.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The quick brown fox jumps over the lazy dog. War and peace. Keep going. Go on. For how long? Not long. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TextBox>
         <materialDesign:PackIcon Grid.Row="2" Grid.Column="0" Kind="Phone" Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}" />
