@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,7 @@ namespace MaterialDesignColors.WpfExample
 
         private void GitHubButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://github.com/ButchersBoy/MaterialDesignInXamlToolkit");
+            Process.Start(ConfigurationManager.AppSettings["GitHub"]);
         }
 
         private void TwitterButton_OnClick(object sender, RoutedEventArgs e)
