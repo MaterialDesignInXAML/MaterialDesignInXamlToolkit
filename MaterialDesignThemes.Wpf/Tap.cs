@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public static class TaskEx
+    internal static class Tap
     {
         public static Task Delay(int milliseconds)
         {

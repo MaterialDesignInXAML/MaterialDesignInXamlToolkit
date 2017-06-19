@@ -293,7 +293,7 @@ namespace MaterialDesignThemes.Wpf
 
                 //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
                 //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
-                TaskEx.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));
+                Tap.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));
             }));
         }
 
