@@ -67,6 +67,19 @@ namespace MaterialDesignThemes.Wpf
             return (Visibility)element.GetValue(DecorationVisibilityProperty);
         }
 
+        public static readonly DependencyProperty HasTextFieldBoxProperty = DependencyProperty.RegisterAttached(
+            "HasTextFieldBox", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
+
+        public static void SetHasTextFieldBox(DependencyObject element, bool value)
+        {
+            element.SetValue(HasTextFieldBoxProperty, value);
+        }
+
+        public static bool GetHasTextFieldBox(DependencyObject element)
+        {
+            return (bool)element.GetValue(HasTextFieldBoxProperty);
+        }
+
         /// <summary>
         /// Automatially inserts spelling suggestions into the text box context menu.
         /// </summary>

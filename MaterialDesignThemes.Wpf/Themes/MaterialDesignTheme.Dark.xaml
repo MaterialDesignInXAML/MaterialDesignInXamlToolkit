@@ -28,4 +28,6 @@
     <SolidColorBrush x:Key="MaterialDesignSnackbarBackground" Color="#FFCDCDCD" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignSnackbarMouseOver" Color="#FFB9B9BD" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignSnackbarRipple" Color="#FF494949" po:Freeze="True" />
+
+    <SolidColorBrush x:Key="MaterialDesignTextFieldBoxBackground" Color="#1AFFFFFF" po:Freeze="True" /> <!-- 10% white -->
 </ResourceDictionary>

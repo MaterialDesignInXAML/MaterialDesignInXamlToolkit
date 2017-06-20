@@ -64,6 +64,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Common Fields</TextBlock>
         <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" />
@@ -287,6 +290,7 @@
             <ComboBoxItem>Pear</ComboBoxItem>
             <ComboBoxItem>Orange</ComboBoxItem>
         </ComboBox>
-
+        <TextBlock Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,0,0,16">Text field box</TextBlock>
+        <TextBox Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="3"  Style="{StaticResource MaterialDesignTextFieldBoxTextBox}" materialDesign:HintAssist.Hint="Floating hint in a box" />
     </Grid>
 </UserControl>
