@@ -28,4 +28,7 @@
     <SolidColorBrush x:Key="MaterialDesignSnackbarBackground" Color="#FFCDCDCD" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignSnackbarMouseOver" Color="#FFB9B9BD" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignSnackbarRipple" Color="#FF494949" po:Freeze="True" />
+
+    <SolidColorBrush x:Key="MaterialDesignStepperInactiveStep" Color="#61FFFFFF" po:Freeze="True" /> <!-- 38% white -->
+    <SolidColorBrush x:Key="MaterialDesignStepperActiveStep" Color="#DDFFFFFF" po:Freeze="True" /> <!-- 87% white -->
 </ResourceDictionary>

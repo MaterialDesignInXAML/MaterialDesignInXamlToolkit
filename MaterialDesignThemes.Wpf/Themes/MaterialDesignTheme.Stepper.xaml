@@ -74,8 +74,8 @@
         <Setter Property="TextBlock.FontWeight" Value="Regular" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=IsActive}" Value="False">
-                <Setter Property="Background" Value="#61000000" />
-                <Setter Property="TextBlock.Foreground" Value="#ffffff" />
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignStepperInactiveStep}" />
+                <Setter Property="TextBlock.Foreground" Value="#FFFFFFFF" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Path=IsActive}" Value="True">
                 <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -135,10 +135,10 @@
             <Style x:Key="headerContentControlStyle" TargetType="{x:Type ContentControl}">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding Path=IsActive}" Value="False">
-                        <Setter Property="TextBlock.Foreground" Value="#61000000" />
+                        <Setter Property="TextBlock.Foreground" Value="{DynamicResource MaterialDesignStepperInactiveStep}" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Path=IsActive}" Value="True">
-                        <Setter Property="TextBlock.Foreground" Value="#dd000000" />
+                        <Setter Property="TextBlock.Foreground" Value="{DynamicResource MaterialDesignStepperActiveStep}" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
