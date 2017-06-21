@@ -291,6 +291,10 @@
             <ComboBoxItem>Orange</ComboBoxItem>
         </ComboBox>
         <TextBlock Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,0,0,16">Text field box</TextBlock>
-        <TextBox Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="3"  Style="{StaticResource MaterialDesignTextFieldBoxTextBox}" materialDesign:HintAssist.Hint="Floating hint in a box" />
+        <TextBox Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                 VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" MaxWidth="400" materialDesign:HintAssist.Hint="Floating hint in a box" />
+        <TextBlock Grid.Row="13" Grid.Column="5" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,0,0,16">Text area box</TextBlock>
+        <TextBox Grid.Row="14" Grid.Column="5" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignTextAreaTextBox}" Margin="32,0,0,0"
+                 VerticalAlignment="Top" Height="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="This is a text area" />
     </Grid>
 </UserControl>

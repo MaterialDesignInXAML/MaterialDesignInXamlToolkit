@@ -67,6 +67,9 @@ namespace MaterialDesignThemes.Wpf
             return (Visibility)element.GetValue(DecorationVisibilityProperty);
         }
 
+        /// <summary>
+        /// Controls the visbility of the text field box.
+        /// </summary>
         public static readonly DependencyProperty HasTextFieldBoxProperty = DependencyProperty.RegisterAttached(
             "HasTextFieldBox", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
 
@@ -78,6 +81,22 @@ namespace MaterialDesignThemes.Wpf
         public static bool GetHasTextFieldBox(DependencyObject element)
         {
             return (bool)element.GetValue(HasTextFieldBoxProperty);
+        }
+
+        /// <summary>
+        /// Controls the visibility of the text field area box.
+        /// </summary>
+        public static readonly DependencyProperty HasTextAreaBoxProperty = DependencyProperty.RegisterAttached(
+            "HasTextAreaBox", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
+
+        public static void SetHasTextAreaBox(DependencyObject element, bool value)
+        {
+            element.SetValue(HasTextAreaBoxProperty, value);
+        }
+
+        public static bool GetHasTextAreaBox(DependencyObject element)
+        {
+            return (bool)element.GetValue(HasTextAreaBoxProperty);
         }
 
         /// <summary>
