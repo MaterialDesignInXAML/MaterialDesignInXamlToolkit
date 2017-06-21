@@ -111,7 +111,7 @@
                             <Setter TargetName="textFieldBoxBorder" Property="Background" Value="Transparent" />
                             <Setter TargetName="textFieldBoxBorder" Property="CornerRadius" Value="4" />
                             <Setter TargetName="textFieldBoxBorder" Property="BorderThickness" Value="1" />
-                            <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
+                            <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
                             <Setter TargetName="textFieldBoxBorder" Property="Padding" Value="0,8,0,0" />
                             <Setter TargetName="textFieldBoxBorder" Property="Margin" Value="-1" />
                             <Setter TargetName="textFieldGrid" Property="Margin" Value="16,0,16,0" />
@@ -122,6 +122,8 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            <Setter TargetName="textFieldBoxBorder" Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxDisabledBackground}" />
+                            <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaInactiveBorder}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
@@ -149,6 +151,15 @@
                             <Setter TargetName="textFieldBoxBorder" Property="Margin" Value="-2" />
                             <Setter TargetName="textFieldBoxBorder" Property="BorderThickness" Value="2" />
                             <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Validation.HasError" Value="True" />
+                                <Condition Property="wpf:TextFieldAssist.HasTextAreaBox" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="textFieldBoxBorder" Property="Margin" Value="-2" />
+                            <Setter TargetName="textFieldBoxBorder" Property="BorderThickness" Value="2" />
+                            <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
