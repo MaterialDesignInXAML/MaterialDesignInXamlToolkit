@@ -18,6 +18,8 @@
         </Setter>
     </Style>
 
+    <converters:RangeLengthConverter x:Key="RangeLengthConverter" />
+
     <SolidColorBrush x:Key="AttentionToActionBrush" Color="{StaticResource MaterialDesignShadow}" Opacity=".23" po:Freeze="True" />
 
     <Style x:Key="MaterialDesignRaisedButton" TargetType="{x:Type ButtonBase}">
@@ -40,12 +42,23 @@
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
                     <Grid>
                         <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="2"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    x:Name="border"
-                                    Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
-                            </Border>
+                            <Grid>
+                                <Border Background="{TemplateBinding Background}" CornerRadius="2"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"                                    
+                                        x:Name="border"
+                                        Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" />
+                                <Border HorizontalAlignment="Left" Background="{DynamicResource MaterialDesignBackground}" Opacity=".4">
+                                    <Border.Width>
+                                        <MultiBinding Converter="{StaticResource RangeLengthConverter}">
+                                            <Binding Path="wpf:ButtonAssist.Minumum" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}" />
+                                            <Binding Path="wpf:ButtonAssist.Maximum" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}" />
+                                            <Binding Path="wpf:ButtonAssist.Value" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}" />
+                                            <Binding Path="ActualWidth" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}" />
+                                        </MultiBinding>
+                                    </Border.Width>
+                                </Border>
+                            </Grid>
                         </AdornerDecorator>
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"     
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 

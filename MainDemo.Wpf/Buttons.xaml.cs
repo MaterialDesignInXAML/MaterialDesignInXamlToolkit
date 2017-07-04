@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignColors.WpfExample.Domain;
+using System.ComponentModel;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -60,5 +61,12 @@ namespace MaterialDesignColors.WpfExample
             CountingBadge.Badge = next < 21 ? (object)next : null;
 
         }
+    }
+
+    public class ButtonsViewModel : INotifyPropertyChanged
+    {
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
