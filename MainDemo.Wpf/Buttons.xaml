@@ -32,6 +32,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Buttons</TextBlock>
         <Grid Grid.Row="1" >
@@ -212,10 +214,21 @@
             <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick" ToolTip="MaterialDesignFlatButton" Margin="200 0 0 0">ACCEPT</Button>
             <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton">CANCEL</Button>
         </StackPanel>
-
         <Border Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="4" />
-        <TextBlock Margin="0 32 0 24" Grid.Row="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Toggles</TextBlock>
-        <Grid Grid.Row="5">
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+                   Grid.Row="5" >Buttons - With Progress</TextBlock>
+        <StackPanel Grid.Row="6" >
+            <Button Command="{Binding DismissComand}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    materialDesign:ButtonAssist.Value="{Binding DismissButtonProgress}">
+                DISMISS 
+            </Button>
+        </StackPanel>
+        <Border Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="7" />
+
+        <TextBlock Margin="0 32 0 24" Grid.Row="7" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Toggles</TextBlock>
+        <Grid Grid.Row="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -373,9 +386,9 @@
             </ListBox>
         </Grid>
 
-        <Border Grid.Row="6" Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" />
-        <TextBlock Margin="0 32 0 0" Grid.Row="6" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Rating bar</TextBlock>
-        <StackPanel Grid.Row="7" Margin="0 16 0 0" Orientation="Horizontal">
+        <Border Grid.Row="9" Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" />
+        <TextBlock Margin="0 32 0 0" Grid.Row="9" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Rating bar</TextBlock>
+        <StackPanel Grid.Row="10" Margin="0 16 0 0" Orientation="Horizontal">
             <materialDesign:RatingBar Value="3" x:Name="BasicRatingBar" />
             <TextBlock Text="{Binding ElementName=BasicRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />
             <materialDesign:RatingBar x:Name="CustomRatingBar" Max="3" Value="2" Margin="24 0 0 0" Orientation="Vertical">

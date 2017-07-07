@@ -30,11 +30,12 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<PaletteSelectorViewModel>("Demo View Model"),
                         DocumentationLink.ApiLink<PaletteHelper>()
                     }),
-                                new DemoItem("Buttons & Toggles", new Buttons(),
+                new DemoItem("Buttons & Toggles", new Buttons { DataContext = new ButtonsViewModel() } ,
                     new []
                     {
                         DocumentationLink.WikiLink("Button-Styles", "Buttons"),
-                        DocumentationLink.DemoPageLink<Buttons>(),
+                        DocumentationLink.DemoPageLink<Buttons>("Demo View"),
+                        DocumentationLink.DemoPageLink<ButtonsViewModel>("Demo View Model"),
                         DocumentationLink.StyleLink("Button"),
                         DocumentationLink.StyleLink("CheckBox"),
                         DocumentationLink.StyleLink("PopupBox"),
