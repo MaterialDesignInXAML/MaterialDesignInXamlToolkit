@@ -22,7 +22,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             var percent =  (value - min) / (max - min);
             var length = percent * containerLength;
 
-            return length;
+            return length > containerLength ? containerLength : length;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

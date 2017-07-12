@@ -51,9 +51,9 @@
                                 <Border HorizontalAlignment="Left" Background="{DynamicResource MaterialDesignBackground}" Opacity=".4">
                                     <Border.Width>
                                         <MultiBinding Converter="{StaticResource RangeLengthConverter}">
-                                            <Binding Path="wpf:ButtonAssist.Minumum" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}" />
-                                            <Binding Path="wpf:ButtonAssist.Maximum" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}" />
-                                            <Binding Path="wpf:ButtonAssist.Value" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}" />
+                                            <Binding Path="(wpf:ButtonAssist.Minimum)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="(wpf:ButtonAssist.Maximum)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="(wpf:ButtonAssist.Value)" RelativeSource="{RelativeSource TemplatedParent}" />
                                             <Binding Path="ActualWidth" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}" />
                                         </MultiBinding>
                                     </Border.Width>

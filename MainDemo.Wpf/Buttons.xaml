@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              mc:Ignorable="d" 
@@ -20,6 +21,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <materialDesignConverters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" TrueValue="Collapsed" FalseValue="Visible" />
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid VerticalAlignment="Top">
@@ -217,13 +220,24 @@
         <Border Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="4" />
 
         <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
-                   Grid.Row="5" >Buttons - With Progress</TextBlock>
+                   Grid.Row="5" Margin="0 12 0 12">Buttons - With Progress</TextBlock>
         <StackPanel Grid.Row="6" >
             <Button Command="{Binding DismissComand}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    materialDesign:ButtonAssist.Value="{Binding DismissButtonProgress}">
-                DISMISS 
+                    HorizontalAlignment="Left"
+                    materialDesign:ButtonAssist.Value="{Binding DismissButtonProgress}"
+                    Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>DISMISS</TextBlock>
+                    <materialDesign:PackIcon Margin="4 .5 0 0" Kind="Close" />
+                </StackPanel>
             </Button>
+            <Grid Height="32"
+                  Visibility="{Binding ShowDismissButton, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+                <TextBlock Text="{Binding DemoRestartCountdownText}"
+                           VerticalAlignment="Center"
+                           />
+            </Grid>
         </StackPanel>
         <Border Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="7" />
 
