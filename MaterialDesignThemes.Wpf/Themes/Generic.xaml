@@ -189,12 +189,13 @@
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate>
+                <ControlTemplate TargetType="{x:Type local:Underline}">
                     <ControlTemplate.Resources>
                         <CircleEase x:Key="UnderlineEasingFunction" EasingMode="EaseOut"/>
                     </ControlTemplate.Resources>
                     <Border x:Name="UnderlineBorder"
                             Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
                             IsHitTestVisible="False"
                             Height="{TemplateBinding Height}"
                             VerticalAlignment="{TemplateBinding VerticalAlignment}"
