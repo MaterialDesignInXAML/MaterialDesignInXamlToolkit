@@ -40,6 +40,16 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(IsActiveProperty, value); }
         }
 
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
+            nameof(CornerRadius), typeof(CornerRadius), typeof(Underline),
+            new FrameworkPropertyMetadata(new CornerRadius(0), FrameworkPropertyMetadataOptions.AffectsRender, null));
+
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

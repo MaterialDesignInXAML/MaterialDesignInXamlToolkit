@@ -64,6 +64,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Common Fields</TextBlock>
         <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" />
@@ -287,6 +291,17 @@
             <ComboBoxItem>Pear</ComboBoxItem>
             <ComboBoxItem>Orange</ComboBoxItem>
         </ComboBox>
-
+        <TextBlock Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Text field box</TextBlock>
+        <CheckBox x:Name="MaterialDesignTextFieldBoxTextBoxEnabledComboBox" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="3"
+                  IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>
+        <TextBox Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                 VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" MaxWidth="400" materialDesign:HintAssist.Hint="Floating hint in a box"
+                 IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextFieldBoxTextBoxEnabledComboBox}" />
+        <TextBlock Grid.Row="13" Grid.Column="5" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Text area box</TextBlock>
+        <CheckBox x:Name="MaterialDesignTextAreaTextBoxEnabledComboBox" Grid.Row="14" Grid.Column="5" Grid.ColumnSpan="3"
+                  IsChecked="True" Margin="32,0,0,8">Enabled</CheckBox>
+        <TextBox Grid.Row="15" Grid.Column="5" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignTextAreaTextBox}" Margin="32,0,0,0"
+                 VerticalAlignment="Top" Height="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="This is a text area"
+                 IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextAreaTextBoxEnabledComboBox}" />
     </Grid>
 </UserControl>
