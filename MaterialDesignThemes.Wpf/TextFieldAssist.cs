@@ -68,6 +68,38 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
+        /// Controls the visbility of the text field box.
+        /// </summary>
+        public static readonly DependencyProperty HasTextFieldBoxProperty = DependencyProperty.RegisterAttached(
+            "HasTextFieldBox", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
+
+        public static void SetHasTextFieldBox(DependencyObject element, bool value)
+        {
+            element.SetValue(HasTextFieldBoxProperty, value);
+        }
+
+        public static bool GetHasTextFieldBox(DependencyObject element)
+        {
+            return (bool)element.GetValue(HasTextFieldBoxProperty);
+        }
+
+        /// <summary>
+        /// Controls the visibility of the text field area box.
+        /// </summary>
+        public static readonly DependencyProperty HasTextAreaBoxProperty = DependencyProperty.RegisterAttached(
+            "HasTextAreaBox", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
+
+        public static void SetHasTextAreaBox(DependencyObject element, bool value)
+        {
+            element.SetValue(HasTextAreaBoxProperty, value);
+        }
+
+        public static bool GetHasTextAreaBox(DependencyObject element)
+        {
+            return (bool)element.GetValue(HasTextAreaBoxProperty);
+        }
+
+        /// <summary>
         /// Automatially inserts spelling suggestions into the text box context menu.
         /// </summary>
         public static readonly DependencyProperty IncludeSpellingSuggestionsProperty = DependencyProperty.RegisterAttached(
