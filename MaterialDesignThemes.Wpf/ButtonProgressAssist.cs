@@ -8,10 +8,10 @@ using System.Windows.Controls;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public static class ButtonAssist
+    public static class ButtonProgressAssist
     {
         public static readonly DependencyProperty MinimumProperty = DependencyProperty.RegisterAttached(
-            "Minimum", typeof(double), typeof(ButtonAssist), new FrameworkPropertyMetadata(default(double)));
+            "Minimum", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(double)));
 
         public static void SetMinimum(DependencyObject element, double value)
         {
@@ -24,7 +24,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty MaximumProperty = DependencyProperty.RegisterAttached(
-            "Maximum", typeof(double), typeof(ButtonAssist), new FrameworkPropertyMetadata(100.0));
+            "Maximum", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(100.0));
 
         public static void SetMaximum(DependencyObject element, double value)
         {
@@ -37,7 +37,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.RegisterAttached(
-            "Value", typeof(double), typeof(ButtonAssist), new FrameworkPropertyMetadata(default(double)));
+            "Value", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(double)));
 
         public static void SetValue(DependencyObject element, double value)
         {
@@ -48,5 +48,9 @@ namespace MaterialDesignThemes.Wpf
         {
             return (double)element.GetValue(ValueProperty);
         }
+
+        public static ResourceKey StrokeForeground { get; } = new ComponentResourceKey(typeof(ButtonProgressAssist), nameof(StrokeForeground));
+
+        public static ResourceKey StrokeBackground { get; } = new ComponentResourceKey(typeof(ButtonProgressAssist), nameof(StrokeBackground));
     }
 }

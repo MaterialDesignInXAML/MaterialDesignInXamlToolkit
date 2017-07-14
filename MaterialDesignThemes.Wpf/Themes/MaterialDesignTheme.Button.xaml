@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
@@ -19,6 +20,8 @@
     </Style>
 
     <converters:RangeLengthConverter x:Key="RangeLengthConverter" />
+    <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
+    <system:Int32 x:Key="ProgressRingStrokeWidth">3</system:Int32>
 
     <SolidColorBrush x:Key="AttentionToActionBrush" Color="{StaticResource MaterialDesignShadow}" Opacity=".23" po:Freeze="True" />
 
@@ -51,9 +54,9 @@
                                 <Border HorizontalAlignment="Left" Background="{DynamicResource MaterialDesignBackground}" Opacity=".4">
                                     <Border.Width>
                                         <MultiBinding Converter="{StaticResource RangeLengthConverter}">
-                                            <Binding Path="(wpf:ButtonAssist.Minimum)" RelativeSource="{RelativeSource TemplatedParent}" />
-                                            <Binding Path="(wpf:ButtonAssist.Maximum)" RelativeSource="{RelativeSource TemplatedParent}" />
-                                            <Binding Path="(wpf:ButtonAssist.Value)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="(wpf:ButtonProgressAssist.Minimum)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="(wpf:ButtonProgressAssist.Maximum)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="(wpf:ButtonProgressAssist.Value)" RelativeSource="{RelativeSource TemplatedParent}" />
                                             <Binding Path="ActualWidth" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}" />
                                         </MultiBinding>
                                     </Border.Width>
@@ -174,6 +177,10 @@
     </Style>
 
     <Style x:Key="MaterialDesignFloatingActionMiniButton" TargetType="{x:Type Button}">
+        <Style.Resources>
+            <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{x:Static wpf:ButtonProgressAssist.StrokeForeground}" po:Freeze="True" />
+            <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{x:Static wpf:ButtonProgressAssist.StrokeBackground}" po:Freeze="True" Opacity=".28" />
+        </Style.Resources>
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
@@ -197,6 +204,16 @@
                                      x:Name="border">
                             </Ellipse>
                         </AdornerDecorator>
+                        <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" 
+                                     Foreground="{DynamicResource {x:Static wpf:ButtonProgressAssist.StrokeForeground}}"
+                                     Foreground="{DynamicResource {x:Static wpf:ButtonProgressAssist.StrokeBackground}}"
+                                     Value="-1" 
+                                     IsIndeterminate="True" 
+                                     Margin="-3" 
+                                     Width="{TemplateBinding Width, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
+                                     Height="{TemplateBinding Height, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
+                                     HorizontalAlignment="Stretch" 
+                                     VerticalAlignment="Stretch" />
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
                                     Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -263,6 +280,9 @@
         <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Style.Resources>
+            <SolidColorBrush Color="Yellow" x:Key="{x:Static wpf:ButtonProgressAssist.TestOne}" />
+        </Style.Resources>
     </Style>
 
 </ResourceDictionary>

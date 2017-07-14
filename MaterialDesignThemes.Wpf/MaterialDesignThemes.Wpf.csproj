@@ -257,7 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Badged.cs" />
-    <Compile Include="ButtonAssist.cs" />
+    <Compile Include="ButtonProgressAssist.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Chip.cs" />
     <Compile Include="Clock.cs" />

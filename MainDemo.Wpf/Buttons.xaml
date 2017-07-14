@@ -225,7 +225,7 @@
             <Button Command="{Binding DismissComand}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     HorizontalAlignment="Left"
-                    materialDesign:ButtonAssist.Value="{Binding DismissButtonProgress}"
+                    materialDesign:ButtonProgressAssist.Value="{Binding DismissButtonProgress}"
                     Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock>DISMISS</TextBlock>
