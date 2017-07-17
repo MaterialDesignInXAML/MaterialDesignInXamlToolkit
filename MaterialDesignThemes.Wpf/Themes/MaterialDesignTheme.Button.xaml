@@ -21,7 +21,7 @@
 
     <converters:RangeLengthConverter x:Key="RangeLengthConverter" />
     <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
-    <system:Int32 x:Key="ProgressRingStrokeWidth">3</system:Int32>
+    <system:Int32 x:Key="ProgressRingStrokeWidth">4</system:Int32>
 
     <SolidColorBrush x:Key="AttentionToActionBrush" Color="{StaticResource MaterialDesignShadow}" Opacity=".23" po:Freeze="True" />
 
@@ -177,15 +177,13 @@
     </Style>
 
     <Style x:Key="MaterialDesignFloatingActionMiniButton" TargetType="{x:Type Button}">
-        <Style.Resources>
-            <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{x:Static wpf:ButtonProgressAssist.StrokeForeground}" po:Freeze="True" />
-            <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{x:Static wpf:ButtonProgressAssist.StrokeBackground}" po:Freeze="True" Opacity=".28" />
-        </Style.Resources>
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
+        <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource PrimaryHueLightBrush}" />
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -205,15 +203,16 @@
                             </Ellipse>
                         </AdornerDecorator>
                         <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" 
-                                     Foreground="{DynamicResource {x:Static wpf:ButtonProgressAssist.StrokeForeground}}"
-                                     Foreground="{DynamicResource {x:Static wpf:ButtonProgressAssist.StrokeBackground}}"
-                                     Value="-1" 
-                                     IsIndeterminate="True" 
-                                     Margin="-3" 
-                                     Width="{TemplateBinding Width, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
-                                     Height="{TemplateBinding Height, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
-                                     HorizontalAlignment="Stretch" 
-                                     VerticalAlignment="Stretch" />
+                                         Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorForeground)}"
+                                         Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
+                                         Value="-1" 
+                                         IsIndeterminate="True" 
+                                         Margin="-3" 
+                                         Width="{TemplateBinding Width, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
+                                         Height="{TemplateBinding Height, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
+                                         HorizontalAlignment="Stretch" 
+                                         VerticalAlignment="Stretch" />
+                        <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" />
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"  
                                     Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -280,9 +279,6 @@
         <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
-        <Style.Resources>
-            <SolidColorBrush Color="Yellow" x:Key="{x:Static wpf:ButtonProgressAssist.TestOne}" />
-        </Style.Resources>
     </Style>
 
 </ResourceDictionary>

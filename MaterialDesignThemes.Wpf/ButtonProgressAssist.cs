@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -49,8 +50,30 @@ namespace MaterialDesignThemes.Wpf
             return (double)element.GetValue(ValueProperty);
         }
 
-        public static ResourceKey StrokeForeground { get; } = new ComponentResourceKey(typeof(ButtonProgressAssist), nameof(StrokeForeground));
+        public static readonly DependencyProperty IndicatorForegroundProperty = DependencyProperty.RegisterAttached(
+            "IndicatorForeground", typeof(Brush), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(Brush)));
 
-        public static ResourceKey StrokeBackground { get; } = new ComponentResourceKey(typeof(ButtonProgressAssist), nameof(StrokeBackground));
+        public static void SetIndicatorForeground(DependencyObject element, Brush indicatorForeground)
+        {
+            element.SetValue(IndicatorForegroundProperty, indicatorForeground);
+        }
+
+        public static Brush GetIndicatorForeground(DependencyObject element)
+        {
+            return (Brush)element.GetValue(IndicatorForegroundProperty);
+        }
+
+        public static readonly DependencyProperty IndicatorBackgroundProperty = DependencyProperty.RegisterAttached(
+            "IndicatorBackground", typeof(Brush), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(Brush)));
+
+        public static void SetIndicatorBackground(DependencyObject element, Brush indicatorBackground)
+        {
+            element.SetValue(IndicatorBackgroundProperty, indicatorBackground);
+        }
+
+        public static Brush GetIndicatorBackground(DependencyObject element)
+        {
+            return (Brush)element.GetValue(IndicatorForegroundProperty);
+        }        
     }
 }

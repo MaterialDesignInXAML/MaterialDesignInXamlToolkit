@@ -49,7 +49,7 @@
         <Button Style="{StaticResource MaterialDesignFloatingActionButton}">
             <materialDesign:PackIcon Kind="CloudSync" Height="24" Width="24" />
         </Button>
-        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
+        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Margin="0 12 0 12">
             <materialDesign:PackIcon Kind="CloudSync" Height="24" Width="24" />
         </Button>
         <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" Value="33" Width="50" Height="50"  />
