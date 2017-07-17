@@ -60,8 +60,10 @@
                     <DockPanel>
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
                                         x:Name="MenuToggleButton"/>
-                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                        <materialDesign:PopupBox   DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                             <StackPanel>
+                                <materialDesign:PopupBoxItem  Icon="Settings" Text="Settings" Click="MenuPopupBoxItem_OnClick"></materialDesign:PopupBoxItem>
+                                <materialDesign:PopupBoxItem Icon="Information" Text="About" Click="MenuPopupBoxItem_OnClick"></materialDesign:PopupBoxItem>
                                 <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
                                 <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
                                 <Button Content="Can't Touch This" IsEnabled="False" />
@@ -86,7 +88,6 @@
                                   Padding="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.MarginRequirement}">
                         <ContentControl Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
                     </ScrollViewer>
-                    
                     <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
                                             Grid.Row="1" />
                 </Grid>

@@ -56,5 +56,13 @@ namespace MaterialDesignColors.WpfExample
 
             await DialogHost.Show(sampleMessageDialog, "RootDialog");            
         }
+
+        private async void MenuPopupBoxItem_OnClick(object sender, RoutedEventArgs e) {
+            var sampleMessageDialog = new SampleMessageDialog {
+                Message = { Text = ((PopupBoxItem)sender).Text }
+            };
+
+            await DialogHost.Show(sampleMessageDialog , "RootDialog");
+        }
     } 
 }
