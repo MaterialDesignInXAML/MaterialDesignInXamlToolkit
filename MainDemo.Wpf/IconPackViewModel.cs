@@ -63,7 +63,7 @@ namespace MaterialDesignDemo
         private void CopyToClipboard(object obj)
         {
             var kind = (PackIconKind?)obj;
-            Clipboard.SetText($"<materialDesign:PackIcon Kind=\"{kind}\" />");
+            Clipboard.SetDataObject($"<materialDesign:PackIcon Kind=\"{kind}\" />");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
