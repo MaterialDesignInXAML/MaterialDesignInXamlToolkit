@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using MaterialDesignColors.WpfExample;
 using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignThemes.Wpf;
 
@@ -63,7 +64,9 @@ namespace MaterialDesignDemo
         private void CopyToClipboard(object obj)
         {
             var kind = (PackIconKind?)obj;
-            Clipboard.SetText($"<materialDesign:PackIcon Kind=\"{kind}\" />");
+            string toBeCopied = $"<materialDesign:PackIcon Kind=\"{kind}\" />";
+            Clipboard.SetDataObject(toBeCopied);
+            MainWindow.Snackbar.MessageQueue.Enqueue($"{toBeCopied} is copied to clipboard.");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

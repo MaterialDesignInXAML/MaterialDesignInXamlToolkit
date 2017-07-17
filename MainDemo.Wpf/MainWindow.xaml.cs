@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,12 +14,13 @@ namespace MaterialDesignColors.WpfExample
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {
+    public partial class MainWindow : Window {
+        public static Snackbar Snackbar;
         public MainWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
 
+            MainWindow.Snackbar = this.MainSnackbar;
             DataContext = new MainWindowViewModel();
 
             Task.Factory.StartNew(() =>
