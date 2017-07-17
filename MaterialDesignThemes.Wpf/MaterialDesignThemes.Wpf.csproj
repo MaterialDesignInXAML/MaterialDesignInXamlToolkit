@@ -149,7 +149,7 @@
     <Page Include="Themes\MaterialDesignTheme.PopupBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
+    </Page>    
     <Page Include="Themes\MaterialDesignTheme.ProgressBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -323,6 +323,7 @@
     <Compile Include="PackIconExtension.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Plane3D.cs" />
+    <Compile Include="PopupBoxItem.cs" />
     <Compile Include="ScaleHost.cs" />
     <Compile Include="ScrollViewerAssist.cs" />
     <Compile Include="Screen.cs" />
