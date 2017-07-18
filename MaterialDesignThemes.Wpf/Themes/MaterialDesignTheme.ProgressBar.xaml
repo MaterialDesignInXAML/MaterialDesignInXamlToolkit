@@ -140,15 +140,15 @@
                                                                    RepeatBehavior="Forever">
                                 <SplineDoubleKeyFrame KeyTime="0" Value="0.0" />
                                 <SplineDoubleKeyFrame KeyTime="0:0:1" Value="1.0" />
-                                <SplineDoubleKeyFrame KeyTime="0:0:3" Value="0.0" />
+                                <SplineDoubleKeyFrame KeyTime="0:0:4" Value="0.0" />
                             </DoubleAnimationUsingKeyFrames>
                             <DoubleAnimation Storyboard.TargetName="RotateTransform"
                                                      Storyboard.TargetProperty="Angle" 
                                                      RepeatBehavior="Forever"
-                                                     From="00" To="359" Duration="0:0:0.75" />
+                                                     From="00" To="359" Duration="0:0:1.25" />
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Grid x:Name="TemplateRoot" Background="{TemplateBinding Background}" ClipToBounds="False">
+                    <Grid x:Name="TemplateRoot" ClipToBounds="False">
                         <Grid x:Name="FullyIndeterminateGrid">
                             <Grid.RenderTransform>
                                 <ScaleTransform x:Name="FullyIndeterminateGridScaleTransform" ScaleX="0" />
@@ -156,6 +156,7 @@
                         </Grid>
                         <Grid x:Name="PathGrid" Margin="2" />
                         <Canvas>
+                            <Ellipse Fill="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" />
                             <Path x:Name="Path" Stroke="{TemplateBinding Foreground}" StrokeThickness="3" 
                                           Canvas.Top="2" Canvas.Left="2"
                                           RenderTransformOrigin="0, 0">
