@@ -221,23 +221,54 @@
 
         <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
                    Grid.Row="5" Margin="0 12 0 12">Buttons - With Progress</TextBlock>
-        <StackPanel Grid.Row="6" >
-            <Button Command="{Binding DismissComand}"
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    HorizontalAlignment="Left"
-                    materialDesign:ButtonProgressAssist.Value="{Binding DismissButtonProgress}"
-                    Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock>DISMISS</TextBlock>
-                    <materialDesign:PackIcon Margin="4 .5 0 0" Kind="Close" />
-                </StackPanel>
-            </Button>
-            <Grid Height="32"
-                  Visibility="{Binding ShowDismissButton, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+        <StackPanel Grid.Row="6" Orientation="Horizontal">
+            <Grid Width="124">
+                <!-- raised button with progress, useful to auto dismiss/accept something -->
+                <Button Command="{Binding DismissComand}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        HorizontalAlignment="Left"
+                        materialDesign:ButtonProgressAssist.Value="{Binding DismissButtonProgress}"
+                        Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>DISMISS</TextBlock>
+                        <materialDesign:PackIcon Margin="4 .5 0 0" Kind="Close" />
+                    </StackPanel>
+                </Button>
                 <TextBlock Text="{Binding DemoRestartCountdownText}"
                            VerticalAlignment="Center"
+                           Visibility="{Binding ShowDismissButton, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
                            />
-            </Grid>
+            </Grid>            
+
+            <!-- floating action button with progress -->
+            <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}" Margin="24 0 12 0"
+                    Command="{Binding SaveComand}"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
+                    materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}">
+                
+                <!-- simple example of toggling/animating pack icon with a data trigger-->
+                <materialDesign:PackIcon Height="24" Width="24">
+                    <materialDesign:PackIcon.Style>
+                        <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
+                            <Setter Property="Kind" Value="CloudSync" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSaveComplete}" Value="True">
+                                    <Setter Property="Kind" Value="Check" />
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.8" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </materialDesign:PackIcon.Style>
+                </materialDesign:PackIcon>
+                
+            </Button>
+
         </StackPanel>
         <Border Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="7" />
 

@@ -50,6 +50,19 @@ namespace MaterialDesignThemes.Wpf
             return (double)element.GetValue(ValueProperty);
         }
 
+        public static readonly DependencyProperty IsIndeterminateProperty = DependencyProperty.RegisterAttached(
+            "IsIndeterminate", typeof(bool), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(bool)));
+
+        public static void SetIsIndeterminate(DependencyObject element, bool isIndeterminate)
+        {
+            element.SetValue(IsIndeterminateProperty, isIndeterminate);
+        }
+
+        public static bool GetIsIndeterminate(DependencyObject element)
+        {
+            return (bool)element.GetValue(IndicatorForegroundProperty);
+        }
+
         public static readonly DependencyProperty IndicatorForegroundProperty = DependencyProperty.RegisterAttached(
             "IndicatorForeground", typeof(Brush), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(Brush)));
 
@@ -74,6 +87,19 @@ namespace MaterialDesignThemes.Wpf
         public static Brush GetIndicatorBackground(DependencyObject element)
         {
             return (Brush)element.GetValue(IndicatorForegroundProperty);
-        }        
+        }
+
+        public static readonly DependencyProperty IsIndicatorVisibleProperty = DependencyProperty.RegisterAttached(
+            "IsIndicatorVisible", typeof(bool), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(bool)));
+
+        public static void SetIsIndicatorVisible(DependencyObject element, bool isIndicatorVisible)
+        {
+            element.SetValue(IsIndicatorVisibleProperty, isIndicatorVisible);
+        }
+
+        public static bool GetIsIndicatorVisible(DependencyObject element)
+        {
+            return (bool)element.GetValue(IndicatorForegroundProperty);
+        }
     }
 }

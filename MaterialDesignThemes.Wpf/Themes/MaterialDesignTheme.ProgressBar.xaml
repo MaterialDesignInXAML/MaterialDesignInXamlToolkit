@@ -146,7 +146,6 @@
                                                      Storyboard.TargetProperty="Angle" 
                                                      RepeatBehavior="Forever"
                                                      From="00" To="359" Duration="0:0:1.25" />
-                            
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid x:Name="TemplateRoot" ClipToBounds="False">
