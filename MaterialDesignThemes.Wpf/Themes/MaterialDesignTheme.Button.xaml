@@ -21,7 +21,7 @@
 
     <converters:RangeLengthConverter x:Key="RangeLengthConverter" />
     <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
-    <system:Int32 x:Key="ProgressRingStrokeWidth">4</system:Int32>
+    <system:Int32 x:Key="ProgressRingStrokeWidth">8</system:Int32>
 
     <SolidColorBrush x:Key="AttentionToActionBrush" Color="{StaticResource MaterialDesignShadow}" Opacity=".23" po:Freeze="True" />
 
@@ -210,7 +210,7 @@
                                      Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
                                      Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}"
                                      IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}" 
-                                     Margin="-3" 
+                                     Margin="-8" 
                                      Width="{TemplateBinding Width, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
                                      Height="{TemplateBinding Height, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
                                      HorizontalAlignment="Stretch" 

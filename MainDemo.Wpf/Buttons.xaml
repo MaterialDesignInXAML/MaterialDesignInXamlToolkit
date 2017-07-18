@@ -241,7 +241,8 @@
             </Grid>            
 
             <!-- floating action button with progress -->
-            <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}" Margin="24 0 12 0"
+            <TextBlock Margin="24 0 0 0" VerticalAlignment="Center">Click Me:</TextBlock>
+            <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}" Margin="8 0 0 0"
                     Command="{Binding SaveComand}"
                     materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
                     materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}">
@@ -269,6 +270,29 @@
                 
             </Button>
 
+            <TextBlock Margin="24 0 0 0" VerticalAlignment="Center">Variations:</TextBlock>
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="16 0 0 0"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.Value="-1" 
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Content="{materialDesign:PackIcon DotsHorizontal}" />
+            <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Margin="16 0 0 0"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.Value="50" 
+                    Content="{materialDesign:PackIcon DotsHorizontal}" />
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="16 0 0 0"
+                    Background="#81d4fa"
+                    BorderBrush="#81d4fa"
+                    Foreground="#DD000000"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.Value="25" 
+                    materialDesign:ButtonProgressAssist.IndicatorForeground="#e65100"
+                    materialDesign:ButtonProgressAssist.IndicatorBackground="#ffcc80"
+                    Content="{materialDesign:PackIcon DotsHorizontal}" />
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Margin="16 0 0 0"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.Value="75" 
+                    Content="{materialDesign:PackIcon DotsHorizontal}" />
         </StackPanel>
         <Border Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="7" />
 
