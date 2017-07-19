@@ -13,8 +13,8 @@ namespace MaterialDesignColors.WpfExample
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {
+    public partial class MainWindow : Window {
+        public static Snackbar Snackbar;
         public MainWindow()
         {
             InitializeComponent();            
@@ -30,6 +30,8 @@ namespace MaterialDesignColors.WpfExample
                 //need to get the message queue from the snackbar, so need to be on the dispatcher
                 MainSnackbar.MessageQueue.Enqueue("Welcome to Material Design In XAML Tookit");
             }, TaskScheduler.FromCurrentSynchronizationContext());
+
+            Snackbar = this.MainSnackbar;
         }        
 
         private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
