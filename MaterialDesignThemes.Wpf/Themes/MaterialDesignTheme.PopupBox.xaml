@@ -77,7 +77,8 @@
                     <Button Style="{StaticResource MaterialDesignPopupBoxButton}">
                         <StackPanel Orientation="Horizontal">
                             <wpf:PackIcon x:Name="PackIcon"
-                                    Margin="0,0,10,0"
+                                    Margin="5,0,15,0"
+                                    Foreground="Gray"
                                     Width="20"
                                     Height="20"
                                     VerticalAlignment="Center"

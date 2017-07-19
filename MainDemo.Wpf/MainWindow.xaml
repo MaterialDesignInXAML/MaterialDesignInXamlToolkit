@@ -62,8 +62,9 @@
                                         x:Name="MenuToggleButton"/>
                         <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                             <StackPanel>
-                                <materialDesign:PopupBoxItem Icon="Settings" Text="Settings" Click="PopupBoxItem_OnClick"></materialDesign:PopupBoxItem>
-                                <materialDesign:PopupBoxItem Icon="Information" Text="About" Click="PopupBoxItem_OnClick"></materialDesign:PopupBoxItem>
+                                <materialDesign:PopupBoxItem Icon="Settings" Text="Settings" Click="PopupBoxItem_OnClick" />
+                                <materialDesign:PopupBoxItem Icon="Information" Text="About" Click="PopupBoxItem_OnClick" />
+                                <Separator />
                                 <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
                                 <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
                                 <Button Content="Can't Touch This" IsEnabled="False" />
@@ -96,3 +97,10 @@
         </materialDesign:DrawerHost>
     </materialDesign:DialogHost>
 </Window>
+
+
+
+
+
+
+
