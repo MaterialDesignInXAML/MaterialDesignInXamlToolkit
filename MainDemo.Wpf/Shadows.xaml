@@ -60,9 +60,6 @@
             <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Right" Padding="32">CUSTOM CLIP</materialDesign:Card>
             <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Top" Margin="16 0 0 0" Padding="32">CUSTOM CLIP</materialDesign:Card>
             <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Left" Margin="16 0 0 0" Padding="32">CUSTOM CLIP</materialDesign:Card>
-
-            
         </StackPanel>
-            
     </StackPanel>
 </UserControl>
