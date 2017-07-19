@@ -4,13 +4,16 @@ using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
 using System.Windows.Controls;
+using System;
 
 namespace MaterialDesignColors.WpfExample.Domain
 {
     public class MainWindowViewModel
     {
-        public MainWindowViewModel()
+        public MainWindowViewModel(ISnackbarMessageQueue snackbarMessageQueue)
         {
+            if (snackbarMessageQueue == null) throw new ArgumentNullException(nameof(snackbarMessageQueue));
+
             DemoItems = new[]
             {
                 new DemoItem("Home", new Home(),
@@ -92,7 +95,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                 {
                     VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
                 },
-                new DemoItem("Icon Pack", new IconPack { DataContext = new IconPackViewModel() },
+                new DemoItem("Icon Pack", new IconPack { DataContext = new IconPackViewModel(snackbarMessageQueue) },
                     new []
                     {
                         DocumentationLink.DemoPageLink<IconPack>("Demo View"),
