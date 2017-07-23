@@ -41,6 +41,10 @@
                         <Setter TargetName="PackIcon" Property="Kind" Value="CodeBraces" />
                         <Setter TargetName="Root" Property="ToolTip" Value="Object Source/API" />
                     </DataTrigger>
+                    <DataTrigger Binding="{Binding Type}" Value="GuidelineSource">
+                        <Setter TargetName="PackIcon" Property="Kind" Value="Google"></Setter>
+                        <Setter TargetName="Root" Property="ToolTip" Value="Source of Google's Material Design guidelines"></Setter>
+                    </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
         </ResourceDictionary>
