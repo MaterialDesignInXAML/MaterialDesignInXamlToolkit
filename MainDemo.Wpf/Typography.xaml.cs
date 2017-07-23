@@ -24,5 +24,13 @@ namespace MaterialDesignColors.WpfExample
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            var t = sender as Button;
+            var toBeCopied = t.Content.ToString().Split('-')[1];
+            toBeCopied = "Style=\"{StaticResource "+ toBeCopied +"}\"";
+            Clipboard.SetDataObject(toBeCopied);  
+            MainWindow.Snackbar.MessageQueue.Enqueue($"{toBeCopied}\nis copied to clipboard!");
+        }
     }
 }
