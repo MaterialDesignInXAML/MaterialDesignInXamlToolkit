@@ -32,7 +32,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                 DocumentationLinkType.StyleSource,
                 $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesignThemes.Wpf/Themes/MaterialDesignTheme.{nameChunk}.xaml",
                 nameChunk);
-        }
+        }        
 
         public static DocumentationLink ApiLink<TClass>(string subNamespace)
         {
@@ -78,6 +78,9 @@ namespace MaterialDesignColors.WpfExample.Domain
                 label ?? typeof(TDemoPage).Name);
         }
 
+        public static DocumentationLink GuidelineLink(string url) {
+            return new DocumentationLink(DocumentationLinkType.GuidelineSource, url, "Guideline Source");
+        }
         public string Label { get; }
 
         public string Url { get; }
