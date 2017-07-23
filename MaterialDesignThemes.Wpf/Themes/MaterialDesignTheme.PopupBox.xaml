@@ -9,7 +9,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolTip.xaml" />
     </ResourceDictionary.MergedDictionaries>
-        
+
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:NullableToVisibilityConverter x:Key="NullVisibilityConverter" />
     <converters:NullableToVisibilityConverter x:Key="InvertedNullVisibilityConverter" NullValue="Visible" NotNullValue="Collapsed" />
@@ -17,7 +17,92 @@
 
     <wpf:PackIcon Kind="DotsVertical" x:Key="MaterialDesignPopupBoxToggleContent" x:Shared="False" Margin="4 0 4 0" Width="24" Height="24"
                   Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=Foreground}" />
-    
+
+    <Style x:Key="MaterialDesignPopupBoxButton" TargetType="{x:Type Button}" >
+        <Setter Property="VerticalContentAlignment" Value="Bottom" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Padding" Value="16 0 16 16" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CircleEase EasingMode="EaseOut"/>
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Normal"/>
+                                <VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
+                                                             To="0.1" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                             To="0.48" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="MouseOverBorder"
+                                    Opacity="0"
+                                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+                        <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                        Focusable="False"
+                                        MinHeight="48"
+                                        Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"                                                                
+                                        Padding="{TemplateBinding Padding}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type wpf:PopupBoxItem}" x:Key="MaterialDesignPopupBoxItem" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type wpf:PopupBoxItem}">
+                    <Button Style="{StaticResource MaterialDesignPopupBoxButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentControl x:Name="IconControl"                                   
+                                    VerticalAlignment="Center"                                            
+                                    Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon, Mode=TwoWay}"
+                                >
+                                <ContentControl.Resources>
+                                    <Style TargetType="wpf:PackIcon">
+                                        <Setter Property="Margin" Value="5,0,15,0"></Setter>
+                                        <Setter Property="Foreground" Value="Black"></Setter>
+                                        <Setter Property="Width" Value="20"></Setter>
+                                        <Setter Property="Height" Value="20"></Setter>
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </ContentControl.Resources>
+                            </ContentControl>
+                            <ContentControl x:Name="TextControl" 
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, Mode=TwoWay}"
+                                >
+                            </ContentControl>
+                        </StackPanel>
+                    </Button>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type wpf:PopupBox}" x:Key="MaterialDesignPopupBox">
         <Setter Property="ToggleContent" Value="{StaticResource MaterialDesignPopupBoxToggleContent}" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
@@ -69,57 +154,7 @@
                                       RenderOptions.ClearTypeHint="Enabled"                                      
                                       Margin="5">
                                 <wpf:Card.Resources>
-                                    <Style TargetType="{x:Type Button}">
-                                        <Setter Property="VerticalContentAlignment" Value="Bottom" />
-                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                        <Setter Property="Padding" Value="16 0 16 16" />
-                                        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type Button}">
-                                                    <Grid>
-                                                        <VisualStateManager.VisualStateGroups>
-                                                            <VisualStateGroup Name="CommonStates">
-                                                                <VisualStateGroup.Transitions>
-                                                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
-                                                                        <VisualTransition.GeneratedEasingFunction>
-                                                                            <CircleEase EasingMode="EaseOut"/>
-                                                                        </VisualTransition.GeneratedEasingFunction>
-                                                                    </VisualTransition>
-                                                                </VisualStateGroup.Transitions>
-                                                                <VisualState Name="Normal"/>
-                                                                <VisualState Name="MouseOver">
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
-                                                                                         To="0.1" Duration="0"/>
-                                                                    </Storyboard>
-                                                                </VisualState>
-                                                                <VisualState Name="Disabled">
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                                                         To="0.48" Duration="0"/>
-                                                                    </Storyboard>
-                                                                </VisualState>
-                                                            </VisualStateGroup>
-                                                        </VisualStateManager.VisualStateGroups>
-                                                        <Border x:Name="MouseOverBorder"
-                                                                Opacity="0"
-                                                                Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
-                                                        <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                                                    Focusable="False"
-                                                                    MinHeight="48"
-                                                                    Content="{TemplateBinding Content}"
-                                                                    ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"                                                                
-                                                                    Padding="{TemplateBinding Padding}"/>
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
+                                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignPopupBoxButton}"></Style>
                                 </wpf:Card.Resources>
                             </wpf:Card>
                         </controlzEx:PopupEx>
@@ -142,10 +177,10 @@
     <Style x:Key="MaterialDesignToolForegroundPopupBox" BasedOn="{StaticResource MaterialDesignToolPopupBox}" TargetType="wpf:PopupBox">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
     </Style>
-    
+
     <wpf:PackIcon x:Shared="False" x:Key="MaterialDesignMultiFloatingActionPopupBoxIcon"
                   Kind="Plus" Width="24" Height="24" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=Foreground}" />
-    
+
     <Style TargetType="{x:Type wpf:PopupBox}" x:Key="MaterialDesignMultiFloatingActionPopupBox">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
@@ -303,7 +338,7 @@
                                 <DoubleAnimation.EasingFunction>
                                     <SineEase EasingMode="EaseInOut" />
                                 </DoubleAnimation.EasingFunction>
-                            </DoubleAnimation>                            
+                            </DoubleAnimation>
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid>
@@ -416,6 +451,6 @@
         <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
-    </Style>    
+    </Style>
 
 </ResourceDictionary>
