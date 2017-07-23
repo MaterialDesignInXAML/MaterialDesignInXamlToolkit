@@ -76,25 +76,33 @@
                 <ControlTemplate TargetType="{x:Type wpf:PopupBoxItem}">
                     <Button Style="{StaticResource MaterialDesignPopupBoxButton}">
                         <StackPanel Orientation="Horizontal">
-                            <wpf:PackIcon x:Name="PackIcon"
-                                    Margin="5,0,15,0"
-                                    Foreground="Gray"
-                                    Width="20"
-                                    Height="20"
+                            <ContentControl x:Name="IconControl"                                   
+                                    VerticalAlignment="Center"                                            
+                                    Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon, Mode=TwoWay}"
+                                >
+                                <ContentControl.Resources>
+                                    <Style TargetType="wpf:PackIcon">
+                                        <Setter Property="Margin" Value="5,0,15,0"></Setter>
+                                        <Setter Property="Foreground" Value="Black"></Setter>
+                                        <Setter Property="Width" Value="20"></Setter>
+                                        <Setter Property="Height" Value="20"></Setter>
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </ContentControl.Resources>
+                            </ContentControl>
+                            <ContentControl x:Name="TextControl" 
                                     VerticalAlignment="Center"
-                                    Kind="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon, Mode=TwoWay}"
-                                ></wpf:PackIcon>
-                            <TextBlock x:Name="TextBlock" 
-                                    VerticalAlignment="Center"
-                                    Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, Mode=TwoWay}"
-                                ></TextBlock>
+                                    VerticalContentAlignment="Center"
+                                    Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, Mode=TwoWay}"
+                                >
+                            </ContentControl>
                         </StackPanel>
                     </Button>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style TargetType="{x:Type wpf:PopupBox}" x:Key="MaterialDesignPopupBox">
         <Setter Property="ToggleContent" Value="{StaticResource MaterialDesignPopupBoxToggleContent}" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />

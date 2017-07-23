@@ -13,13 +13,13 @@ namespace MaterialDesignThemes.Wpf {
     /// PopupBoxItem is items made for PopupBox 
     /// </summary>
 
-    [TemplatePart(Name = PackIconPartName , Type = typeof(PackIcon))]
-    [TemplatePart(Name = TextBlockPartName , Type = typeof(TextBlock))]
+    [TemplatePart(Name = PackIconPartName , Type = typeof(ContentControl))]
+    [TemplatePart(Name = TextBlockPartName , Type = typeof(ContentControl))]
     public class PopupBoxItem : ButtonBase {
-        public const string PackIconPartName = "PackIcon";
-        public const string TextBlockPartName = "TextBlock";
-        private TextBlock _textBlock;
-        private PackIcon _icon;
+        public const string PackIconPartName = "IconControl";
+        public const string TextBlockPartName = "TextControl";
+        private ContentControl _textControl;
+        private ContentControl _iconControl;
 
         static PopupBoxItem() {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PopupBoxItem) , new FrameworkPropertyMetadata(typeof(PopupBoxItem)));
@@ -27,50 +27,42 @@ namespace MaterialDesignThemes.Wpf {
 
         public override void OnApplyTemplate() {
             base.OnApplyTemplate();
-            _icon = GetTemplateChild(PackIconPartName) as PackIcon;
-            _textBlock = GetTemplateChild(TextBlockPartName) as TextBlock;
+            _iconControl = (ContentControl) GetTemplateChild(PackIconPartName);
+            _textControl = (ContentControl) GetTemplateChild(TextBlockPartName);
         }
 
         #region  IconProperty
-        public PackIconKind Icon {
-            get { return (PackIconKind)GetValue(IconProperty); }
+        public object Icon {
+            get { return GetValue(IconProperty); }
             set { SetValue(IconProperty , value); }
         }
 
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register
-            (nameof(Icon) , typeof(PackIconKind) , typeof(PopupBoxItem) , 
-            new FrameworkPropertyMetadata(default(PackIconKind) , OnIconPropertyChanged));
-
-        private static object IconPropertyCoerceValueCallBack(DependencyObject d, object basevalue) {
-            var popupBoxItem = (PopupBoxItem)d;
-            var newValue = (PackIconKind)basevalue;
-            if (popupBoxItem._icon == null) return newValue;
-            popupBoxItem._icon.Kind = newValue;
-            return newValue;
-        }
+            (nameof(Icon) , typeof(object) , typeof(PopupBoxItem) , 
+            new FrameworkPropertyMetadata(default(object) , OnIconPropertyChanged));     
 
         private static void OnIconPropertyChanged(DependencyObject d , DependencyPropertyChangedEventArgs e) {
             var popupBoxItem = (PopupBoxItem)d;
-            var newValue = (PackIconKind)e.NewValue;
-            if (popupBoxItem._icon == null) return;
-            popupBoxItem._icon.Kind = newValue;
+            var newValue = e.NewValue;
+            if (popupBoxItem._iconControl == null) return;
+            popupBoxItem._iconControl.Content = newValue;
         }
 
         #endregion
 
         #region TextProperty
-        public string Text {
-            get { return (string)GetValue(TextProperty); }
+        public object Text {
+            get { return (object)GetValue(TextProperty); }
             set { SetValue(TextProperty , value); }
         }
 
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register(nameof(Text) , typeof(string) , typeof(PopupBoxItem) , new FrameworkPropertyMetadata("Example" , OnTextPropertyChanged));
+            DependencyProperty.Register(nameof(Text) , typeof(object) , typeof(PopupBoxItem) , new FrameworkPropertyMetadata("Example" , OnTextPropertyChanged));
 
         private static void OnTextPropertyChanged(DependencyObject d , DependencyPropertyChangedEventArgs e) {
             var control = d as PopupBoxItem;
-            if (control._textBlock == null) return;
-            control._textBlock.Text = (string)e.NewValue;
+            if (control._textControl == null) return;
+            control._textControl.Content = (object)e.NewValue;
         }
         #endregion
     }
