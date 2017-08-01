@@ -15,9 +15,12 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel>
-        <ToggleButton x:Name="ToggleButton" IsChecked="True"></ToggleButton>
-        <ScrollViewer>
+    <ScrollViewer>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Margin="10">Display code</TextBlock>
+                <ToggleButton x:Name="ToggleButton" IsChecked="True"></ToggleButton>
+            </StackPanel>
             <codeDisplayer:XamlDisplayerPanel IsCodeDisplayed="{Binding Path=IsChecked, ElementName=ToggleButton}" x:Name="XamlDisplayerPanel" VerticalAlignment="Center">
                 <Slider x:Name="A" TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
                 <Slider x:Name="B" TickFrequency="5" TickPlacement="BottomRight" Orientation="Vertical" Minimum="1" Maximum="50" />
@@ -34,6 +37,6 @@
                 <Slider x:Name="G" Minimum="0" Maximum="10" Margin="0 24 0 0" Style="{StaticResource MaterialDesignDiscreteSlider}"
                 Width="260" HorizontalAlignment="Left" ToolTip="MaterialDesignDiscreteSlider"/>
             </codeDisplayer:XamlDisplayerPanel>
-        </ScrollViewer>
-    </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>
