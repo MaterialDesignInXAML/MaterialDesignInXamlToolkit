@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
+using CodeDisplayer;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -23,6 +25,9 @@ namespace MaterialDesignColors.WpfExample
         public Sliders()
         {
             InitializeComponent();
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(@"C:\Users\User\Desktop\MaterialDesignXAMLToolKitNew\MaterialDesignInXamlToolkit\MainDemo.Wpf\Sliders.xaml");
+            this.XamlDisplayerPanel.Initialize(xmlDoc);            ;
         }
     }
 }

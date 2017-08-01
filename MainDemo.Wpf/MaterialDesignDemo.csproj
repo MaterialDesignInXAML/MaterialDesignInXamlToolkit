@@ -51,6 +51,9 @@
       <Paket>True</Paket>
       <Link>VirtualCollection/VirtualizingWrapPanel.cs</Link>
     </Compile>
+    <Reference Include="CodeDisplayer">
+      <HintPath>..\..\..\..\Source\Repos\Displaying-XAML\WpfApplication1\CodeDisplayer\bin\Release\CodeDisplayer.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
