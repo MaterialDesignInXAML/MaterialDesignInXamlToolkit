@@ -24,13 +24,15 @@ namespace MaterialDesignColors.WpfExample
     {
         public Sliders()
         {
-            InitializeComponent();                        
-            XmlDocument xmlDoc= 
-                new MaterialDesignInXamlToolkitGitHubFile(
-                    ownerName: "wongjiahau",
-                    branchName: "New-Demo-2",
-                    fileName: "Sliders.xaml")
-                .GetXmlDocument();
+            InitializeComponent();          
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(@"..\..\Sliders.xaml");
+            //XmlDocument xmlDoc= 
+            //    new MaterialDesignInXamlToolkitGitHubFile(
+            //        ownerName: "wongjiahau",
+            //        branchName: "New-Demo-2",
+            //        fileName: "Sliders.xaml")
+            //     .GetXmlDocument();
             XamlDisplayerPanel.Initialize(xmlDoc);            
         }
     }
