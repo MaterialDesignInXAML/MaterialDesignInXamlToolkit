@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -34,6 +35,16 @@ namespace MaterialDesignColors.WpfExample
             //        fileName: "Sliders.xaml")
             //     .GetXmlDocument();
             XamlDisplayerPanel.Initialize(xmlDoc);            
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e) {
+            var b = sender as ToggleButton;
+            if (b.IsChecked.Value) {
+                XamlDisplayerPanel.DisplayMode = XamlDisplayer.DisplayModeEnum.LeftRight;
+            }
+            else {
+                XamlDisplayerPanel.DisplayMode = XamlDisplayer.DisplayModeEnum.TopBottom;
+            }
         }
     }
 }

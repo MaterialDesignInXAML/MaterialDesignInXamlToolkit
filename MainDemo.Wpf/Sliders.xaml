@@ -20,10 +20,11 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock VerticalAlignment="Center" Margin="10">Display code</TextBlock>
                 <ToggleButton x:Name="ToggleButton" IsChecked="True"></ToggleButton>
+                <ToggleButton Click="ButtonBase_OnClick"></ToggleButton>
             </StackPanel>
-            <codeDisplayer:XamlDisplayerPanel IsCodeDisplayed="{Binding Path=IsChecked, ElementName=ToggleButton}" x:Name="XamlDisplayerPanel" VerticalAlignment="Center">
+            <codeDisplayer:XamlDisplayerPanel DisplayMode="LeftRight" IsCodeDisplayed="{Binding Path=IsChecked, ElementName=ToggleButton}" x:Name="XamlDisplayerPanel" VerticalAlignment="Center">
                 <Slider TickFrequency="5" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
-                <Slider TickFrequency="5" TickPlacement="BottomRight" Orientation="Vertical" Minimum="1" Maximum="50" />
+                <Slider TickFrequency="5" TickPlacement="BottomRight" Height="50" Orientation="Vertical" Minimum="1" Maximum="50" />
                 <Slider TickFrequency="25" TickPlacement="TopLeft" Orientation="Vertical" Minimum="1" Maximum="50" IsEnabled="False" Margin="24 8 0 8" />
                 <Slider TickFrequency="5" Orientation="Horizontal" TickPlacement="BottomRight" Minimum="1" Maximum="50" Value="25" IsSelectionRangeEnabled="True"
                 Margin="0 36 0 0" />
