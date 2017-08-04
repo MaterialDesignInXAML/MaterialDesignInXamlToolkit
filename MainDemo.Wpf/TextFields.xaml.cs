@@ -30,14 +30,14 @@ namespace MaterialDesignColors.WpfExample
         {
             InitializeComponent();	        
 			DataContext = new TextFieldsViewModel();
-            var xmlDoc = new XmlDocument();
-            xmlDoc.Load(@"..\..\TextFields.xaml");
-            //XmlDocument xmlDoc =
-            //    new MaterialDesignInXamlToolkitGitHubFile(
-            //            ownerName: "wongjiahau" ,
-            //            branchName: "New-Demo-2" ,
-            //            fileName: "TextFields.xaml")
-            //        .GetXmlDocument();
+            //var xmlDoc = new XmlDocument();
+            //xmlDoc.Load(@"..\..\TextFields.xaml");
+            XmlDocument xmlDoc =
+                new MaterialDesignInXamlToolkitGitHubFile(
+                        ownerName: "wongjiahau" ,
+                        branchName: "New-Demo-2" ,
+                        fileName: "TextFields.xaml")
+                    .GetXmlDocument();
             XamlDisplayerPanel.Initialize(xmlDoc);
 
         }
