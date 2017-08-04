@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,53 +13,65 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
+using CodeDisplayer;
 using MaterialDesignColors.WpfExample.Domain;
 
 namespace MaterialDesignColors.WpfExample
 {
-    /// <summary>
-    /// Interaction logic for Buttons.xaml
-    /// </summary>
-    public partial class Buttons : UserControl
-    {
-        public Buttons()
-        {
-            InitializeComponent();
+	/// <summary>
+	/// Interaction logic for Buttons.xaml
+	/// </summary>
+	public partial class Buttons : UserControl
+	{
+		public Buttons()
+		{
+			InitializeComponent();
 
-            FloatingActionDemoCommand = new AnotherCommandImplementation(Execute);
-        }
-
-        public ICommand FloatingActionDemoCommand { get; }
-
-        private void Execute(object o)
-        {
-            Console.WriteLine("Floating action button command. - " + (o ?? "NULL").ToString());
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-	    {
-            Console.WriteLine("Just checking we haven't suppressed the button.");
+			FloatingActionDemoCommand = new AnotherCommandImplementation(Execute);
+			var xmlDoc = new XmlDocument();
+			string source = File.ReadAllText(@"..\..\Buttons.xaml");
+			xmlDoc.LoadXml(source);
+			//XmlDocument xmlDoc =
+			//    new MaterialDesignInXamlToolkitGitHubFile(
+			//            ownerName: "wongjiahau" ,
+			//            branchName: "New-Demo-2" ,
+			//            fileName: "Buttons.xaml")
+			//        .GetXmlDocument();
+			XamlDisplayerPanel.Initialize(xmlDoc);
 		}
 
-        private void PopupBox_OnOpened(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Just making sure the popup has opened.");
-        }
+		public ICommand FloatingActionDemoCommand { get; }
 
-        private void PopupBox_OnClosed(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Just making sure the popup has closed.");
-        }
+		private void Execute(object o)
+		{
+			Console.WriteLine("Floating action button command. - " + (o ?? "NULL").ToString());
+		}
 
-        private void CountingButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (CountingBadge.Badge == null || Equals(CountingBadge.Badge, ""))
-                CountingBadge.Badge = 0;
+		private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+		{
+			Console.WriteLine("Just checking we haven't suppressed the button.");
+		}
 
-            var next = int.Parse(CountingBadge.Badge.ToString()) + 1;
+		private void PopupBox_OnOpened(object sender, RoutedEventArgs e)
+		{
+			Console.WriteLine("Just making sure the popup has opened.");
+		}
 
-            CountingBadge.Badge = next < 21 ? (object)next : null;
+		private void PopupBox_OnClosed(object sender, RoutedEventArgs e)
+		{
+			Console.WriteLine("Just making sure the popup has closed.");
+		}
 
-        }
-    }
+		private void CountingButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			if (CountingBadge.Badge == null || Equals(CountingBadge.Badge, ""))
+				CountingBadge.Badge = 0;
+
+			var next = int.Parse(CountingBadge.Badge.ToString()) + 1;
+
+			CountingBadge.Badge = next < 21 ? (object)next : null;
+
+		}
+	}
 }

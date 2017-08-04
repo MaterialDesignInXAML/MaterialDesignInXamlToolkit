@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Xml;
+using CodeDisplayer;
 using MaterialDesignColors.WpfExample.Domain;
 
 namespace MaterialDesignColors.WpfExample
@@ -28,6 +30,16 @@ namespace MaterialDesignColors.WpfExample
         {
             InitializeComponent();	        
 			DataContext = new TextFieldsViewModel();
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(@"..\..\TextFields.xaml");
+            //XmlDocument xmlDoc =
+            //    new MaterialDesignInXamlToolkitGitHubFile(
+            //            ownerName: "wongjiahau" ,
+            //            branchName: "New-Demo-2" ,
+            //            fileName: "TextFields.xaml")
+            //        .GetXmlDocument();
+            XamlDisplayerPanel.Initialize(xmlDoc);
+
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
