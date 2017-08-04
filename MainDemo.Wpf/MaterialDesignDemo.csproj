@@ -51,7 +51,8 @@
       <Paket>True</Paket>
       <Link>VirtualCollection/VirtualizingWrapPanel.cs</Link>
     </Compile>
-    <Reference Include="CodeDisplayer">
+    <Reference Include="CodeDisplayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Source\Repos\Displaying-XAML\WpfApplication1\CodeDisplayer\bin\Release\CodeDisplayer.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero2" />
@@ -69,10 +70,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="XamlStyler.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0b11ff60a8153268, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Source\Repos\XamlStyler\XamlStyler.Console\bin\Release\XamlStyler.Core.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
