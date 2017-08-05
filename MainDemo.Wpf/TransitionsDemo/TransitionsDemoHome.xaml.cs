@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignDemo.Helper;
 
 namespace MaterialDesignDemo.TransitionsDemo
 {
@@ -23,6 +24,7 @@ namespace MaterialDesignDemo.TransitionsDemo
         public TransitionsDemoHome()
         {
             InitializeComponent();
+			XamlDisplayerPanel.Initialize(new SourceRouter("TransitionsDemo/"+this.GetType().Name).GetSource());
         }
     }
 }
