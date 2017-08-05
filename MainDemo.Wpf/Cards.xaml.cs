@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
 using CodeDisplayer;
+using MaterialDesignDemo.Helper;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -25,17 +26,8 @@ namespace MaterialDesignColors.WpfExample
     {
         public Cards()
         {
-            InitializeComponent();            
-            //var xmlDoc = new XmlDocument();
-            //string source = File.ReadAllText(@"..\..\Cards.xaml");
-            //xmlDoc.LoadXml(source);
-            XmlDocument xmlDoc =
-                new MaterialDesignInXamlToolkitGitHubFile(
-                    ownerName: "wongjiahau" ,
-                    branchName: "New-Demo-2" ,
-                    fileName: "Cards.xaml")
-                 .GetXmlDocument();
-            XamlDisplayerPanel.Initialize(xmlDoc);
+            InitializeComponent();           
+			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
         }
 
 

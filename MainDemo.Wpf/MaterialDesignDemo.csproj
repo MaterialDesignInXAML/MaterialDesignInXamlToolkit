@@ -51,10 +51,6 @@
       <Paket>True</Paket>
       <Link>VirtualCollection/VirtualizingWrapPanel.cs</Link>
     </Compile>
-    <Reference Include="CodeDisplayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ExternalDependency\CodeDisplayer.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -136,6 +132,7 @@
     <Compile Include="GroupBoxes.xaml.cs">
       <DependentUpon>GroupBoxes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\SourceRouter.cs" />
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -414,6 +411,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Source\Repos\Displaying-XAML\WpfApplication1\CodeDisplayer\CodeDisplayer.csproj">
+      <Project>{ab0aca42-1c9f-4823-a8c9-4594c5b70f4e}</Project>
+      <Name>CodeDisplayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj">
       <Project>{90b53209-c60c-4655-b28d-a1b3e1044ba3}</Project>
       <Name>MaterialDesignColors.Wpf</Name>

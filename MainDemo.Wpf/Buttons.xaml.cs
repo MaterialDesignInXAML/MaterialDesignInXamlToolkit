@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Xml;
 using CodeDisplayer;
 using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignDemo.Helper;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -27,14 +28,9 @@ namespace MaterialDesignColors.WpfExample
 		public Buttons()
 		{
 			InitializeComponent();
-
 			FloatingActionDemoCommand = new AnotherCommandImplementation(Execute);
-            var xmlDoc = new XmlDocument();
-            string source = File.ReadAllText(@"..\..\Buttons.xaml");
-            xmlDoc.LoadXml(source);
-            XamlDisplayerPanel.Initialize(xmlDoc);
-            //XamlDisplayerPanel.Initialize(new MaterialDesignInXamlToolkitGitHubFile(this.GetType().Name).GetXmlDocument());
-        }
+			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+		}
 
 		public ICommand FloatingActionDemoCommand { get; }
 

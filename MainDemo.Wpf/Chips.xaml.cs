@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
+using MaterialDesignDemo.Helper;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -24,10 +25,7 @@ namespace MaterialDesignColors.WpfExample
         public Chips()
         {
             InitializeComponent();
-            var xmlDoc = new XmlDocument();
-            xmlDoc.Load(@"C:\Users\User\Desktop\MaterialDesignXAMLToolKitNew\MaterialDesignInXamlToolkit\MainDemo.Wpf\Chips.xaml");
-            this.XamlDisplayerPanel.Initialize(xmlDoc); ;
-
+			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
         }
 
         private void ButtonsDemoChip_OnClick(object sender, RoutedEventArgs e)
