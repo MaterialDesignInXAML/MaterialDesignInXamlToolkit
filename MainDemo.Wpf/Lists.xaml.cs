@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignDemo.Helper;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -23,6 +24,7 @@ namespace MaterialDesignColors.WpfExample
         public Lists()
         {
             InitializeComponent();
+			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
         }
     }
 }
