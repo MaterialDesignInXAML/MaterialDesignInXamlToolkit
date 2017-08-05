@@ -8,19 +8,15 @@
 			 xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
 			 xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
 			 mc:Ignorable="d"               
-			 d:DesignHeight="300" d:DesignWidth="600" Loaded="UserControl_Loaded"
+			 Loaded="UserControl_Loaded"
 			 d:DataContext="{d:DesignInstance domain:TextFieldsViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- note you only need bring in these extra resource dictionaries when using non-default styles, so only bring them into your controls where the default style is not what you want -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
-                <Setter Property="Margin" Value="0 8 0 8" />
-            </Style>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignPasswordBox}">
                 <Setter Property="Margin" Value="0 8 0 8" />
             </Style>
@@ -54,42 +50,51 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <TextBlock VerticalAlignment="Center" Margin="16 0 8 0">OS</TextBlock>
-        <ComboBox materialDesign:HintAssist.Hint="OS">
-            <ComboBoxItem>Android</ComboBoxItem>
-            <ComboBoxItem>iOS</ComboBoxItem>
-            <ComboBoxItem>Linux</ComboBoxItem>
-            <ComboBoxItem>Windows</ComboBoxItem>
-        </ComboBox>
-        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32 0 0 0">Multi-line</TextBlock>
-        <TextBox TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="32 0 0 0"
-				 MinWidth="280"
+        <StackPanel Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Margin="0 0 8 0">OS</TextBlock>
+            <ComboBox materialDesign:HintAssist.Hint="OS">
+                <ComboBoxItem>Android</ComboBoxItem>
+                <ComboBoxItem>iOS</ComboBoxItem>
+                <ComboBoxItem>Linux</ComboBoxItem>
+                <ComboBoxItem>Windows</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" >Multi-line</TextBlock>
+        <TextBox TextWrapping="Wrap" VerticalAlignment="Stretch" 
+                 MaxWidth="300"
 				 AcceptsReturn="True"                 
 				 VerticalScrollBarVisibility="Auto"
 				 SpellCheck.IsEnabled="True"
 				 materialDesign:HintAssist.Hint="Multiline text"
 				 Height="80">Multiline.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The quick brown fox jumps over the lazy dog. War and peace. Keep going. Go on. For how long? Not long. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TextBox>
-        <materialDesign:PackIcon Kind="Phone" Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}" />
-        <TextBox
+        <StackPanel Orientation="Horizontal">
+            <materialDesign:PackIcon Kind="Phone" Margin="0 0 8 0" Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}" />
+            <TextBox
 		    x:Name="PhoneTextBox"				 
 				 materialDesign:TransitionAssist.DisableTransitions="True"
+                Width="150"
 					/>
-        <TextBlock VerticalAlignment="Center" Margin="16 0 8 0">Fruit</TextBlock>
-        <ComboBox materialDesign:HintAssist.Hint="Search"
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Margin="0 0 8 0" >Fruit</TextBlock>
+            <ComboBox materialDesign:HintAssist.Hint="Search"
 				  IsEditable="True" materialDesign:HintAssist.HintOpacity=".26">
-            <ComboBoxItem>Apple</ComboBoxItem>
-            <ComboBoxItem>Banana</ComboBoxItem>
-            <ComboBoxItem>Pear</ComboBoxItem>
-            <ComboBoxItem>Orange</ComboBoxItem>
-        </ComboBox>
+                <ComboBoxItem>Apple</ComboBoxItem>
+                <ComboBoxItem>Banana</ComboBoxItem>
+                <ComboBoxItem>Pear</ComboBoxItem>
+                <ComboBoxItem>Orange</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
         <TextBox
             x:Name="CommentTextBox"
 				 materialDesign:HintAssist.Hint="Comment"
 					/>
-        <materialDesign:PackIcon  Kind="Key" Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}" HorizontalAlignment="Right" />
-        <PasswordBox 
+        <StackPanel Orientation="Horizontal">
+            <materialDesign:PackIcon Margin="0 0 8 0" Kind="Key" Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}" HorizontalAlignment="Right" />
+            <PasswordBox 
 					 x:Name="PasswordBox"
 					 materialDesign:HintAssist.Hint="Password" />
+        </StackPanel>
         <TextBox  materialDesign:HintAssist.Hint="Floating Hint" 
 				 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
         <ComboBox  materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -100,7 +105,7 @@
         </ComboBox>
         <ComboBox materialDesign:HintAssist.Hint="Virtualisation" 
 						  MinWidth="72"
-						  Margin="0 0 0 0"
+						  
 						  VerticalAlignment="Bottom"                           
 						  ItemsSource="{Binding LongListToTestComboVirtualization}"                          
 						  SelectedValue="{Binding SelectedValueOne}">
@@ -119,7 +124,7 @@
         </ComboBox>
         <ComboBox materialDesign:HintAssist.Hint="(editable)" 
 						  MinWidth="72"
-						  Margin="16 0 0 0"
+						  
 						  VerticalAlignment="Bottom" 
 						  IsEditable="True"                          
 						  ItemsSource="{Binding LongListToTestComboVirtualization}">
@@ -138,7 +143,7 @@
         </ComboBox>
         <ComboBox materialDesign:HintAssist.Hint="(float hint)" 
 						  MinWidth="72"
-						  Margin="16 0 0 0"
+						  
 						  ItemsSource="{Binding LongListToTestComboVirtualization}"
 						  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
             <ComboBox.ItemsPanel>
@@ -147,17 +152,16 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
-        <TextBox  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff"
-				 Margin="0 8 0 8">
+        <TextBox Margin="0 0 8 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff">
             <materialDesign:HintAssist.Hint>
-                <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                <StackPanel Orientation="Horizontal" >
                     <materialDesign:PackIcon Kind="AccessPoint" />
                     <TextBlock>WiFi</TextBlock>
                 </StackPanel>
             </materialDesign:HintAssist.Hint>
         </TextBox>
         <ComboBox  materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-				  Margin="0 8 0 8">
+				  >
             <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
             <ComboBoxItem>Banana</ComboBoxItem>
             <ComboBoxItem>Pear</ComboBoxItem>
@@ -165,7 +169,7 @@
         </ComboBox>
         <PasswordBox 
 					 x:Name="FloatingPasswordBox"
-					 Margin="0 12 0 0"
+					 
 					 materialDesign:HintAssist.Hint="Floating Password"
 					 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
@@ -178,35 +182,35 @@
 				 FontSize="24"/>
 
         <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}"
-				   Margin="0 48 0 0">DataTemplate Test</TextBlock>
+				   >DataTemplate Test</TextBlock>
         <ContentControl 
 						Content="{Binding DemoItem}"
-						Margin="0 12 0 0">
+						>
             <ContentControl.ContentTemplate>
                 <DataTemplate DataType="domain:DemoItem">
                     <StackPanel Orientation="Horizontal">
-                        <TextBox materialDesign:HintAssist.Hint="Name" Text="{Binding Name}" Margin="0 0 0 0" VerticalAlignment="Bottom" />
-                        <TextBox materialDesign:HintAssist.Hint="Content" Text="{Binding Content}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
-                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Text="{Binding Name}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
-                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Content" Text="{Binding Content}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
+                        <TextBox Margin="0 0 5 0" materialDesign:HintAssist.Hint="Name" Text="{Binding Name}"  VerticalAlignment="Bottom" />
+                        <TextBox  Margin="0 0 5 0" materialDesign:HintAssist.Hint="Content" Text="{Binding Content}"  VerticalAlignment="Bottom" />
+                        <TextBox  Margin="0 0 5 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Text="{Binding Name}"  VerticalAlignment="Bottom" />
+                        <TextBox  Margin="0 0 5 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Content" Text="{Binding Content}"  VerticalAlignment="Bottom" />
                     </StackPanel>
                 </DataTemplate>
             </ContentControl.ContentTemplate>
         </ContentControl>
         <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}"
-				   Margin="0 16 0 0">DataTemplateSelector Test</TextBlock>
+				   >DataTemplateSelector Test</TextBlock>
         <ContentControl 
 						Content="{Binding DemoItem}"
-						Margin="0 12 0 0">
+						>
             <ContentControl.ContentTemplateSelector>
                 <domain1:SimpleDataTemplateSelector>
                     <domain1:SimpleDataTemplateSelector.FixedTemplate>
                         <DataTemplate DataType="domain:DemoItem">
                             <StackPanel Orientation="Horizontal">
-                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Text="{Binding Name}" Margin="0 0 0 0" VerticalAlignment="Bottom" />
-                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Content" Text="{Binding Content}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
-                                <TextBox materialDesign:HintAssist.Hint="Name" Text="{Binding Name}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
-                                <TextBox materialDesign:HintAssist.Hint="Content" Text="{Binding Content}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
+                                <TextBox  Margin="0 0 5 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Text="{Binding Name}"  VerticalAlignment="Bottom" />
+                                <TextBox  Margin="0 0 5 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Content" Text="{Binding Content}"  VerticalAlignment="Bottom" />
+                                <TextBox  Margin="0 0 5 0" materialDesign:HintAssist.Hint="Name" Text="{Binding Name}"  VerticalAlignment="Bottom" />
+                                <TextBox  Margin="0 0 5 0" materialDesign:HintAssist.Hint="Content" Text="{Binding Content}"  VerticalAlignment="Bottom" />
                             </StackPanel>
                         </DataTemplate>
                     </domain1:SimpleDataTemplateSelector.FixedTemplate>
@@ -214,7 +218,7 @@
             </ContentControl.ContentTemplateSelector>
         </ContentControl>
         <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}"
-				   Margin="0 48 0 0">Tight Space Validation</TextBlock>
+				   >Tight Space Validation</TextBlock>
         <TextBox Width="20"
 				 materialDesign:ValidationAssist.UsePopup="True"
 				 HorizontalAlignment="Left"
@@ -230,10 +234,10 @@
         <CheckBox 
 				  x:Name="DisplaySelectedItemCheckBox"
 				  IsThreeState="False"
-				  Margin="0 8 0 0">Display Selected Item In Drop Down</CheckBox>
+				  >Display Selected Item In Drop Down</CheckBox>
         <ComboBox 
 				  materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=DisplaySelectedItemCheckBox, Path=IsChecked}"
-				  Margin="0 8 0 8" HorizontalAlignment="Left">
+				   HorizontalAlignment="Left">
             <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
             <ComboBoxItem>Banana</ComboBoxItem>
             <ComboBoxItem>Pear</ComboBoxItem>
@@ -242,25 +246,25 @@
         <CheckBox 
 				  x:Name="ClassicModeCheckBox"
 				  IsThreeState="False" IsChecked="True"
-				  Margin="0 8 0 0">Use classic mode</CheckBox>
+				  >Use classic mode</CheckBox>
         <ComboBox 
 				  materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}"
-				  Margin="0 8 0 8" HorizontalAlignment="Left">
+				   HorizontalAlignment="Left">
             <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
             <ComboBoxItem>Banana</ComboBoxItem>
             <ComboBoxItem>Pear</ComboBoxItem>
             <ComboBoxItem>Orange</ComboBoxItem>
         </ComboBox>
-        <TextBlock  Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Text field box</TextBlock>
+        <TextBlock  Style="{StaticResource MaterialDesignHeadlineTextBlock}" >Text field box</TextBlock>
         <CheckBox x:Name="MaterialDesignTextFieldBoxTextBoxEnabledComboBox" 
-				  IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>
+				  IsChecked="True" >Enabled</CheckBox>
         <TextBox  Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
 				 VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" MaxWidth="400" materialDesign:HintAssist.Hint="Floating hint in a box"
 				 IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextFieldBoxTextBoxEnabledComboBox}" />
-        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Text area box</TextBlock>
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" >Text area box</TextBlock>
         <CheckBox x:Name="MaterialDesignTextAreaTextBoxEnabledComboBox" 
-				  IsChecked="True" Margin="32,0,0,8">Enabled</CheckBox>
-        <TextBox  Style="{StaticResource MaterialDesignTextAreaTextBox}" Margin="32,0,0,0"
+				  IsChecked="True" >Enabled</CheckBox>
+        <TextBox  Style="{StaticResource MaterialDesignTextAreaTextBox}" 
 				 VerticalAlignment="Top" Height="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="This is a text area"
 				 IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextAreaTextBoxEnabledComboBox}" />
     </codeDisplayer:XamlDisplayerPanel>
