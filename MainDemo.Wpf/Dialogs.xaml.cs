@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignDemo.Helper;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignColors.WpfExample
@@ -24,6 +25,7 @@ namespace MaterialDesignColors.WpfExample
         public Dialogs()
         {
             InitializeComponent();
+			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
         }
 
         private void Sample1_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
