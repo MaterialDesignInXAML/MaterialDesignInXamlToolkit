@@ -29,17 +29,12 @@ namespace MaterialDesignColors.WpfExample
 			InitializeComponent();
 
 			FloatingActionDemoCommand = new AnotherCommandImplementation(Execute);
-			//var xmlDoc = new XmlDocument();
-			//string source = File.ReadAllText(@"..\..\Buttons.xaml");
-			//xmlDoc.LoadXml(source);
-            XmlDocument xmlDoc =
-                new MaterialDesignInXamlToolkitGitHubFile(
-                        ownerName: "wongjiahau" ,
-                        branchName: "New-Demo-2" ,
-                        fileName: "Buttons.xaml")
-                    .GetXmlDocument();
+            var xmlDoc = new XmlDocument();
+            string source = File.ReadAllText(@"..\..\Buttons.xaml");
+            xmlDoc.LoadXml(source);
             XamlDisplayerPanel.Initialize(xmlDoc);
-		}
+            //XamlDisplayerPanel.Initialize(new MaterialDesignInXamlToolkitGitHubFile(this.GetType().Name).GetXmlDocument());
+        }
 
 		public ICommand FloatingActionDemoCommand { get; }
 
