@@ -4,62 +4,50 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel Margin="8 8 0 0">
-        <TextBlock>Raised controls have default shadows set, but the shadows can be overriden.</TextBlock>
-        <StackPanel Orientation="Horizontal" Margin="0 32 0 0">
+    <ScrollViewer>
+        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel" >
+            <TextBlock>Raised controls have default shadows set, but the shadows can be overriden.</TextBlock>
             <Button Style="{DynamicResource MaterialDesignRaisedButton}"                    
                     >DEPTH 1</Button>
             <Button Style="{DynamicResource MaterialDesignRaisedButton}"
-                    Margin="16 0 0 0"
                     materialDesign:ShadowAssist.ShadowDepth="Depth2"
                     >DEPTH 2</Button>
             <Button Style="{DynamicResource MaterialDesignRaisedButton}"
-                    Margin="16 0 0 0"
                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
                     >DEPTH 3</Button>
             <Button Style="{DynamicResource MaterialDesignRaisedButton}"
-                    Margin="16 0 0 0"
                     materialDesign:ShadowAssist.ShadowDepth="Depth4"
                     >DEPTH 4</Button>
             <Button Style="{DynamicResource MaterialDesignRaisedButton}"
-                    Margin="16 0 0 0"
                     materialDesign:ShadowAssist.ShadowDepth="Depth5"
                     >DEPTH 5</Button>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0 32 0 0">
             <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"                   
                     materialDesign:ShadowAssist.ShadowDepth="Depth1"
                     >1</Button>
             <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
-                    Margin="16 0 0 0"
                     materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                    ToolTip="This is the default depth"
                     >2</Button>
             <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
-                    Margin="16 0 0 0"                    
                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
                     >3</Button>
             <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
-                    Margin="16 0 0 0"
                     materialDesign:ShadowAssist.ShadowDepth="Depth4"
                     >4</Button>
             <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
-                    Margin="16 0 0 0"
                     materialDesign:ShadowAssist.ShadowDepth="Depth5"
                     >5</Button>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0 32 0 0">
             <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Padding="32">DEPTH 1</materialDesign:Card>
-            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth2" Margin="16 0 0 0" Padding="32">DEPTH 2</materialDesign:Card>
-            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="16 0 0 0" Padding="32">DEPTH 3</materialDesign:Card>
-            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth4" Margin="16 0 0 0" Padding="32">DEPTH 4</materialDesign:Card>
-            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5" Margin="16 0 0 0" Padding="32">DEPTH 5</materialDesign:Card>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0 32 0 0">
+            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth2"  Padding="32">DEPTH 2</materialDesign:Card>
+            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3"  Padding="32">DEPTH 3</materialDesign:Card>
+            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth4"  Padding="32">DEPTH 4</materialDesign:Card>
+            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"  Padding="32">DEPTH 5</materialDesign:Card>
             <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Right" Padding="32">CUSTOM CLIP</materialDesign:Card>
-            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Top" Margin="16 0 0 0" Padding="32">CUSTOM CLIP</materialDesign:Card>
-            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Left" Margin="16 0 0 0" Padding="32">CUSTOM CLIP</materialDesign:Card>
-        </StackPanel>
-    </StackPanel>
+            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Top" Padding="32">CUSTOM CLIP</materialDesign:Card>
+            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Left"  Padding="32">CUSTOM CLIP</materialDesign:Card>
+        </codeDisplayer:XamlDisplayerPanel>
+    </ScrollViewer>
 </UserControl>
