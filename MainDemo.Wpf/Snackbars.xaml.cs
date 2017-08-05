@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CodeDisplayer;
+using MaterialDesignDemo.Helper;
 
 namespace MaterialDesignDemo
 {
@@ -24,6 +26,7 @@ namespace MaterialDesignDemo
         public Snackbars()
         {
             InitializeComponent();
+			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
         }
 
         private void SnackBar3_OnClick(object sender, RoutedEventArgs e)

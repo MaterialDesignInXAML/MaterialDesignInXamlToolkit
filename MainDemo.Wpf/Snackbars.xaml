@@ -5,75 +5,56 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MaterialDesignDemo"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
-        <Grid Margin="0 0 0 4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="340" />
-                <ColumnDefinition Width="340" />
-                <ColumnDefinition Width="340" />
-                <ColumnDefinition Width="340" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-
-            <!-- example 1 -->
+        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel" Margin="0 0 0 4">
             <Border Background="{DynamicResource MaterialDesignSelection}" 
                     Padding="8 0 8 0">
-                <Grid>
+                <Grid Height="200">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 1.</TextBlock>
                         <TextBlock TextWrapping="WrapWithOverflow" >Simple definition within XAML. Use the toggle to display the message.</TextBlock>
-                        <ToggleButton IsChecked="{Binding ElementName=SnackbarOne, Path=IsActive, Mode=TwoWay}"
+                        <ToggleButton x:Name="ToggleButton1" 
                                       Margin="0 8 0 0"/>
                     </StackPanel>
-
-
                     <!-- simplest form -->
                     <materialDesign:Snackbar Message="hello 1" 
-                                             IsActive="False"
-                                             x:Name="SnackbarOne" />
+                                             IsActive="{Binding ElementName=ToggleButton1, Path=IsChecked}"
+                                             Width="300"/>
                 </Grid>
             </Border>
 
-            <!-- example 2 -->
-            <Border Background="{DynamicResource MaterialDesignPaper}" 
-                    Padding="8 0 8 0"
-                    Grid.Column="1">
+            <Border Background="{DynamicResource MaterialDesignPaper}" Height="200"
+                    Padding="8 0 8 0">
                 <Grid>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 2.</TextBlock>
                         <TextBlock TextWrapping="WrapWithOverflow" >View source to see message defined in long hand, allowing action button content to be set.</TextBlock>
-                        <ToggleButton IsChecked="{Binding ElementName=SnackbarTwo, Path=IsActive, Mode=TwoWay}"
+                        <ToggleButton x:Name="ToggleButton2"
                                       Margin="0 8 0 0" />
                     </StackPanel>
-
                     <!-- long hand form for setting the message -->
-                    <materialDesign:Snackbar IsActive="False"
-                                              x:Name="SnackbarTwo" >
+                    <materialDesign:Snackbar IsActive="{Binding ElementName=ToggleButton2, Path=IsChecked}">
                         <materialDesign:SnackbarMessage Content="Hello 2" ActionContent="UNDO" />
                     </materialDesign:Snackbar>
                 </Grid>
             </Border>
 
-            <!-- example 3 -->
-            <!--
+            <Border Background="{DynamicResource MaterialDesignSelection}" 
+                    Padding="8 0 8 0">
+                            <!--
                     * using a message queue to manage queuing of messages, and getting onto correct thread
                     * notice the shorthand syntax {materialDesign:MessageQueue} for creating a new message 
                     queue without expanded XAML. useful in code-behind scenarios if you dont want to bind 
                     a message queue in to the snackbar.
                 -->
-            <Border Background="{DynamicResource MaterialDesignSelection}" 
-                    Padding="8 0 8 0"                
-                    Grid.Column="2">
                 <Grid>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 3.</TextBlock>
-                        <TextBlock TextWrapping="WrapWithOverflow">In many real world scenario, notification display must deal with threading, queuing, and potentially heavy usage. A MessageQueue can be set to handle much of this for you, gicing the following benefits:</TextBlock>
+                        <TextBlock TextWrapping="WrapWithOverflow" MaxWidth="300">In many real world scenario, notification display must deal with threading, queuing, and potentially heavy usage. A MessageQueue can be set to handle much of this for you, gicing the following benefits:</TextBlock>
                         <TextBlock TextWrapping="WrapWithOverflow" Margin="0 8 0 0" Text=" • Messages can be queued from any thread"/>
                         <TextBlock TextWrapping="WrapWithOverflow" Text=" • Message will auto hide after a time out period"/>
                         <TextBlock TextWrapping="WrapWithOverflow" Text=" • Notification will not time out if mouse is over it"/>
@@ -99,15 +80,13 @@
                 </Grid>
             </Border>
 
-            <!-- example 4 -->
-            <!-- illustrates queueing uses some action command call backs -->
             <Border Background="{DynamicResource MaterialDesignPaper}" 
-                    Padding="8 0 8 0"                
-                    Grid.Column="3">
+                    Padding="8 0 8 0">
+            <!-- illustrates queueing uses some action command call backs -->
                 <Grid>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 4.</TextBlock>
-                        <TextBlock TextWrapping="WrapWithOverflow">Illustrates queueing (including discarding of duplicates), and handling of commands. Action a notification to see a System.Trace response..</TextBlock>
+                        <TextBlock TextWrapping="WrapWithOverflow" MaxWidth="300">Illustrates queueing (including discarding of duplicates), and handling of commands. Action a notification to see a System.Trace response..</TextBlock>
                         <Grid Margin="0 16 0 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -123,30 +102,25 @@
                 </Grid>
             </Border>
 
-            <!-- example 5 -->
+            <Border Background="{DynamicResource MaterialDesignChipBackground}" Height="300">
             <!-- full width snack bar -->
-            <Border Background="{DynamicResource MaterialDesignChipBackground}" 
-                    Grid.ColumnSpan="2"
-                    Grid.Row="1">
                 <StackPanel VerticalAlignment="Bottom">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Margin="0 0 0 32">
                         <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 5.</TextBlock>
                         <TextBlock TextWrapping="WrapWithOverflow">Illustrates a full width Snackbar.</TextBlock>
-                        <ToggleButton IsChecked="{Binding ElementName=SnackbarFive, Path=IsActive, Mode=TwoWay}"
+                        <ToggleButton x:Name="ToggleButton3"
                                       Margin="0 8 0 0" />
                     </StackPanel>
-                    <materialDesign:Snackbar HorizontalAlignment="Stretch"
-                                             x:Name="SnackbarFive">
+                    <materialDesign:Snackbar HorizontalAlignment="Stretch" IsActive="{Binding ElementName=ToggleButton3, Path=IsChecked}">
                         <materialDesign:SnackbarMessage Content="This Snackbar is stretched horizontally. Consider allowing your content to push up."                                                    
                                                         ActionContent="OK" />
                     </materialDesign:Snackbar>
                 </StackPanel>
             </Border>
 
-            <!-- example 6 -->
+            <Border>
             <!-- colour variations -->
-            <Border Grid.Column="2" Grid.Row="1">
                 <Border.Resources>
                     <ResourceDictionary>
                         <ResourceDictionary.MergedDictionaries>
@@ -182,6 +156,6 @@
                     </materialDesign:Snackbar>
                 </StackPanel>
             </Border>
-        </Grid>
+        </codeDisplayer:XamlDisplayerPanel>
     </ScrollViewer>
 </UserControl>
