@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignDemo.Helper;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -24,6 +25,7 @@ namespace MaterialDesignColors.WpfExample
         public Trees()
         {
             InitializeComponent();
+			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
         }
 
         public TreesViewModel ViewModel => DataContext as TreesViewModel;
