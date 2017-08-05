@@ -39,7 +39,7 @@
                                  x:Name="ButtonsDemoChip"
                                  Click="ButtonsDemoChip_OnClick"
                                  DeleteClick="ButtonsDemoChip_OnDeleteClick"
-                                 ToolTip="Just a tool tip"
+                                 ToolTip="Just a tool tip"                                
                                  DeleteToolTip="Your friendly neighbour delete button"
                                  >
                 <materialDesign:Chip.Icon>

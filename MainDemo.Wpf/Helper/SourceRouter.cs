@@ -11,7 +11,7 @@ using CodeDisplayer;
 namespace MaterialDesignDemo.Helper {
     public class SourceRouter {
         private string _typeName;
-        private const bool GetFromLocalSource = false;
+        private const bool GetFromLocalSource = true;
         public SourceRouter(string typeName) {
             _typeName = typeName;
         }
