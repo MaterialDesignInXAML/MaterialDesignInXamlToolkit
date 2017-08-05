@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:MaterialDesignDemo"
+             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -16,44 +17,36 @@
         </ResourceDictionary>
 
     </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-
-        <GroupBox Grid.Column="0" Grid.Row="0" Header="Default Look" Margin="16">
-            <TextBlock>My Content</TextBlock>
-        </GroupBox>
-
-        <GroupBox Grid.Column="1" Grid.Row="0" Header="Shadow Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">
-            <TextBlock Margin="6,6,6,6" TextWrapping="Wrap">Short loin picanha boudin pork belly. Ground round porchetta biltong, cow t-bone tri-tip strip steak chuck filet mignon jowl turducken. Landjaeger strip steak pork chop, jowl sirloin pork capicola andouille. Kevin ribeye tongue, drumstick hamburger frankfurter t-bone corned beef beef biltong cow venison. Biltong picanha bresaola pork belly, filet mignon spare ribs doner pork chop kielbasa. Swine flank drumstick pork belly pancetta spare ribs rump filet mignon.</TextBlock>
-        </GroupBox>
-
-        <Border Grid.Column="2" Grid.Row="0" Background="{DynamicResource MaterialDesignBackground}">
-            <GroupBox Header="Transparent Background" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" UseLayoutRounding="True" SnapsToDevicePixels="True">
+    <ScrollViewer>
+        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel">
+            <GroupBox Width="200" Height="100" Header="Default Look" Margin="16">
                 <TextBlock>My Content</TextBlock>
             </GroupBox>
-        </Border>
-        <GroupBox Grid.Column="0" Grid.Row="1" Header="Accent Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ColorZoneAssist.Mode="Accent">
-            <TextBlock>My Content</TextBlock>
-        </GroupBox>
 
-        <GroupBox Grid.Column="1" Grid.Row="1" Header="Card Group Box" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16">
-            <GroupBox.HeaderTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="ImageArea" Height="32" Width="32" VerticalAlignment="Center" />
-                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </GroupBox.HeaderTemplate>
-            <Image Source="Resources/Contact.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        </GroupBox>
-    </Grid>
+            <GroupBox  Header="Shadow Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">
+                <TextBlock Margin="6,6,6,6" MaxWidth="300" TextWrapping="Wrap">Short loin picanha boudin pork belly. Ground round porchetta biltong, cow t-bone tri-tip strip steak chuck filet mignon jowl turducken. Landjaeger strip steak pork chop, jowl sirloin pork capicola andouille. Kevin ribeye tongue, drumstick hamburger frankfurter t-bone corned beef beef biltong cow venison. Biltong picanha bresaola pork belly, filet mignon spare ribs doner pork chop kielbasa. Swine flank drumstick pork belly pancetta spare ribs rump filet mignon.</TextBlock>
+            </GroupBox>
+
+            <Border  Background="{DynamicResource MaterialDesignBackground}">
+                <GroupBox Header="Transparent Background" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" UseLayoutRounding="True" SnapsToDevicePixels="True">
+                    <TextBlock>My Content</TextBlock>
+                </GroupBox>
+            </Border>
+            <GroupBox  Header="Accent Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ColorZoneAssist.Mode="Accent">
+                <TextBlock>My Content</TextBlock>
+            </GroupBox>
+
+            <GroupBox  Header="Card Group Box" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16">
+                <GroupBox.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ImageArea" Height="32" Width="32" VerticalAlignment="Center" />
+                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GroupBox.HeaderTemplate>
+                <Image Source="Resources/Contact.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </GroupBox>
+        </codeDisplayer:XamlDisplayerPanel>
+    </ScrollViewer>
 </UserControl>
