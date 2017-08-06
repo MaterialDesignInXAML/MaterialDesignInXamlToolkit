@@ -26,8 +26,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.MahApp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.Wpf.Tests", "MaterialDesignThemes.Wpf.Tests\MaterialDesignThemes.Wpf.Tests.csproj", "{A361C80E-F6CD-4C57-A96C-002DB159C1F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeDisplayer", "..\..\..\Source\Repos\Displaying-XAML\WpfApplication1\CodeDisplayer\CodeDisplayer.csproj", "{AB0ACA42-1C9F-4823-A8C9-4594C5B70F4E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppVeyor|Any CPU = AppVeyor|Any CPU
