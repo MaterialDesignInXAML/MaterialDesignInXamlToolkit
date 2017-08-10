@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
@@ -12,6 +13,27 @@ namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
     {
+        private static ResourceDictionary refinedBrushDictionary;
+        private static SwatchesProvider provider;
+		
+		public PaletteHelper()
+        {
+            provider = new SwatchesProvider();
+            refinedBrushDictionary = Application.Current.Resources;
+        }
+
+        /// <summary>
+        /// Providing ability to support custom array of colour swatch in the defined assembly.
+        /// Increased performance on searching of colour brushes by limiting the resource dictionary search field.
+        /// </summary>
+        /// <param name="assembly"> The Assembly containing the custom colour swatches.</param>
+        /// <param name="brushDictionary">The Resource Dictionary containing the Material Design Brush definition.</param>
+        public PaletteHelper(Assembly assembly, ResourceDictionary brushDictionary = null)
+        {
+            provider = new SwatchesProvider(assembly);
+            refinedBrushDictionary = brushDictionary ?? Application.Current.Resources;
+        }
+		
         public virtual void SetLightDark(bool isDark)
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
@@ -82,7 +104,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
-            var swatch = new SwatchesProvider().Swatches.FirstOrDefault(
+            var swatch = provider.Swatches.FirstOrDefault(
                 s => string.Compare(s.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0);
 
             if (swatch == null)
@@ -113,7 +135,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
-            var swatch = new SwatchesProvider().Swatches.FirstOrDefault(
+            var swatch = provider.Swatches.FirstOrDefault(
                 s => string.Compare(s.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0 && s.IsAccented);
 
             if (swatch == null)
@@ -133,8 +155,7 @@ namespace MaterialDesignThemes.Wpf
             //it's not safe to to query for the included swatches, so we find the mid (or accent) colour, 
             //& cross match it with the entirety of all available hues to find the owning swatch.
 
-            //TODO could cache this statically
-            var swatchesProvider = new SwatchesProvider();
+            var swatchesProvider = provider;
             var swatchByPrimaryHueIndex = swatchesProvider
                 .Swatches
                 .SelectMany(s => s.PrimaryHues.Select(h => new {s, h}))
@@ -207,7 +228,7 @@ namespace MaterialDesignThemes.Wpf
 
         private static SolidColorBrush GetBrush(string name)
         {
-            var group = GetTree(Application.Current.Resources)
+            var group = GetTree(refinedBrushDictionary)
                 .SelectMany(d => GetEntries(d).Select(e => new { d, e }))
                 .Where(a => a.e.Value is SolidColorBrush)
                 .GroupBy(a => (SolidColorBrush)a.e.Value)
