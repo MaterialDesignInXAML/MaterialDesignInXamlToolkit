@@ -15,11 +15,14 @@ namespace MaterialDesignThemes.Wpf
     {
         private static ResourceDictionary refinedBrushDictionary;
         private static SwatchesProvider provider;
-		
-		public PaletteHelper()
+
+		  public PaletteHelper()
         {
             provider = new SwatchesProvider();
-            refinedBrushDictionary = Application.Current.Resources;
+
+            // Null-propagation used to ensure that PalletteHelper can be mocked when Application.Current
+            // returns null within the context of a unit test.
+            refinedBrushDictionary = Application.Current?.Resources;
         }
 
         /// <summary>
@@ -33,7 +36,7 @@ namespace MaterialDesignThemes.Wpf
             provider = new SwatchesProvider(assembly);
             refinedBrushDictionary = brushDictionary ?? Application.Current.Resources;
         }
-		
+
         public virtual void SetLightDark(bool isDark)
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
@@ -71,8 +74,8 @@ namespace MaterialDesignThemes.Wpf
 
             var allHues = palette.PrimarySwatch.PrimaryHues.ToList();
             ReplacePrimaryColor(
-                palette.PrimarySwatch, 
-                allHues[palette.PrimaryLightHueIndex], 
+                palette.PrimarySwatch,
+                allHues[palette.PrimaryLightHueIndex],
                 allHues[palette.PrimaryMidHueIndex],
                 allHues[palette.PrimaryDarkHueIndex],
                 allHues);
@@ -98,7 +101,7 @@ namespace MaterialDesignThemes.Wpf
             var dark = list[palette.PrimaryDarkHueIndex];
 
             ReplacePrimaryColor(swatch, light, mid, dark, list);
-        }      
+        }
 
         public virtual void ReplacePrimaryColor(string name)
         {
@@ -152,7 +155,7 @@ namespace MaterialDesignThemes.Wpf
         /// standard guidleines have been followed for palette configureation, this should not happen.</exception>
         public Palette QueryPalette()
         {
-            //it's not safe to to query for the included swatches, so we find the mid (or accent) colour, 
+            //it's not safe to to query for the included swatches, so we find the mid (or accent) colour,
             //& cross match it with the entirety of all available hues to find the owning swatch.
 
             var swatchesProvider = provider;
@@ -202,7 +205,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("PrimaryHueDarkBrush", new SolidColorBrush(dark.Color));
             ReplaceEntry("PrimaryHueDarkForegroundBrush", new SolidColorBrush(dark.Foreground));
 
-            //mahapps brushes            
+            //mahapps brushes
             ReplaceEntry("HighlightBrush", new SolidColorBrush(dark.Color));
             ReplaceEntry("AccentColorBrush", new SolidColorBrush(dark.Color));
             ReplaceEntry("AccentColorBrush2", new SolidColorBrush(mid.Color));
@@ -215,7 +218,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("RightArrowFill", new SolidColorBrush(dark.Color));
             ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(dark.Foreground));
             ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark.Color) { Opacity = .4 });
-        }        
+        }
 
         private static int GetHueIndex(Swatch swatch, Color color, bool isAccent)
         {
@@ -269,15 +272,15 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="newValue">The new entry value</param>
         /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
         private static void ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
-        {            
+        {
             if (parentDictionary == null)
                 parentDictionary = Application.Current.Resources;
-            
+
             if (parentDictionary.Contains(entryName))
             {
                 var brush = parentDictionary[entryName] as SolidColorBrush;
                 if (brush != null && !brush.IsFrozen)
-                {                 
+                {
                     var animation = new ColorAnimation
                     {
                         From = ((SolidColorBrush)parentDictionary[entryName]).Color,
@@ -293,5 +296,5 @@ namespace MaterialDesignThemes.Wpf
             foreach (var dictionary in parentDictionary.MergedDictionaries)
                 ReplaceEntry(entryName, newValue, dictionary);
         }
-    }    
+    }
 }
