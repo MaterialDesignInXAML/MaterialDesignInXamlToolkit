@@ -25,7 +25,7 @@ namespace MaterialDesignColors.WpfExample
         public Typography()
         {
             InitializeComponent();
-			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+			
         }
     }
 }

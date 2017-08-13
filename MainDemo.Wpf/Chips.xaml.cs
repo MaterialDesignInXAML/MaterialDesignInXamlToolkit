@@ -25,7 +25,7 @@ namespace MaterialDesignColors.WpfExample
         public Chips()
         {
             InitializeComponent();
-			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+			
         }
 
         private void ButtonsDemoChip_OnClick(object sender, RoutedEventArgs e)

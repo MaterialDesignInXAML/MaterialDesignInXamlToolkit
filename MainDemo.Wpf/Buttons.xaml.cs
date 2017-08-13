@@ -29,7 +29,7 @@ namespace MaterialDesignColors.WpfExample
 		{
 			InitializeComponent();
 			FloatingActionDemoCommand = new AnotherCommandImplementation(Execute);
-			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+			
 		}
 
 		public ICommand FloatingActionDemoCommand { get; }

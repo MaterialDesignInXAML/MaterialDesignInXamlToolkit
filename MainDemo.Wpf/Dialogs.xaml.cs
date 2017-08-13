@@ -25,7 +25,7 @@ namespace MaterialDesignColors.WpfExample
         public Dialogs()
         {
             InitializeComponent();
-			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+			
         }
 
         private void Sample1_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)

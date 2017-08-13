@@ -25,7 +25,7 @@ namespace MaterialDesignColors.WpfExample
         public Trees()
         {
             InitializeComponent();
-			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+			
         }
 
         public TreesViewModel ViewModel => DataContext as TreesViewModel;

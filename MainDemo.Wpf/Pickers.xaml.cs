@@ -31,7 +31,7 @@ namespace MaterialDesignColors.WpfExample
             LoadLocales();
             LocaleCombo.SelectionChanged += LocaleCombo_SelectionChanged;
             LocaleCombo.SelectedItem = "fr-CA";
-			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+			
         }
 
         private void LocaleCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)

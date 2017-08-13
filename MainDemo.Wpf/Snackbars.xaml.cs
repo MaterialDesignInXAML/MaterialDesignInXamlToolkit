@@ -26,7 +26,7 @@ namespace MaterialDesignDemo
         public Snackbars()
         {
             InitializeComponent();
-			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+			
         }
 
         private void SnackBar3_OnClick(object sender, RoutedEventArgs e)

@@ -25,7 +25,7 @@ namespace MaterialDesignDemo
         public Drawers()
         {
             InitializeComponent();
-			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+			
         }
     }
 }

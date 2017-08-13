@@ -24,7 +24,7 @@ namespace MaterialDesignColors.WpfExample
         public Shadows()
         {
             InitializeComponent();
-			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+			
         }
     }
 }

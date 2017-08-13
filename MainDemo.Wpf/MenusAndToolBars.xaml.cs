@@ -25,7 +25,7 @@ namespace MaterialDesignColors.WpfExample
         public MenusAndToolBars()
         {
             InitializeComponent();
-			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+			
         }
 
         private void TwitterButton_OnClick(object sender, RoutedEventArgs e)

@@ -27,7 +27,7 @@ namespace MaterialDesignColors.WpfExample
         public Cards()
         {
             InitializeComponent();           
-			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+			
         }
 
 

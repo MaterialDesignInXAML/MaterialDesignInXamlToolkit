@@ -26,15 +26,6 @@ namespace MaterialDesignColors.WpfExample
         public Sliders()
         {
             InitializeComponent();          
-            //var xmlDoc = new XmlDocument();
-            //xmlDoc.Load(@"..\..\Sliders.xaml");
-            XmlDocument xmlDoc =
-                new MaterialDesignInXamlToolkitGitHubFile(
-                    ownerName: "wongjiahau" ,
-                    branchName: "New-Demo-2" ,
-                    fileName: "Sliders.xaml")
-                 .GetXmlDocument();
-            XamlDisplayerPanel.Initialize(xmlDoc);            
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e) {

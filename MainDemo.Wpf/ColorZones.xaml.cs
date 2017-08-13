@@ -25,7 +25,7 @@ namespace MaterialDesignColors.WpfExample
         public ColorZones()
         {
             InitializeComponent();
-			XamlDisplayerPanel.Initialize(new SourceRouter(this.GetType().Name).GetSource());
+			
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
+using CodeDisplayer;
 using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignThemes.Wpf;
 
@@ -17,8 +19,19 @@ namespace MaterialDesignColors.WpfExample
         public static Snackbar Snackbar;
         public MainWindow()
         {
-            InitializeComponent();                        
-
+            InitializeComponent();
+            XamlDisplayerPanel.Initialize(
+                source: XamlDisplayerPanel.SourceEnum.LoadFromLocal,
+                defaultLocalPath:
+                $@"C:\Users\User\Desktop\MaterialDesignXAMLToolKitNew\MaterialDesignInXamlToolkit\MainDemo.Wpf\",
+                defaultRemotePath: null,
+                attributesToBeRemoved:
+                new List<string>()
+                {
+                    "xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"",
+                    "xmlns:materialDesign=\"http://materialdesigninxaml.net/winfx/xaml/themes\"",
+                    "xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\""
+                });
             Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(2500);                

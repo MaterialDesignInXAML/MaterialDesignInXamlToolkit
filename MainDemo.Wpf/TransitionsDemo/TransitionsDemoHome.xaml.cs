@@ -24,7 +24,6 @@ namespace MaterialDesignDemo.TransitionsDemo
         public TransitionsDemoHome()
         {
             InitializeComponent();
-			XamlDisplayerPanel.Initialize(new SourceRouter("TransitionsDemo/"+this.GetType().Name).GetSource());
         }
     }
 }
