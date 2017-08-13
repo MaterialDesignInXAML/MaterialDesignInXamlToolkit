@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel">
+        <codeDisplayer:XamlDisplayerPanel >
             <materialDesign:DrawerHost Margin="64" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}">
                 <materialDesign:DrawerHost.LeftDrawerContent>
                     <StackPanel Margin="16">

@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel">
+        <codeDisplayer:XamlDisplayerPanel >
             <TreeView Grid.Column="0"
                   MinWidth="220">
                 <TreeViewItem Header="Fruit">

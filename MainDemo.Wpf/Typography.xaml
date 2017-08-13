@@ -11,7 +11,7 @@
             <Setter Property="Opacity" Value=".68"></Setter>
         </Style>
     </UserControl.Resources>
-    <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel"  Margin="32">
+    <codeDisplayer:XamlDisplayerPanel   Margin="32">
         <TextBlock  Style="{StaticResource MaterialDesignDisplay4TextBlock}" Margin="0 4 0 4">Light 112sp</TextBlock>
         <TextBlock  Style="{StaticResource MaterialDesignDisplay4TextBlock}" Margin="0 4 0 4"><Hyperlink IsEnabled="False">(Disabled)</Hyperlink></TextBlock>
 

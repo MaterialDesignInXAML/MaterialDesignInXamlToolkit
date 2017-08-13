@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel">
+        <codeDisplayer:XamlDisplayerPanel >
             <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}">Custom Columns</TextBlock>
             <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
                       materialDesign:DataGridAssist.CellPadding="13 8 8 8" materialDesign:DataGridAssist.ColumnHeaderPadding="8">

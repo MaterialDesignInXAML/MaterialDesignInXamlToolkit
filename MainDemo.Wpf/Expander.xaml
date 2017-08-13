@@ -14,7 +14,7 @@
         </Style>
     </UserControl.Resources>
     <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel">
+        <codeDisplayer:XamlDisplayerPanel >
             <StackPanel>
                 <Expander HorizontalAlignment="Stretch"
                       Header="Expander Example 1a">

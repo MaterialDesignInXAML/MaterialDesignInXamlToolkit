@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel">
+        <codeDisplayer:XamlDisplayerPanel >
             <Menu IsMainMenu="True">
                 <MenuItem Header="_File">
                     <MenuItem Header="Save">

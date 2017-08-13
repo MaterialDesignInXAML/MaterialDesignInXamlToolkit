@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel" Margin="32">
+        <codeDisplayer:XamlDisplayerPanel  Margin="32">
             <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}">Chips</TextBlock>
             <materialDesign:Chip Content="James Willock" Margin="0 0 6 4">
                 <materialDesign:Chip.Icon>

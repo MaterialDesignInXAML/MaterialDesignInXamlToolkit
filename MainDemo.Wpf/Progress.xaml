@@ -17,7 +17,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel">
+        <codeDisplayer:XamlDisplayerPanel >
             <ProgressBar Orientation="Vertical" Width="200" Height="10" Value="25"   />
             <ProgressBar Orientation="Vertical"  Width="200" Height="10" IsIndeterminate="True"    />
             <ProgressBar Value="25"   Width="200" Height="10" />

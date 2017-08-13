@@ -17,7 +17,7 @@
     </UserControl.Resources>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" >
-        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel">
+        <codeDisplayer:XamlDisplayerPanel >
             <TextBlock TextWrapping="Wrap" MaxWidth="300" Margin="32">Dialogs are supported via the DialogHost control which was designed to work with MVVM/binding, code-behind, routed commands, and a pure code-based API.</TextBlock>
             <TextBlock TextWrapping="Wrap" MaxWidth="300" HorizontalAlignment="Center" VerticalAlignment="Top"
                            Margin="8 0 8 0"

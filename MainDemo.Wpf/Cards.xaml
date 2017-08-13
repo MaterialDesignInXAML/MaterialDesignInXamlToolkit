@@ -18,7 +18,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel">
+    <codeDisplayer:XamlDisplayerPanel >
         <materialDesign:Card Margin="4 4 0 0" Width="200">
             <Grid>
                 <Grid.RowDefinitions>

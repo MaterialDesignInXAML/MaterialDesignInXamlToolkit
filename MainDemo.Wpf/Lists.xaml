@@ -15,7 +15,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel" Margin="8" >
+    <codeDisplayer:XamlDisplayerPanel  Margin="8" >
         <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}">ListBox</TextBlock>
         <ListBox  IsEnabled="{Binding IsChecked, ElementName=EnableListBox}">
             <TextBlock>Plain</TextBlock>

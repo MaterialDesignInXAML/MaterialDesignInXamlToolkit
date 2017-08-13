@@ -10,7 +10,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
-        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel" Margin="0 0 0 4">
+        <codeDisplayer:XamlDisplayerPanel  Margin="0 0 0 4">
             <Border Background="{DynamicResource MaterialDesignSelection}" 
                     Padding="8 0 8 0">
                 <Grid Height="200">

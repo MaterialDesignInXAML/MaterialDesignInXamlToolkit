@@ -39,7 +39,7 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel">
+    <codeDisplayer:XamlDisplayerPanel >
         <TextBox  x:Name="NameTextBox"
 					materialDesign:HintAssist.Hint="Name">
             <TextBox.Text>

@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel MaxWidth="800" x:Name="XamlDisplayerPanel" DisplayMode="TopBottom">
+        <codeDisplayer:XamlDisplayerPanel MaxWidth="800"  DisplayMode="TopBottom">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

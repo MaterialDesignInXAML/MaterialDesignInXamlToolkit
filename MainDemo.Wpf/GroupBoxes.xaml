@@ -18,7 +18,7 @@
 
     </UserControl.Resources>
     <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel x:Name="XamlDisplayerPanel">
+        <codeDisplayer:XamlDisplayerPanel >
             <GroupBox Width="200" Height="100" Header="Default Look" Margin="16">
                 <TextBlock>My Content</TextBlock>
             </GroupBox>
