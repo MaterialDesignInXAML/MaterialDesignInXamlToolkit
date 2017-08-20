@@ -317,8 +317,13 @@ namespace MaterialDesignThemes.Wpf
 				button.SetBinding(Canvas.LeftProperty, GetBinding("X", button));
 				button.SetBinding(Canvas.TopProperty, GetBinding("Y", button));
 
-				button.Content = (i == 60 ? 0 : i).ToString(format);
-				canvas.Children.Add(button);
+			    if (Is24Hours) {
+			        button.Content = (i == 60 ? 0 : (i == 24 ? 0 : i)).ToString(format);
+			    }
+			    else {
+			        button.Content = (i == 60 ? 0 : i).ToString(format);
+                }
+			    canvas.Children.Add(button);
 			}
         }
         
