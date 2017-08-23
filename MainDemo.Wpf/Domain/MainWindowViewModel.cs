@@ -129,7 +129,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                 new DemoItem("Grids", new Grids { DataContext = new ListsAndGridsViewModel()},
                     new []
                     {
-                        DocumentationLink.DemoPageLink<Lists>("Demo View"),
+                        DocumentationLink.DemoPageLink<Grids>("Demo View"),
                         DocumentationLink.DemoPageLink<ListsAndGridsViewModel>("Demo View Model"),
                         DocumentationLink.StyleLink("DataGrid")
                     }),
