@@ -78,6 +78,15 @@ namespace MaterialDesignThemes.Wpf
             CommandBindings.Add(new CommandBinding(CloseDrawerCommand, CloseDrawerHandler));
         }
 
+        public bool StaysOpen 
+        {
+            get { return (bool)GetValue(StaysOpenProperty); }
+            set { SetValue(StaysOpenProperty , value); }
+        }
+
+        public static readonly DependencyProperty StaysOpenProperty =
+            DependencyProperty.Register("StaysOpen" , typeof(bool) , typeof(DrawerHost) , new PropertyMetadata(false));
+
         #region top drawer
 
         public static readonly DependencyProperty TopDrawerContentProperty = DependencyProperty.Register(
@@ -459,16 +468,13 @@ namespace MaterialDesignThemes.Wpf
                 PrepareZIndexes(BottomDrawerZIndexPropertyKey);
         }
 
-        private void TemplateContentCoverElementOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
+        private void TemplateContentCoverElementOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs) 
         {
-            if (LeftDrawerCloseOnClickAway)
-                SetCurrentValue(IsLeftDrawerOpenProperty, false);
-            if (RightDrawerCloseOnClickAway)
-                SetCurrentValue(IsRightDrawerOpenProperty, false);
-            if (TopDrawerCloseOnClickAway)
-                SetCurrentValue(IsTopDrawerOpenProperty, false);
-            if (BottomDrawerCloseOnClickAway)
-                SetCurrentValue(IsBottomDrawerOpenProperty, false);
+            if (StaysOpen) return;
+            SetCurrentValue(IsLeftDrawerOpenProperty, false);
+            SetCurrentValue(IsRightDrawerOpenProperty, false);
+            SetCurrentValue(IsTopDrawerOpenProperty, false);
+            SetCurrentValue(IsBottomDrawerOpenProperty, false);
         }
 
         private void UpdateVisualStates(bool? useTransitions = null)
