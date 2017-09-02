@@ -113,7 +113,7 @@
                     </Button>
                 <StackPanel HorizontalAlignment="Center" Margin="5" Grid.Row="3" Grid.ColumnSpan="3" Orientation="Horizontal">
                     <TextBlock>Stays open </TextBlock>
-                    <CheckBox IsChecked="{Binding ElementName=DrawerHost, Path=StaysOpen}"></CheckBox>
+                    <CheckBox IsChecked="{Binding ElementName=DrawerHost, Path=CloseOnClickAway}"></CheckBox>
                 </StackPanel>
                 </Grid>
             </Grid>

@@ -78,14 +78,14 @@ namespace MaterialDesignThemes.Wpf
             CommandBindings.Add(new CommandBinding(CloseDrawerCommand, CloseDrawerHandler));
         }
 
-        public bool StaysOpen 
+        public bool CloseOnClickAway 
         {
-            get { return (bool)GetValue(StaysOpenProperty); }
-            set { SetValue(StaysOpenProperty , value); }
+            get { return (bool)GetValue(CloseOnClickAwayProperty); }
+            set { SetValue(CloseOnClickAwayProperty , value); }
         }
 
-        public static readonly DependencyProperty StaysOpenProperty =
-            DependencyProperty.Register("StaysOpen" , typeof(bool) , typeof(DrawerHost) , new PropertyMetadata(false));
+        public static readonly DependencyProperty CloseOnClickAwayProperty =
+            DependencyProperty.Register("CloseOnClickAway" , typeof(bool) , typeof(DrawerHost) , new PropertyMetadata(true));
 
         #region top drawer
 
@@ -470,7 +470,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void TemplateContentCoverElementOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs) 
         {
-            if (StaysOpen) return;
+            if (!CloseOnClickAway) return;
             SetCurrentValue(IsLeftDrawerOpenProperty, false);
             SetCurrentValue(IsRightDrawerOpenProperty, false);
             SetCurrentValue(IsTopDrawerOpenProperty, false);
