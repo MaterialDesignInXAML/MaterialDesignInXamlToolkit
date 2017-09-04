@@ -81,10 +81,7 @@ namespace MaterialDesignThemes.Wpf
         public enum DrawerHostOpenMode 
         {
             Standard, StaysOpen, Pinned
-            
         }
-
-
 
         public DrawerHostOpenMode OpenMode {
             get { return (DrawerHostOpenMode)GetValue(OpenModeProperty); }
@@ -483,7 +480,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void TemplateContentCoverElementOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs) 
         {
-            if (OpenMode == DrawerHostOpenMode.StaysOpen) return;
+            if (OpenMode != DrawerHostOpenMode.Standard) return;
             SetCurrentValue(IsLeftDrawerOpenProperty, false);
             SetCurrentValue(IsRightDrawerOpenProperty, false);
             SetCurrentValue(IsTopDrawerOpenProperty, false);
