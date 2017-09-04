@@ -138,6 +138,7 @@ namespace MaterialDesignThemes.Wpf
             }
             _mainContent.BeginAnimation(MarginProperty, thicknessAnimation);
         }
+
         private bool MoreThanOneDrawerOpened() {
             int numberOfOpenedDrawer = 0;
             if (IsLeftDrawerOpen) numberOfOpenedDrawer++;
@@ -506,8 +507,11 @@ namespace MaterialDesignThemes.Wpf
 
         private void UpdateVisualStates(bool? useTransitions = null)
         {
-            var anyOpen = IsTopDrawerOpen || IsLeftDrawerOpen || IsBottomDrawerOpen || IsRightDrawerOpen;
+            if (OpenMode == DrawerHostOpenMode.Pinned && MoreThanOneDrawerOpened()) return;
+
             UpdateMainContentMargin();
+
+            var anyOpen = IsTopDrawerOpen || IsLeftDrawerOpen || IsBottomDrawerOpen || IsRightDrawerOpen;
             
             VisualStateManager.GoToState(this,
                 !anyOpen || OpenMode==DrawerHostOpenMode.Pinned ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
