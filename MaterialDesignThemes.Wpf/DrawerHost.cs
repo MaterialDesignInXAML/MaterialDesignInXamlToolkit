@@ -96,44 +96,34 @@ namespace MaterialDesignThemes.Wpf
 
         private static void OnOpenModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs) {
             var drawerHost = dependencyObject as DrawerHost;
-            var newValue = (DrawerHostOpenMode) dependencyPropertyChangedEventArgs.NewValue;
-            if (newValue == DrawerHostOpenMode.Pinned) {
-                if (drawerHost.MoreThanOneDrawerOpened()) throw new Exception( "Cannot set OpenMode = Pinned when there are more than one drawers are opened.");
-                if (drawerHost.IsLeftDrawerOpen) {
-                    drawerHost._mainContent.Margin = new Thickness(drawerHost._leftDrawerElement.ActualWidth, 0, 0, 0);
-                }
-                if (drawerHost.IsTopDrawerOpen) {
-                    drawerHost._mainContent.Margin = new Thickness(0, drawerHost._topDrawerElement.ActualHeight, 0, 0);
-                }
-                if (drawerHost.IsRightDrawerOpen) {
-                    drawerHost._mainContent.Margin = new Thickness(0, 0, drawerHost._rightDrawerElement.ActualWidth, 0);
-                }
-                if (drawerHost.IsBottomDrawerOpen) {
-                    drawerHost._mainContent.Margin = new Thickness(0, 0, 0, drawerHost._bottomDrawerElement.ActualHeight);
-                }
-            }
-            else {
-                drawerHost._mainContent.Margin = new Thickness(0 , 0 , 0 , 0);
-            }
             drawerHost.UpdateVisualStates();
         }
 
-        private FrameworkElement GetOpeningDrawer() {
-            if (IsLeftDrawerOpen) {
-                return _leftDrawerElement;
+        private void UpdateMainContentMargin() {
+            if (OpenMode == DrawerHostOpenMode.Pinned) {
+                if (MoreThanOneDrawerOpened())
+                    throw new Exception(
+                        "Cannot set OpenMode = Pinned when there are more than one drawers are opened.");
+                if (IsLeftDrawerOpen) {
+                    _mainContent.Margin = new Thickness(_leftDrawerElement.ActualWidth, 0, 0, 0);
+                }
+                else if (IsTopDrawerOpen) {
+                    _mainContent.Margin = new Thickness(0, _topDrawerElement.ActualHeight, 0, 0);
+                }
+                else if (IsRightDrawerOpen) {
+                    _mainContent.Margin = new Thickness(0, 0, _rightDrawerElement.ActualWidth, 0);
+                }
+                else if (IsBottomDrawerOpen) {
+                    _mainContent.Margin = new Thickness(0, 0, 0, _bottomDrawerElement.ActualHeight);
+                }
+                else {
+                    _mainContent.Margin = new Thickness(0, 0, 0, 0);
+                }
             }
-            if (IsTopDrawerOpen) {
-                return _topDrawerElement;
+            else {
+                _mainContent.Margin = new Thickness(0, 0, 0, 0);
             }
-            if (IsRightDrawerOpen) {
-                return _rightDrawerElement;
-            }
-            if (IsBottomDrawerOpen) {
-                return _bottomDrawerElement;
-            }
-            return null;
         }
-
         private bool MoreThanOneDrawerOpened() {
             int numberOfOpenedDrawer = 0;
             if (IsLeftDrawerOpen) numberOfOpenedDrawer++;
@@ -502,16 +492,11 @@ namespace MaterialDesignThemes.Wpf
 
         private void UpdateVisualStates(bool? useTransitions = null)
         {
-            if (OpenMode == DrawerHostOpenMode.Pinned) {
-                VisualStateManager.GoToState(this, TemplateAllDrawersAllClosedStateName,
-                    useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
-                return;
-            }
-
             var anyOpen = IsTopDrawerOpen || IsLeftDrawerOpen || IsBottomDrawerOpen || IsRightDrawerOpen;
+            UpdateMainContentMargin();
             
             VisualStateManager.GoToState(this,
-                !anyOpen ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
+                !anyOpen || OpenMode==DrawerHostOpenMode.Pinned ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
 
             VisualStateManager.GoToState(this,
                 IsLeftDrawerOpen ? TemplateLeftOpenStateName : TemplateLeftClosedStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
