@@ -56,6 +56,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static RoutedCommand OpenDrawerCommand = new RoutedCommand();
         public static RoutedCommand CloseDrawerCommand = new RoutedCommand();
+        public static RoutedCommand PinDrawerCommand = new RoutedCommand();
 
         private FrameworkElement _mainContent;
         private FrameworkElement _templateContentCoverElement;
@@ -83,6 +84,7 @@ namespace MaterialDesignThemes.Wpf
         {
             CommandBindings.Add(new CommandBinding(OpenDrawerCommand, OpenDrawerHandler));
             CommandBindings.Add(new CommandBinding(CloseDrawerCommand, CloseDrawerHandler));
+            CommandBindings.Add(new CommandBinding(PinDrawerCommand, PinDrawerHanlder));
         }
         #region openModeProperty
         public enum DrawerHostOpenMode 
@@ -639,6 +641,22 @@ namespace MaterialDesignThemes.Wpf
                     _lockZIndexes = false;
                 }
             }
+        }
+
+        private bool _pinned = false;
+        private DrawerHostOpenMode _previousMode;
+        private void PinDrawerHanlder(object sender , ExecutedRoutedEventArgs executedRoutedEventArgs) {
+            if (executedRoutedEventArgs.Handled) return;
+            if (!_pinned) {
+                _previousMode = OpenMode;
+                SetCurrentValue(OpenModeProperty, DrawerHostOpenMode.Pinned);
+                _pinned = true;
+            }
+            else {
+                SetCurrentValue(OpenModeProperty, _previousMode);
+                _pinned = false;
+            }
+            executedRoutedEventArgs.Handled = true;
         }
     }
 }
