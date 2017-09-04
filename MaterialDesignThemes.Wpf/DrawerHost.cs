@@ -78,14 +78,27 @@ namespace MaterialDesignThemes.Wpf
             CommandBindings.Add(new CommandBinding(CloseDrawerCommand, CloseDrawerHandler));
         }
 
-        public bool CloseOnClickAway 
+        public enum DrawerHostOpenMode 
         {
-            get { return (bool)GetValue(CloseOnClickAwayProperty); }
-            set { SetValue(CloseOnClickAwayProperty , value); }
+            Standard, StaysOpen, Pinned
+            
         }
 
-        public static readonly DependencyProperty CloseOnClickAwayProperty =
-            DependencyProperty.Register("CloseOnClickAway" , typeof(bool) , typeof(DrawerHost) , new PropertyMetadata(true));
+
+
+        public DrawerHostOpenMode OpenMode {
+            get { return (DrawerHostOpenMode)GetValue(OpenModeProperty); }
+            set { SetValue(OpenModeProperty , value); }
+        }
+
+        // Using a DependencyProperty as the backing store for OpenMode.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty OpenModeProperty =
+            DependencyProperty.Register("OpenMode" , typeof(DrawerHostOpenMode) , typeof(DrawerHost) , new PropertyMetadata(DrawerHostOpenMode.Standard, OnOpenModePropertyChangedCallback));
+
+        private static void OnOpenModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs) 
+        {
+            throw new NotImplementedException();
+        }
 
         #region top drawer
 
@@ -435,7 +448,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void TemplateContentCoverElementOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs) 
         {
-            if (!CloseOnClickAway) return;
+            if (OpenMode == DrawerHostOpenMode.StaysOpen) return;
             SetCurrentValue(IsLeftDrawerOpenProperty, false);
             SetCurrentValue(IsRightDrawerOpenProperty, false);
             SetCurrentValue(IsTopDrawerOpenProperty, false);
