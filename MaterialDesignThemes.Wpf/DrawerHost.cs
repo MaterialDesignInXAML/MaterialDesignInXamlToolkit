@@ -20,7 +20,6 @@ namespace MaterialDesignThemes.Wpf
     [TemplateVisualState(GroupName = TemplateRightDrawerGroupName, Name = TemplateRightOpenStateName)]
     [TemplateVisualState(GroupName = TemplateBottomDrawerGroupName, Name = TemplateBottomClosedStateName)]
     [TemplateVisualState(GroupName = TemplateBottomDrawerGroupName, Name = TemplateBottomOpenStateName)]
-    [TemplateVisualState(GroupName = TemplatePinnedLeftDrawerGroupName, Name = TemplatePinnedLeftOpenStateName)]
     [TemplatePart(Name = TemplateMainContentPartName, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = TemplateContentCoverPartName, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = TemplateLeftDrawerPartName, Type = typeof(FrameworkElement))]
@@ -44,8 +43,6 @@ namespace MaterialDesignThemes.Wpf
         public const string TemplateBottomDrawerGroupName = "BottomDrawer";
         public const string TemplateBottomClosedStateName = "BottomDrawerClosed";
         public const string TemplateBottomOpenStateName = "BottomDrawerOpen";
-        public const string TemplatePinnedLeftDrawerGroupName = "PinnedLeftDrawer";
-        public const string TemplatePinnedLeftOpenStateName = "PinnedLeftDrawerOpen";
 
         public const string TemplateMainContentPartName = "ContentPresenter";
         public const string TemplateContentCoverPartName = "PART_ContentCover";

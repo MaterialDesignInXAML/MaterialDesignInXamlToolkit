@@ -130,7 +130,7 @@
                 <StackPanel HorizontalAlignment="Center" Margin="5" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
                     <TextBlock FontWeight="Bold" Margin="0 8 0 8">Open mode:</TextBlock>
                     <RadioButton Checked="StandardRadioButton_OnChecked" IsChecked="True">Standard</RadioButton>
-                    <RadioButton Checked="StaysOpenRadioButton_OnChecked">Stays Open (it means drawer won't close on click away)</RadioButton>
+                    <RadioButton Checked="StaysOpenRadioButton_OnChecked">Stays Open</RadioButton>
                     <RadioButton Checked="PinnedRadioButton_OnChecked">Pinned</RadioButton>
                 </StackPanel>
                 </Grid>
