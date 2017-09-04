@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <materialDesign:DrawerHost x:Name="DrawerHost" Margin="64" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}">
+    <materialDesign:DrawerHost x:Name="DrawerHost" Margin="64" HorizontalAlignment="Stretch" VerticalAlignment="Center" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}">
         <materialDesign:DrawerHost.LeftDrawerContent>
             <StackPanel Margin="16">
                 <TextBlock Margin="4" HorizontalAlignment="Center">LEFT FIELD</TextBlock>
@@ -105,14 +105,16 @@
                         Grid.Row="2" Grid.Column="1" Margin="4">
                     <materialDesign:PackIcon Kind="ArrowDown" />
                 </Button>
-                <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                <Button x:Name="OpenAllDrawerButton" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
                         Grid.Row="1" Grid.Column="1" Margin="4" 
                         Style="{DynamicResource MaterialDesignRaisedAccentButton}">
                     <materialDesign:PackIcon Kind="ArrowAll" />
                 </Button>
-                <StackPanel HorizontalAlignment="Center" Margin="5" Grid.Row="3" Grid.ColumnSpan="3" Orientation="Horizontal">
-                    <TextBlock>Close on click away</TextBlock>
-                    <CheckBox IsChecked="{Binding ElementName=DrawerHost, Path=CloseOnClickAway}"></CheckBox>
+                <StackPanel HorizontalAlignment="Center" Margin="5" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
+                    <TextBlock FontWeight="Bold" Margin="0 8 0 8">Open mode:</TextBlock>
+                    <RadioButton Checked="StandardRadioButton_OnChecked" IsChecked="True">Standard</RadioButton>
+                    <RadioButton Checked="StaysOpenRadioButton_OnChecked">Stays Open</RadioButton>
+                    <RadioButton Checked="PinnedRadioButton_OnChecked">Pinned</RadioButton>
                 </StackPanel>
             </Grid>
         </Grid>
