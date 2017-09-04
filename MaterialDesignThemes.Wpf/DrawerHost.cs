@@ -19,6 +19,7 @@ namespace MaterialDesignThemes.Wpf
     [TemplateVisualState(GroupName = TemplateRightDrawerGroupName, Name = TemplateRightOpenStateName)]
     [TemplateVisualState(GroupName = TemplateBottomDrawerGroupName, Name = TemplateBottomClosedStateName)]
     [TemplateVisualState(GroupName = TemplateBottomDrawerGroupName, Name = TemplateBottomOpenStateName)]
+    [TemplatePart(Name = TemplateMainContentPartName, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = TemplateContentCoverPartName, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = TemplateLeftDrawerPartName, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = TemplateTopDrawerPartName, Type = typeof(FrameworkElement))]
@@ -42,6 +43,7 @@ namespace MaterialDesignThemes.Wpf
         public const string TemplateBottomClosedStateName = "BottomDrawerClosed";
         public const string TemplateBottomOpenStateName = "BottomDrawerOpen";
 
+        public const string TemplateMainContentPartName = "ContentPresenter";
         public const string TemplateContentCoverPartName = "PART_ContentCover";
         public const string TemplateLeftDrawerPartName = "PART_LeftDrawer";
         public const string TemplateTopDrawerPartName = "PART_TopDrawer";
@@ -51,6 +53,7 @@ namespace MaterialDesignThemes.Wpf
         public static RoutedCommand OpenDrawerCommand = new RoutedCommand();
         public static RoutedCommand CloseDrawerCommand = new RoutedCommand();
 
+        private FrameworkElement _mainContent;
         private FrameworkElement _templateContentCoverElement;
         private FrameworkElement _leftDrawerElement;
         private FrameworkElement _topDrawerElement;
@@ -77,7 +80,7 @@ namespace MaterialDesignThemes.Wpf
             CommandBindings.Add(new CommandBinding(OpenDrawerCommand, OpenDrawerHandler));
             CommandBindings.Add(new CommandBinding(CloseDrawerCommand, CloseDrawerHandler));
         }
-
+        #region openModeProperty
         public enum DrawerHostOpenMode 
         {
             Standard, StaysOpen, Pinned
@@ -88,14 +91,59 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(OpenModeProperty , value); }
         }
 
-        // Using a DependencyProperty as the backing store for OpenMode.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty OpenModeProperty =
             DependencyProperty.Register("OpenMode" , typeof(DrawerHostOpenMode) , typeof(DrawerHost) , new PropertyMetadata(DrawerHostOpenMode.Standard, OnOpenModePropertyChangedCallback));
 
-        private static void OnOpenModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs) 
-        {
-            throw new NotImplementedException();
+        private static void OnOpenModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs) {
+            var drawerHost = dependencyObject as DrawerHost;
+            var newValue = (DrawerHostOpenMode) dependencyPropertyChangedEventArgs.NewValue;
+            if (newValue == DrawerHostOpenMode.Pinned) {
+                if (drawerHost.MoreThanOneDrawerOpened()) throw new Exception( "Cannot set OpenMode = Pinned when there are more than one drawers are opened.");
+                if (drawerHost.IsLeftDrawerOpen) {
+                    drawerHost._mainContent.Margin = new Thickness(drawerHost._leftDrawerElement.ActualWidth, 0, 0, 0);
+                }
+                if (drawerHost.IsTopDrawerOpen) {
+                    drawerHost._mainContent.Margin = new Thickness(0, drawerHost._topDrawerElement.ActualHeight, 0, 0);
+                }
+                if (drawerHost.IsRightDrawerOpen) {
+                    drawerHost._mainContent.Margin = new Thickness(0, 0, drawerHost._rightDrawerElement.ActualWidth, 0);
+                }
+                if (drawerHost.IsBottomDrawerOpen) {
+                    drawerHost._mainContent.Margin = new Thickness(0, 0, 0, drawerHost._bottomDrawerElement.ActualHeight);
+                }
+            }
+            else {
+                drawerHost._mainContent.Margin = new Thickness(0 , 0 , 0 , 0);
+            }
+            drawerHost.UpdateVisualStates();
         }
+
+        private FrameworkElement GetOpeningDrawer() {
+            if (IsLeftDrawerOpen) {
+                return _leftDrawerElement;
+            }
+            if (IsTopDrawerOpen) {
+                return _topDrawerElement;
+            }
+            if (IsRightDrawerOpen) {
+                return _rightDrawerElement;
+            }
+            if (IsBottomDrawerOpen) {
+                return _bottomDrawerElement;
+            }
+            return null;
+        }
+
+        private bool MoreThanOneDrawerOpened() {
+            int numberOfOpenedDrawer = 0;
+            if (IsLeftDrawerOpen) numberOfOpenedDrawer++;
+            if (IsTopDrawerOpen) numberOfOpenedDrawer++;
+            if (IsRightDrawerOpen) numberOfOpenedDrawer++;
+            if (IsBottomDrawerOpen) numberOfOpenedDrawer++;
+            return numberOfOpenedDrawer > 1;
+        }
+
+        #endregion
 
         #region top drawer
 
@@ -399,7 +447,7 @@ namespace MaterialDesignThemes.Wpf
             _topDrawerElement = WireDrawer(GetTemplateChild(TemplateTopDrawerPartName) as FrameworkElement, false);
             _rightDrawerElement = WireDrawer(GetTemplateChild(TemplateRightDrawerPartName) as FrameworkElement, false);
             _bottomDrawerElement = WireDrawer(GetTemplateChild(TemplateBottomDrawerPartName) as FrameworkElement, false);
-
+            _mainContent = GetTemplateChild(TemplateMainContentPartName) as FrameworkElement;
             UpdateVisualStates(false);
         }
 
@@ -454,6 +502,12 @@ namespace MaterialDesignThemes.Wpf
 
         private void UpdateVisualStates(bool? useTransitions = null)
         {
+            if (OpenMode == DrawerHostOpenMode.Pinned) {
+                VisualStateManager.GoToState(this, TemplateAllDrawersAllClosedStateName,
+                    useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
+                return;
+            }
+
             var anyOpen = IsTopDrawerOpen || IsLeftDrawerOpen || IsBottomDrawerOpen || IsRightDrawerOpen;
             
             VisualStateManager.GoToState(this,
