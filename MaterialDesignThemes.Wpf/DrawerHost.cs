@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf.Transitions;
 using System.Collections.Generic;
+using System.Windows.Media.Animation;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -19,6 +20,7 @@ namespace MaterialDesignThemes.Wpf
     [TemplateVisualState(GroupName = TemplateRightDrawerGroupName, Name = TemplateRightOpenStateName)]
     [TemplateVisualState(GroupName = TemplateBottomDrawerGroupName, Name = TemplateBottomClosedStateName)]
     [TemplateVisualState(GroupName = TemplateBottomDrawerGroupName, Name = TemplateBottomOpenStateName)]
+    [TemplateVisualState(GroupName = TemplatePinnedLeftDrawerGroupName, Name = TemplatePinnedLeftOpenStateName)]
     [TemplatePart(Name = TemplateMainContentPartName, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = TemplateContentCoverPartName, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = TemplateLeftDrawerPartName, Type = typeof(FrameworkElement))]
@@ -42,6 +44,8 @@ namespace MaterialDesignThemes.Wpf
         public const string TemplateBottomDrawerGroupName = "BottomDrawer";
         public const string TemplateBottomClosedStateName = "BottomDrawerClosed";
         public const string TemplateBottomOpenStateName = "BottomDrawerOpen";
+        public const string TemplatePinnedLeftDrawerGroupName = "PinnedLeftDrawer";
+        public const string TemplatePinnedLeftOpenStateName = "PinnedLeftDrawerOpen";
 
         public const string TemplateMainContentPartName = "ContentPresenter";
         public const string TemplateContentCoverPartName = "PART_ContentCover";
@@ -100,29 +104,39 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void UpdateMainContentMargin() {
+            //Unfortunately, the animation code can only be done in CS not in XAML
+            //I tried to do it in XAML, but then I found out this : 
+            //According to https://docs.microsoft.com/en-us/dotnet/framework/wpf/graphics-multimedia/storyboards-overview,
+            //You can't use data binding expressions in Storyboards or animation property value
+            var thicknessAnimation = new ThicknessAnimation()
+            {
+               EasingFunction = new SineEase() { EasingMode = EasingMode.EaseOut},
+               Duration = new Duration(new TimeSpan(0, 0, 0, 0, 400))
+            };
             if (OpenMode == DrawerHostOpenMode.Pinned) {
                 if (MoreThanOneDrawerOpened())
                     throw new Exception(
                         "Cannot set OpenMode = Pinned when there are more than one drawers are opened.");
-                if (IsLeftDrawerOpen) {
-                    _mainContent.Margin = new Thickness(_leftDrawerElement.ActualWidth, 0, 0, 0);
+                if (IsLeftDrawerOpen) {                    
+                    thicknessAnimation.To = new Thickness(_leftDrawerElement.ActualWidth, 0, 0, 0);
                 }
                 else if (IsTopDrawerOpen) {
-                    _mainContent.Margin = new Thickness(0, _topDrawerElement.ActualHeight, 0, 0);
+                    thicknessAnimation.To = new Thickness(0, _topDrawerElement.ActualHeight, 0, 0);
                 }
                 else if (IsRightDrawerOpen) {
-                    _mainContent.Margin = new Thickness(0, 0, _rightDrawerElement.ActualWidth, 0);
+                    thicknessAnimation.To = new Thickness(0, 0, _rightDrawerElement.ActualWidth, 0);
                 }
                 else if (IsBottomDrawerOpen) {
-                    _mainContent.Margin = new Thickness(0, 0, 0, _bottomDrawerElement.ActualHeight);
+                    thicknessAnimation.To = new Thickness(0, 0, 0, _bottomDrawerElement.ActualHeight);
                 }
                 else {
-                    _mainContent.Margin = new Thickness(0, 0, 0, 0);
+                    thicknessAnimation.To = new Thickness(0, 0, 0, 0);
                 }
             }
             else {
-                _mainContent.Margin = new Thickness(0, 0, 0, 0);
+                thicknessAnimation.To = new Thickness(0, 0, 0, 0);
             }
+            _mainContent.BeginAnimation(MarginProperty, thicknessAnimation);
         }
         private bool MoreThanOneDrawerOpened() {
             int numberOfOpenedDrawer = 0;
