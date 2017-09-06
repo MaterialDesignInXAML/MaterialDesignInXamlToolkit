@@ -30,12 +30,12 @@ namespace MaterialDesignColors.WpfExample
 
         private void ButtonsDemoChip_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Chip clicked.");
+            MainWindow.Snackbar.MessageQueue.Enqueue("Chip clicked!");
         }
 
         private void ButtonsDemoChip_OnDeleteClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Chip delete clicked.");
+            MainWindow.Snackbar.MessageQueue.Enqueue("Chip delete clicked!");
         }
 
     }
