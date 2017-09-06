@@ -29,12 +29,12 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SmartHint.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Snackbar.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
     <!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
     <Style TargetType="{x:Type local:Clock}" BasedOn="{StaticResource MaterialDesignClock}" />
     <Style TargetType="{x:Type local:PopupBox}" BasedOn="{StaticResource MaterialDesignPopupBox}" />
     <Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />
-        
+
     <converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
     <converters:DrawerOffsetConverter x:Key="DrawerOffsetConverter" />
 
@@ -46,7 +46,7 @@
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="ClipToBounds" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:RippleAssist.ClipToBounds)}" />        
+        <Setter Property="ClipToBounds" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:RippleAssist.ClipToBounds)}" />
         <Setter Property="Feedback" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:RippleAssist.Feedback)}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -120,10 +120,10 @@
                                                         <SineEase EasingMode="EaseOut" />
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
-                                          </DoubleAnimationUsingKeyFrames>
+                                            </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
-                                      </VisualTransition>
-                                  </VisualStateGroup.Transitions>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Normal">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform" To="0"/>
@@ -179,7 +179,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style TargetType="{x:Type local:Underline}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -405,19 +405,30 @@
     </Style>
 
     <Style TargetType="{x:Type local:ColorZone}">
+        <Style.Resources>
+            <converters:ShadowEdgeConverter x:Key="ShadowEdgeConverter" />
+        </Style.Resources>
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="IsTabStop" Value="False" />        
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ColorZone}">
                     <Grid Background="Transparent">
+                        <Grid.OpacityMask>
+                            <MultiBinding Converter="{StaticResource ShadowEdgeConverter}">
+                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth"/>
+                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight"/>
+                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(local:ShadowAssist.ShadowDepth)" />
+                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(local:ShadowAssist.ShadowEdges)" />
+                            </MultiBinding>
+                        </Grid.OpacityMask>
                         <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                             <Border Background="{TemplateBinding Background}"
-                                    CornerRadius="{TemplateBinding CornerRadius}"                                
+                                    CornerRadius="{TemplateBinding CornerRadius}"
                                     Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
                             </Border>
                         </AdornerDecorator>
@@ -425,7 +436,7 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
-                                ClipToBounds="True" >
+                                ClipToBounds="True">
                             <ContentPresenter Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               TextElement.Foreground="{TemplateBinding Foreground}"
@@ -983,7 +994,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>    
+    </Style>
 
     <Style TargetType="{x:Type local:PackIcon}">
         <Setter Property="Height" Value="16" />
@@ -1010,7 +1021,7 @@
         </Setter>
     </Style>
 
-     <Style TargetType="{x:Type transitions:Transitioner}">
+    <Style TargetType="{x:Type transitions:Transitioner}">
         <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="ItemsPanel">
             <Setter.Value>

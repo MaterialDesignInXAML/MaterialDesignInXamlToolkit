@@ -45,12 +45,12 @@ namespace MaterialDesignThemes.Wpf
 
         public static bool GetUsePopup(DependencyObject element)
         {
-            return (bool)element.GetValue(OnlyShowOnFocusProperty);
+            return (bool)element.GetValue(UsePopupProperty);
         }
 
         public static void SetUsePopup(DependencyObject element, bool value)
         {
-            element.SetValue(OnlyShowOnFocusProperty, value);
+            element.SetValue(UsePopupProperty, value);
         }
 
         #endregion
