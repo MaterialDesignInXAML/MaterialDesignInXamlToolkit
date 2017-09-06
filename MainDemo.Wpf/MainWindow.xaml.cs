@@ -22,8 +22,7 @@ namespace MaterialDesignColors.WpfExample
             InitializeComponent();
             XamlDisplayerPanel.Initialize(
                 source: XamlDisplayerPanel.SourceEnum.LoadFromRemote,
-                defaultLocalPath:
-                $@"C:\Users\User\Desktop\MaterialDesignXAMLToolKitNew\MaterialDesignInXamlToolkit\MainDemo.Wpf\",
+                defaultLocalPath: $@"C:\Users\User\Desktop\MaterialDesignXAMLToolKitNew\MaterialDesignInXamlToolkit\MainDemo.Wpf\",
                 defaultRemotePath: @"https://raw.githubusercontent.com/wongjiahau/MaterialDesignInXamlToolkit/New-Demo-2/MainDemo.Wpf/" ,
                 attributesToBeRemoved:
                 new List<string>()
