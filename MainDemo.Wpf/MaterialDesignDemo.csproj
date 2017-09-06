@@ -138,7 +138,6 @@
     <Compile Include="GroupBoxes.xaml.cs">
       <DependentUpon>GroupBoxes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helper\SourceRouter.cs" />
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -449,6 +448,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ExternalDependency\CodeDisplayer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

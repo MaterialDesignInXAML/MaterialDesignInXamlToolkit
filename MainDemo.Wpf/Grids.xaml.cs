@@ -12,8 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CodeDisplayer;
-using MaterialDesignDemo.Helper;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -25,7 +23,6 @@ namespace MaterialDesignColors.WpfExample
         public Grids()
         {
             InitializeComponent();
-			
         }
     }
 }

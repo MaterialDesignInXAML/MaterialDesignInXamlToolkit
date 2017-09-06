@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,56 +12,53 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Xml;
-using CodeDisplayer;
 using MaterialDesignColors.WpfExample.Domain;
-using MaterialDesignDemo.Helper;
 
 namespace MaterialDesignColors.WpfExample
 {
-	/// <summary>
-	/// Interaction logic for Buttons.xaml
-	/// </summary>
-	public partial class Buttons : UserControl
-	{
-		public Buttons()
-		{
-			InitializeComponent();
-			FloatingActionDemoCommand = new AnotherCommandImplementation(Execute);
-			
+    /// <summary>
+    /// Interaction logic for Buttons.xaml
+    /// </summary>
+    public partial class Buttons : UserControl
+    {
+        public Buttons()
+        {
+            InitializeComponent();
+
+            FloatingActionDemoCommand = new AnotherCommandImplementation(Execute);
+        }
+
+        public ICommand FloatingActionDemoCommand { get; }
+
+        private void Execute(object o)
+        {
+            Console.WriteLine("Floating action button command. - " + (o ?? "NULL").ToString());
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+	    {
+            Console.WriteLine("Just checking we haven't suppressed the button.");
 		}
 
-		public ICommand FloatingActionDemoCommand { get; }
+        private void PopupBox_OnOpened(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Just making sure the popup has opened.");
+        }
 
-		private void Execute(object o)
-		{
-			Console.WriteLine("Floating action button command. - " + (o ?? "NULL").ToString());
-		}
+        private void PopupBox_OnClosed(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Just making sure the popup has closed.");
+        }
 
-		private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-		{
-			Console.WriteLine("Just checking we haven't suppressed the button.");
-		}
+        private void CountingButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (CountingBadge.Badge == null || Equals(CountingBadge.Badge, ""))
+                CountingBadge.Badge = 0;
 
-		private void PopupBox_OnOpened(object sender, RoutedEventArgs e)
-		{
-			Console.WriteLine("Just making sure the popup has opened.");
-		}
+            var next = int.Parse(CountingBadge.Badge.ToString()) + 1;
 
-		private void PopupBox_OnClosed(object sender, RoutedEventArgs e)
-		{
-			Console.WriteLine("Just making sure the popup has closed.");
-		}
+            CountingBadge.Badge = next < 21 ? (object)next : null;
 
-		private void CountingButton_OnClick(object sender, RoutedEventArgs e)
-		{
-			if (CountingBadge.Badge == null || Equals(CountingBadge.Badge, ""))
-				CountingBadge.Badge = 0;
-
-			var next = int.Parse(CountingBadge.Badge.ToString()) + 1;
-
-			CountingBadge.Badge = next < 21 ? (object)next : null;
-
-		}
-	}
+        }
+    }
 }
