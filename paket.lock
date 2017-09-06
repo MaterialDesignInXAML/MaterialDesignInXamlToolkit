@@ -14,7 +14,7 @@ NUGET
     RhinoMocks (3.6.1)
     Shouldly (2.8.3)
     System.Runtime.InteropServices.RuntimeInformation (4.3) - restriction: || (== net45) (&& (== net45) (== net452))
-    XamlDisplayerPackage (1.0.2)
+    XamlDisplayerPackage (1.0.1)
     xunit (2.2)
       xunit.assert (2.2)
       xunit.core (2.2)

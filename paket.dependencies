@@ -7,7 +7,7 @@ nuget Moq ~> 4.7
 nuget NSubstitute ~> 2.0
 nuget RhinoMocks 3.6.1
 nuget Shouldly ~> 2.8
-nuget XamlDisplayerPackage
+nuget XamlDisplayerPackage 1.0.1
 nuget xunit ~> 2.2
 
 github ControlzEx/ControlzEx:e687c6ac4279c4e513b7ef9a75622411350db874 src/ControlzEx/PopupEx.cs
