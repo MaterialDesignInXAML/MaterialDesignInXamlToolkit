@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -14,8 +15,8 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer>
-        <StackPanel>
-            <TextBlock>Custom Columns</TextBlock>
+        <codeDisplayer:XamlDisplayerPanel >
+            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}">Custom Columns</TextBlock>
             <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
                       materialDesign:DataGridAssist.CellPadding="13 8 8 8" materialDesign:DataGridAssist.ColumnHeaderPadding="8">
                 <DataGrid.Columns>
@@ -66,12 +67,12 @@
                                                                    ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}" />
                 </DataGrid.Columns>
             </DataGrid>
-            <TextBlock Margin="0 24 0 0">Auto Generated Columns</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="0 24 0 0">Auto Generated Columns</TextBlock>
             <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" />
-            <TextBlock Margin="0 24 0 0">Custom Padding</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="0 24 0 0">Custom Padding</TextBlock>
             <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
                        />
-        </StackPanel>
+        </codeDisplayer:XamlDisplayerPanel>
     </ScrollViewer>
 </UserControl>

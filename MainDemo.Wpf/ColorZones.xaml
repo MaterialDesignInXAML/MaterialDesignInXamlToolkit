@@ -4,13 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="600">
     <ScrollViewer>
-        <StackPanel Margin="16">
-            <TextBlock FontSize="16">Colour Zones</TextBlock>
-            <TextBlock TextWrapping="Wrap" Margin="0 16 0 0">The ColorZone control allows you to  easily define striking blocks of colour to give your application extra clarity and style, whilst still remaining within the bounds of your Material Design palette.</TextBlock>
-            <TextBlock Margin="0 16 0 0" FontSize="10">Invert the basic paper/body colours.</TextBlock>
+        <codeDisplayer:XamlDisplayerPanel >
+            <StackPanel Margin="16">
+                <TextBlock FontSize="16">Colour Zones</TextBlock>
+                <TextBlock TextWrapping="Wrap" MaxWidth="200" Margin="0 16 0 0">The ColorZone control allows you to  easily define striking blocks of colour to give your application extra clarity and style, whilst still remaining within the bounds of your Material Design palette.</TextBlock>
+                <TextBlock Margin="0 16 0 0" FontSize="10">Invert the basic paper/body colours.</TextBlock>
+            </StackPanel>
             <materialDesign:ColorZone Mode="Inverted" Padding="16">
                 <DockPanel>
                     <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges">
@@ -26,7 +29,7 @@
                     </StackPanel>
                 </DockPanel>
             </materialDesign:ColorZone>
-            <TextBlock Margin="0 16 0 0" FontSize="10">Use primary light back and fore colours.</TextBlock>
+            <TextBlock Margin="0 16 0 0" TextWrapping="Wrap" FontSize="10">Use primary light back and fore colours.</TextBlock>
             <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
                 <StackPanel Orientation="Horizontal">
                     <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
@@ -81,7 +84,6 @@
                     <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
                 </StackPanel>
             </materialDesign:ColorZone>
-        </StackPanel>
+        </codeDisplayer:XamlDisplayerPanel>
     </ScrollViewer>
-
 </UserControl>

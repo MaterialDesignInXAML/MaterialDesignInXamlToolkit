@@ -5,109 +5,98 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
+             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <!-- for some reason to get the validation templates to show on this page need an extra decorator.  haven't figure out why yet -->
     <AdornerDecorator>
-        <Grid Margin="32">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.ColumnSpan="3">Classic WPF DatePicker control with Material Design theme, and new TimePicker control:</TextBlock>
-        <StackPanel Grid.Row="1" Grid.Column="0">
-            <DatePicker Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-            <DatePicker x:Name="FutureDatePicker" Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" 
+        <ScrollViewer>
+            <codeDisplayer:XamlDisplayerPanel >
+                <TextBlock >Classic WPF DatePicker control with Material Design theme, and new TimePicker control:</TextBlock>
+                <DatePicker Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <DatePicker x:Name="FutureDatePicker" Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" 
                         materialDesign:HintAssist.Hint="Future Date">
-                <DatePicker.SelectedDate>
-                    <Binding Path="FutureValidatingDate" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <domain:FutureDateValidationRule ValidatesOnTargetUpdated="True" />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </DatePicker.SelectedDate>
-            </DatePicker>
-            <ComboBox Name="LocaleCombo" HorizontalAlignment="Left" Width="50" Margin="0 32 0 0">
-                <ComboBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel />
-                    </ItemsPanelTemplate>
-                </ComboBox.ItemsPanel>
-            </ComboBox>
-            <DatePicker Name="LocaleDatePicker" Width="120" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="Locale Date" />
-            <DatePicker Name="LocaleDatePickerRTL" Width="120" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="RTL Locale Date" FlowDirection="RightToLeft" />
-        </StackPanel>
-        <materialDesign:TimePicker Grid.Row="1" Grid.Column="1"  VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0"
+                    <DatePicker.SelectedDate>
+                        <Binding Path="FutureValidatingDate" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <domain:FutureDateValidationRule ValidatesOnTargetUpdated="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DatePicker.SelectedDate>
+                </DatePicker>
+                <ComboBox materialDesign:HintAssist.Hint="Language"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          materialDesign:HintAssist.HintOpacity=".26"
+                          IsEditable="True" 
+                          Name="LocaleCombo" HorizontalAlignment="Left" Width="100" Margin="0 32 0 0">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <DatePicker Name="LocaleDatePicker" Width="120" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="Locale Date" />
+                <DatePicker Name="LocaleDatePickerRTL" Width="120" HorizontalAlignment="Left" Margin="0 16 0 0" materialDesign:HintAssist.Hint="RTL Locale Date" FlowDirection="RightToLeft" />
+                <materialDesign:TimePicker   VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0"
                                    Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                                    materialDesign:HintAssist.Hint="Custom hint" />
-        <materialDesign:TimePicker Grid.Row="1" Grid.Column="2"  Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" />
-        <materialDesign:TimePicker Grid.Row="1" Grid.Column="3"                
+                <materialDesign:TimePicker    Is24Hours="True" x:Name="PresetTimePicker" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0" />
+                <materialDesign:TimePicker                  
                                    materialDesign:HintAssist.Hint="Validates"
                                    IsInvalidTextAllowed="True"
                                    Is24Hours="True" VerticalAlignment="Top"  Width="100" HorizontalAlignment="Left" Margin="0 16 0 0">
-            <materialDesign:TimePicker.Text>
-                <Binding Path="ValidatingTime" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <domain:SimpleDateValidationRule ValidatesOnTargetUpdated="True" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </materialDesign:TimePicker.Text>
-        </materialDesign:TimePicker>
-        
-        <TextBlock Grid.Row="2" Grid.ColumnSpan="3" Margin="0 128 0 0">By combining the DialogHost (see MainWindow.xaml) and the Calendar and Clock controls, custom popups can be built.</TextBlock>
-        <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" Margin="0 32 0 0">
-            <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" FontSize="24" />    
-            <Button Margin="8 0 0 0" Content="..." 
+                    <materialDesign:TimePicker.Text>
+                        <Binding Path="ValidatingTime" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <domain:SimpleDateValidationRule ValidatesOnTargetUpdated="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </materialDesign:TimePicker.Text>
+                </materialDesign:TimePicker>
+
+                <TextBlock MaxWidth="200" TextWrapping="Wrap">By combining the DialogHost (see MainWindow.xaml) and the Calendar and Clock controls, custom popups can be built.</TextBlock>
+                <StackPanel  Orientation="Horizontal" Margin="0 32 0 0">
+                    <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" FontSize="24" />
+                    <Button Margin="8 0 0 0" Content="..." 
                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                     materialDesign:DialogHost.DialogOpenedAttached="CalendarDialogOpenedEventHandler"
                     materialDesign:DialogHost.DialogClosingAttached="CalendarDialogClosingEventHandler">
-                <Button.CommandParameter>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Calendar x:Name="Calendar" Margin="-1 -4 -1 0" />
-                        <StackPanel Grid.Row="1" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal">
-                            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
-                            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="0" Style="{DynamicResource MaterialDesignFlatButton}">CANCEL</Button>
-                        </StackPanel>
-                    </Grid>
-                </Button.CommandParameter>
-            </Button>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="0 32 0 0">
-            <TextBlock Text="{Binding Time, StringFormat=t}" VerticalAlignment="Center" FontSize="24" />
-            <Button Margin="8 0 0 0" Content="..." 
+                        <Button.CommandParameter>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Calendar x:Name="Calendar" Margin="-1 -4 -1 0" />
+                                <StackPanel Grid.Row="1" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
+                                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="0" Style="{DynamicResource MaterialDesignFlatButton}">CANCEL</Button>
+                                </StackPanel>
+                            </Grid>
+                        </Button.CommandParameter>
+                    </Button>
+                </StackPanel>
+                <StackPanel   Orientation="Horizontal" Margin="0 32 0 0">
+                    <TextBlock Text="{Binding Time, StringFormat=t}" VerticalAlignment="Center" FontSize="24" />
+                    <Button Margin="8 0 0 0" Content="..." 
                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                     materialDesign:DialogHost.DialogOpenedAttached="ClockDialogOpenedEventHandler"
                     materialDesign:DialogHost.DialogClosingAttached="ClockDialogClosingEventHandler">
-                <Button.CommandParameter>
-                    <Grid Margin="-1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <materialDesign:Clock DisplayAutomation="Cycle" x:Name="Clock" />
-                        <StackPanel Grid.Row="1" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal">
-                            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
-                            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="0" Style="{DynamicResource MaterialDesignFlatButton}">CANCEL</Button>
-                        </StackPanel>
-                    </Grid>
-                </Button.CommandParameter>
-            </Button>
-        </StackPanel>
-
-
-
-    </Grid>
+                        <Button.CommandParameter>
+                            <Grid Margin="-1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <materialDesign:Clock DisplayAutomation="Cycle" x:Name="Clock" />
+                                <StackPanel Grid.Row="1" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
+                                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="0" Style="{DynamicResource MaterialDesignFlatButton}">CANCEL</Button>
+                                </StackPanel>
+                            </Grid>
+                        </Button.CommandParameter>
+                    </Button>
+                </StackPanel>
+            </codeDisplayer:XamlDisplayerPanel>
+        </ScrollViewer>
     </AdornerDecorator>
 </UserControl>
