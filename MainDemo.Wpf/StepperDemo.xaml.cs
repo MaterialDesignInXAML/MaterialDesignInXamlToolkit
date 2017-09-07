@@ -83,5 +83,10 @@ namespace MaterialDesignDemo
             cbIsLinear.DataContext = this;
             stepper.DataContext = this;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://material.io/guidelines/components/steppers.html");
+        }
     }
 }

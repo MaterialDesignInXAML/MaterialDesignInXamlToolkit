@@ -8,36 +8,6 @@
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
-    <UserControl.Resources>
-        <DataTemplate DataType="{x:Type domain:StepperTutorialOneViewModel}">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Steppers are handy to break a big task into smaller parts. These are so called steps. It displays the progress of the full task as a numbered sequence of steps." TextWrapping="WrapWithOverflow" />
-                <materialDesign:StepButtonBar Continue="CONTINUE" Cancel="CANCEL" />
-            </StackPanel>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type domain:StepperTutorialTwoViewModel}">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="There a two layouts for a Stepper, namely horizontal and vertical. It can be set by using the Layout property." TextWrapping="WrapWithOverflow" />
-                <TextBlock Margin="0,16,0,0" Text="Additionally the Stepper will be in linear mode by setting the IsLinear property to true. This means that the user can only edit the steps in their fixed order. A non-linear Stepper allows the user to edit the steps in any order." TextWrapping="WrapWithOverflow" />
-                <TextBlock Margin="0,16,0,0" Text="The basic navigation inside a stepper will be accomplished by using simple back and continue buttons. They allow the user to browse through the steps in their order. Just use the StepButtonBar like this tutorial to avoid the nasty reimplementation on your own. The user may also switch the steps of a non-linear Stepper by clicking on the headers. " TextWrapping="WrapWithOverflow" />
-                <materialDesign:StepButtonBar Back="BACK" Continue="CONTINUE" Cancel="CANCEL" />
-            </StackPanel>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type domain:StepperTutorialThreeViewModel}">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="The Stepper uses the steps out of its Steps property. This property expects a collection of IStep objects. The Step class already implements this basic interface for a step." TextWrapping="WrapWithOverflow" />
-                <TextBlock Margin="0,16,0,0" Text="A step consists out of a header and a content. Consider to define one view model class per step content and a DataTemplate for it (just the everyday MVVM magic). The header may contain arbitrary content. If you like the header of this tutorial, just use the StepTitleHeader class." TextWrapping="WrapWithOverflow" />
-                <materialDesign:StepButtonBar Back="BACK" Continue="CONTINUE" Cancel="CANCEL" />
-            </StackPanel>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type domain:StepperTutorialFourViewModel}">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Each time the user switches to another step, an optional validation phase for the until now active step will be started by the Stepper. The Validate() method of the step will be called first. Afterwards the StepValidation event will be raised followed by the call of the StepValidationCommand command." TextWrapping="WrapWithOverflow" />
-                <TextBlock Margin="0,16,0,0" Text="The different validation handlers may set the HasValidationErrors property of the step to indicate input errors. If the BlockNavigationOnValidationErrors property of the Stepper is true, the Stepper blocks the navigation as long as the active step has invalid data." TextWrapping="WrapWithOverflow" />
-                <materialDesign:StepButtonBar Back="BACK" Continue="FINISH" Cancel="CANCEL" />
-            </StackPanel>
-        </DataTemplate>
-    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -50,7 +20,39 @@
             <CheckBox x:Name="cbIsLinear" IsChecked="{Binding Path=IsLinear, Mode=TwoWay}" VerticalAlignment="Center" />
         </StackPanel>
         <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
-            <materialDesign:Stepper x:Name="stepper" HorizontalAlignment="Stretch" IsLinear="{Binding Path=IsLinear}" Layout="{Binding Path=Layout}" Steps="{Binding Path=Steps, Mode=OneTime}" VerticalAlignment="Stretch" />
+            <materialDesign:Stepper x:Name="stepper" HorizontalAlignment="Stretch" IsLinear="{Binding Path=IsLinear}" Layout="{Binding Path=Layout}" VerticalAlignment="Stretch">
+                <TabItem Header="What is a stepper?">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Steppers are handy to break a big task into smaller parts. These are so called steps. It displays the progress of the full task as a numbered sequence of steps." TextWrapping="WrapWithOverflow" />
+                        <materialDesign:StepButtonBar Continue="CONTINUE" Cancel="CANCEL" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Layout and navigation">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="There a two layouts for a Stepper, namely horizontal and vertical. It can be set by using the Layout property." TextWrapping="WrapWithOverflow" />
+                        <TextBlock Margin="0,16,0,0" Text="Additionally the Stepper will be in linear mode by setting the IsLinear property to true. This means that the user can only edit the steps in their fixed order. A non-linear Stepper allows the user to edit the steps in any order." TextWrapping="WrapWithOverflow" />
+                        <TextBlock Margin="0,16,0,0" Text="The basic navigation inside a stepper will be accomplished by using simple back and continue buttons. They allow the user to browse through the steps in their order. Just use the StepButtonBar like this tutorial to avoid the nasty reimplementation on your own. The user may also switch the steps of a non-linear Stepper by clicking on the headers. " TextWrapping="WrapWithOverflow" />
+                        <materialDesign:StepButtonBar Back="BACK" Continue="CONTINUE" Cancel="CANCEL" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <materialDesign:StepTitleHeader FirstLevelTitle="Steps" SecondLevelTitle="Header and content" />
+                    </TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="The Stepper uses the TabItems out of its Items property as steps." TextWrapping="WrapWithOverflow" />
+                        <TextBlock Margin="0,16,0,0" Text="A step consists out of a header and a content. Consider to define one view model class per step content and a DataTemplate for it (just the everyday MVVM magic). The header may contain arbitrary content. If you like the header of this tutorial, just use the StepTitleHeader class." TextWrapping="WrapWithOverflow" />
+                        <materialDesign:StepButtonBar Back="BACK" Continue="CONTINUE" Cancel="CANCEL" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Done">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="This was the Stepper tutorial. You may have a look on the official specification:" TextWrapping="WrapWithOverflow" />
+                        <Button Content="TAKE ME THERE" HorizontalAlignment="Center" Margin="32" Click="Button_Click" />
+                        <materialDesign:StepButtonBar Back="BACK" Continue="CONTINUE" Cancel="CANCEL" />
+                    </StackPanel>
+                </TabItem>
+            </materialDesign:Stepper>
         </ScrollViewer>
     </Grid>
 </UserControl>

@@ -18,20 +18,9 @@ namespace MaterialDesignThemes.Wpf
         object Content { get; set; }
 
         /// <summary>
-        /// True, if this step is in an invalid semantic state.
-        /// </summary>
-        bool HasValidationErrors { get; set; }
-
-        /// <summary>
         /// The header of this step.
         /// </summary>
         object Header { get; set; }
-
-        /// <summary>
-        /// Validates this step.
-        /// Inherited classes may implement this method.
-        /// </summary>
-        void Validate();
     }
 
     /// <summary>
@@ -44,7 +33,6 @@ namespace MaterialDesignThemes.Wpf
 
         protected object _header;
         protected object _content;
-        protected bool _hasValidationErrors;
 
         /// <summary>
         /// The content of this step.
@@ -61,24 +49,6 @@ namespace MaterialDesignThemes.Wpf
                 _content = value;
 
                 OnPropertyChanged(nameof(Content));
-            }
-        }
-
-        /// <summary>
-        /// True, if this step is in an invalid semantic state.
-        /// </summary>
-        public virtual bool HasValidationErrors
-        {
-            get
-            {
-                return _hasValidationErrors;
-            }
-
-            set
-            {
-                _hasValidationErrors = value;
-
-                OnPropertyChanged(nameof(HasValidationErrors));
             }
         }
 
@@ -104,14 +74,7 @@ namespace MaterialDesignThemes.Wpf
         {
             _header = null;
             _content = null;
-            _hasValidationErrors = false;
         }
-
-        /// <summary>
-        /// Validates this step.
-        /// Inherited classes may implement this method.
-        /// </summary>
-        public virtual void Validate() { }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
