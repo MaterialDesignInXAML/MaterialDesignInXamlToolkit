@@ -195,6 +195,24 @@
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
             </Storyboard>
+            <Storyboard x:Key="verticalContentShowStoryboardImmediately">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                    <!-- a very short delay to wait for the previous step to hide -->
+                    <DiscreteDoubleKeyFrame Value="1" KeyTime="0:0:0.005" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                    <!-- a very short delay to wait for the previous step to hide -->
+                    <DiscreteDoubleKeyFrame Value="1" KeyTime="0:0:0.005" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="verticalContentHideStoryboardImmediately">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                    <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                    <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
         </Style.Resources>
         <Style.Triggers>
             <Trigger Property="Layout" Value="Horizontal">
@@ -384,14 +402,31 @@
                                                     <ContentControl.Style>
                                                         <Style TargetType="{x:Type ContentControl}">
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Path=IsActive}" Value="True">
-                                                                    <DataTrigger.EnterActions>
+                                                                <MultiDataTrigger>
+                                                                    <MultiDataTrigger.Conditions>
+                                                                        <Condition Binding="{Binding Path=IsActive}" Value="True" />
+                                                                        <Condition Binding="{Binding Path=ContentAnimationsEnabled, RelativeSource={RelativeSource AncestorType={x:Type wpf:Stepper}}}" Value="False" />
+                                                                    </MultiDataTrigger.Conditions>
+                                                                    <Setter Property="Opacity" Value="1" />
+                                                                    <MultiDataTrigger.EnterActions>
+                                                                        <BeginStoryboard Storyboard="{StaticResource verticalContentShowStoryboardImmediately}" />
+                                                                    </MultiDataTrigger.EnterActions>
+                                                                    <MultiDataTrigger.ExitActions>
+                                                                        <BeginStoryboard Storyboard="{StaticResource verticalContentHideStoryboardImmediately}" />
+                                                                    </MultiDataTrigger.ExitActions>
+                                                                </MultiDataTrigger>
+                                                                <MultiDataTrigger>
+                                                                    <MultiDataTrigger.Conditions>
+                                                                        <Condition Binding="{Binding Path=IsActive}" Value="True" />
+                                                                        <Condition Binding="{Binding Path=ContentAnimationsEnabled, RelativeSource={RelativeSource AncestorType={x:Type wpf:Stepper}}}" Value="True" />
+                                                                    </MultiDataTrigger.Conditions>
+                                                                    <MultiDataTrigger.EnterActions>
                                                                         <BeginStoryboard Storyboard="{StaticResource verticalContentShowStoryboard}" />
-                                                                    </DataTrigger.EnterActions>
-                                                                    <DataTrigger.ExitActions>
+                                                                    </MultiDataTrigger.EnterActions>
+                                                                    <MultiDataTrigger.ExitActions>
                                                                         <BeginStoryboard Storyboard="{StaticResource verticalContentHideStoryboard}" />
-                                                                    </DataTrigger.ExitActions>
-                                                                </DataTrigger>
+                                                                    </MultiDataTrigger.ExitActions>
+                                                                </MultiDataTrigger>
                                                             </Style.Triggers>
                                                         </Style>
                                                     </ContentControl.Style>

@@ -15,8 +15,6 @@ using System.Windows.Shapes;
 
 using MaterialDesignThemes.Wpf;
 
-using MaterialDesignDemo.Domain;
-
 namespace MaterialDesignDemo
 {
     public partial class StepperDemo : UserControl
@@ -61,17 +59,19 @@ namespace MaterialDesignDemo
             }
         }
 
-        public List<IStep> Steps
+        public static readonly DependencyProperty ContentAnimationsEnabledProperty = DependencyProperty.Register(
+                nameof(ContentAnimationsEnabled), typeof(bool), typeof(StepperDemo), new PropertyMetadata(true));
+
+        public bool ContentAnimationsEnabled
         {
             get
             {
-                List<IStep> steps = new List<IStep>();
-                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "What is a Stepper?" }, Content = new StepperTutorialOneViewModel() });
-                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "Layout and navigation" }, Content = new StepperTutorialTwoViewModel() });
-                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "Steps", SecondLevelTitle = "Header and content" }, Content = new StepperTutorialThreeViewModel() });
-                steps.Add(new Step() { Header = new StepTitleHeader() { FirstLevelTitle = "Validation" }, Content = new StepperTutorialFourViewModel() });
+                return (bool)GetValue(ContentAnimationsEnabledProperty);
+            }
 
-                return steps;
+            set
+            {
+                SetValue(ContentAnimationsEnabledProperty, value);
             }
         }
 
@@ -81,6 +81,7 @@ namespace MaterialDesignDemo
 
             cbOrientation.DataContext = this;
             cbIsLinear.DataContext = this;
+            cbContentAnimationsEnabled.DataContext = this;
             stepper.DataContext = this;
         }
 

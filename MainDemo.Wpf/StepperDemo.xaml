@@ -18,9 +18,12 @@
             <ComboBox x:Name="cbOrientation" Height="25" HorizontalAlignment="Left" ItemsSource="{Binding Path=Layouts, Mode=OneTime}" SelectedItem="{Binding Path=Layout, Mode=TwoWay}" VerticalAlignment="Center" Width="120" />
             <TextBlock Margin="48,0,8,0" Text="Is linear" VerticalAlignment="Center" />
             <CheckBox x:Name="cbIsLinear" IsChecked="{Binding Path=IsLinear, Mode=TwoWay}" VerticalAlignment="Center" />
+            <TextBlock Margin="48,0,8,0" Text="Content animations enabled" ToolTip="Unstable for already loaded vertical Steppers because the triggers disturb each other." VerticalAlignment="Center" />
+            <CheckBox x:Name="cbContentAnimationsEnabled" IsChecked="{Binding Path=ContentAnimationsEnabled, Mode=TwoWay}" VerticalAlignment="Center" />
         </StackPanel>
         <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
-            <materialDesign:Stepper x:Name="stepper" HorizontalAlignment="Stretch" IsLinear="{Binding Path=IsLinear}" Layout="{Binding Path=Layout}" VerticalAlignment="Stretch">
+            <materialDesign:Stepper x:Name="stepper" HorizontalAlignment="Stretch" IsLinear="{Binding Path=IsLinear}" Layout="{Binding Path=Layout}"
+                                    ContentAnimationsEnabled="{Binding ContentAnimationsEnabled}"  VerticalAlignment="Stretch">
                 <TabItem Header="What is a stepper?">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Steppers are handy to break a big task into smaller parts. These are so called steps. It displays the progress of the full task as a numbered sequence of steps." TextWrapping="WrapWithOverflow" />

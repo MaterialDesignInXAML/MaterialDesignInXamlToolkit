@@ -115,12 +115,12 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        /// <summary>
-        /// Defines this <see cref="Stepper"/> as either horizontal or vertical.
-        /// </summary>
         public static readonly DependencyProperty LayoutProperty = DependencyProperty.Register(
                 nameof(Layout), typeof(StepperLayout), typeof(Stepper), new PropertyMetadata(StepperLayout.Horizontal));
 
+        /// <summary>
+        /// Defines this <see cref="Stepper"/> as either horizontal or vertical.
+        /// </summary>
         public StepperLayout Layout
         {
             get
@@ -131,6 +131,26 @@ namespace MaterialDesignThemes.Wpf
             set
             {
                 SetValue(LayoutProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty ContentAnimationsEnabledProperty = DependencyProperty.Register(
+                nameof(ContentAnimationsEnabled), typeof(bool), typeof(Stepper), new PropertyMetadata(true));
+
+        /// <summary>
+        /// Enables the animation of the content triggered by navigation.
+        /// The default is true (enabled).
+        /// </summary>
+        public bool ContentAnimationsEnabled
+        {
+            get
+            {
+                return (bool)GetValue(ContentAnimationsEnabledProperty);
+            }
+
+            set
+            {
+                SetValue(ContentAnimationsEnabledProperty, value);
             }
         }
 
@@ -280,16 +300,19 @@ namespace MaterialDesignThemes.Wpf
 
         private void PlayHorizontalContentAnimation()
         {
-            // there is no event raised if the Content of a ContentControl changes
-            //     therefore trigger the animation in code
-            if (Layout == StepperLayout.Horizontal)
+            if (ContentAnimationsEnabled)
             {
-                Storyboard storyboard = (Storyboard)TryFindResource("horizontalContentChangedStoryboard");
-                FrameworkElement element = GetTemplateChild("PART_horizontalContent") as FrameworkElement;
-
-                if (storyboard != null && element != null)
+                // there is no event raised if the Content of a ContentControl changes
+                //     therefore trigger the animation in code
+                if (Layout == StepperLayout.Horizontal)
                 {
-                    storyboard.Begin(element);
+                    Storyboard storyboard = (Storyboard)TryFindResource("horizontalContentChangedStoryboard");
+                    FrameworkElement element = GetTemplateChild("PART_horizontalContent") as FrameworkElement;
+
+                    if (storyboard != null && element != null)
+                    {
+                        storyboard.Begin(element);
+                    }
                 }
             }
         }
