@@ -102,6 +102,7 @@
     <Compile Include="Buttons.xaml.cs">
       <DependentUpon>Buttons.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ButtonsViewModel.cs" />
     <Compile Include="Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>

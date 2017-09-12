@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using MaterialDesignColors.WpfExample;
 using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignThemes.Wpf;
 
@@ -16,9 +17,12 @@ namespace MaterialDesignDemo
     public class IconPackViewModel : INotifyPropertyChanged
     {
         private readonly Lazy<IEnumerable<PackIconKind>> _packIconKinds;
+        private readonly ISnackbarMessageQueue _snackbarMessageQueue;
 
-        public IconPackViewModel()
+        public IconPackViewModel(ISnackbarMessageQueue snackbarMessageQueue)
         {
+            _snackbarMessageQueue = snackbarMessageQueue ?? throw new ArgumentNullException(nameof(snackbarMessageQueue));
+
             OpenDotComCommand = new AnotherCommandImplementation(OpenDotCom);
             SearchCommand = new AnotherCommandImplementation(Search);
             CopyToClipboardCommand = new AnotherCommandImplementation(CopyToClipboard);
@@ -26,7 +30,6 @@ namespace MaterialDesignDemo
                 Enum.GetValues(typeof (PackIconKind)).OfType<PackIconKind>()
                     .OrderBy(k => k.ToString(), StringComparer.InvariantCultureIgnoreCase).ToList()
                 );
-
         }
 
         public ICommand OpenDotComCommand { get; }
@@ -63,7 +66,9 @@ namespace MaterialDesignDemo
         private void CopyToClipboard(object obj)
         {
             var kind = (PackIconKind?)obj;
-            Clipboard.SetText($"<materialDesign:PackIcon Kind=\"{kind}\" />");
+            string toBeCopied = $"<materialDesign:PackIcon Kind=\"{kind}\" />";
+            Clipboard.SetDataObject(toBeCopied);
+            _snackbarMessageQueue.Enqueue(toBeCopied + " copied to clipboard");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

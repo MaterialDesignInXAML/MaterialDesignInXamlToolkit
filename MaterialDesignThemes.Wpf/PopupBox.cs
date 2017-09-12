@@ -417,7 +417,7 @@ namespace MaterialDesignThemes.Wpf
 
         protected override void OnMouseEnter(MouseEventArgs e)
         {
-            if (IsEnabled &&
+            if (IsEnabled && IsLoaded &&
                 (PopupMode == PopupBoxPopupMode.MouseOverEager
                  || PopupMode == PopupBoxPopupMode.MouseOver))
             {

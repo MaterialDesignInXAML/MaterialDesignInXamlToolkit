@@ -158,12 +158,6 @@
                                         <DoubleAnimation Duration="0" To="0.5" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HighlightBackground"/>
                                     </Storyboard>
                                 </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HighlightBackground"/>
-                                        <DoubleAnimation Duration="0" To=".35" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="NormalText"/>
-                                    </Storyboard>
-                                </VisualState>
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="SelectionStates">
                                 <VisualStateGroup.Transitions>

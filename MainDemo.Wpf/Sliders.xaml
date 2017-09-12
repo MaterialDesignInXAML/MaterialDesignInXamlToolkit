@@ -47,8 +47,7 @@
                     Width="280" 
                     Margin="8 0 0 0"/>
         </StackPanel>
-        <Slider Minimum="0" Maximum="10" Margin="0 24 0 0" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.Row="4" Width="260" HorizontalAlignment="Left" />
-        <Slider Minimum="0" Maximum="10" Margin="0 24 0 0" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.Row="5" Width="260" HorizontalAlignment="Left" />
-        
+        <Slider Minimum="0" Maximum="10" Margin="0 24 0 0" Style="{StaticResource MaterialDesignDiscreteSlider}" 
+                Grid.Row="4" Width="260" HorizontalAlignment="Left" ToolTip="MaterialDesignDiscreteSlider"/>
     </Grid>
 </UserControl>
