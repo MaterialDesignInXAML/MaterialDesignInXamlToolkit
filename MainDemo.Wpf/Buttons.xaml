@@ -46,6 +46,46 @@
             ACCENT
         </Button>
 
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                        ToolTip="MaterialDesignFloatingActionMiniLightButton">
+            <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+        </Button>
+
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        ToolTip="MaterialDesignFloatingActionMiniButton">
+            <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+        </Button>
+
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                        ToolTip="MaterialDesignFloatingActionMiniDarkButton">
+            <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+        </Button>
+
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        ToolTip="MaterialDesignFloatingActionMiniAccentButton">
+            <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+        </Button>
+
+        <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                        ToolTip="MaterialDesignFloatingActionLightButton">
+            <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+        </Button>
+
+        <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
+                        ToolTip="MaterialDesignFloatingActionButton">
+            <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+        </Button>
+
+        <Button Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                        ToolTip="MaterialDesignFloatingActionDarkButton">
+            <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+        </Button>
+
+        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                        ToolTip="MaterialDesignFloatingActionAccentButton">
+            <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+        </Button>
+
         <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
             <StackPanel>
                 <Button Content="Hello World"/>
