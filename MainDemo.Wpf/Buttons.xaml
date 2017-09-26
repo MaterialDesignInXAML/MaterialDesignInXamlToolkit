@@ -45,6 +45,62 @@
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton">
             ACCENT
         </Button>
+
+        <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+            <StackPanel>
+                <Button Content="Hello World"/>
+                <Button Content="Nice Popup"/>
+                <Button Content="Can't Touch This" IsEnabled="False" />
+                <Separator/>
+                <Button Content="Goodbye"/>
+            </StackPanel>
+        </materialDesign:PopupBox>
+
+        <materialDesign:PopupBox StaysOpen="True">
+            <Grid Width="300" Margin="8,8,8,8">
+                <Grid.Resources>
+                    <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
+                        <Setter Property="Margin" Value="8,8,10,8"/>
+                    </Style>
+                    <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                        <Setter Property="materialDesign:HintAssist.IsFloating" Value="True"/>
+                        <Setter Property="Margin" Value="8,8,8,8"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="8,8,8,16">OPTIONS</TextBlock>
+                <TextBox Grid.Column="0" Grid.Row="1" materialDesign:HintAssist.Hint="Setting 1" Text="200"/>
+                <TextBox Grid.Column="0" Grid.Row="2" materialDesign:HintAssist.Hint="Setting 2" Text="400"/>
+                <TextBox Grid.Column="0" Grid.Row="3" materialDesign:HintAssist.Hint="Setting 3" Text="600"/>
+                <CheckBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" />
+                <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="True" VerticalAlignment="Bottom" />
+                <CheckBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" />
+                <ComboBox Grid.Column="0" Grid.Row="4" materialDesign:HintAssist.Hint="Setting 4" materialDesign:HintAssist.IsFloating="True"
+                          MaxDropDownHeight="200"
+                          Margin="8 8 8 8">
+                    <ComboBoxItem>25%</ComboBoxItem>
+                    <ComboBoxItem>50%</ComboBoxItem>
+                    <ComboBoxItem>75%</ComboBoxItem>
+                    <ComboBoxItem>100%</ComboBoxItem>
+                    <ComboBoxItem>150%</ComboBoxItem>
+                    <ComboBoxItem>200%</ComboBoxItem>
+                    <ComboBoxItem>250%</ComboBoxItem>
+                    <ComboBoxItem>501%</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+
+        </materialDesign:PopupBox>
+
         <materialDesign:PopupBox
             Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
                                  PlacementMode="BottomAndAlignCentres"
@@ -330,3 +386,4 @@
         <TextBlock Width="100" Height="30" Text="{Binding ElementName=CustomRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top"  />
     </codeDisplayer:XamlDisplayerPanel>
 </UserControl>
+
