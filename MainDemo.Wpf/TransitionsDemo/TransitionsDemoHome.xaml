@@ -38,6 +38,9 @@
                 <materialDesign:TransitionerSlide.BackwardWipe>
                     <materialDesign:CircleWipe />
                 </materialDesign:TransitionerSlide.BackwardWipe>
+                <materialDesign:TransitionerSlide.ForwardWipe>
+                    <materialDesign:SlideWipe Direction="Right" />
+                </materialDesign:TransitionerSlide.ForwardWipe>
                 <local:Slide3_Intro />
             </materialDesign:TransitionerSlide>
 

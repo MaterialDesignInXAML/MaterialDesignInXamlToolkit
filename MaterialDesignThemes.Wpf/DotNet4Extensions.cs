@@ -10,20 +10,19 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class DotNet4Extensions
     {
-        public static async Task<T> InvokeAsync<T>(this Dispatcher dispatcher, Func<T> d)
+        public static Task<T> InvokeAsync<T>(this Dispatcher dispatcher, Func<T> d)
         {
-            var result = await TaskEx.Run(() => (T)dispatcher.Invoke(d));
-            return result;
+            return Task.Factory.StartNew(() => (T)dispatcher.Invoke(d));
         }
 
-        public static async Task InvokeAsync(this Dispatcher dispatcher, Action d)
+        public static Task InvokeAsync(this Dispatcher dispatcher, Action d)
         {
-            await TaskEx.Run(() => dispatcher.Invoke(d));
+            return Task.Factory.StartNew(() => dispatcher.Invoke(d));
         }
 
-        public static async Task InvokeAsync(this Dispatcher dispatcher, Action d, DispatcherPriority dispatcherPriority)
+        public static Task InvokeAsync(this Dispatcher dispatcher, Action d, DispatcherPriority dispatcherPriority)
         {
-            await TaskEx.Run(() => dispatcher.Invoke(d, dispatcherPriority));
+            return Task.Factory.StartNew(() => dispatcher.Invoke(d, dispatcherPriority));
         }
 
         public static bool IsItemItsOwnContainer(this ItemsControl itemsControl, object item)

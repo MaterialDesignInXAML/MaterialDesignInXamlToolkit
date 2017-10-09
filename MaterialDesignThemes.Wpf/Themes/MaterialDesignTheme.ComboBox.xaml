@@ -476,6 +476,9 @@
             <Trigger SourceName="PART_Popup" Property="PopupPlacement" Value="{x:Static materialdesign:ComboBoxPopupPlacement.Classic}">
                 <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
             </Trigger>
+            <Trigger SourceName="PART_Popup" Property="IsOpen" Value="True">
+                <Setter Property="Background" TargetName="templateRoot" Value="{Binding Background, ElementName=PART_Popup}" />
+            </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="templateRoot" Property="Opacity" Value="0.56"/>
             </Trigger>

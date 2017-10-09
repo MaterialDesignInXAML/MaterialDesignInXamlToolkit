@@ -62,33 +62,9 @@
       <Paket>True</Paket>
       <Link>ControlzEx/PopupEx.cs</Link>
     </Compile>
-    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.IO, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Net" />
-    <Reference Include="System.Runtime, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Threading.Tasks, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -285,6 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Badged.cs" />
+    <Compile Include="ButtonProgressAssist.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Chip.cs" />
     <Compile Include="Clock.cs" />
@@ -308,6 +285,8 @@
     <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
     <Compile Include="Converters\ClockLineConverter.cs" />
     <Compile Include="Converters\ListViewItemContainerStyleConverter.cs" />
+    <Compile Include="Converters\NotZeroConverter.cs" />
+    <Compile Include="Converters\RangeLengthConverter.cs" />
     <Compile Include="Converters\RangePositionConverterConverter.cs" />
     <Compile Include="Converters\DrawerOffsetConverter.cs" />
     <Compile Include="Converters\EqualityToVisibilityConverter.cs" />
@@ -320,6 +299,8 @@
     <Compile Include="Converters\NotZeroToVisibilityConverter.cs" />
     <Compile Include="Converters\PointValueConverter.cs" />
     <Compile Include="Converters\ShadowConverter.cs" />
+    <Compile Include="Converters\ShadowEdgeConverter.cs" />
+    <Compile Include="Converters\ShadowInfo.cs" />
     <Compile Include="Converters\SizeToRectConverter.cs" />
     <Compile Include="Converters\SnackbarMessageTypeConverter.cs" />
     <Compile Include="Converters\TimeToVisibilityConverter.cs" />
@@ -353,13 +334,18 @@
     <Compile Include="Palette.cs" />
     <Compile Include="Plane3D.cs" />
     <Compile Include="ScaleHost.cs" />
+    <Compile Include="ScrollViewerAssist.cs" />
+    <Compile Include="Screen.cs" />
     <Compile Include="Snackbar.cs" />
     <Compile Include="SnackbarMessage.cs" />
     <Compile Include="SnackbarMessageEventArgs.cs" />
     <Compile Include="SnackbarMessageQueue.cs" />
     <Compile Include="SnackbarMessageQueueItem.cs" />
+    <Compile Include="Spelling.cs" />
+    <Compile Include="Tap.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
+    <Compile Include="Transitions\FadeWipe.cs" />
     <Compile Include="Transitions\IndexedItemOffsetMultiplierExtension.cs" />
     <Compile Include="Transitions\ITransitionEffect.cs" />
     <Compile Include="Transitions\ITransitionEffectSubject.cs" />
@@ -399,6 +385,8 @@
     <Compile Include="RippleAssist.cs" />
     <Compile Include="Ripple.cs" />
     <Compile Include="Transitions\IZIndexController.cs" />
+    <Compile Include="Transitions\SlideDirection.cs" />
+    <Compile Include="Transitions\SlideWipe.cs" />
     <Compile Include="Transitions\SlideOutWipe.cs" />
     <Compile Include="Transitions\TransitionAssist.cs" />
     <Compile Include="Transitions\TransitionEffect.cs" />
@@ -419,7 +407,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="packages.config" />
     <None Include="paket.references" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -464,11 +451,4 @@
   </Target>
   -->
   <Import Project="..\.paket\paket.targets" />
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-  </Target>
 </Project>

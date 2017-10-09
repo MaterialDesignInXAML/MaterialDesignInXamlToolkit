@@ -28,4 +28,9 @@
     <SolidColorBrush x:Key="MaterialDesignSnackbarBackground" Color="#FFCDCDCD" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignSnackbarMouseOver" Color="#FFB9B9BD" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignSnackbarRipple" Color="#FF494949" po:Freeze="True" />
+
+    <SolidColorBrush x:Key="MaterialDesignTextFieldBoxBackground" Color="#1AFFFFFF" po:Freeze="True" /> <!-- 10% white -->
+    <SolidColorBrush x:Key="MaterialDesignTextFieldBoxDisabledBackground" Color="#0DFFFFFF" po:Freeze="True" /> <!-- 5% white -->
+    <SolidColorBrush x:Key="MaterialDesignTextAreaBorder" Color="#BCFFFFFF" po:Freeze="True" /> <!-- 74% white -->
+    <SolidColorBrush x:Key="MaterialDesignTextAreaInactiveBorder" Color="#1AFFFFFF" po:Freeze="True" /> <!-- 10% white -->
 </ResourceDictionary>

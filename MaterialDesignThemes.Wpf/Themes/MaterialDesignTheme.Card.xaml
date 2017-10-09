@@ -10,23 +10,34 @@
     <converters:CardClipConverter x:Key="CardClipConverter" />
 
     <ControlTemplate TargetType="{x:Type wpf:Card}" x:Key="CardTemplate">
+        <ControlTemplate.Resources>
+            <converters:ShadowEdgeConverter x:Key="ShadowEdgeConverter" />
+        </ControlTemplate.Resources>
         <Grid Margin="{TemplateBinding Margin}" Background="Transparent">
+            <Grid.OpacityMask>
+                <MultiBinding Converter="{StaticResource ShadowEdgeConverter}">
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth"/>
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight"/>
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:ShadowAssist.ShadowDepth)" />
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:ShadowAssist.ShadowEdges)" />
+                </MultiBinding>
+            </Grid.OpacityMask>
             <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                 <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                         CornerRadius="{TemplateBinding UniformCornerRadius}">
                     <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
                             x:Name="PART_ClipBorder"
-                            Clip="{TemplateBinding ContentClip}" />                        
+                            Clip="{TemplateBinding ContentClip}" />
                 </Border>
             </AdornerDecorator>
             <ContentPresenter 
-                x:Name="ContentPresenter"                    
+                x:Name="ContentPresenter"
                 Margin="{TemplateBinding Padding}"
                 Clip="{TemplateBinding ContentClip}"
                 Content="{TemplateBinding ContentControl.Content}" 
                 ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
                 ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" 
-                ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">                    
+                ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">
             </ContentPresenter>
         </Grid>
     </ControlTemplate>

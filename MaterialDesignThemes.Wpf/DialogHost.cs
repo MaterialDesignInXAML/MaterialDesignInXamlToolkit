@@ -131,9 +131,9 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="content">Content to show (can be a control or view model).</param>
         /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-        public static async Task<object> Show(object content, object dialogIdentifier)
+        public static Task<object> Show(object content, object dialogIdentifier)
         {
-            return await Show(content, dialogIdentifier, null, null);
+            return Show(content, dialogIdentifier, null, null);
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. <c>null</c> is allowed.</param>        
         /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-        public static async Task<object> Show(object content, object dialogIdentifier, DialogClosingEventHandler closingEventHandler)
+        public static Task<object> Show(object content, object dialogIdentifier, DialogClosingEventHandler closingEventHandler)
         {
             return Show(content, dialogIdentifier, null, closingEventHandler);
         }
@@ -168,7 +168,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
         /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-        public static async Task<object> Show(object content, object dialogIdentifier, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
+        public static Task<object> Show(object content, object dialogIdentifier, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
 
@@ -182,10 +182,10 @@ namespace MaterialDesignThemes.Wpf
             if (targets.Count > 1)
                 throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
 
-            return await targets[0].ShowInternal(content, openedEventHandler, closingEventHandler);
+            return targets[0].ShowInternal(content, openedEventHandler, closingEventHandler);
         }
 
-        internal async Task<object> ShowInternal(object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
+        internal Task<object> ShowInternal(object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         {
             if (IsOpen)
                 throw new InvalidOperationException("DialogHost is already open.");
@@ -199,14 +199,15 @@ namespace MaterialDesignThemes.Wpf
             var task = new Task(() =>
             {
                 _asyncShowWaitHandle.WaitOne();
+            }).ContinueWith(t => 
+            {
+                _asyncShowOpenedEventHandler = null;
+                _asyncShowClosingEventHandler = null;
+
+                return _closeDialogExecutionParameter;
             });
-            task.Start();
-            await task;
 
-            _asyncShowOpenedEventHandler = null;
-            _asyncShowClosingEventHandler = null;
-
-            return _closeDialogExecutionParameter;
+            return task;
         }
 
         #endregion
@@ -292,7 +293,7 @@ namespace MaterialDesignThemes.Wpf
 
                 //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
                 //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
-                TaskEx.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));
+                Tap.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));
             }));
         }
 

@@ -33,15 +33,7 @@ namespace MaterialDesignColors.WpfExample
             {
                 SelectedTime = new DateTime(2000, 1, 1, 3, 15, 0)
             };
-        }
-
-        private void CounterButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (Counter.Badge == null || Equals(Counter.Badge, ""))
-                Counter.Badge = 0;
-
-            Counter.Badge = int.Parse(Counter.Badge.ToString()) + 1;
-        }
+        }        
     }
 
     public class ProvingGroundViewModel : INotifyPropertyChanged
