@@ -26,9 +26,10 @@
             <materialDesignConverters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" TrueValue="Collapsed" FalseValue="Visible" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <codeDisplayer:XamlDisplayerPanel   >
-
-
+    <codeDisplayer:XamlDisplayerPanel HorizontalAlignment="Center">
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Raised Button
+        </TextBlock>
         <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedLightButton">
             _LIGHT
@@ -46,46 +47,45 @@
             ACCENT
         </Button>
 
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Floating Action Button
+        </TextBlock>
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                         ToolTip="MaterialDesignFloatingActionMiniLightButton">
             <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
         </Button>
-
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         ToolTip="MaterialDesignFloatingActionMiniButton">
             <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
         </Button>
-
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                         ToolTip="MaterialDesignFloatingActionMiniDarkButton">
             <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
         </Button>
-
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                         ToolTip="MaterialDesignFloatingActionMiniAccentButton">
             <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
         </Button>
-
         <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                         ToolTip="MaterialDesignFloatingActionLightButton">
             <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
         </Button>
-
         <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
                         ToolTip="MaterialDesignFloatingActionButton">
             <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
         </Button>
-
         <Button Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                         ToolTip="MaterialDesignFloatingActionDarkButton">
             <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
         </Button>
-
         <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
                         ToolTip="MaterialDesignFloatingActionAccentButton">
             <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
         </Button>
 
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            PopupBox
+        </TextBlock>
         <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
             <StackPanel>
                 <Button Content="Hello World"/>
@@ -95,7 +95,6 @@
                 <Button Content="Goodbye"/>
             </StackPanel>
         </materialDesign:PopupBox>
-
         <materialDesign:PopupBox StaysOpen="True">
             <Grid Width="300" Margin="8,8,8,8">
                 <Grid.Resources>
@@ -140,7 +139,6 @@
             </Grid>
 
         </materialDesign:PopupBox>
-
         <materialDesign:PopupBox
             Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
                                  PlacementMode="BottomAndAlignCentres"
@@ -169,32 +167,36 @@
                 <Button ToolTip="Three">3</Button>
             </StackPanel>
         </materialDesign:PopupBox>
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Badge
+        </TextBlock>
         <materialDesign:Badged Badge="3">
             <Button>MAIL</Button>
         </materialDesign:Badged>
-
         <materialDesign:Badged Badge="{materialDesign:PackIcon Heart}"
                                    BadgeColorZoneMode="Accent">
             <Button>LOVE</Button>
         </materialDesign:Badged>
-
         <materialDesign:Badged Badge="DANGER"
                                BadgeColorZoneMode="Dark">
             <Button>STATUS</Button>
         </materialDesign:Badged>
-        <materialDesign:Badged 
-                                   x:Name="CountingBadge"
-                                   BadgeColorZoneMode="PrimaryDark">
+        <materialDesign:Badged x:Name="CountingBadge" BadgeColorZoneMode="PrimaryDark">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                         Click="CountingButton_OnClick">CLICK ME!</Button>
         </materialDesign:Badged>
-        <Button Content="{materialDesign:PackIcon AirplaneTakeoff}"
-                    
-                    ToolTip="Icon">
-        </Button>
 
+        
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Button with icon
+        </TextBlock>
+        <Button Content="{materialDesign:PackIcon AirplaneTakeoff}" ToolTip="Icon" />
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Custom ripples
+        </TextBlock>
         <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                    
                     Width="150"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton"
                     materialDesign:RippleAssist.Feedback="#DD000000">CUSTOM RIPPLE</Button>
@@ -203,12 +205,24 @@
                     Width="150"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton"
                     materialDesign:RippleAssist.IsDisabled="True">NO RIPPLE</Button>
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Repeat button 
+        </TextBlock>
         <RepeatButton Width="100"
                           ToolTip="Resource name: MaterialDesignRaisedButton">
             REPEAT
         </RepeatButton>
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Flat button
+        </TextBlock>
         <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick" ToolTip="MaterialDesignFlatButton">ACCEPT</Button>
         <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton">CANCEL</Button>
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Button with progress
+        </TextBlock>
         <Grid Width="124">
             <Button Command="{Binding DismissComand}"
                         Style="{StaticResource MaterialDesignRaisedButton}"
@@ -274,6 +288,10 @@
                     materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                     materialDesign:ButtonProgressAssist.Value="75" 
                     Content="{materialDesign:PackIcon DotsHorizontal}" />
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Action toggle button
+        </TextBlock>
         <ToggleButton Content="C"  Style="{StaticResource MaterialDesignActionLightToggleButton}" IsChecked="True"
                           ToolTip="MaterialDesignActionLightToggleButton"/>
         <ToggleButton Content="H"  Style="{StaticResource MaterialDesignActionToggleButton}"
@@ -298,6 +316,10 @@
                 <materialDesign:PackIcon Kind="EmoticonHappy" />
             </materialDesign:ToggleButtonAssist.OnContent>
         </ToggleButton>
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Radio button
+        </TextBlock>
         <RadioButton Style="{StaticResource MaterialDesignRadioButton}" VerticalAlignment="Center" Tag="True">
             <RadioButton.IsChecked>
                 <Binding Path="Tag" RelativeSource="{RelativeSource Self}">
@@ -315,6 +337,10 @@
                          IsEnabled="False">
             Disabled
         </RadioButton>
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Checkbox
+        </TextBlock>
         <CheckBox Style="{StaticResource MaterialDesignCheckBox}" VerticalAlignment="Center">
             Check
         </CheckBox>
@@ -332,6 +358,10 @@
                           IsEnabled="False"  IsChecked="True">
             Disabled
         </CheckBox>
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Switch Toggle
+        </TextBlock>
         <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center"
                           ToolTip="Default ToggleButton Style"/>
         <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" IsEnabled="False" />
@@ -355,7 +385,9 @@
             </materialDesign:ToggleButtonAssist.OnContent>
         </ToggleButton>
 
-
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Flat toggle
+        </TextBlock>
         <ToggleButton Style="{StaticResource MaterialDesignFlatToggleButton}" ToolTip="MaterialDesignFlatToggleButton">
             <materialDesign:PackIcon Kind="Paperclip" Height="21" Width="21" />
         </ToggleButton>
@@ -370,6 +402,10 @@
                           IsEnabled="False">
             <materialDesign:PackIcon Kind="Heart" Height="21" Width="21" />
         </ToggleButton>
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Tool toggles
+        </TextBlock>
         <ListBox Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignToolToggleListBox}" SelectedIndex="0">
             <ListBox.ToolTip>
                 <StackPanel>
@@ -409,6 +445,10 @@
                 <materialDesign:PackIcon Kind="FormatUnderline"/>
             </ListBoxItem>
         </ListBox>
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">
+            Rating bar
+        </TextBlock>
         <materialDesign:RatingBar Value="3" x:Name="BasicRatingBar" />
         <TextBlock Width="100" Text="{Binding ElementName=BasicRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" />
         <materialDesign:RatingBar x:Name="CustomRatingBar" Max="3" Value="2" Orientation="Vertical">
@@ -426,4 +466,6 @@
         <TextBlock Width="100" Height="30" Text="{Binding ElementName=CustomRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top"  />
     </codeDisplayer:XamlDisplayerPanel>
 </UserControl>
+
+
 
