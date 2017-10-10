@@ -17,10 +17,10 @@
     </UserControl.Resources>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" >
-        <codeDisplayer:XamlDisplayerPanel >
-            <TextBlock TextWrapping="Wrap" MaxWidth="300" Margin="32">Dialogs are supported via the DialogHost control which was designed to work with MVVM/binding, code-behind, routed commands, and a pure code-based API.</TextBlock>
-            <TextBlock TextWrapping="Wrap" MaxWidth="300" HorizontalAlignment="Center" VerticalAlignment="Top"
-                           Margin="8 0 8 0"
+        <codeDisplayer:XamlDisplayerPanel HorizontalAlignment="Center">
+            <TextBlock TextWrapping="Wrap" MaxWidth="800" Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">Dialogs are supported via the DialogHost control which was designed to work with MVVM/binding, code-behind, routed commands, and a pure code-based API.</TextBlock>
+            <TextBlock TextWrapping="Wrap" MaxWidth="800" Style="{StaticResource MaterialDesignSubheadingTextBlock}" HorizontalAlignment="Center" VerticalAlignment="Top"
+                           Margin="8 0 8 0" codeDisplayer:XamlDisplayer.DisplayCode="False"
                            >SAMPLE 1: Localised dialog encapsulating specific content, launched from a routed command, response handled in code-behind.</TextBlock>
             <materialDesign:DialogHost DialogClosing="Sample1_DialogHost_OnDialogClosing"
                                   HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -78,7 +78,7 @@
                     </Grid>
                 </Border>
             </materialDesign:DialogHost>
-            <TextBlock  MaxWidth="300"  TextWrapping="Wrap" VerticalAlignment="Top" Margin="8 0 8 0">SAMPLE 2: Top level dialog,  using OpenDialog, passing content via the Parameter. You can pass a view model, provided a corresponding DataTemplate can be found in the scope of the root DialogHost.</TextBlock>
+            <TextBlock MaxWidth="800" Style="{StaticResource MaterialDesignSubheadingTextBlock}"  TextWrapping="Wrap" VerticalAlignment="Top" Margin="8 0 8 0" codeDisplayer:XamlDisplayer.DisplayCode="False">SAMPLE 2: Top level dialog,  using OpenDialog, passing content via the Parameter. You can pass a view model, provided a corresponding DataTemplate can be found in the scope of the root DialogHost.</TextBlock>
             <StackPanel   VerticalAlignment="Center">
                 <!--the request to open the dialog will bubble up to the top-most DialogHost, but we can used the attached property based event to handle the response -->
                 <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
@@ -104,7 +104,7 @@
                     PASS MODEL
                 </Button>
             </StackPanel>
-            <TextBlock  MaxWidth="300"  TextWrapping="Wrap" VerticalAlignment="Top" Margin="8 0 8 0">SAMPLE 3: Open and listen to the dialog entirely from code in a view model.</TextBlock>
+            <TextBlock MaxWidth="800" Style="{StaticResource MaterialDesignSubheadingTextBlock}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="8 0 8 0" codeDisplayer:XamlDisplayer.DisplayCode="False">SAMPLE 3: Open and listen to the dialog entirely from code in a view model.</TextBlock>
             <StackPanel   >
             <!-- Executes a command on DialogsViewModel.cs, which will launch the dialog from code -->
                 <Button Command="{Binding RunDialogCommand}"
@@ -116,8 +116,8 @@
                     EXTENDED
                 </Button>
             </StackPanel>
-            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"
-                            Margin="8 0 8 0" MaxWidth="300" 
+            <TextBlock MaxWidth="800" Style="{StaticResource MaterialDesignSubheadingTextBlock}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Margin="8 0 8 0" codeDisplayer:XamlDisplayer.DisplayCode="False"
                            >SAMPLE 4: Dialog managed from view model using IsOpen and custom commands (ignoring the provided routed commands).</TextBlock>
             <materialDesign:DialogHost    HorizontalAlignment="Center" VerticalAlignment="Center"
                                            IsOpen="{Binding IsSample4DialogOpen}"
