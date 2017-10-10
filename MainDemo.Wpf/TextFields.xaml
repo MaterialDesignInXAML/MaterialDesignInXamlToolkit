@@ -39,7 +39,7 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <codeDisplayer:XamlDisplayerPanel >
+    <codeDisplayer:XamlDisplayerPanel HorizontalAlignment="Center">
         <TextBox  x:Name="NameTextBox"
 					materialDesign:HintAssist.Hint="Name">
             <TextBox.Text>
@@ -59,7 +59,7 @@
                 <ComboBoxItem>Windows</ComboBoxItem>
             </ComboBox>
         </StackPanel>
-        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" >Multi-line</TextBlock>
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">Multi-line</TextBlock>
         <TextBox TextWrapping="Wrap" VerticalAlignment="Stretch" 
                  MaxWidth="300"
 				 AcceptsReturn="True"                 
@@ -181,7 +181,7 @@
 				 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
 				 FontSize="24"/>
 
-        <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+        <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False"
 				   >DataTemplate Test</TextBlock>
         <ContentControl 
 						Content="{Binding DemoItem}"
@@ -197,7 +197,7 @@
                 </DataTemplate>
             </ContentControl.ContentTemplate>
         </ContentControl>
-        <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+        <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False"
 				   >DataTemplateSelector Test</TextBlock>
         <ContentControl 
 						Content="{Binding DemoItem}"
@@ -217,7 +217,7 @@
                 </domain1:SimpleDataTemplateSelector>
             </ContentControl.ContentTemplateSelector>
         </ContentControl>
-        <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+        <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False"
 				   >Tight Space Validation</TextBlock>
         <TextBox Width="20"
 				 materialDesign:ValidationAssist.UsePopup="True"
@@ -255,13 +255,13 @@
             <ComboBoxItem>Pear</ComboBoxItem>
             <ComboBoxItem>Orange</ComboBoxItem>
         </ComboBox>
-        <TextBlock  Style="{StaticResource MaterialDesignHeadlineTextBlock}" >Text field box</TextBlock>
+        <TextBlock  Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">Text field box</TextBlock>
         <CheckBox x:Name="MaterialDesignTextFieldBoxTextBoxEnabledComboBox" 
 				  IsChecked="True" >Enabled</CheckBox>
         <TextBox  Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
 				 VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" MaxWidth="400" materialDesign:HintAssist.Hint="Floating hint in a box"
 				 IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextFieldBoxTextBoxEnabledComboBox}" />
-        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" >Text area box</TextBlock>
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">Text area box</TextBlock>
         <CheckBox x:Name="MaterialDesignTextAreaTextBoxEnabledComboBox" 
 				  IsChecked="True" >Enabled</CheckBox>
         <TextBox  Style="{StaticResource MaterialDesignTextAreaTextBox}" 
