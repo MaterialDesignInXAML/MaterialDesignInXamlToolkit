@@ -16,9 +16,9 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel SourceFileName="Transitions.xaml">
-            <TextBlock Style="{StaticResource MaterialDesignDisplay2TextBlock}">Transitions Demo</TextBlock>
-            <TextBlock MaxWidth="300" TextWrapping="Wrap">
+        <codeDisplayer:XamlDisplayerPanel HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource MaterialDesignDisplay2TextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">Transitions Demo</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" MaxWidth="800" TextWrapping="Wrap" codeDisplayer:XamlDisplayer.DisplayCode="False">
                  The transitioner will manage your transitions. Notice how SelectedIndex is set to zero : the first slide (instead of the default of -1)
             </TextBlock>
             <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
@@ -37,7 +37,7 @@
                     </materialDesign:ColorZone>
                 </materialDesign:TransitionerSlide>
             </materialDesign:Transitioner>
-            <TextBlock MaxWidth="300" TextWrapping="Wrap">
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" MaxWidth="800" TextWrapping="Wrap" codeDisplayer:XamlDisplayer.DisplayCode="False">
                 You can use bare xaml too, without using TransitionerSlide
             </TextBlock>
             <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
@@ -52,7 +52,7 @@
                                 Content="{materialDesign:PackIcon StepBackward}" />
                 </materialDesign:ColorZone>
             </materialDesign:Transitioner>
-            <TextBlock MaxWidth="300" TextWrapping="Wrap">
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" MaxWidth="800" TextWrapping="Wrap" codeDisplayer:XamlDisplayer.DisplayCode="False">
                 You can control (and create your own) wipes with TransitionerSlide
             </TextBlock>
             <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
@@ -101,7 +101,7 @@
                     </materialDesign:ColorZone>
                 </materialDesign:TransitionerSlide>
             </materialDesign:Transitioner>
-            <TextBlock MaxWidth="300" TextWrapping="Wrap">
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" MaxWidth="800" TextWrapping="Wrap" codeDisplayer:XamlDisplayer.DisplayCode="False">
                 You can also use TransitionEffect
             </TextBlock>
             <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
@@ -126,7 +126,7 @@
                     </materialDesign:ColorZone>
                 </materialDesign:TransitionerSlide>
             </materialDesign:Transitioner>
-            <TextBlock MaxWidth="300" TextWrapping="Wrap">
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" MaxWidth="800" TextWrapping="Wrap" codeDisplayer:XamlDisplayer.DisplayCode="False">
                 Now we are going to slide this in by combining some extra effects. The inner content slides in, so we'll set the outer background and clip, to keep things nice.
             </TextBlock>
             <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
@@ -149,7 +149,7 @@
                     </materialDesign:ColorZone>
                 </materialDesign:TransitionerSlide>
             </materialDesign:Transitioner>
-            <TextBlock MaxWidth="300" TextWrapping="Wrap">
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" MaxWidth="800" TextWrapping="Wrap" codeDisplayer:XamlDisplayer.DisplayCode="False">
                 Next we will look at some granular transitions on individual elements using TransitioningContent
             </TextBlock>
             <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
