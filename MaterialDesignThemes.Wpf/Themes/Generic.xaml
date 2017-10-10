@@ -673,6 +673,7 @@
         <Setter Property="TopDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="RightDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="BottomDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="OverlayBackground" Value="{Binding}" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
@@ -697,10 +698,10 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
+                                            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
                                                                                Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
-                                            </ObjectAnimationUsingKeyFrames>
+                                                <DiscreteObjectKeyFrame Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=OverlayContentBackground}" KeyTime="0" />
+                                            </ObjectAnimationUsingKeyFrames>-->
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="AnyOpen" To="AllClosed">
@@ -726,10 +727,10 @@
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="IsEnabled">
                                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
                                                                            Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                            <DiscreteObjectKeyFrame Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=OverlayContentBackground}" KeyTime="0" />
+                                        </ObjectAnimationUsingKeyFrames>-->
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="AllClosed">
@@ -929,7 +930,7 @@
                                         x:Name="ContentPresenter" Opacity="1"                    
                                         Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
                             </AdornerDecorator>
-                            <Grid x:Name="PART_ContentCover" Background="{x:Null}" Opacity="0" IsHitTestVisible="False" Focusable="False" />
+                            <Grid x:Name="PART_ContentCover" Background="{TemplateBinding OverlayBackground}" Opacity="0" IsHitTestVisible="False" Focusable="False" />
                             <Grid>
                                 <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch"
                                       x:Name="PART_LeftDrawer"

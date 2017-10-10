@@ -360,9 +360,18 @@ namespace MaterialDesignThemes.Wpf
             private set { SetValue(BottomDrawerZIndexPropertyKey, value); }
         }
 
-        #endregion
+    #endregion
 
-        public override void OnApplyTemplate()
+    public static readonly DependencyProperty OverlayBackgroundProperty = DependencyProperty.Register(
+            nameof(OverlayBackground), typeof(Brush), typeof(DrawerHost), new UIPropertyMetadata(Brushes.Black));
+
+    public Brush OverlayBackground
+    {
+      get { return (Brush)GetValue(OverlayBackgroundProperty); }
+      set { SetValue(OverlayBackgroundProperty, value); }
+    }
+
+    public override void OnApplyTemplate()
         {
             if (_templateContentCoverElement != null)
                 _templateContentCoverElement.PreviewMouseLeftButtonUp += TemplateContentCoverElementOnPreviewMouseLeftButtonUp;
