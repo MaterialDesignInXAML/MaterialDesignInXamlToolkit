@@ -14,20 +14,21 @@
     <converters:MathMultipleConverter x:Key="MathMlpMultipleConverter" Operation="Multiply" />
 
     <Style x:Key="MaterialDesignExpansionPanelItem" TargetType="wpf:ExpansionPanelItem">
-        <!--<Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />-->
-        <Setter Property="Margin" Value="0 0 0 0" />        
-        <Setter Property="TextElement.FontSize" Value="15" />
+        <!--<Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />-->        
+        <Setter Property="Margin" Value="0 0 0 0" />
+        <Setter Property="TextElement.FontSize" Value="15" />        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="wpf:ExpansionPanelItem">
-                    <Grid Background="{DynamicResource MaterialDesignBackground}" Margin="0 1 0 0">
+                    <Grid Margin="0 1 0 0">
                         <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
-                            <Border x:Name="Shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="0" BorderThickness="0"
+                            <Border x:Name="Shadow" Background="{DynamicResource MaterialDesignBackground}" CornerRadius="0" BorderThickness="0"
                                     Effect="{DynamicResource MaterialDesignShadowDepth1}">
                                     <!--wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"-->
                             </Border>
                         </AdornerDecorator>
                         <Expander Name="PART_Expander"
+                                  Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:ExpansionPanel},Path=Background}"
                                   IsExpanded="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent}}"   
                                   Header="{TemplateBinding Content}"
                                   HeaderTemplate="{Binding Path=ItemHeaderTemplate, RelativeSource={RelativeSource  AncestorType={x:Type ItemsControl}}}">                                  
@@ -102,12 +103,13 @@
         <Setter Property="Height" Value="Auto" />
         <Setter Property="Padding" Value="1" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignBackground}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignExpansionPanelItem}" />     
-          
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignExpansionPanelItem}" />        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:ExpansionPanel}">
