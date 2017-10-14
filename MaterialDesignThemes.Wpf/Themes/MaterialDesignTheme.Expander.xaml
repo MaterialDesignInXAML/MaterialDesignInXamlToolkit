@@ -215,6 +215,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignExpander" TargetType="{x:Type Expander}">
+        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -290,7 +291,6 @@
                                                       ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
                         </DockPanel>
-
                     <ControlTemplate.Triggers>
                         <Trigger Property="ExpandDirection" Value="Right">
                             <Setter TargetName="HeaderSite" Property="DockPanel.Dock" Value="Left" />

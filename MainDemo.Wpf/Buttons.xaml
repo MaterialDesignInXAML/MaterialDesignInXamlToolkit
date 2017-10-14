@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
+             xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
     <UserControl.Resources>
@@ -19,10 +21,14 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <materialDesignConverters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" TrueValue="Collapsed" FalseValue="Visible" />
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid VerticalAlignment="Top">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -211,10 +217,87 @@
             <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick" ToolTip="MaterialDesignFlatButton" Margin="200 0 0 0">ACCEPT</Button>
             <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton">CANCEL</Button>
         </StackPanel>
-
         <Border Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="4" />
-        <TextBlock Margin="0 32 0 24" Grid.Row="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Toggles</TextBlock>
-        <Grid Grid.Row="5">
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+                   Grid.Row="5" Margin="0 12 0 12">Buttons - With Progress</TextBlock>
+        <StackPanel Grid.Row="6" Orientation="Horizontal">
+            <Grid Width="124">
+                <!-- raised button with progress, useful to auto dismiss/accept something -->
+                <Button Command="{Binding DismissComand}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        HorizontalAlignment="Left"
+                        materialDesign:ButtonProgressAssist.Value="{Binding DismissButtonProgress}"
+                        Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>DISMISS</TextBlock>
+                        <materialDesign:PackIcon Margin="4 .5 0 0" Kind="Close" />
+                    </StackPanel>
+                </Button>
+                <TextBlock Text="{Binding DemoRestartCountdownText}"
+                           VerticalAlignment="Center"
+                           Visibility="{Binding ShowDismissButton, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                           />
+            </Grid>            
+
+            <!-- floating action button with progress -->
+            <TextBlock Margin="24 0 0 0" VerticalAlignment="Center">Click Me:</TextBlock>
+            <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}" Margin="8 0 0 0"
+                    Command="{Binding SaveComand}"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
+                    materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}">
+                
+                <!-- simple example of toggling/animating pack icon with a data trigger-->
+                <materialDesign:PackIcon Height="24" Width="24">
+                    <materialDesign:PackIcon.Style>
+                        <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
+                            <Setter Property="Kind" Value="CloudSync" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSaveComplete}" Value="True">
+                                    <Setter Property="Kind" Value="Check" />
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.8" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </materialDesign:PackIcon.Style>
+                </materialDesign:PackIcon>
+                
+            </Button>
+
+            <TextBlock Margin="24 0 0 0" VerticalAlignment="Center">Variations:</TextBlock>
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="16 0 0 0"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.Value="-1" 
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Content="{materialDesign:PackIcon DotsHorizontal}" />
+            <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Margin="16 0 0 0"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.Value="50" 
+                    Content="{materialDesign:PackIcon DotsHorizontal}" />
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="16 0 0 0"
+                    Background="#81d4fa"
+                    BorderBrush="#81d4fa"
+                    Foreground="#DD000000"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.Value="25" 
+                    materialDesign:ButtonProgressAssist.IndicatorForeground="#e65100"
+                    materialDesign:ButtonProgressAssist.IndicatorBackground="#ffcc80"
+                    Content="{materialDesign:PackIcon DotsHorizontal}" />
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Margin="16 0 0 0"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.Value="75" 
+                    Content="{materialDesign:PackIcon DotsHorizontal}" />
+        </StackPanel>
+        <Border Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="7" />
+
+        <TextBlock Margin="0 32 0 24" Grid.Row="7" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Toggles</TextBlock>
+        <Grid Grid.Row="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -254,7 +337,14 @@
                 </ToggleButton>
             </StackPanel>
             <StackPanel Grid.Row="1" Margin="0 16 0 0" Orientation="Horizontal">
-                <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
+                <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center" Tag="True">
+                    <RadioButton.IsChecked>
+                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}">
+                            <Binding.ValidationRules>
+                                <domain:IsCheckedValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </RadioButton.IsChecked>
                     Radio
                 </RadioButton>
                 <RadioButton Style="{StaticResource MaterialDesignRadioButton}" Margin="0 0 8 8" VerticalAlignment="Center">
@@ -267,7 +357,14 @@
                 <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center">
                     Check
                 </CheckBox>
-                <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
+                <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" Tag="True">
+                    <CheckBox.IsChecked>
+                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}">
+                            <Binding.ValidationRules>
+                                <domain:IsCheckedValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </CheckBox.IsChecked>
                     Mate
                 </CheckBox>
                 <CheckBox Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" 
@@ -275,7 +372,7 @@
                     Disabled
                 </CheckBox>
             </StackPanel>
-            <StackPanel Grid.Row="2"  Margin="0 16 0 0" Orientation="Horizontal">
+            <StackPanel Grid.Row="2" Margin="0 16 0 0" Orientation="Horizontal">
                 <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center"
                           ToolTip="Default ToggleButton Style"/>
                 <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Center" Margin="8 0 0 0" IsEnabled="False" />
@@ -299,7 +396,7 @@
                     </materialDesign:ToggleButtonAssist.OnContent>
                 </ToggleButton>
             </StackPanel>
-            <StackPanel Grid.Row="3"  Margin="0 16 0 0" Orientation="Horizontal">
+            <StackPanel Grid.Row="3" Margin="0 16 0 0" Orientation="Horizontal">
                 <ToggleButton Style="{StaticResource MaterialDesignFlatToggleButton}" ToolTip="MaterialDesignFlatToggleButton">
                     <materialDesign:PackIcon Kind="Paperclip" Height="21" Width="21" />
                 </ToggleButton>
@@ -338,7 +435,7 @@
                     <materialDesign:PackIcon Kind="FormatAlignJustify"/>
                 </ListBoxItem>
             </ListBox>
-            <ListBox  Grid.Column="1" Grid.Row="2"  SelectionMode="Extended" Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
+            <ListBox  Grid.Column="1" Grid.Row="2" SelectionMode="Extended" Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
                 <ListBox.ToolTip>
                     <StackPanel>
                         <TextBlock Text="MaterialDesignToolToggleListBox" />
@@ -358,9 +455,9 @@
             </ListBox>
         </Grid>
 
-        <Border Grid.Row="6" Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" />
-        <TextBlock Margin="0 32 0 0" Grid.Row="6" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Rating bar</TextBlock>
-        <StackPanel Grid.Row="7" Margin="0 16 0 0" Orientation="Horizontal">
+        <Border Grid.Row="9" Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" />
+        <TextBlock Margin="0 32 0 0" Grid.Row="9" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Rating bar</TextBlock>
+        <StackPanel Grid.Row="10" Margin="0 16 0 0" Orientation="Horizontal">
             <materialDesign:RatingBar Value="3" x:Name="BasicRatingBar" />
             <TextBlock Text="{Binding ElementName=BasicRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />
             <materialDesign:RatingBar x:Name="CustomRatingBar" Max="3" Value="2" Margin="24 0 0 0" Orientation="Vertical">

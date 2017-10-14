@@ -33,17 +33,18 @@ Comprehensive and easy to use Material Design theme and control library for the 
 
 # ![Alt text](web/images/MD4XAML28.png "In Action") See It Action
 
-* Download the source and run the demo (compiling source requires VS2015+).
+* Download the source and run the demo (compiling source requires VS2017+).
+* Download a pre-compiled demo from the [releases](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/releases) page.
 * Checkout [doobry](http://materialdesigninxaml.net/doobry).
 * Checkout [F1ix](http://materialdesigninxaml.net/f1ix).
 * Checkout [Motion List](https://github.com/MaterialDesignInXAML/MotionList).
 
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Source Code
-To load the source project you will need Visual Studio 2015.  Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (``` Install-Package MaterialDesignThemes ```).  There are two demo projects in the solution, restore the NuGet packages and fire them both up.  One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
+To load the source project you will need Visual Studio 2017.  Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (``` Install-Package MaterialDesignThemes ```).  There are two demo projects in the solution, restore the NuGet packages and fire them both up.  One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
 
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
-* Before contributing code read the [Contribution Guidelines](CONTRIBUTING.md)
+* Before contributing code read the [Contribution Guidelines](.github/CONTRIBUTING.md)
   * GitHub issues are for bugs.
   * For queries, help, and general chat stop by the [Gitter chat room](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit).
   * Stack Overflow tag: [material-design-in-xaml](http://stackoverflow.com/questions/tagged/material-design-in-xaml)
@@ -85,8 +86,6 @@ To load the source project you will need Visual Studio 2015.  Don't worry if you
 ![Alt text](web/images/screen-lists.png "Lists")
 
 ![Alt text](web/images/screen-treeview.png "Tree View")
-
-![Alt text](web/images/screen-progress.png "Progress Bars")
 
 ![Alt text](web/images/screen-sliders.png "Sliders")
 

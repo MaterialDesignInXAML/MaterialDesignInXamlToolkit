@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
-using System.Windows.Navigation;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -15,6 +14,17 @@ namespace MaterialDesignThemes.Wpf
         Depth3,
         Depth4,
         Depth5
+    }
+
+    [Flags]
+    public enum ShadowEdges
+    {
+        None = 0,
+        Left = 1,
+        Top = 2,
+        Right = 4,
+        Bottom = 8,
+        All = Left | Top | Right | Bottom
     }
 
     internal class ShadowLocalInfo
@@ -111,5 +121,17 @@ namespace MaterialDesignThemes.Wpf
             return (CacheMode)element.GetValue(CacheModeProperty);
         }
 
+        public static readonly DependencyProperty ShadowEdgesProperty = DependencyProperty.RegisterAttached(
+            "ShadowEdges", typeof(ShadowEdges), typeof(ShadowAssist), new PropertyMetadata(ShadowEdges.All));
+
+        public static void SetShadowEdges(DependencyObject element, ShadowEdges value)
+        {
+            element.SetValue(ShadowEdgesProperty, value);
+        }
+
+        public static ShadowEdges GetShadowEdges(DependencyObject element)
+        {
+            return (ShadowEdges) element.GetValue(ShadowEdgesProperty);
+        }
     }
 }

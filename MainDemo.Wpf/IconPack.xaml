@@ -84,7 +84,7 @@
                 <Button Margin="8 0" Command="{Binding CopyToClipboardCommand, Mode=OneTime}" CommandParameter="{Binding ElementName=KindsListBox, Path=SelectedValue}">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="ContentCopy"/>
-                        <TextBlock Text="Copy To Clipboard"/>
+                        <TextBlock Text="Copy To Clipboard" Margin="8 0 0 0" />
                     </StackPanel>
                 </Button>
             </StackPanel>

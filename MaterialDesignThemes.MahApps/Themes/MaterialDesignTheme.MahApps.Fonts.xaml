@@ -7,4 +7,7 @@
     <FontFamily x:Key="ToggleSwitchFontFamily">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
     <FontFamily x:Key="ToggleSwitchHeaderFontFamily">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
 
+    <FontFamily x:Key="ToggleSwitchFontFamily.Win10">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+    <FontFamily x:Key="ToggleSwitchHeaderFontFamily.Win10">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+
 </ResourceDictionary>

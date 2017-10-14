@@ -4,18 +4,16 @@
     only:
       - master
 
-  os: Visual Studio 2015
+  os: Visual Studio 2017
   configuration: AppVeyor
   assembly_info:
     patch: true
     file: '**\AssemblyInfo.*'
-    assembly_version: '2.3.0.{build}'
-    assembly_file_version: '2.3.0.{build}'
-    assembly_informational_version: '2.3.0.{build}'
+    assembly_version: '2.3.1.{build}'
+    assembly_file_version: '2.3.1.{build}'
+    assembly_informational_version: '2.3.1.{build}'
   environment:
     RestorePackages: false
-  install:
-  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   before_build:
   - ps: .paket\paket.exe install
   build:
@@ -27,7 +25,7 @@
   - path: '**\MaterialDesignThemes.*.nupkg'
   - path: bin\**\*.*
 
-  version: 2.3.0-ci{build}
+  version: 2.3.1-ci{build}
   deploy:
   - provider: NuGet
     api_key:
@@ -39,7 +37,7 @@
     only:
       - release
 
-  os: Visual Studio 2015
+  os: Visual Studio 2017
   configuration: AppVeyor
   assembly_info:
     patch: true
@@ -49,8 +47,6 @@
     assembly_informational_version: '{version}'
   environment:
     RestorePackages: false    
-  install:
-  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   before_build:
   - ps: .paket\paket.exe install
   build:
@@ -62,4 +58,4 @@
   - path: '**\MaterialDesignThemes.*.nupkg'
   - path: bin\**\*.*
 
-  version: 2.3.0.{build}
+  version: 2.3.1.{build}
