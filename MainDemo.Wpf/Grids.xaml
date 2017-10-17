@@ -14,9 +14,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel >
-            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}">Custom Columns</TextBlock>
+    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+        <codeDisplayer:XamlDisplayerPanel HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">Custom Columns</TextBlock>
             <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
                       materialDesign:DataGridAssist.CellPadding="13 8 8 8" materialDesign:DataGridAssist.ColumnHeaderPadding="8">
                 <DataGrid.Columns>
@@ -67,9 +67,9 @@
                                                                    ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}" />
                 </DataGrid.Columns>
             </DataGrid>
-            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="0 24 0 0">Auto Generated Columns</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False" Margin="0 24 0 0">Auto Generated Columns</TextBlock>
             <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" />
-            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="0 24 0 0">Custom Padding</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False" Margin="0 24 0 0">Custom Padding</TextBlock>
             <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
                        />

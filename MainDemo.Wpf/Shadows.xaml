@@ -8,8 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel  >
-            <TextBlock>Raised controls have default shadows set, but the shadows can be overriden.</TextBlock>
+        <codeDisplayer:XamlDisplayerPanel HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">Raised controls have default shadows set, but the shadows can be overriden.</TextBlock>
             <Button Style="{DynamicResource MaterialDesignRaisedButton}"                    
                     >DEPTH 1</Button>
             <Button Style="{DynamicResource MaterialDesignRaisedButton}"

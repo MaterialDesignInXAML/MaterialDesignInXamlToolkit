@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel DisplayMode="LeftRight" IsCodeDisplayed="{Binding Path=IsChecked, ElementName=ToggleButton}"  VerticalAlignment="Center">
+        <codeDisplayer:XamlDisplayerPanel DisplayMode="LeftRight" IsCodeDisplayingPanelExpanded="{Binding Path=IsChecked, ElementName=ToggleButton}"  VerticalAlignment="Center">
             <Slider TickFrequency="5" Width="150" Orientation="Horizontal" Minimum="1" Maximum="50" Value="25" />
             <Slider TickFrequency="5" TickPlacement="BottomRight" Height="50" Orientation="Vertical" Minimum="1" Maximum="50" />
             <Slider TickFrequency="25"  Height="150" TickPlacement="TopLeft" Orientation="Vertical" Minimum="1" Maximum="50" IsEnabled="False" Margin="24 8 0 8" />

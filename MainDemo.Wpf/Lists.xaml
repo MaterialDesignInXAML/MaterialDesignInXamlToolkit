@@ -15,8 +15,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <codeDisplayer:XamlDisplayerPanel  Margin="8" >
-        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}">ListBox</TextBlock>
+    <codeDisplayer:XamlDisplayerPanel  Margin="8" HorizontalAlignment="Center">
+        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">ListBox</TextBlock>
         <ListBox  IsEnabled="{Binding IsChecked, ElementName=EnableListBox}">
             <TextBlock>Plain</TextBlock>
             <TextBlock>Old</TextBlock>
@@ -77,7 +77,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}"  Margin="0 32 0 0">ListView</TextBlock>
+        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False"  Margin="0 32 0 0">ListView</TextBlock>
         <ListView >
             <ListViewItem>
                 Hello
@@ -89,7 +89,7 @@
                 :)
             </ListViewItem>
         </ListView>
-        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}"  Margin="0 32 0 0">ListView.GridView</TextBlock>
+        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False"  Margin="0 32 0 0">ListView.GridView</TextBlock>
         <ListView  ItemsSource="{Binding Items1}">
             <ListView.View>
                 <GridView>
