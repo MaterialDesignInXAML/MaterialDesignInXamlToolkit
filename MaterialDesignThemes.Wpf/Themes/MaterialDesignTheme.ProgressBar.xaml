@@ -313,6 +313,7 @@
                                                          CenterX="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource RotateTransformCentreConverter}, Mode=OneWay}" 
                                                          CenterY="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource RotateTransformCentreConverter}, Mode=OneWay}">
                                             <!-- 
+                                                TODO Properly remove the rotate transform
                                                 Taking this out gives the animation i wanted
                                                 I cant remove whole RotateTransform it gives an exception
                                             
