@@ -15,7 +15,7 @@
   environment:
     RestorePackages: false
   before_build:
-  - ps: .paket\paket.exe install
+  - ps: .paket\paket.exe restore
   build:
     project: MaterialDesignToolkit.Wpf.sln
     verbosity: minimal
@@ -48,7 +48,7 @@
   environment:
     RestorePackages: false    
   before_build:
-  - ps: .paket\paket.exe install
+  - ps: .paket\paket.exe restore
   build:
     project: MaterialDesignToolkit.Wpf.sln
     verbosity: minimal
