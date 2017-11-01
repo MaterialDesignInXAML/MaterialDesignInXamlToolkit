@@ -125,9 +125,6 @@
                             <Setter TargetName="textFieldBoxBorder" Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxDisabledBackground}" />
                             <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaInactiveBorder}" />
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
-                        </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter TargetName="Underline" Property="IsActive" Value="True"/>
                         </Trigger>
@@ -135,6 +132,15 @@
                             <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
                             <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="wpf:TextFieldAssist.HasTextFieldBox" Value="False" />
+                                <Condition Property="wpf:TextFieldAssist.HasTextAreaBox" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="border" Property="BorderThickness" Value="0,0,0,2" />
+                            <Setter TargetName="border" Property="Padding" Value="0,4,0,3" />
+                        </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
