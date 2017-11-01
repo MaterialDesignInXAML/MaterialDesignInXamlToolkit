@@ -80,6 +80,14 @@
                                                    />
                                 </Grid>
                             </Border>
+                            <Border x:Name="textFieldBoxBottomLine"
+                                    Background="{TemplateBinding BorderBrush}"
+                                    Height="0"
+                                    CornerRadius="0,0,4,4"
+                                    Margin="2,0"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Bottom"
+                                    SnapsToDevicePixels="True" />
                             <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
                         </Grid>
                     </Border>
@@ -101,6 +109,7 @@
                             <Setter TargetName="textFieldBoxBorder" Property="CornerRadius" Value="4" />
                             <Setter TargetName="textFieldBoxBorder" Property="Padding" Value="0,8,0,0" />
                             <Setter TargetName="textFieldGrid" Property="Margin" Value="16,0,16,0" />
+                            <Setter TargetName="textFieldBoxBottomLine" Property="Height" Value="1" />
                             <Setter TargetName="border" Property="BorderThickness" Value="0" />
                             <Setter TargetName="Underline" Property="CornerRadius" Value="0,0,4,4" />
                             <Setter TargetName="Hint" Property="Margin" Value="0,0,0,16" />
@@ -124,6 +133,7 @@
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
                             <Setter TargetName="textFieldBoxBorder" Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxDisabledBackground}" />
                             <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaInactiveBorder}" />
+                            <Setter TargetName="textFieldBoxBottomLine" Property="Height" Value="0" />
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter TargetName="Underline" Property="IsActive" Value="True"/>
@@ -140,6 +150,14 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="border" Property="BorderThickness" Value="0,0,0,2" />
                             <Setter TargetName="border" Property="Padding" Value="0,4,0,3" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="wpf:TextFieldAssist.HasTextFieldBox" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="textFieldBoxBottomLine" Property="Height" Value="2" />
+                            <Setter TargetName="textFieldBoxBottomLine" Property="Margin" Value="1,0" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
