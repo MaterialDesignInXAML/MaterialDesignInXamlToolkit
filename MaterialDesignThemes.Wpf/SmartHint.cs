@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
 using MaterialDesignThemes.Wpf.Converters;
 
 namespace MaterialDesignThemes.Wpf
@@ -17,15 +16,13 @@ namespace MaterialDesignThemes.Wpf
     /// <para/>
     /// To set a target control you should set the HintProxy property. Use the <see cref="HintProxyFabricConverter.Instance"/> converter which converts a control into the IHintProxy interface.
     /// </summary>
-    [TemplateVisualState(GroupName = ContentStatesGroupName, Name = ContentEmptyName)]
-    [TemplateVisualState(GroupName = ContentStatesGroupName, Name = ContentNotEmptyName)]
+    [TemplateVisualState(GroupName = ContentStatesGroupName, Name = HintRestingPositionName)]
+    [TemplateVisualState(GroupName = ContentStatesGroupName, Name = HintFloatingPositionName)]
     public class SmartHint : Control
     {        
         public const string ContentStatesGroupName = "ContentStates";
-        public const string ContentEmptyName = "ContentEmpty";
-        public const string ContentNotEmptyName = "ContentNotEmpty";
-
-        private ContentControl _floatingHintPart = null;
+        public const string HintRestingPositionName = "HintRestingPosition";
+        public const string HintFloatingPositionName = "HintFloatingPosition";
 
         #region ManagedProperty
 
@@ -67,6 +64,24 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (bool) GetValue(IsContentNullOrEmptyProperty); }
             private set { SetValue(IsContentNullOrEmptyPropertyKey, value); }
+        }
+
+        #endregion
+
+        #region IsHintInFloatingPosition
+
+        private static readonly DependencyPropertyKey IsHintInFloatingPositionPropertyKey =
+            DependencyProperty.RegisterReadOnly(
+                "IsHintInFloatingPosition", typeof(bool), typeof(SmartHint),
+                new PropertyMetadata(default(bool)));
+
+        public static readonly DependencyProperty IsHintInFloatingPositionProperty =
+            IsHintInFloatingPositionPropertyKey.DependencyProperty;
+
+        public bool IsHintInFloatingPosition
+        {
+            get { return (bool)GetValue(IsHintInFloatingPositionProperty); }
+            private set { SetValue(IsHintInFloatingPositionPropertyKey, value); }
         }
 
         #endregion
@@ -143,6 +158,7 @@ namespace MaterialDesignThemes.Wpf
                 hintProxy.IsVisibleChanged -= smartHint.OnHintProxyIsVisibleChanged;
                 hintProxy.ContentChanged -= smartHint.OnHintProxyContentChanged;
                 hintProxy.Loaded -= smartHint.OnHintProxyContentChanged;
+                hintProxy.FocusedChanged -= smartHint.OnHintProxyFocusedChanged;
                 hintProxy.Dispose();
             }
 
@@ -152,7 +168,16 @@ namespace MaterialDesignThemes.Wpf
             hintProxy.IsVisibleChanged += smartHint.OnHintProxyIsVisibleChanged;
             hintProxy.ContentChanged += smartHint.OnHintProxyContentChanged;
             hintProxy.Loaded += smartHint.OnHintProxyContentChanged;
+            hintProxy.FocusedChanged += smartHint.OnHintProxyFocusedChanged;
             smartHint.RefreshState(false);
+        }
+
+        protected virtual void OnHintProxyFocusedChanged(object sender, EventArgs e)
+        {
+            if (HintProxy.IsLoaded)
+                RefreshState(true);
+            else
+                HintProxy.Loaded += HintProxySetStateOnLoaded;
         }
 
         protected virtual void OnHintProxyContentChanged(object sender, EventArgs e)
@@ -160,13 +185,9 @@ namespace MaterialDesignThemes.Wpf
             IsContentNullOrEmpty = HintProxy.IsEmpty();
 
             if (HintProxy.IsLoaded)
-            {
                 RefreshState(true);
-            }
-            else
-            {
+            else            
                 HintProxy.Loaded += HintProxySetStateOnLoaded;
-            }
         }
 
         private void HintProxySetStateOnLoaded(object sender, EventArgs e)
@@ -182,20 +203,26 @@ namespace MaterialDesignThemes.Wpf
 
         private void RefreshState(bool useTransitions)
         {
-            var proxy = HintProxy;
+            IHintProxy proxy = HintProxy;
 
             if (proxy == null) return;
             if (!proxy.IsVisible) return;
             
             var action = new Action(() =>
             {
-                var isEmpty = proxy.IsEmpty();
+                string state = string.Empty;
 
-                var state = isEmpty
-                    ? ContentEmptyName
-                    : ContentNotEmptyName;
-            
-                VisualStateManager.GoToState(this, state, useTransitions);                
+                bool isEmpty = proxy.IsEmpty();
+                bool isFocused = proxy.IsFocused();
+
+                if (UseFloating)
+                    state = !isEmpty || isFocused ? HintFloatingPositionName : HintRestingPositionName;
+                else
+                    state = !isEmpty ? HintFloatingPositionName : HintRestingPositionName;
+
+                IsHintInFloatingPosition = state == HintFloatingPositionName;
+
+                VisualStateManager.GoToState(this, state, useTransitions);
             });
 
             if (DesignerProperties.GetIsInDesignMode(this))
