@@ -4,8 +4,271 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:transitionsDemo="clr-namespace:MaterialDesignDemo.TransitionsDemo"
+             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
-    <transitionsDemo:TransitionsDemoHome />
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <codeDisplayer:XamlDisplayerPanel HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource MaterialDesignDisplay2TextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">Transitions Demo</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" MaxWidth="800" TextWrapping="Wrap" codeDisplayer:XamlDisplayer.DisplayCode="False">
+                 The transitioner will manage your transitions. Notice how SelectedIndex is set to zero : the first slide (instead of the default of -1)
+            </TextBlock>
+            <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:ColorZone Mode="PrimaryDark" Width="300" Height="300">
+                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" 
+                                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                                Content="{materialDesign:PackIcon Pill}" />
+                    </materialDesign:ColorZone>
+                </materialDesign:TransitionerSlide>
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:ColorZone Mode="PrimaryLight" Width="300" Height="300">
+                        <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" 
+                                Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                                Content="{materialDesign:PackIcon StepBackward}" />
+                    </materialDesign:ColorZone>
+                </materialDesign:TransitionerSlide>
+            </materialDesign:Transitioner>
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" MaxWidth="800" TextWrapping="Wrap" codeDisplayer:XamlDisplayer.DisplayCode="False">
+                You can use bare xaml too, without using TransitionerSlide
+            </TextBlock>
+            <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
+                <materialDesign:ColorZone Mode="PrimaryDark" Width="300" Height="300">
+                    <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" 
+                                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                                Content="{materialDesign:PackIcon Pill}" />
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Mode="PrimaryLight" Width="300" Height="300">
+                    <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" 
+                                Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                                Content="{materialDesign:PackIcon StepBackward}" />
+                </materialDesign:ColorZone>
+            </materialDesign:Transitioner>
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" MaxWidth="800" TextWrapping="Wrap" codeDisplayer:XamlDisplayer.DisplayCode="False">
+                You can control (and create your own) wipes with TransitionerSlide
+            </TextBlock>
+            <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:TransitionerSlide.ForwardWipe>
+                        <materialDesign:SlideWipe Direction="Right"/>
+                    </materialDesign:TransitionerSlide.ForwardWipe>
+                    <materialDesign:ColorZone Mode="PrimaryDark" Width="300" Height="300">
+                        <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                                HorizontalAlignment="Center"
+                                Content="SlideWipe" />
+                    </materialDesign:ColorZone>
+                </materialDesign:TransitionerSlide>
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:CircleWipe />
+                    </materialDesign:TransitionerSlide.BackwardWipe>
+                    <materialDesign:ColorZone Mode="PrimaryLight" Width="300" Height="300">
+                        <Button Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                                HorizontalAlignment="Center"
+                                Content="CircleWipe" />
+                    </materialDesign:ColorZone>
+                </materialDesign:TransitionerSlide>
+            </materialDesign:Transitioner>
+            <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:TransitionerSlide.ForwardWipe>
+                        <materialDesign:FadeWipe Duration="00:00:0.6" />
+                    </materialDesign:TransitionerSlide.ForwardWipe>
+                    <materialDesign:ColorZone Mode="PrimaryDark" Width="300" Height="300">
+                        <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                                HorizontalAlignment="Center"
+                                Content="FadeWipe" />
+                    </materialDesign:ColorZone>
+                </materialDesign:TransitionerSlide>
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:SlideOutWipe />
+                    </materialDesign:TransitionerSlide.BackwardWipe>
+                    <materialDesign:ColorZone Mode="PrimaryLight" Width="300" Height="300">
+                        <Button Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                                HorizontalAlignment="Center"
+                                Content="SlideOutWipe" />
+                    </materialDesign:ColorZone>
+                </materialDesign:TransitionerSlide>
+            </materialDesign:Transitioner>
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" MaxWidth="800" TextWrapping="Wrap" codeDisplayer:XamlDisplayer.DisplayCode="False">
+                You can also use TransitionEffect
+            </TextBlock>
+            <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:TransitionerSlide.OpeningEffect>
+                        <materialDesign:TransitionEffect Kind="ExpandIn" />
+                    </materialDesign:TransitionerSlide.OpeningEffect>
+                    <materialDesign:ColorZone Mode="PrimaryDark" Width="300" Height="300">
+                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" 
+                                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                                Content="{materialDesign:PackIcon Pill}" />
+                    </materialDesign:ColorZone>
+                </materialDesign:TransitionerSlide>
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:TransitionerSlide.OpeningEffect>
+                        <materialDesign:TransitionEffect Kind="SlideInFromTop" />
+                    </materialDesign:TransitionerSlide.OpeningEffect>
+                    <materialDesign:ColorZone Mode="PrimaryLight" Width="300" Height="300">
+                        <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" 
+                                Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                                Content="{materialDesign:PackIcon StepBackward}" />
+                    </materialDesign:ColorZone>
+                </materialDesign:TransitionerSlide>
+            </materialDesign:Transitioner>
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" MaxWidth="800" TextWrapping="Wrap" codeDisplayer:XamlDisplayer.DisplayCode="False">
+                Now we are going to slide this in by combining some extra effects. The inner content slides in, so we'll set the outer background and clip, to keep things nice.
+            </TextBlock>
+            <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:ColorZone Mode="PrimaryDark" Width="300" Height="300">
+                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" 
+                                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                                Content="{materialDesign:PackIcon Pill}" />
+                    </materialDesign:ColorZone>
+                </materialDesign:TransitionerSlide>
+                <materialDesign:TransitionerSlide ClipToBounds="True">
+                    <materialDesign:TransitionerSlide.OpeningEffects>
+                        <materialDesign:TransitionEffect Kind="SlideInFromLeft" Duration="0:0:0.8" />
+                        <materialDesign:TransitionEffect Kind="SlideInFromBottom" Duration="0:0:0.8" OffsetTime="0:0:0.15" />
+                    </materialDesign:TransitionerSlide.OpeningEffects>
+                    <materialDesign:ColorZone Mode="PrimaryLight" Width="300" Height="300">
+                        <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" 
+                                Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                                Content="{materialDesign:PackIcon StepBackward}" />
+                    </materialDesign:ColorZone>
+                </materialDesign:TransitionerSlide>
+            </materialDesign:Transitioner>
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" MaxWidth="800" TextWrapping="Wrap" codeDisplayer:XamlDisplayer.DisplayCode="False">
+                Next we will look at some granular transitions on individual elements using TransitioningContent
+            </TextBlock>
+            <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:ColorZone Mode="PrimaryDark" Width="300" Height="300">
+                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" 
+                                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                                Content="{materialDesign:PackIcon Pill}" />
+                    </materialDesign:ColorZone>
+                </materialDesign:TransitionerSlide>
+                <materialDesign:TransitionerSlide>
+                    <Grid HorizontalAlignment="Center" Width="418" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration=0:0:1.2}">
+                            <materialDesign:ColorZone Mode="PrimaryMid" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="4">
+                                <StackPanel Margin="16" Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Account" Height="32" Width="32" />
+                                    <TextBlock Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="16 0 0 0">Contacts</TextBlock>
+                                </StackPanel>
+                            </materialDesign:ColorZone>
+                        </materialDesign:TransitioningContent>
+                        <ItemsControl Grid.Row="1">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="4" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.Resources>
+                                <Style TargetType="{x:Type materialDesign:ColorZone}" BasedOn="{StaticResource {x:Type materialDesign:ColorZone}}">
+                                    <Setter Property="Width" Value="96" />
+                                    <Setter Property="Height" Value="96" />
+                                    <Setter Property="Margin" Value="4" />
+                                    <Setter Property="Mode" Value="PrimaryLight" />
+                                </Style>
+                            </ItemsControl.Resources>
+                            <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
+                                <materialDesign:ColorZone>
+                                    <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </materialDesign:ColorZone>
+                            </materialDesign:TransitioningContent>
+
+                            <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.05}">
+                                <materialDesign:TransitioningContent.OpeningEffects>
+                                    <materialDesign:TransitionEffect Kind="ExpandIn" />
+                                </materialDesign:TransitioningContent.OpeningEffects>
+                                <materialDesign:ColorZone>
+                                    <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </materialDesign:ColorZone>
+                            </materialDesign:TransitioningContent>
+
+                            <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.05}">
+                                <materialDesign:TransitioningContent.OpeningEffects>
+                                    <materialDesign:TransitionEffect Kind="ExpandIn" />
+                                </materialDesign:TransitioningContent.OpeningEffects>
+                                <materialDesign:ColorZone>
+                                    <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </materialDesign:ColorZone>
+                            </materialDesign:TransitioningContent>
+
+                            <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.05}">
+                                <materialDesign:TransitioningContent.OpeningEffects>
+                                    <materialDesign:TransitionEffect Kind="ExpandIn" />
+                                </materialDesign:TransitioningContent.OpeningEffects>
+                                <materialDesign:ColorZone>
+                                    <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </materialDesign:ColorZone>
+                            </materialDesign:TransitioningContent>
+
+                            <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.05}">
+                                <materialDesign:TransitioningContent.OpeningEffects>
+                                    <materialDesign:TransitionEffect Kind="ExpandIn" />
+                                </materialDesign:TransitioningContent.OpeningEffects>
+                                <materialDesign:ColorZone>
+                                    <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </materialDesign:ColorZone>
+                            </materialDesign:TransitioningContent>
+
+                            <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.05}">
+                                <materialDesign:TransitioningContent.OpeningEffects>
+                                    <materialDesign:TransitionEffect Kind="ExpandIn" />
+                                </materialDesign:TransitioningContent.OpeningEffects>
+                                <materialDesign:ColorZone>
+                                    <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </materialDesign:ColorZone>
+                            </materialDesign:TransitioningContent>
+
+                            <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.05}">
+                                <materialDesign:TransitioningContent.OpeningEffects>
+                                    <materialDesign:TransitionEffect Kind="ExpandIn" />
+                                </materialDesign:TransitioningContent.OpeningEffects>
+                                <materialDesign:ColorZone>
+                                    <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </materialDesign:ColorZone>
+                            </materialDesign:TransitioningContent>
+
+                            <materialDesign:TransitioningContent  OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.05}">
+                                <materialDesign:TransitioningContent.OpeningEffects>
+                                    <materialDesign:TransitionEffect Kind="ExpandIn" />
+                                </materialDesign:TransitioningContent.OpeningEffects>
+                                <materialDesign:ColorZone>
+                                    <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </materialDesign:ColorZone>
+                            </materialDesign:TransitioningContent>
+                        </ItemsControl>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+                            <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" 
+                                Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                                VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                Margin="16">
+                                <materialDesign:PackIcon Kind="StepBackward" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:TransitionerSlide>
+            </materialDesign:Transitioner>
+        </codeDisplayer:XamlDisplayerPanel>
+    </ScrollViewer>
 </UserControl>
