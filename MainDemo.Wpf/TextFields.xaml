@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
+             xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"             
              mc:Ignorable="d"               
              d:DesignHeight="300" d:DesignWidth="600" Loaded="UserControl_Loaded"
              d:DataContext="{d:DesignInstance domain:TextFieldsViewModel, d:IsDesignTimeCreatable=False}">
@@ -16,7 +16,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>            
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
                 <Setter Property="Margin" Value="0 8 0 8" />
             </Style>
@@ -70,10 +70,12 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Common Fields</TextBlock>
+        <CheckBox Grid.Row="0" Grid.Column="3" x:Name="EnabledCheckBox" IsThreeState="False" IsChecked="True" Margin="0 8 0 0">Enabled</CheckBox>
+        
         <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" />
         <TextBox Grid.Row="1" Grid.Column="1" 
-				    x:Name="NameTextBox"
-				    materialDesign:HintAssist.Hint="Name">
+                 x:Name="NameTextBox" 
+                 materialDesign:HintAssist.Hint="Name">
             <TextBox.Text>
                 <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -103,7 +105,7 @@
                  materialDesign:TransitionAssist.DisableTransitions="True"
 				    />
         <TextBlock Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">Fruit</TextBlock>
-        <ComboBox Grid.Row="2" Grid.Column="3" materialDesign:HintAssist.Hint="Search"
+        <ComboBox Grid.Row="2" Grid.Column="3" materialDesign:HintAssist.Hint="Search"                  
                   IsEditable="True" materialDesign:HintAssist.HintOpacity=".26">
             <ComboBoxItem>Apple</ComboBoxItem>
             <ComboBoxItem>Banana</ComboBoxItem>
@@ -119,9 +121,10 @@
         <PasswordBox Grid.Row="3" Grid.Column="3" 		
                      x:Name="PasswordBox"
                      materialDesign:HintAssist.Hint="Password" />
-        <TextBox Grid.Row="4" Grid.Column="1" materialDesign:HintAssist.Hint="Floating Hint" 
+        <TextBox Grid.Row="4" Grid.Column="1" materialDesign:HintAssist.Hint="Floating Hint"                  
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-        <ComboBox Grid.Row="4" Grid.Column="3" materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+        <ComboBox Grid.Row="4" Grid.Column="3" materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                  IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}">
             <ComboBoxItem>Android</ComboBoxItem>
             <ComboBoxItem>iOS</ComboBoxItem>
             <ComboBoxItem>Linux</ComboBoxItem>
@@ -184,6 +187,7 @@
         </StackPanel>
 
         <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff"
+                 IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}"
                  Margin="0 8 0 8">
             <materialDesign:HintAssist.Hint>
                 <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
@@ -193,6 +197,7 @@
             </materialDesign:HintAssist.Hint>
         </TextBox>
         <ComboBox Grid.Row="5" Grid.Column="3" materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                  IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}"
                   Margin="0 8 0 8">
             <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
             <ComboBoxItem>Banana</ComboBoxItem>
@@ -206,17 +211,19 @@
         <PasswordBox Grid.Row="6" Grid.Column="1" 		
                      x:Name="FloatingPasswordBox"
                      Margin="0 12 0 0"
+                     IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}"
                      materialDesign:HintAssist.Hint="Floating Password"
                      Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
         <TextBox Grid.Row="6" Grid.Column="3"
                  materialDesign:HintAssist.Hint="Large Font"
                  materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
-                 materialDesign:HintAssist.FloatingScale="0.50"                 
+                 materialDesign:HintAssist.FloatingScale="0.50"     
+                 IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}"
                  Text="Some Text"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  FontSize="24"/>
-                          
+       
         <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
                    Margin="0 48 0 0">DataTemplate Test</TextBlock>
         <ContentControl Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="4"
