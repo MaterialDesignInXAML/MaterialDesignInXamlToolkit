@@ -274,6 +274,8 @@
                         </VisualStateManager.VisualStateGroups>
                         <DockPanel Background="{TemplateBinding Background}">
                             <ToggleButton Name="HeaderSite"
+                                          Focusable="False"
+                                          IsTabStop="False"
                                               DockPanel.Dock="Top"
                                               BorderThickness="0" Cursor="Hand"
                                               IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"

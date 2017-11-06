@@ -44,7 +44,7 @@ To load the source project you will need Visual Studio 2017.  Don't worry if you
 
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
-* Before contributing code read the [Contribution Guidelines](CONTRIBUTING.md)
+* Before contributing code read the [Contribution Guidelines](.github/CONTRIBUTING.md)
   * GitHub issues are for bugs.
   * For queries, help, and general chat stop by the [Gitter chat room](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit).
   * Stack Overflow tag: [material-design-in-xaml](http://stackoverflow.com/questions/tagged/material-design-in-xaml)

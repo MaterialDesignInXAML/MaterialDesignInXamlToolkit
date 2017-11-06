@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -23,16 +24,17 @@ namespace MaterialDesignColors.WpfExample
         public Chips()
         {
             InitializeComponent();
+			
         }
 
         private void ButtonsDemoChip_OnClick(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Chip clicked.");
+            MainWindow.Snackbar.MessageQueue.Enqueue("Chip clicked!");
         }
 
         private void ButtonsDemoChip_OnDeleteClick(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Chip delete clicked.");
+            MainWindow.Snackbar.MessageQueue.Enqueue("Chip delete clicked!");
         }
 
     }

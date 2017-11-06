@@ -163,7 +163,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                     {
                         DocumentationLink.WikiLink("Dialogs", "Dialogs"),
                         DocumentationLink.DemoPageLink<Dialogs>("Demo View"),
-                        DocumentationLink.DemoPageLink<DialogsViewModel>("Demo View Model"),
+                        DocumentationLink.DemoPageLink<DialogsViewModel>("Demo View Model", "Domain"),
                         DocumentationLink.ApiLink<DialogHost>()
                     }),
                 new DemoItem("Drawer", new Drawers(),
