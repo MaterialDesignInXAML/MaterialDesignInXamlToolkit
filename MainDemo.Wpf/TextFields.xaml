@@ -40,8 +40,13 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <codeDisplayer:XamlDisplayerPanel HorizontalAlignment="Center">
+
+        <CheckBox Grid.Row="0" Grid.Column="3" x:Name="EnabledCheckBox" IsThreeState="False" IsChecked="True" Margin="0 8 0 0" Content="Enabled" 
+                  codeDisplayer:XamlDisplayer.DisplayCode="False"/>
+
         <TextBox  x:Name="NameTextBox"
-					materialDesign:HintAssist.Hint="Name">
+				  materialDesign:HintAssist.Hint="Name"
+                  IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}">
             <TextBox.Text>
                 <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -52,7 +57,8 @@
         </TextBox>
         <StackPanel Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" Margin="0 0 8 0">OS</TextBlock>
-            <ComboBox materialDesign:HintAssist.Hint="OS">
+            <ComboBox materialDesign:HintAssist.Hint="OS"
+                      IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}">
                 <ComboBoxItem>Android</ComboBoxItem>
                 <ComboBoxItem>iOS</ComboBoxItem>
                 <ComboBoxItem>Linux</ComboBoxItem>
@@ -78,7 +84,8 @@
         <StackPanel Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" Margin="0 0 8 0" >Fruit</TextBlock>
             <ComboBox materialDesign:HintAssist.Hint="Search"
-				  IsEditable="True" materialDesign:HintAssist.HintOpacity=".26">
+				      IsEditable="True" materialDesign:HintAssist.HintOpacity=".26"
+                      IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}">
                 <ComboBoxItem>Apple</ComboBoxItem>
                 <ComboBoxItem>Banana</ComboBoxItem>
                 <ComboBoxItem>Pear</ComboBoxItem>
@@ -87,17 +94,21 @@
         </StackPanel>
         <TextBox
             x:Name="CommentTextBox"
-				 materialDesign:HintAssist.Hint="Comment"
+		    materialDesign:HintAssist.Hint="Comment"
+            IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}"
 					/>
         <StackPanel Orientation="Horizontal">
             <materialDesign:PackIcon Margin="0 0 8 0" Kind="Key" Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}" HorizontalAlignment="Right" />
             <PasswordBox 
 					 x:Name="PasswordBox"
-					 materialDesign:HintAssist.Hint="Password" />
+					 materialDesign:HintAssist.Hint="Password" 
+                     IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}"/>
         </StackPanel>
         <TextBox  materialDesign:HintAssist.Hint="Floating Hint" 
-				 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-        <ComboBox  materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+				  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                  IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}"/>
+        <ComboBox  materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                   IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}">
             <ComboBoxItem>Android</ComboBoxItem>
             <ComboBoxItem>iOS</ComboBoxItem>
             <ComboBoxItem>Linux</ComboBoxItem>
