@@ -100,6 +100,22 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
+        /// Controls the highlighting style of a text box.
+        /// </summary>
+        public static readonly DependencyProperty NewSpecHighlightingEnabledProperty = DependencyProperty.RegisterAttached(
+            "NewSpecHighlightingEnabled", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
+
+        public static void SetNewSpecHighlightingEnabled(DependencyObject element, bool value)
+        {
+            element.SetValue(NewSpecHighlightingEnabledProperty, value);
+        }
+
+        public static bool GetNewSpecHighlightingEnabled(DependencyObject element)
+        {
+            return (bool)element.GetValue(NewSpecHighlightingEnabledProperty);
+        }
+
+        /// <summary>
         /// Automatially inserts spelling suggestions into the text box context menu.
         /// </summary>
         public static readonly DependencyProperty IncludeSpellingSuggestionsProperty = DependencyProperty.RegisterAttached(
