@@ -13,6 +13,7 @@
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" IsNotEmptyValue="Collapsed" />
     <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
     <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
+    <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
 
     <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
     <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
