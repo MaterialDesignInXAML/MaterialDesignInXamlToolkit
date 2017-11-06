@@ -3,16 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
     <UserControl.Resources>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
-            <Setter Property="TextWrapping" Value="Wrap"></Setter>
-            <Setter Property="MaxWidth" Value="300"></Setter>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ExpansionPanel.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <x:Array x:Key="BindingCollection" Type="sys:String">
+                <sys:String>Item 1</sys:String>
+                <sys:String>Item 2</sys:String>
+                <sys:String>Item 3</sys:String>
+                <sys:String>Item 4</sys:String>
+            </x:Array>
+
+            <DataTemplate x:Key="ExpansionPanelHeaderTemplate">
+                <Grid Margin="0">
+                    <TextBlock Text="{Binding}" HorizontalAlignment="Left" />
+                    <StackPanel Name="Icons" Orientation="Horizontal" Visibility="Collapsed" HorizontalAlignment="Right">
+                        <materialDesign:PackIcon Kind="ShareVariant" HorizontalAlignment="Right" Opacity="0.54" Margin="16 0" />
+                        <materialDesign:PackIcon Kind="Heart" HorizontalAlignment="Right" Opacity="0.54" />
+                    </StackPanel>
+                </Grid>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type materialDesign:ExpansionPanelItem}}, Path=IsSelected}" Value="True">
+                        <Setter Property="TextElement.FontWeight" Value="Bold" />
+                        <Setter TargetName="Icons" Property="Visibility" Value="Visible" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+
+            <DataTemplate x:Key="ExpansionPanelContentTemplate">
+                <StackPanel Orientation="Vertical" Margin="24,8,24,16">
+                    <TextBlock Text="Your content" />
+                    <TextBlock Opacity=".68" Margin="0 8 0 48" Text="{Binding}" TextWrapping="Wrap"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 48 0 0">
+                        <Button Content="CANCEL" Margin="0 0 0 0" Style="{StaticResource MaterialDesignFlatButton}">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard>
+                                        <Storyboard Duration="0:0:0.1" RepeatBehavior="1x">
+                                            <ObjectAnimationUsingKeyFrames Storyboard.Target="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type materialDesign:ExpansionPanel}}}" Storyboard.TargetProperty="SelectedItem">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Null}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Button Content="SAVE" Margin="4 0 0 0" />
+                    </StackPanel>
+                </StackPanel>
+            </DataTemplate>
+
+            <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+                <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                <Setter Property="MaxWidth" Value="300"></Setter>
+            </Style>
+        </ResourceDictionary>      
     </UserControl.Resources>
+    
     <ScrollViewer>
         <codeDisplayer:XamlDisplayerPanel >
             <StackPanel>
@@ -140,6 +194,13 @@
                     </StackPanel>
                 </Expander>
             </StackPanel>
+            <materialDesign:ExpansionPanel Width="360" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                               ItemsSource="{StaticResource BindingCollection}"                                               
+                                               ItemHeaderTemplate="{StaticResource ExpansionPanelHeaderTemplate}"
+                                               ItemTemplate="{StaticResource ExpansionPanelContentTemplate}">
+                <!--<materialDesign:ExpansionPanelItem Content="Item A" ContentTemplate="{StaticResource ExpansionPanelContentTemplate}" />
+                        <materialDesign:ExpansionPanelItem Content="Item B" ContentTemplate="{StaticResource ExpansionPanelContentTemplate}" />-->
+            </materialDesign:ExpansionPanel>
         </codeDisplayer:XamlDisplayerPanel>
     </ScrollViewer>
 </UserControl>
