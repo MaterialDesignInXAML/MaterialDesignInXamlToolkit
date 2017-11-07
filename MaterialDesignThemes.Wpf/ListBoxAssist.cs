@@ -27,6 +27,8 @@ namespace MaterialDesignThemes.Wpf
             var point = mouseButtonEventArgs.GetPosition(senderElement);
             var result = VisualTreeHelper.HitTest(senderElement, point);
 
+            if (result == null) return;
+
             ListBoxItem listBoxItem = null;
             Ripple ripple = null;
             foreach (var dependencyObject in result.VisualHit.GetVisualAncestry().TakeWhile(_ => listBoxItem == null))
