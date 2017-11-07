@@ -40,13 +40,8 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <codeDisplayer:XamlDisplayerPanel HorizontalAlignment="Center">
-
-        <CheckBox Grid.Row="0" Grid.Column="3" x:Name="EnabledCheckBox" IsThreeState="False" IsChecked="True" Margin="0 8 0 0" Content="Enabled" 
-                  codeDisplayer:XamlDisplayer.DisplayCode="False"/>
-
         <TextBox  x:Name="NameTextBox"
-				  materialDesign:HintAssist.Hint="Name"
-                  IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}">
+					materialDesign:HintAssist.Hint="Name">
             <TextBox.Text>
                 <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -57,8 +52,7 @@
         </TextBox>
         <StackPanel Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" Margin="0 0 8 0">OS</TextBlock>
-            <ComboBox materialDesign:HintAssist.Hint="OS"
-                      IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}">
+            <ComboBox materialDesign:HintAssist.Hint="OS">
                 <ComboBoxItem>Android</ComboBoxItem>
                 <ComboBoxItem>iOS</ComboBoxItem>
                 <ComboBoxItem>Linux</ComboBoxItem>
@@ -75,45 +69,40 @@
 				 Height="80">Multiline.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The quick brown fox jumps over the lazy dog. War and peace. Keep going. Go on. For how long? Not long. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TextBox>
         <StackPanel Orientation="Horizontal">
             <materialDesign:PackIcon Kind="Phone" Margin="0 0 8 0" Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}" />
-            <TextBox
-		    x:Name="PhoneTextBox"				 
-				 materialDesign:TransitionAssist.DisableTransitions="True"
-                Width="150"
-                IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}" />
+            <TextBox x:Name="PhoneTextBox"				 
+                     materialDesign:TransitionAssist.DisableTransitions="True"
+                     Width="150" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" Margin="0 0 8 0" >Fruit</TextBlock>
             <ComboBox materialDesign:HintAssist.Hint="Search"
-				      IsEditable="True" materialDesign:HintAssist.HintOpacity=".26"
-                      IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}">
+				  IsEditable="True" materialDesign:HintAssist.HintOpacity=".26">
                 <ComboBoxItem>Apple</ComboBoxItem>
                 <ComboBoxItem>Banana</ComboBoxItem>
                 <ComboBoxItem>Pear</ComboBoxItem>
                 <ComboBoxItem>Orange</ComboBoxItem>
             </ComboBox>
         </StackPanel>
-        <TextBox
-            x:Name="CommentTextBox"
-		    materialDesign:HintAssist.Hint="Comment"
-            IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}"
-					/>
+        <TextBox x:Name="CommentTextBox"
+				 materialDesign:HintAssist.Hint="Comment" />
         <StackPanel Orientation="Horizontal">
             <materialDesign:PackIcon Margin="0 0 8 0" Kind="Key" Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}" HorizontalAlignment="Right" />
-            <PasswordBox 
-					 x:Name="PasswordBox"
-					 materialDesign:HintAssist.Hint="Password" 
-                     IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}"/>
+            <PasswordBox x:Name="PasswordBox"
+                         materialDesign:HintAssist.Hint="Password" />
         </StackPanel>
-        <TextBox  materialDesign:HintAssist.Hint="Floating Hint" 
-				  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                  IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}"/>
-        <ComboBox  materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                   IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}">
+        <TextBox materialDesign:HintAssist.Hint="Floating Hint" 
+				 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        <ComboBox  materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
             <ComboBoxItem>Android</ComboBoxItem>
             <ComboBoxItem>iOS</ComboBoxItem>
             <ComboBoxItem>Linux</ComboBoxItem>
             <ComboBoxItem>Windows</ComboBoxItem>
         </ComboBox>
+        <StackPanel>
+            <TextBox materialDesign:HintAssist.Hint="I'm Disabled" IsEnabled="False" Margin="0 8 0 0" />
+            <ComboBox materialDesign:HintAssist.Hint="Disabled Combo" IsEnabled="False" Margin="0 8 0 0" />
+            <PasswordBox Password="01234" IsEnabled="False" Margin="0 8 0 0" />
+        </StackPanel>
         <ComboBox materialDesign:HintAssist.Hint="Virtualisation" 
 						  MinWidth="72"
 						  
