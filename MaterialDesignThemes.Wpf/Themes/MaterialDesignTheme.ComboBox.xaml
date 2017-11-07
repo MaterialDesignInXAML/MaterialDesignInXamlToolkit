@@ -13,7 +13,8 @@
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" IsNotEmptyValue="Collapsed" />
     <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
     <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-
+    <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
+    
     <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
     <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
     <system:Double x:Key="PopupLeftRightMargin">16</system:Double>
@@ -377,14 +378,14 @@
                                 <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false" />
                                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="ToggleTemplateRoot" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+                            <Setter TargetName="ToggleTemplateRoot" Property="BorderBrush" Value="Transparent"/>
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false" />
                                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="ToggleTemplateRoot" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+                            <Setter TargetName="ToggleTemplateRoot" Property="BorderBrush" Value="Transparent"/>
                             <Setter TargetName="splitBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
                         </MultiDataTrigger>
                     </ControlTemplate.Triggers>
@@ -440,6 +441,11 @@
                                        Hint="{TemplateBinding wpf:HintAssist.Hint}" />
                     </Grid>
                 </Grid>
+                <Line x:Name="DashedLine" Grid.ColumnSpan="2" VerticalAlignment="Bottom"
+                      Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource InverseBoolToVisConverter}}"
+                      StrokeThickness="1.25" StrokeDashArray="1,2.5" StrokeDashCap="Round"
+                      X1="0" X2="{Binding ActualWidth, ElementName=toggleButton}" Y1="0" Y2="0" 
+                      Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />
                 <wpf:Underline x:Name="Underline"
                                Grid.ColumnSpan="2"
                                IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
@@ -481,6 +487,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="templateRoot" Property="Opacity" Value="0.56"/>
+                <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent"/>
             </Trigger>
             <Trigger Property="IsEditable" Value="True">
                 <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
