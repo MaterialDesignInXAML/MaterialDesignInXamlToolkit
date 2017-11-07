@@ -79,7 +79,7 @@
 		    x:Name="PhoneTextBox"				 
 				 materialDesign:TransitionAssist.DisableTransitions="True"
                 Width="150"
-					/>
+                IsEnabled="{Binding ElementName=EnabledCheckBox, Path=IsChecked}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" Margin="0 0 8 0" >Fruit</TextBlock>
