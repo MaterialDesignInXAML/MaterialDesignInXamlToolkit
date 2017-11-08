@@ -83,7 +83,7 @@
                             <Line x:Name="DashedLine" VerticalAlignment="Bottom" Visibility="Hidden"
                                   StrokeThickness="1.25" StrokeDashArray="1,2.5" StrokeDashCap="Round"
                                   X1="0" X2="{Binding ActualWidth, ElementName=border}" Y1="0" Y2="0" 
-                                  Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />                                  
+                                  Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />
                             <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
                         </Grid>
                     </Border>
