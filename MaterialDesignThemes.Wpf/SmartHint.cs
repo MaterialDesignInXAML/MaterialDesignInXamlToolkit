@@ -16,11 +16,18 @@ namespace MaterialDesignThemes.Wpf
     /// <para/>
     /// To set a target control you should set the HintProxy property. Use the <see cref="HintProxyFabricConverter.Instance"/> converter which converts a control into the IHintProxy interface.
     /// </summary>
+    [TemplateVisualState(GroupName = ContentStatesGroupName, Name = ContentEmptyName)]
+    [TemplateVisualState(GroupName = ContentStatesGroupName, Name = ContentNotEmptyName)]
     [TemplateVisualState(GroupName = ContentStatesGroupName, Name = HintRestingPositionName)]
     [TemplateVisualState(GroupName = ContentStatesGroupName, Name = HintFloatingPositionName)]
     public class SmartHint : Control
     {        
         public const string ContentStatesGroupName = "ContentStates";
+        [System.Obsolete]
+        public const string ContentEmptyName = "ContentEmpty";
+        [System.Obsolete]
+        public const string ContentNotEmptyName = "ContentNotEmpty";
+
         public const string HintRestingPositionName = "HintRestingPosition";
         public const string HintFloatingPositionName = "HintFloatingPosition";
 
