@@ -6,7 +6,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="MaterialDesignTheme.ValidationErrorTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
@@ -103,6 +103,10 @@
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Bottom"
                                         SnapsToDevicePixels="True" />
+                                <Line x:Name="DashedLine" VerticalAlignment="Bottom" Visibility="Hidden"
+                                      StrokeThickness="1.25" StrokeDashArray="1,2.5" StrokeDashCap="Round"
+                                      X1="0" X2="{Binding ActualWidth, ElementName=border}" Y1="0" Y2="0" 
+                                      Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />
                                 <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
                             </Grid>
                         </Border>
@@ -147,12 +151,33 @@
                             <Setter TargetName="Hint" Property="Margin" Value="0,0,0,16" />
                             <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,8,0,8" />
                         </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-                            <Setter TargetName="textFieldBoxBorder" Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxDisabledBackground}" />
-                            <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaInactiveBorder}" />
+                        <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="textFieldBoxBottomLine" Property="Height" Value="0" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="false" />
+                                <Condition Property="wpf:TextFieldAssist.HasTextAreaBox" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="textFieldBoxBorder" Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxDisabledBackground}" />
+                            <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaInactiveBorder}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="false" />
+                                <Condition Property="wpf:TextFieldAssist.HasTextAreaBox" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Opacity" TargetName="border" Value="0.42"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="false" />
+                                <Condition Property="wpf:TextFieldAssist.HasTextAreaBox" Value="False" />
+                                <Condition Property="wpf:TextFieldAssist.HasTextFieldBox" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="DashedLine" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter TargetName="Underline" Property="IsActive" Value="True"/>
                         </Trigger>

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
@@ -15,86 +16,42 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <!-- linear progress bars (the default style -->
-        <ProgressBar Orientation="Vertical" Value="25" Margin="24" Grid.RowSpan="2" />
-        <ProgressBar Orientation="Vertical" Height="10" IsIndeterminate="True" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="24" />
-        <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch">
-            <ProgressBar Value="25" Margin="24" Height="10" />
-            <ProgressBar Value="50" Margin="24" materialDesign:TransitionAssist.DisableTransitions="True" /> <!-- should disable on 2nd transition... -->
-            <ProgressBar Value="75" Margin="24" />
-            <ProgressBar IsIndeterminate="True" Margin="24" />
-        </StackPanel>
-
-        <!-- circular progress bars.. specify the MaterialDesignCicularProgressBar resource -->
-        <Grid VerticalAlignment="Top" Grid.Column="2" Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            
-            <TextBlock Grid.ColumnSpan="2" FontSize="16" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Stretch"
-                       Margin="0 0 0 16">
-                No extra control is required for the circular style, it is purely a standard ProgressBar, with the MaterialDesignCircularProgressBar style applied.
-            </TextBlock>
-
+    <ScrollViewer>
+        <codeDisplayer:XamlDisplayerPanel >
+            <ProgressBar Orientation="Vertical" Width="200" Height="10" Value="25"   />
+            <ProgressBar Orientation="Vertical"  Width="200" Height="10" IsIndeterminate="True"    />
+            <ProgressBar Value="25"   Width="200" Height="10" />
+            <ProgressBar Value="50"   Width="200" Height="10" materialDesign:TransitionAssist.DisableTransitions="True" />
+            <ProgressBar Value="75"   Width="200" Height="10"/>
+            <ProgressBar IsIndeterminate="True"   Width="200" Height="10"/>
             <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
                      x:Name="DeterminateCircularProgress"
-                     Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12" />
-            <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap">Standard deterministic progress bar, running from 0 to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value property.</TextBlock>
-
+                      VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12" />
             <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
                      Value="35"
                      IsIndeterminate="True"
-                     Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12"/>
-            <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" TextWrapping="Wrap">Indeterminate progress bar, at 35%.</TextBlock>
-
+                      VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12"/>
             <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
                      Value="0"
                      IsIndeterminate="True"
-                     Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12"/>
-            <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" TextWrapping="Wrap">Fully indeterminate progress bar, using .Value=0 to inform the theme.</TextBlock>
-
+                      VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12"/>
             <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
                      Value="20"
                      IsIndeterminate="True"
                      x:Name="IndeterminateToDeterminateCircularProgress"
-                     Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12" />
-            <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" TextWrapping="Wrap">An indeterminate job transitioning to a determinate job, completing to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value and .IsIndeterminate properties.</TextBlock>
-
+                      VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12" />
             <materialDesign:Card UniformCornerRadius="14" Padding="4"
-                      Grid.Row="5" Grid.Column="0"
+                      
                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12">
                 <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
                          Value="50"
                          IsIndeterminate="True"                         
                       />
             </materialDesign:Card>
-            <TextBlock Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap">Wrap in a Card control to raise the material.</TextBlock>
-
             <materialDesign:Card UniformCornerRadius="14" 
                       RenderTransformOrigin=".5,.5"
                       Padding="4" 
-                      Grid.Row="6" Grid.Column="0"
+                      
                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12">
                 <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                          
                              x:Name="AnimatedProgressInCard"
@@ -162,14 +119,8 @@
                 </materialDesign:Card.Style>
 
             </materialDesign:Card>
-            <TextBlock Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap">Apply some animations to the card to get funky!</TextBlock>
-
-        </Grid>
-    </Grid>
-
-    <!--    these animations are used to control the circular progress bars' values, so we don't need 
-            code-behind or a view model to illustrate them in action 
-    -->
+        </codeDisplayer:XamlDisplayerPanel>
+    </ScrollViewer>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
             <EventTrigger.Actions>
