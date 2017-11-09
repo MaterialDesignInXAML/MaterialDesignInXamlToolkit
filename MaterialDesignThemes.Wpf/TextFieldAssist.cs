@@ -116,6 +116,22 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
+        /// Enables a ripple effect on focusing the text box.
+        /// </summary>
+        public static readonly DependencyProperty RippleOnFocusEnabledProperty = DependencyProperty.RegisterAttached(
+            "RippleOnFocusEnabled", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
+
+        public static void SetRippleOnFocusEnabled(DependencyObject element, bool value)
+        {
+            element.SetValue(RippleOnFocusEnabledProperty, value);
+        }
+
+        public static bool GetRippleOnFocusEnabled(DependencyObject element)
+        {
+            return (bool)element.GetValue(RippleOnFocusEnabledProperty);
+        }
+
+        /// <summary>
         /// Automatially inserts spelling suggestions into the text box context menu.
         /// </summary>
         public static readonly DependencyProperty IncludeSpellingSuggestionsProperty = DependencyProperty.RegisterAttached(

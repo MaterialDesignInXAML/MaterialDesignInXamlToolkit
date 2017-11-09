@@ -8,6 +8,7 @@
     </ResourceDictionary.MergedDictionaries>
     
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
+    <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <Style x:Key="MaterialDesignTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
@@ -26,6 +27,7 @@
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
         <Setter Property="wpf:TextFieldAssist.IncludeSpellingSuggestions" Value="{Binding RelativeSource={RelativeSource Self}, Path=(SpellCheck.IsEnabled)}" />
         <Setter Property="wpf:TextFieldAssist.NewSpecHighlightingEnabled" Value="False" />
+        <Setter Property="wpf:TextFieldAssist.RippleOnFocusEnabled" Value="False" />
         <!-- cludge the default context menu -->
         <Setter Property="ContextMenu">
             <Setter.Value>
@@ -51,47 +53,60 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border x:Name="textFieldBoxBorder"
-                            SnapsToDevicePixels="True">
-                        <Grid>
-                            <Border x:Name="border"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    Background="{TemplateBinding Background}"
-                                    SnapsToDevicePixels="True"
-                                    Padding="0 4 0 4">
-                                <Grid x:Name="textFieldGrid"
-                                      Margin="{TemplateBinding Padding}"
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
-                                    <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
-                                                  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                  UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                                  />
-                                    <wpf:SmartHint x:Name="Hint"
-                                                   Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
-                                                   HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                                   FontSize="{TemplateBinding FontSize}"
-                                                   Padding="{TemplateBinding Padding}"
-                                                   HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                                                   UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
-                                                   FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
-                                                   FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"                                               
-                                                   />
-                                </Grid>
-                            </Border>
-                            <Border x:Name="textFieldBoxBottomLine"
-                                    Background="{TemplateBinding BorderBrush}"
-                                    Height="0"
-                                    CornerRadius="0,0,4,4"
-                                    Margin="2,0"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Bottom"
-                                    SnapsToDevicePixels="True" />
-                            <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
-                        </Grid>
-                    </Border>
+                    <Grid>
+                        <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                Background="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}"
+                                CornerRadius="4"
+                                Visibility="{Binding Path=(wpf:TextFieldAssist.RippleOnFocusEnabled), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
+                                </TransformGroup>
+                            </Border.RenderTransform>
+                        </Border>
+                        <Border x:Name="textFieldBoxBorder"
+                                SnapsToDevicePixels="True">
+                            <Grid>
+                                <Border x:Name="border"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}"
+                                        SnapsToDevicePixels="True"
+                                        Padding="0 4 0 4">
+                                    <Grid x:Name="textFieldGrid"
+                                          Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
+                                                      HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                      UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                                      />
+                                        <wpf:SmartHint x:Name="Hint"
+                                                       Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                                       HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                                       FontSize="{TemplateBinding FontSize}"
+                                                       Padding="{TemplateBinding Padding}"
+                                                       HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                                       UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                                       FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
+                                                       FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"                                               
+                                                       />
+                                    </Grid>
+                                </Border>
+                                <Border x:Name="textFieldBoxBottomLine"
+                                        Background="{TemplateBinding BorderBrush}"
+                                        Height="0"
+                                        CornerRadius="0,0,4,4"
+                                        Margin="2,0"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Bottom"
+                                        SnapsToDevicePixels="True" />
+                                <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -112,6 +127,7 @@
                             <Setter TargetName="textFieldGrid" Property="Margin" Value="16,0,16,0" />
                             <Setter TargetName="textFieldBoxBottomLine" Property="Height" Value="1" />
                             <Setter TargetName="border" Property="BorderThickness" Value="0" />
+                            <Setter TargetName="border" Property="Cursor" Value="IBeam" />
                             <Setter TargetName="Underline" Property="CornerRadius" Value="0,0,4,4" />
                             <Setter TargetName="Hint" Property="Margin" Value="0,0,0,16" />
                             <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,8,0,8" />
@@ -126,6 +142,7 @@
                             <Setter TargetName="textFieldBoxBorder" Property="Margin" Value="-1" />
                             <Setter TargetName="textFieldGrid" Property="Margin" Value="16,0,16,0" />
                             <Setter TargetName="border" Property="BorderThickness" Value="0" />
+                            <Setter TargetName="border" Property="Cursor" Value="IBeam" />
                             <Setter TargetName="Underline" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="Hint" Property="Margin" Value="0,0,0,16" />
                             <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,8,0,8" />
@@ -169,6 +186,7 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="textFieldBoxBottomLine" Property="Height" Value="2" />
                             <Setter TargetName="textFieldBoxBottomLine" Property="Margin" Value="1,0" />
+                            <Setter TargetName="textFieldBoxBorder" Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -196,6 +214,32 @@
                             <Setter TargetName="textFieldBoxBorder" Property="BorderThickness" Value="2" />
                             <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
                         </MultiTrigger>
+                        <EventTrigger RoutedEvent="GotFocus">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform" From="0" To="1" Duration="0:0:0.3">
+                                        <DoubleAnimation.EasingFunction>
+                                            <SineEase EasingMode="EaseOut" />
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform" From="0" To="1" Duration="0:0:0.3">
+                                        <DoubleAnimation.EasingFunction>
+                                            <SineEase EasingMode="EaseOut" />
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform" To="0" BeginTime="0:0:0.45" Duration="0" />
+                                    <DoubleAnimation Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform" To="0" BeginTime="0:0:0.45" Duration="0" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="LostFocus">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform" To="0" Duration="0" />
+                                    <DoubleAnimation Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform" To="0" Duration="0" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -217,6 +261,7 @@
 
     <Style x:Key="MaterialDesignTextFieldBoxTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
         <Setter Property="wpf:TextFieldAssist.HasTextFieldBox" Value="True" />
+        <Setter Property="wpf:TextFieldAssist.RippleOnFocusEnabled" Value="True" />
     </Style>
 
     <Style x:Key="MaterialDesignTextAreaTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
