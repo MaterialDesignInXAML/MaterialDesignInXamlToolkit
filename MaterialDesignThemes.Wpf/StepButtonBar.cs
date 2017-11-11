@@ -72,10 +72,10 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public static readonly DependencyProperty ModeProperty = DependencyProperty.Register(
+        internal static readonly DependencyProperty ModeProperty = DependencyProperty.Register(
                 nameof(Mode), typeof(StepperLayout), typeof(StepButtonBar), new PropertyMetadata(StepperLayout.Horizontal));
 
-        public StepperLayout Mode
+        internal StepperLayout Mode
         {
             get
             {
