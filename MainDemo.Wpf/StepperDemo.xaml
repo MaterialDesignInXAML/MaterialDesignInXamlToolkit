@@ -24,13 +24,19 @@
         <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
             <materialDesign:Stepper x:Name="stepper" HorizontalAlignment="Stretch" IsLinear="{Binding Path=IsLinear}" Layout="{Binding Path=Layout}"
                                     ContentAnimationsEnabled="{Binding ContentAnimationsEnabled}"  VerticalAlignment="Stretch">
-                <TabItem Header="What is a stepper?">
+                <TabItem>
+                    <TabItem.Header>
+                        <materialDesign:StepTitleHeader FirstLevelTitle="What is a stepper?" />
+                    </TabItem.Header>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Steppers are handy to break a big task into smaller parts. These are so called steps. It displays the progress of the full task as a numbered sequence of steps." TextWrapping="WrapWithOverflow" />
                         <materialDesign:StepButtonBar Continue="CONTINUE" Cancel="CANCEL" />
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Layout and navigation">
+                <TabItem>
+                    <TabItem.Header>
+                        <materialDesign:StepTitleHeader FirstLevelTitle="Layout and navigation" />
+                    </TabItem.Header>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="There a two layouts for a Stepper, namely horizontal and vertical. It can be set by using the Layout property." TextWrapping="WrapWithOverflow" />
                         <TextBlock Margin="0,16,0,0" Text="Additionally the Stepper will be in linear mode by setting the IsLinear property to true. This means that the user can only edit the steps in their fixed order. A non-linear Stepper allows the user to edit the steps in any order." TextWrapping="WrapWithOverflow" />
@@ -48,7 +54,10 @@
                         <materialDesign:StepButtonBar Back="BACK" Continue="CONTINUE" Cancel="CANCEL" />
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Done">
+                <TabItem>
+                    <TabItem.Header>
+                        <materialDesign:StepTitleHeader FirstLevelTitle="Done" />
+                    </TabItem.Header>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="This was the Stepper tutorial. You may have a look on the official specification:" TextWrapping="WrapWithOverflow" />
                         <Button Content="TAKE ME THERE" HorizontalAlignment="Center" Margin="32" Click="Button_Click" />

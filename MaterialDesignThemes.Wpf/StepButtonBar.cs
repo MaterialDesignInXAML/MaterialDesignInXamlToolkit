@@ -72,10 +72,10 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        internal static readonly DependencyProperty ModeProperty = DependencyProperty.Register(
+        public static readonly DependencyProperty ModeProperty = DependencyProperty.Register(
                 nameof(Mode), typeof(StepperLayout), typeof(StepButtonBar), new PropertyMetadata(StepperLayout.Horizontal));
 
-        internal StepperLayout Mode
+        public StepperLayout Mode
         {
             get
             {
@@ -93,21 +93,32 @@ namespace MaterialDesignThemes.Wpf
             DefaultStyleKeyProperty.OverrideMetadata(typeof(StepButtonBar), new FrameworkPropertyMetadata(typeof(StepButtonBar)));
         }
 
-        public StepButtonBar() : base() { }
+        public StepButtonBar()
+            : base()
+        {
+            Loaded += LoadedHandler;
+        }
 
         public override void OnApplyTemplate()
         {
-            // read the Orientation of the Stepper and set it as the Mode
-            //     - changing the Layout throws the UI of the Stepper and builds a new one
-            //     - therefore this method will be called for a new instance and the changes of the Layout will be applied to Mode
+            ApplyMode();
+
+            base.OnApplyTemplate();
+        }
+
+        private void LoadedHandler(object sender, RoutedEventArgs args)
+        {
+            ApplyMode();
+        }
+
+        private void ApplyMode()
+        {
             Stepper stepper = FindStepper();
 
             if (stepper != null)
             {
                 Mode = stepper.Layout;
             }
-
-            base.OnApplyTemplate();
         }
 
         private Stepper FindStepper()
