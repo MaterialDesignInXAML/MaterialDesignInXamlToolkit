@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CodeDisplayer;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignColors.WpfExample
@@ -29,14 +30,19 @@ namespace MaterialDesignColors.WpfExample
             LoadLocales();
             LocaleCombo.SelectionChanged += LocaleCombo_SelectionChanged;
             LocaleCombo.SelectedItem = "fr-CA";
+			
         }
 
         private void LocaleCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var lang = System.Windows.Markup.XmlLanguage.GetLanguage((string)LocaleCombo.SelectedItem);
-            LocaleDatePicker.Language = lang;
-            LocaleDatePickerRTL.Language = lang;
-
+            try {
+                var lang = System.Windows.Markup.XmlLanguage.GetLanguage((string) LocaleCombo.SelectedItem);
+                LocaleDatePicker.Language = lang;
+                LocaleDatePickerRTL.Language = lang;
+            }
+            catch {
+                LocaleCombo.SelectedItem = "fr-CA";
+            }
             //HACK: The calendar only refresh when we change the date
             LocaleDatePicker.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(1);
             LocaleDatePicker.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(-1);

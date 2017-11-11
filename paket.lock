@@ -1,26 +1,35 @@
-FRAMEWORK: >= NET45
+RESTRICTION: || (== net45) (== net452)
 NUGET
   remote: https://www.nuget.org/api/v2
-    Castle.Core (4.0) - framework: net452
-    Dragablz (0.0.3.165)
-    MahApps.Metro (1.4.3)
-    Moq (4.7.1) - framework: net452
-      Castle.Core (>= 4.0)
-    NSubstitute (1.10) - framework: net452
-    RhinoMocks (3.6.1) - framework: net452
-    Shouldly (2.8) - framework: net452
-    xunit (2.1) - framework: net452
-      xunit.assert (2.1)
-      xunit.core (2.1)
-    xunit.abstractions (2.0)
-    xunit.assert (2.1)
-    xunit.core (2.1)
-      xunit.extensibility.core (2.1)
-      xunit.extensibility.execution (2.1)
-    xunit.extensibility.core (2.1)
-      xunit.abstractions (2.0)
-    xunit.extensibility.execution (2.1)
-      xunit.extensibility.core (2.1)
+    Castle.Core (4.1.1)
+    Dragablz (0.0.3.197)
+    MahApps.Metro (1.5)
+    Microsoft.NETCore.Platforms (2.0) - restriction: || (== net45) (&& (== net45) (== net452))
+    Moq (4.7.99)
+      Castle.Core (>= 4.1.1)
+    NETStandard.Library (2.0) - restriction: == net45
+      Microsoft.NETCore.Platforms (>= 1.1)
+      System.Runtime.InteropServices.RuntimeInformation (>= 4.3)
+    NSubstitute (2.0.3)
+    RhinoMocks (3.6.1)
+    Shouldly (2.8.3)
+    System.Runtime.InteropServices.RuntimeInformation (4.3) - restriction: || (== net45) (&& (== net45) (== net452))
+    XamlDisplayerPackage (1.0.5)
+    xunit (2.2)
+      xunit.assert (2.2)
+      xunit.core (2.2)
+    xunit.abstractions (2.0.1)
+    xunit.assert (2.2)
+      NETStandard.Library (>= 1.6) - restriction: == net45
+    xunit.core (2.2)
+      xunit.extensibility.core (2.2)
+      xunit.extensibility.execution (2.2)
+    xunit.extensibility.core (2.2)
+      NETStandard.Library (>= 1.6) - restriction: == net45
+      xunit.abstractions (>= 2.0.1)
+    xunit.extensibility.execution (2.2)
+      NETStandard.Library (>= 1.6) - restriction: == net45
+      xunit.extensibility.core (2.2)
 GITHUB
   remote: ControlzEx/ControlzEx
     src/ControlzEx/BadgedEx.cs (e687c6ac4279c4e513b7ef9a75622411350db874)
