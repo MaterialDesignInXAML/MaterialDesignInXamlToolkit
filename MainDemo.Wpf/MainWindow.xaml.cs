@@ -9,6 +9,7 @@ using System.Windows.Media;
 using CodeDisplayer;
 using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignThemes.Wpf;
+using System.IO;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -20,10 +21,13 @@ namespace MaterialDesignColors.WpfExample
         public MainWindow()
         {
             InitializeComponent();
+
+            var sourceLocation = File.Exists(@"..\..\MainWindow.xaml") ? XamlDisplayerPanel.SourceEnum.LoadFromLocal : XamlDisplayerPanel.SourceEnum.LoadFromRemote;
+
             XamlDisplayerPanel.Initialize(
-                source: XamlDisplayerPanel.SourceEnum.LoadFromRemote,
-                defaultLocalPath: $@"C:\Users\User\Desktop\MaterialDesignXAMLToolKitNew\MaterialDesignInXamlToolkit\MainDemo.Wpf\",
-                defaultRemotePath: @"https://raw.githubusercontent.com/wongjiahau/MaterialDesignInXamlToolkit/New-Demo-2/MainDemo.Wpf/" ,
+                source: sourceLocation,
+                defaultLocalPath: $@"..\..\",
+                defaultRemotePath: @"https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/MainDemo.Wpf/",
                 attributesToBeRemoved:
                 new List<string>()
                 {
