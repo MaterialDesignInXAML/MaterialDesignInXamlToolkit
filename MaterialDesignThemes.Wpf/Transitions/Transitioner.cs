@@ -197,17 +197,23 @@ namespace MaterialDesignThemes.Wpf.Transitions
             }
 
             if (newSlide != null)
-                newSlide.Opacity = 1;                
+            {
+                newSlide.Opacity = 1;
+            }
+                          
             if (oldSlide != null && newSlide != null)
             {
                 var wipe = selectedIndex > unselectedIndex ? oldSlide.ForwardWipe : oldSlide.BackwardWipe;
-                if (wipe != null)                
-                    wipe.Wipe(oldSlide, newSlide, GetTransitionOrigin(newSlide), this);                
+                if (wipe != null)
+                {
+                    wipe.Wipe(oldSlide, newSlide, GetTransitionOrigin(newSlide), this);
+                }
                 else
                 {
                     DoStack(newSlide, oldSlide);
-                    oldSlide.Opacity = 0;
                 }
+
+                oldSlide.Opacity = 0;
             }
             else if (oldSlide != null || newSlide != null)
             {
