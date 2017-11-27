@@ -218,6 +218,10 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
+            TArgument actionArgument, bool promote) =>
+            Enqueue(content, actionContent, actionHandler, actionArgument, promote, promote);
+
+        public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
             TArgument actionArgument, bool promote, bool neverConsiderToBeDuplicate)
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
