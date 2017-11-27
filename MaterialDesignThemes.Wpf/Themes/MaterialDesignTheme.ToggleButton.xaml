@@ -338,6 +338,7 @@
                                 <Ellipse x:Name="RippleThumb"
                                          Fill="{DynamicResource PrimaryHueLightBrush}"
                                          Height="25" Width="25"
+                                         IsHitTestVisible="False"
                                          Opacity="0.26"
                                          Margin="0"
                                          HorizontalAlignment="Center" VerticalAlignment="Center"
