@@ -18,6 +18,15 @@ namespace MaterialDesignThemes.Wpf.Transitions
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TransitionerSlide), new FrameworkPropertyMetadata(typeof(TransitionerSlide)));
         }
 
+        public static readonly DependencyProperty TransitionOriginProperty = DependencyProperty.Register(
+            "TransitionOrigin", typeof(Point), typeof(Transitioner), new PropertyMetadata(new Point(0.5,0.5)));
+
+        public Point TransitionOrigin
+        {
+            get { return (Point)GetValue(TransitionOriginProperty); }
+            set { SetValue(TransitionOriginProperty, value); }
+        }
+
         public static RoutedEvent InTransitionFinished =
             EventManager.RegisterRoutedEvent("InTransitionFinished", RoutingStrategy.Bubble, typeof (RoutedEventHandler),
                 typeof (TransitionerSlide));

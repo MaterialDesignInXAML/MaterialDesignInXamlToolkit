@@ -53,6 +53,7 @@
     </Compile>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,6 +75,7 @@
     <Compile Include="Buttons.xaml.cs">
       <DependentUpon>Buttons.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ButtonsViewModel.cs" />
     <Compile Include="Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>
@@ -93,12 +95,13 @@
     </Compile>
     <Compile Include="Domain\DocumentationLinkType.cs" />
     <Compile Include="Domain\FutureDateValidationRule.cs" />
+    <Compile Include="Domain\IsCheckedValidationRule.cs" />
     <Compile Include="Domain\MainWindowViewModel.cs" />
     <Compile Include="Domain\NotEmptyValidationRule.cs" />
     <Compile Include="Domain\NotifyPropertyChangedExtension.cs" />
     <Compile Include="Domain\DemoItem.cs" />
     <Compile Include="Domain\DialogsViewModel.cs" />
-    <Compile Include="Domain\ListFieldsViewModel.cs" />
+    <Compile Include="Domain\ListsAndGridsViewModel.cs" />
     <Compile Include="Domain\Sample4Dialog.xaml.cs">
       <DependentUpon>Sample4Dialog.xaml</DependentUpon>
     </Compile>
@@ -187,11 +190,11 @@
     <Compile Include="TransitionsDemo\Slide5_TransitioningContent.xaml.cs">
       <DependentUpon>Slide5_TransitioningContent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TransitionsDemo\Slide6_MVVM.xaml.cs">
-      <DependentUpon>Slide6_MVVM.xaml</DependentUpon>
+    <Compile Include="TransitionsDemo\Slide7_MVVM.xaml.cs">
+      <DependentUpon>Slide7_MVVM.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TransitionsDemo\Slide7_Master.xaml.cs">
-      <DependentUpon>Slide7_Master.xaml</DependentUpon>
+    <Compile Include="TransitionsDemo\Slide6_Origins.xaml.cs">
+      <DependentUpon>Slide6_Origins.xaml</DependentUpon>
     </Compile>
     <Compile Include="TransitionsDemo\Slide7_MasterModel.cs" />
     <Compile Include="TransitionsDemo\Slide8_Details.xaml.cs">
@@ -350,11 +353,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TransitionsDemo\Slide6_MVVM.xaml">
+    <Page Include="TransitionsDemo\Slide7_MVVM.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TransitionsDemo\Slide7_Master.xaml">
+    <Page Include="TransitionsDemo\Slide6_Origins.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -434,6 +437,12 @@
   <ItemGroup>
     <Resource Include="favicon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -443,4 +452,15 @@
   </Target>
   -->
   <Import Project="..\.paket\paket.targets" />
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.2')">
+      <ItemGroup>
+        <Reference Include="CodeDisplayer">
+          <HintPath>..\packages\XamlDisplayerPackage\lib\net45\CodeDisplayer.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
 </Project>

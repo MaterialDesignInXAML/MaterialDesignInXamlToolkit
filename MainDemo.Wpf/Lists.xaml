@@ -4,34 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
+             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Margin="8">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" IsEnabled="{Binding IsChecked, ElementName=EnableListBox}">
+    <codeDisplayer:XamlDisplayerPanel  Margin="8" HorizontalAlignment="Center">
+        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">ListBox</TextBlock>
+        <ListBox  IsEnabled="{Binding IsChecked, ElementName=EnableListBox}">
             <TextBlock>Plain</TextBlock>
             <TextBlock>Old</TextBlock>
             <TextBlock>ListBox</TextBlock>
             <TextBlock>Full of junk</TextBlock>
         </ListBox>
-        <CheckBox Name="EnableListBox" Grid.Row="1" IsChecked="True">Enabled</CheckBox>
-        <!-- piece together your own items control to create some nice stuff that will make everyone think you are cool. and rightly so, because you are cool.  you might even be a hipster for all I know -->
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding Items1}"
+        <CheckBox Name="EnableListBox"  IsChecked="True">Enabled</CheckBox>
+        <ItemsControl  ItemsSource="{Binding Items1}"
                       Grid.IsSharedSizeScope="True"
                       Margin="12 0 12 0">
             <ItemsControl.ItemTemplate>
@@ -57,8 +50,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <!-- and here's another -->
-        <ItemsControl Grid.Column="2" ItemsSource="{Binding Items2}"
+        <ItemsControl  ItemsSource="{Binding Items2}"
                       Grid.IsSharedSizeScope="True">
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type domain:SelectableViewModel}">
@@ -85,5 +77,28 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-    </Grid>
+        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False"  Margin="0 32 0 0">ListView</TextBlock>
+        <ListView >
+            <ListViewItem>
+                Hello
+            </ListViewItem>
+            <ListViewItem>
+                World
+            </ListViewItem>
+            <ListViewItem>
+                :)
+            </ListViewItem>
+        </ListView>
+        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False"  Margin="0 32 0 0">ListView.GridView</TextBlock>
+        <ListView  ItemsSource="{Binding Items1}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Code}" Header="Code" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Description}" Header="Description" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </codeDisplayer:XamlDisplayerPanel>
+
 </UserControl>

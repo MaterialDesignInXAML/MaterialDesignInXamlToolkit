@@ -20,7 +20,9 @@
             <ResourceDictionary.MergedDictionaries>
 
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                
                 <!--
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
@@ -43,30 +45,15 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        
-        <materialDesign:Badged Margin="64" Badge="" x:Name="Counter">
-            <Button Click="CounterButton_OnClick">MAIL</Button>
-        </materialDesign:Badged>
-
-        <materialDesign:Badged Margin="32" Badge="{materialDesign:PackIcon Kind=Heart}"
-                               BadgeColorZoneMode="Accent"
-                               Grid.Column="1">
-            <Button>LOVE</Button>
-        </materialDesign:Badged>
-
-        <materialDesign:Badged Margin="32" Badge="DANGER"
-                               BadgeColorZoneMode="Dark"
-                               Grid.Column="2">
-            <Button>STATUS</Button>
-        </materialDesign:Badged>
-
-    </Grid>
+    <StackPanel Margin="32">
+        <Button Style="{StaticResource MaterialDesignFloatingActionButton}">
+            <materialDesign:PackIcon Kind="CloudSync" Height="24" Width="24" />
+        </Button>
+        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Margin="0 12 0 12">
+            <materialDesign:PackIcon Kind="CloudSync" Height="24" Width="24" />
+        </Button>
+        <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" Value="33" Width="50" Height="50"  />
+    </StackPanel>
 </UserControl>
 
 

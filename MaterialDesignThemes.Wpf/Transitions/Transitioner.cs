@@ -42,11 +42,23 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         public static readonly DependencyProperty AutoApplyTransitionOriginsProperty = DependencyProperty.Register(
             "AutoApplyTransitionOrigins", typeof (bool), typeof (Transitioner), new PropertyMetadata(default(bool)));
-
+        
+        /// <summary>
+        /// If enabled, transition origins will be applied to wipes, according to where a transition was triggered from.  For example, the mouse point where a user clicks a button.
+        /// </summary>
         public bool AutoApplyTransitionOrigins
         {
             get { return (bool) GetValue(AutoApplyTransitionOriginsProperty); }
             set { SetValue(AutoApplyTransitionOriginsProperty, value); }
+        }
+
+        public static readonly DependencyProperty DefaultTransitionOriginProperty = DependencyProperty.Register(
+            "DefaultTransitionOrigin", typeof(Point), typeof(Transitioner), new PropertyMetadata(new Point(0.5, 0.5)));
+
+        public Point DefaultTransitionOrigin
+        {
+            get { return (Point)GetValue(DefaultTransitionOriginProperty); }
+            set { SetValue(DefaultTransitionOriginProperty, value); }
         }
 
         public Transitioner()
@@ -185,17 +197,23 @@ namespace MaterialDesignThemes.Wpf.Transitions
             }
 
             if (newSlide != null)
-                newSlide.Opacity = 1;                
+            {
+                newSlide.Opacity = 1;
+            }
+                          
             if (oldSlide != null && newSlide != null)
             {
                 var wipe = selectedIndex > unselectedIndex ? oldSlide.ForwardWipe : oldSlide.BackwardWipe;
                 if (wipe != null)
-                    wipe.Wipe(oldSlide, newSlide, _nextTransitionOrigin ?? new Point(.5, .5), this);
+                {
+                    wipe.Wipe(oldSlide, newSlide, GetTransitionOrigin(newSlide), this);
+                }
                 else
                 {
-                    DoStack(newSlide, oldSlide);                    
-                    oldSlide.Opacity = 0;                    
+                    DoStack(newSlide, oldSlide);
                 }
+
+                oldSlide.Opacity = 0;
             }
             else if (oldSlide != null || newSlide != null)
             {
@@ -207,6 +225,21 @@ namespace MaterialDesignThemes.Wpf.Transitions
             }            
 
             _nextTransitionOrigin = null;
+        }
+
+        private Point GetTransitionOrigin(TransitionerSlide slide)
+        {
+            if(_nextTransitionOrigin != null)
+            {
+                return _nextTransitionOrigin.Value;
+            }
+
+            if(slide.ReadLocalValue(TransitionerSlide.TransitionOriginProperty) != DependencyProperty.UnsetValue)
+            {
+                return slide.TransitionOrigin;             
+            }
+
+            return DefaultTransitionOrigin;
         }
 
         void IZIndexController.Stack(params TransitionerSlide[] highestToLowest)

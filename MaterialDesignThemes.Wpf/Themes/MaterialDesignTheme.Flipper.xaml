@@ -110,7 +110,7 @@
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="Unflipped" To="Flipped">
                                         <Storyboard FillBehavior="HoldEnd">
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.4" Storyboard.TargetProperty="RotationY" Storyboard.TargetName="Plane3D">
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.4" Storyboard.TargetProperty="RotationY" Storyboard.TargetName="PART_Plane3D">
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.0" EasingFunction="{StaticResource FlipEase}" />
                                                 <EasingDoubleKeyFrame Value="-90" KeyTime="0:0:0.2" EasingFunction="{StaticResource FlipEase}" />
                                                 <EasingDoubleKeyFrame Value="90" KeyTime="0:0:0.2" EasingFunction="{StaticResource FlipEase}" />
@@ -126,7 +126,7 @@
                                     </VisualTransition>
                                     <VisualTransition From="Flipped" To="Unflipped">
                                         <Storyboard FillBehavior="HoldEnd">
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.4" Storyboard.TargetProperty="RotationY" Storyboard.TargetName="Plane3D">
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.4" Storyboard.TargetProperty="RotationY" Storyboard.TargetName="PART_Plane3D">
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.0" EasingFunction="{StaticResource FlipEase}" />
                                                 <EasingDoubleKeyFrame Value="90" KeyTime="0:0:0.2" EasingFunction="{StaticResource FlipEase}" />
                                                 <EasingDoubleKeyFrame Value="-90" KeyTime="0:0:0.2" EasingFunction="{StaticResource FlipEase}" />
@@ -141,6 +141,7 @@
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
+                                
                                 <VisualState x:Name="Unflipped">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames  Storyboard.TargetProperty="Visibility" Storyboard.TargetName="BackContentPresenter">
@@ -160,10 +161,10 @@
                                             <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
-                                </VisualState>
+                                </VisualState>                                
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <wpf:Plane3D x:Name="Plane3D" RotationY="0" ZFactor="2.055">
+                        <wpf:Plane3D x:Name="PART_Plane3D" RotationY="0" ZFactor="2.055">
                             <wpf:Card>
                                 <Grid>
                                     <ContentPresenter x:Name="FrontContentPresenter"                    
@@ -174,7 +175,7 @@
                                                       ContentStringFormat="{TemplateBinding FrontContentStringFormat}"
                                                       RenderTransformOrigin=".5,.5" />
                                     <ContentPresenter x:Name="BackContentPresenter"                    
-                                                      Visibility="Hidden"
+                                                      Visibility="Collapsed"
                                                       Margin="{TemplateBinding Padding}"                            
                                                       Content="{TemplateBinding BackContent}" 
                                                       ContentTemplate="{TemplateBinding BackContentTemplate}" 

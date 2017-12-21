@@ -47,6 +47,10 @@
     <NoWarn>CS1591;CS1574</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\BadgedEx.cs">
+      <Paket>True</Paket>
+      <Link>ControlzEx/BadgedEx.cs</Link>
+    </Compile>
     <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\PackIconBase.cs">
       <Paket>True</Paket>
       <Link>ControlzEx/PackIconBase.cs</Link>
@@ -127,6 +131,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\MaterialDesignTheme.Label.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MaterialDesignTheme.ListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,9 +250,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.Thumb.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Badged.cs" />
+    <Compile Include="ButtonProgressAssist.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Chip.cs" />
     <Compile Include="Clock.cs" />
@@ -267,6 +280,9 @@
     <Compile Include="Converters\CircularProgressBar\StartPointConverter.cs" />
     <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
     <Compile Include="Converters\ClockLineConverter.cs" />
+    <Compile Include="Converters\ListViewItemContainerStyleConverter.cs" />
+    <Compile Include="Converters\NotZeroConverter.cs" />
+    <Compile Include="Converters\RangeLengthConverter.cs" />
     <Compile Include="Converters\RangePositionConverterConverter.cs" />
     <Compile Include="Converters\DrawerOffsetConverter.cs" />
     <Compile Include="Converters\EqualityToVisibilityConverter.cs" />
@@ -279,6 +295,8 @@
     <Compile Include="Converters\NotZeroToVisibilityConverter.cs" />
     <Compile Include="Converters\PointValueConverter.cs" />
     <Compile Include="Converters\ShadowConverter.cs" />
+    <Compile Include="Converters\ShadowEdgeConverter.cs" />
+    <Compile Include="Converters\ShadowInfo.cs" />
     <Compile Include="Converters\SizeToRectConverter.cs" />
     <Compile Include="Converters\SnackbarMessageTypeConverter.cs" />
     <Compile Include="Converters\TimeToVisibilityConverter.cs" />
@@ -305,18 +323,23 @@
     <Compile Include="IconType.cs" />
     <Compile Include="ISnackbarMessageQueue.cs" />
     <Compile Include="ListBoxAssist.cs" />
+    <Compile Include="ListViewAssist.cs" />
     <Compile Include="MessageQueueExtension.cs" />
     <Compile Include="PackIconExtension.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Plane3D.cs" />
     <Compile Include="ScaleHost.cs" />
+    <Compile Include="ScrollViewerAssist.cs" />
+    <Compile Include="Screen.cs" />
     <Compile Include="Snackbar.cs" />
     <Compile Include="SnackbarMessage.cs" />
     <Compile Include="SnackbarMessageEventArgs.cs" />
     <Compile Include="SnackbarMessageQueue.cs" />
     <Compile Include="SnackbarMessageQueueItem.cs" />
+    <Compile Include="Spelling.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
+    <Compile Include="Transitions\FadeWipe.cs" />
     <Compile Include="Transitions\IndexedItemOffsetMultiplierExtension.cs" />
     <Compile Include="Transitions\ITransitionEffect.cs" />
     <Compile Include="Transitions\ITransitionEffectSubject.cs" />
@@ -356,6 +379,8 @@
     <Compile Include="RippleAssist.cs" />
     <Compile Include="Ripple.cs" />
     <Compile Include="Transitions\IZIndexController.cs" />
+    <Compile Include="Transitions\SlideDirection.cs" />
+    <Compile Include="Transitions\SlideWipe.cs" />
     <Compile Include="Transitions\SlideOutWipe.cs" />
     <Compile Include="Transitions\TransitionAssist.cs" />
     <Compile Include="Transitions\TransitionEffect.cs" />

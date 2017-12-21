@@ -1,10 +1,8 @@
-﻿using System;
+﻿using ControlzEx;
+using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -12,7 +10,6 @@ using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using ControlzEx;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -110,13 +107,19 @@ namespace MaterialDesignThemes.Wpf
         private ContentControl _popupContentControl;
         private ToggleButton _toggleButton;
         private Point _popupPointFromLastRequest;
+        private Point _lastRelativePositon;
 
         static PopupBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PopupBox), new FrameworkPropertyMetadata(typeof(PopupBox)));
             ToolTipService.IsEnabledProperty.OverrideMetadata(typeof(PopupBox), new FrameworkPropertyMetadata(null, CoerceToolTipIsEnabled));
             EventManager.RegisterClassHandler(typeof(PopupBox), Mouse.LostMouseCaptureEvent, new MouseEventHandler(OnLostMouseCapture));
-            EventManager.RegisterClassHandler(typeof(PopupBox), Mouse.MouseDownEvent, new MouseButtonEventHandler(OnMouseButtonDown), true);            
+            EventManager.RegisterClassHandler(typeof(PopupBox), Mouse.MouseDownEvent, new MouseButtonEventHandler(OnMouseButtonDown), true);
+        }
+
+        public PopupBox()
+        {
+            LayoutUpdated += OnLayoutUpdated;
         }
 
         public static readonly DependencyProperty ToggleContentProperty = DependencyProperty.Register(
@@ -229,8 +232,8 @@ namespace MaterialDesignThemes.Wpf
                 else
                     Mouse.Capture(null);
             }
-                        
-            popupBox.AnimateChildrenIn(!newValue);                 
+
+            popupBox.AnimateChildrenIn(!newValue);
             popupBox._popup?.RefreshPosition();
 
             VisualStateManager.GoToState(popupBox, newValue ? PopupIsOpenStateName : PopupIsClosedStateName, true);
@@ -239,7 +242,6 @@ namespace MaterialDesignThemes.Wpf
                 popupBox.OnOpened();
             else
                 popupBox.OnClosed();
-
         }
 
         /// <summary>
@@ -398,7 +400,7 @@ namespace MaterialDesignThemes.Wpf
             if (_popup != null)
                 _popup.Loaded += PopupOnLoaded;
             if (_toggleButton != null)
-                _toggleButton.PreviewMouseLeftButtonUp += ToggleButtonOnPreviewMouseLeftButtonUp;                                
+                _toggleButton.PreviewMouseLeftButtonUp += ToggleButtonOnPreviewMouseLeftButtonUp;
 
             VisualStateManager.GoToState(this, IsPopupOpen ? PopupIsOpenStateName : PopupIsClosedStateName, false);
         }
@@ -408,14 +410,14 @@ namespace MaterialDesignThemes.Wpf
             base.OnIsKeyboardFocusWithinChanged(e);
 
             if (IsPopupOpen && !IsKeyboardFocusWithin)
-            {                
+            {
                 Close();
             }
         }
 
         protected override void OnMouseEnter(MouseEventArgs e)
         {
-            if (IsEnabled &&
+            if (IsEnabled && IsLoaded &&
                 (PopupMode == PopupBoxPopupMode.MouseOverEager
                  || PopupMode == PopupBoxPopupMode.MouseOver))
             {
@@ -439,8 +441,21 @@ namespace MaterialDesignThemes.Wpf
 
                 SetCurrentValue(IsPopupOpenProperty, true);
             }
-
             base.OnMouseEnter(e);
+        }
+
+        private void OnLayoutUpdated(object sender, EventArgs eventArgs)
+        {
+            if (_popupContentControl != null && _popup != null &&
+                (PopupMode == PopupBoxPopupMode.MouseOver || PopupMode == PopupBoxPopupMode.MouseOverEager))
+            {
+                Point relativePosition = _popupContentControl.TranslatePoint(new Point(), this);
+                if (relativePosition != _lastRelativePositon)
+                {
+                    _popup.RefreshPosition();
+                    _lastRelativePositon = _popupContentControl.TranslatePoint(new Point(), this);
+                }
+            }
         }
         
         protected override void OnMouseLeave(MouseEventArgs e)
@@ -461,16 +476,16 @@ namespace MaterialDesignThemes.Wpf
         
         private CustomPopupPlacement[] GetPopupPlacement(Size popupSize, Size targetSize, Point offset)
         {
-            double x, y;			
-			
+            double x, y;
+
             if (FlowDirection == FlowDirection.RightToLeft)
                 offset.X += targetSize.Width / 2;
-			
+
             switch (PlacementMode)
             {
                 case PopupBoxPlacementMode.BottomAndAlignLeftEdges:
                     x = 0 - Math.Abs(offset.X*3);
-                    y = targetSize.Height - Math.Abs(offset.Y);                    
+                    y = targetSize.Height - Math.Abs(offset.Y);
                     break;
                 case PopupBoxPlacementMode.BottomAndAlignRightEdges:
                     x = 0 - popupSize.Width + targetSize.Width - offset.X;
@@ -699,7 +714,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
-        {            
+        {
             if (IsPopupOpen && !StaysOpen)
             {
                 Close();
@@ -735,7 +750,7 @@ namespace MaterialDesignThemes.Wpf
             
             Close();
             Mouse.Capture(null);
-            mouseButtonEventArgs.Handled = true;            
+            mouseButtonEventArgs.Handled = true;
         }
 
         private static object CoerceToolTipIsEnabled(DependencyObject dependencyObject, object value)
