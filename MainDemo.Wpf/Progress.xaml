@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
@@ -16,111 +16,178 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel >
-            <ProgressBar Orientation="Vertical" Width="200" Height="10" Value="25"   />
-            <ProgressBar Orientation="Vertical"  Width="200" Height="10" IsIndeterminate="True"    />
-            <ProgressBar Value="25"   Width="200" Height="10" />
-            <ProgressBar Value="50"   Width="200" Height="10" materialDesign:TransitionAssist.DisableTransitions="True" />
-            <ProgressBar Value="75"   Width="200" Height="10"/>
-            <ProgressBar IsIndeterminate="True"   Width="200" Height="10"/>
-            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
-                     x:Name="DeterminateCircularProgress"
-                      VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12" />
-            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
-                     Value="35"
-                     IsIndeterminate="True"
-                      VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12"/>
-            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
-                     Value="0"
-                     IsIndeterminate="True"
-                      VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12"/>
-            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
-                     Value="20"
-                     IsIndeterminate="True"
-                     x:Name="IndeterminateToDeterminateCircularProgress"
-                      VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12" />
-            <materialDesign:Card UniformCornerRadius="14" Padding="4"
-                      
-                      VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12">
-                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
-                         Value="50"
-                         IsIndeterminate="True"                         
-                      />
-            </materialDesign:Card>
-            <materialDesign:Card UniformCornerRadius="14" 
-                      RenderTransformOrigin=".5,.5"
-                      Padding="4" 
-                      
-                      VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12">
-                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                          
-                             x:Name="AnimatedProgressInCard"
-                      />
-                <materialDesign:Card.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
-                    </TransformGroup>
-                </materialDesign:Card.RenderTransform>
-                <materialDesign:Card.Style>
-                    <Style TargetType="materialDesign:Card" BasedOn="{StaticResource {x:Type materialDesign:Card}}">
-                        <Style.Resources>
-                            <Storyboard x:Key="FadeIn" FillBehavior="HoldEnd">
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-                                    <EasingDoubleKeyFrame Value="0" />
-                                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.8">
-                                        <EasingDoubleKeyFrame.EasingFunction>
-                                            <CircleEase EasingMode="EaseOut" />
-                                        </EasingDoubleKeyFrame.EasingFunction>
-                                    </EasingDoubleKeyFrame>
-                                </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
-                                    <EasingDoubleKeyFrame Value="0" />
-                                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.8">
-                                        <EasingDoubleKeyFrame.EasingFunction>
-                                            <CircleEase EasingMode="EaseOut" />
-                                        </EasingDoubleKeyFrame.EasingFunction>
-                                    </EasingDoubleKeyFrame>
-                                </DoubleAnimationUsingKeyFrames>
-                            </Storyboard>
-                            <Storyboard x:Key="FadeOut">
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-                                    <EasingDoubleKeyFrame Value="1" />
-                                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.8">
-                                        <EasingDoubleKeyFrame.EasingFunction>
-                                            <CircleEase EasingMode="EaseOut" />
-                                        </EasingDoubleKeyFrame.EasingFunction>
-                                    </EasingDoubleKeyFrame>
-                                </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
-                                    <EasingDoubleKeyFrame Value="1" />
-                                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.8">
-                                        <EasingDoubleKeyFrame.EasingFunction>
-                                            <CircleEase EasingMode="EaseOut" />
-                                        </EasingDoubleKeyFrame.EasingFunction>
-                                    </EasingDoubleKeyFrame>
-                                </DoubleAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </Style.Resources>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=AnimatedProgressInCard, Path=Value}" Value="20">
-                                <DataTrigger.EnterActions>
-                                    <RemoveStoryboard BeginStoryboardName="FadeOut" />
-                                    <BeginStoryboard Storyboard="{StaticResource FadeIn}" Name="FadeIn" />
-                                </DataTrigger.EnterActions>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=AnimatedProgressInCard, Path=Value}" Value="100">
-                                <DataTrigger.EnterActions>
-                                    <RemoveStoryboard BeginStoryboardName="FadeIn" />
-                                    <BeginStoryboard Storyboard="{StaticResource FadeOut}" Name="FadeOut" />
-                                </DataTrigger.EnterActions>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </materialDesign:Card.Style>
 
-            </materialDesign:Card>
-        </codeDisplayer:XamlDisplayerPanel>
-    </ScrollViewer>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <smtx:XamlDisplay Key="progress_1" Margin="24" Grid.RowSpan="2">
+            <!-- linear progress bars (the default style -->
+            <ProgressBar Orientation="Vertical" Value="25" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="progress_2" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="24">
+            <ProgressBar Orientation="Vertical" Height="10" IsIndeterminate="True" />
+        </smtx:XamlDisplay>
+        <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch">
+            <smtx:XamlDisplay Key="progress_3" Margin="24">
+                <ProgressBar Value="25" Height="10" />
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Key="progress_4" Margin="24">
+                <ProgressBar Value="50" materialDesign:TransitionAssist.DisableTransitions="True" />
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Key="progress_5" Margin="24">
+                <!-- should disable on 2nd transition... -->
+                <ProgressBar Value="75" />
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Key="progress_6" Margin="24">
+                <ProgressBar IsIndeterminate="True" />
+            </smtx:XamlDisplay>
+        </StackPanel>
+
+        <!-- circular progress bars.. specify the MaterialDesignCicularProgressBar resource -->
+        <Grid VerticalAlignment="Top" Grid.Column="2" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.ColumnSpan="2" FontSize="16" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Stretch"
+                       Margin="0 0 0 16">
+                No extra control is required for the circular style, it is purely a standard ProgressBar, with the MaterialDesignCircularProgressBar style applied.
+            </TextBlock>
+
+            <smtx:XamlDisplay Key="progress_7" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                             x:Name="DeterminateCircularProgress"/>
+            </smtx:XamlDisplay>
+            <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap">Standard deterministic progress bar, running from 0 to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value property.</TextBlock>
+
+            <smtx:XamlDisplay Key="progress_8" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                         Value="35"
+                         IsIndeterminate="True"/>
+            </smtx:XamlDisplay>
+            <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" TextWrapping="Wrap">Indeterminate progress bar, at 35%.</TextBlock>
+
+            <smtx:XamlDisplay Key="progress_9" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Value="0"
+                             IsIndeterminate="True"/>
+            </smtx:XamlDisplay>
+            <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" TextWrapping="Wrap">Fully indeterminate progress bar, using .Value=0 to inform the theme.</TextBlock>
+
+            <smtx:XamlDisplay Key="progress_10" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Value="20"
+                             IsIndeterminate="True"
+                             x:Name="IndeterminateToDeterminateCircularProgress"/>
+            </smtx:XamlDisplay>
+            <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" TextWrapping="Wrap">An indeterminate job transitioning to a determinate job, completing to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value and .IsIndeterminate properties.</TextBlock>
+
+            <smtx:XamlDisplay Key="progress_11" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
+                <materialDesign:Card UniformCornerRadius="14" Padding="4">
+                    <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                                 Value="50"
+                                 IsIndeterminate="True" />
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <TextBlock Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap">Wrap in a Card control to raise the material.</TextBlock>
+
+            <smtx:XamlDisplay Key="progress_12" Grid.Row="6" Grid.Column="0"
+                              VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
+                <materialDesign:Card UniformCornerRadius="14" 
+                                     RenderTransformOrigin=".5,.5"
+                                     Padding="4">
+                    <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             x:Name="AnimatedProgressInCard" />
+                    <materialDesign:Card.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
+                        </TransformGroup>
+                    </materialDesign:Card.RenderTransform>
+                    <materialDesign:Card.Style>
+                        <Style TargetType="materialDesign:Card" BasedOn="{StaticResource {x:Type materialDesign:Card}}">
+                            <Style.Resources>
+                                <Storyboard x:Key="FadeIn" FillBehavior="HoldEnd">
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                        <EasingDoubleKeyFrame Value="0" />
+                                        <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.8">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <CircleEase EasingMode="EaseOut" />
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                        <EasingDoubleKeyFrame Value="0" />
+                                        <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.8">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <CircleEase EasingMode="EaseOut" />
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                                <Storyboard x:Key="FadeOut">
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                        <EasingDoubleKeyFrame Value="1" />
+                                        <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.8">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <CircleEase EasingMode="EaseOut" />
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                        <EasingDoubleKeyFrame Value="1" />
+                                        <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.8">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <CircleEase EasingMode="EaseOut" />
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </Style.Resources>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=AnimatedProgressInCard, Path=Value}" Value="20">
+                                    <DataTrigger.EnterActions>
+                                        <RemoveStoryboard BeginStoryboardName="FadeOut" />
+                                        <BeginStoryboard Storyboard="{StaticResource FadeIn}" Name="FadeIn" />
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=AnimatedProgressInCard, Path=Value}" Value="100">
+                                    <DataTrigger.EnterActions>
+                                        <RemoveStoryboard BeginStoryboardName="FadeIn" />
+                                        <BeginStoryboard Storyboard="{StaticResource FadeOut}" Name="FadeOut" />
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </materialDesign:Card.Style>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <TextBlock Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap">Apply some animations to the card to get funky!</TextBlock>
+        </Grid>
+    </Grid>
+
+    <!--    these animations are used to control the circular progress bars' values, so we don't need 
+            code-behind or a view model to illustrate them in action 
+    -->
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
             <EventTrigger.Actions>
@@ -172,3 +239,4 @@
         </EventTrigger>
     </UserControl.Triggers>
 </UserControl>
+

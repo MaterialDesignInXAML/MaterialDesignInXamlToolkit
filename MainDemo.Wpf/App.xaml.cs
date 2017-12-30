@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
+using ShowMeTheXAML;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -18,6 +19,7 @@ namespace MaterialDesignColors.WpfExample
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            XamlDisplay.Init();
             //Illustration of setting culture info fully in WPF:
             /*             
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
