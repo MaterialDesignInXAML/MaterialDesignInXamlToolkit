@@ -45,7 +45,7 @@
             <TextBox.Text>
                 <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" ValidationStep="UpdatedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
@@ -112,7 +112,7 @@
             <ComboBox.SelectedItem>
                 <Binding Path="SelectedValueOne" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" ValidationStep="UpdatedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </ComboBox.SelectedItem>
@@ -131,7 +131,7 @@
             <ComboBox.Text>
                 <Binding Path="SelectedTextTwo" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" ValidationStep="UpdatedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </ComboBox.Text>
@@ -226,7 +226,7 @@
             <TextBox.Text>
                 <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" ValidationStep="UpdatedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
