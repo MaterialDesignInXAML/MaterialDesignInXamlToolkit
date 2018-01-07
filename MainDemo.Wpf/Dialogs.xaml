@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -16,121 +16,157 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" >
-        <codeDisplayer:XamlDisplayerPanel HorizontalAlignment="Center">
-            <TextBlock TextWrapping="Wrap" MaxWidth="800" Style="{StaticResource MaterialDesignHeadlineTextBlock}" codeDisplayer:XamlDisplayer.DisplayCode="False">Dialogs are supported via the DialogHost control which was designed to work with MVVM/binding, code-behind, routed commands, and a pure code-based API.</TextBlock>
-            <TextBlock TextWrapping="Wrap" MaxWidth="800" Style="{StaticResource MaterialDesignSubheadingTextBlock}" HorizontalAlignment="Center" VerticalAlignment="Top"
-                           Margin="8 0 8 0" codeDisplayer:XamlDisplayer.DisplayCode="False"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap" Margin="32">Dialogs are supported via the DialogHost control which was designed to work with MVVM/binding, code-behind, routed commands, and a pure code-based API.</TextBlock>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.Row="1">
+            <Grid VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320" />
+                    <ColumnDefinition Width="320" />
+                    <ColumnDefinition Width="320" />
+                    <ColumnDefinition Width="320" />
+                </Grid.ColumnDefinitions>
+
+                <!--#region SAMPLE 1-->
+                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"
+                           Margin="8 0 8 0"
                            >SAMPLE 1: Localised dialog encapsulating specific content, launched from a routed command, response handled in code-behind.</TextBlock>
-            <materialDesign:DialogHost DialogClosing="Sample1_DialogHost_OnDialogClosing"
-                                  HorizontalAlignment="Center" VerticalAlignment="Center">
-                <materialDesign:DialogHost.DialogContent>
-                    <StackPanel Margin="16">
-                        <TextBlock>Add a new fruit.</TextBlock>
-                        <TextBox Margin="0 8 0 0" HorizontalAlignment="Stretch" x:Name="FruitTextBox" />
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                <smtx:XamlDisplay Key="dialogs_sample1" Grid.Column="0" Grid.Row="1" Margin="5 0 0 0">
+                    <materialDesign:DialogHost DialogClosing="Sample1_DialogHost_OnDialogClosing"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <materialDesign:DialogHost.DialogContent>
+                            <StackPanel Margin="16">
+                                <TextBlock>Add a new fruit.</TextBlock>
+                                <TextBox Margin="0 8 0 0" HorizontalAlignment="Stretch" x:Name="FruitTextBox" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}"
                                         IsDefault="True"
                                         Margin="0 8 8 0"
                                         Command="materialDesign:DialogHost.CloseDialogCommand">
-                                <Button.CommandParameter>
-                                    <system:Boolean>True</system:Boolean>
-                                </Button.CommandParameter>
-                                ACCEPT
-                            </Button>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                        <Button.CommandParameter>
+                                            <system:Boolean>True</system:Boolean>
+                                        </Button.CommandParameter>
+                                        ACCEPT
+                                    </Button>
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}"
                                         IsCancel="True"
                                         Margin="0 8 8 0"
                                         Command="materialDesign:DialogHost.CloseDialogCommand">
-                                <Button.CommandParameter>
-                                    <system:Boolean>False</system:Boolean>
-                                </Button.CommandParameter>
-                                CANCEL
-                            </Button>
-                        </StackPanel>
-                    </StackPanel>
-                </materialDesign:DialogHost.DialogContent>
-                <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                                        <Button.CommandParameter>
+                                            <system:Boolean>False</system:Boolean>
+                                        </Button.CommandParameter>
+                                        CANCEL
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </materialDesign:DialogHost.DialogContent>
+                        <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                             MinWidth="256" MinHeight="256" ClipToBounds="True">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <ListBox x:Name="FruitListBox">
-                            <ListBoxItem>Apple</ListBoxItem>
-                            <ListBoxItem>Banana</ListBoxItem>
-                            <ListBoxItem>Pear</ListBoxItem>
-                        </ListBox>
-                        <materialDesign:ColorZone Mode="PrimaryMid" Grid.Row="1" Effect="{DynamicResource MaterialDesignShadowDepth5}">
-                            <TextBlock Margin="16">Fruit Bowl</TextBlock>
-                        </materialDesign:ColorZone>
-                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"                                
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <ListBox x:Name="FruitListBox">
+                                    <ListBoxItem>Apple</ListBoxItem>
+                                    <ListBoxItem>Banana</ListBoxItem>
+                                    <ListBoxItem>Pear</ListBoxItem>
+                                </ListBox>
+                                <materialDesign:ColorZone Mode="PrimaryMid" Grid.Row="1" Effect="{DynamicResource MaterialDesignShadowDepth5}">
+                                    <TextBlock Margin="16">Fruit Bowl</TextBlock>
+                                </materialDesign:ColorZone>
+                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"                                
                                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                     VerticalAlignment="Bottom" HorizontalAlignment="Right" 
                                     Grid.Row="0" Margin="0 0 28 -20">
-                            <Viewbox Width="22" Height="22">
-                                <Canvas Width="24" Height="24">
-                                    <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
-                                </Canvas>
-                            </Viewbox>
-                        </Button>
-                    </Grid>
-                </Border>
-            </materialDesign:DialogHost>
-            <TextBlock MaxWidth="800" Style="{StaticResource MaterialDesignSubheadingTextBlock}"  TextWrapping="Wrap" VerticalAlignment="Top" Margin="8 0 8 0" codeDisplayer:XamlDisplayer.DisplayCode="False">SAMPLE 2: Top level dialog,  using OpenDialog, passing content via the Parameter. You can pass a view model, provided a corresponding DataTemplate can be found in the scope of the root DialogHost.</TextBlock>
-            <StackPanel   VerticalAlignment="Center">
-                <!--the request to open the dialog will bubble up to the top-most DialogHost, but we can used the attached property based event to handle the response -->
-                <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                    <Viewbox Width="22" Height="22">
+                                        <Canvas Width="24" Height="24">
+                                            <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
+                                        </Canvas>
+                                    </Viewbox>
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </materialDesign:DialogHost>
+                </smtx:XamlDisplay>
+                <!--#endregion -->
+
+                <!--#region SAMPLE 2-->
+                <TextBlock Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Margin="8 0 8 0">SAMPLE 2: Top level dialog,  using OpenDialog, passing content via the Parameter. You can pass a view model, provided a corresponding DataTemplate can be found in the scope of the root DialogHost.</TextBlock>
+                <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+                    <!--the request to open the dialog will bubble up to the top-most DialogHost, but we can used the attached property based event to handle the response -->
+                    <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                             materialDesign:DialogHost.DialogClosingAttached="Sample2_DialogHost_OnDialogClosing"
                             Width="128">
-                    <Button.CommandParameter>
-                        <StackPanel Margin="16">
-                            <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0" />
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True" 
+                        <Button.CommandParameter>
+                            <StackPanel Margin="16">
+                                <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0" />
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True" 
                                         Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                         CommandParameter="Sample2Cancel"
                                         HorizontalAlignment="Center">CANCEL</Button>
-                        </StackPanel>
-                    </Button.CommandParameter>
-                    PASS VIEW
-                </Button>
-                <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                            </StackPanel>
+                        </Button.CommandParameter>
+                        PASS VIEW
+                    </Button>
+                    <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                             Width="128" Margin="0 32 0 0">
-                    <Button.CommandParameter>
-                        <!-- the simplest view model of all, a DateTime. the view can be found in the resources of MainWindow.xaml  -->
-                        <system:DateTime>1966-JUL-30</system:DateTime>
-                    </Button.CommandParameter>
-                    PASS MODEL
-                </Button>
-            </StackPanel>
-            <TextBlock MaxWidth="800" Style="{StaticResource MaterialDesignSubheadingTextBlock}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="8 0 8 0" codeDisplayer:XamlDisplayer.DisplayCode="False">SAMPLE 3: Open and listen to the dialog entirely from code in a view model.</TextBlock>
-            <StackPanel   >
-            <!-- Executes a command on DialogsViewModel.cs, which will launch the dialog from code -->
-                <Button Command="{Binding RunDialogCommand}"
+                        <Button.CommandParameter>
+                            <!-- the simplest view model of all, a DateTime. the view can be found in the resources of MainWindow.xaml  -->
+                            <system:DateTime>1966-JUL-30</system:DateTime>
+                        </Button.CommandParameter>
+                        PASS MODEL
+                    </Button>
+                </StackPanel>
+                <!--#endregion-->
+
+                <!--#region SAMPLE 3-->
+                <TextBlock Grid.Column="2" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Margin="8 0 8 0">SAMPLE 3: Open and listen to the dialog entirely from code in a view model.</TextBlock>
+                <!-- Executes a command on DialogsViewModel.cs, which will launch the dialog from code -->
+                <StackPanel Grid.Column="2" Grid.Row="1" >
+                    <Button Command="{Binding RunDialogCommand}"
                         Width="128">
-                    RUN CODE
-                </Button>
-                <Button Command="{Binding RunExtendedDialogCommand}"
+                        RUN CODE
+                    </Button>
+                    <Button Command="{Binding RunExtendedDialogCommand}"
                         Width="128" Margin="0 32 0 0">
-                    EXTENDED
-                </Button>
-            </StackPanel>
-            <TextBlock MaxWidth="800" Style="{StaticResource MaterialDesignSubheadingTextBlock}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"
-                            Margin="8 0 8 0" codeDisplayer:XamlDisplayer.DisplayCode="False"
+                        EXTENDED
+                    </Button>
+                </StackPanel>
+                <!--#endregion-->
+
+
+                <!--#region SAMPLE 4-->
+                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"
+                           Grid.Column="3" Margin="8 0 8 0"
                            >SAMPLE 4: Dialog managed from view model using IsOpen and custom commands (ignoring the provided routed commands).</TextBlock>
-            <materialDesign:DialogHost    HorizontalAlignment="Center" VerticalAlignment="Center"
+                <smtx:XamlDisplay Key="dialogs_sample4"  Grid.Column="3" Grid.Row="1" >
+                    <materialDesign:DialogHost HorizontalAlignment="Center" VerticalAlignment="Center"
                                            IsOpen="{Binding IsSample4DialogOpen}"
                                            DialogContent="{Binding Sample4Content}"
                                            CloseOnClickAway="True">
-                <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                        <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                             MinWidth="256" MinHeight="256" ClipToBounds="True">
-                    <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                            <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Command="{Binding OpenSample4DialogCommand}"
                                 >RUN</Button>
-                </Border>
-            </materialDesign:DialogHost>
-        </codeDisplayer:XamlDisplayerPanel>
-    </ScrollViewer>
+                        </Border>
+                    </materialDesign:DialogHost>
+                </smtx:XamlDisplay>
+                <!--#endregion-->
+            </Grid>
+        </ScrollViewer>
+    </Grid>
 </UserControl>
+
+
 

@@ -4,17 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
-    <UserControl.Resources>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
-            <Setter Property="TextWrapping" Value="Wrap"></Setter>
-            <Setter Property="MaxWidth" Value="300"></Setter>
-        </Style>
-    </UserControl.Resources>
-    <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <smtx:XamlDisplay Key="explander_1">
             <StackPanel>
                 <Expander HorizontalAlignment="Stretch"
                       Header="Expander Example 1a">
@@ -46,9 +48,12 @@
                                TextWrapping="Wrap"/>
                     </StackPanel>
                 </Expander>
+
             </StackPanel>
-            <materialDesign:Card Grid.Row="1" Background="{DynamicResource MaterialDesignBackground}"
-                             Margin="4 24 0 0">
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Key="expander_2"  Grid.Column="0" Grid.Row="1" Margin="4 24 0 0">
+            <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}">
                 <StackPanel>
                     <Expander HorizontalAlignment="Stretch"
                           Header="Expander Example 2a">
@@ -84,8 +89,10 @@
                     </Expander>
                 </StackPanel>
             </materialDesign:Card>
-            <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="8" Orientation="Horizontal" VerticalAlignment="Stretch"                    
-                    Grid.RowSpan="2">
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Key="expander_3" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="8">
+            <StackPanel Orientation="Horizontal">
                 <Expander ExpandDirection="Right">
                     <Expander.Header>
                         <TextBlock Text="Expander Example 3a" RenderTransformOrigin=".5,.5">
@@ -140,6 +147,7 @@
                     </StackPanel>
                 </Expander>
             </StackPanel>
-        </codeDisplayer:XamlDisplayerPanel>
-    </ScrollViewer>
+        </smtx:XamlDisplay>
+    </Grid>
 </UserControl>
+
