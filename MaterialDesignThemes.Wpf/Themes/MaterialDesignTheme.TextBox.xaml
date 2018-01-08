@@ -62,7 +62,8 @@
                                 <Grid x:Name="textFieldGrid"
                                       Margin="{TemplateBinding Padding}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      MinWidth="1">
                                     <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
                                                   HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
