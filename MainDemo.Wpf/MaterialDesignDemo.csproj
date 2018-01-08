@@ -457,9 +457,6 @@
   </Target>
   -->
   <Import Project="..\.paket\paket.targets" />
-  <Target Name="Foo" BeforeTargets="BuildXamlDictionary">
-    <Message Text="Kevin: $(ShowMeTheXAMLRequireKeySet)" />
-  </Target>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.2')">
       <ItemGroup>
