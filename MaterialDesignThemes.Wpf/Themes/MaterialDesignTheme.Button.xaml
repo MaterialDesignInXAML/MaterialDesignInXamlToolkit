@@ -103,7 +103,7 @@
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
     </Style>
 
-    <Style x:Key="MaterialDesignFlatButton" TargetType="{x:Type Button}">
+    <Style x:Key="MaterialDesignFlatButton" TargetType="{x:Type ButtonBase}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -119,7 +119,7 @@
         <Setter Property="Height" Value="32" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
                     <Grid>
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2"
                                 BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
@@ -131,7 +131,7 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsDefaulted" Value="true">
+                        <Trigger Property="Button.IsDefaulted" Value="true">
                             <!--Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/-->
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
@@ -147,11 +147,11 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignFlatAccentButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+    <Style x:Key="MaterialDesignFlatAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}"/>
     </Style>
 
-    <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+    <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Foreground" Value="#616161" />
         <Setter Property="Padding" Value="4"/>
         <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>        
@@ -173,11 +173,11 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignToolForegroundButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignToolButton}">
+    <Style x:Key="MaterialDesignToolForegroundButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignToolButton}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
     </Style>
 
-    <Style x:Key="MaterialDesignFloatingActionMiniButton" TargetType="{x:Type Button}">
+    <Style x:Key="MaterialDesignFloatingActionMiniButton" TargetType="{x:Type ButtonBase}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
@@ -195,7 +195,7 @@
         <Setter Property="Height" Value="40" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
                     <Grid>
                         <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                             <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
@@ -233,7 +233,7 @@
                         <Ellipse x:Name="GeometryEllipse" Fill="Transparent" IsHitTestVisible="False" Focusable="False" />
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsDefaulted" Value="true">
+                        <Trigger Property="Button.IsDefaulted" Value="true">
                             <Setter Property="Stroke" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
@@ -269,47 +269,47 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignFloatingActionButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
+    <Style x:Key="MaterialDesignFloatingActionButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
         <Setter Property="Width" Value="56"/>
         <Setter Property="Height" Value="56"/>
     </Style>
     
-    <Style x:Key="MaterialDesignFloatingActionMiniLightButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
+    <Style x:Key="MaterialDesignFloatingActionMiniLightButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}"/>
         <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueDarkBrush}" />
     </Style>
 
-    <Style x:Key="MaterialDesignFloatingActionMiniDarkButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
+    <Style x:Key="MaterialDesignFloatingActionMiniDarkButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
         <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueLightBrush}" />
     </Style>
 
-    <Style x:Key="MaterialDesignFloatingActionMiniAccentButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
+    <Style x:Key="MaterialDesignFloatingActionMiniAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
         <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
         <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidBrush}" />
     </Style>
 
-    <Style x:Key="MaterialDesignFloatingActionLightButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
+    <Style x:Key="MaterialDesignFloatingActionLightButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}"/>
         <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueDarkBrush}" />
     </Style>
 
-    <Style x:Key="MaterialDesignFloatingActionDarkButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
+    <Style x:Key="MaterialDesignFloatingActionDarkButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
         <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueLightBrush}" />
     </Style>
 
-    <Style x:Key="MaterialDesignFloatingActionAccentButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
+    <Style x:Key="MaterialDesignFloatingActionAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
         <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
