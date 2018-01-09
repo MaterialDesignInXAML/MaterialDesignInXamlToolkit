@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using ShowMeTheXAML;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Markup;
-using ShowMeTheXAML;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -30,11 +20,6 @@ namespace MaterialDesignColors.WpfExample
             */
 
             base.OnStartup(e);
-        }
-
-        private void CopyButton_onClick(object sender, RoutedEventArgs e) {
-            var toBeCopied = ((Button)sender).Tag.ToString();
-            Clipboard.SetDataObject(toBeCopied);
         }
     }
 }

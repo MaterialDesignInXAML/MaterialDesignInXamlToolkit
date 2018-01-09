@@ -66,21 +66,22 @@
                                             </materialDesign:PackIcon.Style>
                                         </materialDesign:PackIcon>
                                     </materialDesign:PopupBox.ToggleContent>
-                                    <StackPanel>
-                                        <Border MaxHeight="600" MaxWidth="800">
+                                    <Border MaxHeight="600" MaxWidth="800">
+                                        <StackPanel>
                                             <avalonEdit:TextEditor Document="{Binding Xaml, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TextDocumentValueConverter}}" 
-                                                               Style="{StaticResource AvalonTextEditorXamlDisplay}" />
-                                        </Border>
-                                        <Button
-                                            Margin="0 10 0 0"
-                                            Tag="{Binding Xaml, RelativeSource={RelativeSource TemplatedParent}}"
-                                            Click="CopyButton_onClick"
-                                            HorizontalAlignment="Right"
-                                            Style="{StaticResource MaterialDesignRaisedButton}"
-                                            >
-                                            COPY
-                                        </Button>
-                                    </StackPanel>
+                                                                   Style="{StaticResource AvalonTextEditorXamlDisplay}" />
+                                            <Button
+                                                Margin="0 10 0 0"
+                                                Tag="{Binding Xaml, RelativeSource={RelativeSource TemplatedParent}}"
+                                                HorizontalAlignment="Right"
+                                                Command="Copy"
+                                                CommandParameter="{Binding Xaml, RelativeSource={RelativeSource TemplatedParent}}"
+                                                Content="_COPY"
+                                                Style="{StaticResource MaterialDesignRaisedButton}">
+                                            </Button>
+                                        </StackPanel>
+                                    </Border>
+
                                 </materialDesign:PopupBox>
                                 <Grid>
                                     <AdornerDecorator>

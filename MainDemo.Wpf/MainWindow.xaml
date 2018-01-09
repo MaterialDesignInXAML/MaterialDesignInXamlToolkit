@@ -13,6 +13,9 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{StaticResource MaterialDesignFont}" Icon="favicon.ico">
+    <Window.CommandBindings>
+        <CommandBinding Command="Copy" Executed="OnCopy"></CommandBinding>
+    </Window.CommandBindings>
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
