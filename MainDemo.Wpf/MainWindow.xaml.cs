@@ -64,7 +64,7 @@ namespace MaterialDesignColors.WpfExample
             {
                 try
                 {
-                    Clipboard.SetText(stringValue, TextDataFormat.UnicodeText);
+                    Clipboard.SetDataObject(stringValue);
                 }
                 catch (Exception ex)
                 {
