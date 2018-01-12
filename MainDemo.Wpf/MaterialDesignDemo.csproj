@@ -457,6 +457,9 @@
   </Target>
   -->
   <Import Project="..\.paket\paket.targets" />
+  <Target Name="ShowMeTheXAML_EnsureXamlCreated" AfterTargets="BeforeCompile">
+    <Error Condition="('$(ShowMeTheXAMLGeneratedFileName)' == '' Or $(ShowMeTheXAMLGeneratedFileName) == '*Undefined*') And Exists('..\packages\ShowMeTheXAML.MSBuild\build\$(__paket__ShowMeTheXAML_MSBuild_targets).targets')" Text="ShowMeTheXAML was added to the $(ProjectName) project. Please rebuild the project." />
+  </Target>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.2')">
       <ItemGroup>
