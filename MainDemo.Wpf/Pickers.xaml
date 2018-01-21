@@ -10,6 +10,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <!-- for some reason to get the validation templates to show on this page need an extra decorator.  haven't figure out why yet -->
     <AdornerDecorator>
+    <ScrollViewer>
         <Grid Margin="32">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -127,6 +128,7 @@
                 </StackPanel>
             </smtx:XamlDisplay>
         </Grid>
+</ScrollViewer>
     </AdornerDecorator>
 </UserControl>
 

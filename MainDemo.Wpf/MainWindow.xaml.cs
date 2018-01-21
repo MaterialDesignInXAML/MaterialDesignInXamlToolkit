@@ -1,4 +1,6 @@
-﻿using MaterialDesignColors.WpfExample.Domain;
+﻿using System;
+using System.Diagnostics;
+using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignThemes.Wpf;
 using System.Threading;
 using System.Threading.Tasks;
@@ -54,6 +56,21 @@ namespace MaterialDesignColors.WpfExample
             };
 
             await DialogHost.Show(sampleMessageDialog, "RootDialog");            
+        }
+
+        private void OnCopy(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Parameter is string stringValue)
+            {
+                try
+                {
+                    Clipboard.SetDataObject(stringValue);
+                }
+                catch (Exception ex)
+                {
+                    Trace.WriteLine(ex.ToString());
+                }
+            }
         }
     } 
 }

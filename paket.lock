@@ -14,12 +14,12 @@ NUGET
     NSubstitute (2.0.3)
     RhinoMocks (3.6.1)
     Shouldly (2.8.3)
-    ShowMeTheXAML (1.0.8)
-    ShowMeTheXAML.AvalonEdit (1.0.8)
+    ShowMeTheXAML (1.0.9)
+    ShowMeTheXAML.AvalonEdit (1.0.9)
       AvalonEdit (>= 5.0.4 < 5.1)
-      ShowMeTheXAML (>= 1.0.8 < 1.2)
-    ShowMeTheXAML.MSBuild (1.0.8)
-      ShowMeTheXAML (>= 1.0.8 < 1.2)
+      ShowMeTheXAML (>= 1.0.9 < 1.2)
+    ShowMeTheXAML.MSBuild (1.0.9)
+      ShowMeTheXAML (>= 1.0.9 < 1.2)
     System.Runtime.InteropServices.RuntimeInformation (4.3) - restriction: == net45
     xunit (2.3.1)
       xunit.analyzers (>= 0.7)
@@ -28,15 +28,15 @@ NUGET
     xunit.abstractions (2.0.1)
     xunit.analyzers (0.8)
     xunit.assert (2.3.1)
-      NETStandard.Library (>= 1.6.1) - restriction: || (== net45) (&& (== net45) (== net452))
+      NETStandard.Library (>= 1.6.1) - restriction: == net45
     xunit.core (2.3.1)
       xunit.extensibility.core (2.3.1)
       xunit.extensibility.execution (2.3.1)
     xunit.extensibility.core (2.3.1)
-      NETStandard.Library (>= 1.6.1) - restriction: || (== net45) (&& (== net45) (== net452))
+      NETStandard.Library (>= 1.6.1) - restriction: == net45
       xunit.abstractions (>= 2.0.1)
     xunit.extensibility.execution (2.3.1)
-      NETStandard.Library (>= 1.6.1) - restriction: || (== net45) (&& (== net45) (== net452))
+      NETStandard.Library (>= 1.6.1) - restriction: == net45
       xunit.extensibility.core (2.3.1)
 GITHUB
   remote: ControlzEx/ControlzEx

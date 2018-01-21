@@ -67,9 +67,21 @@
                                         </materialDesign:PackIcon>
                                     </materialDesign:PopupBox.ToggleContent>
                                     <Border MaxHeight="600" MaxWidth="800">
-                                        <avalonEdit:TextEditor Document="{Binding Xaml, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TextDocumentValueConverter}}" 
-                                                               Style="{StaticResource AvalonTextEditorXamlDisplay}" />
+                                        <StackPanel>
+                                            <avalonEdit:TextEditor Document="{Binding Xaml, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TextDocumentValueConverter}}" 
+                                                                   Style="{StaticResource AvalonTextEditorXamlDisplay}" />
+                                            <Button
+                                                Margin="0 10 0 0"
+                                                Tag="{Binding Xaml, RelativeSource={RelativeSource TemplatedParent}}"
+                                                HorizontalAlignment="Right"
+                                                Command="Copy"
+                                                CommandParameter="{Binding Xaml, RelativeSource={RelativeSource TemplatedParent}}"
+                                                Content="_COPY"
+                                                Style="{StaticResource MaterialDesignRaisedButton}">
+                                            </Button>
+                                        </StackPanel>
                                     </Border>
+
                                 </materialDesign:PopupBox>
                                 <Grid>
                                     <AdornerDecorator>
@@ -96,3 +108,4 @@
         </ResourceDictionary>
     </Application.Resources>
 </Application>
+
