@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Diagnostics;
+using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignThemes.Wpf;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-using CodeDisplayer;
-using MaterialDesignColors.WpfExample.Domain;
-using MaterialDesignThemes.Wpf;
-using System.IO;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -22,22 +20,9 @@ namespace MaterialDesignColors.WpfExample
         {
             InitializeComponent();
 
-            var sourceLocation = File.Exists(@"..\..\MainWindow.xaml") ? XamlDisplayerPanel.SourceEnum.LoadFromLocal : XamlDisplayerPanel.SourceEnum.LoadFromRemote;
-
-            XamlDisplayerPanel.Initialize(
-                source: sourceLocation,
-                defaultLocalPath: $@"..\..\",
-                defaultRemotePath: @"https://raw.githubusercontent.com/ButchersBoy/MaterialDesignInXamlToolkit/master/MainDemo.Wpf/",
-                attributesToBeRemoved:
-                new List<string>()
-                {
-                    "xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"",
-                    "xmlns:materialDesign=\"http://materialdesigninxaml.net/winfx/xaml/themes\"",
-                    "xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\""
-                });
             Task.Factory.StartNew(() =>
             {
-                Thread.Sleep(2500);                
+                Thread.Sleep(2500);
             }).ContinueWith(t =>
             {
                 //note you can use the message queue from any thread, but just for the demo here we 
@@ -71,6 +56,21 @@ namespace MaterialDesignColors.WpfExample
             };
 
             await DialogHost.Show(sampleMessageDialog, "RootDialog");            
+        }
+
+        private void OnCopy(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Parameter is string stringValue)
+            {
+                try
+                {
+                    Clipboard.SetDataObject(stringValue);
+                }
+                catch (Exception ex)
+                {
+                    Trace.WriteLine(ex.ToString());
+                }
+            }
         }
     } 
 }

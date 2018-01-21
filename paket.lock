@@ -1,10 +1,11 @@
 RESTRICTION: || (== net45) (== net452)
 NUGET
   remote: https://www.nuget.org/api/v2
+    AvalonEdit (5.0.4)
     Castle.Core (4.2.1)
     Dragablz (0.0.3.197)
     MahApps.Metro (1.5)
-    Microsoft.NETCore.Platforms (2.0.1) - restriction: || (== net45) (&& (== net45) (== net452))
+    Microsoft.NETCore.Platforms (2.0.1) - restriction: == net45
     Moq (4.7.145)
       Castle.Core (>= 4.2.1)
     NETStandard.Library (2.0.1) - restriction: == net45
@@ -13,8 +14,13 @@ NUGET
     NSubstitute (2.0.3)
     RhinoMocks (3.6.1)
     Shouldly (2.8.3)
-    System.Runtime.InteropServices.RuntimeInformation (4.3) - restriction: || (== net45) (&& (== net45) (== net452))
-    XamlDisplayerPackage (1.0.6)
+    ShowMeTheXAML (1.0.9)
+    ShowMeTheXAML.AvalonEdit (1.0.9)
+      AvalonEdit (>= 5.0.4 < 5.1)
+      ShowMeTheXAML (>= 1.0.9 < 1.2)
+    ShowMeTheXAML.MSBuild (1.0.9)
+      ShowMeTheXAML (>= 1.0.9 < 1.2)
+    System.Runtime.InteropServices.RuntimeInformation (4.3) - restriction: == net45
     xunit (2.3.1)
       xunit.analyzers (>= 0.7)
       xunit.assert (2.3.1)

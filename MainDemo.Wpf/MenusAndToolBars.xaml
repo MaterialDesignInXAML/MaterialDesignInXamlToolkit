@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel >
+    <DockPanel>
+        <smtx:XamlDisplay Key="menus_1" DockPanel.Dock="Top" Margin="5 5 0 5">
             <Menu IsMainMenu="True">
                 <MenuItem Header="_File">
                     <MenuItem Header="Save">
@@ -52,6 +52,9 @@
                     </MenuItem>
                 </MenuItem>
             </Menu>
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Key="menus_2" DockPanel.Dock="Top" Margin="5 0 0 0">
             <ToolBarTray>
                 <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
                     <Button ToolTip="Follow me on Twitter" Click="TwitterButton_OnClick">
@@ -67,13 +70,10 @@
                     <Button Command="Copy" ToolTip="Copy that stuff" ToolBar.OverflowMode="AsNeeded">
                         <materialDesign:PackIcon Kind="ContentCopy" />
                     </Button>
+                    <Separator />
                     <Button Command="Paste" ToolTip="Paste some stuff" ToolBar.OverflowMode="AsNeeded">
                         <materialDesign:PackIcon Kind="ContentPaste" />
                     </Button>
-                </ToolBar>
-            </ToolBarTray>
-            <ToolBarTray>
-                <ToolBar ClipToBounds="False">
                     <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and 
                      manually apply the button style -->
                     <materialDesign:Badged ToolBar.OverflowMode="AsNeeded" Badge="{materialDesign:PackIcon Alert}">
@@ -87,7 +87,7 @@
                             <TextBlock>W</TextBlock>
                         </ListBoxItem>
                     </ListBox>
-                    <Separator />
+                    <Separator/>
                     <ListBox SelectedIndex="0">
                         <ListBox.ToolTip>
                             <StackPanel>
@@ -109,11 +109,6 @@
                             <materialDesign:PackIcon Kind="FormatAlignJustify"/>
                         </ListBoxItem>
                     </ListBox>
-
-                </ToolBar>
-            </ToolBarTray>
-            <ToolBarTray>
-                <ToolBar>
                     <Separator/>
                     <ListBox SelectionMode="Extended">
                         <ListBox.ToolTip>
@@ -152,12 +147,14 @@
                     <ToggleButton/>
                 </ToolBar>
             </ToolBarTray>
+        </smtx:XamlDisplay>
 
-            <TextBox Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
-                With Default Context Menu (Right click me!)
-            </TextBox>
+        <smtx:XamlDisplay Key="menus_3" Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <TextBox Text="With Default Context Menu" />
+        </smtx:XamlDisplay>
 
-            <TextBox Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <smtx:XamlDisplay Key="menus_4" Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <TextBox Text="With Custom Context Menu">
                 <TextBox.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Hello World" />
@@ -166,10 +163,9 @@
                         </MenuItem>
                     </ContextMenu>
                 </TextBox.ContextMenu>
-                With Custom Context Menu (Right click me!)
             </TextBox>
+        </smtx:XamlDisplay>
 
-        </codeDisplayer:XamlDisplayerPanel>
-    </ScrollViewer>
+    </DockPanel>
 </UserControl>
 
