@@ -20,6 +20,10 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <smtx:XamlDisplay Key="trees_1" Grid.Column="0" Margin="5 5 0 5" VerticalContentAlignment="Top">
             <TreeView MinWidth="220">
                 <TreeViewItem Header="Fruit">
@@ -136,6 +140,36 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </Grid>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="trees_3" Grid.Row="1">
+            <TreeView>
+                <materialDesign:TreeViewAssist.AdditionalTemplate>
+                    <DataTemplate>
+                        <TextBlock FontSize="10" Margin="8">8 planets</TextBlock>
+                    </DataTemplate>
+                </materialDesign:TreeViewAssist.AdditionalTemplate>
+                <!--
+                <materialDesign:TreeViewAssist.AdditionalTemplateSelector>
+                    <domain:TreeExampleSimpleTemplateSelector>
+                        <domain:TreeExampleSimpleTemplateSelector.SolarSystemTemplate>
+                            <DataTemplate>
+                                <TextBlock>8 or 9 planets?</TextBlock>
+                            </DataTemplate>
+                        </domain:TreeExampleSimpleTemplateSelector.SolarSystemTemplate>
+                    </domain:TreeExampleSimpleTemplateSelector>
+                </materialDesign:TreeViewAssist.AdditionalTemplateSelector>
+                -->
+                <TreeViewItem Header="Solar System">
+                    <TreeViewItem Header="Mercury" materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}" />
+                    <TreeViewItem Header="Venus" />
+                    <TreeViewItem Header="Earth" />
+                    <TreeViewItem Header="Mars" />
+                    <TreeViewItem Header="Jupiter" />
+                    <TreeViewItem Header="Saturn" />
+                    <TreeViewItem Header="Uranus" />
+                    <TreeViewItem Header="Neptune" />
+                </TreeViewItem>
+            </TreeView>
         </smtx:XamlDisplay>
     </Grid>
 </UserControl>

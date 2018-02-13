@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -7,9 +8,24 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace MaterialDesignColors.WpfExample.Domain
 {
+    public class TreeExampleSimpleTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate SolarSystemTemplate { get; set; }
+
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        {
+            if (item?.ToString() == "Solar System")
+                return SolarSystemTemplate;
+
+            return TreeViewAssist.SuppressAdditionalTemplate;
+        }
+    }
+
     public sealed class Movie
     {
         public Movie(string name, string director)
