@@ -18,6 +18,14 @@
     <PaketExePath Condition=" '$(PaketExePath)' == '' ">$(PaketToolsPath)paket.exe</PaketExePath>
     <PaketCommand Condition=" '$(OS)' == 'Windows_NT'">"$(PaketExePath)"</PaketCommand>
     <PaketCommand Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319 "$(PaketExePath)"</PaketCommand>
+
+    <!-- .net core fdd -->
+    <_PaketExeExtension>$([System.IO.Path]::GetExtension("$(PaketExePath)"))</_PaketExeExtension>
+    <PaketCommand Condition=" '$(_PaketExeExtension)' == '.dll' ">dotnet "$(PaketExePath)"</PaketCommand>
+
+    <!-- no extension is a shell script -->
+    <PaketCommand Condition=" '$(_PaketExeExtension)' == '' ">"$(PaketExePath)"</PaketCommand>
+
     <PaketBootStrapperExePath Condition=" '$(PaketBootStrapperExePath)' == '' AND Exists('$(PaketRootPath)paket.bootstrapper.exe')">$(PaketRootPath)paket.bootstrapper.exe</PaketBootStrapperExePath>
     <PaketBootStrapperExePath Condition=" '$(PaketBootStrapperExePath)' == '' ">$(PaketToolsPath)paket.bootstrapper.exe</PaketBootStrapperExePath>
     <PaketBootStrapperCommand Condition=" '$(OS)' == 'Windows_NT'">"$(PaketBootStrapperExePath)"</PaketBootStrapperCommand>
@@ -45,10 +53,10 @@
     </PropertyGroup>
 
     <!-- If shasum and awk exist get the hashes -->
-    <Exec Condition=" '$(PaketRestoreCachedHasher)' != '' " Command="$(PaketRestoreCachedHasher)" ConsoleToMSBuild='true'>
+    <Exec StandardOutputImportance="Low" Condition=" '$(PaketRestoreCachedHasher)' != '' " Command="$(PaketRestoreCachedHasher)" ConsoleToMSBuild='true'>
         <Output TaskParameter="ConsoleOutput" PropertyName="PaketRestoreCachedHash" />
     </Exec>
-    <Exec Condition=" '$(PaketRestoreLockFileHasher)' != '' " Command="$(PaketRestoreLockFileHasher)" ConsoleToMSBuild='true'>
+    <Exec StandardOutputImportance="Low" Condition=" '$(PaketRestoreLockFileHasher)' != '' " Command="$(PaketRestoreLockFileHasher)" ConsoleToMSBuild='true'>
         <Output TaskParameter="ConsoleOutput" PropertyName="PaketRestoreLockFileHash" />
     </Exec>
 
@@ -140,9 +148,10 @@
       </DotNetCliToolReference>
     </ItemGroup>
 
+    <!-- Disabled for now until we know what to do with runtime deps - https://github.com/fsprojects/Paket/issues/2964
     <PropertyGroup>
       <RestoreConfigFile>$(MSBuildProjectDirectory)/obj/$(MSBuildProjectFile).NuGet.Config</RestoreConfigFile>
-    </PropertyGroup>
+    </PropertyGroup> -->
 
   </Target>
 
