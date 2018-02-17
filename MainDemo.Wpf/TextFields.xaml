@@ -197,6 +197,21 @@
                         </ComboBox.ItemsPanel>
                     </ComboBox>
                 </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="fields_27">
+                    <ComboBox materialDesign:HintAssist.Hint="(large float hint)"
+                              materialDesign:HintAssist.FloatingScale="1.5"
+                              materialDesign:HintAssist.FloatingOffset="0, -24"
+                              MinWidth="72"
+                              Margin="16 0 0 0"
+                              ItemsSource="{Binding LongListToTestComboVirtualization}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                </smtx:XamlDisplay>
             </StackPanel>
             <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 16 0 5">Disabled Controls</TextBlock>
             <StackPanel Orientation="Horizontal">
