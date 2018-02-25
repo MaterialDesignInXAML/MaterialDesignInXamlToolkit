@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -68,10 +69,10 @@ namespace MaterialDesignThemes.Wpf.Transitions
             CommandBindings.Add(new CommandBinding(MoveFirstCommand, MoveFirstHandler));
             CommandBindings.Add(new CommandBinding(MoveLastCommand, MoveLastHandler));
             AddHandler(TransitionerSlide.InTransitionFinished, new RoutedEventHandler(IsTransitionFinishedHandler));
-            Loaded += (sender, args) =>
+            Loaded += async (sender, args) =>
             {
                 if (SelectedIndex != -1)
-                    ActivateFrame(SelectedIndex, -1);
+                    await ActivateFrame(SelectedIndex, -1);
             };
         }
 
@@ -92,7 +93,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
             base.OnPreviewMouseLeftButtonDown(e);
         }
 
-        protected override void OnSelectionChanged(SelectionChangedEventArgs e)
+        protected override async void OnSelectionChanged(SelectionChangedEventArgs e)
         {
             var unselectedIndex = -1;
             if (e.RemovedItems.Count == 1)
@@ -105,14 +106,15 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 selectedIndex = Items.IndexOf(e.AddedItems[0]);
             }
 
-            ActivateFrame(selectedIndex, unselectedIndex);
+            await ActivateFrame(selectedIndex, unselectedIndex);
 
             base.OnSelectionChanged(e);
         }
 
-        private void IsTransitionFinishedHandler(object sender, RoutedEventArgs routedEventArgs)
+        private async void IsTransitionFinishedHandler(object sender, RoutedEventArgs routedEventArgs)
         {
-            foreach (var slide in Items.OfType<object>().Select(GetSlide).Where(s => s.State == TransitionerSlideState.Previous))
+            var slides = await Task.WhenAll(Items.OfType<object>().Select(GetSlide));
+            foreach (var slide in slides.Where(s => s.State == TransitionerSlideState.Previous))
             {
                 slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.None);
             }
@@ -163,22 +165,47 @@ namespace MaterialDesignThemes.Wpf.Transitions
             return !double.IsNaN(dubz) && !double.IsInfinity(dubz) && dubz > 0.0;
         }
 
-        private TransitionerSlide GetSlide(object item)
+        private async Task<TransitionerSlide> GetSlide(object item)
         {
             if (IsItemItsOwnContainer(item))
                 return (TransitionerSlide)item;
 
-            return (TransitionerSlide)ItemContainerGenerator.ContainerFromItem(item);
+            var container = ItemContainerGenerator.ContainerFromItem(item);
+
+            if (container == null)
+            {
+                var tcs = new TaskCompletionSource<DependencyObject>();
+                void eh(object sender, EventArgs e)
+                {
+                    Dispatcher.Invoke(() => { 
+                        if (ItemContainerGenerator.Status == GeneratorStatus.ContainersGenerated)
+                        {
+                            ItemContainerGenerator.StatusChanged -= eh;
+                            
+                            container = ItemContainerGenerator.ContainerFromIndex(0);
+                            if (!tcs.Task.IsCompleted)
+                            {
+                                tcs.SetResult(container);
+                            }
+                        }
+                    });
+                }
+                container = await tcs.Task;
+
+                ItemContainerGenerator.StatusChanged += eh;
+            }
+
+            return (TransitionerSlide)container;
         }
 
-        private void ActivateFrame(int selectedIndex, int unselectedIndex)
+        private async Task ActivateFrame(int selectedIndex, int unselectedIndex)
         {
             if (!IsLoaded) return;
 
             TransitionerSlide oldSlide = null, newSlide = null;
             for (var index = 0; index < Items.Count; index++)
             {
-                var slide = GetSlide(Items[index]);
+                var slide = await GetSlide(Items[index]);
                 if (index == selectedIndex)
                 {
                     newSlide = slide;
