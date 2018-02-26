@@ -257,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Badged.cs" />
+    <Compile Include="BaseTheme.cs" />
     <Compile Include="ButtonProgressAssist.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Chip.cs" />
@@ -324,6 +325,7 @@
     <Compile Include="ISnackbarMessageQueue.cs" />
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="ListViewAssist.cs" />
+    <Compile Include="MaterialDesignThemeResources.cs" />
     <Compile Include="MessageQueueExtension.cs" />
     <Compile Include="PackIconExtension.cs" />
     <Compile Include="Palette.cs" />

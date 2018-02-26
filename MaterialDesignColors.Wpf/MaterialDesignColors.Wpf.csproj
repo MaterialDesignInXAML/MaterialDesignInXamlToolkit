@@ -57,7 +57,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccentColor.cs" />
     <Compile Include="Hue.cs" />
+    <Compile Include="PrimaryColor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
