@@ -352,7 +352,7 @@ namespace MaterialDesignThemes.Wpf
 
 		private string DateTimeToString(DateTime d)
 		{
-			var dtfi = CultureInfo.CurrentCulture.GetDateFormat(); 
+			var dtfi = Is24Hours ? CultureInfo.InvariantCulture.GetDateFormat() : CultureInfo.CurrentCulture.GetDateFormat();
 
 			switch (SelectedTimeFormat)
 			{
