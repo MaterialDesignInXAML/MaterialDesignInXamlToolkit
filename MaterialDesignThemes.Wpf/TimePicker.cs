@@ -28,6 +28,8 @@ namespace MaterialDesignThemes.Wpf
         private DateTime? _lastValidTime;
 	    private bool _isManuallyMutatingText;
 
+	    public EventHandler<EventArgs> SelectedTimeChanged;
+
         static TimePicker()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(TimePicker), new FrameworkPropertyMetadata(typeof(TimePicker)));
@@ -74,6 +76,8 @@ namespace MaterialDesignThemes.Wpf
 			timePicker.SetCurrentValue(TextProperty, timePicker.DateTimeToString(timePicker.SelectedTime));
             timePicker._isManuallyMutatingText = false;
             timePicker._lastValidTime = timePicker.SelectedTime;
+
+		    timePicker.SelectedTimeChanged?.Invoke(timePicker, new EventArgs());
         }
 
         public DateTime? SelectedTime
