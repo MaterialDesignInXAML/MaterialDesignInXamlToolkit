@@ -26,13 +26,13 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ContentStates">
                                 <VisualStateGroup.Transitions>
-                                    <VisualTransition From="*" To="ContentNotEmpty">
+                                    <VisualTransition From="*" To="HintFloatingPosition">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="SimpleHintTextBlock" Storyboard.TargetProperty="Opacity"
                                                              Duration="0:0:0" To="0" />
                                         </Storyboard>
                                     </VisualTransition>
-                                    <VisualTransition From="*" To="ContentEmpty">
+                                    <VisualTransition From="*" To="HintRestingPosition">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="SimpleHintTextBlock" Storyboard.TargetProperty="Opacity"
                                                              Duration="0:0:0.3"
@@ -40,13 +40,13 @@
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
-                                <VisualState x:Name="ContentNotEmpty">
+                                <VisualState x:Name="HintFloatingPosition">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SimpleHintTextBlock"
                                                          Duration="0" To="0" />
                                     </Storyboard>
                                 </VisualState>
-                                <VisualState x:Name="ContentEmpty">
+                                <VisualState x:Name="HintRestingPosition">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SimpleHintTextBlock"
                                                          Duration="0" />
@@ -78,7 +78,7 @@
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="ContentStates">
                                         <VisualStateGroup.Transitions>
-                                            <VisualTransition From="*" To="ContentNotEmpty">
+                                            <VisualTransition From="*" To="HintFloatingPosition">
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="Opacity"
                                                                      Duration="0:0:0.3" To="{TemplateBinding HintOpacity}"
@@ -88,7 +88,7 @@
                                                                      EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                                 </Storyboard>
                                             </VisualTransition>
-                                            <VisualTransition From="*" To="ContentEmpty">
+                                            <VisualTransition From="*" To="HintRestingPosition">
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="Opacity"
                                                                      Duration="0:0:0.3"
@@ -99,7 +99,7 @@
                                                 </Storyboard>
                                             </VisualTransition>
                                         </VisualStateGroup.Transitions>
-                                        <VisualState x:Name="ContentNotEmpty">
+                                        <VisualState x:Name="HintFloatingPosition">
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FloatingHintTextBlock"
                                                                  Duration="0" To="{TemplateBinding HintOpacity}" />
@@ -107,7 +107,7 @@
                                                                  Duration="0" To="1"/>
                                             </Storyboard>
                                         </VisualState>
-                                        <VisualState x:Name="ContentEmpty">
+                                        <VisualState x:Name="HintRestingPosition">
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FloatingHintTextBlock"
                                                                  Duration="0" />

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -32,49 +33,90 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 26 0 0" Style="{StaticResource Caption}">Display 4  - MaterialDesignDisplay4TextBlock</TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay4TextBlock}" Margin="0 4 0 4">Light 112sp</TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource MaterialDesignDisplay4TextBlock}" Margin="0 4 0 4"><Hyperlink IsEnabled="False">Light 112sp (Disabled)</Hyperlink></TextBlock>
+        <smtx:XamlDisplay Key="typography_1" Grid.Row="0" Grid.Column="2" Margin="0 4 0 4">
+            <TextBlock Style="{StaticResource MaterialDesignDisplay4TextBlock}">Light 112sp</TextBlock>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="typography_2" Grid.Row="0" Grid.Column="4" Margin="0 4 0 4">
+            <TextBlock Style="{StaticResource MaterialDesignDisplay4TextBlock}"><Hyperlink IsEnabled="False">Light 112sp (Disabled)</Hyperlink></TextBlock>
+        </smtx:XamlDisplay>
 
         <TextBlock Grid.Row="1" Grid.Column="0" Margin="0 12 0 0" Style="{StaticResource Caption}">Display 3 - MaterialDesignDisplay3TextBlock</TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay3TextBlock}" Margin="0 4 0 4">Regular 56sp</TextBlock>
-        <!-- hyperlinks will pick up owner text block style... -->
-        <TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource MaterialDesignDisplay3TextBlock}" Margin="0 4 0 4"><Hyperlink>Regular 56sp</Hyperlink></TextBlock>
+        <smtx:XamlDisplay Key="typography_3" Grid.Row="1" Grid.Column="2" Margin="0 4 0 4">
+            <TextBlock Style="{StaticResource MaterialDesignDisplay3TextBlock}">Regular 56sp</TextBlock>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="typography_4" Grid.Row="1" Grid.Column="4" Margin="0 4 0 4">
+            <!-- hyperlinks will pick up owner text block style... -->
+            <TextBlock Style="{StaticResource MaterialDesignDisplay3TextBlock}"><Hyperlink>Regular 56sp</Hyperlink></TextBlock>
+        </smtx:XamlDisplay>
 
         <TextBlock Grid.Row="2" Grid.Column="0" Margin="0 8 0 0" Style="{StaticResource Caption}">Display 2 - MaterialDesignDisplay2TextBlock</TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay2TextBlock}" Margin="0 4 0 4">Regular 45sp</TextBlock>
-        <!-- ...or hyperlink style can be ste manually -->
-        <TextBlock Grid.Row="2" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignDisplay2Hyperlink}">Regular 45sp</Hyperlink></TextBlock>
+        <smtx:XamlDisplay Key="typography_5" Grid.Row="2" Grid.Column="2" Margin="0 4 0 4">
+            <TextBlock Style="{StaticResource MaterialDesignDisplay2TextBlock}">Regular 45sp</TextBlock>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="typography_6" Grid.Row="2" Grid.Column="4" Margin="0 4 0 4">
+            <!-- ...or hyperlink style can be set manually -->
+            <TextBlock><Hyperlink Style="{StaticResource MaterialDesignDisplay2Hyperlink}">Regular 45sp</Hyperlink></TextBlock>
+        </smtx:XamlDisplay>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Margin="0 8 0 0" Style="{StaticResource Caption}">Display 1 - MaterialDesignDisplay1TextBlock</TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource MaterialDesignDisplay1TextBlock}" Margin="0 4 0 4">Regular 34sp</TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignDisplay1Hyperlink}">Regular 34sp</Hyperlink></TextBlock>
+        <smtx:XamlDisplay Key="typography_7" Grid.Row="3" Grid.Column="2" Margin="0 4 0 4">
+            <TextBlock Style="{StaticResource MaterialDesignDisplay1TextBlock}">Regular 34sp</TextBlock>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="typography_8" Grid.Row="3" Grid.Column="4" Margin="0 4 0 4">
+            <TextBlock><Hyperlink Style="{StaticResource MaterialDesignDisplay1Hyperlink}">Regular 34sp</Hyperlink></TextBlock>
+        </smtx:XamlDisplay>
 
         <TextBlock Grid.Row="4" Grid.Column="0" Margin="0 8 0 0" Style="{StaticResource Caption}">Headline - MaterialDesignHeadlineTextBlock</TextBlock>
-        <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 4 0 6">Regular 24sp</TextBlock>
-        <TextBlock Grid.Row="4" Grid.Column="4" Margin="0 4 0 4"><Hyperlink IsEnabled="False" Style="{StaticResource MaterialDesignHeadlineHyperlink}">Regular 24sp (Disabled)</Hyperlink></TextBlock>
+        <smtx:XamlDisplay Key="typography_9" Grid.Row="4" Grid.Column="2" Margin="0 4 0 6">
+            <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Regular 24sp</TextBlock>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="typography_10" Grid.Row="4" Grid.Column="4" Margin="0 4 0 4">
+            <TextBlock><Hyperlink IsEnabled="False" Style="{StaticResource MaterialDesignHeadlineHyperlink}">Regular 24sp (Disabled)</Hyperlink></TextBlock>
+        </smtx:XamlDisplay>
 
         <TextBlock Grid.Row="5" Grid.Column="0" Margin="0 8 0 0" Style="{StaticResource Caption}">Title - MaterialDesignTitleTextBlock</TextBlock>
-        <TextBlock Grid.Row="5" Grid.Column="2" Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="0 6 0 8">Medium 20sp</TextBlock>
-        <TextBlock Grid.Row="5" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignTitleHyperlink}">Medium 20sp</Hyperlink></TextBlock>
+        <smtx:XamlDisplay Key="typography_11" Grid.Row="5" Grid.Column="2" Margin="0 6 0 8">
+            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}">Medium 20sp</TextBlock>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="typography_12" Grid.Row="5" Grid.Column="4" Margin="0 4 0 4">
+            <TextBlock><Hyperlink Style="{StaticResource MaterialDesignTitleHyperlink}">Medium 20sp</Hyperlink></TextBlock>
+        </smtx:XamlDisplay>
 
         <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource Caption}">Subheading - MaterialDesignSubheadingTextBlock</TextBlock>
-        <TextBlock Grid.Row="6" Grid.Column="2" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Margin="0 8 0 8">Regular 15sp</TextBlock>
-        <TextBlock Grid.Row="6" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignSubheadingHyperlink}">Regular 15sp</Hyperlink></TextBlock>
+        <smtx:XamlDisplay Key="typography_13" Grid.Row="6" Grid.Column="2" Margin="0 8 0 8">
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}">Regular 15sp</TextBlock>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="typography_14" Grid.Row="6" Grid.Column="4" Margin="0 4 0 4">
+            <TextBlock><Hyperlink Style="{StaticResource MaterialDesignSubheadingHyperlink}">Regular 15sp</Hyperlink></TextBlock>
+        </smtx:XamlDisplay>
 
         <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource Caption}">Body 2 - MaterialDesignBody2TextBlock</TextBlock>
-        <TextBlock Grid.Row="7" Grid.Column="2" Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="0 8 0 8">Medium 13sp</TextBlock>
-        <TextBlock Grid.Row="7" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignBody2Hyperlink}">Medium 13sp</Hyperlink></TextBlock>
+        <smtx:XamlDisplay Key="typography_15" Grid.Row="7" Grid.Column="2" Margin="0 8 0 8">
+            <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}">Medium 13sp</TextBlock>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="typography_16" Grid.Row="7" Grid.Column="4" Margin="0 4 0 4">
+            <TextBlock><Hyperlink Style="{StaticResource MaterialDesignBody2Hyperlink}">Medium 13sp</Hyperlink></TextBlock>
+        </smtx:XamlDisplay>
 
         <TextBlock Grid.Row="8" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource Caption}">Body 1 - MaterialDesignBody1TextBlock</TextBlock>
-        <TextBlock Grid.Row="8" Grid.Column="2" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 8 0 8">Regular 13sp</TextBlock>
-        <TextBlock Grid.Row="8" Grid.Column="4" Margin="0 4 0 4"><Hyperlink IsEnabled="False" Style="{StaticResource MaterialDesignBody1Hyperlink}">Regular 13sp (Disabled)</Hyperlink></TextBlock>
+        <smtx:XamlDisplay Key="typography_17" Grid.Row="8" Grid.Column="2" Margin="0 8 0 8">
+            <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}">Regular 13sp</TextBlock>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="typography_18" Grid.Row="8" Grid.Column="4" Margin="0 4 0 4">
+            <TextBlock><Hyperlink IsEnabled="False" Style="{StaticResource MaterialDesignBody1Hyperlink}">Regular 13sp (Disabled)</Hyperlink></TextBlock>
+        </smtx:XamlDisplay>
 
         <TextBlock Grid.Row="9" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource Caption}">Caption - MaterialDesignCaptionTextBlock</TextBlock>
-        <TextBlock Grid.Row="9" Grid.Column="2" Style="{StaticResource MaterialDesignCaptionTextBlock}" Margin="0 8 0 8">Regular 12sp</TextBlock>
-        <TextBlock Grid.Row="9" Grid.Column="4" Margin="0 4 0 4"><Hyperlink Style="{StaticResource MaterialDesignCaptionHyperlink}">Regular 12sp</Hyperlink></TextBlock>
+        <smtx:XamlDisplay Key="typography_19" Grid.Row="9" Grid.Column="2" Margin="0 8 0 8">
+            <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}">Regular 12sp</TextBlock>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="typography_20" Grid.Row="9" Grid.Column="4" Margin="0 4 0 4">
+            <TextBlock><Hyperlink Style="{StaticResource MaterialDesignCaptionHyperlink}">Regular 12sp</Hyperlink></TextBlock>
+        </smtx:XamlDisplay>
 
         <TextBlock Grid.Row="10" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource Caption}">Button - MaterialDesignButtonTextBlock</TextBlock>
-        <TextBlock Grid.Row="10" Grid.Column="2" Style="{StaticResource MaterialDesignButtonTextBlock}" Margin="0 8 0 8">MEDIUM (ALL CAPS) 14sp</TextBlock>
-
+        <smtx:XamlDisplay Key="typography_21" Grid.Row="10" Grid.Column="2" Margin="0 8 0 8">
+            <TextBlock Style="{StaticResource MaterialDesignButtonTextBlock}">MEDIUM (ALL CAPS) 14sp</TextBlock>
+        </smtx:XamlDisplay>
     </Grid>
 </UserControl>

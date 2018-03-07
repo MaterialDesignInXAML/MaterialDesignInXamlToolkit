@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MaterialDesignDemo.TransitionsDemo"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -22,47 +23,49 @@
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource MaterialDesignDisplay2TextBlock}">Transitions Demo</TextBlock>
 
-        <!-- the transitioner will manage your transitions. notice how SelectedIndex is set to zero: the first slide (instead of the default of -1) -->
-        <materialDesign:Transitioner Grid.Row="1" SelectedIndex="0" AutoApplyTransitionOrigins="True">
+        <smtx:XamlDisplay Key="transitions" Grid.Row="1">
+            <!-- the transitioner will manage your transitions. notice how SelectedIndex is set to zero: the first slide (instead of the default of -1) -->
+            <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
 
-            <!-- you can use a slide for each page, let's add a touch of fade for our first page  -->
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
-                <local:Slide1_Intro />
-            </materialDesign:TransitionerSlide>
+                <!-- you can use a slide for each page, let's add a touch of fade for our first page  -->
+                <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                    <local:Slide1_Intro />
+                </materialDesign:TransitionerSlide>
 
-            <!-- but you can use bare xaml too -->
-            <local:Slide2_Intro />
+                <!-- but you can use bare xaml too -->
+                <local:Slide2_Intro />
 
-            <!-- you can control (and create your own) wipes -->
-            <materialDesign:TransitionerSlide>
-                <materialDesign:TransitionerSlide.BackwardWipe>
-                    <materialDesign:CircleWipe />
-                </materialDesign:TransitionerSlide.BackwardWipe>
-                <materialDesign:TransitionerSlide.ForwardWipe>
-                    <materialDesign:SlideWipe Direction="Right" />
-                </materialDesign:TransitionerSlide.ForwardWipe>
-                <local:Slide3_Intro />
-            </materialDesign:TransitionerSlide>
+                <!-- you can control (and create your own) wipes -->
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:CircleWipe />
+                    </materialDesign:TransitionerSlide.BackwardWipe>
+                    <materialDesign:TransitionerSlide.ForwardWipe>
+                        <materialDesign:SlideWipe Direction="Right" />
+                    </materialDesign:TransitionerSlide.ForwardWipe>
+                    <local:Slide3_Intro />
+                </materialDesign:TransitionerSlide>
 
-            <!-- now we are going to slide this in by combining some extra effects.  the inner content slides in, so we'll set the outer background and clip, to keep things nice -->
-            <materialDesign:TransitionerSlide Background="{DynamicResource MaterialDesignDarkBackground}"
+                <!-- now we are going to slide this in by combining some extra effects.  the inner content slides in, so we'll set the outer background and clip, to keep things nice -->
+                <materialDesign:TransitionerSlide Background="{DynamicResource MaterialDesignDarkBackground}"
                                               Foreground="{DynamicResource MaterialDesignDarkForeground}"
                                               ClipToBounds="True">
-                <materialDesign:TransitionerSlide.OpeningEffects>
-                    <materialDesign:TransitionEffect Kind="SlideInFromLeft" Duration="0:0:0.8" />
-                    <materialDesign:TransitionEffect Kind="SlideInFromBottom" Duration="0:0:0.8" OffsetTime="0:0:0.15" />
-                </materialDesign:TransitionerSlide.OpeningEffects>
-                <local:Slide4_CombineTransitions />
-            </materialDesign:TransitionerSlide>
+                    <materialDesign:TransitionerSlide.OpeningEffects>
+                        <materialDesign:TransitionEffect Kind="SlideInFromLeft" Duration="0:0:0.8" />
+                        <materialDesign:TransitionEffect Kind="SlideInFromBottom" Duration="0:0:0.8" OffsetTime="0:0:0.15" />
+                    </materialDesign:TransitionerSlide.OpeningEffects>
+                    <local:Slide4_CombineTransitions />
+                </materialDesign:TransitionerSlide>
 
-            <local:Slide5_TransitioningContent />
+                <local:Slide5_TransitioningContent />
 
-            <local:Slide6_Origins />
-            
-            <local:Slide7_MVVM />
+                <local:Slide6_Origins />
 
-        </materialDesign:Transitioner>
+                <local:Slide7_MVVM />
 
+            </materialDesign:Transitioner>
+        </smtx:XamlDisplay>
     </Grid>
-    
+
 </UserControl>
+

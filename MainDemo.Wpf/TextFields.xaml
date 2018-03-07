@@ -6,7 +6,8 @@
              xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
-             mc:Ignorable="d"               
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="600" Loaded="UserControl_Loaded"
              d:DataContext="{d:DesignInstance domain:TextFieldsViewModel, d:IsDesignTimeCreatable=False}">
     <UserControl.Resources>
@@ -24,7 +25,6 @@
                 <Setter Property="Margin" Value="0 8 0 8" />
             </Style>
             <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
-                <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="Margin" Value="0 8 0 8" />
             </Style>
             <Style TargetType="{x:Type Viewbox}">
@@ -45,9 +45,9 @@
     <Grid Margin="16" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="155" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="155" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -71,237 +71,288 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Common Fields</TextBlock>
         <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" />
-        <TextBox Grid.Row="1" Grid.Column="1" 
-				    x:Name="NameTextBox"
-				    materialDesign:HintAssist.Hint="Name">
-            <TextBox.Text>
-                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+        <smtx:XamlDisplay Key="fields_1" Grid.Column="1" Grid.Row="1">
+            <TextBox x:Name="NameTextBox"
+                     materialDesign:HintAssist.Hint="Name">
+                <TextBox.Text>
+                    <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </smtx:XamlDisplay>
         <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">OS</TextBlock>
-        <ComboBox Grid.Row="1" Grid.Column="3" materialDesign:HintAssist.Hint="OS">
-            <ComboBoxItem>Android</ComboBoxItem>
-            <ComboBoxItem>iOS</ComboBoxItem>
-            <ComboBoxItem>Linux</ComboBoxItem>
-            <ComboBoxItem>Windows</ComboBoxItem>
-        </ComboBox>
+        <smtx:XamlDisplay Key="fields_2" Grid.Row="1" Grid.Column="3">
+            <ComboBox materialDesign:HintAssist.Hint="OS">
+                <ComboBoxItem>Android</ComboBoxItem>
+                <ComboBoxItem>iOS</ComboBoxItem>
+                <ComboBoxItem>Linux</ComboBoxItem>
+                <ComboBoxItem>Windows</ComboBoxItem>
+            </ComboBox>
+        </smtx:XamlDisplay>
         <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32 0 0 0">Multi-line</TextBlock>
-        <TextBox Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="32 0 0 0"
-                 MinWidth="280"
-                 AcceptsReturn="True"                 
-                 VerticalScrollBarVisibility="Auto"
-                 SpellCheck.IsEnabled="True"
-                 materialDesign:HintAssist.Hint="Multiline text"
-                 Height="80">Multiline.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The quick brown fox jumps over the lazy dog. War and peace. Keep going. Go on. For how long? Not long. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TextBox>
+
+        <smtx:XamlDisplay Key="fields_3" Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Margin="32 0 0 0">
+            <TextBox TextWrapping="Wrap" VerticalAlignment="Stretch"
+                     MinWidth="280"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     SpellCheck.IsEnabled="True"
+                     materialDesign:HintAssist.Hint="Multiline text"
+                     Height="80">Multiline.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The quick brown fox jumps over the lazy dog. War and peace. Keep going. Go on. For how long? Not long. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TextBox>
+        </smtx:XamlDisplay>
         <materialDesign:PackIcon Grid.Row="2" Grid.Column="0" Kind="Phone" Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}" />
-        <TextBox Grid.Row="2" Grid.Column="1" 
-				 x:Name="PhoneTextBox"				 
-                 materialDesign:TransitionAssist.DisableTransitions="True"
-				    />
+        <smtx:XamlDisplay Key="fields_4" Grid.Row="2" Grid.Column="1">
+            <TextBox x:Name="PhoneTextBox" materialDesign:TransitionAssist.DisableTransitions="True"/>
+        </smtx:XamlDisplay>
         <TextBlock Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">Fruit</TextBlock>
-        <ComboBox Grid.Row="2" Grid.Column="3" materialDesign:HintAssist.Hint="Search"
+        <smtx:XamlDisplay Key="fields_5" Grid.Row="2" Grid.Column="3" >
+            <ComboBox materialDesign:HintAssist.Hint="Search"
                   IsEditable="True" materialDesign:HintAssist.HintOpacity=".26">
-            <ComboBoxItem>Apple</ComboBoxItem>
-            <ComboBoxItem>Banana</ComboBoxItem>
-            <ComboBoxItem>Pear</ComboBoxItem>
-            <ComboBoxItem>Orange</ComboBoxItem>
-        </ComboBox>
+                <ComboBoxItem>Apple</ComboBoxItem>
+                <ComboBoxItem>Banana</ComboBoxItem>
+                <ComboBoxItem>Pear</ComboBoxItem>
+                <ComboBoxItem>Orange</ComboBoxItem>
+            </ComboBox>
+        </smtx:XamlDisplay>
         <materialDesign:PackIcon Grid.Row="3" Grid.Column="0" Kind="Comment" Foreground="{Binding ElementName=CommentTextBox, Path=BorderBrush}" />
-        <TextBox Grid.Row="3" Grid.Column="1" 		
-				 x:Name="CommentTextBox"
-				 materialDesign:HintAssist.Hint="Comment"
-				    />
+        <smtx:XamlDisplay Key="fields_6" Grid.Row="3" Grid.Column="1">
+            <TextBox x:Name="CommentTextBox"
+                     materialDesign:HintAssist.Hint="Comment" />
+        </smtx:XamlDisplay>
         <materialDesign:PackIcon Grid.Row="3" Grid.Column="2" Kind="Key" Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}" HorizontalAlignment="Right" />
-        <PasswordBox Grid.Row="3" Grid.Column="3" 		
-                     x:Name="PasswordBox"
-                     materialDesign:HintAssist.Hint="Password" />
-        <TextBox Grid.Row="4" Grid.Column="1" materialDesign:HintAssist.Hint="Floating Hint" 
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-        <ComboBox Grid.Row="4" Grid.Column="3" materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-            <ComboBoxItem>Android</ComboBoxItem>
-            <ComboBoxItem>iOS</ComboBoxItem>
-            <ComboBoxItem>Linux</ComboBoxItem>
-            <ComboBoxItem>Windows</ComboBoxItem>
-        </ComboBox>
+        <smtx:XamlDisplay Key="fields_7" Grid.Row="3" Grid.Column="3">
+            <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="Password" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="fields_8" Grid.Row="4" Grid.Column="1">
+            <TextBox materialDesign:HintAssist.Hint="Floating Hint" 
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="fields_9" Grid.Row="4" Grid.Column="3">
+            <ComboBox materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBoxItem>Android</ComboBoxItem>
+                <ComboBoxItem>iOS</ComboBoxItem>
+                <ComboBoxItem>Linux</ComboBoxItem>
+                <ComboBoxItem>Windows</ComboBoxItem>
+            </ComboBox>
+        </smtx:XamlDisplay>
 
         <StackPanel Grid.Row="3" Grid.Column="4" Grid.RowSpan="3" Margin="32 16 0 0">
             <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Virtualised Comboboxes</TextBlock>
             <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
-                <ComboBox materialDesign:HintAssist.Hint="Virtualisation" 
-                          MinWidth="72"
-                          Margin="0 0 0 0"
-                          VerticalAlignment="Bottom"                           
-                          ItemsSource="{Binding LongListToTestComboVirtualization}"                          
-                          SelectedValue="{Binding SelectedValueOne}">
-                    <ComboBox.SelectedItem>
-                        <Binding Path="SelectedValueOne" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </ComboBox.SelectedItem>
-                    <ComboBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ComboBox.ItemsPanel>
-                </ComboBox>
-                <ComboBox materialDesign:HintAssist.Hint="(editable)" 
-                          MinWidth="72"
-                          Margin="16 0 0 0"
-                          VerticalAlignment="Bottom" 
-                          IsEditable="True"                          
-                          ItemsSource="{Binding LongListToTestComboVirtualization}">
-                    <ComboBox.Text>
-                        <Binding Path="SelectedTextTwo" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </ComboBox.Text>
-                    <ComboBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ComboBox.ItemsPanel>
-                </ComboBox>
-                <ComboBox materialDesign:HintAssist.Hint="(float hint)" 
-                          MinWidth="72"
-                          Margin="16 0 0 0"
-                          ItemsSource="{Binding LongListToTestComboVirtualization}"
-                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                    <ComboBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ComboBox.ItemsPanel>
-                </ComboBox>
+                <smtx:XamlDisplay Key="fields_10">
+                    <ComboBox materialDesign:HintAssist.Hint="Virtualisation" 
+                              MinWidth="72"
+                              Margin="0 0 0 0"
+                              VerticalAlignment="Bottom"
+                              ItemsSource="{Binding LongListToTestComboVirtualization}"
+                              SelectedValue="{Binding SelectedValueOne}">
+                        <ComboBox.SelectedItem>
+                            <Binding Path="SelectedValueOne" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox.SelectedItem>
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="fields_11">
+                    <ComboBox materialDesign:HintAssist.Hint="(editable)" 
+                              MinWidth="72"
+                              Margin="16 0 0 0"
+                              VerticalAlignment="Bottom" 
+                              IsEditable="True"
+                              ItemsSource="{Binding LongListToTestComboVirtualization}">
+                        <ComboBox.Text>
+                            <Binding Path="SelectedTextTwo" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox.Text>
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="fields_12">
+                    <ComboBox materialDesign:HintAssist.Hint="(float hint)" 
+                              MinWidth="72"
+                              Margin="16 0 0 0"
+                              ItemsSource="{Binding LongListToTestComboVirtualization}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                </smtx:XamlDisplay>
+            </StackPanel>
+            <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 16 0 5">Disabled Controls</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <smtx:XamlDisplay Key="fields_13">
+                    <TextBox materialDesign:HintAssist.Hint="I'm Disabled" IsEnabled="False" MinWidth="72"/>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="fields_14" Margin="16 0 0 0">
+                    <ComboBox materialDesign:HintAssist.Hint="Disabled Combo" IsEnabled="False" MinWidth="72" />
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="fields_15" Margin="16 0 0 0">
+                    <PasswordBox Password="01234" IsEnabled="False" MinWidth="72"/>
+                </smtx:XamlDisplay>
             </StackPanel>
         </StackPanel>
 
-        <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff"
-                 Margin="0 8 0 8">
-            <materialDesign:HintAssist.Hint>
-                <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-                    <materialDesign:PackIcon Kind="AccessPoint" /> 
-                    <TextBlock>WiFi</TextBlock>
-                </StackPanel>
-            </materialDesign:HintAssist.Hint>
-        </TextBox>
-        <ComboBox Grid.Row="5" Grid.Column="3" materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                  Margin="0 8 0 8">
-            <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
-            <ComboBoxItem>Banana</ComboBoxItem>
-            <ComboBoxItem>Pear</ComboBoxItem>
-            <ComboBoxItem>Orange</ComboBoxItem>
-        </ComboBox>
+        <smtx:XamlDisplay Key="fields_16" Grid.Row="5" Grid.Column="1" Margin="0 8">
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                        <materialDesign:PackIcon Kind="AccessPoint" />
+                        <TextBlock>WiFi</TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </TextBox>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="fields_17" Grid.Row="5" Grid.Column="3" Margin="0 8">
+            <ComboBox materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
+                <ComboBoxItem>Banana</ComboBoxItem>
+                <ComboBoxItem>Pear</ComboBoxItem>
+                <ComboBoxItem>Orange</ComboBoxItem>
+            </ComboBox>
+        </smtx:XamlDisplay>
 
         <materialDesign:PackIcon Grid.Row="6" Grid.Column="0" Kind="Key"
                                  Margin="0 12 0 0"
                                  Foreground="{Binding ElementName=FloatingPasswordBox, Path=BorderBrush}" />
-        <PasswordBox Grid.Row="6" Grid.Column="1" 		
-                     x:Name="FloatingPasswordBox"
-                     Margin="0 12 0 0"
+        <smtx:XamlDisplay Key="fields_18" Grid.Row="6" Grid.Column="1" Margin="0 12 0 0">
+            <PasswordBox  x:Name="FloatingPasswordBox"
                      materialDesign:HintAssist.Hint="Floating Password"
                      Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+        </smtx:XamlDisplay>
 
-        <TextBox Grid.Row="6" Grid.Column="3"
-                 materialDesign:HintAssist.Hint="Large Font"
-                 materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
-                 materialDesign:HintAssist.FloatingScale="0.50"                 
-                 Text="Some Text"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 FontSize="24"/>
-                          
+        <smtx:XamlDisplay Key="fields_19" Grid.Row="6" Grid.Column="3">
+            <TextBox materialDesign:HintAssist.Hint="Large Font"
+                    materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                    materialDesign:HintAssist.FloatingScale="0.50"
+                    Text="Some Text"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    FontSize="24"/>
+        </smtx:XamlDisplay>
+
         <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
                    Margin="0 48 0 0">DataTemplate Test</TextBlock>
-        <ContentControl Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="4"
-                        Content="{Binding DemoItem}"
-                        Margin="0 12 0 0">
-            <ContentControl.ContentTemplate>
-                <DataTemplate DataType="domain:DemoItem">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox materialDesign:HintAssist.Hint="Name" Text="{Binding Name}" Margin="0 0 0 0" VerticalAlignment="Bottom" />
-                        <TextBox materialDesign:HintAssist.Hint="Content" Text="{Binding Content}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
-                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Text="{Binding Name}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
-                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Content" Text="{Binding Content}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
-                    </StackPanel>
-                </DataTemplate>
-            </ContentControl.ContentTemplate>
-        </ContentControl>
+
+        <smtx:XamlDisplay Key="fields_20" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 12 0 0" HorizontalAlignment="Left">
+            <ContentControl Content="{Binding DemoItem}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate DataType="domain:DemoItem">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox materialDesign:HintAssist.Hint="Name" Text="{Binding Name}" Margin="0 0 0 0" VerticalAlignment="Bottom" />
+                            <TextBox materialDesign:HintAssist.Hint="Content" Text="{Binding Content}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
+                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Text="{Binding Name}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
+                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Content" Text="{Binding Content}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+        </smtx:XamlDisplay>
         <TextBlock Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
                    Margin="0 16 0 0">DataTemplateSelector Test</TextBlock>
-        <ContentControl Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="4" 
-                        Content="{Binding DemoItem}"
-                        Margin="0 12 0 0">
-            <ContentControl.ContentTemplateSelector>
-                <domain1:SimpleDataTemplateSelector>
-                    <domain1:SimpleDataTemplateSelector.FixedTemplate>
-                        <DataTemplate DataType="domain:DemoItem">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Text="{Binding Name}" Margin="0 0 0 0" VerticalAlignment="Bottom" />
-                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Content" Text="{Binding Content}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
-                                <TextBox materialDesign:HintAssist.Hint="Name" Text="{Binding Name}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
-                                <TextBox materialDesign:HintAssist.Hint="Content" Text="{Binding Content}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </domain1:SimpleDataTemplateSelector.FixedTemplate>
-                </domain1:SimpleDataTemplateSelector>
-            </ContentControl.ContentTemplateSelector>
-        </ContentControl>
+        <smtx:XamlDisplay Key="fields_21" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 12 0 0" HorizontalAlignment="Left">
+            <ContentControl Content="{Binding DemoItem}">
+                <ContentControl.ContentTemplateSelector>
+                    <domain1:SimpleDataTemplateSelector>
+                        <domain1:SimpleDataTemplateSelector.FixedTemplate>
+                            <DataTemplate DataType="domain:DemoItem">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Text="{Binding Name}" Margin="0 0 0 0" VerticalAlignment="Bottom" />
+                                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Content" Text="{Binding Content}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
+                                    <TextBox materialDesign:HintAssist.Hint="Name" Text="{Binding Name}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
+                                    <TextBox materialDesign:HintAssist.Hint="Content" Text="{Binding Content}" Margin="8 0 0 0" VerticalAlignment="Bottom" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </domain1:SimpleDataTemplateSelector.FixedTemplate>
+                    </domain1:SimpleDataTemplateSelector>
+                </ContentControl.ContentTemplateSelector>
+            </ContentControl>
+        </smtx:XamlDisplay>
         <TextBlock Grid.Row="7" Grid.Column="4" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
                    Margin="0 48 0 0">Tight Space Validation</TextBlock>
-        <TextBox Grid.Row="8" Grid.Column="4" Width="20"
-                 materialDesign:ValidationAssist.UsePopup="True"
-                 HorizontalAlignment="Left"
-                 ToolTip="Use a popup which can escape the bounds of the control where space is limited">
-            <TextBox.Text>
-                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <CheckBox Grid.Row="9" Grid.Column="4"
-                  x:Name="DisplaySelectedItemCheckBox"
-                  IsThreeState="False"
-                  Margin="0 8 0 0">Display Selected Item In Drop Down</CheckBox>
-        <ComboBox Grid.Row="10" Grid.Column="4" 
-                  materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=DisplaySelectedItemCheckBox, Path=IsChecked}"
-                  Margin="0 8 0 8" HorizontalAlignment="Left">
-            <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
-            <ComboBoxItem>Banana</ComboBoxItem>
-            <ComboBoxItem>Pear</ComboBoxItem>
-            <ComboBoxItem>Orange</ComboBoxItem>
-        </ComboBox>
-        <CheckBox Grid.Row="11" Grid.Column="4"
-                  x:Name="ClassicModeCheckBox"
-                  IsThreeState="False" IsChecked="True"
-                  Margin="0 8 0 0">Use classic mode</CheckBox>
-        <ComboBox Grid.Row="12" Grid.Column="4" 
-                  materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}"
-                  Margin="0 8 0 8" HorizontalAlignment="Left">
-            <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
-            <ComboBoxItem>Banana</ComboBoxItem>
-            <ComboBoxItem>Pear</ComboBoxItem>
-            <ComboBoxItem>Orange</ComboBoxItem>
-        </ComboBox>
+        <smtx:XamlDisplay Key="fields_22" Grid.Row="8" Grid.Column="4" HorizontalAlignment="Left">
+            <TextBox Width="20"
+                     materialDesign:ValidationAssist.UsePopup="True"
+                     HorizontalAlignment="Left"
+                     ToolTip="Use a popup which can escape the bounds of the control where space is limited">
+                <TextBox.Text>
+                    <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="fields_23" Grid.Row="9" Grid.Column="4" Grid.RowSpan="2" HorizontalAlignment="Left">
+            <StackPanel>
+                <CheckBox x:Name="DisplaySelectedItemCheckBox"
+                          IsThreeState="False"
+                          Margin="0 8 0 0">Display Selected Item In Drop Down</CheckBox>
+                <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=DisplaySelectedItemCheckBox, Path=IsChecked}"
+                          Margin="0 8 0 8" HorizontalAlignment="Left">
+                    <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
+                    <ComboBoxItem>Banana</ComboBoxItem>
+                    <ComboBoxItem>Pear</ComboBoxItem>
+                    <ComboBoxItem>Orange</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Key="fields_24" Grid.Row="11" Grid.Column="4" Grid.RowSpan="2" HorizontalAlignment="Left">
+            <StackPanel>
+                <CheckBox x:Name="ClassicModeCheckBox"
+                          IsThreeState="False" IsChecked="True"
+                          Margin="0 8 0 0">Use classic mode</CheckBox>
+                <ComboBox materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}"
+                          Margin="0 8 0 8" HorizontalAlignment="Left">
+                    <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
+                    <ComboBoxItem>Banana</ComboBoxItem>
+                    <ComboBoxItem>Pear</ComboBoxItem>
+                    <ComboBoxItem>Orange</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </smtx:XamlDisplay>
+
         <TextBlock Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Text field box</TextBlock>
-        <CheckBox x:Name="MaterialDesignTextFieldBoxTextBoxEnabledComboBox" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="3"
-                  IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>
-        <TextBox Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
-                 VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" MaxWidth="400" materialDesign:HintAssist.Hint="Floating hint in a box"
-                 IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextFieldBoxTextBoxEnabledComboBox}" />
-        <TextBlock Grid.Row="13" Grid.Column="5" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Text area box</TextBlock>
-        <CheckBox x:Name="MaterialDesignTextAreaTextBoxEnabledComboBox" Grid.Row="14" Grid.Column="5" Grid.ColumnSpan="3"
-                  IsChecked="True" Margin="32,0,0,8">Enabled</CheckBox>
-        <TextBox Grid.Row="15" Grid.Column="5" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignTextAreaTextBox}" Margin="32,0,0,0"
-                 VerticalAlignment="Top" Height="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="This is a text area"
-                 IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextAreaTextBoxEnabledComboBox}" />
+        <smtx:XamlDisplay Key="fields_25" Grid.Row="14" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
+            <StackPanel>
+                <CheckBox x:Name="MaterialDesignTextFieldBoxTextBoxEnabledComboBox"
+                      IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>
+                <TextBox Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                         VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" MaxWidth="400" materialDesign:HintAssist.Hint="Floating hint in a box"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextFieldBoxTextBoxEnabledComboBox}" />
+            </StackPanel>
+        </smtx:XamlDisplay>
+
+
+        <TextBlock Grid.Row="13" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Text area box</TextBlock>
+        <smtx:XamlDisplay Key="fields_26" Grid.Row="14" Grid.Column="4" Grid.RowSpan="2">
+            <StackPanel>
+                <CheckBox x:Name="MaterialDesignTextAreaTextBoxEnabledComboBox" 
+                          IsChecked="True" Margin="32,0,0,8">Enabled</CheckBox>
+                <TextBox Style="{StaticResource MaterialDesignTextAreaTextBox}" Margin="32,0,0,0"
+                         VerticalAlignment="Top" Height="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="This is a text area"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextAreaTextBoxEnabledComboBox}" />
+            </StackPanel>
+        </smtx:XamlDisplay>
     </Grid>
 </UserControl>

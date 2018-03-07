@@ -4,84 +4,108 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="600">
     <ScrollViewer>
-        <StackPanel Margin="16">
-            <TextBlock FontSize="16">Colour Zones</TextBlock>
-            <TextBlock TextWrapping="Wrap" Margin="0 16 0 0">The ColorZone control allows you to  easily define striking blocks of colour to give your application extra clarity and style, whilst still remaining within the bounds of your Material Design palette.</TextBlock>
-            <TextBlock Margin="0 16 0 0" FontSize="10">Invert the basic paper/body colours.</TextBlock>
-            <materialDesign:ColorZone Mode="Inverted" Padding="16">
-                <DockPanel>
-                    <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges">
-                        <ListBox>
-                            <ListBoxItem>Hello World</ListBoxItem>
-                            <ListBoxItem>Nice Popup</ListBoxItem>
-                            <ListBoxItem>Goodbye.</ListBoxItem>
-                        </ListBox>
-                    </materialDesign:PopupBox>
+        <StackPanel>
+            <StackPanel Margin="16">
+                <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Colour Zones</TextBlock>
+                <TextBlock TextWrapping="Wrap" MaxWidth="800" Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubheadingTextBlock}">The ColorZone control allows you to  easily define striking blocks of colour to give your application extra clarity and style, whilst still remaining within the bounds of your Material Design palette.</TextBlock>
+                <TextBlock Margin="0 16 0 0" FontSize="10">Invert the basic paper/body colours.</TextBlock>
+            </StackPanel>
+            <smtx:XamlDisplay Key="color_zones_inverted">
+                <materialDesign:ColorZone Mode="Inverted" Padding="16">
+                    <DockPanel>
+                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges">
+                            <ListBox>
+                                <ListBoxItem>Hello World</ListBoxItem>
+                                <ListBoxItem>Nice Popup</ListBoxItem>
+                                <ListBoxItem>Goodbye.</ListBoxItem>
+                            </ListBox>
+                        </materialDesign:PopupBox>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                            <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
+                        </StackPanel>
+                    </DockPanel>
+                </materialDesign:ColorZone>
+            </smtx:XamlDisplay>
+            
+            <TextBlock Margin="0 16 0 0" TextWrapping="Wrap" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Use primary light back and fore colours.</TextBlock>
+            <smtx:XamlDisplay Key="color_zones_primary_light">
+                <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                         <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
                     </StackPanel>
-                </DockPanel>
-            </materialDesign:ColorZone>
-            <TextBlock Margin="0 16 0 0" FontSize="10">Use primary light back and fore colours.</TextBlock>
-            <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
-                <StackPanel Orientation="Horizontal">
-                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
-                </StackPanel>
-            </materialDesign:ColorZone>
-            <TextBlock Margin="0 16 0 0" FontSize="10">Use primary mid colours, and nest colour zones!</TextBlock>
-            <materialDesign:ColorZone Mode="PrimaryMid" Padding="16">
-                <DockPanel>
-                    <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" VerticalAlignment="Center"
+                </materialDesign:ColorZone>
+            </smtx:XamlDisplay>
+            
+            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Use primary mid colours, and nest colour zones!</TextBlock>
+            <smtx:XamlDisplay Key="color_zones_primary_mid">
+                <materialDesign:ColorZone Mode="PrimaryMid" Padding="16">
+                    <DockPanel>
+                        <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" VerticalAlignment="Center"
                                   DockPanel.Dock="Right" />
-                    <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                             materialDesign:RippleAssist.IsCentered="True">
-                        <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                        <materialDesign:ColorZone Mode="Standard" Padding="8 4 8 4" CornerRadius="2" Panel.ZIndex="1"
+                            <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                            <materialDesign:ColorZone Mode="Standard" Padding="8 4 8 4" CornerRadius="2" Panel.ZIndex="1"
                                    Margin="16 0 0 0"
                                    materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Button Style="{DynamicResource MaterialDesignToolButton}">
-                                    <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
-                                </Button>
-                                <TextBox Grid.Column="1" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Build a search bar" 
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button Style="{DynamicResource MaterialDesignToolButton}">
+                                        <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
+                                    </Button>
+                                    <TextBox Grid.Column="1" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Build a search bar" 
                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
                                      MinWidth="200" VerticalAlignment="Center" />
-                                <Button Style="{DynamicResource MaterialDesignToolButton}" Grid.Column="2">
-                                    <materialDesign:PackIcon Kind="Microphone" Opacity=".56" Margin="8 0 0 0" />
-                                </Button>
-                            </Grid>
-                        </materialDesign:ColorZone>
-                        <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" Margin="8 0 0 0" Panel.ZIndex="0">
-                            <materialDesign:PackIcon Kind="Send" />
-                        </Button>
+                                    <Button Style="{DynamicResource MaterialDesignToolButton}" Grid.Column="2">
+                                        <materialDesign:PackIcon Kind="Microphone" Opacity=".56" Margin="8 0 0 0" />
+                                    </Button>
+                                </Grid>
+                            </materialDesign:ColorZone>
+                            <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" Margin="8 0 0 0" Panel.ZIndex="0">
+                                <materialDesign:PackIcon Kind="Send" />
+                            </Button>
+                        </StackPanel>
+                    </DockPanel>
+                </materialDesign:ColorZone>
+            </smtx:XamlDisplay>
+            
+            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Add in a corner radius and shadow.</TextBlock>
+            <smtx:XamlDisplay Key="color_zones_primary_dark">
+                <materialDesign:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="3" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="2">
+                    <StackPanel Orientation="Horizontal">
+                        <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                        <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
                     </StackPanel>
-                </DockPanel>
-            </materialDesign:ColorZone>
-            <TextBlock Margin="0 16 0 0" FontSize="10">Add in a corner radius and shadow.</TextBlock>
-            <materialDesign:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="3" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="2">
-                <StackPanel Orientation="Horizontal">
-                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
-                </StackPanel>
-            </materialDesign:ColorZone>
-            <TextBlock Margin="0 16 0 0" FontSize="10">Use accent back and fore colours.</TextBlock>
-            <materialDesign:ColorZone Mode="Accent" Padding="16">
-                <StackPanel Orientation="Horizontal">
-                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
-                </StackPanel>
-            </materialDesign:ColorZone>
+                </materialDesign:ColorZone>
+            </smtx:XamlDisplay>
+            
+            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Use accent back and fore colours.</TextBlock>
+            <smtx:XamlDisplay Key="color_zones_accent">
+                <materialDesign:ColorZone Mode="Accent" Padding="16">
+                    <StackPanel Orientation="Horizontal">
+                        <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                        <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
+                    </StackPanel>
+                </materialDesign:ColorZone>
+            </smtx:XamlDisplay>
+            
         </StackPanel>
     </ScrollViewer>
-
 </UserControl>
+
+
+
+
+
+
+

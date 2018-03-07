@@ -281,6 +281,7 @@
     <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
     <Compile Include="Converters\ClockLineConverter.cs" />
     <Compile Include="Converters\ListViewItemContainerStyleConverter.cs" />
+    <Compile Include="Converters\NotZeroConverter.cs" />
     <Compile Include="Converters\RangeLengthConverter.cs" />
     <Compile Include="Converters\RangePositionConverterConverter.cs" />
     <Compile Include="Converters\DrawerOffsetConverter.cs" />
@@ -393,6 +394,7 @@
     <Compile Include="Transitions\TransitioningContent.cs" />
     <Compile Include="Transitions\TransitioningContentBase.cs" />
     <Compile Include="TreeHelper.cs" />
+    <Compile Include="TreeViewAssist.cs" />
     <Compile Include="Underline.cs" />
     <Compile Include="ValidationAssist.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

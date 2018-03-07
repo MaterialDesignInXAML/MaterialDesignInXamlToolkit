@@ -61,7 +61,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                 new DemoItem("Pickers", new Pickers { DataContext = new PickersViewModel()},
                     new []
                     {
-                        DocumentationLink.DemoPageLink<TextFields>(),
+                        DocumentationLink.DemoPageLink<Pickers>(),
                         DocumentationLink.StyleLink("Clock"),
                         DocumentationLink.StyleLink("DatePicker"),
                         DocumentationLink.ApiLink<TimePicker>()
@@ -129,8 +129,8 @@ namespace MaterialDesignColors.WpfExample.Domain
                 new DemoItem("Grids", new Grids { DataContext = new ListsAndGridsViewModel()},
                     new []
                     {
-                        DocumentationLink.DemoPageLink<Lists>("Demo View"),
-                        DocumentationLink.DemoPageLink<ListsAndGridsViewModel>("Demo View Model"),
+                        DocumentationLink.DemoPageLink<Grids>("Demo View"),
+                        DocumentationLink.DemoPageLink<ListsAndGridsViewModel>("Demo View Model", "Domain"),
                         DocumentationLink.StyleLink("DataGrid")
                     }),
                 new DemoItem("Expander", new Expander(),
@@ -142,8 +142,8 @@ namespace MaterialDesignColors.WpfExample.Domain
                 new DemoItem("Group Boxes", new GroupBoxes(),
                     new []
                     {
-                        DocumentationLink.DemoPageLink<Cards>(),
-                        DocumentationLink.StyleLink("Card")
+                        DocumentationLink.DemoPageLink<GroupBoxes>(),
+                        DocumentationLink.StyleLink("GroupBox")
                     }),
                 new DemoItem("Menus & Tool Bars", new MenusAndToolBars(),
                     new []
@@ -163,7 +163,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                     {
                         DocumentationLink.WikiLink("Dialogs", "Dialogs"),
                         DocumentationLink.DemoPageLink<Dialogs>("Demo View"),
-                        DocumentationLink.DemoPageLink<DialogsViewModel>("Demo View Model"),
+                        DocumentationLink.DemoPageLink<DialogsViewModel>("Demo View Model", "Domain"),
                         DocumentationLink.ApiLink<DialogHost>()
                     }),
                 new DemoItem("Drawer", new Drawers(),

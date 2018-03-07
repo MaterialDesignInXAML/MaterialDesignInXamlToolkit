@@ -1,18 +1,16 @@
 source https://nuget.org/api/v2
-framework >= net45
+framework: auto-detect
 
 nuget MahApps.Metro
-nuget Dragablz 0.0.3.165
-nuget Moq 4.7.1 framework: = net452
-nuget NSubstitute 1.10.0 framework: = net452
-nuget RhinoMocks 3.6.1 framework: = net452
-nuget Shouldly 2.8.0 framework: = net452
-nuget xunit 2.1.0 framework: = net452
-nuget xunit.abstractions 2.0.0 framework: = net452
-nuget xunit.assert 2.1.0 framework: = net452
-nuget xunit.core 2.1.0 framework: = net452
-nuget xunit.extensibility.core 2.1.0 framework: = net452
-nuget xunit.extensibility.execution 2.1.0 framework: = net452
+nuget Dragablz ~> 0.0.3
+nuget Moq ~> 4.7
+nuget NSubstitute ~> 2.0
+nuget RhinoMocks 3.6.1
+nuget Shouldly ~> 2.8
+nuget xunit ~> 2.2
+nuget ShowMeTheXAML ~> 1.0.9
+nuget ShowMeTheXAML.AvalonEdit ~> 1.0.9
+nuget ShowMeTheXAML.MSBuild ~> 1.0.9
 
 github ControlzEx/ControlzEx:e687c6ac4279c4e513b7ef9a75622411350db874 src/ControlzEx/PopupEx.cs
 github ControlzEx/ControlzEx:e687c6ac4279c4e513b7ef9a75622411350db874 src/ControlzEx/PackIconBase.cs
