@@ -8,6 +8,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
+    <converters:MathConverter Operation="Divide" x:Key="DivisionMathConverter" />
 
     <Style x:Key="MaterialDesignTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
@@ -81,7 +82,7 @@
                                 </Grid>
                             </Border>
                             <Line x:Name="DashedLine" VerticalAlignment="Bottom" Visibility="Hidden"
-                                  StrokeThickness="1.25" StrokeDashArray="1,2.5" StrokeDashCap="Round"
+                                  StrokeThickness="{Binding BorderThickness.Bottom, ElementName=border, Converter={StaticResource DivisionMathConverter}, ConverterParameter=0.75}" StrokeDashArray="1,2.5" StrokeDashCap="Round"
                                   X1="0" X2="{Binding ActualWidth, ElementName=border}" Y1="0" Y2="0" 
                                   Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />
                             <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
