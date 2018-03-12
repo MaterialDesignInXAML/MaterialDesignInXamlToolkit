@@ -3,72 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:codeDisplayer="clr-namespace:CodeDisplayer;assembly=CodeDisplayer"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ExpansionPanel.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-            <x:Array x:Key="BindingCollection" Type="sys:String">
-                <sys:String>Item 1</sys:String>
-                <sys:String>Item 2</sys:String>
-                <sys:String>Item 3</sys:String>
-                <sys:String>Item 4</sys:String>
-            </x:Array>
-
-            <DataTemplate x:Key="ExpansionPanelHeaderTemplate">
-                <Grid Margin="0">
-                    <TextBlock Text="{Binding}" HorizontalAlignment="Left" />
-                    <StackPanel Name="Icons" Orientation="Horizontal" Visibility="Collapsed" HorizontalAlignment="Right">
-                        <materialDesign:PackIcon Kind="ShareVariant" HorizontalAlignment="Right" Opacity="0.54" Margin="16 0" />
-                        <materialDesign:PackIcon Kind="Heart" HorizontalAlignment="Right" Opacity="0.54" />
-                    </StackPanel>
-                </Grid>
-                <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type materialDesign:ExpansionPanelItem}}, Path=IsSelected}" Value="True">
-                        <Setter Property="TextElement.FontWeight" Value="Bold" />
-                        <Setter TargetName="Icons" Property="Visibility" Value="Visible" />
-                    </DataTrigger>
-                </DataTemplate.Triggers>
-            </DataTemplate>
-
-            <DataTemplate x:Key="ExpansionPanelContentTemplate">
-                <StackPanel Orientation="Vertical" Margin="24,8,24,16">
-                    <TextBlock Text="Your content" />
-                    <TextBlock Opacity=".68" Margin="0 8 0 48" Text="{Binding}" TextWrapping="Wrap"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 48 0 0">
-                        <Button Content="CANCEL" Margin="0 0 0 0" Style="{StaticResource MaterialDesignFlatButton}">
-                            <Button.Triggers>
-                                <EventTrigger RoutedEvent="Button.Click">
-                                    <BeginStoryboard>
-                                        <Storyboard Duration="0:0:0.1" RepeatBehavior="1x">
-                                            <ObjectAnimationUsingKeyFrames Storyboard.Target="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type materialDesign:ExpansionPanel}}}" Storyboard.TargetProperty="SelectedItem">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Null}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </Button.Triggers>
-                        </Button>
-                        <Button Content="SAVE" Margin="4 0 0 0" />
-                    </StackPanel>
-                </StackPanel>
-            </DataTemplate>
-
-            <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
-                <Setter Property="TextWrapping" Value="Wrap"></Setter>
-                <Setter Property="MaxWidth" Value="300"></Setter>
-            </Style>
-        </ResourceDictionary>      
-    </UserControl.Resources>
-    
-    <ScrollViewer>
-        <codeDisplayer:XamlDisplayerPanel >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <smtx:XamlDisplay Key="explander_1">
             <StackPanel>
                 <Expander HorizontalAlignment="Stretch"
                       Header="Expander Example 1a">
@@ -100,9 +48,12 @@
                                TextWrapping="Wrap"/>
                     </StackPanel>
                 </Expander>
+
             </StackPanel>
-            <materialDesign:Card Grid.Row="1" Background="{DynamicResource MaterialDesignBackground}"
-                             Margin="4 24 0 0">
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Key="expander_2"  Grid.Column="0" Grid.Row="1" Margin="4 24 0 0">
+            <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}">
                 <StackPanel>
                     <Expander HorizontalAlignment="Stretch"
                           Header="Expander Example 2a">
@@ -138,8 +89,10 @@
                     </Expander>
                 </StackPanel>
             </materialDesign:Card>
-            <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="8" Orientation="Horizontal" VerticalAlignment="Stretch"                    
-                    Grid.RowSpan="2">
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Key="expander_3" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="8">
+            <StackPanel Orientation="Horizontal">
                 <Expander ExpandDirection="Right">
                     <Expander.Header>
                         <TextBlock Text="Expander Example 3a" RenderTransformOrigin=".5,.5">
@@ -194,13 +147,7 @@
                     </StackPanel>
                 </Expander>
             </StackPanel>
-            <materialDesign:ExpansionPanel Width="360" HorizontalAlignment="Left" VerticalAlignment="Top"
-                                               ItemsSource="{StaticResource BindingCollection}"                                               
-                                               ItemHeaderTemplate="{StaticResource ExpansionPanelHeaderTemplate}"
-                                               ItemTemplate="{StaticResource ExpansionPanelContentTemplate}">
-                <!--<materialDesign:ExpansionPanelItem Content="Item A" ContentTemplate="{StaticResource ExpansionPanelContentTemplate}" />
-                        <materialDesign:ExpansionPanelItem Content="Item B" ContentTemplate="{StaticResource ExpansionPanelContentTemplate}" />-->
-            </materialDesign:ExpansionPanel>
-        </codeDisplayer:XamlDisplayerPanel>
-    </ScrollViewer>
+        </smtx:XamlDisplay>
+    </Grid>
 </UserControl>
+
