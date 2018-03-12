@@ -443,7 +443,7 @@
                 </Grid>
                 <Line x:Name="DashedLine" Grid.ColumnSpan="2" VerticalAlignment="Bottom"
                       Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource InverseBoolToVisConverter}}"
-                      StrokeThickness="1.25" StrokeDashArray="1,2.5" StrokeDashCap="Round"
+                      StrokeThickness="{Binding BorderThickness.Bottom, ElementName=toggleButton, Converter={StaticResource DivisionMathConverter}, ConverterParameter=0.75}" StrokeDashArray="1,2.5" StrokeDashCap="Round"
                       X1="0" X2="{Binding ActualWidth, ElementName=toggleButton}" Y1="0" Y2="0" 
                       Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />
                 <wpf:Underline x:Name="Underline"
