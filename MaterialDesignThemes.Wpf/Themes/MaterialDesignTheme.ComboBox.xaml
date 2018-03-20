@@ -14,7 +14,9 @@
     <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
     <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
     <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
-    
+    <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearTextConverter" />
+    <converters:NotConverter x:Key="NotConverter" />
+
     <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
     <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
     <system:Double x:Key="PopupLeftRightMargin">16</system:Double>
@@ -415,6 +417,10 @@
                       Margin="{TemplateBinding Padding}"
                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                       UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
                     <Grid x:Name="InputRoot"
                           HorizontalAlignment="Left">
                         <ContentPresenter x:Name="contentPresenter"
@@ -440,6 +446,18 @@
                                        HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                                        Hint="{TemplateBinding wpf:HintAssist.Hint}" />
                     </Grid>
+                    <Button x:Name="PART_ClearButton" Height="Auto" Grid.Column="1" Padding="2,0,-6,0" 
+                                            Style="{DynamicResource MaterialDesignToolButton}"                                                  
+                                            >
+                            <Button.Visibility>
+                                <MultiBinding Converter="{StaticResource ClearTextConverter}">
+                                    <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}"/>
+                                    <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </MultiBinding>
+                            </Button.Visibility>
+                        <wpf:PackIcon Margin="0"
+                                                  Kind="CloseCircle" />
+                    </Button>
                 </Grid>
                 <Line x:Name="DashedLine" Grid.ColumnSpan="2" VerticalAlignment="Bottom"
                       Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource InverseBoolToVisConverter}}"
@@ -591,6 +609,7 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
         <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 1 0" />
+        <Setter Property="wpf:TextFieldAssist.HasClearButton" Value="True" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
         <Style.Triggers>
             <Trigger Property="IsKeyboardFocused" Value="true">

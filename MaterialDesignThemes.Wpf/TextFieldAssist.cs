@@ -230,6 +230,56 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        /// <summary>
+        /// Controls the visbility of the clear button.
+        /// </summary>
+        public static readonly DependencyProperty HasClearButtonProperty = DependencyProperty.RegisterAttached(
+            "HasClearButton", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false, HasClearButtonChanged));
+
+        private static void HasClearButtonChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var box = d as Control; //could be a text box or password box
+            if (box == null)
+            {
+                return;
+            }
+
+            if (box.IsLoaded)
+                SetClearHandler(box);
+            else
+                box.Loaded += (sender, args) =>
+                    SetClearHandler(box);
+
+        }
+
+        private static void SetClearHandler(Control box)
+        {
+            var bValue = GetHasClearButton(box);
+            var clearButton = box.Template.FindName("PART_ClearButton", box) as Button;
+            if (clearButton != null)
+            {
+                RoutedEventHandler handler = (sender, args) =>
+                {
+                    (box as TextBox)?.SetCurrentValue(TextBox.TextProperty, null);
+                    (box as ComboBox)?.SetCurrentValue(ComboBox.TextProperty, null);
+                };
+                if (bValue)
+                    clearButton.Click += handler;
+                else
+                    clearButton.Click -= handler;
+            }
+        }
+
+        public static void SetHasClearButton(DependencyObject element, bool value)
+        {
+            element.SetValue(HasClearButtonProperty, value);
+        }
+
+        public static bool GetHasClearButton(DependencyObject element)
+        {
+            return (bool)element.GetValue(HasClearButtonProperty);
+        }
+
         #region Methods
 
         /// <summary>
