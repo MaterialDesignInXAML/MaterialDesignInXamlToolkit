@@ -131,7 +131,7 @@
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
         </smtx:XamlDisplay>
         <smtx:XamlDisplay Key="fields_9" Grid.Row="4" Grid.Column="3">
-            <ComboBox materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            <ComboBox materialDesign:HintAssist.Hint="OS" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 <ComboBoxItem>Android</ComboBoxItem>
                 <ComboBoxItem>iOS</ComboBoxItem>
                 <ComboBoxItem>Linux</ComboBoxItem>
@@ -213,7 +213,7 @@
         </StackPanel>
 
         <smtx:XamlDisplay Key="fields_16" Grid.Row="5" Grid.Column="1" Margin="0 8">
-            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff">
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff" materialDesign:TextFieldAssist.HasClearButton="True">
                 <materialDesign:HintAssist.Hint>
                     <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
                         <materialDesign:PackIcon Kind="AccessPoint" />
@@ -223,7 +223,7 @@
             </TextBox>
         </smtx:XamlDisplay>
         <smtx:XamlDisplay Key="fields_17" Grid.Row="5" Grid.Column="3" Margin="0 8">
-            <ComboBox materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            <ComboBox materialDesign:HintAssist.Hint="Search" materialDesign:TextFieldAssist.HasClearButton="True" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
                 <ComboBoxItem>Banana</ComboBoxItem>
                 <ComboBoxItem>Pear</ComboBoxItem>

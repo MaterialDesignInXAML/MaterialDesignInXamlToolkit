@@ -28,7 +28,6 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
         <Setter Property="wpf:TextFieldAssist.IncludeSpellingSuggestions" Value="{Binding RelativeSource={RelativeSource Self}, Path=(SpellCheck.IsEnabled)}" />
-        <Setter Property="wpf:TextFieldAssist.HasClearButton" Value="True" />
         <!-- cludge the default context menu -->
         <Setter Property="ContextMenu">
             <Setter.Value>
