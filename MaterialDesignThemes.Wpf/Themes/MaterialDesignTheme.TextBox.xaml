@@ -22,6 +22,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="Local"/>
         <Setter Property="AllowDrop" Value="true"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
@@ -86,7 +87,7 @@
                                                 FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"                                               
                                                 />
                                     <Button x:Name="PART_ClearButton" Height="Auto" Grid.Column="1" Padding="2,0,0,0" 
-                                            Style="{DynamicResource MaterialDesignToolButton}"                                                  
+                                            Style="{DynamicResource MaterialDesignToolButton}"
                                             >
                                         <Button.Visibility>
                                             <MultiBinding Converter="{StaticResource ClearTextConverter}">
