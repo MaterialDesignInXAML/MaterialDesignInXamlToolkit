@@ -31,7 +31,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.WikiLink("Swatches-and-Recommended-Colors", "Swatches"),
                         DocumentationLink.DemoPageLink<PaletteSelector>("Demo View"),
                         DocumentationLink.DemoPageLink<PaletteSelectorViewModel>("Demo View Model"),
-                        DocumentationLink.ApiLink<PaletteHelper>()
+                        DocumentationLink.ApiLink(typeof(PaletteHelper))
                     }),
                 new DemoItem("Buttons & Toggles", new Buttons { DataContext = new ButtonsViewModel() } ,
                     new []

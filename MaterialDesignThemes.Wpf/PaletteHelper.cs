@@ -3,68 +3,75 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-
 namespace MaterialDesignThemes.Wpf
 {
-    public class PaletteHelper
+    public static class PaletteHelper
     {
-        public virtual void SetLightDark(bool isDark)
+        public static event EventHandler<ThemeSetEventArgs> ThemeChanged;
+        public static event EventHandler<PaletteChangedEventArgs> PaletteChanged;
+        public static event EventHandler<PrimarySwatchChangedEventArgs> PrimarySwatchChanged; 
+
+        private static readonly SwatchesProvider _swatchesProvider = new SwatchesProvider();
+        private static readonly RecommendedThemeProvider _themeProvider = new RecommendedThemeProvider();
+
+        public static void SetLightDark(bool isDark)
         {
-            var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
-                .Where(rd => rd.Source != null)
-                .SingleOrDefault(rd => Regex.Match(rd.Source.OriginalString, @"(\/MaterialDesignThemes.Wpf;component\/Themes\/MaterialDesignTheme\.)((Light)|(Dark))").Success);
-            if (existingResourceDictionary == null)
-                throw new ApplicationException("Unable to find Light/Dark base theme in Application resources.");
+            Application.Current.Resources.WithTheme(isDark ? BaseTheme.Dark : BaseTheme.Light);
+            ThemeChanged?.Invoke(null, new ThemeSetEventArgs(isDark ? BaseTheme.Dark : BaseTheme.Light));
+        }
 
-            var source =
-                $"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{(isDark ? "Dark" : "Light")}.xaml";
-            var newResourceDictionary = new ResourceDictionary() { Source = new Uri(source) };
+        public static Palette ReplacePalette(string primaryName, string accentName)
+        {
+            if (primaryName == null) throw new ArgumentNullException(nameof(primaryName));
+            if (accentName == null) throw new ArgumentNullException(nameof(accentName));
 
-            Application.Current.Resources.MergedDictionaries.Remove(existingResourceDictionary);
-            Application.Current.Resources.MergedDictionaries.Add(newResourceDictionary);
+            PrimaryTheme primaryTheme = _themeProvider.RecommendedThemes.OfType<PrimaryTheme>().FirstOrDefault(x =>
+                string.Compare(x.Swatch.Name, primaryName, StringComparison.InvariantCultureIgnoreCase) == 0)
+                ?? throw new ArgumentException($"Could not find primary theme for '{primaryName}'", nameof(primaryName));
 
-            var existingMahAppsResourceDictionary = Application.Current.Resources.MergedDictionaries
-                .Where(rd => rd.Source != null)
-                .SingleOrDefault(rd => Regex.Match(rd.Source.OriginalString, @"(\/MahApps.Metro;component\/Styles\/Accents\/)((BaseLight)|(BaseDark))").Success);
-            if (existingMahAppsResourceDictionary == null) return;
+            AccentTheme accentTheme = _themeProvider.RecommendedThemes.OfType<AccentTheme>().FirstOrDefault(x =>
+                string.Compare(x.Swatch.Name, accentName, StringComparison.InvariantCultureIgnoreCase) == 0)
+                ?? throw new ArgumentException($"Could not find accent theme for '{accentName}'", nameof(accentName));
 
-            source =
-                $"pack://application:,,,/MahApps.Metro;component/Styles/Accents/{(isDark ? "BaseDark" : "BaseLight")}.xaml";
-            var newMahAppsResourceDictionary = new ResourceDictionary { Source = new Uri(source) };
-
-            Application.Current.Resources.MergedDictionaries.Remove(existingMahAppsResourceDictionary);
-            Application.Current.Resources.MergedDictionaries.Add(newMahAppsResourceDictionary);
+            var palette = new Palette(
+                primaryTheme.Swatch, 
+                accentTheme.Swatch, 
+                primaryTheme.LightHueIndex,
+                primaryTheme.MidHueIndex, 
+                primaryTheme.DarkHueIndex, 
+                accentTheme.HueIndex);
+            ReplacePalette(palette);
+            return palette;
         }
 
         /// <summary>
         /// Replaces the entire palette
         /// </summary>
-        public virtual void ReplacePalette(Palette palette)
+        public static void ReplacePalette(Palette palette)
         {
             if (palette == null) throw new ArgumentNullException(nameof(palette));
 
             var allHues = palette.PrimarySwatch.PrimaryHues.ToList();
             ReplacePrimaryColor(
-                palette.PrimarySwatch, 
-                allHues[palette.PrimaryLightHueIndex], 
+                palette.PrimarySwatch,
+                allHues[palette.PrimaryLightHueIndex],
                 allHues[palette.PrimaryMidHueIndex],
-                allHues[palette.PrimaryDarkHueIndex],
-                allHues);
+                allHues[palette.PrimaryDarkHueIndex]);
 
             var accentHue = palette.AccentSwatch.AccentHues.ElementAt(palette.AccentHueIndex);
             ReplaceEntry("SecondaryAccentBrush", new SolidColorBrush(accentHue.Color));
             ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(accentHue.Foreground));
+
+            PaletteChanged?.Invoke(null, new PaletteChangedEventArgs(palette));
         }
 
         /// <summary>
         /// Replaces the primary colour, selecting a balanced set of hues for the light, mid and dark hues.
         /// </summary>
         /// <param name="swatch"></param>
-        public virtual void ReplacePrimaryColor(Swatch swatch)
+        public static void ReplacePrimaryColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
 
@@ -75,14 +82,15 @@ namespace MaterialDesignThemes.Wpf
             var mid = list[palette.PrimaryMidHueIndex];
             var dark = list[palette.PrimaryDarkHueIndex];
 
-            ReplacePrimaryColor(swatch, light, mid, dark, list);
-        }      
+            ReplacePrimaryColor(swatch, light, mid, dark);
+            PrimarySwatchChanged?.Invoke(null, new PrimarySwatchChangedEventArgs(swatch, light, mid, dark));
+        }
 
-        public virtual void ReplacePrimaryColor(string name)
+        public static void ReplacePrimaryColor(string name)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
-            var swatch = new SwatchesProvider().Swatches.FirstOrDefault(
+            var swatch = _swatchesProvider.Swatches.FirstOrDefault(
                 s => string.Compare(s.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0);
 
             if (swatch == null)
@@ -91,7 +99,7 @@ namespace MaterialDesignThemes.Wpf
             ReplacePrimaryColor(swatch);
         }
 
-        public virtual void ReplaceAccentColor(Swatch swatch)
+        public static void ReplaceAccentColor(Swatch swatch)
         {
             if (swatch == null) throw new ArgumentNullException(nameof(swatch));
 
@@ -109,7 +117,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(hue.Foreground));
         }
 
-        public virtual void ReplaceAccentColor(string name)
+        public static void ReplaceAccentColor(string name)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
@@ -128,16 +136,15 @@ namespace MaterialDesignThemes.Wpf
         /// <returns></returns>
         /// <exception cref="InvalidOperationException">Thrown if there is any ambiguouty regarding the palette. Provided
         /// standard guidleines have been followed for palette configureation, this should not happen.</exception>
-        public Palette QueryPalette()
+        public static Palette QueryPalette()
         {
             //it's not safe to to query for the included swatches, so we find the mid (or accent) colour, 
             //& cross match it with the entirety of all available hues to find the owning swatch.
-
-            //TODO could cache this statically
-            var swatchesProvider = new SwatchesProvider();
+            
+            var swatchesProvider = _swatchesProvider;
             var swatchByPrimaryHueIndex = swatchesProvider
                 .Swatches
-                .SelectMany(s => s.PrimaryHues.Select(h => new {s, h}))
+                .SelectMany(s => s.PrimaryHues.Select(h => new { s, h }))
                 .ToDictionary(a => a.h.Color, a => a.s);
             var swatchByAccentHueIndex = swatchesProvider
                 .Swatches
@@ -148,11 +155,9 @@ namespace MaterialDesignThemes.Wpf
             var primaryMidBrush = GetBrush("PrimaryHueMidBrush");
             var accentBrush = GetBrush("SecondaryAccentBrush");
 
-            Swatch primarySwatch;
-            if (!swatchByPrimaryHueIndex.TryGetValue(primaryMidBrush.Color, out primarySwatch))
+            if (!swatchByPrimaryHueIndex.TryGetValue(primaryMidBrush.Color, out var primarySwatch))
                 throw new InvalidOperationException("PrimaryHueMidBrush is not from standard swatches");
-            Swatch accentSwatch;
-            if (!swatchByAccentHueIndex.TryGetValue(accentBrush.Color, out accentSwatch))
+            if (!swatchByAccentHueIndex.TryGetValue(accentBrush.Color, out var accentSwatch))
                 throw new InvalidOperationException("SecondaryAccentBrush is not from standard swatches");
 
             var primaryLightBrush = GetBrush("PrimaryHueLightBrush");
@@ -166,7 +171,7 @@ namespace MaterialDesignThemes.Wpf
             return new Palette(primarySwatch, accentSwatch, primaryLightHueIndex, primaryMidHueIndex, primaryDarkHueIndex, accentHueIndex);
         }
 
-        private static void ReplacePrimaryColor(Swatch swatch, Hue light, Hue mid, Hue dark, IList<Hue> allHues)
+        private static void ReplacePrimaryColor(Swatch swatch, Hue light, Hue mid, Hue dark)
         {
             foreach (var color in swatch.PrimaryHues)
             {
@@ -180,25 +185,11 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("PrimaryHueMidForegroundBrush", new SolidColorBrush(mid.Foreground));
             ReplaceEntry("PrimaryHueDarkBrush", new SolidColorBrush(dark.Color));
             ReplaceEntry("PrimaryHueDarkForegroundBrush", new SolidColorBrush(dark.Foreground));
-
-            //mahapps brushes            
-            ReplaceEntry("HighlightBrush", new SolidColorBrush(dark.Color));
-            ReplaceEntry("AccentColorBrush", new SolidColorBrush(dark.Color));
-            ReplaceEntry("AccentColorBrush2", new SolidColorBrush(mid.Color));
-            ReplaceEntry("AccentColorBrush3", new SolidColorBrush(light.Color));
-            ReplaceEntry("AccentColorBrush4", new SolidColorBrush(light.Color) { Opacity = .82 });
-            ReplaceEntry("WindowTitleColorBrush", new SolidColorBrush(dark.Color));
-            ReplaceEntry("AccentSelectedColorBrush", new SolidColorBrush(dark.Foreground));
-            ReplaceEntry("ProgressBrush", new LinearGradientBrush(dark.Color, mid.Color, 90.0));
-            ReplaceEntry("CheckmarkFill", new SolidColorBrush(dark.Color));
-            ReplaceEntry("RightArrowFill", new SolidColorBrush(dark.Color));
-            ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(dark.Foreground));
-            ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark.Color) { Opacity = .4 });
-        }        
+        }
 
         private static int GetHueIndex(Swatch swatch, Color color, bool isAccent)
         {
-            var x = (isAccent ? swatch.AccentHues : swatch.PrimaryHues).Select((h, i) => new {h, i})
+            var x = (isAccent ? swatch.AccentHues : swatch.PrimaryHues).Select((h, i) => new { h, i })
                 .FirstOrDefault(a => a.h.Color == color);
             if (x == null)
                 throw new InvalidOperationException($"Color {color} not found in swatch {swatch.Name}.");
@@ -212,15 +203,15 @@ namespace MaterialDesignThemes.Wpf
                 .Where(a => a.e.Value is SolidColorBrush)
                 .GroupBy(a => (SolidColorBrush)a.e.Value)
                 .SingleOrDefault(g => g.First().e.Key.Equals(name));
+
             if (group == null)
                 throw new InvalidOperationException($"Unable to safely determine a single resource definition for {name}.");
-            var solidColorBrush = group.First().e.Value as SolidColorBrush;
-            if (solidColorBrush == null)
+            
+            if (!(group.First().e.Value is SolidColorBrush solidColorBrush))
                 throw new InvalidOperationException($"Expected {name} to be a SolidColorBrush");
 
             return solidColorBrush;
         }
-
 
         private static IEnumerable<DictionaryEntry> GetEntries(IDictionary dictionary)
         {
@@ -244,33 +235,11 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Replaces a certain entry anywhere in the parent dictionary and its merged dictionaries
         /// </summary>
-        /// <param name="entryName">The entry to replace</param>
-        /// <param name="newValue">The new entry value</param>
-        /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
-        private static void ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
-        {            
-            if (parentDictionary == null)
-                parentDictionary = Application.Current.Resources;
-            
-            if (parentDictionary.Contains(entryName))
-            {
-                var brush = parentDictionary[entryName] as SolidColorBrush;
-                if (brush != null && !brush.IsFrozen)
-                {                 
-                    var animation = new ColorAnimation
-                    {
-                        From = ((SolidColorBrush)parentDictionary[entryName]).Color,
-                        To = ((SolidColorBrush)newValue).Color,
-                        Duration = new Duration(TimeSpan.FromMilliseconds(300))
-                    };
-                    brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                }
-                else
-                    parentDictionary[entryName] = newValue; //Set value normally
-            }
-
-            foreach (var dictionary in parentDictionary.MergedDictionaries)
-                ReplaceEntry(entryName, newValue, dictionary);
+        /// <param name="name">The entry to replace</param>
+        /// <param name="value">The new entry value</param>
+        private static void ReplaceEntry(object name, object value)
+        {
+            Application.Current.Resources.ReplaceEntry(name, value);
         }
-    }    
+    }
 }

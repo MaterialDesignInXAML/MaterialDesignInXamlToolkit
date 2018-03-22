@@ -45,7 +45,12 @@ namespace MaterialDesignColors.WpfExample.Domain
 
         public static DocumentationLink ApiLink<TClass>()
         {
-            var typeName = typeof(TClass).Name;
+            return ApiLink(typeof(TClass));
+        }
+
+        public static DocumentationLink ApiLink(Type type)
+        {
+            var typeName = type.Name;
 
             return new DocumentationLink(
                 DocumentationLinkType.ControlSource,

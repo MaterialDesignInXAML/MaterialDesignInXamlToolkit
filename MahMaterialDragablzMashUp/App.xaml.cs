@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using MaterialDesignThemes.MahApps;
+using MaterialDesignThemes.Wpf;
+using System.Windows;
 
 namespace MahMaterialDragablzMashUp
 {
@@ -7,5 +9,11 @@ namespace MahMaterialDragablzMashUp
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            this.WithMaterialDesign(BaseTheme.Light, PrimaryColor.DeepPurple, AccentColor.Lime)
+                .WithMahApps();
+            base.OnStartup(e);
+        }
     }
 }
