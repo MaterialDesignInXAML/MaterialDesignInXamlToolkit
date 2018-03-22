@@ -10,6 +10,8 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class MaterialDesignAssist
     {
+        private static readonly Regex _StringFormatParameterReplacement = new Regex(@"{\d+(?<Alignment>,-?\d*)?(?<Format>:.*?)?}", RegexOptions.Compiled);
+
         private const string ColorUriFormat =
             @"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/{0}/MaterialDesignColor.{1}.xaml";
 
@@ -31,17 +33,6 @@ namespace MaterialDesignThemes.Wpf
             Palette palette = PaletteHelper.ReplacePalette(primaryColor.ToString(), accentColor.ToString());
             return new MaterialDesignTheme(theme, primaryColor, accentColor, palette);
         }
-
-        //public static ResourceDictionary WithMaterialDesign(this ResourceDictionary resourceDictionary, BaseTheme theme, PrimaryColor primaryColor, AccentColor accentColor)
-        //{
-        //    if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
-        //    resourceDictionary.MergedDictionaries.Add(CreateDefaultThemeDictionary());
-        //
-        //    return resourceDictionary
-        //        .WithTheme(theme)
-        //        .WithPrimaryColor(primaryColor)
-        //        .WithAccentColor(accentColor);
-        //}
 
         private static ResourceDictionary CreateEmptyPaletteDictionary()
         {
@@ -172,35 +163,19 @@ namespace MaterialDesignThemes.Wpf
 
         private static ResourceDictionary FindDictionary<TEnum>(IEnumerable<ResourceDictionary> dictionaries, string formatString) where TEnum : struct
         {
-            var regex = new Regex(StringFormatHelper.GetRegexPatternImpl(formatString, string.Join("|", Enum.GetValues(typeof(TEnum)).Cast<TEnum>())));
+            var regex = new Regex(GetRegexPatternImpl(formatString, string.Join("|", Enum.GetValues(typeof(TEnum)).Cast<TEnum>())));
             return dictionaries.FirstOrDefault(x => regex.IsMatch(x.Source?.OriginalString ?? ""));
         }
 
         private static ResourceDictionary FindDictionary(IEnumerable<ResourceDictionary> dictionaries, string formatString)
         {
-            var regex = new Regex(StringFormatHelper.GetRegexPatternImpl(formatString));
+            var regex = new Regex(GetRegexPatternImpl(formatString));
             return dictionaries.FirstOrDefault(x => regex.IsMatch(x.Source?.OriginalString ?? ""));
         }
 
-        private static class StringFormatHelper
+        private static string GetRegexPatternImpl(string stringFormat, string replacement = ".*")
         {
-            private static readonly Regex _ParameterReplacement = new Regex(@"{\d+(?<Alignment>,-?\d*)?(?<Format>:.*?)?}", RegexOptions.Compiled);
-
-            public static bool MatchesStringFormat(string testString, string stringFormat)
-            {
-                var regexPattern = GetRegexPattern(stringFormat);
-                return Regex.IsMatch(testString ?? "", regexPattern);
-            }
-
-            private static string GetRegexPattern(string stringFormat)
-            {
-                return GetRegexPatternImpl(stringFormat);
-            }
-
-            public static string GetRegexPatternImpl(string stringFormat, string replacement = ".*")
-            {
-                return string.Join(replacement, _ParameterReplacement.Split(stringFormat).Select(Regex.Escape));
-            }
+            return string.Join(replacement, _StringFormatParameterReplacement.Split(stringFormat).Select(Regex.Escape));
         }
     }
 }
