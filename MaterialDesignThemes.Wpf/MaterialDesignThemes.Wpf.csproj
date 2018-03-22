@@ -324,10 +324,15 @@
     <Compile Include="ISnackbarMessageQueue.cs" />
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="ListViewAssist.cs" />
+    <Compile Include="MaterialDesignAssist.cs" />
+    <Compile Include="MaterialDesignResourceDictionary.cs" />
+    <Compile Include="MaterialDesignTheme.cs" />
     <Compile Include="MessageQueueExtension.cs" />
     <Compile Include="PackIconExtension.cs" />
     <Compile Include="Palette.cs" />
+    <Compile Include="PaletteChangedEventArgs.cs" />
     <Compile Include="Plane3D.cs" />
+    <Compile Include="PrimarySwatchChangedEventArgs.cs" />
     <Compile Include="ScaleHost.cs" />
     <Compile Include="ScrollViewerAssist.cs" />
     <Compile Include="Screen.cs" />
@@ -337,6 +342,8 @@
     <Compile Include="SnackbarMessageQueue.cs" />
     <Compile Include="SnackbarMessageQueueItem.cs" />
     <Compile Include="Spelling.cs" />
+    <Compile Include="ThemeAssist.cs" />
+    <Compile Include="ThemeSetEventArgs.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
     <Compile Include="Transitions\FadeWipe.cs" />

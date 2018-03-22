@@ -1,7 +1,7 @@
 ﻿<Application x:Class="MaterialDesignColors.WpfExample.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:showMeTheXaml="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
              xmlns:smtxAe="clr-namespace:ShowMeTheXAML.AvalonEdit;assembly=ShowMeTheXAML.AvalonEdit"
@@ -9,21 +9,19 @@
              xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary>
+        <materialDesign:MaterialDesignResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <!-- This is technically optional and will get added in, however not having it in the tree does break intellisense.  -->
+                <!-- The same also applies to the color resources, but those tend to use dynamic resources anyway. -->
+                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />-->
                 <ResourceDictionary Source="pack://application:,,,/ShowMeTheXAML.AvalonEdit;component/Themes/xamldisplayer.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <Style TargetType="showMeTheXaml:XamlDisplay" BasedOn="{StaticResource {x:Type showMeTheXaml:XamlDisplay}}">
+            <Style TargetType="smtx:XamlDisplay" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
                 <Style.Resources>
                     <ResourceDictionary>
                         <ResourceDictionary.MergedDictionaries>
-                            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                         </ResourceDictionary.MergedDictionaries>
 
                         <smtxAe:TextDocumentValueConverter x:Key="TextDocumentValueConverter"/>
@@ -34,16 +32,16 @@
                 <Setter Property="materialDesignDemo:XamlDisplayEx.ButtonDock" Value="Right" />
                 <Setter Property="Formatter">
                     <Setter.Value>
-                        <showMeTheXaml:XamlFormatter NewLineOnAttributes="True" Indent="  ">
-                            <showMeTheXaml:XamlFormatter.NamespacesToRemove>
+                        <smtx:XamlFormatter NewLineOnAttributes="True" Indent="  ">
+                            <smtx:XamlFormatter.NamespacesToRemove>
                                 <system:String>http://materialdesigninxaml.net/winfx/xaml/themes</system:String>
-                            </showMeTheXaml:XamlFormatter.NamespacesToRemove>
-                        </showMeTheXaml:XamlFormatter>
+                            </smtx:XamlFormatter.NamespacesToRemove>
+                        </smtx:XamlFormatter>
                     </Setter.Value>
                 </Setter>
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="showMeTheXaml:XamlDisplay">
+                        <ControlTemplate TargetType="smtx:XamlDisplay">
                             <DockPanel>
                                 <materialDesign:PopupBox DockPanel.Dock="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesignDemo:XamlDisplayEx.ButtonDock)}"
                                                          Padding="10" StaysOpen="True" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -105,7 +103,8 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-        </ResourceDictionary>
+        </materialDesign:MaterialDesignResourceDictionary>
     </Application.Resources>
 </Application>
+
 
