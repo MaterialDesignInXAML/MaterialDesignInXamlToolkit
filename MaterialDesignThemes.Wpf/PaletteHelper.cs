@@ -12,6 +12,18 @@ namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
     {
+        private SwatchesProvider _SwatchesProvider;
+
+        public PaletteHelper()
+        {
+            _SwatchesProvider = new SwatchesProvider();
+        }
+
+        public PaletteHelper(SwatchesProvider swatchesProvider)
+        {
+            _SwatchesProvider = swatchesProvider;
+        }
+
         public virtual void SetLightDark(bool isDark)
         {
             var existingResourceDictionary = Application.Current.Resources.MergedDictionaries
@@ -82,7 +94,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
-            var swatch = new SwatchesProvider().Swatches.FirstOrDefault(
+            var swatch = _SwatchesProvider.Swatches.FirstOrDefault(
                 s => string.Compare(s.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0);
 
             if (swatch == null)
@@ -113,7 +125,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
-            var swatch = new SwatchesProvider().Swatches.FirstOrDefault(
+            var swatch = _SwatchesProvider.Swatches.FirstOrDefault(
                 s => string.Compare(s.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0 && s.IsAccented);
 
             if (swatch == null)
@@ -134,7 +146,7 @@ namespace MaterialDesignThemes.Wpf
             //& cross match it with the entirety of all available hues to find the owning swatch.
 
             //TODO could cache this statically
-            var swatchesProvider = new SwatchesProvider();
+            var swatchesProvider = _SwatchesProvider;
             var swatchByPrimaryHueIndex = swatchesProvider
                 .Swatches
                 .SelectMany(s => s.PrimaryHues.Select(h => new {s, h}))

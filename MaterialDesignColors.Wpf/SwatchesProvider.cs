@@ -22,28 +22,8 @@ namespace MaterialDesignColors
         /// </summary>
         /// <param name="assembly"></param>
         public SwatchesProvider(Assembly assembly)
+            : this(new Assembly[] { assembly })
         {
-            var resourcesName = assembly.GetName().Name + ".g";
-            var manager = new ResourceManager(resourcesName, assembly);
-            var resourceSet = manager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
-            var dictionaryEntries = resourceSet.OfType<DictionaryEntry>().ToList();
-            var assemblyName = assembly.GetName().Name;
-
-            var regex = new Regex(@"^themes\/materialdesigncolor\.(?<name>[a-z]+)\.(?<type>primary|accent)\.baml$");
-
-            Swatches =
-                dictionaryEntries
-                .Select(x => new { key = x.Key.ToString(), match = regex.Match(x.Key.ToString()) })
-                .Where(x => x.match.Success && x.match.Groups["name"].Value != "black")
-                .GroupBy(x => x.match.Groups["name"].Value)
-                .Select(x =>
-                CreateSwatch
-                (
-                    x.Key,
-                    Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "primary")?.key),
-                    Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "accent")?.key)
-                ))
-                .ToList();
         }
 
         /// <summary>
@@ -51,6 +31,54 @@ namespace MaterialDesignColors
         /// </summary>
         public SwatchesProvider() : this(Assembly.GetExecutingAssembly())
         { }
+
+        public SwatchesProvider(IEnumerable<Assembly> assemblies)
+        {
+            var regex = new Regex(@"^themes\/materialdesigncolor\.(?<name>[a-z]+)\.(?<type>primary|accent)\.baml$");
+
+            var swatches = new List<Swatch>();
+
+            foreach (var assembly in assemblies)
+            {
+                var resourcesName = assembly.GetName().Name + ".g";
+                var manager = new ResourceManager(resourcesName, assembly);
+
+                ResourceSet resourceSet = null;
+                try
+                {
+                    resourceSet = manager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+                }
+                catch (MissingManifestResourceException)
+                {
+                }
+                if (resourceSet != null)
+                {
+                    var dictionaryEntries = resourceSet.OfType<DictionaryEntry>().ToList();
+                    var assemblyName = assembly.GetName().Name;
+
+                    swatches.AddRange(
+                        dictionaryEntries
+                        .Select(x => new { key = x.Key.ToString(), match = regex.Match(x.Key.ToString()) })
+                        .Where(x => x.match.Success && x.match.Groups["name"].Value != "black")
+                        .GroupBy(x => x.match.Groups["name"].Value)
+                        .Select(x =>
+                        CreateSwatch
+                        (
+                            x.Key,
+                            Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "primary")?.key),
+                            Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "accent")?.key)
+                        ))
+                        .ToList()
+                    );
+                }
+            }
+            Swatches = swatches;
+        }
+
+        public SwatchesProvider(AppDomain domain)
+            : this(domain.GetAssemblies())
+        {
+        }
 
         public IEnumerable<Swatch> Swatches { get; }
 
