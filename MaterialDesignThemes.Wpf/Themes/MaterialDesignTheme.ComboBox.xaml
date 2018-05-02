@@ -519,6 +519,7 @@
                                    DefaultVerticalOffset="5"
                                    DownVerticalOffset="-15.5"
                                    UpVerticalOffset="15"
+                                   wpf:ColorZoneAssist.Mode="{Binding Path=(wpf:ColorZoneAssist.Mode), RelativeSource={RelativeSource TemplatedParent}}"
                                    Tag="{DynamicResource MaterialDesignPaper}"
                                    ClassicMode="{Binding Path=(wpf:ComboBoxAssist.ClassicMode), RelativeSource={RelativeSource TemplatedParent}}"
                                    UpContentTemplate="{StaticResource PopupContentUpTemplate}"
@@ -546,7 +547,7 @@
             </Trigger>
             <Trigger SourceName="PART_Popup" Property="IsOpen" Value="True">
                 <Setter Property="Background" TargetName="templateRoot" Value="{Binding Background, ElementName=PART_Popup}" />
-            </Trigger>
+            </Trigger>  
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="templateRoot" Property="Opacity" Value="0.56"/>
                 <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent"/>
@@ -631,6 +632,70 @@
                 <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
                 <Setter TargetName="Underline" Property="Background" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}" />
             </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Standard"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignBody}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Inverted"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Background" Value="{DynamicResource MaterialDesignBody}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignPaper}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="PrimaryLight" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="PrimaryDark"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Accent"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Background" Value="{DynamicResource SecondaryAccentBrush}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Light"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Background" Value="{DynamicResource MaterialDesignLightBackground}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignLightForeground}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Dark"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Background" Value="{DynamicResource MaterialDesignDarkBackground}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignDarkForeground}" />
+            </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -653,6 +718,7 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
         <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 1 0" />
+        <Setter Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
