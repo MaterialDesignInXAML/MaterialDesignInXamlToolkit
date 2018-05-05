@@ -13,7 +13,7 @@
         <ControlTemplate.Resources>
             <converters:ShadowEdgeConverter x:Key="ShadowEdgeConverter" />
         </ControlTemplate.Resources>
-        <Grid Margin="{TemplateBinding Margin}" Background="Transparent">
+        <Grid Background="Transparent">
             <Grid.OpacityMask>
                 <MultiBinding Converter="{StaticResource ShadowEdgeConverter}">
                     <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth"/>
