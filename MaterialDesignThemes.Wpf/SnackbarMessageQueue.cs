@@ -328,7 +328,7 @@ namespace MaterialDesignThemes.Wpf
                 {
                     if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
                     var window = Window.GetWindow(sb);
-                    return window != null && window.WindowState != WindowState.Minimized;
+                    return window?.WindowState != WindowState.Minimized;
                 });
             });
         }
