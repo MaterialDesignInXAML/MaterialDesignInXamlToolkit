@@ -2,8 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
@@ -494,7 +493,8 @@
                       X1="0" X2="{Binding ActualWidth, ElementName=toggleButton}" Y1="0" Y2="0" 
                       Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />
                 <wpf:Underline x:Name="Underline"
-                               Grid.ColumnSpan="2" Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               wpf:TextFieldAssist.UnderlineBrush="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}"
                                IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
                                Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"
                                Background="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -542,7 +542,7 @@
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger SourceName="PART_Popup" Property="PopupPlacement" Value="{x:Static materialDesign:ComboBoxPopupPlacement.Classic}">
+            <Trigger SourceName="PART_Popup" Property="PopupPlacement" Value="{x:Static wpf:ComboBoxPopupPlacement.Classic}">
                 <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
             </Trigger>
             <Trigger SourceName="PART_Popup" Property="IsOpen" Value="True">
@@ -629,8 +629,8 @@
                     <Condition Property="IsMouseOver" Value="true" />
                     <Condition Property="Validation.HasError" Value="false" />
                 </MultiTrigger.Conditions>
-                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
-                <Setter TargetName="Underline" Property="Background" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -718,6 +718,7 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
         <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 1 0" />
+        <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
