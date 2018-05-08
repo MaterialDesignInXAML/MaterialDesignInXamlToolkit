@@ -190,28 +190,6 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// The color for highlighting effects on the border of a text box.
-        /// </summary>
-        public static readonly DependencyProperty UnderlineBrushProperty = DependencyProperty.RegisterAttached(
-            "UnderlineBrush", typeof(Brush), typeof(TextFieldAssist), new PropertyMetadata(null));
-
-        /// <summary>
-        /// Sets the color for highlighting effects on the border of a text box.
-        /// </summary>
-        public static void SetUnderlineBrush(DependencyObject element, Brush value)
-        {
-            element.SetValue(UnderlineBrushProperty, value);
-        }
-
-        /// <summary>
-        /// Gets the color for highlighting effects on the border of a text box.
-        /// </summary>
-        public static Brush GetUnderlineBrush(DependencyObject element)
-        {
-            return (Brush)element.GetValue(UnderlineBrushProperty);
-        }
-
-        /// <summary>
         /// Automatically inserts spelling suggestions into the text box context menu.
         /// </summary>
         public static readonly DependencyProperty IncludeSpellingSuggestionsProperty = DependencyProperty.RegisterAttached(

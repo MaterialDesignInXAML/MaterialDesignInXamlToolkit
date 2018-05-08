@@ -169,6 +169,8 @@
                       materialDesign:TextFieldAssist.HasClearButton="True" 
                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                       materialDesign:TextFieldAssist.SuffixText="sw"
+                      materialDesign:ColorZoneAssist.Mode="Inverted"
+                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryAccentBrush}"
                       materialDesign:HintAssist.HelperText="Select one OS">
                 <ComboBoxItem>Android</ComboBoxItem>
                 <ComboBoxItem>iOS</ComboBoxItem>
@@ -290,7 +292,7 @@
             </ComboBox>
         </smtx:XamlDisplay>
 
-        <materialDesign:PackIcon Grid.Row="6" Grid.Column="0" Kind="Key"
+        <materialDesign:PackIcon Grid.Row="7" Grid.Column="0" Kind="Key"
                                  Margin="0 12 0 0"
                                  Foreground="{Binding ElementName=FloatingPasswordBox, Path=BorderBrush}" />
         <smtx:XamlDisplay Key="fields_18" Grid.Row="6" Grid.Column="1" Margin="0 12 0 0">
