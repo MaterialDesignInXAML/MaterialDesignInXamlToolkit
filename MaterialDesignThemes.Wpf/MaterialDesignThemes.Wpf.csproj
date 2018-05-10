@@ -406,6 +406,7 @@
     <Compile Include="Transitions\TransitioningContent.cs" />
     <Compile Include="Transitions\TransitioningContentBase.cs" />
     <Compile Include="TreeHelper.cs" />
+    <Compile Include="TreeViewAssist.cs" />
     <Compile Include="Underline.cs" />
     <Compile Include="ValidationAssist.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

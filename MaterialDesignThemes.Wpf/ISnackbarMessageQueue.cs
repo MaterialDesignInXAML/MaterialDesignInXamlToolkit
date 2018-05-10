@@ -41,7 +41,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="content">Message.</param>
         /// <param name="actionContent">Content for the action button.</param>
         /// <param name="actionHandler">Call back to be executed if user clicks the action button.</param>
-        /// <param name="promote">The message will promoted to the front ot the queue and never considered to be a duplicate.</param>
+        /// <param name="promote">The message will promoted to the front of the queue.</param>
         void Enqueue(object content, object actionContent, Action actionHandler, bool promote);
 
         /// <summary>
@@ -51,7 +51,31 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="actionContent">Content for the action button.</param>
         /// <param name="actionHandler">Call back to be executed if user clicks the action button.</param>
         /// <param name="actionArgument">Argument to pass to <paramref name="actionHandler"/>.</param>
-        /// <param name="promote">The message will promoted to the front ot the queue and never considered to be a duplicate.</param>
+        /// <param name="promote">The message will be promoted to the front of the queue and never considered to be a duplicate.</param>
         void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler, TArgument actionArgument, bool promote);
+
+        /// <summary>
+        /// Queues a notificaton message for display in a snackbar.
+        /// </summary>
+        /// <param name="content">Message.</param>
+        /// <param name="actionContent">Content for the action button.</param>
+        /// <param name="actionHandler">Call back to be executed if user clicks the action button.</param>
+        /// <param name="actionArgument">Argument to pass to <paramref name="actionHandler"/>.</param>
+        /// <param name="promote">The message will be promoted to the front of the queue.</param>
+        /// <param name="neverConsiderToBeDuplicate">The message will never be considered a duplicate.</param>
+        void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
+            TArgument actionArgument, bool promote, bool neverConsiderToBeDuplicate);
+
+        /// <summary>
+        /// Queues a notificaton message for display in a snackbar.
+        /// </summary>
+        /// <param name="content">Message.</param>
+        /// <param name="actionContent">Content for the action button.</param>
+        /// <param name="actionHandler">Call back to be executed if user clicks the action button.</param>
+        /// <param name="actionArgument">Argument to pass to <paramref name="actionHandler"/>.</param>
+        /// <param name="promote">The message will promoted to the front of the queue.</param>
+        /// <param name="neverConsiderToBeDuplicate">The message will never be considered a duplicate.</param>
+        void Enqueue(object content, object actionContent, Action<object> actionHandler, object actionArgument,
+            bool promote, bool neverConsiderToBeDuplicate);
     }
 }

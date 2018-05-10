@@ -21,6 +21,12 @@ namespace MaterialDesignThemes.Wpf
         /// <returns></returns>
         bool IsEmpty();
 
+        /// <summary>
+        /// Targeted control has keyboard focus
+        /// </summary>
+        /// <returns></returns>
+        bool IsFocused();
+
         [Obsolete]
         object Content { get; }
 
@@ -33,5 +39,7 @@ namespace MaterialDesignThemes.Wpf
         event EventHandler IsVisibleChanged;
 
         event EventHandler Loaded;
+
+        event EventHandler FocusedChanged;
     }
 }

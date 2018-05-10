@@ -11,6 +11,8 @@
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
+    <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
+
     <Style x:Key="MaterialDesignTreeView" TargetType="{x:Type TreeView}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{x:Null}"/>
@@ -171,6 +173,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <VisualStateManager.VisualStateGroups>
@@ -284,7 +287,15 @@
                             </wpf:Ripple>
                         </Grid>
 
-                        <StackPanel Grid.Column="1" Grid.Row="1"
+                        <ContentControl Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                                        x:Name="AdditionalContentControl"
+                                        Content="{TemplateBinding Header}"
+                                        ContentTemplate="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplate)}"
+                                        ContentTemplateSelector="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplateSelector)}"                                        
+                                        Visibility="Collapsed">
+                        </ContentControl>
+
+                        <StackPanel Grid.Column="1" Grid.Row="2"
                                     x:Name="ItemsPanel"
                                     Margin="-16 0 0 0"
                                     Grid.ColumnSpan="2">
@@ -301,6 +312,14 @@
                         </StackPanel>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplate), Converter={StaticResource NullableToVisibilityConverter}, Mode=OneWay}" 
+                                     Value="Visible">
+                            <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplateSelector), Converter={StaticResource NullableToVisibilityConverter}, Mode=OneWay}" 
+                                     Value="Visible">
+                            <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
                         <Trigger Property="HasItems" Value="false">
                             <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
                         </Trigger>
