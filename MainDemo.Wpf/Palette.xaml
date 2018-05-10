@@ -27,7 +27,7 @@
             <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">Primary - Mid</TextBlock>
         </Border>
         <Border Background="{DynamicResource PrimaryHueLightBrush}"
-                Grid.Row="1">
+                Grid.Row="1" Grid.Column="0">
             <TextBlock FontWeight="Bold" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}">Light</TextBlock>
         </Border>
         <Border Background="{DynamicResource PrimaryHueMidBrush}"
@@ -39,7 +39,7 @@
             <TextBlock Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">Dark</TextBlock>
         </Border>
         <Border Background="{DynamicResource SecondaryAccentBrush}"
-                Grid.Row="2" Grid.ColumnSpan="3">
+                Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0">
             <TextBlock Foreground="{DynamicResource SecondaryAccentForegroundBrush}">Accent</TextBlock>
         </Border>
     </Grid>

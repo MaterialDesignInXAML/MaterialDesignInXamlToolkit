@@ -17,9 +17,12 @@ namespace MaterialDesignThemes.Wpf
 
             public bool IsVisible => _passwordBox.IsVisible;
 
+            public bool IsFocused() => _passwordBox.IsKeyboardFocused;
+
             public event EventHandler ContentChanged;
             public event EventHandler IsVisibleChanged;
             public event EventHandler Loaded;
+            public event EventHandler FocusedChanged;
 
             public PasswordBoxHintProxy(PasswordBox passwordBox)
             {
@@ -29,6 +32,12 @@ namespace MaterialDesignThemes.Wpf
                 _passwordBox.PasswordChanged += PasswordBoxPasswordChanged;
                 _passwordBox.Loaded += PasswordBoxLoaded;
                 _passwordBox.IsVisibleChanged += PasswordBoxIsVisibleChanged;
+                _passwordBox.IsKeyboardFocusedChanged += PasswordBoxIsKeyboardFocusedChanged;
+            }
+
+            private void PasswordBoxIsKeyboardFocusedChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+            {
+                FocusedChanged?.Invoke(this, EventArgs.Empty);
             }
 
             private void PasswordBoxIsVisibleChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
@@ -51,6 +60,7 @@ namespace MaterialDesignThemes.Wpf
                 _passwordBox.PasswordChanged -= PasswordBoxPasswordChanged;
                 _passwordBox.Loaded -= PasswordBoxLoaded;
                 _passwordBox.IsVisibleChanged -= PasswordBoxIsVisibleChanged;
+                _passwordBox.IsKeyboardFocusedChanged -= PasswordBoxIsKeyboardFocusedChanged;
             }
 
         }

@@ -508,7 +508,17 @@
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
-                    <Condition Property="IsKeyboardFocused" Value="True" />
+                    <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                    <Condition Property="IsKeyboardFocusWithin" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                    <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
+                    <Condition Property="IsKeyboardFocusWithin" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
                 <Setter TargetName="Hint" Property="HintOpacity" Value="1" />

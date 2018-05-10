@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\xunit.core\build\xunit.core.props" Condition="Exists('..\packages\xunit.core\build\xunit.core.props')" Label="Paket" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -64,6 +65,9 @@
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.2')">
       <ItemGroup>
+        <Reference Include="System.Configuration">
+          <Paket>True</Paket>
+        </Reference>
         <Reference Include="Castle.Core">
           <HintPath>..\packages\Castle.Core\lib\net45\Castle.Core.dll</HintPath>
           <Private>True</Private>
@@ -147,6 +151,12 @@
       </ItemGroup>
     </When>
   </Choose>
+  <Import Project="..\packages\NETStandard.Library\build\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library\build\NETStandard.Library.targets')" Label="Paket" />
+  <ItemGroup>
+    <Analyzer Include="..\packages\xunit.analyzers\analyzers\dotnet\cs\xunit.analyzers.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+  </ItemGroup>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.2')">
       <ItemGroup>
@@ -189,5 +199,5 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Import Project="..\packages\NETStandard.Library\build\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library\build\NETStandard.Library.targets')" Label="Paket" />
+  <Import Project="..\packages\xunit.core\build\xunit.core.targets" Condition="Exists('..\packages\xunit.core\build\xunit.core.targets')" Label="Paket" />
 </Project>
