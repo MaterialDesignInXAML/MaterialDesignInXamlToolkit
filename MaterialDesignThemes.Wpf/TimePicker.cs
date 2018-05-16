@@ -276,8 +276,9 @@ namespace MaterialDesignThemes.Wpf
 
             if (_lastValidTime != null)
             {
-                SetCurrentValue(SelectedTimeProperty, _lastValidTime.Value);
-                _textBox.Text = _lastValidTime.Value.ToString(_lastValidTime.Value.Hour % 12 > 9 ? "hh:mm tt" : "h:mm tt");
+                //SetCurrentValue(SelectedTimeProperty, _lastValidTime.Value);
+                //_textBox.Text = _lastValidTime.Value.ToString(_lastValidTime.Value.Hour % 12 > 9 ? "hh:mm tt" : "h:mm tt");
+                _textBox.Text = DateTimeToString(_lastValidTime.Value, DatePickerFormat.Short);
             }
 
             else
@@ -373,20 +374,38 @@ namespace MaterialDesignThemes.Wpf
 
 		private string DateTimeToString(DateTime d)
 		{
-			var dtfi = CultureInfo.CurrentCulture.GetDateFormat(); 
+            return DateTimeToString(d, SelectedTimeFormat);
+        }
 
-			switch (SelectedTimeFormat)
-			{
-				case DatePickerFormat.Short:
-					return string.Format(CultureInfo.CurrentCulture, d.ToString(dtfi.ShortTimePattern, dtfi));					
-				case DatePickerFormat.Long:
-					return string.Format(CultureInfo.CurrentCulture, d.ToString(dtfi.LongTimePattern, dtfi));					
-			}
+        private string DateTimeToString(DateTime datetime, DatePickerFormat format)
+        {
+            string res = null;
 
-			return null;
-		}
+            var dtfi = GetCultureInfo().GetDateFormat();
 
-		private void PopupOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
+            switch (format)
+            {
+                case DatePickerFormat.Short:
+                    res = Is24Hours ? datetime.ToString("H:mm") : string.Format(CultureInfo.CurrentCulture, datetime.ToString(dtfi.ShortTimePattern, dtfi));
+                    break;
+                case DatePickerFormat.Long:
+                    res = Is24Hours ? datetime.ToString("HH:mm") : string.Format(CultureInfo.CurrentCulture, datetime.ToString(dtfi.LongTimePattern, dtfi));
+                    break;
+            }
+
+            return res;
+        }
+
+        private CultureInfo GetCultureInfo()
+        {
+            CultureInfo ci;
+            ci = Language.GetSpecificCulture();
+            if (ci != null)
+                return ci;
+            return Language.GetEquivalentCulture();
+        }
+
+        private void PopupOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
 		{
 			var popup = sender as Popup;
 			if (popup == null || popup.StaysOpen) return;
@@ -485,5 +504,5 @@ namespace MaterialDesignThemes.Wpf
 		    };
 		    return binding;
 		}
-	}
+    }
 }
