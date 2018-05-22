@@ -18,10 +18,25 @@ namespace MaterialDesignThemes.Wpf
     /// </summary>
     public class Stepper : TabControl
     {
-        public static RoutedCommand BackCommand = new RoutedCommand();
-        public static RoutedCommand CancelCommand = new RoutedCommand();
-        public static RoutedCommand ContinueCommand = new RoutedCommand();
-        public static RoutedCommand StepSelectedCommand = new RoutedCommand();
+        /// <summary>
+        /// Internal command used by the XAML template (public to be available in the XAML template). Not intended for external usage.
+        /// </summary>
+        public static readonly RoutedCommand BackCommand = new RoutedCommand();
+
+        /// <summary>
+        /// Internal command used by the XAML template (public to be available in the XAML template). Not intended for external usage.
+        /// </summary>
+        public static readonly RoutedCommand CancelCommand = new RoutedCommand();
+
+        /// <summary>
+        /// Internal command used by the XAML template (public to be available in the XAML template). Not intended for external usage.
+        /// </summary>
+        public static readonly RoutedCommand ContinueCommand = new RoutedCommand();
+
+        /// <summary>
+        /// Internal command used by the XAML template (public to be available in the XAML template). Not intended for external usage.
+        /// </summary>
+        public static readonly RoutedCommand StepSelectedCommand = new RoutedCommand();
 
         public static readonly RoutedEvent BackNavigationEvent = EventManager.RegisterRoutedEvent(nameof(BackNavigation), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Stepper));
 
