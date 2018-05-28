@@ -14,15 +14,15 @@
             <converters:ShadowEdgeConverter x:Key="ShadowEdgeConverter" />
         </ControlTemplate.Resources>
         <Grid Margin="{TemplateBinding Margin}" Background="Transparent">
-            <Grid.OpacityMask>
-                <MultiBinding Converter="{StaticResource ShadowEdgeConverter}">
-                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth"/>
-                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight"/>
-                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:ShadowAssist.ShadowDepth)" />
-                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:ShadowAssist.ShadowEdges)" />
-                </MultiBinding>
-            </Grid.OpacityMask>
             <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+                <AdornerDecorator.OpacityMask>
+                    <MultiBinding Converter="{StaticResource ShadowEdgeConverter}">
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth"/>
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight"/>
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:ShadowAssist.ShadowDepth)" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:ShadowAssist.ShadowEdges)" />
+                    </MultiBinding>
+                </AdornerDecorator.OpacityMask>
                 <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                         CornerRadius="{TemplateBinding UniformCornerRadius}">
                     <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
