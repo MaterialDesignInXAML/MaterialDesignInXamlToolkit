@@ -203,6 +203,29 @@ namespace MaterialDesignThemes.Wpf
 	        set { SetValue(IsInvalidTextAllowedProperty, value); }
 	    }
 
+	    public static readonly DependencyProperty WithSecondsProperty = DependencyProperty.Register(
+            nameof(WithSeconds), typeof (bool), typeof (TimePicker),
+            new PropertyMetadata(default(bool), WithSecondsPropertyChanged));
+
+        /// <summary>
+        /// Set to true to display seconds in the time and allow the user to select seconds.
+        /// </summary>
+	    public bool WithSeconds
+	    {
+	        get { return (bool) GetValue(WithSecondsProperty); }
+            // see change tracking in WithSecondsPropertyChanged below
+	        set { SetValue(WithSecondsProperty, value); }
+	    }
+
+        private static void WithSecondsPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (sender is TimePicker picker)
+            {
+                // update the clock's behavior as needed when the WithSeconds value changes
+                picker._clock.DisplayAutomation = picker.WithSeconds ? ClockDisplayAutomation.ToSeconds : ClockDisplayAutomation.ToMinutesOnly;
+            }
+        }
+
 	    public override void OnApplyTemplate()
 		{
 			if (_popup != null)
@@ -386,10 +409,13 @@ namespace MaterialDesignThemes.Wpf
             switch (format)
             {
                 case DatePickerFormat.Short:
-                    res = Is24Hours ? datetime.ToString("H:mm") : string.Format(CultureInfo.CurrentCulture, datetime.ToString(dtfi.ShortTimePattern, dtfi));
+                    if (WithSeconds)
+                        res = Is24Hours ? datetime.ToString("H:mm:ss") : datetime.ToString("h:mm:ss tt");
+                    else
+                        res = Is24Hours ? datetime.ToString("H:mm") : string.Format(CultureInfo.CurrentCulture, datetime.ToString(dtfi.ShortTimePattern, dtfi));
                     break;
                 case DatePickerFormat.Long:
-                    res = Is24Hours ? datetime.ToString("HH:mm") : string.Format(CultureInfo.CurrentCulture, datetime.ToString(dtfi.LongTimePattern, dtfi));
+                    res = Is24Hours ? WithSeconds ? datetime.ToString("HH:mm:ss") : datetime.ToString("HH:mm") : string.Format(CultureInfo.CurrentCulture, datetime.ToString(dtfi.LongTimePattern, dtfi));
                     break;
             }
 
@@ -464,7 +490,10 @@ namespace MaterialDesignThemes.Wpf
 
         private void ClockChoiceMadeHandler(object sender, ClockChoiceMadeEventArgs clockChoiceMadeEventArgs)
         {
-            if (clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Minutes)
+            if (
+                ( WithSeconds && (clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Seconds)) ||
+                (!WithSeconds && (clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Minutes))
+            )
             {
                 TogglePopup();
                 if (SelectedTime == null)

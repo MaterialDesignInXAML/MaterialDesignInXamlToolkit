@@ -14,18 +14,21 @@ namespace MaterialDesignThemes.Wpf
 	public enum ClockDisplayMode
 	{
 		Hours,
-		Minutes
+		Minutes,
+		Seconds,
 	}
 
 	public enum ClockDisplayAutomation
 	{
 		None,
 		Cycle,
-		ToMinutesOnly
+		ToMinutesOnly,
+		ToSeconds,
 	}
 
 	[TemplatePart(Name = HoursCanvasPartName, Type = typeof (Canvas))]
     [TemplatePart(Name = MinutesCanvasPartName, Type = typeof(Canvas))]
+    [TemplatePart(Name = SecondsCanvasPartName, Type = typeof(Canvas))]
 	[TemplatePart(Name = MinuteReadOutPartName, Type = typeof(TextBlock))]
 	[TemplatePart(Name = HourReadOutPartName, Type = typeof(TextBlock))]
     [TemplateVisualState(GroupName = "DisplayModeStates", Name = HoursVisualStateName)]
@@ -34,16 +37,20 @@ namespace MaterialDesignThemes.Wpf
 	{
 		public const string HoursCanvasPartName = "PART_HoursCanvas";
         public const string MinutesCanvasPartName = "PART_MinutesCanvas";
+        public const string SecondsCanvasPartName = "PART_SecondsCanvas";
 		public const string MinuteReadOutPartName = "PART_MinuteReadOut";
+		public const string SecondReadOutPartName = "PART_SecondReadOut";
 		public const string HourReadOutPartName = "PART_HourReadOut";
 
 	    public const string HoursVisualStateName = "Hours";
         public const string MinutesVisualStateName = "Minutes";
+        public const string SecondsVisualStateName = "Seconds";
 
         private Point _centreCanvas = new Point(0, 0);
         private Point _currentStartPosition = new Point(0, 0);
 		private TextBlock _hourReadOutPartName;
 		private TextBlock _minuteReadOutPartName;
+		private TextBlock _secondReadOutPartName;
 
 		static Clock()
 		{
@@ -230,12 +237,17 @@ namespace MaterialDesignThemes.Wpf
 				_hourReadOutPartName.PreviewMouseLeftButtonDown -= HourReadOutPartNameOnPreviewMouseLeftButtonDown;
 			if (_minuteReadOutPartName != null)
 				_minuteReadOutPartName.PreviewMouseLeftButtonDown -= MinuteReadOutPartNameOnPreviewMouseLeftButtonDown;
+			if (_secondReadOutPartName != null)
+				_secondReadOutPartName.PreviewMouseLeftButtonDown -= SecondReadOutPartNameOnPreviewMouseLeftButtonDown;
 			_hourReadOutPartName = GetTemplateChild(HourReadOutPartName) as TextBlock;
 			_minuteReadOutPartName = GetTemplateChild(MinuteReadOutPartName) as TextBlock;
+			_secondReadOutPartName = GetTemplateChild(SecondReadOutPartName) as TextBlock;
 			if (_hourReadOutPartName != null)
 				_hourReadOutPartName.PreviewMouseLeftButtonDown += HourReadOutPartNameOnPreviewMouseLeftButtonDown;
 			if (_minuteReadOutPartName != null)
 				_minuteReadOutPartName.PreviewMouseLeftButtonDown += MinuteReadOutPartNameOnPreviewMouseLeftButtonDown;
+			if (_secondReadOutPartName != null)
+				_secondReadOutPartName.PreviewMouseLeftButtonDown += SecondReadOutPartNameOnPreviewMouseLeftButtonDown;
 
 			base.OnApplyTemplate();
 
@@ -245,7 +257,11 @@ namespace MaterialDesignThemes.Wpf
 	    private void GotoVisualState(bool useTransitions)
 	    {
 	        VisualStateManager.GoToState(this,
-	            DisplayMode == ClockDisplayMode.Minutes ? MinutesVisualStateName : HoursVisualStateName, useTransitions);
+	            DisplayMode == ClockDisplayMode.Hours
+                    ? HoursVisualStateName
+                    : DisplayMode == ClockDisplayMode.Minutes
+                        ? MinutesVisualStateName
+                        : SecondsVisualStateName, useTransitions);
 	    }
 
 	    private void GenerateButtons()
@@ -270,7 +286,17 @@ namespace MaterialDesignThemes.Wpf
 	            GenerateButtons(minutesCanvas, Enumerable.Range(1, 60).ToList(), ButtonRadiusRatio,
                     new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Minutes, Is24Hours),
 	                i => ((i/5.0)%1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle", "0");
+	        var secondsCanvas = GetTemplateChild(SecondsCanvasPartName) as Canvas;
+	        if (secondsCanvas != null)
+	            GenerateButtons(secondsCanvas, Enumerable.Range(1, 60).ToList(), ButtonRadiusRatio,
+                    new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Seconds, Is24Hours),
+	                i => ((i/5.0)%1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle", "0");
 	    }
+
+	    private void SecondReadOutPartNameOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			SetCurrentValue(Clock.DisplayModeProperty, ClockDisplayMode.Seconds);
+		}
 
 	    private void MinuteReadOutPartNameOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
@@ -330,6 +356,12 @@ namespace MaterialDesignThemes.Wpf
 					if (DisplayMode == ClockDisplayMode.Hours)
 						DisplayMode = ClockDisplayMode.Minutes;					
 					break;
+				case ClockDisplayAutomation.ToSeconds:
+					if (DisplayMode == ClockDisplayMode.Hours)
+						DisplayMode = ClockDisplayMode.Minutes;
+					else if (DisplayMode == ClockDisplayMode.Minutes)
+						DisplayMode = ClockDisplayMode.Seconds;
+					break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
@@ -370,9 +402,14 @@ namespace MaterialDesignThemes.Wpf
 		                (int) Math.Round(6*angle/Math.PI, MidpointRounding.AwayFromZero)%12 + (IsPostMeridiem ? 12 : 0),
 		                Time.Minute, Time.Second);
 		    }
-            else
-                time = new DateTime(Time.Year, Time.Month, Time.Day, Time.Hour, (int)Math.Round(30 * angle / Math.PI, MidpointRounding.AwayFromZero) % 60, Time.Second);
-
+		    else
+		    {
+		        var value = (int)Math.Round(30 * angle / Math.PI, MidpointRounding.AwayFromZero) % 60;
+		        if (DisplayMode == ClockDisplayMode.Minutes)
+		            time = new DateTime(Time.Year, Time.Month, Time.Day, Time.Hour, value, Time.Second);
+		        else
+		            time = new DateTime(Time.Year, Time.Month, Time.Day, Time.Hour, Time.Minute, value);
+		    }
             SetCurrentValue(TimeProperty, time);	
         }
 
