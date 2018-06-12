@@ -24,6 +24,7 @@ namespace MaterialDesignThemes.Wpf
 		Cycle,
 		ToMinutesOnly,
 		ToSeconds,
+		CycleWithSeconds,
 	}
 
 	[TemplatePart(Name = HoursCanvasPartName, Type = typeof (Canvas))]
@@ -351,6 +352,14 @@ namespace MaterialDesignThemes.Wpf
 					break;
 				case ClockDisplayAutomation.Cycle:
 					DisplayMode = DisplayMode == ClockDisplayMode.Hours ? ClockDisplayMode.Minutes : ClockDisplayMode.Hours;
+					break;
+				case ClockDisplayAutomation.CycleWithSeconds:
+					if (DisplayMode == ClockDisplayMode.Hours)
+						DisplayMode = ClockDisplayMode.Minutes;
+					else if (DisplayMode == ClockDisplayMode.Minutes)
+						DisplayMode = ClockDisplayMode.Seconds;
+					else
+						DisplayMode = ClockDisplayMode.Hours;
 					break;
 				case ClockDisplayAutomation.ToMinutesOnly:
 					if (DisplayMode == ClockDisplayMode.Hours)
