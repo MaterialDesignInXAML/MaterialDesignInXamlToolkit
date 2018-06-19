@@ -63,7 +63,7 @@
                                              IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}"
                                              Height="{TemplateBinding Height}"
                                              Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth}"
-                                             Opacity="{TemplateBinding Opacity}"
+                                             Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
                                              HorizontalAlignment="Left" 
                                              VerticalAlignment="Center">
 
@@ -217,7 +217,8 @@
                                      Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorForeground)}"
                                      Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
                                      Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}"
-                                     IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}" 
+                                     IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}"
+                                     Opacity="{Binding RelativeSource={RelativeSource TemplatedParent},  Path=(wpf:ButtonProgressAssist.Opacity)}"
                                      Margin="-8" 
                                      Width="{TemplateBinding Width, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
                                      Height="{TemplateBinding Height, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"

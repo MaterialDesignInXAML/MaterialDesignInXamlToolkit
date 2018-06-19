@@ -265,6 +265,7 @@
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             HorizontalAlignment="Left"
                             materialDesign:ButtonProgressAssist.Value="{Binding DismissButtonProgress}"
+                            materialDesign:ButtonProgressAssist.Opacity="0.4"
                             Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock>DISMISS</TextBlock>
@@ -283,7 +284,8 @@
                     <Button Style="{StaticResource MaterialDesignRaisedButton}"
                             materialDesign:ButtonProgressAssist.Value="-1"
                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                            materialDesign:ButtonProgressAssist.IsIndeterminate="True">
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                            materialDesign:ButtonProgressAssist.Opacity=".4">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock>Indeterminate</TextBlock>
                             <materialDesign:PackIcon Margin="4 .5 0 0" Kind="Close" />
