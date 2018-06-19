@@ -63,7 +63,7 @@
                                              IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}"
                                              Height="{TemplateBinding Height}"
                                              Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth}"
-                                             Opacity=".4"
+                                             Opacity="{TemplateBinding Opacity}"
                                              HorizontalAlignment="Left" 
                                              VerticalAlignment="Center">
 
