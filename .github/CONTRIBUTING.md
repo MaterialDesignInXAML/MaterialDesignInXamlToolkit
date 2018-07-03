@@ -2,7 +2,7 @@
 
 PRs to this project are welcome, but before contributing please bear in mind my thoughts below. If you want to get involved but are unsure, please ask (say hello in the [Gitter chat room](http://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit)).  Also note I wrote these guidelines several months after the library was first made available, with the benefit of hindsight.  Apologies if there are inconsistencies with what you read below and what's already in the library.
 
-## The purpose of this libary:
+## The purpose of this library:
 
 This is a theme library, **not** a control library.  There is a subtle difference.  Yes, there are some new custom controls, but their role is to specifically support either styling of existing WPF controls, or to Material Design components, as per the "Components" section in [Google's guidelines](https://www.google.com/design/spec/material-design/introduction.html).
 
@@ -22,7 +22,7 @@ This whole project is a personal hobby, and this is even more true of the UWP se
 
 ## TabControl:
 
-There is no TabControl style, I won't create one, and I wont accept one.  I have Dragablz, and don't want the added burden of supporting two styles; even if it is fully complete.  I don't want the duplication and the overhead.  
+There is no TabControl style, I won't create one, and I wont accept one.  I have Dragablz and don't want the added burden of supporting two styles; even if it is fully complete.  I don't want the duplication and the overhead.  
 
 ## Submitting a PR:
 
