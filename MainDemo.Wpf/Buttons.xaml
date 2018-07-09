@@ -421,6 +421,16 @@
                         Disabled
                     </RadioButton>
                 </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="buttons_59" Margin="0 5 8 8">
+                    <materialDesign:ColorZone Mode="PrimaryDark" Padding="8">
+                        <RadioButton Content="For dark background" Style="{DynamicResource MaterialDesignUserForegroundRadioButton}"/>
+                    </materialDesign:ColorZone>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="buttons60" Margin="0 5 8 8">
+                    <materialDesign:ColorZone Mode="PrimaryDark" Padding="8">
+                        <CheckBox Content="Same here" Style="{DynamicResource MaterialDesignUserForegroundCheckBox}"/>
+                    </materialDesign:ColorZone>
+                </smtx:XamlDisplay>
                 <smtx:XamlDisplay Key="buttons_42" Margin="0 5 8 8" VerticalAlignment="Center">
                     <CheckBox Style="{StaticResource MaterialDesignCheckBox}">
                         Check
