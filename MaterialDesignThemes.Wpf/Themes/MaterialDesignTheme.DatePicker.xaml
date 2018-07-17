@@ -11,57 +11,57 @@
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
 
     <Style x:Key="MaterialDesignDatePickerTextBox" TargetType="{x:Type DatePickerTextBox}">
-		<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
-		<Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="0 0 0 0" />
-		<Setter Property="Background" Value="Transparent"/>
-		<Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}"/>
-		<Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-		<Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type DatePickerTextBox}">
-					<Grid>
-						<Grid.Resources>
-							<SolidColorBrush x:Key="WatermarkBrush" Color="{TemplateBinding Foreground}"/>
-						</Grid.Resources>
-						<VisualStateManager.VisualStateGroups>
-							<VisualStateGroup x:Name="CommonStates">
-								<VisualStateGroup.Transitions>
-									<VisualTransition GeneratedDuration="0"/>
-									<VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
-								</VisualStateGroup.Transitions>
-								<VisualState x:Name="Normal"/>
-								<VisualState x:Name="MouseOver"/>
-							</VisualStateGroup>
-							<VisualStateGroup x:Name="WatermarkStates">
-								<VisualStateGroup.Transitions>
-									<VisualTransition GeneratedDuration="0"/>
-								</VisualStateGroup.Transitions>
-								<VisualState x:Name="Unwatermarked"/>
-								<VisualState x:Name="Watermarked">
-									<Storyboard>
-										<DoubleAnimation Duration="0" To=".23" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Watermark"/>
-									</Storyboard>
-								</VisualState>
-							</VisualStateGroup>
-							<VisualStateGroup x:Name="FocusStates">
-								<VisualStateGroup.Transitions>
-									<VisualTransition GeneratedDuration="0"/>
-								</VisualStateGroup.Transitions>
-								<VisualState x:Name="Unfocused"/>
-								<VisualState x:Name="Focused"/>
-							</VisualStateGroup>
-						</VisualStateManager.VisualStateGroups>
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+        <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="0 0 0 0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}" />
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
+                    <Grid>
+                        <Grid.Resources>
+                            <SolidColorBrush x:Key="WatermarkBrush" Color="{TemplateBinding Foreground}" />
+                        </Grid.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0" />
+                                    <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="WatermarkStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Unwatermarked" />
+                                <VisualState x:Name="Watermarked">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To=".23" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Watermark" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="Focused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="WatermarkContent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <wpf:SmartHint x:Name="Hint"
                                            FontSize="{TemplateBinding FontSize}"
                                            UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
                                            Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                            HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                           HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
-							<ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Visibility="Collapsed" />
-							<ScrollViewer x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-						</Grid>
+                                           HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
+                            <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Visibility="Collapsed" />
+                            <ScrollViewer x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
@@ -74,42 +74,42 @@
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
-			</Setter.Value>
-		</Setter>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="MaterialDesignDatePickerCalendarPortrait" TargetType="{x:Type Calendar}">
-		<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-		<Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />		
-		<Setter Property="CalendarDayButtonStyle" Value="{StaticResource MaterialDesignCalendarDayButton}" />
-		<Setter Property="CalendarButtonStyle" Value="{StaticResource MaterialDesignCalendarButton}" />
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type Calendar}">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="CalendarDayButtonStyle" Value="{StaticResource MaterialDesignCalendarDayButton}" />
+        <Setter Property="CalendarButtonStyle" Value="{StaticResource MaterialDesignCalendarButton}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Calendar}">
                     <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                         <Border Effect="{DynamicResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
-     			    		<CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItemPortrait}"/>
-                        </Border>					
+                            <CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItemPortrait}" />
+                        </Border>
                     </AdornerDecorator>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<Style x:Key="MaterialDesignDatePicker" TargetType="{x:Type DatePicker}">
-		<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
-		<Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="CalendarStyle" Value="{StaticResource MaterialDesignDatePickerCalendarPortrait}"/>
-		<Setter Property="IsTodayHighlighted" Value="True"/>
-		<Setter Property="SelectedDateFormat" Value="Short"/>
-		<Setter Property="BorderThickness" Value="0 0 0 1"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    <Style x:Key="MaterialDesignDatePicker" TargetType="{x:Type DatePicker}">
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="CalendarStyle" Value="{StaticResource MaterialDesignDatePickerCalendarPortrait}" />
+        <Setter Property="IsTodayHighlighted" Value="True" />
+        <Setter Property="SelectedDateFormat" Value="Short" />
+        <Setter Property="BorderThickness" Value="0 0 0 1" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Margin" Value="0 0 0 0" />
-        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
         <Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type DatePicker}">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePicker}">
                     <Grid>
                         <Border BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -119,10 +119,10 @@
                                 SnapsToDevicePixels="True">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="Normal" />
                                     <VisualState x:Name="Disabled">
                                         <Storyboard>
-                                            <DoubleAnimation Duration="0" To=".56" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Root"/>
+                                            <DoubleAnimation Duration="0" To=".56" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Root" />
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
@@ -137,14 +137,14 @@
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
                                                     <VisualStateGroup.Transitions>
-                                                        <VisualTransition GeneratedDuration="0"/>
-                                                        <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
-                                                        <VisualTransition GeneratedDuration="0:0:0.1" To="Pressed"/>
+                                                        <VisualTransition GeneratedDuration="0" />
+                                                        <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver" />
+                                                        <VisualTransition GeneratedDuration="0:0:0.1" To="Pressed" />
                                                     </VisualStateGroup.Transitions>
-                                                    <VisualState x:Name="Normal"/>
-                                                    <VisualState x:Name="MouseOver"/>
-                                                    <VisualState x:Name="Pressed"/>
-                                                    <VisualState x:Name="Disabled"/>
+                                                    <VisualState x:Name="Normal" />
+                                                    <VisualState x:Name="MouseOver" />
+                                                    <VisualState x:Name="Pressed" />
+                                                    <VisualState x:Name="Disabled" />
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
                                             <Viewbox>
@@ -156,8 +156,8 @@
                                     </ControlTemplate>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <Button x:Name="PART_Button"
                                         Grid.Column="1"
@@ -176,37 +176,40 @@
                                                    VerticalContentAlignment="Center"
                                                    Style="{DynamicResource MaterialDesignDatePickerTextBox}"
 					    						   HorizontalAlignment="Stretch" />
-                                <Popup x:Name="PART_Popup" AllowsTransparency="True" 
+                                <Popup x:Name="PART_Popup" AllowsTransparency="True"
                                        Placement="Custom"
                                        CustomPopupPlacementCallback="{x:Static wpf:CustomPopupPlacementCallbackHelper.LargePopupCallback}"
                                        PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"
-					    			   PopupAnimation="Fade"  />
+					    			   PopupAnimation="Fade" />
                             </Grid>
                         </Border>
-                        <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}" />
                     </Grid>
                     <ControlTemplate.Triggers>
-						<Trigger Property="IsEnabled" Value="false">
-							<Setter Property="Opacity" TargetName="border" Value="0.56"/>
-						</Trigger>
-						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
-						</Trigger>
-						<Trigger Property="IsKeyboardFocusWithin" Value="true">
-                            <Setter TargetName="Underline" Property="IsActive" Value="True"/>
-							<Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
-						</Trigger>
-						<Trigger Property="Validation.HasError" Value="true">
-							<Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
-                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
-						</Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" TargetName="border" Value="0.56" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="true">
+                            <Setter TargetName="Underline" Property="IsActive" Value="True" />
+                            <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}" />
+                        </Trigger>
+                        <Trigger Property="Validation.HasError" Value="true">
+                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}" />
+                        </Trigger>
+                        <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
+                            <Setter TargetName="border" Property="Margin" Value="0 12 0 0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style x:Key="MaterialDesignFloatingHintDatePicker" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignDatePicker}">
-        <Setter Property="wpf:HintAssist.IsFloating" Value="True"/>
+        <Setter Property="wpf:HintAssist.IsFloating" Value="True" />
     </Style>
 </ResourceDictionary>
