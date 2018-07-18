@@ -45,7 +45,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
-        <Setter Property="wpf:ButtonProgressAssist.IsIndicatorVisible" Value="True" />
+        <Setter Property="wpf:ButtonProgressAssist.IsIndicatorVisible" Value="False" />
         <Setter Property="wpf:ButtonProgressAssist.Opacity" Value=".4" />
         <Setter Property="Template">
             <Setter.Value>

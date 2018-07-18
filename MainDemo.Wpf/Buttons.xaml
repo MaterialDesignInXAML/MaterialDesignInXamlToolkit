@@ -266,6 +266,7 @@
                             HorizontalAlignment="Left"
                             materialDesign:ButtonProgressAssist.Value="{Binding DismissButtonProgress}"
                             materialDesign:ButtonProgressAssist.Opacity="0.4"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                             Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock>DISMISS</TextBlock>
