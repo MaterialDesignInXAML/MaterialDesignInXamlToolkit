@@ -14,7 +14,7 @@ namespace MaterialDesignThemes.Wpf.Converters
         {
             if (value is DateTime)
                 return value;
-            return DateTime.Now.Date;
+            return DateTime.Now;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
