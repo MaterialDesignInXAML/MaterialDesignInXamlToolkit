@@ -99,7 +99,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static bool GetIsIndicatorVisible(DependencyObject element)
         {
-            return (bool)element.GetValue(IndicatorForegroundProperty);
+            return (bool)element.GetValue(IsIndicatorVisibleProperty);
         }
     }
 }
