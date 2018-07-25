@@ -30,12 +30,12 @@ namespace MaterialDesignThemes.Wpf.Transitions
         }
 
         public static readonly DependencyProperty RunHintProperty = DependencyProperty.Register(
-            "RunHint", typeof(TransitioningContentRunHint), typeof(TransitioningContent), new PropertyMetadata(TransitioningContentRunHint.All));
+            nameof(RunHint), typeof(TransitioningContentRunHint), typeof(TransitioningContent), new PropertyMetadata(TransitioningContentRunHint.All));
 
         public TransitioningContentRunHint RunHint
         {
-            get { return (TransitioningContentRunHint)GetValue(RunHintProperty); }
-            set { SetValue(RunHintProperty, value); }
+            get => (TransitioningContentRunHint)GetValue(RunHintProperty);
+            set => SetValue(RunHintProperty, value);
         }
 
         private void Run(TransitioningContentRunHint requiredHint)
