@@ -13,7 +13,7 @@
         <ControlTemplate.Resources>
             <converters:ShadowEdgeConverter x:Key="ShadowEdgeConverter" />
         </ControlTemplate.Resources>
-        <Grid Margin="{TemplateBinding Margin}" Background="Transparent">
+        <Grid Background="Transparent">
             <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                 <AdornerDecorator.OpacityMask>
                     <MultiBinding Converter="{StaticResource ShadowEdgeConverter}">
