@@ -29,17 +29,17 @@
         <Setter Property="ContextMenu">
             <Setter.Value>
                 <ContextMenu>
-                    <MenuItem Header="_Cut" Command="Cut">
+                    <MenuItem Command="Cut">
                         <MenuItem.Icon>
                             <wpf:PackIcon Kind="ContentCut"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Copy" Command="Copy">
+                    <MenuItem Command="Copy">
                         <MenuItem.Icon>
                             <wpf:PackIcon Kind="ContentCopy" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Paste" Command="Paste">
+                    <MenuItem Command="Paste">
                         <MenuItem.Icon>
                             <wpf:PackIcon Kind="ContentPaste"/>
                         </MenuItem.Icon>
@@ -62,7 +62,8 @@
                                 <Grid x:Name="textFieldGrid"
                                       Margin="{TemplateBinding Padding}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      MinWidth="1">
                                     <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
                                                   HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
