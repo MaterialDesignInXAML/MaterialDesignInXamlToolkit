@@ -56,6 +56,8 @@
                             <wpf:SmartHint x:Name="Hint"
                                            FontSize="{TemplateBinding FontSize}"
                                            UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                           FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
+                                           FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"
                                            Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                            HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                            HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -167,7 +169,7 @@
                                         Margin="4 0 0 -3"
                                         Grid.Row="0"
                                         Template="{StaticResource DropDownButtonTemplate}" Padding="0"
-					    				Height="17" />
+                                        Height="17" />
                                 <DatePickerTextBox x:Name="PART_TextBox"
                                                    Grid.Column="0"
                                                    Focusable="{TemplateBinding Focusable}"
@@ -175,12 +177,12 @@
                                                    Grid.Row="0"
                                                    VerticalContentAlignment="Center"
                                                    Style="{DynamicResource MaterialDesignDatePickerTextBox}"
-					    						   HorizontalAlignment="Stretch" />
-                                <Popup x:Name="PART_Popup" AllowsTransparency="True"
+                                                   HorizontalAlignment="Stretch" />
+                                <Popup x:Name="PART_Popup" AllowsTransparency="True" 
                                        Placement="Custom"
                                        CustomPopupPlacementCallback="{x:Static wpf:CustomPopupPlacementCallbackHelper.LargePopupCallback}"
                                        PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"
-					    			   PopupAnimation="Fade" />
+                                       PopupAnimation="Fade"  />
                             </Grid>
                         </Border>
                         <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}" />
