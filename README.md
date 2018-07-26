@@ -21,13 +21,13 @@ Comprehensive and easy to use Material Design theme and control library for the 
 [![NuGet-Themes](https://img.shields.io/nuget/v/MaterialDesignThemes.svg?label=NuGet:%20Themes&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](https://img.shields.io/nuget/vpre/MaterialDesignThemes.svg?label=NuGet:%20Themes%20(CI)&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](https://img.shields.io/nuget/vpre/MaterialDesignColors.svg?label=NuGet:%20Colours&style=flat-square)](https://www.nuget.org/packages/MaterialDesignColors/)
-[![Issues](https://img.shields.io/github/issues/ButchersBoy/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues)
+[![Issues](https://img.shields.io/github/issues/MaterialDesignInXAML/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues)
 [![Twitter](https://img.shields.io/badge/twitter-%40james__willock-55acee.svg?style=flat-square)](https://twitter.com/James_Willock)
  
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Getting Started
 
-* Checkout the [Super Quick Start](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Super-Quick-Start)
-* Or, the more comprehensive [Starting Guide](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Getting-Started) guide.
+* Checkout the [Super Quick Start](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Super-Quick-Start)
+* Or, the more comprehensive [Starting Guide](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Getting-Started) guide.
 * Or, watch the [Material Design In XAML Toolkit An Introduction](https://www.youtube.com/watch?v=-n5yeEOsbCk) video.
 * Take 5 minutes to download the source from right here and run up the two demo projects in the solution.
 
