@@ -8,9 +8,9 @@ nuget NSubstitute ~> 2.0
 nuget RhinoMocks 3.6.1
 nuget Shouldly ~> 2.8
 nuget xunit ~> 2.2
-nuget ShowMeTheXAML ~> 1.0.9
-nuget ShowMeTheXAML.AvalonEdit ~> 1.0.9
-nuget ShowMeTheXAML.MSBuild ~> 1.0.9
+nuget ShowMeTheXAML ~> 1.0.10
+nuget ShowMeTheXAML.AvalonEdit ~> 1.0.10
+nuget ShowMeTheXAML.MSBuild ~> 1.0.10
 
 github ControlzEx/ControlzEx:e687c6ac4279c4e513b7ef9a75622411350db874 src/ControlzEx/PopupEx.cs
 github ControlzEx/ControlzEx:e687c6ac4279c4e513b7ef9a75622411350db874 src/ControlzEx/PackIconBase.cs

@@ -58,4 +58,4 @@
   - path: '**\MaterialDesignThemes.*.nupkg'
   - path: bin\**\*.*
 
-  version: 2.4.0.{build}
+  version: 2.4.1.{build}
