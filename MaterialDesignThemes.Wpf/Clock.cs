@@ -127,7 +127,7 @@ namespace MaterialDesignThemes.Wpf
 		}
 
 	    public static readonly DependencyProperty Is24HoursProperty = DependencyProperty.Register(
-            nameof(Is24Hours), typeof (bool), typeof (Clock), new PropertyMetadata(default(bool)));
+            nameof(Is24Hours), typeof (bool), typeof (Clock), new PropertyMetadata(default(bool), Is24HoursPropertyChangedCallback));
 
 	    public bool Is24Hours
 	    {
@@ -135,8 +135,12 @@ namespace MaterialDesignThemes.Wpf
 	        set { SetValue(Is24HoursProperty, value); }
 	    }
 
+        private static void Is24HoursPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            ((Clock)dependencyObject).GenerateButtons();
+        }
 
-		public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(
+        public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(
             nameof(DisplayMode), typeof (ClockDisplayMode), typeof (Clock), new FrameworkPropertyMetadata(ClockDisplayMode.Hours, DisplayModePropertyChangedCallback));
 
 	    private static void DisplayModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
@@ -261,7 +265,8 @@ namespace MaterialDesignThemes.Wpf
 	        var hoursCanvas = GetTemplateChild(HoursCanvasPartName) as Canvas;
 	        if (hoursCanvas != null)
 	        {
-	            if (Is24Hours)
+                DeleteClockItemButtons(hoursCanvas);
+                if (Is24Hours)
 	            {
                     GenerateButtons(hoursCanvas, Enumerable.Range(13, 12).ToList(), ButtonRadiusRatio,
                         new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "00");
@@ -274,10 +279,13 @@ namespace MaterialDesignThemes.Wpf
 	        }
 
 	        var minutesCanvas = GetTemplateChild(MinutesCanvasPartName) as Canvas;
-	        if (minutesCanvas != null)
-	            GenerateButtons(minutesCanvas, Enumerable.Range(1, 60).ToList(), ButtonRadiusRatio,
+            if (minutesCanvas != null)
+            {
+                DeleteClockItemButtons(minutesCanvas);
+                GenerateButtons(minutesCanvas, Enumerable.Range(1, 60).ToList(), ButtonRadiusRatio,
                     new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Minutes, Is24Hours),
-	                i => ((i/5.0)%1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle", "0");
+                    i => ((i / 5.0) % 1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle", "0");
+            }
 	    }
 
 	    private void MinuteReadOutPartNameOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -322,6 +330,18 @@ namespace MaterialDesignThemes.Wpf
 			}
         }
         
+        private void DeleteClockItemButtons(Panel canvas)
+        {
+            if (canvas == null)
+                return;
+
+            var clockItemButtons = canvas.Children.OfType<ClockItemButton>().ToList();
+            if (clockItemButtons == null || clockItemButtons.Count == 0)
+                return;
+
+            foreach (var i in clockItemButtons)
+                canvas.Children.Remove(i);
+        }
 
         private void ClockItemDragCompletedHandler(object sender, DragCompletedEventArgs e)
 		{
