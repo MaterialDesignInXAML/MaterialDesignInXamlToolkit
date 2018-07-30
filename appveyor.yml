@@ -23,7 +23,7 @@
   - ps: nuget pack MaterialDesignThemes.nuspec -Version $env:APPVEYOR_BUILD_VERSION
   artifacts:
   - path: '**\MaterialDesignThemes.*.nupkg'
-  - path: 'MainDemo.Wpf\bin\**\*.*'
+  - path: bin\**\*.*
 
   version: 2.4.1-ci{build}
   deploy:
