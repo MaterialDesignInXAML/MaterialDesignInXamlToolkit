@@ -613,13 +613,6 @@
                         <controlzEx:PopupEx PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"
                                             x:Name="PART_Popup"
                                             Style="{TemplateBinding PopupStyle}">
-                            <controlzEx:PopupEx.Resources>
-                                <ResourceDictionary>
-                                    <ResourceDictionary.MergedDictionaries>
-                                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                                    </ResourceDictionary.MergedDictionaries>
-                                </ResourceDictionary>
-                            </controlzEx:PopupEx.Resources>
                             <local:Card x:Name="PART_PopupContentElement" 
                                         Margin="{TemplateBinding DialogMargin}"
                                         local:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth)}"
