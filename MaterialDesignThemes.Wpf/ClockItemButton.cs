@@ -59,6 +59,8 @@ namespace MaterialDesignThemes.Wpf
 			private set { SetValue(YPropertyKey, value); }
 		}
 
+        public int Value { get; set; }
+
 		public override void OnApplyTemplate()
 		{
 			if (_thumb != null)

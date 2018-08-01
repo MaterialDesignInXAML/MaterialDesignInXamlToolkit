@@ -53,7 +53,11 @@ namespace MaterialDesignThemes.Wpf
 		private TextBlock _hourReadOutPartName;
 		private TextBlock _minuteReadOutPartName;
 
-		static Clock()
+        private List<ClockItemButton> _buttonsHours12 = new List<ClockItemButton>();
+        private List<ClockItemButton> _buttonsHours24 = new List<ClockItemButton>();
+        private List<ClockItemButton> _buttonsMinutes = new List<ClockItemButton>();
+
+        static Clock()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof (Clock), new FrameworkPropertyMetadata(typeof (Clock)));
 		}
@@ -137,7 +141,21 @@ namespace MaterialDesignThemes.Wpf
 
         private static void Is24HoursPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            ((Clock)dependencyObject).GenerateButtons();
+            var clock = dependencyObject as Clock;
+            if (clock == null)
+                return;
+
+            var hoursCanvas = clock.GetTemplateChild(HoursCanvasPartName) as Canvas;
+            if (hoursCanvas == null)
+                return;
+
+            clock.HideButtons(hoursCanvas);
+            var isCheckedConverter = new ClockItemIsCheckedConverter(() => clock.Time, ClockDisplayMode.Hours, clock.Is24Hours);
+            var is24 = Convert.ToBoolean(dependencyPropertyChangedEventArgs.NewValue);
+            if (is24)
+                clock.ShowButtons(hoursCanvas, clock._buttonsHours24, isCheckedConverter);
+            else
+                clock.ShowButtons(hoursCanvas, clock._buttonsHours12, isCheckedConverter);
         }
 
         public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(
@@ -262,29 +280,39 @@ namespace MaterialDesignThemes.Wpf
 
 	    private void GenerateButtons()
 	    {
-	        var hoursCanvas = GetTemplateChild(HoursCanvasPartName) as Canvas;
+            IValueConverter isCheckedConverter;
+
+            var hoursCanvas = GetTemplateChild(HoursCanvasPartName) as Canvas;
 	        if (hoursCanvas != null)
 	        {
-                DeleteClockItemButtons(hoursCanvas);
+                HideButtons(hoursCanvas);
+
+                _buttonsHours24.Clear();
+                _buttonsHours12.Clear();
+
+                // Create buttons for 24 hours mode
+                GenerateButtons(hoursCanvas, Enumerable.Range(13, 12).ToList(), _buttonsHours24, ButtonRadiusRatio, i => "ButtonStyle", "00");
+                GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), _buttonsHours24, ButtonRadiusInnerRatio, i => "ButtonStyle", "#");
+                // Create buttons for 12 hours mode
+                GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), _buttonsHours12, ButtonRadiusRatio, i => "ButtonStyle", "0");
+
+                isCheckedConverter = new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours);
                 if (Is24Hours)
-	            {
-                    GenerateButtons(hoursCanvas, Enumerable.Range(13, 12).ToList(), ButtonRadiusRatio,
-                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "00");
-                    GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), ButtonRadiusInnerRatio,
-                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "#");
-                }
+                    ShowButtons(hoursCanvas, _buttonsHours24, isCheckedConverter);
                 else
-	                GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), ButtonRadiusRatio,
-	                    new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "0");
+                    ShowButtons(hoursCanvas, _buttonsHours12, isCheckedConverter);
 	        }
 
 	        var minutesCanvas = GetTemplateChild(MinutesCanvasPartName) as Canvas;
             if (minutesCanvas != null)
             {
-                DeleteClockItemButtons(minutesCanvas);
-                GenerateButtons(minutesCanvas, Enumerable.Range(1, 60).ToList(), ButtonRadiusRatio,
-                    new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Minutes, Is24Hours),
+                HideButtons(minutesCanvas);
+                _buttonsMinutes.Clear();
+                // Create buttons for minutes
+                GenerateButtons(minutesCanvas, Enumerable.Range(1, 60).ToList(), _buttonsMinutes, ButtonRadiusRatio,
                     i => ((i / 5.0) % 1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle", "0");
+                isCheckedConverter = new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Minutes, Is24Hours);
+                ShowButtons(minutesCanvas, _buttonsMinutes, isCheckedConverter);
             }
 	    }
 
@@ -298,10 +326,10 @@ namespace MaterialDesignThemes.Wpf
 			SetCurrentValue(Clock.DisplayModeProperty, ClockDisplayMode.Hours);
 		}
 
-		private void GenerateButtons(Panel canvas, ICollection<int> range, double radiusRatio, IValueConverter isCheckedConverter, Func<int, string> stylePropertySelector,
-            string format)
+		private void GenerateButtons(Panel canvas, ICollection<int> range, ICollection<ClockItemButton> clockItemButtons, 
+            double radiusRatio, Func<int, string> stylePropertySelector, string format)
 		{
-			var anglePerItem = 360.0 / range.Count;
+            var anglePerItem = 360.0 / range.Count;
 			var radiansPerItem = anglePerItem * (Math.PI / 180);
 
 			//nothing fancy with sizing/measuring...we are demanding a height
@@ -320,27 +348,44 @@ namespace MaterialDesignThemes.Wpf
 
 			    button.CentreX = _centreCanvas.X + opposite;
                 button.CentreY = _centreCanvas.Y - adjacent;
-
-				button.SetBinding(ToggleButton.IsCheckedProperty, GetBinding("Time", converter: isCheckedConverter, converterParameter: i));
+                
 				button.SetBinding(Canvas.LeftProperty, GetBinding("X", button));
 				button.SetBinding(Canvas.TopProperty, GetBinding("Y", button));
 
-				button.Content = (i == 60 ? 0 : (i == 24 ? 0 : i)).ToString(format);
-				canvas.Children.Add(button);
+                // Save integer value associated with button
+                button.Value = i;
+                button.Content = (i == 60 ? 0 : (i == 24 ? 0 : i)).ToString(format);
+                clockItemButtons.Add(button);
 			}
         }
         
-        private void DeleteClockItemButtons(Panel canvas)
+        private void HideButtons(Panel canvas)
         {
             if (canvas == null)
                 return;
 
-            var clockItemButtons = canvas.Children.OfType<ClockItemButton>().ToList();
-            if (clockItemButtons == null || clockItemButtons.Count == 0)
+            var buttons = canvas.Children.OfType<ClockItemButton>().ToList();
+            if (buttons == null || buttons.Count == 0)
                 return;
 
-            foreach (var i in clockItemButtons)
-                canvas.Children.Remove(i);
+            foreach (var button in buttons)
+                canvas.Children.Remove(button);
+        }
+
+        private void ShowButtons(Canvas canvas, ICollection<ClockItemButton> buttons, IValueConverter isCheckedConverter)
+        {
+            if (canvas == null)
+                return;
+
+            if (buttons == null || buttons.Count == 0)
+                return;
+
+            foreach (var button in buttons)
+            {
+                // Restore binding for IsChecked property
+                button.SetBinding(ToggleButton.IsCheckedProperty, GetBinding("Time", converter: isCheckedConverter, converterParameter: button.Value));
+                canvas.Children.Add(button);
+            }
         }
 
         private void ClockItemDragCompletedHandler(object sender, DragCompletedEventArgs e)
