@@ -24,6 +24,7 @@
   artifacts:
   - path: '**\MaterialDesignThemes.*.nupkg'
   - path: bin\**\*.*
+    type: zip
 
   version: 2.4.1-ci{build}
   deploy:
