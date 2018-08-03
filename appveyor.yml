@@ -55,8 +55,9 @@
     verbosity: minimal
   after_build:
   - ps: nuget pack MaterialDesignThemes.nuspec -Version $env:APPVEYOR_BUILD_VERSION
+  - ps: 7z a Demo.$env:APPVEYOR_BUILD_VERSION.zip MainDemo.Wpf\bin\**\*.*
   artifacts:
   - path: '**\MaterialDesignThemes.*.nupkg'
-  - path: bin\**\*.*
+  - path: Demo.*.zip
 
   version: 2.4.1.{build}
