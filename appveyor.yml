@@ -24,7 +24,7 @@
   - ps: 7z a Demo.2.4.1.$env:APPVEYOR_BUILD_NUMBER.zip MainDemo.Wpf\bin\**\*.*
   artifacts:
   - path: '**\MaterialDesignThemes.*.nupkg'
-  - path: Demo.2.4.1.$env:APPVEYOR_BUILD_NUMBER.zip
+  - path: Demo.*.zip
 
   version: 2.4.1-ci{build}
   deploy:
