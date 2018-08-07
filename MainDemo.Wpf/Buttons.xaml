@@ -224,6 +224,15 @@
                             Click="CountingButton_OnClick">CLICK ME!</Button>
                 </materialDesign:Badged>
             </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="buttons_20180807" Margin="5 12 4 5">
+                <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Width="150"
+                        ToolTip="Resource name: MaterialDesignRaisedLightButton"
+                        Content="{Binding OrClickMeCount}"
+                        ContentStringFormat="OR CLICK ME {0}"
+                        Command="{Binding IncrementOrClickMeCountCommand }"
+                        />
+            </smtx:XamlDisplay>
+
             <smtx:XamlDisplay Key="buttons_20" Margin="0 12 4 5">
                 <Button Content="{materialDesign:PackIcon AirplaneTakeoff}" ToolTip="Icon" />
             </smtx:XamlDisplay>
