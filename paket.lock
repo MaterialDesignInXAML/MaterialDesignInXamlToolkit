@@ -4,10 +4,12 @@ NUGET
     AvalonEdit (5.0.4)
     Castle.Core (4.2.1)
     Dragablz (0.0.3.197)
-    MahApps.Metro (1.5)
+    MahApps.Metro (1.6.5)
     Microsoft.NETCore.Platforms (2.0.1) - restriction: == net45
-    Moq (4.7.145)
+    Moq (4.8.1)
       Castle.Core (>= 4.2.1)
+      System.Threading.Tasks.Extensions (>= 4.3)
+      System.ValueTuple (>= 4.3)
     NETStandard.Library (2.0.1) - restriction: == net45
       Microsoft.NETCore.Platforms (>= 1.1)
       System.Runtime.InteropServices.RuntimeInformation (>= 4.3)
@@ -21,6 +23,16 @@ NUGET
     ShowMeTheXAML.MSBuild (1.0.10)
       ShowMeTheXAML (>= 1.0.10 < 1.1)
     System.Runtime.InteropServices.RuntimeInformation (4.3) - restriction: == net45
+	System.Collections (4.3)
+    System.Runtime (4.3)
+    System.Runtime.InteropServices.RuntimeInformation (4.3)
+    System.Threading.Tasks (4.3)
+    System.Threading.Tasks.Extensions (4.4)
+      System.Collections (>= 4.3)
+      System.Runtime (>= 4.3)
+      System.Threading.Tasks (>= 4.3)
+    System.ValueTuple (4.4)
+      NETStandard.Library (>= 1.6.1)
     xunit (2.3.1)
       xunit.analyzers (>= 0.7)
       xunit.assert (2.3.1)
@@ -28,15 +40,15 @@ NUGET
     xunit.abstractions (2.0.1)
     xunit.analyzers (0.8)
     xunit.assert (2.3.1)
-      NETStandard.Library (>= 1.6.1) - restriction: == net45
+      NETStandard.Library (>= 1.6.1)
     xunit.core (2.3.1)
       xunit.extensibility.core (2.3.1)
       xunit.extensibility.execution (2.3.1)
     xunit.extensibility.core (2.3.1)
-      NETStandard.Library (>= 1.6.1) - restriction: == net45
+      NETStandard.Library (>= 1.6.1)
       xunit.abstractions (>= 2.0.1)
     xunit.extensibility.execution (2.3.1)
-      NETStandard.Library (>= 1.6.1) - restriction: == net45
+      NETStandard.Library (>= 1.6.1)
       xunit.extensibility.core (2.3.1)
 GITHUB
   remote: ControlzEx/ControlzEx
