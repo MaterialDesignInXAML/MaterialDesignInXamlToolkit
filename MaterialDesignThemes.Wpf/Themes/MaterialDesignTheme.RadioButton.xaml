@@ -3,7 +3,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="MaterialDesignTheme.ValidationErrorTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
     <Style x:Key="OptionMarkFocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -102,31 +102,116 @@
                             <Setter Property="Opacity" TargetName="Graphic" Value="0.56"/>
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource ValidationErrorBrush}" />
-                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource ValidationErrorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
-	<Style x:Key="MaterialDesignLightRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}">
-		<Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
-		<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
-		<Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}"/>
-	</Style>
- 
-	<Style x:Key="MaterialDesignDarkRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}">
-		<Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}"/>
-		<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}"/>
-		<Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
-	</Style>
-	
-	<Style x:Key="MaterialDesignAccentRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}">
-		<Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-		<Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
-		<Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
-		</Style>
+
+    <Style x:Key="MaterialDesignLightRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignDarkRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignAccentRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}">
+        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignUserForegroundRadioButton" TargetType="{x:Type RadioButton}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="Click">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="InteractionEllipse">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="48"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="InteractionEllipse">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="48"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="InteractionEllipse">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-24"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="InteractionEllipse">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-24"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="InteractionEllipse">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0.3"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Width="18" Height="18"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <Canvas Width="24" Height="24">
+                                <Path x:Name="Graphic"
+                                      Data="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" 
+                                      Fill="{TemplateBinding Foreground}" />
+                                <Ellipse x:Name="InteractionEllipse" Fill="{TemplateBinding Foreground}" Width="0" Height="0" Canvas.Top="12" Canvas.Left="12" Opacity="0" RenderTransformOrigin="0.5,0.5" >
+                                    <Ellipse.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+                            </Canvas>
+                        </Viewbox>
+                        <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="ButtonBase.Click">
+                            <BeginStoryboard Storyboard="{StaticResource Click}"/>
+                        </EventTrigger>
+                        <Trigger Property="HasContent" Value="true">
+                            <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}"/>
+                            <Setter Property="Padding" Value="4,2,0,0"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.26"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true"/>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Data" TargetName="Graphic" Value="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7Z" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter Property="Data" TargetName="Graphic" Value="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7Z" />
+                            <Setter Property="Opacity" TargetName="Graphic" Value="0.56"/>
+                        </Trigger>
+                        <Trigger Property="Validation.HasError" Value="true">
+                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource ValidationErrorBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>
