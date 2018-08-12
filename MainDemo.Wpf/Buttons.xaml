@@ -265,7 +265,6 @@
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             HorizontalAlignment="Left"
                             materialDesign:ButtonProgressAssist.Value="{Binding DismissButtonProgress}"
-                            materialDesign:ButtonProgressAssist.Opacity="0.4"
                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                             Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal">
@@ -286,12 +285,7 @@
                             materialDesign:ButtonProgressAssist.Value="-1"
                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                             materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                            materialDesign:ButtonProgressAssist.Opacity=".4">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock>Indeterminate</TextBlock>
-                            <materialDesign:PackIcon Margin="4 .5 0 0" Kind="Close" />
-                        </StackPanel>
-                    </Button>
+                            Content="Indeterminate" Margin="2,0"/>
                 </Grid>
             </smtx:XamlDisplay>
             <smtx:XamlDisplay Key="buttons_28">
