@@ -18,5 +18,7 @@
                 Style="{DynamicResource AccentedSquareButtonStyle}" />
         <controls:RangeSlider Margin="0 16 0 0" LowerValue="25" UpperValue="75" />
         <controls:RangeSlider Margin="0 16 0 0" LowerValue="25" UpperValue="75" Orientation="Vertical" Height="200"  />
+        <controls:NumericUpDown Margin="5"/>
+        <controls:NumericUpDown Culture="ar-EG" FlowDirection="RightToLeft" Margin="5"/>
     </StackPanel>
 </UserControl>
