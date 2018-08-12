@@ -8,6 +8,7 @@ nuget NSubstitute ~> 2.0
 nuget RhinoMocks 3.6.1
 nuget Shouldly ~> 2.8
 nuget xunit ~> 2.2
+nuget xunit.runner.visualstudio ~> 2.4
 nuget ShowMeTheXAML ~> 1.0.10
 nuget ShowMeTheXAML.AvalonEdit ~> 1.0.10
 nuget ShowMeTheXAML.MSBuild ~> 1.0.10
