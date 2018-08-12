@@ -7,6 +7,9 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="FocusVisual">
@@ -30,6 +33,8 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+        <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+        <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
@@ -40,6 +45,8 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
+        <Setter Property="wpf:ButtonProgressAssist.IsIndicatorVisible" Value="False" />
+        <Setter Property="wpf:ButtonProgressAssist.Opacity" Value=".4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
@@ -51,16 +58,21 @@
                                         BorderBrush="{TemplateBinding BorderBrush}"                                    
                                         x:Name="border"
                                         Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" />
-                                <Border HorizontalAlignment="Left" Background="{DynamicResource MaterialDesignBackground}" Opacity=".4">
-                                    <Border.Width>
-                                        <MultiBinding Converter="{StaticResource RangeLengthConverter}">
-                                            <Binding Path="(wpf:ButtonProgressAssist.Minimum)" RelativeSource="{RelativeSource TemplatedParent}" />
-                                            <Binding Path="(wpf:ButtonProgressAssist.Maximum)" RelativeSource="{RelativeSource TemplatedParent}" />
-                                            <Binding Path="(wpf:ButtonProgressAssist.Value)" RelativeSource="{RelativeSource TemplatedParent}" />
-                                            <Binding Path="ActualWidth" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}" />
-                                        </MultiBinding>
-                                    </Border.Width>
-                                </Border>
+                                <ProgressBar x:Name="ProgressBar" 
+                                             Style="{DynamicResource MaterialDesignLinearProgressBar}" 
+                                             Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
+                                             Maximum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Maximum)}"
+                                             Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorForeground)}"
+                                             Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
+                                             Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}"
+                                             IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}"
+                                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={StaticResource BooleanToVisibilityConverter}}"
+                                             Height="{TemplateBinding Height}"
+                                             Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth}"
+                                             Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
+                                             HorizontalAlignment="Left" 
+                                             VerticalAlignment="Center">
+                                </ProgressBar>
                             </Grid>
                         </AdornerDecorator>
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"     
@@ -194,6 +206,7 @@
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Width" Value="40" />
         <Setter Property="Height" Value="40" />
+        <Setter Property="wpf:ButtonProgressAssist.Opacity" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
@@ -211,7 +224,8 @@
                                      Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorForeground)}"
                                      Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
                                      Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}"
-                                     IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}" 
+                                     IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}"
+                                     Opacity="{Binding RelativeSource={RelativeSource TemplatedParent},  Path=(wpf:ButtonProgressAssist.Opacity)}"
                                      Margin="-8" 
                                      Width="{TemplateBinding Width, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
                                      Height="{TemplateBinding Height, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
