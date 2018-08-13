@@ -363,7 +363,8 @@
                 </smtx:XamlDisplay>
                 <smtx:XamlDisplay Key="buttons_33" Margin="0 5 8 8">
                     <ToggleButton Content="H" Style="{StaticResource MaterialDesignActionToggleButton}"
-                                  ToolTip="MaterialDesignActionToggleButton"/>
+                                  ToolTip="MaterialDesignActionToggleButton"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth3"/>
                 </smtx:XamlDisplay>
                 <smtx:XamlDisplay Key="buttons_34" Margin="0 5 8 8">
                     <!-- checkbox style same as toggle button -->
