@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>MaterialDesignColors</id>
-    <version>1.1.3-beta</version>
+    <version>1.1.4-beta</version>
     <title>Material Design Colors XAML Resources</title>
     <authors>James Willock</authors>
     <owners>James Willock</owners>
@@ -18,5 +18,5 @@
   <files>
     <file src="MaterialDesignColors.Wpf\bin\Release\MaterialDesignColors.dll" target="lib\net45" />
     <file src="MaterialDesignColors.Wpf\bin\Release\MaterialDesignColors.pdb" target="lib\net45" />
-  </files>  
+  </files>
 </package>

@@ -15,12 +15,13 @@
     <copyright>Copyright 2015 James Willock/Mulholland Software Ltd</copyright>
     <tags>WPF XAML WinRT Material Design Theme Colour Color UI UX</tags>
     <dependencies>
-      <dependency id="MaterialDesignColors" version="1.1.3" />    
-      <dependency id="MaterialDesignThemes" version="2.4.1" />    
-      <dependency id="MahApps.Metro" version="1.6.5" />    
+      <dependency id="MaterialDesignColors" version="1.1.*" />
     </dependencies>
   </metadata>
-  <files>    
-    <file src="MaterialDesignThemes.MahApps\bin\Release\MaterialDesignThemes.MahApps.dll" target="lib\net45" />
-  </files>    
+  <files>
+    <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.dll" target="lib\net45" />
+    <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.pdb" target="lib\net45" />
+    <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.xml" target="lib\net45" />
+    <file src="MaterialDesignThemes.Wpf\**\*.cs" target="src\net45" />
+  </files>
 </package>
