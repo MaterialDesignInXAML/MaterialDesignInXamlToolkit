@@ -14,7 +14,7 @@
     </Style>
 
     <Style TargetType="{x:Type wpf:DialogHost}">
-        <Setter Property="DialogMargin" Value="22" />
+        <Setter Property="DialogMargin" Value="35" />
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth5" />
         <Setter Property="PopupStyle" Value="{StaticResource MaterialDesignDialogHostPopup}" />
         <Setter Property="Template">
@@ -192,7 +192,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignEmbeddedDialogHost" TargetType="{x:Type wpf:DialogHost}">
-        <Setter Property="DialogMargin" Value="22" />
+        <Setter Property="DialogMargin" Value="35" />
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth5" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
