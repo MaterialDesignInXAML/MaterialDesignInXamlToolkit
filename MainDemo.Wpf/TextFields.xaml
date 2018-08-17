@@ -68,6 +68,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Common Fields</TextBlock>
         <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" />
@@ -367,6 +369,18 @@
                 <TextBox Style="{StaticResource MaterialDesignTextAreaTextBox}" Margin="32,0,0,0"
                          VerticalAlignment="Top" Height="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="This is a text area"
                          IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextAreaTextBoxEnabledComboBox}" />
+            </StackPanel>
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Password field box</TextBlock>
+        <smtx:XamlDisplay Key="fields_27" Grid.Row="17" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
+            <StackPanel>
+                <CheckBox x:Name="MaterialDesignPasswordFieldBoxPasswordBoxEnabledComboBox"
+                      IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>
+                <PasswordBox Style="{StaticResource MaterialDesignPasswordFieldBoxPasswordBox}"
+                             VerticalAlignment="Top"
+                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignPasswordFieldBoxPasswordBoxEnabledComboBox}"
+                             materialDesign:HintAssist.Hint="Floating hint in a password box" />
             </StackPanel>
         </smtx:XamlDisplay>
     </Grid>
