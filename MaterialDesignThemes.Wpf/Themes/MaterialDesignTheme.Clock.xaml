@@ -358,10 +358,10 @@
                             </Canvas>
                             <RadioButton Content="AM" GroupName="Meridien" HorizontalAlignment="Left" Height="47.333" Margin="31.666,0,0,37.667" Grid.Row="1" VerticalAlignment="Bottom" Width="47.333" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButton}"
                                          x:Name="AMRadioButton"
-                                         IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPostMeridiem, Converter={StaticResource NotConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                         IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPostMeridiem, Converter={StaticResource NotConverter}}" />
                             <RadioButton Content="PM" GroupName="Meridien" HorizontalAlignment="Right" Height="47.333" Margin="0,0,31.667,37.667" Grid.Row="1" VerticalAlignment="Bottom" Width="47.333" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButton}"
                                          x:Name="PMRadioButton"
-                                         IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPostMeridiem, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                         IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPostMeridiem}" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
