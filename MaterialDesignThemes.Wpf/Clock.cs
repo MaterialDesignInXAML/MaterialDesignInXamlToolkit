@@ -114,11 +114,11 @@ namespace MaterialDesignThemes.Wpf
 		private static void IsPostMeridiemPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
 		{
 			var clock = (Clock)dependencyObject;
-			if (clock.IsPostMeridiem && clock.Time.Hour < 12)
-				clock.Time = new DateTime(clock.Time.Year, clock.Time.Month, clock.Time.Day, clock.Time.Hour + 12, clock.Time.Minute, clock.Time.Second);
-			else if (!clock.IsPostMeridiem && clock.Time.Hour >= 12)
-				clock.Time = new DateTime(clock.Time.Year, clock.Time.Month, clock.Time.Day, clock.Time.Hour - 12, clock.Time.Minute, clock.Time.Second);
-		}
+		    if (!clock.Is24Hours && clock.IsPostMeridiem && clock.Time.Hour < 12)
+		        clock.Time = new DateTime(clock.Time.Year, clock.Time.Month, clock.Time.Day, clock.Time.Hour + 12, clock.Time.Minute, clock.Time.Second);
+		    else if (!clock.Is24Hours && !clock.IsPostMeridiem && clock.Time.Hour >= 12)
+		        clock.Time = new DateTime(clock.Time.Year, clock.Time.Month, clock.Time.Day, clock.Time.Hour - 12, clock.Time.Minute, clock.Time.Second);
+        }
 
 		public bool IsPostMeridiem
 		{
@@ -391,7 +391,7 @@ namespace MaterialDesignThemes.Wpf
             clock.IsMiddayHour = clock.Time.Hour == 12;
         }
 
-        private BindingBase GetBinding(string propertyName, object owner = null, IValueConverter converter = null, object converterParameter = null)
+	    private BindingBase GetBinding(string propertyName, object owner = null, IValueConverter converter = null, object converterParameter = null)
 		{
 			var result = new Binding(propertyName) {Source = owner ?? this, Converter = converter, ConverterParameter = converterParameter};
 			return result;

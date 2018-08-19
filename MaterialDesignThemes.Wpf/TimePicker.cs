@@ -413,8 +413,8 @@ namespace MaterialDesignThemes.Wpf
 			_clock.AddHandler(Clock.ClockChoiceMadeEvent, new ClockChoiceMadeEventHandler(ClockChoiceMadeHandler));
             _clock.SetBinding(ForegroundProperty, GetBinding(ForegroundProperty));
 			_clock.SetBinding(StyleProperty, GetBinding(ClockStyleProperty));
-			_clock.SetBinding(Clock.TimeProperty, GetBinding(SelectedTimeProperty, new NullableDateTimeToCurrentDateConverter()));
-		    _clock.SetBinding(Clock.Is24HoursProperty, GetBinding(Is24HoursProperty));
+		    _clock.SetBinding(Clock.TimeProperty, GetBinding(SelectedTimeProperty, new NullableDateTimeToCurrentDateConverter()));
+            _clock.SetBinding(Clock.Is24HoursProperty, GetBinding(Is24HoursProperty));
 			_clockHostContentControl.SetBinding(StyleProperty, GetBinding(ClockHostContentControlStyleProperty));
 		}
 
