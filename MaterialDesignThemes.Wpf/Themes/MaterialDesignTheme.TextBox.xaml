@@ -81,7 +81,7 @@
                                                    />
                                 </Grid>
                             </Border>
-                            <Line x:Name="DashedLine" VerticalAlignment="Bottom" Visibility="Hidden"
+                            <Line x:Name="DashedLine" VerticalAlignment="Bottom" Visibility="Collapsed"
                                   StrokeThickness="1.25" StrokeDashArray="1,2.5" StrokeDashCap="Round"
                                   X1="0" X2="{Binding ActualWidth, ElementName=border}" Y1="0" Y2="0" 
                                   Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />
