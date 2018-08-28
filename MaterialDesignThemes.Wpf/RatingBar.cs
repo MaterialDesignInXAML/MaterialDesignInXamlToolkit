@@ -64,14 +64,40 @@ namespace MaterialDesignThemes.Wpf
 
         private static void ValuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            foreach (var button in ((RatingBar) dependencyObject).RatingButtons)
+            var ratingBar = (RatingBar)dependencyObject;
+            foreach (var button in ratingBar.RatingButtons)
                 button.IsWithinSelectedValue = button.Value <= (int)dependencyPropertyChangedEventArgs.NewValue;
+            OnValueChanged(ratingBar, dependencyPropertyChangedEventArgs);
         }
 
         public int Value
         {
             get { return (int) GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
+        }
+
+        public static readonly RoutedEvent ValueChangedEvent =
+            EventManager.RegisterRoutedEvent(
+                nameof(Value),
+                RoutingStrategy.Bubble,
+                typeof(RoutedPropertyChangedEventHandler<int>),
+                typeof(RatingBar));
+
+        public event RoutedPropertyChangedEventHandler<int> ValueChanged
+        {
+            add => AddHandler(ValueChangedEvent, value);
+            remove => RemoveHandler(ValueChangedEvent, value);
+        }
+
+        private static void OnValueChanged(
+            DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var instance = (RatingBar)d;
+            var args = new RoutedPropertyChangedEventArgs<int>(
+                    (int)e.OldValue,
+                    (int)e.NewValue) 
+                { RoutedEvent = ValueChangedEvent };
+            instance.RaiseEvent(args);
         }
 
         public ReadOnlyObservableCollection<RatingBarButton> RatingButtons => _ratingButtons;
