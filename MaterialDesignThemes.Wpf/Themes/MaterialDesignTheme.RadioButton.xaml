@@ -14,6 +14,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -23,6 +24,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style x:Key="MaterialDesignRadioButton" TargetType="{x:Type RadioButton}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -219,7 +221,7 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource MaterialDesignFocusVisual}"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="{StaticResource SecondaryAccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
         <Setter Property="MinWidth" Value="80" />
@@ -228,17 +230,15 @@
         <Setter Property="TextBlock.FontSize" Value="14"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="TextBlock.FontWeight" Value="Medium" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
-
                     <Grid SnapsToDevicePixels="true">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Border Background="{TemplateBinding Background}" x:Name="border">
+                        <Border Background="{TemplateBinding Background}">
                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -261,5 +261,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>
