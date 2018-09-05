@@ -186,6 +186,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.Stepper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.TextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -271,6 +275,7 @@
     <Compile Include="ColorZoneAssist.cs" />
     <Compile Include="ComboBoxAssist.cs" />
     <Compile Include="ComboBoxPopup.cs" />
+    <Compile Include="Converters\BooleanOrConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BrushRoundConverter.cs" />
     <Compile Include="Converters\BrushToRadialGradientBrushConverter.cs" />
@@ -323,6 +328,7 @@
     <Compile Include="HintProxyFabric.TextBox.cs" />
     <Compile Include="HintProxyFabric.ComboBox.cs" />
     <Compile Include="HintProxyFabric.cs" />
+    <Compile Include="HorizontalStepperHeaderTemplateSelector.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
     <Compile Include="ISnackbarMessageQueue.cs" />
@@ -333,6 +339,12 @@
     <Compile Include="Palette.cs" />
     <Compile Include="Plane3D.cs" />
     <Compile Include="ScaleHost.cs" />
+    <Compile Include="Step.cs" />
+    <Compile Include="StepButtonBar.cs" />
+    <Compile Include="Stepper.cs" />
+    <Compile Include="StepperController.cs" />
+    <Compile Include="StepperStepViewModel.cs" />
+    <Compile Include="StepTitleHeader.cs" />
     <Compile Include="ScrollViewerAssist.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="Snackbar.cs" />

@@ -1,0 +1,502 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+
+    <converters:BooleanOrConverter x:Key="booleanOrConverter" />
+    <converters:NullableToVisibilityConverter x:Key="nullableToVisibilityConverter" />
+
+    <wpf:HorizontalStepperHeaderTemplateSelector x:Key="horizontalStepperHeaderTemplateSelector" />
+
+    <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignStepButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <AdornerDecorator>
+                            <AdornerDecorator.CacheMode>
+                                <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                            </AdornerDecorator.CacheMode>
+                            <Border Background="Transparent"
+                                    BorderThickness="0"
+                                    x:Name="border"
+                                    Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
+                            </Border>
+                        </AdornerDecorator>
+                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"     
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    Margin="0" Padding="0" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource MaterialDesignFlatButtonClick}" />
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource MaterialDesignFlatButtonClick}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsLinear, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type wpf:Stepper}}}" Value="False">
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="IsEnabled" Value="True" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=IsLinear, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type wpf:Stepper}}}" Value="True">
+                <Setter Property="Cursor" Value="Arrow" />
+                <Setter Property="IsEnabled" Value="False" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MaterialDesignStepperCircle" TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Width" Value="24" />
+        <Setter Property="TextBlock.FontSize" Value="12" />
+        <Setter Property="TextBlock.FontWeight" Value="Regular" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsActive}" Value="False">
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignStepperInactiveStep}" />
+                <Setter Property="TextBlock.Foreground" Value="#FFFFFFFF" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=IsActive}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter Property="TextBlock.Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MaterialDesignStepperSpaceLine" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}" />
+        <Setter Property="Margin" Value="0" />
+    </Style>
+
+    <Style x:Key="MaterialDesignHorizontalStepperSpaceLine" TargetType="{x:Type Border}" BasedOn="{StaticResource MaterialDesignStepperSpaceLine}">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Height" Value="1" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style x:Key="MaterialDesignVerticalStepperSpaceLine" TargetType="{x:Type Border}" BasedOn="{StaticResource MaterialDesignStepperSpaceLine}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Width" Value="1" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Style.Triggers>
+            <DataTrigger Value="False">
+                <DataTrigger.Binding>
+                    <MultiBinding Converter="{StaticResource booleanOrConverter}">
+                        <Binding Path="IsActive" />
+                        <Binding Path="NeedsSpacer" />
+                    </MultiBinding>
+                </DataTrigger.Binding>
+                <Setter Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+            <DataTrigger Value="True">
+                <DataTrigger.Binding>
+                    <MultiBinding Converter="{StaticResource booleanOrConverter}">
+                        <Binding Path="IsActive" />
+                        <Binding Path="NeedsSpacer" />
+                    </MultiBinding>
+                </DataTrigger.Binding>
+                <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type wpf:Stepper}">
+        <Style.Resources>
+            <DataTemplate DataType="{x:Type wpf:StepTitleHeader}">
+                <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Top">
+                    <TextBlock FontSize="14" FontWeight="Medium" Text="{Binding Path=FirstLevelTitle}" />
+                    <TextBlock FontSize="12" Text="{Binding Path=SecondLevelTitle}"
+                               Visibility="{Binding Path=SecondLevelTitle, Converter={StaticResource nullableToVisibilityConverter}}" />
+                </StackPanel>
+            </DataTemplate>
+            <Style x:Key="headerContentControlStyle" TargetType="{x:Type ContentControl}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsActive}" Value="False">
+                        <Setter Property="TextBlock.Foreground" Value="{DynamicResource MaterialDesignStepperInactiveStep}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=IsActive}" Value="True">
+                        <Setter Property="TextBlock.Foreground" Value="{DynamicResource MaterialDesignStepperActiveStep}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Storyboard x:Key="horizontalContentChangedStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3">
+                    <DoubleAnimation.EasingFunction>
+                        <SineEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                    <EasingDoubleKeyFrame Value="0.75" KeyTime="0:0:0.0" />
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                    <EasingDoubleKeyFrame Value="0.75" KeyTime="0:0:0.0" />
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseInOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="verticalContentShowStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3">
+                    <DoubleAnimation.EasingFunction>
+                        <SineEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.0" />
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="verticalContentHideStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.3">
+                    <DoubleAnimation.EasingFunction>
+                        <SineEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.0" />
+                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.3">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <SineEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="verticalContentShowStoryboardImmediately">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                    <!-- a very short delay to wait for the previous step to hide -->
+                    <DiscreteDoubleKeyFrame Value="1" KeyTime="0:0:0.005" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                    <!-- a very short delay to wait for the previous step to hide -->
+                    <DiscreteDoubleKeyFrame Value="1" KeyTime="0:0:0.005" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="verticalContentHideStoryboardImmediately">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                    <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                    <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="Layout" Value="Horizontal">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type wpf:Stepper}">
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="100*" />
+                                </Grid.RowDefinitions>
+                                <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0,0,0,1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True">
+                                    <ItemsControl HorizontalAlignment="Stretch" ItemsSource="{Binding Path=Controller.InternalSteps, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  ItemTemplateSelector="{StaticResource horizontalStepperHeaderTemplateSelector}" VerticalAlignment="Top">
+                                        <ItemsControl.Resources>
+                                            <DataTemplate x:Key="firstHorizontalStepHeaderTemplate" DataType="{x:Type wpf:StepperStepViewModel}">
+                                                <!-- header as button to switch steps in non-linear steppers -->
+                                                <Button Command="{x:Static wpf:Stepper.StepSelectedCommand}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignStepButton}">
+                                                    <Grid HorizontalAlignment="Stretch">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto" />
+                                                            <ColumnDefinition Width="100*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackPanel Margin="8,24,8,24" Orientation="Horizontal">
+                                                            <!-- circle -->
+                                                            <Border VerticalAlignment="Center" Style="{StaticResource MaterialDesignStepperCircle}">
+                                                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Number}" VerticalAlignment="Center" />
+                                                            </Border>
+                                                            <!-- header -->
+                                                            <ContentControl Content="{Binding Path=Step.Header}" Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource headerContentControlStyle}" />
+                                                        </StackPanel>
+                                                        <Border Grid.Column="1" Style="{StaticResource MaterialDesignHorizontalStepperSpaceLine}" />
+                                                    </Grid>
+                                                </Button>
+                                            </DataTemplate>
+                                            <DataTemplate x:Key="intermediateHorizontalStepHeaderTemplate" DataType="{x:Type wpf:StepperStepViewModel}">
+                                                <!-- header as button to switch steps in non-linear steppers -->
+                                                <Button Command="{x:Static wpf:Stepper.StepSelectedCommand}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignStepButton}">
+                                                    <Grid HorizontalAlignment="Stretch">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="100*" />
+                                                            <ColumnDefinition Width="auto" />
+                                                            <ColumnDefinition Width="100*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Border Style="{StaticResource MaterialDesignHorizontalStepperSpaceLine}" />
+                                                        <StackPanel Grid.Column="1" Margin="8,24,8,24" Orientation="Horizontal">
+                                                            <!-- circle -->
+                                                            <Border VerticalAlignment="Center" Style="{StaticResource MaterialDesignStepperCircle}">
+                                                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Number}" VerticalAlignment="Center" />
+                                                            </Border>
+                                                            <!-- header -->
+                                                            <ContentControl Content="{Binding Path=Step.Header}" Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource headerContentControlStyle}" />
+                                                        </StackPanel>
+                                                        <Border Grid.Column="2" Style="{StaticResource MaterialDesignHorizontalStepperSpaceLine}" />
+                                                    </Grid>
+                                                </Button>
+                                            </DataTemplate>
+                                            <DataTemplate x:Key="lastHorizontalStepHeaderTemplate" DataType="{x:Type wpf:StepperStepViewModel}">
+                                                <!-- header as button to switch steps in non-linear steppers -->
+                                                <Button Command="{x:Static wpf:Stepper.StepSelectedCommand}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignStepButton}">
+                                                    <Grid HorizontalAlignment="Stretch">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="100*" />
+                                                            <ColumnDefinition Width="auto" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Border Style="{StaticResource MaterialDesignHorizontalStepperSpaceLine}" />
+                                                        <StackPanel Grid.Column="1" Margin="8,24,8,24" Orientation="Horizontal">
+                                                            <!-- circle -->
+                                                            <Border VerticalAlignment="Center" Style="{StaticResource MaterialDesignStepperCircle}">
+                                                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Number}" VerticalAlignment="Center" />
+                                                            </Border>
+                                                            <!-- header -->
+                                                            <ContentControl Content="{Binding Path=Step.Header}" Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource headerContentControlStyle}" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.Resources>
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <UniformGrid FlowDirection="LeftToRight" IsItemsHost="True" Rows="1" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                </Border>
+                                <!-- content -->
+                                <!-- removed the ScrollViewer due to strange behaviour after switching the steps -->
+                                <ContentControl x:Name="PART_horizontalContent" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                    Content="{Binding Path=Controller.ActiveStepContent, RelativeSource={RelativeSource TemplatedParent}}"
+                                                    Margin="0,24,0,0" RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True">
+                                    <ContentControl.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                        </TransformGroup>
+                                    </ContentControl.RenderTransform>
+                                </ContentControl>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Layout" Value="Vertical">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type wpf:Stepper}">
+                            <ItemsControl HorizontalAlignment="Stretch" ItemsSource="{Binding Path=Controller.InternalSteps, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Top">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel Grid.Column="1" HorizontalAlignment="Stretch" IsItemsHost="True" Orientation="Vertical" VerticalAlignment="Top" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60" />
+                                                <ColumnDefinition Width="100*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="100*" />
+                                            </Grid.RowDefinitions>
+                                            <!-- header as button to switch steps in non-linear steppers -->
+                                            <Button Grid.ColumnSpan="2" Command="{x:Static wpf:Stepper.StepSelectedCommand}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignStepButton}">
+                                                <Grid HorizontalAlignment="Stretch">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="24" />
+                                                        <ColumnDefinition Width="auto" />
+                                                        <ColumnDefinition Width="12" />
+                                                        <ColumnDefinition Width="100*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="8" />
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="100*" />
+                                                    </Grid.RowDefinitions>
+                                                    <!-- vertical line before the circle (it is part of the previous step) -->
+                                                    <Border Grid.Column="1" Height="6" Margin="0" Padding="0">
+                                                        <Border.Style>
+                                                            <Style TargetType="{x:Type Border}" BasedOn="{StaticResource MaterialDesignVerticalStepperSpaceLine}">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsFirstStep}" Value="False">
+                                                                        <Setter Property="Visibility" Value="Visible" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding IsFirstStep}" Value="True">
+                                                                        <Setter Property="Visibility" Value="Hidden" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Border.Style>
+                                                    </Border>
+                                                    <!-- circle -->
+                                                    <Border Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Style="{StaticResource MaterialDesignStepperCircle}">
+                                                        <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Number}" VerticalAlignment="Center" />
+                                                    </Border>
+                                                    <!-- vertical line after the circle -->
+                                                    <Border Grid.Column="1" Grid.Row="3" Style="{StaticResource MaterialDesignVerticalStepperSpaceLine}" Margin="0,8,0,0" Padding="0" />
+                                                    <!-- header -->
+                                                    <ContentControl Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Content="{Binding Path=Step.Header}" Margin="0,4,0,16" Style="{StaticResource headerContentControlStyle}" />
+                                                </Grid>
+                                            </Button>
+                                            <!-- vertical line at the left side -->
+                                            <Border Grid.Row="1" Margin="24,0,12,0" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <Border Style="{StaticResource MaterialDesignVerticalStepperSpaceLine}" />
+                                            </Border>
+                                            <!-- content -->
+                                            <Border Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <Border.Style>
+                                                    <Style TargetType="{x:Type Border}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=NeedsSpacer}" Value="False">
+                                                                <Setter Property="Padding" Value="0,0,0,0" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=NeedsSpacer}" Value="True">
+                                                                <Setter Property="Padding" Value="0,0,0,26" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <ContentControl x:Name="PART_verticalContent" Content="{Binding Path=Step.Content}" HorizontalAlignment="Stretch" SnapsToDevicePixels="True">
+                                                    <ContentControl.LayoutTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform x:Name="verticalContentScaleTransform" ScaleY="0" />
+                                                        </TransformGroup>
+                                                    </ContentControl.LayoutTransform>
+                                                    <ContentControl.Style>
+                                                        <Style TargetType="{x:Type ContentControl}">
+                                                            <Style.Triggers>
+                                                                <MultiDataTrigger>
+                                                                    <MultiDataTrigger.Conditions>
+                                                                        <Condition Binding="{Binding Path=IsActive}" Value="True" />
+                                                                        <Condition Binding="{Binding Path=ContentAnimationsEnabled, RelativeSource={RelativeSource AncestorType={x:Type wpf:Stepper}}}" Value="False" />
+                                                                    </MultiDataTrigger.Conditions>
+                                                                    <Setter Property="Opacity" Value="1" />
+                                                                    <MultiDataTrigger.EnterActions>
+                                                                        <BeginStoryboard Storyboard="{StaticResource verticalContentShowStoryboardImmediately}" />
+                                                                    </MultiDataTrigger.EnterActions>
+                                                                    <MultiDataTrigger.ExitActions>
+                                                                        <BeginStoryboard Storyboard="{StaticResource verticalContentHideStoryboardImmediately}" />
+                                                                    </MultiDataTrigger.ExitActions>
+                                                                </MultiDataTrigger>
+                                                                <MultiDataTrigger>
+                                                                    <MultiDataTrigger.Conditions>
+                                                                        <Condition Binding="{Binding Path=IsActive}" Value="True" />
+                                                                        <Condition Binding="{Binding Path=ContentAnimationsEnabled, RelativeSource={RelativeSource AncestorType={x:Type wpf:Stepper}}}" Value="True" />
+                                                                    </MultiDataTrigger.Conditions>
+                                                                    <MultiDataTrigger.EnterActions>
+                                                                        <BeginStoryboard Storyboard="{StaticResource verticalContentShowStoryboard}" />
+                                                                    </MultiDataTrigger.EnterActions>
+                                                                    <MultiDataTrigger.ExitActions>
+                                                                        <BeginStoryboard Storyboard="{StaticResource verticalContentHideStoryboard}" />
+                                                                    </MultiDataTrigger.ExitActions>
+                                                                </MultiDataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </ContentControl.Style>
+                                                </ContentControl>
+                                            </Border>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type wpf:StepButtonBar}">
+        <!-- styling and layout partially guessed, because the specs only show pictures without mentioning every detail -->
+        <Setter Property="Height" Value="48" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="0,16,0,0" />
+        <Style.Triggers>
+            <Trigger Property="Mode" Value="Horizontal">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type wpf:StepButtonBar}">
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="100*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                        Content="{Binding Path=Back, RelativeSource={RelativeSource TemplatedParent}}" Command="{x:Static wpf:Stepper.BackCommand}"
+                                        Visibility="{Binding Path=Back, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}"
+                                        Content="{Binding Path=Cancel, RelativeSource={RelativeSource TemplatedParent}}" Command="{x:Static wpf:Stepper.CancelCommand}"
+                                        Visibility="{Binding Path=Cancel, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
+                                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Margin="8,0,0,0"
+                                        Content="{Binding Path=Continue, RelativeSource={RelativeSource TemplatedParent}}" Command="{x:Static wpf:Stepper.ContinueCommand}"
+                                        Visibility="{Binding Path=Continue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
+                                </StackPanel>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Mode" Value="Vertical">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type wpf:StepButtonBar}">
+                            <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" VerticalAlignment="Center">
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,10,0"
+                                        Content="{Binding Path=Back, RelativeSource={RelativeSource TemplatedParent}}" Command="{x:Static wpf:Stepper.BackCommand}"
+                                        Visibility="{Binding Path=Back, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
+                                <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,0,10,0"
+                                        Content="{Binding Path=Continue, RelativeSource={RelativeSource TemplatedParent}}" Command="{x:Static wpf:Stepper.ContinueCommand}"
+                                        Visibility="{Binding Path=Continue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}"
+                                        Content="{Binding Path=Cancel, RelativeSource={RelativeSource TemplatedParent}}" Command="{x:Static wpf:Stepper.CancelCommand}"
+                                        Visibility="{Binding Path=Cancel, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource nullableToVisibilityConverter}}" />
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

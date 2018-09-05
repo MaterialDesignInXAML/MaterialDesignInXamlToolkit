@@ -171,6 +171,9 @@
     <Compile Include="Snackbars.xaml.cs">
       <DependentUpon>Snackbars.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StepperDemo.xaml.cs">
+      <DependentUpon>StepperDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TextFields.xaml.cs">
       <DependentUpon>TextFields.xaml</DependentUpon>
     </Compile>
@@ -320,6 +323,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sliders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StepperDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

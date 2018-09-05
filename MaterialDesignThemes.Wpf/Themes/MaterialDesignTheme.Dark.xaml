@@ -33,4 +33,7 @@
     <SolidColorBrush x:Key="MaterialDesignTextFieldBoxDisabledBackground" Color="#0DFFFFFF" po:Freeze="True" /> <!-- 5% white -->
     <SolidColorBrush x:Key="MaterialDesignTextAreaBorder" Color="#BCFFFFFF" po:Freeze="True" /> <!-- 74% white -->
     <SolidColorBrush x:Key="MaterialDesignTextAreaInactiveBorder" Color="#1AFFFFFF" po:Freeze="True" /> <!-- 10% white -->
+
+    <SolidColorBrush x:Key="MaterialDesignStepperInactiveStep" Color="#61FFFFFF" po:Freeze="True" /> <!-- 38% white -->
+    <SolidColorBrush x:Key="MaterialDesignStepperActiveStep" Color="#DDFFFFFF" po:Freeze="True" /> <!-- 87% white -->
 </ResourceDictionary>
