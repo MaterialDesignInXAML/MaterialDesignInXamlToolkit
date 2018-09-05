@@ -16,7 +16,8 @@
         <controls:ToggleSwitch IsChecked="True" HorizontalAlignment="Left" />
         <Button Width="100" Margin="0 8 0 0" Content="Nice" HorizontalAlignment="Left"
                 Style="{DynamicResource AccentedSquareButtonStyle}" />
-        <controls:RangeSlider Margin="0 16 0 0" LowerValue="25" UpperValue="75" />
+        <Slider Margin="6 16 6 0" TickPlacement="BottomRight" TickFrequency="10" />
+        <controls:RangeSlider Margin="6 16 6 0" LowerValue="25" UpperValue="75" TickPlacement="BottomRight" TickFrequency="10" />
         <controls:RangeSlider Margin="0 16 0 0" LowerValue="25" UpperValue="75" Orientation="Vertical" Height="200"  />
         <controls:NumericUpDown Margin="5"/>
         <controls:NumericUpDown Culture="ar-EG" FlowDirection="RightToLeft" Margin="5"/>
