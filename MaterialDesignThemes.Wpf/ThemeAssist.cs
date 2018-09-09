@@ -27,7 +27,7 @@ namespace MaterialDesignThemes.Wpf
                 {
                     foreach(ResourceDictionary resourceDictionary in element.Resources.MergedDictionaries)
                     {
-                        if (string.Equals(resourceDictionary.Source.ToString(), oldSource, StringComparison.Ordinal))
+                        if (string.Equals(resourceDictionary.Source?.ToString(), oldSource, StringComparison.OrdinalIgnoreCase))
                         {
                             element.Resources.MergedDictionaries.Remove(resourceDictionary);
                             break;
