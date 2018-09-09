@@ -16,6 +16,7 @@
     <Style TargetType="{x:Type wpf:DialogHost}">
         <Setter Property="DialogMargin" Value="35" />
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth5" />
+        <Setter Property="DialogTheme" Value="Light" />
         <Setter Property="PopupStyle" Value="{StaticResource MaterialDesignDialogHostPopup}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -135,15 +136,9 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <controlzEx:PopupEx PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"
-                                            x:Name="PART_Popup"
-                                            Style="{TemplateBinding PopupStyle}">
-                            <controlzEx:PopupEx.Resources>
-                                <ResourceDictionary>
-                                    <ResourceDictionary.MergedDictionaries>
-                                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                                    </ResourceDictionary.MergedDictionaries>
-                                </ResourceDictionary>
-                            </controlzEx:PopupEx.Resources>
+                                            x:Name="PART_Popup" 
+                                            Style="{TemplateBinding PopupStyle}"
+                                            wpf:ThemeAssist.Theme="{TemplateBinding DialogTheme}">
                             <wpf:Card x:Name="PART_PopupContentElement" 
                                         Margin="{TemplateBinding DialogMargin}"
                                         wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
@@ -319,7 +314,7 @@
 
                         <Grid x:Name="PART_ContentCoverGrid" Background="{x:Null}" Opacity="1" IsHitTestVisible="False" Focusable="False" />
 
-                        <Grid x:Name="PART_Popup" 
+                        <Grid x:Name="PART_Popup" wpf:ThemeAssist.Theme="{TemplateBinding DialogTheme}"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <wpf:Card 
