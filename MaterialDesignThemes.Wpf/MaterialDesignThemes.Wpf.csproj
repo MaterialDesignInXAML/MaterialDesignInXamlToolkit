@@ -261,6 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Badged.cs" />
+    <Compile Include="BaseTheme.cs" />
     <Compile Include="ButtonProgressAssist.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Chip.cs" />
@@ -341,6 +342,7 @@
     <Compile Include="SnackbarMessageQueue.cs" />
     <Compile Include="SnackbarMessageQueueItem.cs" />
     <Compile Include="Spelling.cs" />
+    <Compile Include="ThemeAssist.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
     <Compile Include="Transitions\FadeWipe.cs" />
