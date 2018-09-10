@@ -9,7 +9,6 @@
 
     <converters:MathConverter Operation="Divide" x:Key="DivisionMathConverter" />
     <converters:PointValueConverter x:Key="PointValueConverter" />
-    <converters:ShadowConverter x:Key="ShadowConverter" />
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -106,7 +105,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={StaticResource ShadowConverter}}"
+                        <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                                 RenderTransformOrigin=".5,.5">
                             <Grid x:Name="OffGrid" RenderTransformOrigin=".5,.5" Background="{TemplateBinding Background}">
                                 <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"
@@ -131,7 +130,7 @@
                                 <ScaleTransform ScaleX="1" ScaleY="1" />
                             </Border.RenderTransform>
                         </Border>
-                        <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={StaticResource ShadowConverter}}"
+                        <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                                 RenderTransformOrigin=".5,.5">
                             <Grid x:Name="OnGrid" RenderTransformOrigin=".5,.5" Background="{TemplateBinding Background}">
                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
