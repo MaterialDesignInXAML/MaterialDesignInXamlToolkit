@@ -8,25 +8,25 @@
     </ResourceDictionary.MergedDictionaries>
 
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
-	
-	<Style x:Key="MaterialDesignTimePicker" TargetType="{x:Type wpf:TimePicker}">
-		<Setter Property="VerticalAlignment" Value="Top"/>
-		<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
-		<Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
-		<Setter Property="Background" Value="Transparent"/>
-		<Setter Property="BorderThickness" Value="0 0 0 1"/>
-		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+    <Style x:Key="MaterialDesignTimePicker" TargetType="{x:Type wpf:TimePicker}">
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="Margin" Value="0 12 0 0" />
         <Setter Property="wpf:HintAssist.Hint" Value="Select time" />
-		<Setter Property="ClockStyle" Value="{DynamicResource MaterialDesignClock}" />
+        <Setter Property="ClockStyle" Value="{DynamicResource MaterialDesignClock}" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
-		<Setter Property="ClockHostContentControlStyle">
-			<Setter.Value>
-				<Style TargetType="{x:Type ContentControl}">
-					<Style.Setters>
-						<Setter Property="Template">
-							<Setter.Value>
+        <Setter Property="ClockHostContentControlStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Style.Setters>
+                        <Setter Property="Template">
+                            <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ContentControl}">
                                     <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                                         <Border Effect="{DynamicResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
@@ -35,26 +35,27 @@
                                     </AdornerDecorator>
                                 </ControlTemplate>
                             </Setter.Value>
-						</Setter>
-					</Style.Setters>
-				</Style>
-			</Setter.Value>
-		</Setter>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type wpf:TimePicker}">
-					<ControlTemplate.Resources>
-						<ControlTemplate x:Key="TextBoxTemplate" TargetType="{x:Type TextBox}">
-							<Grid>
-								<ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"											  
-											  />
+                        </Setter>
+                    </Style.Setters>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type wpf:TimePicker}">
+                    <ControlTemplate.Resources>
+                        <ControlTemplate x:Key="TextBoxTemplate" TargetType="{x:Type TextBox}">
+                            <Grid>
+                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
                                 <wpf:SmartHint x:Name="Hint"
                                                FontSize="{TemplateBinding FontSize}"
                                                UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                               FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
+                                               FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"
                                                Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                                HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                                HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
-							</Grid>
+                            </Grid>
                             <ControlTemplate.Triggers>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
@@ -66,56 +67,56 @@
                                 </MultiTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
-						<ControlTemplate x:Key="DropDownButtonTemplate" TargetType="{x:Type Button}">
-							<Grid Background="Transparent">
-								<VisualStateManager.VisualStateGroups>
-									<VisualStateGroup x:Name="CommonStates">
-										<VisualStateGroup.Transitions>
-											<VisualTransition GeneratedDuration="0"/>
-											<VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
-											<VisualTransition GeneratedDuration="0:0:0.1" To="Pressed"/>
-										</VisualStateGroup.Transitions>
-										<VisualState x:Name="Normal"/>
-										<VisualState x:Name="MouseOver"/>
-										<VisualState x:Name="Pressed"/>
-										<VisualState x:Name="Disabled"/>
-									</VisualStateGroup>
-								</VisualStateManager.VisualStateGroups>
-								<Viewbox>
-									<Canvas Width="24" Height="24">
-										<Path Data="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" Fill="{TemplateBinding Foreground}" />
-									</Canvas>
-								</Viewbox>
-							</Grid>
-						</ControlTemplate>
-					</ControlTemplate.Resources>
+                        <ControlTemplate x:Key="DropDownButtonTemplate" TargetType="{x:Type Button}">
+                            <Grid Background="Transparent">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition GeneratedDuration="0"/>
+                                            <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                            <VisualTransition GeneratedDuration="0:0:0.1" To="Pressed"/>
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Normal"/>
+                                        <VisualState x:Name="MouseOver"/>
+                                        <VisualState x:Name="Pressed"/>
+                                        <VisualState x:Name="Disabled"/>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Viewbox>
+                                    <Canvas Width="24" Height="24">
+                                        <Path Data="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" Fill="{TemplateBinding Foreground}" />
+                                    </Canvas>
+                                </Viewbox>
+                            </Grid>
+                        </ControlTemplate>
+                    </ControlTemplate.Resources>
                     <Grid x:Name="TemplateRoot">
-					    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}" 
                                 x:Name="border"
                                 Padding="0 4 0 4"
                                 SnapsToDevicePixels="True">
-						    <Grid>
-						    	<Grid.ColumnDefinitions>
-						    		<ColumnDefinition Width="*" />
-						    		<ColumnDefinition Width="Auto" />
-						    	</Grid.ColumnDefinitions>							
-						    	<TextBox BorderThickness="0" x:Name="PART_TextBox"											 									 
-						    			 wpf:TextFieldAssist.TextBoxViewMargin=".5 0 0 0"
-						    			 Margin="0"                                     
-						    			 Template="{StaticResource TextBoxTemplate}"									 
-						    			 />
-						    	<Button Grid.Column="1" Foreground="{TemplateBinding BorderBrush}" Focusable="False" HorizontalAlignment="Right" Margin="4 0 0 -3" Grid.Row="0" Padding="0"
-						    			x:Name="PART_Button" 							
-						    			Height="17"
-						    			Template="{StaticResource DropDownButtonTemplate}" />
-						    	<Popup x:Name="PART_Popup" AllowsTransparency="True" 
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox BorderThickness="0" x:Name="PART_TextBox"
+                                         wpf:TextFieldAssist.TextBoxViewMargin=".5 0 0 0"
+                                         Margin="0"
+                                         Template="{StaticResource TextBoxTemplate}"
+                                         />
+                                <Button Grid.Column="1" Foreground="{TemplateBinding BorderBrush}" Focusable="False" HorizontalAlignment="Right" Margin="4 0 0 -3" Grid.Row="0" Padding="0"
+                                        x:Name="PART_Button"
+                                        Height="17"
+                                        Template="{StaticResource DropDownButtonTemplate}" />
+                                <Popup x:Name="PART_Popup" AllowsTransparency="True" 
                                        Placement="Custom"
                                        CustomPopupPlacementCallback="{x:Static wpf:CustomPopupPlacementCallbackHelper.LargePopupCallback}"
                                        PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"
-						    		   PopupAnimation="Fade"/>
-						    </Grid>
+                                       PopupAnimation="Fade"/>
+                            </Grid>
                         </Border>
                         <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
                     </Grid>
@@ -124,21 +125,21 @@
                             <Setter Property="Opacity" TargetName="TemplateRoot" Value="0.56"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
-						</Trigger>
-						<Trigger Property="IsKeyboardFocusWithin" Value="true">
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="true">
                             <Setter Property="IsActive" TargetName="Underline" Value="True"/>
-							<Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
-						</Trigger>
+                            <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}"/>
+                        </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
                             <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
                             <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
-                        </Trigger>                        
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 
     <Style x:Key="MaterialDesignFloatingHintTimePicker" TargetType="{x:Type wpf:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}">

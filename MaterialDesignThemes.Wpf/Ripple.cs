@@ -26,9 +26,9 @@ namespace MaterialDesignThemes.Wpf
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Ripple), new FrameworkPropertyMetadata(typeof(Ripple)));
 
             EventManager.RegisterClassHandler(typeof(ContentControl), Mouse.PreviewMouseUpEvent, new MouseButtonEventHandler(MouseButtonEventHandler), true);
-            EventManager.RegisterClassHandler(typeof(ContentControl), Mouse.MouseMoveEvent, new MouseEventHandler(MouseMouveEventHandler), true);
+            EventManager.RegisterClassHandler(typeof(ContentControl), Mouse.MouseMoveEvent, new MouseEventHandler(MouseMoveEventHandler), true);
             EventManager.RegisterClassHandler(typeof(Popup), Mouse.PreviewMouseUpEvent, new MouseButtonEventHandler(MouseButtonEventHandler), true);
-            EventManager.RegisterClassHandler(typeof(Popup), Mouse.MouseMoveEvent, new MouseEventHandler(MouseMouveEventHandler), true);
+            EventManager.RegisterClassHandler(typeof(Popup), Mouse.MouseMoveEvent, new MouseEventHandler(MouseMoveEventHandler), true);
         }
 
         public Ripple()
@@ -64,7 +64,7 @@ namespace MaterialDesignThemes.Wpf
             PressedInstances.Clear();
         }
 
-        private static void MouseMouveEventHandler(object sender, MouseEventArgs e)
+        private static void MouseMoveEventHandler(object sender, MouseEventArgs e)
         {
             foreach (var ripple in PressedInstances.ToList())
             {
