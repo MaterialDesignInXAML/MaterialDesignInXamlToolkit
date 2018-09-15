@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -46,12 +46,20 @@
                                                                Header="Description"
                                                                MaxLength="255" 
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
-                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding Numeric}"
-                                                        Header="Numeric"
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Numeric}"
+                                                        Header="Number with long header"
+                                                        Width="120"
                                                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                                     <Setter Property="HorizontalAlignment" Value="Right" />
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" Text="{Binding}" TextAlignment="Right"/>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.ElementStyle>

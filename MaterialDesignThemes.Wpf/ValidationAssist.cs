@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -77,6 +73,19 @@ namespace MaterialDesignThemes.Wpf
         public static bool GetSuppress(DependencyObject element)
         {
             return (bool) element.GetValue(SuppressProperty);
+        }
+
+        public static readonly DependencyProperty BackgroundProperty = DependencyProperty.RegisterAttached(
+            "Background", typeof(Brush), typeof(ValidationAssist), new PropertyMetadata(default(Brush)));
+
+        public static void SetBackground(DependencyObject element, Brush value)
+        {
+            element.SetValue(BackgroundProperty, value);
+        }
+
+        public static Brush GetBackground(DependencyObject element)
+        {
+            return (Brush) element.GetValue(BackgroundProperty);
         }
     }
 }

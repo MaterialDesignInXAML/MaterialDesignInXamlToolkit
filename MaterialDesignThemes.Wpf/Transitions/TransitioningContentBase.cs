@@ -23,52 +23,49 @@ namespace MaterialDesignThemes.Wpf.Transitions
         private SkewTransform _skewTransform;
         private TranslateTransform _translateTransform;
 
-        private bool _isOpeningEffectPending = false;
+        private bool _isOpeningEffectPending;
 
         static TransitioningContentBase()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof (TransitioningContentBase), new FrameworkPropertyMetadata(typeof (TransitioningContentBase)));
-        }
-
-        public TransitioningContentBase()
-        {
-            NameScope.SetNameScope(this, new NameScope());
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(TransitioningContentBase), new FrameworkPropertyMetadata(typeof(TransitioningContentBase)));
         }
 
         public override void OnApplyTemplate()
         {
+            FrameworkElement nameScopeRoot = GetNameScopeRoot();
+
             _matrixTransform = GetTemplateChild(MatrixTransformPartName) as MatrixTransform;
             _rotateTransform = GetTemplateChild(RotateTransformPartName) as RotateTransform;
             _scaleTransform = GetTemplateChild(ScaleTransformPartName) as ScaleTransform;
             _skewTransform = GetTemplateChild(SkewTransformPartName) as SkewTransform;
             _translateTransform = GetTemplateChild(TranslateTransformPartName) as TranslateTransform;
-            
+
             UnregisterNames(MatrixTransformPartName, RotateTransformPartName, ScaleTransformPartName, SkewTransformPartName, TranslateTransformPartName);
             if (_matrixTransform != null)
-                RegisterName(MatrixTransformPartName, _matrixTransform);
+                nameScopeRoot.RegisterName(MatrixTransformPartName, _matrixTransform);
             if (_rotateTransform != null)
-                RegisterName(RotateTransformPartName, _rotateTransform);
+                nameScopeRoot.RegisterName(RotateTransformPartName, _rotateTransform);
             if (_scaleTransform != null)
-                RegisterName(ScaleTransformPartName, _scaleTransform);
+                nameScopeRoot.RegisterName(ScaleTransformPartName, _scaleTransform);
             if (_skewTransform != null)
-                RegisterName(SkewTransformPartName, _skewTransform);
+                nameScopeRoot.RegisterName(SkewTransformPartName, _skewTransform);
             if (_translateTransform != null)
-                RegisterName(TranslateTransformPartName, _translateTransform);            
+                nameScopeRoot.RegisterName(TranslateTransformPartName, _translateTransform);
 
             base.OnApplyTemplate();
 
             RunOpeningEffects();
-        }
 
-        private void UnregisterNames(params string[] names)
-        {
-            foreach (var name in names.Where(n => FindName(n) != null))
+            void UnregisterNames(params string[] names)
             {
-                UnregisterName(name);
-            }            
+                foreach (var name in names.Where(n => FindName(n) != null))
+                {
+                    UnregisterName(name);
+                }
+            }
         }
 
-        public static readonly DependencyProperty OpeningEffectProperty = DependencyProperty.Register("OpeningEffect", typeof (TransitionEffectBase), typeof (TransitioningContentBase), new PropertyMetadata(default(TransitionEffectBase)));
+        public static readonly DependencyProperty OpeningEffectProperty = DependencyProperty.Register("OpeningEffect", typeof(TransitionEffectBase), typeof(TransitioningContentBase), new PropertyMetadata(default(TransitionEffectBase)));
 
         /// <summary>
         /// Gets or sets the transition to run when the content is loaded and made visible.
@@ -76,20 +73,20 @@ namespace MaterialDesignThemes.Wpf.Transitions
         [TypeConverter(typeof(TransitionEffectTypeConverter))]
         public TransitionEffectBase OpeningEffect
         {
-            get { return (TransitionEffectBase) GetValue(OpeningEffectProperty); }
-            set { SetValue(OpeningEffectProperty, value); }
+            get => (TransitionEffectBase)GetValue(OpeningEffectProperty);
+            set => SetValue(OpeningEffectProperty, value);
         }
 
         public static readonly DependencyProperty OpeningEffectsOffsetProperty = DependencyProperty.Register(
-            "OpeningEffectsOffset", typeof (TimeSpan), typeof (TransitioningContentBase), new PropertyMetadata(default(TimeSpan)));
+            "OpeningEffectsOffset", typeof(TimeSpan), typeof(TransitioningContentBase), new PropertyMetadata(default(TimeSpan)));
 
         /// <summary>
         /// Delay offset to be applied to all opening effect transitions.
         /// </summary>
         public TimeSpan OpeningEffectsOffset
         {
-            get { return (TimeSpan) GetValue(OpeningEffectsOffsetProperty); }
-            set { SetValue(OpeningEffectsOffsetProperty, value); }
+            get => (TimeSpan)GetValue(OpeningEffectsOffsetProperty);
+            set => SetValue(OpeningEffectsOffsetProperty, value);
         }
 
         /// <summary>
@@ -99,7 +96,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         string ITransitionEffectSubject.MatrixTransformName => MatrixTransformPartName;
 
-        string ITransitionEffectSubject.RotateTransformName  => RotateTransformPartName;
+        string ITransitionEffectSubject.RotateTransformName => RotateTransformPartName;
 
         string ITransitionEffectSubject.ScaleTransformName => ScaleTransformPartName;
 
@@ -127,7 +124,24 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 storyboard.Children.Add(effect);
             }
 
-            storyboard.Begin(this);
+            storyboard.Begin(GetNameScopeRoot());
+        }
+
+        private FrameworkElement GetNameScopeRoot()
+        {
+            //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/950
+            //Only set the NameScope if the child does not already have a TemplateNameScope set
+            if (GetVisualChild(0) is FrameworkElement fe && NameScope.GetNameScope(fe) != null)
+            {
+                return fe;
+            }
+
+            if (NameScope.GetNameScope(this) == null)
+            {
+                NameScope.SetNameScope(this, new NameScope());
+            }
+
+            return this;
         }
     }
 }

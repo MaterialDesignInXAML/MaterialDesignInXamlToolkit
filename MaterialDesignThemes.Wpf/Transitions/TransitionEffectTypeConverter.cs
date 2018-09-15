@@ -14,20 +14,20 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            TransitionEffectBase transitionEffect = null;
+            TransitionEffectBase transitionEffect;
 
-            var stringValue = value as string;
-            if (stringValue != null)
+            if (value is string stringValue && 
+                Enum.TryParse(stringValue, out TransitionEffectKind effectKind))
             {
-                TransitionEffectKind effectKind;
-                if (Enum.TryParse(stringValue, out effectKind))
-                    transitionEffect = new TransitionEffect(effectKind);
+                transitionEffect = new TransitionEffect(effectKind);
             }
             else
+            {
                 transitionEffect = value as TransitionEffectBase;
+            }
 
             if (transitionEffect == null)
-                throw new XamlParseException($"Could not parse to type {typeof (TransitionEffectKind).FullName} or {typeof (TransitionEffectBase).FullName}.");
+                throw new XamlParseException($"Could not parse to type {typeof(TransitionEffectKind).FullName} or {typeof(TransitionEffectBase).FullName}.");
 
             return transitionEffect;
         }

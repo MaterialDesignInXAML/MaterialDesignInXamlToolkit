@@ -32,17 +32,17 @@
         <Setter Property="ContextMenu">
             <Setter.Value>
                 <ContextMenu>
-                    <MenuItem Header="_Cut" Command="Cut">
+                    <MenuItem Command="Cut">
                         <MenuItem.Icon>
                             <wpf:PackIcon Kind="ContentCut"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Copy" Command="Copy">
+                    <MenuItem Command="Copy">
                         <MenuItem.Icon>
                             <wpf:PackIcon Kind="ContentCopy" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Paste" Command="Paste">
+                    <MenuItem Command="Paste">
                         <MenuItem.Icon>
                             <wpf:PackIcon Kind="ContentPaste"/>
                         </MenuItem.Icon>
@@ -77,7 +77,8 @@
                                     <Grid x:Name="textFieldGrid"
                                           Margin="{TemplateBinding Padding}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          MinWidth="1">
                                         <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
                                                       HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
@@ -103,7 +104,7 @@
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Bottom"
                                         SnapsToDevicePixels="True" />
-                                <Line x:Name="DashedLine" VerticalAlignment="Bottom" Visibility="Hidden"
+                                <Line x:Name="DashedLine" VerticalAlignment="Bottom" Visibility="Collapsed"
                                       StrokeThickness="1.25" StrokeDashArray="1,2.5" StrokeDashCap="Round"
                                       X1="0" X2="{Binding ActualWidth, ElementName=border}" Y1="0" Y2="0" 
                                       Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />
