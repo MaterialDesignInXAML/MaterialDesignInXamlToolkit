@@ -45,7 +45,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Grid>
+                    <Grid Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal"/>
@@ -105,57 +105,45 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                RenderTransformOrigin=".5,.5">
-                            <Grid x:Name="OffGrid" RenderTransformOrigin=".5,.5" Background="{TemplateBinding Background}">
-                                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"
-                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                                  FlowDirection="LeftToRight"/>
-                                <Grid.Clip>
-                                    <EllipseGeometry RadiusX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}" 
-                                                     RadiusY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}">
-                                        <EllipseGeometry.Center>
-                                            <MultiBinding Converter="{StaticResource PointValueConverter}">
-                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Width" Converter="{StaticResource DivisionMathConverter}" ConverterParameter="2.0" />
-                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Height" Converter="{StaticResource DivisionMathConverter}" ConverterParameter="2.0" />
-                                            </MultiBinding>
-                                        </EllipseGeometry.Center>
-                                    </EllipseGeometry>
-                                </Grid.Clip>
-                                <Grid.RenderTransform>
-                                    <ScaleTransform x:Name="OffScaleTransform" ScaleX="1" ScaleY="1" />
-                                </Grid.RenderTransform>
-                            </Grid>
-                            <Border.RenderTransform>
-                                <ScaleTransform ScaleX="1" ScaleY="1" />
-                            </Border.RenderTransform>
-                        </Border>
-                        <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                RenderTransformOrigin=".5,.5">
-                            <Grid x:Name="OnGrid" RenderTransformOrigin=".5,.5" Background="{TemplateBinding Background}">
-                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                  FlowDirection="LeftToRight"
-                                                  Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContent)}"
-                                                  ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContentTemplate)}" />
-                                <Grid.Clip>
-                                    <EllipseGeometry RadiusX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}" 
-                                                     RadiusY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}">
-                                        <EllipseGeometry.Center>
-                                            <MultiBinding Converter="{StaticResource PointValueConverter}">
-                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Width" Converter="{StaticResource DivisionMathConverter}" ConverterParameter="2.0" />
-                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Height" Converter="{StaticResource DivisionMathConverter}" ConverterParameter="2.0" />
-                                            </MultiBinding>
-                                        </EllipseGeometry.Center>
-                                    </EllipseGeometry>
-                                </Grid.Clip>
-                                <Grid.RenderTransform>
-                                    <ScaleTransform x:Name="OnScaleTransform" ScaleX="0" ScaleY="1" />
-                                </Grid.RenderTransform>
-                            </Grid>
-                            <Border.RenderTransform>
-                                <ScaleTransform ScaleX="1" ScaleY="1" />
-                            </Border.RenderTransform>
-                        </Border>
+                        <Grid x:Name="OffGrid" RenderTransformOrigin=".5,.5" Background="{TemplateBinding Background}">
+                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                              FlowDirection="LeftToRight"/>
+                            <Grid.Clip>
+                                <EllipseGeometry RadiusX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}" 
+                                                 RadiusY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}">
+                                    <EllipseGeometry.Center>
+                                        <MultiBinding Converter="{StaticResource PointValueConverter}">
+                                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Width" Converter="{StaticResource DivisionMathConverter}" ConverterParameter="2.0" />
+                                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Height" Converter="{StaticResource DivisionMathConverter}" ConverterParameter="2.0" />
+                                        </MultiBinding>
+                                    </EllipseGeometry.Center>
+                                </EllipseGeometry>
+                            </Grid.Clip>
+                            <Grid.RenderTransform>
+                                <ScaleTransform x:Name="OffScaleTransform" ScaleX="1" ScaleY="1" />
+                            </Grid.RenderTransform>
+                        </Grid>
+                        <Grid x:Name="OnGrid" RenderTransformOrigin=".5,.5" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              FlowDirection="LeftToRight"
+                                              Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContent)}"
+                                              ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContentTemplate)}" />
+                            <Grid.Clip>
+                                <EllipseGeometry RadiusX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}" 
+                                                 RadiusY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}">
+                                    <EllipseGeometry.Center>
+                                        <MultiBinding Converter="{StaticResource PointValueConverter}">
+                                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Width" Converter="{StaticResource DivisionMathConverter}" ConverterParameter="2.0" />
+                                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Height" Converter="{StaticResource DivisionMathConverter}" ConverterParameter="2.0" />
+                                        </MultiBinding>
+                                    </EllipseGeometry.Center>
+                                </EllipseGeometry>
+                            </Grid.Clip>
+                            <Grid.RenderTransform>
+                                <ScaleTransform x:Name="OnScaleTransform" ScaleX="0" ScaleY="1" />
+                            </Grid.RenderTransform>
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
