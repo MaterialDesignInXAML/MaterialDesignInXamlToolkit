@@ -114,18 +114,5 @@ namespace MaterialDesignThemes.Wpf
         {
             return (double)element.GetValue(OpacityProperty);
         }
-
-        public static readonly DependencyProperty OpacityProperty = DependencyProperty.RegisterAttached(
-            "Opacity", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(double)));
-
-        public static void SetOpacity(DependencyObject element, double opacity)
-        {
-            element.SetValue(OpacityProperty, opacity);
-        }
-
-        public static double GetOpacity(DependencyObject element)
-        {
-            return (double)element.GetValue(OpacityProperty);
-        }
     }
 }
