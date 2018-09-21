@@ -172,7 +172,7 @@
                             <ContentPresenter x:Name="ContentPresenter" Opacity="1" Content="{TemplateBinding ContentControl.Content}" 
                                               ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
                         </AdornerDecorator>
-                        <Grid x:Name="PART_ContentCoverGrid" Background="{x:Null}" Opacity="0" IsHitTestVisible="False" Focusable="False" />
+                        <Grid x:Name="PART_ContentCoverGrid" Background="Black" Opacity="0" IsHitTestVisible="False" Focusable="False" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsOpen" Value="True">
@@ -312,7 +312,7 @@
                             x:Name="ContentPresenter" Opacity="1"
                             Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
 
-                        <Grid x:Name="PART_ContentCoverGrid" Background="{x:Null}" Opacity="1" IsHitTestVisible="False" Focusable="False" />
+                        <Grid x:Name="PART_ContentCoverGrid" Background="Black" Opacity="1" IsHitTestVisible="False" Focusable="False" />
 
                         <Grid x:Name="PART_Popup" wpf:ThemeAssist.Theme="{TemplateBinding DialogTheme}"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
