@@ -517,6 +517,9 @@
                                                                                Storyboard.TargetProperty="Background">
                                                 <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
                                             </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="AnyOpen" To="AllClosed">
@@ -529,6 +532,9 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -545,6 +551,9 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
                                                                            Storyboard.TargetProperty="Background">
                                             <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -570,6 +579,9 @@
                                                 </EasingThicknessKeyFrame>
                                             </ThicknessAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetName="LeftDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.04" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="LeftDrawerOpen" To="LeftDrawerClosed">
@@ -587,6 +599,9 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -594,6 +609,9 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="LeftDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
                                         <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_LeftDrawer" To="0" Duration="0"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="LeftDrawerClosed">
@@ -615,6 +633,9 @@
                                                 </EasingThicknessKeyFrame>
                                             </ThicknessAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.04" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="RightDrawerOpen" To="RightDrawerClosed">
@@ -632,6 +653,9 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -639,6 +663,9 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="RightDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
                                         <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_RightDrawer" To="0 0 0 0" Duration="0"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="RightDrawerClosed">
@@ -660,6 +687,9 @@
                                                 </EasingThicknessKeyFrame>
                                             </ThicknessAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetName="TopDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.04" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="TopDrawerOpen" To="TopDrawerClosed">
@@ -677,6 +707,9 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -684,6 +717,9 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="TopDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
                                         <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_TopDrawer" To="0" Duration="0"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="TopDrawerClosed">
@@ -705,6 +741,9 @@
                                                 </EasingThicknessKeyFrame>
                                             </ThicknessAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetName="BottomDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.04" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="BottomDrawerOpen" To="BottomDrawerClosed">
@@ -722,6 +761,9 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -729,6 +771,9 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="BottomDrawerShadow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0" />
                                         <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_BottomDrawer" To="0 0 0 0" Duration="0"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="BottomDrawerClosed">
@@ -745,7 +790,7 @@
                                         x:Name="ContentPresenter" Opacity="1"                    
                                         Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
                             </AdornerDecorator>
-                            <Grid x:Name="PART_ContentCover" Background="Black" Opacity="0" IsHitTestVisible="False" Focusable="False" />
+                            <Grid x:Name="PART_ContentCover" Background="Black" Opacity="0" IsHitTestVisible="False" Focusable="False" Visibility="Collapsed"/>
                             <Grid>
                                 <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch"
                                       x:Name="PART_LeftDrawer"
