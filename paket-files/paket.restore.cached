@@ -7,7 +7,7 @@ NUGET
     Dragablz (0.0.3.203)
     MahApps.Metro (1.6.5)
       ControlzEx (>= 3.0.2.4 < 4.0)
-    Microsoft.NETCore.Platforms (2.1) - restriction: == net45
+    Microsoft.NETCore.Platforms (2.1.1) - restriction: == net45
     Moq (4.9)
       Castle.Core (>= 4.3.1)
       System.Threading.Tasks.Extensions (>= 4.3)
@@ -18,6 +18,7 @@ NUGET
     NSubstitute (2.0.3)
     RhinoMocks (3.6.1)
     Shouldly (2.8.3)
+    ShowMeTheXAML (1.0.10)
     ShowMeTheXAML.AvalonEdit (1.0.10)
       AvalonEdit (>= 5.0.4 < 5.1)
       ShowMeTheXAML (>= 1.0.10 < 1.1)
