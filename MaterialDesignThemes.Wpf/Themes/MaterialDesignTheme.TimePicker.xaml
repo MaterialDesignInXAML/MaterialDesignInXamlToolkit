@@ -135,6 +135,9 @@
                             <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
                             <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
                         </Trigger>
+                        <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
+                            <Setter TargetName="border" Property="Margin" Value="0 12 0 0" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
