@@ -234,7 +234,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style TargetType="{x:Type mah:Flyout}">
+    <Style TargetType="{x:Type mah:Flyout}" x:Key="MaterialDesignFlyout">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />

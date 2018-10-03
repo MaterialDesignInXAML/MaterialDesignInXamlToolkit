@@ -11,4 +11,6 @@
     </ResourceDictionary.MergedDictionaries>
     
     <Style TargetType="{x:Type controls:RangeSlider}" BasedOn="{StaticResource MaterialDesignRangeSlider}" />
+    <Style TargetType="{x:Type controls:NumericUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
+    <Style TargetType="{x:Type controls:Flyout}" BasedOn="{StaticResource MaterialDesignFlyout}" />
 </ResourceDictionary>

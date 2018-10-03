@@ -5,7 +5,7 @@
 
     <mahShared:ThicknessBindingConverter x:Key="ThicknessBindingConverter" />
 
-    <Style TargetType="{x:Type mah:NumericUpDown}">
+    <Style x:Key="MaterialDesignNumericUpDown" TargetType="{x:Type mah:NumericUpDown}">
         <Setter Property="BorderThickness" Value="0,0,0,2" />
         <Setter Property="mah:ControlsHelper.FocusBorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
         <Setter Property="mah:ControlsHelper.MouseOverBorderBrush" Value="{DynamicResource TextBoxMouseOverBorderBrush}" />
