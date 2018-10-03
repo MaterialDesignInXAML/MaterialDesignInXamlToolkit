@@ -170,8 +170,6 @@ namespace MaterialDesignThemes.Wpf
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
         public static async Task<object> Show(object content, object dialogIdentifier, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         {
-            if (content == null) throw new ArgumentNullException(nameof(content));
-
             if (LoadedInstances.Count == 0)
                 throw new InvalidOperationException("No loaded DialogHost instances.");
             LoadedInstances.First().Dispatcher.VerifyAccess();
@@ -191,7 +189,8 @@ namespace MaterialDesignThemes.Wpf
                 throw new InvalidOperationException("DialogHost is already open.");
 
             AssertTargetableContent();
-            DialogContent = content;
+            if (content != null)
+                DialogContent = content;
             _asyncShowOpenedEventHandler = openedEventHandler;
             _asyncShowClosingEventHandler = closingEventHandler;
             SetCurrentValue(IsOpenProperty, true);
