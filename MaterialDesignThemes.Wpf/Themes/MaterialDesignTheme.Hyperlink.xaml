@@ -1,5 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- initial Material Design specification -->
     <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesignBody1Hyperlink">
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="Regular"/>
@@ -59,4 +61,76 @@
         <Setter Property="FontSize" Value="112"/>
         <Setter Property="FontWeight" Value="Light"/>
     </Style>
+    
+    <!-- updated specification 2018 -->
+    <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesign2Body1Hyperlink">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="TextDecorations" Value="None" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Cursor" Value="Hand" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="True" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="TextDecorations" Value="Underline" />
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesign2Body2Hyperlink"
+           BasedOn="{StaticResource MaterialDesignBody1Hyperlink}">
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesign2CaptionHyperlink"
+           BasedOn="{StaticResource MaterialDesignBody1Hyperlink}">
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesign2OverlineHyperlink"
+           BasedOn="{StaticResource MaterialDesignBody1Hyperlink}">
+        <Setter Property="FontSize" Value="10" />
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesign2Subtitle1Hyperlink"
+           BasedOn="{StaticResource MaterialDesignBody1Hyperlink}">
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesign2Subtitle2Hyperlink"
+           BasedOn="{StaticResource MaterialDesignBody1Hyperlink}">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Medium" />
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesign2Headline6Hyperlink"
+           BasedOn="{StaticResource MaterialDesignBody1Hyperlink}">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Medium" />
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesign2Headline5Hyperlink"
+           BasedOn="{StaticResource MaterialDesignBody1Hyperlink}">
+        <Setter Property="FontSize" Value="24" />
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesign2Headline4Hyperlink"
+           BasedOn="{StaticResource MaterialDesignBody1Hyperlink}">
+        <Setter Property="FontSize" Value="34" />
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesign2Headline3Hyperlink"
+           BasedOn="{StaticResource MaterialDesignBody1Hyperlink}">
+        <Setter Property="FontSize" Value="48" />
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesign2Headline2Hyperlink"
+           BasedOn="{StaticResource MaterialDesignBody1Hyperlink}">
+        <Setter Property="FontSize" Value="60" />
+        <Setter Property="FontWeight" Value="Light" />
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}" x:Key="MaterialDesign2Headline1Hyperlink"
+           BasedOn="{StaticResource MaterialDesignBody1Hyperlink}">
+        <Setter Property="FontSize" Value="96" />
+        <Setter Property="FontWeight" Value="Light" />
+    </Style>
+
 </ResourceDictionary>
