@@ -226,6 +226,7 @@
                                      Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}"
                                      IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}"
                                      Opacity="{Binding RelativeSource={RelativeSource TemplatedParent},  Path=(wpf:ButtonProgressAssist.Opacity)}"
+                                     Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={StaticResource BooleanToVisibilityConverter}}"
                                      Margin="-8" 
                                      Width="{TemplateBinding Width, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
                                      Height="{TemplateBinding Height, Converter={StaticResource MathAddConverter}, ConverterParameter={StaticResource ProgressRingStrokeWidth}}"
