@@ -74,15 +74,40 @@ namespace MaterialDesignThemes.Wpf
 			timePicker.SetCurrentValue(TextProperty, timePicker.DateTimeToString(timePicker.SelectedTime));
             timePicker._isManuallyMutatingText = false;
             timePicker._lastValidTime = timePicker.SelectedTime;
+
+            OnSelectedTimeChanged(timePicker, dependencyPropertyChangedEventArgs);
         }
 
         public DateTime? SelectedTime
 		{
 			get { return (DateTime?) GetValue(SelectedTimeProperty); }
 			set { SetValue(SelectedTimeProperty, value); }
-		}
+        }
 
-		public static readonly DependencyProperty SelectedTimeFormatProperty = DependencyProperty.Register(
+        public static readonly RoutedEvent SelectedTimeChangedEvent =
+            EventManager.RegisterRoutedEvent(
+                nameof(SelectedTime),
+                RoutingStrategy.Bubble,
+                typeof(RoutedPropertyChangedEventHandler<DateTime?>),
+                typeof(TimePicker));
+
+        public event RoutedPropertyChangedEventHandler<DateTime?> SelectedTimeChanged
+        {
+            add => AddHandler(SelectedTimeChangedEvent, value);
+            remove => RemoveHandler(SelectedTimeChangedEvent, value);
+        }
+
+        private static void OnSelectedTimeChanged(
+            DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var instance = (TimePicker)d;
+            var args = new RoutedPropertyChangedEventArgs<DateTime?>(
+                    (DateTime?)e.OldValue,
+                    (DateTime?)e.NewValue) { RoutedEvent = SelectedTimeChangedEvent };
+            instance.RaiseEvent(args);
+        }
+
+        public static readonly DependencyProperty SelectedTimeFormatProperty = DependencyProperty.Register(
             nameof(SelectedTimeFormat), typeof (DatePickerFormat), typeof (TimePicker), new PropertyMetadata(DatePickerFormat.Short));
 
 		public DatePickerFormat SelectedTimeFormat
