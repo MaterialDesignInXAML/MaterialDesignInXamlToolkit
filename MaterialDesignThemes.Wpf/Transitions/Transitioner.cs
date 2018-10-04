@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,12 +20,12 @@ namespace MaterialDesignThemes.Wpf.Transitions
         }
 
         /// <summary>
-        /// Causes the the next slide to be displayed (affectively increments <see cref="SelectedIndex"/>).
+        /// Causes the the next slide to be displayed (affectively increments <see cref="Selector.SelectedIndex"/>).
         /// </summary>
         public static RoutedCommand MoveNextCommand = new RoutedCommand();
 
         /// <summary>
-        /// Causes the the previous slide to be displayed (affectively decrements <see cref="SelectedIndex"/>).
+        /// Causes the the previous slide to be displayed (affectively decrements <see cref="Selector.SelectedIndex"/>).
         /// </summary>
         public static RoutedCommand MovePreviousCommand = new RoutedCommand();
 
@@ -41,15 +40,15 @@ namespace MaterialDesignThemes.Wpf.Transitions
         public static RoutedCommand MoveLastCommand = new RoutedCommand();
 
         public static readonly DependencyProperty AutoApplyTransitionOriginsProperty = DependencyProperty.Register(
-            "AutoApplyTransitionOrigins", typeof (bool), typeof (Transitioner), new PropertyMetadata(default(bool)));
-        
+            "AutoApplyTransitionOrigins", typeof(bool), typeof(Transitioner), new PropertyMetadata(default(bool)));
+
         /// <summary>
         /// If enabled, transition origins will be applied to wipes, according to where a transition was triggered from.  For example, the mouse point where a user clicks a button.
         /// </summary>
         public bool AutoApplyTransitionOrigins
         {
-            get { return (bool) GetValue(AutoApplyTransitionOriginsProperty); }
-            set { SetValue(AutoApplyTransitionOriginsProperty, value); }
+            get => (bool)GetValue(AutoApplyTransitionOriginsProperty);
+            set => SetValue(AutoApplyTransitionOriginsProperty, value);
         }
 
         public static readonly DependencyProperty DefaultTransitionOriginProperty = DependencyProperty.Register(
@@ -57,8 +56,8 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         public Point DefaultTransitionOrigin
         {
-            get { return (Point)GetValue(DefaultTransitionOriginProperty); }
-            set { SetValue(DefaultTransitionOriginProperty, value); }
+            get => (Point)GetValue(DefaultTransitionOriginProperty);
+            set => SetValue(DefaultTransitionOriginProperty, value);
         }
 
         public Transitioner()
@@ -78,11 +77,11 @@ namespace MaterialDesignThemes.Wpf.Transitions
         protected override bool IsItemItsOwnContainerOverride(object item)
         {
             return item is TransitionerSlide;
-        }        
+        }
 
         protected override DependencyObject GetContainerForItemOverride()
         {
-            return new TransitionerSlide();            
+            return new TransitionerSlide();
         }
 
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
@@ -190,47 +189,53 @@ namespace MaterialDesignThemes.Wpf.Transitions
                     slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.Previous);
                 }
                 else
-                {                    
+                {
                     slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.None);
                 }
-                Panel.SetZIndex(slide, 0);                
+                Panel.SetZIndex(slide, 0);
             }
 
             if (newSlide != null)
-                newSlide.Opacity = 1;                
+            {
+                newSlide.Opacity = 1;
+            }
+
             if (oldSlide != null && newSlide != null)
             {
                 var wipe = selectedIndex > unselectedIndex ? oldSlide.ForwardWipe : oldSlide.BackwardWipe;
-                if (wipe != null)                
-                    wipe.Wipe(oldSlide, newSlide, GetTransitionOrigin(newSlide), this);                
+                if (wipe != null)
+                {
+                    wipe.Wipe(oldSlide, newSlide, GetTransitionOrigin(newSlide), this);
+                }
                 else
                 {
                     DoStack(newSlide, oldSlide);
-                    oldSlide.Opacity = 0;
                 }
+
+                oldSlide.Opacity = 0;
             }
             else if (oldSlide != null || newSlide != null)
             {
                 DoStack(oldSlide ?? newSlide);
                 if (oldSlide != null)
                 {
-                    oldSlide.Opacity = 0;                    
+                    oldSlide.Opacity = 0;
                 }
-            }            
+            }
 
             _nextTransitionOrigin = null;
         }
 
         private Point GetTransitionOrigin(TransitionerSlide slide)
         {
-            if(_nextTransitionOrigin != null)
+            if (_nextTransitionOrigin != null)
             {
                 return _nextTransitionOrigin.Value;
             }
 
-            if(slide.ReadLocalValue(TransitionerSlide.TransitionOriginProperty) != DependencyProperty.UnsetValue)
+            if (slide.ReadLocalValue(TransitionerSlide.TransitionOriginProperty) != DependencyProperty.UnsetValue)
             {
-                return slide.TransitionOrigin;             
+                return slide.TransitionOrigin;
             }
 
             return DefaultTransitionOrigin;

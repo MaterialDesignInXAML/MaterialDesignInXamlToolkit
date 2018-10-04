@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,6 +52,7 @@
       <Paket>True</Paket>
       <Link>VirtualCollection/VirtualizingWrapPanel.cs</Link>
     </Compile>
+    <Compile Include="XamlDisplayEx.cs" />
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -438,12 +440,16 @@
     <Resource Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Helper\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.2')">
+      <PropertyGroup>
+        <__paket__ShowMeTheXAML_MSBuild_targets>net45\ShowMeTheXAML.MSBuild</__paket__ShowMeTheXAML_MSBuild_targets>
+      </PropertyGroup>
+    </When>
+  </Choose>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -452,15 +458,41 @@
   </Target>
   -->
   <Import Project="..\.paket\paket.targets" />
+  <Target Name="ShowMeTheXAML_EnsureXamlCreated" AfterTargets="BeforeCompile">
+    <Error Condition="('$(ShowMeTheXAMLGeneratedFileName)' == '' Or $(ShowMeTheXAMLGeneratedFileName) == '*Undefined*') And Exists('..\packages\ShowMeTheXAML.MSBuild\build\$(__paket__ShowMeTheXAML_MSBuild_targets).targets')" Text="ShowMeTheXAML was added to the $(ProjectName) project. Please rebuild the project." />
+  </Target>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.2')">
       <ItemGroup>
-        <Reference Include="CodeDisplayer">
-          <HintPath>..\packages\XamlDisplayerPackage\lib\net45\CodeDisplayer.dll</HintPath>
+        <Reference Include="ICSharpCode.AvalonEdit">
+          <HintPath>..\packages\AvalonEdit\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
       </ItemGroup>
     </When>
   </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.2')">
+      <ItemGroup>
+        <Reference Include="ShowMeTheXAML">
+          <HintPath>..\packages\ShowMeTheXAML\lib\net45\ShowMeTheXAML.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.2')">
+      <ItemGroup>
+        <Reference Include="ShowMeTheXAML.AvalonEdit">
+          <HintPath>..\packages\ShowMeTheXAML.AvalonEdit\lib\net45\ShowMeTheXAML.AvalonEdit.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="..\packages\ShowMeTheXAML.MSBuild\build\$(__paket__ShowMeTheXAML_MSBuild_targets).targets" Condition="Exists('..\packages\ShowMeTheXAML.MSBuild\build\$(__paket__ShowMeTheXAML_MSBuild_targets).targets')" Label="Paket" />
 </Project>
