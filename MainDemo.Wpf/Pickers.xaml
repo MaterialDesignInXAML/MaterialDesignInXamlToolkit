@@ -63,7 +63,7 @@
                                            materialDesign:HintAssist.Hint="Custom hint" />
             </smtx:XamlDisplay>
             <smtx:XamlDisplay Key="pickers_7" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 16 0 0">
-                <materialDesign:TimePicker Is24Hours="True" x:Name="PresetTimePicker" Width="100" />
+                <materialDesign:TimePicker Is24Hours="True" x:Name="PresetTimePicker" Width="100" SelectedTimeChanged="PresetTimePicker_SelectedTimeChanged"/>
             </smtx:XamlDisplay>
             <smtx:XamlDisplay Key="pickers_8" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 16 0 0">
                 <materialDesign:TimePicker 
