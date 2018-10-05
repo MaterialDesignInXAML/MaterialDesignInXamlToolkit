@@ -256,7 +256,8 @@ namespace MaterialDesignThemes.Wpf
             if (_lastValidTime != null)
             {
                 SetCurrentValue(SelectedTimeProperty, _lastValidTime.Value);
-                _textBox.Text = _lastValidTime.Value.ToString(_lastValidTime.Value.Hour % 12 > 9 ? "hh:mm tt" : "h:mm tt");
+                var format = Is24Hours ? CultureInfo.InvariantCulture : CultureInfo.CurrentCulture;
+                _textBox.Text = _lastValidTime.Value.ToString(format.DateTimeFormat.ShortTimePattern);
             }
 
             else
@@ -330,17 +331,17 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-		private static void ParseTime(string s, Action<DateTime> successContinuation)
+		private void ParseTime(string s, Action<DateTime> successContinuation)
 		{
 			DateTime time;
             if (IsTimeValid(s, out time))
 				successContinuation(time);
 		}
 
-        private static bool IsTimeValid(string s, out DateTime time)
+        private bool IsTimeValid(string s, out DateTime time)
         {
             return DateTime.TryParse(s,
-                                     CultureInfo.CurrentCulture,
+                                     Is24Hours ? CultureInfo.InvariantCulture : CultureInfo.CurrentCulture,
                                      DateTimeStyles.AssumeLocal | DateTimeStyles.AllowWhiteSpaces,
                                      out time);
         }
