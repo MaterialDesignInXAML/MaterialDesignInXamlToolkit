@@ -18,6 +18,14 @@
     <PaketExePath Condition=" '$(PaketExePath)' == '' ">$(PaketToolsPath)paket.exe</PaketExePath>
     <PaketCommand Condition=" '$(OS)' == 'Windows_NT'">"$(PaketExePath)"</PaketCommand>
     <PaketCommand Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319 "$(PaketExePath)"</PaketCommand>
+
+    <!-- .net core fdd -->
+    <_PaketExeExtension>$([System.IO.Path]::GetExtension("$(PaketExePath)"))</_PaketExeExtension>
+    <PaketCommand Condition=" '$(_PaketExeExtension)' == '.dll' ">dotnet "$(PaketExePath)"</PaketCommand>
+
+    <!-- no extension is a shell script -->
+    <PaketCommand Condition=" '$(_PaketExeExtension)' == '' ">"$(PaketExePath)"</PaketCommand>
+
     <PaketBootStrapperExePath Condition=" '$(PaketBootStrapperExePath)' == '' AND Exists('$(PaketRootPath)paket.bootstrapper.exe')">$(PaketRootPath)paket.bootstrapper.exe</PaketBootStrapperExePath>
     <PaketBootStrapperExePath Condition=" '$(PaketBootStrapperExePath)' == '' ">$(PaketToolsPath)paket.bootstrapper.exe</PaketBootStrapperExePath>
     <PaketBootStrapperCommand Condition=" '$(OS)' == 'Windows_NT'">"$(PaketBootStrapperExePath)"</PaketBootStrapperCommand>
@@ -35,22 +43,25 @@
     <!-- Step 1 Check if lockfile is properly restored -->
     <PropertyGroup>
       <PaketRestoreRequired>true</PaketRestoreRequired>
-      <NoWarn>$(NoWarn);NU1603</NoWarn>
+      <NoWarn>$(NoWarn);NU1603;NU1604;NU1605;NU1608</NoWarn>
     </PropertyGroup>
 
     <!-- Because ReadAllText is slow on osx/linux, try to find shasum and awk -->
     <PropertyGroup>
-        <PaketRestoreCachedHasher Condition="'$(OS)' != 'Windows_NT' And '$(PaketRestoreCachedHasher)' == '' And Exists('/usr/bin/shasum') And Exists('/usr/bin/awk')">/usr/bin/shasum $(PaketRestoreCacheFile) | /usr/bin/awk '{ print $1 }'</PaketRestoreCachedHasher>
-        <PaketRestoreLockFileHasher Condition="'$(OS)' != 'Windows_NT' And '$(PaketRestoreLockFileHash)' == '' And Exists('/usr/bin/shasum') And Exists('/usr/bin/awk')">/usr/bin/shasum $(PaketLockFilePath) | /usr/bin/awk '{ print $1 }'</PaketRestoreLockFileHasher>
+      <PaketRestoreCachedHasher Condition="'$(OS)' != 'Windows_NT' And '$(PaketRestoreCachedHasher)' == '' And Exists('/usr/bin/shasum') And Exists('/usr/bin/awk')">/usr/bin/shasum "$(PaketRestoreCacheFile)" | /usr/bin/awk '{ print $1 }'</PaketRestoreCachedHasher>
+      <PaketRestoreLockFileHasher Condition="'$(OS)' != 'Windows_NT' And '$(PaketRestoreLockFileHash)' == '' And Exists('/usr/bin/shasum') And Exists('/usr/bin/awk')">/usr/bin/shasum "$(PaketLockFilePath)" | /usr/bin/awk '{ print $1 }'</PaketRestoreLockFileHasher>
     </PropertyGroup>
 
     <!-- If shasum and awk exist get the hashes -->
-    <Exec Condition=" '$(PaketRestoreCachedHasher)' != '' " Command="$(PaketRestoreCachedHasher)" ConsoleToMSBuild='true'>
-        <Output TaskParameter="ConsoleOutput" PropertyName="PaketRestoreCachedHash" />
+    <Exec StandardOutputImportance="Low" Condition=" '$(PaketRestoreCachedHasher)' != '' " Command="$(PaketRestoreCachedHasher)" ConsoleToMSBuild='true'>
+      <Output TaskParameter="ConsoleOutput" PropertyName="PaketRestoreCachedHash" />
     </Exec>
-    <Exec Condition=" '$(PaketRestoreLockFileHasher)' != '' " Command="$(PaketRestoreLockFileHasher)" ConsoleToMSBuild='true'>
-        <Output TaskParameter="ConsoleOutput" PropertyName="PaketRestoreLockFileHash" />
+    <Exec StandardOutputImportance="Low" Condition=" '$(PaketRestoreLockFileHasher)' != '' " Command="$(PaketRestoreLockFileHasher)" ConsoleToMSBuild='true'>
+      <Output TaskParameter="ConsoleOutput" PropertyName="PaketRestoreLockFileHash" />
     </Exec>
+
+    <!-- Debug whats going on -->
+    <Message Importance="low" Text="calling paket restore with targetframework=$(TargetFramework) targetframeworks=$(TargetFrameworks)" />
 
     <PropertyGroup Condition="Exists('$(PaketRestoreCacheFile)') ">
       <!-- if no hash has been done yet fall back to just reading in the files and comparing them -->
@@ -61,11 +72,22 @@
       <PaketRestoreRequired Condition=" '$(PaketRestoreLockFileHash)' == '' ">true</PaketRestoreRequired>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(PaketPropsVersion)' != '5.174.2' ">
+      <PaketRestoreRequired>true</PaketRestoreRequired>
+    </PropertyGroup>
+
     <!-- Do a global restore if required -->
     <Exec Command='$(PaketBootStrapperCommand)' Condition="Exists('$(PaketBootStrapperExePath)') AND !(Exists('$(PaketExePath)'))" ContinueOnError="false" />
     <Exec Command='$(PaketCommand) restore' Condition=" '$(PaketRestoreRequired)' == 'true' " ContinueOnError="false" />
 
     <!-- Step 2 Detect project specific changes -->
+    <ItemGroup>
+      <MyTargetFrameworks Condition="'$(TargetFramework)' != '' " Include="$(TargetFramework)"></MyTargetFrameworks>
+      <!-- Don't include all frameworks when msbuild explicitly asks for a single one -->
+      <MyTargetFrameworks Condition="'$(TargetFrameworks)' != '' AND '$(TargetFramework)' == '' " Include="$(TargetFrameworks)"></MyTargetFrameworks>
+      <PaketResolvedFilePaths Include="@(MyTargetFrameworks -> '$(MSBuildProjectDirectory)\obj\$(MSBuildProjectFile).%(Identity).paket.resolved')"></PaketResolvedFilePaths>
+    </ItemGroup>
+    <Message Importance="low" Text="MyTargetFrameworks=@(MyTargetFrameworks) PaketResolvedFilePaths=@(PaketResolvedFilePaths)" />
     <PropertyGroup>
       <PaketReferencesCachedFilePath>$(MSBuildProjectDirectory)\obj\$(MSBuildProjectFile).paket.references.cached</PaketReferencesCachedFilePath>
       <!-- MyProject.fsproj.paket.references has the highest precedence -->
@@ -74,7 +96,9 @@
       <PaketOriginalReferencesFilePath Condition=" !Exists('$(PaketOriginalReferencesFilePath)')">$(MSBuildProjectDirectory)\$(MSBuildProjectName).paket.references</PaketOriginalReferencesFilePath>
       <!-- paket.references -->
       <PaketOriginalReferencesFilePath Condition=" !Exists('$(PaketOriginalReferencesFilePath)')">$(MSBuildProjectDirectory)\paket.references</PaketOriginalReferencesFilePath>
-      <PaketResolvedFilePath>$(MSBuildProjectDirectory)\obj\$(MSBuildProjectFile).$(TargetFramework).paket.resolved</PaketResolvedFilePath>
+
+      <DoAllResolvedFilesExist>false</DoAllResolvedFilesExist>
+      <DoAllResolvedFilesExist Condition="Exists(%(PaketResolvedFilePaths.Identity))">true</DoAllResolvedFilesExist>
       <PaketRestoreRequired>true</PaketRestoreRequired>
       <PaketRestoreRequiredReason>references-file-or-cache-not-found</PaketRestoreRequiredReason>
     </PropertyGroup>
@@ -93,24 +117,29 @@
     </PropertyGroup>
 
     <!-- Step 2 b detect relevant changes in project file (new targetframework) -->
-    <PropertyGroup Condition=" !Exists('$(PaketResolvedFilePath)') AND '$(TargetFramework)' != '' ">
+    <PropertyGroup Condition=" '$(DoAllResolvedFilesExist)' != 'true' ">
       <PaketRestoreRequired>true</PaketRestoreRequired>
-      <PaketRestoreRequiredReason>target-framework '$(TargetFramework)'</PaketRestoreRequiredReason>
+      <PaketRestoreRequiredReason>target-framework '$(TargetFramework)' or '$(TargetFrameworks)' files @(PaketResolvedFilePaths)</PaketRestoreRequiredReason>
     </PropertyGroup>
 
     <!-- Step 3 Restore project specific stuff if required -->
     <Message Condition=" '$(PaketRestoreRequired)' == 'true' " Importance="low" Text="Detected a change ('$(PaketRestoreRequiredReason)') in the project file '$(MSBuildProjectFullPath)', calling paket restore" />
-    <Exec Command='$(PaketCommand) restore --project "$(MSBuildProjectFullPath)"' Condition=" '$(PaketRestoreRequired)' == 'true' " ContinueOnError="false" />
+    <Exec Command='$(PaketCommand) restore --project "$(MSBuildProjectFullPath)" --target-framework "$(TargetFrameworks)"' Condition=" '$(PaketRestoreRequired)' == 'true' AND '$(TargetFramework)' == '' " ContinueOnError="false" />
+    <Exec Command='$(PaketCommand) restore --project "$(MSBuildProjectFullPath)" --target-framework "$(TargetFramework)"' Condition=" '$(PaketRestoreRequired)' == 'true' AND '$(TargetFramework)' != '' " ContinueOnError="false" />
 
     <!-- This shouldn't actually happen, but just to be sure. -->
-    <Error Condition=" !Exists('$(PaketResolvedFilePath)') AND '$(TargetFramework)' != '' AND '$(ResolveNuGetPackages)' != 'False' " Text="Paket file '$(PaketResolvedFilePath)' is missing while restoring $(MSBuildProjectFile). Please delete 'paket-files/paket.restore.cached' and call 'paket restore'." />
+    <PropertyGroup>
+      <DoAllResolvedFilesExist>false</DoAllResolvedFilesExist>
+      <DoAllResolvedFilesExist Condition="Exists(%(PaketResolvedFilePaths.Identity))">true</DoAllResolvedFilesExist>
+    </PropertyGroup>
+    <Error Condition=" '$(DoAllResolvedFilesExist)' != 'true' AND '$(ResolveNuGetPackages)' != 'False' " Text="One Paket file '@(PaketResolvedFilePaths)' is missing while restoring $(MSBuildProjectFile). Please delete 'paket-files/paket.restore.cached' and call 'paket restore'." />
 
     <!-- Step 4 forward all msbuild properties (PackageReference, DotNetCliToolReference) to msbuild -->
-    <ReadLinesFromFile Condition="Exists('$(PaketResolvedFilePath)')" File="$(PaketResolvedFilePath)" >
+    <ReadLinesFromFile Condition="($(DesignTimeBuild) != true OR '$(PaketPropsLoaded)' != 'true') AND '@(PaketResolvedFilePaths)' != ''" File="%(PaketResolvedFilePaths.Identity)" >
       <Output TaskParameter="Lines" ItemName="PaketReferencesFileLines"/>
     </ReadLinesFromFile>
 
-    <ItemGroup Condition=" Exists('$(PaketResolvedFilePath)') AND '@(PaketReferencesFileLines)' != '' " >
+    <ItemGroup Condition="($(DesignTimeBuild) != true OR '$(PaketPropsLoaded)' != 'true') AND '@(PaketReferencesFileLines)' != '' " >
       <PaketReferencesFileLinesInfo Include="@(PaketReferencesFileLines)" >
         <PackageName>$([System.String]::Copy('%(PaketReferencesFileLines.Identity)').Split(',')[0])</PackageName>
         <PackageVersion>$([System.String]::Copy('%(PaketReferencesFileLines.Identity)').Split(',')[1])</PackageVersion>
@@ -118,7 +147,9 @@
       </PaketReferencesFileLinesInfo>
       <PackageReference Include="%(PaketReferencesFileLinesInfo.PackageName)">
         <Version>%(PaketReferencesFileLinesInfo.PackageVersion)</Version>
-        <PrivateAssets Condition="%(PaketReferencesFileLinesInfo.AllPrivateAssets) == 'true'">All</PrivateAssets>
+        <PrivateAssets Condition=" ('%(PaketReferencesFileLinesInfo.AllPrivateAssets)' == 'true') Or ('$(PackAsTool)' == 'true') ">All</PrivateAssets>
+        <ExcludeAssets Condition="%(PaketReferencesFileLinesInfo.AllPrivateAssets) == 'exclude'">runtime</ExcludeAssets>
+        <Publish Condition=" '$(PackAsTool)' == 'true' ">true</Publish>
       </PackageReference>
     </ItemGroup>
 
@@ -140,9 +171,10 @@
       </DotNetCliToolReference>
     </ItemGroup>
 
+    <!-- Disabled for now until we know what to do with runtime deps - https://github.com/fsprojects/Paket/issues/2964
     <PropertyGroup>
       <RestoreConfigFile>$(MSBuildProjectDirectory)/obj/$(MSBuildProjectFile).NuGet.Config</RestoreConfigFile>
-    </PropertyGroup>
+    </PropertyGroup> -->
 
   </Target>
 
@@ -174,8 +206,8 @@
 
     <ConvertToAbsolutePath Condition="@(_NuspecFiles) != ''" Paths="@(_NuspecFiles)">
       <Output TaskParameter="AbsolutePaths" PropertyName="NuspecFileAbsolutePath" />
-    </ConvertToAbsolutePath>      
-        
+    </ConvertToAbsolutePath>
+
 
     <!-- Call Pack -->
     <PackTask Condition="$(UseNewPack)"

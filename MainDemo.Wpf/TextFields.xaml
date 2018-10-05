@@ -68,6 +68,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Common Fields</TextBlock>
         <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" />
@@ -347,26 +349,49 @@
             </StackPanel>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Text field box</TextBlock>
+        <TextBlock Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Filled text field</TextBlock>
         <smtx:XamlDisplay Key="fields_25" Grid.Row="14" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
             <StackPanel>
-                <CheckBox x:Name="MaterialDesignTextFieldBoxTextBoxEnabledComboBox"
+                <CheckBox x:Name="MaterialDesignFilledTextFieldTextBoxEnabledComboBox"
                       IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>
-                <TextBox Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                          VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" MaxWidth="400" materialDesign:HintAssist.Hint="Floating hint in a box"
-                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextFieldBoxTextBoxEnabledComboBox}" />
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}" />
             </StackPanel>
         </smtx:XamlDisplay>
 
-
-        <TextBlock Grid.Row="13" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Text area box</TextBlock>
+        <TextBlock Grid.Row="13" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Outlined text field</TextBlock>
         <smtx:XamlDisplay Key="fields_26" Grid.Row="14" Grid.Column="4" Grid.RowSpan="2">
             <StackPanel>
-                <CheckBox x:Name="MaterialDesignTextAreaTextBoxEnabledComboBox" 
+                <CheckBox x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" 
                           IsChecked="True" Margin="32,0,0,8">Enabled</CheckBox>
-                <TextBox Style="{StaticResource MaterialDesignTextAreaTextBox}" Margin="32,0,0,0"
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="32,0,0,0"
                          VerticalAlignment="Top" Height="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="This is a text area"
-                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextAreaTextBoxEnabledComboBox}" />
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox}" />
+            </StackPanel>
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Filled password field</TextBlock>
+        <smtx:XamlDisplay Key="fields_28" Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="3">
+            <StackPanel>
+                <CheckBox x:Name="MaterialDesignFilledPasswordFieldPasswordBoxEnabledComboBox"
+                      IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>
+                <PasswordBox Style="{StaticResource MaterialDesignFilledPasswordFieldPasswordBox}"
+                             VerticalAlignment="Top"
+                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledPasswordFieldPasswordBoxEnabledComboBox}"
+                             materialDesign:HintAssist.Hint="Password" />
+            </StackPanel>
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="16" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Outlined password field</TextBlock>
+        <smtx:XamlDisplay Key="fields_29" Grid.Row="17" Grid.Column="4" Margin="32,0,0,0">
+            <StackPanel>
+                <CheckBox x:Name="MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox"
+                      IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>
+                <PasswordBox Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"
+                             VerticalAlignment="Top"
+                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}"
+                             materialDesign:HintAssist.Hint="Password" />
             </StackPanel>
         </smtx:XamlDisplay>
     </Grid>

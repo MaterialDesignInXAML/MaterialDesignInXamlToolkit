@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Controls;
@@ -73,6 +74,14 @@ namespace MaterialDesignColors.WpfExample
         {
             if (Equals(eventArgs.Parameter, "1"))
                 ((PickersViewModel)DataContext).Time = Clock.Time;
+        }
+
+        private void PresetTimePicker_SelectedTimeChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<System.DateTime?> e)
+        {
+            var oldValue = e.OldValue.HasValue ? e.OldValue.Value.ToLongTimeString() : "NULL";
+            var newValue = e.NewValue.HasValue ? e.NewValue.Value.ToLongTimeString() : "NULL";
+
+            Debug.WriteLine($"PresentTimePicker's SelectedTime changed from {oldValue} to {newValue}");
         }
     }
 }

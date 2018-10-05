@@ -7,13 +7,15 @@
 
     <Style BasedOn="{StaticResource MaterialDesignFlatButton}"
            TargetType="{x:Type Button}" />
+    <Style BasedOn="{StaticResource MaterialDesignFlatButton}"
+           TargetType="{x:Type ButtonBase}" />
 
     <Style x:Key="AccentedDialogSquareButton"
            BasedOn="{StaticResource MaterialDesignFlatButton}"
-           TargetType="{x:Type Button}" />
+           TargetType="{x:Type ButtonBase}" />
 
     <Style x:Key="AccentedDialogHighlightedSquareButton"
            BasedOn="{StaticResource MaterialDesignFlatButton}"
-           TargetType="{x:Type Button}"/>
+           TargetType="{x:Type ButtonBase}"/>
 
 </ResourceDictionary>

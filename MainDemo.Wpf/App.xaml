@@ -11,7 +11,6 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
@@ -67,9 +66,7 @@
                                         </materialDesign:PackIcon>
                                     </materialDesign:PopupBox.ToggleContent>
                                     <Border MaxHeight="600" MaxWidth="800">
-                                        <StackPanel>
-                                            <avalonEdit:TextEditor Document="{Binding Xaml, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TextDocumentValueConverter}}" 
-                                                                   Style="{StaticResource AvalonTextEditorXamlDisplay}" />
+                                        <DockPanel>
                                             <Button
                                                 Margin="0 10 0 0"
                                                 Tag="{Binding Xaml, RelativeSource={RelativeSource TemplatedParent}}"
@@ -77,9 +74,12 @@
                                                 Command="Copy"
                                                 CommandParameter="{Binding Xaml, RelativeSource={RelativeSource TemplatedParent}}"
                                                 Content="_COPY"
+                                                DockPanel.Dock="Bottom"
                                                 Style="{StaticResource MaterialDesignRaisedButton}">
                                             </Button>
-                                        </StackPanel>
+                                            <avalonEdit:TextEditor Document="{Binding Xaml, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TextDocumentValueConverter}}" 
+                                                                   Style="{StaticResource AvalonTextEditorXamlDisplay}" />
+                                        </DockPanel>
                                     </Border>
 
                                 </materialDesign:PopupBox>
