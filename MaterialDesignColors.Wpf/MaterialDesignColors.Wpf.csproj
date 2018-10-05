@@ -57,6 +57,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeHue.cs" />
+    <Compile Include="ISwatch.cs" />
+    <Compile Include="SwatchHelper.cs" />
     <Compile Include="Hue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -73,6 +76,25 @@
     </Compile>
     <Compile Include="Swatch.cs" />
     <Compile Include="SwatchesProvider.cs" />
+    <Compile Include="AmberSwatch.cs" />
+    <Compile Include="BlueGreySwatch.cs" />
+    <Compile Include="BlueSwatch.cs" />
+    <Compile Include="BrownSwatch.cs" />
+    <Compile Include="CyanSwatch.cs" />
+    <Compile Include="DeepOrangeSwatch.cs" />
+    <Compile Include="DeepPurpleSwatch.cs" />
+    <Compile Include="GreenSwatch.cs" />
+    <Compile Include="GreySwatch.cs" />
+    <Compile Include="IndigoSwatch.cs" />
+    <Compile Include="LightBlueSwatch.cs" />
+    <Compile Include="LightGreenSwatch.cs" />
+    <Compile Include="LimeSwatch.cs" />
+    <Compile Include="OrangeSwatch.cs" />
+    <Compile Include="PinkSwatch.cs" />
+    <Compile Include="PurpleSwatch.cs" />
+    <Compile Include="RedSwatch.cs" />
+    <Compile Include="TealSwatch.cs" />
+    <Compile Include="YellowSwatch.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
