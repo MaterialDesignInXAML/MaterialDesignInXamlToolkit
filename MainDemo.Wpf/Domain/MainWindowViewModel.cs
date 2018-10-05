@@ -33,6 +33,16 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<PaletteSelectorViewModel>("Demo View Model"),
                         DocumentationLink.ApiLink(typeof(PaletteHelper))
                     }),
+                new DemoItem("Color Tool", new ColorTool { DataContext = new ColorToolViewModel() },
+                    new []
+                    {
+                        DocumentationLink.WikiLink("Brush-Names", "Brushes"),
+                        DocumentationLink.WikiLink("Custom-Palette-Hues", "Custom Palettes"),
+                        DocumentationLink.WikiLink("Swatches-and-Recommended-Colors", "Swatches"),
+                        DocumentationLink.DemoPageLink<PaletteSelector>("Demo View"),
+                        DocumentationLink.DemoPageLink<PaletteSelectorViewModel>("Demo View Model"),
+                        DocumentationLink.ApiLink<PaletteHelper>()
+                    }),
                 new DemoItem("Buttons & Toggles", new Buttons { DataContext = new ButtonsViewModel() } ,
                     new []
                     {
