@@ -247,7 +247,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="entryName">The entry to replace</param>
         /// <param name="newValue">The new entry value</param>
         /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
-        private static void ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
+        public static void ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
         {            
             if (parentDictionary == null)
                 parentDictionary = Application.Current.Resources;

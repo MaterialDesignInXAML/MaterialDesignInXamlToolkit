@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
+             xmlns:local="clr-namespace:MaterialDesignDemo"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600">
     <UserControl.Resources>
@@ -16,6 +17,16 @@
     </UserControl.Resources>
     <DockPanel>
         <Grid DockPanel.Dock="Bottom">
+            <Grid.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Height" Value="Auto" />
+                </Style>
+            </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="300" />
             </Grid.RowDefinitions>
@@ -24,49 +35,80 @@
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button>
-                
+            <Button Command="{Binding ChangeToPrimaryCommand}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Rectangle Fill="{DynamicResource PrimaryHueMidBrush}" />
+                    <UniformGrid Rows="1" Grid.Row="1">
+                        <Rectangle Fill="{DynamicResource PrimaryHueLightBrush}" />
+                        <Rectangle Fill="{DynamicResource PrimaryHueDarkBrush}" />
+                    </UniformGrid>
+                </Grid>
             </Button>
-           
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Rectangle />
-                <UniformGrid Rows="1" Grid.Row="1">
-                    <Rectangle />
-                    <Rectangle />
-                </UniformGrid>
-            </Grid>
-            <UniformGrid Columns="1" Grid.Column="2">
-                <Rectangle />
-                <Rectangle />
-            </UniformGrid>
+            <Button Command="{Binding ChangeToSecondaryCommand}" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Rectangle Fill="{DynamicResource SecondaryHueMidBrush}" />
+                    <UniformGrid Rows="1" Grid.Row="1">
+                        <Rectangle Fill="{DynamicResource SecondaryHueLightBrush}" />
+                        <Rectangle Fill="{DynamicResource SecondaryHueDarkBrush}" />
+                    </UniformGrid>
+                </Grid>
+            </Button>
         </Grid>
         <ScrollViewer>
-            <ItemsControl ItemsSource="{Binding Swatches}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}" Width="80" VerticalAlignment="Center" />
-                            <ItemsControl ItemsSource="{Binding Hues}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Button Height="40" Width="40" Background="{Binding Color, Converter={StaticResource ColorToBrushConverter}}" Command="{Binding ChangeHueCommand}" CommandParameter="{Binding}" />
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                            </ItemsControl>
-                        </StackPanel>
-                       
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Width" Value="40" />
+                            <Setter Property="TextAlignment" Value="Center" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <Rectangle Width="80" />
+                    <TextBlock>50</TextBlock>
+                    <TextBlock>100</TextBlock>
+                    <TextBlock>200</TextBlock>
+                    <TextBlock>300</TextBlock>
+                    <TextBlock>400</TextBlock>
+                    <TextBlock>500</TextBlock>
+                    <TextBlock>600</TextBlock>
+                    <TextBlock>700</TextBlock>
+                    <TextBlock>800</TextBlock>
+                    <TextBlock>900</TextBlock>
+                    <TextBlock>A100</TextBlock>
+                    <TextBlock>A200</TextBlock>
+                    <TextBlock>A400</TextBlock>
+                    <TextBlock>A700</TextBlock>
+                </StackPanel>
+                <ItemsControl ItemsSource="{Binding Swatches}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" Width="80" VerticalAlignment="Center" />
+                                <ItemsControl ItemsSource="{Binding Hues}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Height="40" Width="40" Background="{Binding Color, Converter={StaticResource ColorToBrushConverter}}" Command="{Binding DataContext.ChangeHueCommand, RelativeSource={RelativeSource AncestorType=local:ColorTool}}" CommandParameter="{Binding}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
         </ScrollViewer>
     </DockPanel>
 </UserControl>
