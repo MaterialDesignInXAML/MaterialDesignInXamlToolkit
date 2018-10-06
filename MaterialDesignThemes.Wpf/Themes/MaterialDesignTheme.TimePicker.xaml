@@ -112,7 +112,7 @@
                                         Height="17"
                                         Template="{StaticResource DropDownButtonTemplate}" />
                                 <Popup x:Name="PART_Popup" AllowsTransparency="True" 
-                                       Placement="Custom"
+                                       Placement="Custom" FlowDirection="LeftToRight"
                                        CustomPopupPlacementCallback="{x:Static wpf:CustomPopupPlacementCallbackHelper.LargePopupCallback}"
                                        PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"
                                        PopupAnimation="Fade"/>
