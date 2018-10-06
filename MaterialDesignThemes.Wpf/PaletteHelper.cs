@@ -235,11 +235,33 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Replaces a certain entry anywhere in the parent dictionary and its merged dictionaries
         /// </summary>
-        /// <param name="name">The entry to replace</param>
-        /// <param name="value">The new entry value</param>
-        private static void ReplaceEntry(object name, object value)
-        {
-            Application.Current.Resources.ReplaceEntry(name, value);
+        /// <param name="entryName">The entry to replace</param>
+        /// <param name="newValue">The new entry value</param>
+        /// <param name="parentDictionary">The root dictionary to start searching at. Null means using Application.Current.Resources</param>
+        public static void ReplaceEntry(object entryName, object newValue, ResourceDictionary parentDictionary = null)
+        {            
+            if (parentDictionary == null)
+                parentDictionary = Application.Current.Resources;
+            
+            if (parentDictionary.Contains(entryName))
+            {
+                var brush = parentDictionary[entryName] as SolidColorBrush;
+                if (brush != null && !brush.IsFrozen)
+                {                 
+                    var animation = new ColorAnimation
+                    {
+                        From = ((SolidColorBrush)parentDictionary[entryName]).Color,
+                        To = ((SolidColorBrush)newValue).Color,
+                        Duration = new Duration(TimeSpan.FromMilliseconds(300))
+                    };
+                    brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                }
+                else
+                    parentDictionary[entryName] = newValue; //Set value normally
+            }
+
+            foreach (var dictionary in parentDictionary.MergedDictionaries)
+                ReplaceEntry(entryName, newValue, dictionary);
         }
     }
 }

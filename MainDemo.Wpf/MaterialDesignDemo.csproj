@@ -52,15 +52,12 @@
       <Paket>True</Paket>
       <Link>VirtualCollection/VirtualizingWrapPanel.cs</Link>
     </Compile>
+    <Compile Include="ColorScheme.cs" />
     <Compile Include="ColorTool.xaml.cs">
       <DependentUpon>ColorTool.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorToolViewModel.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
-    <Compile Include="SwatchSelector.xaml.cs">
-      <DependentUpon>SwatchSelector.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SwatchSelectorViewModel.cs" />
     <Compile Include="XamlDisplayEx.cs" />
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
@@ -337,10 +334,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Snackbars.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SwatchSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

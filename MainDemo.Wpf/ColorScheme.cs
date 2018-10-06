@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace MaterialDesignDemo
 {
-    class SwatchSelectorViewModel
+    enum ColorScheme
     {
+        Primary,
+        Secondary
     }
 }
