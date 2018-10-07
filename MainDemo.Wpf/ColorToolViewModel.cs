@@ -1,27 +1,32 @@
-﻿using MaterialDesignColors;
-using MaterialDesignColors.WpfExample.Domain;
-using MaterialDesignThemes.Wpf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Media;
+using MaterialDesignColors;
+using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo
 {
-    class ColorToolViewModel
+    class ColorToolViewModel : INotifyPropertyChanged
     {
-        public enum Scheme
+        private ColorScheme _activeScheme;
+
+        public ColorScheme ActiveScheme
         {
-            Primary,
-            Secondary
+            get
+            {
+                return _activeScheme;
+            }
+            set
+            {
+                _activeScheme = value;
+                OnPropertyChanged();
+            }
         }
 
-        private Scheme _activeScheme;
-
-        public IEnumerable<ISwatch> Swatches { get; } =  SwatchHelper.Swatches;
+        public IEnumerable<ISwatch> Swatches { get; } = SwatchHelper.Swatches;
 
         public ICommand ChangeHueCommand { get; }
         public ICommand ChangeToPrimaryCommand { get; }
@@ -30,8 +35,8 @@ namespace MaterialDesignDemo
         public ColorToolViewModel()
         {
             ChangeHueCommand = new AnotherCommandImplementation(ChangeHue);
-            ChangeToPrimaryCommand = new AnotherCommandImplementation(o => _activeScheme = Scheme.Primary);
-            ChangeToSecondaryCommand = new AnotherCommandImplementation(o => _activeScheme = Scheme.Secondary);
+            ChangeToPrimaryCommand = new AnotherCommandImplementation(o => ActiveScheme = ColorScheme.Primary);
+            ChangeToSecondaryCommand = new AnotherCommandImplementation(o => ActiveScheme = ColorScheme.Secondary);
         }
 
         private void ChangeHue(object obj)
@@ -45,13 +50,20 @@ namespace MaterialDesignDemo
             var midForeground = CodeHue.ContrastingForeGroundColor(mid);
             var darkForeground = CodeHue.ContrastingForeGroundColor(dark);
 
-            var scheme = _activeScheme.ToString();
+            var scheme = ActiveScheme.ToString();
             PaletteHelper.ReplaceEntry($"{scheme}HueLightBrush", new SolidColorBrush(light));
             PaletteHelper.ReplaceEntry($"{scheme}HueLightForegroundBrush", new SolidColorBrush(lightForeground));
             PaletteHelper.ReplaceEntry($"{scheme}HueMidBrush", new SolidColorBrush(mid));
             PaletteHelper.ReplaceEntry($"{scheme}HueMidForegroundBrush", new SolidColorBrush(midForeground));
             PaletteHelper.ReplaceEntry($"{scheme}HueDarkBrush", new SolidColorBrush(dark));
             PaletteHelper.ReplaceEntry($"{scheme}HueDarkForegroundBrush", new SolidColorBrush(darkForeground));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

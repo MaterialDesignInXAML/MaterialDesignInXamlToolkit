@@ -57,6 +57,7 @@
       <DependentUpon>ColorTool.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorToolViewModel.cs" />
+    <Compile Include="Converters\BrushToHexConverter.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="XamlDisplayEx.cs" />
     <Reference Include="PresentationFramework.Aero2" />
