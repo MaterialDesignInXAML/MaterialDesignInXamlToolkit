@@ -10,105 +10,167 @@
              d:DesignHeight="600" d:DesignWidth="600">
     <UserControl.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+        <converters:BrushToHexConverter x:Key="BrushToHexConverter" />
         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
             <Setter Property="BorderBrush" Value="Transparent" />
             <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
         </Style>
+        <Style TargetType="TextBlock" x:Key="HexLabelTextBlock" BasedOn="{StaticResource MaterialDesignBody2TextBlock}">
+            <Setter Property="Margin" Value="8" />
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="LightGray" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
     </UserControl.Resources>
     <DockPanel>
-        <Grid DockPanel.Dock="Bottom">
-            <Grid.Resources>
-                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
-                    <Setter Property="BorderBrush" Value="Transparent" />
-                    <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
-                    <Setter Property="Margin" Value="0" />
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-                    <Setter Property="Height" Value="Auto" />
-                </Style>
-            </Grid.Resources>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="300" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Button Command="{Binding ChangeToPrimaryCommand}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Rectangle Fill="{DynamicResource PrimaryHueMidBrush}" />
-                    <UniformGrid Rows="1" Grid.Row="1">
-                        <Rectangle Fill="{DynamicResource PrimaryHueLightBrush}" />
-                        <Rectangle Fill="{DynamicResource PrimaryHueDarkBrush}" />
-                    </UniformGrid>
-                </Grid>
-            </Button>
-            <Button Command="{Binding ChangeToSecondaryCommand}" Grid.Column="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Rectangle Fill="{DynamicResource SecondaryHueMidBrush}" />
-                    <UniformGrid Rows="1" Grid.Row="1">
-                        <Rectangle Fill="{DynamicResource SecondaryHueLightBrush}" />
-                        <Rectangle Fill="{DynamicResource SecondaryHueDarkBrush}" />
-                    </UniformGrid>
-                </Grid>
-            </Button>
-        </Grid>
-        <ScrollViewer>
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel.Resources>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Width" Value="40" />
-                            <Setter Property="TextAlignment" Value="Center" />
-                        </Style>
-                    </StackPanel.Resources>
-                    <Rectangle Width="80" />
-                    <TextBlock>50</TextBlock>
-                    <TextBlock>100</TextBlock>
-                    <TextBlock>200</TextBlock>
-                    <TextBlock>300</TextBlock>
-                    <TextBlock>400</TextBlock>
-                    <TextBlock>500</TextBlock>
-                    <TextBlock>600</TextBlock>
-                    <TextBlock>700</TextBlock>
-                    <TextBlock>800</TextBlock>
-                    <TextBlock>900</TextBlock>
-                    <TextBlock>A100</TextBlock>
-                    <TextBlock>A200</TextBlock>
-                    <TextBlock>A400</TextBlock>
-                    <TextBlock>A700</TextBlock>
+        <Border DockPanel.Dock="Bottom">
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}" x:Key="PaletteButton">
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
+                        <Setter Property="materialDesign:ShadowAssist.ShadowEdges" Value="All" />
+                        <Setter Property="materialDesign:RippleAssist.Feedback" Value="Gray" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Height" Value="Auto" />
+                        <Setter Property="Background" Value="White" />
+                        <Setter Property="Padding" Value="16" />
+                    </Style>
+                    <Style TargetType="Border">
+                        
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="LightGray" BorderThickness="0 0 1 0">
+                    <Button Command="{Binding ChangeToPrimaryCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource PaletteButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ActiveScheme}" Value="Primary">
+                                        <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth2" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Border Background="{DynamicResource PrimaryHueMidBrush}">
+                                <Grid>
+                                    <TextBlock DataContext="{DynamicResource PrimaryHueMidBrush}" Text="{Binding Converter={StaticResource BrushToHexConverter}}" Style="{StaticResource HexLabelTextBlock}" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">P</TextBlock>
+                                </Grid>
+                            </Border>
+                            <UniformGrid Rows="1" Grid.Row="1">
+                                <Border Background="{DynamicResource PrimaryHueLightBrush}">
+                                    <TextBlock DataContext="{DynamicResource PrimaryHueLightBrush}" Text="{Binding Converter={StaticResource BrushToHexConverter}}" Style="{StaticResource HexLabelTextBlock}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                                </Border>
+                                <Border Background="{DynamicResource PrimaryHueDarkBrush}">
+                                    <TextBlock DataContext="{DynamicResource PrimaryHueDarkBrush}" Text="{Binding Converter={StaticResource BrushToHexConverter}}" Style="{StaticResource HexLabelTextBlock}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                                </Border>
+                            </UniformGrid>
+                        </Grid>
+                    </Button>
+                </Border>
+                <Border BorderBrush="LightGray" Grid.Column="1" BorderThickness="1 0 1 0">
+                    <Button Command="{Binding ChangeToSecondaryCommand}" >
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource PaletteButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ActiveScheme}" Value="Secondary">
+                                        <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth2" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Border Background="{DynamicResource SecondaryHueMidBrush}">
+                                <Grid>
+                                    <TextBlock DataContext="{DynamicResource SecondaryHueMidBrush}" Text="{Binding Converter={StaticResource BrushToHexConverter}}" Style="{StaticResource HexLabelTextBlock}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}">S</TextBlock>
+                                </Grid>
+                            </Border>
+                            <UniformGrid Rows="1" Grid.Row="1">
+                                <Border Background="{DynamicResource SecondaryHueLightBrush}">
+                                    <TextBlock DataContext="{DynamicResource SecondaryHueLightBrush}" Text="{Binding Converter={StaticResource BrushToHexConverter}}" Style="{StaticResource HexLabelTextBlock}" Foreground="{DynamicResource SecondaryHueLightForegroundBrush}" />
+                                </Border>
+                                <Border Background="{DynamicResource SecondaryHueDarkBrush}">
+                                    <TextBlock DataContext="{DynamicResource SecondaryHueDarkBrush}" Text="{Binding Converter={StaticResource BrushToHexConverter}}" Style="{StaticResource HexLabelTextBlock}" Foreground="{DynamicResource SecondaryHueDarkForegroundBrush}" />
+                                </Border>
+                            </UniformGrid>
+                        </Grid>
+                    </Button>
+                </Border>
+            </Grid>
+        </Border>
+        <Border DockPanel.Dock="Bottom" Padding="16" BorderThickness="1 0 1 0">
+            <TextBlock Foreground="DarkGray">CURRENT SCHEME</TextBlock>
+        </Border>
+        <Border Padding="16">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Width" Value="40" />
+                                <Setter Property="TextAlignment" Value="Center" />
+                            </Style>
+                        </StackPanel.Resources>
+                        <Rectangle Width="80" />
+                        <TextBlock>50</TextBlock>
+                        <TextBlock>100</TextBlock>
+                        <TextBlock>200</TextBlock>
+                        <TextBlock>300</TextBlock>
+                        <TextBlock>400</TextBlock>
+                        <TextBlock>500</TextBlock>
+                        <TextBlock>600</TextBlock>
+                        <TextBlock>700</TextBlock>
+                        <TextBlock>800</TextBlock>
+                        <TextBlock>900</TextBlock>
+                        <TextBlock>A100</TextBlock>
+                        <TextBlock>A200</TextBlock>
+                        <TextBlock>A400</TextBlock>
+                        <TextBlock>A700</TextBlock>
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding Swatches}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" Width="80" VerticalAlignment="Center" />
+                                    <ItemsControl ItemsSource="{Binding Hues}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Height="40" Width="40" Background="{Binding Color, Converter={StaticResource ColorToBrushConverter}}" Command="{Binding DataContext.ChangeHueCommand, RelativeSource={RelativeSource AncestorType=local:ColorTool}}" CommandParameter="{Binding}" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
-                <ItemsControl ItemsSource="{Binding Swatches}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Name}" Width="80" VerticalAlignment="Center" />
-                                <ItemsControl ItemsSource="{Binding Hues}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Button Height="40" Width="40" Background="{Binding Color, Converter={StaticResource ColorToBrushConverter}}" Command="{Binding DataContext.ChangeHueCommand, RelativeSource={RelativeSource AncestorType=local:ColorTool}}" CommandParameter="{Binding}" />
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                </ItemsControl>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
-        </ScrollViewer>
+            </ScrollViewer>
+        </Border>
     </DockPanel>
 </UserControl>
