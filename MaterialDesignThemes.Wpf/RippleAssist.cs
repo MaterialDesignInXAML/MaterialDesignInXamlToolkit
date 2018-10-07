@@ -117,6 +117,35 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
+        #region RippleOnTop
+
+        public static readonly DependencyProperty RippleOnTopProperty = DependencyProperty.RegisterAttached(
+            nameof(Ripple.RippleOnTop), typeof(bool), typeof(RippleAssist), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static void SetRippleOnTop(DependencyObject element, bool value)
+        {
+            element.SetValue(RippleOnTopProperty, value);
+        }
+
+        public static bool GetRippleOnTop(DependencyObject element)
+        {
+            return (bool)element.GetValue(RippleOnTopProperty);
+        }
+
+        //public static readonly DependencyProperty RippleZProperty = DependencyProperty.RegisterAttached(
+        //    nameof(Ripple.RippleZ), typeof(int), typeof(RippleAssist), new FrameworkPropertyMetadata(default(int), FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        //public static void SetRippleZ(DependencyObject element, int value)
+        //{
+        //    element.SetValue(RippleZProperty, value);
+        //}
+
+        //public static int GetRippleZ(DependencyObject element)
+        //{
+        //    return (int)element.GetValue(RippleZProperty);
+        //}
+
+        #endregion
 
     }
 }

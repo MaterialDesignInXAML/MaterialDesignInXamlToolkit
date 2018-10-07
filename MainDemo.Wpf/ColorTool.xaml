@@ -31,7 +31,8 @@
                         <Setter Property="BorderBrush" Value="Transparent" />
                         <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
                         <Setter Property="materialDesign:ShadowAssist.ShadowEdges" Value="All" />
-                        <Setter Property="materialDesign:RippleAssist.Feedback" Value="Gray" />
+                        <Setter Property="materialDesign:RippleAssist.Feedback" Value="LightGray" />
+                        <Setter Property="materialDesign:RippleAssist.RippleOnTop" Value="True" />
                         <Setter Property="Margin" Value="0" />
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
@@ -57,7 +58,7 @@
                             <Style TargetType="Button" BasedOn="{StaticResource PaletteButton}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ActiveScheme}" Value="Primary">
-                                        <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth2" />
+                                        <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -84,13 +85,13 @@
                         </Grid>
                     </Button>
                 </Border>
-                <Border BorderBrush="LightGray" Grid.Column="1" BorderThickness="1 0 1 0">
+                <Border BorderBrush="LightGray" Grid.Column="1" BorderThickness="0 0 1 0">
                     <Button Command="{Binding ChangeToSecondaryCommand}" >
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource PaletteButton}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ActiveScheme}" Value="Secondary">
-                                        <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth2" />
+                                        <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>

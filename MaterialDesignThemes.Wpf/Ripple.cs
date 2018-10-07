@@ -90,6 +90,15 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(FeedbackProperty, value); }
         }
 
+        public static readonly DependencyProperty RippleOnTopProperty = DependencyProperty.Register(
+            nameof(RippleOnTop), typeof(bool), typeof(Ripple), new PropertyMetadata(default(bool)));
+
+        public bool RippleOnTop
+        {
+            get { return (bool)GetValue(RippleOnTopProperty); }
+            set { SetValue(RippleOnTopProperty, value); }
+        }
+
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             var point = e.GetPosition(this);
@@ -191,7 +200,6 @@ namespace MaterialDesignThemes.Wpf
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-                        
             VisualStateManager.GoToState(this, TemplateStateNormal, false);
         }
 
