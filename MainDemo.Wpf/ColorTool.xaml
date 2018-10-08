@@ -212,6 +212,7 @@
                                                     <Button.Style>
                                                         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                                                             <Setter Property="BorderBrush" Value="Transparent" />
+                                                            <Setter Property="materialDesign:RippleAssist.IsDisabled" Value="True" />
                                                             <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
                                                             <Style.Triggers>
                                                                 <DataTrigger Value="True">
@@ -224,14 +225,14 @@
                                                                     <DataTrigger.EnterActions>
                                                                         <BeginStoryboard>
                                                                             <Storyboard>
-                                                                                <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" To="40" Duration="0:0:0.4" />
+                                                                                <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" To="20" Duration="0:0:0.25" />
                                                                             </Storyboard>
                                                                         </BeginStoryboard>
                                                                     </DataTrigger.EnterActions>
                                                                     <DataTrigger.ExitActions>
                                                                         <BeginStoryboard>
                                                                             <Storyboard>
-                                                                                <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" From="40" Duration="0:0:0.4" />
+                                                                                <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" From="20" Duration="0:0:0.25" />
                                                                             </Storyboard>
                                                                         </BeginStoryboard>
                                                                     </DataTrigger.ExitActions>
