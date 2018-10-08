@@ -77,7 +77,7 @@
                                             <Style TargetType="Border">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding ActiveScheme}" Value="Primary">
-                                                        <Setter Property="Background" Value="White" />
+                                                        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -135,7 +135,7 @@
                                             <Style TargetType="Border">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding ActiveScheme}" Value="Secondary">
-                                                        <Setter Property="Background" Value="White" />
+                                                        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
