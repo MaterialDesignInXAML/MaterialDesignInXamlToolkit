@@ -262,6 +262,7 @@
   <ItemGroup>
     <Compile Include="Badged.cs" />
     <Compile Include="BaseTheme.cs" />
+    <Compile Include="ButtonAssist.cs" />
     <Compile Include="ButtonProgressAssist.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Chip.cs" />
@@ -338,6 +339,8 @@
     <Compile Include="ScaleHost.cs" />
     <Compile Include="ScrollViewerAssist.cs" />
     <Compile Include="Screen.cs" />
+    <Compile Include="ShadowAdorner.cs" />
+    <Compile Include="ShadowAdornerAssist.cs" />
     <Compile Include="Snackbar.cs" />
     <Compile Include="SnackbarMessage.cs" />
     <Compile Include="SnackbarMessageEventArgs.cs" />

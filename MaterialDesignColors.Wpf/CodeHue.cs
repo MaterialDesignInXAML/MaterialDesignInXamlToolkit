@@ -8,6 +8,7 @@ namespace MaterialDesignColors
         public string Name { get; }
         public string Interval { get; }
         public Color Color { get; }
+        public string FullName => Name + Interval;
 
         public CodeHue(string name, string interval, string color)
         {

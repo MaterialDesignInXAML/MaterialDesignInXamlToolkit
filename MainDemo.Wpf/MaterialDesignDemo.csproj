@@ -59,6 +59,7 @@
     <Compile Include="ColorToolViewModel.cs" />
     <Compile Include="Converters\BrushToHexConverter.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Converters\MultiValueEqualityConverter.cs" />
     <Compile Include="XamlDisplayEx.cs" />
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
