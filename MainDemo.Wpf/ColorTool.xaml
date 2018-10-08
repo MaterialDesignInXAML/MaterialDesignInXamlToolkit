@@ -38,7 +38,7 @@
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
                         <Setter Property="Height" Value="Auto" />
-                        <Setter Property="Background" Value="White" />
+                        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
                         <Setter Property="Padding" Value="16" />
                     </Style>
                     <Style TargetType="Border">
@@ -217,11 +217,24 @@
                                                                 <DataTrigger Value="True">
                                                                     <DataTrigger.Binding>
                                                                         <MultiBinding Converter="{StaticResource MultiValueEqualityConverter}">
-                                                                            <Binding RelativeSource="{RelativeSource AncestorType=local:ColorTool}" Path="DataContext.SelectedPrimaryColor" Mode="OneWay" />
+                                                                            <Binding RelativeSource="{RelativeSource AncestorType=local:ColorTool}" Path="DataContext.SelectedColor" Mode="OneWay" />
                                                                             <Binding Path="FullName" Mode="OneWay"/>
                                                                         </MultiBinding>
                                                                     </DataTrigger.Binding>
-                                                                    <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="40" />
+                                                                    <DataTrigger.EnterActions>
+                                                                        <BeginStoryboard>
+                                                                            <Storyboard>
+                                                                                <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" To="40" Duration="0:0:0.4" />
+                                                                            </Storyboard>
+                                                                        </BeginStoryboard>
+                                                                    </DataTrigger.EnterActions>
+                                                                    <DataTrigger.ExitActions>
+                                                                        <BeginStoryboard>
+                                                                            <Storyboard>
+                                                                                <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" From="40" Duration="0:0:0.4" />
+                                                                            </Storyboard>
+                                                                        </BeginStoryboard>
+                                                                    </DataTrigger.ExitActions>
                                                                 </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>

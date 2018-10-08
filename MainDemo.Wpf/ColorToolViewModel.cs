@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignColors;
@@ -26,14 +28,14 @@ namespace MaterialDesignDemo
             }
         }
 
-        private string _selectedPrimaryColor;
+        private string _selectedColor;
 
-        public string SelectedPrimaryColor
+        public string SelectedColor
         {
-            get => _selectedPrimaryColor;
+            get => _selectedColor;
             set
             {
-                _selectedPrimaryColor = value;
+                _selectedColor = value;
                 OnPropertyChanged();
             }
         }
@@ -47,9 +49,48 @@ namespace MaterialDesignDemo
         public ColorToolViewModel()
         {
             ChangeHueCommand = new AnotherCommandImplementation(ChangeHue);
-            ChangeToPrimaryCommand = new AnotherCommandImplementation(o => ActiveScheme = ColorScheme.Primary);
-            ChangeToSecondaryCommand = new AnotherCommandImplementation(o => ActiveScheme = ColorScheme.Secondary);
+            ChangeToPrimaryCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.Primary));
+            ChangeToSecondaryCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.Secondary));
+            var palette = new PaletteHelper().QueryPalette();
+
+            var primary = palette.PrimarySwatch.PrimaryHues.ToArray()[palette.PrimaryMidHueIndex];
+            var secondary = palette.AccentSwatch.AccentHues.ToArray()[palette.AccentHueIndex];
+
+            var primaryInterval = Regex.Match(primary.Name, @"[a-zA-Z]+(\d+)").Groups[1].Value;
+            var secondaryInterval = "A" + Regex.Match(secondary.Name, @"[a-zA-Z]+(\d+)").Groups[1].Value;
+
+            foreach (var swatch in SwatchHelper.Swatches)
+            {
+                var stripped = swatch.Name.Replace(" ", "");
+                if (string.Equals(palette.PrimarySwatch.Name, stripped, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    _primaryColor = swatch.Hues.First(o => o.Interval == primaryInterval);
+                }
+                else if (string.Equals(palette.AccentSwatch.Name, stripped, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    _secondaryColor = swatch.Hues.First(o => o.Interval == secondaryInterval);
+                }
+            }
+
+            SelectedColor = _primaryColor.FullName;
         }
+
+        private void ChangeScheme(ColorScheme scheme)
+        {
+            ActiveScheme = scheme;
+            if (ActiveScheme == ColorScheme.Primary)
+            {
+                SelectedColor = _primaryColor.FullName;
+            }
+            else if (ActiveScheme == ColorScheme.Secondary)
+            {
+                SelectedColor = _secondaryColor.FullName;
+            }
+        }
+
+        private CodeHue _primaryColor;
+
+        private CodeHue _secondaryColor;
 
         private void ChangeHue(object obj)
         {
@@ -70,12 +111,14 @@ namespace MaterialDesignDemo
             PaletteHelper.ReplaceEntry($"{scheme}HueDarkBrush", new SolidColorBrush(dark));
             PaletteHelper.ReplaceEntry($"{scheme}HueDarkForegroundBrush", new SolidColorBrush(darkForeground));
 
+            SelectedColor = hue.FullName;
             if (ActiveScheme == ColorScheme.Primary)
             {
-                SelectedPrimaryColor = hue.FullName;
+                _primaryColor = hue;
             }
-            if (ActiveScheme == ColorScheme.Secondary)
+            else if (ActiveScheme == ColorScheme.Secondary)
             {
+                _secondaryColor = hue;
                 PaletteHelper.ReplaceEntry("SecondaryAccentBrush", new SolidColorBrush(mid));
                 PaletteHelper.ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(midForeground));
             }
