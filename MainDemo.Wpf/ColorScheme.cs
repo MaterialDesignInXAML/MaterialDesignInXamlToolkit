@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MaterialDesignDemo
+﻿namespace MaterialDesignDemo
 {
     enum ColorScheme
     {
         Primary,
-        Secondary
+        Secondary,
+        PrimaryForeground,
+        SecondaryForeground
     }
 }

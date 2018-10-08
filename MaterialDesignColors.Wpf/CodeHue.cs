@@ -42,63 +42,63 @@ namespace MaterialDesignColors
 
         public Xyz Rgb2Xyz(Color c)
         {
-            var r = Rgb_Xyz(c.R);
-            var g = Rgb_Xyz(c.G);
-            var b = Rgb_Xyz(c.B);
-            var x = Xyz_Lab((0.4124564 * r + 0.3575761 * g + 0.1804375 * b) / LAB_CONSTANTS.Xn);
-            var y = Xyz_Lab((0.2126729 * r + 0.7151522 * g + 0.0721750 * b) / LAB_CONSTANTS.Yn);
-            var z = Xyz_Lab((0.0193339 * r + 0.1191920 * g + 0.9503041 * b) / LAB_CONSTANTS.Zn);
+            double rgb_xyz(double d)
+            {
+                if ((d /= 255.0) <= 0.04045)
+                    return d / 12.92;
+                else
+                    return Math.Pow((d + 0.055) / 1.055, 2.4);
+            }
+
+            double xyz_lab(double d)
+            {
+                if (d > LAB_CONSTANTS.t3)
+                    return Math.Pow(d, 1.0 / 3.0);
+                else
+                    return d / LAB_CONSTANTS.t2 + LAB_CONSTANTS.t0;
+            }
+
+            var r = rgb_xyz(c.R);
+            var g = rgb_xyz(c.G);
+            var b = rgb_xyz(c.B);
+            var x = xyz_lab((0.4124564 * r + 0.3575761 * g + 0.1804375 * b) / LAB_CONSTANTS.Xn);
+            var y = xyz_lab((0.2126729 * r + 0.7151522 * g + 0.0721750 * b) / LAB_CONSTANTS.Yn);
+            var z = xyz_lab((0.0193339 * r + 0.1191920 * g + 0.9503041 * b) / LAB_CONSTANTS.Zn);
 
             return new Xyz(x, y, z);
         }
 
-        private double Rgb_Xyz(double r)
-        {
-            if ((r /= 255.0) <= 0.04045)
-                return r / 12.92;
-            else
-                return Math.Pow((r + 0.055) / 1.055, 2.4);
-        }
-
-        private double Xyz_Lab(double t)
-        {
-            if (t > LAB_CONSTANTS.t3)
-                return Math.Pow(t, 1.0 / 3.0);
-            else
-                return t / LAB_CONSTANTS.t2 + LAB_CONSTANTS.t0;
-        }
-
-        private double Lab_Xyz(double t)
-        {
-            if (t > LAB_CONSTANTS.t1)
-                return t * t * t;
-            else
-                return LAB_CONSTANTS.t2 * (t - LAB_CONSTANTS.t0);
-        }
-
-        private double Xyz_Rgb(double r)
-        {
-            if (r <= 0.00304)
-                return 255.0 * (12.92 * r);
-            else
-                return 255.0 * (1.055 * Math.Pow(r, 1.0 / 2.4) - 0.055);
-        }
-
         public Xyz Lab2Xyz(Lab lab)
         {
+            double lab_xyz(double d)
+            {
+                if (d > LAB_CONSTANTS.t1)
+                    return d * d * d;
+                else
+                    return LAB_CONSTANTS.t2 * (d - LAB_CONSTANTS.t0);
+            }
+
             var y = (lab.L + 16.0) / 116.0;
             var x = double.IsNaN(lab.A) ? y : y + lab.A / 500.0;
             var z = double.IsNaN(lab.B) ? y : y - lab.B / 200.0;
 
-            y = LAB_CONSTANTS.Yn * Lab_Xyz(y);
-            x = LAB_CONSTANTS.Xn * Lab_Xyz(x);
-            z = LAB_CONSTANTS.Zn * Lab_Xyz(z);
+            y = LAB_CONSTANTS.Yn * lab_xyz(y);
+            x = LAB_CONSTANTS.Xn * lab_xyz(x);
+            z = LAB_CONSTANTS.Zn * lab_xyz(z);
 
             return new Xyz(x, y, z);
         }
 
         public Color Lab2Rgb(Lab lab)
         {
+            double xyz_rgb(double d)
+            {
+                if (d <= 0.00304)
+                    return 255.0 * (12.92 * d);
+                else
+                    return 255.0 * (1.055 * Math.Pow(d, 1.0 / 2.4) - 0.055);
+            }
+
             byte clip(double d)
             {
                 if (d < 0) return 0;
@@ -107,21 +107,21 @@ namespace MaterialDesignColors
             }
             var xyz = Lab2Xyz(lab);
 
-            var r = Xyz_Rgb(3.2404542 * xyz.X - 1.5371385 * xyz.Y - 0.4985314 * xyz.Z);
-            var g = Xyz_Rgb(-0.9692660 * xyz.X + 1.8760108 * xyz.Y + 0.0415560 * xyz.Z);
-            var b = Xyz_Rgb(0.0556434 * xyz.X - 0.2040259 * xyz.Y + 1.0572252 * xyz.Z);
+            var r = xyz_rgb(3.2404542 * xyz.X - 1.5371385 * xyz.Y - 0.4985314 * xyz.Z);
+            var g = xyz_rgb(-0.9692660 * xyz.X + 1.8760108 * xyz.Y + 0.0415560 * xyz.Z);
+            var b = xyz_rgb(0.0556434 * xyz.X - 0.2040259 * xyz.Y + 1.0572252 * xyz.Z);
 
             return Color.FromRgb(clip(r), clip(g), clip(b));
         }
 
         public static Color ContrastingForeGroundColor(Color color)
         {
-            double rgb_srgb(double c)
+            double rgb_srgb(double d)
             {
-                c = c / 255.0;
-                return (c <= 0.03928)
-                    ? c = c / 12.92
-                    : c = Math.Pow((c + 0.055) / 1.055, 2.4);
+                d = d / 255.0;
+                return (d <= 0.03928)
+                    ? d = d / 12.92
+                    : d = Math.Pow((d + 0.055) / 1.055, 2.4);
             }
             var r = rgb_srgb(color.R);
             var g = rgb_srgb(color.G);

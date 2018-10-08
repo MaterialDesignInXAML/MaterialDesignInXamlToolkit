@@ -263,5 +263,78 @@ namespace MaterialDesignThemes.Wpf
             foreach (var dictionary in parentDictionary.MergedDictionaries)
                 ReplaceEntry(entryName, newValue, dictionary);
         }
-    }
+
+        public static void SetPalettes(CodeHue primary, CodeHue secondary)
+        {
+            SetPrimaryPalette(primary);
+            SetSecondaryPalette(secondary);
+        }
+
+        public static void SetPrimaryForeground(CodeHue hue)
+        {
+            SetForegroundBrushes(hue.Color, "Primary");
+        }
+
+        public static void SetSecondaryForeground(CodeHue hue)
+        {
+            SetForegroundBrushes(hue.Color, "Secondary");
+        }
+
+        private static void SetForegroundBrushes(Color color, string scheme)
+        {
+            ReplaceEntry($"{scheme}HueLightForegroundBrush", new SolidColorBrush(color));
+            ReplaceEntry($"{scheme}HueMidForegroundBrush", new SolidColorBrush(color));
+            ReplaceEntry($"{scheme}HueDarkForegroundBrush", new SolidColorBrush(color));
+        }
+
+        public static void SetPrimaryPalette(CodeHue hue)
+        {
+            var light = hue.Lighten();
+            var mid = hue.Color;
+            var dark = hue.Darken();
+
+            var darkForeground = CodeHue.ContrastingForeGroundColor(dark);
+
+            SetPalette(hue, "Primary");
+
+            ReplaceEntry("HighlightBrush", new SolidColorBrush(dark));
+            ReplaceEntry("AccentColorBrush", new SolidColorBrush(dark));
+            ReplaceEntry("AccentColorBrush2", new SolidColorBrush(mid));
+            ReplaceEntry("AccentColorBrush3", new SolidColorBrush(light));
+            ReplaceEntry("AccentColorBrush4", new SolidColorBrush(light) { Opacity = .82 });
+            ReplaceEntry("WindowTitleColorBrush", new SolidColorBrush(dark));
+            ReplaceEntry("AccentSelectedColorBrush", new SolidColorBrush(darkForeground));
+            ReplaceEntry("ProgressBrush", new LinearGradientBrush(dark, mid, 90.0));
+            ReplaceEntry("CheckmarkFill", new SolidColorBrush(dark));
+            ReplaceEntry("RightArrowFill", new SolidColorBrush(dark));
+            ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(darkForeground));
+            ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark) { Opacity = .4 });
+        }
+
+        public static void SetSecondaryPalette(CodeHue hue)
+        {
+            SetPalette(hue, "Secondary");
+
+            ReplaceEntry("SecondaryAccentBrush", new SolidColorBrush(hue.Color));
+            ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(CodeHue.ContrastingForeGroundColor(hue.Color)));
+        }
+
+        private static void SetPalette(CodeHue hue, string scheme)
+        {
+            var light = hue.Lighten();
+            var mid = hue.Color;
+            var dark = hue.Darken();
+
+            var lightForeground = CodeHue.ContrastingForeGroundColor(light);
+            var midForeground = CodeHue.ContrastingForeGroundColor(mid);
+            var darkForeground = CodeHue.ContrastingForeGroundColor(dark);
+
+            ReplaceEntry($"{scheme}HueLightBrush", new SolidColorBrush(light));
+            ReplaceEntry($"{scheme}HueLightForegroundBrush", new SolidColorBrush(lightForeground));
+            ReplaceEntry($"{scheme}HueMidBrush", new SolidColorBrush(mid));
+            ReplaceEntry($"{scheme}HueMidForegroundBrush", new SolidColorBrush(midForeground));
+            ReplaceEntry($"{scheme}HueDarkBrush", new SolidColorBrush(dark));
+            ReplaceEntry($"{scheme}HueDarkForegroundBrush", new SolidColorBrush(darkForeground));
+        }
+    }    
 }
