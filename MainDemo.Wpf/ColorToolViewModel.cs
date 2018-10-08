@@ -26,6 +26,18 @@ namespace MaterialDesignDemo
             }
         }
 
+        private string _selectedPrimaryColor;
+
+        public string SelectedPrimaryColor
+        {
+            get => _selectedPrimaryColor;
+            set
+            {
+                _selectedPrimaryColor = value;
+                OnPropertyChanged();
+            }
+        }
+
         public IEnumerable<ISwatch> Swatches { get; } = SwatchHelper.Swatches;
 
         public ICommand ChangeHueCommand { get; }
@@ -57,6 +69,16 @@ namespace MaterialDesignDemo
             PaletteHelper.ReplaceEntry($"{scheme}HueMidForegroundBrush", new SolidColorBrush(midForeground));
             PaletteHelper.ReplaceEntry($"{scheme}HueDarkBrush", new SolidColorBrush(dark));
             PaletteHelper.ReplaceEntry($"{scheme}HueDarkForegroundBrush", new SolidColorBrush(darkForeground));
+
+            if (ActiveScheme == ColorScheme.Primary)
+            {
+                SelectedPrimaryColor = hue.FullName;
+            }
+            if (ActiveScheme == ColorScheme.Secondary)
+            {
+                PaletteHelper.ReplaceEntry("SecondaryAccentBrush", new SolidColorBrush(mid));
+                PaletteHelper.ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(midForeground));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
