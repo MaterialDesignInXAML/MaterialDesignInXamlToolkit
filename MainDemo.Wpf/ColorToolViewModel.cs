@@ -45,12 +45,17 @@ namespace MaterialDesignDemo
         public ICommand ChangeHueCommand { get; }
         public ICommand ChangeToPrimaryCommand { get; }
         public ICommand ChangeToSecondaryCommand { get; }
+        public ICommand ChangeToPrimaryForegroundCommand { get; }
+        public ICommand ChangeToSecondaryForegroundCommand { get; }
 
         public ColorToolViewModel()
         {
             ChangeHueCommand = new AnotherCommandImplementation(ChangeHue);
             ChangeToPrimaryCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.Primary));
             ChangeToSecondaryCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.Secondary));
+            ChangeToPrimaryForegroundCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.PrimaryForeground));
+            ChangeToSecondaryForegroundCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.SecondaryForeground));
+
             var palette = new PaletteHelper().QueryPalette();
 
             var primary = palette.PrimarySwatch.PrimaryHues.ToArray()[palette.PrimaryMidHueIndex];
@@ -64,7 +69,8 @@ namespace MaterialDesignDemo
                 var stripped = swatch.Name.Replace(" ", "");
                 if (string.Equals(palette.PrimarySwatch.Name, stripped, System.StringComparison.OrdinalIgnoreCase))
                 {
-                    _primaryColor = swatch.Hues.First(o => o.Interval == primaryInterval);
+                    var hue = swatch.Hues.First(o => o.Interval == primaryInterval);
+                    _primaryColor = hue;
                 }
                 else if (string.Equals(palette.AccentSwatch.Name, stripped, System.StringComparison.OrdinalIgnoreCase))
                 {
@@ -86,41 +92,48 @@ namespace MaterialDesignDemo
             {
                 SelectedColor = _secondaryColor.FullName;
             }
+            else if (ActiveScheme == ColorScheme.PrimaryForeground)
+            {
+                SelectedColor = _primaryForegroundColor?.FullName;
+            }
+            else if (ActiveScheme == ColorScheme.SecondaryForeground)
+            {
+                SelectedColor = _secondaryForegroundColor?.FullName;
+            }
         }
 
         private CodeHue _primaryColor;
 
         private CodeHue _secondaryColor;
 
+        private CodeHue _primaryForegroundColor;
+
+        private CodeHue _secondaryForegroundColor;
+
         private void ChangeHue(object obj)
         {
             var hue = (CodeHue)obj;
-            var light = hue.Lighten();
-            var mid = hue.Color;
-            var dark = hue.Darken();
-
-            var lightForeground = CodeHue.ContrastingForeGroundColor(light);
-            var midForeground = CodeHue.ContrastingForeGroundColor(mid);
-            var darkForeground = CodeHue.ContrastingForeGroundColor(dark);
-
-            var scheme = ActiveScheme.ToString();
-            PaletteHelper.ReplaceEntry($"{scheme}HueLightBrush", new SolidColorBrush(light));
-            PaletteHelper.ReplaceEntry($"{scheme}HueLightForegroundBrush", new SolidColorBrush(lightForeground));
-            PaletteHelper.ReplaceEntry($"{scheme}HueMidBrush", new SolidColorBrush(mid));
-            PaletteHelper.ReplaceEntry($"{scheme}HueMidForegroundBrush", new SolidColorBrush(midForeground));
-            PaletteHelper.ReplaceEntry($"{scheme}HueDarkBrush", new SolidColorBrush(dark));
-            PaletteHelper.ReplaceEntry($"{scheme}HueDarkForegroundBrush", new SolidColorBrush(darkForeground));
 
             SelectedColor = hue.FullName;
             if (ActiveScheme == ColorScheme.Primary)
             {
+                PaletteHelper.SetPrimaryPalette(hue);
                 _primaryColor = hue;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
+                PaletteHelper.SetSecondaryPalette(hue);
                 _secondaryColor = hue;
-                PaletteHelper.ReplaceEntry("SecondaryAccentBrush", new SolidColorBrush(mid));
-                PaletteHelper.ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(midForeground));
+            }
+            else if (ActiveScheme == ColorScheme.PrimaryForeground)
+            {
+                PaletteHelper.SetPrimaryForeground(hue);
+                _primaryForegroundColor = hue;
+            }
+            else if (ActiveScheme == ColorScheme.SecondaryForeground)
+            {
+                PaletteHelper.SetSecondaryForeground(hue);
+                _secondaryForegroundColor = hue;
             }
         }
 

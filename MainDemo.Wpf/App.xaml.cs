@@ -1,4 +1,5 @@
-﻿using ShowMeTheXAML;
+﻿using MaterialDesignThemes.Wpf;
+using ShowMeTheXAML;
 using System.Windows;
 
 namespace MaterialDesignColors.WpfExample
@@ -18,7 +19,7 @@ namespace MaterialDesignColors.WpfExample
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(
                         XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
             */
-
+            //PaletteHelper.SetPalettes(RedSwatch.Red100, PinkSwatch.Pink400);
             base.OnStartup(e);
         }
     }
