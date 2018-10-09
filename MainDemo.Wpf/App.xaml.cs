@@ -1,4 +1,4 @@
-﻿using ShowMeTheXAML;
+﻿﻿using ShowMeTheXAML;
 using System.Windows;
 
 namespace MaterialDesignColors.WpfExample
