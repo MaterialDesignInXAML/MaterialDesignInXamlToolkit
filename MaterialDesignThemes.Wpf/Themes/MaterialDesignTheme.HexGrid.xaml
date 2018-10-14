@@ -1,0 +1,94 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:hex="clr-namespace:HexGridControl"
+                    xmlns:converters="clr-namespace:HexGridControl.Converters">
+
+    <converters:HexClipConverter x:Key="ClipConverter"/>
+
+    <!--HexItem-->
+    <Style TargetType="{x:Type hex:HexItem}" x:Key="HexListItem">
+        <Setter Property="Background" Value="CornflowerBlue"/>
+        <Setter Property="BorderBrush" Value="{Binding Background, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="hex:HexItem">
+                    <Grid Name="hexBorder" Background="{TemplateBinding BorderBrush}">
+                        <Grid.Clip>
+                            <MultiBinding Converter="{StaticResource ClipConverter}">
+                                <Binding Path="ActualWidth" ElementName="hexBorder"/>
+                                <Binding Path="ActualHeight" ElementName="hexBorder"/>
+                                <Binding Path="Orientation" RelativeSource="{RelativeSource TemplatedParent}"/>
+                            </MultiBinding>
+                        </Grid.Clip>
+
+                        <Grid Name="hexContent"                              
+                              Background="{TemplateBinding Background}"
+                              Margin="{TemplateBinding BorderThickness}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Grid.Clip>
+                                <MultiBinding Converter="{StaticResource ClipConverter}">
+                                    <Binding Path="ActualWidth" ElementName="hexContent"/>
+                                    <Binding Path="ActualHeight" ElementName="hexContent"/>
+                                    <Binding Path="Orientation" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </MultiBinding>
+                            </Grid.Clip>
+
+                            <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              ClipToBounds="True"
+
+                                              Margin="{TemplateBinding Padding}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="3"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type hex:HexItem}" BasedOn="{StaticResource HexListItem}">
+    </Style>
+    <!--HexList-->
+    <Style TargetType="{x:Type hex:HexList}">
+        <Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <hex:HexGrid ColumnCount="{Binding Path=ColumnCount, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                   RowCount="{Binding Path=RowCount, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                   Background="{Binding Path=Background, RelativeSource={RelativeSource AncestorType=ListBox}}"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type hex:HexList}">
+                    <Grid>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                Background="{TemplateBinding Background}" 
+                                Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                            <ScrollViewer Focusable="False" 
+                                          HorizontalScrollBarVisibility="Auto"
+                                          VerticalScrollBarVisibility="Auto"
+                                          Padding="{TemplateBinding Padding}">
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -74,6 +74,38 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridControl\HexGrid.cs">
+      <Paket>True</Paket>
+      <Link>HexGrid/HexGridControl/HexGrid.cs</Link>
+    </Compile>
+    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridControl\HexItem.cs">
+      <Paket>True</Paket>
+      <Link>HexGrid/HexGridControl/HexItem.cs</Link>
+    </Compile>
+    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridControl\HexList.cs">
+      <Paket>True</Paket>
+      <Link>HexGrid/HexGridControl/HexList.cs</Link>
+    </Compile>
+    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridControl\Converters\HexClipConverter.cs">
+      <Paket>True</Paket>
+      <Link>HexGrid/HexGridControl/Converters/HexClipConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridHelpers\HexArrayHelper.cs">
+      <Paket>True</Paket>
+      <Link>HexGrid/HexGridHelpers/HexArrayHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridHelpers\HexDirection.cs">
+      <Paket>True</Paket>
+      <Link>HexGrid/HexGridHelpers/HexDirection.cs</Link>
+    </Compile>
+    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridHelpers\IntPoint.cs">
+      <Paket>True</Paket>
+      <Link>HexGrid/HexGridHelpers/IntPoint.cs</Link>
+    </Compile>
+    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridHelpers\IntSize.cs">
+      <Paket>True</Paket>
+      <Link>HexGrid/HexGridHelpers/IntSize.cs</Link>
+    </Compile>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -95,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\MaterialDesignTheme.Clock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MaterialDesignTheme.HexColorPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,6 +169,10 @@
     <Page Include="Themes\MaterialDesignTheme.GroupBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MaterialDesignTheme.HexGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\MaterialDesignTheme.Label.xaml">
       <SubType>Designer</SubType>
@@ -322,6 +362,8 @@
     <Compile Include="DrawerHost.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Flipper.cs" />
+    <Compile Include="HexColorItem.cs" />
+    <Compile Include="HexColorPicker.cs" />
     <Compile Include="HintAssist.cs" />
     <Compile Include="HintProxyFabric.PasswordBox.cs" />
     <Compile Include="HintProxyFabric.TextBox.cs" />

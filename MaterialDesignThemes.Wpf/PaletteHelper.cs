@@ -273,20 +273,20 @@ namespace MaterialDesignThemes.Wpf
                 ReplaceEntry(entryName, newValue, dictionary);
         }
 
-        public static void SetPalettes(CodeHue primary, CodeHue secondary)
+        public static void SetPalettes(Color primary, Color secondary)
         {
             SetPrimaryPalette(primary);
             SetSecondaryPalette(secondary);
         }
 
-        public static void SetPrimaryForeground(CodeHue hue)
+        public static void SetPrimaryForeground(Color color)
         {
-            SetForegroundBrushes(hue.Color, "Primary");
+            SetForegroundBrushes(color, "Primary");
         }
 
-        public static void SetSecondaryForeground(CodeHue hue)
+        public static void SetSecondaryForeground(Color color)
         {
-            SetForegroundBrushes(hue.Color, "Secondary");
+            SetForegroundBrushes(color, "Secondary");
         }
 
         private static void SetForegroundBrushes(Color color, string scheme)
@@ -296,15 +296,15 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry($"{scheme}HueDarkForegroundBrush", new SolidColorBrush(color));
         }
 
-        public static void SetPrimaryPalette(CodeHue hue)
+        public static void SetPrimaryPalette(Color color)
         {
-            var light = hue.Lighten();
-            var mid = hue.Color;
-            var dark = hue.Darken();
+            var light = color.Lighten();
+            var mid = color;
+            var dark = color.Darken();
 
-            var darkForeground = CodeHue.ContrastingForeGroundColor(dark);
+            var darkForeground = ColorHelper.ContrastingForeGroundColor(dark);
 
-            SetPalette(hue, "Primary");
+            SetPalette(color, "Primary");
 
             ReplaceEntry("HighlightBrush", new SolidColorBrush(dark));
             ReplaceEntry("AccentColorBrush", new SolidColorBrush(dark));
@@ -320,23 +320,23 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark) { Opacity = .4 });
         }
 
-        public static void SetSecondaryPalette(CodeHue hue)
+        public static void SetSecondaryPalette(Color color)
         {
-            SetPalette(hue, "Secondary");
+            SetPalette(color, "Secondary");
 
-            ReplaceEntry("SecondaryAccentBrush", new SolidColorBrush(hue.Color));
-            ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(CodeHue.ContrastingForeGroundColor(hue.Color)));
+            ReplaceEntry("SecondaryAccentBrush", new SolidColorBrush(color));
+            ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(ColorHelper.ContrastingForeGroundColor(color)));
         }
 
-        private static void SetPalette(CodeHue hue, string scheme)
+        private static void SetPalette(Color color, string scheme)
         {
-            var light = hue.Lighten();
-            var mid = hue.Color;
-            var dark = hue.Darken();
+            var light = color.Lighten();
+            var mid = color;
+            var dark = color.Darken();
 
-            var lightForeground = CodeHue.ContrastingForeGroundColor(light);
-            var midForeground = CodeHue.ContrastingForeGroundColor(mid);
-            var darkForeground = CodeHue.ContrastingForeGroundColor(dark);
+            var lightForeground = ColorHelper.ContrastingForeGroundColor(light);
+            var midForeground = ColorHelper.ContrastingForeGroundColor(mid);
+            var darkForeground = ColorHelper.ContrastingForeGroundColor(dark);
 
             ReplaceEntry($"{scheme}HueLightBrush", new SolidColorBrush(light));
             ReplaceEntry($"{scheme}HueLightForegroundBrush", new SolidColorBrush(lightForeground));
