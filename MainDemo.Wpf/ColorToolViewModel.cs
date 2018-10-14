@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -42,6 +43,8 @@ namespace MaterialDesignDemo
 
         public IEnumerable<ISwatch> Swatches { get; } = SwatchHelper.Swatches;
 
+        public ICommand ChangeCustomHueCommand { get; }
+
         public ICommand ChangeHueCommand { get; }
         public ICommand ChangeToPrimaryCommand { get; }
         public ICommand ChangeToSecondaryCommand { get; }
@@ -51,6 +54,7 @@ namespace MaterialDesignDemo
         public ColorToolViewModel()
         {
             ChangeHueCommand = new AnotherCommandImplementation(ChangeHue);
+            ChangeCustomHueCommand = new AnotherCommandImplementation(ChangeCustomColor);
             ChangeToPrimaryCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.Primary));
             ChangeToSecondaryCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.Secondary));
             ChangeToPrimaryForegroundCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.PrimaryForeground));
@@ -81,16 +85,43 @@ namespace MaterialDesignDemo
             SelectedColor = _primaryColor.FullName;
         }
 
+        private void ChangeCustomColor(object obj)
+        {
+            var color = (Color)obj;
+
+            SelectedColor = null;
+            if (ActiveScheme == ColorScheme.Primary)
+            {
+                PaletteHelper.SetPrimaryPalette(color);
+                _primaryColor = null;
+            }
+            else if (ActiveScheme == ColorScheme.Secondary)
+            {
+                PaletteHelper.SetSecondaryPalette(color);
+                _secondaryColor = null;
+            }
+            else if (ActiveScheme == ColorScheme.PrimaryForeground)
+            {
+                PaletteHelper.SetPrimaryForeground(color);
+                _primaryForegroundColor = null;
+            }
+            else if (ActiveScheme == ColorScheme.SecondaryForeground)
+            {
+                PaletteHelper.SetSecondaryForeground(color);
+                _secondaryForegroundColor = null;
+            }
+        }
+
         private void ChangeScheme(ColorScheme scheme)
         {
             ActiveScheme = scheme;
             if (ActiveScheme == ColorScheme.Primary)
             {
-                SelectedColor = _primaryColor.FullName;
+                SelectedColor = _primaryColor?.FullName;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
-                SelectedColor = _secondaryColor.FullName;
+                SelectedColor = _secondaryColor?.FullName;
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {
@@ -117,22 +148,22 @@ namespace MaterialDesignDemo
             SelectedColor = hue.FullName;
             if (ActiveScheme == ColorScheme.Primary)
             {
-                PaletteHelper.SetPrimaryPalette(hue);
+                PaletteHelper.SetPrimaryPalette(hue.Color);
                 _primaryColor = hue;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
-                PaletteHelper.SetSecondaryPalette(hue);
+                PaletteHelper.SetSecondaryPalette(hue.Color);
                 _secondaryColor = hue;
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {
-                PaletteHelper.SetPrimaryForeground(hue);
+                PaletteHelper.SetPrimaryForeground(hue.Color);
                 _primaryForegroundColor = hue;
             }
             else if (ActiveScheme == ColorScheme.SecondaryForeground)
             {
-                PaletteHelper.SetSecondaryForeground(hue);
+                PaletteHelper.SetSecondaryForeground(hue.Color);
                 _secondaryForegroundColor = hue;
             }
         }

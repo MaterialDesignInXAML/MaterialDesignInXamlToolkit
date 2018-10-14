@@ -1,3 +1,11 @@
 File: PackIconBase.cs ControlzEx
 File: PopupEx.cs ControlzEx
 File: BadgedEx.cs ControlzEx
+File: HexGrid.cs HexGrid/HexGridControl
+File: HexItem.cs HexGrid/HexGridControl
+File: HexList.cs HexGrid/HexGridControl
+File: HexClipConverter.cs HexGrid/HexGridControl/Converters
+File: HexArrayHelper.cs HexGrid/HexGridHelpers
+File: HexDirection.cs HexGrid/HexGridHelpers
+File: IntPoint.cs HexGrid/HexGridHelpers
+File: IntSize.cs HexGrid/HexGridHelpers

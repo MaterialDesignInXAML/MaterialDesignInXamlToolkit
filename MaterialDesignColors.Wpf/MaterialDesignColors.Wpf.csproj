@@ -59,7 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeHue.cs" />
+    <Compile Include="ColorHelper.cs" />
+    <Compile Include="Hsv.cs" />
     <Compile Include="ISwatch.cs" />
+    <Compile Include="Lab.cs" />
     <Compile Include="SwatchHelper.cs" />
     <Compile Include="Hue.cs" />
     <Compile Include="RecommendedThemeProvider.cs" />
@@ -96,6 +99,7 @@
     <Compile Include="PurpleSwatch.cs" />
     <Compile Include="RedSwatch.cs" />
     <Compile Include="TealSwatch.cs" />
+    <Compile Include="Xyz.cs" />
     <Compile Include="YellowSwatch.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

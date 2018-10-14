@@ -57,3 +57,12 @@ GITHUB
     src/ControlzEx/PopupEx.cs (e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa)
   remote: samueldjack/VirtualCollection
     VirtualCollection/VirtualCollection/VirtualizingWrapPanel.cs (e63d891c252c2ac1a3ebb26dddb9a3d89effe3f2)
+  remote: AlexanderSharykin/HexGrid
+    HexGridControl/Converters/HexClipConverter.cs (8538e397c7c8792ebe82c355ab24c154576f167d)
+    HexGridControl/HexGrid.cs (8538e397c7c8792ebe82c355ab24c154576f167d)
+    HexGridControl/HexItem.cs (8538e397c7c8792ebe82c355ab24c154576f167d)
+    HexGridControl/HexList.cs (8538e397c7c8792ebe82c355ab24c154576f167d)
+    HexGridHelpers/HexArrayHelper.cs (8538e397c7c8792ebe82c355ab24c154576f167d)
+    HexGridHelpers/HexDirection.cs (8538e397c7c8792ebe82c355ab24c154576f167d)
+    HexGridHelpers/IntPoint.cs (8538e397c7c8792ebe82c355ab24c154576f167d)
+    HexGridHelpers/IntSize.cs (8538e397c7c8792ebe82c355ab24c154576f167d)
