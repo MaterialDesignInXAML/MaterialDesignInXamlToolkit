@@ -164,6 +164,9 @@ namespace MaterialDesignThemes.Wpf
             return (bool)element.GetValue(RippleOnFocusEnabledProperty);
         }
 
+        /// <summary>
+        /// The color for highlighting effects on the border and the hint of a text box.
+        /// </summary>
         public static readonly DependencyProperty HighlightedBrushProperty = DependencyProperty.RegisterAttached(
             "HighlightedBrush", typeof(Brush), typeof(TextFieldAssist), new PropertyMetadata(null));
 
