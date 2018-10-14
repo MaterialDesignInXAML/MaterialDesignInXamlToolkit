@@ -193,30 +193,30 @@
                         <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}" />
                     </Grid>
                     <ControlTemplate.Triggers>
-						<Trigger Property="IsEnabled" Value="false">
-							<Setter Property="Opacity" TargetName="border" Value="0.56" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" TargetName="border" Value="0.56" />
                             <Setter Property="Visibility" TargetName="DashedLine"  Value="Visible" />
                             <Setter Property="BorderBrush" TargetName="border" Value="Transparent" />
-						</Trigger>
-						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-						</Trigger>
-						<Trigger Property="IsKeyboardFocusWithin" Value="true">
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="true">
                             <Setter TargetName="Underline" Property="IsActive" Value="True" />
-							<Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}" />
-						</Trigger>
-						<Trigger Property="Validation.HasError" Value="true">
-							<Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter Property="BorderBrush"  Value="{DynamicResource PrimaryHueMidBrush}" />
+                        </Trigger>
+                        <Trigger Property="Validation.HasError" Value="true">
+                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
                             <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}" />
-						</Trigger>
+                        </Trigger>
                         <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
                             <Setter TargetName="border" Property="Margin" Value="0 12 0 0" />
                         </Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style x:Key="MaterialDesignFloatingHintDatePicker" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignDatePicker}">
         <Setter Property="wpf:HintAssist.IsFloating" Value="True" />
