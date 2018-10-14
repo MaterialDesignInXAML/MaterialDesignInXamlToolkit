@@ -365,10 +365,10 @@
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true" />
                             </MultiDataTrigger.Conditions>
-                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" />
                         </MultiDataTrigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource PrimaryHueDarkBrush}" />
+                            <Setter TargetName="arrow" Property="Fill" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
@@ -451,7 +451,8 @@
                 <wpf:Underline x:Name="Underline"
                                Grid.ColumnSpan="2"
                                IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
-                               Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
+                               Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                               Background="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource TemplatedParent}}" />
 
                 <wpf:ComboBoxPopup x:Name="PART_Popup"
                                    AllowsTransparency="true"
@@ -513,7 +514,7 @@
                     <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
                     <Condition Property="IsKeyboardFocusWithin" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
             </MultiTrigger>
             <MultiTrigger>
@@ -522,7 +523,7 @@
                     <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
                     <Condition Property="IsKeyboardFocusWithin" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
             </MultiTrigger>
             <MultiTrigger>
@@ -530,7 +531,7 @@
                     <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
                     <Condition SourceName="PART_EditableTextBox" Property="IsKeyboardFocused" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
             </MultiTrigger>
             <MultiTrigger>
@@ -538,7 +539,7 @@
                     <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
                     <Condition Property="IsDropDownOpen" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
             </MultiTrigger>
             <MultiTrigger>
@@ -568,8 +569,8 @@
                     <Condition Property="IsMouseOver" Value="true" />
                     <Condition Property="Validation.HasError" Value="false" />
                 </MultiTrigger.Conditions>
-                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
-                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource Self}}" />
+                <Setter TargetName="Underline" Property="Background" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource TemplatedParent}}" />
             </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -593,13 +594,14 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
         <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 1 0" />
+        <Setter Property="wpf:TextFieldAssist.HighlightedBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
         <Style.Triggers>
             <Trigger Property="IsKeyboardFocused" Value="true">
-                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource Self}}" />
             </Trigger>
             <Trigger Property="IsKeyboardFocusWithin" Value="true">
-                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource Self}}" />
             </Trigger>
             <Trigger Property="IsEditable" Value="true">
                 <Setter Property="IsTabStop" Value="false" />
