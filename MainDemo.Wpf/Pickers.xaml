@@ -67,7 +67,7 @@
                                         Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                                         materialDesign:HintAssist.Hint="Custom hint" />
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="pickers_6_disabled" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="0 16 0 0" VerticalAlignment="Top">
+                <smtx:XamlDisplay Key="pickers_6_disabled" HorizontalAlignment="Left" Margin="0 16 0 0" VerticalAlignment="Top">
                     <materialDesign:TimePicker Width="100" IsEnabled="False"
                                         Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                                         materialDesign:HintAssist.Hint="Disabled" />
@@ -77,24 +77,28 @@
             <smtx:XamlDisplay Key="pickers_7" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 16 0 0">
                 <materialDesign:TimePicker Is24Hours="True" x:Name="PresetTimePicker" Width="100" SelectedTimeChanged="PresetTimePicker_SelectedTimeChanged"/>
             </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="pickers_8" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 16 0 0">
-                <materialDesign:TimePicker 
-                                   materialDesign:HintAssist.Hint="Validates"
-                                   IsInvalidTextAllowed="True"
-                                   Is24Hours="True" Width="100">
-                    <materialDesign:TimePicker.Text>
-                        <Binding Path="ValidatingTime" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <domain:SimpleDateValidationRule ValidatesOnTargetUpdated="True" />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </materialDesign:TimePicker.Text>
-                </materialDesign:TimePicker>
-            </smtx:XamlDisplay>
+            <StackPanel Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <smtx:XamlDisplay Key="pickers_8" Margin="0 16 0 0">
+                    <materialDesign:TimePicker 
+                                       materialDesign:HintAssist.Hint="Validates"
+                                       IsInvalidTextAllowed="True"
+                                       Is24Hours="{Binding IsChecked, ElementName=Is24HourCheckbox}"
+                                       Width="100">
+                        <materialDesign:TimePicker.Text>
+                            <Binding Path="ValidatingTime" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <domain:SimpleDateValidationRule ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </materialDesign:TimePicker.Text>
+                    </materialDesign:TimePicker>
+                </smtx:XamlDisplay>
+                <CheckBox Content="Is 24 Hour" x:Name="Is24HourCheckbox" IsChecked="True" Margin="0,10,0,0" VerticalAlignment="Top"/>
+            </StackPanel>
             <smtx:XamlDisplay Key="pickers_11" Grid.Row="1" Grid.Column="4" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 16 0 0">
                 <materialDesign:TimePicker
                     materialDesign:HintAssist.Hint="With Seconds"
-                    Is24Hours="True"
+                    Is24Hours="{Binding IsChecked, ElementName=Is24HourCheckbox}"
                     x:Name="WithSecondsTimePicker"
                     WithSeconds="True"
                     Width="100" />

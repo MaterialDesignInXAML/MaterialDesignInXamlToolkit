@@ -83,6 +83,7 @@ namespace MaterialDesignColors.WpfExample
 
             Debug.WriteLine($"PresentTimePicker's SelectedTime changed from {oldValue} to {newValue}");
         }
+
         public void CombinedDialogOpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)
         {
             CombinedCalendar.SelectedDate = ((PickersViewModel)DataContext).Date;
