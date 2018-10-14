@@ -514,7 +514,7 @@
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
-                                                                               Storyboard.TargetProperty="Background">
+                                                                           Storyboard.TargetProperty="Background">
                                                 <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
@@ -529,6 +529,10 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame Value="{x:Null}" KeyTime="0:0:0.3" />
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -551,10 +555,14 @@
                                 <VisualState x:Name="AllClosed">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="Opacity"
-                                                             To="0" />
+                                                         To="0" />
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="IsHitTestVisible">
                                             <DiscreteBooleanKeyFrame Value="False" />
                                         </BooleanAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame Value="{x:Null}" />
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -745,7 +753,7 @@
                                         x:Name="ContentPresenter" Opacity="1"                    
                                         Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
                             </AdornerDecorator>
-                            <Grid x:Name="PART_ContentCover" Background="Black" Opacity="0" IsHitTestVisible="False" Focusable="False" />
+                            <Grid x:Name="PART_ContentCover" Background="{x:Null}" Opacity="0" IsHitTestVisible="False" Focusable="False" />
                             <Grid>
                                 <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch"
                                       x:Name="PART_LeftDrawer"
