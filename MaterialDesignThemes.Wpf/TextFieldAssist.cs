@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -161,6 +162,19 @@ namespace MaterialDesignThemes.Wpf
         public static bool GetRippleOnFocusEnabled(DependencyObject element)
         {
             return (bool)element.GetValue(RippleOnFocusEnabledProperty);
+        }
+
+        public static readonly DependencyProperty HighlightedBrushProperty = DependencyProperty.RegisterAttached(
+            "HighlightedBrush", typeof(Brush), typeof(TextFieldAssist), new PropertyMetadata(null));
+
+        public static void SetHighlightedBrush(DependencyObject element, Brush value)
+        {
+            element.SetValue(HighlightedBrushProperty, value);
+        }
+
+        public static Brush GetHighlightedBrush(DependencyObject element)
+        {
+            return (Brush)element.GetValue(HighlightedBrushProperty);
         }
 
         /// <summary>
