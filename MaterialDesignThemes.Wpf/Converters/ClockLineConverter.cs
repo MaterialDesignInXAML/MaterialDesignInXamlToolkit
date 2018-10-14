@@ -15,7 +15,9 @@ namespace MaterialDesignThemes.Wpf.Converters
             
             return DisplayMode == ClockDisplayMode.Hours
 				? ((time.Hour > 13) ? time.Hour - 12 : time.Hour)*(360/12)
-				: (time.Minute == 0 ? 60 : time.Minute)*(360/60);
+				: DisplayMode == ClockDisplayMode.Minutes
+                    ? (time.Minute == 0 ? 60 : time.Minute)*(360/60)
+				    : (time.Second == 0 ? 60 : time.Second)*(360/60);
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -2,20 +2,19 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
-
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="MaterialDesignTheme.ValidationErrorTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
+    <converters:MathConverter Operation="Divide" x:Key="DivisionMathConverter" />
 
     <Style x:Key="MaterialDesignTimePicker" TargetType="{x:Type wpf:TimePicker}">
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0 0 0 1"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+		<Setter Property="VerticalAlignment" Value="Top"/>
+		<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="BorderThickness" Value="0 0 0 1"/>
+		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="Margin" Value="0 12 0 0" />
         <Setter Property="wpf:HintAssist.Hint" Value="Select time" />
@@ -93,7 +92,7 @@
                     <Grid x:Name="TemplateRoot">
                         <Border BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}" 
+                                Background="{TemplateBinding Background}"
                                 x:Name="border"
                                 Padding="0 4 0 4"
                                 SnapsToDevicePixels="True">
@@ -118,11 +117,17 @@
                                        PopupAnimation="Fade"/>
                             </Grid>
                         </Border>
+                        <Line x:Name="DashedLine" VerticalAlignment="Bottom" Visibility="Hidden"
+                              StrokeThickness="{Binding BorderThickness.Bottom, ElementName=border, Converter={StaticResource DivisionMathConverter}, ConverterParameter=0.75}" StrokeDashArray="1,2.5" StrokeDashCap="Round"
+                              X1="0" X2="{Binding ActualWidth, ElementName=border}" Y1="0" Y2="0" 
+                              Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />
                         <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" TargetName="TemplateRoot" Value="0.56"/>
+                            <Setter Property="Visibility" TargetName="DashedLine"  Value="Visible" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>

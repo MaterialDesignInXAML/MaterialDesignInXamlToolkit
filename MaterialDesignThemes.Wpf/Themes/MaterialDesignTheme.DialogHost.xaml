@@ -13,6 +13,8 @@
         <Setter Property="Placement" Value="Center" />
     </Style>
 
+    <SolidColorBrush x:Key="BlackBackground" Color="Black" />
+
     <Style TargetType="{x:Type wpf:DialogHost}">
         <Setter Property="DialogMargin" Value="35" />
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth5" />
@@ -30,6 +32,10 @@
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
                                                 <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
                                             </BooleanAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" 
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
+                                            </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0" />
                                                 <EasingDoubleKeyFrame Value="0.56" KeyTime="0:0:0.3">
@@ -69,6 +75,10 @@
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
                                                 <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.3" />
                                             </BooleanAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" 
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame Value="{x:Null}" KeyTime="0:0:0.3" />
+                                            </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="0.56" KeyTime="0" />
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.3">
@@ -112,6 +122,10 @@
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
                                             <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" 
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" />
+                                        </ObjectAnimationUsingKeyFrames>
                                         <DoubleAnimation Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
                                                          To=".56" />
@@ -131,6 +145,12 @@
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
                                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.3" />
                                         </BooleanAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" 
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame Value="{x:Null}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity"
+                                                         To="0" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -177,7 +197,6 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsOpen" Value="True">
                             <Setter TargetName="ContentPresenter" Property="IsEnabled" Value="False" />
-                            <Setter TargetName="PART_ContentCoverGrid" Property="Background" Value="Black" />
                             <Setter TargetName="PART_ContentCoverGrid" Property="IsHitTestVisible" Value="True" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -202,6 +221,10 @@
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="Visibility">
                                                 <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" 
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0" />
@@ -241,6 +264,10 @@
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="Visibility">
                                                 <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0:0:0.3" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" 
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame Value="{x:Null}" KeyTime="0:0:0.3" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="0.56" KeyTime="0" />
@@ -285,6 +312,10 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0" />
                                         </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" 
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
+                                        </ObjectAnimationUsingKeyFrames>
                                         <DoubleAnimation Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
                                                          To=".56" />
@@ -302,8 +333,14 @@
                                 <VisualState x:Name="Closed">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0:0:0.3" />
+                                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0" />
                                         </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" 
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame Value="{x:Null}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity"
+                                                         To="0" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>

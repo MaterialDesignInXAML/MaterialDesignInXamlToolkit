@@ -1,7 +1,6 @@
 ﻿using MaterialDesignColors.WpfExample.Domain;
 using System;
 using System.ComponentModel;
-using System.Threading;
 using System.Windows.Input;
 using System.Windows.Threading;
 

@@ -5,6 +5,7 @@
 
     <converters:ClockLineConverter x:Key="ClockHourLineConverter" DisplayMode="Hours" />
     <converters:ClockLineConverter x:Key="ClockMinuteLineConverter" DisplayMode="Minutes" />
+    <converters:ClockLineConverter x:Key="ClockSecondLineConverter" DisplayMode="Seconds" />
     <converters:NotConverter x:Key="NotConverter" />
 
     <Style x:Key="MaterialDesignClockItemThumb" TargetType="{x:Type Thumb}">
@@ -237,6 +238,64 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
+                                    <VisualTransition From="Minutes" To="Seconds">
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Hours">
                                     <Storyboard>
@@ -252,11 +311,20 @@
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
                                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                        </BooleanAnimationUsingKeyFrames>
                                         <DoubleAnimation Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="Opacity"
                                                          To="0" Duration="0" />
                                         <DoubleAnimation Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX"
                                                          To=".85" Duration="0" />
                                         <DoubleAnimation Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY"
+                                                         To=".85" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity"
+                                                         To="0" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX"
+                                                         To=".85" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY"
                                                          To=".85" Duration="0" />
                                     </Storyboard>
                                 </VisualState>
@@ -279,6 +347,37 @@
                                         <DoubleAnimation Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX"
                                                          To="1" Duration="0" />
                                         <DoubleAnimation Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY"
+                                                         To="1" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Seconds">
+                                    <Storyboard>
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                        </BooleanAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="Opacity"
+                                                         To="0" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleX"
+                                                         To="1.2" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleY"
+                                                         To="1.2" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="Opacity"
+                                                         To="0" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX"
+                                                         To="1.2" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY"
+                                                         To="1.2" Duration="0" />
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                        </BooleanAnimationUsingKeyFrames>
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                        </BooleanAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity"
+                                                         To="1" Duration="0"/>
+                                        <DoubleAnimation Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX"
+                                                         To="1" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY"
                                                          To="1" Duration="0" />
                                     </Storyboard>
                                 </VisualState>
@@ -326,6 +425,20 @@
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>
+                                    <TextBlock x:Name="PART_SecondColonPrefix" Text=":" Style="{StaticResource TimeTextBlock}" />
+                                    <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:ss}}"
+													   x:Name="PART_SecondReadOut">
+                                        <TextBlock.Style>
+                                            <Style BasedOn="{StaticResource TimeTextBlock}" TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Opacity" Value=".56"></Setter>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static  wpf:ClockDisplayMode.Seconds}">
+                                                        <Setter Property="Opacity" Value="1" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
                                     <TextBlock FontSize="16" 
                                                x:Name="AmPmReadout"
                                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:tt}}" 
@@ -354,6 +467,17 @@
                                 </Path>
                                 <Canvas.RenderTransform>
                                     <ScaleTransform x:Name="MinutesScaleTransform" ScaleX="1" ScaleY="1" />
+                                </Canvas.RenderTransform>
+                            </Canvas>
+                            <Canvas x:Name="PART_SecondsCanvas" Grid.Row="1" Margin="0,24.5,0,159.5" Width="230" Height="230" Opacity="0" IsHitTestVisible="False"
+											RenderTransformOrigin=".5,.5">
+                                <Path x:Name="SecondLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
+                                    <Path.RenderTransform>
+                                        <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockSecondLineConverter}}" />
+                                    </Path.RenderTransform>
+                                </Path>
+                                <Canvas.RenderTransform>
+                                    <ScaleTransform x:Name="SecondsScaleTransform" ScaleX="1" ScaleY="1" />
                                 </Canvas.RenderTransform>
                             </Canvas>
                             <RadioButton Content="AM" GroupName="Meridien" HorizontalAlignment="Left" Height="47.333" Margin="31.666,0,0,37.667" Grid.Row="1" VerticalAlignment="Bottom" Width="47.333" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButton}"
@@ -391,6 +515,26 @@
                             <Setter TargetName="HourLine" Property="Height" Value="76" />
                             <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
                         </MultiTrigger>
+                        <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.None}">
+                            <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="TimeReadoutStackPanel" Property="Margin" Value="0 6 38 0" />
+                        </Trigger>
+                        <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.Cycle}">
+                            <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="TimeReadoutStackPanel" Property="Margin" Value="0 6 38 0" />
+                        </Trigger>
+                        <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.ToMinutesOnly}">
+                            <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="TimeReadoutStackPanel" Property="Margin" Value="0 6 38 0" />
+                        </Trigger>
+                        <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.ToSeconds}">
+                            <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="TimeReadoutStackPanel" Property="Margin" Value="0 6 0 0" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
