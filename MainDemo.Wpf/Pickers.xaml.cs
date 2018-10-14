@@ -83,5 +83,21 @@ namespace MaterialDesignColors.WpfExample
 
             Debug.WriteLine($"PresentTimePicker's SelectedTime changed from {oldValue} to {newValue}");
         }
+
+        public void CombinedDialogOpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)
+        {
+            CombinedCalendar.SelectedDate = ((PickersViewModel)DataContext).Date;
+            CombinedClock.Time = ((PickersViewModel)DataContext).Time;
+        }
+
+        public void CombinedDialogClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
+        {
+            if (Equals(eventArgs.Parameter, "1"))
+            {
+                var combined = CombinedCalendar.SelectedDate.Value.AddSeconds(CombinedClock.Time.TimeOfDay.TotalSeconds);
+                ((PickersViewModel)DataContext).Time = combined;
+                ((PickersViewModel)DataContext).Date = combined;
+            }
+        }
     }
 }

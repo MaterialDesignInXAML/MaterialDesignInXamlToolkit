@@ -2,11 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
-
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="MaterialDesignTheme.ValidationErrorTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
     <converters:MathConverter Operation="Divide" x:Key="DivisionMathConverter" />
 
@@ -94,7 +92,7 @@
                     <Grid x:Name="TemplateRoot">
                         <Border BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}" 
+                                Background="{TemplateBinding Background}"
                                 x:Name="border"
                                 Padding="0 4 0 4"
                                 SnapsToDevicePixels="True">

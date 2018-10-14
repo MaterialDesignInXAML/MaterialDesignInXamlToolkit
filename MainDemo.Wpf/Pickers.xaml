@@ -22,6 +22,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.ColumnSpan="3">Classic WPF DatePicker control with Material Design theme, and new TimePicker control:</TextBlock>
@@ -66,7 +67,7 @@
                                         Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                                         materialDesign:HintAssist.Hint="Custom hint" />
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="pickers_6_disabled" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="0 16 0 0" VerticalAlignment="Top">
+                <smtx:XamlDisplay Key="pickers_6_disabled" HorizontalAlignment="Left" Margin="0 16 0 0" VerticalAlignment="Top">
                     <materialDesign:TimePicker Width="100" IsEnabled="False"
                                         Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                                         materialDesign:HintAssist.Hint="Disabled" />
@@ -76,22 +77,34 @@
             <smtx:XamlDisplay Key="pickers_7" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 16 0 0">
                 <materialDesign:TimePicker Is24Hours="True" x:Name="PresetTimePicker" Width="100" SelectedTimeChanged="PresetTimePicker_SelectedTimeChanged"/>
             </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="pickers_8" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 16 0 0">
-                <materialDesign:TimePicker 
-                                   materialDesign:HintAssist.Hint="Validates"
-                                   IsInvalidTextAllowed="True"
-                                   Is24Hours="True" Width="100">
-                    <materialDesign:TimePicker.Text>
-                        <Binding Path="ValidatingTime" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <domain:SimpleDateValidationRule ValidatesOnTargetUpdated="True" />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </materialDesign:TimePicker.Text>
-                </materialDesign:TimePicker>
+            <StackPanel Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <smtx:XamlDisplay Key="pickers_8" Margin="0 16 0 0">
+                    <materialDesign:TimePicker 
+                                       materialDesign:HintAssist.Hint="Validates"
+                                       IsInvalidTextAllowed="True"
+                                       Is24Hours="{Binding IsChecked, ElementName=Is24HourCheckbox}"
+                                       Width="100">
+                        <materialDesign:TimePicker.Text>
+                            <Binding Path="ValidatingTime" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <domain:SimpleDateValidationRule ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </materialDesign:TimePicker.Text>
+                    </materialDesign:TimePicker>
+                </smtx:XamlDisplay>
+                <CheckBox Content="Is 24 Hour" x:Name="Is24HourCheckbox" IsChecked="True" Margin="0,10,0,0" VerticalAlignment="Top"/>
+            </StackPanel>
+            <smtx:XamlDisplay Key="pickers_11" Grid.Row="1" Grid.Column="4" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 16 0 0">
+                <materialDesign:TimePicker
+                    materialDesign:HintAssist.Hint="With Seconds"
+                    Is24Hours="{Binding IsChecked, ElementName=Is24HourCheckbox}"
+                    x:Name="WithSecondsTimePicker"
+                    WithSeconds="True"
+                    Width="100" />
             </smtx:XamlDisplay>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 128 0 0">By combining the DialogHost (see MainWindow.xaml) and the Calendar and Clock controls, custom popups can be built.</TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="0 128 0 0">By combining the DialogHost (see MainWindow.xaml) and the Calendar and Clock controls, custom popups can be built.</TextBlock>
             <smtx:XamlDisplay Key="pickers_9" Grid.Row="3" Grid.Column="0" Margin="0 32 0 0" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" FontSize="24" />
@@ -128,7 +141,40 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <materialDesign:Clock DisplayAutomation="Cycle" x:Name="Clock" />
+                                <materialDesign:Clock DisplayAutomation="ToSeconds" x:Name="Clock" />
+                                <StackPanel Grid.Row="1" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
+                                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="0" Style="{DynamicResource MaterialDesignFlatButton}">CANCEL</Button>
+                                </StackPanel>
+                            </Grid>
+                        </Button.CommandParameter>
+                    </Button>
+                </StackPanel>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="pickers_12" Grid.Row="3" Grid.Column="2" Margin="0 32 0 0" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" VerticalAlignment="Center" FontSize="24" />
+                    <Button Margin="8 0 0 0" Content="..."
+                            Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                            materialDesign:DialogHost.DialogOpenedAttached="CombinedDialogOpenedEventHandler"
+                            materialDesign:DialogHost.DialogClosingAttached="CombinedDialogClosingEventHandler">
+                        <Button.CommandParameter>
+                            <Grid Margin="-1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <Calendar
+                                        x:Name="CombinedCalendar"
+                                        Margin="-1 -4 -1 0"
+                                        />
+                                    <materialDesign:Clock
+                                        x:Name="CombinedClock"
+                                        DisplayAutomation="CycleWithSeconds"
+                                        Is24Hours="True"
+                                        />
+                                </StackPanel>
                                 <StackPanel Grid.Row="1" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal">
                                     <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
                                     <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="0" Style="{DynamicResource MaterialDesignFlatButton}">CANCEL</Button>
