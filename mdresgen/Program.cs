@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Xml.Linq;
 
 namespace mdresgen
@@ -42,6 +43,9 @@ namespace mdresgen
         {
             var xDocument = XDocument.Load(BaseSnippetLocation);
 
+            //https://coolsubhash-tech.blogspot.com/2016/10/resolved-existing-connection-was.html
+            ServicePointManager.SecurityProtocol = ServicePointManager.SecurityProtocol | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+
             if (args.Length == 0)
                 GenerateXaml(xDocument, false);
             else if (args.Contains("all-swatches"))
@@ -60,7 +64,7 @@ namespace mdresgen
             else if (args.Contains("old"))
                 GenerateOldXaml(xDocument, false);
             else if (args.Contains("icons"))
-                new IconThing().Run();
+                IconThing.Run();
             else
                 GenerateXaml(xDocument, false);
 

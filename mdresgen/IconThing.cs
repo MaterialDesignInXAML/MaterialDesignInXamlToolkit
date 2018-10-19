@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Humanizer;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -14,13 +12,13 @@ using Newtonsoft.Json.Linq;
 
 namespace mdresgen
 {
-    class IconThing
+    static class IconThing
     {
-        public void Run()
+        public static void Run()
         {            
             Console.WriteLine("Downloading icon data...");
 
-            var nameDataPairs = GetNameDataPairs(GetSourceData()).ToList();
+            var nameDataPairs = GetIcons(GetSourceData()).ToList();
             Console.WriteLine("Items: " + nameDataPairs.Count);
 
             //var nameDataPairs = GetNameDataPairs("TEST").ToList();            
@@ -36,7 +34,7 @@ namespace mdresgen
             Console.WriteLine("done");
         }
 
-        private void Write(string content, string filename)
+        private static void Write(string content, string filename)
         {
             File.WriteAllText(Path.Combine(@"..\..\..\MaterialDesignThemes.Wpf\", filename), content);
         }
@@ -49,7 +47,7 @@ namespace mdresgen
             webRequest.Credentials = CredentialCache.DefaultCredentials;
             if (webRequest.Proxy != null)
                 webRequest.Proxy.Credentials = CredentialCache.DefaultCredentials;
-
+            
             using (var sr = new StreamReader(webRequest.GetResponse().GetResponseStream()))
             {
                 var iconData = sr.ReadToEnd();
@@ -60,26 +58,49 @@ namespace mdresgen
             }
         }
 
-        private static IEnumerable<Tuple<string, string>> GetNameDataPairs(string sourceData)
+        private static IEnumerable<Icon> GetIcons(string sourceData)
         {            
             var jObject = JObject.Parse(sourceData);
-            return jObject["icons"].Select(t => new Tuple<string, string>(
-                t["name"].ToString().Underscore().Pascalize(), 
-                t["data"].ToString()));
+            var icons = jObject["icons"].Select(t => new Icon(
+                t["name"].ToString().Underscore().Pascalize(),
+                t["data"].ToString(),
+                t["aliases"].ToObject<IEnumerable<string>>().Select(x => x.Underscore().Pascalize()).ToList() ))
+                .ToDictionary(icon => icon.Name);
+
+            //Clean up aliases to avoid naming collisions
+            var seenAliases = new HashSet<string>();
+            foreach (Icon icon in icons.Values)
+            {
+                for (int i = icon.Aliases.Count - 1; i >= 0; i--)
+                {
+                    string alias = icon.Aliases[i];
+                    if (icons.ContainsKey(alias) || !IsValidIdentifier(alias) || seenAliases.Add(alias) == false)
+                    {
+                        icon.Aliases.RemoveAt(i);
+                    }
+                }
+            }
+
+            return icons.Values;
+
+            bool IsValidIdentifier(string identifier)
+            {
+                return identifier?.Length > 0 && (char.IsLetter(identifier[0]) || identifier[0] == '_');
+            }
         }
 
-        private string UpdateDataFactory(string sourceFile, IEnumerable<Tuple<string, string>> nameDataPairs)
+        private static string UpdateDataFactory(string sourceFile, IEnumerable<Icon> icons)
         {
             var sourceText = SourceText.From(new FileStream(sourceFile, FileMode.Open));
             var syntaxTree = CSharpSyntaxTree.ParseText(sourceText);
 
-            var mySyntaxRewriter = new IconDataFactorySyntaxRewriter(nameDataPairs);
+            var mySyntaxRewriter = new IconDataFactorySyntaxRewriter(icons);
             var node = mySyntaxRewriter.Visit(syntaxTree.GetRoot());
 
             return node.ToString();
         }
 
-        private string UpdateEnum(string sourceFile, IEnumerable<Tuple<string, string>> nameDataPairs)
+        private static string UpdateEnum(string sourceFile, IEnumerable<Icon> icons)
         {
             var sourceText = SourceText.From(new FileStream(sourceFile, FileMode.Open));
             var syntaxTree = CSharpSyntaxTree.ParseText(sourceText);
@@ -91,10 +112,7 @@ namespace mdresgen
             var emptyEnumDeclarationSyntaxNode = enumDeclarationSyntaxNode.RemoveNodes(enumDeclarationSyntaxNode.ChildNodes().OfType<EnumMemberDeclarationSyntax>(), SyntaxRemoveOptions.KeepDirectives);
 
             var leadingTriviaList = SyntaxTriviaList.Create(SyntaxFactory.Whitespace("        "));
-            var enumMemberDeclarationSyntaxs = nameDataPairs.Select(
-                tuple =>
-                    SyntaxFactory.EnumMemberDeclaration(SyntaxFactory.Identifier(leadingTriviaList, tuple.Item1,
-                        SyntaxTriviaList.Empty))).ToArray();
+            var enumMemberDeclarationSyntaxs = icons.SelectMany(GetEnumMemberDeclarations).ToArray();
             var generatedEnumDeclarationSyntax = emptyEnumDeclarationSyntaxNode.AddMembers(enumMemberDeclarationSyntaxs);
 
             generatedEnumDeclarationSyntax = AddLineFeedsToCommas(generatedEnumDeclarationSyntax);
@@ -103,6 +121,20 @@ namespace mdresgen
             var generatedRootNode = rootNode.ReplaceNode(namespaceDeclarationNode, generatedNamespaceDeclarationSyntaxNode);
             
             return generatedRootNode.ToFullString();
+
+            IEnumerable<EnumMemberDeclarationSyntax> GetEnumMemberDeclarations(Icon icon)
+            {
+                var emptyAttributes = new SyntaxList<AttributeListSyntax>();
+                SyntaxToken iconIdentifierToken = SyntaxFactory.Identifier(leadingTriviaList, icon.Name, SyntaxTriviaList.Empty);
+                
+                yield return SyntaxFactory.EnumMemberDeclaration(iconIdentifierToken);
+                foreach (string alias in icon.Aliases)
+                {
+                    yield return SyntaxFactory.EnumMemberDeclaration(emptyAttributes, 
+                        SyntaxFactory.Identifier(leadingTriviaList, alias, SyntaxTriviaList.Empty),
+                        SyntaxFactory.EqualsValueClause(SyntaxFactory.IdentifierName(icon.Name)));
+                }
+            }
         }
 
         private static EnumDeclarationSyntax AddLineFeedsToCommas(EnumDeclarationSyntax enumDeclarationSyntax)
