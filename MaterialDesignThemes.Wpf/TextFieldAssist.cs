@@ -68,7 +68,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Controls the visbility of the filled text field.
+        /// Controls the visibility of the filled text field.
         /// </summary>
         public static readonly DependencyProperty HasFilledTextFieldProperty = DependencyProperty.RegisterAttached(
             "HasFilledTextField", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
@@ -116,7 +116,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Controls the corner radius of the bottom line of the surroundig box.
+        /// Controls the corner radius of the bottom line of the surrounding box.
         /// </summary>
         public static readonly DependencyProperty UnderlineCornerRadiusProperty = DependencyProperty.RegisterAttached(
             "UnderlineCornerRadius", typeof(CornerRadius), typeof(TextFieldAssist), new PropertyMetadata(new CornerRadius(0.0)));
@@ -164,7 +164,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Automatially inserts spelling suggestions into the text box context menu.
+        /// Automatically inserts spelling suggestions into the text box context menu.
         /// </summary>
         public static readonly DependencyProperty IncludeSpellingSuggestionsProperty = DependencyProperty.RegisterAttached(
             "IncludeSpellingSuggestions", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(default(bool), IncludeSpellingSuggestionsChanged));
@@ -181,8 +181,7 @@ namespace MaterialDesignThemes.Wpf
 
         private static void IncludeSpellingSuggestionsChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
         {
-            var textBox = element as TextBoxBase;
-            if (textBox != null)
+            if (element is TextBoxBase textBox)
             {
                 if ((bool)e.NewValue)
                 {
@@ -262,13 +261,12 @@ namespace MaterialDesignThemes.Wpf
 
         private static SpellingError GetSpellingError(TextBoxBase textBoxBase)
         {
-            var textBox = textBoxBase as TextBox;
-            if (textBox != null)
+            if (textBoxBase is TextBox textBox)
             {
                 return textBox.GetSpellingError(textBox.CaretIndex);
             }
-            var richTextBox = textBoxBase as RichTextBox;
-            if (richTextBox != null)
+
+            if (textBoxBase is RichTextBox richTextBox)
             {
                 return richTextBox.GetSpellingError(richTextBox.CaretPosition);
             }
@@ -308,8 +306,7 @@ namespace MaterialDesignThemes.Wpf
                 return;
             }
 
-            var frameworkElement = (textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content as FrameworkElement;
-            if (frameworkElement != null)
+            if ((textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content is FrameworkElement frameworkElement)
             {
                 frameworkElement.Margin = margin;
             }
@@ -324,8 +321,7 @@ namespace MaterialDesignThemes.Wpf
             DependencyObject dependencyObject,
             DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var box = dependencyObject as Control; //could be a text box or password box
-            if (box == null)
+            if (!(dependencyObject is Control box))
             {
                 return;
             }

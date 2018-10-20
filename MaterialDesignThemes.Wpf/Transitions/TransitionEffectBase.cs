@@ -1,6 +1,5 @@
 using System.Windows;
 using System.Windows.Media.Animation;
-using MaterialDesignThemes.Wpf.Transitions;
 
 namespace MaterialDesignThemes.Wpf.Transitions
 {
