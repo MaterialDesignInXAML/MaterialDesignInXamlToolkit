@@ -14,11 +14,19 @@ namespace MaterialDesignThemes.Wpf
 
         public MaterialDateDisplay()
         {
-            SetCurrentValue(DisplayDateProperty, DateTime.Now.Date);
+            SetCurrentValue(DisplayDateProperty, DateTime.Today);
+
+            UpdateComponents();
         }
 
         public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(
-            nameof(DisplayDate), typeof (DateTime), typeof (MaterialDateDisplay), new PropertyMetadata(default(DateTime), DisplayDatePropertyChangedCallback));
+            nameof(DisplayDate),
+            typeof (DateTime),
+            typeof (MaterialDateDisplay),
+            new PropertyMetadata(
+                System.Threading.Thread.CurrentThread.CurrentUICulture.Calendar != null ? System.Threading.Thread.CurrentThread.CurrentUICulture.Calendar.MinSupportedDateTime : default(DateTime),
+                DisplayDatePropertyChangedCallback
+            ));
 
         private static void DisplayDatePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -33,7 +41,7 @@ namespace MaterialDesignThemes.Wpf
 
         private static readonly DependencyPropertyKey ComponentOneContentPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "ComponentOneContent", typeof (string), typeof (MaterialDateDisplay),
+                nameof(ComponentOneContent), typeof (string), typeof (MaterialDateDisplay),
                 new PropertyMetadata(default(string)));
 
         public static readonly DependencyProperty ComponentOneContentProperty =
@@ -47,7 +55,7 @@ namespace MaterialDesignThemes.Wpf
 
         private static readonly DependencyPropertyKey ComponentTwoContentPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "ComponentTwoContent", typeof (string), typeof (MaterialDateDisplay),
+                nameof(ComponentTwoContent), typeof (string), typeof (MaterialDateDisplay),
                 new PropertyMetadata(default(string)));
 
         public static readonly DependencyProperty ComponentTwoContentProperty =
@@ -61,7 +69,7 @@ namespace MaterialDesignThemes.Wpf
 
         private static readonly DependencyPropertyKey ComponentThreeContentPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "ComponentThreeContent", typeof (string), typeof (MaterialDateDisplay),
+                nameof(ComponentThreeContent), typeof (string), typeof (MaterialDateDisplay),
                 new PropertyMetadata(default(string)));
 
         public static readonly DependencyProperty ComponentThreeContentProperty =
@@ -75,7 +83,7 @@ namespace MaterialDesignThemes.Wpf
 
 	    private static readonly DependencyPropertyKey IsDayInFirstComponentPropertyKey =
 		    DependencyProperty.RegisterReadOnly(
-			    "IsDayInFirstComponent", typeof (bool), typeof (MaterialDateDisplay),
+                nameof(IsDayInFirstComponent), typeof (bool), typeof (MaterialDateDisplay),
 			    new PropertyMetadata(default(bool)));
 
 	    public static readonly DependencyProperty IsDayInFirstComponentProperty =
