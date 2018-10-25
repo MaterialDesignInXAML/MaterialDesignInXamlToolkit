@@ -8,6 +8,8 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Runtime.InteropServices;
+using MaterialDesignColors.ColorManipulation;
+
 namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper

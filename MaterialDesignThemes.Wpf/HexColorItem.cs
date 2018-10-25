@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using MaterialDesignColors;
+using MaterialDesignColors.ColorManipulation;
 
 namespace MaterialDesignThemes.Wpf
 {

@@ -58,10 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeHue.cs" />
-    <Compile Include="ColorHelper.cs" />
-    <Compile Include="Hsv.cs" />
+    <Compile Include="ColorManipulation\ColorHelper.cs" />
+    <Compile Include="ColorManipulation\Hsv.cs" />
     <Compile Include="ISwatch.cs" />
-    <Compile Include="Lab.cs" />
+    <Compile Include="ColorManipulation\Lab.cs" />
     <Compile Include="SwatchHelper.cs" />
     <Compile Include="Hue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -79,26 +79,26 @@
     </Compile>
     <Compile Include="Swatch.cs" />
     <Compile Include="SwatchesProvider.cs" />
-    <Compile Include="AmberSwatch.cs" />
-    <Compile Include="BlueGreySwatch.cs" />
-    <Compile Include="BlueSwatch.cs" />
-    <Compile Include="BrownSwatch.cs" />
-    <Compile Include="CyanSwatch.cs" />
-    <Compile Include="DeepOrangeSwatch.cs" />
-    <Compile Include="DeepPurpleSwatch.cs" />
-    <Compile Include="GreenSwatch.cs" />
-    <Compile Include="GreySwatch.cs" />
-    <Compile Include="IndigoSwatch.cs" />
-    <Compile Include="LightBlueSwatch.cs" />
-    <Compile Include="LightGreenSwatch.cs" />
-    <Compile Include="LimeSwatch.cs" />
-    <Compile Include="OrangeSwatch.cs" />
-    <Compile Include="PinkSwatch.cs" />
-    <Compile Include="PurpleSwatch.cs" />
-    <Compile Include="RedSwatch.cs" />
-    <Compile Include="TealSwatch.cs" />
-    <Compile Include="Xyz.cs" />
-    <Compile Include="YellowSwatch.cs" />
+    <Compile Include="Recommended\AmberSwatch.cs" />
+    <Compile Include="Recommended\BlueGreySwatch.cs" />
+    <Compile Include="Recommended\BlueSwatch.cs" />
+    <Compile Include="Recommended\BrownSwatch.cs" />
+    <Compile Include="Recommended\CyanSwatch.cs" />
+    <Compile Include="Recommended\DeepOrangeSwatch.cs" />
+    <Compile Include="Recommended\DeepPurpleSwatch.cs" />
+    <Compile Include="Recommended\GreenSwatch.cs" />
+    <Compile Include="Recommended\GreySwatch.cs" />
+    <Compile Include="Recommended\IndigoSwatch.cs" />
+    <Compile Include="Recommended\LightBlueSwatch.cs" />
+    <Compile Include="Recommended\LightGreenSwatch.cs" />
+    <Compile Include="Recommended\LimeSwatch.cs" />
+    <Compile Include="Recommended\OrangeSwatch.cs" />
+    <Compile Include="Recommended\PinkSwatch.cs" />
+    <Compile Include="Recommended\PurpleSwatch.cs" />
+    <Compile Include="Recommended\RedSwatch.cs" />
+    <Compile Include="Recommended\TealSwatch.cs" />
+    <Compile Include="ColorManipulation\Xyz.cs" />
+    <Compile Include="Recommended\YellowSwatch.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

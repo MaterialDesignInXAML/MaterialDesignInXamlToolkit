@@ -1,41 +1,50 @@
 ﻿using System;
 using System.Windows.Media;
 
-namespace MaterialDesignColors
+namespace MaterialDesignColors.ColorManipulation
 {
     public static class ColorHelper
     {
         public static Lab Rgb2Lab(Color c)
         {
+            double xyz_lab(double v)
+            {
+                if (v > LabConstants.e)
+                    return Math.Pow(v, 1 / 3.0);
+                else
+                    return(v * LabConstants.k + 16) / 116;
+            }
+
             var xyz = Rgb2Xyz(c);
-            return new Lab(116.0 * xyz.Y - 16.0, 500.0 * (xyz.X - xyz.Y), 200.0 * (xyz.Y - xyz.Z));
+
+            var fx = xyz_lab(xyz.X / LabConstants.WhitePointX);
+            var fy = xyz_lab(xyz.Y / LabConstants.WhitePointY);
+            var fz = xyz_lab(xyz.Z / LabConstants.WhitePointZ);
+
+            var l = 116.0 * fy - 16.0;
+            var a = 500.0 * (fx - fy);
+            var b = 200.0 * (fy - fz);
+            return new Lab(l, a, b);
         }
 
         public static Xyz Rgb2Xyz(Color c)
         {
-            double rgb_xyz(double d)
+            double rgb_xyz(double v)
             {
-                if ((d /= 255.0) <= 0.04045)
-                    return d / 12.92;
+                v /= 255;
+                if (v > 0.04045)
+                    return Math.Pow((v + 0.055) / 1.055, 2.4);
                 else
-                    return Math.Pow((d + 0.055) / 1.055, 2.4);
-            }
-
-            double xyz_lab(double d)
-            {
-                if (d > LabConstants.t3)
-                    return Math.Pow(d, 1.0 / 3.0);
-                else
-                    return d / LabConstants.t2 + LabConstants.t0;
+                    return v / 12.92;
             }
 
             var r = rgb_xyz(c.R);
             var g = rgb_xyz(c.G);
             var b = rgb_xyz(c.B);
-            var x = xyz_lab((0.4124564 * r + 0.3575761 * g + 0.1804375 * b) / LabConstants.Xn);
-            var y = xyz_lab((0.2126729 * r + 0.7151522 * g + 0.0721750 * b) / LabConstants.Yn);
-            var z = xyz_lab((0.0193339 * r + 0.1191920 * g + 0.9503041 * b) / LabConstants.Zn);
 
+            var x = 0.4124564 * r + 0.3575761 * g + 0.1804375 * b;
+            var y = 0.2126729 * r + 0.7151522 * g + 0.0721750 * b;
+            var z = 0.0193339 * r + 0.1191920 * g + 0.9503041 * b;
             return new Xyz(x, y, z);
         }
 
@@ -46,16 +55,16 @@ namespace MaterialDesignColors
                 if (d > LabConstants.t1)
                     return d * d * d;
                 else
-                    return LabConstants.t2 * (d - LabConstants.t0);
+                    return (116*d - 16) / LabConstants.k;
             }
 
             var y = (lab.L + 16.0) / 116.0;
             var x = double.IsNaN(lab.A) ? y : y + lab.A / 500.0;
             var z = double.IsNaN(lab.B) ? y : y - lab.B / 200.0;
 
-            y = LabConstants.Yn * lab_xyz(y);
-            x = LabConstants.Xn * lab_xyz(x);
-            z = LabConstants.Zn * lab_xyz(z);
+            y = LabConstants.WhitePointY * lab_xyz(y);
+            x = LabConstants.WhitePointX * lab_xyz(x);
+            z = LabConstants.WhitePointZ * lab_xyz(z);
 
             return new Xyz(x, y, z);
         }
