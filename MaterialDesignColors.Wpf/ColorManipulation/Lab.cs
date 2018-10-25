@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace MaterialDesignColors
+﻿namespace MaterialDesignColors.ColorManipulation
 {
     public class Lab
     {
@@ -23,13 +18,12 @@ namespace MaterialDesignColors
     {
         public const double Kn = 18;
 
-        public const double Xn = 0.95047;
-        public const double Yn = 1;
-        public const double Zn = 1.08883;
+        public const double WhitePointX = 0.95047;
+        public const double WhitePointY = 1;
+        public const double WhitePointZ = 1.08883;
 
-        public const double t0 = 0.137931034;
         public const double t1 = 0.206896552;
-        public const double t2 = 0.12841855;
-        public const double t3 = 0.008856452;
+        public const double k = 24389/27.0;
+        public const double e = 216/24389.0;
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using HexGridControl;
 using MaterialDesignColors;
+using MaterialDesignColors.ColorManipulation;
 
 namespace MaterialDesignThemes.Wpf
 {
