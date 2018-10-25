@@ -321,6 +321,7 @@
                                 <StackPanel.Resources>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Width" Value="40" />
+                                        <Setter Property="Margin" Value="1 1 0 0" />
                                         <Setter Property="TextAlignment" Value="Center" />
                                     </Style>
                                 </StackPanel.Resources>
@@ -351,10 +352,28 @@
                                                         <Button Height="40" Width="40" Background="{Binding Color, Converter={StaticResource ColorToBrushConverter}}" Command="{Binding DataContext.ChangeHueCommand, RelativeSource={RelativeSource AncestorType=local:ColorTool}}" CommandParameter="{Binding}">
                                                             <Button.Style>
                                                                 <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
-                                                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                                                    <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0" />
+                                                                    <Setter Property="BorderThickness" Value="0" />
+                                                                    <Setter Property="Margin" Value="1 1 0 0" />
                                                                     <Setter Property="materialDesign:RippleAssist.IsDisabled" Value="True" />
                                                                     <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
                                                                     <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Trigger.EnterActions>
+                                                                                <BeginStoryboard>
+                                                                                    <Storyboard>
+                                                                                        <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" To="8" Duration="0:0:0.18" />
+                                                                                    </Storyboard>
+                                                                                </BeginStoryboard>
+                                                                            </Trigger.EnterActions>
+                                                                            <Trigger.ExitActions>
+                                                                                <BeginStoryboard>
+                                                                                    <Storyboard>
+                                                                                        <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" From="8" Duration="0:0:0.18" />
+                                                                                    </Storyboard>
+                                                                                </BeginStoryboard>
+                                                                            </Trigger.ExitActions>
+                                                                        </Trigger>
                                                                         <DataTrigger Value="True">
                                                                             <DataTrigger.Binding>
                                                                                 <MultiBinding Converter="{StaticResource MultiValueEqualityConverter}">
@@ -365,18 +384,19 @@
                                                                             <DataTrigger.EnterActions>
                                                                                 <BeginStoryboard>
                                                                                     <Storyboard>
-                                                                                        <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" To="20" Duration="0:0:0.25" />
+                                                                                        <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" To="20" Duration="0:0:0.18" />
                                                                                     </Storyboard>
                                                                                 </BeginStoryboard>
                                                                             </DataTrigger.EnterActions>
                                                                             <DataTrigger.ExitActions>
                                                                                 <BeginStoryboard>
                                                                                     <Storyboard>
-                                                                                        <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" From="20" Duration="0:0:0.25" />
+                                                                                        <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" From="20" Duration="0:0:0.18" />
                                                                                     </Storyboard>
                                                                                 </BeginStoryboard>
                                                                             </DataTrigger.ExitActions>
                                                                         </DataTrigger>
+                                                                        
                                                                     </Style.Triggers>
                                                                 </Style>
                                                             </Button.Style>
