@@ -60,6 +60,9 @@
     <Compile Include="CodeHue.cs" />
     <Compile Include="ColorManipulation\ColorHelper.cs" />
     <Compile Include="ColorManipulation\Hsv.cs" />
+    <Compile Include="ColorManipulation\HsvConverter.cs" />
+    <Compile Include="ColorManipulation\LabConverter.cs" />
+    <Compile Include="ColorManipulation\XyzConverter.cs" />
     <Compile Include="ISwatch.cs" />
     <Compile Include="ColorManipulation\Lab.cs" />
     <Compile Include="SwatchHelper.cs" />
