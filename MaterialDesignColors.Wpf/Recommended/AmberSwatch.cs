@@ -1,42 +1,43 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Windows.Media;
 
-namespace MaterialDesignColors
+namespace MaterialDesignColors.Recommended
 {
-    public class AmberSwatch : ISwatch
-    {
-        public static CodeHue Amber50 { get; } = new CodeHue("Amber", "50", "#FFF8E1");
-        public static CodeHue Amber100 { get; } = new CodeHue("Amber", "100", "#FFECB3");
-        public static CodeHue Amber200 { get; } = new CodeHue("Amber", "200", "#FFE082");
-        public static CodeHue Amber300 { get; } = new CodeHue("Amber", "300", "#FFD54F");
-        public static CodeHue Amber400 { get; } = new CodeHue("Amber", "400", "#FFCA28");
-        public static CodeHue Amber500 { get; } = new CodeHue("Amber", "500", "#FFC107");
-        public static CodeHue Amber600 { get; } = new CodeHue("Amber", "600", "#FFB300");
-        public static CodeHue Amber700 { get; } = new CodeHue("Amber", "700", "#FFA000");
-        public static CodeHue Amber800 { get; } = new CodeHue("Amber", "800", "#FF8F00");
-        public static CodeHue Amber900 { get; } = new CodeHue("Amber", "900", "#FF6F00");
-        public static CodeHue AmberA100 { get; } = new CodeHue("Amber", "A100", "#FFE57F");
-        public static CodeHue AmberA200 { get; } = new CodeHue("Amber", "A200", "#FFD740");
-        public static CodeHue AmberA400 { get; } = new CodeHue("Amber", "A400", "#FFC400");
-        public static CodeHue AmberA700 { get; } = new CodeHue("Amber", "A700", "#FFAB00");
+	public class AmberSwatch : ISwatch
+	{
+		public static Color Amber50 { get; } = (Color)ColorConverter.ConvertFromString("#FFF8E1");
+		public static Color Amber100 { get; } = (Color)ColorConverter.ConvertFromString("#FFECB3");
+		public static Color Amber200 { get; } = (Color)ColorConverter.ConvertFromString("#FFE082");
+		public static Color Amber300 { get; } = (Color)ColorConverter.ConvertFromString("#FFD54F");
+		public static Color Amber400 { get; } = (Color)ColorConverter.ConvertFromString("#FFCA28");
+		public static Color Amber500 { get; } = (Color)ColorConverter.ConvertFromString("#FFC107");
+		public static Color Amber600 { get; } = (Color)ColorConverter.ConvertFromString("#FFB300");
+		public static Color Amber700 { get; } = (Color)ColorConverter.ConvertFromString("#FFA000");
+		public static Color Amber800 { get; } = (Color)ColorConverter.ConvertFromString("#FF8F00");
+		public static Color Amber900 { get; } = (Color)ColorConverter.ConvertFromString("#FF6F00");
+		public static Color AmberA100 { get; } = (Color)ColorConverter.ConvertFromString("#FFE57F");
+		public static Color AmberA200 { get; } = (Color)ColorConverter.ConvertFromString("#FFD740");
+		public static Color AmberA400 { get; } = (Color)ColorConverter.ConvertFromString("#FFC400");
+		public static Color AmberA700 { get; } = (Color)ColorConverter.ConvertFromString("#FFAB00");
 
-        public string Name { get; } = "Amber";
+		public string Name { get; } = "Amber";
 
-        public IEnumerable<CodeHue> Hues { get; } = new[]
-        {
-            Amber50,
-            Amber100,
-            Amber200,
-            Amber300,
-            Amber400,
-            Amber500,
-            Amber600,
-            Amber700,
-            Amber800,
-            Amber900,
-            AmberA100,
-            AmberA200,
-            AmberA400,
-            AmberA700
-        };
-    }
-}
+		public IEnumerable<Color> Hues { get; } = new[]
+		{
+			Amber50,
+			Amber100,
+			Amber200,
+			Amber300,
+			Amber400,
+			Amber500,
+			Amber600,
+			Amber700,
+			Amber800,
+			Amber900,
+			AmberA100,
+			AmberA200,
+			AmberA400,
+			AmberA700,
+		};
+	};
+};

@@ -29,9 +29,9 @@ namespace MaterialDesignDemo
             }
         }
 
-        private string _selectedColor;
+        private Color? _selectedColor;
 
-        public string SelectedColor
+        public Color? SelectedColor
         {
             get => _selectedColor;
             set
@@ -65,24 +65,21 @@ namespace MaterialDesignDemo
             var primary = palette.PrimarySwatch.PrimaryHues.ToArray()[palette.PrimaryMidHueIndex];
             var secondary = palette.AccentSwatch.AccentHues.ToArray()[palette.AccentHueIndex];
 
-            var primaryInterval = Regex.Match(primary.Name, @"[a-zA-Z]+(\d+)").Groups[1].Value;
-            var secondaryInterval = "A" + Regex.Match(secondary.Name, @"[a-zA-Z]+(\d+)").Groups[1].Value;
-
             foreach (var swatch in SwatchHelper.Swatches)
             {
                 var stripped = swatch.Name.Replace(" ", "");
                 if (string.Equals(palette.PrimarySwatch.Name, stripped, System.StringComparison.OrdinalIgnoreCase))
                 {
-                    var hue = swatch.Hues.First(o => o.Interval == primaryInterval);
+                    var hue = swatch.Hues.First(o => o == primary.Color);
                     _primaryColor = hue;
                 }
                 else if (string.Equals(palette.AccentSwatch.Name, stripped, System.StringComparison.OrdinalIgnoreCase))
                 {
-                    _secondaryColor = swatch.Hues.First(o => o.Interval == secondaryInterval);
+                    _secondaryColor = swatch.Hues.First(o => o == secondary.Color);
                 }
             }
 
-            SelectedColor = _primaryColor.FullName;
+            SelectedColor = _primaryColor;
         }
 
         private void ChangeCustomColor(object obj)
@@ -117,53 +114,53 @@ namespace MaterialDesignDemo
             ActiveScheme = scheme;
             if (ActiveScheme == ColorScheme.Primary)
             {
-                SelectedColor = _primaryColor?.FullName;
+                SelectedColor = _primaryColor;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
-                SelectedColor = _secondaryColor?.FullName;
+                SelectedColor = _secondaryColor;
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {
-                SelectedColor = _primaryForegroundColor?.FullName;
+                SelectedColor = _primaryForegroundColor;
             }
             else if (ActiveScheme == ColorScheme.SecondaryForeground)
             {
-                SelectedColor = _secondaryForegroundColor?.FullName;
+                SelectedColor = _secondaryForegroundColor;
             }
         }
 
-        private CodeHue _primaryColor;
+        private Color? _primaryColor;
 
-        private CodeHue _secondaryColor;
+        private Color? _secondaryColor;
 
-        private CodeHue _primaryForegroundColor;
+        private Color? _primaryForegroundColor;
 
-        private CodeHue _secondaryForegroundColor;
+        private Color? _secondaryForegroundColor;
 
         private void ChangeHue(object obj)
         {
-            var hue = (CodeHue)obj;
+            var hue = (Color)obj;
 
-            SelectedColor = hue.FullName;
+            SelectedColor = hue;
             if (ActiveScheme == ColorScheme.Primary)
             {
-                PaletteHelper.SetPrimaryPalette(hue.Color);
+                PaletteHelper.SetPrimaryPalette(hue);
                 _primaryColor = hue;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
-                PaletteHelper.SetSecondaryPalette(hue.Color);
+                PaletteHelper.SetSecondaryPalette(hue);
                 _secondaryColor = hue;
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {
-                PaletteHelper.SetPrimaryForeground(hue.Color);
+                PaletteHelper.SetPrimaryForeground(hue);
                 _primaryForegroundColor = hue;
             }
             else if (ActiveScheme == ColorScheme.SecondaryForeground)
             {
-                PaletteHelper.SetSecondaryForeground(hue.Color);
+                PaletteHelper.SetSecondaryForeground(hue);
                 _secondaryForegroundColor = hue;
             }
         }

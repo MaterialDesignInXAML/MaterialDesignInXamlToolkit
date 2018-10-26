@@ -1,42 +1,43 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Windows.Media;
 
-namespace MaterialDesignColors
+namespace MaterialDesignColors.Recommended
 {
-    public class BlueSwatch : ISwatch
-    {
-        public static CodeHue Blue50 { get; } = new CodeHue("Blue", "50", "#E3F2FD");
-        public static CodeHue Blue100 { get; } = new CodeHue("Blue", "100", "#BBDEFB");
-        public static CodeHue Blue200 { get; } = new CodeHue("Blue", "200", "#90CAF9");
-        public static CodeHue Blue300 { get; } = new CodeHue("Blue", "300", "#64B5F6");
-        public static CodeHue Blue400 { get; } = new CodeHue("Blue", "400", "#42A5F5");
-        public static CodeHue Blue500 { get; } = new CodeHue("Blue", "500", "#2196F3");
-        public static CodeHue Blue600 { get; } = new CodeHue("Blue", "600", "#1E88E5");
-        public static CodeHue Blue700 { get; } = new CodeHue("Blue", "700", "#1976D2");
-        public static CodeHue Blue800 { get; } = new CodeHue("Blue", "800", "#1565C0");
-        public static CodeHue Blue900 { get; } = new CodeHue("Blue", "900", "#0D47A1");
-        public static CodeHue BlueA100 { get; } = new CodeHue("Blue", "A100", "#82B1FF");
-        public static CodeHue BlueA200 { get; } = new CodeHue("Blue", "A200", "#448AFF");
-        public static CodeHue BlueA400 { get; } = new CodeHue("Blue", "A400", "#2979FF");
-        public static CodeHue BlueA700 { get; } = new CodeHue("Blue", "A700", "#2962FF");
+	public class BlueSwatch : ISwatch
+	{
+		public static Color Blue50 { get; } = (Color)ColorConverter.ConvertFromString("#E3F2FD");
+		public static Color Blue100 { get; } = (Color)ColorConverter.ConvertFromString("#BBDEFB");
+		public static Color Blue200 { get; } = (Color)ColorConverter.ConvertFromString("#90CAF9");
+		public static Color Blue300 { get; } = (Color)ColorConverter.ConvertFromString("#64B5F6");
+		public static Color Blue400 { get; } = (Color)ColorConverter.ConvertFromString("#42A5F5");
+		public static Color Blue500 { get; } = (Color)ColorConverter.ConvertFromString("#2196F3");
+		public static Color Blue600 { get; } = (Color)ColorConverter.ConvertFromString("#1E88E5");
+		public static Color Blue700 { get; } = (Color)ColorConverter.ConvertFromString("#1976D2");
+		public static Color Blue800 { get; } = (Color)ColorConverter.ConvertFromString("#1565C0");
+		public static Color Blue900 { get; } = (Color)ColorConverter.ConvertFromString("#0D47A1");
+		public static Color BlueA100 { get; } = (Color)ColorConverter.ConvertFromString("#82B1FF");
+		public static Color BlueA200 { get; } = (Color)ColorConverter.ConvertFromString("#448AFF");
+		public static Color BlueA400 { get; } = (Color)ColorConverter.ConvertFromString("#2979FF");
+		public static Color BlueA700 { get; } = (Color)ColorConverter.ConvertFromString("#2962FF");
 
-        public string Name { get; } = "Blue";
+		public string Name { get; } = "Blue";
 
-        public IEnumerable<CodeHue> Hues { get; } = new[]
-        {
-            Blue50,
-            Blue100,
-            Blue200,
-            Blue300,
-            Blue400,
-            Blue500,
-            Blue600,
-            Blue700,
-            Blue800,
-            Blue900,
-            BlueA100,
-            BlueA200,
-            BlueA400,
-            BlueA700
-        };
-    }
-}
+		public IEnumerable<Color> Hues { get; } = new[]
+		{
+			Blue50,
+			Blue100,
+			Blue200,
+			Blue300,
+			Blue400,
+			Blue500,
+			Blue600,
+			Blue700,
+			Blue800,
+			Blue900,
+			BlueA100,
+			BlueA200,
+			BlueA400,
+			BlueA700,
+		};
+	};
+};

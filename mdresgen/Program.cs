@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,6 +13,7 @@ namespace mdresgen
     class Program
     {
         private const string BaseSnippetLocation = "MaterialColourSwatchesSnippet.xml";
+        private const string MdPaletteJsonLocation = "MdPaletteJson.json";
 
         // Legacy
         private const string OldXamlFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.xaml";
@@ -42,12 +44,15 @@ namespace mdresgen
         static void Main(string[] args)
         {
             var xDocument = XDocument.Load(BaseSnippetLocation);
+            var palette = JsonConvert.DeserializeObject<MdPalette>(File.ReadAllText(MdPaletteJsonLocation));
 
             //https://coolsubhash-tech.blogspot.com/2016/10/resolved-existing-connection-was.html
             ServicePointManager.SecurityProtocol = ServicePointManager.SecurityProtocol | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
             if (args.Length == 0)
                 GenerateXaml(xDocument, false);
+            else if (args.Contains("class-swatches"))
+                GenerateClasses(palette);
             else if (args.Contains("all-swatches"))
             {
                 GenerateXaml(xDocument);
@@ -72,6 +77,47 @@ namespace mdresgen
             Console.WriteLine();
             Console.WriteLine("FINISHED");
             Console.ReadKey();
+        }
+
+
+        private static void GenerateClasses(MdPalette palettes)
+        {
+            foreach(var palette in palettes.palettes)
+            {
+                var sb = new StringBuilder();
+
+                var colors = new StringBuilder();
+                var hueNames = new StringBuilder();
+                var shortName = palette.name.Replace(" ", "");
+
+                for (var i = 0; i < palette.hexes.Length; i++)
+                {
+                    var colorName = shortName + palettes.shades[i];
+                    colors.AppendLine($"\t\tpublic static Color {colorName} {{ get; }} = (Color)ColorConverter.ConvertFromString(\"{palette.hexes[i]}\");");
+                    hueNames.AppendLine($"\t\t\t{colorName},");
+                }
+
+                sb.AppendLine("using System.Collections.Generic;");
+                sb.AppendLine("using System.Windows.Media;");
+                sb.AppendLine();
+                sb.AppendLine("namespace MaterialDesignColors.Recommended");
+                sb.AppendLine("{");
+                sb.AppendLine($"\tpublic class {shortName}Swatch : ISwatch");
+                sb.AppendLine("\t{");
+                sb.Append(colors.ToString());
+                sb.AppendLine();
+                sb.AppendLine($"\t\tpublic string Name {{ get; }} = \"{palette.name}\";");
+                sb.AppendLine();
+                sb.AppendLine("\t\tpublic IEnumerable<Color> Hues { get; } = new[]");
+                sb.AppendLine("\t\t{");
+                sb.Append(hueNames.ToString());
+                sb.AppendLine("\t\t};");
+                sb.AppendLine("\t};");
+                sb.AppendLine("};");
+
+                File.WriteAllText($@"..\..\..\MaterialDesignColors.Wpf\Recommended\{shortName}Swatch.cs",
+                    sb.ToString());
+            }
         }
 
         private static void GenerateXaml(XDocument xDocument, bool named = false)

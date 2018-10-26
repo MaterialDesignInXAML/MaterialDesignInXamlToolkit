@@ -1,42 +1,43 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Windows.Media;
 
-namespace MaterialDesignColors
+namespace MaterialDesignColors.Recommended
 {
-    public class LimeSwatch : ISwatch
-    {
-        public static CodeHue Lime50 { get; } = new CodeHue("Lime", "50", "#F9FBE7");
-        public static CodeHue Lime100 { get; } = new CodeHue("Lime", "100", "#F0F4C3");
-        public static CodeHue Lime200 { get; } = new CodeHue("Lime", "200", "#E6EE9C");
-        public static CodeHue Lime300 { get; } = new CodeHue("Lime", "300", "#DCE775");
-        public static CodeHue Lime400 { get; } = new CodeHue("Lime", "400", "#D4E157");
-        public static CodeHue Lime500 { get; } = new CodeHue("Lime", "500", "#CDDC39");
-        public static CodeHue Lime600 { get; } = new CodeHue("Lime", "600", "#C0CA33");
-        public static CodeHue Lime700 { get; } = new CodeHue("Lime", "700", "#AFB42B");
-        public static CodeHue Lime800 { get; } = new CodeHue("Lime", "800", "#9E9D24");
-        public static CodeHue Lime900 { get; } = new CodeHue("Lime", "900", "#827717");
-        public static CodeHue LimeA100 { get; } = new CodeHue("Lime", "A100", "#F4FF81");
-        public static CodeHue LimeA200 { get; } = new CodeHue("Lime", "A200", "#EEFF41");
-        public static CodeHue LimeA400 { get; } = new CodeHue("Lime", "A400", "#C6FF00");
-        public static CodeHue LimeA700 { get; } = new CodeHue("Lime", "A700", "#AEEA00");
+	public class LimeSwatch : ISwatch
+	{
+		public static Color Lime50 { get; } = (Color)ColorConverter.ConvertFromString("#F9FBE7");
+		public static Color Lime100 { get; } = (Color)ColorConverter.ConvertFromString("#F0F4C3");
+		public static Color Lime200 { get; } = (Color)ColorConverter.ConvertFromString("#E6EE9C");
+		public static Color Lime300 { get; } = (Color)ColorConverter.ConvertFromString("#DCE775");
+		public static Color Lime400 { get; } = (Color)ColorConverter.ConvertFromString("#D4E157");
+		public static Color Lime500 { get; } = (Color)ColorConverter.ConvertFromString("#CDDC39");
+		public static Color Lime600 { get; } = (Color)ColorConverter.ConvertFromString("#C0CA33");
+		public static Color Lime700 { get; } = (Color)ColorConverter.ConvertFromString("#AFB42B");
+		public static Color Lime800 { get; } = (Color)ColorConverter.ConvertFromString("#9E9D24");
+		public static Color Lime900 { get; } = (Color)ColorConverter.ConvertFromString("#827717");
+		public static Color LimeA100 { get; } = (Color)ColorConverter.ConvertFromString("#F4FF81");
+		public static Color LimeA200 { get; } = (Color)ColorConverter.ConvertFromString("#EEFF41");
+		public static Color LimeA400 { get; } = (Color)ColorConverter.ConvertFromString("#C6FF00");
+		public static Color LimeA700 { get; } = (Color)ColorConverter.ConvertFromString("#AEEA00");
 
-        public string Name { get; } = "Lime";
+		public string Name { get; } = "Lime";
 
-        public IEnumerable<CodeHue> Hues { get; } = new[]
-        {
-            Lime50,
-            Lime100,
-            Lime200,
-            Lime300,
-            Lime400,
-            Lime500,
-            Lime600,
-            Lime700,
-            Lime800,
-            Lime900,
-            LimeA100,
-            LimeA200,
-            LimeA400,
-            LimeA700
-        };
-    }
-}
+		public IEnumerable<Color> Hues { get; } = new[]
+		{
+			Lime50,
+			Lime100,
+			Lime200,
+			Lime300,
+			Lime400,
+			Lime500,
+			Lime600,
+			Lime700,
+			Lime800,
+			Lime900,
+			LimeA100,
+			LimeA200,
+			LimeA400,
+			LimeA700,
+		};
+	};
+};
