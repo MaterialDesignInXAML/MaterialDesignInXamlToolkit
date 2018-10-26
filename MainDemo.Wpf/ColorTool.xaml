@@ -349,7 +349,7 @@
                                             <ItemsControl ItemsSource="{Binding Hues}">
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
-                                                        <Button Height="40" Width="40" Background="{Binding Color, Converter={StaticResource ColorToBrushConverter}}" Command="{Binding DataContext.ChangeHueCommand, RelativeSource={RelativeSource AncestorType=local:ColorTool}}" CommandParameter="{Binding}">
+                                                        <Button Height="40" Width="40" Background="{Binding Converter={StaticResource ColorToBrushConverter}}" Command="{Binding DataContext.ChangeHueCommand, RelativeSource={RelativeSource AncestorType=local:ColorTool}}" CommandParameter="{Binding}">
                                                             <Button.Style>
                                                                 <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                                                                     <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0" />
@@ -378,7 +378,7 @@
                                                                             <DataTrigger.Binding>
                                                                                 <MultiBinding Converter="{StaticResource MultiValueEqualityConverter}">
                                                                                     <Binding RelativeSource="{RelativeSource AncestorType=local:ColorTool}" Path="DataContext.SelectedColor" Mode="OneWay" />
-                                                                                    <Binding Path="FullName" Mode="OneWay"/>
+                                                                                    <Binding Mode="OneWay"/>
                                                                                 </MultiBinding>
                                                                             </DataTrigger.Binding>
                                                                             <DataTrigger.EnterActions>

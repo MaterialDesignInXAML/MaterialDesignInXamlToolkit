@@ -1,42 +1,43 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Windows.Media;
 
-namespace MaterialDesignColors
+namespace MaterialDesignColors.Recommended
 {
-    public class PurpleSwatch : ISwatch
-    {
-        public static CodeHue Purple50 { get; } = new CodeHue("Purple", "50", "#F3E5F5");
-        public static CodeHue Purple100 { get; } = new CodeHue("Purple", "100", "#E1BEE7");
-        public static CodeHue Purple200 { get; } = new CodeHue("Purple", "200", "#CE93D8");
-        public static CodeHue Purple300 { get; } = new CodeHue("Purple", "300", "#BA68C8");
-        public static CodeHue Purple400 { get; } = new CodeHue("Purple", "400", "#AB47BC");
-        public static CodeHue Purple500 { get; } = new CodeHue("Purple", "500", "#9C27B0");
-        public static CodeHue Purple600 { get; } = new CodeHue("Purple", "600", "#8E24AA");
-        public static CodeHue Purple700 { get; } = new CodeHue("Purple", "700", "#7B1FA2");
-        public static CodeHue Purple800 { get; } = new CodeHue("Purple", "800", "#6A1B9A");
-        public static CodeHue Purple900 { get; } = new CodeHue("Purple", "900", "#4A148C");
-        public static CodeHue PurpleA100 { get; } = new CodeHue("Purple", "A100", "#EA80FC");
-        public static CodeHue PurpleA200 { get; } = new CodeHue("Purple", "A200", "#E040FB");
-        public static CodeHue PurpleA400 { get; } = new CodeHue("Purple", "A400", "#D500F9");
-        public static CodeHue PurpleA700 { get; } = new CodeHue("Purple", "A700", "#AA00FF");
+	public class PurpleSwatch : ISwatch
+	{
+		public static Color Purple50 { get; } = (Color)ColorConverter.ConvertFromString("#F3E5F5");
+		public static Color Purple100 { get; } = (Color)ColorConverter.ConvertFromString("#E1BEE7");
+		public static Color Purple200 { get; } = (Color)ColorConverter.ConvertFromString("#CE93D8");
+		public static Color Purple300 { get; } = (Color)ColorConverter.ConvertFromString("#BA68C8");
+		public static Color Purple400 { get; } = (Color)ColorConverter.ConvertFromString("#AB47BC");
+		public static Color Purple500 { get; } = (Color)ColorConverter.ConvertFromString("#9C27B0");
+		public static Color Purple600 { get; } = (Color)ColorConverter.ConvertFromString("#8E24AA");
+		public static Color Purple700 { get; } = (Color)ColorConverter.ConvertFromString("#7B1FA2");
+		public static Color Purple800 { get; } = (Color)ColorConverter.ConvertFromString("#6A1B9A");
+		public static Color Purple900 { get; } = (Color)ColorConverter.ConvertFromString("#4A148C");
+		public static Color PurpleA100 { get; } = (Color)ColorConverter.ConvertFromString("#EA80FC");
+		public static Color PurpleA200 { get; } = (Color)ColorConverter.ConvertFromString("#E040FB");
+		public static Color PurpleA400 { get; } = (Color)ColorConverter.ConvertFromString("#D500F9");
+		public static Color PurpleA700 { get; } = (Color)ColorConverter.ConvertFromString("#AA00FF");
 
-        public string Name { get; } = "Purple";
+		public string Name { get; } = "Purple";
 
-        public IEnumerable<CodeHue> Hues { get; } = new[]
-        {
-            Purple50,
-            Purple100,
-            Purple200,
-            Purple300,
-            Purple400,
-            Purple500,
-            Purple600,
-            Purple700,
-            Purple800,
-            Purple900,
-            PurpleA100,
-            PurpleA200,
-            PurpleA400,
-            PurpleA700
-        };
-    }
-}
+		public IEnumerable<Color> Hues { get; } = new[]
+		{
+			Purple50,
+			Purple100,
+			Purple200,
+			Purple300,
+			Purple400,
+			Purple500,
+			Purple600,
+			Purple700,
+			Purple800,
+			Purple900,
+			PurpleA100,
+			PurpleA200,
+			PurpleA400,
+			PurpleA700,
+		};
+	};
+};
