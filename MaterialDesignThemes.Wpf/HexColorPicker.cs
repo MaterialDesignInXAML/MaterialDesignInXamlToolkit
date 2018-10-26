@@ -108,6 +108,11 @@ namespace MaterialDesignThemes.Wpf
 
             var shift = Radius % 2 == 0;
 
+            var h = 1.0;
+            var w = Math.Sqrt(3) * (h / 2);
+
+            var maxDistance = Math.Sqrt(Math.Pow(Radius * w, 2));
+
             for (var q = -Radius; q <= Radius; q++)
             {
                 var r1 = Math.Max(-Radius, -q - Radius);
@@ -120,26 +125,24 @@ namespace MaterialDesignThemes.Wpf
 
                     var d = (Math.Abs(x) + Math.Abs(y) + Math.Abs(z)) / 2;
 
-                    var col = shift ? x + (z - (z & 1)) / 2 : x + (z + (z & 1)) / 2;
+                    var sz = shift ? -(z & 1) : (z & 1);
+
+                    var col = x + (z + sz) / 2;
                     var row = z;
 
                     var colShifted = col + Radius;
                     var rowShifted = row + Radius;
-                    
-                    double h = 1;
-                    double w = Math.Sqrt(3) *(h/2);
 
                     var hoz = (x + (z / 2.0)) * w;
                     var vert = z * (3.0 / 4) * h;
 
-                    //var dist = Math.Sqrt(Math.Pow(hoz, 2) + Math.Pow(vert, 2));
+                    var dist = Math.Sqrt(Math.Pow(hoz, 2) + Math.Pow(vert, 2));
 
                     var rads = Math.Atan2(vert, hoz);
                     var angle = Math.Round((180 / Math.PI) * rads);
-                    angle -= 60;
-                    var hexDist = (Math.Abs(x) + Math.Abs(y) + Math.Abs(z)) / 2.0;
+                    //var hexDist = (Math.Abs(x) + Math.Abs(y) + Math.Abs(z)) / 2.0;
 
-                    var hsv = new Hsv(angle, hexDist / Radius, HsvValue);
+                    var hsv = new Hsv(angle, dist / maxDistance, HsvValue);
                     var color = hsv.ToColor();
 
                     Colors.Add(new HexColorItem { Column = colShifted, Row = rowShifted, Hsv = hsv, ColorBrush = new SolidColorBrush(color) });
