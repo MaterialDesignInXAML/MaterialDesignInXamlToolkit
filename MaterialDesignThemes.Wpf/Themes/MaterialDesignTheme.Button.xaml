@@ -167,10 +167,10 @@
     <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Foreground" Value="#616161" />
         <Setter Property="Padding" Value="4"/>
-        <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>        
+        <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="ButtonBase">
                     <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -289,7 +289,7 @@
         <Setter Property="Width" Value="56"/>
         <Setter Property="Height" Value="56"/>
     </Style>
-    
+
     <Style x:Key="MaterialDesignFloatingActionMiniLightButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
