@@ -10,5 +10,6 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.WindowCommands.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
+    <Style TargetType="{x:Type controls:NumericUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
     <Style TargetType="{x:Type controls:RangeSlider}" BasedOn="{StaticResource MaterialDesignRangeSlider}" />
 </ResourceDictionary>
