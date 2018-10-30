@@ -10,6 +10,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="{x:Static GridView.GridViewScrollViewerStyleKey}" TargetType="{x:Type ScrollViewer}">
+        <Setter Property="CanContentScroll" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
@@ -89,6 +90,7 @@
                     <DockPanel>
                         <Thumb x:Name="PART_HeaderGripper"
                                DockPanel.Dock="Right"
+                               Margin="0,0,-8,0"
                                Style="{StaticResource MaterialDesignGridColumnHeaderGripper}" />
                         <Border x:Name="HeaderBorder"
                                 Padding="{TemplateBinding Padding}"
@@ -227,7 +229,6 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="13" />
         <Setter Property="ItemContainerStyle" Value="{Binding RelativeSource={RelativeSource Self}, Path=View, Converter={StaticResource MaterialDesignListViewItemContainerStyleConverter}}" />
-        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="SnapsToDevicePixels" Value="True" />

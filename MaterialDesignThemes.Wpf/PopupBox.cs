@@ -409,7 +409,7 @@ namespace MaterialDesignThemes.Wpf
         {
             base.OnIsKeyboardFocusWithinChanged(e);
 
-            if (IsPopupOpen && !IsKeyboardFocusWithin)
+            if (IsPopupOpen && !IsKeyboardFocusWithin && !StaysOpen)
             {
                 Close();
             }
@@ -417,7 +417,7 @@ namespace MaterialDesignThemes.Wpf
 
         protected override void OnMouseEnter(MouseEventArgs e)
         {
-            if (IsEnabled &&
+            if (IsEnabled && IsLoaded &&
                 (PopupMode == PopupBoxPopupMode.MouseOverEager
                  || PopupMode == PopupBoxPopupMode.MouseOver))
             {
@@ -465,7 +465,7 @@ namespace MaterialDesignThemes.Wpf
 
                 Close();
 
-            base.OnMouseEnter(e);
+            base.OnMouseLeave(e);
         }
 
         protected void Close()

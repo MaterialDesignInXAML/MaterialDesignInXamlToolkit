@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Runtime.InteropServices;
+
 namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper

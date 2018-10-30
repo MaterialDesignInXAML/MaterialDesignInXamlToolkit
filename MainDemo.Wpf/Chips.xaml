@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Margin="32">
@@ -14,60 +14,72 @@
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}">Chips</TextBlock>
         <StackPanel Grid.Row="1" Margin="0 16 0 0">
-            <WrapPanel Orientation="Horizontal">
-                <materialDesign:Chip Content="James Willock" Margin="0 0 6 4">
-                    <materialDesign:Chip.Icon>
-                        <Image Source="Resources/ProfilePic.jpg" />
-                    </materialDesign:Chip.Icon>
-                </materialDesign:Chip>
-                <materialDesign:Chip Margin="0 0 4 4">
-                    Example Chip
-                </materialDesign:Chip>
-                <materialDesign:Chip Content="ANZ Bank" 
-                             Icon="A" 
-                             Margin="0 0 4 4" />
-                <materialDesign:Chip Content="ZNA Inc" 
-                             Icon="Z" 
-                             Margin="0 0 4 4" />
-                <materialDesign:Chip Content="Twitter"                                  
+            <WrapPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay Key="chips_1" Margin="0 0 6 4">
+                    <materialDesign:Chip Content="James Willock">
+                        <materialDesign:Chip.Icon>
+                            <Image Source="Resources/ProfilePic.jpg" />
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="chips_2" Margin="0 0 4 4">
+                    <materialDesign:Chip>
+                        Example Chip
+                    </materialDesign:Chip>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="chips_3" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="ANZ Bank" Icon="A" />
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="chips_4" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="ZNA Inc" Icon="Z" />
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="chips_5" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="Twitter"
                                  IconBackground="{DynamicResource PrimaryHueDarkBrush}"
-                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                                 Margin="0 0 4 4">
-                    <materialDesign:Chip.Icon>
-                        <materialDesign:PackIcon Kind="Twitter"></materialDesign:PackIcon>
-                    </materialDesign:Chip.Icon>
-                </materialDesign:Chip>
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                        <materialDesign:Chip.Icon>
+                            <materialDesign:PackIcon Kind="Twitter"></materialDesign:PackIcon>
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
+                </smtx:XamlDisplay>
             </WrapPanel>
-            <WrapPanel Margin="0 12 0 0" Orientation="Horizontal">
-                <materialDesign:Chip Content="James Willock"
+
+            <WrapPanel Margin="0 12 0 0" Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay Key="chips_6" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="James Willock"
                                  IsDeletable="True"
-                                 Margin="0 0 4 4"
                                  x:Name="ButtonsDemoChip"
                                  Click="ButtonsDemoChip_OnClick"
                                  DeleteClick="ButtonsDemoChip_OnDeleteClick"
                                  ToolTip="Just a tool tip"
                                  DeleteToolTip="Your friendly neighbour delete button"
                                  >
-                    <materialDesign:Chip.Icon>
-                        <Image Source="Resources/ProfilePic.jpg"></Image>
-                    </materialDesign:Chip.Icon>
-                </materialDesign:Chip>
-                <materialDesign:Chip Content="Example Chip"
+                        <materialDesign:Chip.Icon>
+                            <Image Source="Resources/ProfilePic.jpg"></Image>
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay Key="chips_7" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="Example Chip"
                                  IsDeletable="True"
-                                 ToolTip="This is an example chip"
-                                 Margin="0 0 4 4">
-                </materialDesign:Chip>
-                <materialDesign:Chip Content="ANZ Bank" 
-                                 Icon="A"
-                                 IsDeletable="True"
-                                 Margin="0 0 4 4" />
-                <materialDesign:Chip Content="ZNA Inc" 
+                                 ToolTip="This is an example chip">
+                    </materialDesign:Chip>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="chips_8" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="ANZ Bank" 
+                                         Icon="A"
+                                         IsDeletable="True" />
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="chips_9" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="ZNA Inc" 
                                  Icon="Z" 
                                  IsDeletable="True"
                                  IconBackground="{DynamicResource PrimaryHueLightBrush}"
-                                 IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}"
-                                 Margin="0 0 4 4" />
+                                 IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                </smtx:XamlDisplay>
             </WrapPanel>
         </StackPanel>
     </Grid>
 </UserControl>
+

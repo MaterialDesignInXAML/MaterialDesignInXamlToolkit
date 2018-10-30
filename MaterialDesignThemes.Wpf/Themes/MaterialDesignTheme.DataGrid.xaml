@@ -212,14 +212,18 @@
                     </ControlTemplate.Resources>
                     <Grid>
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
-                            <StackPanel Orientation="Horizontal" Background="Transparent">
-                                <wpf:ListSortDirectionIndicator Width="0" Height="12" 
+                            <Grid Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <wpf:ListSortDirectionIndicator Grid.Column="0" Width="0" Height="12" 
                                                                 x:Name="SortDirectionIndicator"
                                                                 ListSortDirection="{TemplateBinding SortDirection}"
                                                                 />
-                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                <ContentPresenter Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                   Margin="{TemplateBinding Padding}"/>
-                            </StackPanel>
+                            </Grid>
                         </Border>
                         <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignGridColumnHeaderGripper}"/>
                         <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignGridColumnHeaderGripper}"/>

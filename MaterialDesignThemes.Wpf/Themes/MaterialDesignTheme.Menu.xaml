@@ -2,6 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Font.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
 
     <converters:TextFieldHintVisibilityConverter x:Key="StringIsEmptyVisibilityConverter" IsEmptyValue="Collapsed" IsNotEmptyValue="Visible"/>
     <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>

@@ -2,12 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MaterialDesignDemo"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
+
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
         <Grid Margin="0 0 0 4">
             <Grid.ColumnDefinitions>
@@ -32,18 +32,19 @@
                                       Margin="0 8 0 0"/>
                     </StackPanel>
 
-
-                    <!-- simplest form -->
-                    <materialDesign:Snackbar Message="hello 1" 
+                    <smtx:XamlDisplay Key="snackbar_1">
+                        <!-- simplest form -->
+                        <materialDesign:Snackbar Message="hello 1" 
                                              IsActive="False"
                                              x:Name="SnackbarOne" />
+                    </smtx:XamlDisplay>
                 </Grid>
             </Border>
 
             <!-- example 2 -->
             <Border Background="{DynamicResource MaterialDesignPaper}" 
                     Padding="8 0 8 0"
-                    Grid.Column="1">
+                    Grid.Column="1" Grid.Row="0">
                 <Grid>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 2.</TextBlock>
@@ -52,11 +53,12 @@
                                       Margin="0 8 0 0" />
                     </StackPanel>
 
-                    <!-- long hand form for setting the message -->
-                    <materialDesign:Snackbar IsActive="False"
-                                              x:Name="SnackbarTwo" >
-                        <materialDesign:SnackbarMessage Content="Hello 2" ActionContent="UNDO" />
-                    </materialDesign:Snackbar>
+                    <smtx:XamlDisplay Key="snackbar_2">
+                        <!-- long hand form for setting the message -->
+                        <materialDesign:Snackbar IsActive="False" x:Name="SnackbarTwo" >
+                            <materialDesign:SnackbarMessage Content="Hello 2" ActionContent="UNDO" />
+                        </materialDesign:Snackbar>
+                    </smtx:XamlDisplay>
                 </Grid>
             </Border>
 
@@ -68,8 +70,7 @@
                     a message queue in to the snackbar.
                 -->
             <Border Background="{DynamicResource MaterialDesignSelection}" 
-                    Padding="8 0 8 0"                
-                    Grid.Column="2">
+                    Padding="8 0 8 0" Grid.Row="0" Grid.Column="2">
                 <Grid>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 3.</TextBlock>
@@ -94,16 +95,17 @@
 
 
                     </StackPanel>
-                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
-                                             x:Name="SnackbarThree" />
+                    <smtx:XamlDisplay Key="snackbar_3" VerticalContentAlignment="Top">
+                        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
+                                                 x:Name="SnackbarThree" />
+                    </smtx:XamlDisplay>
                 </Grid>
             </Border>
 
             <!-- example 4 -->
             <!-- illustrates queueing uses some action command call backs -->
             <Border Background="{DynamicResource MaterialDesignPaper}" 
-                    Padding="8 0 8 0"                
-                    Grid.Column="3">
+                    Padding="8 0 8 0" Grid.Column="3" Grid.Row="0">
                 <Grid>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 4.</TextBlock>
@@ -118,16 +120,17 @@
                             <Button Click="SnackBar4_OnClick" HorizontalAlignment="Center" Grid.Column="1">Send</Button>
                         </Grid>
                     </StackPanel>
-                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
-                                              x:Name="SnackbarFour" />
+                    <smtx:XamlDisplay Key="snackbar_4">
+                        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
+                                                x:Name="SnackbarFour" />
+                    </smtx:XamlDisplay>
                 </Grid>
             </Border>
 
             <!-- example 5 -->
             <!-- full width snack bar -->
             <Border Background="{DynamicResource MaterialDesignChipBackground}" 
-                    Grid.ColumnSpan="2"
-                    Grid.Row="1">
+                    Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0">
                 <StackPanel VerticalAlignment="Bottom">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Margin="0 0 0 32">
@@ -136,11 +139,13 @@
                         <ToggleButton IsChecked="{Binding ElementName=SnackbarFive, Path=IsActive, Mode=TwoWay}"
                                       Margin="0 8 0 0" />
                     </StackPanel>
-                    <materialDesign:Snackbar HorizontalAlignment="Stretch"
+                    <smtx:XamlDisplay Key="snackbar_5" HorizontalAlignment="Stretch">
+                        <materialDesign:Snackbar HorizontalAlignment="Stretch"
                                              x:Name="SnackbarFive">
-                        <materialDesign:SnackbarMessage Content="This Snackbar is stretched horizontally. Consider allowing your content to push up."                                                    
+                            <materialDesign:SnackbarMessage Content="This Snackbar is stretched horizontally. Consider allowing your content to push up."
                                                         ActionContent="OK" />
-                    </materialDesign:Snackbar>
+                        </materialDesign:Snackbar>
+                    </smtx:XamlDisplay>
                 </StackPanel>
             </Border>
 
@@ -158,30 +163,31 @@
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Example 6.</TextBlock>
                     <TextBlock TextWrapping="WrapWithOverflow">Action button colour variations.</TextBlock>
-                    <materialDesign:Snackbar Margin="0 8 0 0" IsActive="True">
-                        <materialDesign:SnackbarMessage Content="Default - accent"                                                    
-                                                        ActionContent="ACCENT" />
-                    </materialDesign:Snackbar>
-                    <materialDesign:Snackbar Margin="0 8 0 0"
-                                             IsActive="True"
+                    <smtx:XamlDisplay Key="snackbar_6" Margin="0 8 0 0">
+                        <materialDesign:Snackbar IsActive="True">
+                            <materialDesign:SnackbarMessage Content="Default - accent" ActionContent="ACCENT" />
+                        </materialDesign:Snackbar>
+                    </smtx:XamlDisplay>
+                    <smtx:XamlDisplay Key="snackbar_7" Margin="0 8 0 0">
+                        <materialDesign:Snackbar IsActive="True"
                                              ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionLightButton}">
-                        <materialDesign:SnackbarMessage Content="Primary Light"                                                    
-                                                        ActionContent="LIGHT" />
-                    </materialDesign:Snackbar>
-                    <materialDesign:Snackbar Margin="0 8 0 0"
-                                             IsActive="True"
-                                             ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionMidButton}">
-                        <materialDesign:SnackbarMessage Content="Primary Mid"                                                    
-                                                        ActionContent="MID" />
-                    </materialDesign:Snackbar>
-                    <materialDesign:Snackbar Margin="0 8 0 0"
-                                             IsActive="True"
+                            <materialDesign:SnackbarMessage Content="Primary Light" ActionContent="LIGHT" />
+                        </materialDesign:Snackbar>
+                    </smtx:XamlDisplay>
+                    <smtx:XamlDisplay Key="snackbar_8" Margin="0 8 0 0">
+                        <materialDesign:Snackbar IsActive="True" ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionMidButton}">
+                            <materialDesign:SnackbarMessage Content="Primary Mid" ActionContent="MID" />
+                        </materialDesign:Snackbar>
+                    </smtx:XamlDisplay>
+                    <smtx:XamlDisplay Key="snackbar_9" Margin="0 8 0 0">
+                        <materialDesign:Snackbar IsActive="True"
                                              ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionDarkButton}">
-                        <materialDesign:SnackbarMessage Content="Primary Dark"                                                    
-                                                        ActionContent="DARK" />
-                    </materialDesign:Snackbar>
+                            <materialDesign:SnackbarMessage Content="Primary Dark" ActionContent="DARK" />
+                        </materialDesign:Snackbar>
+                    </smtx:XamlDisplay>
                 </StackPanel>
             </Border>
         </Grid>
     </ScrollViewer>
 </UserControl>
+

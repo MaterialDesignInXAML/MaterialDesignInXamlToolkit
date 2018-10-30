@@ -1,5 +1,4 @@
 using System;
-using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
@@ -37,14 +36,12 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="content"></param>
         public void UpdateContent(object content)
         {
-            if (content == null) throw new ArgumentNullException(nameof(content));
-            
             _owner.AssertTargetableContent();
-            _owner.DialogContent = content;
+            _owner.DialogContent = content ?? throw new ArgumentNullException(nameof(content));
             _owner.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-            {                
-                _owner.FocusPopup();                
-            }));            
+            {
+                _owner.FocusPopup();
+            }));
         }
 
         /// <summary>

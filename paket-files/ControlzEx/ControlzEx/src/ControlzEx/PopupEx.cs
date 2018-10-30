@@ -24,7 +24,7 @@ namespace ControlzEx
                                           typeof(bool),
                                           typeof(PopupEx),
                                           new PropertyMetadata(false));
-
+        
         /// <summary>
         /// Gets/sets if the popup can be closed by left mouse button down.
         /// </summary>
@@ -32,6 +32,18 @@ namespace ControlzEx
         {
             get { return (bool)GetValue(CloseOnMouseLeftButtonDownProperty); }
             set { SetValue(CloseOnMouseLeftButtonDownProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowTopMostProperty
+            = DependencyProperty.Register(nameof(AllowTopMost),
+                                          typeof(bool), 
+                                          typeof(PopupEx), 
+                                          new PropertyMetadata(true));
+
+        public bool AllowTopMost
+        {
+            get { return (bool)GetValue(AllowTopMostProperty); }
+            set { SetValue(AllowTopMostProperty, value); }
         }
 
         public PopupEx()
@@ -84,7 +96,7 @@ namespace ControlzEx
 
         private void PopupEx_Opened(object sender, EventArgs e)
         {
-            this.SetTopmostState(true);
+            this.SetTopmostState(hostWindow?.IsActive ?? true);
         }
 
         private void hostWindow_Activated(object sender, EventArgs e)
@@ -142,6 +154,7 @@ namespace ControlzEx
 
         private void SetTopmostState(bool isTop)
         {
+            isTop &= AllowTopMost;
             // Don’t apply state if it’s the same as incoming state
             if (this.appliedTopMost.HasValue && this.appliedTopMost == isTop)
             {

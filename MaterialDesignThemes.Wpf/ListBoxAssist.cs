@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -26,6 +22,8 @@ namespace MaterialDesignThemes.Wpf
 
             var point = mouseButtonEventArgs.GetPosition(senderElement);
             var result = VisualTreeHelper.HitTest(senderElement, point);
+
+            if (result == null) return;
 
             ListBoxItem listBoxItem = null;
             Ripple ripple = null;

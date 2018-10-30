@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MaterialDesignColors.WpfExample.Domain;
 
 namespace MaterialDesignColors.WpfExample
@@ -24,7 +15,6 @@ namespace MaterialDesignColors.WpfExample
         public Buttons()
         {
             InitializeComponent();
-
             FloatingActionDemoCommand = new AnotherCommandImplementation(Execute);
         }
 
@@ -36,9 +26,9 @@ namespace MaterialDesignColors.WpfExample
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-	    {
+	{
             Console.WriteLine("Just checking we haven't suppressed the button.");
-		}
+	}
 
         private void PopupBox_OnOpened(object sender, RoutedEventArgs e)
         {
@@ -54,11 +44,15 @@ namespace MaterialDesignColors.WpfExample
         {
             if (CountingBadge.Badge == null || Equals(CountingBadge.Badge, ""))
                 CountingBadge.Badge = 0;
-
+            
             var next = int.Parse(CountingBadge.Badge.ToString()) + 1;
-
+            
             CountingBadge.Badge = next < 21 ? (object)next : null;
-
+        }
+        
+        private void BasicRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
+        {
+            Debug.WriteLine($"BasicRatingBar value changed from {e.OldValue} to {e.NewValue}.");
         }
     }
 }

@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MaterialDesignThemes.Wpf;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -33,10 +22,14 @@ namespace MaterialDesignColors.WpfExample
 
         private void LocaleCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var lang = System.Windows.Markup.XmlLanguage.GetLanguage((string)LocaleCombo.SelectedItem);
-            LocaleDatePicker.Language = lang;
-            LocaleDatePickerRTL.Language = lang;
-
+            try {
+                var lang = System.Windows.Markup.XmlLanguage.GetLanguage((string) LocaleCombo.SelectedItem);
+                LocaleDatePicker.Language = lang;
+                LocaleDatePickerRTL.Language = lang;
+            }
+            catch {
+                LocaleCombo.SelectedItem = "fr-CA";
+            }
             //HACK: The calendar only refresh when we change the date
             LocaleDatePicker.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(1);
             LocaleDatePicker.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(-1);
@@ -81,6 +74,30 @@ namespace MaterialDesignColors.WpfExample
         {
             if (Equals(eventArgs.Parameter, "1"))
                 ((PickersViewModel)DataContext).Time = Clock.Time;
+        }
+
+        private void PresetTimePicker_SelectedTimeChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<System.DateTime?> e)
+        {
+            var oldValue = e.OldValue.HasValue ? e.OldValue.Value.ToLongTimeString() : "NULL";
+            var newValue = e.NewValue.HasValue ? e.NewValue.Value.ToLongTimeString() : "NULL";
+
+            Debug.WriteLine($"PresentTimePicker's SelectedTime changed from {oldValue} to {newValue}");
+        }
+
+        public void CombinedDialogOpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)
+        {
+            CombinedCalendar.SelectedDate = ((PickersViewModel)DataContext).Date;
+            CombinedClock.Time = ((PickersViewModel)DataContext).Time;
+        }
+
+        public void CombinedDialogClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
+        {
+            if (Equals(eventArgs.Parameter, "1"))
+            {
+                var combined = CombinedCalendar.SelectedDate.Value.AddSeconds(CombinedClock.Time.TimeOfDay.TotalSeconds);
+                ((PickersViewModel)DataContext).Time = combined;
+                ((PickersViewModel)DataContext).Date = combined;
+            }
         }
     }
 }

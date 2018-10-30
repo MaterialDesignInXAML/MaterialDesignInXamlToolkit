@@ -1,12 +1,13 @@
-﻿using System.Threading;
+﻿using System;
+using System.Diagnostics;
+using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignThemes.Wpf;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-using MaterialDesignColors.WpfExample.Domain;
-using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -17,11 +18,11 @@ namespace MaterialDesignColors.WpfExample
         public static Snackbar Snackbar;
         public MainWindow()
         {
-            InitializeComponent();                        
+            InitializeComponent();
 
             Task.Factory.StartNew(() =>
             {
-                Thread.Sleep(2500);                
+                Thread.Sleep(2500);
             }).ContinueWith(t =>
             {
                 //note you can use the message queue from any thread, but just for the demo here we 
@@ -55,6 +56,21 @@ namespace MaterialDesignColors.WpfExample
             };
 
             await DialogHost.Show(sampleMessageDialog, "RootDialog");            
+        }
+
+        private void OnCopy(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Parameter is string stringValue)
+            {
+                try
+                {
+                    Clipboard.SetDataObject(stringValue);
+                }
+                catch (Exception ex)
+                {
+                    Trace.WriteLine(ex.ToString());
+                }
+            }
         }
     } 
 }

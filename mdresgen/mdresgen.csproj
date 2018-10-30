@@ -113,6 +113,7 @@
     <None Include="PackIconDataFactory.template.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="Icon.cs" />
     <Compile Include="IconDataFactorySyntaxRewriter.cs" />
     <Compile Include="IconThing.cs" />
     <None Include="PackIconKind.template.cs">

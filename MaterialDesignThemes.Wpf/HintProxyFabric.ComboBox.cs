@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -26,6 +22,7 @@ namespace MaterialDesignThemes.Wpf
                 _comboBox.SelectionChanged += ComboBoxSelectionChanged;
                 _comboBox.Loaded += ComboBoxLoaded;
                 _comboBox.IsVisibleChanged += ComboBoxIsVisibleChanged;
+                _comboBox.IsKeyboardFocusWithinChanged += ComboBoxIsKeyboardFocusWithinChanged;
             }
 
             public object Content
@@ -48,16 +45,16 @@ namespace MaterialDesignThemes.Wpf
 
             public bool IsVisible => _comboBox.IsVisible;            
 
-            public bool IsEmpty()
-            {
-                return string.IsNullOrEmpty(_comboBox.Text);
-            }
+            public bool IsEmpty() => string.IsNullOrEmpty(_comboBox.Text);
+
+            public bool IsFocused() => _comboBox.IsEditable && _comboBox.IsKeyboardFocusWithin;
 
             public event EventHandler ContentChanged;
 
             public event EventHandler IsVisibleChanged;
 
             public event EventHandler Loaded;
+            public event EventHandler FocusedChanged;
 
             private void ComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
             {
@@ -79,12 +76,18 @@ namespace MaterialDesignThemes.Wpf
                 ContentChanged?.Invoke(sender, EventArgs.Empty);
             }
 
+            private void ComboBoxIsKeyboardFocusWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
+            {
+                FocusedChanged?.Invoke(sender, EventArgs.Empty);
+            }
+
             public void Dispose()
             {
                 _comboBox.RemoveHandler(TextBoxBase.TextChangedEvent, _comboBoxTextChangedEventHandler);
                 _comboBox.Loaded -= ComboBoxLoaded;
                 _comboBox.IsVisibleChanged -= ComboBoxIsVisibleChanged;
-                _comboBox.SelectionChanged -= ComboBoxSelectionChanged;
+                _comboBox.SelectionChanged -= ComboBoxSelectionChanged;                
+                _comboBox.IsKeyboardFocusWithinChanged -= ComboBoxIsKeyboardFocusWithinChanged;
             }
         }
     }

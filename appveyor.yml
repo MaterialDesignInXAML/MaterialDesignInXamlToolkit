@@ -9,23 +9,24 @@
   assembly_info:
     patch: true
     file: '**\AssemblyInfo.*'
-    assembly_version: '2.3.1.{build}'
-    assembly_file_version: '2.3.1.{build}'
-    assembly_informational_version: '2.3.1.{build}'
+    assembly_version: '2.5.1.{build}'
+    assembly_file_version: '2.5.1.{build}'
+    assembly_informational_version: '2.5.1.{build}'
   environment:
     RestorePackages: false
   before_build:
-  - ps: .paket\paket.exe install
+  - ps: .paket\paket.exe restore
   build:
     project: MaterialDesignToolkit.Wpf.sln
     verbosity: minimal
   after_build:
   - ps: nuget pack MaterialDesignThemes.nuspec -Version $env:APPVEYOR_BUILD_VERSION
+  - ps: 7z a Demo.2.5.1.$env:APPVEYOR_BUILD_NUMBER.zip MainDemo.Wpf\bin\**\*.*
   artifacts:
   - path: '**\MaterialDesignThemes.*.nupkg'
-  - path: bin\**\*.*
+  - path: Demo.*.zip
 
-  version: 2.3.1-ci{build}
+  version: 2.5.1-ci{build}
   deploy:
   - provider: NuGet
     api_key:
@@ -48,14 +49,15 @@
   environment:
     RestorePackages: false    
   before_build:
-  - ps: .paket\paket.exe install
+  - ps: .paket\paket.exe restore
   build:
     project: MaterialDesignToolkit.Wpf.sln
     verbosity: minimal
   after_build:
   - ps: nuget pack MaterialDesignThemes.nuspec -Version $env:APPVEYOR_BUILD_VERSION
+  - ps: 7z a Demo.$env:APPVEYOR_BUILD_VERSION.zip MainDemo.Wpf\bin\**\*.*
   artifacts:
   - path: '**\MaterialDesignThemes.*.nupkg'
-  - path: bin\**\*.*
+  - path: Demo.*.zip
 
-  version: 2.3.1.{build}
+  version: 2.5.1.{build}
