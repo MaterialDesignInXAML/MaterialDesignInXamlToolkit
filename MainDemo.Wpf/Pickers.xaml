@@ -120,8 +120,8 @@
                                 </Grid.RowDefinitions>
                                 <Calendar x:Name="Calendar" Margin="-1 -4 -1 0" />
                                 <StackPanel Grid.Row="1" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal">
-                                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
                                     <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="0" Style="{DynamicResource MaterialDesignFlatButton}">CANCEL</Button>
+                                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
                                 </StackPanel>
                             </Grid>
                         </Button.CommandParameter>
@@ -143,8 +143,8 @@
                                 </Grid.RowDefinitions>
                                 <materialDesign:Clock DisplayAutomation="ToSeconds" x:Name="Clock" />
                                 <StackPanel Grid.Row="1" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal">
-                                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
                                     <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="0" Style="{DynamicResource MaterialDesignFlatButton}">CANCEL</Button>
+                                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
                                 </StackPanel>
                             </Grid>
                         </Button.CommandParameter>
@@ -176,8 +176,8 @@
                                         />
                                 </StackPanel>
                                 <StackPanel Grid.Row="1" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal">
-                                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
                                     <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="0" Style="{DynamicResource MaterialDesignFlatButton}">CANCEL</Button>
+                                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
                                 </StackPanel>
                             </Grid>
                         </Button.CommandParameter>
