@@ -47,11 +47,11 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-            nameof(Text), typeof (string), typeof (TimePicker), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TextPropertyChangedCallback));
+            nameof(Text), typeof(string), typeof(TimePicker), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TextPropertyChangedCallback));
 
         private static void TextPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var timePicker = (TimePicker) dependencyObject;
+            var timePicker = (TimePicker)dependencyObject;
             if (!timePicker._isManuallyMutatingText)
                 timePicker.SetSelectedTime();
             if (timePicker._textBox != null)
@@ -60,16 +60,16 @@ namespace MaterialDesignThemes.Wpf
 
         public string Text
         {
-            get { return (string) GetValue(TextProperty); }
+            get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
 
         public static readonly DependencyProperty SelectedTimeProperty = DependencyProperty.Register(
-            nameof(SelectedTime), typeof (DateTime?), typeof (TimePicker), new FrameworkPropertyMetadata(default(DateTime?), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, SelectedTimePropertyChangedCallback));
+            nameof(SelectedTime), typeof(DateTime?), typeof(TimePicker), new FrameworkPropertyMetadata(default(DateTime?), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, SelectedTimePropertyChangedCallback));
 
         private static void SelectedTimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var timePicker = (TimePicker) dependencyObject;
+            var timePicker = (TimePicker)dependencyObject;
             timePicker._isManuallyMutatingText = true;
             timePicker.SetCurrentValue(TextProperty, timePicker.DateTimeToString(timePicker.SelectedTime));
             timePicker._isManuallyMutatingText = false;
@@ -79,9 +79,9 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public DateTime? SelectedTime
-		{
-			get { return (DateTime?) GetValue(SelectedTimeProperty); }
-			set { SetValue(SelectedTimeProperty, value); }
+        {
+            get { return (DateTime?)GetValue(SelectedTimeProperty); }
+            set { SetValue(SelectedTimeProperty, value); }
         }
 
         public static readonly RoutedEvent SelectedTimeChangedEvent =
@@ -108,26 +108,26 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty SelectedTimeFormatProperty = DependencyProperty.Register(
-            nameof(SelectedTimeFormat), typeof (DatePickerFormat), typeof (TimePicker), new PropertyMetadata(DatePickerFormat.Short));
+            nameof(SelectedTimeFormat), typeof(DatePickerFormat), typeof(TimePicker), new PropertyMetadata(DatePickerFormat.Short));
 
         public DatePickerFormat SelectedTimeFormat
         {
-            get { return (DatePickerFormat) GetValue(SelectedTimeFormatProperty); }
+            get { return (DatePickerFormat)GetValue(SelectedTimeFormatProperty); }
             set { SetValue(SelectedTimeFormatProperty, value); }
         }
 
         public static readonly DependencyProperty IsDropDownOpenProperty = DependencyProperty.Register(
-            nameof(IsDropDownOpen), typeof (bool), typeof (TimePicker),
+            nameof(IsDropDownOpen), typeof(bool), typeof(TimePicker),
             new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsDropDownOpenChanged, OnCoerceIsDropDownOpen));
 
         public bool IsDropDownOpen
         {
-            get { return (bool) GetValue(IsDropDownOpenProperty); }
+            get { return (bool)GetValue(IsDropDownOpenProperty); }
             set { SetValue(IsDropDownOpenProperty, value); }
         }
 
         public static readonly DependencyProperty Is24HoursProperty = DependencyProperty.Register(
-            nameof(Is24Hours), typeof (bool), typeof (TimePicker), new PropertyMetadata(default(bool), Is24HoursChanged));
+            nameof(Is24Hours), typeof(bool), typeof(TimePicker), new PropertyMetadata(default(bool), Is24HoursChanged));
 
         private static void Is24HoursChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
@@ -139,14 +139,14 @@ namespace MaterialDesignThemes.Wpf
 
         public bool Is24Hours
         {
-            get { return (bool) GetValue(Is24HoursProperty); }
+            get { return (bool)GetValue(Is24HoursProperty); }
             set { SetValue(Is24HoursProperty, value); }
         }
 
         private static object OnCoerceIsDropDownOpen(DependencyObject d, object baseValue)
         {
             var timePicker = (TimePicker)d;
-        
+
             if (!timePicker.IsEnabled)
             {
                 return false;
@@ -164,7 +164,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var timePicker = (TimePicker)d;
 
-            var newValue = (bool) e.NewValue;
+            var newValue = (bool)e.NewValue;
             if (timePicker._popup == null || timePicker._popup.IsOpen == newValue) return;
 
             timePicker._popup.IsOpen = newValue;
@@ -173,7 +173,7 @@ namespace MaterialDesignThemes.Wpf
                 //TODO set time
                 //dp._originalSelectedDate = dp.SelectedDate;
 
-                timePicker.Dispatcher.BeginInvoke(DispatcherPriority.Input, (Action) delegate()
+                timePicker.Dispatcher.BeginInvoke(DispatcherPriority.Input, (Action)delegate ()
                 {
                     timePicker._clock.Focus();
                 });
@@ -181,25 +181,25 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ClockStyleProperty = DependencyProperty.Register(
-            nameof(ClockStyle), typeof (Style), typeof (TimePicker), new PropertyMetadata(default(Style)));
+            nameof(ClockStyle), typeof(Style), typeof(TimePicker), new PropertyMetadata(default(Style)));
 
         public Style ClockStyle
         {
-            get { return (Style) GetValue(ClockStyleProperty); }
+            get { return (Style)GetValue(ClockStyleProperty); }
             set { SetValue(ClockStyleProperty, value); }
         }
 
         public static readonly DependencyProperty ClockHostContentControlStyleProperty = DependencyProperty.Register(
-            nameof(ClockHostContentControlStyle), typeof (Style), typeof (TimePicker), new PropertyMetadata(default(Style)));
+            nameof(ClockHostContentControlStyle), typeof(Style), typeof(TimePicker), new PropertyMetadata(default(Style)));
 
         public Style ClockHostContentControlStyle
         {
-            get { return (Style) GetValue(ClockHostContentControlStyleProperty); }
+            get { return (Style)GetValue(ClockHostContentControlStyleProperty); }
             set { SetValue(ClockHostContentControlStyleProperty, value); }
         }
 
         public static readonly DependencyProperty IsInvalidTextAllowedProperty = DependencyProperty.Register(
-            "IsInvalidTextAllowed", typeof (bool), typeof (TimePicker), new PropertyMetadata(default(bool)));
+            "IsInvalidTextAllowed", typeof(bool), typeof(TimePicker), new PropertyMetadata(default(bool)));
 
         /// <summary>
         /// Set to true to stop invalid text reverting back to previous valid value. Useful in cases where you
@@ -207,12 +207,12 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public bool IsInvalidTextAllowed
         {
-            get { return (bool) GetValue(IsInvalidTextAllowedProperty); }
+            get { return (bool)GetValue(IsInvalidTextAllowedProperty); }
             set { SetValue(IsInvalidTextAllowedProperty, value); }
         }
 
         public static readonly DependencyProperty WithSecondsProperty = DependencyProperty.Register(
-            nameof(WithSeconds), typeof (bool), typeof (TimePicker),
+            nameof(WithSeconds), typeof(bool), typeof(TimePicker),
             new PropertyMetadata(default(bool), WithSecondsPropertyChanged));
 
         /// <summary>
@@ -220,7 +220,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public bool WithSeconds
         {
-            get { return (bool) GetValue(WithSecondsProperty); }
+            get { return (bool)GetValue(WithSecondsProperty); }
             set { SetValue(WithSecondsProperty, value); }
         }
 
@@ -231,6 +231,24 @@ namespace MaterialDesignThemes.Wpf
                 // update the clock's behavior as needed when the WithSeconds value changes
                 picker._clock.DisplayAutomation = picker.WithSeconds ? ClockDisplayAutomation.ToSeconds : ClockDisplayAutomation.ToMinutesOnly;
             }
+        }
+
+        public static readonly DependencyProperty MinutesIntervalProperty = DependencyProperty.Register(
+            nameof(MinutesInterval), typeof(int), typeof(TimePicker), new UIPropertyMetadata(1));
+
+        public int MinutesInterval
+        {
+            get { return (int)GetValue(MinutesIntervalProperty); }
+            set { SetValue(MinutesIntervalProperty, value); }
+        }
+
+        public static readonly DependencyProperty HoursIntervalProperty = DependencyProperty.Register(
+            nameof(HoursInterval), typeof(int), typeof(TimePicker), new UIPropertyMetadata(1));
+
+        public int HoursInterval
+        {
+            get { return (int)GetValue(HoursIntervalProperty); }
+            set { SetValue(HoursIntervalProperty, value); }
         }
 
         public override void OnApplyTemplate()
@@ -268,7 +286,7 @@ namespace MaterialDesignThemes.Wpf
                 _popup.AddHandler(PreviewMouseLeftButtonDownEvent, new MouseButtonEventHandler(PopupOnPreviewMouseLeftButtonDown));
                 _popup.Opened += PopupOnOpened;
                 _popup.Closed += PopupOnClosed;
-                _popup.Child = _clockHostContentControl; 
+                _popup.Child = _clockHostContentControl;
                 if (IsDropDownOpen)
                 {
                     _popup.IsOpen = true;
@@ -501,6 +519,8 @@ namespace MaterialDesignThemes.Wpf
             _clock.SetBinding(StyleProperty, GetBinding(ClockStyleProperty));
             _clock.SetBinding(Clock.TimeProperty, GetBinding(SelectedTimeProperty, new NullableDateTimeToCurrentDateConverter()));
             _clock.SetBinding(Clock.Is24HoursProperty, GetBinding(Is24HoursProperty));
+            _clock.SetBinding(Clock.HoursIntervalProperty, GetBinding(HoursIntervalProperty));
+            _clock.SetBinding(Clock.MinutesIntervalProperty, GetBinding(MinutesIntervalProperty));
             _clockHostContentControl.SetBinding(StyleProperty, GetBinding(ClockHostContentControlStyleProperty));
         }
 

@@ -1,5 +1,4 @@
-﻿using MaterialDesignThemes.Wpf.Converters;
-using MaterialDesignThemes.Wpf.Transitions;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf.Converters;
+using MaterialDesignThemes.Wpf.Transitions;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -214,6 +215,24 @@ namespace MaterialDesignThemes.Wpf
             private set { SetValue(HourLineAnglePropertyKey, value); }
         }
 
+        public static readonly DependencyProperty MinutesIntervalProperty = DependencyProperty.Register(
+            nameof(MinutesInterval), typeof(int), typeof(Clock), new UIPropertyMetadata(1));
+
+        public int MinutesInterval
+        {
+            get { return (int)GetValue(MinutesIntervalProperty); }
+            set { SetValue(MinutesIntervalProperty, value); }
+        }
+
+        public static readonly DependencyProperty HoursIntervalProperty = DependencyProperty.Register(
+            nameof(HoursInterval), typeof(int), typeof(Clock), new UIPropertyMetadata(1));
+
+        public int HoursInterval
+        {
+            get { return (int)GetValue(HoursIntervalProperty); }
+            set { SetValue(HoursIntervalProperty, value); }
+        }
+
         public static readonly RoutedEvent ClockChoiceMadeEvent =
             EventManager.RegisterRoutedEvent(
                 "ClockChoiceMade",
@@ -224,8 +243,7 @@ namespace MaterialDesignThemes.Wpf
         private static void OnClockChoiceMade(DependencyObject d, ClockDisplayMode displayMode)
         {
             var instance = (Clock)d;
-            var dragCompletedEventArgs = new ClockChoiceMadeEventArgs(displayMode)
-            {
+            var dragCompletedEventArgs = new ClockChoiceMadeEventArgs(displayMode) {
                 RoutedEvent = ClockChoiceMadeEvent,
             };
 
@@ -278,13 +296,13 @@ namespace MaterialDesignThemes.Wpf
                 if (Is24Hours)
                 {
                     GenerateButtons(hoursCanvas, Enumerable.Range(13, 12).ToList(), ButtonRadiusRatio,
-                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "00");
+                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "00", HoursInterval);
                     GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), ButtonRadiusInnerRatio,
-                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "#");
+                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "#", HoursInterval);
                 }
                 else
                     GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), ButtonRadiusRatio,
-                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "0");
+                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "0", HoursInterval);
             }
 
             if (GetTemplateChild(MinutesCanvasPartName) is Canvas minutesCanvas)
@@ -293,7 +311,7 @@ namespace MaterialDesignThemes.Wpf
 
                 GenerateButtons(minutesCanvas, Enumerable.Range(1, 60).ToList(), ButtonRadiusRatio,
                     new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Minutes, Is24Hours),
-                    i => ((i / 5.0) % 1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle", "0");
+                    i => ((i / (MinutesInterval < 5.0 ? 5.0 : (double)MinutesInterval)) % 1) == 0.0 || i == 60 ? "ButtonStyle" : "LesserButtonStyle", "0", MinutesInterval);
             }
 
             if (GetTemplateChild(SecondsCanvasPartName) is Canvas secondsCanvas)
@@ -333,7 +351,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void GenerateButtons(Panel canvas, ICollection<int> range, double radiusRatio, IValueConverter isCheckedConverter, Func<int, string> stylePropertySelector,
-            string format)
+            string format, int interval = 1)
         {
             var anglePerItem = 360.0 / range.Count;
             var radiansPerItem = anglePerItem * (Math.PI / 180);
@@ -343,6 +361,11 @@ namespace MaterialDesignThemes.Wpf
 
             _centreCanvas = new Point(canvas.Width / 2, canvas.Height / 2);
             var hypotenuseRadius = _centreCanvas.X * radiusRatio;
+
+            var lastItem = range.LastOrDefault();
+            range = range.Where(i => i % interval == 0).ToList();   //generate buttons only for values % the given interval
+            if (!range.Contains(lastItem))
+                range.Add(lastItem);    //zero value should always be displayed (item 24 or 60)
 
             foreach (var i in range)
             {
@@ -442,7 +465,24 @@ namespace MaterialDesignThemes.Wpf
                 else
                     time = new DateTime(Time.Year, Time.Month, Time.Day, Time.Hour, Time.Minute, value);
             }
+            time = CoerceIntervals(time, Is24Hours, HoursInterval, MinutesInterval);
             SetCurrentValue(TimeProperty, time);
+        }
+
+        private static DateTime CoerceIntervals(DateTime time, bool is24Hours, int hoursInterval, int minutesInterval)
+        {
+            if (time.Hour % hoursInterval != 0)
+            {
+                var roundedHour = hoursInterval * (int)Math.Round(time.Hour / (double)hoursInterval, MidpointRounding.AwayFromZero);
+                return new DateTime(time.Year, time.Month, time.Day, roundedHour >= (is24Hours ? 24 : 12) ? 0 : roundedHour, time.Minute, time.Second);
+            }
+            if (time.Minute % minutesInterval != 0)
+            {
+                var roundedMinute = minutesInterval * (int)Math.Round(time.Minute / (double)minutesInterval, MidpointRounding.AwayFromZero);
+                return new DateTime(time.Year, time.Month, time.Day, time.Hour, roundedMinute >= 60 ? 0 : roundedMinute, time.Second);
+            }
+
+            return time;
         }
 
         private static void SetFlags(Clock clock)
