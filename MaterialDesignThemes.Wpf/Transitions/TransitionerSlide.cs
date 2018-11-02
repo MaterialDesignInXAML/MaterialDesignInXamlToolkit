@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Threading;
-using MaterialDesignThemes.Wpf.Transitions;
+﻿using System.Windows;
 
 namespace MaterialDesignThemes.Wpf.Transitions
 {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
@@ -100,6 +94,19 @@ namespace MaterialDesignThemes.Wpf
         public static bool GetIsIndicatorVisible(DependencyObject element)
         {
             return (bool)element.GetValue(IsIndicatorVisibleProperty);
+        }
+
+        public static readonly DependencyProperty OpacityProperty = DependencyProperty.RegisterAttached(
+            "Opacity", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(double)));
+
+        public static void SetOpacity(DependencyObject element, double opacity)
+        {
+            element.SetValue(OpacityProperty, opacity);
+        }
+
+        public static double GetOpacity(DependencyObject element)
+        {
+            return (double)element.GetValue(OpacityProperty);
         }
     }
 }

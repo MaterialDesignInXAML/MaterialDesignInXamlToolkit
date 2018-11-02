@@ -177,6 +177,8 @@
                     <CheckBox Margin="16 4 16 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Do something good</CheckBox>
                     <CheckBox Margin="16 4 16 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">Take a breather</CheckBox>
                     <CheckBox Margin="16 4 16 0" Style="{StaticResource MaterialDesignUserForegroundCheckBox}">And go create</CheckBox>
+                    <RadioButton Margin="16 4 16 0" Style="{DynamicResource MaterialDesignUserForegroundRadioButton}">This?</RadioButton>
+                    <RadioButton Margin="16 4 16 0" Style="{DynamicResource MaterialDesignUserForegroundRadioButton}">Or This?</RadioButton>
                     <Separator Style="{StaticResource MaterialDesignLightSeparator}"/>
                     <StackPanel Margin="8 0 8 8" Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundButton}" Width="30" Padding="2 0 0 0"

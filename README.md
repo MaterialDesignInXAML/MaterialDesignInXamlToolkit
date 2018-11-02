@@ -61,6 +61,7 @@ To load the source project you will need Visual Studio 2017.  Don't worry if you
 * Icon pack sourced from [Material Design Icons](https://materialdesignicons.com/)
 * Utilises [ControlzEx](https://github.com/ControlzEx/ControlzEx)
 * Ignace Maes, whose [Material Skin](https://github.com/IgnaceMaes/MaterialSkin) project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
+* [Material Design Extensions](https://github.com/spiegelp/MaterialDesignExtensions) is a community repository based on this library that provides additional controls and features.
 * **[Contributors!](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)**  Thanks for the PRs which have helped add some extra polish.  
 
 # <a name="Screenshots"></a>![Alt text](web/images/MD4XAML28.png "Screenshots") Screenshots

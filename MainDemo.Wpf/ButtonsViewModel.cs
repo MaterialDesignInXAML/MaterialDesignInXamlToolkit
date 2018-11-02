@@ -1,7 +1,6 @@
 ﻿using MaterialDesignColors.WpfExample.Domain;
 using System;
 using System.ComponentModel;
-using System.Threading;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -12,6 +11,7 @@ namespace MaterialDesignColors.WpfExample
         private bool _showDismissButton;
         private double _dismissButtonProgress;
         private string _demoRestartCountdownText;
+        private int _orClickMeCount;
 
         public ButtonsViewModel()
         {
@@ -64,6 +64,9 @@ namespace MaterialDesignColors.WpfExample
 
                 }), Dispatcher.CurrentDispatcher);
             #endregion
+
+            IncrementOrClickMeCountCommand = new AnotherCommandImplementation(_ => OrClickMeCount += 1);
+            OrClickMeCount = 0;
 
             //just some demo code for the SAVE button
             SaveComand = new AnotherCommandImplementation(_ =>
@@ -131,6 +134,16 @@ namespace MaterialDesignColors.WpfExample
             DemoRestartCountdownText = "Demo in " + seconds;
             isComplete = seconds == 0;
         }
+
+        #endregion
+
+        #region OrClickMe Demo
+        public int OrClickMeCount
+        {
+            get { return _orClickMeCount; }
+            private set { this.MutateVerbose(ref _orClickMeCount, value, RaisePropertyChanged()); }
+        }
+        public ICommand IncrementOrClickMeCountCommand { get; }
 
         #endregion
 

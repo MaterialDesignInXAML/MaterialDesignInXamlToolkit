@@ -119,7 +119,6 @@
     <circularProgressBar:ArcSizeConverter x:Key="ArcSizeConverter" />
     <circularProgressBar:ArcEndPointConverter x:Key="ArcEndPointConverter" />
     <circularProgressBar:LargeArcConverter x:Key="LargeArcConverter" />
-    <circularProgressBar:RotateTransformConverter x:Key="RotateTransformConverter" />
     <circularProgressBar:RotateTransformCentreConverter x:Key="RotateTransformCentreConverter" />
     <converters:NotZeroConverter x:Key="NotZeroConverter" />
 
@@ -191,15 +190,7 @@
                                     <TransformGroup>
                                         <RotateTransform x:Name="RotateTransform"
                                                          CenterX="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource RotateTransformCentreConverter}, Mode=OneWay}" 
-                                                         CenterY="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource RotateTransformCentreConverter}, Mode=OneWay}">
-                                            <RotateTransform.Angle>
-                                                <MultiBinding Converter="{StaticResource RotateTransformConverter}">
-                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value" />
-                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Minimum" />
-                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Maximum" />
-                                                </MultiBinding>
-                                            </RotateTransform.Angle>
-                                        </RotateTransform>
+                                                         CenterY="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource RotateTransformCentreConverter}, Mode=OneWay}" />
                                     </TransformGroup>
                                 </Path.RenderTransform>
                             </Path>
