@@ -14,7 +14,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.HexColorPicker.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
-            <converters:BrushToHexConverter x:Key="BrushToHexConverter" />
+            <converters:BrushToHexConverter x:Key="BrushToHexConverter" /> 
             <converters:MultiValueEqualityConverter x:Key="MultiValueEqualityConverter" />
             <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                 <Setter Property="BorderBrush" Value="Transparent" />

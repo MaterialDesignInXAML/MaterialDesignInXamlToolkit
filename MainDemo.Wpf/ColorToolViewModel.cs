@@ -18,10 +18,7 @@ namespace MaterialDesignDemo
 
         public ColorScheme ActiveScheme
         {
-            get
-            {
-                return _activeScheme;
-            }
+            get => _activeScheme;
             set
             {
                 _activeScheme = value;
@@ -89,22 +86,22 @@ namespace MaterialDesignDemo
             SelectedColor = null;
             if (ActiveScheme == ColorScheme.Primary)
             {
-                PaletteHelper.SetPrimaryPalette(color);
+                EnhancedPaletteHelper.SetPrimaryPalette(color);
                 _primaryColor = null;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
-                PaletteHelper.SetSecondaryPalette(color);
+                EnhancedPaletteHelper.SetSecondaryPalette(color);
                 _secondaryColor = null;
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {
-                PaletteHelper.SetPrimaryForeground(color);
+                EnhancedPaletteHelper.SetPrimaryForeground(color);
                 _primaryForegroundColor = null;
             }
             else if (ActiveScheme == ColorScheme.SecondaryForeground)
             {
-                PaletteHelper.SetSecondaryForeground(color);
+                EnhancedPaletteHelper.SetSecondaryForeground(color);
                 _secondaryForegroundColor = null;
             }
         }
@@ -145,22 +142,22 @@ namespace MaterialDesignDemo
             SelectedColor = hue;
             if (ActiveScheme == ColorScheme.Primary)
             {
-                PaletteHelper.SetPrimaryPalette(hue);
+                EnhancedPaletteHelper.SetPrimaryPalette(hue);
                 _primaryColor = hue;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
-                PaletteHelper.SetSecondaryPalette(hue);
+                EnhancedPaletteHelper.SetSecondaryPalette(hue);
                 _secondaryColor = hue;
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {
-                PaletteHelper.SetPrimaryForeground(hue);
+                EnhancedPaletteHelper.SetPrimaryForeground(hue);
                 _primaryForegroundColor = hue;
             }
             else if (ActiveScheme == ColorScheme.SecondaryForeground)
             {
-                PaletteHelper.SetSecondaryForeground(hue);
+                EnhancedPaletteHelper.SetSecondaryForeground(hue);
                 _secondaryForegroundColor = hue;
             }
         }
