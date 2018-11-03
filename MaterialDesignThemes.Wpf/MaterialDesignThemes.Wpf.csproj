@@ -361,6 +361,7 @@
     <Compile Include="DpiHelper.cs" />
     <Compile Include="DrawerHost.cs" />
     <Compile Include="ExpanderAssist.cs" />
+    <Compile Include="EnhancedPaletteHelper.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Flipper.cs" />
     <Compile Include="HexColorItem.cs" />

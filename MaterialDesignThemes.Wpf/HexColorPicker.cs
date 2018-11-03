@@ -95,7 +95,9 @@ namespace MaterialDesignThemes.Wpf
 
             slider.ValueChanged += delegate
             {
-                var hsv = ((HexColorItem)hexList.SelectedItem).Hsv;
+                var selectedItem = (HexColorItem)hexList.SelectedItem;
+                if (selectedItem == null) return;
+                var hsv = selectedItem.Hsv;
                 hsv = new Hsv(hsv.H, hsv.S, HsvValue);
                 var color = hsv.ToColor();
                 ColorSelectedCommand.Execute(color);
