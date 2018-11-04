@@ -31,10 +31,10 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="wpf:RatingBarButton">
-                                    <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"     
-                                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
+                                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                Padding="{TemplateBinding Padding}" 
+                                                Padding="{TemplateBinding Padding}"
                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                                 RenderTransformOrigin=".5, .5">
                                         <wpf:Ripple.RenderTransform>
@@ -67,6 +67,23 @@
                         <Trigger Property="IsWithinSelectedValue" Value="False">
                             <Setter Property="Opacity" Value=".26" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding IsReadOnly, RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}}" Value="True">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="wpf:RatingBarButton">
+                                        <wpf:Ripple Padding="{TemplateBinding Padding}"
+                                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                Content="{TemplateBinding Content}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                Focusable="False"
+                                                RenderTransformOrigin=".5, .5"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                        </wpf:Ripple>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Setter.Value>
