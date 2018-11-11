@@ -10,9 +10,9 @@ namespace MaterialDesignColors.ColorManipulation
             double rgb_srgb(double d)
             {
                 d = d / 255.0;
-                return (d <= 0.03928)
-                    ? d = d / 12.92
-                    : d = Math.Pow((d + 0.055) / 1.055, 2.4);
+                return (d > 0.03928)
+                    ? d = Math.Pow((d + 0.055) / 1.055, 2.4)
+                    : d = d / 12.92;
             }
             var r = rgb_srgb(color.R);
             var g = rgb_srgb(color.G);
