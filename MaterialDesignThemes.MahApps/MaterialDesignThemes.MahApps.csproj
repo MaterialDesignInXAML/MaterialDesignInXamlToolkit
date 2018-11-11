@@ -102,6 +102,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Page Include="Themes\MaterialDesignTheme.MahApps.NumericUpDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj">
@@ -125,13 +129,24 @@
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.2')">
       <ItemGroup>
-        <Reference Include="MahApps.Metro">
-          <HintPath>..\packages\MahApps.Metro\lib\net45\MahApps.Metro.dll</HintPath>
+        <Reference Include="ControlzEx">
+          <HintPath>..\packages\ControlzEx\lib\net45\ControlzEx.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
         <Reference Include="System.Windows.Interactivity">
-          <HintPath>..\packages\MahApps.Metro\lib\net45\System.Windows.Interactivity.dll</HintPath>
+          <HintPath>..\packages\ControlzEx\lib\net45\System.Windows.Interactivity.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.2')">
+      <ItemGroup>
+        <Reference Include="MahApps.Metro">
+          <HintPath>..\packages\MahApps.Metro\lib\net45\MahApps.Metro.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>

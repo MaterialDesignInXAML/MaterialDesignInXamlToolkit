@@ -142,7 +142,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignToolToggleListBox" TargetType="{x:Type ListBox}">
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignToolBarBackground}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
@@ -174,10 +174,9 @@
                     <Border x:Name="Bd" 
                             BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}" 
-                            Background="{TemplateBinding Background}" 
                             SnapsToDevicePixels="true"
                             Padding="{TemplateBinding Padding}">
-                        <wpf:Card wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}" HorizontalAlignment="Left" Background="{DynamicResource MaterialDesignToolBarBackground}">
+                        <wpf:Card wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}" HorizontalAlignment="Left" Background="{TemplateBinding Background}">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </wpf:Card>
                     </Border>

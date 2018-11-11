@@ -6,16 +6,16 @@
     <title>Material Design Themes XAML Resources</title>
     <authors>James Willock</authors>
     <owners>James Willock</owners>
-    <licenseUrl>https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/ButchersBoy/MaterialDesignInXamlToolkit</projectUrl>    
+    <licenseUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>    
     <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>ResourceDictionary instances containing Material Design templates and styles for WPF controls.</description>
-    <releaseNotes>https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/releases</releaseNotes>
+    <description>ResourceDictionary instances containing Material Design templates and styles for WPF controls in the MahApps library.</description>
+    <releaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</releaseNotes>
     <copyright>Copyright 2015 James Willock/Mulholland Software Ltd</copyright>
     <tags>WPF XAML WinRT Material Design Theme Colour Color UI UX</tags>
     <dependencies>
-      <dependency id="MaterialDesignColors" version="1.1.2" />    
+      <dependency id="MaterialDesignColors" version="1.1.*" />
     </dependencies>
   </metadata>
   <files>
@@ -23,5 +23,5 @@
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.pdb" target="lib\net45" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\MaterialDesignThemes.Wpf.xml" target="lib\net45" />
     <file src="MaterialDesignThemes.Wpf\**\*.cs" target="src\net45" />
-  </files>    
+  </files>
 </package>

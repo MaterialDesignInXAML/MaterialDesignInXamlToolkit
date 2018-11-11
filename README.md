@@ -21,13 +21,13 @@ Comprehensive and easy to use Material Design theme and control library for the 
 [![NuGet-Themes](https://img.shields.io/nuget/v/MaterialDesignThemes.svg?label=NuGet:%20Themes&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](https://img.shields.io/nuget/vpre/MaterialDesignThemes.svg?label=NuGet:%20Themes%20(CI)&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](https://img.shields.io/nuget/vpre/MaterialDesignColors.svg?label=NuGet:%20Colours&style=flat-square)](https://www.nuget.org/packages/MaterialDesignColors/)
-[![Issues](https://img.shields.io/github/issues/ButchersBoy/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues)
+[![Issues](https://img.shields.io/github/issues/MaterialDesignInXAML/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues)
 [![Twitter](https://img.shields.io/badge/twitter-%40james__willock-55acee.svg?style=flat-square)](https://twitter.com/James_Willock)
  
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Getting Started
 
-* Checkout the [Super Quick Start](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Super-Quick-Start)
-* Or, the more comprehensive [Starting Guide](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/wiki/Getting-Started) guide.
+* Checkout the [Super Quick Start](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Super-Quick-Start)
+* Or, the more comprehensive [Starting Guide](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Getting-Started) guide.
 * Or, watch the [Material Design In XAML Toolkit An Introduction](https://www.youtube.com/watch?v=-n5yeEOsbCk) video.
 * Take 5 minutes to download the source from right here and run up the two demo projects in the solution.
 
@@ -40,7 +40,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 * Checkout [Motion List](https://github.com/MaterialDesignInXAML/MotionList).
 
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Source Code
-To load the source project you will need Visual Studio 2017.  Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (``` Install-Package MaterialDesignThemes ```).  There are two demo projects in the solution, restore the NuGet packages and fire them both up.  One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
+To load the source project you will need Visual Studio 2017.  Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (``` Install-Package MaterialDesignThemes ```). There are two demo projects in the solution, restore the necessary NuGet packages and correct the programming syntax that is not compatible with C# versions lower than C# 7.0 (```currently used in Visual Studio 2017```). Then, you should be able to fire both of these projects up.  One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
 
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
@@ -61,6 +61,7 @@ To load the source project you will need Visual Studio 2017.  Don't worry if you
 * Icon pack sourced from [Material Design Icons](https://materialdesignicons.com/)
 * Utilises [ControlzEx](https://github.com/ControlzEx/ControlzEx)
 * Ignace Maes, whose [Material Skin](https://github.com/IgnaceMaes/MaterialSkin) project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
+* [Material Design Extensions](https://github.com/spiegelp/MaterialDesignExtensions) is a community repository based on this library that provides additional controls and features.
 * **[Contributors!](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)**  Thanks for the PRs which have helped add some extra polish.  
 
 # <a name="Screenshots"></a>![Alt text](web/images/MD4XAML28.png "Screenshots") Screenshots
