@@ -58,10 +58,4 @@
         Teal,
         Yellow
     }
-
-    public enum BaseTheme
-    {
-        Light,
-        Dark
-    }
 }
