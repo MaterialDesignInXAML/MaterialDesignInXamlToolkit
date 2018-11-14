@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {    
@@ -20,13 +21,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(
-            nameof(DisplayDate),
-            typeof (DateTime),
-            typeof (MaterialDateDisplay),
-            new PropertyMetadata(
-                System.Threading.Thread.CurrentThread.CurrentUICulture.Calendar != null ? System.Threading.Thread.CurrentThread.CurrentUICulture.Calendar.MinSupportedDateTime : default(DateTime),
-                DisplayDatePropertyChangedCallback
-            ));
+            nameof(DisplayDate), typeof (DateTime), typeof (MaterialDateDisplay), new PropertyMetadata(default(DateTime), DisplayDatePropertyChangedCallback));
 
         private static void DisplayDatePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -100,6 +95,23 @@ namespace MaterialDesignThemes.Wpf
         {
             var culture = Language.GetSpecificCulture();
             var dateTimeFormatInfo = culture.GetDateFormat();
+            var minDateTime = dateTimeFormatInfo.Calendar.MinSupportedDateTime;
+            var maxDateTime = dateTimeFormatInfo.Calendar.MaxSupportedDateTime;
+
+            if (DisplayDate < minDateTime)
+            {
+                SetDisplayDateOfCalendar(minDateTime);
+
+                // return to avoid second formatting of the same value
+                return;
+            }
+            else if (DisplayDate > maxDateTime)
+            {
+                SetDisplayDateOfCalendar(maxDateTime);
+
+                // return to avoid second formatting of the same value
+                return;
+            }
 
             ComponentOneContent = DisplayDate.ToString(dateTimeFormatInfo.MonthDayPattern.Replace("MMMM", "MMM"), culture).ToTitleCase(culture);     //Day Month folowing culture order. We don't want the month to take too much space
             ComponentTwoContent = DisplayDate.ToString("ddd,", culture).ToTitleCase(culture);       // Day of week first
@@ -157,5 +169,26 @@ namespace MaterialDesignThemes.Wpf
             }
         } 
 
+        private void SetDisplayDateOfCalendar(DateTime displayDate)
+        {
+            System.Windows.Controls.Calendar FindCalendar(DependencyObject child)
+            {
+                DependencyObject element = VisualTreeHelper.GetParent(child);
+
+                while (element != null && !(element is System.Windows.Controls.Calendar))
+                {
+                    element = VisualTreeHelper.GetParent(element);
+                }
+
+                return element as System.Windows.Controls.Calendar;
+            }
+
+            System.Windows.Controls.Calendar calendarControl = FindCalendar(this);
+
+            if (calendarControl != null)
+            {
+                calendarControl.DisplayDate = displayDate;
+            }
+        }
     }
 }
