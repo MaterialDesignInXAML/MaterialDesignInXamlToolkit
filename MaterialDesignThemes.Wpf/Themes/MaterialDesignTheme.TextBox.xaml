@@ -16,7 +16,7 @@
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
         <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="0 0 1 0" />
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="CaretBrush" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="CaretBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineHighlightedBrush), RelativeSource={RelativeSource Self}}" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
@@ -28,7 +28,9 @@
         <Setter Property="wpf:TextFieldAssist.IncludeSpellingSuggestions" Value="{Binding RelativeSource={RelativeSource Self}, Path=(SpellCheck.IsEnabled)}" />
         <Setter Property="wpf:TextFieldAssist.NewSpecHighlightingEnabled" Value="False" />
         <Setter Property="wpf:TextFieldAssist.RippleOnFocusEnabled" Value="False" />
-        <Setter Property="wpf:TextFieldAssist.HighlightedBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="wpf:TextFieldAssist.UnderlineHighlightedBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="wpf:TextFieldAssist.UnderlineHighlightedDarkBrush" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="wpf:HintAssist.HighlightedForeground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <!-- cludge the default context menu -->
         <Setter Property="ContextMenu">
             <Setter.Value>
@@ -111,7 +113,7 @@
                                       Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />
                                 <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"
                                                CornerRadius="{Binding Path=(wpf:TextFieldAssist.UnderlineCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
-                                               Background="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource TemplatedParent}}" />
+                                               Background="{Binding Path=(wpf:TextFieldAssist.UnderlineHighlightedBrush), RelativeSource={RelativeSource TemplatedParent}}" />
                             </Grid>
                         </Border>
                     </Grid>
@@ -121,7 +123,7 @@
                                 <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
                                 <Condition Property="IsKeyboardFocused" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.HighlightedForeground), RelativeSource={RelativeSource TemplatedParent}}" />
                             <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
                         </MultiTrigger>
                         <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
@@ -187,7 +189,7 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="textFieldBoxBorder" Property="Margin" Value="-2" />
                             <Setter TargetName="textFieldBoxBorder" Property="BorderThickness" Value="2" />
-                            <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineHighlightedBrush), RelativeSource={RelativeSource TemplatedParent}}" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -203,7 +205,7 @@
                                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
                                 <Condition Property="wpf:TextFieldAssist.NewSpecHighlightingEnabled" Value="False" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.HighlightedBrush), RelativeSource={RelativeSource Self}}" />
+                            <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineHighlightedBrush), RelativeSource={RelativeSource Self}}" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

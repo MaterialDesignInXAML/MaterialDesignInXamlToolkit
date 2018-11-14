@@ -165,19 +165,47 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// The color for highlighting effects on the border and the hint of a text box.
+        /// The color for highlighting effects on the border of a text box.
         /// </summary>
-        public static readonly DependencyProperty HighlightedBrushProperty = DependencyProperty.RegisterAttached(
-            "HighlightedBrush", typeof(Brush), typeof(TextFieldAssist), new PropertyMetadata(null));
+        public static readonly DependencyProperty UnderlineHighlightedBrushProperty = DependencyProperty.RegisterAttached(
+            "UnderlineHighlightedBrush", typeof(Brush), typeof(TextFieldAssist), new PropertyMetadata(null));
 
-        public static void SetHighlightedBrush(DependencyObject element, Brush value)
+        /// <summary>
+        /// Sets the color for highlighting effects on the border of a text box.
+        /// </summary>
+        public static void SetUnderlineHighlightedBrush(DependencyObject element, Brush value)
         {
-            element.SetValue(HighlightedBrushProperty, value);
+            element.SetValue(UnderlineHighlightedBrushProperty, value);
         }
 
-        public static Brush GetHighlightedBrush(DependencyObject element)
+        /// <summary>
+        /// Gets the color for highlighting effects on the border of a text box.
+        /// </summary>
+        public static Brush GetUnderlineHighlightedBrush(DependencyObject element)
         {
-            return (Brush)element.GetValue(HighlightedBrushProperty);
+            return (Brush)element.GetValue(UnderlineHighlightedBrushProperty);
+        }
+
+        /// <summary>
+        /// The dark color for highlighting effects on the border of a text box.
+        /// </summary>
+        public static readonly DependencyProperty UnderlineHighlightedDarkBrushProperty = DependencyProperty.RegisterAttached(
+            "UnderlineHighlightedDarkBrush", typeof(Brush), typeof(TextFieldAssist), new PropertyMetadata(null));
+
+        /// <summary>
+        /// Sets the dark color for highlighting effects on the border of a text box.
+        /// </summary>
+        public static void SetUnderlineHighlightedDarkBrush(DependencyObject element, Brush value)
+        {
+            element.SetValue(UnderlineHighlightedDarkBrushProperty, value);
+        }
+
+        /// <summary>
+        /// Gets the dark color for highlighting effects on the border of a text box.
+        /// </summary>
+        public static Brush GetUnderlineHighlightedDarkBrush(DependencyObject element)
+        {
+            return (Brush)element.GetValue(UnderlineHighlightedDarkBrushProperty);
         }
 
         /// <summary>

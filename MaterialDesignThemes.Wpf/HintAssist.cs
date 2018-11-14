@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -125,6 +126,32 @@ namespace MaterialDesignThemes.Wpf
         public static void SetHintOpacity(DependencyObject element, double value)
         {
             element.SetValue(HintOpacityProperty, value);
+        }
+
+        #endregion
+
+        #region Brushes
+
+        /// <summary>
+        /// The color for highlighted text.
+        /// </summary>
+        public static readonly DependencyProperty HighlightedForegroundProperty = DependencyProperty.RegisterAttached(
+            "HighlightedForeground", typeof(Brush), typeof(HintAssist), new PropertyMetadata(null));
+
+        /// <summary>
+        /// Gets the color for highlighted text.
+        /// </summary>
+        public static Brush GetHighlightedForeground(DependencyObject element)
+        {
+            return (Brush)element.GetValue(HighlightedForegroundProperty);
+        }
+
+        /// <summary>
+        /// Sets the color for highlighted text.
+        /// </summary>
+        public static void SetHighlightedForeground(DependencyObject element, Brush value)
+        {
+            element.SetValue(HighlightedForegroundProperty, value);
         }
 
         #endregion
