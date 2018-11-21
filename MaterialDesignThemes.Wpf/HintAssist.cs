@@ -133,25 +133,25 @@ namespace MaterialDesignThemes.Wpf
         #region Brushes
 
         /// <summary>
-        /// The color for highlighted text.
+        /// The color for the text of a focused control.
         /// </summary>
-        public static readonly DependencyProperty HighlightedForegroundProperty = DependencyProperty.RegisterAttached(
-            "HighlightedForeground", typeof(Brush), typeof(HintAssist), new PropertyMetadata(null));
+        public static readonly DependencyProperty ForegroundProperty = DependencyProperty.RegisterAttached(
+            "Foreground", typeof(Brush), typeof(HintAssist), new PropertyMetadata(null));
 
         /// <summary>
-        /// Gets the color for highlighted text.
+        /// Gets the color for the text of a focused control.
         /// </summary>
-        public static Brush GetHighlightedForeground(DependencyObject element)
+        public static Brush GetForeground(DependencyObject element)
         {
-            return (Brush)element.GetValue(HighlightedForegroundProperty);
+            return (Brush)element.GetValue(ForegroundProperty);
         }
 
         /// <summary>
-        /// Sets the color for highlighted text.
+        /// Sets the color for the text of a focused control.
         /// </summary>
-        public static void SetHighlightedForeground(DependencyObject element, Brush value)
+        public static void SetForeground(DependencyObject element, Brush value)
         {
-            element.SetValue(HighlightedForegroundProperty, value);
+            element.SetValue(ForegroundProperty, value);
         }
 
         #endregion
