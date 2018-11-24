@@ -22,11 +22,14 @@ assembly_info:
   assembly_version: '$(assembly_version).{build}'
   assembly_file_version: '$(assembly_version).{build}'
   assembly_informational_version: '$(assembly_version).{build}'
+
 before_build:
 - ps: .paket\paket.exe restore
+
 build:
   project: MaterialDesignToolkit.Wpf.sln
   verbosity: minimal
+
 after_build:
 - ps: >-
     if ($env:assembly_version -eq $env:mdix_version) {
@@ -35,10 +38,10 @@ after_build:
     } elseif ($env:assembly_version -eq $env:mdix_mahapps_version) { 
         nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:nuget_version
     }
+
 artifacts:
 - path: '**\MaterialDesignThemes.*.nupkg'
 - path: Demo.*.zip
-
 
 for:
 -
@@ -48,11 +51,11 @@ for:
   version: $(mdix_version)-ci$(APPVEYOR_BUILD_NUMBER)
   environment:
     nuget_version: $(assembly_version)-ci$(APPVEYOR_BUILD_NUMBER)
-#  deploy:
-#  - provider: NuGet
-#    api_key:
-#      secure: B+WIdbRYr/rJo1QMeDwNen2xcj4RTu1d8AZiA03kb8wsWZVQxt5OgsWRacmEjWRd
-#    artifact: MaterialDesignThemes.*.nupkg
+  deploy:
+  - provider: NuGet
+    api_key:
+      secure: B+WIdbRYr/rJo1QMeDwNen2xcj4RTu1d8AZiA03kb8wsWZVQxt5OgsWRacmEjWRd
+    artifact: MaterialDesignThemes.*.nupkg
 
 -
   branches:
