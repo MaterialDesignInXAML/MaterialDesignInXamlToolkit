@@ -48,7 +48,7 @@ for:
   branches:
     only:
       - master
-  version: $(mdix_version)-ci$(APPVEYOR_BUILD_NUMBER)
+  version: $(mdix_version)-ci{build}
   environment:
     nuget_version: $(assembly_version)-ci$(APPVEYOR_BUILD_NUMBER)
   deploy:
