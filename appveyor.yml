@@ -27,9 +27,13 @@ build:
   project: MaterialDesignToolkit.Wpf.sln
   verbosity: minimal
 after_build:
-- ps: If ($env:current_version -eq $env:mdix_version) nuget pack MaterialDesignThemes.nuspec -Version $env:current_version
-- ps: If ($env:current_version -eq $env:mdix_mahapps_version) nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:current_version
-- ps: If ($env:current_version -eq $env:mdix_version) 7z a Demo.$(env:current_version).zip MainDemo.Wpf\bin\**\*.*
+- ps: >-
+    if ($env:current_version -eq $env:mdix_version) {
+        nuget pack MaterialDesignThemes.nuspec -Version $env:current_version
+        7z a Demo.$(env:current_version).zip MainDemo.Wpf\bin\**\*.*
+    } elseif ($env:current_version -eq $env:mdix_mahapps_version) { 
+        nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:current_version
+    }
 artifacts:
 - path: '**\MaterialDesignThemes.*.nupkg'
 - path: Demo.*.zip
