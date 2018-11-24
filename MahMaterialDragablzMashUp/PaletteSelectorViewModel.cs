@@ -37,22 +37,22 @@ namespace MahMaterialDragablzMashUp
             foreach (var tabablzControl in Dragablz.TabablzControl.GetLoadedInstances())
             {
                 tabablzControl.Style = style;
-            }                        
+            }
         }
 
         private static void ApplyBase(bool isDark)
         {
-            new PaletteHelper().SetLightDark(isDark);
+            PaletteHelper.SetLightDark(isDark);
         }
 
         private static void ApplyPrimary(Swatch swatch)
         {
-            new PaletteHelper().ReplacePrimaryColor(swatch);
+            PaletteHelper.ReplacePrimaryColor(swatch);
         }
 
         private static void ApplyAccent(Swatch swatch)
         {
-            new PaletteHelper().ReplaceAccentColor(swatch);
+            PaletteHelper.ReplaceAccentColor(swatch);
         }
 
     }

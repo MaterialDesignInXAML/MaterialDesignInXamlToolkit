@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using ShowMeTheXAML;
 using System.Windows;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -11,7 +12,10 @@ namespace MaterialDesignColors.WpfExample
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            XamlDisplay.Init();
+            //This is an alterate way to initialize MaterialDesignInXAML if you don't use the MaterialDesignResourceDictionary in App.xaml
+            //this.WithMaterialDesign(BaseTheme.Dark, PrimaryColor.Cyan, AccentColor.Lime);
+
+            
             //Illustration of setting culture info fully in WPF:
             /*             
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
