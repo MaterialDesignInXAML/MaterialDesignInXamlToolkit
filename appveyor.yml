@@ -11,16 +11,17 @@ environment:
   mdix_version: 2.5.1
   mdix_mahapps_version: 0.0.13
   RestorePackages: false
+  nuget_version: $(assembly_version)
   matrix:
-    - current_version: $(mdix_version)
-    - current_version: $(mdix_mahapps_version)
+    - assembly_version: $(mdix_version)
+    - assembly_version: $(mdix_mahapps_version)
 
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
-  assembly_version: '$(current_version).{build}'
-  assembly_file_version: '$(current_version).{build}'
-  assembly_informational_version: '$(current_version).{build}'
+  assembly_version: '$(assembly_version).{build}'
+  assembly_file_version: '$(assembly_version).{build}'
+  assembly_informational_version: '$(assembly_version).{build}'
 before_build:
 - ps: .paket\paket.exe restore
 build:
@@ -28,11 +29,11 @@ build:
   verbosity: minimal
 after_build:
 - ps: >-
-    if ($env:current_version -eq $env:mdix_version) {
-        nuget pack MaterialDesignThemes.nuspec -Version $env:current_version
-        7z a Demo.$(env:current_version).zip MainDemo.Wpf\bin\**\*.*
-    } elseif ($env:current_version -eq $env:mdix_mahapps_version) { 
-        nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:current_version
+    if ($env:assembly_version -eq $env:mdix_version) {
+        nuget pack MaterialDesignThemes.nuspec -Version $env:nuget_version
+        7z a Demo.$($env:nuget_version).zip MainDemo.Wpf\bin\**\*.*
+    } elseif ($env:assembly_version -eq $env:mdix_mahapps_version) { 
+        nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:nuget_version
     }
 artifacts:
 - path: '**\MaterialDesignThemes.*.nupkg'
@@ -45,6 +46,8 @@ for:
     only:
       - master
   version: $(mdix_version)-ci{build}
+  environment:
+    nuget_version: $(assembly_version)-ci{build}
 #  deploy:
 #  - provider: NuGet
 #    api_key:
