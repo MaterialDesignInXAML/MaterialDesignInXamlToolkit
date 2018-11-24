@@ -254,6 +254,8 @@
         <smtx:XamlDisplay Key="fields_18" Grid.Row="6" Grid.Column="1" Margin="0 12 0 0">
             <PasswordBox  x:Name="FloatingPasswordBox"
                      materialDesign:HintAssist.Hint="Floating Password"
+                     materialDesign:HintAssist.Foreground="Green"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Green"
                      Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
         </smtx:XamlDisplay>
 
