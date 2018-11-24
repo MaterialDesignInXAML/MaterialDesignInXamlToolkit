@@ -30,8 +30,8 @@ build:
 after_build:
 - ps: >-
     if ($env:assembly_version -eq $env:mdix_version) {
-        nuget pack MaterialDesignThemes.nuspec -Version $env:nuget_version
         7z a Demo.$($env:nuget_version).zip MainDemo.Wpf\bin\**\*.*
+        nuget pack MaterialDesignThemes.nuspec -Version $env:nuget_version
     } elseif ($env:assembly_version -eq $env:mdix_mahapps_version) { 
         nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:nuget_version
     }
@@ -45,9 +45,9 @@ for:
   branches:
     only:
       - master
-  version: $(mdix_version)-ci{build}
+  version: $(mdix_version)-ci$(APPVEYOR_BUILD_NUMBER)
   environment:
-    nuget_version: $(assembly_version)-ci$env:APPVEYOR_BUILD_NUMBER
+    nuget_version: $(assembly_version)-ci$(APPVEYOR_BUILD_NUMBER)
 #  deploy:
 #  - provider: NuGet
 #    api_key:
