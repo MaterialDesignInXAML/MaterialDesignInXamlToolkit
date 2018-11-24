@@ -47,7 +47,7 @@ for:
       - master
   version: $(mdix_version)-ci{build}
   environment:
-    nuget_version: $(assembly_version)-ci{build}
+    nuget_version: $(assembly_version)-ci$env:APPVEYOR_BUILD_NUMBER
 #  deploy:
 #  - provider: NuGet
 #    api_key:
