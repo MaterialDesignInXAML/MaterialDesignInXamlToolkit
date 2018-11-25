@@ -10,11 +10,13 @@ matrix:
 environment:
   mdix_version: 2.5.1
   mdix_mahapps_version: 0.0.13
+  mdix_colors_version: 1.1.4
   RestorePackages: false
   nuget_version: $(assembly_version)
   matrix:
     - assembly_version: $(mdix_version)
     - assembly_version: $(mdix_mahapps_version)
+    - assembly_version: $(mdix_colors_version)
 
 assembly_info:
   patch: true
@@ -37,6 +39,8 @@ after_build:
         nuget pack MaterialDesignThemes.nuspec -Version $env:nuget_version
     } elseif ($env:assembly_version -eq $env:mdix_mahapps_version) { 
         nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:nuget_version
+    } elseif ($env:assembly_version -eq $env:mdix_colors_version) { 
+        nuget pack MaterialDesignColors.nuspec -Version $env:nuget_version
     }
 
 artifacts:
