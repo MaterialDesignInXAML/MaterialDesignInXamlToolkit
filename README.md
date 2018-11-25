@@ -10,7 +10,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 
  * Material Design styles for all major WPF Framework controls
  * Additional controls to support the theme, including Multi Action Button, Cards, Dialogs, Clock
- * Easy configuration of palette (at design _and_ runtime), according to [Google's guidelines](http://www.google.co.uk/design/spec/style/color.html#color-ui-color-application)
+ * Easy configuration of palette (at design _and_ runtime), according to [Google's guidelines](https://material.io/design/)
  * Full [Material Design Icons](https://materialdesignicons.com/) icon pack
  * Easy transition effects
  * Compatible with [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro)
