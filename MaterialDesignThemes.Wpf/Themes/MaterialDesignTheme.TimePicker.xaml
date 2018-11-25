@@ -16,7 +16,6 @@
 		<Setter Property="BorderThickness" Value="0 0 0 1"/>
 		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="IsTabStop" Value="False"/>
-        <Setter Property="Margin" Value="0 12 0 0" />
         <Setter Property="wpf:HintAssist.Hint" Value="Select time" />
         <Setter Property="ClockStyle" Value="{DynamicResource MaterialDesignClock}" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
@@ -106,10 +105,15 @@
                                          Margin="0"
                                          Template="{StaticResource TextBoxTemplate}"
                                          />
-                                <Button Grid.Column="1" Foreground="{TemplateBinding BorderBrush}" Focusable="False" HorizontalAlignment="Right" Margin="4 0 0 -3" Grid.Row="0" Padding="0"
-                                        x:Name="PART_Button"
-                                        Height="17"
-                                        Template="{StaticResource DropDownButtonTemplate}" />
+                                <Button x:Name="PART_Button"
+                                        Grid.Column="1" 
+                                        Foreground="{TemplateBinding BorderBrush}" 
+                                        Focusable="False" 
+                                        HorizontalAlignment="Right" 
+                                        Margin="4 0 0 -3" 
+                                        Template="{StaticResource DropDownButtonTemplate}"
+                                        Padding="0"
+                                        Height="17" />
                                 <Popup x:Name="PART_Popup" AllowsTransparency="True" 
                                        Placement="Custom"
                                        CustomPopupPlacementCallback="{x:Static wpf:CustomPopupPlacementCallbackHelper.LargePopupCallback}"

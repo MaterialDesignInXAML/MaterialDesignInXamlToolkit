@@ -101,6 +101,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignDatePicker" TargetType="{x:Type DatePicker}">
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
         <Setter Property="Background" Value="Transparent" />
@@ -120,8 +121,7 @@
                                 Background="{TemplateBinding Background}"
                                 x:Name="border"
                                 Padding="0 4 0 4"
-                                SnapsToDevicePixels="True"
-                                VerticalAlignment="Bottom">
+                                SnapsToDevicePixels="True">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal" />
@@ -170,8 +170,8 @@
                                         Focusable="False"
                                         HorizontalAlignment="Right"
                                         Margin="4 0 0 -3"
-                                        Grid.Row="0"
-                                        Template="{StaticResource DropDownButtonTemplate}" Padding="0"
+                                        Template="{StaticResource DropDownButtonTemplate}" 
+                                        Padding="0"
                                         Height="17" />
                                 <DatePickerTextBox x:Name="PART_TextBox"
                                                    Grid.Column="0"
