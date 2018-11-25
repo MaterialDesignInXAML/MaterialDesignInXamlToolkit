@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
+using Calendar = System.Windows.Controls.Calendar;
 
 namespace MaterialDesignThemes.Wpf
-{    
+{
     public class MaterialDateDisplay : Control
     {
         static MaterialDateDisplay()
@@ -16,12 +16,10 @@ namespace MaterialDesignThemes.Wpf
         public MaterialDateDisplay()
         {
             SetCurrentValue(DisplayDateProperty, DateTime.Today);
-
-            UpdateComponents();
         }
 
         public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(
-            nameof(DisplayDate), typeof (DateTime), typeof (MaterialDateDisplay), new PropertyMetadata(default(DateTime), DisplayDatePropertyChangedCallback));
+            nameof(DisplayDate), typeof(DateTime), typeof(MaterialDateDisplay), new PropertyMetadata(default(DateTime), DisplayDatePropertyChangedCallback));
 
         private static void DisplayDatePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -30,13 +28,13 @@ namespace MaterialDesignThemes.Wpf
 
         public DateTime DisplayDate
         {
-            get { return (DateTime) GetValue(DisplayDateProperty); }
+            get { return (DateTime)GetValue(DisplayDateProperty); }
             set { SetValue(DisplayDateProperty, value); }
         }
 
         private static readonly DependencyPropertyKey ComponentOneContentPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                nameof(ComponentOneContent), typeof (string), typeof (MaterialDateDisplay),
+                nameof(ComponentOneContent), typeof(string), typeof(MaterialDateDisplay),
                 new PropertyMetadata(default(string)));
 
         public static readonly DependencyProperty ComponentOneContentProperty =
@@ -44,13 +42,13 @@ namespace MaterialDesignThemes.Wpf
 
         public string ComponentOneContent
         {
-            get { return (string) GetValue(ComponentOneContentProperty); }
+            get { return (string)GetValue(ComponentOneContentProperty); }
             private set { SetValue(ComponentOneContentPropertyKey, value); }
         }
 
         private static readonly DependencyPropertyKey ComponentTwoContentPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                nameof(ComponentTwoContent), typeof (string), typeof (MaterialDateDisplay),
+                nameof(ComponentTwoContent), typeof(string), typeof(MaterialDateDisplay),
                 new PropertyMetadata(default(string)));
 
         public static readonly DependencyProperty ComponentTwoContentProperty =
@@ -58,13 +56,13 @@ namespace MaterialDesignThemes.Wpf
 
         public string ComponentTwoContent
         {
-            get { return (string) GetValue(ComponentTwoContentProperty); }
+            get { return (string)GetValue(ComponentTwoContentProperty); }
             private set { SetValue(ComponentTwoContentPropertyKey, value); }
         }
 
         private static readonly DependencyPropertyKey ComponentThreeContentPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                nameof(ComponentThreeContent), typeof (string), typeof (MaterialDateDisplay),
+                nameof(ComponentThreeContent), typeof(string), typeof(MaterialDateDisplay),
                 new PropertyMetadata(default(string)));
 
         public static readonly DependencyProperty ComponentThreeContentProperty =
@@ -72,25 +70,24 @@ namespace MaterialDesignThemes.Wpf
 
         public string ComponentThreeContent
         {
-            get { return (string) GetValue(ComponentThreeContentProperty); }
+            get { return (string)GetValue(ComponentThreeContentProperty); }
             private set { SetValue(ComponentThreeContentPropertyKey, value); }
         }
 
-	    private static readonly DependencyPropertyKey IsDayInFirstComponentPropertyKey =
-		    DependencyProperty.RegisterReadOnly(
-                nameof(IsDayInFirstComponent), typeof (bool), typeof (MaterialDateDisplay),
-			    new PropertyMetadata(default(bool)));
+        private static readonly DependencyPropertyKey IsDayInFirstComponentPropertyKey =
+            DependencyProperty.RegisterReadOnly(
+                nameof(IsDayInFirstComponent), typeof(bool), typeof(MaterialDateDisplay),
+                new PropertyMetadata(default(bool)));
 
-	    public static readonly DependencyProperty IsDayInFirstComponentProperty =
-		    IsDayInFirstComponentPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty IsDayInFirstComponentProperty =
+            IsDayInFirstComponentPropertyKey.DependencyProperty;
 
-	    public bool IsDayInFirstComponent
-	    {
-		    get { return (bool) GetValue(IsDayInFirstComponentProperty); }
-		    private set { SetValue(IsDayInFirstComponentPropertyKey, value); }
-	    }
+        public bool IsDayInFirstComponent
+        {
+            get { return (bool)GetValue(IsDayInFirstComponentProperty); }
+            private set { SetValue(IsDayInFirstComponentPropertyKey, value); }
+        }
 
-        //FrameworkElement.LanguageProperty.OverrideMetadata(typeof (Calendar), (PropertyMetadata) new FrameworkPropertyMetadata(new PropertyChangedCallback(Calendar.OnLanguageChanged)));
         private void UpdateComponents()
         {
             var culture = Language.GetSpecificCulture();
@@ -105,7 +102,8 @@ namespace MaterialDesignThemes.Wpf
                 // return to avoid second formatting of the same value
                 return;
             }
-            else if (DisplayDate > maxDateTime)
+
+            if (DisplayDate > maxDateTime)
             {
                 SetDisplayDateOfCalendar(maxDateTime);
 
@@ -113,77 +111,14 @@ namespace MaterialDesignThemes.Wpf
                 return;
             }
 
-            ComponentOneContent = DisplayDate.ToString(dateTimeFormatInfo.MonthDayPattern.Replace("MMMM", "MMM"), culture).ToTitleCase(culture);     //Day Month folowing culture order. We don't want the month to take too much space
-            ComponentTwoContent = DisplayDate.ToString("ddd,", culture).ToTitleCase(culture);       // Day of week first
-            ComponentThreeContent = DisplayDate.ToString("yyyy", culture).ToTitleCase(culture);     // Year always top
+            ComponentOneContent = DisplayDate.ToString(dateTimeFormatInfo.MonthDayPattern.Replace("MMMM", "MMM"), culture).ToTitleCase(culture); //Day Month following culture order. We don't want the month to take too much space
+            ComponentTwoContent = DisplayDate.ToString("ddd,", culture).ToTitleCase(culture);   // Day of week first
+            ComponentThreeContent = DisplayDate.ToString("yyyy", culture).ToTitleCase(culture); // Year always top
         }
-
-        /// <summary>
-        /// Ripped straight from .Net FX.
-        /// </summary>
-        /// <param name="culture"></param>
-        /// <returns></returns>
-        internal static DateTimeFormatInfo GetDateFormat(CultureInfo culture)
-        {
-            if (culture.Calendar is GregorianCalendar)
-            {
-                return culture.DateTimeFormat;
-            }
-            else
-            {
-                GregorianCalendar foundCal = null;
-                DateTimeFormatInfo dtfi = null;
-
-                foreach (System.Globalization.Calendar cal in culture.OptionalCalendars)
-                {
-                    if (cal is GregorianCalendar)
-                    {
-                        // Return the first Gregorian calendar with CalendarType == Localized 
-                        // Otherwise return the first Gregorian calendar
-                        if (foundCal == null)
-                        {
-                            foundCal = cal as GregorianCalendar;
-                        }
-
-                        if (((GregorianCalendar)cal).CalendarType == GregorianCalendarTypes.Localized)
-                        {
-                            foundCal = cal as GregorianCalendar;
-                            break;
-                        }
-                    }
-                }
-
-                if (foundCal == null)
-                {
-                    // if there are no GregorianCalendars in the OptionalCalendars list, use the invariant dtfi 
-                    dtfi = ((CultureInfo)CultureInfo.InvariantCulture.Clone()).DateTimeFormat;
-                    dtfi.Calendar = new GregorianCalendar();
-                }
-                else
-                {
-                    dtfi = ((CultureInfo)culture.Clone()).DateTimeFormat;
-                    dtfi.Calendar = foundCal;
-                }
-
-                return dtfi;
-            }
-        } 
 
         private void SetDisplayDateOfCalendar(DateTime displayDate)
         {
-            System.Windows.Controls.Calendar FindCalendar(DependencyObject child)
-            {
-                DependencyObject element = VisualTreeHelper.GetParent(child);
-
-                while (element != null && !(element is System.Windows.Controls.Calendar))
-                {
-                    element = VisualTreeHelper.GetParent(element);
-                }
-
-                return element as System.Windows.Controls.Calendar;
-            }
-
-            System.Windows.Controls.Calendar calendarControl = FindCalendar(this);
+            Calendar calendarControl = this.GetVisualAncestry().OfType<Calendar>().FirstOrDefault();
 
             if (calendarControl != null)
             {
