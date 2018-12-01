@@ -165,7 +165,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
-        <Setter Property="Foreground" Value="{StaticResource MaterialDesignToolButtonForeground}"/>
+        <Setter Property="Foreground" Value="{StaticResource MaterialDesignToolForeground}"/>
         <Setter Property="Padding" Value="4"/>
         <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False"/>
         <Setter Property="Template">

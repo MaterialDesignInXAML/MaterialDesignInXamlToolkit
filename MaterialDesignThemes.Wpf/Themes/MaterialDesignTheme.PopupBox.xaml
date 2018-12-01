@@ -135,7 +135,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignToolPopupBox" BasedOn="{StaticResource MaterialDesignPopupBox}" TargetType="wpf:PopupBox">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignPopupBoxForeground}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignToolForeground}" />
         <Setter Property="Padding" Value="4"/>
     </Style>
 
