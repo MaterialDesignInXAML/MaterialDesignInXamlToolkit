@@ -169,8 +169,8 @@
     </Style>
 
     <Style x:Key="MaterialDesignFlatToggleButton" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Foreground" Value="#616161"/>
-        <Setter Property="Background" Value="#e0e0e0"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignToolBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignToolForeground}" />
         <Setter Property="Width" Value="40"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="FontSize" Value="18"/>
@@ -384,7 +384,8 @@
                             <Setter TargetName="ContentPresenter" Property="ContentTemplate" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContentTemplate)}" />
                         </MultiTrigger>
                         <Trigger Property="IsChecked" Value="False">
-                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/> <!-- Need to set Foreground to Background here instead of hardcoded PrimaryHueMidBrush -->
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                            <!-- Need to set Foreground to Background here instead of hardcoded PrimaryHueMidBrush -->
                         </Trigger>
                         <Trigger Property="Button.IsDefaulted" Value="true"/>
                         <Trigger Property="IsMouseOver" Value="true"/>
