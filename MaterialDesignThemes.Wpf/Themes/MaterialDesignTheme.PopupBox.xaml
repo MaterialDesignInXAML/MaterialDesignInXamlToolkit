@@ -101,8 +101,9 @@
                                       Cursor="Hand"
                                       VerticalAlignment="Center"
                                       />
-                        <controlzEx:PopupEx x:Name="PART_Popup" IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
-                                            CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"                                            
+                        <controlzEx:PopupEx x:Name="PART_Popup" 
+                                            IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
+                                            CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
                                             HorizontalOffset="5"
                                             VerticalOffset="5"
                                             PlacementTarget="{Binding ElementName=PART_Toggle}"
@@ -114,7 +115,7 @@
                                       FontSize="15"
                                       FontWeight="Regular"
                                       Padding="{TemplateBinding Padding}"
-                                      RenderOptions.ClearTypeHint="Enabled"                                      
+                                      RenderOptions.ClearTypeHint="Enabled"
                                       Margin="5">
                                 <wpf:Card.Resources>
                                     <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignPopupBoxButton}" />
@@ -305,13 +306,14 @@
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid>
-                        <ToggleButton x:Name="PART_Toggle" Style="{StaticResource ToggleButtonStyle}" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"                                      
+                        <ToggleButton x:Name="PART_Toggle" Style="{StaticResource ToggleButtonStyle}" 
+                                      IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"                                      
                                       Cursor="Hand"
                                       Background="{TemplateBinding Background}"
                                       BorderBrush="{TemplateBinding BorderBrush}"
                                       Foreground="{TemplateBinding Foreground}"
                                       VerticalAlignment="Stretch"
-                                      HorizontalAlignment="Stretch"                                      
+                                      HorizontalAlignment="Stretch"
                                       ToolTip="{TemplateBinding ToolTip}"
                                       ToolTipService.Placement="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(ToolTipService.Placement)}">
                             <Grid>
@@ -332,14 +334,14 @@
                         </ToggleButton>
                         <controlzEx:PopupEx x:Name="PART_Popup" 
                                           IsOpen="False"
-                                          CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"                                                                                    
+                                          CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
                                           PlacementTarget="{Binding ElementName=PART_Toggle}"
                                           Placement="Custom"
-                                          PopupAnimation="None"                                          
+                                          PopupAnimation="None"
                                           AllowsTransparency="True">
                             <Grid>
                                 <!-- with PopupBox.PopupMode == MouseOverEager the popup is always open, with 
-                                     content hidden. but Transparent doesnt seem to register hit test in the popup.
+                                     content hidden. but Transparent doesn't seem to register hit test in the popup.
                                      this opacity is the lowest I could get to register hit test. might try and speak
                                      to MS about this one, I *think* it is a bug -->
                                 <Border Background="White" Opacity="0.002" />
@@ -377,9 +379,13 @@
                                 <BeginStoryboard Storyboard="{StaticResource Close}" />
                             </Trigger.ExitActions>
                         </Trigger>
-                        <Trigger Property="PopupMode" Value="MouseOverEager">
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="PopupMode" Value="MouseOverEager" />
+                                <Condition Property="IsVisible" Value="True" />
+                            </MultiTrigger.Conditions>
                             <Setter TargetName="PART_Popup" Property="IsOpen" Value="True" />
-                        </Trigger>
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
