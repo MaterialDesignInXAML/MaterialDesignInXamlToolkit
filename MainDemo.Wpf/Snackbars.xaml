@@ -110,6 +110,7 @@
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 4.</TextBlock>
                         <TextBlock TextWrapping="WrapWithOverflow">Illustrates queueing (including discarding of duplicates), and handling of commands. Action a notification to see a System.Trace response..</TextBlock>
+                        <CheckBox Name="DiscardDuplicateCheckBox" IsChecked="True">Discard duplicates</CheckBox>
                         <Grid Margin="0 16 0 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
