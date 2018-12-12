@@ -185,24 +185,18 @@ namespace MaterialDesignThemes.Wpf
         public ComboBoxPopup()
         {
             CustomPopupPlacementCallback = ComboBoxCustomPopupPlacementCallback;
-            var childPropertyDescriptor = DependencyPropertyDescriptor.FromProperty(ComboBoxPopup.ChildProperty, typeof(ComboBoxPopup));
-            EventHandler childChangedHandler = (sender, x) =>
+        }
+
+        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged(e);
+            if (e.Property == ChildProperty)
             {
                 if (PopupPlacement != ComboBoxPopupPlacement.Undefined)
                 {
                     UpdateChildTemplate(PopupPlacement);
                 }
-            };
-
-            Loaded += (sender, args) =>
-            {
-                childPropertyDescriptor.AddValueChanged(this, childChangedHandler);
-            };
-
-            Unloaded += (sender, args) =>
-            {
-                childPropertyDescriptor.RemoveValueChanged(this, childChangedHandler);
-            };
+            }
         }
 
         private void SetupBackground(IEnumerable<DependencyObject> visualAncestry)
