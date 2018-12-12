@@ -37,7 +37,6 @@ namespace MaterialDesignDemo
                 "TRACE",
                 param => Trace.WriteLine("Actioned: " + param),
                 s);
-
             }
         }
     }
