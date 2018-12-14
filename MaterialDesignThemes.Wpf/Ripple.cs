@@ -93,8 +93,6 @@ namespace MaterialDesignThemes.Wpf
 
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            var point = e.GetPosition(this);
-
             if (RippleAssist.GetIsCentered(this))
             {
                 var innerContent = (Content as FrameworkElement);
@@ -104,7 +102,10 @@ namespace MaterialDesignThemes.Wpf
                     var position = innerContent.TransformToAncestor(this)
                         .Transform(new Point(0, 0));
 
-                    RippleX = position.X + innerContent.ActualWidth / 2 - RippleSize / 2;
+                    if (FlowDirection == FlowDirection.RightToLeft)
+                        RippleX = position.X - innerContent.ActualWidth / 2 - RippleSize / 2;
+                    else
+                        RippleX = position.X + innerContent.ActualWidth / 2 - RippleSize / 2;
                     RippleY = position.Y + innerContent.ActualHeight / 2 - RippleSize / 2;
                 }
                 else
@@ -115,6 +116,7 @@ namespace MaterialDesignThemes.Wpf
             }
             else
             {
+                var point = e.GetPosition(this);
                 RippleX = point.X - RippleSize / 2;
                 RippleY = point.Y - RippleSize / 2;
             }
@@ -192,6 +194,7 @@ namespace MaterialDesignThemes.Wpf
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+
             VisualStateManager.GoToState(this, TemplateStateNormal, false);
         }
 
