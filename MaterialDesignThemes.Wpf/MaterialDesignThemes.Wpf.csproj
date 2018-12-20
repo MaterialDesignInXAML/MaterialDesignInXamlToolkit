@@ -360,7 +360,7 @@
     <Compile Include="DialogHost.cs" />
     <Compile Include="DpiHelper.cs" />
     <Compile Include="DrawerHost.cs" />
-    <Compile Include="EnhancedPaletteHelper.cs" />
+    <Compile Include="DefaultPaletteHelper.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Flipper.cs" />
     <Compile Include="HexColorItem.cs" />
@@ -370,12 +370,16 @@
     <Compile Include="HintProxyFabric.TextBox.cs" />
     <Compile Include="HintProxyFabric.ComboBox.cs" />
     <Compile Include="HintProxyFabric.cs" />
+    <Compile Include="IBaseTheme.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
+    <Compile Include="IPaletteHelper.cs" />
     <Compile Include="ISnackbarMessageQueue.cs" />
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="ListViewAssist.cs" />
     <Compile Include="MaterialDesignAssist.cs" />
+    <Compile Include="MaterialDesignLightTheme.cs" />
+    <Compile Include="MaterialDesignDarkTheme.cs" />
     <Compile Include="MaterialDesignResourceDictionary.cs" />
     <Compile Include="MaterialDesignTheme.cs" />
     <Compile Include="MessageQueueExtension.cs" />

@@ -14,12 +14,9 @@ namespace MaterialDesignThemes.MahApps
         public static MaterialDesignTheme WithMahApps(this MaterialDesignTheme theme)
         {
             var resources = Application.Current.Resources;
-            PaletteHelper.ThemeChanged -= PaletteHelperOnThemeChanged;
-            PaletteHelper.ThemeChanged += PaletteHelperOnThemeChanged;
-            PaletteHelper.PaletteChanged -= PaletteHelperOnPaletteChanged;
-            PaletteHelper.PaletteChanged += PaletteHelperOnPaletteChanged;
-            PaletteHelper.PrimarySwatchChanged -= PaletteHelperOnPrimarySwatchChanged;
-            PaletteHelper.PrimarySwatchChanged += PaletteHelperOnPrimarySwatchChanged;
+            theme.PaletteHelper.ThemeChanged += PaletteHelperOnThemeChanged;
+            theme.PaletteHelper.PaletteChanged += PaletteHelperOnPaletteChanged;
+            theme.PaletteHelper.PrimarySwatchChanged += PaletteHelperOnPrimarySwatchChanged;
 
             CreateIfNotExists(GetControlsUri());
             CreateIfNotExists(GetFontsUri());

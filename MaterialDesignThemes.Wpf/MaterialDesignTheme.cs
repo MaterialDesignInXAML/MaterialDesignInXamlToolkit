@@ -1,61 +1,20 @@
-﻿namespace MaterialDesignThemes.Wpf
+﻿using System.Windows.Media;
+
+namespace MaterialDesignThemes.Wpf
 {
     public class MaterialDesignTheme
     {
-        public MaterialDesignTheme(BaseTheme theme, PrimaryColor primaryColor, AccentColor accentColor, Palette palette)
+        public MaterialDesignTheme(PaletteHelper paletteHelper, BaseTheme theme, Color primaryColor, Color secondaryColor)
         {
+            PaletteHelper = paletteHelper;
             BaseTheme = theme;
             PrimaryColor = primaryColor;
-            AccentColor = accentColor;
-            Palette = palette;
+            SecondaryColor = secondaryColor;
         }
 
+        public PaletteHelper PaletteHelper { get; }
         public BaseTheme BaseTheme { get; }
-        public PrimaryColor PrimaryColor { get; }
-        public AccentColor AccentColor { get; }
-        public Palette Palette { get; }
-    }
-
-    public enum AccentColor
-    {
-        Amber,
-        Blue,
-        Cyan,
-        DeepOrange,
-        DeepPurple,
-        Green,
-        Indigo,
-        LightBlue,
-        LightGreen,
-        Lime,
-        Orange,
-        Pink,
-        Purple,
-        Red,
-        Teal,
-        Yellow
-    }
-
-    public enum PrimaryColor
-    {
-        Amber,
-        Blue,
-        BlueGrey,
-        Brown,
-        Cyan,
-        DeepOrange,
-        DeepPurple,
-        Green,
-        Grey,
-        Indigo,
-        LightBlue,
-        LightGreen,
-        Lime,
-        Orange,
-        Pink,
-        Purple,
-        Red,
-        Teal,
-        Yellow
+        public Color PrimaryColor { get; }
+        public Color SecondaryColor { get; }
     }
 }

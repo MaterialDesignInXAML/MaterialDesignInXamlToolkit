@@ -1,7 +1,6 @@
 ﻿using MaterialDesignThemes.Wpf;
 using ShowMeTheXAML;
 using System.Windows;
-using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignColors.WpfExample
 {

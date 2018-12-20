@@ -18,10 +18,12 @@ namespace MaterialDesignThemes.Wpf
         private const string ThemeUriFormat =
             @"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{0}.xaml";
 
+        public static IPaletteHelper DefaultPaletteHelper { get; } = new DefaultPaletteHelper();
 
         public static MaterialDesignTheme WithMaterialDesign(this Application application,
-            BaseTheme theme, PrimaryColor primaryColor, AccentColor accentColor)
+            IBaseTheme theme, Color primaryColor, Color secondaryColor, IPaletteHelper paletteHelper = null)
         {
+            if (paletteHelper == null) paletteHelper = DefaultPaletteHelper;
             //NB: When the palettes are changed it hunts through the merged dictionaries.
             //Putting this at the beginning to avoid needing to hunt through all of them.
             application.Resources.MergedDictionaries.Add(CreateEmptyPaletteDictionary());
@@ -29,9 +31,9 @@ namespace MaterialDesignThemes.Wpf
             {
                 application.Resources.MergedDictionaries.Add(CreateDefaultThemeDictionary());
             }
-            PaletteHelper.SetLightDark(theme == BaseTheme.Dark);
-            Palette palette = PaletteHelper.ReplacePalette(primaryColor.ToString(), accentColor.ToString());
-            return new MaterialDesignTheme(theme, primaryColor, accentColor, palette);
+            paletteHelper.SetTheme(theme);
+            var palette = paletteHelper.ReplacePalette(primaryColor.ToString(), secondaryColor.ToString());
+            return new MaterialDesignTheme(paletteHelper, theme, primaryColor, secondaryColor, palette);
         }
 
         private static ResourceDictionary CreateEmptyPaletteDictionary()
@@ -44,6 +46,13 @@ namespace MaterialDesignThemes.Wpf
                 ["PrimaryHueMidForegroundBrush"] = new SolidColorBrush(),
                 ["PrimaryHueDarkBrush"] = new SolidColorBrush(),
                 ["PrimaryHueDarkForegroundBrush"] = new SolidColorBrush(),
+                ["SecondaryHueLightBrush"] = new SolidColorBrush(),
+                ["SecondaryHueLightForegroundBrush"] = new SolidColorBrush(),
+                ["SecondaryHueMidBrush"] = new SolidColorBrush(),
+                ["SecondaryHueMidForegroundBrush"] = new SolidColorBrush(),
+                ["SecondaryHueDarkBrush"] = new SolidColorBrush(),
+                ["SecondaryHueDarkForegroundBrush"] = new SolidColorBrush(),
+                // Compatability
                 ["SecondaryAccentBrush"] = new SolidColorBrush(),
                 ["SecondaryAccentForegroundBrush"] = new SolidColorBrush()
             };
@@ -144,7 +153,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private static ResourceDictionary CreateThemeDictionary(BaseTheme theme)
-            => new ResourceDictionary { Source = GetUri(theme) };
+            => new ResourceDictionary { Source = GetUri(theme),  };
 
         private static ResourceDictionary CreateColorThemeDictionary(PrimaryColor color)
             => new ResourceDictionary { Source = GetUri(color) };

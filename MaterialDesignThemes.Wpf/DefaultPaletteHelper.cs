@@ -9,32 +9,32 @@ using static MaterialDesignThemes.Wpf.PaletteHelper;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public static class EnhancedPaletteHelper
+    public class DefaultPaletteHelper : IPaletteHelper
     {
-        public static void SetPalettes(Color primary, Color secondary)
+        public void SetPalettes(Color primary, Color secondary)
         {
             SetPrimaryPalette(primary);
             SetSecondaryPalette(secondary);
         }
 
-        public static void SetPrimaryForeground(Color color)
+        public void SetPrimaryForeground(Color color)
         {
             SetForegroundBrushes(color, "Primary");
         }
 
-        public static void SetSecondaryForeground(Color color)
+        public void SetSecondaryForeground(Color color)
         {
             SetForegroundBrushes(color, "Secondary");
         }
 
-        private static void SetForegroundBrushes(Color color, string scheme)
+        private void SetForegroundBrushes(Color color, string scheme)
         {
             ReplaceEntry($"{scheme}HueLightForegroundBrush", new SolidColorBrush(color));
             ReplaceEntry($"{scheme}HueMidForegroundBrush", new SolidColorBrush(color));
             ReplaceEntry($"{scheme}HueDarkForegroundBrush", new SolidColorBrush(color));
         }
 
-        public static void SetPrimaryPalette(Color color)
+        public void SetPrimaryPalette(Color color)
         {
             var light = color.Lighten();
             var mid = color;
@@ -58,7 +58,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark) { Opacity = .4 });
         }
 
-        public static void SetSecondaryPalette(Color color)
+        public void SetSecondaryPalette(Color color)
         {
             SetPalette(color, "Secondary");
 
@@ -66,7 +66,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(ColorHelper.ContrastingForeGroundColor(color)));
         }
 
-        private static void SetPalette(Color color, string scheme)
+        private void SetPalette(Color color, string scheme)
         {
             var light = color.Lighten();
             var mid = color;
@@ -82,6 +82,11 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry($"{scheme}HueMidForegroundBrush", new SolidColorBrush(midForeground));
             ReplaceEntry($"{scheme}HueDarkBrush", new SolidColorBrush(dark));
             ReplaceEntry($"{scheme}HueDarkForegroundBrush", new SolidColorBrush(darkForeground));
+        }
+
+        public void SetTheme(IBaseTheme theme)
+        {
+            
         }
     }
 }
