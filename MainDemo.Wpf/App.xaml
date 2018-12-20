@@ -18,12 +18,12 @@
                 <ResourceDictionary Source="pack://application:,,,/ShowMeTheXAML.AvalonEdit;component/Themes/xamldisplayer.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <SolidColorBrush x:Key="SecondaryHueLightBrush" Color="{StaticResource Accent200}" po:Freeze="True" />
+            <!--<SolidColorBrush x:Key="SecondaryHueLightBrush" Color="{StaticResource Accent200}" po:Freeze="True" />
             <SolidColorBrush x:Key="SecondaryHueLightForegroundBrush" Color="{StaticResource Accent200Foreground}" po:Freeze="True" />
             <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="{StaticResource Accent400}" po:Freeze="True" />
             <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="{StaticResource Accent400Foreground}" po:Freeze="True" />
             <SolidColorBrush x:Key="SecondaryHueDarkBrush" Color="{StaticResource Accent700}" po:Freeze="True" />
-            <SolidColorBrush x:Key="SecondaryHueDarkForegroundBrush" Color="{StaticResource Accent700Foreground}" po:Freeze="True" />
+            <SolidColorBrush x:Key="SecondaryHueDarkForegroundBrush" Color="{StaticResource Accent700Foreground}" po:Freeze="True" />-->
 
 
             <Style TargetType="showMeTheXaml:XamlDisplay" BasedOn="{StaticResource {x:Type showMeTheXaml:XamlDisplay}}">

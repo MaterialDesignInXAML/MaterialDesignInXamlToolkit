@@ -32,7 +32,24 @@ namespace MaterialDesignThemes.Wpf
         {
             if (dependencyObject is FrameworkElement element)
             {
-                element.Resources.WithPrimaryColor((PrimaryColor)e.NewValue);
+                if (e.OldValue is BaseTheme oldTheme && 
+                    GetResourceDictionarySource(oldTheme) is string oldSource)
+                {
+                    foreach(ResourceDictionary resourceDictionary in element.Resources.MergedDictionaries)
+                    {
+                        if (string.Equals(resourceDictionary.Source?.ToString(), oldSource, StringComparison.OrdinalIgnoreCase))
+                        {
+                            element.Resources.MergedDictionaries.(resourceDictionary);
+                            break;
+                        }
+                    }
+                }
+
+                if (e.NewValue is BaseTheme newTheme &&
+                    GetResourceDictionarySource(newTheme) is string newThemeSource)
+                {
+                    element.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri(newThemeSource) });
+                }
             }
         }
 
