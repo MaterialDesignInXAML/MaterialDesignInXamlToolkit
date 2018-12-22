@@ -20,6 +20,9 @@
     <SolidColorBrush x:Key="MaterialDesignDivider" Color="#1F000000" po:Freeze="True" /> <!-- 12% -->
     <SolidColorBrush x:Key="MaterialDesignSelection" Color="#FFDeDeDe" po:Freeze="True" />
 
+    <SolidColorBrush x:Key="MaterialDesignToolForeground" Color="#616161" po:Freeze="true" />
+    <SolidColorBrush x:Key="MaterialDesignToolBackground" Color="#e0e0e0" po:Freeze="true" />
+
     <SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#FFDeDeDe" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignFlatButtonRipple" Color="#FFB6B6B6" po:Freeze="True" />
 

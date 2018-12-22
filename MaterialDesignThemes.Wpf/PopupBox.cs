@@ -386,8 +386,6 @@ namespace MaterialDesignThemes.Wpf
 
         public override void OnApplyTemplate()
         {
-            if (_popup != null)
-                _popup.Loaded -= PopupOnLoaded;
             if (_toggleButton != null)
                 _toggleButton.PreviewMouseLeftButtonUp -= ToggleButtonOnPreviewMouseLeftButtonUp;
 
@@ -396,9 +394,7 @@ namespace MaterialDesignThemes.Wpf
             _popup = GetTemplateChild(PopupPartName) as PopupEx;
             _popupContentControl = GetTemplateChild(PopupContentControlPartName) as ContentControl;
             _toggleButton = GetTemplateChild(TogglePartName) as ToggleButton;
-
-            if (_popup != null)
-                _popup.Loaded += PopupOnLoaded;
+            
             if (_toggleButton != null)
                 _toggleButton.PreviewMouseLeftButtonUp += ToggleButtonOnPreviewMouseLeftButtonUp;
 
@@ -725,12 +721,6 @@ namespace MaterialDesignThemes.Wpf
         }
 
         #endregion
-
-        private void PopupOnLoaded(object sender, RoutedEventArgs routedEventArgs)
-        {
-            if (PopupMode == PopupBoxPopupMode.MouseOverEager)
-                _popup.IsOpen = true;
-        }
 
         private void ToggleButtonOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
