@@ -112,7 +112,11 @@
                             <ContentPresenter Grid.Row="1"
                                           HorizontalAlignment="Center"
                                           Margin="0,16,0,0"
-                                          Content="{TemplateBinding Content}" VerticalAlignment="Top" />
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          VerticalAlignment="Top" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -146,7 +150,11 @@
                             <ContentPresenter Grid.Row="1"
                                           HorizontalAlignment="Center"
                                           Margin="0,16,0,0"
-                                          Content="{TemplateBinding Content}" VerticalAlignment="Top" />
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          VerticalAlignment="Top" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -200,6 +208,9 @@
                             </Grid.ColumnDefinitions>
                             <ContentPresenter VerticalAlignment="Center"
                                           Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"                                          
                                           Margin="0,0,16,0" />
                             <ToggleButton IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                           VerticalAlignment="Center"
