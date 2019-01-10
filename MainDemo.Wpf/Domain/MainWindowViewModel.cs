@@ -69,7 +69,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                 new DemoItem("Sliders", new Sliders(), new []
                     {
                         DocumentationLink.DemoPageLink<Sliders>(),
-                        DocumentationLink.StyleLink("Sliders")
+                        DocumentationLink.StyleLink("Slider")
                     }),
                 new DemoItem("Chips", new Chips(), new []
                     {
