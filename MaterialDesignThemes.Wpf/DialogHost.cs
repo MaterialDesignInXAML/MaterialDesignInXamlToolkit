@@ -58,7 +58,9 @@ namespace MaterialDesignThemes.Wpf
 
         private static readonly HashSet<DialogHost> LoadedInstances = new HashSet<DialogHost>();
 
-        private readonly ManualResetEvent _asyncShowWaitHandle = new ManualResetEvent(false);
+        // waiting for the Dialog to end is now handled by a TaskCompletionSource in DialogSession
+        //private readonly ManualResetEvent _asyncShowWaitHandle = new ManualResetEvent(false);
+
         private DialogOpenedEventHandler _asyncShowOpenedEventHandler;
         private DialogClosingEventHandler _asyncShowClosingEventHandler;
 
@@ -196,13 +198,13 @@ namespace MaterialDesignThemes.Wpf
             _asyncShowClosingEventHandler = closingEventHandler;
             SetCurrentValue(IsOpenProperty, true);
 
-            var task = new Task(() =>
-            {
-                _asyncShowWaitHandle.WaitOne();
-            });
-            task.Start();
-
-            await task;
+            //var task = new Task(() =>
+            //{
+            //    _asyncShowWaitHandle.WaitOne();
+            //});
+            //task.Start();
+            
+            await _session.Task;
 
             _asyncShowOpenedEventHandler = null;
             _asyncShowClosingEventHandler = null;
@@ -251,7 +253,7 @@ namespace MaterialDesignThemes.Wpf
             }
             else
             {
-                dialogHost._asyncShowWaitHandle.Set();
+                //dialogHost._asyncShowWaitHandle.Set(); 
                 dialogHost._attachedDialogClosingEventHandler = null;
                 if (dialogHost._currentSnackbarMessageQueueUnPauseAction != null)
                 {
@@ -270,7 +272,7 @@ namespace MaterialDesignThemes.Wpf
                 return;
             }
 
-            dialogHost._asyncShowWaitHandle.Reset();
+            //dialogHost._asyncShowWaitHandle.Reset();
             dialogHost._session = new DialogSession(dialogHost);
             var window = Window.GetWindow(dialogHost);
             dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;

@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
@@ -8,7 +9,9 @@ namespace MaterialDesignThemes.Wpf
     /// </summary>
     public class DialogSession
     {
-        private readonly DialogHost _owner;    
+        private readonly DialogHost _owner;
+
+        private readonly TaskCompletionSource<object> _taskCompletionSource = new TaskCompletionSource<object>();
 
         internal DialogSession(DialogHost owner)
         {
@@ -24,6 +27,11 @@ namespace MaterialDesignThemes.Wpf
         /// Client code cannot set this directly, this is internally managed.  To end the dicalog session use <see cref="Close()"/>.
         /// </remarks>
         public bool IsEnded { get; internal set; }
+
+        /// <summary>
+        /// Allows to await the sessions's end.
+        /// </summary>
+        public Task<object> Task { get { return _taskCompletionSource.Task; } }
 
         /// <summary>
         /// Gets the <see cref="DialogHost.DialogContent"/> which is currently displayed, so this could be a view model or a UI element.
@@ -53,6 +61,7 @@ namespace MaterialDesignThemes.Wpf
             if (IsEnded) throw new InvalidOperationException("Dialog session has ended.");
 
             _owner.Close(null);
+            _taskCompletionSource.TrySetResult(null);
         }
 
         /// <summary>
@@ -65,6 +74,7 @@ namespace MaterialDesignThemes.Wpf
             if (IsEnded) throw new InvalidOperationException("Dialog session has ended.");
 
             _owner.Close(parameter);
+            _taskCompletionSource.TrySetResult(parameter);
         }
     }
 }
