@@ -11,13 +11,9 @@ namespace MaterialDesignThemes.Wpf
     {
         private readonly DialogHost _owner;
 
-        private readonly TaskCompletionSource<object> _taskCompletionSource = new TaskCompletionSource<object>();
-
         internal DialogSession(DialogHost owner)
         {
-            if (owner == null) throw new ArgumentNullException(nameof(owner));
-
-            _owner = owner;
+            _owner = owner ?? throw new ArgumentNullException(nameof(owner));
         }
 
         /// <summary>
@@ -27,11 +23,6 @@ namespace MaterialDesignThemes.Wpf
         /// Client code cannot set this directly, this is internally managed.  To end the dicalog session use <see cref="Close()"/>.
         /// </remarks>
         public bool IsEnded { get; internal set; }
-
-        /// <summary>
-        /// Allows to await the sessions's end.
-        /// </summary>
-        public Task<object> Task { get { return _taskCompletionSource.Task; } }
 
         /// <summary>
         /// Gets the <see cref="DialogHost.DialogContent"/> which is currently displayed, so this could be a view model or a UI element.
@@ -61,7 +52,6 @@ namespace MaterialDesignThemes.Wpf
             if (IsEnded) throw new InvalidOperationException("Dialog session has ended.");
 
             _owner.Close(null);
-            _taskCompletionSource.TrySetResult(null);
         }
 
         /// <summary>
@@ -74,7 +64,6 @@ namespace MaterialDesignThemes.Wpf
             if (IsEnded) throw new InvalidOperationException("Dialog session has ended.");
 
             _owner.Close(parameter);
-            _taskCompletionSource.TrySetResult(parameter);
         }
     }
 }
