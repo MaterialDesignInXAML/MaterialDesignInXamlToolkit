@@ -302,6 +302,11 @@ namespace MaterialDesignThemes.Wpf
             }));
         }
 
+        /// <summary>
+        /// Returns a DialogSession for the currently open dialog for managing it programmatically. If no dialog is open, CurrentSession will return null
+        /// </summary>
+        public DialogSession CurrentSession { get { return _session; } }
+
         public bool IsOpen
         {
             get { return (bool)GetValue(IsOpenProperty); }
