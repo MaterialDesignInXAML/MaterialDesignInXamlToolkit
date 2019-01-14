@@ -59,7 +59,7 @@ namespace MaterialDesignThemes.Wpf
 
         private DialogOpenedEventHandler _asyncShowOpenedEventHandler;
         private DialogClosingEventHandler _asyncShowClosingEventHandler;
-        private TaskCompletionSource<object> _dialogTaskCompletionSource = new TaskCompletionSource<object>();
+        private TaskCompletionSource<object> _dialogTaskCompletionSource;
 
         private Popup _popup;
         private ContentControl _popupContentControl;
@@ -186,6 +186,8 @@ namespace MaterialDesignThemes.Wpf
         {
             if (IsOpen)
                 throw new InvalidOperationException("DialogHost is already open.");
+
+            _dialogTaskCompletionSource = new TaskCompletionSource<object>();
 
             AssertTargetableContent();
             DialogContent = content;
@@ -554,8 +556,8 @@ namespace MaterialDesignThemes.Wpf
 
         internal void AssertTargetableContent()
         {
-            var existindBinding = BindingOperations.GetBindingExpression(this, DialogContentProperty);
-            if (existindBinding != null)
+            var existingBinding = BindingOperations.GetBindingExpression(this, DialogContentProperty);
+            if (existingBinding != null)
                 throw new InvalidOperationException(
                     "Content cannot be passed to a dialog via the OpenDialog if DialogContent already has a binding.");
         }
@@ -580,8 +582,8 @@ namespace MaterialDesignThemes.Wpf
                 SetCurrentValue(IsOpenProperty, false);
             else
                 CurrentSession.IsEnded = false;
-
-            _dialogTaskCompletionSource.TrySetResult(parameter);
+            
+            _dialogTaskCompletionSource?.TrySetResult(parameter);
         }
 
         /// <summary>
