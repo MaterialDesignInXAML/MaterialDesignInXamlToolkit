@@ -4,7 +4,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public class MaterialDesignTheme
     {
-        public MaterialDesignTheme(PaletteHelper paletteHelper, BaseTheme theme, Color primaryColor, Color secondaryColor)
+        public MaterialDesignTheme(IPaletteHelper paletteHelper, IBaseTheme theme, Color primaryColor, Color secondaryColor)
         {
             PaletteHelper = paletteHelper;
             BaseTheme = theme;
@@ -12,8 +12,8 @@ namespace MaterialDesignThemes.Wpf
             SecondaryColor = secondaryColor;
         }
 
-        public PaletteHelper PaletteHelper { get; }
-        public BaseTheme BaseTheme { get; }
+        public IPaletteHelper PaletteHelper { get; }
+        public IBaseTheme BaseTheme { get; }
         public Color PrimaryColor { get; }
         public Color SecondaryColor { get; }
     }
