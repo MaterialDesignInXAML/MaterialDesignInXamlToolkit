@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.MahApps;
+﻿using MaterialDesignColors.Recommended;
+using MaterialDesignThemes.MahApps;
 using MaterialDesignThemes.Wpf;
 using System.Windows;
 
@@ -11,7 +12,7 @@ namespace MahMaterialDragablzMashUp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            this.WithMaterialDesign(BaseTheme.Light, PrimaryColor.DeepPurple, AccentColor.Lime)
+            this.WithMaterialDesign(BaseTheme.Light, DeepPurpleSwatch.DeepPurple500, LimeSwatch.LimeA700)
                 .WithMahApps();
             base.OnStartup(e);
         }

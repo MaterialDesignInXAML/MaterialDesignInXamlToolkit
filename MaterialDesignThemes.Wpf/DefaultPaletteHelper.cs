@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
@@ -86,7 +87,10 @@ namespace MaterialDesignThemes.Wpf
 
         public void SetTheme(IBaseTheme theme)
         {
-            
+            foreach(var p in theme.GetType().GetProperties())
+            {
+                ReplaceEntry(p.Name, new SolidColorBrush((Color)p.GetValue(theme)));
+            }
         }
     }
 }

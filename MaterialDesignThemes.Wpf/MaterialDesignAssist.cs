@@ -32,8 +32,8 @@ namespace MaterialDesignThemes.Wpf
                 application.Resources.MergedDictionaries.Add(CreateDefaultThemeDictionary());
             }
             paletteHelper.SetTheme(theme);
-            var palette = paletteHelper.ReplacePalette(primaryColor.ToString(), secondaryColor.ToString());
-            return new MaterialDesignTheme(paletteHelper, theme, primaryColor, secondaryColor, palette);
+            paletteHelper.SetPalettes(primaryColor, secondaryColor);
+            return new MaterialDesignTheme(paletteHelper, theme, primaryColor, secondaryColor);
         }
 
         private static ResourceDictionary CreateEmptyPaletteDictionary()
@@ -71,7 +71,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static ResourceDictionary WithPrimaryColor(this ResourceDictionary resourceDictionary,
-            PrimaryColor primaryColor)
+            Color primaryColor)
         {
             if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
             ResourceDictionary existing = resourceDictionary.FindThemeDictionary(primaryColor);
