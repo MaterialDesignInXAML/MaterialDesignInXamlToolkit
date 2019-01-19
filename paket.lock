@@ -47,6 +47,9 @@ NUGET
       NETStandard.Library (>= 1.6.1) - restriction: == net45
       xunit.extensibility.core (2.4)
     xunit.runner.visualstudio (2.4)
+    Xunit.StaFact (0.3.13)
+      xunit.extensibility.execution (>= 2.1) - restriction: == net45
+      xunit.extensibility.execution (>= 2.4) - restriction: || (&& (== net45) (>= net452)) (== net452)
 GITHUB
   remote: ControlzEx/ControlzEx
     src/ControlzEx/BadgedEx.cs (e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa)

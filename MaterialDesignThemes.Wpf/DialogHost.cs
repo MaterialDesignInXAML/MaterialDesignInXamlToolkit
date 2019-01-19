@@ -68,7 +68,7 @@ namespace MaterialDesignThemes.Wpf
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;
         private IInputElement _restoreFocusDialogClose;
         private IInputElement _restoreFocusWindowReactivation;
-        private Action _currentSnackbarMessageQueueUnPauseAction = null;
+        private Action _currentSnackbarMessageQueueUnPauseAction;
         private Action _closeCleanUp = () => { };
 
         static DialogHost()
@@ -175,7 +175,7 @@ namespace MaterialDesignThemes.Wpf
 
             var targets = LoadedInstances.Where(dh => dialogIdentifier == null || Equals(dh.Identifier, dialogIdentifier)).ToList();
             if (targets.Count == 0)
-                throw new InvalidOperationException("No loaded DialogHost have an Identifier property matching dialogIndetifier argument.");
+                throw new InvalidOperationException($"No loaded DialogHost have an {nameof(Identifier)} property matching {nameof(dialogIdentifier)} argument.");
             if (targets.Count > 1)
                 throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
 
@@ -187,6 +187,7 @@ namespace MaterialDesignThemes.Wpf
             if (IsOpen)
                 throw new InvalidOperationException("DialogHost is already open.");
 
+            
             _dialogTaskCompletionSource = new TaskCompletionSource<object>();
 
             AssertTargetableContent();
@@ -253,6 +254,10 @@ namespace MaterialDesignThemes.Wpf
                 dialogHost.CurrentSession.IsEnded = true;
                 dialogHost.CurrentSession = null;
                 dialogHost._closeCleanUp();
+                //NB: _dialogTaskCompletionSource is only set in the case where the dialog is shown with Show
+                //To get into this case you need to display the dialog with Show and then hide it by setting IsOpen to false
+                //Setting this here ensures the other 
+                dialogHost._dialogTaskCompletionSource?.TrySetResult(null);
 
                 // Don't attempt to Invoke if _restoreFocusDialogClose hasn't been assigned yet. Can occur
                 // if the MainWindow has started up minimized. Even when Show() has been called, this doesn't
@@ -578,12 +583,12 @@ namespace MaterialDesignThemes.Wpf
             DialogClosingCallback?.Invoke(this, dialogClosingEventArgs);
             _asyncShowClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
 
+            _dialogTaskCompletionSource?.TrySetResult(parameter);
+
             if (!dialogClosingEventArgs.IsCancelled)
                 SetCurrentValue(IsOpenProperty, false);
             else
                 CurrentSession.IsEnded = false;
-            
-            _dialogTaskCompletionSource?.TrySetResult(parameter);
         }
 
         /// <summary>

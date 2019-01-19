@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
@@ -20,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
         /// Indicates if the dialog session has ended.  Once ended no further method calls will be permitted.
         /// </summary>
         /// <remarks>
-        /// Client code cannot set this directly, this is internally managed.  To end the dicalog session use <see cref="Close()"/>.
+        /// Client code cannot set this directly, this is internally managed.  To end the dialog session use <see cref="Close()"/>.
         /// </remarks>
         public bool IsEnded { get; internal set; }
 
@@ -30,7 +29,7 @@ namespace MaterialDesignThemes.Wpf
         public object Content => _owner.DialogContent;
 
         /// <summary>
-        /// Update the currrent content in the dialog.
+        /// Update the current content in the dialog.
         /// </summary>
         /// <param name="content"></param>
         public void UpdateContent(object content)
