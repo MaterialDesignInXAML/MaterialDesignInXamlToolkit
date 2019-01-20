@@ -4,44 +4,28 @@ configuration: AppVeyor
 platform: Any CPU
 skip_tags: true
 
-matrix:
-  fast_finish: true
-
 environment:
   mdix_version: 2.5.1
   mdix_mahapps_version: 0.0.13
   mdix_colors_version: 1.1.4
-  RestorePackages: false
-  nuget_version: $(assembly_version)
-  matrix:
-    - assembly_version: $(mdix_version)
-    - assembly_version: $(mdix_mahapps_version)
-    - assembly_version: $(mdix_colors_version)
 
 assembly_info:
-  patch: true
-  file: '**\AssemblyInfo.*'
-  assembly_version: '$(assembly_version).{build}'
-  assembly_file_version: '$(assembly_version).{build}'
-  assembly_informational_version: '$(assembly_version).{build}'
+  patch: false
 
 before_build:
 - ps: .paket\paket.exe restore
 
-build:
-  project: MaterialDesignToolkit.Wpf.sln
-  verbosity: minimal
+build_script:
+- ps: >-
+    msbuild MaterialDesignToolkit.Wpf.sln /property:Configuration=Release /property:MDIX_CORE_VERSION=$env:mdix_version.$env:APPVEYOR_BUILD_NUMBER /property:MDIX_COLORS_VERSION=$env:mdix_colors_version.$env:APPVEYOR_BUILD_NUMBER /property:MDIX_MAHAPPS_VERSION=$env:mdix_mahapps_version.$env:APPVEYOR_BUILD_NUMBER /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 after_build:
 - ps: >-
-    if ($env:assembly_version -eq $env:mdix_version) {
-        7z a Demo.$($env:nuget_version).zip MainDemo.Wpf\bin\**\*.*
-        nuget pack MaterialDesignThemes.nuspec -Version $env:nuget_version
-    } elseif ($env:assembly_version -eq $env:mdix_mahapps_version) { 
-        nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:nuget_version
-    } elseif ($env:assembly_version -eq $env:mdix_colors_version) { 
-        nuget pack MaterialDesignColors.nuspec -Version $env:nuget_version
-    }
+    7z a Demo.$($env:mdix_version).zip MainDemo.Wpf\bin\**\*.*
+    nuget pack MaterialDesignThemes.nuspec -Version $env:mdix_version
+    nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:mdix_mahapps_version
+    nuget pack MaterialDesignColors.nuspec -Version $env:mdix_colors_version
+
 
 artifacts:
 - path: '**\MaterialDesignThemes.*.nupkg'
