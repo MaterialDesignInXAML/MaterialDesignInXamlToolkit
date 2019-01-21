@@ -4,47 +4,27 @@ configuration: AppVeyor
 platform: Any CPU
 skip_tags: true
 
-matrix:
-  fast_finish: true
-
 environment:
   mdix_version: 2.5.1
   mdix_mahapps_version: 0.0.13
   mdix_colors_version: 1.1.4
-  RestorePackages: false
-  nuget_version: $(assembly_version)
-  matrix:
-    - assembly_version: $(mdix_version)
-    - assembly_version: $(mdix_mahapps_version)
-    - assembly_version: $(mdix_colors_version)
 
 assembly_info:
-  patch: true
-  file: '**\AssemblyInfo.*'
-  assembly_version: '$(assembly_version).{build}'
-  assembly_file_version: '$(assembly_version).{build}'
-  assembly_informational_version: '$(assembly_version).{build}'
+  patch: false
 
 before_build:
 - ps: .paket\paket.exe restore
 
-build:
-  project: MaterialDesignToolkit.Wpf.sln
-  verbosity: minimal
-
-after_build:
+build_script:
 - ps: >-
-    if ($env:assembly_version -eq $env:mdix_version) {
-        7z a Demo.$($env:nuget_version).zip MainDemo.Wpf\bin\**\*.*
-        nuget pack MaterialDesignThemes.nuspec -Version $env:nuget_version
-    } elseif ($env:assembly_version -eq $env:mdix_mahapps_version) { 
-        nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:nuget_version
-    } elseif ($env:assembly_version -eq $env:mdix_colors_version) { 
-        nuget pack MaterialDesignColors.nuspec -Version $env:nuget_version
-    }
+    msbuild MaterialDesignToolkit.Wpf.sln /property:Configuration=AppVeyor /property:MDIX_CORE_VERSION=$env:mdix_version.$env:APPVEYOR_BUILD_NUMBER /property:MDIX_COLORS_VERSION=$env:mdix_colors_version.$env:APPVEYOR_BUILD_NUMBER /property:MDIX_MAHAPPS_VERSION=$env:mdix_mahapps_version.$env:APPVEYOR_BUILD_NUMBER /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+
+test_script:
+- vstest.console /logger:Appveyor "MaterialDesignThemes.Wpf.Tests\bin\Release\MaterialDesignThemes.Wpf.Tests.dll"
+
 
 artifacts:
-- path: '**\MaterialDesignThemes.*.nupkg'
+- path: '**\MaterialDesign*.nupkg'
 - path: Demo.*.zip
 
 for:
@@ -53,8 +33,15 @@ for:
     only:
       - master
   version: $(mdix_version)-ci{build}
-  environment:
-    nuget_version: $(assembly_version)-ci$(APPVEYOR_BUILD_NUMBER)
+  after_build:
+  - ps: >-
+      7z a Demo.$($env:mdix_version)-ci$($env:APPVEYOR_BUILD_NUMBER).zip MainDemo.Wpf\bin\**\*.*
+      
+      nuget pack MaterialDesignThemes.nuspec -Version $env:mdix_version-ci$($env:APPVEYOR_BUILD_NUMBER)
+      
+      nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:mdix_mahapps_version-ci$($env:APPVEYOR_BUILD_NUMBER)
+      
+      nuget pack MaterialDesignColors.nuspec -Version $env:mdix_colors_version-ci$($env:APPVEYOR_BUILD_NUMBER)
   deploy:
   - provider: NuGet
     api_key:
@@ -66,3 +53,12 @@ for:
     only:
       - release
   version: $(mdix_version).{build}
+  after_build:
+  - ps: >-
+      7z a Demo.$($env:mdix_version).zip MainDemo.Wpf\bin\**\*.*
+      
+      nuget pack MaterialDesignThemes.nuspec -Version $env:mdix_version
+      
+      nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:mdix_mahapps_version
+      
+      nuget pack MaterialDesignColors.nuspec -Version $env:mdix_colors_version
