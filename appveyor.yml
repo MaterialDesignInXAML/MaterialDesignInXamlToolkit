@@ -22,19 +22,9 @@ build_script:
 test_script:
 - vstest.console /logger:Appveyor "MaterialDesignThemes.Wpf.Tests\bin\Release\MaterialDesignThemes.Wpf.Tests.dll"
 
-after_build:
-- ps: >-
-    7z a Demo.$($env:mdix_version).zip MainDemo.Wpf\bin\**\*.*
-    
-    nuget pack MaterialDesignThemes.nuspec -Version $env:mdix_version
-    
-    nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:mdix_mahapps_version
-    
-    nuget pack MaterialDesignColors.nuspec -Version $env:mdix_colors_version
-
 
 artifacts:
-- path: '**\MaterialDesignThemes.*.nupkg'
+- path: '**\MaterialDesign*.nupkg'
 - path: Demo.*.zip
 
 for:
@@ -43,8 +33,15 @@ for:
     only:
       - master
   version: $(mdix_version)-ci{build}
-  environment:
-    nuget_version: $(assembly_version)-ci$(APPVEYOR_BUILD_NUMBER)
+  after_build:
+  - ps: >-
+      7z a Demo.$($env:mdix_version)-ci$($env:APPVEYOR_BUILD_NUMBER).zip MainDemo.Wpf\bin\**\*.*
+      
+      nuget pack MaterialDesignThemes.nuspec -Version $env:mdix_version-ci$($env:APPVEYOR_BUILD_NUMBER)
+      
+      nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:mdix_mahapps_version-ci$($env:APPVEYOR_BUILD_NUMBER)
+      
+      nuget pack MaterialDesignColors.nuspec -Version $env:mdix_colors_version-ci$($env:APPVEYOR_BUILD_NUMBER)
   deploy:
   - provider: NuGet
     api_key:
@@ -56,3 +53,12 @@ for:
     only:
       - release
   version: $(mdix_version).{build}
+  after_build:
+  - ps: >-
+      7z a Demo.$($env:mdix_version).zip MainDemo.Wpf\bin\**\*.*
+      
+      nuget pack MaterialDesignThemes.nuspec -Version $env:mdix_version
+      
+      nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:mdix_mahapps_version
+      
+      nuget pack MaterialDesignColors.nuspec -Version $env:mdix_colors_version
