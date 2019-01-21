@@ -19,11 +19,17 @@ build_script:
 - ps: >-
     msbuild MaterialDesignToolkit.Wpf.sln /property:Configuration=Release /property:MDIX_CORE_VERSION=$env:mdix_version.$env:APPVEYOR_BUILD_NUMBER /property:MDIX_COLORS_VERSION=$env:mdix_colors_version.$env:APPVEYOR_BUILD_NUMBER /property:MDIX_MAHAPPS_VERSION=$env:mdix_mahapps_version.$env:APPVEYOR_BUILD_NUMBER /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
+test_script:
+- vstest.console /logger:Appveyor "MaterialDesignThemes.Wpf.Tests\bin\Release\MaterialDesignThemes.Wpf.Tests.dll"
+
 after_build:
 - ps: >-
     7z a Demo.$($env:mdix_version).zip MainDemo.Wpf\bin\**\*.*
+    
     nuget pack MaterialDesignThemes.nuspec -Version $env:mdix_version
+    
     nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:mdix_mahapps_version
+    
     nuget pack MaterialDesignColors.nuspec -Version $env:mdix_colors_version
 
 
