@@ -81,8 +81,8 @@
     <DockPanel>
         <wpf:Card DockPanel.Dock="Top" Margin="2">
             <DockPanel>
-                <local:Palette DockPanel.Dock="Left" Width="200" />    
-                <TextBlock Margin="16" TextWrapping="Wrap" VerticalAlignment="Center">This is your current palette.  Configure your initial palette in App.xaml, but palettes can be changed at runtime.</TextBlock>
+                <local:Palette DockPanel.Dock="Left" Width="200" />
+                <TextBlock Margin="16" TextWrapping="Wrap" VerticalAlignment="Center">This is your current palette. Configure your initial palette in App.xaml, but palettes cannot be changed at runtime.</TextBlock>
             </DockPanel>
         </wpf:Card>
         <Grid Margin="0 16 0 0">
