@@ -16,5 +16,8 @@ namespace MaterialDesignThemes.Wpf
         public IBaseTheme BaseTheme { get; }
         public Color PrimaryColor { get; }
         public Color SecondaryColor { get; }
+
+        public static IBaseTheme Light { get; } = new MaterialDesignDarkTheme();
+        public static IBaseTheme Dark { get; } = new MaterialDesignLightTheme();
     }
 }
