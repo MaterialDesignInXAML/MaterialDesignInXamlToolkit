@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
@@ -50,6 +51,25 @@ namespace MaterialDesignThemes.Wpf
         }
 
         #endregion
+
+        /// <summary>
+        /// The hint property
+        /// </summary>
+        public static readonly DependencyProperty PopupPlacementProperty = DependencyProperty.RegisterAttached(
+            "PopupPlacement",
+            typeof(PlacementMode),
+            typeof(ValidationAssist),
+            new FrameworkPropertyMetadata(PlacementMode.Bottom, FrameworkPropertyMetadataOptions.Inherits));
+
+        public static PlacementMode GetPopupPlacement(DependencyObject element)
+        {
+            return (PlacementMode)element.GetValue(UsePopupProperty);
+        }
+
+        public static void SetPopupPlacement(DependencyObject element, PlacementMode value)
+        {
+            element.SetValue(UsePopupProperty, value);
+        }
 
         /// <summary>
         /// Framework use only.
