@@ -16,7 +16,9 @@ namespace MaterialDesignColors.WpfExample
 
         private static void ApplyBase(bool isDark)
         {
-            MaterialDesignAssist.DefaultPaletteHelper.SetLightDark(isDark);
+            //TODO
+            //MaterialDesignAssist.DefaultPaletteHelper.SetLightDark(isDark);
+            new PaletteHelper().SetLightDark(isDark);
         }
 
         public IEnumerable<Swatch> Swatches { get; }
@@ -25,14 +27,16 @@ namespace MaterialDesignColors.WpfExample
 
         private static void ApplyPrimary(Swatch swatch)
         {
-            MaterialDesignAssist.DefaultPaletteHelper.ReplacePrimaryColor(swatch);
+            //MaterialDesignAssist.DefaultPaletteHelper.ReplacePrimaryColor(swatch);
+            new PaletteHelper().ReplacePrimaryColor(swatch);
         }
 
         public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o));
 
         private static void ApplyAccent(Swatch swatch)
         {
-            MaterialDesignAssist.DefaultPaletteHelper.ReplaceAccentColor(swatch);
+            //MaterialDesignAssist.DefaultPaletteHelper.ReplaceAccentColor(swatch);
+            new PaletteHelper().ReplaceAccentColor(swatch);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using MaterialDesignColors.Recommended;
+using MaterialDesignThemes.Wpf;
 using ShowMeTheXAML;
 using System.Windows;
 
@@ -12,7 +13,7 @@ namespace MaterialDesignColors.WpfExample
         protected override void OnStartup(StartupEventArgs e)
         {
             //This is an alterate way to initialize MaterialDesignInXAML if you don't use the MaterialDesignResourceDictionary in App.xaml
-            //this.WithMaterialDesign(BaseTheme.Dark, PrimaryColor.Cyan, AccentColor.Lime);
+            this.WithMaterialDesign(MaterialDesignTheme.Light, CyanSwatch.Cyan500, LimeSwatch.LimeA700);
 
             
             //Illustration of setting culture info fully in WPF:
@@ -22,7 +23,6 @@ namespace MaterialDesignColors.WpfExample
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(
                         XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
             */
-            //PaletteHelper.SetPalettes(RedSwatch.Red100, PinkSwatch.Pink400);
             base.OnStartup(e);
         }
     }

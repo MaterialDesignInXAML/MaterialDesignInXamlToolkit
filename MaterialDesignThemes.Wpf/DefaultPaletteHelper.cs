@@ -12,77 +12,79 @@ namespace MaterialDesignThemes.Wpf
 {
     public class DefaultPaletteHelper : IPaletteHelper
     {
-        public void SetPalettes(Color primary, Color secondary)
-        {
-            SetPrimaryPalette(primary);
-            SetSecondaryPalette(secondary);
-        }
+        public event EventHandler<ThemeSetEventArgs> ThemeChanged;
+        public event EventHandler<PaletteChangedEventArgs> PaletteChanged;
 
         public void SetPrimaryForeground(Color color)
         {
-            SetForegroundBrushes(color, "Primary");
+            SetForegroundBrushes(PaletteName.Primary, color);
         }
 
         public void SetSecondaryForeground(Color color)
         {
-            SetForegroundBrushes(color, "Secondary");
+            SetForegroundBrushes(PaletteName.Secondary, color);
         }
 
-        private void SetForegroundBrushes(Color color, string scheme)
+        public void SetForegroundBrushes(string name, Color color)
         {
-            ReplaceEntry($"{scheme}HueLightForegroundBrush", new SolidColorBrush(color));
-            ReplaceEntry($"{scheme}HueMidForegroundBrush", new SolidColorBrush(color));
-            ReplaceEntry($"{scheme}HueDarkForegroundBrush", new SolidColorBrush(color));
+            ReplaceEntry($"{name}HueLightForegroundBrush", new SolidColorBrush(color));
+            ReplaceEntry($"{name}HueMidForegroundBrush", new SolidColorBrush(color));
+            ReplaceEntry($"{name}HueDarkForegroundBrush", new SolidColorBrush(color));
         }
 
         public void SetPrimaryPalette(Color color)
         {
-            var light = color.Lighten();
-            var mid = color;
-            var dark = color.Darken();
+            var palette = new ColorPalette(PaletteName.Primary, color);
+            SetPalette(palette);
 
-            var darkForeground = ColorHelper.ContrastingForeGroundColor(dark);
+            // TODO think this is safe to remove now
+            //var light = palette.Light;
+            //var mid = palette.Mid;
+            //var dark = palette.Dark;
 
-            SetPalette(color, "Primary");
-
-            ReplaceEntry("HighlightBrush", new SolidColorBrush(dark));
-            ReplaceEntry("AccentColorBrush", new SolidColorBrush(dark));
-            ReplaceEntry("AccentColorBrush2", new SolidColorBrush(mid));
-            ReplaceEntry("AccentColorBrush3", new SolidColorBrush(light));
-            ReplaceEntry("AccentColorBrush4", new SolidColorBrush(light) { Opacity = .82 });
-            ReplaceEntry("WindowTitleColorBrush", new SolidColorBrush(dark));
-            ReplaceEntry("AccentSelectedColorBrush", new SolidColorBrush(darkForeground));
-            ReplaceEntry("ProgressBrush", new LinearGradientBrush(dark, mid, 90.0));
-            ReplaceEntry("CheckmarkFill", new SolidColorBrush(dark));
-            ReplaceEntry("RightArrowFill", new SolidColorBrush(dark));
-            ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(darkForeground));
-            ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark) { Opacity = .4 });
+            //var darkForeground = palette.DarkForeground;
+            
+            //ReplaceEntry("HighlightBrush", new SolidColorBrush(dark));
+            //ReplaceEntry("AccentColorBrush", new SolidColorBrush(dark));
+            //ReplaceEntry("AccentColorBrush2", new SolidColorBrush(mid));
+            //ReplaceEntry("AccentColorBrush3", new SolidColorBrush(light));
+            //ReplaceEntry("AccentColorBrush4", new SolidColorBrush(light) { Opacity = .82 });
+            //ReplaceEntry("WindowTitleColorBrush", new SolidColorBrush(dark));
+            //ReplaceEntry("AccentSelectedColorBrush", new SolidColorBrush(darkForeground));
+            //ReplaceEntry("ProgressBrush", new LinearGradientBrush(dark, mid, 90.0));
+            //ReplaceEntry("CheckmarkFill", new SolidColorBrush(dark));
+            //ReplaceEntry("RightArrowFill", new SolidColorBrush(dark));
+            //ReplaceEntry("IdealForegroundColorBrush", new SolidColorBrush(darkForeground));
+            //ReplaceEntry("IdealForegroundDisabledBrush", new SolidColorBrush(dark) { Opacity = .4 });
         }
 
         public void SetSecondaryPalette(Color color)
         {
-            SetPalette(color, "Secondary");
+            var palette = new ColorPalette(PaletteName.Secondary, color);
+            SetPalette(palette);
 
-            ReplaceEntry("SecondaryAccentBrush", new SolidColorBrush(color));
-            ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(ColorHelper.ContrastingForeGroundColor(color)));
+            // backwards compatability for now
+            ReplaceEntry("SecondaryAccentBrush", new SolidColorBrush(palette.Mid));
+            ReplaceEntry("SecondaryAccentForegroundBrush", new SolidColorBrush(palette.MidForeground));
         }
 
-        private void SetPalette(Color color, string scheme)
+        public void SetPalette(string name, Color color)
         {
-            var light = color.Lighten();
-            var mid = color;
-            var dark = color.Darken();
+            var palette = new ColorPalette(name, color);
+            SetPalette(palette);
+        }
 
-            var lightForeground = ColorHelper.ContrastingForeGroundColor(light);
-            var midForeground = ColorHelper.ContrastingForeGroundColor(mid);
-            var darkForeground = ColorHelper.ContrastingForeGroundColor(dark);
+        public void SetPalette(ColorPalette palette)
+        {
+            var name = palette.Name;
+            ReplaceEntry($"{name}HueLightBrush", new SolidColorBrush(palette.Light));
+            ReplaceEntry($"{name}HueLightForegroundBrush", new SolidColorBrush(palette.LightForeground));
+            ReplaceEntry($"{name}HueMidBrush", new SolidColorBrush(palette.Mid));
+            ReplaceEntry($"{name}HueMidForegroundBrush", new SolidColorBrush(palette.MidForeground));
+            ReplaceEntry($"{name}HueDarkBrush", new SolidColorBrush(palette.Dark));
+            ReplaceEntry($"{name}HueDarkForegroundBrush", new SolidColorBrush(palette.DarkForeground));
 
-            ReplaceEntry($"{scheme}HueLightBrush", new SolidColorBrush(light));
-            ReplaceEntry($"{scheme}HueLightForegroundBrush", new SolidColorBrush(lightForeground));
-            ReplaceEntry($"{scheme}HueMidBrush", new SolidColorBrush(mid));
-            ReplaceEntry($"{scheme}HueMidForegroundBrush", new SolidColorBrush(midForeground));
-            ReplaceEntry($"{scheme}HueDarkBrush", new SolidColorBrush(dark));
-            ReplaceEntry($"{scheme}HueDarkForegroundBrush", new SolidColorBrush(darkForeground));
+            PaletteChanged?.Invoke(null, new PaletteChangedEventArgs(palette));
         }
 
         public void SetTheme(IBaseTheme theme)
@@ -91,6 +93,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 ReplaceEntry(p.Name, new SolidColorBrush((Color)p.GetValue(theme)));
             }
+            ThemeChanged?.Invoke(this, new ThemeSetEventArgs(theme));
         }
     }
 }

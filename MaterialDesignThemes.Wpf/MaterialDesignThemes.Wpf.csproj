@@ -385,7 +385,9 @@
     <Compile Include="MessageQueueExtension.cs" />
     <Compile Include="PackIconExtension.cs" />
     <Compile Include="Palette.cs" />
+    <Compile Include="ColorPalette.cs" />
     <Compile Include="PaletteChangedEventArgs.cs" />
+    <Compile Include="PaletteName.cs" />
     <Compile Include="Plane3D.cs" />
     <Compile Include="PrimarySwatchChangedEventArgs.cs" />
     <Compile Include="ScaleHost.cs" />
@@ -400,6 +402,7 @@
     <Compile Include="SnackbarMessageQueueItem.cs" />
     <Compile Include="Spelling.cs" />
     <Compile Include="ThemeAssist.cs" />
+    <Compile Include="ThemeEvents.cs" />
     <Compile Include="ThemeSetEventArgs.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />

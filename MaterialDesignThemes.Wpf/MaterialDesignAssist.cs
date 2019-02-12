@@ -10,14 +10,6 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class MaterialDesignAssist
     {
-        private static readonly Regex _StringFormatParameterReplacement = new Regex(@"{\d+(?<Alignment>,-?\d*)?(?<Format>:.*?)?}", RegexOptions.Compiled);
-
-        private const string ColorUriFormat =
-            @"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/{0}/MaterialDesignColor.{1}.xaml";
-
-        private const string ThemeUriFormat =
-            @"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{0}.xaml";
-
         public static IPaletteHelper DefaultPaletteHelper { get; } = new DefaultPaletteHelper();
 
         public static MaterialDesignTheme WithMaterialDesign(this Application application,
@@ -31,15 +23,43 @@ namespace MaterialDesignThemes.Wpf
             {
                 application.Resources.MergedDictionaries.Add(CreateDefaultThemeDictionary());
             }
+
+            var mdTheme = MaterialDesignTheme.CreateFromColors(theme, primaryColor, secondaryColor, paletteHelper);
             paletteHelper.SetTheme(theme);
-            paletteHelper.SetPalettes(primaryColor, secondaryColor);
-            return new MaterialDesignTheme(paletteHelper, theme, primaryColor, secondaryColor);
+            paletteHelper.SetPrimaryPalette(primaryColor);
+            paletteHelper.SetSecondaryPalette(secondaryColor);
+
+            return mdTheme;
         }
+
+        private static readonly Regex _StringFormatParameterReplacement = new Regex(@"{\d+(?<Alignment>,-?\d*)?(?<Format>:.*?)?}", RegexOptions.Compiled);
+
+        //private const string ColorUriFormat =
+        //    @"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/{0}/MaterialDesignColor.{1}.xaml";
+
+        private const string ThemeUriFormat =
+            @"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{0}.xaml";
+
+
+        //public static MaterialDesignTheme WithMaterialDesign(this Application application,
+        //    IBaseTheme theme, Color primaryColor, Color secondaryColor, IPaletteHelper paletteHelper = null)
+        //{
+        //    if (paletteHelper == null) paletteHelper = DefaultPaletteHelper;
+        //    //NB: When the palettes are changed it hunts through the merged dictionaries.
+        //    //Putting this at the beginning to avoid needing to hunt through all of them.
+        //    application.Resources.MergedDictionaries.Add(CreateEmptyPaletteDictionary());
+        //    if (FindDictionary(application.Resources.MergedDictionaries, string.Format(ThemeUriFormat, "Defaults")) == null)
+        //    {
+        //        application.Resources.MergedDictionaries.Add(CreateDefaultThemeDictionary());
+        //    }
+        //    paletteHelper.SetTheme(theme);
+        //    paletteHelper.SetPalettes(primaryColor, secondaryColor);
+        //    return new MaterialDesignTheme(paletteHelper, theme, primaryColor, secondaryColor);
+        //}
 
         private static ResourceDictionary CreateEmptyPaletteDictionary()
         {
-            return new ResourceDictionary
-            {
+            return new ResourceDictionary {
                 ["PrimaryHueLightBrush"] = new SolidColorBrush(),
                 ["PrimaryHueLightForegroundBrush"] = new SolidColorBrush(),
                 ["PrimaryHueMidBrush"] = new SolidColorBrush(),
@@ -58,66 +78,67 @@ namespace MaterialDesignThemes.Wpf
             };
         }
 
-        public static ResourceDictionary WithTheme(this ResourceDictionary resourceDictionary, BaseTheme theme)
-        {
-            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
-            ResourceDictionary existing = resourceDictionary.FindThemeDictionary(theme);
-            if (existing != null)
-            {
-                resourceDictionary.MergedDictionaries.Remove(existing);
-            }
-            resourceDictionary.MergedDictionaries.Add(CreateThemeDictionary(theme));
-            return resourceDictionary;
-        }
+        //public static ResourceDictionary WithTheme(this ResourceDictionary resourceDictionary, BaseTheme theme)
+        //{
+        //    if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+        //    ResourceDictionary existing = resourceDictionary.FindThemeDictionary(theme);
+        //    if (existing != null)
+        //    {
+        //        resourceDictionary.MergedDictionaries.Remove(existing);
+        //    }
+        //    resourceDictionary.MergedDictionaries.Add(CreateThemeDictionary(theme));
+        //    return resourceDictionary;
+        //}
 
-        public static ResourceDictionary WithPrimaryColor(this ResourceDictionary resourceDictionary,
-            Color primaryColor)
-        {
-            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
-            ResourceDictionary existing = resourceDictionary.FindThemeDictionary(primaryColor);
-            if (existing != null)
-            {
-                resourceDictionary.MergedDictionaries.Remove(existing);
-            }
-            resourceDictionary.MergedDictionaries.Add(CreateColorThemeDictionary(primaryColor));
-            return resourceDictionary;
-        }
+        // TODO
+        //public static ResourceDictionary WithPrimaryColor(this ResourceDictionary resourceDictionary,
+        //    Color primaryColor)
+        //{
+        //    if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+        //    ResourceDictionary existing = resourceDictionary.FindThemeDictionary(primaryColor);
+        //    if (existing != null)
+        //    {
+        //        resourceDictionary.MergedDictionaries.Remove(existing);
+        //    }
+        //    resourceDictionary.MergedDictionaries.Add(CreateColorThemeDictionary(primaryColor));
+        //    return resourceDictionary;
+        //}
 
-        public static ResourceDictionary WithAccentColor(this ResourceDictionary resourceDictionary,
-            AccentColor accentColor)
-        {
-            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
-            ResourceDictionary existing = resourceDictionary.FindThemeDictionary(accentColor);
-            if (existing != null)
-            {
-                resourceDictionary.MergedDictionaries.Remove(existing);
-            }
-            resourceDictionary.MergedDictionaries.Add(CreateColorThemeDictionary(accentColor));
-            return resourceDictionary;
-        }
+        //public static ResourceDictionary WithAccentColor(this ResourceDictionary resourceDictionary,
+        //    AccentColor accentColor)
+        //{
+        //    if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+        //    ResourceDictionary existing = resourceDictionary.FindThemeDictionary(accentColor);
+        //    if (existing != null)
+        //    {
+        //        resourceDictionary.MergedDictionaries.Remove(existing);
+        //    }
+        //    resourceDictionary.MergedDictionaries.Add(CreateColorThemeDictionary(accentColor));
+        //    return resourceDictionary;
+        //}
 
-        public static ResourceDictionary FindThemeDictionary(this ResourceDictionary resourceDictionary,
-            BaseTheme theme)
-        {
-            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
-            return FindDictionary<BaseTheme>(resourceDictionary.MergedDictionaries, ThemeUriFormat);
-        }
+        //public static ResourceDictionary FindThemeDictionary(this ResourceDictionary resourceDictionary,
+        //    BaseTheme theme)
+        //{
+        //    if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+        //    return FindDictionary<BaseTheme>(resourceDictionary.MergedDictionaries, ThemeUriFormat);
+        //}
+        // TODO
+        //public static ResourceDictionary FindThemeDictionary(this ResourceDictionary resourceDictionary,
+        //    PrimaryColor primaryColor)
+        //{
+        //    if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+        //    return FindDictionary<PrimaryColor>(resourceDictionary.MergedDictionaries,
+        //        string.Format(ColorUriFormat, "Primary", "{0}"));
+        //}
 
-        public static ResourceDictionary FindThemeDictionary(this ResourceDictionary resourceDictionary,
-            PrimaryColor primaryColor)
-        {
-            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
-            return FindDictionary<PrimaryColor>(resourceDictionary.MergedDictionaries,
-                string.Format(ColorUriFormat, "Primary", "{0}"));
-        }
-
-        public static ResourceDictionary FindThemeDictionary(this ResourceDictionary resourceDictionary,
-            AccentColor accentColor)
-        {
-            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
-            return FindDictionary<PrimaryColor>(resourceDictionary.MergedDictionaries,
-                string.Format(ColorUriFormat, "Accent", "{0}"));
-        }
+        //public static ResourceDictionary FindThemeDictionary(this ResourceDictionary resourceDictionary,
+        //    AccentColor accentColor)
+        //{
+        //    if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+        //    return FindDictionary<PrimaryColor>(resourceDictionary.MergedDictionaries,
+        //        string.Format(ColorUriFormat, "Accent", "{0}"));
+        //}
 
         /// <summary>
         /// Replaces a certain entry anywhere in the source dictionary and its merged dictionaries
@@ -152,23 +173,23 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private static ResourceDictionary CreateThemeDictionary(BaseTheme theme)
-            => new ResourceDictionary { Source = GetUri(theme),  };
+        //private static ResourceDictionary CreateThemeDictionary(BaseTheme theme)
+        //    => new ResourceDictionary { Source = GetUri(theme),  };
+        // TODO
+        //private static ResourceDictionary CreateColorThemeDictionary(PrimaryColor color)
+        //    => new ResourceDictionary { Source = GetUri(color) };
 
-        private static ResourceDictionary CreateColorThemeDictionary(PrimaryColor color)
-            => new ResourceDictionary { Source = GetUri(color) };
-
-        private static ResourceDictionary CreateColorThemeDictionary(AccentColor color)
-            => new ResourceDictionary { Source = GetUri(color) };
+        //private static ResourceDictionary CreateColorThemeDictionary(AccentColor color)
+        //    => new ResourceDictionary { Source = GetUri(color) };
 
         private static ResourceDictionary CreateDefaultThemeDictionary()
             => new ResourceDictionary { Source = new Uri(string.Format(ThemeUriFormat, "Defaults")) };
 
-        private static Uri GetUri(BaseTheme theme) => new Uri(string.Format(ThemeUriFormat, theme));
+        //private static Uri GetUri(BaseTheme theme) => new Uri(string.Format(ThemeUriFormat, theme));
+        // TODO
+        //private static Uri GetUri(PrimaryColor color) => new Uri(string.Format(ColorUriFormat, "Primary", color));
 
-        private static Uri GetUri(PrimaryColor color) => new Uri(string.Format(ColorUriFormat, "Primary", color));
-
-        private static Uri GetUri(AccentColor color) => new Uri(string.Format(ColorUriFormat, "Accent", color));
+        //private static Uri GetUri(AccentColor color) => new Uri(string.Format(ColorUriFormat, "Accent", color));
 
         private static ResourceDictionary FindDictionary<TEnum>(IEnumerable<ResourceDictionary> dictionaries, string formatString) where TEnum : struct
         {

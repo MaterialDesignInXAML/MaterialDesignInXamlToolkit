@@ -42,17 +42,17 @@ namespace MahMaterialDragablzMashUp
 
         private static void ApplyBase(bool isDark)
         {
-            MaterialDesignAssist.DefaultPaletteHelper.SetLightDark(isDark);
+            //MaterialDesignAssist.DefaultPaletteHelper.SetLightDark(isDark); TODO
         }
 
         private static void ApplyPrimary(Swatch swatch)
         {
-            MaterialDesignAssist.DefaultPaletteHelper.ReplacePrimaryColor(swatch);
+            //MaterialDesignAssist.DefaultPaletteHelper.ReplacePrimaryColor(swatch); TODO
         }
 
         private static void ApplyAccent(Swatch swatch)
         {
-            MaterialDesignAssist.DefaultPaletteHelper.ReplaceAccentColor(swatch);
+            //MaterialDesignAssist.DefaultPaletteHelper.ReplaceAccentColor(swatch); TODO
         }
 
     }

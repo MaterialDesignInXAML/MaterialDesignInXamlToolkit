@@ -59,6 +59,8 @@ namespace MaterialDesignDemo
 
             var palette = new PaletteHelper().QueryPalette();
 
+            if (palette == null) return;
+
             var primary = palette.PrimarySwatch.PrimaryHues.ToArray()[palette.PrimaryMidHueIndex];
             var secondary = palette.AccentSwatch.AccentHues.ToArray()[palette.AccentHueIndex];
 
@@ -86,22 +88,22 @@ namespace MaterialDesignDemo
             SelectedColor = null;
             if (ActiveScheme == ColorScheme.Primary)
             {
-                DefaultPaletteHelper.SetPrimaryPalette(color);
+                MaterialDesignAssist.DefaultPaletteHelper.SetPrimaryPalette(color);
                 _primaryColor = null;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
-                DefaultPaletteHelper.SetSecondaryPalette(color);
+                MaterialDesignAssist.DefaultPaletteHelper.SetSecondaryPalette(color);
                 _secondaryColor = null;
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {
-                DefaultPaletteHelper.SetPrimaryForeground(color);
+                MaterialDesignAssist.DefaultPaletteHelper.SetPrimaryForeground(color);
                 _primaryForegroundColor = null;
             }
             else if (ActiveScheme == ColorScheme.SecondaryForeground)
             {
-                DefaultPaletteHelper.SetSecondaryForeground(color);
+                MaterialDesignAssist.DefaultPaletteHelper.SetSecondaryForeground(color);
                 _secondaryForegroundColor = null;
             }
         }
@@ -142,22 +144,22 @@ namespace MaterialDesignDemo
             SelectedColor = hue;
             if (ActiveScheme == ColorScheme.Primary)
             {
-                DefaultPaletteHelper.SetPrimaryPalette(hue);
+                MaterialDesignAssist.DefaultPaletteHelper.SetPrimaryPalette(hue);
                 _primaryColor = hue;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
-                DefaultPaletteHelper.SetSecondaryPalette(hue);
+                MaterialDesignAssist.DefaultPaletteHelper.SetSecondaryPalette(hue);
                 _secondaryColor = hue;
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {
-                DefaultPaletteHelper.SetPrimaryForeground(hue);
+                MaterialDesignAssist.DefaultPaletteHelper.SetPrimaryForeground(hue);
                 _primaryForegroundColor = hue;
             }
             else if (ActiveScheme == ColorScheme.SecondaryForeground)
             {
-                DefaultPaletteHelper.SetSecondaryForeground(hue);
+                MaterialDesignAssist.DefaultPaletteHelper.SetSecondaryForeground(hue);
                 _secondaryForegroundColor = hue;
             }
         }
