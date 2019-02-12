@@ -4,11 +4,11 @@ namespace MaterialDesignThemes.Wpf
 {
     public class PaletteChangedEventArgs : EventArgs
     {
-        public PaletteChangedEventArgs(Palette palette)
+        public PaletteChangedEventArgs(ColorPalette palette)
         {
             Palette = palette;
         }
 
-        public Palette Palette { get; }
+        public ColorPalette Palette { get; }
     }
 }

@@ -22,9 +22,9 @@ namespace MaterialDesignColors
             PrimaryHues = primaryHuesList;
             var accentHuesList = accentHues.ToList();
             AccentHues = accentHuesList;
-            ExemplarHue = primaryHuesList[Math.Min(5, primaryHuesList.Count - 1)];
+            ExemplarHue = primaryHuesList[ExemplarHueIndex];
             if (IsAccented)
-                AccentExemplarHue = accentHuesList[Math.Min(2, accentHuesList.Count - 1)];
+                AccentExemplarHue = accentHuesList[AccentExemplarHueIndex];
         }
 
         public string Name { get; }
@@ -43,5 +43,9 @@ namespace MaterialDesignColors
         {
             return Name;
         }
+
+        public int ExemplarHueIndex => Math.Min(5, PrimaryHues.Count - 1);
+
+        public int AccentExemplarHueIndex => Math.Min(2, AccentHues.Count - 1);
     }
 }

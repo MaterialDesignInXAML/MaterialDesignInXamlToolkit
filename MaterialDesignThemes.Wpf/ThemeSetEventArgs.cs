@@ -4,11 +4,11 @@ namespace MaterialDesignThemes.Wpf
 {
     public class ThemeSetEventArgs : EventArgs
     {
-        public ThemeSetEventArgs(BaseTheme theme)
+        public ThemeSetEventArgs(IBaseTheme theme)
         {
             Theme = theme;
         }
 
-        public BaseTheme Theme { get; }
+        public IBaseTheme Theme { get; }
     }
 }

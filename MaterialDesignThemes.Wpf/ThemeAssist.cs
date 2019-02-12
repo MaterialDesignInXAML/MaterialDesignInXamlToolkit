@@ -39,7 +39,7 @@ namespace MaterialDesignThemes.Wpf
                     {
                         if (string.Equals(resourceDictionary.Source?.ToString(), oldSource, StringComparison.OrdinalIgnoreCase))
                         {
-                            element.Resources.MergedDictionaries.(resourceDictionary);
+                            element.Resources.MergedDictionaries.Remove(resourceDictionary);
                             break;
                         }
                     }
