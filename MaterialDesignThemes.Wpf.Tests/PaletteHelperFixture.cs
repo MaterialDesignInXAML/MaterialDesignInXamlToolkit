@@ -18,7 +18,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         [Fact]
         public void IsMockableWithRhino()
         {
-            var paletteHelper = MockRepository.GenerateStub<PaletteHelper>();
+            var paletteHelper = MockRepository.GenerateStub<XamlPaletteHelper>();
 
             paletteHelper.SetLightDark(true);
 
@@ -28,7 +28,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         [Fact]
         public void IsMockableWithMoq()
         {
-            var mock = new Mock<PaletteHelper>();            
+            var mock = new Mock<XamlPaletteHelper>();            
 
             mock.Object.SetLightDark(true);
 
@@ -38,7 +38,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         [Fact]
         public void IsMockableWithNSubstitute()
         {
-            var mock = Substitute.For<PaletteHelper>();
+            var mock = Substitute.For<XamlPaletteHelper>();
 
             mock.SetLightDark(true);
 

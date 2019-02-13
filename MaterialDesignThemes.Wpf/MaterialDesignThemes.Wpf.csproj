@@ -360,7 +360,7 @@
     <Compile Include="DialogHost.cs" />
     <Compile Include="DpiHelper.cs" />
     <Compile Include="DrawerHost.cs" />
-    <Compile Include="DefaultPaletteHelper.cs" />
+    <Compile Include="CodePaletteHelper.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Flipper.cs" />
     <Compile Include="HexColorItem.cs" />
@@ -373,7 +373,6 @@
     <Compile Include="IBaseTheme.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
-    <Compile Include="IPaletteHelper.cs" />
     <Compile Include="ISnackbarMessageQueue.cs" />
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="ListViewAssist.cs" />
@@ -387,9 +386,11 @@
     <Compile Include="Palette.cs" />
     <Compile Include="ColorPalette.cs" />
     <Compile Include="PaletteChangedEventArgs.cs" />
+    <Compile Include="PaletteHelper.cs" />
     <Compile Include="PaletteName.cs" />
     <Compile Include="Plane3D.cs" />
     <Compile Include="PrimarySwatchChangedEventArgs.cs" />
+    <Compile Include="ResourceDictionaryExtensions.cs" />
     <Compile Include="ScaleHost.cs" />
     <Compile Include="ScrollViewerAssist.cs" />
     <Compile Include="Screen.cs" />
@@ -419,7 +420,7 @@
     <Compile Include="PackIconDataFactory.cs" />
     <Compile Include="PackIconKind.cs" />
     <Compile Include="PopupBox.cs" />
-    <Compile Include="PaletteHelper.cs" />
+    <Compile Include="XamlPaletteHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

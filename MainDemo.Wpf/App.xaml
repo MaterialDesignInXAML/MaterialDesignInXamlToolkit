@@ -15,25 +15,26 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- This is technically optional and will get added in, however not having it in the tree does break intellisense.  -->
                 <!-- The same also applies to the color resources, but those tend to use dynamic resources anyway. -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />-->
                 <ResourceDictionary Source="pack://application:,,,/ShowMeTheXAML.AvalonEdit;component/Themes/xamldisplayer.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <SolidColorBrush x:Key="SecondaryHueLightBrush" Color="{StaticResource Accent200}" po:Freeze="True" />
+            <!--<SolidColorBrush x:Key="SecondaryHueLightBrush" Color="{StaticResource Accent200}" po:Freeze="True" />
             <SolidColorBrush x:Key="SecondaryHueLightForegroundBrush" Color="{StaticResource Accent200Foreground}" po:Freeze="True" />
             <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="{StaticResource Accent400}" po:Freeze="True" />
             <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="{StaticResource Accent400Foreground}" po:Freeze="True" />
             <SolidColorBrush x:Key="SecondaryHueDarkBrush" Color="{StaticResource Accent700}" po:Freeze="True" />
-            <SolidColorBrush x:Key="SecondaryHueDarkForegroundBrush" Color="{StaticResource Accent700Foreground}" po:Freeze="True" />
+            <SolidColorBrush x:Key="SecondaryHueDarkForegroundBrush" Color="{StaticResource Accent700Foreground}" po:Freeze="True" />-->
 
 
             <Style TargetType="showMeTheXaml:XamlDisplay" BasedOn="{StaticResource {x:Type showMeTheXaml:XamlDisplay}}">
                 <Style.Resources>
                     <ResourceDictionary>
                         <ResourceDictionary.MergedDictionaries>
+                            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                             <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
                         </ResourceDictionary.MergedDictionaries>
 

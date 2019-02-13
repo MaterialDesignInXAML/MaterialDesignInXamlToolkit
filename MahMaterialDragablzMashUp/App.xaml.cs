@@ -13,8 +13,8 @@ namespace MahMaterialDragablzMashUp
         protected override void OnStartup(StartupEventArgs e)
         {
             // TODO
-            //this.WithMaterialDesign(BaseTheme.Light, DeepPurpleSwatch.DeepPurple500, LimeSwatch.LimeA700)
-            //    .WithMahApps();
+            this.WithMaterialDesign(MaterialDesignTheme.Light, DeepPurpleSwatch.DeepPurple500, LimeSwatch.LimeA700)
+                .WithMahApps();
             base.OnStartup(e);
         }
     }
