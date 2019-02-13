@@ -10,15 +10,22 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class MaterialDesignAssist
     {
-        public static IPaletteHelper DefaultPaletteHelper { get; } = new DefaultPaletteHelper();
 
         public static MaterialDesignTheme WithMaterialDesign(this Application application,
-            IBaseTheme theme, Color primaryColor, Color secondaryColor, IPaletteHelper paletteHelper = null)
+            IBaseTheme theme, Color primaryColor, Color secondaryColor, CodePaletteHelper paletteHelper = null)
         {
-            if (paletteHelper == null) paletteHelper = DefaultPaletteHelper;
+            if (paletteHelper == null) paletteHelper = MaterialDesignTheme.DefaultPaletteHelper;
             //NB: When the palettes are changed it hunts through the merged dictionaries.
             //Putting this at the beginning to avoid needing to hunt through all of them.
+
+            var mergedThemeDictionary = FindBaseThemeDictionary(application.Resources.MergedDictionaries, ThemeUriFormat);
+            if (mergedThemeDictionary != null)
+            {
+                application.Resources.MergedDictionaries.Remove(mergedThemeDictionary);
+            }
+            application.Resources.MergedDictionaries.Add(CreateEmptyThemeDictionary());
             application.Resources.MergedDictionaries.Add(CreateEmptyPaletteDictionary());
+
             if (FindDictionary(application.Resources.MergedDictionaries, string.Format(ThemeUriFormat, "Defaults")) == null)
             {
                 application.Resources.MergedDictionaries.Add(CreateDefaultThemeDictionary());
@@ -56,6 +63,37 @@ namespace MaterialDesignThemes.Wpf
         //    paletteHelper.SetPalettes(primaryColor, secondaryColor);
         //    return new MaterialDesignTheme(paletteHelper, theme, primaryColor, secondaryColor);
         //}
+
+        private static ResourceDictionary CreateEmptyThemeDictionary()
+        {
+            return new ResourceDictionary {
+                ["ValidationErrorColor"] = new SolidColorBrush(),
+                ["MaterialDesignBackground"] = new SolidColorBrush(),
+                ["MaterialDesignPaper"] = new SolidColorBrush(),
+                ["MaterialDesignCardBackground"] = new SolidColorBrush(),
+                ["MaterialDesignToolBarBackground"] = new SolidColorBrush(),
+                ["MaterialDesignBody"] = new SolidColorBrush(),
+                ["MaterialDesignBodyLight"] = new SolidColorBrush(),
+                ["MaterialDesignColumnHeader"] = new SolidColorBrush(),
+                ["MaterialDesignCheckBoxOff"] = new SolidColorBrush(),
+                ["MaterialDesignCheckBoxDisabled"] = new SolidColorBrush(),
+                ["MaterialDesignTextBoxBorder"] = new SolidColorBrush(),
+                ["MaterialDesignDivider"] = new SolidColorBrush(),
+                ["MaterialDesignSelection"] = new SolidColorBrush(),
+                ["MaterialDesignFlatButtonClick"] = new SolidColorBrush(),
+                ["MaterialDesignFlatButtonRipple"] = new SolidColorBrush(),
+                ["MaterialDesignToolTipBackground"] = new SolidColorBrush(),
+                ["MaterialDesignChipBackground"] = new SolidColorBrush(),
+                ["MaterialDesignSnackbarBackground"] = new SolidColorBrush(),
+                ["MaterialDesignSnackbarMouseOver"] = new SolidColorBrush(),
+                ["MaterialDesignSnackbarRipple"] = new SolidColorBrush(),
+                ["MaterialDesignTextFieldBoxBackground"] = new SolidColorBrush(),
+                ["MaterialDesignTextFieldBoxHoverBackground"] = new SolidColorBrush(),
+                ["MaterialDesignTextFieldBoxDisabledBackground"] = new SolidColorBrush(),
+                ["MaterialDesignTextAreaBorder"] = new SolidColorBrush(),
+                ["MaterialDesignTextAreaInactiveBorder"] = new SolidColorBrush()
+            };
+        }
 
         private static ResourceDictionary CreateEmptyPaletteDictionary()
         {
@@ -140,38 +178,7 @@ namespace MaterialDesignThemes.Wpf
         //        string.Format(ColorUriFormat, "Accent", "{0}"));
         //}
 
-        /// <summary>
-        /// Replaces a certain entry anywhere in the source dictionary and its merged dictionaries
-        /// </summary>
-        /// <param name="sourceDictionary">The source dictionary to start with</param>
-        /// <param name="name">The entry to replace</param>
-        /// <param name="value">The new entry value</param>
-        public static void ReplaceEntry(this ResourceDictionary sourceDictionary, object name, object value)
-        {
-            if (sourceDictionary.Contains(name))
-            {
-                if (sourceDictionary[name] is SolidColorBrush brush && 
-                    !brush.IsFrozen && value is SolidColorBrush newBrush)
-                {
-                    var animation = new ColorAnimation
-                    {
-                        From = brush.Color,
-                        To = newBrush.Color,
-                        Duration = new Duration(TimeSpan.FromMilliseconds(300))
-                    };
-                    brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                }
-                else
-                {
-                    sourceDictionary[name] = value; //Set value normally
-                }
-            }
 
-            foreach (var dictionary in sourceDictionary.MergedDictionaries)
-            {
-                ReplaceEntry(dictionary, name, value);
-            }
-        }
 
         //private static ResourceDictionary CreateThemeDictionary(BaseTheme theme)
         //    => new ResourceDictionary { Source = GetUri(theme),  };
@@ -191,9 +198,9 @@ namespace MaterialDesignThemes.Wpf
 
         //private static Uri GetUri(AccentColor color) => new Uri(string.Format(ColorUriFormat, "Accent", color));
 
-        private static ResourceDictionary FindDictionary<TEnum>(IEnumerable<ResourceDictionary> dictionaries, string formatString) where TEnum : struct
+        private static ResourceDictionary FindBaseThemeDictionary(IEnumerable<ResourceDictionary> dictionaries, string formatString)
         {
-            var regex = new Regex(GetRegexPatternImpl(formatString, string.Join("|", Enum.GetValues(typeof(TEnum)).Cast<TEnum>())));
+            var regex = new Regex(GetRegexPatternImpl(formatString, "Light|Dark"));
             return dictionaries.FirstOrDefault(x => regex.IsMatch(x.Source?.OriginalString ?? ""));
         }
 

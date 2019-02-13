@@ -15,7 +15,9 @@ namespace MaterialDesignThemes.MahApps
         {
             var resources = Application.Current.Resources;
             // TODO
+            theme.PaletteHelper.ThemeChanged -= PaletteHelperOnThemeChanged;
             theme.PaletteHelper.ThemeChanged += PaletteHelperOnThemeChanged;
+            theme.PaletteHelper.PaletteChanged -= PaletteHelperOnPaletteChanged;
             theme.PaletteHelper.PaletteChanged += PaletteHelperOnPaletteChanged;
 
             CreateIfNotExists(GetControlsUri());
