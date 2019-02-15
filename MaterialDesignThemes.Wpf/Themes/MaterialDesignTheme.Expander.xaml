@@ -93,7 +93,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="12,24,12,24">
+                    <Border Background="{TemplateBinding Background}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ExpanderAssist.RightHeaderPadding)}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -131,7 +131,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="12,24,12,24">
+                    <Border Background="{TemplateBinding Background}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ExpanderAssist.LeftHeaderPadding)}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -169,7 +169,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="24,12,24,12">
+                    <Border Background="{TemplateBinding Background}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ExpanderAssist.DownHeaderPadding)}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -200,7 +200,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="24,12,24,12">
+                    <Border Background="{TemplateBinding Background}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ExpanderAssist.UpHeaderPadding)}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -235,6 +235,10 @@
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
+        <Setter Property="wpf:ExpanderAssist.DownHeaderPadding" Value="24,12,24,12"/>
+        <Setter Property="wpf:ExpanderAssist.UpHeaderPadding" Value="24,12,24,12"/>
+        <Setter Property="wpf:ExpanderAssist.LeftHeaderPadding" Value="12,24,12,24"/>
+        <Setter Property="wpf:ExpanderAssist.RightHeaderPadding" Value="12,24,12,24"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
