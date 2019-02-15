@@ -18,7 +18,7 @@ namespace MaterialDesignColors.WpfExample
             var autoStartingActionCountdownStart = DateTime.Now;
             var demoRestartCountdownComplete = DateTime.Now;
             var dismissRequested = false;
-            DismissComand = new AnotherCommandImplementation(_ => dismissRequested = true);
+            DismissCommand = new AnotherCommandImplementation(_ => dismissRequested = true);
             ShowDismissButton = true;
 
             #region DISMISS button demo control
@@ -69,7 +69,7 @@ namespace MaterialDesignColors.WpfExample
             OrClickMeCount = 0;
 
             //just some demo code for the SAVE button
-            SaveComand = new AnotherCommandImplementation(_ =>
+            SaveCommand = new AnotherCommandImplementation(_ =>
             {
                 if (IsSaveComplete == true)
                 {
@@ -107,7 +107,7 @@ namespace MaterialDesignColors.WpfExample
 
         #region Dismiss button demo
 
-        public ICommand DismissComand { get; }
+        public ICommand DismissCommand { get; }
 
         public bool ShowDismissButton
         {
@@ -149,7 +149,7 @@ namespace MaterialDesignColors.WpfExample
 
         #region floating Save button demo
 
-        public ICommand SaveComand { get; }
+        public ICommand SaveCommand { get; }
 
         private bool _isSaving;
         public bool IsSaving

@@ -282,7 +282,7 @@
             <smtx:XamlDisplay Key="buttons_26" Margin="5 0 0 0">
                 <Grid Width="124">
                     <!-- raised button with progress, useful to auto dismiss/accept something -->
-                    <Button Command="{Binding DismissComand}"
+                    <Button Command="{Binding DismissCommand}"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             HorizontalAlignment="Left"
                             materialDesign:ButtonProgressAssist.Value="{Binding DismissButtonProgress}"
@@ -314,7 +314,7 @@
                     <!-- floating action button with progress -->
                     <TextBlock Margin="24 0 0 0" VerticalAlignment="Center">Click Me:</TextBlock>
                     <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}" Margin="8 0 0 0"
-                            Command="{Binding SaveComand}"
+                            Command="{Binding SaveCommand}"
                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
                             materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}">
                         <!-- simple example of toggling/animating pack icon with a data trigger-->
