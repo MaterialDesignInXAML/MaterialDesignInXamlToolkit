@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Red";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			Red50,
-			Red100,
-			Red200,
-			Red300,
-			Red400,
-			Red500,
-			Red600,
-			Red700,
-			Red800,
-			Red900,
-			RedA100,
-			RedA200,
-			RedA400,
-			RedA700,
+			{ MaterialDesignColor.Red50, Red50 },
+			{ MaterialDesignColor.Red100, Red100 },
+			{ MaterialDesignColor.Red200, Red200 },
+			{ MaterialDesignColor.Red300, Red300 },
+			{ MaterialDesignColor.Red400, Red400 },
+			{ MaterialDesignColor.Red500, Red500 },
+			{ MaterialDesignColor.Red600, Red600 },
+			{ MaterialDesignColor.Red700, Red700 },
+			{ MaterialDesignColor.Red800, Red800 },
+			{ MaterialDesignColor.Red900, Red900 },
+			{ MaterialDesignColor.RedA100, RedA100 },
+			{ MaterialDesignColor.RedA200, RedA200 },
+			{ MaterialDesignColor.RedA400, RedA400 },
+			{ MaterialDesignColor.RedA700, RedA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

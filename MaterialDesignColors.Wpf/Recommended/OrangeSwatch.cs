@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Orange";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			Orange50,
-			Orange100,
-			Orange200,
-			Orange300,
-			Orange400,
-			Orange500,
-			Orange600,
-			Orange700,
-			Orange800,
-			Orange900,
-			OrangeA100,
-			OrangeA200,
-			OrangeA400,
-			OrangeA700,
+			{ MaterialDesignColor.Orange50, Orange50 },
+			{ MaterialDesignColor.Orange100, Orange100 },
+			{ MaterialDesignColor.Orange200, Orange200 },
+			{ MaterialDesignColor.Orange300, Orange300 },
+			{ MaterialDesignColor.Orange400, Orange400 },
+			{ MaterialDesignColor.Orange500, Orange500 },
+			{ MaterialDesignColor.Orange600, Orange600 },
+			{ MaterialDesignColor.Orange700, Orange700 },
+			{ MaterialDesignColor.Orange800, Orange800 },
+			{ MaterialDesignColor.Orange900, Orange900 },
+			{ MaterialDesignColor.OrangeA100, OrangeA100 },
+			{ MaterialDesignColor.OrangeA200, OrangeA200 },
+			{ MaterialDesignColor.OrangeA400, OrangeA400 },
+			{ MaterialDesignColor.OrangeA700, OrangeA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

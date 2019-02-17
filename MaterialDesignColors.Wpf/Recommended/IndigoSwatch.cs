@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Indigo";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			Indigo50,
-			Indigo100,
-			Indigo200,
-			Indigo300,
-			Indigo400,
-			Indigo500,
-			Indigo600,
-			Indigo700,
-			Indigo800,
-			Indigo900,
-			IndigoA100,
-			IndigoA200,
-			IndigoA400,
-			IndigoA700,
+			{ MaterialDesignColor.Indigo50, Indigo50 },
+			{ MaterialDesignColor.Indigo100, Indigo100 },
+			{ MaterialDesignColor.Indigo200, Indigo200 },
+			{ MaterialDesignColor.Indigo300, Indigo300 },
+			{ MaterialDesignColor.Indigo400, Indigo400 },
+			{ MaterialDesignColor.Indigo500, Indigo500 },
+			{ MaterialDesignColor.Indigo600, Indigo600 },
+			{ MaterialDesignColor.Indigo700, Indigo700 },
+			{ MaterialDesignColor.Indigo800, Indigo800 },
+			{ MaterialDesignColor.Indigo900, Indigo900 },
+			{ MaterialDesignColor.IndigoA100, IndigoA100 },
+			{ MaterialDesignColor.IndigoA200, IndigoA200 },
+			{ MaterialDesignColor.IndigoA400, IndigoA400 },
+			{ MaterialDesignColor.IndigoA700, IndigoA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Purple";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			Purple50,
-			Purple100,
-			Purple200,
-			Purple300,
-			Purple400,
-			Purple500,
-			Purple600,
-			Purple700,
-			Purple800,
-			Purple900,
-			PurpleA100,
-			PurpleA200,
-			PurpleA400,
-			PurpleA700,
+			{ MaterialDesignColor.Purple50, Purple50 },
+			{ MaterialDesignColor.Purple100, Purple100 },
+			{ MaterialDesignColor.Purple200, Purple200 },
+			{ MaterialDesignColor.Purple300, Purple300 },
+			{ MaterialDesignColor.Purple400, Purple400 },
+			{ MaterialDesignColor.Purple500, Purple500 },
+			{ MaterialDesignColor.Purple600, Purple600 },
+			{ MaterialDesignColor.Purple700, Purple700 },
+			{ MaterialDesignColor.Purple800, Purple800 },
+			{ MaterialDesignColor.Purple900, Purple900 },
+			{ MaterialDesignColor.PurpleA100, PurpleA100 },
+			{ MaterialDesignColor.PurpleA200, PurpleA200 },
+			{ MaterialDesignColor.PurpleA400, PurpleA400 },
+			{ MaterialDesignColor.PurpleA700, PurpleA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

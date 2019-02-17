@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Light Blue";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			LightBlue50,
-			LightBlue100,
-			LightBlue200,
-			LightBlue300,
-			LightBlue400,
-			LightBlue500,
-			LightBlue600,
-			LightBlue700,
-			LightBlue800,
-			LightBlue900,
-			LightBlueA100,
-			LightBlueA200,
-			LightBlueA400,
-			LightBlueA700,
+			{ MaterialDesignColor.LightBlue50, LightBlue50 },
+			{ MaterialDesignColor.LightBlue100, LightBlue100 },
+			{ MaterialDesignColor.LightBlue200, LightBlue200 },
+			{ MaterialDesignColor.LightBlue300, LightBlue300 },
+			{ MaterialDesignColor.LightBlue400, LightBlue400 },
+			{ MaterialDesignColor.LightBlue500, LightBlue500 },
+			{ MaterialDesignColor.LightBlue600, LightBlue600 },
+			{ MaterialDesignColor.LightBlue700, LightBlue700 },
+			{ MaterialDesignColor.LightBlue800, LightBlue800 },
+			{ MaterialDesignColor.LightBlue900, LightBlue900 },
+			{ MaterialDesignColor.LightBlueA100, LightBlueA100 },
+			{ MaterialDesignColor.LightBlueA200, LightBlueA200 },
+			{ MaterialDesignColor.LightBlueA400, LightBlueA400 },
+			{ MaterialDesignColor.LightBlueA700, LightBlueA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

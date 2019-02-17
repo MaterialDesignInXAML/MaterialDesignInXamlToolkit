@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Deep Purple";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			DeepPurple50,
-			DeepPurple100,
-			DeepPurple200,
-			DeepPurple300,
-			DeepPurple400,
-			DeepPurple500,
-			DeepPurple600,
-			DeepPurple700,
-			DeepPurple800,
-			DeepPurple900,
-			DeepPurpleA100,
-			DeepPurpleA200,
-			DeepPurpleA400,
-			DeepPurpleA700,
+			{ MaterialDesignColor.DeepPurple50, DeepPurple50 },
+			{ MaterialDesignColor.DeepPurple100, DeepPurple100 },
+			{ MaterialDesignColor.DeepPurple200, DeepPurple200 },
+			{ MaterialDesignColor.DeepPurple300, DeepPurple300 },
+			{ MaterialDesignColor.DeepPurple400, DeepPurple400 },
+			{ MaterialDesignColor.DeepPurple500, DeepPurple500 },
+			{ MaterialDesignColor.DeepPurple600, DeepPurple600 },
+			{ MaterialDesignColor.DeepPurple700, DeepPurple700 },
+			{ MaterialDesignColor.DeepPurple800, DeepPurple800 },
+			{ MaterialDesignColor.DeepPurple900, DeepPurple900 },
+			{ MaterialDesignColor.DeepPurpleA100, DeepPurpleA100 },
+			{ MaterialDesignColor.DeepPurpleA200, DeepPurpleA200 },
+			{ MaterialDesignColor.DeepPurpleA400, DeepPurpleA400 },
+			{ MaterialDesignColor.DeepPurpleA700, DeepPurpleA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

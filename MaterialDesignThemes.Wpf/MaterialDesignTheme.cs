@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -22,6 +23,7 @@ namespace MaterialDesignThemes.Wpf
         public static IBaseTheme Light { get; } = new MaterialDesignLightTheme();
         public static IBaseTheme Dark { get; } = new MaterialDesignDarkTheme();
 
+        public static IEnumerable<IBaseTheme> BaseThemes { get; } = new[] { Light, Dark };
 
         public static MaterialDesignTheme CreateFromColors(IBaseTheme theme, Color primaryColor, Color secondaryColor, CodePaletteHelper paletteHelper = null)
         {
@@ -31,5 +33,7 @@ namespace MaterialDesignThemes.Wpf
             var secondaryPalette = new ColorPalette(PaletteName.Secondary, secondaryColor);
             return new MaterialDesignTheme(paletteHelper ?? DefaultPaletteHelper, theme, primaryPalette, secondaryPalette);
         }
+
+
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Yellow";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			Yellow50,
-			Yellow100,
-			Yellow200,
-			Yellow300,
-			Yellow400,
-			Yellow500,
-			Yellow600,
-			Yellow700,
-			Yellow800,
-			Yellow900,
-			YellowA100,
-			YellowA200,
-			YellowA400,
-			YellowA700,
+			{ MaterialDesignColor.Yellow50, Yellow50 },
+			{ MaterialDesignColor.Yellow100, Yellow100 },
+			{ MaterialDesignColor.Yellow200, Yellow200 },
+			{ MaterialDesignColor.Yellow300, Yellow300 },
+			{ MaterialDesignColor.Yellow400, Yellow400 },
+			{ MaterialDesignColor.Yellow500, Yellow500 },
+			{ MaterialDesignColor.Yellow600, Yellow600 },
+			{ MaterialDesignColor.Yellow700, Yellow700 },
+			{ MaterialDesignColor.Yellow800, Yellow800 },
+			{ MaterialDesignColor.Yellow900, Yellow900 },
+			{ MaterialDesignColor.YellowA100, YellowA100 },
+			{ MaterialDesignColor.YellowA200, YellowA200 },
+			{ MaterialDesignColor.YellowA400, YellowA400 },
+			{ MaterialDesignColor.YellowA700, YellowA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

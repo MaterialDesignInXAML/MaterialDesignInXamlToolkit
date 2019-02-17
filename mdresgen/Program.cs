@@ -94,26 +94,29 @@ namespace mdresgen
                 {
                     var colorName = shortName + palettes.shades[i];
                     colors.AppendLine($"\t\tpublic static Color {colorName} {{ get; }} = (Color)ColorConverter.ConvertFromString(\"{palette.hexes[i]}\");");
-                    hueNames.AppendLine($"\t\t\t{colorName},");
+                    hueNames.AppendLine($"\t\t\t{{ MaterialDesignColor.{colorName}, {colorName} }},");
                 }
 
                 sb.AppendLine("using System.Collections.Generic;");
                 sb.AppendLine("using System.Windows.Media;");
+                sb.AppendLine("using MaterialDesignColors.Wpf;");
                 sb.AppendLine();
                 sb.AppendLine("namespace MaterialDesignColors.Recommended");
-                sb.AppendLine("{");
+                sb.AppendLine("{"); 
                 sb.AppendLine($"\tpublic class {shortName}Swatch : ISwatch");
                 sb.AppendLine("\t{");
                 sb.Append(colors.ToString());
                 sb.AppendLine();
                 sb.AppendLine($"\t\tpublic string Name {{ get; }} = \"{palette.name}\";");
                 sb.AppendLine();
-                sb.AppendLine("\t\tpublic IEnumerable<Color> Hues { get; } = new[]");
+                sb.AppendLine("\t\tpublic IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>");
                 sb.AppendLine("\t\t{");
                 sb.Append(hueNames.ToString());
-                sb.AppendLine("\t\t};");
-                sb.AppendLine("\t};");
-                sb.AppendLine("};");
+                sb.AppendLine("\t\t};"); // Lookup
+                sb.AppendLine();
+                sb.AppendLine("\t\tpublic IEnumerable<Color> Hues => Lookup.Values");
+                sb.AppendLine("\t}"); // class
+                sb.AppendLine("}"); // namespace
 
                 File.WriteAllText($@"..\..\..\MaterialDesignColors.Wpf\Recommended\{shortName}Swatch.cs",
                     sb.ToString());

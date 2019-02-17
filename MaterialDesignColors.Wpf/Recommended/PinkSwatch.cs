@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Pink";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			Pink50,
-			Pink100,
-			Pink200,
-			Pink300,
-			Pink400,
-			Pink500,
-			Pink600,
-			Pink700,
-			Pink800,
-			Pink900,
-			PinkA100,
-			PinkA200,
-			PinkA400,
-			PinkA700,
+			{ MaterialDesignColor.Pink50, Pink50 },
+			{ MaterialDesignColor.Pink100, Pink100 },
+			{ MaterialDesignColor.Pink200, Pink200 },
+			{ MaterialDesignColor.Pink300, Pink300 },
+			{ MaterialDesignColor.Pink400, Pink400 },
+			{ MaterialDesignColor.Pink500, Pink500 },
+			{ MaterialDesignColor.Pink600, Pink600 },
+			{ MaterialDesignColor.Pink700, Pink700 },
+			{ MaterialDesignColor.Pink800, Pink800 },
+			{ MaterialDesignColor.Pink900, Pink900 },
+			{ MaterialDesignColor.PinkA100, PinkA100 },
+			{ MaterialDesignColor.PinkA200, PinkA200 },
+			{ MaterialDesignColor.PinkA400, PinkA400 },
+			{ MaterialDesignColor.PinkA700, PinkA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

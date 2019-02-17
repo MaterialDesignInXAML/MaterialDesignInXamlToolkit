@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -18,18 +19,20 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Blue Grey";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			BlueGrey50,
-			BlueGrey100,
-			BlueGrey200,
-			BlueGrey300,
-			BlueGrey400,
-			BlueGrey500,
-			BlueGrey600,
-			BlueGrey700,
-			BlueGrey800,
-			BlueGrey900,
+			{ MaterialDesignColor.BlueGrey50, BlueGrey50 },
+			{ MaterialDesignColor.BlueGrey100, BlueGrey100 },
+			{ MaterialDesignColor.BlueGrey200, BlueGrey200 },
+			{ MaterialDesignColor.BlueGrey300, BlueGrey300 },
+			{ MaterialDesignColor.BlueGrey400, BlueGrey400 },
+			{ MaterialDesignColor.BlueGrey500, BlueGrey500 },
+			{ MaterialDesignColor.BlueGrey600, BlueGrey600 },
+			{ MaterialDesignColor.BlueGrey700, BlueGrey700 },
+			{ MaterialDesignColor.BlueGrey800, BlueGrey800 },
+			{ MaterialDesignColor.BlueGrey900, BlueGrey900 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Teal";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			Teal50,
-			Teal100,
-			Teal200,
-			Teal300,
-			Teal400,
-			Teal500,
-			Teal600,
-			Teal700,
-			Teal800,
-			Teal900,
-			TealA100,
-			TealA200,
-			TealA400,
-			TealA700,
+			{ MaterialDesignColor.Teal50, Teal50 },
+			{ MaterialDesignColor.Teal100, Teal100 },
+			{ MaterialDesignColor.Teal200, Teal200 },
+			{ MaterialDesignColor.Teal300, Teal300 },
+			{ MaterialDesignColor.Teal400, Teal400 },
+			{ MaterialDesignColor.Teal500, Teal500 },
+			{ MaterialDesignColor.Teal600, Teal600 },
+			{ MaterialDesignColor.Teal700, Teal700 },
+			{ MaterialDesignColor.Teal800, Teal800 },
+			{ MaterialDesignColor.Teal900, Teal900 },
+			{ MaterialDesignColor.TealA100, TealA100 },
+			{ MaterialDesignColor.TealA200, TealA200 },
+			{ MaterialDesignColor.TealA400, TealA400 },
+			{ MaterialDesignColor.TealA700, TealA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}
