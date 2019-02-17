@@ -64,6 +64,7 @@
     <Compile Include="ColorManipulation\XyzConverter.cs" />
     <Compile Include="ISwatch.cs" />
     <Compile Include="ColorManipulation\Lab.cs" />
+    <Compile Include="MaterialDesignColor.cs" />
     <Compile Include="SwatchHelper.cs" />
     <Compile Include="Hue.cs" />
     <Compile Include="RecommendedThemeProvider.cs" />

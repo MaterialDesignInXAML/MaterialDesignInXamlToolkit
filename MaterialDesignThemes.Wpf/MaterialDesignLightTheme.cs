@@ -9,6 +9,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public class MaterialDesignLightTheme : IBaseTheme
     {
+        public string Name { get; } = "Light";
         public Color ValidationErrorColor { get; } = (Color)ColorConverter.ConvertFromString("#f44336");
         public Color MaterialDesignBackground { get; } = (Color)ColorConverter.ConvertFromString("#FFFFFFFF");
         public Color MaterialDesignPaper { get; } = (Color)ColorConverter.ConvertFromString("#FFfafafa");

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Cyan";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			Cyan50,
-			Cyan100,
-			Cyan200,
-			Cyan300,
-			Cyan400,
-			Cyan500,
-			Cyan600,
-			Cyan700,
-			Cyan800,
-			Cyan900,
-			CyanA100,
-			CyanA200,
-			CyanA400,
-			CyanA700,
+			{ MaterialDesignColor.Cyan50, Cyan50 },
+			{ MaterialDesignColor.Cyan100, Cyan100 },
+			{ MaterialDesignColor.Cyan200, Cyan200 },
+			{ MaterialDesignColor.Cyan300, Cyan300 },
+			{ MaterialDesignColor.Cyan400, Cyan400 },
+			{ MaterialDesignColor.Cyan500, Cyan500 },
+			{ MaterialDesignColor.Cyan600, Cyan600 },
+			{ MaterialDesignColor.Cyan700, Cyan700 },
+			{ MaterialDesignColor.Cyan800, Cyan800 },
+			{ MaterialDesignColor.Cyan900, Cyan900 },
+			{ MaterialDesignColor.CyanA100, CyanA100 },
+			{ MaterialDesignColor.CyanA200, CyanA200 },
+			{ MaterialDesignColor.CyanA400, CyanA400 },
+			{ MaterialDesignColor.CyanA700, CyanA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

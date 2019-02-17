@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Amber";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			Amber50,
-			Amber100,
-			Amber200,
-			Amber300,
-			Amber400,
-			Amber500,
-			Amber600,
-			Amber700,
-			Amber800,
-			Amber900,
-			AmberA100,
-			AmberA200,
-			AmberA400,
-			AmberA700,
+			{ MaterialDesignColor.Amber50, Amber50 },
+			{ MaterialDesignColor.Amber100, Amber100 },
+			{ MaterialDesignColor.Amber200, Amber200 },
+			{ MaterialDesignColor.Amber300, Amber300 },
+			{ MaterialDesignColor.Amber400, Amber400 },
+			{ MaterialDesignColor.Amber500, Amber500 },
+			{ MaterialDesignColor.Amber600, Amber600 },
+			{ MaterialDesignColor.Amber700, Amber700 },
+			{ MaterialDesignColor.Amber800, Amber800 },
+			{ MaterialDesignColor.Amber900, Amber900 },
+			{ MaterialDesignColor.AmberA100, AmberA100 },
+			{ MaterialDesignColor.AmberA200, AmberA200 },
+			{ MaterialDesignColor.AmberA400, AmberA400 },
+			{ MaterialDesignColor.AmberA700, AmberA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

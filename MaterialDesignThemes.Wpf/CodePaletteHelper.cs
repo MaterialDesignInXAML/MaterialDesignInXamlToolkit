@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Media;
 using static MaterialDesignThemes.Wpf.XamlPaletteHelper;
 
@@ -63,7 +64,7 @@ namespace MaterialDesignThemes.Wpf
 
         public virtual void SetTheme(IBaseTheme theme)
         {
-            foreach(var p in theme.GetType().GetProperties())
+            foreach(var p in theme.GetType().GetProperties().Where(o => o.PropertyType == typeof(Color)))
             {
                 ReplaceEntry(p.Name, new SolidColorBrush((Color)p.GetValue(theme)));
             }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Lime";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			Lime50,
-			Lime100,
-			Lime200,
-			Lime300,
-			Lime400,
-			Lime500,
-			Lime600,
-			Lime700,
-			Lime800,
-			Lime900,
-			LimeA100,
-			LimeA200,
-			LimeA400,
-			LimeA700,
+			{ MaterialDesignColor.Lime50, Lime50 },
+			{ MaterialDesignColor.Lime100, Lime100 },
+			{ MaterialDesignColor.Lime200, Lime200 },
+			{ MaterialDesignColor.Lime300, Lime300 },
+			{ MaterialDesignColor.Lime400, Lime400 },
+			{ MaterialDesignColor.Lime500, Lime500 },
+			{ MaterialDesignColor.Lime600, Lime600 },
+			{ MaterialDesignColor.Lime700, Lime700 },
+			{ MaterialDesignColor.Lime800, Lime800 },
+			{ MaterialDesignColor.Lime900, Lime900 },
+			{ MaterialDesignColor.LimeA100, LimeA100 },
+			{ MaterialDesignColor.LimeA200, LimeA200 },
+			{ MaterialDesignColor.LimeA400, LimeA400 },
+			{ MaterialDesignColor.LimeA700, LimeA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

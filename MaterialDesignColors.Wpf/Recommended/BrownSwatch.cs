@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -18,18 +19,20 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Brown";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			Brown50,
-			Brown100,
-			Brown200,
-			Brown300,
-			Brown400,
-			Brown500,
-			Brown600,
-			Brown700,
-			Brown800,
-			Brown900,
+			{ MaterialDesignColor.Brown50, Brown50 },
+			{ MaterialDesignColor.Brown100, Brown100 },
+			{ MaterialDesignColor.Brown200, Brown200 },
+			{ MaterialDesignColor.Brown300, Brown300 },
+			{ MaterialDesignColor.Brown400, Brown400 },
+			{ MaterialDesignColor.Brown500, Brown500 },
+			{ MaterialDesignColor.Brown600, Brown600 },
+			{ MaterialDesignColor.Brown700, Brown700 },
+			{ MaterialDesignColor.Brown800, Brown800 },
+			{ MaterialDesignColor.Brown900, Brown900 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

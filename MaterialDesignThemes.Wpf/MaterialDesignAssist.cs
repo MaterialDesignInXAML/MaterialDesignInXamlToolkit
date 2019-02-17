@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -98,7 +99,7 @@ namespace MaterialDesignThemes.Wpf
         private static ResourceDictionary CreateEmptyPaletteDictionary()
         {
             return new ResourceDictionary {
-                ["PrimaryHueLightBrush"] = new SolidColorBrush(),
+                ["PrimaryHueLightBrush"] = new SolidColorBrush() ,
                 ["PrimaryHueLightForegroundBrush"] = new SolidColorBrush(),
                 ["PrimaryHueMidBrush"] = new SolidColorBrush(),
                 ["PrimaryHueMidForegroundBrush"] = new SolidColorBrush(),
@@ -116,31 +117,46 @@ namespace MaterialDesignThemes.Wpf
             };
         }
 
-        //public static ResourceDictionary WithTheme(this ResourceDictionary resourceDictionary, BaseTheme theme)
-        //{
-        //    if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
-        //    ResourceDictionary existing = resourceDictionary.FindThemeDictionary(theme);
-        //    if (existing != null)
-        //    {
-        //        resourceDictionary.MergedDictionaries.Remove(existing);
-        //    }
-        //    resourceDictionary.MergedDictionaries.Add(CreateThemeDictionary(theme));
-        //    return resourceDictionary;
-        //}
+        public static ResourceDictionary WithTheme(this ResourceDictionary resourceDictionary, BaseTheme theme)
+        {
+            var baseTheme = theme == BaseTheme.Light ? MaterialDesignTheme.Light : MaterialDesignTheme.Dark;
+            return resourceDictionary.WithTheme(baseTheme);
+        }
+
+        public static ResourceDictionary WithTheme(this ResourceDictionary resourceDictionary, IBaseTheme theme)
+        {
+            foreach (var p in theme.GetType().GetProperties().Where(o => o.PropertyType == typeof(Color)))
+            {
+                resourceDictionary.ReplaceEntry(p.Name, new SolidColorBrush((Color)p.GetValue(theme)));
+            }
+
+            return resourceDictionary;
+        }
 
         // TODO
-        //public static ResourceDictionary WithPrimaryColor(this ResourceDictionary resourceDictionary,
-        //    Color primaryColor)
-        //{
-        //    if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
-        //    ResourceDictionary existing = resourceDictionary.FindThemeDictionary(primaryColor);
-        //    if (existing != null)
-        //    {
-        //        resourceDictionary.MergedDictionaries.Remove(existing);
-        //    }
-        //    resourceDictionary.MergedDictionaries.Add(CreateColorThemeDictionary(primaryColor));
-        //    return resourceDictionary;
-        //}
+        public static ResourceDictionary WithPrimaryColor(this ResourceDictionary resourceDictionary, MaterialDesignColor primaryColor)
+        {
+            //if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+            //ResourceDictionary existing = resourceDictionary.FindThemeDictionary(primaryColor);
+            //if (existing != null)
+            //{
+            //    resourceDictionary.MergedDictionaries.Remove(existing);
+            //}
+            //resourceDictionary.MergedDictionaries.Add(CreateColorThemeDictionary(primaryColor));
+            return resourceDictionary;
+        }
+
+        public static ResourceDictionary WithSecondaryColor(this ResourceDictionary resourceDictionary, MaterialDesignColor primaryColor)
+        {
+            //if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+            //ResourceDictionary existing = resourceDictionary.FindThemeDictionary(primaryColor);
+            //if (existing != null)
+            //{
+            //    resourceDictionary.MergedDictionaries.Remove(existing);
+            //}
+            //resourceDictionary.MergedDictionaries.Add(CreateColorThemeDictionary(primaryColor));
+            return resourceDictionary;
+        }
 
         //public static ResourceDictionary WithAccentColor(this ResourceDictionary resourceDictionary,
         //    AccentColor accentColor)
@@ -189,7 +205,7 @@ namespace MaterialDesignThemes.Wpf
         //private static ResourceDictionary CreateColorThemeDictionary(AccentColor color)
         //    => new ResourceDictionary { Source = GetUri(color) };
 
-        private static ResourceDictionary CreateDefaultThemeDictionary()
+        public static ResourceDictionary CreateDefaultThemeDictionary()
             => new ResourceDictionary { Source = new Uri(string.Format(ThemeUriFormat, "Defaults")) };
 
         //private static Uri GetUri(BaseTheme theme) => new Uri(string.Format(ThemeUriFormat, theme));

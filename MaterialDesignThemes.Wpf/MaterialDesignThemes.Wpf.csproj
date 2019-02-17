@@ -302,6 +302,7 @@
   <ItemGroup>
     <Compile Include="Badged.cs" />
     <Compile Include="BaseTheme.cs" />
+    <Compile Include="BaseThemeTypeConverter.cs" />
     <Compile Include="ButtonAssist.cs" />
     <Compile Include="ButtonProgressAssist.cs" />
     <Compile Include="Card.cs" />
@@ -404,6 +405,7 @@
     <Compile Include="Spelling.cs" />
     <Compile Include="ThemeAssist.cs" />
     <Compile Include="ThemeEvents.cs" />
+    <Compile Include="ThemeManager.cs" />
     <Compile Include="ThemeSetEventArgs.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />

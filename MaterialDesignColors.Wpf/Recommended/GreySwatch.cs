@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -18,18 +19,20 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Grey";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			Grey50,
-			Grey100,
-			Grey200,
-			Grey300,
-			Grey400,
-			Grey500,
-			Grey600,
-			Grey700,
-			Grey800,
-			Grey900,
+			{ MaterialDesignColor.Grey50, Grey50 },
+			{ MaterialDesignColor.Grey100, Grey100 },
+			{ MaterialDesignColor.Grey200, Grey200 },
+			{ MaterialDesignColor.Grey300, Grey300 },
+			{ MaterialDesignColor.Grey400, Grey400 },
+			{ MaterialDesignColor.Grey500, Grey500 },
+			{ MaterialDesignColor.Grey600, Grey600 },
+			{ MaterialDesignColor.Grey700, Grey700 },
+			{ MaterialDesignColor.Grey800, Grey800 },
+			{ MaterialDesignColor.Grey900, Grey900 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}

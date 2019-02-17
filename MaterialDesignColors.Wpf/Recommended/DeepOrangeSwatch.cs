@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Media;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors.Recommended
 {
@@ -22,22 +23,24 @@ namespace MaterialDesignColors.Recommended
 
 		public string Name { get; } = "Deep Orange";
 
-		public IEnumerable<Color> Hues { get; } = new[]
+		public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 		{
-			DeepOrange50,
-			DeepOrange100,
-			DeepOrange200,
-			DeepOrange300,
-			DeepOrange400,
-			DeepOrange500,
-			DeepOrange600,
-			DeepOrange700,
-			DeepOrange800,
-			DeepOrange900,
-			DeepOrangeA100,
-			DeepOrangeA200,
-			DeepOrangeA400,
-			DeepOrangeA700,
+			{ MaterialDesignColor.DeepOrange50, DeepOrange50 },
+			{ MaterialDesignColor.DeepOrange100, DeepOrange100 },
+			{ MaterialDesignColor.DeepOrange200, DeepOrange200 },
+			{ MaterialDesignColor.DeepOrange300, DeepOrange300 },
+			{ MaterialDesignColor.DeepOrange400, DeepOrange400 },
+			{ MaterialDesignColor.DeepOrange500, DeepOrange500 },
+			{ MaterialDesignColor.DeepOrange600, DeepOrange600 },
+			{ MaterialDesignColor.DeepOrange700, DeepOrange700 },
+			{ MaterialDesignColor.DeepOrange800, DeepOrange800 },
+			{ MaterialDesignColor.DeepOrange900, DeepOrange900 },
+			{ MaterialDesignColor.DeepOrangeA100, DeepOrangeA100 },
+			{ MaterialDesignColor.DeepOrangeA200, DeepOrangeA200 },
+			{ MaterialDesignColor.DeepOrangeA400, DeepOrangeA400 },
+			{ MaterialDesignColor.DeepOrangeA700, DeepOrangeA700 },
 		};
-	};
-};
+
+		public IEnumerable<Color> Hues => Lookup.Values
+	}
+}
