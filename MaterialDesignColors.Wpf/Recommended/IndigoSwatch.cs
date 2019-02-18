@@ -41,6 +41,6 @@ namespace MaterialDesignColors.Recommended
 			{ MaterialDesignColor.IndigoA700, IndigoA700 },
 		};
 
-		public IEnumerable<Color> Hues => Lookup.Values
+		public IEnumerable<Color> Hues => Lookup.Values;
 	}
 }

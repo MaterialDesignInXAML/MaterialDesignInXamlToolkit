@@ -33,6 +33,6 @@ namespace MaterialDesignColors.Recommended
 			{ MaterialDesignColor.Brown900, Brown900 },
 		};
 
-		public IEnumerable<Color> Hues => Lookup.Values
+		public IEnumerable<Color> Hues => Lookup.Values;
 	}
 }

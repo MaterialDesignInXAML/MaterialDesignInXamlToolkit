@@ -41,6 +41,6 @@ namespace MaterialDesignColors.Recommended
 			{ MaterialDesignColor.CyanA700, CyanA700 },
 		};
 
-		public IEnumerable<Color> Hues => Lookup.Values
+		public IEnumerable<Color> Hues => Lookup.Values;
 	}
 }

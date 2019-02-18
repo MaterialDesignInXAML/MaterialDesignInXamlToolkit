@@ -79,7 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FlyoutAssist.cs" />
-    <Compile Include="MaterialDesignAssist.cs" />
+    <Compile Include="MahAppsResourceDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

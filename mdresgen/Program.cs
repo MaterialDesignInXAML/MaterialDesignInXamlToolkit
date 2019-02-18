@@ -114,7 +114,7 @@ namespace mdresgen
                 sb.Append(hueNames.ToString());
                 sb.AppendLine("\t\t};"); // Lookup
                 sb.AppendLine();
-                sb.AppendLine("\t\tpublic IEnumerable<Color> Hues => Lookup.Values");
+                sb.AppendLine("\t\tpublic IEnumerable<Color> Hues => Lookup.Values;");
                 sb.AppendLine("\t}"); // class
                 sb.AppendLine("}"); // namespace
 

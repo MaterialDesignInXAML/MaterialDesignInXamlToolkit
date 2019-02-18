@@ -41,6 +41,6 @@ namespace MaterialDesignColors.Recommended
 			{ MaterialDesignColor.PurpleA700, PurpleA700 },
 		};
 
-		public IEnumerable<Color> Hues => Lookup.Values
+		public IEnumerable<Color> Hues => Lookup.Values;
 	}
 }

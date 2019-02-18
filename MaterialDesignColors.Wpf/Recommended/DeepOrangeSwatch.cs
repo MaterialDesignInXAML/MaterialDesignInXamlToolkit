@@ -41,6 +41,6 @@ namespace MaterialDesignColors.Recommended
 			{ MaterialDesignColor.DeepOrangeA700, DeepOrangeA700 },
 		};
 
-		public IEnumerable<Color> Hues => Lookup.Values
+		public IEnumerable<Color> Hues => Lookup.Values;
 	}
 }
