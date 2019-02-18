@@ -35,8 +35,7 @@
             </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
-    <materialDesign:ThemeManager>
-        <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+    <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
             <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
                 <materialDesign:DrawerHost.LeftDrawerContent>
                     <DockPanel MinWidth="212">
@@ -95,5 +94,4 @@
                 </DockPanel>
             </materialDesign:DrawerHost>
         </materialDesign:DialogHost>
-    </materialDesign:ThemeManager>
 </Window>

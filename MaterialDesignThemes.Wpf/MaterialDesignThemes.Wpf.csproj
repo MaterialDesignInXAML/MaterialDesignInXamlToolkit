@@ -310,6 +310,8 @@
     <Compile Include="Clock.cs" />
     <Compile Include="ClockChoiceMadeEventArgs.cs" />
     <Compile Include="ClockItemButton.cs" />
+    <Compile Include="ColorChange.cs" />
+    <Compile Include="ColorName.cs" />
     <Compile Include="ColorZone.cs" />
     <Compile Include="ColorZoneAssist.cs" />
     <Compile Include="ComboBoxAssist.cs" />
@@ -377,7 +379,7 @@
     <Compile Include="ISnackbarMessageQueue.cs" />
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="ListViewAssist.cs" />
-    <Compile Include="MaterialDesignAssist.cs" />
+    <Compile Include="ResourceDictionaryExtensions.cs" />
     <Compile Include="MaterialDesignLightTheme.cs" />
     <Compile Include="MaterialDesignDarkTheme.cs" />
     <Compile Include="MaterialDesignResourceDictionary.cs" />
@@ -391,7 +393,6 @@
     <Compile Include="PaletteName.cs" />
     <Compile Include="Plane3D.cs" />
     <Compile Include="PrimarySwatchChangedEventArgs.cs" />
-    <Compile Include="ResourceDictionaryExtensions.cs" />
     <Compile Include="ScaleHost.cs" />
     <Compile Include="ScrollViewerAssist.cs" />
     <Compile Include="Screen.cs" />
@@ -406,6 +407,7 @@
     <Compile Include="ThemeAssist.cs" />
     <Compile Include="ThemeEvents.cs" />
     <Compile Include="ThemeManager.cs" />
+    <Compile Include="ThemeManagerThemeChange.cs" />
     <Compile Include="ThemeSetEventArgs.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />

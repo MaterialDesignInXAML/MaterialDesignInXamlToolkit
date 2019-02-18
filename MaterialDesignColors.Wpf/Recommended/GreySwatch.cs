@@ -33,6 +33,6 @@ namespace MaterialDesignColors.Recommended
 			{ MaterialDesignColor.Grey900, Grey900 },
 		};
 
-		public IEnumerable<Color> Hues => Lookup.Values
+		public IEnumerable<Color> Hues => Lookup.Values;
 	}
 }
