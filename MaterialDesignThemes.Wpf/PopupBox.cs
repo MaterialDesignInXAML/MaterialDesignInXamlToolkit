@@ -401,7 +401,7 @@ namespace MaterialDesignThemes.Wpf
             _popupContentControl = GetTemplateChild(PopupContentControlPartName) as ContentControl;
             _toggleButton = GetTemplateChild(TogglePartName) as ToggleButton;
 
-            CommandBindings.Add(new CommandBinding(ClosePopupCommand, ClosePopupHandler));
+            _popup.CommandBindings.Add(new CommandBinding(ClosePopupCommand, ClosePopupHandler));
 
             if (_toggleButton != null)
                 _toggleButton.PreviewMouseLeftButtonUp += ToggleButtonOnPreviewMouseLeftButtonUp;
