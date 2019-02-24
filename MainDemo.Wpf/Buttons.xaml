@@ -155,8 +155,8 @@
                                 </ComboBox>
 
                                 <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button Content="_Save" />
-                                    <Button Content="_Cancel">
+                                    <Button Content="_Save" Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}" />
+                                    <Button Content="_Cancel" Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}">
                                         <Button.Style>
                                             <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignPopupBoxButton}">
                                                 <Setter Property="Foreground" Value="Red" />
