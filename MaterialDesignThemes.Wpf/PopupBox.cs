@@ -103,6 +103,12 @@ namespace MaterialDesignThemes.Wpf
         public const string PopupContentControlPartName = "PART_PopupContentControl";
         public const string PopupIsOpenStateName = "IsOpen";
         public const string PopupIsClosedStateName = "IsClosed";
+
+        /// <summary>
+        /// Routed command to be used inside of a popup content to close it.
+        /// </summary>
+        public static RoutedCommand ClosePopupCommand = new RoutedCommand();
+
         private PopupEx _popup;
         private ContentControl _popupContentControl;
         private ToggleButton _toggleButton;
@@ -394,7 +400,9 @@ namespace MaterialDesignThemes.Wpf
             _popup = GetTemplateChild(PopupPartName) as PopupEx;
             _popupContentControl = GetTemplateChild(PopupContentControlPartName) as ContentControl;
             _toggleButton = GetTemplateChild(TogglePartName) as ToggleButton;
-            
+
+            _popup?.CommandBindings.Add(new CommandBinding(ClosePopupCommand, ClosePopupHandler));
+
             if (_toggleButton != null)
                 _toggleButton.PreviewMouseLeftButtonUp += ToggleButtonOnPreviewMouseLeftButtonUp;
 
@@ -438,6 +446,11 @@ namespace MaterialDesignThemes.Wpf
                 SetCurrentValue(IsPopupOpenProperty, true);
             }
             base.OnMouseEnter(e);
+        }
+
+        private void ClosePopupHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
+        {
+            IsPopupOpen = false;
         }
 
         private void OnLayoutUpdated(object sender, EventArgs eventArgs)
