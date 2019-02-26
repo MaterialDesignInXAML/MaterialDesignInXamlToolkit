@@ -11,6 +11,7 @@
         <Setter Property="AllowsTransparency" Value="True" />
         <Setter Property="PopupAnimation" Value="None" />
         <Setter Property="Placement" Value="Center" />
+        <Setter Property="UseLayoutRounding" Value="True" />
     </Style>
 
     <SolidColorBrush x:Key="BlackBackground" Color="Black" />
@@ -20,7 +21,6 @@
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth5" />
         <Setter Property="DialogTheme" Value="Light" />
         <Setter Property="PopupStyle" Value="{StaticResource MaterialDesignDialogHostPopup}" />
-        <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="wpf:DialogHost">
@@ -212,7 +212,6 @@
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth5" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="wpf:DialogHost">
