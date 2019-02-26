@@ -20,6 +20,7 @@
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth5" />
         <Setter Property="DialogTheme" Value="Light" />
         <Setter Property="PopupStyle" Value="{StaticResource MaterialDesignDialogHostPopup}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="wpf:DialogHost">
