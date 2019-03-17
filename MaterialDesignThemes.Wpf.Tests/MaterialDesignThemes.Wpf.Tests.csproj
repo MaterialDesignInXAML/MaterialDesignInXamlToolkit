@@ -49,6 +49,7 @@
     <Compile Include="DialogHostTests.cs" />
     <Compile Include="MdixHelper.cs" />
     <Compile Include="PaletteHelperFixture.cs" />
+    <Compile Include="PopupBoxTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualTreeHelper.cs" />
   </ItemGroup>
