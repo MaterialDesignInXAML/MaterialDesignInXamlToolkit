@@ -1,6 +1,6 @@
 # Contribution Guidelines
 
-PRs to this project are welcome, but before contributing please bear in mind my thoughts below. If you want to get involved but are unsure, please ask (say hello in the [Gitter chat room](http://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit)).  Also note that I wrote these guidelines several months after the library was first made available, with the benefit of hindsight.  Apologies if there are inconsistencies with what you read below and what's already in the library.
+PRs to this project are welcome, but before contributing please bear in mind my thoughts below. Whe possible please include unit tests. If you want to get involved but are unsure, please ask (say hello in the [Gitter chat room](http://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit)).  Also note that I wrote these guidelines several months after the library was first made available, with the benefit of hindsight.  Apologies if there are inconsistencies with what you read below and what's already in the library.
 
 ## The purposes of this library:
 
