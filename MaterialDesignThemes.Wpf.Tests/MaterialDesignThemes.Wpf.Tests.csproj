@@ -51,6 +51,7 @@
     <Compile Include="PaletteHelperFixture.cs" />
     <Compile Include="PopupBoxTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimePickerUnitTests.cs" />
     <Compile Include="VisualTreeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
