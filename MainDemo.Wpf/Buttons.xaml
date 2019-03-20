@@ -286,7 +286,7 @@
                     <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                             Height="50"
                             materialDesign:ButtonAssist.CornerRadius="5"
-                            ToolTip="MaterialDesignRaisedLightButton with Round Corner">
+                            ToolTip="MaterialDesignRaisedLightButton with Round Corners">
                         <TextBlock Text="5/50 Radius" />
                     </Button>
                 </Grid>
@@ -296,7 +296,7 @@
                     <Button Style="{StaticResource MaterialDesignRaisedButton}"
                             Height="50"
                             materialDesign:ButtonAssist.CornerRadius="10"
-                            ToolTip="MaterialDesignRaisedButton with Round Corner">
+                            ToolTip="MaterialDesignRaisedButton with Round Corners">
                         <TextBlock Text="10/50 Radius" />
                     </Button>
                 </Grid>
@@ -305,9 +305,9 @@
                 <Grid Width="124">
                     <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Height="50"
-                            materialDesign:ButtonAssist.CornerRadius="15"
-                            ToolTip="MaterialDesignRaisedDarkButton with Round Corner">
-                        <TextBlock Text="15/50 Radius" />
+                            materialDesign:ButtonAssist.CornerRadius="25"
+                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners">
+                        <TextBlock Text="25/50 Radius" />
                     </Button>
                 </Grid>
             </smtx:XamlDisplay>
@@ -316,8 +316,8 @@
                 <Grid Width="124">
                     <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
                             Height="50"
-                            materialDesign:ButtonAssist.CornerRadius="25"
-                            ToolTip="MaterialDesignRaisedAccentButton with Round Corner">
+                            materialDesign:ButtonAssist.CornerRadius="25 25 0 0"
+                            ToolTip="MaterialDesignRaisedAccentButton with Round Top Corners">
                         <TextBlock Text="25/50 Radius" />
                     </Button>
                 </Grid>
