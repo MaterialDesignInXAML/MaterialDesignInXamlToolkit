@@ -334,6 +334,7 @@
     <Compile Include="PackIconExtension.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Plane3D.cs" />
+    <Compile Include="ButtonAssist.cs" />
     <Compile Include="ScaleHost.cs" />
     <Compile Include="ScrollViewerAssist.cs" />
     <Compile Include="Screen.cs" />

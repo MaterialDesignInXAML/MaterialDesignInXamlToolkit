@@ -53,7 +53,8 @@
                     <Grid>
                         <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                             <Grid>
-                                <Border Background="{TemplateBinding Background}" CornerRadius="2"
+                                <Border Background="{TemplateBinding Background}" 
+                                        CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         BorderBrush="{TemplateBinding BorderBrush}"                                    
                                         x:Name="border"
