@@ -70,6 +70,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Common Fields</TextBlock>
         <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" />
@@ -269,9 +272,44 @@
         </smtx:XamlDisplay>
 
         <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+                   Margin="0 48 0 0">Round Corner</TextBlock>
+        <smtx:XamlDisplay Key="fields_roundcorner_1" Grid.Row="8" Grid.Column="1">
+            <TextBox materialDesign:HintAssist.Hint="10 / 50 radius" Margin="5"
+                     Height="50"
+                     materialDesign:TextFieldAssist.TextFieldCornerRadius="10"
+                     materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Key="fields_roundcorner_2" Grid.Row="8" Grid.Column="3">
+            <TextBox materialDesign:HintAssist.Hint="25 / 50 radius" Margin="5"
+                     Height="50"
+                     materialDesign:TextFieldAssist.TextFieldCornerRadius="25"
+                     materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Key="fields_roundcorner_3" Grid.Row="9" Grid.Column="1">
+            <TextBox materialDesign:HintAssist.Hint="10 radius top corners" Margin="5"
+                     Height="50"
+                     materialDesign:TextFieldAssist.TextFieldCornerRadius="10 10 0 0"
+                     materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                     Style="{StaticResource MaterialDesignFilledTextBox}" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Key="fields_roundcorner_4" Grid.Row="9" Grid.Column="3">
+            <TextBox materialDesign:HintAssist.Hint="25  radius" Margin="5"
+                     Height="50"
+                     materialDesign:TextFieldAssist.TextFieldCornerRadius="25"
+                     materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                     Style="{StaticResource MaterialDesignFilledTextBox}" />
+        </smtx:XamlDisplay>
+
+
+        <TextBlock Grid.Row="10" Grid.Column="1" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
                    Margin="0 48 0 0">DataTemplate Test</TextBlock>
 
-        <smtx:XamlDisplay Key="fields_20" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 12 0 0" HorizontalAlignment="Left">
+        <smtx:XamlDisplay Key="fields_20" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 12 0 0" HorizontalAlignment="Left">
             <ContentControl Content="{Binding DemoItem}">
                 <ContentControl.ContentTemplate>
                     <DataTemplate DataType="domain:DemoItem">
@@ -285,9 +323,9 @@
                 </ContentControl.ContentTemplate>
             </ContentControl>
         </smtx:XamlDisplay>
-        <TextBlock Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+        <TextBlock Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
                    Margin="0 16 0 0">DataTemplateSelector Test</TextBlock>
-        <smtx:XamlDisplay Key="fields_21" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 12 0 0" HorizontalAlignment="Left">
+        <smtx:XamlDisplay Key="fields_21" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 12 0 0" HorizontalAlignment="Left">
             <ContentControl Content="{Binding DemoItem}">
                 <ContentControl.ContentTemplateSelector>
                     <domain1:SimpleDataTemplateSelector>
@@ -322,7 +360,7 @@
                     </TextBox.Text>
                 </TextBox>
             </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="fields_30" Grid.Row="8" Grid.Column="5" HorizontalAlignment="Left">
+            <smtx:XamlDisplay Key="fields_30" HorizontalAlignment="Left">
                 <TextBox Width="20"
                      materialDesign:ValidationAssist.UsePopup="True"
                      materialDesign:ValidationAssist.PopupPlacement="Left"
@@ -368,8 +406,8 @@
             </StackPanel>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Filled text field</TextBlock>
-        <smtx:XamlDisplay Key="fields_25" Grid.Row="14" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
+        <TextBlock Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Filled text field</TextBlock>
+        <smtx:XamlDisplay Key="fields_25" Grid.Row="17" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
             <StackPanel>
                 <CheckBox x:Name="MaterialDesignFilledTextFieldTextBoxEnabledComboBox"
                       IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>
@@ -379,8 +417,8 @@
             </StackPanel>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="13" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Outlined text field</TextBlock>
-        <smtx:XamlDisplay Key="fields_26" Grid.Row="14" Grid.Column="4" Grid.RowSpan="2">
+        <TextBlock Grid.Row="16" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Outlined text field</TextBlock>
+        <smtx:XamlDisplay Key="fields_26" Grid.Row="17" Grid.Column="4" Grid.RowSpan="2">
             <StackPanel>
                 <CheckBox x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" 
                           IsChecked="True" Margin="32,0,0,8">Enabled</CheckBox>
@@ -390,8 +428,8 @@
             </StackPanel>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Filled password field</TextBlock>
-        <smtx:XamlDisplay Key="fields_28" Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="3">
+        <TextBlock Grid.Row="19" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Filled password field</TextBlock>
+        <smtx:XamlDisplay Key="fields_28" Grid.Row="20" Grid.Column="1" Grid.ColumnSpan="3">
             <StackPanel>
                 <CheckBox x:Name="MaterialDesignFilledPasswordFieldPasswordBoxEnabledComboBox"
                       IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>
@@ -402,8 +440,8 @@
             </StackPanel>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="16" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Outlined password field</TextBlock>
-        <smtx:XamlDisplay Key="fields_29" Grid.Row="17" Grid.Column="4" Margin="32,0,0,0">
+        <TextBlock Grid.Row="19" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Outlined password field</TextBlock>
+        <smtx:XamlDisplay Key="fields_29" Grid.Row="20" Grid.Column="4" Margin="32,0,0,0">
             <StackPanel>
                 <CheckBox x:Name="MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox"
                       IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>

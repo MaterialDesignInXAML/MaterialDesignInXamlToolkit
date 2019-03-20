@@ -298,4 +298,13 @@
         <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
     </Style>
 
+    <Style x:Key="MaterialDesignOutlinedTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+        <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+    </Style>
+
+    <Style x:Key="MaterialDesignFilledTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+        <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
+        <Setter Property="wpf:TextFieldAssist.RippleOnFocusEnabled" Value="True" />
+        <Setter Property="wpf:TextFieldAssist.UnderlineCornerRadius" Value="0" />
+    </Style>
 </ResourceDictionary>
