@@ -303,7 +303,6 @@
   <ItemGroup>
     <Compile Include="Badged.cs" />
     <Compile Include="BaseTheme.cs" />
-    <Compile Include="BaseThemeTypeConverter.cs" />
     <Compile Include="ButtonAssist.cs" />
     <Compile Include="ButtonProgressAssist.cs" />
     <Compile Include="Card.cs" />
@@ -379,9 +378,11 @@
     <Compile Include="IBaseTheme.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
+    <Compile Include="IPaletteHelper.cs" />
     <Compile Include="ISnackbarMessageQueue.cs" />
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="ListViewAssist.cs" />
+    <Compile Include="MaterialDesignAssist.cs" />
     <Compile Include="ResourceDictionaryExtensions.cs" />
     <Compile Include="MaterialDesignLightTheme.cs" />
     <Compile Include="MaterialDesignDarkTheme.cs" />
@@ -408,9 +409,7 @@
     <Compile Include="SnackbarMessageQueueItem.cs" />
     <Compile Include="Spelling.cs" />
     <Compile Include="ThemeAssist.cs" />
-    <Compile Include="ThemeEvents.cs" />
     <Compile Include="ThemeManager.cs" />
-    <Compile Include="ThemeManagerThemeChange.cs" />
     <Compile Include="ThemeSetEventArgs.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />

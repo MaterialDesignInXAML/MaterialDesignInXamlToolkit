@@ -1,66 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public class ThemeManager : ContentControl
+    public delegate void ThemeChangeHandler(ResourceDictionary resources, IBaseTheme theme);
+    public delegate void PaletteChangeHandler(ResourceDictionary resources, ColorPalette palette);
+    public delegate void ColorChangeHandler(ResourceDictionary resources, ColorChange colorChange);
+
+    public class ThemeManager
     {
-        public ThemeManager()
+        public ResourceDictionary Resources { get; }
+
+        public IList<ThemeChangeHandler> ThemeChangeHandlers { get; } = new List<ThemeChangeHandler>();
+        public IList<PaletteChangeHandler> PaletteChangeHandlers { get; } = new List<PaletteChangeHandler>();
+        public IList<ColorChangeHandler> ColorChangeHandlers { get; } = new List<ColorChangeHandler>();
+
+        public ThemeManager(ResourceDictionary resources)
         {
-            CommandManager.RegisterClassCommandBinding(typeof(ThemeManager), new CommandBinding(MaterialDesignTheme.ChangeThemeCommand, ChangeThemeCommandExecuted));
-            CommandManager.RegisterClassCommandBinding(typeof(ThemeManager), new CommandBinding(MaterialDesignTheme.ChangePaletteCommand, ChangePaletteCommandExecuted));
-            CommandManager.RegisterClassCommandBinding(typeof(ThemeManager), new CommandBinding(MaterialDesignTheme.ChangeColorCommand, ChangeColorCommandExecuted));
+            Resources = resources;
         }
 
-        public void ChangeThemeCommandExecuted(object sender, ExecutedRoutedEventArgs e)
+        public ThemeManager AttachThemeEventsToWindow()
         {
-            PropagateThemeChange(MaterialDesignTheme.ChangeThemeCommand, e.Parameter);
+            CommandManager.RegisterClassCommandBinding(typeof(Window), new CommandBinding(MaterialDesignTheme.ChangeThemeCommand, ChangeThemeCommandExecuted));
+            CommandManager.RegisterClassCommandBinding(typeof(Window), new CommandBinding(MaterialDesignTheme.ChangePaletteCommand, ChangePaletteCommandExecuted));
+            CommandManager.RegisterClassCommandBinding(typeof(Window), new CommandBinding(MaterialDesignTheme.ChangeColorCommand, ChangeColorCommandExecuted));
+
+            return this;
         }
 
-        public void ChangePaletteCommandExecuted(object sender, ExecutedRoutedEventArgs e)
+        public void ChangeTheme(IBaseTheme theme)
         {
-            PropagateThemeChange(MaterialDesignTheme.ChangePaletteCommand, e.Parameter);
+            foreach (var handler in ThemeChangeHandlers) handler(Resources, theme);
         }
 
-        public virtual void ChangeColorCommandExecuted(object sender, ExecutedRoutedEventArgs e)
+        public void ChangePalette(ColorPalette palette)
         {
-            PropagateThemeChange(MaterialDesignTheme.ChangeColorCommand, e.Parameter);
+            foreach (var handler in PaletteChangeHandlers) handler(Resources, palette);
         }
 
-        private void PropagateThemeChange(ICommand command, object parameter)
+        public void ChangeColor(ColorChange colorChange)
         {
-            if (parameter is ThemeManagerThemeChange) command.Execute(parameter);
-            else command.Execute(new ThemeManagerThemeChange { OwningResourceDictionary = Resources, OriginalParameter = parameter });
+            foreach (var handler in ColorChangeHandlers) handler(Resources, colorChange);
         }
 
-        private BaseTheme _theme = BaseTheme.Light;
-
-        public BaseTheme Theme
+        private void ChangeThemeCommandExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            get => _theme;
-            set => Resources.WithTheme(_theme = value);
+            var theme = (IBaseTheme)e.Parameter;
+            ChangeTheme(theme);
         }
 
-        private MaterialDesignColor _primaryColor = MaterialDesignColor.DeepPurple;
-        public MaterialDesignColor PrimaryColor
+        private void ChangePaletteCommandExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            get => _primaryColor;
-            set => Resources.WithPrimaryColor(_primaryColor = value);
+            var palette = (ColorPalette)e.Parameter;
+            ChangePalette(palette);
         }
 
-        private MaterialDesignColor _secondaryColor = MaterialDesignColor.DeepPurple;
-        public MaterialDesignColor SecondaryColor
+        private void ChangeColorCommandExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            get => _secondaryColor;
-            set => Resources.WithSecondaryColor(_secondaryColor = value);
+            var colorChange = (ColorChange)e.Parameter;
+            ChangeColor(colorChange);
         }
+
+
     }
 }

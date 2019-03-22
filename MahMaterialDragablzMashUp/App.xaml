@@ -1,34 +1,29 @@
 ﻿<Application x:Class="MahMaterialDragablzMashUp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mdMahApps="clr-namespace:MaterialDesignThemes.MahApps;assembly=MaterialDesignThemes.MahApps"
              xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <mdMahApps:MahAppsResourceDictionary Theme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime">
-
+        <!--<mdMahApps:MahAppsResourceDictionary Theme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime">-->
+        <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-
                 <!-- MahApps -->
-                <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />-->
 
                 <!-- Material Design -->
-                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />-->
-                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />-->
-                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
 
                 <!-- Material Design: MahApps Compatibility -->
-                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Defaults.xaml"/>-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Defaults.xaml"/>
 
                 <!-- Dragablz Material Design -->
                 <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
-
             <!-- MahApps Brushes -->
             <!--<SolidColorBrush x:Key="HighlightBrush" Color="{DynamicResource Primary700}"/>
             <SolidColorBrush x:Key="AccentColorBrush" Color="{DynamicResource Primary500}"/>
@@ -48,8 +43,9 @@
 
             <!-- Dragablz Material Design -->
             <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}" />
+        </ResourceDictionary>
 
-        </mdMahApps:MahAppsResourceDictionary>
+        <!--</mdMahApps:MahAppsResourceDictionary>-->
     </Application.Resources>
 </Application>
     

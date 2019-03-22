@@ -1,5 +1,7 @@
 ﻿using System.Windows.Media;
+using MaterialDesignColors;
 using MaterialDesignColors.ColorManipulation;
+using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -42,6 +44,16 @@ namespace MaterialDesignThemes.Wpf
             LightForeground = lightForeground;
             MidForeground = midForeground;
             DarkForeground = darkForeground;
+        }
+
+        public static ColorPalette CreatePrimaryPalette(MaterialDesignColor color)
+        {
+            return new ColorPalette(PaletteName.Primary, SwatchHelper.Lookup[color]);
+        }
+
+        public static ColorPalette CreateSecondaryPalette(MaterialDesignColor color)
+        {
+            return new ColorPalette(PaletteName.Secondary, SwatchHelper.Lookup[color]);
         }
     }
 }
