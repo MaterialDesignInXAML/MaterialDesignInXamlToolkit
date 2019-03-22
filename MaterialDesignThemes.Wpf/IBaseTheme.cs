@@ -3,7 +3,6 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
-    [TypeConverter(typeof(BaseThemeTypeConverter))]
     public interface IBaseTheme
     {
         string Name { get; }
