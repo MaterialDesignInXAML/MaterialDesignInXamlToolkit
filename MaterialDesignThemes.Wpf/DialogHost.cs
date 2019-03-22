@@ -583,12 +583,16 @@ namespace MaterialDesignThemes.Wpf
             DialogClosingCallback?.Invoke(this, dialogClosingEventArgs);
             _asyncShowClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
 
-            _dialogTaskCompletionSource?.TrySetResult(parameter);
-
+            
             if (!dialogClosingEventArgs.IsCancelled)
+            {
+                _dialogTaskCompletionSource?.TrySetResult(parameter);
                 SetCurrentValue(IsOpenProperty, false);
+            }
             else
+            {
                 CurrentSession.IsEnded = false;
+            }
         }
 
         /// <summary>
