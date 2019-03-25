@@ -19,10 +19,16 @@ namespace MaterialDesignThemes.MahApps
 
             CreateIfNotExists(GetThemeUri(theme.BaseTheme));
 
-            foreach (var kvp in GetPrimaryBrushes(theme.PrimaryPalette))
+            var primaryPalette = theme.Palettes.FirstOrDefault(o => o.Name == PaletteName.Primary.ToString());
+
+            if (primaryPalette != null)
             {
-                theme.ThemeManager.Resources[kvp.Key] = kvp.Value;
+                foreach (var kvp in GetPrimaryBrushes(primaryPalette))
+                {
+                    theme.ThemeManager.Resources[kvp.Key] = kvp.Value;
+                }
             }
+
 
             return theme;
 

@@ -3,14 +3,13 @@ using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignThemes.Wpf
 {
-    // TODO
     public class MaterialDesignResourceDictionary : ResourceDictionary
     {
         protected MaterialDesignTheme MaterialDesignTheme { get; }
 
         public MaterialDesignResourceDictionary()
         {
-            MaterialDesignTheme = this.WithMaterialDesign(MaterialDesignTheme.BaseThemes[Theme], PrimaryColor, SecondaryColor, new ThemeManager(this).AttachThemeEventsToWindow());
+            MaterialDesignTheme = this.WithMaterialDesign(Theme, PrimaryColor, SecondaryColor, new ThemeManager(this).AttachThemeEventsToWindow());
         }
 
         private BaseTheme _theme;

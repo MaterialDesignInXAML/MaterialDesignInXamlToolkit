@@ -12,10 +12,11 @@ namespace MaterialDesignColors.WpfExample
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            XamlDisplay.Init();
             //This is an alterate way to initialize MaterialDesignInXAML if you don't use the MaterialDesignResourceDictionary in App.xaml
             //this.WithMaterialDesign(MaterialDesignTheme.Light, CyanSwatch.Cyan500, LimeSwatch.LimeA700);
 
-            
+
             //Illustration of setting culture info fully in WPF:
             /*             
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");

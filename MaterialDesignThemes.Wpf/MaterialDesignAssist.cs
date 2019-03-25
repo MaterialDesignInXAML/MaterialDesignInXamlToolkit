@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignColors.Wpf;
@@ -7,21 +8,29 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class MaterialDesignAssist
     {
-        public static MaterialDesignTheme WithMaterialDesign(this Application application, IBaseTheme theme, MaterialDesignColor primaryColor, MaterialDesignColor secondaryColor, ThemeManager themeManager = null)
-        {
-            var resources = application.Resources;
-
-            return resources.WithMaterialDesign(theme, primaryColor, secondaryColor, themeManager);
-        }
-
         public static MaterialDesignTheme WithMaterialDesign(this Application application, BaseTheme theme, MaterialDesignColor primaryColor, MaterialDesignColor secondaryColor, ThemeManager themeManager = null)
         {
             var resources = application.Resources;
-
-            return resources.WithMaterialDesign(MaterialDesignTheme.BaseThemes[theme], primaryColor, secondaryColor, themeManager);
+            return resources.WithMaterialDesign(theme, primaryColor, secondaryColor, themeManager);
         }
 
-        public static MaterialDesignTheme WithMaterialDesign(this ResourceDictionary resources, IBaseTheme theme, MaterialDesignColor primaryColor, MaterialDesignColor secondaryColor, ThemeManager themeManager = null)
+        public static MaterialDesignTheme WithMaterialDesign(this Application application, IBaseTheme theme, Color primaryColor, Color secondaryColor, ThemeManager themeManager = null)
+        {
+            var resources = application.Resources;
+            return resources.WithMaterialDesign(theme, primaryColor, secondaryColor, themeManager);
+        }
+
+        public static MaterialDesignTheme WithMaterialDesign(this ResourceDictionary resources, BaseTheme theme, MaterialDesignColor primaryColor, MaterialDesignColor secondaryColor, ThemeManager themeManager = null)
+        {
+            return resources.WithMaterialDesign(MaterialDesignTheme.BaseThemes[theme], SwatchHelper.Lookup[primaryColor], SwatchHelper.Lookup[secondaryColor], themeManager);
+        }
+
+        public static MaterialDesignTheme WithMaterialDesign(this ResourceDictionary resources, IBaseTheme theme, Color primaryColor, Color secondaryColor, ThemeManager themeManager = null)
+        {
+            return resources.WithMaterialDesign(theme, new[] { ColorPalette.CreatePrimaryPalette(primaryColor), ColorPalette.CreateSecondaryPalette(secondaryColor) }, themeManager);
+        }
+
+        public static MaterialDesignTheme WithMaterialDesign(this ResourceDictionary resources, IBaseTheme theme, IEnumerable<ColorPalette> palettes, ThemeManager themeManager = null)
         {
             if (themeManager == null)
             {
@@ -38,10 +47,12 @@ namespace MaterialDesignThemes.Wpf
             resources.MergedDictionaries.Add(CreateEmptyPaletteDictionary());
 
             resources.WithTheme(theme);
-            resources.WithPrimaryColor(primaryColor);
-            resources.WithSecondaryColor(primaryColor);
+            foreach(var palette in palettes)
+            {
+                resources.WithPalette(palette);
+            }
 
-            return MaterialDesignTheme.Create(themeManager, theme, SwatchHelper.Lookup[primaryColor], SwatchHelper.Lookup[secondaryColor]);
+            return new MaterialDesignTheme(themeManager, theme, palettes);
         }
 
         private static void OnChangeTheme(ResourceDictionary resources, IBaseTheme theme)
