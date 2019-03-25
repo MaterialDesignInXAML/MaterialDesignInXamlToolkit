@@ -55,5 +55,15 @@ namespace MaterialDesignThemes.Wpf
         {
             return new ColorPalette(PaletteName.Secondary, SwatchHelper.Lookup[color]);
         }
+
+        public static ColorPalette CreatePrimaryPalette(Color color)
+        {
+            return new ColorPalette(PaletteName.Primary, color);
+        }
+
+        public static ColorPalette CreateSecondaryPalette(Color color)
+        {
+            return new ColorPalette(PaletteName.Secondary, color);
+        }
     }
 }

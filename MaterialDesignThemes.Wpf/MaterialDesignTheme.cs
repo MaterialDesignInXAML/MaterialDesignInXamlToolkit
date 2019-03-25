@@ -19,8 +19,7 @@ namespace MaterialDesignThemes.Wpf
 
         public ThemeManager ThemeManager { get; }
         public IBaseTheme BaseTheme { get; }
-        public ColorPalette PrimaryPalette { get; }
-        public ColorPalette SecondaryPalette { get; }
+        public IEnumerable<ColorPalette> Palettes { get; }
 
         public static RoutedCommand ChangeThemeCommand = new RoutedCommand();
         public static RoutedCommand ChangePaletteCommand = new RoutedCommand();
@@ -71,19 +70,11 @@ namespace MaterialDesignThemes.Wpf
             ((ICommand)ChangeColorCommand).Execute(new ColorChange(name, color));
         }
 
-        public MaterialDesignTheme(ThemeManager themeManager, IBaseTheme theme, ColorPalette primaryPalette, ColorPalette secondaryPalette)
+        public MaterialDesignTheme(ThemeManager themeManager, IBaseTheme theme, IEnumerable<ColorPalette> palettes)
         {
             ThemeManager = themeManager;
             BaseTheme = theme;
-            PrimaryPalette = primaryPalette;
-            SecondaryPalette = secondaryPalette;
-        }
-
-        public static MaterialDesignTheme Create(ThemeManager themeManager, IBaseTheme theme, Color primaryColor, Color secondaryColor)
-        {
-            var primaryPalette = new ColorPalette(PaletteName.Primary, primaryColor);
-            var secondaryPalette = new ColorPalette(PaletteName.Secondary, secondaryColor);
-            return new MaterialDesignTheme(themeManager, theme, primaryPalette, secondaryPalette);
+            Palettes = palettes;
         }
     }
 }

@@ -14,6 +14,8 @@ namespace MaterialDesignDemo
 {
     class ColorToolViewModel : INotifyPropertyChanged
     {
+        private readonly PaletteHelper _paletteHelper = new PaletteHelper();
+
         private ColorScheme _activeScheme;
 
         public ColorScheme ActiveScheme
@@ -48,15 +50,16 @@ namespace MaterialDesignDemo
         public ICommand ChangeToPrimaryForegroundCommand { get; }
         public ICommand ChangeToSecondaryForegroundCommand { get; }
 
-        public ICommand ToggleBaseCommand { get; } = new AnotherCommandImplementation(o => ApplyBase((bool)o));
+        public ICommand ToggleBaseCommand { get; }
 
-        private static void ApplyBase(bool isDark)
+        private void ApplyBase(bool isDark)
         {
-            MaterialDesignTheme.ChangeTheme(isDark ? MaterialDesignTheme.Dark : MaterialDesignTheme.Light);
+            _paletteHelper.ChangeTheme(isDark ? MaterialDesignTheme.Dark : MaterialDesignTheme.Light);
         }
 
         public ColorToolViewModel()
         {
+            ToggleBaseCommand = new AnotherCommandImplementation(o => ApplyBase((bool)o));
             ChangeHueCommand = new AnotherCommandImplementation(ChangeHue);
             ChangeCustomHueCommand = new AnotherCommandImplementation(ChangeCustomColor);
             ChangeToPrimaryCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.Primary));
@@ -95,12 +98,12 @@ namespace MaterialDesignDemo
             SelectedColor = null;
             if (ActiveScheme == ColorScheme.Primary)
             {
-                MaterialDesignTheme.ChangePrimaryColor(color);
+                _paletteHelper.ChangePrimaryColor(color);
                 _primaryColor = null;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
-                MaterialDesignTheme.ChangeSecondaryColor(color);
+                _paletteHelper.ChangeSecondaryColor(color);
                 _secondaryColor = null;
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
@@ -151,12 +154,12 @@ namespace MaterialDesignDemo
             SelectedColor = hue;
             if (ActiveScheme == ColorScheme.Primary)
             {
-                MaterialDesignTheme.ChangePrimaryColor(hue);
+                _paletteHelper.ChangePrimaryColor(hue);
                 _primaryColor = hue;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
-                MaterialDesignTheme.ChangeSecondaryColor(hue);
+                _paletteHelper.ChangeSecondaryColor(hue);
                 _secondaryColor = hue;
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
@@ -173,9 +176,9 @@ namespace MaterialDesignDemo
 
         private void SetForegroundToSingleColor(PaletteName name, Color color)
         {
-            MaterialDesignTheme.ChangeColor($"{name.ToString()}HueLightForegroundBrush", color);
-            MaterialDesignTheme.ChangeColor($"{name.ToString()}HueMidForegroundBrush", color);
-            MaterialDesignTheme.ChangeColor($"{name.ToString()}HueDarkForegroundBrush", color);
+            _paletteHelper.ChangeColor($"{name.ToString()}HueLightForegroundBrush", color);
+            _paletteHelper.ChangeColor($"{name.ToString()}HueMidForegroundBrush", color);
+            _paletteHelper.ChangeColor($"{name.ToString()}HueDarkForegroundBrush", color);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
