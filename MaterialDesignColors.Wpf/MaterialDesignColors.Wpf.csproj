@@ -7,7 +7,7 @@
     <ProjectGuid>{90B53209-C60C-4655-B28D-A1B3E1044BA3}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MaterialDesignColors</RootNamespace>
+    <RootNamespace>MaterialDesignColors.Wpf</RootNamespace>
     <AssemblyName>MaterialDesignColors</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

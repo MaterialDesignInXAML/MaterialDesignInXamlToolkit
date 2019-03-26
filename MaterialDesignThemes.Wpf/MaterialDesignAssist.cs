@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using MaterialDesignColors;
@@ -32,6 +34,10 @@ namespace MaterialDesignThemes.Wpf
 
         public static MaterialDesignTheme WithMaterialDesign(this ResourceDictionary resources, IBaseTheme theme, IEnumerable<ColorPalette> palettes, ThemeManager themeManager = null)
         {
+            if (resources == null) throw new ArgumentNullException(nameof(resources));
+            if (theme == null) throw new ArgumentNullException(nameof(theme));
+            if (palettes == null) throw new ArgumentNullException(nameof(palettes));
+
             if (themeManager == null)
             {
                 themeManager = new ThemeManager(resources).AttachThemeEventsToWindow();
@@ -47,12 +53,15 @@ namespace MaterialDesignThemes.Wpf
             resources.MergedDictionaries.Add(CreateEmptyPaletteDictionary());
 
             resources.WithTheme(theme);
-            foreach(var palette in palettes)
+
+            List<ColorPalette> paletteList = palettes.ToList();
+
+            foreach(var palette in paletteList)
             {
                 resources.WithPalette(palette);
             }
 
-            return new MaterialDesignTheme(themeManager, theme, palettes);
+            return new MaterialDesignTheme(themeManager, theme, paletteList);
         }
 
         private static void OnChangeTheme(ResourceDictionary resources, IBaseTheme theme)
@@ -116,7 +125,7 @@ namespace MaterialDesignThemes.Wpf
                 ["SecondaryHueMidForegroundBrush"] = new SolidColorBrush(),
                 ["SecondaryHueDarkBrush"] = new SolidColorBrush(),
                 ["SecondaryHueDarkForegroundBrush"] = new SolidColorBrush(),
-                // Compatability
+                // Compatibility
                 ["SecondaryAccentBrush"] = new SolidColorBrush(),
                 ["SecondaryAccentForegroundBrush"] = new SolidColorBrush()
             };

@@ -19,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
 
         public ThemeManager ThemeManager { get; }
         public IBaseTheme BaseTheme { get; }
-        public IEnumerable<ColorPalette> Palettes { get; }
+        public IReadOnlyList<ColorPalette> Palettes { get; }
 
         public static RoutedCommand ChangeThemeCommand = new RoutedCommand();
         public static RoutedCommand ChangePaletteCommand = new RoutedCommand();
@@ -70,7 +70,7 @@ namespace MaterialDesignThemes.Wpf
             ((ICommand)ChangeColorCommand).Execute(new ColorChange(name, color));
         }
 
-        public MaterialDesignTheme(ThemeManager themeManager, IBaseTheme theme, IEnumerable<ColorPalette> palettes)
+        public MaterialDesignTheme(ThemeManager themeManager, IBaseTheme theme, IReadOnlyList<ColorPalette> palettes)
         {
             ThemeManager = themeManager;
             BaseTheme = theme;
