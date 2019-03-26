@@ -23,7 +23,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static MaterialDesignTheme WithMaterialDesign(this ResourceDictionary resources, BaseTheme theme, MaterialDesignColor primaryColor, MaterialDesignColor secondaryColor, ThemeManager themeManager = null)
         {
-            return resources.WithMaterialDesign(MaterialDesignTheme.BaseThemes[theme], SwatchHelper.Lookup[primaryColor], SwatchHelper.Lookup[secondaryColor], themeManager);
+            return resources.WithMaterialDesign(MaterialDesignTheme.BaseThemes[theme], SwatchHelper.Lookup(primaryColor), SwatchHelper.Lookup(secondaryColor), themeManager);
         }
 
         public static MaterialDesignTheme WithMaterialDesign(this ResourceDictionary resources, IBaseTheme theme, Color primaryColor, Color secondaryColor, ThemeManager themeManager = null)

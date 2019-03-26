@@ -47,12 +47,12 @@ namespace MaterialDesignThemes.Wpf
 
         public static ColorPalette CreatePrimaryPalette(MaterialDesignColor color)
         {
-            return new ColorPalette(PaletteName.Primary, SwatchHelper.Lookup[color]);
+            return new ColorPalette(PaletteName.Primary, SwatchHelper.Lookup(color));
         }
 
         public static ColorPalette CreateSecondaryPalette(MaterialDesignColor color)
         {
-            return new ColorPalette(PaletteName.Secondary, SwatchHelper.Lookup[color]);
+            return new ColorPalette(PaletteName.Secondary, SwatchHelper.Lookup(color));
         }
 
         public static ColorPalette CreatePrimaryPalette(Color color)

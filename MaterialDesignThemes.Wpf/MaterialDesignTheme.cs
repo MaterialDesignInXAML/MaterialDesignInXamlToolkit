@@ -41,7 +41,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static void ChangePrimaryColor(MaterialDesignColor color)
         {
-            ChangePalette(new ColorPalette(PaletteName.Primary, SwatchHelper.Lookup[color]));
+            ChangePalette(new ColorPalette(PaletteName.Primary, SwatchHelper.Lookup(color)));
         }
 
         public static void ChangeSecondaryColor(Color color)
@@ -51,7 +51,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static void ChangeSecondaryColor(MaterialDesignColor color)
         {
-            ChangePalette(new ColorPalette(PaletteName.Secondary, SwatchHelper.Lookup[color]));
+            ChangePalette(new ColorPalette(PaletteName.Secondary, SwatchHelper.Lookup(color)));
         }
 
         public static void ChangePalette(ColorPalette palette)

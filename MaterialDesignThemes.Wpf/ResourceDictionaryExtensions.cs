@@ -37,7 +37,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static ResourceDictionary WithPrimaryColor(this ResourceDictionary resourceDictionary, MaterialDesignColor primaryColor)
         {
-            var color = SwatchHelper.Lookup[primaryColor];
+            var color = SwatchHelper.Lookup(primaryColor);
             return resourceDictionary.WithPrimaryColor(color);
         }
 
@@ -48,7 +48,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static ResourceDictionary WithSecondaryColor(this ResourceDictionary resourceDictionary, MaterialDesignColor secondaryColor)
         {
-            var color = SwatchHelper.Lookup[secondaryColor];
+            var color = SwatchHelper.Lookup(secondaryColor);
             return resourceDictionary.WithSecondaryColor(color);
         }
 

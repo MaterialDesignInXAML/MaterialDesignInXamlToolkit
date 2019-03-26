@@ -7,6 +7,5 @@ namespace MaterialDesignColors
     {
         string Name { get; }
         IEnumerable<Color> Hues { get; }
-        IDictionary<MaterialDesignColor, Color> Lookup { get; }
     }
 }
