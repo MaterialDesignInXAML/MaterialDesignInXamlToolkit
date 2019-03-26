@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Windows.Media;
 using MaterialDesignColors.Recommended;
-using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignColors
 {

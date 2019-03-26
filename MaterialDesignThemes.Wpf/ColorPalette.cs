@@ -1,7 +1,6 @@
 ﻿using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignColors.ColorManipulation;
-using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignThemes.Wpf
 {

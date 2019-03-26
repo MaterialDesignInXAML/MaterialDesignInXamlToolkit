@@ -1,5 +1,5 @@
 ﻿using System.Windows.Media;
-using MaterialDesignColors.Wpf;
+using MaterialDesignColors;
 
 namespace MaterialDesignThemes.Wpf
 {

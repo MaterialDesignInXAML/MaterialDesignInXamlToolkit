@@ -1,4 +1,4 @@
-﻿namespace MaterialDesignColors.Wpf
+﻿namespace MaterialDesignColors
 {
     public enum MaterialDesignColor
     {

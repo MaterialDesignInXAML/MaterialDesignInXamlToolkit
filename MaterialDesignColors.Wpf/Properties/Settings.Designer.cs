@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MaterialDesignColors.Wpf.Properties {
+namespace MaterialDesignColors.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

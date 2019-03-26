@@ -1,8 +1,7 @@
-﻿using MaterialDesignColors.Recommended;
-using MaterialDesignColors.Wpf;
+﻿using System.Windows;
+using MaterialDesignColors;
 using MaterialDesignThemes.MahApps;
 using MaterialDesignThemes.Wpf;
-using System.Windows;
 
 namespace MahMaterialDragablzMashUp
 {

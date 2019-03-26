@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignColors;
-using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignThemes.Wpf
 {
