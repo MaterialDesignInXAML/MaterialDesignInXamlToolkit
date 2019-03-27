@@ -12,7 +12,7 @@ namespace MaterialDesignThemes.Wpf
             DefaultStyleKeyProperty.OverrideMetadata(typeof(HexColorItem), new FrameworkPropertyMetadata(typeof(HexColorItem)));
         }
 
-        public Hsv Hsv { get; set; }
+        public Hsb Hsv { get; set; }
 
         public static readonly DependencyProperty ColumnProperty = DependencyProperty.Register(
             nameof(Column), typeof(int), typeof(HexColorItem));

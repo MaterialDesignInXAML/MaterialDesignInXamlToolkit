@@ -1,16 +1,16 @@
 ﻿namespace MaterialDesignColors.ColorManipulation
 {
-    public class Hsv
+    public class Hsb
     {
         public double H { get; }
         public double S { get; }
-        public double V { get; }
+        public double B { get; }
 
-        public Hsv(double h, double s, double v)
+        public Hsb(double h, double s, double b)
         {
             H = h;
             S = s;
-            V = v;
+            B = b;
         }
     }
 }

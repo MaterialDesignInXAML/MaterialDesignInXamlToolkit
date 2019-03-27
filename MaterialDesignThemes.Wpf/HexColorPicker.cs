@@ -44,7 +44,7 @@ namespace MaterialDesignThemes.Wpf
 
             foreach (var c in hexColorPicker.Colors)
             {
-                c.ColorBrush = new SolidColorBrush(new Hsv(c.Hsv.H, c.Hsv.S, (double)e.NewValue).ToColor());
+                c.ColorBrush = new SolidColorBrush(new Hsb(c.Hsv.H, c.Hsv.S, (double)e.NewValue).ToColor());
             }
         }
 
@@ -86,7 +86,7 @@ namespace MaterialDesignThemes.Wpf
             hexList.SelectionChanged += delegate
             {
                 var hsv = ((HexColorItem)hexList.SelectedItem).Hsv;
-                hsv = new Hsv(hsv.H, hsv.S, HsvValue);
+                hsv = new Hsb(hsv.H, hsv.S, HsvValue);
                 var color = hsv.ToColor();
                 ColorSelectedCommand.Execute(color);
             };
@@ -98,7 +98,7 @@ namespace MaterialDesignThemes.Wpf
                 var selectedItem = (HexColorItem)hexList.SelectedItem;
                 if (selectedItem == null) return;
                 var hsv = selectedItem.Hsv;
-                hsv = new Hsv(hsv.H, hsv.S, HsvValue);
+                hsv = new Hsb(hsv.H, hsv.S, HsvValue);
                 var color = hsv.ToColor();
                 ColorSelectedCommand.Execute(color);
             };
@@ -144,7 +144,7 @@ namespace MaterialDesignThemes.Wpf
                     var angle = Math.Round((180 / Math.PI) * rads);
                     //var hexDist = (Math.Abs(x) + Math.Abs(y) + Math.Abs(z)) / 2.0;
 
-                    var hsv = new Hsv(angle, dist / maxDistance, HsvValue);
+                    var hsv = new Hsb(angle, dist / maxDistance, HsvValue);
                     var color = hsv.ToColor();
 
                     Colors.Add(new HexColorItem { Column = colShifted, Row = rowShifted, Hsv = hsv, ColorBrush = new SolidColorBrush(color) });

@@ -59,8 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorManipulation\ColorHelper.cs" />
-    <Compile Include="ColorManipulation\Hsv.cs" />
-    <Compile Include="ColorManipulation\HsvConverter.cs" />
+    <Compile Include="ColorManipulation\Hsl.cs" />
+    <Compile Include="ColorManipulation\HslConverter.cs" />
+    <Compile Include="ColorManipulation\Hsb.cs" />
+    <Compile Include="ColorManipulation\HsbConverter.cs" />
     <Compile Include="ColorManipulation\LabConverter.cs" />
     <Compile Include="ColorManipulation\XyzConverter.cs" />
     <Compile Include="ISwatch.cs" />

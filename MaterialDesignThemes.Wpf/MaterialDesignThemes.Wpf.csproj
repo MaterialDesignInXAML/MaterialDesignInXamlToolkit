@@ -175,6 +175,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.HsbColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.Label.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -330,6 +334,8 @@
     <Compile Include="Converters\CircularProgressBar\StartPointConverter.cs" />
     <Compile Include="Converters\ClockItemIsCheckedConverter.cs" />
     <Compile Include="Converters\ClockLineConverter.cs" />
+    <Compile Include="Converters\HsbLinearGradientConverter.cs" />
+    <Compile Include="Converters\HsbToColorConverter.cs" />
     <Compile Include="Converters\ListViewItemContainerStyleConverter.cs" />
     <Compile Include="Converters\NotZeroConverter.cs" />
     <Compile Include="Converters\RangeLengthConverter.cs" />
@@ -375,6 +381,7 @@
     <Compile Include="HintProxyFabric.TextBox.cs" />
     <Compile Include="HintProxyFabric.ComboBox.cs" />
     <Compile Include="HintProxyFabric.cs" />
+    <Compile Include="HsbColorPicker.cs" />
     <Compile Include="IBaseTheme.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
@@ -383,6 +390,7 @@
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="ListViewAssist.cs" />
     <Compile Include="MaterialDesignAssist.cs" />
+    <Compile Include="MaterialDesignDefaultsResourceDictionary.cs" />
     <Compile Include="ResourceDictionaryExtensions.cs" />
     <Compile Include="MaterialDesignLightTheme.cs" />
     <Compile Include="MaterialDesignDarkTheme.cs" />
