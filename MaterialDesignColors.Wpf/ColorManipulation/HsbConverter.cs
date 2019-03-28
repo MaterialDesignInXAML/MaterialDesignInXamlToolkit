@@ -14,9 +14,9 @@ namespace MaterialDesignColors.ColorManipulation
 
             b *= 255;
 
-            if (s == 0) return Color.FromRgb((byte)b, (byte)b, (byte)b);
+            if (s.IsCloseTo(0)) return Color.FromRgb((byte)b, (byte)b, (byte)b);
 
-            if (h == 360) h = 0;
+            if (h.IsCloseTo(360)) h = 0;
             while (h > 360) h -= 360;
             while (h < 0) h += 360;
 
@@ -51,27 +51,27 @@ namespace MaterialDesignColors.ColorManipulation
             var rgb = new[] { r, g, b };
             var max = rgb.Max();
             var min = rgb.Min();
-            double h, s, v;
-            h = s = v = max;
+            double v = max;
+            double h = max;
 
             var d = max - min;
-            s = max == 0 ? 0 : d / max;
+            var s = max.IsCloseTo(0) ? 0 : d / max;
 
-            if (max == min)
+            if (max.IsCloseTo(min))
             {
                 h = 0; // achromatic
             }
             else
             {
-                if (max == r)
+                if (max.IsCloseTo(r))
                 {
                     h = (g - b) / d + (g < b ? 6 : 0);
                 }
-                else if (max == g)
+                else if (max.IsCloseTo(g))
                 {
                     h = (b - r) / d + 2;
                 }
-                else if (max == b)
+                else if (max.IsCloseTo(b))
                 {
                     h = (r - g) / d + 4;
                 }
@@ -81,5 +81,8 @@ namespace MaterialDesignColors.ColorManipulation
 
             return new Hsb(h, s, v);
         }
+
+        private static bool IsCloseTo(this double value, double target, double tolerance = double.Epsilon) 
+            => Math.Abs(value - target) < tolerance;
     }
 }

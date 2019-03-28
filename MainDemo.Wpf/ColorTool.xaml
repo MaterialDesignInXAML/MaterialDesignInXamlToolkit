@@ -7,12 +7,15 @@
              xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
              xmlns:local="clr-namespace:MaterialDesignDemo"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=local:ColorToolViewModel}"
              d:DesignHeight="600" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.HexColorPicker.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.Slider.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.RadioButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
             <converters:BrushToHexConverter x:Key="BrushToHexConverter" /> 
@@ -67,7 +70,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
-											 To=".26" Duration="0:0:0.2" />
+                                             To=".26" Duration="0:0:0.2" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </Trigger.EnterActions>
@@ -75,7 +78,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
-											 To=".0" Duration="0:0:0.2" />
+                                             To=".0" Duration="0:0:0.2" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </Trigger.ExitActions>
@@ -166,7 +169,7 @@
                             </Track.IncreaseRepeatButton>
                             <Track.Thumb>
                                 <Thumb x:Name="Thumb" Focusable="False" Height="20" OverridesDefaultStyle="True" Template="{StaticResource MaterialDesignColorSliderThumb}" 
-							   VerticalAlignment="Center" Width="20" Foreground="{Binding Value, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HslHueToColorConverter}}"/>
+                               VerticalAlignment="Center" Width="20" Foreground="{Binding Value, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HslHueToColorConverter}}"/>
                             </Track.Thumb>
                         </Track>
                     </Grid>
@@ -423,10 +426,8 @@
                                                         </Style.Triggers>
                                                     </Style>
                                                 </Border.Style>
-                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">
-                                                    <TextBlock.Text>
-                                                        T
-                                                    </TextBlock.Text>
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"
+                                                           Text="T">
                                                     <TextBlock.Style>
                                                         <Style TargetType="TextBlock">
                                                             <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
@@ -475,10 +476,8 @@
                                                         </Style.Triggers>
                                                     </Style>
                                                 </Border.Style>
-                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">
-                                                    <TextBlock.Text>
-                                                        T
-                                                    </TextBlock.Text>
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"
+                                                           Text="T">
                                                     <TextBlock.Style>
                                                         <Style TargetType="TextBlock">
                                                             <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />

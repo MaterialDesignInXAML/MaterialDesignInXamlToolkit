@@ -6,8 +6,20 @@ using MaterialDesignColors.ColorManipulation;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    public class HsbToColorConverter : IMultiValueConverter
+    public class HsbToColorConverter : IValueConverter, IMultiValueConverter
     {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Hsb hsb) return new SolidColorBrush(hsb.ToColor());
+            return Binding.DoNothing;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is SolidColorBrush brush) return brush.Color.ToHsb();
+            return Binding.DoNothing;
+        }
+
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var h = (double)values[0];
