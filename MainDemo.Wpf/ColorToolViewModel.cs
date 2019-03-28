@@ -21,8 +21,11 @@ namespace MaterialDesignDemo
             get => _activeScheme;
             set
             {
-                _activeScheme = value;
-                OnPropertyChanged();
+                if (_activeScheme != value)
+                {
+                    _activeScheme = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -33,8 +36,11 @@ namespace MaterialDesignDemo
             get => _selectedColor;
             set
             {
-                _selectedColor = value;
-                OnPropertyChanged();
+                if (_selectedColor != value)
+                {
+                    _selectedColor = value;
+                    OnPropertyChanged();
+                }
             }
         }
 

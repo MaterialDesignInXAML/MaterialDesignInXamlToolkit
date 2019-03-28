@@ -251,7 +251,7 @@
                         <Rectangle Fill="{Binding Hsb, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HsbToColorConverter}}" 
                                    Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
 
-                        <Slider Value="{Binding Hsb, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HueOnlyValueConverter}, Mode=OneWay}" 
+                        <Slider Value="{Binding Hsb.H, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" 
                                 DockPanel.Dock="Bottom" Style="{StaticResource MaterialDesignColorSlider}" Orientation="Horizontal" Margin="8"
                                 x:Name="PART_HsbHueSlider" IsMoveToPointEnabled ="True" Grid.Column="1" Grid.Row="1"/>
 
