@@ -9,9 +9,10 @@ nuget RhinoMocks 3.6.1
 nuget Shouldly ~> 2.8
 nuget xunit ~> 2.2
 nuget xunit.runner.visualstudio ~> 2.4
-nuget ShowMeTheXAML ~> 1.0.10
-nuget ShowMeTheXAML.AvalonEdit ~> 1.0.10
-nuget ShowMeTheXAML.MSBuild ~> 1.0.10
+nuget Xunit.StaFact ~> 0.3.18
+nuget ShowMeTheXAML ~> 1.0.12
+nuget ShowMeTheXAML.AvalonEdit ~> 1.0.12
+nuget ShowMeTheXAML.MSBuild ~> 1.0.12
 
 github ControlzEx/ControlzEx:e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa src/ControlzEx/PopupEx.cs
 github ControlzEx/ControlzEx:e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa src/ControlzEx/PackIconBase.cs

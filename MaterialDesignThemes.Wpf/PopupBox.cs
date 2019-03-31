@@ -103,6 +103,12 @@ namespace MaterialDesignThemes.Wpf
         public const string PopupContentControlPartName = "PART_PopupContentControl";
         public const string PopupIsOpenStateName = "IsOpen";
         public const string PopupIsClosedStateName = "IsClosed";
+
+        /// <summary>
+        /// Routed command to be used inside of a popup content to close it.
+        /// </summary>
+        public static RoutedCommand ClosePopupCommand = new RoutedCommand();
+
         private PopupEx _popup;
         private ContentControl _popupContentControl;
         private ToggleButton _toggleButton;
@@ -386,8 +392,6 @@ namespace MaterialDesignThemes.Wpf
 
         public override void OnApplyTemplate()
         {
-            if (_popup != null)
-                _popup.Loaded -= PopupOnLoaded;
             if (_toggleButton != null)
                 _toggleButton.PreviewMouseLeftButtonUp -= ToggleButtonOnPreviewMouseLeftButtonUp;
 
@@ -397,8 +401,8 @@ namespace MaterialDesignThemes.Wpf
             _popupContentControl = GetTemplateChild(PopupContentControlPartName) as ContentControl;
             _toggleButton = GetTemplateChild(TogglePartName) as ToggleButton;
 
-            if (_popup != null)
-                _popup.Loaded += PopupOnLoaded;
+            _popup?.CommandBindings.Add(new CommandBinding(ClosePopupCommand, ClosePopupHandler));
+
             if (_toggleButton != null)
                 _toggleButton.PreviewMouseLeftButtonUp += ToggleButtonOnPreviewMouseLeftButtonUp;
 
@@ -409,7 +413,7 @@ namespace MaterialDesignThemes.Wpf
         {
             base.OnIsKeyboardFocusWithinChanged(e);
 
-            if (IsPopupOpen && !IsKeyboardFocusWithin)
+            if (IsPopupOpen && !IsKeyboardFocusWithin && !StaysOpen)
             {
                 Close();
             }
@@ -444,6 +448,11 @@ namespace MaterialDesignThemes.Wpf
             base.OnMouseEnter(e);
         }
 
+        private void ClosePopupHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
+        {
+            IsPopupOpen = false;
+        }
+
         private void OnLayoutUpdated(object sender, EventArgs eventArgs)
         {
             if (_popupContentControl != null && _popup != null &&
@@ -465,7 +474,7 @@ namespace MaterialDesignThemes.Wpf
 
                 Close();
 
-            base.OnMouseEnter(e);
+            base.OnMouseLeave(e);
         }
 
         protected void Close()
@@ -725,12 +734,6 @@ namespace MaterialDesignThemes.Wpf
         }
 
         #endregion
-
-        private void PopupOnLoaded(object sender, RoutedEventArgs routedEventArgs)
-        {
-            if (PopupMode == PopupBoxPopupMode.MouseOverEager)
-                _popup.IsOpen = true;
-        }
 
         private void ToggleButtonOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {

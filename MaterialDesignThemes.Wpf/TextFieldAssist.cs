@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -161,6 +162,28 @@ namespace MaterialDesignThemes.Wpf
         public static bool GetRippleOnFocusEnabled(DependencyObject element)
         {
             return (bool)element.GetValue(RippleOnFocusEnabledProperty);
+        }
+
+        /// <summary>
+        /// The color for highlighting effects on the border of a text box.
+        /// </summary>
+        public static readonly DependencyProperty UnderlineBrushProperty = DependencyProperty.RegisterAttached(
+            "UnderlineBrush", typeof(Brush), typeof(TextFieldAssist), new PropertyMetadata(null));
+
+        /// <summary>
+        /// Sets the color for highlighting effects on the border of a text box.
+        /// </summary>
+        public static void SetUnderlineBrush(DependencyObject element, Brush value)
+        {
+            element.SetValue(UnderlineBrushProperty, value);
+        }
+
+        /// <summary>
+        /// Gets the color for highlighting effects on the border of a text box.
+        /// </summary>
+        public static Brush GetUnderlineBrush(DependencyObject element)
+        {
+            return (Brush)element.GetValue(UnderlineBrushProperty);
         }
 
         /// <summary>

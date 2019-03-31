@@ -278,13 +278,16 @@ namespace MaterialDesignThemes.Wpf
                 if (Is24Hours)
                 {
                     GenerateButtons(hoursCanvas, Enumerable.Range(13, 12).ToList(), ButtonRadiusRatio,
-                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "00");
+                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "00",
+                        ClockDisplayMode.Hours);
                     GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), ButtonRadiusInnerRatio,
-                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "#");
+                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "#",
+                        ClockDisplayMode.Hours);
                 }
                 else
                     GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), ButtonRadiusRatio,
-                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "0");
+                        new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "0",
+                        ClockDisplayMode.Hours);
             }
 
             if (GetTemplateChild(MinutesCanvasPartName) is Canvas minutesCanvas)
@@ -293,7 +296,8 @@ namespace MaterialDesignThemes.Wpf
 
                 GenerateButtons(minutesCanvas, Enumerable.Range(1, 60).ToList(), ButtonRadiusRatio,
                     new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Minutes, Is24Hours),
-                    i => ((i / 5.0) % 1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle", "0");
+                    i => ((i / 5.0) % 1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle", "0",
+                        ClockDisplayMode.Minutes);
             }
 
             if (GetTemplateChild(SecondsCanvasPartName) is Canvas secondsCanvas)
@@ -302,7 +306,8 @@ namespace MaterialDesignThemes.Wpf
 
                 GenerateButtons(secondsCanvas, Enumerable.Range(1, 60).ToList(), ButtonRadiusRatio,
                     new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Seconds, Is24Hours),
-                    i => ((i / 5.0) % 1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle", "0");
+                    i => ((i / 5.0) % 1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle", "0",
+                        ClockDisplayMode.Seconds);
             }
 
             void RemoveExistingButtons(Canvas canvas)
@@ -333,7 +338,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void GenerateButtons(Panel canvas, ICollection<int> range, double radiusRatio, IValueConverter isCheckedConverter, Func<int, string> stylePropertySelector,
-            string format)
+            string format, ClockDisplayMode clockDisplayMode)
         {
             var anglePerItem = 360.0 / range.Count;
             var radiansPerItem = anglePerItem * (Math.PI / 180);
@@ -359,7 +364,7 @@ namespace MaterialDesignThemes.Wpf
                 button.SetBinding(Canvas.LeftProperty, GetBinding("X", button));
                 button.SetBinding(Canvas.TopProperty, GetBinding("Y", button));
 
-                button.Content = (i == 60 ? 0 : (i == 24 ? 0 : i)).ToString(format);
+                button.Content = (i == 60 ? 0 : (i == 24 && clockDisplayMode == ClockDisplayMode.Hours ? 0 : i)).ToString(format);
                 canvas.Children.Add(button);
             }
         }

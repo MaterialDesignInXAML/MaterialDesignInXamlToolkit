@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="400">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -57,9 +57,10 @@
                         Width="280" />
             </smtx:XamlDisplay>
         </StackPanel>
-        <smtx:XamlDisplay Key="slider_7" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Margin="5 24 0 0">
-            <Slider Minimum="0" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" 
-                    Width="260" ToolTip="MaterialDesignDiscreteSlider"/>
+        <smtx:XamlDisplay Key="slider_7" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Margin="24 8 0 0">
+            <Slider Orientation="Vertical" Minimum="0" Maximum="100" Height="100"
+                    Style="{StaticResource MaterialDesignDiscreteSlider}" 
+                    ToolTip="MaterialDesignDiscreteSlider"/>
         </smtx:XamlDisplay>
     </Grid>
 </UserControl>

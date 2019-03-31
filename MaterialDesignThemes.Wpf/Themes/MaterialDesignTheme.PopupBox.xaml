@@ -9,7 +9,55 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolTip.xaml" />
     </ResourceDictionary.MergedDictionaries>
-        
+
+    <Style TargetType="{x:Type Button}" x:Key="MaterialDesignPopupBoxButton">
+        <Setter Property="VerticalContentAlignment" Value="Bottom" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Padding" Value="16 0 16 16" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CircleEase EasingMode="EaseOut"/>
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Normal"/>
+                                <VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity" To="0.1" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.48" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="MouseOverBorder" Opacity="0" Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+                        <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                    Focusable="False"
+                                    MinHeight="48"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"                                                                
+                                    Padding="{TemplateBinding Padding}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:NullableToVisibilityConverter x:Key="NullVisibilityConverter" />
     <converters:NullableToVisibilityConverter x:Key="InvertedNullVisibilityConverter" NullValue="Visible" NotNullValue="Collapsed" />
@@ -17,7 +65,7 @@
 
     <wpf:PackIcon Kind="DotsVertical" x:Key="MaterialDesignPopupBoxToggleContent" x:Shared="False" Margin="4 0 4 0" Width="24" Height="24"
                   Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=Foreground}" />
-    
+
     <Style TargetType="{x:Type wpf:PopupBox}" x:Key="MaterialDesignPopupBox">
         <Setter Property="ToggleContent" Value="{StaticResource MaterialDesignPopupBoxToggleContent}" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
@@ -25,7 +73,7 @@
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="TextElement.FontWeight" Value="Normal" />
         <Setter Property="Padding" Value="0 8 0 8" />
-        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Focusable" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:PopupBox}">
@@ -50,11 +98,11 @@
                     <Grid>
                         <ToggleButton x:Name="PART_Toggle" Style="{StaticResource ToggleButtonStyle}" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                                       Content="{TemplateBinding ToggleContent}" ContentTemplate="{TemplateBinding ToggleContentTemplate}"
-                                      Cursor="Hand"
-                                      VerticalAlignment="Center"
+                                      Cursor="Hand" TabIndex="{TemplateBinding TabIndex}" VerticalAlignment="Center"
                                       />
-                        <controlzEx:PopupEx x:Name="PART_Popup" IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
-                                            CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"                                            
+                        <controlzEx:PopupEx x:Name="PART_Popup" 
+                                            IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
+                                            CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
                                             HorizontalOffset="5"
                                             VerticalOffset="5"
                                             PlacementTarget="{Binding ElementName=PART_Toggle}"
@@ -66,60 +114,10 @@
                                       FontSize="15"
                                       FontWeight="Regular"
                                       Padding="{TemplateBinding Padding}"
-                                      RenderOptions.ClearTypeHint="Enabled"                                      
+                                      RenderOptions.ClearTypeHint="Enabled"
                                       Margin="5">
                                 <wpf:Card.Resources>
-                                    <Style TargetType="{x:Type Button}">
-                                        <Setter Property="VerticalContentAlignment" Value="Bottom" />
-                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                        <Setter Property="Padding" Value="16 0 16 16" />
-                                        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type Button}">
-                                                    <Grid>
-                                                        <VisualStateManager.VisualStateGroups>
-                                                            <VisualStateGroup Name="CommonStates">
-                                                                <VisualStateGroup.Transitions>
-                                                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
-                                                                        <VisualTransition.GeneratedEasingFunction>
-                                                                            <CircleEase EasingMode="EaseOut"/>
-                                                                        </VisualTransition.GeneratedEasingFunction>
-                                                                    </VisualTransition>
-                                                                </VisualStateGroup.Transitions>
-                                                                <VisualState Name="Normal"/>
-                                                                <VisualState Name="MouseOver">
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
-                                                                                         To="0.1" Duration="0"/>
-                                                                    </Storyboard>
-                                                                </VisualState>
-                                                                <VisualState Name="Disabled">
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                                                         To="0.48" Duration="0"/>
-                                                                    </Storyboard>
-                                                                </VisualState>
-                                                            </VisualStateGroup>
-                                                        </VisualStateManager.VisualStateGroups>
-                                                        <Border x:Name="MouseOverBorder"
-                                                                Opacity="0"
-                                                                Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
-                                                        <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                                                    Focusable="False"
-                                                                    MinHeight="48"
-                                                                    Content="{TemplateBinding Content}"
-                                                                    ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"                                                                
-                                                                    Padding="{TemplateBinding Padding}"/>
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignPopupBoxButton}" />
                                 </wpf:Card.Resources>
                             </wpf:Card>
                         </controlzEx:PopupEx>
@@ -135,17 +133,17 @@
     </Style>
 
     <Style x:Key="MaterialDesignToolPopupBox" BasedOn="{StaticResource MaterialDesignPopupBox}" TargetType="wpf:PopupBox">
-        <Setter Property="Foreground" Value="#616161" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignToolForeground}" />
         <Setter Property="Padding" Value="4"/>
     </Style>
 
     <Style x:Key="MaterialDesignToolForegroundPopupBox" BasedOn="{StaticResource MaterialDesignToolPopupBox}" TargetType="wpf:PopupBox">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
     </Style>
-    
+
     <wpf:PackIcon x:Shared="False" x:Key="MaterialDesignMultiFloatingActionPopupBoxIcon"
                   Kind="Plus" Width="24" Height="24" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=Foreground}" />
-    
+
     <Style TargetType="{x:Type wpf:PopupBox}" x:Key="MaterialDesignMultiFloatingActionPopupBox">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
@@ -303,17 +301,18 @@
                                 <DoubleAnimation.EasingFunction>
                                     <SineEase EasingMode="EaseInOut" />
                                 </DoubleAnimation.EasingFunction>
-                            </DoubleAnimation>                            
+                            </DoubleAnimation>
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid>
-                        <ToggleButton x:Name="PART_Toggle" Style="{StaticResource ToggleButtonStyle}" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"                                      
+                        <ToggleButton x:Name="PART_Toggle" Style="{StaticResource ToggleButtonStyle}" 
+                                      IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"                                      
                                       Cursor="Hand"
                                       Background="{TemplateBinding Background}"
                                       BorderBrush="{TemplateBinding BorderBrush}"
                                       Foreground="{TemplateBinding Foreground}"
                                       VerticalAlignment="Stretch"
-                                      HorizontalAlignment="Stretch"                                      
+                                      HorizontalAlignment="Stretch"
                                       ToolTip="{TemplateBinding ToolTip}"
                                       ToolTipService.Placement="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(ToolTipService.Placement)}">
                             <Grid>
@@ -334,14 +333,14 @@
                         </ToggleButton>
                         <controlzEx:PopupEx x:Name="PART_Popup" 
                                           IsOpen="False"
-                                          CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"                                                                                    
+                                          CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
                                           PlacementTarget="{Binding ElementName=PART_Toggle}"
                                           Placement="Custom"
-                                          PopupAnimation="None"                                          
+                                          PopupAnimation="None"
                                           AllowsTransparency="True">
                             <Grid>
                                 <!-- with PopupBox.PopupMode == MouseOverEager the popup is always open, with 
-                                     content hidden. but Transparent doesnt seem to register hit test in the popup.
+                                     content hidden. but Transparent doesn't seem to register hit test in the popup.
                                      this opacity is the lowest I could get to register hit test. might try and speak
                                      to MS about this one, I *think* it is a bug -->
                                 <Border Background="White" Opacity="0.002" />
@@ -379,9 +378,13 @@
                                 <BeginStoryboard Storyboard="{StaticResource Close}" />
                             </Trigger.ExitActions>
                         </Trigger>
-                        <Trigger Property="PopupMode" Value="MouseOverEager">
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="PopupMode" Value="MouseOverEager" />
+                                <Condition Property="IsVisible" Value="True" />
+                            </MultiTrigger.Conditions>
                             <Setter TargetName="PART_Popup" Property="IsOpen" Value="True" />
-                        </Trigger>
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -416,6 +419,6 @@
         <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
-    </Style>    
+    </Style>
 
 </ResourceDictionary>

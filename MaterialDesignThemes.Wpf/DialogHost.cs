@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,20 +57,18 @@ namespace MaterialDesignThemes.Wpf
 
         private static readonly HashSet<DialogHost> LoadedInstances = new HashSet<DialogHost>();
 
-        private readonly ManualResetEvent _asyncShowWaitHandle = new ManualResetEvent(false);
         private DialogOpenedEventHandler _asyncShowOpenedEventHandler;
         private DialogClosingEventHandler _asyncShowClosingEventHandler;
+        private TaskCompletionSource<object> _dialogTaskCompletionSource;
 
         private Popup _popup;
         private ContentControl _popupContentControl;
         private Grid _contentCoverGrid;
-        private DialogSession _session;
         private DialogOpenedEventHandler _attachedDialogOpenedEventHandler;
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;
-        private object _closeDialogExecutionParameter;
         private IInputElement _restoreFocusDialogClose;
         private IInputElement _restoreFocusWindowReactivation;
-        private Action _currentSnackbarMessageQueueUnPauseAction = null;
+        private Action _currentSnackbarMessageQueueUnPauseAction;
         private Action _closeCleanUp = () => { };
 
         static DialogHost()
@@ -178,7 +175,7 @@ namespace MaterialDesignThemes.Wpf
 
             var targets = LoadedInstances.Where(dh => dialogIdentifier == null || Equals(dh.Identifier, dialogIdentifier)).ToList();
             if (targets.Count == 0)
-                throw new InvalidOperationException("No loaded DialogHost have an Identifier property matching dialogIndetifier argument.");
+                throw new InvalidOperationException($"No loaded DialogHost have an {nameof(Identifier)} property matching {nameof(dialogIdentifier)} argument.");
             if (targets.Count > 1)
                 throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
 
@@ -190,24 +187,21 @@ namespace MaterialDesignThemes.Wpf
             if (IsOpen)
                 throw new InvalidOperationException("DialogHost is already open.");
 
+            
+            _dialogTaskCompletionSource = new TaskCompletionSource<object>();
+
             AssertTargetableContent();
             DialogContent = content;
             _asyncShowOpenedEventHandler = openedEventHandler;
             _asyncShowClosingEventHandler = closingEventHandler;
             SetCurrentValue(IsOpenProperty, true);
-
-            var task = new Task(() =>
-            {
-                _asyncShowWaitHandle.WaitOne();
-            });
-            task.Start();
-
-            await task;
+            
+            object result = await _dialogTaskCompletionSource.Task;
 
             _asyncShowOpenedEventHandler = null;
             _asyncShowClosingEventHandler = null;
 
-            return _closeDialogExecutionParameter;
+            return result;
         }
 
         #endregion
@@ -251,16 +245,19 @@ namespace MaterialDesignThemes.Wpf
             }
             else
             {
-                dialogHost._asyncShowWaitHandle.Set();
                 dialogHost._attachedDialogClosingEventHandler = null;
                 if (dialogHost._currentSnackbarMessageQueueUnPauseAction != null)
                 {
                     dialogHost._currentSnackbarMessageQueueUnPauseAction();
                     dialogHost._currentSnackbarMessageQueueUnPauseAction = null;
                 }
-                dialogHost._session.IsEnded = true;
-                dialogHost._session = null;
+                dialogHost.CurrentSession.IsEnded = true;
+                dialogHost.CurrentSession = null;
                 dialogHost._closeCleanUp();
+                //NB: _dialogTaskCompletionSource is only set in the case where the dialog is shown with Show
+                //To get into this case you need to display the dialog with Show and then hide it by setting IsOpen to false
+                //Setting this here ensures the other 
+                dialogHost._dialogTaskCompletionSource?.TrySetResult(null);
 
                 // Don't attempt to Invoke if _restoreFocusDialogClose hasn't been assigned yet. Can occur
                 // if the MainWindow has started up minimized. Even when Show() has been called, this doesn't
@@ -269,9 +266,8 @@ namespace MaterialDesignThemes.Wpf
 
                 return;
             }
-
-            dialogHost._asyncShowWaitHandle.Reset();
-            dialogHost._session = new DialogSession(dialogHost);
+            
+            dialogHost.CurrentSession = new DialogSession(dialogHost);
             var window = Window.GetWindow(dialogHost);
             dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
 
@@ -280,7 +276,7 @@ namespace MaterialDesignThemes.Wpf
             // * the attached property (which should be applied to the button which opened the dialog
             // * straight forward dependency property 
             // * handler provided to the async show method
-            var dialogOpenedEventArgs = new DialogOpenedEventArgs(dialogHost._session, DialogOpenedEvent);
+            var dialogOpenedEventArgs = new DialogOpenedEventArgs(dialogHost.CurrentSession, DialogOpenedEvent);
             dialogHost.OnDialogOpened(dialogOpenedEventArgs);
             dialogHost._attachedDialogOpenedEventHandler?.Invoke(dialogHost, dialogOpenedEventArgs);
             dialogHost.DialogOpenedCallback?.Invoke(dialogHost, dialogOpenedEventArgs);
@@ -300,6 +296,11 @@ namespace MaterialDesignThemes.Wpf
             }));
         }
 
+        /// <summary>
+        /// Returns a DialogSession for the currently open dialog for managing it programmatically. If no dialog is open, CurrentSession will return null
+        /// </summary>
+        public DialogSession CurrentSession { get; private set; }
+
         public bool IsOpen
         {
             get { return (bool)GetValue(IsOpenProperty); }
@@ -311,7 +312,7 @@ namespace MaterialDesignThemes.Wpf
 
         public object DialogContent
         {
-            get { return (object)GetValue(DialogContentProperty); }
+            get { return GetValue(DialogContentProperty); }
             set { SetValue(DialogContentProperty, value); }
         }
 
@@ -384,7 +385,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public object CloseOnClickAwayParameter
         {
-            get { return (object)GetValue(CloseOnClickAwayParameterProperty); }
+            get { return GetValue(CloseOnClickAwayParameterProperty); }
             set { SetValue(CloseOnClickAwayParameterProperty, value); }
         }
 
@@ -560,17 +561,17 @@ namespace MaterialDesignThemes.Wpf
 
         internal void AssertTargetableContent()
         {
-            var existindBinding = BindingOperations.GetBindingExpression(this, DialogContentProperty);
-            if (existindBinding != null)
+            var existingBinding = BindingOperations.GetBindingExpression(this, DialogContentProperty);
+            if (existingBinding != null)
                 throw new InvalidOperationException(
                     "Content cannot be passed to a dialog via the OpenDialog if DialogContent already has a binding.");
         }
 
         internal void Close(object parameter)
         {
-            var dialogClosingEventArgs = new DialogClosingEventArgs(_session, parameter, DialogClosingEvent);
+            var dialogClosingEventArgs = new DialogClosingEventArgs(CurrentSession, parameter, DialogClosingEvent);
 
-            _session.IsEnded = true;
+            CurrentSession.IsEnded = true;
 
             //multiple ways of calling back that the dialog is closing:
             // * routed event
@@ -582,12 +583,16 @@ namespace MaterialDesignThemes.Wpf
             DialogClosingCallback?.Invoke(this, dialogClosingEventArgs);
             _asyncShowClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
 
+            
             if (!dialogClosingEventArgs.IsCancelled)
+            {
+                _dialogTaskCompletionSource?.TrySetResult(parameter);
                 SetCurrentValue(IsOpenProperty, false);
+            }
             else
-                _session.IsEnded = false;
-
-            _closeDialogExecutionParameter = parameter;
+            {
+                CurrentSession.IsEnded = false;
+            }
         }
 
         /// <summary>
@@ -668,7 +673,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void CloseDialogCanExecute(object sender, CanExecuteRoutedEventArgs canExecuteRoutedEventArgs)
         {
-            canExecuteRoutedEventArgs.CanExecute = _session != null;
+            canExecuteRoutedEventArgs.CanExecute = CurrentSession != null;
         }
 
         private void CloseDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)

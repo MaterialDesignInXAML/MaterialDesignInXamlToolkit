@@ -10,14 +10,14 @@ Comprehensive and easy to use Material Design theme and control library for the 
 
  * Material Design styles for all major WPF Framework controls
  * Additional controls to support the theme, including Multi Action Button, Cards, Dialogs, Clock
- * Easy configuration of palette (at design _and_ runtime), according to [Google's guidelines](http://www.google.co.uk/design/spec/style/color.html#color-ui-color-application)
+ * Easy configuration of palette (at design _and_ runtime), according to [Google's guidelines](https://material.io/design/)
  * Full [Material Design Icons](https://materialdesignicons.com/) icon pack
  * Easy transition effects
  * Compatible with [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro)
  * Demo applications included in the source project
 
 [![Gitter](https://img.shields.io/badge/Gitter-Join%20Chat,%20Get%20Help,%20Say%20Hello!-green.svg?style=flat-square)](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit)
-[![Build](https://img.shields.io/appveyor/ci/ButchersBoy/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://ci.appveyor.com/project/ButchersBoy/materialdesigninxamltoolkit)
+[![Build](https://img.shields.io/appveyor/ci/ButchersBoy/MaterialDesignInXamlToolkit/master.svg?style=flat-square)](https://ci.appveyor.com/project/ButchersBoy/materialdesigninxamltoolkit)
 [![NuGet-Themes](https://img.shields.io/nuget/v/MaterialDesignThemes.svg?label=NuGet:%20Themes&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](https://img.shields.io/nuget/vpre/MaterialDesignThemes.svg?label=NuGet:%20Themes%20(CI)&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](https://img.shields.io/nuget/vpre/MaterialDesignColors.svg?label=NuGet:%20Colours&style=flat-square)](https://www.nuget.org/packages/MaterialDesignColors/)

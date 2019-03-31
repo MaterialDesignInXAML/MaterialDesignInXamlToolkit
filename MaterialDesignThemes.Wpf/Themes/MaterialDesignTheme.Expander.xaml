@@ -93,7 +93,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="12,24,12,24">
+                    <Border Background="{TemplateBinding Background}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ExpanderAssist.RightHeaderPadding)}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -112,7 +112,11 @@
                             <ContentPresenter Grid.Row="1"
                                           HorizontalAlignment="Center"
                                           Margin="0,16,0,0"
-                                          Content="{TemplateBinding Content}" VerticalAlignment="Top" />
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          VerticalAlignment="Top" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -127,7 +131,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="12,24,12,24">
+                    <Border Background="{TemplateBinding Background}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ExpanderAssist.LeftHeaderPadding)}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -146,7 +150,11 @@
                             <ContentPresenter Grid.Row="1"
                                           HorizontalAlignment="Center"
                                           Margin="0,16,0,0"
-                                          Content="{TemplateBinding Content}" VerticalAlignment="Top" />
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          VerticalAlignment="Top" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -161,7 +169,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="24,12,24,12">
+                    <Border Background="{TemplateBinding Background}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ExpanderAssist.DownHeaderPadding)}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -192,7 +200,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="24,12,24,12">
+                    <Border Background="{TemplateBinding Background}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ExpanderAssist.UpHeaderPadding)}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -200,6 +208,9 @@
                             </Grid.ColumnDefinitions>
                             <ContentPresenter VerticalAlignment="Center"
                                           Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"                                          
                                           Margin="0,0,16,0" />
                             <ToggleButton IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                           VerticalAlignment="Center"
@@ -224,6 +235,10 @@
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
+        <Setter Property="wpf:ExpanderAssist.DownHeaderPadding" Value="24,12,24,12"/>
+        <Setter Property="wpf:ExpanderAssist.UpHeaderPadding" Value="24,12,24,12"/>
+        <Setter Property="wpf:ExpanderAssist.LeftHeaderPadding" Value="12,24,12,24"/>
+        <Setter Property="wpf:ExpanderAssist.RightHeaderPadding" Value="12,24,12,24"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">

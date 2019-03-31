@@ -18,12 +18,12 @@ NUGET
     NSubstitute (2.0.3)
     RhinoMocks (3.6.1)
     Shouldly (2.8.3)
-    ShowMeTheXAML (1.0.10)
-    ShowMeTheXAML.AvalonEdit (1.0.10)
+    ShowMeTheXAML (1.0.12)
+    ShowMeTheXAML.AvalonEdit (1.0.12)
       AvalonEdit (>= 5.0.4 < 5.1)
-      ShowMeTheXAML (>= 1.0.10 < 1.1)
-    ShowMeTheXAML.MSBuild (1.0.10)
-      ShowMeTheXAML (>= 1.0.10 < 1.1)
+      ShowMeTheXAML (>= 1.0.12 < 1.1)
+    ShowMeTheXAML.MSBuild (1.0.12)
+      ShowMeTheXAML (>= 1.0.12 < 1.1)
     System.Runtime.CompilerServices.Unsafe (4.5.1)
     System.Runtime.InteropServices.RuntimeInformation (4.3) - restriction: == net45
     System.Threading.Tasks.Extensions (4.5.1)
@@ -47,6 +47,9 @@ NUGET
       NETStandard.Library (>= 1.6.1) - restriction: == net45
       xunit.extensibility.core (2.4)
     xunit.runner.visualstudio (2.4)
+    Xunit.StaFact (0.3.18)
+      xunit.extensibility.execution (>= 2.1) - restriction: == net45
+      xunit.extensibility.execution (>= 2.4) - restriction: || (&& (== net45) (>= net452)) (== net452)
 GITHUB
   remote: ControlzEx/ControlzEx
     src/ControlzEx/BadgedEx.cs (e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa)

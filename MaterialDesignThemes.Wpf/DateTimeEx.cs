@@ -10,7 +10,7 @@ namespace MaterialDesignThemes.Wpf
 		{
 			if (culture == null) throw new ArgumentNullException(nameof(culture));
 
-			if (culture.Calendar is GregorianCalendar)
+			if (culture.Calendar is GregorianCalendar || culture.Calendar is PersianCalendar)
 			{
 				return culture.DateTimeFormat;
 			}
