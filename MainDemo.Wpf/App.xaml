@@ -9,7 +9,7 @@
              xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <materialDesign:MaterialDesignResourceDictionary Theme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime">
+        <materialDesign:MaterialDesignResourceDictionary Theme="Light" PrimaryColor="DeepPurple" SecondaryColor="LimeAccent">
             <ResourceDictionary.MergedDictionaries>
                 <!-- This is technically optional and will get added in, however not having it in the tree does break intellisense.  -->
                 <!-- The same also applies to the color resources, but those tend to use dynamic resources anyway. -->

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -31,17 +32,26 @@ namespace MaterialDesignThemes.Wpf
 
         public void ChangeTheme(IBaseTheme theme)
         {
-            foreach (var handler in ThemeChangeHandlers) handler(Resources, theme);
+            foreach (var handler in ThemeChangeHandlers)
+            {
+                handler(Resources, theme);
+            }
         }
 
         public void ChangePalette(ColorPalette palette)
         {
-            foreach (var handler in PaletteChangeHandlers) handler(Resources, palette);
+            foreach (var handler in PaletteChangeHandlers)
+            {
+                handler(Resources, palette);
+            }
         }
 
         public void ChangeColor(ColorChange colorChange)
         {
-            foreach (var handler in ColorChangeHandlers) handler(Resources, colorChange);
+            foreach (var handler in ColorChangeHandlers)
+            {
+                handler(Resources, colorChange);
+            }
         }
 
         private void ChangeThemeCommandExecuted(object sender, ExecutedRoutedEventArgs e)

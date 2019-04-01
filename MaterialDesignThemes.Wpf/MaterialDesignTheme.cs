@@ -1,5 +1,4 @@
-            ChangeColor(name.ToString(), color);
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignColors;

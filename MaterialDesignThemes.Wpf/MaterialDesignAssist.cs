@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Media;
 using MaterialDesignColors;
-using MaterialDesignColors.Wpf;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -30,7 +29,7 @@ namespace MaterialDesignThemes.Wpf
             return resources.WithMaterialDesign(theme, new[] { ColorPalette.CreatePrimaryPalette(primaryColor), ColorPalette.CreateSecondaryPalette(secondaryColor) }, themeManager);
         }
 
-        public static MaterialDesignTheme WithMaterialDesign(this ResourceDictionary resources, IBaseTheme theme, IEnumerable<ColorPalette> palettes, ThemeManager themeManager = null)
+        public static MaterialDesignTheme WithMaterialDesign(this ResourceDictionary resources, IBaseTheme theme, IReadOnlyList<ColorPalette> palettes, ThemeManager themeManager = null)
         {
             if (themeManager == null)
             {
@@ -116,7 +115,7 @@ namespace MaterialDesignThemes.Wpf
                 ["SecondaryHueMidForegroundBrush"] = new SolidColorBrush(),
                 ["SecondaryHueDarkBrush"] = new SolidColorBrush(),
                 ["SecondaryHueDarkForegroundBrush"] = new SolidColorBrush(),
-                // Compatability
+                // Compatibility
                 ["SecondaryAccentBrush"] = new SolidColorBrush(),
                 ["SecondaryAccentForegroundBrush"] = new SolidColorBrush()
             };

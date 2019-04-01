@@ -10,7 +10,7 @@ using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo
 {
-    class ColorToolViewModel : INotifyPropertyChanged
+    internal class ColorToolViewModel : INotifyPropertyChanged
     {
         private readonly PaletteHelper _paletteHelper = new PaletteHelper();
 
@@ -30,7 +30,6 @@ namespace MaterialDesignDemo
         }
 
         private Color? _selectedColor;
-
         public Color? SelectedColor
         {
             get => _selectedColor;
@@ -40,6 +39,11 @@ namespace MaterialDesignDemo
                 {
                     _selectedColor = value;
                     OnPropertyChanged();
+
+                    if (value is Color color)
+                    {
+                        ChangeCustomColor(color);
+                    }
                 }
             }
         }
@@ -98,27 +102,26 @@ namespace MaterialDesignDemo
         private void ChangeCustomColor(object obj)
         {
             var color = (Color)obj;
-
-            SelectedColor = null;
+            
             if (ActiveScheme == ColorScheme.Primary)
             {
                 _paletteHelper.ChangePrimaryColor(color);
-                _primaryColor = null;
+                _primaryColor = color;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
                 _paletteHelper.ChangeSecondaryColor(color);
-                _secondaryColor = null;
+                _secondaryColor = color;
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {
                 SetForegroundToSingleColor(PaletteName.Primary, color);
-                _primaryForegroundColor = null;
+                _primaryForegroundColor = color;
             }
             else if (ActiveScheme == ColorScheme.SecondaryForeground)
             {
                 SetForegroundToSingleColor(PaletteName.Secondary, color);
-                _secondaryForegroundColor = null;
+                _secondaryForegroundColor = color;
             }
         }
 

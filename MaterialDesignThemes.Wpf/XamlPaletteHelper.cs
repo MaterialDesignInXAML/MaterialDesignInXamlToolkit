@@ -1,19 +1,17 @@
-﻿using MaterialDesignColors;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
-using MaterialDesignColors.ColorManipulation;
-using System.Text.RegularExpressions;
+using MaterialDesignColors;
 
 namespace MaterialDesignThemes.Wpf
 {
     public class XamlPaletteHelper
     {
         private readonly SwatchesProvider _swatchesProvider = new SwatchesProvider();
-        private readonly RecommendedThemeProvider _themeProvider = new RecommendedThemeProvider();
 
         public virtual void SetLightDark(bool isDark)
         {
@@ -128,13 +126,13 @@ namespace MaterialDesignThemes.Wpf
         /// Attempts to query the current palette configured in the application's resources.
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="InvalidOperationException">Thrown if there is any ambiguouty regarding the palette. Provided
-        /// standard guidleines have been followed for palette configureation, this should not happen.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if there is any ambiguity regarding the palette. Provided
+        /// standard guidelines have been followed for palette configuration, this should not happen.</exception>
         public Palette QueryPalette()
         {
             //it's not safe to to query for the included swatches, so we find the mid (or accent) colour, 
             //& cross match it with the entirety of all available hues to find the owning swatch.
-            
+
             var swatchesProvider = _swatchesProvider;
             var swatchByPrimaryHueIndex = swatchesProvider
                 .Swatches
@@ -150,9 +148,9 @@ namespace MaterialDesignThemes.Wpf
             var accentBrush = GetBrush("SecondaryAccentBrush");
 
             if (!swatchByPrimaryHueIndex.TryGetValue(primaryMidBrush.Color, out var primarySwatch)) return null;
-                //throw new InvalidOperationException("PrimaryHueMidBrush is not from standard swatches");
+            //throw new InvalidOperationException("PrimaryHueMidBrush is not from standard swatches");
             if (!swatchByAccentHueIndex.TryGetValue(accentBrush.Color, out var accentSwatch)) return null;
-                //throw new InvalidOperationException("SecondaryAccentBrush is not from standard swatches");
+            //throw new InvalidOperationException("SecondaryAccentBrush is not from standard swatches");
 
             var primaryLightBrush = GetBrush("PrimaryHueLightBrush");
             var primaryDarkBrush = GetBrush("PrimaryHueDarkBrush");
@@ -179,7 +177,7 @@ namespace MaterialDesignThemes.Wpf
             ReplaceEntry("PrimaryHueMidForegroundBrush", new SolidColorBrush(mid.Foreground));
             ReplaceEntry("PrimaryHueDarkBrush", new SolidColorBrush(dark.Color));
             ReplaceEntry("PrimaryHueDarkForegroundBrush", new SolidColorBrush(dark.Foreground));
-            
+
             //mahapps brushes            
             ReplaceEntry("HighlightBrush", new SolidColorBrush(dark.Color));
             ReplaceEntry("AccentColorBrush", new SolidColorBrush(dark.Color));
@@ -199,8 +197,8 @@ namespace MaterialDesignThemes.Wpf
         {
             var x = (isAccent ? swatch.AccentHues : swatch.PrimaryHues).Select((h, i) => new { h, i })
                 .FirstOrDefault(a => a.h.Color == color);
-            return x == null ? (int?)null : x.i;
-                //throw new InvalidOperationException($"Color {color} not found in swatch {swatch.Name}.");
+            return x?.i;
+            //throw new InvalidOperationException($"Color {color} not found in swatch {swatch.Name}.");
         }
 
         private static SolidColorBrush GetBrush(string name)
@@ -213,7 +211,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (group == null)
                 throw new InvalidOperationException($"Unable to safely determine a single resource definition for {name}.");
-            
+
             if (!(group.First().e.Value is SolidColorBrush solidColorBrush))
                 throw new InvalidOperationException($"Expected {name} to be a SolidColorBrush");
 
