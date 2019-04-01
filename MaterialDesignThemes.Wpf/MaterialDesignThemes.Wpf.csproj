@@ -381,7 +381,7 @@
     <Compile Include="HintProxyFabric.TextBox.cs" />
     <Compile Include="HintProxyFabric.ComboBox.cs" />
     <Compile Include="HintProxyFabric.cs" />
-    <Compile Include="HsbColorPicker.cs" />
+    <Compile Include="ColorPicker.cs" />
     <Compile Include="IBaseTheme.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />

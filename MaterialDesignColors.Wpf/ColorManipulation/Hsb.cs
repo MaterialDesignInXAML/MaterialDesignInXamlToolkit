@@ -1,6 +1,6 @@
 ﻿namespace MaterialDesignColors.ColorManipulation
 {
-    public class Hsb
+    public struct Hsb
     {
         public double H { get; }
         public double S { get; }

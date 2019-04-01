@@ -510,7 +510,7 @@
                         <RadioButton x:Name="CustomPaletteButton" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Custom"/>
                     </UniformGrid>
                     <Grid DockPanel.Dock="Left">
-                        <materialDesign:HsbColorPicker Color="{Binding SelectedColor}" Visibility="{Binding IsChecked, ElementName=CustomPaletteButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <materialDesign:ColorPicker Color="{Binding SelectedColor}" Visibility="{Binding IsChecked, ElementName=CustomPaletteButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         <!--<materialDesign:HexColorPicker Radius="6" HsvValue="1" Visibility="{Binding IsChecked, ElementName=CustomPaletteButton, Converter={StaticResource BooleanToVisibilityConverter}}" ColorSelectedCommand="{Binding ChangeCustomHueCommand}" />-->
                         <ScrollViewer Visibility="{Binding IsChecked, ElementName=MdPaletteButton, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <StackPanel>

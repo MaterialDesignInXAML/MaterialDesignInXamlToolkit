@@ -233,10 +233,10 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="{x:Type wpf:HsbColorPicker}">
+    <Style TargetType="{x:Type wpf:ColorPicker}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type wpf:HsbColorPicker}">
+                <ControlTemplate TargetType="{x:Type wpf:ColorPicker}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="160" />
