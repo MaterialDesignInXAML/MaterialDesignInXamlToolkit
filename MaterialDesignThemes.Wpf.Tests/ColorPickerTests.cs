@@ -55,9 +55,9 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             SetColor(color);
 
-            Assert.Equal(hsb.H, _hueSlider.Value);
-            var left = (_saturationBrightnessPicker.ActualWidth) / (1 / hsb.S);
-            var top = ((1 - hsb.B) * _saturationBrightnessPicker.ActualHeight);
+            Assert.Equal(hsb.Hue, _hueSlider.Value);
+            var left = (_saturationBrightnessPicker.ActualWidth) / (1 / hsb.Saturation);
+            var top = ((1 - hsb.Brightness) * _saturationBrightnessPicker.ActualHeight);
             Assert.Equal(left, Canvas.GetLeft(_saturationBrightnessPickerThumb));
             Assert.Equal(top, Canvas.GetTop(_saturationBrightnessPickerThumb));
         }
@@ -83,12 +83,12 @@ namespace MaterialDesignThemes.Wpf.Tests
             SetColor(Colors.Red);
             DragThumb(verticalOffset: -Canvas.GetTop(_saturationBrightnessPickerThumb));
 
-            double lastBrightness = _colorPicker.Color.ToHsb().B;
+            double lastBrightness = _colorPicker.Color.ToHsb().Brightness;
 
             while(Canvas.GetTop(_saturationBrightnessPickerThumb) < _saturationBrightnessPicker.ActualHeight)
             {
                 DragThumb(verticalOffset:10);
-                double currentBrightness = _colorPicker.Color.ToHsb().B;
+                double currentBrightness = _colorPicker.Color.ToHsb().Brightness;
                 Assert.True(currentBrightness < lastBrightness, $"At top {Canvas.GetTop(_saturationBrightnessPicker)}, brightness {currentBrightness} is not less than {lastBrightness}");
             }
         }
@@ -99,12 +99,12 @@ namespace MaterialDesignThemes.Wpf.Tests
             SetColor(Colors.Red);
             DragThumb(horizontalOffset: -Canvas.GetLeft(_saturationBrightnessPickerThumb));
 
-            double lastSaturation = _colorPicker.Color.ToHsb().S;
+            double lastSaturation = _colorPicker.Color.ToHsb().Saturation;
 
             while(Canvas.GetLeft(_saturationBrightnessPicker) < _saturationBrightnessPicker.ActualWidth)
             {
                 DragThumb(horizontalOffset: 10);
-                double currentSaturation = _colorPicker.Color.ToHsb().S;
+                double currentSaturation = _colorPicker.Color.ToHsb().Saturation;
                 Assert.True(currentSaturation > lastSaturation, $"At left {Canvas.GetLeft(_saturationBrightnessPicker)}, saturation {currentSaturation} is not grater than {lastSaturation}");
             }
         }

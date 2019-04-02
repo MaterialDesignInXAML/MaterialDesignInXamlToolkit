@@ -8,9 +8,9 @@ namespace MaterialDesignColors.ColorManipulation
     {
         public static Color ToColor(this Hsb hsv)
         {
-            var h = hsv.H;
-            var s = hsv.S;
-            var b = hsv.B;
+            var h = hsv.Hue;
+            var s = hsv.Saturation;
+            var b = hsv.Brightness;
 
             b *= 255;
 

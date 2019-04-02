@@ -44,7 +44,7 @@ namespace MaterialDesignThemes.Wpf
 
             foreach (var c in hexColorPicker.Colors)
             {
-                c.ColorBrush = new SolidColorBrush(new Hsb(c.Hsv.H, c.Hsv.S, (double)e.NewValue).ToColor());
+                c.ColorBrush = new SolidColorBrush(new Hsb(c.Hsv.Hue, c.Hsv.Saturation, (double)e.NewValue).ToColor());
             }
         }
 
@@ -86,7 +86,7 @@ namespace MaterialDesignThemes.Wpf
             hexList.SelectionChanged += delegate
             {
                 var hsv = ((HexColorItem)hexList.SelectedItem).Hsv;
-                hsv = new Hsb(hsv.H, hsv.S, HsvValue);
+                hsv = new Hsb(hsv.Hue, hsv.Saturation, HsvValue);
                 var color = hsv.ToColor();
                 ColorSelectedCommand.Execute(color);
             };
@@ -98,7 +98,7 @@ namespace MaterialDesignThemes.Wpf
                 var selectedItem = (HexColorItem)hexList.SelectedItem;
                 if (selectedItem == null) return;
                 var hsv = selectedItem.Hsv;
-                hsv = new Hsb(hsv.H, hsv.S, HsvValue);
+                hsv = new Hsb(hsv.Hue, hsv.Saturation, HsvValue);
                 var color = hsv.ToColor();
                 ColorSelectedCommand.Execute(color);
             };

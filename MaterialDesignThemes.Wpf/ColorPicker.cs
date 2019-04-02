@@ -114,7 +114,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (Hsb is Hsb hsb)
             {
-                Hsb = new Hsb(e.NewValue, hsb.S, hsb.B);
+                Hsb = new Hsb(e.NewValue, hsb.Saturation, hsb.Brightness);
             }
         }
 
@@ -165,20 +165,20 @@ namespace MaterialDesignThemes.Wpf
             var saturation = 1 / (_saturationBrightnessCanvas.ActualWidth / left);
             var brightness = 1 - (top / _saturationBrightnessCanvas.ActualHeight);
 
-            SetCurrentValue(HsbProperty, new Hsb(Hsb.H, saturation, brightness));
+            SetCurrentValue(HsbProperty, new Hsb(Hsb.Hue, saturation, brightness));
         }
 
         private void SetThumbLeft()
         {
             if (_saturationBrightnessCanvas == null) return;
-            var left = (_saturationBrightnessCanvas.ActualWidth) / (1 / Hsb.S);
+            var left = (_saturationBrightnessCanvas.ActualWidth) / (1 / Hsb.Saturation);
             Canvas.SetLeft(_saturationBrightnessThumb, left);
         }
 
         private void SetThumbTop()
         {
             if (_saturationBrightnessCanvas == null) return;
-            var top = ((1 - Hsb.B) * _saturationBrightnessCanvas.ActualHeight);
+            var top = ((1 - Hsb.Brightness) * _saturationBrightnessCanvas.ActualHeight);
             Canvas.SetTop(_saturationBrightnessThumb, top);
         }
     }

@@ -2,15 +2,15 @@
 {
     public struct Hsb
     {
-        public double H { get; }
-        public double S { get; }
-        public double B { get; }
+        public double Hue { get; }
+        public double Saturation { get; }
+        public double Brightness { get; }
 
-        public Hsb(double h, double s, double b)
+        public Hsb(double hue, double saturation, double brightness)
         {
-            H = h;
-            S = s;
-            B = b;
+            Hue = hue;
+            Saturation = saturation;
+            Brightness = brightness;
         }
     }
 }

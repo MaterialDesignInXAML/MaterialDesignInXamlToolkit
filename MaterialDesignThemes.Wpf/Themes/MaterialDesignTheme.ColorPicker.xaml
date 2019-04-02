@@ -251,12 +251,12 @@
                         <Rectangle Fill="{Binding Hsb, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HsbToColorConverter}}" 
                                    Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
 
-                        <Slider Value="{Binding Hsb.H, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" 
+                        <Slider Value="{Binding Hsb.Hue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" 
                                 DockPanel.Dock="Bottom" Style="{StaticResource MaterialDesignColorSlider}" Orientation="Horizontal" Margin="8"
                                 x:Name="PART_HueSlider" IsMoveToPointEnabled ="True" Grid.Column="1" Grid.Row="1"/>
 
                         <Grid Grid.Column="1" Grid.Row="0">
-                            <Rectangle Fill="{Binding Hsb.H, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HsbLinearGradientConverter}}" />
+                            <Rectangle Fill="{Binding Hsb.Hue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HsbLinearGradientConverter}}" />
                             <Rectangle Fill="Black">
                                 <Rectangle.OpacityMask>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
