@@ -12,9 +12,9 @@ namespace MaterialDesignThemes.Wpf
     [TemplatePart(Name = SaturationBrightnessPickerThumbPartName, Type = typeof(Thumb))]
     public class ColorPicker : Control
     {
-        public const string HueSliderPartName = "PART_HsbHueSlider";
-        public const string SaturationBrightnessPickerPartName = "PART_HsbSBPicker";
-        public const string SaturationBrightnessPickerThumbPartName = "PART_HsbSBPickerThumb";
+        public const string HueSliderPartName = "PART_HueSlider";
+        public const string SaturationBrightnessPickerPartName = "PART_SaturationBrightnessPicker";
+        public const string SaturationBrightnessPickerThumbPartName = "PART_SaturationBrightnessPickerThumb";
 
         static ColorPicker()
         {
@@ -88,8 +88,6 @@ namespace MaterialDesignThemes.Wpf
             _saturationBrightnessCanvas = GetTemplateChild(SaturationBrightnessPickerPartName) as Canvas;
             if (_saturationBrightnessCanvas != null)
             {
-                _saturationBrightnessCanvas.Focusable = true;
-                _saturationBrightnessCanvas.Background = Brushes.Transparent;
                 _saturationBrightnessCanvas.MouseDown += SaturationBrightnessCanvasMouseDown;
                 _saturationBrightnessCanvas.MouseMove += SaturationBrightnessCanvasMouseMove;
                 _saturationBrightnessCanvas.MouseUp += SaturationBrightnessCanvasMouseUp;

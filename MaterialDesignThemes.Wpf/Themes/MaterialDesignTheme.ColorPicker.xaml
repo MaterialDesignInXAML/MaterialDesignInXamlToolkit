@@ -253,7 +253,7 @@
 
                         <Slider Value="{Binding Hsb.H, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" 
                                 DockPanel.Dock="Bottom" Style="{StaticResource MaterialDesignColorSlider}" Orientation="Horizontal" Margin="8"
-                                x:Name="PART_HsbHueSlider" IsMoveToPointEnabled ="True" Grid.Column="1" Grid.Row="1"/>
+                                x:Name="PART_HueSlider" IsMoveToPointEnabled ="True" Grid.Column="1" Grid.Row="1"/>
 
                         <Grid Grid.Column="1" Grid.Row="0">
                             <Rectangle Fill="{Binding Hsb.H, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HsbLinearGradientConverter}}" />
@@ -266,8 +266,8 @@
                                 </Rectangle.OpacityMask>
                             </Rectangle>
 
-                            <Canvas Name="PART_HsbSBPicker" ClipToBounds="True">
-                                <Thumb Name="PART_HsbSBPickerThumb" Canvas.Left="20" Canvas.Top="20">
+                            <Canvas Name="PART_SaturationBrightnessPicker" ClipToBounds="True" Focusable="True" Background="Transparent">
+                                <Thumb Name="PART_SaturationBrightnessPickerThumb" Canvas.Left="20" Canvas.Top="20">
                                     <Thumb.Template>
                                         <ControlTemplate>
                                             <Ellipse Width="24" Height="24" StrokeThickness="2" Stroke="White" Fill="Transparent" Margin="-12 -12 0 0" />
