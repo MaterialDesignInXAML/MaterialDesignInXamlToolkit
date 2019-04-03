@@ -5,7 +5,7 @@ platform: Any CPU
 skip_tags: true
 
 environment:
-  mdix_version: 2.5.1
+  mdix_version: 2.6.0
   mdix_mahapps_version: 0.0.13
   mdix_colors_version: 1.1.4
 
