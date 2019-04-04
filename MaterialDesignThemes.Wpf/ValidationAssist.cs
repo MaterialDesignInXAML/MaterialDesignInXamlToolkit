@@ -115,12 +115,12 @@ namespace MaterialDesignThemes.Wpf
 
         public static void SetFontSize(DependencyObject element, double value)
         {
-            element.SetValue(TextElement.FontSizeProperty, value);
+            element.SetValue(FontSizeProperty, value);
         }
 
         public static double GetFontSize(DependencyObject element)
         {
-            return (double)element.GetValue(TextElement.FontSizeProperty);
+            return (double)element.GetValue(FontSizeProperty);
         }
     }
 }
