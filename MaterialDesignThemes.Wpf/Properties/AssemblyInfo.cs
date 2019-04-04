@@ -17,6 +17,7 @@ using System.Windows.Markup;
 [assembly: XmlnsPrefix("http://materialdesigninxaml.net/winfx/xaml/themes", "materialDesign")]
 [assembly: XmlnsDefinition("http://materialdesigninxaml.net/winfx/xaml/themes", "MaterialDesignThemes.Wpf")]
 [assembly: XmlnsDefinition("http://materialdesigninxaml.net/winfx/xaml/themes", "MaterialDesignThemes.Wpf.Transitions")]
+[assembly: XmlnsDefinition("http://materialdesigninxaml.net/winfx/xaml/themes", "MaterialDesignThemes.Wpf.Converters")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 

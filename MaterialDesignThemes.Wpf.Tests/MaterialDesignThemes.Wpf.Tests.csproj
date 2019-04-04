@@ -12,6 +12,7 @@
     <AssemblyName>MaterialDesignThemes.Wpf.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,12 +30,14 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,9 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClockTests.cs" />
     <Compile Include="DialogHostTests.cs" />
+    <Compile Include="MdixHelper.cs" />
     <Compile Include="PaletteHelperFixture.cs" />
+    <Compile Include="PopupBoxTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimePickerUnitTests.cs" />
+    <Compile Include="VisualTreeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj">

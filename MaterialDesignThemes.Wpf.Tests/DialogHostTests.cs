@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
@@ -20,7 +22,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
         }
 
-        [StaFact(Timeout = 500)]
+        [StaFact]
         public void CanOpenAndCloseDialogWithIsOpen()
         {
             _dialogHost.IsOpen = true;
@@ -33,7 +35,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.True(session.IsEnded);
         }
 
-        [StaFact(Timeout = 500)]
+        [StaFact]
         public async Task CanOpenAndCloseDialogWithShowMethod()
         {
             var id = Guid.NewGuid();
@@ -46,7 +48,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.False(_dialogHost.IsOpen);
         }
 
-        [StaFact(Timeout = 500)]
+        [StaFact]
         public async Task CanOpenDialogWithShowMethodAndCloseWithIsOpen()
         {
             var id = Guid.NewGuid();
@@ -59,7 +61,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.False(_dialogHost.IsOpen);
         }
 
-        [StaFact(Timeout = 500)]
+        [StaFact]
         public async Task DialogHostExposesSessionAsProperty()
         {
             var id = Guid.NewGuid();
@@ -73,7 +75,7 @@ namespace MaterialDesignThemes.Wpf.Tests
                 })));
         }
 
-        [StaFact(Timeout = 500)]
+        [StaFact]
         public async Task CannotShowDialogWhileItIsAlreadyOpen()
         {
             var id = Guid.NewGuid();
@@ -88,7 +90,7 @@ namespace MaterialDesignThemes.Wpf.Tests
                 })));
         }
 
-        [StaFact(Timeout = 500)]
+        [StaFact]
         public async Task WhenNoDialogsAreOpenItThrows()
         {
             var id = Guid.NewGuid();
@@ -99,7 +101,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Equal("No loaded DialogHost instances.", ex.Message);
         }
 
-        [StaFact(Timeout = 500)]
+        [StaFact]
         public async Task WhenNoDialogsMatchIdentifierItThrows()
         {
             var id = Guid.NewGuid();
@@ -109,7 +111,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Equal($"No loaded DialogHost have an {nameof(DialogHost.Identifier)} property matching dialogIdentifier argument.", ex.Message);
         }
 
-        [StaFact(Timeout = 500)]
+        [StaFact]
         public async Task WhenMultipleDialogHostsHaveTheSameIdentifierItThrows()
         {
             var id = Guid.NewGuid();
@@ -125,7 +127,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Equal("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.", ex.Message);
         }
 
-        [StaFact(Timeout = 500)]
+        [StaFact]
         public async Task WhenNoIdentifierIsSpecifiedItUsesSingleDialogHost()
         {
             bool isOpen = false;
@@ -138,12 +140,40 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.True(isOpen);
         }
 
-        [StaFact(Timeout = 500)]
+        [StaFact]
         public async Task WhenContentIsNullItThrows()
         {
             var ex = await Assert.ThrowsAsync<ArgumentNullException>(() => DialogHost.Show(null));
             
             Assert.Equal("content", ex.ParamName);
+        }
+
+        [StaFact]
+        [Description("Issue 1212")]
+        public async Task WhenContentIsUpdatedClosingEventHandlerIsInvoked()
+        {
+            int closeInvokeCount = 0;
+            void ClosingHandler(object s, DialogClosingEventArgs e)
+            {
+                closeInvokeCount++;
+                if (closeInvokeCount == 1)
+                {
+                    e.Cancel();
+                }
+            }
+            
+            var dialogTask = DialogHost.Show("Content", ClosingHandler);
+            _dialogHost.CurrentSession.Close("FirstResult");
+            _dialogHost.CurrentSession.Close("SecondResult");
+            object result = await dialogTask;
+
+            Assert.Equal("SecondResult", result);
+            Assert.Equal(2, closeInvokeCount);
+        }
+
+        private class TestDialog : Control
+        {
+            public void CloseDialog() => DialogHost.CloseDialogCommand.Execute(null, this);
         }
     }
 }

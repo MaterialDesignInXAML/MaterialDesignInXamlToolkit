@@ -47,7 +47,7 @@ NUGET
       NETStandard.Library (>= 1.6.1) - restriction: == net45
       xunit.extensibility.core (2.4)
     xunit.runner.visualstudio (2.4)
-    Xunit.StaFact (0.3.13)
+    Xunit.StaFact (0.3.18)
       xunit.extensibility.execution (>= 2.1) - restriction: == net45
       xunit.extensibility.execution (>= 2.4) - restriction: || (&& (== net45) (>= net452)) (== net452)
 GITHUB
