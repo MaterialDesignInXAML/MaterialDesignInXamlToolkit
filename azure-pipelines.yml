@@ -11,7 +11,7 @@ pool:
 
 variables:
   solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
+  buildPlatform: 'AnyCPU'
   buildConfiguration: 'AppVeyor'
   mdixVersion: 2.6.0
   mdixMahAppsVersion: 0.0.13
