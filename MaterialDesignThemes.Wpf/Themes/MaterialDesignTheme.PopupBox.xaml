@@ -98,7 +98,7 @@
                     <Grid>
                         <ToggleButton x:Name="PART_Toggle" Style="{StaticResource ToggleButtonStyle}" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                                       Content="{TemplateBinding ToggleContent}" ContentTemplate="{TemplateBinding ToggleContentTemplate}"
-                                      Cursor="Hand" TabIndex="{TemplateBinding TabIndex}" VerticalAlignment="Center"
+                                      Cursor="Hand" TabIndex="{TemplateBinding TabIndex}" VerticalAlignment="Center" IsTabStop="{TemplateBinding IsTabStop}"
                                       />
                         <controlzEx:PopupEx x:Name="PART_Popup" 
                                             IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
@@ -231,7 +231,7 @@
                                                         wpf:RippleAssist.IsCentered="True"
                                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                        Padding="{TemplateBinding Padding}" 
+                                                        Padding="{TemplateBinding Padding}"
                                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                                                 <!-- additional layer so we don't rotate the ripple directly which can cause jumpyness under certain layouts -->
                                                 <ContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -311,6 +311,7 @@
                                       Background="{TemplateBinding Background}"
                                       BorderBrush="{TemplateBinding BorderBrush}"
                                       Foreground="{TemplateBinding Foreground}"
+                                      IsTabStop="{TemplateBinding IsTabStop}"
                                       VerticalAlignment="Stretch"
                                       HorizontalAlignment="Stretch"
                                       ToolTip="{TemplateBinding ToolTip}"
