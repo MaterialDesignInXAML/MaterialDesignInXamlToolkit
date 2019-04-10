@@ -20,6 +20,8 @@ variables:
 steps:
 - powershell: .paket\paket.exe restore
 
+- powershell: Write-Host $(mdix_colors_version)
+
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
