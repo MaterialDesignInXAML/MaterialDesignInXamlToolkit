@@ -24,6 +24,8 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
+- powershell: .paket\paket.exe restore
+
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
