@@ -18,12 +18,6 @@ variables:
   mdixColorsVersion: 1.1.4
 
 steps:
-- task: NuGetToolInstaller@0
-
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
-
 - powershell: .paket\paket.exe restore
 
 - task: VSBuild@1
