@@ -99,7 +99,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
-											 To=".26" Duration="0:0:0.2" />
+                                             To=".26" Duration="0:0:0.2" />
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.EnterActions>
@@ -107,7 +107,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetName="shadow" Storyboard.TargetProperty="Opacity"
-											 To=".0" Duration="0:0:0.2" />
+                                             To=".0" Duration="0:0:0.2" />
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.ExitActions>
@@ -552,11 +552,11 @@
                     </Track.DecreaseRepeatButton>
                     <Track.IncreaseRepeatButton>
                         <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource MaterialDesignHorizontalTrackRepeatButton}" Background="{DynamicResource MaterialDesignCheckBoxOff}"
-									  x:Name="IncreaseRepeatButton" />
+                                      x:Name="IncreaseRepeatButton" />
                     </Track.IncreaseRepeatButton>
                     <Track.Thumb>
                         <Thumb x:Name="Thumb" Focusable="False" Height="18" OverridesDefaultStyle="True" Template="{StaticResource MaterialDesignSliderThumb}" 
-							   VerticalAlignment="Center" Width="12"/>
+                               VerticalAlignment="Center" Width="12"/>
                     </Track.Thumb>
                 </Track>
             </Grid>
@@ -598,7 +598,7 @@
                     </Track.DecreaseRepeatButton>
                     <Track.IncreaseRepeatButton>
                         <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource MaterialDesignVerticalTrackRepeatButton}" Background="{DynamicResource MaterialDesignCheckBoxOff}"
-									  x:Name="IncreaseRepeatButton" />
+                                      x:Name="IncreaseRepeatButton" />
                     </Track.IncreaseRepeatButton>
                     <Track.Thumb>
                         <Thumb x:Name="Thumb" Focusable="False" Height="12" OverridesDefaultStyle="True" Template="{StaticResource MaterialDesignSliderThumb}" VerticalAlignment="Top" Width="18"/>
@@ -627,10 +627,11 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="MaterialDesignDiscreteSliderHorizontal" TargetType="{x:Type Slider}">
-        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
             <Grid>
-                <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden" Grid.Row="1" />
-                <Track x:Name="PART_Track" OpacityMask="{x:Null}" Margin="7 0 8 0">
+                <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden" 
+                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                <Track x:Name="PART_Track" OpacityMask="{x:Null}" Margin="7 0 8 0" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource MaterialDesignHorizontalTrackDiscreteRepeatButton}" Background="{TemplateBinding Foreground}" />
                     </Track.DecreaseRepeatButton>
@@ -640,21 +641,12 @@
                     </Track.IncreaseRepeatButton>
                     <Track.Thumb>
                         <Thumb x:Name="Thumb" Focusable="False" OverridesDefaultStyle="True" Template="{StaticResource MaterialDesignDiscreteSliderThumb}" 
-                               VerticalAlignment="Center" />
+                               VerticalAlignment="Bottom" />
                     </Track.Thumb>
                 </Track>
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
-            <Trigger Property="TickPlacement" Value="TopLeft">
-
-            </Trigger>
-            <Trigger Property="TickPlacement" Value="BottomRight">
-
-            </Trigger>
-            <Trigger Property="TickPlacement" Value="Both">
-
-            </Trigger>
             <Trigger Property="IsSelectionRangeEnabled" Value="true">
                 <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
             </Trigger>
@@ -665,10 +657,11 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="MaterialDesignDiscreteSliderVertical" TargetType="{x:Type Slider}">
-        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
             <Grid>
-                <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Width="4.0" Visibility="Hidden" Grid.Column="1" />
-                <Track x:Name="PART_Track" OpacityMask="{x:Null}" Margin="0 7 0 8">
+                <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Width="4.0" Visibility="Hidden" 
+                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                <Track x:Name="PART_Track" OpacityMask="{x:Null}" Margin="0 7 0 8" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource MaterialDesignVerticalTrackDiscreteRepeatButton}" Background="{TemplateBinding Foreground}" />
                     </Track.DecreaseRepeatButton>
@@ -678,21 +671,12 @@
                     </Track.IncreaseRepeatButton>
                     <Track.Thumb>
                         <Thumb x:Name="Thumb" Focusable="False" OverridesDefaultStyle="True" Template="{StaticResource MaterialDesignLeftDiscreteSliderThumb}" 
-                               HorizontalAlignment="Center" />
+                               HorizontalAlignment="Right" />
                     </Track.Thumb>
                 </Track>
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
-            <Trigger Property="TickPlacement" Value="TopLeft">
-
-            </Trigger>
-            <Trigger Property="TickPlacement" Value="BottomRight">
-
-            </Trigger>
-            <Trigger Property="TickPlacement" Value="Both">
-
-            </Trigger>
             <Trigger Property="IsSelectionRangeEnabled" Value="true">
                 <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
             </Trigger>
@@ -747,14 +731,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <Style x:Key="MaterialDesignDiscreteSlider" TargetType="{x:Type Slider}" BasedOn="{StaticResource MaterialDesignDiscreteHorizontalSlider}">
-        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
-        <Setter Property="Background" Value="{x:Null}"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="IsSnapToTickEnabled" Value="True"/>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
-        <Setter Property="Template" Value="{StaticResource MaterialDesignDiscreteSliderHorizontal}"/>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
