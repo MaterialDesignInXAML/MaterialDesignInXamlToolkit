@@ -13,14 +13,9 @@ variables:
   solution: 'MaterialDesignToolkit.Wpf.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'AppVeyor'
-  mdixVersion: 2.6.0
-  mdixMahAppsVersion: 0.0.13
-  mdixColorsVersion: 1.1.4
 
 steps:
 - powershell: .paket\paket.exe restore
-
-- powershell: Write-Host variables.mdixVersion
 
 - task: VSBuild@1
   inputs:
