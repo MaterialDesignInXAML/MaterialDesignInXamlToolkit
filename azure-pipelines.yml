@@ -16,7 +16,6 @@ variables:
   mdixVersion: 2.6.0
   mdixMahAppsVersion: 0.0.13
   mdixColorsVersion: 1.1.4
-  foo: /property:MDIX_CORE_VERSION=$(mdix_version).variables.BuildID /property:MDIX_COLORS_VERSION=$(mdix_colors_version).$(BuildID) /property:MDIX_MAHAPPS_VERSION=$(mdix_mahapps_version).$(BuildID)
 
 steps:
 - powershell: .paket\paket.exe restore
@@ -26,7 +25,7 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    msbuildArgs: '$(foo)'
+    msbuildArgs: '/property:MDIX_CORE_VERSION=$(mdix_version).$(Build.BuildID) /property:MDIX_COLORS_VERSION=$(mdix_colors_version).$(Build.BuildID) /property:MDIX_MAHAPPS_VERSION=$(mdix_mahapps_version).$(Build.BuildID)'
 
 - task: VSTest@2
   inputs:
