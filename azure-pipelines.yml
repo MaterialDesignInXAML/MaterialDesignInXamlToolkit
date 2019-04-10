@@ -10,8 +10,8 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'AnyCPU'
+  solution: 'MaterialDesignToolkit.Wpf.sln'
+  buildPlatform: 'Any CPU'
   buildConfiguration: 'AppVeyor'
   mdixVersion: 2.6.0
   mdixMahAppsVersion: 0.0.13
