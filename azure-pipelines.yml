@@ -27,7 +27,7 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    msbuildArgs: '/property:MDIX_CORE_VERSION=$(mdix_version).$(Build.BuildID) /property:MDIX_COLORS_VERSION=$(mdix_colors_version).$(Build.BuildID) /property:MDIX_MAHAPPS_VERSION=$(mdix_mahapps_version).$(Build.BuildID)'
+    msbuildArgs: '/property:MDIX_CORE_VERSION=$(mdixVersion).$(Build.BuildID) /property:MDIX_COLORS_VERSION=$(mdixColorsVersion).$(Build.BuildID) /property:MDIX_MAHAPPS_VERSION=$(mdixMahappsVersion).$(Build.BuildID)'
 
 - task: VSTest@2
   inputs:
