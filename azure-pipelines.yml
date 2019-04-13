@@ -30,6 +30,25 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - task: PublishPipelineArtifact@0
+  name: "PublishDemoApp"
   inputs:
-    artifactName: 'artifactName'
+    artifactName: 'Demo App'
     targetPath: 'MainDemo.Wpf/bin/AppVeyor'
+
+- task: PublishPipelineArtifact@0
+  name: "PublishMaterialDesign"
+  inputs:
+    artifactName: 'MDIX'
+    targetPath: 'MaterialDesignThemes.Wpf/bin/AppVeyor'
+
+- task: PublishPipelineArtifact@0
+  name: "PublishMaterialDesignColors"
+  inputs:
+    artifactName: 'MDIX.Colors'
+    targetPath: 'MaterialDesignColors.Wpf/bin/AppVeyor'
+
+- task: PublishPipelineArtifact@0
+  name: "PublishMaterialDesignMahApps"
+  inputs:
+    artifactName: 'MDIX.MahApps'
+    targetPath: 'MaterialDesignThemes.MahApps/bin/AppVeyor'
