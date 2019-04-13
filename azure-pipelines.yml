@@ -51,4 +51,4 @@ steps:
   name: "PublishMaterialDesignMahApps"
   inputs:
     artifactName: 'MDIX.MahApps'
-    targetPath: 'MaterialDesignThemes.MahApps/bin/AppVeyor'
+    targetPath: 'MaterialDesignThemes.MahApps/bin/Release'
