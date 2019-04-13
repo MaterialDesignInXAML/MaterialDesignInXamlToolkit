@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls.Primitives;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
@@ -106,6 +107,20 @@ namespace MaterialDesignThemes.Wpf
         public static Brush GetBackground(DependencyObject element)
         {
             return (Brush) element.GetValue(BackgroundProperty);
+        }
+
+
+
+        public static readonly DependencyProperty FontSizeProperty = DependencyProperty.RegisterAttached("FontSize", typeof(double), typeof(ValidationAssist), new PropertyMetadata(10.0));
+
+        public static void SetFontSize(DependencyObject element, double value)
+        {
+            element.SetValue(FontSizeProperty, value);
+        }
+
+        public static double GetFontSize(DependencyObject element)
+        {
+            return (double)element.GetValue(FontSizeProperty);
         }
     }
 }
