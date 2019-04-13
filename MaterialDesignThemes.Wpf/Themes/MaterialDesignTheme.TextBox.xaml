@@ -175,6 +175,7 @@
                             <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,8,0,8" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="0.42" />
                             <Setter TargetName="textFieldBoxBottomLine" Property="Height" Value="0" />
                         </Trigger>
                         <MultiTrigger>
