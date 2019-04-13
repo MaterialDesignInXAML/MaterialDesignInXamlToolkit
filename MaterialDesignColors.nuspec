@@ -16,7 +16,7 @@
     <tags>WPF XAML WinRT Material Design Colour Color UI UX</tags>
   </metadata>
   <files>
-    <file src="..\MDIX\MaterialDesignColors.dll" target="lib\net45" />
-    <file src="..\MDIX\MaterialDesignColors.pdb" target="lib\net45" />
+    <file src="MaterialDesignColors.dll" target="lib\net45" />
+    <file src="MaterialDesignColors.pdb" target="lib\net45" />
   </files>
 </package>
