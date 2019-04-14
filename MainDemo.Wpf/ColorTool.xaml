@@ -6,6 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
              xmlns:local="clr-namespace:MaterialDesignDemo"
+             xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:ColorToolViewModel}"
              d:DesignHeight="600" d:DesignWidth="600">
@@ -18,7 +19,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
-            <converters:BrushToHexConverter x:Key="BrushToHexConverter" /> 
+            <converters:BrushToHexConverter x:Key="BrushToHexConverter" />
             <converters:MultiValueEqualityConverter x:Key="MultiValueEqualityConverter" />
             <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                 <Setter Property="BorderBrush" Value="Transparent" />
@@ -37,8 +38,63 @@
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Margin" Value="0 0 0 4" />
             </Style>
+
+            <DataTemplate DataType="{x:Type Color}" x:Key="SwatchColorTemplate">
+                <Button Height="40" Width="40" Background="{Binding Converter={StaticResource ColorToBrushConverter}}" 
+                        Command="{Binding DataContext.ChangeHueCommand, RelativeSource={RelativeSource AncestorType=local:ColorTool}}" 
+                        CommandParameter="{Binding}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                            <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Margin" Value="1 1 0 0" />
+                            <Setter Property="materialDesign:RippleAssist.IsDisabled" Value="True" />
+                            <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" To="8" Duration="0:0:0.18" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" From="8" Duration="0:0:0.18" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <DataTrigger Value="True">
+                                    <DataTrigger.Binding>
+                                        <MultiBinding Converter="{StaticResource MultiValueEqualityConverter}">
+                                            <Binding RelativeSource="{RelativeSource AncestorType=local:ColorTool}" Path="DataContext.SelectedColor" Mode="OneWay" />
+                                            <Binding Mode="OneWay"/>
+                                        </MultiBinding>
+                                    </DataTrigger.Binding>
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" To="20" Duration="0:0:0.18" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" From="20" Duration="0:0:0.18" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </DataTemplate>
         </ResourceDictionary>
-        
     </UserControl.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="8">
@@ -374,67 +430,10 @@
                                 </StackPanel>
                                 <ItemsControl ItemsSource="{Binding Swatches}">
                                     <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
+                                        <DataTemplate DataType="{x:Type materialDesignColors:ISwatch}">
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock Text="{Binding Name}" Width="80" VerticalAlignment="Center" />
-                                                <ItemsControl ItemsSource="{Binding Hues}">
-                                                    <ItemsControl.ItemTemplate>
-                                                        <DataTemplate>
-                                                            <Button Height="40" Width="40" Background="{Binding Converter={StaticResource ColorToBrushConverter}}" 
-                                                                    Command="{Binding DataContext.ChangeHueCommand, RelativeSource={RelativeSource AncestorType=local:ColorTool}}" 
-                                                                    CommandParameter="{Binding}">
-                                                                <Button.Style>
-                                                                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
-                                                                        <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0" />
-                                                                        <Setter Property="BorderThickness" Value="0" />
-                                                                        <Setter Property="Margin" Value="1 1 0 0" />
-                                                                        <Setter Property="materialDesign:RippleAssist.IsDisabled" Value="True" />
-                                                                        <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
-                                                                        <Style.Triggers>
-                                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                                <Trigger.EnterActions>
-                                                                                    <BeginStoryboard>
-                                                                                        <Storyboard>
-                                                                                            <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" To="8" Duration="0:0:0.18" />
-                                                                                        </Storyboard>
-                                                                                    </BeginStoryboard>
-                                                                                </Trigger.EnterActions>
-                                                                                <Trigger.ExitActions>
-                                                                                    <BeginStoryboard>
-                                                                                        <Storyboard>
-                                                                                            <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" From="8" Duration="0:0:0.18" />
-                                                                                        </Storyboard>
-                                                                                    </BeginStoryboard>
-                                                                                </Trigger.ExitActions>
-                                                                            </Trigger>
-                                                                            <DataTrigger Value="True">
-                                                                                <DataTrigger.Binding>
-                                                                                    <MultiBinding Converter="{StaticResource MultiValueEqualityConverter}">
-                                                                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ColorTool}" Path="DataContext.SelectedColor" Mode="OneWay" />
-                                                                                        <Binding Mode="OneWay"/>
-                                                                                    </MultiBinding>
-                                                                                </DataTrigger.Binding>
-                                                                                <DataTrigger.EnterActions>
-                                                                                    <BeginStoryboard>
-                                                                                        <Storyboard>
-                                                                                            <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" To="20" Duration="0:0:0.18" />
-                                                                                        </Storyboard>
-                                                                                    </BeginStoryboard>
-                                                                                </DataTrigger.EnterActions>
-                                                                                <DataTrigger.ExitActions>
-                                                                                    <BeginStoryboard>
-                                                                                        <Storyboard>
-                                                                                            <DoubleAnimation Storyboard.TargetProperty="(materialDesign:ButtonAssist.CornerRadius)" From="20" Duration="0:0:0.18" />
-                                                                                        </Storyboard>
-                                                                                    </BeginStoryboard>
-                                                                                </DataTrigger.ExitActions>
-                                                                            </DataTrigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </Button.Style>
-                                                            </Button>
-                                                        </DataTemplate>
-                                                    </ItemsControl.ItemTemplate>
+                                                <ItemsControl ItemsSource="{Binding Hues}" ItemTemplate="{StaticResource SwatchColorTemplate}">
                                                     <ItemsControl.ItemsPanel>
                                                         <ItemsPanelTemplate>
                                                             <VirtualizingStackPanel Orientation="Horizontal" />
