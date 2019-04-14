@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignColors.ColorManipulation
 {
-    public static class HslConverter
+    internal static class HslConverter
     {
         public static Color ToColor(this Hsl hsl)
         {
@@ -24,7 +24,6 @@ namespace MaterialDesignColors.ColorManipulation
             double r, g, b;
             if (s == 0)
             {
-
                 r = l * 255;
                 g = l * 255;
                 b = l * 255;

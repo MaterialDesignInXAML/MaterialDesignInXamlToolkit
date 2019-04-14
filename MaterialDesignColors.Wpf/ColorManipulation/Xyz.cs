@@ -1,6 +1,6 @@
 ﻿namespace MaterialDesignColors.ColorManipulation
 {
-    public class Xyz
+    internal struct Xyz
     {
         public double X { get; }
         public double Y { get; }

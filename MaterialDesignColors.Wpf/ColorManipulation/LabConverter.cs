@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignColors.ColorManipulation
 {
-    public static class LabConverter
+    internal static class LabConverter
     {
         public static Lab ToLab(this Color c)
         {

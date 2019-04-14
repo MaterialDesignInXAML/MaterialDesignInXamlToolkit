@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignColors.ColorManipulation
 {
-    public static class XyzConverter
+    internal static class XyzConverter
     {
         public static Color ToColor(this Xyz xyz)
         {

@@ -25,9 +25,9 @@ namespace MaterialDesignThemes.Wpf
 
         public ColorPalette(string name, Color light, Color mid, Color dark)
             : this(name, light, mid, dark,
-                  ColorHelper.ContrastingForeGroundColor(light),
-                  ColorHelper.ContrastingForeGroundColor(mid),
-                  ColorHelper.ContrastingForeGroundColor(dark)) { }
+                  light.ContrastingForegroundColor(),
+                  mid.ContrastingForegroundColor(),
+                  dark.ContrastingForegroundColor()) { }
 
         public ColorPalette(PaletteName name, Color light, Color mid, Color dark, Color lightForeground, Color midForeground, Color darkForeground)
             : this(name.ToString(), light, mid, dark, lightForeground, midForeground, darkForeground) { }

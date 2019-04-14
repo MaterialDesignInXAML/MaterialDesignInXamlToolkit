@@ -2,7 +2,7 @@
 
 namespace MaterialDesignColors.ColorManipulation
 {
-    public class Lab
+    internal struct Lab
     {
         public double L { get; }
         public double A { get; }
@@ -16,7 +16,7 @@ namespace MaterialDesignColors.ColorManipulation
         }
     }
 
-    public class LabConstants
+    internal class LabConstants
     {
         public const double Kn = 18;
 

@@ -5,7 +5,7 @@ namespace MaterialDesignColors.ColorManipulation
 {
     public static class ColorHelper
     {
-        public static Color ContrastingForeGroundColor(Color color)
+        public static Color ContrastingForegroundColor(this Color color)
         {
             double rgb_srgb(double d)
             {
@@ -22,7 +22,7 @@ namespace MaterialDesignColors.ColorManipulation
             return luminance > 0.179 ? Colors.Black : Colors.White;
         }
 
-        public static Color ShiftLightnesss(this Color color, int amount = 1)
+        public static Color ShiftLightness(this Color color, int amount = 1)
         {
             var lab = color.ToLab();
             var shifted = new Lab(lab.L - LabConstants.Kn * amount, lab.A, lab.B);
@@ -31,12 +31,12 @@ namespace MaterialDesignColors.ColorManipulation
 
         public static Color Darken(this Color color, int amount = 1)
         {
-            return color.ShiftLightnesss(amount);
+            return color.ShiftLightness(amount);
         }
 
         public static Color Lighten(this Color color, int amount = 1)
         {
-            return color.ShiftLightnesss(-amount);
+            return color.ShiftLightness(-amount);
         }
     }
 }

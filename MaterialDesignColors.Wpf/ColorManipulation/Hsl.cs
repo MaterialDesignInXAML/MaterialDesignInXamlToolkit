@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace MaterialDesignColors.ColorManipulation
+﻿namespace MaterialDesignColors.ColorManipulation
 {
-    public class Hsl
+    internal struct Hsl
     {
         public double H { get; }
         public double S { get; }

@@ -8,7 +8,7 @@ using Xunit;
 namespace MaterialDesignThemes.Wpf.Tests
 {
 
-    public class ColorPickerTests
+    public class  ColorPickerTests
     {
         private readonly ColorPicker _colorPicker;
         private readonly Slider _hueSlider;

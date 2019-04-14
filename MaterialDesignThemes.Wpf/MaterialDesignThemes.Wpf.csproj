@@ -131,10 +131,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\MaterialDesignTheme.HexColorPicker.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\MaterialDesignTheme.ComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -372,8 +368,6 @@
     <Compile Include="ExpanderAssist.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Flipper.cs" />
-    <Compile Include="HexColorItem.cs" />
-    <Compile Include="HexColorPicker.cs" />
     <Compile Include="HintAssist.cs" />
     <Compile Include="HintProxyFabric.PasswordBox.cs" />
     <Compile Include="HintProxyFabric.TextBox.cs" />
