@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf;
@@ -14,8 +12,8 @@ namespace MaterialDesignThemes.MahApps
     {
         public static MaterialDesignTheme WithMahApps(this MaterialDesignTheme theme)
         {
-            theme.ThemeManager.ThemeChangeHandlers.Add(OnChangeTheme);
-            theme.ThemeManager.PaletteChangeHandlers.Add(OnChangePalette);
+            theme.ThemeManager.ThemeChangeHandlers += OnChangeTheme;
+            theme.ThemeManager.PaletteChangeHandlers += OnChangePalette;
 
             CreateIfNotExists(GetThemeUri(theme.BaseTheme));
 

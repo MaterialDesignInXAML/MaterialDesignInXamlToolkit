@@ -13,7 +13,6 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private BaseTheme _theme;
-
         public BaseTheme Theme
         {
             get => _theme;

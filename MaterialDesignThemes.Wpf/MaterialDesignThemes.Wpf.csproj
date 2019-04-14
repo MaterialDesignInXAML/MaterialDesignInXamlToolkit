@@ -410,6 +410,7 @@
     <Compile Include="Spelling.cs" />
     <Compile Include="ThemeAssist.cs" />
     <Compile Include="ThemeManager.cs" />
+    <Compile Include="ThemeManagerAssist.cs" />
     <Compile Include="ThemeSetEventArgs.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />

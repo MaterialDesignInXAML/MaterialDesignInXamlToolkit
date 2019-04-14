@@ -1,7 +1,5 @@
-﻿using MaterialDesignColors.Recommended;
-using MaterialDesignThemes.Wpf;
+﻿using System.Windows;
 using ShowMeTheXAML;
-using System.Windows;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -12,8 +10,7 @@ namespace MaterialDesignColors.WpfExample
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            XamlDisplay.Init();
-            //This is an alterate way to initialize MaterialDesignInXAML if you don't use the MaterialDesignResourceDictionary in App.xaml
+            //This is an alternate way to initialize MaterialDesignInXAML if you don't use the MaterialDesignResourceDictionary in App.xaml
             //this.WithMaterialDesign(MaterialDesignTheme.Light, CyanSwatch.Cyan500, LimeSwatch.LimeA700);
 
 

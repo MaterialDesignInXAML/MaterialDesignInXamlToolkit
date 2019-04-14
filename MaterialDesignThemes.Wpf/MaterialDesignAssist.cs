@@ -36,9 +36,9 @@ namespace MaterialDesignThemes.Wpf
                 themeManager = new ThemeManager(resources).AttachThemeEventsToWindow();
             }
 
-            themeManager.ThemeChangeHandlers.Add(OnChangeTheme);
-            themeManager.PaletteChangeHandlers.Add(OnChangePalette);
-            themeManager.ColorChangeHandlers.Add(OnChangeColor);
+            themeManager.ThemeChangeHandlers += OnChangeTheme;
+            themeManager.PaletteChangeHandlers += OnChangePalette;
+            themeManager.ColorChangeHandlers += OnChangeColor;
 
             //NB: When the palettes are changed it hunts through the merged dictionaries.
             //Putting this at the beginning to avoid needing to hunt through all of them.
