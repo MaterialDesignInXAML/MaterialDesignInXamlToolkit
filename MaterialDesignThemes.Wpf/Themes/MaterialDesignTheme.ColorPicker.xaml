@@ -126,7 +126,6 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-
     <ControlTemplate x:Key="MaterialDesignColorSliderHorizontal" TargetType="{x:Type Slider}">
         <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
                 Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
@@ -179,6 +178,7 @@
             </Grid>
         </Border>
     </ControlTemplate>
+
     <ControlTemplate x:Key="MaterialDesignColorSliderVertical" TargetType="{x:Type Slider}">
         <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
                 Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
@@ -254,24 +254,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:ColorPicker}">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="160" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <!-- TODO: This preview might be worth pulling out or at least adding some convenience properties to control -->
-                        <Rectangle Fill="{Binding Hsb, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HsbToColorConverter}}" 
-                                   Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
-
                         <Slider Value="{Binding Hsb.Hue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" 
                                 DockPanel.Dock="Bottom" Style="{StaticResource MaterialDesignColorSlider}" Orientation="Horizontal" Margin="8"
-                                x:Name="PART_HueSlider" IsMoveToPointEnabled ="True" Grid.Column="1" Grid.Row="1"/>
+                                x:Name="PART_HueSlider" IsMoveToPointEnabled ="True" Grid.Row="1"/>
 
-                        <Grid Grid.Column="1" Grid.Row="0">
+                        <Grid Grid.Row="0">
                             <Rectangle Fill="{Binding Hsb.Hue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HsbLinearGradientConverter}}" />
                             <Rectangle Fill="Black">
                                 <Rectangle.OpacityMask>

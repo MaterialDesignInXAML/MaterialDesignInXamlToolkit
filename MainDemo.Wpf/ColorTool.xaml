@@ -21,17 +21,21 @@
             <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
             <converters:BrushToHexConverter x:Key="BrushToHexConverter" />
             <converters:MultiValueEqualityConverter x:Key="MultiValueEqualityConverter" />
+
             <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                 <Setter Property="BorderBrush" Value="Transparent" />
                 <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
             </Style>
+
             <Style TargetType="TextBlock" x:Key="HexLabelTextBlock" BasedOn="{StaticResource MaterialDesignBody2TextBlock}">
                 <Setter Property="Margin" Value="8" />
             </Style>
+
             <Style TargetType="Border">
                 <Setter Property="BorderBrush" Value="LightGray" />
                 <Setter Property="BorderThickness" Value="1" />
             </Style>
+
             <Style TargetType="TextBlock" x:Key="LabelTextBox">
                 <Setter Property="FontWeight" Value="Light" />
                 <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
@@ -392,63 +396,70 @@
             <Border DockPanel.Dock="Bottom" BorderThickness="1 0 1 0">
                 <TextBlock Style="{StaticResource LabelTextBox}" Margin="16">CURRENT SCHEME</TextBlock>
             </Border>
+
             <!-- Color picker section -->
-            <Border Padding="16">
-                <DockPanel>
-                    <UniformGrid Columns="1" DockPanel.Dock="Right">
-                        <RadioButton x:Name="MdPaletteButton" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="True" Content="MD Palette"/>
-                        <RadioButton x:Name="CustomPaletteButton" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Custom"/>
-                    </UniformGrid>
-                    <Grid DockPanel.Dock="Left">
-                        <materialDesign:ColorPicker Color="{Binding SelectedColor, Delay=25}" 
+            <DockPanel Margin="16">
+                <UniformGrid Columns="1" DockPanel.Dock="Right">
+                    <RadioButton x:Name="MdPaletteButton" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="True" Content="MD Palette"/>
+                    <RadioButton x:Name="CustomPaletteButton" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Custom"/>
+                </UniformGrid>
+                <Grid DockPanel.Dock="Left">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="{Binding Color, ElementName=ColorPicker, Converter={StaticResource ColorToBrushConverter}}" Margin="2,0,10,2" />
+                        <materialDesign:ColorPicker Color="{Binding SelectedColor, Delay=25}" Grid.Column="1" x:Name="ColorPicker"
                                                     Visibility="{Binding IsChecked, ElementName=CustomPaletteButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                        <ScrollViewer Visibility="{Binding IsChecked, ElementName=MdPaletteButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel.Resources>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="Width" Value="40" />
-                                            <Setter Property="Margin" Value="1 1 0 0" />
-                                            <Setter Property="TextAlignment" Value="Center" />
-                                        </Style>
-                                    </StackPanel.Resources>
-                                    <Rectangle Width="80" />
-                                    <TextBlock>50</TextBlock>
-                                    <TextBlock>100</TextBlock>
-                                    <TextBlock>200</TextBlock>
-                                    <TextBlock>300</TextBlock>
-                                    <TextBlock>400</TextBlock>
-                                    <TextBlock>500</TextBlock>
-                                    <TextBlock>600</TextBlock>
-                                    <TextBlock>700</TextBlock>
-                                    <TextBlock>800</TextBlock>
-                                    <TextBlock>900</TextBlock>
-                                    <TextBlock>A100</TextBlock>
-                                    <TextBlock>A200</TextBlock>
-                                    <TextBlock>A400</TextBlock>
-                                    <TextBlock>A700</TextBlock>
-                                </StackPanel>
-                                <ItemsControl ItemsSource="{Binding Swatches}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate DataType="{x:Type materialDesignColors:ISwatch}">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Name}" Width="80" VerticalAlignment="Center" />
-                                                <ItemsControl ItemsSource="{Binding Hues}" ItemTemplate="{StaticResource SwatchColorTemplate}">
-                                                    <ItemsControl.ItemsPanel>
-                                                        <ItemsPanelTemplate>
-                                                            <VirtualizingStackPanel Orientation="Horizontal" />
-                                                        </ItemsPanelTemplate>
-                                                    </ItemsControl.ItemsPanel>
-                                                </ItemsControl>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
-                        </ScrollViewer>
                     </Grid>
-                </DockPanel>
-            </Border>
+                    
+                    <ScrollViewer Visibility="{Binding IsChecked, ElementName=MdPaletteButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Width" Value="40" />
+                                        <Setter Property="Margin" Value="1 1 0 0" />
+                                        <Setter Property="TextAlignment" Value="Center" />
+                                    </Style>
+                                </StackPanel.Resources>
+                                <Rectangle Width="80" />
+                                <TextBlock>50</TextBlock>
+                                <TextBlock>100</TextBlock>
+                                <TextBlock>200</TextBlock>
+                                <TextBlock>300</TextBlock>
+                                <TextBlock>400</TextBlock>
+                                <TextBlock>500</TextBlock>
+                                <TextBlock>600</TextBlock>
+                                <TextBlock>700</TextBlock>
+                                <TextBlock>800</TextBlock>
+                                <TextBlock>900</TextBlock>
+                                <TextBlock>A100</TextBlock>
+                                <TextBlock>A200</TextBlock>
+                                <TextBlock>A400</TextBlock>
+                                <TextBlock>A700</TextBlock>
+                            </StackPanel>
+                            <ItemsControl ItemsSource="{Binding Swatches}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type materialDesignColors:ISwatch}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}" Width="80" VerticalAlignment="Center" />
+                                            <ItemsControl ItemsSource="{Binding Hues}" ItemTemplate="{StaticResource SwatchColorTemplate}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <VirtualizingStackPanel Orientation="Horizontal" />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </DockPanel>
         </DockPanel>
     </DockPanel>
 </UserControl>
