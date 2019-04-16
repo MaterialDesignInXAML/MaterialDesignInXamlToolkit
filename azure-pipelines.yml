@@ -1,0 +1,56 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+trigger:
+- master
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  solution: 'MaterialDesignToolkit.Wpf.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'AppVeyor'
+
+steps:
+- powershell: .paket\paket.exe restore
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+    msbuildArgs: '/property:MDIX_CORE_VERSION=$(mdixVersion).$(Build.BuildID) /property:MDIX_COLORS_VERSION=$(mdixColorsVersion).$(Build.BuildID) /property:MDIX_MAHAPPS_VERSION=$(mdixMahappsVersion).$(Build.BuildID)'
+
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: PublishPipelineArtifact@0
+  name: "PublishDemoApp"
+  inputs:
+    artifactName: 'DemoApp'
+    targetPath: 'MainDemo.Wpf/bin/AppVeyor'
+
+- powershell: copy .\MaterialDesignThemes.nuspec .\MaterialDesignThemes.Wpf\bin\AppVeyor\
+
+- task: PublishPipelineArtifact@0
+  name: "PublishMaterialDesign"
+  inputs:
+    artifactName: 'MDIX'
+    targetPath: 'MaterialDesignThemes.Wpf/bin/AppVeyor'
+
+- task: PublishPipelineArtifact@0
+  name: "PublishMaterialDesignColors"
+  inputs:
+    artifactName: 'MDIX.Colors'
+    targetPath: 'MaterialDesignColors.Wpf/bin/AppVeyor'
+
+- task: PublishPipelineArtifact@0
+  name: "PublishMaterialDesignMahApps"
+  inputs:
+    artifactName: 'MDIX.MahApps'
+    targetPath: 'MaterialDesignThemes.MahApps/bin/Release'
