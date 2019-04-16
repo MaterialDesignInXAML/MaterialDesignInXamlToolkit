@@ -6,6 +6,10 @@
 trigger:
 - master
 
+pr:
+- master
+- release
+
 pool:
   vmImage: 'VS2017-Win2016'
 
