@@ -404,14 +404,13 @@
                     <RadioButton x:Name="CustomPaletteButton" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Custom"/>
                 </UniformGrid>
                 <Grid DockPanel.Dock="Left">
-                    <Grid>
+                    <Grid Visibility="{Binding IsChecked, ElementName=CustomPaletteButton, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="160" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Rectangle Fill="{Binding Color, ElementName=ColorPicker, Converter={StaticResource ColorToBrushConverter}}" Margin="2,0,10,2" />
-                        <materialDesign:ColorPicker Color="{Binding SelectedColor, Delay=25}" Grid.Column="1" x:Name="ColorPicker"
-                                                    Visibility="{Binding IsChecked, ElementName=CustomPaletteButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <materialDesign:ColorPicker Color="{Binding SelectedColor, Delay=25}" Grid.Column="1" x:Name="ColorPicker" />
                     </Grid>
                     
                     <ScrollViewer Visibility="{Binding IsChecked, ElementName=MdPaletteButton, Converter={StaticResource BooleanToVisibilityConverter}}">
