@@ -1,11 +1,9 @@
-﻿using System.ComponentModel;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
     public interface IBaseTheme
     {
-        string Name { get; }
         Color ValidationErrorColor { get; }
         Color MaterialDesignBackground { get; }
         Color MaterialDesignPaper { get; }

@@ -4,113 +4,79 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignThemes.MahApps
 {
     public static class MaterialDesignAssist
     {
-        public static MaterialDesignTheme WithMahApps(this MaterialDesignTheme theme)
+        public static void SetMahApps(this ResourceDictionary resourceDictionary, ITheme theme, BaseTheme baseTheme)
         {
-            theme.ThemeManager.ThemeChangeHandlers += OnChangeTheme;
-            theme.ThemeManager.PaletteChangeHandlers += OnChangePalette;
+            resourceDictionary.SetMahAppsBaseTheme(baseTheme);
 
-            CreateIfNotExists(GetThemeUri(theme.BaseTheme));
+            resourceDictionary.SetBrush("HighlightBrush", theme.PrimaryDark.Color);
+            resourceDictionary.SetBrush("AccentColorBrush", theme.PrimaryDark.Color);
+            resourceDictionary.SetBrush("AccentColorBrush2", theme.PrimaryMid.Color);
+            resourceDictionary.SetBrush("AccentColorBrush3", theme.PrimaryLight.Color);
+            resourceDictionary.SetBrush("AccentColorBrush4", theme.PrimaryLight.Color, 0.82);
+            resourceDictionary.SetBrush("WindowTitleColorBrush", theme.PrimaryDark.Color);
+            resourceDictionary.SetBrush("AccentSelectedColorBrush", theme.PrimaryDark.GetForegroundColor());
+            resourceDictionary.SetBrush("ProgressBrush", new LinearGradientBrush(theme.PrimaryDark.Color, theme.PrimaryMid.Color, 90.0));
+            resourceDictionary.SetBrush("CheckmarkFill", theme.PrimaryDark.Color);
+            resourceDictionary.SetBrush("RightArrowFill", theme.PrimaryDark.Color);
+            resourceDictionary.SetBrush("IdealForegroundColorBrush", theme.PrimaryDark.GetForegroundColor());
+            resourceDictionary.SetBrush("IdealForegroundDisabledBrush", theme.PrimaryDark.GetForegroundColor(), 0.4);
+        }
 
-            var primaryPalette = theme.Palettes.FirstOrDefault(o => o.Name == PaletteName.Primary.ToString());
+        private static void SetBrush(this ResourceDictionary sourceDictionary, string name, Color value, double opacity = 1.0)
+        {
+            if (sourceDictionary == null) throw new ArgumentNullException(nameof(sourceDictionary));
+            if (name == null) throw new ArgumentNullException(nameof(name));
 
-            if (primaryPalette != null)
+            if (sourceDictionary[name] is SolidColorBrush brush)
             {
-                foreach (var kvp in GetPrimaryBrushes(primaryPalette))
+                if (brush.Color == value) return;
+
+                if (!brush.IsFrozen)
                 {
-                    theme.ThemeManager.Resources[kvp.Key] = kvp.Value;
+                    var animation = new ColorAnimation {
+                        From = brush.Color,
+                        To = value,
+                        Duration = new Duration(TimeSpan.FromMilliseconds(300))
+                    };
+                    brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                    return;
                 }
             }
-
-
-            return theme;
-
-            void CreateIfNotExists(Uri source)
-            {
-                if (FindDictionary(theme.ThemeManager.Resources.MergedDictionaries, source) == null)
-                {
-                    theme.ThemeManager.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = source });
-                }
-            }
+            sourceDictionary[name] = new SolidColorBrush(value) { Opacity = opacity }; //Set value directly
         }
 
-        private static IEnumerable<KeyValuePair<string, Brush>> GetPrimaryBrushes(ColorPalette palette)
+        private static void SetBrush(this ResourceDictionary sourceDictionary, string name, Brush value)
         {
-            yield return new KeyValuePair<string, Brush>("HighlightBrush", new SolidColorBrush(palette.Dark));
-            yield return new KeyValuePair<string, Brush>("AccentColorBrush", new SolidColorBrush(palette.Dark));
-            yield return new KeyValuePair<string, Brush>("AccentColorBrush2", new SolidColorBrush(palette.Mid));
-            yield return new KeyValuePair<string, Brush>("AccentColorBrush3", new SolidColorBrush(palette.Light));
-            yield return new KeyValuePair<string, Brush>("AccentColorBrush4", new SolidColorBrush(palette.Light) { Opacity = .82 });
-            yield return new KeyValuePair<string, Brush>("WindowTitleColorBrush", new SolidColorBrush(palette.Dark));
-            yield return new KeyValuePair<string, Brush>("AccentSelectedColorBrush", new SolidColorBrush(palette.DarkForeground));
-            yield return new KeyValuePair<string, Brush>("ProgressBrush", new LinearGradientBrush(palette.Dark, palette.Mid, 90.0));
-            yield return new KeyValuePair<string, Brush>("CheckmarkFill", new SolidColorBrush(palette.Dark));
-            yield return new KeyValuePair<string, Brush>("RightArrowFill", new SolidColorBrush(palette.Dark));
-            yield return new KeyValuePair<string, Brush>("IdealForegroundColorBrush", new SolidColorBrush(palette.DarkForeground));
-            yield return new KeyValuePair<string, Brush>("IdealForegroundDisabledBrush", new SolidColorBrush(palette.Dark) { Opacity = .4 });
+            if (sourceDictionary == null) throw new ArgumentNullException(nameof(sourceDictionary));
+            if (name == null) throw new ArgumentNullException(nameof(name));
+
+            sourceDictionary[name] = value; //Set value directly
         }
 
-        private static ResourceDictionary CreateEmptyPaletteDictionary()
+        internal static void SetMahAppsBaseTheme(this ResourceDictionary resourceDictionary, BaseTheme baseTheme)
         {
-            return new ResourceDictionary {
-                ["HighlightBrush"] = new SolidColorBrush(),
-                ["AccentColorBrush"] = new SolidColorBrush(),
-                ["AccentColorBrush2"] = new SolidColorBrush(),
-                ["AccentColorBrush3"] = new SolidColorBrush(),
-                ["AccentColorBrush4"] = new SolidColorBrush(),
-                ["WindowTitleColorBrush"] = new SolidColorBrush(),
-                ["AccentSelectedColorBrush"] = new SolidColorBrush(),
-                ["ProgressBrush"] = new SolidColorBrush(),
-                ["CheckmarkFill"] = new SolidColorBrush(),
-                ["RightArrowFill"] = new SolidColorBrush(),
-                ["IdealForegroundColorBrush"] = new SolidColorBrush(),
-                ["IdealForegroundDisabledBrush"] = new SolidColorBrush(),
-            };
-        }
+            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
 
-        public static void OnChangeTheme(ResourceDictionary resources, IBaseTheme theme)
-        {
-            var existingMahAppsResourceDictionary = resources.MergedDictionaries
+            var existingMahAppsResourceDictionary = resourceDictionary.MergedDictionaries
                 .Where(rd => rd.Source != null)
                 .SingleOrDefault(rd => Regex.Match(rd.Source.OriginalString, @"(\/MahApps.Metro;component\/Styles\/Accents\/)((BaseLight)|(BaseDark))").Success);
             if (existingMahAppsResourceDictionary != null)
             {
-                resources.MergedDictionaries.Remove(existingMahAppsResourceDictionary);
+                resourceDictionary.MergedDictionaries.Remove(existingMahAppsResourceDictionary);
             }
 
-            var source = $"pack://application:,,,/MahApps.Metro;component/Styles/Accents/{(theme == MaterialDesignTheme.Dark ? "BaseDark" : "BaseLight")}.xaml";
+            var source = $"pack://application:,,,/MahApps.Metro;component/Styles/Accents/{(baseTheme == BaseTheme.Dark ? "BaseDark" : "BaseLight")}.xaml";
             var newMahAppsResourceDictionary = new ResourceDictionary { Source = new Uri(source) };
 
-            resources.MergedDictionaries.Add(newMahAppsResourceDictionary);
+            resourceDictionary.MergedDictionaries.Add(newMahAppsResourceDictionary);
         }
 
-        public static void OnChangePalette(ResourceDictionary resources, ColorPalette palette)
-        {
-            if (palette.Name == PaletteName.Primary.ToString())
-            {
-                foreach (var kvp in GetPrimaryBrushes(palette))
-                {
-                    resources.ReplaceEntry(kvp.Key, kvp.Value);
-                }
-            }
-        }
-
-        public static void OnChangeColor(ResourceDictionary resources, ColorChange color)
-        {
-            //TODO
-        }
-
-        private static Uri GetThemeUri(IBaseTheme theme)
-            => new Uri($"pack://application:,,,/MahApps.Metro;component/Styles/Accents/{(theme == MaterialDesignTheme.Dark ? "BaseDark" : "BaseLight")}.xaml");
-
-        private static ResourceDictionary FindDictionary(IEnumerable<ResourceDictionary> dictionaries, Uri source)
-        {
-            return dictionaries.FirstOrDefault(x => x.Source == source);
-        }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
-using MaterialDesignColors;
-using MaterialDesignThemes.Wpf;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
+using MaterialDesignColors;
+using MaterialDesignThemes.Wpf;
 
 namespace MahMaterialDragablzMashUp
 {
@@ -42,17 +42,17 @@ namespace MahMaterialDragablzMashUp
 
         private static void ApplyBase(bool isDark)
         {
-            //MaterialDesignAssist.DefaultPaletteHelper.SetLightDark(isDark); TODO
+            new PaletteHelper().SetLightDark(isDark);
         }
 
         private static void ApplyPrimary(Swatch swatch)
         {
-            //MaterialDesignAssist.DefaultPaletteHelper.ReplacePrimaryColor(swatch); TODO
+            new PaletteHelper().ReplacePrimaryColor(swatch);
         }
 
         private static void ApplyAccent(Swatch swatch)
         {
-            //MaterialDesignAssist.DefaultPaletteHelper.ReplaceAccentColor(swatch); TODO
+            new PaletteHelper().ReplaceAccentColor(swatch);
         }
 
     }

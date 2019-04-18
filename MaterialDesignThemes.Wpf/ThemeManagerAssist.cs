@@ -6,14 +6,14 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class ThemeManagerAssist
     {
-        public static ThemeManager AttachThemeEventsToWindow(this ThemeManager themeManager)
-        {
-            Register<IBaseTheme>(MaterialDesignTheme.ChangeThemeCommand, themeManager.ChangeTheme);
-            Register<ColorPalette>(MaterialDesignTheme.ChangePaletteCommand, themeManager.ChangePalette);
-            Register<ColorChange>(MaterialDesignTheme.ChangeColorCommand, themeManager.ChangeColor);
-
-            return themeManager;
-        }
+        //public static ThemeManager_old AttachThemeEventsToWindow(this ThemeManager_old themeManager)
+        //{
+        //    Register<IBaseTheme>(MaterialDesignTheme.ChangeThemeCommand, themeManager.ChangeTheme);
+        //    Register<ColorPalette>(MaterialDesignTheme.ChangePaletteCommand, themeManager.ChangePalette);
+        //    Register<ColorChange>(MaterialDesignTheme.ChangeColorCommand, themeManager.ChangeColor);
+        //
+        //    return themeManager;
+        //}
 
         private static void CanExecute<T>(object sender, CanExecuteRoutedEventArgs e)
         {

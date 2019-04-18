@@ -310,8 +310,6 @@
     <Compile Include="Clock.cs" />
     <Compile Include="ClockChoiceMadeEventArgs.cs" />
     <Compile Include="ClockItemButton.cs" />
-    <Compile Include="ColorChange.cs" />
-    <Compile Include="ColorName.cs" />
     <Compile Include="ColorZone.cs" />
     <Compile Include="ColorZoneAssist.cs" />
     <Compile Include="ComboBoxAssist.cs" />
@@ -364,7 +362,6 @@
     <Compile Include="DialogHost.cs" />
     <Compile Include="DpiHelper.cs" />
     <Compile Include="DrawerHost.cs" />
-    <Compile Include="CodePaletteHelper.cs" />
     <Compile Include="ExpanderAssist.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Flipper.cs" />
@@ -377,22 +374,18 @@
     <Compile Include="IBaseTheme.cs" />
     <Compile Include="Icon.cs" />
     <Compile Include="IconType.cs" />
-    <Compile Include="IPaletteHelper.cs" />
     <Compile Include="ISnackbarMessageQueue.cs" />
+    <Compile Include="ITheme.cs" />
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="ListViewAssist.cs" />
-    <Compile Include="MaterialDesignAssist.cs" />
     <Compile Include="MaterialDesignDefaultsResourceDictionary.cs" />
     <Compile Include="ResourceDictionaryExtensions.cs" />
     <Compile Include="MaterialDesignLightTheme.cs" />
     <Compile Include="MaterialDesignDarkTheme.cs" />
-    <Compile Include="MaterialDesignResourceDictionary.cs" />
-    <Compile Include="MaterialDesignTheme.cs" />
+    <Compile Include="ThemeMarkupExtension.cs" />
     <Compile Include="MessageQueueExtension.cs" />
     <Compile Include="PackIconExtension.cs" />
     <Compile Include="Palette.cs" />
-    <Compile Include="ColorPalette.cs" />
-    <Compile Include="PaletteChangedEventArgs.cs" />
     <Compile Include="PaletteHelper.cs" />
     <Compile Include="PaletteName.cs" />
     <Compile Include="Plane3D.cs" />
@@ -408,8 +401,9 @@
     <Compile Include="SnackbarMessageQueue.cs" />
     <Compile Include="SnackbarMessageQueueItem.cs" />
     <Compile Include="Spelling.cs" />
+    <Compile Include="Theme.cs" />
     <Compile Include="ThemeAssist.cs" />
-    <Compile Include="ThemeManager.cs" />
+    <Compile Include="ThemeExtensions.cs" />
     <Compile Include="ThemeManagerAssist.cs" />
     <Compile Include="ThemeSetEventArgs.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
@@ -427,7 +421,6 @@
     <Compile Include="PackIconDataFactory.cs" />
     <Compile Include="PackIconKind.cs" />
     <Compile Include="PopupBox.cs" />
-    <Compile Include="XamlPaletteHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

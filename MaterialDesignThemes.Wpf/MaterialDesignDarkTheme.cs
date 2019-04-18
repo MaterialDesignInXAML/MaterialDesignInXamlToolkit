@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
     public class MaterialDesignDarkTheme : IBaseTheme
     {
-        public string Name { get; } = "Dark";
         public Color ValidationErrorColor { get; } = (Color)ColorConverter.ConvertFromString("#f44336");
         public Color MaterialDesignBackground { get; } = (Color)ColorConverter.ConvertFromString("#FF000000");
         public Color MaterialDesignPaper { get; } = (Color)ColorConverter.ConvertFromString("#FF303030");

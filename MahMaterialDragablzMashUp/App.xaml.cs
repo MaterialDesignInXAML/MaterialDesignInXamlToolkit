@@ -13,7 +13,6 @@ namespace MahMaterialDragablzMashUp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            this.WithMaterialDesign(BaseTheme.Light, MaterialDesignColor.DeepPurple, MaterialDesignColor.LimeAccent).WithMahApps();
             base.OnStartup(e);
         }
     }

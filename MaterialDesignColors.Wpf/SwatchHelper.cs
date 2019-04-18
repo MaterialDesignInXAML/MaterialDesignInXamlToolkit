@@ -5,7 +5,7 @@ using MaterialDesignColors.Recommended;
 
 namespace MaterialDesignColors
 {
-    public class SwatchHelper
+    public static class SwatchHelper
     {
         public static IEnumerable<ISwatch> Swatches { get; } = new ISwatch[]
         {

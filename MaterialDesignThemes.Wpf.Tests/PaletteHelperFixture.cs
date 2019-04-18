@@ -5,7 +5,7 @@ using Xunit;
 using MockRepository = Rhino.Mocks.MockRepository;
 
 namespace MaterialDesignThemes.Wpf.Tests
-{    
+{
     /// <summary>
     /// Proves that PaletteHelper is mockable, thus allowing TDD for view models which may want to change 
     /// an application's palette.
@@ -18,7 +18,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         [Fact]
         public void IsMockableWithRhino()
         {
-            var paletteHelper = MockRepository.GenerateStub<XamlPaletteHelper>();
+            var paletteHelper = MockRepository.GenerateStub<PaletteHelper>();
 
             paletteHelper.SetLightDark(true);
 
@@ -28,7 +28,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         [Fact]
         public void IsMockableWithMoq()
         {
-            var mock = new Mock<XamlPaletteHelper>();            
+            var mock = new Mock<PaletteHelper>();
 
             mock.Object.SetLightDark(true);
 
@@ -38,7 +38,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         [Fact]
         public void IsMockableWithNSubstitute()
         {
-            var mock = Substitute.For<XamlPaletteHelper>();
+            var mock = Substitute.For<PaletteHelper>();
 
             mock.SetLightDark(true);
 

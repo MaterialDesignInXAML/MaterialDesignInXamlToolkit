@@ -38,5 +38,21 @@ namespace MaterialDesignColors.ColorManipulation
         {
             return color.ShiftLightness(-amount);
         }
+
+        /// <summary>
+        /// Calculates the CIE76 distance between two colors.
+        /// </summary>
+        /// <param name="color"></param>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public static double Difference(this Color color, Color other)
+        {
+            Lab lab1 = color.ToLab();
+            Lab lab2 = color.ToLab();
+
+            return Math.Sqrt(Math.Pow(lab2.L - lab1.L, 2) + 
+                             Math.Pow(lab2.A - lab1.A, 2) +
+                             Math.Pow(lab2.B - lab1.B, 2));
+        }
     }
 }

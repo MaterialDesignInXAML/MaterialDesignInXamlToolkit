@@ -68,6 +68,7 @@
     <Compile Include="ISwatch.cs" />
     <Compile Include="ColorManipulation\Lab.cs" />
     <Compile Include="MaterialDesignColor.cs" />
+    <Compile Include="PairedColor.cs" />
     <Compile Include="SwatchHelper.cs" />
     <Compile Include="Hue.cs" />
     <Compile Include="RecommendedThemeProvider.cs" />
@@ -695,7 +696,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\Versioning.targets" />
-
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,5 +1,48 @@
 ﻿namespace MaterialDesignColors
 {
+    public enum PrimaryColor
+    {
+        Red = MaterialDesignColor.Red500,
+        Pink = MaterialDesignColor.Pink500,
+        Purple = MaterialDesignColor.Purple500,
+        DeepPurple = MaterialDesignColor.DeepPurple500,
+        Indigo = MaterialDesignColor.Indigo500,
+        Blue = MaterialDesignColor.Blue500,
+        LightBlue = MaterialDesignColor.LightBlue500,
+        Cyan = MaterialDesignColor.Cyan500,
+        Teal = MaterialDesignColor.Teal500,
+        Green = MaterialDesignColor.Green500,
+        LightGreen = MaterialDesignColor.LightGreen500,
+        Lime = MaterialDesignColor.Lime500,
+        Yellow = MaterialDesignColor.Yellow500,
+        Amber = MaterialDesignColor.Amber500,
+        Orange = MaterialDesignColor.Orange500,
+        DeepOrange = MaterialDesignColor.DeepOrange500,
+        Brown = MaterialDesignColor.Brown500,
+        Grey = MaterialDesignColor.Grey500,
+        BlueGrey = MaterialDesignColor.BlueGrey500,
+    }
+
+    public enum AccentColor
+    {
+        Red = MaterialDesignColor.RedA700,
+        Pink = MaterialDesignColor.PinkA700,
+        Purple = MaterialDesignColor.PurpleA700,
+        DeepPurple = MaterialDesignColor.DeepPurpleA700,
+        Indigo = MaterialDesignColor.IndigoA700,
+        Blue = MaterialDesignColor.BlueA700,
+        LightBlue = MaterialDesignColor.LightBlueA700,
+        Cyan = MaterialDesignColor.CyanA700,
+        Teal = MaterialDesignColor.TealA700,
+        Green = MaterialDesignColor.GreenA700,
+        LightGreen = MaterialDesignColor.LightGreenA700,
+        Lime = MaterialDesignColor.LimeA700,
+        Yellow = MaterialDesignColor.YellowA700,
+        Amber = MaterialDesignColor.AmberA700,
+        Orange = MaterialDesignColor.OrangeA700,
+        DeepOrange = MaterialDesignColor.DeepOrangeA700
+    }
+
     public enum MaterialDesignColor
     {
         Red50,

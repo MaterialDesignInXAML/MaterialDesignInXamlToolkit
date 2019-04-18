@@ -31,7 +31,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.WikiLink("Swatches-and-Recommended-Colors", "Swatches"),
                         DocumentationLink.DemoPageLink<PaletteSelector>("Demo View"),
                         DocumentationLink.DemoPageLink<PaletteSelectorViewModel>("Demo View Model"),
-                        DocumentationLink.ApiLink(typeof(XamlPaletteHelper))
+                        DocumentationLink.ApiLink<PaletteHelper>()
                     }),
                 new DemoItem("Color Tool", new ColorTool { DataContext = new ColorToolViewModel() },
                     new []
@@ -41,7 +41,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.WikiLink("Swatches-and-Recommended-Colors", "Swatches"),
                         DocumentationLink.DemoPageLink<PaletteSelector>("Demo View"),
                         DocumentationLink.DemoPageLink<PaletteSelectorViewModel>("Demo View Model"),
-                        DocumentationLink.ApiLink<XamlPaletteHelper>()
+                        DocumentationLink.ApiLink<PaletteHelper>()
                     }),
                 new DemoItem("Buttons & Toggles", new Buttons { DataContext = new ButtonsViewModel() } ,
                     new []

@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignColors;
+using MaterialDesignColors.ColorManipulation;
 using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignThemes.Wpf;
 
@@ -62,7 +63,7 @@ namespace MaterialDesignDemo
 
         private void ApplyBase(bool isDark)
         {
-            _paletteHelper.ChangeTheme(isDark ? MaterialDesignTheme.Dark : MaterialDesignTheme.Light);
+            _paletteHelper.SetLightDark(isDark);
         }
 
         public ColorToolViewModel()
@@ -75,7 +76,7 @@ namespace MaterialDesignDemo
             ChangeToPrimaryForegroundCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.PrimaryForeground));
             ChangeToSecondaryForegroundCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.SecondaryForeground));
 
-            var palette = new XamlPaletteHelper().QueryPalette();
+            var palette = _paletteHelper.QueryPalette();
 
             if (palette == null) return;
 
@@ -183,9 +184,10 @@ namespace MaterialDesignDemo
 
         private void SetForegroundToSingleColor(PaletteName name, Color color)
         {
-            _paletteHelper.ChangeColor($"{name.ToString()}HueLightForegroundBrush", color);
-            _paletteHelper.ChangeColor($"{name.ToString()}HueMidForegroundBrush", color);
-            _paletteHelper.ChangeColor($"{name.ToString()}HueDarkForegroundBrush", color);
+            
+            //_paletteHelper.ChangeColor($"{name.ToString()}HueLightForegroundBrush", color);
+            //_paletteHelper.ChangeColor($"{name.ToString()}HueMidForegroundBrush", color);
+            //_paletteHelper.ChangeColor($"{name.ToString()}HueDarkForegroundBrush", color);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -193,6 +195,31 @@ namespace MaterialDesignDemo
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+    public static class PaletteHelperExtensions
+    {
+        public static void ChangePrimaryColor(this PaletteHelper paletteHelper, Color color)
+        {
+            ITheme theme = paletteHelper.GetTheme();
+
+            theme.PrimaryLight = new PairedColor(color.Lighten(), theme.PrimaryLight.ForegroundColor);
+            theme.PrimaryMid = new PairedColor(color, theme.PrimaryMid.ForegroundColor);
+            theme.PrimaryDark = new PairedColor(color.Darken(), theme.PrimaryDark.ForegroundColor);
+
+            paletteHelper.SetTheme(theme);
+        }
+
+        public static void ChangeSecondaryColor(this PaletteHelper paletteHelper, Color color)
+        {
+            ITheme theme = paletteHelper.GetTheme();
+
+            theme.PrimaryLight = color.Lighten();
+            theme.PrimaryMid = color;
+            theme.PrimaryDark = color.Darken();
+
+            paletteHelper.SetTheme(theme);
         }
     }
 }
