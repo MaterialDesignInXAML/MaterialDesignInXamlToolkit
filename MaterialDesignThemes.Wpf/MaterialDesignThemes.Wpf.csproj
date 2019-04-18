@@ -378,7 +378,6 @@
     <Compile Include="ITheme.cs" />
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="ListViewAssist.cs" />
-    <Compile Include="MaterialDesignDefaultsResourceDictionary.cs" />
     <Compile Include="ResourceDictionaryExtensions.cs" />
     <Compile Include="MaterialDesignLightTheme.cs" />
     <Compile Include="MaterialDesignDarkTheme.cs" />
@@ -387,7 +386,6 @@
     <Compile Include="PackIconExtension.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="PaletteHelper.cs" />
-    <Compile Include="PaletteName.cs" />
     <Compile Include="Plane3D.cs" />
     <Compile Include="PrimarySwatchChangedEventArgs.cs" />
     <Compile Include="ScaleHost.cs" />

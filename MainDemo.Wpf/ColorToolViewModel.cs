@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -63,7 +62,10 @@ namespace MaterialDesignDemo
 
         private void ApplyBase(bool isDark)
         {
-            _paletteHelper.SetLightDark(isDark);
+            ITheme theme = _paletteHelper.GetTheme();
+            IBaseTheme baseTheme = isDark ? new MaterialDesignDarkTheme() : (IBaseTheme)new MaterialDesignLightTheme();
+            theme.SetBaseTheme(baseTheme);
+            _paletteHelper.SetTheme(theme);
         }
 
         public ColorToolViewModel()
@@ -76,26 +78,11 @@ namespace MaterialDesignDemo
             ChangeToPrimaryForegroundCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.PrimaryForeground));
             ChangeToSecondaryForegroundCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.SecondaryForeground));
 
-            var palette = _paletteHelper.QueryPalette();
 
-            if (palette == null) return;
+            ITheme theme = _paletteHelper.GetTheme();
 
-            var primary = palette.PrimarySwatch.PrimaryHues.ToArray()[palette.PrimaryMidHueIndex];
-            var secondary = palette.AccentSwatch.AccentHues.ToArray()[palette.AccentHueIndex];
-
-            foreach (var swatch in SwatchHelper.Swatches)
-            {
-                var stripped = swatch.Name.Replace(" ", "");
-                if (string.Equals(palette.PrimarySwatch.Name, stripped, System.StringComparison.OrdinalIgnoreCase))
-                {
-                    var hue = swatch.Hues.First(o => o == primary.Color);
-                    _primaryColor = hue;
-                }
-                else if (string.Equals(palette.AccentSwatch.Name, stripped, System.StringComparison.OrdinalIgnoreCase))
-                {
-                    _secondaryColor = swatch.Hues.First(o => o == secondary.Color);
-                }
-            }
+            _primaryColor = theme.PrimaryMid.Color;
+            _secondaryColor = theme.Accent.Color;
 
             SelectedColor = _primaryColor;
         }
@@ -116,12 +103,12 @@ namespace MaterialDesignDemo
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {
-                SetForegroundToSingleColor(PaletteName.Primary, color);
+                SetPrimaryForegroundToSingleColor(color);
                 _primaryForegroundColor = color;
             }
             else if (ActiveScheme == ColorScheme.SecondaryForeground)
             {
-                SetForegroundToSingleColor(PaletteName.Secondary, color);
+                SetSecondaryForegroundToSingleColor(color);
                 _secondaryForegroundColor = color;
             }
         }
@@ -172,22 +159,34 @@ namespace MaterialDesignDemo
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {
-                SetForegroundToSingleColor(PaletteName.Primary, hue);
+                SetPrimaryForegroundToSingleColor(hue);
                 _primaryForegroundColor = hue;
             }
             else if (ActiveScheme == ColorScheme.SecondaryForeground)
             {
-                SetForegroundToSingleColor(PaletteName.Secondary, hue);
+                SetSecondaryForegroundToSingleColor(hue);
                 _secondaryForegroundColor = hue;
             }
         }
 
-        private void SetForegroundToSingleColor(PaletteName name, Color color)
+        private void SetPrimaryForegroundToSingleColor(Color color)
         {
-            
-            //_paletteHelper.ChangeColor($"{name.ToString()}HueLightForegroundBrush", color);
-            //_paletteHelper.ChangeColor($"{name.ToString()}HueMidForegroundBrush", color);
-            //_paletteHelper.ChangeColor($"{name.ToString()}HueDarkForegroundBrush", color);
+            ITheme theme = _paletteHelper.GetTheme();
+
+            theme.PrimaryLight = new PairedColor(theme.PrimaryLight.Color, color);
+            theme.PrimaryMid = new PairedColor(theme.PrimaryMid.Color, color);
+            theme.PrimaryDark = new PairedColor(theme.PrimaryDark.Color, color);
+
+            _paletteHelper.SetTheme(theme);
+        }
+
+        private void SetSecondaryForegroundToSingleColor(Color color)
+        {
+            ITheme theme = _paletteHelper.GetTheme();
+
+            theme.Accent = new PairedColor(theme.Accent.Color, color);
+
+            _paletteHelper.SetTheme(theme);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -215,9 +214,7 @@ namespace MaterialDesignDemo
         {
             ITheme theme = paletteHelper.GetTheme();
 
-            theme.PrimaryLight = color.Lighten();
-            theme.PrimaryMid = color;
-            theme.PrimaryDark = color.Darken();
+            theme.Accent = new PairedColor(color, theme.Accent.ForegroundColor);
 
             paletteHelper.SetTheme(theme);
         }
