@@ -157,9 +157,9 @@ namespace MaterialDesignThemes.Wpf.Transitions
             return transitionOrigin;
         }
 
-        private static bool IsSafePositive(double dubz)
+        private static bool IsSafePositive(double @double)
         {
-            return !double.IsNaN(dubz) && !double.IsInfinity(dubz) && dubz > 0.0;
+            return !double.IsNaN(@double) && !double.IsInfinity(@double) && @double > 0.0;
         }
 
         private TransitionerSlide GetSlide(object item)
@@ -178,6 +178,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
             for (var index = 0; index < Items.Count; index++)
             {
                 var slide = GetSlide(Items[index]);
+                if (slide == null) continue;
                 if (index == selectedIndex)
                 {
                     newSlide = slide;
