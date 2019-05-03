@@ -41,6 +41,10 @@ steps:
 
 - powershell: copy .\MaterialDesignThemes.nuspec .\MaterialDesignThemes.Wpf\bin\AppVeyor\
 
+- powershell: copy .\MaterialDesignColors.nuspec .\MaterialDesignColors.Wpf\bin\AppVeyor\
+
+- powershell: copy .\MaterialDesignThemes.MahApps.nuspec .\MaterialDesignThemes.MahApps\bin\Release\
+
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesign"
   inputs:
