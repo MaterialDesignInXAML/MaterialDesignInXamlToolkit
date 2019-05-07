@@ -127,7 +127,7 @@
                                         </StackPanel>
                                     </Button>
                                     <TextBlock Foreground="{DynamicResource MaterialDesignBodyLight}" TextWrapping="Wrap" Margin="16" VerticalAlignment="Center">
-                                        Feel like you want to make a donation?  It would be gratefully received.  Click the button to donate via Pledgie.
+                                        Feel like you want to make a donation?  It would be gratefully received.  Click the button to donate via Open Collective.
                                     </TextBlock>
                                 </DockPanel>
                             </Border>
