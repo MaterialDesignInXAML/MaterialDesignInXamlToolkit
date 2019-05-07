@@ -249,31 +249,48 @@
                 <Button Content="{materialDesign:PackIcon AirplaneTakeoff}" ToolTip="Icon" />
             </smtx:XamlDisplay>
         </StackPanel>
-        <StackPanel Grid.Row="3"  Margin="0 24 0 0" Orientation="Horizontal">
-            <smtx:XamlDisplay Key="buttons_21" Margin="5 0 8 0">
-                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                        Width="150"
-                        ToolTip="Resource name: MaterialDesignRaisedAccentButton"
-                        materialDesign:RippleAssist.Feedback="#DD000000">CUSTOM RIPPLE</Button>
-            </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="buttons_22" Margin="0 0 8 0">
-                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                        Width="150"
-                        ToolTip="Resource name: MaterialDesignRaisedAccentButton"
-                        materialDesign:RippleAssist.IsDisabled="True">NO RIPPLE</Button>
-            </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="buttons_23" Margin="0 0 8 0">
-                <RepeatButton  Width="100" ToolTip="Resource name: MaterialDesignRaisedButton">
-                    REPEAT
-                </RepeatButton>
-            </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="buttons_24" Margin="200 0 0 0">
-                <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick" ToolTip="MaterialDesignFlatButton">ACCEPT</Button>
-            </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="buttons_25">
-                <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton">CANCEL</Button>
-            </smtx:XamlDisplay>
+        <StackPanel Grid.Row="3">
+            <StackPanel Orientation="Horizontal" Margin="0 24 0 0">
+                <smtx:XamlDisplay Key="buttons_21" Margin="5 0 8 0">
+                    <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            Width="150"
+                            ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                            materialDesign:RippleAssist.Feedback="#DD000000">CUSTOM RIPPLE</Button>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="buttons_22" Margin="0 0 8 0">
+                    <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            Width="150"
+                            ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                            materialDesign:RippleAssist.IsDisabled="True">NO RIPPLE</Button>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="buttons_23" Margin="0 0 8 0">
+                    <RepeatButton  Width="100" ToolTip="Resource name: MaterialDesignRaisedButton">
+                        REPEAT
+                    </RepeatButton>
+                </smtx:XamlDisplay>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 24 0 0">
+                <smtx:XamlDisplay Key="buttons_24">
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick" ToolTip="MaterialDesignFlatButton">ACCEPT</Button>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="buttons_25">
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton">CANCEL</Button>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="buttons_25_1">
+                    <Button Style="{StaticResource MaterialDesignFlatLightBgButton}" ToolTip="MaterialDesignFlatLightButton">Okay</Button>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="buttons_25_2">
+                    <Button Style="{StaticResource MaterialDesignFlatMidBgButton}" ToolTip="MaterialDesignFlatMidButton">Okay</Button>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="buttons_25_3">
+                    <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}" ToolTip="MaterialDesignFlatDarkButton">Okay</Button>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="buttons_25_4">
+                    <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}" ToolTip="MaterialDesignFlatAccentBackgroundButton">Okay</Button>
+                </smtx:XamlDisplay>
+            </StackPanel>
         </StackPanel>
+            
         <Border Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="4" />
 
         <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"

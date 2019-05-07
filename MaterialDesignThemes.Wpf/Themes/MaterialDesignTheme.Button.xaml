@@ -164,6 +164,22 @@
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}"/>
     </Style>
 
+    <Style x:Key="MaterialDesignFlatAccentBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
+        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+    </Style>
+
+    <Style x:Key="MaterialDesignFlatLightBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+    </Style>
+
+    <Style x:Key="MaterialDesignFlatMidBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+    </Style>
+
+    <Style x:Key="MaterialDesignFlatDarkBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+    </Style>
+
     <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignToolForeground}"/>
         <Setter Property="Padding" Value="4"/>
