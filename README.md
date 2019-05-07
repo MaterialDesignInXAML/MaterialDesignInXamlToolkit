@@ -50,7 +50,7 @@ To load the source project you will need Visual Studio 2017.  Don't worry if you
   * Stack Overflow tag: [material-design-in-xaml](http://stackoverflow.com/questions/tagged/material-design-in-xaml)
 * Want to say thanks?
   *  Hit the :star: Star :star: button
-  *  <a href='https://pledgie.com/campaigns/31029'><img alt='Click here to lend your support to: Material Design In XAML Toolkit/Dragablz and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/31029.png?skin_name=chrome' border='0' ></a>
+  *  If you'd like to make a very much appreciated financial donation please visit <a href='https://opencollective.com/materialdesigninxaml'>open collective</a>
 
 # ![Alt text](web/images/MD4XAML28.png "Mentions") Mentions
 
