@@ -39,11 +39,13 @@ steps:
     artifactName: 'DemoApp'
     targetPath: 'MainDemo.Wpf/bin/AppVeyor'
 
-- powershell: copy .\MaterialDesignThemes.nuspec .\MaterialDesignThemes.Wpf\bin\AppVeyor\
+- powershell: Copy-Item -Path ".\MaterialDesignThemes.nuspec" -Destination ".\MaterialDesignThemes.Wpf\bin\AppVeyor\"
 
-- powershell: copy .\MaterialDesignColors.nuspec .\MaterialDesignColors.Wpf\bin\AppVeyor\
+- powershell: Copy-Item -Path ".\MaterialDesignThemes.Wpf\*" -Include *.cs -Recurse -Destination ".\MaterialDesignColors.Wpf\bin\AppVeyor\"
 
-- powershell: copy .\MaterialDesignThemes.MahApps.nuspec .\MaterialDesignThemes.MahApps\bin\Release\
+- powershell: Copy-Item -Path ".\MaterialDesignColors.nuspec" -Destination ".\MaterialDesignColors.Wpf\bin\AppVeyor\"
+
+- powershell: Copy-Item -Path ".\MaterialDesignThemes.MahApps.nuspec" -Destination ".\MaterialDesignThemes.MahApps\bin\Release\"
 
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesign"
