@@ -39,6 +39,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Buttons</TextBlock>
         <Grid Grid.Row="1" >
@@ -294,8 +296,53 @@
         <Border Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="4" />
 
         <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
-                   Grid.Row="5" Margin="0 12 0 12">Buttons - With Progress</TextBlock>
+                   Grid.Row="5" Margin="0 12 0 12">Buttons - With Customize Round Corner</TextBlock>
         <StackPanel Grid.Row="6" Orientation="Horizontal">
+            <smtx:XamlDisplay Key="button_roundcorner_1" Margin="5 0 0 0">
+                <Grid Width="124">
+                    <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                            Height="50"
+                            materialDesign:ButtonAssist.CornerRadius="5"
+                            ToolTip="MaterialDesignRaisedLightButton with Round Corners">
+                        <TextBlock Text="5/50 Radius" />
+                    </Button>
+                </Grid>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="button_roundcorner_2" Margin="5 0 0 0">
+                <Grid Width="124">
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                            Height="50"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            ToolTip="MaterialDesignRaisedButton with Round Corners">
+                        <TextBlock Text="10/50 Radius" />
+                    </Button>
+                </Grid>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="button_roundcorner_3" Margin="5 0 0 0">
+                <Grid Width="124">
+                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Height="50"
+                            materialDesign:ButtonAssist.CornerRadius="25"
+                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners">
+                        <TextBlock Text="25/50 Radius" />
+                    </Button>
+                </Grid>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Key="button_roundcorner_4" Margin="5 0 0 0">
+                <Grid Width="124">
+                    <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            Height="50"
+                            materialDesign:ButtonAssist.CornerRadius="25 25 0 0"
+                            ToolTip="MaterialDesignRaisedAccentButton with Round Top Corners">
+                        <TextBlock Text="25/50 Radius" />
+                    </Button>
+                </Grid>
+            </smtx:XamlDisplay>
+        </StackPanel>
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+                   Grid.Row="7" Margin="0 12 0 12">Buttons - With Progress</TextBlock>
+        <StackPanel Grid.Row="8" Orientation="Horizontal">
             <smtx:XamlDisplay Key="buttons_26" Margin="5 0 0 0">
                 <Grid Width="124">
                     <!-- raised button with progress, useful to auto dismiss/accept something -->
@@ -392,8 +439,8 @@
         </StackPanel>
         <Border Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="7" />
 
-        <TextBlock Margin="0 32 0 24" Grid.Row="7" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Toggles</TextBlock>
-        <Grid Grid.Row="8">
+        <TextBlock Margin="0 32 0 24" Grid.Row="9" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Toggles</TextBlock>
+        <Grid Grid.Row="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -619,8 +666,8 @@
         </Grid>
 
         <Border Grid.Row="9" Margin="0 16 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" />
-        <TextBlock Margin="0 32 0 0" Grid.Row="9" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Rating bar</TextBlock>
-        <StackPanel Grid.Row="10" Margin="0 16 0 0" Orientation="Horizontal">
+        <TextBlock Margin="0 32 0 0" Grid.Row="11" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Rating bar</TextBlock>
+        <StackPanel Grid.Row="12" Margin="0 16 0 0" Orientation="Horizontal">
             <smtx:XamlDisplay Key="buttons_58" VerticalContentAlignment="Top" Margin="5 0 0 5">
                 <materialDesign:RatingBar Value="3" x:Name="BasicRatingBar"  ValueChanged="BasicRatingBar_ValueChanged"/>
             </smtx:XamlDisplay>
@@ -649,4 +696,3 @@
         </StackPanel>
     </Grid>
 </UserControl>
-
