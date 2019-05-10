@@ -42,11 +42,11 @@ for:
       nuget pack MaterialDesignThemes.MahApps.nuspec -Version $env:mdix_mahapps_version-ci$($env:APPVEYOR_BUILD_NUMBER)
       
       nuget pack MaterialDesignColors.nuspec -Version $env:mdix_colors_version-ci$($env:APPVEYOR_BUILD_NUMBER)
-  deploy:
-  - provider: NuGet
-    api_key:
-      secure: B+WIdbRYr/rJo1QMeDwNen2xcj4RTu1d8AZiA03kb8wsWZVQxt5OgsWRacmEjWRd
-    artifact: /MaterialDesignThemes\..+-ci\d+\.nupkg/
+ # deploy:
+ # - provider: NuGet
+ #   api_key:
+ #     secure: B+WIdbRYr/rJo1QMeDwNen2xcj4RTu1d8AZiA03kb8wsWZVQxt5OgsWRacmEjWRd
+ #   artifact: /MaterialDesignThemes\..+-ci\d+\.nupkg/
 
 -
   branches:

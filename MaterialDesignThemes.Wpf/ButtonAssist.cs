@@ -2,19 +2,25 @@
 
 namespace MaterialDesignThemes.Wpf
 {
+    /// <summary>
+    /// Helper properties for working with for make round corner.
+    /// </summary>
     public static class ButtonAssist
     {
+        /// <summary>
+        /// Controls the corner radius of the surrounding box.
+        /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.RegisterAttached(
-            "CornerRadius", typeof(double), typeof(ButtonAssist), new FrameworkPropertyMetadata(default(double)));
+            "CornerRadius", typeof(CornerRadius), typeof(ButtonAssist), new PropertyMetadata(new CornerRadius(2.0)));
 
-        public static void SetCornerRadius(DependencyObject element, double value)
+        public static void SetCornerRadius(DependencyObject element, CornerRadius value)
         {
             element.SetValue(CornerRadiusProperty, value);
         }
 
-        public static double GetCornerRadius(DependencyObject element)
+        public static CornerRadius GetCornerRadius(DependencyObject element)
         {
-            return (double)element.GetValue(CornerRadiusProperty);
+            return (CornerRadius)element.GetValue(CornerRadiusProperty);
         }
     }
 }

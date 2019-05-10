@@ -147,61 +147,69 @@ namespace MaterialDesignThemes.Wpf
             private set { SetValue(TopDrawerZIndexPropertyKey, value); }
         }
 
+        public static readonly DependencyProperty TopDrawerCloseOnClickAwayProperty = DependencyProperty.Register(
+            nameof(TopDrawerCloseOnClickAway), typeof(bool), typeof(DrawerHost), new PropertyMetadata(true));
+
+        public bool TopDrawerCloseOnClickAway
+        {
+            get { return (bool)GetValue(TopDrawerCloseOnClickAwayProperty); }
+            set { SetValue(TopDrawerCloseOnClickAwayProperty, value); }
+        }
         #endregion
 
         #region left drawer
 
         public static readonly DependencyProperty LeftDrawerContentProperty = DependencyProperty.Register(
-            nameof(LeftDrawerContent), typeof (object), typeof (DrawerHost), new PropertyMetadata(default(object)));
+            nameof(LeftDrawerContent), typeof(object), typeof(DrawerHost), new PropertyMetadata(default(object)));
 
         public object LeftDrawerContent
         {
-            get { return (object) GetValue(LeftDrawerContentProperty); }
+            get { return (object)GetValue(LeftDrawerContentProperty); }
             set { SetValue(LeftDrawerContentProperty, value); }
         }
 
         public static readonly DependencyProperty LeftDrawerContentTemplateProperty = DependencyProperty.Register(
-            nameof(LeftDrawerContentTemplate), typeof (DataTemplate), typeof (DrawerHost), new PropertyMetadata(default(DataTemplate)));
+            nameof(LeftDrawerContentTemplate), typeof(DataTemplate), typeof(DrawerHost), new PropertyMetadata(default(DataTemplate)));
 
         public DataTemplate LeftDrawerContentTemplate
         {
-            get { return (DataTemplate) GetValue(LeftDrawerContentTemplateProperty); }
+            get { return (DataTemplate)GetValue(LeftDrawerContentTemplateProperty); }
             set { SetValue(LeftDrawerContentTemplateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty LeftDrawerContentTemplateSelectorProperty = DependencyProperty.Register(
-            nameof(LeftDrawerContentTemplateSelector), typeof (DataTemplateSelector), typeof (DrawerHost), new PropertyMetadata(default(DataTemplateSelector)));
+            nameof(LeftDrawerContentTemplateSelector), typeof(DataTemplateSelector), typeof(DrawerHost), new PropertyMetadata(default(DataTemplateSelector)));
 
         public DataTemplateSelector LeftDrawerContentTemplateSelector
         {
-            get { return (DataTemplateSelector) GetValue(LeftDrawerContentTemplateSelectorProperty); }
+            get { return (DataTemplateSelector)GetValue(LeftDrawerContentTemplateSelectorProperty); }
             set { SetValue(LeftDrawerContentTemplateSelectorProperty, value); }
         }
 
         public static readonly DependencyProperty LeftDrawerContentStringFormatProperty = DependencyProperty.Register(
-            nameof(LeftDrawerContentStringFormat), typeof (string), typeof (DrawerHost), new PropertyMetadata(default(string)));
+            nameof(LeftDrawerContentStringFormat), typeof(string), typeof(DrawerHost), new PropertyMetadata(default(string)));
 
         public string LeftDrawerContentStringFormat
         {
-            get { return (string) GetValue(LeftDrawerContentStringFormatProperty); }
+            get { return (string)GetValue(LeftDrawerContentStringFormatProperty); }
             set { SetValue(LeftDrawerContentStringFormatProperty, value); }
         }
 
         public static readonly DependencyProperty LeftDrawerBackgroundProperty = DependencyProperty.Register(
-            nameof(LeftDrawerBackground), typeof (Brush), typeof (DrawerHost), new PropertyMetadata(default(Brush)));
+            nameof(LeftDrawerBackground), typeof(Brush), typeof(DrawerHost), new PropertyMetadata(default(Brush)));
 
         public Brush LeftDrawerBackground
         {
-            get { return (Brush) GetValue(LeftDrawerBackgroundProperty); }
+            get { return (Brush)GetValue(LeftDrawerBackgroundProperty); }
             set { SetValue(LeftDrawerBackgroundProperty, value); }
         }
 
         public static readonly DependencyProperty IsLeftDrawerOpenProperty = DependencyProperty.Register(
-            nameof(IsLeftDrawerOpen), typeof (bool), typeof (DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsDrawerOpenPropertyChangedCallback));
+            nameof(IsLeftDrawerOpen), typeof(bool), typeof(DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsDrawerOpenPropertyChangedCallback));
 
         public bool IsLeftDrawerOpen
         {
-            get { return (bool) GetValue(IsLeftDrawerOpenProperty); }
+            get { return (bool)GetValue(IsLeftDrawerOpenProperty); }
             set { SetValue(IsLeftDrawerOpenProperty, value); }
         }
 
@@ -216,6 +224,15 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (int)GetValue(LeftDrawerZIndexProperty); }
             private set { SetValue(LeftDrawerZIndexPropertyKey, value); }
+        }
+
+        public static readonly DependencyProperty LeftDrawerCloseOnClickAwayProperty = DependencyProperty.Register(
+            nameof(LeftDrawerCloseOnClickAway), typeof(bool), typeof(DrawerHost), new PropertyMetadata(true));
+
+        public bool LeftDrawerCloseOnClickAway
+        {
+            get { return (bool)GetValue(LeftDrawerCloseOnClickAwayProperty); }
+            set { SetValue(LeftDrawerCloseOnClickAwayProperty, value); }
         }
 
         #endregion
@@ -289,6 +306,15 @@ namespace MaterialDesignThemes.Wpf
             private set { SetValue(RightDrawerZIndexPropertyKey, value); }
         }
 
+        public static readonly DependencyProperty RightDrawerCloseOnClickAwayProperty = DependencyProperty.Register(
+            nameof(RightDrawerCloseOnClickAway), typeof(bool), typeof(DrawerHost), new PropertyMetadata(true));
+
+        public bool RightDrawerCloseOnClickAway
+        {
+            get { return (bool)GetValue(RightDrawerCloseOnClickAwayProperty); }
+            set { SetValue(RightDrawerCloseOnClickAwayProperty, value); }
+        }
+
         #endregion
 
         #region bottom drawer
@@ -360,6 +386,15 @@ namespace MaterialDesignThemes.Wpf
             private set { SetValue(BottomDrawerZIndexPropertyKey, value); }
         }
 
+        public static readonly DependencyProperty BottomDrawerCloseOnClickAwayProperty = DependencyProperty.Register(
+            nameof(BottomDrawerCloseOnClickAway), typeof(bool), typeof(DrawerHost), new PropertyMetadata(true));
+
+        public bool BottomDrawerCloseOnClickAway
+        {
+            get { return (bool)GetValue(BottomDrawerCloseOnClickAwayProperty); }
+            set { SetValue(BottomDrawerCloseOnClickAwayProperty, value); }
+        }
+
         #endregion
 
         public override void OnApplyTemplate()
@@ -426,16 +461,20 @@ namespace MaterialDesignThemes.Wpf
 
         private void TemplateContentCoverElementOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
-            SetCurrentValue(IsLeftDrawerOpenProperty, false);
-            SetCurrentValue(IsRightDrawerOpenProperty, false);
-            SetCurrentValue(IsTopDrawerOpenProperty, false);
-            SetCurrentValue(IsBottomDrawerOpenProperty, false);
+            if (LeftDrawerCloseOnClickAway)
+                SetCurrentValue(IsLeftDrawerOpenProperty, false);
+            if (RightDrawerCloseOnClickAway)
+                SetCurrentValue(IsRightDrawerOpenProperty, false);
+            if (TopDrawerCloseOnClickAway)
+                SetCurrentValue(IsTopDrawerOpenProperty, false);
+            if (BottomDrawerCloseOnClickAway)
+                SetCurrentValue(IsBottomDrawerOpenProperty, false);
         }
 
         private void UpdateVisualStates(bool? useTransitions = null)
         {
             var anyOpen = IsTopDrawerOpen || IsLeftDrawerOpen || IsBottomDrawerOpen || IsRightDrawerOpen;
-            
+
             VisualStateManager.GoToState(this,
                 !anyOpen ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
 

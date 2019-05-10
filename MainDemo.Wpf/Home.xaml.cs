@@ -37,7 +37,7 @@ namespace MaterialDesignColors.WpfExample
 
         private void DonateButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://pledgie.com/campaigns/31029");
+            Process.Start("https://opencollective.com/materialdesigninxaml");
         }
     }
 }

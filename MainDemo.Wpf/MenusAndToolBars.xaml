@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="MaterialDesignColors.WpfExample.MenusAndToolBars"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <DockPanel>
         <smtx:XamlDisplay Key="menus_1" DockPanel.Dock="Top" Margin="5 5 0 5">
@@ -74,7 +74,7 @@
                     <Button Command="Paste" ToolTip="Paste some stuff" ToolBar.OverflowMode="AsNeeded">
                         <materialDesign:PackIcon Kind="ContentPaste" />
                     </Button>
-                    <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and 
+                    <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and
                      manually apply the button style -->
                     <materialDesign:Badged ToolBar.OverflowMode="AsNeeded" Badge="{materialDesign:PackIcon Alert}">
                         <Button ToolTip="Badge it up!" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
@@ -144,6 +144,14 @@
                     </Button>
                     <RadioButton GroupName="XXX" Content="Radio" />
                     <RadioButton GroupName="XXX" Content="Ga Ga" />
+                    <Separator/>
+                    <RadioButton GroupName="YYY" Style="{StaticResource MaterialDesignToolRadioButton}">
+                        <materialDesign:PackIcon Kind="Radio"/>
+                    </RadioButton>
+                    <RadioButton GroupName="YYY" Style="{StaticResource MaterialDesignToolRadioButton}">
+                        <materialDesign:PackIcon Kind="EmoticonPoop"/>
+                    </RadioButton>
+                    <Separator/>
                     <ToggleButton/>
                 </ToolBar>
             </ToolBarTray>
