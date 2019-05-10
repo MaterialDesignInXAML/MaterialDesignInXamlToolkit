@@ -9,9 +9,9 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class ThemeExtensions
     {
-        internal static PairedColor ToPairedColor(this Hue hue)
+        internal static ColorPair ToPairedColor(this Hue hue)
         {
-            return new PairedColor(hue.Color, hue.Foreground);
+            return new ColorPair(hue.Color, hue.Foreground);
         }
 
         internal static void SetPalette(this ITheme theme, Palette palette)

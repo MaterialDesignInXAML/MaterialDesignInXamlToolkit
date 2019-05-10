@@ -3,8 +3,7 @@ using MaterialDesignColors.ColorManipulation;
 
 namespace MaterialDesignColors
 {
-    //TODO: Better name
-    public struct PairedColor
+    public struct ColorPair
     {
         public Color Color { get; set; }
 
@@ -14,15 +13,15 @@ namespace MaterialDesignColors
         /// </summary>
         public Color? ForegroundColor { get; set; }
 
-        public static implicit operator PairedColor(Color color) => new PairedColor(color);
+        public static implicit operator ColorPair(Color color) => new ColorPair(color);
 
-        public PairedColor(Color color)
+        public ColorPair(Color color)
         {
             Color = color;
             ForegroundColor = null;
         }
 
-        public PairedColor(Color color, Color? foreground)
+        public ColorPair(Color color, Color? foreground)
         {
             Color = color;
             ForegroundColor = foreground;

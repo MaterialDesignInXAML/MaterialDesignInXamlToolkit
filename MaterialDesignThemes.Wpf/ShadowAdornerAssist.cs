@@ -26,13 +26,13 @@ namespace MaterialDesignThemes.Wpf
 
         private static void ShadowDepthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            UpdateAdroner((UIElement)d, (ShadowDepth)e.NewValue);
+            UpdateAdorner((UIElement)d, (ShadowDepth)e.NewValue);
         }
 
         public static readonly DependencyProperty InternalAdornerProperty =
             DependencyProperty.RegisterAttached("InternalAdorner", typeof(ShadowAdorner), typeof(ShadowAdornerAssist));
 
-        public static ShadowAdorner GetInteranlAdorner(DependencyObject target)
+        public static ShadowAdorner GetInternalAdorner(DependencyObject target)
         {
             return (ShadowAdorner)target.GetValue(InternalAdornerProperty);
         }
@@ -41,7 +41,7 @@ namespace MaterialDesignThemes.Wpf
             target.SetValue(InternalAdornerProperty, value);
         }
 
-        private static void UpdateAdroner(UIElement adorned, ShadowDepth shadowDepth)
+        private static void UpdateAdorner(UIElement adorned, ShadowDepth shadowDepth)
         {
             var layer = AdornerLayer.GetAdornerLayer(adorned);
 
@@ -50,11 +50,11 @@ namespace MaterialDesignThemes.Wpf
                 // if we don't have an adorner layer it's probably
                 // because it's too early in the window's construction
                 // Let's re-run at a slightly later time
-                Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Loaded, (Action)(() => UpdateAdroner(adorned, shadowDepth)));
+                Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Loaded, (Action)(() => UpdateAdorner(adorned, shadowDepth)));
                 return;
             }
 
-            var existingAdorner = GetInteranlAdorner(adorned);
+            var existingAdorner = GetInternalAdorner(adorned);
 
             if (existingAdorner == null)
             {

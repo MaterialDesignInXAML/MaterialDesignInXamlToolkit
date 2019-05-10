@@ -75,38 +75,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridControl\HexGrid.cs">
-      <Paket>True</Paket>
-      <Link>HexGrid/HexGridControl/HexGrid.cs</Link>
-    </Compile>
-    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridControl\HexItem.cs">
-      <Paket>True</Paket>
-      <Link>HexGrid/HexGridControl/HexItem.cs</Link>
-    </Compile>
-    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridControl\HexList.cs">
-      <Paket>True</Paket>
-      <Link>HexGrid/HexGridControl/HexList.cs</Link>
-    </Compile>
-    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridControl\Converters\HexClipConverter.cs">
-      <Paket>True</Paket>
-      <Link>HexGrid/HexGridControl/Converters/HexClipConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridHelpers\HexArrayHelper.cs">
-      <Paket>True</Paket>
-      <Link>HexGrid/HexGridHelpers/HexArrayHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridHelpers\HexDirection.cs">
-      <Paket>True</Paket>
-      <Link>HexGrid/HexGridHelpers/HexDirection.cs</Link>
-    </Compile>
-    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridHelpers\IntPoint.cs">
-      <Paket>True</Paket>
-      <Link>HexGrid/HexGridHelpers/IntPoint.cs</Link>
-    </Compile>
-    <Compile Include="..\paket-files\AlexanderSharykin\HexGrid\HexGridHelpers\IntSize.cs">
-      <Paket>True</Paket>
-      <Link>HexGrid/HexGridHelpers/IntSize.cs</Link>
-    </Compile>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -166,10 +134,6 @@
     <Page Include="Themes\MaterialDesignTheme.GroupBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.HexGrid.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\MaterialDesignTheme.ColorPicker.xaml">
       <SubType>Designer</SubType>
@@ -376,18 +340,19 @@
     <Compile Include="IconType.cs" />
     <Compile Include="ISnackbarMessageQueue.cs" />
     <Compile Include="ITheme.cs" />
+    <Compile Include="IThemeManager.cs" />
     <Compile Include="ListBoxAssist.cs" />
     <Compile Include="ListViewAssist.cs" />
     <Compile Include="ResourceDictionaryExtensions.cs" />
     <Compile Include="MaterialDesignLightTheme.cs" />
     <Compile Include="MaterialDesignDarkTheme.cs" />
+    <Compile Include="ThemeChangedEventArgs.cs" />
     <Compile Include="ThemeMarkupExtension.cs" />
     <Compile Include="MessageQueueExtension.cs" />
     <Compile Include="PackIconExtension.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="PaletteHelper.cs" />
     <Compile Include="Plane3D.cs" />
-    <Compile Include="PrimarySwatchChangedEventArgs.cs" />
     <Compile Include="ScaleHost.cs" />
     <Compile Include="ScrollViewerAssist.cs" />
     <Compile Include="Screen.cs" />
@@ -403,7 +368,6 @@
     <Compile Include="ThemeAssist.cs" />
     <Compile Include="ThemeExtensions.cs" />
     <Compile Include="ThemeManagerAssist.cs" />
-    <Compile Include="ThemeSetEventArgs.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
     <Compile Include="Transitions\FadeWipe.cs" />

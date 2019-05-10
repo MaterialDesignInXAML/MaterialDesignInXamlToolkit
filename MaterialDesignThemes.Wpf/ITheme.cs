@@ -5,21 +5,19 @@ namespace MaterialDesignThemes.Wpf
 {
     public interface ITheme
     {
-        PairedColor PrimaryLight { get; set; }
-        PairedColor PrimaryMid { get; set; }
-        PairedColor PrimaryDark { get; set; }
+        ColorPair PrimaryLight { get; set; }
+        ColorPair PrimaryMid { get; set; }
+        ColorPair PrimaryDark { get; set; }
 
-        PairedColor SecondaryLight { get; set; }
-        PairedColor SecondaryMid { get; set; }
-        PairedColor SecondaryDark { get; set; }
+        ColorPair SecondaryLight { get; set; }
+        ColorPair SecondaryMid { get; set; }
+        ColorPair SecondaryDark { get; set; }
 
         Color ValidationError { get; set; }
         Color Background { get; set; }
-        //TODO: Should we rename this?
         Color Paper { get; set; }
         Color CardBackground { get; set; }
         Color ToolBarBackground { get; set; }
-        //TODO: Should we rename this?
         Color Body { get; set; }
         Color BodyLight { get; set; }
         Color ColumnHeader { get; set; }

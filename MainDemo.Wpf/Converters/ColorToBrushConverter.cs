@@ -9,12 +9,20 @@ namespace MaterialDesignDemo.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new SolidColorBrush((Color)value);
+            if (value is Color color)
+            {
+                return new SolidColorBrush(color);
+            }
+            return Binding.DoNothing;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (value as SolidColorBrush).Color;
+            if (value is SolidColorBrush brush)
+            {
+                return brush.Color;
+            }
+            return default(Color);
         }
     }
 }

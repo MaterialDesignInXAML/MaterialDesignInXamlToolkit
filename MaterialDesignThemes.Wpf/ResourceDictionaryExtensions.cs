@@ -7,35 +7,6 @@ using MaterialDesignColors.ColorManipulation;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public class ThemeChangedEventArgs : EventArgs
-    {
-        public ThemeChangedEventArgs(ResourceDictionary resourceDictionary, ITheme oldTheme, ITheme newTheme)
-        {
-            ResourceDictionary = resourceDictionary;
-            OldTheme = oldTheme;
-            NewTheme = newTheme;
-        }
-
-        public ResourceDictionary ResourceDictionary { get; }
-        public ITheme NewTheme { get; }
-        public ITheme OldTheme { get; }
-    }
-
-    public interface IThemeManager
-    {
-        event EventHandler<ThemeChangedEventArgs> ThemeChanged;
-    }
-
-    internal class ThemeManager : IThemeManager
-    {
-        public event EventHandler<ThemeChangedEventArgs> ThemeChanged;
-
-        public void OnThemeChange(ResourceDictionary resourceDictionary, ITheme oldTheme, ITheme newTheme)
-        {
-            ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(resourceDictionary, oldTheme, newTheme));
-        }
-    }
-
     public static class ResourceDictionaryExtensions
     {
         private static Guid CurrentThemeKey { get; } = Guid.NewGuid();
@@ -134,13 +105,13 @@ namespace MaterialDesignThemes.Wpf
             //Attempt to simply look up the appropriate resources
             return new Theme 
             {
-                PrimaryLight = new PairedColor(GetColor("PrimaryHueLightBrush"), GetColor("PrimaryHueLightForegroundBrush")),
-                PrimaryMid = new PairedColor(GetColor("PrimaryHueMidBrush"), GetColor("PrimaryHueMidForegroundBrush")),
-                PrimaryDark = new PairedColor(GetColor("PrimaryHueDarkBrush"), GetColor("PrimaryHueDarkForegroundBrush")),
+                PrimaryLight = new ColorPair(GetColor("PrimaryHueLightBrush"), GetColor("PrimaryHueLightForegroundBrush")),
+                PrimaryMid = new ColorPair(GetColor("PrimaryHueMidBrush"), GetColor("PrimaryHueMidForegroundBrush")),
+                PrimaryDark = new ColorPair(GetColor("PrimaryHueDarkBrush"), GetColor("PrimaryHueDarkForegroundBrush")),
 
-                SecondaryLight = new PairedColor(secondaryLight, secondaryLightForeground),
-                SecondaryMid = new PairedColor(secondaryMid, secondaryMidForeground),
-                SecondaryDark = new PairedColor(secondaryDark, secondaryDarkForeground),
+                SecondaryLight = new ColorPair(secondaryLight, secondaryLightForeground),
+                SecondaryMid = new ColorPair(secondaryMid, secondaryMidForeground),
+                SecondaryDark = new ColorPair(secondaryDark, secondaryDarkForeground),
 
                 ValidationError = GetColor("ValidationErrorBrush"),
                 Background = GetColor("MaterialDesignBackground"),
@@ -221,6 +192,16 @@ namespace MaterialDesignThemes.Wpf
                 }
             }
             sourceDictionary[name] = new SolidColorBrush(value); //Set value directly
+        }
+
+        private class ThemeManager : IThemeManager
+        {
+            public event EventHandler<ThemeChangedEventArgs> ThemeChanged;
+
+            public void OnThemeChange(ResourceDictionary resourceDictionary, ITheme oldTheme, ITheme newTheme)
+            {
+                ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(resourceDictionary, oldTheme, newTheme));
+            }
         }
     }
 }

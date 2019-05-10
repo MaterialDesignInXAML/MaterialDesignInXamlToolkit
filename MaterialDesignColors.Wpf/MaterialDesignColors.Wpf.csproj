@@ -68,7 +68,7 @@
     <Compile Include="ISwatch.cs" />
     <Compile Include="ColorManipulation\Lab.cs" />
     <Compile Include="MaterialDesignColor.cs" />
-    <Compile Include="PairedColor.cs" />
+    <Compile Include="ColorPair.cs" />
     <Compile Include="SwatchHelper.cs" />
     <Compile Include="Hue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -690,9 +690,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Themes\Recommended\Secondary\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\Versioning.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,11 +6,10 @@
              xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <!--<mdMahApps:MahAppsResourceDictionary Theme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime">-->
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:MahAppsBundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" AccentColor="Lime"/>
-                
+
                 <!-- MahApps -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
@@ -46,8 +45,6 @@
             <!-- Dragablz Material Design -->
             <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}" />
         </ResourceDictionary>
-
-        <!--</mdMahApps:MahAppsResourceDictionary>-->
     </Application.Resources>
 </Application>
     

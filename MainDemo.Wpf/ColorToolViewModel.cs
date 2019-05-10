@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignColors;
-using MaterialDesignColors.ColorManipulation;
 using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignThemes.Wpf;
 
@@ -173,9 +172,9 @@ namespace MaterialDesignDemo
         {
             ITheme theme = _paletteHelper.GetTheme();
 
-            theme.PrimaryLight = new PairedColor(theme.PrimaryLight.Color, color);
-            theme.PrimaryMid = new PairedColor(theme.PrimaryMid.Color, color);
-            theme.PrimaryDark = new PairedColor(theme.PrimaryDark.Color, color);
+            theme.PrimaryLight = new ColorPair(theme.PrimaryLight.Color, color);
+            theme.PrimaryMid = new ColorPair(theme.PrimaryMid.Color, color);
+            theme.PrimaryDark = new ColorPair(theme.PrimaryDark.Color, color);
 
             _paletteHelper.SetTheme(theme);
         }
@@ -184,9 +183,9 @@ namespace MaterialDesignDemo
         {
             ITheme theme = _paletteHelper.GetTheme();
 
-            theme.SecondaryLight = new PairedColor(theme.SecondaryLight.Color, color);
-            theme.SecondaryMid = new PairedColor(theme.SecondaryMid.Color, color);
-            theme.SecondaryDark = new PairedColor(theme.SecondaryDark.Color, color);
+            theme.SecondaryLight = new ColorPair(theme.SecondaryLight.Color, color);
+            theme.SecondaryMid = new ColorPair(theme.SecondaryMid.Color, color);
+            theme.SecondaryDark = new ColorPair(theme.SecondaryDark.Color, color);
 
             _paletteHelper.SetTheme(theme);
         }
@@ -196,31 +195,6 @@ namespace MaterialDesignDemo
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
-
-    public static class PaletteHelperExtensions
-    {
-        public static void ChangePrimaryColor(this PaletteHelper paletteHelper, Color color)
-        {
-            ITheme theme = paletteHelper.GetTheme();
-
-            theme.PrimaryLight = new PairedColor(color.Lighten(), theme.PrimaryLight.ForegroundColor);
-            theme.PrimaryMid = new PairedColor(color, theme.PrimaryMid.ForegroundColor);
-            theme.PrimaryDark = new PairedColor(color.Darken(), theme.PrimaryDark.ForegroundColor);
-
-            paletteHelper.SetTheme(theme);
-        }
-
-        public static void ChangeSecondaryColor(this PaletteHelper paletteHelper, Color color)
-        {
-            ITheme theme = paletteHelper.GetTheme();
-
-            theme.SecondaryLight = new PairedColor(color.Lighten(), theme.SecondaryLight.ForegroundColor);
-            theme.SecondaryMid = new PairedColor(color, theme.SecondaryMid.ForegroundColor);
-            theme.SecondaryDark = new PairedColor(color.Darken(), theme.SecondaryDark.ForegroundColor);
-
-            paletteHelper.SetTheme(theme);
         }
     }
 }

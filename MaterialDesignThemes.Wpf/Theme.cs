@@ -21,13 +21,13 @@ namespace MaterialDesignThemes.Wpf
             return theme;
         }
 
-        public PairedColor SecondaryLight { get; set; }
-        public PairedColor SecondaryMid { get; set; }
-        public PairedColor SecondaryDark { get; set; }
+        public ColorPair SecondaryLight { get; set; }
+        public ColorPair SecondaryMid { get; set; }
+        public ColorPair SecondaryDark { get; set; }
 
-        public PairedColor PrimaryLight { get; set; }
-        public PairedColor PrimaryMid { get; set; }
-        public PairedColor PrimaryDark { get; set; }
+        public ColorPair PrimaryLight { get; set; }
+        public ColorPair PrimaryMid { get; set; }
+        public ColorPair PrimaryDark { get; set; }
 
         public Color ValidationError { get; set; }
         public Color Background { get; set; }
