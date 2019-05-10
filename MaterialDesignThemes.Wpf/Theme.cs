@@ -21,7 +21,9 @@ namespace MaterialDesignThemes.Wpf
             return theme;
         }
 
-        public PairedColor Accent { get; set; }
+        public PairedColor SecondaryLight { get; set; }
+        public PairedColor SecondaryMid { get; set; }
+        public PairedColor SecondaryDark { get; set; }
 
         public PairedColor PrimaryLight { get; set; }
         public PairedColor PrimaryMid { get; set; }

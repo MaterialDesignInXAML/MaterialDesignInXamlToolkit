@@ -172,10 +172,8 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </Border.Style>
-                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">
-                                                <TextBlock.Text>
-                                                    P
-                                                </TextBlock.Text>
+                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"
+                                                       Text="P">
                                                 <TextBlock.Style>
                                                     <Style TargetType="TextBlock">
                                                         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
@@ -231,7 +229,7 @@
                                 <!-- Secondary mid section -->
                                 <Border Background="{DynamicResource SecondaryAccentBrush}" Grid.Row="1">
                                     <Grid>
-                                        <TextBlock DataContext="{DynamicResource SecondaryAccentBrush}" 
+                                        <TextBlock DataContext="{DynamicResource SecondaryHueMidBrush}" 
                                                    Text="{Binding Converter={StaticResource BrushToHexConverter}}" 
                                                    Style="{StaticResource HexLabelTextBlock}" 
                                                    Foreground="{DynamicResource SecondaryAccentForegroundBrush}" />
@@ -240,21 +238,19 @@
                                                 <Style TargetType="Border">
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding ActiveScheme}" Value="Secondary">
-                                                            <Setter Property="Background" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+                                                            <Setter Property="Background" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
                                             </Border.Style>
-                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">
-                                                <TextBlock.Text>
-                                                    S
-                                                </TextBlock.Text>
+                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"
+                                                       Text="S">
                                                 <TextBlock.Style>
                                                     <Style TargetType="TextBlock">
-                                                        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+                                                        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding ActiveScheme}" Value="Secondary">
-                                                                <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}" />
+                                                                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}" />
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>

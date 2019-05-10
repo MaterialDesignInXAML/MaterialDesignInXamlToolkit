@@ -82,7 +82,7 @@ namespace MaterialDesignDemo
             ITheme theme = _paletteHelper.GetTheme();
 
             _primaryColor = theme.PrimaryMid.Color;
-            _secondaryColor = theme.Accent.Color;
+            _secondaryColor = theme.SecondaryMid.Color;
 
             SelectedColor = _primaryColor;
         }
@@ -184,7 +184,9 @@ namespace MaterialDesignDemo
         {
             ITheme theme = _paletteHelper.GetTheme();
 
-            theme.Accent = new PairedColor(theme.Accent.Color, color);
+            theme.SecondaryLight = new PairedColor(theme.SecondaryLight.Color, color);
+            theme.SecondaryMid = new PairedColor(theme.SecondaryMid.Color, color);
+            theme.SecondaryDark = new PairedColor(theme.SecondaryDark.Color, color);
 
             _paletteHelper.SetTheme(theme);
         }
@@ -214,7 +216,9 @@ namespace MaterialDesignDemo
         {
             ITheme theme = paletteHelper.GetTheme();
 
-            theme.Accent = new PairedColor(color, theme.Accent.ForegroundColor);
+            theme.SecondaryLight = new PairedColor(color.Lighten(), theme.SecondaryLight.ForegroundColor);
+            theme.SecondaryMid = new PairedColor(color, theme.SecondaryMid.ForegroundColor);
+            theme.SecondaryDark = new PairedColor(color.Darken(), theme.SecondaryDark.ForegroundColor);
 
             paletteHelper.SetTheme(theme);
         }

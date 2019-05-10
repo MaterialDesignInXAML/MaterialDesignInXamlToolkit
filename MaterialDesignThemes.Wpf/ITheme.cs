@@ -5,11 +5,13 @@ namespace MaterialDesignThemes.Wpf
 {
     public interface ITheme
     {
-        PairedColor Accent { get; set; }
-
         PairedColor PrimaryLight { get; set; }
         PairedColor PrimaryMid { get; set; }
         PairedColor PrimaryDark { get; set; }
+
+        PairedColor SecondaryLight { get; set; }
+        PairedColor SecondaryMid { get; set; }
+        PairedColor SecondaryDark { get; set; }
 
         Color ValidationError { get; set; }
         Color Background { get; set; }

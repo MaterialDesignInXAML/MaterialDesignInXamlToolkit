@@ -52,8 +52,17 @@ namespace MaterialDesignThemes.Wpf
             SetSolidColorBrush(resourceDictionary, "PrimaryHueDarkBrush", theme.PrimaryDark.Color);
             SetSolidColorBrush(resourceDictionary, "PrimaryHueDarkForegroundBrush", theme.PrimaryDark.ForegroundColor ?? theme.PrimaryDark.Color.ContrastingForegroundColor());
 
-            SetSolidColorBrush(resourceDictionary, "SecondaryAccentBrush", theme.Accent.Color);
-            SetSolidColorBrush(resourceDictionary, "SecondaryAccentForegroundBrush", theme.Accent.ForegroundColor ?? theme.Accent.Color.ContrastingForegroundColor());
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueLightBrush", theme.SecondaryLight.Color);
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueLightForegroundBrush", theme.SecondaryLight.ForegroundColor ?? theme.SecondaryLight.Color.ContrastingForegroundColor());
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueMidBrush", theme.SecondaryMid.Color);
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueMidForegroundBrush", theme.SecondaryMid.ForegroundColor ?? theme.SecondaryMid.Color.ContrastingForegroundColor());
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueDarkBrush", theme.SecondaryDark.Color);
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueDarkForegroundBrush", theme.SecondaryDark.ForegroundColor ?? theme.SecondaryDark.Color.ContrastingForegroundColor());
+
+
+            //NB: These are here for backwards compatibility, and will be removed in a future version.
+            SetSolidColorBrush(resourceDictionary, "SecondaryAccentBrush", theme.SecondaryMid.Color);
+            SetSolidColorBrush(resourceDictionary, "SecondaryAccentForegroundBrush", theme.SecondaryMid.ForegroundColor ?? theme.SecondaryMid.Color.ContrastingForegroundColor());
 
             SetSolidColorBrush(resourceDictionary, "ValidationErrorBrush", theme.ValidationError);
             resourceDictionary["ValidationErrorColor"] = theme.ValidationError;
@@ -100,13 +109,38 @@ namespace MaterialDesignThemes.Wpf
             {
                 return theme;
             }
+
+            Color secondaryMid = GetColor("SecondaryHueMidBrush", "SecondaryAccentBrush");
+            Color secondaryMidForeground = GetColor("SecondaryHueMidForegroundBrush", "SecondaryAccentForegroundBrush");
+
+            if (!TryGetColor("SecondaryHueLightBrush", out Color secondaryLight))
+            {
+                secondaryLight = secondaryMid.Lighten();
+            }
+            if (!TryGetColor("SecondaryHueLightForegroundBrush", out Color secondaryLightForeground))
+            {
+                secondaryLightForeground = secondaryLight.ContrastingForegroundColor();
+            }
+
+            if (!TryGetColor("SecondaryHueDarkBrush", out Color secondaryDark))
+            {
+                secondaryDark = secondaryMid.Darken();
+            }
+            if (!TryGetColor("SecondaryHueDarkForegroundBrush", out Color secondaryDarkForeground))
+            {
+                secondaryDarkForeground = secondaryDark.ContrastingForegroundColor();
+            }
+
             //Attempt to simply look up the appropriate resources
-            return new Theme {
+            return new Theme 
+            {
                 PrimaryLight = new PairedColor(GetColor("PrimaryHueLightBrush"), GetColor("PrimaryHueLightForegroundBrush")),
                 PrimaryMid = new PairedColor(GetColor("PrimaryHueMidBrush"), GetColor("PrimaryHueMidForegroundBrush")),
                 PrimaryDark = new PairedColor(GetColor("PrimaryHueDarkBrush"), GetColor("PrimaryHueDarkForegroundBrush")),
 
-                Accent = new PairedColor(GetColor("SecondaryAccentBrush"), GetColor("SecondaryAccentForegroundBrush")),
+                SecondaryLight = new PairedColor(secondaryLight, secondaryLightForeground),
+                SecondaryMid = new PairedColor(secondaryMid, secondaryMidForeground),
+                SecondaryDark = new PairedColor(secondaryDark, secondaryDarkForeground),
 
                 ValidationError = GetColor("ValidationErrorBrush"),
                 Background = GetColor("MaterialDesignBackground"),
@@ -136,13 +170,27 @@ namespace MaterialDesignThemes.Wpf
             };
 
 
-            Color GetColor(string key)
+            Color GetColor(params string[] keys)
+            {
+                foreach (string key in keys)
+                {
+                    if (TryGetColor(key, out Color color))
+                    {
+                        return color;
+                    }
+                }
+                throw new InvalidOperationException($"Could not locate required resource with key(s) '{string.Join(", ", keys)}'");
+            }
+
+            bool TryGetColor(string key, out Color color)
             {
                 if (resourceDictionary[key] is SolidColorBrush brush)
                 {
-                    return brush.Color;
+                    color = brush.Color;
+                    return true;
                 }
-                throw new InvalidOperationException($"Could not locate required resource with key '{key}'");
+                color = default;
+                return false;
             }
         }
 

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
@@ -132,14 +130,14 @@ namespace MaterialDesignThemes.Wpf
 
             if (!swatchByPrimaryHueIndex.TryGetValue(theme.PrimaryMid.Color, out var primarySwatch))
                 throw new InvalidOperationException("PrimaryHueMidBrush is not from standard swatches");
-            if (!swatchByAccentHueIndex.TryGetValue(theme.Accent.Color, out var accentSwatch))
+            if (!swatchByAccentHueIndex.TryGetValue(theme.SecondaryMid.Color, out var accentSwatch))
                 throw new InvalidOperationException("SecondaryAccentBrush is not from standard swatches");
 
 
             var primaryLightHueIndex = GetHueIndex(primarySwatch, theme.PrimaryLight.Color, false);
             var primaryMidHueIndex = GetHueIndex(primarySwatch, theme.PrimaryMid.Color, false);
             var primaryDarkHueIndex = GetHueIndex(primarySwatch, theme.PrimaryDark.Color, false);
-            var accentHueIndex = GetHueIndex(accentSwatch, theme.Accent.Color, true);
+            var accentHueIndex = GetHueIndex(accentSwatch, theme.SecondaryMid.Color, true);
 
             return new Palette(primarySwatch, accentSwatch, primaryLightHueIndex, primaryMidHueIndex, primaryDarkHueIndex, accentHueIndex);
 
