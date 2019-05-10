@@ -56,7 +56,7 @@
                                 <Border Background="{TemplateBinding Background}" 
                                         CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                         BorderThickness="{TemplateBinding BorderThickness}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"                                    
+                                        BorderBrush="{TemplateBinding BorderBrush}"
                                         x:Name="border"
                                         Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" />
                                 <ProgressBar x:Name="ProgressBar" 
@@ -135,7 +135,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
                     <Grid>
-                        <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2"
+                        <Border Background="{TemplateBinding Background}" x:Name="border" 
+                                CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                 BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
