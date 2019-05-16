@@ -3,7 +3,7 @@
 namespace MaterialDesignColors.WpfExample
 {
     /// <summary>
-    /// Interaction logic for Chips.xaml
+    /// Interaction logic for Toggles.xaml
     /// </summary>
     public partial class Toggles : UserControl
     {
