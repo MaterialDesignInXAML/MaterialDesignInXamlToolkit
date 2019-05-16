@@ -55,6 +55,9 @@
     <Compile Include="RatingBar.xaml.cs">
       <DependentUpon>RatingBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Toggles.xaml.cs">
+      <DependentUpon>Toggles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XamlDisplayEx.cs" />
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
@@ -337,6 +340,10 @@
     <Page Include="TextFields.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Toggles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Transitions.xaml">
       <SubType>Designer</SubType>

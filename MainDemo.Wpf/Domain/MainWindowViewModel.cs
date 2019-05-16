@@ -42,12 +42,17 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.StyleLink("Button"),
                         DocumentationLink.StyleLink("CheckBox"),
                         DocumentationLink.StyleLink("PopupBox"),
-                        DocumentationLink.StyleLink("ToggleButton"),
                         DocumentationLink.ApiLink<PopupBox>()
                     })
                     {
                         VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
                     },
+                new DemoItem("Toggles", new Toggles(), new []
+                {
+                    DocumentationLink.DemoPageLink<Toggles>(),
+                    DocumentationLink.StyleLink("ToggleButton"),
+                    DocumentationLink.ApiLink<Toggles>()
+                }),
                 new DemoItem("Rating Bar", new RatingBar(), new []
                 {
                     DocumentationLink.DemoPageLink<RatingBar>(),
