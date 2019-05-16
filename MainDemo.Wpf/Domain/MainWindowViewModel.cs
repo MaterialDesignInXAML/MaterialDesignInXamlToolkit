@@ -33,7 +33,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<PaletteSelectorViewModel>("Demo View Model"),
                         DocumentationLink.ApiLink<PaletteHelper>()
                     }),
-                new DemoItem("Buttons & Toggles", new Buttons { DataContext = new ButtonsViewModel() } ,
+                new DemoItem("Buttons", new Buttons { DataContext = new ButtonsViewModel() } ,
                     new []
                     {
                         DocumentationLink.WikiLink("Button-Styles", "Buttons"),
