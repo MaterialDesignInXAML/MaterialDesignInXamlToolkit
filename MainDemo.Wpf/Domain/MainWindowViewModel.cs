@@ -48,6 +48,12 @@ namespace MaterialDesignColors.WpfExample.Domain
                     {
                         VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
                     },
+                new DemoItem("Rating Bar", new RatingBar(), new []
+                {
+                    DocumentationLink.DemoPageLink<RatingBar>(),
+                    DocumentationLink.StyleLink("RatingBar"),
+                    DocumentationLink.ApiLink<RatingBar>()
+                }),
                 new DemoItem("Fields", new TextFields(),
                     new []
                     {
