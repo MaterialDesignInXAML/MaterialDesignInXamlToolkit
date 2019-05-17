@@ -20,7 +20,6 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Chip.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Clock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.HexGrid.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ColorPicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RatingBar.xaml" />
@@ -37,7 +36,6 @@
 
     <converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
     <converters:DrawerOffsetConverter x:Key="DrawerOffsetConverter" />
-    <converters:BooleanToZIndexConverter x:Key="BooleanToZIndexConverter" />
 
     <system:Boolean x:Key="True">True</system:Boolean>
 
@@ -49,7 +47,6 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="ClipToBounds" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:RippleAssist.ClipToBounds)}" />
         <Setter Property="Feedback" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:RippleAssist.Feedback)}" />
-        <Setter Property="RippleOnTop" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:RippleAssist.RippleOnTop)}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Ripple}">
@@ -150,7 +147,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Canvas IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Panel.ZIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleOnTop, Converter={StaticResource BooleanToZIndexConverter}}">
+                        <Canvas IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Ellipse x:Name="ClickEllipse" Fill="{TemplateBinding Feedback}" Opacity="0" 
                                      Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleSize}" 
                                      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RippleSize}" 
@@ -166,6 +163,16 @@
                                     </TransformGroup>
                                 </Ellipse.RenderTransform>
                             </Ellipse>
+                            <Canvas.Style>
+                                <Style TargetType="Canvas">
+                                    <Setter Property="ZIndex" Value="0" />
+                                    <Style.Triggers>
+                                        <Trigger Property="local:RippleAssist.RippleOnTop" Value="True">
+                                            <Setter Property="ZIndex" Value="2" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Canvas.Style>
                         </Canvas>
                         <ContentPresenter Content="{TemplateBinding Content}"
                                           ContentStringFormat="{TemplateBinding ContentStringFormat}"

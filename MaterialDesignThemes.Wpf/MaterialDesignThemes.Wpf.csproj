@@ -280,7 +280,6 @@
     <Compile Include="ComboBoxPopup.cs" />
     <Compile Include="Converters\BooleanConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Converters\BooleanToZIndexConverter.cs" />
     <Compile Include="Converters\BrushRoundConverter.cs" />
     <Compile Include="Converters\BrushToRadialGradientBrushConverter.cs" />
     <Compile Include="Converters\CalendarDateCoalesceConverter.cs" />
@@ -353,7 +352,6 @@
     <Compile Include="Palette.cs" />
     <Compile Include="PaletteHelper.cs" />
     <Compile Include="Plane3D.cs" />
-    <Compile Include="ButtonAssist.cs" />
     <Compile Include="ScaleHost.cs" />
     <Compile Include="ScrollViewerAssist.cs" />
     <Compile Include="Screen.cs" />
@@ -368,7 +366,6 @@
     <Compile Include="Theme.cs" />
     <Compile Include="ThemeAssist.cs" />
     <Compile Include="ThemeExtensions.cs" />
-    <Compile Include="ThemeManagerAssist.cs" />
     <Compile Include="Transitions\CircleWipe.cs" />
     <Compile Include="IHintProxy.cs" />
     <Compile Include="Transitions\FadeWipe.cs" />

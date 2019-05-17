@@ -18,12 +18,12 @@ namespace MaterialDesignThemes.Wpf.Converters
 
         public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is bool && ((bool)value) ? TrueValue : FalseValue;
+            return value is bool boolValue && boolValue ? TrueValue : FalseValue;
         }
 
         public virtual object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is T && EqualityComparer<T>.Default.Equals((T)value, TrueValue);
+            return value is T tValue && EqualityComparer<T>.Default.Equals(tValue, TrueValue);
         }
     }
 }
