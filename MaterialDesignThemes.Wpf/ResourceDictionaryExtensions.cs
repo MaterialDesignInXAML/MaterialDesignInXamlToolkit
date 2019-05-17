@@ -191,7 +191,10 @@ namespace MaterialDesignThemes.Wpf
                     return;
                 }
             }
-            sourceDictionary[name] = new SolidColorBrush(value); //Set value directly
+
+            var newBrush = new SolidColorBrush(value);
+            newBrush.Freeze();
+            sourceDictionary[name] = newBrush;
         }
 
         private class ThemeManager : IThemeManager
