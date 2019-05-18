@@ -50,6 +50,7 @@
     <Compile Include="ColorPickerTests.cs" />
     <Compile Include="DialogHostTests.cs" />
     <Compile Include="MdixHelper.cs" />
+    <Compile Include="PackIconTests.cs" />
     <Compile Include="PaletteHelperFixture.cs" />
     <Compile Include="PopupBoxTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

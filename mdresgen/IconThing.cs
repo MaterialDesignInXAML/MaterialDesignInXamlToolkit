@@ -21,7 +21,7 @@ namespace mdresgen
             var nameDataPairs = GetIcons(GetSourceData()).ToList();
             Console.WriteLine("Items: " + nameDataPairs.Count);
 
-            //var nameDataPairs = GetNameDataPairs("TEST").ToList();            
+            //var nameDataPairs = GetNameDataPairs("TEST").ToList();
 
             Console.WriteLine("Updating enum...");
             var newEnumSource = UpdateEnum("PackIconKind.template.cs", nameDataPairs);
@@ -68,7 +68,11 @@ namespace mdresgen
                 .ToDictionary(icon => icon.Name);
 
             //Clean up aliases to avoid naming collisions
-            var seenAliases = new HashSet<string>();
+            var seenAliases = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var icon in icons.Values)
+            {
+                seenAliases.Add(icon.Name);
+            }
             foreach (Icon icon in icons.Values)
             {
                 for (int i = icon.Aliases.Count - 1; i >= 0; i--)
@@ -107,7 +111,7 @@ namespace mdresgen
 
             var rootNode = syntaxTree.GetRoot();
             var namespaceDeclarationNode = rootNode.ChildNodes().Single();
-            var enumDeclarationSyntaxNode = namespaceDeclarationNode.ChildNodes().OfType<EnumDeclarationSyntax>().Single();            
+            var enumDeclarationSyntaxNode = namespaceDeclarationNode.ChildNodes().OfType<EnumDeclarationSyntax>().Single();
 
             var emptyEnumDeclarationSyntaxNode = enumDeclarationSyntaxNode.RemoveNodes(enumDeclarationSyntaxNode.ChildNodes().OfType<EnumMemberDeclarationSyntax>(), SyntaxRemoveOptions.KeepDirectives);
 
