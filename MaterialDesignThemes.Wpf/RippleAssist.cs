@@ -54,7 +54,7 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
-        #region disable 
+        #region IsDisabled
 
         /// <summary>
         /// Set to <c>True</c> to disable ripple effect
@@ -117,6 +117,23 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
+        #region RippleOnTop
+
+        public static readonly DependencyProperty RippleOnTopProperty = DependencyProperty.RegisterAttached(
+            "RippleOnTop", typeof(bool), typeof(RippleAssist), 
+            new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static void SetRippleOnTop(DependencyObject element, bool value)
+        {
+            element.SetValue(RippleOnTopProperty, value);
+        }
+
+        public static bool GetRippleOnTop(DependencyObject element)
+        {
+            return (bool)element.GetValue(RippleOnTopProperty);
+        }
+
+        #endregion
 
     }
 }

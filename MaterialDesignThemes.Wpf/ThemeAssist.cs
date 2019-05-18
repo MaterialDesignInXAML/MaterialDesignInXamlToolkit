@@ -22,10 +22,10 @@ namespace MaterialDesignThemes.Wpf
         {
             if (@do is FrameworkElement element)
             {
-                if (e.OldValue is BaseTheme oldTheme && 
+                if (e.OldValue is BaseTheme oldTheme &&
                     GetResourceDictionarySource(oldTheme) is string oldSource)
                 {
-                    foreach(ResourceDictionary resourceDictionary in element.Resources.MergedDictionaries)
+                    foreach (ResourceDictionary resourceDictionary in element.Resources.MergedDictionaries)
                     {
                         if (string.Equals(resourceDictionary.Source?.ToString(), oldSource, StringComparison.OrdinalIgnoreCase))
                         {

@@ -5,11 +5,11 @@
                       xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
                       xmlns:mahMaterialDragablzMashUp="clr-namespace:MahMaterialDragablzMashUp"
                       xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
-                      xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"                      
+                      xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
                       WindowTransitionsEnabled="False"
                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-                      Background="{DynamicResource MaterialDesignPaper}"					  
-                      GlowBrush="{DynamicResource AccentColorBrush}"					  
+                      Background="{DynamicResource MaterialDesignPaper}"
+                      GlowBrush="{DynamicResource AccentColorBrush}"
                       FontFamily="{StaticResource DefaultFont}"
                       Title="Material-MahApps-Dragablz Mash Up" Height="640" Width="800">
     <controls:MetroWindow.Flyouts>

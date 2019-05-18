@@ -1,5 +1,7 @@
-﻿﻿using ShowMeTheXAML;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Media;
+using MaterialDesignThemes.Wpf;
+using ShowMeTheXAML;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -10,7 +12,13 @@ namespace MaterialDesignColors.WpfExample
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            XamlDisplay.Init();
+            //This is an alternate way to initialize MaterialDesignInXAML if you don't use the MaterialDesignResourceDictionary in App.xaml
+            //Color primaryColor = SwatchHelper.Lookup[MaterialDesignColor.DeepPurple];
+            //Color accentColor = SwatchHelper.Lookup[MaterialDesignColor.Lime];
+            //ITheme theme = Theme.Create(new MaterialDesignLightTheme(), primaryColor, accentColor);
+            //Resources.SetTheme(theme);
+
+
             //Illustration of setting culture info fully in WPF:
             /*             
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
@@ -18,6 +26,8 @@ namespace MaterialDesignColors.WpfExample
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(
                         XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
             */
+
+            XamlDisplay.Init();
 
             // test setup for Persian culture settings
             /*System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fa-Ir");

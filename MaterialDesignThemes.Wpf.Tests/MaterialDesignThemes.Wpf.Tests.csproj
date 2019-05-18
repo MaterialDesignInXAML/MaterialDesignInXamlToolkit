@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClockTests.cs" />
+    <Compile Include="ColorPickerTests.cs" />
     <Compile Include="DialogHostTests.cs" />
     <Compile Include="MdixHelper.cs" />
     <Compile Include="PaletteHelperFixture.cs" />
@@ -56,6 +57,10 @@
     <Compile Include="VisualTreeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj">
+      <Project>{90B53209-C60C-4655-B28D-A1B3E1044BA3}</Project>
+      <Name>MaterialDesignColors.Wpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj">
       <Project>{F079FB0A-A8ED-4216-B6A5-345756751A04}</Project>
       <Name>MaterialDesignThemes.Wpf</Name>
@@ -81,6 +86,9 @@
   </Target>
   -->
   <Import Project="..\.paket\paket.targets" />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.2')">
       <ItemGroup>

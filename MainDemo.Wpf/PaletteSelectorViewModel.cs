@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
-using MaterialDesignColors.WpfExample.Domain;
+﻿using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignThemes.Wpf;
+using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -9,7 +9,7 @@ namespace MaterialDesignColors.WpfExample
     {
         public PaletteSelectorViewModel()
         {
-            Swatches = new SwatchesProvider().Swatches;            
+            Swatches = new SwatchesProvider().Swatches;
         }
 
         public ICommand ToggleBaseCommand { get; } = new AnotherCommandImplementation(o => ApplyBase((bool)o));

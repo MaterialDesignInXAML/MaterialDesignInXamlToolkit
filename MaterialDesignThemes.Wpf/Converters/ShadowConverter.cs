@@ -13,12 +13,17 @@ namespace MaterialDesignThemes.Wpf.Converters
         {
             if (!(value is ShadowDepth)) return null;
 
-            return Clone(ShadowInfo.GetDropShadow((ShadowDepth) value));
+            return Clone(Convert((ShadowDepth)value));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+
+        public static DropShadowEffect Convert(ShadowDepth shadowDepth)
+        {
+            return ShadowInfo.GetDropShadow(shadowDepth);
         }
 
         private static DropShadowEffect Clone(DropShadowEffect dropShadowEffect)
