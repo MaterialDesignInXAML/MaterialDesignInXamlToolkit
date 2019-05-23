@@ -58,6 +58,16 @@
     <Compile Include="Toggles.xaml.cs">
       <DependentUpon>Toggles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ButtonAssist.cs" />
+    <Compile Include="ColorScheme.cs" />
+    <Compile Include="ColorTool.xaml.cs">
+      <DependentUpon>ColorTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorToolViewModel.cs" />
+    <Compile Include="Converters\BrushToHexConverter.cs" />
+    <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Converters\MultiValueEqualityConverter.cs" />
+    <Compile Include="PaletteHelperExtensions.cs" />
     <Compile Include="XamlDisplayEx.cs" />
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
@@ -226,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Chips.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorTool.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

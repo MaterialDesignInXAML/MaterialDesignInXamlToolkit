@@ -20,6 +20,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Chip.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Clock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ColorPicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RatingBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TimePicker.xaml" />
@@ -162,6 +163,16 @@
                                     </TransformGroup>
                                 </Ellipse.RenderTransform>
                             </Ellipse>
+                            <Canvas.Style>
+                                <Style TargetType="Canvas">
+                                    <Setter Property="ZIndex" Value="0" />
+                                    <Style.Triggers>
+                                        <Trigger Property="local:RippleAssist.RippleOnTop" Value="True">
+                                            <Setter Property="ZIndex" Value="2" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Canvas.Style>
                         </Canvas>
                         <ContentPresenter Content="{TemplateBinding Content}"
                                           ContentStringFormat="{TemplateBinding ContentStringFormat}"
@@ -171,7 +182,8 @@
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           RecognizesAccessKey="{TemplateBinding RecognizesAccessKey}"
-                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          Panel.ZIndex="1" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
