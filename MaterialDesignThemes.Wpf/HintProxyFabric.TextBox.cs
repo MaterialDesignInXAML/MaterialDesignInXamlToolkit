@@ -27,9 +27,7 @@ namespace MaterialDesignThemes.Wpf
 
             public TextBoxHintProxy(TextBox textBox)
             {
-                if (textBox == null) throw new ArgumentNullException(nameof(textBox));
-
-                _textBox = textBox;
+                _textBox = textBox ?? throw new ArgumentNullException(nameof(textBox));
                 _textBox.TextChanged += TextBoxTextChanged;
                 _textBox.Loaded += TextBoxLoaded;
                 _textBox.IsVisibleChanged += TextBoxIsVisibleChanged;
