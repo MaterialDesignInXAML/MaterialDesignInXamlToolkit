@@ -350,7 +350,7 @@
         <StackPanel Grid.Row="10" Orientation="Horizontal">
             <smtx:XamlDisplay Key="buttons_10" Margin="8 0">
                 <StackPanel Orientation="Horizontal">
-                    <CheckBox Name="PopupEnabled">Enable Popup</CheckBox>
+                    <CheckBox Name="PopupEnabled" IsChecked="True">Enable Popup</CheckBox>
                     <materialDesign:PopupBox StaysOpen="True" IsEnabled="{Binding IsChecked, ElementName=PopupEnabled}">
                         <Grid Width="300" Margin="8,8,8,8">
                             <Grid.Resources>
@@ -409,12 +409,12 @@
                     </materialDesign:PopupBox>
                 </StackPanel>
             </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="buttons_11" Margin="8 0">
+            <smtx:XamlDisplay Key="buttons_11" Margin="8 0 0 5">
                 <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                                            PlacementMode="BottomAndAlignCentres"
-                                             ToggleCheckedContentCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpfExample:Buttons}, Path=FloatingActionDemoCommand}"
-                                            ToggleCheckedContentCommandParameter="wowsers"
-                                            ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+                                         PlacementMode="BottomAndAlignCentres"
+                                         ToggleCheckedContentCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpfExample:Buttons}, Path=FloatingActionDemoCommand}"
+                                         ToggleCheckedContentCommandParameter="wowsers"
+                                         ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox" >
                     <materialDesign:PopupBox.ToggleCheckedContent>
                         <materialDesign:PackIcon Kind="Pencil" Width="24" Height="24" />
                     </materialDesign:PopupBox.ToggleCheckedContent>
@@ -425,7 +425,7 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="buttons_9" Margin="8 0">
+            <smtx:XamlDisplay Key="buttons_9" Margin="8 0 0 5">
                 <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
                                          PlacementMode="BottomAndAlignCentres"
                                          ToolTipService.Placement="Right"

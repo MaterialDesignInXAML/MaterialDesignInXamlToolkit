@@ -50,7 +50,6 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<Buttons>("Demo View"),
                         DocumentationLink.DemoPageLink<ButtonsViewModel>("Demo View Model"),
                         DocumentationLink.StyleLink("Button"),
-                        DocumentationLink.StyleLink("CheckBox"),
                         DocumentationLink.StyleLink("PopupBox"),
                         DocumentationLink.ApiLink<PopupBox>()
                     })
@@ -61,6 +60,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                 {
                     DocumentationLink.DemoPageLink<Toggles>(),
                     DocumentationLink.StyleLink("ToggleButton"),
+                    DocumentationLink.StyleLink("CheckBox"),
                     DocumentationLink.ApiLink<Toggles>()
                 }),
                 new DemoItem("Rating Bar", new RatingBar(), new []
