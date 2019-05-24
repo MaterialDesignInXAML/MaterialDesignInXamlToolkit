@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="MaterialDesignColors.WpfExample.RatingBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Rating bar</TextBlock>
+        <StackPanel Margin="0 16 0 0" Orientation="Horizontal">
+            <smtx:XamlDisplay Key="buttons_58" VerticalContentAlignment="Top" Margin="5 0 0 5">
+                <materialDesign:RatingBar Value="3" x:Name="BasicRatingBar"  ValueChanged="BasicRatingBar_ValueChanged"/>
+            </smtx:XamlDisplay>
+            <TextBlock Text="{Binding ElementName=BasicRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />
+
+            <smtx:XamlDisplay Key="buttons_59" Margin="24 0 0 5">
+                <materialDesign:RatingBar x:Name="CustomRatingBar" Max="3" Value="2" Orientation="Vertical">
+                    <materialDesign:RatingBar.ValueItemTemplate>
+                        <DataTemplate DataType="system:Int32">
+                            <Grid>
+                                <materialDesign:PackIcon Kind="Heart" Height="24" Width="24" />
+                                <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           FontSize="8"
+                                           Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </materialDesign:RatingBar.ValueItemTemplate>
+                </materialDesign:RatingBar>
+            </smtx:XamlDisplay>
+            <TextBlock Text="{Binding ElementName=CustomRatingBar, Path=Value, StringFormat=Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />
+            <smtx:XamlDisplay Key="buttons_62" VerticalContentAlignment="Top" Margin="5 0 0 5">
+                <materialDesign:RatingBar Value="4" IsReadOnly="True" x:Name="ReadOnlyRatingBar"/>
+            </smtx:XamlDisplay>
+            <TextBlock Text="{Binding ElementName=ReadOnlyRatingBar, Path=Value, StringFormat=Readonly Rating: {0}}" VerticalAlignment="Top" Margin="10,2,0,0" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>
+

@@ -49,10 +49,5 @@ namespace MaterialDesignColors.WpfExample
             
             CountingBadge.Badge = next < 21 ? (object)next : null;
         }
-        
-        private void BasicRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
-        {
-            Debug.WriteLine($"BasicRatingBar value changed from {e.OldValue} to {e.NewValue}.");
-        }
     }
 }
