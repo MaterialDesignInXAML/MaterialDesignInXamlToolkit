@@ -15,8 +15,8 @@
     <copyright>Copyright 2015 James Willock/Mulholland Software Ltd</copyright>
     <tags>WPF XAML WinRT Material Design Theme Colour Color UI UX</tags>
     <dependencies>
-      <dependency id="MaterialDesignColors" version="1.1.*" />
-      <dependency id="MaterialDesignThemes" version="2.5.*" />
+      <dependency id="MaterialDesignColors" version="1.2.*" />
+      <dependency id="MaterialDesignThemes" version="2.6.*" />
       <dependency id="MahApps.Metro" version="1.6.*" />
     </dependencies>
   </metadata>
