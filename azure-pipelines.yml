@@ -41,7 +41,7 @@ steps:
 
 - powershell: Copy-Item -Path ".\MaterialDesignThemes.nuspec" -Destination ".\MaterialDesignThemes.Wpf\bin\AppVeyor\"
 
-- powershell: Copy-Item -Path ".\MaterialDesignThemes.Wpf\*" -Include *.cs -Recurse -Destination ".\MaterialDesignColors.Wpf\bin\AppVeyor\"
+- powershell: robocopy MaterialDesignThemes.Wpf MaterialDesignThemes.Wpf\bin\AppVeyor\src *.cs /S /XD bin obj
 
 - powershell: Copy-Item -Path ".\MaterialDesignColors.nuspec" -Destination ".\MaterialDesignColors.Wpf\bin\AppVeyor\"
 
