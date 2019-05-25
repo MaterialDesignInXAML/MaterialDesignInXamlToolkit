@@ -39,13 +39,33 @@ steps:
     artifactName: 'DemoApp'
     targetPath: 'MainDemo.Wpf/bin/AppVeyor'
 
-- powershell: Copy-Item -Path ".\MaterialDesignThemes.nuspec" -Destination ".\MaterialDesignThemes.Wpf\bin\AppVeyor\"
+- task: PowerShell@2
+  displayName: 'Copy MDIX nuspec'
+  inputs:
+    targetType: 'inline'
+    script: 'Copy-Item -Path ".\\MaterialDesignThemes.nuspec" -Destination ".\\MaterialDesignThemes.Wpf\\bin\\AppVeyor\\"'
+    ignoreLASTEXITCODE: true
 
-- powershell: robocopy MaterialDesignThemes.Wpf MaterialDesignThemes.Wpf\bin\AppVeyor\src *.cs /S /XD bin obj
+- task: PowerShell@2
+  displayName: 'Copy CS Files'
+  inputs:
+    targetType: 'inline'
+    script: 'robocopy MaterialDesignThemes.Wpf MaterialDesignThemes.Wpf\\bin\\AppVeyor\\src *.cs /S /XD bin obj'
+    ignoreLASTEXITCODE: true
 
-- powershell: Copy-Item -Path ".\MaterialDesignColors.nuspec" -Destination ".\MaterialDesignColors.Wpf\bin\AppVeyor\"
+- task: PowerShell@2
+  displayName: 'Copy CS Files'
+  inputs:
+    targetType: 'inline'
+    script: 'Copy-Item -Path ".\\MaterialDesignColors.nuspec" -Destination ".\\MaterialDesignColors.Wpf\\bin\\AppVeyor\\"'
+    ignoreLASTEXITCODE: true
 
-- powershell: Copy-Item -Path ".\MaterialDesignThemes.MahApps.nuspec" -Destination ".\MaterialDesignThemes.MahApps\bin\Release\"
+- task: PowerShell@2
+  displayName: 'Copy CS Files'
+  inputs:
+    targetType: 'inline'
+    script: 'Copy-Item -Path ".\\MaterialDesignThemes.MahApps.nuspec" -Destination ".\\MaterialDesignThemes.MahApps\\bin\\Release\\"'
+    ignoreLASTEXITCODE: true
 
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesign"
