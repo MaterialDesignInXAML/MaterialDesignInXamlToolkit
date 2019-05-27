@@ -168,6 +168,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignTheme.RichTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MaterialDesignTheme.ScrollBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -331,6 +335,7 @@
     <Compile Include="Flipper.cs" />
     <Compile Include="HintAssist.cs" />
     <Compile Include="HintProxyFabric.PasswordBox.cs" />
+    <Compile Include="HintProxyFabric.RichTextBox.cs" />
     <Compile Include="HintProxyFabric.TextBox.cs" />
     <Compile Include="HintProxyFabric.ComboBox.cs" />
     <Compile Include="HintProxyFabric.cs" />

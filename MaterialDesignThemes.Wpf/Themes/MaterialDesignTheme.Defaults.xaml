@@ -23,6 +23,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RichTextBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ScrollBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ScrollViewer.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
@@ -63,10 +64,15 @@
     <Style TargetType="{x:Type Label}" BasedOn="{StaticResource MaterialDesignLabel}" />
     <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}" />
     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}" />
+    <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource MaterialDesignListView}" />
+    <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}" />
+    <Style TargetType="{x:Type Menu}" BasedOn="{StaticResource MaterialDesignMenu}" />
+    <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}" />
     <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignPasswordBox}" />
     <Style TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource MaterialDesignLinearProgressBar}" />
     <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}" />
     <Style TargetType="{x:Type RepeatButton}" BasedOn="{StaticResource MaterialDesignRaisedButton}" />
+    <Style TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource MaterialDesignRichTextBox}" />
     <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MaterialDesignScrollBar}" />
     <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource MaterialDesignScrollViewer}" />
     <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource MaterialDesignSlider}" />
@@ -77,11 +83,7 @@
     <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource MaterialDesignToolTip}" />
     <Style TargetType="{x:Type TreeView}" BasedOn="{StaticResource MaterialDesignTreeView}" />
     <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource MaterialDesignTreeViewItem}" />
-    <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource MaterialDesignListView}" />
-    <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}" />
-    <Style TargetType="{x:Type Menu}" BasedOn="{StaticResource MaterialDesignMenu}" />
-    <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}" />
-    
+
     <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="{x:Type Separator}" BasedOn="{StaticResource MaterialDesignSeparator}" />
     <Style x:Key="MaterialDesignDarkSeparator" TargetType="{x:Type Separator}" BasedOn="{StaticResource MaterialDesignSeparator}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignDarkSeparatorBackground}"/>

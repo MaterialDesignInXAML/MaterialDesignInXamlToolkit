@@ -106,6 +106,31 @@
                      materialDesign:HintAssist.Hint="Multiline text"
                      Height="80">Multiline.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The quick brown fox jumps over the lazy dog. War and peace. Keep going. Go on. For how long? Not long. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TextBox>
         </smtx:XamlDisplay>
+        <smtx:XamlDisplay Key="fields_32" Grid.Row="3" Grid.RowSpan="2" Grid.Column="4" Margin="32 0 0 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <CheckBox Content="Rich Text Box: IsReadOnly" IsChecked="True" x:Name="RichTextBoxIsReadOnlyCheckBox" />
+                <RichTextBox MinWidth="280" AcceptsReturn="True" IsDocumentEnabled="True" 
+                             IsReadOnly="{Binding IsChecked, ElementName=RichTextBoxIsReadOnlyCheckBox}"
+                             VerticalScrollBarVisibility="Auto" SpellCheck.IsEnabled="True"
+                             materialDesign:HintAssist.Hint="Multiline text"
+                             Height="80" Grid.Row="1">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run FontWeight="Bold">Rich Text Box.</Run>
+                            <LineBreak />
+                            <Run FontStyle="Italic">With formatting support</Run>
+                            <LineBreak />
+                            <Hyperlink Cursor="Hand" RequestNavigate="Hyperlink_OnRequestNavigate"
+                                   NavigateUri="https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit">Material Design in XAML</Hyperlink>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Grid>
+        </smtx:XamlDisplay>
         <materialDesign:PackIcon Grid.Row="2" Grid.Column="0" Kind="Phone" Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}" />
         <smtx:XamlDisplay Key="fields_4" Grid.Row="2" Grid.Column="1">
             <TextBox x:Name="PhoneTextBox" materialDesign:TransitionAssist.DisableTransitions="True"/>
@@ -142,7 +167,7 @@
             </ComboBox>
         </smtx:XamlDisplay>
 
-        <StackPanel Grid.Row="3" Grid.Column="4" Grid.RowSpan="3" Margin="32 16 0 0">
+        <StackPanel Grid.Row="5" Grid.Column="4" Grid.RowSpan="3" Margin="32 16 0 0">
             <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Virtualised Comboboxes</TextBlock>
             <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
                 <smtx:XamlDisplay Key="fields_10">
@@ -306,9 +331,9 @@
                 </ContentControl.ContentTemplateSelector>
             </ContentControl>
         </smtx:XamlDisplay>
-        <TextBlock Grid.Row="7" Grid.Column="4" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+        <TextBlock Grid.Row="9" Grid.Column="4" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
                    Margin="0 48 0 0">Tight Space Validation</TextBlock>
-        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="4">
+        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="4">
             <smtx:XamlDisplay Key="fields_22" HorizontalAlignment="Left">
                 <TextBox Width="20"
                      materialDesign:ValidationAssist.UsePopup="True"
@@ -339,7 +364,7 @@
                 </TextBox>
             </smtx:XamlDisplay>
         </StackPanel>
-        <smtx:XamlDisplay Key="fields_23" Grid.Row="9" Grid.Column="4" Grid.RowSpan="2" HorizontalAlignment="Left">
+        <smtx:XamlDisplay Key="fields_23" Grid.Row="11" Grid.Column="4" Grid.RowSpan="2" HorizontalAlignment="Left">
             <StackPanel>
                 <CheckBox x:Name="DisplaySelectedItemCheckBox"
                           IsThreeState="False"
@@ -354,7 +379,7 @@
             </StackPanel>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Key="fields_24" Grid.Row="11" Grid.Column="4" Grid.RowSpan="2" HorizontalAlignment="Left">
+        <smtx:XamlDisplay Key="fields_24" Grid.Row="13" Grid.Column="4" Grid.RowSpan="2" HorizontalAlignment="Left">
             <StackPanel>
                 <CheckBox x:Name="ClassicModeCheckBox"
                           IsThreeState="False" IsChecked="True"
@@ -380,8 +405,8 @@
             </StackPanel>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="13" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Outlined text field</TextBlock>
-        <smtx:XamlDisplay Key="fields_26" Grid.Row="14" Grid.Column="4" Grid.RowSpan="2">
+        <TextBlock Grid.Row="15" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Outlined text field</TextBlock>
+        <smtx:XamlDisplay Key="fields_26" Grid.Row="16" Grid.Column="4" Grid.RowSpan="2">
             <StackPanel>
                 <CheckBox x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" 
                           IsChecked="True" Margin="32,0,0,8">Enabled</CheckBox>
@@ -403,8 +428,8 @@
             </StackPanel>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="16" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Outlined password field</TextBlock>
-        <smtx:XamlDisplay Key="fields_29" Grid.Row="17" Grid.Column="4" Margin="32,0,0,0">
+        <TextBlock Grid.Row="18" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Outlined password field</TextBlock>
+        <smtx:XamlDisplay Key="fields_29" Grid.Row="19" Grid.Column="4" Margin="32,0,0,0">
             <StackPanel>
                 <CheckBox x:Name="MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox"
                       IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>
