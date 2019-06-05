@@ -199,7 +199,7 @@
                     <Button Style="{StaticResource MaterialDesignOutlinedButton}" ToolTip="MaterialDesignOutlinedButton">LEARN MORE</Button>
                 </smtx:XamlDisplay>
                 <smtx:XamlDisplay Key="buttons_outlined_2" >
-                    <Button Style="{StaticResource MaterialDesignOutlinedButton}" IsEnabled="False" >LEAR LESS</Button>
+                    <Button Style="{StaticResource MaterialDesignOutlinedButton}" IsEnabled="False" >LEARN LESS</Button>
                 </smtx:XamlDisplay>
             </StackPanel>
         </StackPanel>
