@@ -195,6 +195,12 @@
                 <smtx:XamlDisplay Key="buttons_25_4" Margin="8 0">
                     <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}" ToolTip="MaterialDesignFlatAccentBackgroundButton">Okay</Button>
                 </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="buttons_outlined_1" Margin="20 0 0 0">
+                    <Button Style="{StaticResource MaterialDesignOutlinedButton}" ToolTip="MaterialDesignOutlinedButton">LEARN MORE</Button>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="buttons_outlined_2" >
+                    <Button Style="{StaticResource MaterialDesignOutlinedButton}" IsEnabled="False" >LEARN LESS</Button>
+                </smtx:XamlDisplay>
             </StackPanel>
         </StackPanel>
         <Border Margin="0 24 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="2" />
