@@ -16,7 +16,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
  * Compatible with [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro)
  * Demo applications included in the source project
 
-[![Gitter](https://img.shields.io/badge/Gitter-Join%20Chat,%20Get%20Help,%20Say%20Hello!-green.svg?style=flat-square)](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit)
+[![Backers on Open Collective](https://opencollective.com/materialdesigninxaml/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/materialdesigninxaml/sponsors/badge.svg)](#sponsors) [![Gitter](https://img.shields.io/badge/Gitter-Join%20Chat,%20Get%20Help,%20Say%20Hello!-green.svg?style=flat-square)](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit)
 [![Build](https://img.shields.io/appveyor/ci/ButchersBoy/MaterialDesignInXamlToolkit/master.svg?style=flat-square)](https://ci.appveyor.com/project/ButchersBoy/materialdesigninxamltoolkit)
 [![NuGet-Themes](https://img.shields.io/nuget/v/MaterialDesignThemes.svg?label=NuGet:%20Themes&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](https://img.shields.io/nuget/vpre/MaterialDesignThemes.svg?label=NuGet:%20Themes%20(CI)&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
@@ -95,3 +95,33 @@ To load the source project you will need Visual Studio 2017.  Don't worry if you
 ![Alt text](web/images/screen-groupbox.png "Group Box")
 
 ![Alt text](web/images/screen-shadows.png "Shadows")
+
+## Contributors
+
+This project exists thanks to all the people who contribute. 
+<a href="https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/graphs/contributors"><img src="https://opencollective.com/materialdesigninxaml/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/materialdesigninxaml#backer)]
+
+<a href="https://opencollective.com/materialdesigninxaml#backers" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/materialdesigninxaml#sponsor)]
+
+<a href="https://opencollective.com/materialdesigninxaml/sponsor/0/website" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/materialdesigninxaml/sponsor/1/website" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/materialdesigninxaml/sponsor/2/website" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/materialdesigninxaml/sponsor/3/website" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/materialdesigninxaml/sponsor/4/website" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/materialdesigninxaml/sponsor/5/website" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/materialdesigninxaml/sponsor/6/website" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/materialdesigninxaml/sponsor/7/website" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/materialdesigninxaml/sponsor/8/website" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/materialdesigninxaml/sponsor/9/website" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/sponsor/9/avatar.svg"></a>
+
+
