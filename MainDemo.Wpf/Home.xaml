@@ -149,7 +149,7 @@
                     <materialDesign:PackIcon Kind="Twitter" />
                 </Button>
                 <Button ToolTip="Chat" Click="ChatButton_OnClick">
-                    <!-- mix up the colours by brinking in a named palette (see merged dictionaries at top) -->
+                    <!-- mix up the colours by bringing in a named palette (see merged dictionaries at top) -->
                     <Button.Background>
                         <SolidColorBrush Color="{StaticResource GreenPrimary500}" />
                     </Button.Background>
