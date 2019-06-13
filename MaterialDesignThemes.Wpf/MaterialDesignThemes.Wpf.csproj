@@ -272,6 +272,7 @@
   <ItemGroup>
     <Compile Include="Badged.cs" />
     <Compile Include="BaseTheme.cs" />
+    <Compile Include="BindingProxy .cs" />
     <Compile Include="ButtonAssist.cs" />
     <Compile Include="ButtonProgressAssist.cs" />
     <Compile Include="Card.cs" />
