@@ -596,6 +596,7 @@
         <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 1 0" />
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="wpf:ComboBoxAssist.ComboBoxItemToNormalVisualStateTransitionDuration" Value="0:0:0.3" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
         <Style.Triggers>
             <Trigger Property="IsKeyboardFocused" Value="true">
