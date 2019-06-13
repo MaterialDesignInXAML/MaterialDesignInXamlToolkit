@@ -89,14 +89,14 @@
                                 <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
                             </Border.RenderTransform>
                         </Border>
-                        <Border x:Name="textFieldBoxBorder"
+                        <Border x:Name="textFieldBoxBorder" Background="{TemplateBinding Background}"
                                 CornerRadius="{Binding Path=(wpf:TextFieldAssist.TextFieldCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                 SnapsToDevicePixels="True">
                             <Grid>
                                 <Border x:Name="border"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}"
-                                        Background="{TemplateBinding Background}"
+                                        Background="Transparent"
                                         SnapsToDevicePixels="True"
                                         Padding="0 4 0 4">
                                     <Grid x:Name="textFieldGrid"
@@ -151,6 +151,7 @@
                             <Setter TargetName="border" Property="Margin" Value="0 12 0 0" />
                         </Trigger>
                         <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
+                            <Setter TargetName="textFieldBoxBorder" Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}"/>
                             <Setter Property="VerticalContentAlignment" Value="Top" />
                             <Setter TargetName="textFieldBoxBorder" Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
                             <Setter TargetName="textFieldBoxBorder" Property="Padding" Value="0,8,0,0" />
@@ -162,7 +163,6 @@
                         </Trigger>
                         <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
                             <Setter Property="VerticalContentAlignment" Value="Top" />
-                            <Setter TargetName="textFieldBoxBorder" Property="Background" Value="Transparent" />
                             <Setter TargetName="textFieldBoxBorder" Property="BorderThickness" Value="1" />
                             <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
                             <Setter TargetName="textFieldBoxBorder" Property="Padding" Value="0,8,0,0" />
