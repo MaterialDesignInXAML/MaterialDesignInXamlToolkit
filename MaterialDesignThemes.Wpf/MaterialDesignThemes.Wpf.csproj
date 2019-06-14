@@ -351,6 +351,7 @@
     <Compile Include="ResourceDictionaryExtensions.cs" />
     <Compile Include="MaterialDesignLightTheme.cs" />
     <Compile Include="MaterialDesignDarkTheme.cs" />
+    <Compile Include="ScrollBarAssist.cs" />
     <Compile Include="ThemeChangedEventArgs.cs" />
     <Compile Include="ThemeMarkupExtension.cs" />
     <Compile Include="MessageQueueExtension.cs" />
