@@ -73,7 +73,7 @@
     <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}" />
     <Style TargetType="{x:Type RepeatButton}" BasedOn="{StaticResource MaterialDesignRaisedButton}" />
     <Style TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource MaterialDesignRichTextBox}" />
-    <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MaterialDesignScrollBarStyle}" />
+    <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MaterialDesignScrollBar}" />
     <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource MaterialDesignScrollViewer}" />
     <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource MaterialDesignSlider}" />
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
