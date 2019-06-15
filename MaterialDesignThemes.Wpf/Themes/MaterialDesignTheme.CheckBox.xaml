@@ -53,6 +53,8 @@
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
+        <Setter Property="Width" Value="18"/>
+        <Setter Property="Height" Value="18"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
@@ -85,7 +87,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Viewbox Width="18" Height="18"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        <Viewbox Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                  FlowDirection="LeftToRight">
                             <Canvas Width="24" Height="24">
                                 <Path x:Name="Graphic"
