@@ -77,7 +77,8 @@ namespace MaterialDesignThemes.Wpf
         private static void VisualTransitionDurationChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
         {
             // Update the value of the GeneratedDuration property with new value if a target element is VisualTransition
-            if (element is VisualTransition)
+            VisualTransition visualTransition = element as VisualTransition;
+            if (visualTransition != null)
             {
                 (element as VisualTransition).GeneratedDuration = (Duration)e.NewValue;
             }

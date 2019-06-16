@@ -217,7 +217,7 @@
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup Name="CommonStates">
                     <VisualStateGroup.Transitions>
-                        <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                        <VisualTransition wpf:ComboBoxAssist.ComboBoxItemToNormalVisualStateTransitionDuration="{Binding Source={StaticResource CustomControlPropertyProxy}, Path=Data}" To="Normal">
                             <VisualTransition.GeneratedEasingFunction>
                                 <CircleEase EasingMode="EaseOut" />
                             </VisualTransition.GeneratedEasingFunction>
@@ -249,7 +249,7 @@
                 </VisualStateGroup>
                 <VisualStateGroup Name="FocusStates">
                     <VisualStateGroup.Transitions>
-                        <VisualTransition GeneratedDuration="0:0:0.3" To="Unfocused" />
+                        <VisualTransition wpf:ComboBoxAssist.ComboBoxItemToNormalVisualStateTransitionDuration="{Binding Source={StaticResource CustomControlPropertyProxy}, Path=Data}" To="Unfocused" />
                     </VisualStateGroup.Transitions>
                     <VisualState Name="Focused">
                         <Storyboard>
