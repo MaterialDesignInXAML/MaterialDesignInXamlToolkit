@@ -211,6 +211,9 @@
 
     <ControlTemplate x:Key="MaterialDesignComboBoxItemTemplate" TargetType="{x:Type ComboBoxItem}">
         <Grid x:Name="GridWrapper">
+            <Grid.Resources>
+                <materialdesign:BindingProxy x:Key="CustomControlPropertyProxy" Data="{Binding RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, Path=(wpf:ComboBoxAssist.ComboBoxItemToNormalVisualStateTransitionDuration)}" />
+            </Grid.Resources>
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup Name="CommonStates">
                     <VisualStateGroup.Transitions>
