@@ -247,6 +247,26 @@
                     </Button>
                 </Grid>
             </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="buttons_251"  Margin="200 0 0 0">
+                <Button Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton">
+                    <materialDesign:PackIcon Kind="Play"/>
+                </Button>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="buttons_252">
+                <Button Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" IsEnabled="False">
+                    <materialDesign:PackIcon Kind="Play"/>
+                </Button>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="buttons_253">
+                <Button Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="MaterialDesignIconForegroundButton">
+                    <materialDesign:PackIcon Kind="Play"/>
+                </Button>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="buttons_254">
+                <Button Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
+                    <materialDesign:PackIcon Kind="Play"/>
+                </Button>
+            </smtx:XamlDisplay>
         </StackPanel>
         <Border Margin="0 24 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="5" />
         <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
