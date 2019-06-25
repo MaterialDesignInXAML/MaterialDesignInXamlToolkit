@@ -77,6 +77,15 @@ namespace MaterialDesignThemes.Wpf
             colorPicker._inCallback = false;
         }
 
+        public static readonly DependencyProperty HueSliderPositionProperty = DependencyProperty.Register(
+            nameof(HueSliderPosition), typeof(Dock), typeof(ColorPicker), new PropertyMetadata(Dock.Bottom));
+
+        public Dock HueSliderPosition
+        {
+            get => (Dock)GetValue(HueSliderPositionProperty);
+            set => SetValue(HueSliderPositionProperty, value);
+        }
+
         public override void OnApplyTemplate()
         {
             if (_saturationBrightnessCanvas != null)
