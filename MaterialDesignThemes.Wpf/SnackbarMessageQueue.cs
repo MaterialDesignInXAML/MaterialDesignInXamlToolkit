@@ -185,6 +185,12 @@ namespace MaterialDesignThemes.Wpf
             };
         }
 
+        /// <summary>
+        /// Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates. 
+        /// True to show every message even if there are duplicates.
+        /// </summary>
+        public bool IgnoreDuplicate { get; set; }
+
         public void Enqueue(object content)
         {
             Enqueue(content, false);
@@ -298,6 +304,7 @@ namespace MaterialDesignThemes.Wpf
                     var message = _snackbarMessages.First.Value;
                     _snackbarMessages.RemoveFirst();
                     if (_latestShownItem == null
+                        || IgnoreDuplicate
                         || message.IgnoreDuplicate
                         || !Equals(_latestShownItem.Item1.Content, message.Content)
                         || !Equals(_latestShownItem.Item1.ActionContent, message.ActionContent)

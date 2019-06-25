@@ -28,6 +28,8 @@ namespace MaterialDesignDemo
 
         private void SnackBar4_OnClick(object sender, RoutedEventArgs e)
         {
+            SnackbarFour.MessageQueue.IgnoreDuplicate = !(DiscardDuplicateCheckBox.IsChecked ?? false);
+
             foreach (var s in ExampleFourTextBox.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
                 SnackbarFour.MessageQueue.Enqueue(
