@@ -96,7 +96,6 @@
                                 <Border x:Name="border"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}"
-                                        Background="Transparent"
                                         SnapsToDevicePixels="True"
                                         Padding="0 4 0 4">
                                     <Grid x:Name="textFieldGrid"
