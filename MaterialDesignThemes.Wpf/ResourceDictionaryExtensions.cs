@@ -176,6 +176,8 @@ namespace MaterialDesignThemes.Wpf
             if (sourceDictionary == null) throw new ArgumentNullException(nameof(sourceDictionary));
             if (name == null) throw new ArgumentNullException(nameof(name));
 
+            sourceDictionary[name + "Color"] = value;
+
             if (sourceDictionary[name] is SolidColorBrush brush)
             {
                 if (brush.Color == value) return;
