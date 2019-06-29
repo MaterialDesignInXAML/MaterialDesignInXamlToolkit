@@ -7,7 +7,7 @@ pool:
 steps:
 - task: PowerShell@2
   inputs:
-    filePath: 'Scripts\\UpdateWiki.ps1'
+    filePath: 'Scripts\\GenerateThemesWikiMarkdown.ps1'
 
 - task: WikiUpdaterTask@1
   inputs:
