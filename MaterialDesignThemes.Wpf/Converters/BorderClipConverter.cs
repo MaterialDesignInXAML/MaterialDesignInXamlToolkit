@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    public class BorderClipConverter : IMultiValueConverter
+    internal class BorderClipConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
