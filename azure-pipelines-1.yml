@@ -1,0 +1,22 @@
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  solution: 'MaterialDesignToolkit.ResourceGeneration.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- powershell: .paket\paket.exe restore
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: PublishPipelineArtifact@0
+  name: "PublishResourceGenerator"
+  inputs:
+    artifactName: 'ResourceGenerator'
+    targetPath: 'mdresgen/bin/Release'
