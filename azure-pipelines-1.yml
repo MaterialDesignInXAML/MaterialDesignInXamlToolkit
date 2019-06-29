@@ -8,3 +8,15 @@ steps:
 - task: PowerShell@2
   inputs:
     filePath: 'Scripts\\UpdateWiki.ps1'
+
+- task: WikiUpdaterTask@1
+  inputs:
+    repo: 'https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.wiki.git'
+    filename: 'ControlStyleList.md'
+    dataIsFile: true
+    sourceFile: 'Scripts\\ControlStyleList.md'
+    message: 'Automatic update of ControlStyleList.md from Azure pipeline'
+    gitname: 'Azure Dev Ops'
+    gitemail: 'azure@materialdesigninxaml.net'
+    useAgentToken: true
+    localpath: '$(System.DefaultWorkingDirectory)\\Scripts\\Wiki'
