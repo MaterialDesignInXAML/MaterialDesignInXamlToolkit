@@ -11,7 +11,7 @@ steps:
 
 - task: WikiUpdaterTask@1
   inputs:
-    repo: 'https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.wiki.git'
+    repo: 'github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.wiki.git'
     filename: 'ControlStyleList.md'
     dataIsFile: true
     sourceFile: 'Scripts\\ControlStyleList.md'
