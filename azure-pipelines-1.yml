@@ -18,5 +18,6 @@ steps:
     message: 'Automatic update of ControlStyleList.md from Azure pipeline'
     gitname: 'Azure Dev Ops'
     gitemail: 'azure@materialdesigninxaml.net'
-    useAgentToken: true
+    user: '$(GitHubUser)'
+    password: '$(GitHubPat)'
     localpath: '$(System.DefaultWorkingDirectory)\\Scripts\\Wiki'
