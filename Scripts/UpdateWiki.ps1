@@ -9,9 +9,11 @@ Push-Location Wiki
 $status = git status
 $has_changed = [string]$status -match "modified:\s*ControlStyleList.md"
 if ($has_changed) {
+  git config --global user.email "azure@materialdesigninxaml.net/"
+  git config --global user.name "Azure Pipeline"
   git add "ControlStyleList.md"
   git commit -m "Automatic update of ControlStyleList.md from Azure pipeline"
-  #git push
+  git push
   Write-Host "Wiki content updated"
 } else {
   Write-Host "No updates"
