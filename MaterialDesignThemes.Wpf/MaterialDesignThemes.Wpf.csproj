@@ -285,6 +285,7 @@
     <Compile Include="ComboBoxPopup.cs" />
     <Compile Include="Converters\BooleanConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\BorderClipConverter.cs" />
     <Compile Include="Converters\BrushRoundConverter.cs" />
     <Compile Include="Converters\BrushToRadialGradientBrushConverter.cs" />
     <Compile Include="Converters\CalendarDateCoalesceConverter.cs" />
