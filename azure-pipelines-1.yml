@@ -19,7 +19,7 @@ steps:
   displayName: "Generate Icons"
   inputs:
     targetType: 'inline'
-    script: 'mdresgen.exe icons'
+    script: '.\\mdresgen.exe icons'
     workingDirectory: '.\\mdresgen\\bin\\$(buildConfiguration)'
 
 - task: PublishPipelineArtifact@0
