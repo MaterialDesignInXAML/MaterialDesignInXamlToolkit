@@ -15,12 +15,18 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- powershell: git checkout -b pipeline/icons
+
 - task: PowerShell@2
   displayName: "Generate Icons"
   inputs:
     targetType: 'inline'
     script: '.\\mdresgen.exe icons'
     workingDirectory: '.\\mdresgen\\bin\\$(buildConfiguration)'
+
+- powershell: git commit -a -m "Icons update from Azure pipeline"
+
+- powershell: git push -f origin pipeline/icons
 
 - task: PublishPipelineArtifact@0
   name: "PublishResourceGenerator"
