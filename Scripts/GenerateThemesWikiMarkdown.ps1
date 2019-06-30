@@ -23,7 +23,7 @@ Function Main {
 }
 
 Function Format-Output {
-
+    Write-OutputFile "[//]: <> (AUTO GENERATED FILE; DO NOT EDIT)"
     foreach($style in $discoverdStyles | Sort-Object -Property Control,@{Expression = {$_.IsDefault}; Ascending = $false}) {
         if ($previousFile -ne $style.File) {
             Write-OutputFile "`n$headerMarkdown $($style.File)"
