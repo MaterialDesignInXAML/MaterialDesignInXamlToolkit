@@ -1,5 +1,5 @@
 pool:
-  vmImage: 'VS2017-Win2016'
+  vmImage: 'windows-2019'
 
 variables:
   solution: 'MaterialDesignToolkit.ResourceGeneration.sln'
