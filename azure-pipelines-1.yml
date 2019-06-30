@@ -42,11 +42,9 @@ steps:
 
       git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
 
-      git checkout -f pipeline/icons | Write-Host
-
-      git commit -a -m "Icons update from Azure pipeline" | Write-Host
+      git commit -a -m "Icons update from Azure pipeline"
       
-      git push -f origin pipeline/icons | Write-Host'
+      git push -f origin pipeline/icons'
 
 - task: PublishPipelineArtifact@0
   name: "PublishResourceGenerator"
