@@ -7,6 +7,9 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- checkout: self
+  persistCredentials: "true"
+
 - powershell: .paket\paket.exe restore
 
 - task: VSBuild@1
