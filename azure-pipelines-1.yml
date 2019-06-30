@@ -27,9 +27,19 @@ steps:
     script: '.\\mdresgen.exe icons'
     workingDirectory: '.\\mdresgen\\bin\\$(buildConfiguration)'
 
-- powershell: git commit -a -m "Icons update from Azure pipeline"
+- task: PowerShell@2
+  displayName: "Commit Updated Icons"
+  inputs:
+    targetType: 'inline'
+    script:  git config --global user.email "azure-pipeline@materialdesigninxaml.net/"
+      
+      git config --global user.name "Azure Pipeline"
 
-- powershell: git push -f origin pipeline/icons
+      git remote set-url origin https://$(GitHubUser):$(GitHubPat)@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
+      
+      git commit -a -m "Icons update from Azure pipeline
+      
+      git push -f origin pipeline/icons'
 
 - task: PublishPipelineArtifact@0
   name: "PublishResourceGenerator"
