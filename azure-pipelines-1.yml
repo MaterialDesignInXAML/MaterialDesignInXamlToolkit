@@ -37,7 +37,7 @@ steps:
 
       git remote set-url origin https://$(GitHubUser):$(GitHubPat)@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
       
-      git commit -a -m "Icons update from Azure pipeline
+      git commit -a -m "Icons update from Azure pipeline"
       
       git push -f origin pipeline/icons'
 
