@@ -38,7 +38,7 @@ steps:
       
       git config --global user.name "Azure Pipeline"
 
-      git remote set-url origin https://$(env:UserName):$(env:Password)@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
+      git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
       
       git commit -a -m "Icons update from Azure pipeline"
       
