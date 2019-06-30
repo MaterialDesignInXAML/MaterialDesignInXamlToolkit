@@ -14,7 +14,7 @@ steps:
     targetType: 'inline'
     script: 'git clean -f
       
-      git checkout -f pipeline/icons'
+      git checkout -f -b pipeline/icons'
 
 - powershell: .paket\paket.exe restore
 
