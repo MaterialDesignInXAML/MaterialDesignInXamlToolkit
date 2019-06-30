@@ -12,10 +12,10 @@ steps:
   displayName: "Git Clean"
   inputs:
     targetType: 'inline'
-    script: 'git clean -f"
-     
+    script: 'git clean -f
+      
       git branch -f pipeline/icons | Write-Host
-
+      
       git checkout -f pipeline/icons | Write-Host'
 
 - powershell: .paket\paket.exe restore
