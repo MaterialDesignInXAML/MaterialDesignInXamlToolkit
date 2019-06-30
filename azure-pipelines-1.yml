@@ -45,9 +45,9 @@ steps:
 
       git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
       
-      git branch -f pipeline/icons
+      git branch -f pipeline/icons | Write-Host
 
-      git checkout -f pipeline/icons
+      git checkout -f pipeline/icons | Write-Host
 
       git commit -a -m "Icons update from Azure pipeline" | Write-Host
       
