@@ -7,10 +7,15 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- checkout: self
-  persistCredentials: "true"
 
-- powershell: git checkout -b pipeline/icons
+- task: PowerShell@2
+  displayName: "Git Clean"
+  env:
+    UserName: $(GitHubUser)
+    Password: $(GitHubPat)
+  inputs:
+    targetType: 'inline'
+    script: 'git clean -f'
 
 - powershell: .paket\paket.exe restore
 
@@ -19,8 +24,6 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
-- powershell: git checkout -b pipeline/icons
 
 - task: PowerShell@2
   displayName: "Generate Icons"
