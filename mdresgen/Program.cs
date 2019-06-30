@@ -77,7 +77,10 @@ namespace mdresgen
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("FINISHED");
-            Console.ReadKey();
+            if (!Console.IsInputRedirected)
+            {
+                Console.ReadKey();
+            }
         }
 
 
