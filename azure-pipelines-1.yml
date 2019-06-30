@@ -15,6 +15,12 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: PowerShell@2
+  displayName: "Generate Icons"
+  inputs:
+    targetType: 'inline'
+    script: '.\\mdresgen\\bin\\$(buildConfiguration)\\mdresgen.exe icons'
+
 - task: PublishPipelineArtifact@0
   name: "PublishResourceGenerator"
   inputs:
