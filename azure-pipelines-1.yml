@@ -12,9 +12,7 @@ steps:
   displayName: "Git Clean"
   inputs:
     targetType: 'inline'
-    script: 'git clean -f
-      
-      git checkout -f -B pipeline/icons'
+    script: 'git checkout -f -B pipeline/icons'
 
 - powershell: .paket\paket.exe restore
 
