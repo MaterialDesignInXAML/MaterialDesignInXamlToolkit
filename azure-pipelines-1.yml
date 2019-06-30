@@ -23,6 +23,7 @@ steps:
 
 - task: PublishPipelineArtifact@0
   name: "PublishResourceGenerator"
+  enabled: "false"
   inputs:
     artifactName: 'ResourceGenerator'
     targetPath: 'mdresgen/bin/Release'
