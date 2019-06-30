@@ -34,7 +34,7 @@ steps:
     Password: $(GitHubPat)
   inputs:
     targetType: 'inline'
-    script:  git config --global user.email "azure-pipeline@materialdesigninxaml.net/"
+    script: 'git config --global user.email "azure-pipeline@materialdesigninxaml.net/"
       
       git config --global user.name "Azure Pipeline"
 
