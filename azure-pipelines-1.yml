@@ -10,6 +10,8 @@ steps:
 - checkout: self
   persistCredentials: "true"
 
+- powershell: git checkout -b pipeline/icons
+
 - powershell: .paket\paket.exe restore
 
 - task: VSBuild@1
