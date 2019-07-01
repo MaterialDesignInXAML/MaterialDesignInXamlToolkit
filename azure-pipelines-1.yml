@@ -15,13 +15,16 @@ steps:
     Password: $(GitHubPat)
   inputs:
     targetType: 'inline'
+    failOnStderr: false
+    pwsh: true
     ignoreLASTEXITCODE: true
-    script: 'git config --global user.email "azure-pipeline@materialdesigninxaml.net/"
+    script: 'git config --global user.email "azure-pipeline@materialdesigninxaml.net/" 2>$null
       
-      git config --global user.name "Azure Pipeline"
+      git config --global user.name "Azure Pipeline" 2>$null
 
-      git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
-      '
+      git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git 2>$null
+      
+      git checkout -b pipeline/icons 2>$null'
 
 - powershell: .paket\paket.exe restore
 
@@ -44,7 +47,7 @@ steps:
     targetType: 'inline'
     script: 'git commit -a -m "Icons update from Azure pipeline"
       
-      git push -f origin pipeline/icons'
+      git push -f -u HEAD'
 
 - task: PublishPipelineArtifact@0
   name: "PublishResourceGenerator"
