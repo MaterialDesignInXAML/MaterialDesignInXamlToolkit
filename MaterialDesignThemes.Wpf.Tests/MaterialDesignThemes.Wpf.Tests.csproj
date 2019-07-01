@@ -55,6 +55,7 @@
     <Compile Include="PopupBoxTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimePickerUnitTests.cs" />
+    <Compile Include="TransitionerTests.cs" />
     <Compile Include="VisualTreeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
