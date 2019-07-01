@@ -21,6 +21,8 @@ steps:
       git config --global user.name "Azure Pipeline"
 
       git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
+      
+      git checkout -b pipeline/icons
       '
 
 - powershell: .paket\paket.exe restore
@@ -44,7 +46,7 @@ steps:
     targetType: 'inline'
     script: 'git commit -a -m "Icons update from Azure pipeline"
       
-      git push --force --set-upstream origin pipeline/icons'
+      git push -f -u HEAD'
 
 - task: PublishPipelineArtifact@0
   name: "PublishResourceGenerator"
