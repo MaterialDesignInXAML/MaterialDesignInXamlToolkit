@@ -18,13 +18,13 @@ steps:
     failOnStderr: false
     pwsh: true
     ignoreLASTEXITCODE: true
-    script: 'git config --global user.email "azure-pipeline@materialdesigninxaml.net/" 2>&1 | %{ "$_" }
+    script: 'git config --global user.email "azure-pipeline@materialdesigninxaml.net/" 2>$null
       
-      git config --global user.name "Azure Pipeline" 2>&1 | %{ "$_" }
+      git config --global user.name "Azure Pipeline" 2>$null
 
-      git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git 2>&1 | %{ "$_" }
+      git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git 2>$null
       
-      git checkout -b pipeline/icons 2>&1 | %{ "$_" }'
+      git checkout -b pipeline/icons 2>$null'
 
 - powershell: .paket\paket.exe restore
 
