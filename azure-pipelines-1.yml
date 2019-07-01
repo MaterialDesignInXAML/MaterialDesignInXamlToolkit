@@ -9,10 +9,19 @@ variables:
 steps:
 
 - task: PowerShell@2
-  displayName: "Git Clean"
+  displayName: "Git Setup"
+  env:
+    UserName: $(GitHubUser)
+    Password: $(GitHubPat)
   inputs:
     targetType: 'inline'
-    script: 'git checkout -f -B pipeline/icons'
+    script: 'git config --global user.email "azure-pipeline@materialdesigninxaml.net/"
+      
+      git config --global user.name "Azure Pipeline"
+
+      git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
+      
+      git checkout -B pipeline/icons'
 
 - powershell: .paket\paket.exe restore
 
@@ -31,18 +40,9 @@ steps:
 
 - task: PowerShell@2
   displayName: "Commit Updated Icons"
-  env:
-    UserName: $(GitHubUser)
-    Password: $(GitHubPat)
   inputs:
     targetType: 'inline'
-    script: 'git config --global user.email "azure-pipeline@materialdesigninxaml.net/"
-      
-      git config --global user.name "Azure Pipeline"
-
-      git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
-
-      git commit -a -m "Icons update from Azure pipeline"
+    script: 'git commit -a -m "Icons update from Azure pipeline"
       
       git push -f origin pipeline/icons'
 
