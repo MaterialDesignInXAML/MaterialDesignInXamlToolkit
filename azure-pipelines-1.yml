@@ -44,7 +44,7 @@ steps:
     targetType: 'inline'
     script: 'git commit -a -m "Icons update from Azure pipeline"
       
-      git push -f origin pipeline/icons'
+      git push --force --set-upstream origin pipeline/icons'
 
 - task: PublishPipelineArtifact@0
   name: "PublishResourceGenerator"
