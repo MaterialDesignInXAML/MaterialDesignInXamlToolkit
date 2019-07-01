@@ -22,7 +22,8 @@ steps:
 
       git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
       
-      git checkout -b pipeline/icons'
+      git checkout -b pipeline/icons
+      '
 
 - powershell: .paket\paket.exe restore
 
