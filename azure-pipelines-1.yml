@@ -22,8 +22,11 @@ steps:
       git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
       
       Write-Host "Before checkout"
-
-      & { git checkout -b pipeline/icons } 2>&1 1>$null
+      
+      & { 
+        $ErrorActionPreference=SilentlyContinue; 
+        git checkout -b pipeline/icons 
+      } 2>&1 1>$null
       
       Write-Host "LEC $LASTEXITCODE"'
     failOnStderr: true
