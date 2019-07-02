@@ -54,7 +54,11 @@ steps:
     targetType: 'inline'
     script: 'git commit -a -m "Icons update from Azure pipeline"
       
-      git push -f origin pipeline/icons'
+      & {
+        $ErrorActionPreference="SilentlyContinue";
+
+        git push -f origin pipeline/icons
+      } 2>&1 1>$null'
 
 - task: PublishPipelineArtifact@0
   name: "PublishResourceGenerator"
