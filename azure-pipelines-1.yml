@@ -18,13 +18,13 @@ steps:
     targetType: 'inline'
     script: 'git config --global user.email "azure-pipeline@materialdesigninxaml.net/"
       
-      git config --global user.name "Azure Pipeline" 2>$null
+      git config --global user.name "Azure Pipeline"
 
       git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
       
       Write-Host "Before checkout"
 
-      $output = git checkout -b pipeline/icons
+      $output = git checkout -b pipeline/icons 2>&1 1>$null
       
       Write-Host "LEC $LASTEXITCODE"'
     failOnStderr: true
