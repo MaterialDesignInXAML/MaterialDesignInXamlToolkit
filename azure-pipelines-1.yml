@@ -10,6 +10,7 @@ steps:
 
 - task: PowerShell@2
   displayName: "Git Setup"
+  continueOnError: true
   env:
     UserName: $(GitHubUser)
     Password: $(GitHubPat)
@@ -26,7 +27,7 @@ steps:
       
       Write-Host "Before checkout"
 
-      $foo = git checkout -b pipeline/icons 2>$null
+      git checkout -b pipeline/icons 2>$null
       
       Write-Host "LEC $LASTEXITCODE"'
 
