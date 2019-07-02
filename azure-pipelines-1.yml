@@ -25,6 +25,7 @@ steps:
       
       & { 
         $ErrorActionPreference="SilentlyContinue" 
+        
         git checkout -b pipeline/icons 
       } 2>&1 1>$null
       
