@@ -24,7 +24,7 @@ steps:
       Write-Host "Before checkout"
       
       & { 
-        $ErrorActionPreference=SilentlyContinue; 
+        $ErrorActionPreference="SilentlyContinue" 
         git checkout -b pipeline/icons 
       } 2>&1 1>$null
       
