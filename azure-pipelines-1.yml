@@ -16,21 +16,20 @@ steps:
     Password: $(GitHubPat)
   inputs:
     targetType: 'inline'
-    failOnStderr: false
-    pwsh: true
-    ignoreLASTEXITCODE: true
-    script: 'git config --global user.email "azure-pipeline@materialdesigninxaml.net/" 2>$null
+    script: 'git config --global user.email "azure-pipeline@materialdesigninxaml.net/"
       
       git config --global user.name "Azure Pipeline" 2>$null
 
-      git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git 2>$null
+      git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
       
       Write-Host "Before checkout"
 
-      git checkout -b pipeline/icons 2>$null
+      $output = git checkout -b pipeline/icons
       
       Write-Host "LEC $LASTEXITCODE"'
-
+    failOnStderr: true
+    ignoreLASTEXITCODE: true
+    pwsh: true
 
 
 - powershell: .paket\paket.exe restore
