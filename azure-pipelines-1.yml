@@ -21,16 +21,13 @@ steps:
 
       git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
       
-      Write-Host "Before checkout"
-      
       & { 
         $ErrorActionPreference="SilentlyContinue";
-        
+
 
         git checkout -b pipeline/icons 
       } 2>&1 1>$null
-      
-      Write-Host "LEC $LASTEXITCODE"'
+      '
     failOnStderr: true
     ignoreLASTEXITCODE: true
     pwsh: true
@@ -57,7 +54,7 @@ steps:
     targetType: 'inline'
     script: 'git commit -a -m "Icons update from Azure pipeline"
       
-      git push -f -u HEAD'
+      git push -f origin pipeline/icons'
 
 - task: PublishPipelineArtifact@0
   name: "PublishResourceGenerator"
