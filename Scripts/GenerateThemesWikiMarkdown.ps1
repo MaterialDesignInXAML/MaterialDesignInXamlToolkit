@@ -24,7 +24,7 @@ Function Main {
 
 Function Format-Output {
     Write-OutputFile "[//]: <> (AUTO GENERATED FILE; DO NOT EDIT)"
-    foreach($style in $discoverdStyles | Sort-Object -Property Control,@{Expression = {$_.IsDefault}; Ascending = $false}) {
+    foreach($style in $discoverdStyles | Sort-Object -Property File,@{Expression = {$_.IsDefault}; Ascending = $false}) {
         if ($previousFile -ne $style.File) {
             Write-OutputFile "`n$headerMarkdown $($style.File)"
         }
@@ -46,18 +46,17 @@ Function Write-OutputFile{
 }
 
 Function Set-Defaults{
-    $remainingDefaults = New-Object System.Collections.ArrayList
     ForEach ($default in $defaults) {
-        $style = $discoverdStyles.Where({$_.style -match $default.style})
+        $style = $discoverdStyles.Where({$_.style -match $default.style -and $_.Control -match $default.Type})
         if ($null -ne $style[0]) {
             $style[0].IsDefault = $true
         }
-        else {
-            $remainingDefaults.Add($default) 
+        else {            
+            $temp = Get-Style -targetType $default.Type -styleName $default.Style -fileName $default.Type
+            $discoverdStyles.Add($temp) | Out-Null
         }
     }
     $discoverdStyles | Format-Table #debug
-    $remainingDefaults | Format-Table #debug
 }
 
 Function Select-ControlNameFromFile {
@@ -68,8 +67,9 @@ Function Select-ControlNameFromFile {
 Function Read-XamlStyles {
     Param ($xamlString, $file)
     [xml]$xaml = $xamlString
-    $xaml.selectNodes("//*") | Where-Object {$_.LocalName -eq "Style"} |
+    $xaml.ResourceDictionary.Style |
     Foreach-Object { 
+        Write-Output $_
         if ($file -eq "Defaults") {
             # Special handeling of Defaults
             New-Default -style $_ -file $file 
@@ -122,12 +122,18 @@ Function New-Style {
 
 Function Add-Style {
     Param ($targetType, $styleName, $fileName)
+    $temp = Get-Style -targetType $targetType -styleName $styleName -fileName $file
+    $discoverdStyles.Add($temp) | Out-Null
+}
+
+Function Get-Style {
+    Param ($targetType, $styleName, $fileName)
     $temp = "" | Select-Object "Control", "Style", "IsDefault", "File"
     $temp.Control = $targetType
     $temp.Style = $styleName
     $temp.IsDefault = !$styleName
     $temp.File = $fileName
-    $discoverdStyles.Add($temp) | Out-Null
+    return $temp
 }
 
 Function Add-DefaultStyle {
