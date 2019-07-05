@@ -34,7 +34,7 @@ namespace MaterialDesignThemes.Wpf
                     ripple = dependencyObject as Ripple;
             }
 
-            if (listBoxItem == null) return;
+            if (listBoxItem == null || !listBoxItem.IsEnabled) return;
 
             listBoxItem.SetCurrentValue(ListBoxItem.IsSelectedProperty, !listBoxItem.IsSelected);
             mouseButtonEventArgs.Handled = true;
