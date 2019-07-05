@@ -52,7 +52,9 @@ steps:
   displayName: "Commit Updated Icons"
   inputs:
     targetType: 'inline'
-    script: 'git commit -a -m "Icons update from Azure pipeline"
+    script: 'git add MaterialDesignThemes.Wpf/PackIcon*.cs
+      
+      git commit -m "Icons update from Azure pipeline"
       
       & {
         $ErrorActionPreference="SilentlyContinue";
