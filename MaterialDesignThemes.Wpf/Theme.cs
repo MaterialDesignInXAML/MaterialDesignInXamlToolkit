@@ -16,7 +16,7 @@ namespace MaterialDesignThemes.Wpf
 
             theme.SetBaseTheme(baseTheme);
             theme.SetPrimaryColor(primary);
-            theme.SetAccentColor(accent);
+            theme.SetSecondaryColor(accent);
 
             return theme;
         }

@@ -76,7 +76,7 @@ namespace MaterialDesignThemes.Wpf
             theme.PrimaryDark = primaryColor.Darken();
         }
 
-        public static void SetAccentColor(this ITheme theme, Color accentColor)
+        public static void SetSecondaryColor(this ITheme theme, Color accentColor)
         {
             if (theme == null) throw new ArgumentNullException(nameof(theme));
             theme.SecondaryLight = accentColor.Lighten();
