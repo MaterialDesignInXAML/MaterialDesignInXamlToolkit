@@ -9,10 +9,29 @@ variables:
 steps:
 
 - task: PowerShell@2
-  displayName: "Git Clean"
+  displayName: "Git Setup"
+  env:
+    UserName: $(GitHubUser)
+    Password: $(GitHubPat)
   inputs:
     targetType: 'inline'
-    script: 'git checkout -f -B pipeline/icons'
+    script: 'git config --global user.email "azure-pipeline@materialdesigninxaml.net/"
+      
+      git config --global user.name "Azure Pipeline"
+
+      git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
+      
+      & { 
+        $ErrorActionPreference="SilentlyContinue";
+
+
+        git checkout -b pipeline/icons 
+      } 2>&1 1>$null
+      '
+    failOnStderr: true
+    ignoreLASTEXITCODE: true
+    pwsh: true
+
 
 - powershell: .paket\paket.exe restore
 
@@ -31,20 +50,17 @@ steps:
 
 - task: PowerShell@2
   displayName: "Commit Updated Icons"
-  env:
-    UserName: $(GitHubUser)
-    Password: $(GitHubPat)
   inputs:
     targetType: 'inline'
-    script: 'git config --global user.email "azure-pipeline@materialdesigninxaml.net/"
+    script: 'git add MaterialDesignThemes.Wpf/PackIcon*.cs
       
-      git config --global user.name "Azure Pipeline"
-
-      git remote set-url origin https://$env:UserName:$env:Password@github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit.git
-
-      git commit -a -m "Icons update from Azure pipeline"
+      git commit -m "Icons update from Azure pipeline"
       
-      git push -f origin pipeline/icons'
+      & {
+        $ErrorActionPreference="SilentlyContinue";
+
+        git push -f origin pipeline/icons
+      } 2>&1 1>$null'
 
 - task: PublishPipelineArtifact@0
   name: "PublishResourceGenerator"
