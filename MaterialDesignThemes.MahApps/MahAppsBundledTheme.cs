@@ -23,18 +23,11 @@ namespace MaterialDesignThemes.MahApps
             ResourceDictionary resourceDictionary = e.ResourceDictionary;
 
             ITheme newTheme = e.NewTheme;
-
+           
             var foreground = newTheme.Background.ContrastingForegroundColor();
-            if (foreground == Colors.Black)
-            {
-                //Theme has a light color background
-                resourceDictionary.SetMahAppsBaseTheme(BaseTheme.Light);
-            }
-            else if (foreground == Colors.White)
-            {
-                //Theme has a dark color background
-                resourceDictionary.SetMahAppsBaseTheme(BaseTheme.Dark);
-            }
+
+            BaseTheme baseTheme = foreground == Colors.Black ? BaseTheme.Light : BaseTheme.Dark;
+            resourceDictionary.SetMahApps(newTheme, baseTheme);
         }
     }
 }
