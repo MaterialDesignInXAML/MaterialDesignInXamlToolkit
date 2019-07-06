@@ -29,13 +29,13 @@ namespace MaterialDesignThemes.Wpf
     {
         public BaseTheme BaseTheme { get; set; }
         public PrimaryColor PrimaryColor { get; set; }
-        public AccentColor AccentColor { get; set; }
+        public SecondaryColor SecondaryColor { get; set; }
 
         protected override ITheme GetTheme()
         {
             return Theme.Create(BaseTheme.GetBaseTheme(),
                 SwatchHelper.Lookup[(MaterialDesignColor) PrimaryColor],
-                SwatchHelper.Lookup[(MaterialDesignColor) AccentColor]);
+                SwatchHelper.Lookup[(MaterialDesignColor) SecondaryColor]);
         }
     }
 
@@ -43,11 +43,11 @@ namespace MaterialDesignThemes.Wpf
     {
         public BaseTheme BaseTheme { get; set; }
         public Color Primary { get; set; }
-        public Color Accent { get; set; }
+        public Color Secondary { get; set; }
 
         protected override ITheme GetTheme()
         {
-            return Theme.Create(BaseTheme.GetBaseTheme(), Primary, Accent);
+            return Theme.Create(BaseTheme.GetBaseTheme(), Primary, Secondary);
         }
     }
 }

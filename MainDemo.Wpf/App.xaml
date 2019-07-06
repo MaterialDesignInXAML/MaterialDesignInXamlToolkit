@@ -17,10 +17,10 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
 
                 <!-- However, however you can make it simpler by just using one of the built-in themes. This is functionally identical to what is above.-->
-                <!--<materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" AccentColor="Lime" />-->
+                <!--<materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />-->
 
                 <!-- If you would prefer to use your own colors there is an option for that as well -->
-                <!--<materialDesign:CustomColorTheme BaseTheme="Light" Primary="Aqua" Accent="DarkGreen" />-->
+                <!--<materialDesign:CustomColorTheme BaseTheme="Light" Primary="Aqua" Secondary="DarkGreen" />-->
 
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
 

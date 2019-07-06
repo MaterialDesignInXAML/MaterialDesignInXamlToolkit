@@ -23,24 +23,24 @@
         BlueGrey = MaterialDesignColor.BlueGrey500,
     }
 
-    public enum AccentColor
+    public enum SecondaryColor
     {
-        Red = MaterialDesignColor.RedA700,
-        Pink = MaterialDesignColor.PinkA700,
-        Purple = MaterialDesignColor.PurpleA700,
-        DeepPurple = MaterialDesignColor.DeepPurpleA700,
-        Indigo = MaterialDesignColor.IndigoA700,
-        Blue = MaterialDesignColor.BlueA700,
-        LightBlue = MaterialDesignColor.LightBlueA700,
-        Cyan = MaterialDesignColor.CyanA700,
-        Teal = MaterialDesignColor.TealA700,
-        Green = MaterialDesignColor.GreenA700,
-        LightGreen = MaterialDesignColor.LightGreenA700,
-        Lime = MaterialDesignColor.LimeA700,
-        Yellow = MaterialDesignColor.YellowA700,
-        Amber = MaterialDesignColor.AmberA700,
-        Orange = MaterialDesignColor.OrangeA700,
-        DeepOrange = MaterialDesignColor.DeepOrangeA700
+        Red = MaterialDesignColor.RedSecondary,
+        Pink = MaterialDesignColor.PinkSecondary,
+        Purple = MaterialDesignColor.PurpleSecondary,
+        DeepPurple = MaterialDesignColor.DeepPurpleSecondary,
+        Indigo = MaterialDesignColor.IndigoSecondary,
+        Blue = MaterialDesignColor.BlueSecondary,
+        LightBlue = MaterialDesignColor.LightBlueSecondary,
+        Cyan = MaterialDesignColor.CyanSecondary,
+        Teal = MaterialDesignColor.TealSecondary,
+        Green = MaterialDesignColor.GreenSecondary,
+        LightGreen = MaterialDesignColor.LightGreenSecondary,
+        Lime = MaterialDesignColor.LimeSecondary,
+        Yellow = MaterialDesignColor.YellowSecondary,
+        Amber = MaterialDesignColor.AmberSecondary,
+        Orange = MaterialDesignColor.OrangeSecondary,
+        DeepOrange = MaterialDesignColor.DeepOrangeSecondary
     }
 
     public enum MaterialDesignColor
@@ -320,21 +320,21 @@
         Grey = Grey500,
         BlueGrey = BlueGrey500,
 
-        RedAccent = RedA700,
-        PinkAccent = PinkA700,
-        PurpleAccent = PurpleA700,
-        DeepPurpleAccent = DeepPurpleA700,
-        IndigoAccent = IndigoA700,
-        BlueAccent = BlueA700,
-        LightBlueAccent = LightBlueA700,
-        CyanAccent = CyanA700,
-        TealAccent = TealA700,
-        GreenAccent = GreenA700,
-        LightGreenAccent = LightGreenA700,
-        LimeAccent = LimeA700,
-        YellowAccent = YellowA700,
-        AmberAccent = AmberA700,
-        OrangeAccent = OrangeA700,
-        DeepOrangeAccent = DeepOrangeA700
+        RedSecondary = RedA700,
+        PinkSecondary = PinkA700,
+        PurpleSecondary = PurpleA700,
+        DeepPurpleSecondary = DeepPurpleA700,
+        IndigoSecondary = IndigoA700,
+        BlueSecondary = BlueA700,
+        LightBlueSecondary = LightBlueA700,
+        CyanSecondary = CyanA700,
+        TealSecondary = TealA700,
+        GreenSecondary = GreenA700,
+        LightGreenSecondary = LightGreenA700,
+        LimeSecondary = LimeA700,
+        YellowSecondary = YellowA700,
+        AmberSecondary = AmberA700,
+        OrangeSecondary = OrangeA700,
+        DeepOrangeSecondary = DeepOrangeA700
     }
 }
