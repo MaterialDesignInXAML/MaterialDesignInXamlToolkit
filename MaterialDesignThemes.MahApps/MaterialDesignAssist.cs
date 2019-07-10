@@ -15,17 +15,29 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetMahAppsBaseTheme(baseTheme);
 
             resourceDictionary.SetBrush("HighlightBrush", theme.PrimaryDark.Color);
+            resourceDictionary.SetBrush("AccentBaseColorBrush", theme.PrimaryDark.Color);
             resourceDictionary.SetBrush("AccentColorBrush", theme.PrimaryDark.Color);
-            resourceDictionary.SetBrush("AccentColorBrush2", theme.PrimaryMid.Color);
+            resourceDictionary.SetBrush("AccentColorBrush2", theme.PrimaryMid.Color, 0.8);
             resourceDictionary.SetBrush("AccentColorBrush3", theme.PrimaryLight.Color);
-            resourceDictionary.SetBrush("AccentColorBrush4", theme.PrimaryLight.Color, 0.82);
+            resourceDictionary.SetBrush("AccentColorBrush4", theme.PrimaryLight.Color, 0.8);
             resourceDictionary.SetBrush("WindowTitleColorBrush", theme.PrimaryDark.Color);
-            resourceDictionary.SetBrush("AccentSelectedColorBrush", theme.PrimaryDark.GetForegroundColor());
+            resourceDictionary.SetBrush("AccentSelectedColorBrush", theme.PrimaryMid.GetForegroundColor());
             resourceDictionary.SetBrush("ProgressBrush", new LinearGradientBrush(theme.PrimaryDark.Color, theme.PrimaryMid.Color, 90.0));
-            resourceDictionary.SetBrush("CheckmarkFill", theme.PrimaryDark.Color);
-            resourceDictionary.SetBrush("RightArrowFill", theme.PrimaryDark.Color);
-            resourceDictionary.SetBrush("IdealForegroundColorBrush", theme.PrimaryDark.GetForegroundColor());
+            resourceDictionary.SetBrush("CheckmarkFill", theme.PrimaryMid.Color);
+            resourceDictionary.SetBrush("RightArrowFill", theme.PrimaryMid.Color);
+            resourceDictionary.SetBrush("IdealForegroundColorBrush", theme.PrimaryMid.GetForegroundColor());
             resourceDictionary.SetBrush("IdealForegroundDisabledBrush", theme.PrimaryDark.GetForegroundColor(), 0.4);
+
+            resourceDictionary.SetBrush("MetroDataGrid.HighlightBrush", theme.PrimaryMid.Color);
+            resourceDictionary.SetBrush("MetroDataGrid.HighlightTextBrush", theme.PrimaryMid.GetForegroundColor());
+            resourceDictionary.SetBrush("MetroDataGrid.MouseOverHighlightBrush", theme.PrimaryLight.Color);
+            resourceDictionary.SetBrush("MetroDataGrid.FocusBorderBrush", theme.PrimaryMid.Color);
+            resourceDictionary.SetBrush("MetroDataGrid.InactiveSelectionHighlightBrush", theme.PrimaryMid.Color);
+            resourceDictionary.SetBrush("MetroDataGrid.InactiveSelectionHighlightTextBrush", theme.PrimaryMid.GetForegroundColor());
+
+            resourceDictionary.SetBrush("MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchBrush.Win10", theme.PrimaryMid.Color);
+            resourceDictionary.SetBrush("MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchMouseOverBrush.Win10", theme.PrimaryMid.Color, 0.8);
+            resourceDictionary.SetBrush("MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorCheckedBrush.Win10", theme.PrimaryMid.GetForegroundColor(), 0.8);
         }
 
         private static void SetBrush(this ResourceDictionary sourceDictionary, string name, Color value, double opacity = 1.0)
