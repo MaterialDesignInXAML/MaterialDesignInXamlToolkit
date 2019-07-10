@@ -46,7 +46,7 @@ for:
   - provider: NuGet
     api_key:
       secure: B+WIdbRYr/rJo1QMeDwNen2xcj4RTu1d8AZiA03kb8wsWZVQxt5OgsWRacmEjWRd
-    artifact: /MaterialDesignThemes\.[\d\.]+-ci\d+\.nupkg/
+    artifact: /MaterialDesign.+\.nupkg/
 
 -
   branches:
