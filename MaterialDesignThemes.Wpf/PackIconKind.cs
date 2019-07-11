@@ -2913,6 +2913,7 @@ namespace MaterialDesignThemes.Wpf
         Paper=File,
         FileAccount,
         FileUser=FileAccount,
+        Resume=FileAccount,
         FileAlert,
         FileWarning=FileAlert,
         FileAlertOutline,
