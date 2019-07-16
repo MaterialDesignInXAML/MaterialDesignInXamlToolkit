@@ -3,13 +3,13 @@ framework: auto-detect
 
 nuget MahApps.Metro
 nuget Dragablz ~> 0.0.3
-nuget Moq ~> 4.7
-nuget NSubstitute ~> 2.0
+nuget Moq ~> 4.12
+nuget NSubstitute ~> 4.2.1
 nuget RhinoMocks 3.6.1
-nuget Shouldly ~> 2.8
-nuget xunit ~> 2.2
+nuget Shouldly ~> 3.0
+nuget xunit ~> 2.4
 nuget xunit.runner.visualstudio ~> 2.4
-nuget Xunit.StaFact ~> 0.3.18
+nuget Xunit.StaFact ~> 1.0.3-beta
 nuget ShowMeTheXAML ~> 1.0.13-ci65
 nuget ShowMeTheXAML.AvalonEdit ~> 1.0.13-ci65
 nuget ShowMeTheXAML.MSBuild ~> 1.0.13-ci65
