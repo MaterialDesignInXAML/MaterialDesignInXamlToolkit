@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-	  <UseWPF>true</UseWPF>
+    <UseWPF>true</UseWPF>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>MaterialDesignColors.WpfExample</AssemblyTitle>
@@ -24,13 +24,6 @@
   <Target Name="ShowMeTheXAML_EnsureXamlCreated" AfterTargets="BeforeCompile">
     <Error Condition="('$(ShowMeTheXAMLGeneratedFileName)' == '' Or $(ShowMeTheXAMLGeneratedFileName) == '*Undefined*') And Exists('..\packages\ShowMeTheXAML.MSBuild\build\net45\ShowMeTheXAML.MSBuild.targets')" Text="ShowMeTheXAML was added to the $(ProjectName) project. Please rebuild the project." />
   </Target>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
-    <PackageReference Include="ShowMeTheXAML" Version="1.0.13-ci65" />
-    <PackageReference Include="ShowMeTheXAML.AvalonEdit" Version="1.0.13-ci65" />
-    <PackageReference Include="ShowMeTheXAML.MSBuild" Version="1.0.13-ci65" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\paket-files\samueldjack\VirtualCollection\VirtualCollection\VirtualCollection\VirtualizingWrapPanel.cs">
       <Paket>True</Paket>

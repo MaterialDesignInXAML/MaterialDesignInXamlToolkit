@@ -1,9 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <RootNamespace>MaterialDesignColors</RootNamespace>
     <AssemblyName>MaterialDesignColors</AssemblyName>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-	  <UseWPF>true</UseWPF>
+    <UseWPF>true</UseWPF>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <MDIXVersion>$(MDIX_COLORS_VERSION)</MDIXVersion>
     <AssemblyTitle>MaterialDesignColors.Wpf</AssemblyTitle>
@@ -22,11 +23,8 @@
   </PropertyGroup>
   <Import Project="..\Versioning.targets" />
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.*" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.*" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="ColorManipulation\Hsv.cs" />
     <Compile Remove="ColorManipulation\HsvConverter.cs" />
   </ItemGroup>
+  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
