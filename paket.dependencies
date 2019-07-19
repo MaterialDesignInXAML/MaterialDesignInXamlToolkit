@@ -15,6 +15,5 @@ nuget ShowMeTheXAML.AvalonEdit ~> 1.0.12
 nuget ShowMeTheXAML.MSBuild ~> 1.0.12
 
 github ControlzEx/ControlzEx:e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa src/ControlzEx/PopupEx.cs
-github ControlzEx/ControlzEx:e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa src/ControlzEx/PackIconBase.cs
 github ControlzEx/ControlzEx:e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa src/ControlzEx/BadgedEx.cs
 github samueldjack/VirtualCollection:e63d891c252c2ac1a3ebb26dddb9a3d89effe3f2 VirtualCollection/VirtualCollection/VirtualizingWrapPanel.cs
