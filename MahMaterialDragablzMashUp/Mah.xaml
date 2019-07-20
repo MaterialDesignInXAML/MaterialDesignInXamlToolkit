@@ -4,22 +4,70 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:local="clr-namespace:MahAppsDragablzDemo"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <local:MahViewModel/>
+    </UserControl.DataContext>
     <StackPanel>
         <TextBlock TextWrapping="Wrap">All controls using MahApps themes, will use Material Design pallete.</TextBlock>
-        <ListBox Margin="0 8 0 0">
-            <ListBoxItem IsSelected="True">MahApps</ListBoxItem>
-            <ListBoxItem>Dragablz</ListBoxItem>
-            <ListBoxItem>Material</ListBoxItem>
-        </ListBox>
-        <controls:ToggleSwitch IsChecked="True" HorizontalAlignment="Left" />
-        <Button Width="100" Margin="0 8 0 0" Content="Nice" HorizontalAlignment="Left"
-                Style="{DynamicResource AccentedSquareButtonStyle}" />
-        <Slider Margin="6 16 6 0" TickPlacement="BottomRight" TickFrequency="10" />
-        <controls:RangeSlider Margin="6 16 6 0" LowerValue="25" UpperValue="75" TickPlacement="BottomRight" TickFrequency="10" />
-        <controls:RangeSlider Margin="0 16 0 0" LowerValue="25" UpperValue="75" Orientation="Vertical" Height="200"  />
-        <controls:NumericUpDown Margin="5"/>
-        <controls:NumericUpDown Culture="ar-EG" FlowDirection="RightToLeft" Margin="5"/>
+
+        <controls:MetroAnimatedSingleRowTabControl TabStripPlacement="Left">
+            <TabItem Header="ListBox">
+                <ListBox Margin="0 8 0 0">
+                    <ListBoxItem IsSelected="True">MahApps</ListBoxItem>
+                    <ListBoxItem>Dragablz</ListBoxItem>
+                    <ListBoxItem>Material</ListBoxItem>
+                </ListBox>
+            </TabItem>
+            <TabItem Header="Button/Switch">
+                <StackPanel>
+                    <controls:ToggleSwitch IsChecked="True" HorizontalAlignment="Left" />
+                    <Button Width="100" Margin="0 8 0 0" Content="Nice" HorizontalAlignment="Left"
+                            Style="{DynamicResource AccentedSquareButtonStyle}" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Sliders">
+                <StackPanel>
+                    <Slider Margin="6 16 6 0" TickPlacement="BottomRight" TickFrequency="10" />
+                    <controls:RangeSlider Margin="6 16 6 0" LowerValue="25" UpperValue="75" TickPlacement="BottomRight" TickFrequency="10" />
+                    <controls:RangeSlider Margin="0 16 0 0" LowerValue="25" UpperValue="75" Orientation="Vertical" Height="200"  />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="NumericUpDown">
+                <StackPanel>
+                    <controls:NumericUpDown Margin="5"/>
+                    <controls:NumericUpDown Culture="ar-EG" FlowDirection="RightToLeft" Margin="5"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="DataGrid">
+                <DataGrid ItemsSource="{Binding GridData}" AutoGenerateColumns="False">
+                    <DataGrid.Resources>
+                        <ObjectDataProvider x:Key="EnumValues"
+                                            MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+                            <ObjectDataProvider.MethodParameters>
+                                <x:Type TypeName="local:EnumValues"/>
+                            </ObjectDataProvider.MethodParameters>
+                        </ObjectDataProvider>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Binding="{Binding IsChecked}">
+                            <DataGridCheckBoxColumn.Header>
+                                <CheckBox IsChecked="False" IsEnabled="False"/>
+                            </DataGridCheckBoxColumn.Header>
+                        </DataGridCheckBoxColumn>
+                        <DataGridTextColumn Header="Text" Binding="{Binding Text}"/>
+                        <DataGridComboBoxColumn Header="Combo" SelectedItemBinding="{Binding EnumValue}" ItemsSource="{Binding Source={StaticResource EnumValues}}"/>
+                        <controls:DataGridNumericUpDownColumn Binding="{Binding IntValue}"
+                                                              Header="Numeric"
+                                                              Minimum="0"
+                                                              StringFormat="{}{0} km" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </controls:MetroAnimatedSingleRowTabControl>
+
     </StackPanel>
 </UserControl>

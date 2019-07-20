@@ -97,6 +97,7 @@
     <Compile Include="FlyoutContent.xaml.cs">
       <DependentUpon>FlyoutContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MahViewModel.cs" />
     <Compile Include="PaletteSelectorViewModel.cs" />
     <Compile Include="Mah.xaml.cs">
       <DependentUpon>Mah.xaml</DependentUpon>
