@@ -20,9 +20,9 @@ variables:
 
 steps:
 - task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 3.0.100-preview6'
+  displayName: 'Use .NET Core sdk 3.0.100-preview3'
   inputs:
-    version: '3.0.100-preview6'
+    version: '3.0.100-preview3'
 
 - powershell: .paket\paket.exe restore
 
