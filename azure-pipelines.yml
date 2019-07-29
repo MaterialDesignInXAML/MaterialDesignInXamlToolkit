@@ -11,7 +11,7 @@ pr:
 - release
 
 pool:
-  vmImage: 'VS2017-Win2016'
+  vmImage: 'windows-2019'
 
 variables:
   solution: 'MaterialDesignToolkit.Wpf.sln'
@@ -19,6 +19,11 @@ variables:
   buildConfiguration: 'AppVeyor'
 
 steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core sdk 3.0.100-preview7-012821'
+  inputs:
+    version: '3.0.100-preview7-012821'
+
 - powershell: .paket\paket.exe restore
 
 - task: VSBuild@1
