@@ -24,6 +24,20 @@ steps:
   inputs:
     version: '3.0.100-preview7-012821'
 
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 4.3.0'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: restore
+
+    projects: |
+     MaterialDesignToolkit.Wpf.sln
+
 - powershell: .paket\paket.exe restore
 
 - task: VSBuild@1
