@@ -15,6 +15,7 @@
     <AssemblyVersion>1.0.1</AssemblyVersion>
     <NoWarn>CS1591;CS1574</NoWarn>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
+    <Configurations>Debug;Release;AppVeyor</Configurations>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppVeyor|AnyCPU'">
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
@@ -23,11 +24,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\AppVeyor\MaterialDesignThemes.Wpf.XML</DocumentationFile>
-    <NoWarn>CS1591;CS1574</NoWarn>
   </PropertyGroup>
   <Import Project="..\Versioning.targets" />
   <ItemGroup>
