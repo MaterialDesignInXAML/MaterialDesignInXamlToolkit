@@ -35,7 +35,7 @@
       <Paket>True</Paket>
       <Link>ControlzEx/PopupEx.cs</Link>
     </Compile>
-    <Page Include="Themes\Generic.xaml">
+    <!--<Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\MaterialDesignTheme.Badged.xaml">
@@ -181,7 +181,7 @@
     </Page>
     <Page Include="Themes\MaterialDesignTheme.ValidationErrorTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
+    </Page>-->
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
