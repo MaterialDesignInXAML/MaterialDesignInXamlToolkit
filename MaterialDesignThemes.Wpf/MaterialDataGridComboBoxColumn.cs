@@ -7,12 +7,14 @@ namespace MaterialDesignThemes.Wpf
     public class MaterialDataGridComboBoxColumn : DataGridComboBoxColumn //DataGridBoundColumn
     {
         static MaterialDataGridComboBoxColumn()
-        {            
+        {
             ElementStyleProperty.OverrideMetadata(typeof(MaterialDataGridComboBoxColumn), new FrameworkPropertyMetadata(DefaultElementStyle));
             EditingElementStyleProperty.OverrideMetadata(typeof(MaterialDataGridComboBoxColumn), new FrameworkPropertyMetadata(DefaultEditingElementStyle));
         }
 
         public Binding ItemsSourceBinding { get; set; }
+
+        public bool IsEditable { get; set; }
 
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
         {
@@ -20,7 +22,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (ItemsSourceBinding != null)
                 comboBox.SetBinding(ItemsControl.ItemsSourceProperty, ItemsSourceBinding);
-            ApplyStyle(false, false, comboBox);                       
+            ApplyStyle(false, false, comboBox);
 
             return comboBox;
         }
@@ -28,10 +30,11 @@ namespace MaterialDesignThemes.Wpf
         protected override FrameworkElement GenerateEditingElement(DataGridCell cell, object dataItem)
         {
             var comboBox = (ComboBox)base.GenerateElement(cell, cell);
+            comboBox.IsEditable = IsEditable;
 
             if (ItemsSourceBinding != null)
-                comboBox.SetBinding(ItemsControl.ItemsSourceProperty, ItemsSourceBinding);            
-            ApplyStyle(true, false, comboBox);            
+                comboBox.SetBinding(ItemsControl.ItemsSourceProperty, ItemsSourceBinding);
+            ApplyStyle(true, false, comboBox);
 
             return comboBox;
         }
@@ -61,7 +64,7 @@ namespace MaterialDesignThemes.Wpf
                 return style;
             }
         }
-        
+
         private void ApplyStyle(bool isEditing, bool defaultToElementStyle, FrameworkElement element)
         {
             var style = PickStyle(isEditing, defaultToElementStyle);

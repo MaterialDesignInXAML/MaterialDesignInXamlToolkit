@@ -70,7 +70,7 @@
                         </materialDesign:MaterialDataGridTextColumn>
 
                         <!-- use custom combo box column to get better combos. Use ItemsSourceBinding as your binding template to be applied to each combo -->
-                        <materialDesign:MaterialDataGridComboBoxColumn Header="Food"
+                        <materialDesign:MaterialDataGridComboBoxColumn Header="Food" IsEditable="True"
                                                                    SelectedValueBinding="{Binding Food}"
                                                                    ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}" />
                     </DataGrid.Columns>
