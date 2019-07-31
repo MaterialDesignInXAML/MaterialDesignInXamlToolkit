@@ -12,9 +12,9 @@ nuget System.Net.Http >= 4.0
 nuget xunit ~> 2.4
 nuget xunit.runner.visualstudio ~> 2.4
 nuget Xunit.StaFact ~> 1.0.3-beta
-nuget ShowMeTheXAML 1.0.13-ci65 ci
-nuget ShowMeTheXAML.AvalonEdit 1.0.13-ci65 ci
-nuget ShowMeTheXAML.MSBuild 1.0.13-ci65 ci
+nuget ShowMeTheXAML 1.1.0-ci70 ci
+nuget ShowMeTheXAML.AvalonEdit  1.1.0-ci70 ci
+nuget ShowMeTheXAML.MSBuild 1.1.0-ci70 ci
 
 nuget Microsoft.CSharp ~> 4.6.0-preview7.19362.9
 nuget System.Data.DataSetExtensions ~> 4.6.0-preview3.19128.7

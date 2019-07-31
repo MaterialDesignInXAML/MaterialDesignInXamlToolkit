@@ -26,9 +26,9 @@
   <PropertyGroup>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
-  <Import Project="..\packages\ShowMeTheXAML.MSBuild\build\net45\ShowMeTheXAML.MSBuild.targets" Label="Paket" />
+  <Import Project="..\packages\ShowMeTheXAML.MSBuild\build\ShowMeTheXAML.MSBuild.targets" Label="Paket" />
   <Target Name="ShowMeTheXAML_EnsureXamlCreated" AfterTargets="BeforeCompile">
-    <Error Condition="('$(ShowMeTheXAMLGeneratedFileName)' == '' Or $(ShowMeTheXAMLGeneratedFileName) == '*Undefined*') And Exists('..\packages\ShowMeTheXAML.MSBuild\build\net45\ShowMeTheXAML.MSBuild.targets')" Text="ShowMeTheXAML was added to the $(ProjectName) project. Please rebuild the project." />
+    <Error Condition="('$(ShowMeTheXAMLGeneratedFileName)' == '' Or $(ShowMeTheXAMLGeneratedFileName) == '*Undefined*') And Exists('..\packages\ShowMeTheXAML.MSBuild\build\ShowMeTheXAML.MSBuild.targets')" Text="ShowMeTheXAML was added to the $(ProjectName) project. Please rebuild the project." />
   </Target>
   <ItemGroup>
     <Compile Include="..\paket-files\samueldjack\VirtualCollection\VirtualCollection\VirtualCollection\VirtualizingWrapPanel.cs">
