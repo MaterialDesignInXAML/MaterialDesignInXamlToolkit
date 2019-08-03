@@ -14,7 +14,7 @@
     <StackPanel>
         <TextBlock TextWrapping="Wrap">All controls using MahApps themes, will use Material Design pallete.</TextBlock>
 
-        <controls:MetroAnimatedSingleRowTabControl TabStripPlacement="Left">
+        <controls:MetroAnimatedSingleRowTabControl TabStripPlacement="Left" Background="Transparent">
             <TabItem Header="ListBox">
                 <ListBox Margin="0 8 0 0">
                     <ListBoxItem IsSelected="True">MahApps</ListBoxItem>
