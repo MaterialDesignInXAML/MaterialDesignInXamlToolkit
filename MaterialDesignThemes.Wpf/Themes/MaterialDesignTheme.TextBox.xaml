@@ -160,6 +160,13 @@
                             <Setter TargetName="Hint" Property="Margin" Value="0,0,0,16" />
                             <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,8,0,8" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
+                                <Condition Property="wpf:HintAssist.IsFloating" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,0,0,8" />
+                        </MultiTrigger>
                         <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
                             <Setter Property="VerticalContentAlignment" Value="Top" />
                             <Setter TargetName="textFieldBoxBorder" Property="BorderThickness" Value="1" />
@@ -173,6 +180,13 @@
                             <Setter TargetName="Hint" Property="Margin" Value="0,0,0,16" />
                             <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,8,0,8" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                                <Condition Property="wpf:HintAssist.IsFloating" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,0,0,8" />
+                        </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="border" Property="Opacity" Value="0.42" />
                             <Setter TargetName="textFieldBoxBottomLine" Property="Height" Value="0" />
