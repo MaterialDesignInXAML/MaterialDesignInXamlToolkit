@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RootNamespace>MaterialDesignColors.Wpf.Fixture</RootNamespace>
     <AssemblyName>MaterialDesignColors.Wpf.Fixture</AssemblyName>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <AssemblyTitle>MaterialDesignColors.Wpf.Fixture</AssemblyTitle>
     <Product>MaterialDesignColors.Wpf.Fixture</Product>
