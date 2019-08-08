@@ -86,6 +86,11 @@ namespace MaterialDesignThemes.Wpf
             this.SetTheme(theme);
         }
 
+        protected virtual void SetTheme(ITheme theme, ResourceDictionary resourceDictionary)
+        {
+            resourceDictionary.SetTheme(theme);
+        }
+
         public BundledTheme() { }
     }
 
@@ -143,8 +148,13 @@ namespace MaterialDesignThemes.Wpf
             if(Primary != null && Secondary != null)
             {
                 var theme = Theme.Create(BaseTheme.GetBaseTheme(), Primary, Secondary);
-                this.SetTheme(theme);
+                SetTheme(theme, this);
             }
+        }
+
+        protected virtual void SetTheme(ITheme theme, ResourceDictionary resourceDictionary)
+        {
+            resourceDictionary.SetTheme(theme);
         }
 
         public CustomColorTheme()
