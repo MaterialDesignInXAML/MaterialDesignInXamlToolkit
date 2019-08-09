@@ -39,8 +39,8 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.WikiLink("Brush-Names", "Brushes"),
                         DocumentationLink.WikiLink("Custom-Palette-Hues", "Custom Palettes"),
                         DocumentationLink.WikiLink("Swatches-and-Recommended-Colors", "Swatches"),
-                        DocumentationLink.DemoPageLink<PaletteSelector>("Demo View"),
-                        DocumentationLink.DemoPageLink<PaletteSelectorViewModel>("Demo View Model"),
+                        DocumentationLink.DemoPageLink<ColorTool>("Demo View"),
+                        DocumentationLink.DemoPageLink<ColorToolViewModel>("Demo View Model"),
                         DocumentationLink.ApiLink<PaletteHelper>()
                     }),
                 new DemoItem("Buttons", new Buttons { DataContext = new ButtonsViewModel() } ,
