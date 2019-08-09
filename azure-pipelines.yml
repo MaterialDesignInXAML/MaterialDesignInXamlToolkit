@@ -20,23 +20,37 @@ variables:
 
 steps:
 - task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 3.0.100-preview3'
+  displayName: 'Use .NET Core sdk 3.0.100-preview7-012821'
   inputs:
-    version: '3.0.100-preview3'
+    version: '3.0.100-preview7-012821'
+
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 4.3.0'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: restore
+
+    projects: |
+     MaterialDesignToolkit.Wpf.sln
 
 - powershell: .paket\paket.exe restore
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
   inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    msbuildArgs: '/property:MDIX_CORE_VERSION=$(mdixVersion).$(Build.BuildID) /property:MDIX_COLORS_VERSION=$(mdixColorsVersion).$(Build.BuildID) /property:MDIX_MAHAPPS_VERSION=$(mdixMahappsVersion).$(Build.BuildID)'
+    projects: '$(solution)'
+    arguments: '/p:Configuration=AppVeyor /p:Platform="Any CPU" /p:MDIX_CORE_VERSION=$(mdixVersion).$(Build.BuildID) /p:MDIX_COLORS_VERSION=$(mdixColorsVersion).$(Build.BuildID) /p:MDIX_MAHAPPS_VERSION=$(mdixMahappsVersion).$(Build.BuildID)'
 
-- task: VSTest@2
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: test
+    projects: '$(solution)'
 
 - task: PublishPipelineArtifact@0
   name: "PublishDemoApp"
