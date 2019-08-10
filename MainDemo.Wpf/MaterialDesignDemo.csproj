@@ -52,6 +52,7 @@
       <Paket>True</Paket>
       <Link>VirtualCollection/VirtualizingWrapPanel.cs</Link>
     </Compile>
+    <Compile Include="Converters\ColorToHexConverter.cs" />
     <Compile Include="RatingBar.xaml.cs">
       <DependentUpon>RatingBar.xaml</DependentUpon>
     </Compile>
@@ -68,6 +69,7 @@
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="Converters\MultiValueEqualityConverter.cs" />
     <Compile Include="PaletteHelperExtensions.cs" />
+    <Compile Include="Validation\ColorHexValidationRule.cs" />
     <Compile Include="XamlDisplayEx.cs" />
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />

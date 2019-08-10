@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
+             xmlns:validation="clr-namespace:MaterialDesignDemo.Validation"
              xmlns:local="clr-namespace:MaterialDesignDemo"
              xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
              mc:Ignorable="d" 
@@ -21,6 +22,7 @@
             <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
             <converters:BrushToHexConverter x:Key="BrushToHexConverter" />
             <converters:MultiValueEqualityConverter x:Key="MultiValueEqualityConverter" />
+            <converters:ColorToHexConverter x:Key="ColorToHexConverter"/>
 
             <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                 <Setter Property="BorderBrush" Value="Transparent" />
@@ -408,9 +410,20 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <DockPanel>
-                            <TextBox Text="{Binding SelectedColor, UpdateSourceTrigger=PropertyChanged}"
-                                     Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" materialDesign:HintAssist.Hint="Color HEX value"
-                                     DockPanel.Dock="Top" Margin="2,0,10,2"/>
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" materialDesign:HintAssist.Hint="Color HEX value"
+                                     DockPanel.Dock="Top" Margin="2,0,10,2">
+                                <TextBox.Text>
+                                    <Binding Path="SelectedColor"
+                                             UpdateSourceTrigger="PropertyChanged"
+                                             ValidatesOnDataErrors="True"
+                                             NotifyOnValidationError="True"
+                                             Converter="{StaticResource ColorToHexConverter}">
+                                        <Binding.ValidationRules>
+                                            <validation:ColorHexValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                             <Rectangle Fill="{Binding Color, ElementName=ColorPicker, Converter={StaticResource ColorToBrushConverter}}" Margin="2,0,10,2" />
                         </DockPanel>
                         <materialDesign:ColorPicker Color="{Binding SelectedColor, Delay=25}" Grid.Column="1" x:Name="ColorPicker" />
