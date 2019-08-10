@@ -16,7 +16,9 @@
     <tags>WPF XAML WinRT Material Design Colour Color UI UX</tags>
   </metadata>
   <files>
-    <file src="MaterialDesignColors.Wpf\bin\AppVeyor\MaterialDesignColors.dll" target="lib\net45" />
-    <file src="MaterialDesignColors.Wpf\bin\AppVeyor\MaterialDesignColors.pdb" target="lib\net45" />
+    <file src="MaterialDesignColors.Wpf\bin\AppVeyor\net45\MaterialDesignColors.dll" target="lib\net45" />
+    <file src="MaterialDesignColors.Wpf\bin\AppVeyor\net45\MaterialDesignColors.pdb" target="lib\net45" />
+    <file src="MaterialDesignColors.Wpf\bin\AppVeyor\netcoreapp3.0\MaterialDesignColors.dll" target="lib\netcoreapp3.0" />
+    <file src="MaterialDesignColors.Wpf\bin\AppVeyor\netcoreapp3.0\MaterialDesignColors.pdb" target="lib\netcoreapp3.0" />
   </files>
 </package>

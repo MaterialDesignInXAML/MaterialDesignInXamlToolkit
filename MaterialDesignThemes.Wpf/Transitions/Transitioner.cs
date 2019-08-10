@@ -121,14 +121,20 @@ namespace MaterialDesignThemes.Wpf.Transitions
         {
             if (AutoApplyTransitionOrigins)
                 _nextTransitionOrigin = GetNavigationSourcePoint(executedRoutedEventArgs);
-            SetCurrentValue(SelectedIndexProperty, Math.Min(Items.Count - 1, SelectedIndex + 1));
+            var slides = 1;
+            if (executedRoutedEventArgs.Parameter is int && (int)executedRoutedEventArgs.Parameter > 0)
+                slides = (int)executedRoutedEventArgs.Parameter;
+            SetCurrentValue(SelectedIndexProperty, Math.Min(Items.Count - 1, SelectedIndex + slides));
         }
 
         private void MovePreviousHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
             if (AutoApplyTransitionOrigins)
                 _nextTransitionOrigin = GetNavigationSourcePoint(executedRoutedEventArgs);
-            SetCurrentValue(SelectedIndexProperty, Math.Max(0, SelectedIndex - 1));
+            var slides = 1;
+            if (executedRoutedEventArgs.Parameter is int && (int)executedRoutedEventArgs.Parameter > 0)
+                slides = (int)executedRoutedEventArgs.Parameter;
+            SetCurrentValue(SelectedIndexProperty, Math.Max(0, SelectedIndex - slides));
         }
 
         private void MoveFirstHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
