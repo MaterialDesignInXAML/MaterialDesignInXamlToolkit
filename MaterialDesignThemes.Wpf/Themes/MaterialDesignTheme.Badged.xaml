@@ -39,7 +39,7 @@
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Border>
                         <Border x:Name="PART_BadgeContainer" 
-                                CornerRadius="9" Background="{TemplateBinding BadgeBackground}"                                 
+                                CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding BadgeBackground}"                                 
                                 MinWidth="18" MinHeight="18"                                
                                 HorizontalAlignment="Left" VerticalAlignment="Top" Padding="2"
                                 TextElement.FontSize="11"

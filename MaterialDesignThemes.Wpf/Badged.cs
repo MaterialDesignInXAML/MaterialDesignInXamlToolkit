@@ -32,6 +32,15 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(BadgeColorZoneModeProperty, value); }
         }
 
+        public static readonly DependencyProperty CornerRadiusProperty =
+            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(Badged), new PropertyMetadata(new CornerRadius(9)));
+
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
         public override void OnApplyTemplate()
         {
             this.BadgeChanged -= this.OnBadgeChanged;
