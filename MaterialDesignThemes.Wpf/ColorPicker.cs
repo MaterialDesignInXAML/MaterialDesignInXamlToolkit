@@ -44,7 +44,24 @@ namespace MaterialDesignThemes.Wpf
             
             colorPicker._inCallback = true;
             colorPicker.SetCurrentValue(HsbProperty, ((Color)e.NewValue).ToHsb());
+            var args = new RoutedPropertyChangedEventArgs<Color>(
+                (Color)e.OldValue,
+                (Color)e.NewValue) { RoutedEvent = ColorChangedEvent };
+            colorPicker.RaiseEvent(args);
             colorPicker._inCallback = false;
+        }
+
+        public static readonly RoutedEvent ColorChangedEvent =
+            EventManager.RegisterRoutedEvent(
+                nameof(Color),
+                RoutingStrategy.Bubble,
+                typeof(RoutedPropertyChangedEventHandler<Color>),
+                typeof(ColorPicker));
+
+        public event RoutedPropertyChangedEventHandler<Color> ColorChanged
+        {
+            add => AddHandler(ColorChangedEvent, value);
+            remove => RemoveHandler(ColorChangedEvent, value);
         }
 
         internal static readonly DependencyProperty HsbProperty = DependencyProperty.Register(nameof(Hsb), typeof(Hsb), typeof(ColorPicker),
