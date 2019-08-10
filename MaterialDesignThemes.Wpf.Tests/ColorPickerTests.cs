@@ -63,6 +63,39 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [StaFact]
+        public void SettingTheColorRaisesColorChangedEvent()
+        {
+            // capture variables
+            Color oldValue = Colors.Transparent;
+            Color newValue = Colors.Transparent;
+            bool wasRaised = false;
+
+            _colorPicker.ColorChanged += (sender, args) =>
+            {
+                oldValue = args.OldValue;
+                newValue = args.NewValue;
+                wasRaised = true;
+            };
+
+            SetColor(Colors.Green);
+
+            Assert.Equal(default(Color), oldValue);
+            Assert.Equal(Colors.Green, newValue);
+            Assert.True(wasRaised);
+
+            // reset capture variables
+            oldValue = Colors.Transparent;
+            newValue = Colors.Transparent;
+            wasRaised = true;
+
+            SetColor(Colors.Red);
+
+            Assert.Equal(Colors.Green, oldValue);
+            Assert.Equal(Colors.Red, newValue);
+            Assert.True(wasRaised);
+        }
+
+        [StaFact]
         public void DraggingTheHueSliderChangesHue()
         {
             //This ensures we have some saturation and brightness
