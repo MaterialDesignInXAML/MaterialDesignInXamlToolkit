@@ -437,6 +437,18 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(PopupStyleProperty, value); }
         }
 
+        public static readonly DependencyProperty OverlayBackgroundProperty = DependencyProperty.Register(
+            nameof(OverlayBackground), typeof(Brush), typeof(DialogHost), new PropertyMetadata(Brushes.Black));
+
+        /// <summary>
+        /// Represents the overlay brush that is used to dim the background behind the dialog
+        /// </summary>
+        public Brush OverlayBackground
+        {
+            get { return (Brush)GetValue(OverlayBackgroundProperty); }
+            set { SetValue(OverlayBackgroundProperty, value); }
+        }
+
         public override void OnApplyTemplate()
         {
             if (_contentCoverGrid != null)
@@ -453,19 +465,6 @@ namespace MaterialDesignThemes.Wpf
 
             base.OnApplyTemplate();
         }
-
-
-        /// <summary>
-        /// Represents the overlay brush that is used to dim the background behind the dialog
-        /// </summary>
-        public Brush OverlayBackground
-        {
-            get { return (Brush)GetValue(OverlayBackgroundProperty); }
-            set { SetValue(OverlayBackgroundProperty, value); }
-        }
-
-        public static readonly DependencyProperty OverlayBackgroundProperty =
-            DependencyProperty.Register(nameof(OverlayBackground), typeof(Brush), typeof(DialogHost), new PropertyMetadata(Brushes.Black));
 
         #region open dialog events/callbacks
 
