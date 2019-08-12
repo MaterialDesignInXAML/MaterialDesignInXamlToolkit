@@ -147,12 +147,13 @@
                 <!--#region SAMPLE 4-->
                 <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"
                            Grid.Column="3" Grid.Row="0" Margin="8 0 8 0"
-                           >SAMPLE 4: Dialog managed from view model using IsOpen and custom commands (ignoring the provided routed commands).</TextBlock>
+                           >SAMPLE 4: Dialog managed from view model using IsOpen and custom commands (ignoring the provided routed commands). This also uses a custom brush to dim the background.</TextBlock>
                 <smtx:XamlDisplay Key="dialogs_sample4"  Grid.Column="3" Grid.Row="1" >
                     <materialDesign:DialogHost HorizontalAlignment="Center" VerticalAlignment="Center"
                                            IsOpen="{Binding IsSample4DialogOpen}"
                                            DialogContent="{Binding Sample4Content}"
-                                           CloseOnClickAway="True">
+                                           CloseOnClickAway="True"
+                                           OverlayBackground="{DynamicResource PrimaryHueDarkBrush}">
                         <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                             MinWidth="256" MinHeight="256" ClipToBounds="True">
                             <Button HorizontalAlignment="Center" VerticalAlignment="Center"

@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 using MaterialDesignThemes.Wpf.Transitions;
 
@@ -434,6 +435,18 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (Style)GetValue(PopupStyleProperty); }
             set { SetValue(PopupStyleProperty, value); }
+        }
+
+        public static readonly DependencyProperty OverlayBackgroundProperty = DependencyProperty.Register(
+            nameof(OverlayBackground), typeof(Brush), typeof(DialogHost), new PropertyMetadata(Brushes.Black));
+
+        /// <summary>
+        /// Represents the overlay brush that is used to dim the background behind the dialog
+        /// </summary>
+        public Brush OverlayBackground
+        {
+            get { return (Brush)GetValue(OverlayBackgroundProperty); }
+            set { SetValue(OverlayBackgroundProperty, value); }
         }
 
         public override void OnApplyTemplate()
