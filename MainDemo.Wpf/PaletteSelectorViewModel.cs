@@ -1,5 +1,6 @@
 ﻿using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 
@@ -16,7 +17,7 @@ namespace MaterialDesignColors.WpfExample
 
         private static void ApplyBase(bool isDark)
         {
-            new PaletteHelper().SetLightDark(isDark);
+            ModifyTheme(theme => theme.SetBaseTheme(isDark ? Theme.Dark : Theme.Light));
         }
 
         public IEnumerable<Swatch> Swatches { get; }
@@ -25,14 +26,24 @@ namespace MaterialDesignColors.WpfExample
 
         private static void ApplyPrimary(Swatch swatch)
         {
-            new PaletteHelper().ReplacePrimaryColor(swatch);
+            ModifyTheme(theme => theme.SetPrimaryColor(swatch.ExemplarHue.Color));
         }
 
         public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o));
 
         private static void ApplyAccent(Swatch swatch)
         {
-            new PaletteHelper().ReplaceAccentColor(swatch);
+            ModifyTheme(theme => theme.SetSecondaryColor(swatch.AccentExemplarHue.Color));
+        }
+
+        private static void ModifyTheme(Action<ITheme> modificationAction)
+        {
+            PaletteHelper paletteHelper = new PaletteHelper();
+            ITheme theme = paletteHelper.GetTheme();
+
+            modificationAction?.Invoke(theme);
+
+            paletteHelper.SetTheme(theme);
         }
     }
 }
