@@ -225,6 +225,21 @@
                             <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,0,0,8" />
                             <Setter TargetName="Hint" Property="Margin" Value="0,0,0,0" />
                         </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                                <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_ContentHost" Property="Height" Value="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="AcceptsReturn" Value="true" />
+                                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                                <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="VerticalContentAlignment" Value="Top" />
+                        </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="border" Property="Opacity" Value="0.42" />
                             <Setter TargetName="textFieldBoxBottomLine" Property="Height" Value="0" />
