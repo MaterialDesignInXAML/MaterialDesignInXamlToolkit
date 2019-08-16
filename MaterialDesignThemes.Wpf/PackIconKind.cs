@@ -21,7 +21,6 @@ namespace MaterialDesignThemes.Wpf
         Account,
         Person=Account,
         User=Account,
-        Hmm=Account,
         AccountAlert,
         UserAlert=AccountAlert,
         AccountWarning=AccountAlert,
