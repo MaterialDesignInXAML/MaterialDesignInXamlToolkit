@@ -407,7 +407,12 @@
                             <ColumnDefinition Width="160" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Rectangle Fill="{Binding Color, ElementName=ColorPicker, Converter={StaticResource ColorToBrushConverter}}" Margin="2,0,10,2" />
+                        <DockPanel>
+                            <TextBox Text="{Binding Color, ElementName=ColorPicker, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" materialDesign:HintAssist.Hint="Color HEX value"
+                                     DockPanel.Dock="Top" Margin="2,0,10,2"/>
+                            <Rectangle Fill="{Binding Color, ElementName=ColorPicker, Converter={StaticResource ColorToBrushConverter}}" Margin="2,0,10,2" />
+                        </DockPanel>
                         <materialDesign:ColorPicker Color="{Binding SelectedColor, Delay=25}" Grid.Column="1" x:Name="ColorPicker" />
                     </Grid>
                     
