@@ -638,7 +638,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void ContentCoverGridOnMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
-            if (CloseOnClickAway)
+            if (CloseOnClickAway && CurrentSession != null)
                 Close(CloseOnClickAwayParameter);
         }
 
