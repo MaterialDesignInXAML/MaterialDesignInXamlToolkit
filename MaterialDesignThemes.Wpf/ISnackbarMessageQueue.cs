@@ -65,7 +65,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="neverConsiderToBeDuplicate">The message will never be considered a duplicate.</param>
         /// <param name="durationOverride">Message show duration override.</param>
         void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
-            TArgument actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride);
+            TArgument actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null);
 
         /// <summary>
         /// Queues a notification message for display in a snackbar.
@@ -78,6 +78,6 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="neverConsiderToBeDuplicate">The message will never be considered a duplicate.</param>
         /// <param name="durationOverride">Message show duration override.</param>
         void Enqueue(object content, object actionContent, Action<object> actionHandler, object actionArgument,
-            bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride);
+            bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null);
     }
 }
