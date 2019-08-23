@@ -4,10 +4,11 @@ namespace MaterialDesignThemes.Wpf
 {
     internal class SnackbarMessageQueueItem
     {
-        public SnackbarMessageQueueItem(object content, object actionContent = null, Action<object> actionHandler = null, object actionArgument = null, 
+        public SnackbarMessageQueueItem(object content, TimeSpan duration, object actionContent = null, Action<object> actionHandler = null, object actionArgument = null, 
             bool isPromoted = false, bool ignoreDuplicate = false)
         {
             Content = content;
+            Duration = duration;
             ActionContent = actionContent;
             ActionHandler = actionHandler;
             ActionArgument = actionArgument;
@@ -19,6 +20,11 @@ namespace MaterialDesignThemes.Wpf
         /// The content to be displayed
         /// </summary>
         public object Content { get; }
+
+        /// <summary>
+        /// Message show duration.
+        /// </summary>
+        public TimeSpan Duration { get; set; }
 
         /// <summary>
         /// The content for the action button on the snackbar

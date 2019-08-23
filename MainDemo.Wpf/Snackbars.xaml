@@ -188,6 +188,34 @@
                     </smtx:XamlDisplay>
                 </StackPanel>
             </Border>
+
+            <!-- example 7 -->
+            <!-- message duration override -->
+            <Border Background="{DynamicResource MaterialDesignPaper}" 
+                    Padding="8 0 8 0" Grid.Column="3" Grid.Row="1">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{DynamicResource MaterialDesignSubheadingTextBlock}">Example 7.</TextBlock>
+                        <TextBlock TextWrapping="WrapWithOverflow">The message show duration is controlled by the message queue. But this can be overridden for a specific message.</TextBlock>
+                        <Grid Margin="0 16 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Slider x:Name="MessageDurationOverrideSlider" Minimum="1" Maximum="10" Value="5"
+                                    IsSnapToTickEnabled="True" TickFrequency="0.1" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding ElementName=MessageDurationOverrideSlider, Path=Value, StringFormat={}{0:F1}}"
+                                       Margin="10,0" Grid.Column="1" VerticalAlignment="Center" />
+                            <Button Click="SnackBar7_OnClick" HorizontalAlignment="Center" Grid.Column="2">Send</Button>
+                        </Grid>
+                    </StackPanel>
+                    <smtx:XamlDisplay Key="snackbar_10">
+                        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
+                                                 x:Name="SnackbarSeven" />
+                    </smtx:XamlDisplay>
+                </Grid>
+            </Border>
         </Grid>
     </ScrollViewer>
 </UserControl>
