@@ -3975,6 +3975,7 @@ namespace MaterialDesignThemes.Wpf
         CoatHanger=Hanger,
         ClothesHanger=Hanger,
         HardHat,
+        Helmet=HardHat,
         Harddisk,
         Hdd=Harddisk,
         HarddiskPlus,
