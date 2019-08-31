@@ -69,10 +69,6 @@
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
                                                 <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.3" />
                                             </BooleanAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" 
-                                                                           Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame Value="{x:Null}" KeyTime="0:0:0.3" />
-                                            </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="0.56" KeyTime="0" />
                                                 <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.3">
@@ -136,10 +132,6 @@
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
                                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" 
-                                                                       Storyboard.TargetProperty="Background" Duration="0">
-                                            <DiscreteObjectKeyFrame Value="{x:Null}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                         <DoubleAnimation Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity"
                                                          To="0" Duration="0"/>
                                     </Storyboard>
@@ -183,12 +175,12 @@
                             <ContentPresenter x:Name="ContentPresenter" Opacity="1" Content="{TemplateBinding ContentControl.Content}" 
                                               ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
                         </AdornerDecorator>
-                        <Grid x:Name="PART_ContentCoverGrid" Background="{x:Null}" Opacity="0" IsHitTestVisible="False" Focusable="False" />
+                        <Grid x:Name="PART_ContentCoverGrid" Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" 
+                              Opacity="0" IsHitTestVisible="False" Focusable="False" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsOpen" Value="True">
                             <Setter TargetName="ContentPresenter" Property="IsEnabled" Value="False" />
-                            <Setter TargetName="PART_ContentCoverGrid" Property="Background" Value="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" />
                             <Setter TargetName="PART_ContentCoverGrid" Property="IsHitTestVisible" Value="True" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -252,10 +244,6 @@
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="Visibility">
                                                 <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0:0:0.3" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" 
-                                                                           Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame Value="{x:Null}" KeyTime="0:0:0.3" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame Value="0.56" KeyTime="0" />
@@ -321,11 +309,6 @@
                                                                        Duration="0">
                                             <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCoverGrid" 
-                                                                       Storyboard.TargetProperty="Background"
-                                                                       Duration="0">
-                                            <DiscreteObjectKeyFrame Value="{x:Null}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                         <DoubleAnimation Storyboard.TargetName="PART_ContentCoverGrid" Storyboard.TargetProperty="Opacity"
                                                          To="0" />
                                     </Storyboard>
@@ -336,7 +319,8 @@
                             x:Name="ContentPresenter" Opacity="1"
                             Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
 
-                        <Grid x:Name="PART_ContentCoverGrid" Background="{x:Null}" Opacity="1" IsHitTestVisible="False" Focusable="False" />
+                        <Grid x:Name="PART_ContentCoverGrid" Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" 
+                              Opacity="1" IsHitTestVisible="False" Focusable="False" />
 
                         <Grid x:Name="PART_Popup" wpf:ThemeAssist.Theme="{TemplateBinding DialogTheme}"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -375,7 +359,6 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsOpen" Value="True">
                             <Setter TargetName="ContentPresenter" Property="IsEnabled" Value="False" />
-                            <Setter TargetName="PART_ContentCoverGrid" Property="Background" Value="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" />
                             <Setter TargetName="PART_ContentCoverGrid" Property="IsHitTestVisible" Value="True" />
                         </Trigger>
                     </ControlTemplate.Triggers>
