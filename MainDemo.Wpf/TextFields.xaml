@@ -76,7 +76,8 @@
         <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" />
         <smtx:XamlDisplay Key="fields_1" Grid.Column="1" Grid.Row="1">
             <TextBox x:Name="NameTextBox"
-                     materialDesign:HintAssist.Hint="Name">
+                     materialDesign:HintAssist.Hint="Name"
+                     materialDesign:HintAssist.HelperText="Helper text longer than error" >
                 <TextBox.Text>
                     <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -148,18 +149,23 @@
         <materialDesign:PackIcon Grid.Row="3" Grid.Column="0" Kind="Comment" Foreground="{Binding ElementName=CommentTextBox, Path=BorderBrush}" />
         <smtx:XamlDisplay Key="fields_6" Grid.Row="3" Grid.Column="1">
             <TextBox x:Name="CommentTextBox"
-                     materialDesign:HintAssist.Hint="Comment" />
+                     materialDesign:HintAssist.Hint="Comment"
+                     materialDesign:HintAssist.HelperText="Insert your comment here" />
         </smtx:XamlDisplay>
         <materialDesign:PackIcon Grid.Row="3" Grid.Column="2" Kind="Key" Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}" HorizontalAlignment="Right" />
         <smtx:XamlDisplay Key="fields_7" Grid.Row="3" Grid.Column="3">
-            <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="Password" />
+            <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="Password"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         materialDesign:HintAssist.HelperText="At least 8 characters"/>
         </smtx:XamlDisplay>
         <smtx:XamlDisplay Key="fields_8" Grid.Row="4" Grid.Column="1">
             <TextBox materialDesign:HintAssist.Hint="Floating Hint" 
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
         </smtx:XamlDisplay>
         <smtx:XamlDisplay Key="fields_9" Grid.Row="4" Grid.Column="3">
-            <ComboBox materialDesign:HintAssist.Hint="OS" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            <ComboBox materialDesign:HintAssist.Hint="OS" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                      materialDesign:TextFieldAssist.SuffixText="sw"
+                      materialDesign:HintAssist.HelperText="Select one OS">
                 <ComboBoxItem>Android</ComboBoxItem>
                 <ComboBoxItem>iOS</ComboBoxItem>
                 <ComboBoxItem>Linux</ComboBoxItem>
@@ -256,7 +262,7 @@
         </StackPanel>
 
         <smtx:XamlDisplay Key="fields_16" Grid.Row="5" Grid.Column="1" Margin="0 8">
-            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff">
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:TextFieldAssist.SuffixText="mm">
                 <materialDesign:HintAssist.Hint>
                     <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
                         <materialDesign:PackIcon Kind="AccessPoint" />
@@ -266,7 +272,9 @@
             </TextBox>
         </smtx:XamlDisplay>
         <smtx:XamlDisplay Key="fields_17" Grid.Row="5" Grid.Column="3" Margin="0 8">
-            <ComboBox materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            <ComboBox materialDesign:HintAssist.Hint="Search" materialDesign:TextFieldAssist.HasClearButton="True" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                      materialDesign:TextFieldAssist.SuffixText="sw"
+                      materialDesign:HintAssist.HelperText="Search one fruit" >
                 <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
                 <ComboBoxItem>Banana</ComboBoxItem>
                 <ComboBoxItem>Pear</ComboBoxItem>

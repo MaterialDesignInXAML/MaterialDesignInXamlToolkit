@@ -155,5 +155,40 @@ namespace MaterialDesignThemes.Wpf
         }
 
         #endregion
+
+        #region HelperText
+
+        /// <summary>
+        /// The HelperText property
+        /// </summary>
+        public static readonly DependencyProperty HelperTextProperty = DependencyProperty.RegisterAttached(
+            "HelperText",
+            typeof(string),
+            typeof(HintAssist),
+            new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
+
+        /// <summary>
+        /// Sets the HelperText.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <param name="value">The value.</param>
+        public static void SetHelperText(DependencyObject element, object value)
+        {
+            element.SetValue(HelperTextProperty, value);
+        }
+
+        /// <summary>
+        /// Gets the HelperText.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns>
+        /// The <see cref="string" />.
+        /// </returns>
+        public static object GetHelperText(DependencyObject element)
+        {
+            return element.GetValue(HelperTextProperty);
+        }
+
+        #endregion
     }
 }
