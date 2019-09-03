@@ -304,27 +304,31 @@
                                               ContentStringFormat="{TemplateBinding HeaderStringFormat}"/>
                             <Border Name="ContentSite"
                                         DockPanel.Dock="Bottom"                                    >
-                                <StackPanel Name="ContentPanel"
-                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                Margin="{TemplateBinding Padding}"
-                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                    <StackPanel.Height>
-                                        <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
-                                            <Binding ElementName="PART_Content" Path="ActualHeight"/>
-                                            <Binding ElementName="PART_Content" Path="Opacity"/>
-                                        </MultiBinding>
-                                    </StackPanel.Height>
-                                    <StackPanel.Width>
-                                        <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
-                                            <Binding ElementName="PART_Content" Path="ActualWidth"/>
-                                            <Binding ElementName="PART_Content" Path="Opacity"/>
-                                        </MultiBinding>
-                                    </StackPanel.Width>
-                                    <ContentPresenter Name="PART_Content" Focusable="False"
-                                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
-                                </StackPanel>
+                                <ScrollViewer
+                                    VerticalScrollBarVisibility="Auto"
+                                    HorizontalScrollBarVisibility="Auto">
+                                    <StackPanel Name="ContentPanel"
+                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                    Margin="{TemplateBinding Padding}"
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                        <StackPanel.Height>
+                                            <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
+                                                <Binding ElementName="PART_Content" Path="ActualHeight"/>
+                                                <Binding ElementName="PART_Content" Path="Opacity"/>
+                                            </MultiBinding>
+                                        </StackPanel.Height>
+                                        <StackPanel.Width>
+                                            <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
+                                                <Binding ElementName="PART_Content" Path="ActualWidth"/>
+                                                <Binding ElementName="PART_Content" Path="Opacity"/>
+                                            </MultiBinding>
+                                        </StackPanel.Width>
+                                        <ContentPresenter Name="PART_Content" Focusable="False"
+                                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
+                                    </StackPanel>
+                                </ScrollViewer>
                             </Border>
                         </DockPanel>
                     </Border>
@@ -338,7 +342,7 @@
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Left">
-                            <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Right"/>                            
+                            <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Right"/>
                             <Setter Property="DockPanel.Dock" TargetName="ContentSite" Value="Left"/>
                             <Setter Property="Orientation" TargetName="ContentPanel" Value="Horizontal"/>
                             <Setter Property="Height" TargetName="ContentPanel" Value="Auto"/>
