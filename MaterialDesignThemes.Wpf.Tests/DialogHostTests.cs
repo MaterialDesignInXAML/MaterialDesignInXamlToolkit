@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
@@ -14,6 +15,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         public DialogHostTests()
         {
             _dialogHost = new DialogHost();
+            _dialogHost.ApplyDefaultStyle();
             _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
         }
 
@@ -169,6 +171,31 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             Assert.Equal("SecondResult", result);
             Assert.Equal(2, closeInvokeCount);
+        }
+
+        [StaFact]
+        [Description("Issue 1328")]
+        public async Task WhenDoubleClickAwayDialogCloses()
+        {
+            _dialogHost.CloseOnClickAway = true;
+            Grid contentCover = _dialogHost.FindVisualChild<Grid>(DialogHost.ContentCoverGridName);
+
+            int closingCount = 0;
+            Task shownDialog = _dialogHost.ShowDialog("Content", new DialogClosingEventHandler((sender, args) =>
+            {
+                closingCount++;
+            }));
+
+            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left) {
+                RoutedEvent = UIElement.MouseLeftButtonUpEvent
+            });
+            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left) {
+                RoutedEvent = UIElement.MouseLeftButtonUpEvent
+            });
+
+            await shownDialog;
+
+            Assert.Equal(1, closingCount);
         }
 
         private class TestDialog : Control
