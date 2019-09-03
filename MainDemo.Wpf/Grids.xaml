@@ -70,9 +70,17 @@
                         </materialDesign:MaterialDataGridTextColumn>
 
                         <!-- use custom combo box column to get better combos. Use ItemsSourceBinding as your binding template to be applied to each combo -->
-                        <materialDesign:MaterialDataGridComboBoxColumn Header="Food"
+                        <materialDesign:MaterialDataGridComboBoxColumn Header="Food" IsEditable="True"
                                                                    SelectedValueBinding="{Binding Food}"
-                                                                   ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}" />
+                                                                   ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}">
+                            <!--Setting the editing element style allows access to all of the combo box's properties
+                            <materialDesign:MaterialDataGridComboBoxColumn.EditingElementStyle>
+                                <Style TargetType="ComboBox" BasedOn="{StaticResource {ComponentResourceKey TypeInTargetAssembly={x:Type ComboBox}, ResourceId=MaterialDataGridComboBoxColumnEditingStyle}}" >
+                                    <Setter Property="IsEditable" Value="True" />
+                                </Style>
+                            </materialDesign:MaterialDataGridComboBoxColumn.EditingElementStyle>
+                            -->
+                        </materialDesign:MaterialDataGridComboBoxColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </smtx:XamlDisplay>
