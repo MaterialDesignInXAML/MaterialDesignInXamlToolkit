@@ -14,7 +14,7 @@ namespace MaterialDesignThemes.Wpf
 
         public Binding ItemsSourceBinding { get; set; }
 
-        public bool IsEditable { get; set; }
+        public bool? IsEditable { get; set; }
 
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
         {
@@ -30,7 +30,10 @@ namespace MaterialDesignThemes.Wpf
         protected override FrameworkElement GenerateEditingElement(DataGridCell cell, object dataItem)
         {
             var comboBox = (ComboBox)base.GenerateElement(cell, cell);
-            comboBox.IsEditable = IsEditable;
+            if (IsEditable is bool isEditable)
+            {
+                comboBox.IsEditable = isEditable;
+            }
 
             if (ItemsSourceBinding != null)
                 comboBox.SetBinding(ItemsControl.ItemsSourceProperty, ItemsSourceBinding);
