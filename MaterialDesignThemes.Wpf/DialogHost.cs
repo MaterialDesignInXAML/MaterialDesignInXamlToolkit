@@ -646,8 +646,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (executedRoutedEventArgs.Handled) return;
 
-            var dependencyObject = executedRoutedEventArgs.OriginalSource as DependencyObject;
-            if (dependencyObject != null)
+            if (executedRoutedEventArgs.OriginalSource is DependencyObject dependencyObject)
             {
                 _attachedDialogOpenedEventHandler = GetDialogOpenedAttached(dependencyObject);
                 _attachedDialogClosingEventHandler = GetDialogClosingAttached(dependencyObject);
