@@ -70,6 +70,8 @@
         <Setter Property="ToggleContent" Value="{StaticResource MaterialDesignPopupBoxToggleContent}" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="PopupHorizontalOffset" Value="5"/>
+        <Setter Property="PopupVerticalOffset" Value="5"/>
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="TextElement.FontWeight" Value="Normal" />
         <Setter Property="Padding" Value="0 8 0 8" />
@@ -103,8 +105,8 @@
                         <controlzEx:PopupEx x:Name="PART_Popup" 
                                             IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                                             CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
-                                            HorizontalOffset="5"
-                                            VerticalOffset="5"
+                                            HorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupHorizontalOffset}"
+                                            VerticalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupVerticalOffset}"
                                             PlacementTarget="{Binding ElementName=PART_Toggle}"
                                             Placement="Custom"
                                             PopupAnimation="Fade"
