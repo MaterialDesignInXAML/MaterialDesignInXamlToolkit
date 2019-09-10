@@ -140,7 +140,6 @@ namespace MaterialDesignThemes.Wpf
                 TextAreaInactiveBorder = GetColor("MaterialDesignTextAreaInactiveBorder")
             };
 
-
             Color GetColor(params string[] keys)
             {
                 foreach (string key in keys)

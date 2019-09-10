@@ -7,18 +7,21 @@ namespace MaterialDesignThemes.MahApps
 {
     public class MahAppsCustomColorTheme : CustomColorTheme
     {
-        protected override void SetTheme(ITheme theme, ResourceDictionary resourceDictionary)
+        protected override void ApplyTheme(ITheme theme)
         {
-            base.SetTheme(theme, resourceDictionary);
-            resourceDictionary.SetMahApps(theme, BaseTheme);
-            IThemeManager themeManager = resourceDictionary.GetThemeManager();
-            if (themeManager != null)
+            base.ApplyTheme(theme);
+            if (BaseTheme is BaseTheme baseTheme)
             {
-                themeManager.ThemeChanged += ThemeManagerOnThemeChanged;
+                this.SetMahApps(theme, baseTheme);
+                IThemeManager themeManager = this.GetThemeManager();
+                if (themeManager != null)
+                {
+                    themeManager.ThemeChanged += ThemeManagerOnThemeChanged;
+                }
             }
         }
 
-        private void ThemeManagerOnThemeChanged(object sender, ThemeChangedEventArgs e)
+        private static void ThemeManagerOnThemeChanged(object sender, ThemeChangedEventArgs e)
         {
             ResourceDictionary resourceDictionary = e.ResourceDictionary;
 
@@ -26,7 +29,7 @@ namespace MaterialDesignThemes.MahApps
 
             var foreground = newTheme.Background.ContrastingForegroundColor();
 
-            BaseTheme baseTheme = foreground == Colors.Black ? BaseTheme.Light : BaseTheme.Dark;
+            BaseTheme baseTheme = foreground == Colors.Black ? Wpf.BaseTheme.Light : Wpf.BaseTheme.Dark;
             resourceDictionary.SetMahApps(newTheme, baseTheme);
         }
     }
