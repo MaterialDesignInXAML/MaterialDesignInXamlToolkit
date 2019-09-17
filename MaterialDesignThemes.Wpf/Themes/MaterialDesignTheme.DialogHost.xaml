@@ -176,7 +176,17 @@
                                               ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
                         </AdornerDecorator>
                         <Grid x:Name="PART_ContentCoverGrid" Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" 
-                              Opacity="0" IsHitTestVisible="False" Focusable="False" />
+                              Opacity="0" IsHitTestVisible="False" Focusable="False">
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Style.Triggers>
+                                        <Trigger Property="Opacity" Value="0">
+                                            <Setter Property="Visibility" Value="Hidden" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                        </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsOpen" Value="True">
@@ -320,7 +330,17 @@
                             Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
 
                         <Grid x:Name="PART_ContentCoverGrid" Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" 
-                              Opacity="1" IsHitTestVisible="False" Focusable="False" />
+                              Opacity="0" IsHitTestVisible="False" Focusable="False">
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Style.Triggers>
+                                        <Trigger Property="Opacity" Value="0">
+                                            <Setter Property="Visibility" Value="Hidden" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                        </Grid>
 
                         <Grid x:Name="PART_Popup" wpf:ThemeAssist.Theme="{TemplateBinding DialogTheme}"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
