@@ -397,7 +397,7 @@ namespace MaterialDesignThemes.Wpf
                 return;
             }
 
-            if ((textBox.Template.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content is FrameworkElement frameworkElement)
+            if ((textBox.Template?.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content is FrameworkElement frameworkElement)
             {
                 frameworkElement.Margin = margin;
             }

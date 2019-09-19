@@ -32,10 +32,6 @@
       <Paket>True</Paket>
       <Link>ControlzEx/BadgedEx.cs</Link>
     </Compile>
-    <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\PackIconBase.cs">
-      <Paket>True</Paket>
-      <Link>ControlzEx/PackIconBase.cs</Link>
-    </Compile>
     <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\PopupEx.cs">
       <Paket>True</Paket>
       <Link>ControlzEx/PopupEx.cs</Link>

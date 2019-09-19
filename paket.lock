@@ -650,7 +650,6 @@ NUGET
 GITHUB
   remote: ControlzEx/ControlzEx
     src/ControlzEx/BadgedEx.cs (e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa)
-    src/ControlzEx/PackIconBase.cs (e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa)
     src/ControlzEx/PopupEx.cs (e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa)
   remote: samueldjack/VirtualCollection
     VirtualCollection/VirtualCollection/VirtualizingWrapPanel.cs (e63d891c252c2ac1a3ebb26dddb9a3d89effe3f2)
