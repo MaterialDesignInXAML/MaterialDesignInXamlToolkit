@@ -7459,6 +7459,7 @@ namespace MaterialDesignThemes.Wpf
         XingBox,
         XingCircle,
         Xml,
+        Code=Xml,
         Xmpp,
         Yahoo,
         Yammer,
