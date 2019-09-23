@@ -8,9 +8,6 @@
     <Product>MaterialDesignThemes.Wpf.Tests</Product>
     <Copyright>Copyright ©  2015</Copyright>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='net452'">
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

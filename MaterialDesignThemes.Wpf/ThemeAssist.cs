@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 
 namespace MaterialDesignThemes.Wpf
@@ -18,28 +19,36 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty ThemeProperty =
             DependencyProperty.RegisterAttached("Theme", typeof(BaseTheme), typeof(ThemeAssist), new PropertyMetadata(default(BaseTheme), OnThemeChanged));
 
+        public static void ChangeTheme(ResourceDictionary resourceDictionary, BaseTheme newTheme)
+        {
+            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+
+            string lightSource = GetResourceDictionarySource(BaseTheme.Light);
+            string darkSource = GetResourceDictionarySource(BaseTheme.Dark);
+
+            foreach (ResourceDictionary mergedDictionary in resourceDictionary.MergedDictionaries.ToList())
+            {
+                if (string.Equals(mergedDictionary.Source?.ToString(), lightSource, StringComparison.OrdinalIgnoreCase))
+                {
+                    resourceDictionary.MergedDictionaries.Remove(mergedDictionary);
+                }
+                if (string.Equals(mergedDictionary.Source?.ToString(), darkSource, StringComparison.OrdinalIgnoreCase))
+                {
+                    resourceDictionary.MergedDictionaries.Remove(mergedDictionary);
+                }
+            }
+
+            if (GetResourceDictionarySource(newTheme) is string newThemeSource)
+            {
+                resourceDictionary.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri(newThemeSource) });
+            }
+        }
+
         private static void OnThemeChanged(DependencyObject @do, DependencyPropertyChangedEventArgs e)
         {
-            if (@do is FrameworkElement element)
+            if (@do is FrameworkElement element && e.NewValue is BaseTheme newTheme)
             {
-                if (e.OldValue is BaseTheme oldTheme &&
-                    GetResourceDictionarySource(oldTheme) is string oldSource)
-                {
-                    foreach (ResourceDictionary resourceDictionary in element.Resources.MergedDictionaries)
-                    {
-                        if (string.Equals(resourceDictionary.Source?.ToString(), oldSource, StringComparison.OrdinalIgnoreCase))
-                        {
-                            element.Resources.MergedDictionaries.Remove(resourceDictionary);
-                            break;
-                        }
-                    }
-                }
-
-                if (e.NewValue is BaseTheme newTheme &&
-                    GetResourceDictionarySource(newTheme) is string newThemeSource)
-                {
-                    element.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri(newThemeSource) });
-                }
+                ChangeTheme(element.Resources, newTheme);
             }
         }
 
