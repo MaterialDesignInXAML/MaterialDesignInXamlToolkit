@@ -5,21 +5,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public class DialogClosingEventArgs : RoutedEventArgs
     {
-        public DialogClosingEventArgs(DialogSession session, object parameter)
-        {
-            Session = session ?? throw new ArgumentNullException(nameof(session));
-
-            Parameter = parameter;
-        }
-
         public DialogClosingEventArgs(DialogSession session, object parameter, RoutedEvent routedEvent) : base(routedEvent)
-        {
-            Session = session ?? throw new ArgumentNullException(nameof(session));
-
-            Parameter = parameter;
-        }
-
-        public DialogClosingEventArgs(DialogSession session, object parameter, RoutedEvent routedEvent, object source) : base(routedEvent, source)
         {
             Session = session ?? throw new ArgumentNullException(nameof(session));
 
@@ -48,11 +34,5 @@ namespace MaterialDesignThemes.Wpf
         /// Allows interaction with the current dialog session.
         /// </summary>
         public DialogSession Session { get; }
-
-        /// <summary>
-        /// Gets the <see cref="DialogHost.DialogContent"/> which is currently displayed, so this could be a view model or a UI element.
-        /// </summary>
-        [Obsolete("Prefer Session.Content")]
-        public object Content => Session.Content;
     }
 }

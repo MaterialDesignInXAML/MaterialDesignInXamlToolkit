@@ -279,7 +279,7 @@
         </StackPanel>
 
         <smtx:XamlDisplay Key="cards_9" Margin="4 4 0 0" VerticalContentAlignment="Top">
-            <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}">
+            <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}" VerticalAlignment="Top">
                 <materialDesign:Flipper.FrontContent>
                     <Button Style="{StaticResource MaterialDesignFlatButton}"
                         Command="{x:Static materialDesign:Flipper.FlipCommand}"

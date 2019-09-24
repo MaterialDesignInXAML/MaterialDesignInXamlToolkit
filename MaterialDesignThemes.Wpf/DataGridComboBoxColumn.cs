@@ -4,12 +4,12 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public class MaterialDataGridComboBoxColumn : DataGridComboBoxColumn //DataGridBoundColumn
+    public class DataGridComboBoxColumn : System.Windows.Controls.DataGridComboBoxColumn //DataGridBoundColumn
     {
-        static MaterialDataGridComboBoxColumn()
+        static DataGridComboBoxColumn()
         {
-            ElementStyleProperty.OverrideMetadata(typeof(MaterialDataGridComboBoxColumn), new FrameworkPropertyMetadata(DefaultElementStyle));
-            EditingElementStyleProperty.OverrideMetadata(typeof(MaterialDataGridComboBoxColumn), new FrameworkPropertyMetadata(DefaultEditingElementStyle));
+            ElementStyleProperty.OverrideMetadata(typeof(DataGridComboBoxColumn), new FrameworkPropertyMetadata(DefaultElementStyle));
+            EditingElementStyleProperty.OverrideMetadata(typeof(DataGridComboBoxColumn), new FrameworkPropertyMetadata(DefaultEditingElementStyle));
         }
 
         public Binding ItemsSourceBinding { get; set; }

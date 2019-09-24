@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows;
+﻿using System.ComponentModel;
 using System.Windows.Controls.Primitives;
 using Xunit;
-using Xunit.Sdk;
 
 namespace MaterialDesignThemes.Wpf.Tests
 {
@@ -30,7 +27,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             ToggleButton togglePart = popupBox.FindVisualChild<ToggleButton>(PopupBox.TogglePartName);
 
-            Assert.Equal(false, togglePart.IsTabStop);
+            Assert.False(togglePart.IsTabStop);
         }
 
         [StaFact]
@@ -42,7 +39,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             ToggleButton togglePart = popupBox.FindVisualChild<ToggleButton>(PopupBox.TogglePartName);
 
-            Assert.Equal(true, togglePart.IsTabStop);
+            Assert.True(togglePart.IsTabStop);
         }
     }
 }

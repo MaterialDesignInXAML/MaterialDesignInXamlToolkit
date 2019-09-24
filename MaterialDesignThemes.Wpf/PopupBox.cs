@@ -113,7 +113,7 @@ namespace MaterialDesignThemes.Wpf
         private ContentControl _popupContentControl;
         private ToggleButton _toggleButton;
         private Point _popupPointFromLastRequest;
-        private Point _lastRelativePositon;
+        private Point _lastRelativePosition;
 
         static PopupBox()
         {
@@ -489,10 +489,10 @@ namespace MaterialDesignThemes.Wpf
                 (PopupMode == PopupBoxPopupMode.MouseOver || PopupMode == PopupBoxPopupMode.MouseOverEager))
             {
                 Point relativePosition = _popupContentControl.TranslatePoint(new Point(), this);
-                if (relativePosition != _lastRelativePositon)
+                if (relativePosition != _lastRelativePosition)
                 {
                     _popup.RefreshPosition();
-                    _lastRelativePositon = _popupContentControl.TranslatePoint(new Point(), this);
+                    _lastRelativePosition = _popupContentControl.TranslatePoint(new Point(), this);
                 }
             }
         }
