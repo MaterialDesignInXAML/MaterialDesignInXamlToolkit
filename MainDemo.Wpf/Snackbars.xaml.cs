@@ -39,5 +39,18 @@ namespace MaterialDesignDemo
                 s);
             }
         }
+
+        private void SnackBar7_OnClick(object sender, RoutedEventArgs e)
+        {
+            var duration = MessageDurationOverrideSlider.Value;
+            SnackbarSeven.MessageQueue.Enqueue(
+                $"Hello world! Showing message for {duration:F1} seconds.",
+                null,
+                null,
+                null,
+                false,
+                true,
+                TimeSpan.FromSeconds(duration));
+        }
     }
 }
