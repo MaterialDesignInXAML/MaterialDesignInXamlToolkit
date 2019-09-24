@@ -17,12 +17,13 @@ variables:
   solution: 'MaterialDesignToolkit.Wpf.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'AppVeyor'
-  dotNetCoreVersion: '3.1.100'
+  dotNetCoreVersion: '3.0.*'
 
 steps:
-- task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk $(dotNetCoreVersion)'
+- task: UseDotNet@2
+  displayName: 'Use dotNet $(dotNetCoreVersion)'
   inputs:
+    packageType: 'sdk'
     version: '$(dotNetCoreVersion)'
 
 - task: NuGetToolInstaller@0
