@@ -16,7 +16,7 @@
     <tags>WPF XAML WinRT Material Design Theme Colour Color UI UX</tags>
     <dependencies>
       <dependency id="MaterialDesignColors" version="[1.2.0, 2.0)" />
-      <dependency id="MaterialDesignThemes" version="[2.5.1, 3.0)" />
+      <dependency id="MaterialDesignThemes" version="[2.6.0, 3.0)" />
       <dependency id="MahApps.Metro" version="1.6.*" />
     </dependencies>
   </metadata>
