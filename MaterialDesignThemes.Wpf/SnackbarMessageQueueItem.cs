@@ -24,7 +24,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Message show duration.
         /// </summary>
-        public TimeSpan Duration { get; set; }
+        public TimeSpan Duration { get; }
 
         /// <summary>
         /// The content for the action button on the snackbar
