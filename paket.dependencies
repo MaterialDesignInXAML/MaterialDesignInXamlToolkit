@@ -2,23 +2,23 @@ source https://nuget.org/api/v2
 framework: auto-detect
 
 nuget MahApps.Metro
-nuget Dragablz ~> 0.0.3
-nuget Moq ~> 4.12
-nuget NSubstitute ~> 4.2.1
+nuget Dragablz -> 0.0.3
+nuget Moq -> 4.12
+nuget NSubstitute -> 4.2.1
 nuget NuGet.CommandLine
 nuget RhinoMocks 3.6.1
-nuget Shouldly ~> 3.0
+nuget Shouldly -> 3.0
 nuget System.Net.Http >= 4.0
-nuget xunit ~> 2.4
-nuget xunit.runner.visualstudio ~> 2.4
-nuget Xunit.StaFact ~> 1.0.3-beta
+nuget xunit -> 2.4
+nuget xunit.runner.visualstudio -> 2.4
+nuget Xunit.StaFact -> 1.0.3-beta
 nuget ShowMeTheXAML 1.1.0-ci70 ci
 nuget ShowMeTheXAML.AvalonEdit  1.1.0-ci70 ci
 nuget ShowMeTheXAML.MSBuild 1.1.0-ci70 ci
 
-nuget Microsoft.CSharp ~> 4.6.0-preview7.19362.9
-nuget System.Data.DataSetExtensions ~> 4.6.0-preview3.19128.7
-nuget Microsoft.NETCore.Platforms ~> 3.0.0-preview7.19362.9
+nuget Microsoft.CSharp -> 4.6.0-preview7.19362.9
+nuget System.Data.DataSetExtensions -> 4.6.0-preview3.19128.7
+nuget Microsoft.NETCore.Platforms -> 3.0.0-preview7.19362.9
 
 github ControlzEx/ControlzEx:e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa src/ControlzEx/PopupEx.cs
 github ControlzEx/ControlzEx:e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa src/ControlzEx/BadgedEx.cs
