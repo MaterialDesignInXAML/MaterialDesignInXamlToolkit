@@ -78,7 +78,7 @@
                                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"                                      
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           DockPanel.Dock="Left"
-                                          MaxHeight="36">
+                                          MaxHeight="72">
                             <ContentPresenter.Resources>
                                 <DataTemplate DataType="{x:Type system:String}">
                                     <TextBlock Text="{Binding}">
@@ -86,7 +86,7 @@
                                             <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
                                                 <Setter Property="FontSize" Value="14" />
                                                 <Setter Property="TextWrapping" Value="WrapWithOverflow" />
-                                                <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                                                <Setter Property="TextTrimming" Value="WordEllipsis" />
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>

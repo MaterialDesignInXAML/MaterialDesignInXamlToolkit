@@ -55,8 +55,8 @@
 
                     <smtx:XamlDisplay Key="snackbar_2">
                         <!-- long hand form for setting the message -->
-                        <materialDesign:Snackbar IsActive="False" x:Name="SnackbarTwo" >
-                            <materialDesign:SnackbarMessage Content="Hello 2" ActionContent="UNDO" />
+                        <materialDesign:Snackbar IsActive="False" x:Name="SnackbarTwo">
+                            <materialDesign:SnackbarMessage Content="This is a snahckbar using more than 1 lines of text. Max. number of lines is 4, if more will be wrapped. Like this..." ActionContent="UNDO" />
                         </materialDesign:Snackbar>
                     </smtx:XamlDisplay>
                 </Grid>
