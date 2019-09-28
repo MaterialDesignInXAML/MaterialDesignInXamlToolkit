@@ -36,7 +36,6 @@ steps:
   displayName: 'dotnet restore'
   inputs:
     command: restore
-
     projects: |
      $(solution)
 
