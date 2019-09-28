@@ -647,6 +647,7 @@ NUGET
       Microsoft.NETCore.Platforms (>= 3.0.0-preview.19073.11) - restriction: || (&& (== net45) (>= netcoreapp3.0)) (&& (== net452) (>= netcoreapp3.0)) (&& (== net472) (>= netcoreapp3.0)) (== netcoreapp3.0)
       xunit.extensibility.execution (>= 2.1) - restriction: || (== net45) (&& (== net452) (== netcoreapp3.0)) (&& (== net472) (== netcoreapp3.0) (< netstandard2.0)) (&& (== net472) (< net452) (< netstandard2.0)) (&& (== netcoreapp3.0) (>= net45) (< netstandard2.0))
       xunit.extensibility.execution (>= 2.4) - restriction: || (&& (== net45) (>= net452)) (&& (== net45) (>= netcoreapp3.0)) (== net452) (== net472) (== netcoreapp3.0)
+
 GITHUB
   remote: ControlzEx/ControlzEx
   src/ControlzEx/BadgedEx.cs (e641c9e9346d7ae8c21ca1bf7fa5fb1b86496baa)
