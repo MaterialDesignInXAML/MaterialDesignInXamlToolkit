@@ -13,8 +13,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <smtx:XamlDisplay Key="explander_1">
             <StackPanel>
@@ -27,7 +27,7 @@
                                TextWrapping="Wrap"/>
                     </StackPanel>
                 </Expander>
-                <Expander HorizontalAlignment="Stretch" Header="Expander Example 1b">
+                <Expander HorizontalAlignment="Stretch" Header="Expander Example 1b" ExpandDirection="Up">
                     <StackPanel Orientation="Vertical"
                             TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
                             Margin="24,8,24,16">
@@ -96,7 +96,7 @@
 
         <smtx:XamlDisplay Key="expander_3" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="8">
             <StackPanel Orientation="Horizontal">
-                <Expander ExpandDirection="Right">
+                <Expander ExpandDirection="Left">
                     <Expander.Header>
                         <TextBlock Text="Expander Example 3a" RenderTransformOrigin=".5,.5">
                             <TextBlock.LayoutTransform>
