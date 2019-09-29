@@ -3210,6 +3210,7 @@ namespace MaterialDesignThemes.Wpf
         FastForwardOutline,
         Fax,
         Feather,
+        Quill=Feather,
         FeatureSearch,
         BoxSearch=FeatureSearch,
         FeatureSearchOutline,
