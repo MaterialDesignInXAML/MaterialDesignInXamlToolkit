@@ -6,7 +6,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 {
     public class BundledThemeTests
     {
-        [Theory]
+        [StaTheory]
         [InlineData(null, null, null)]
         [InlineData(BaseTheme.Light, null, null)]
         [InlineData(BaseTheme.Inherit, null, null)]
@@ -30,7 +30,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Throws<InvalidOperationException>(() => bundledTheme.GetTheme());
         }
 
-        [Fact]
+        [StaFact]
         public void WhenAllValuesAreSetThemeIsSet()
         {
             //Arrange

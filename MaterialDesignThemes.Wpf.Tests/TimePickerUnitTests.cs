@@ -8,6 +8,7 @@ using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
 {
+
     public class TimePickerUnitTests
     {
         private readonly TimePicker _timePicker;

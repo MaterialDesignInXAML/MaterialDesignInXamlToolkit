@@ -8,7 +8,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 {
     public class CustomColorThemeTests
     {
-        [Theory]
+        [StaTheory]
         [MemberData(nameof(GetThemeValues))]
         public void WhenValueIsMissingThemeIsNotSet(BaseTheme? baseTheme, Color? primaryColor, Color? secondaryColor)
         {
@@ -37,7 +37,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             yield return new object[] { BaseTheme.Inherit, null, Colors.Blue };
         }
 
-        [Fact]
+        [StaFact]
         public void WhenAllValuesAreSetThemeIsSet()
         {
             //Arrange

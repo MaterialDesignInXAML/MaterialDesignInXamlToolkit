@@ -3,70 +3,88 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Hyperlink.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignCaptionTextBlock">
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignTextBlock">
+        <Setter Property="Padding" Value="0,4" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Regular" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignCaptionTextBlock"
+           BasedOn="{StaticResource MaterialDesignTextBlock}">
         <Style.Resources>
             <Style TargetType="Hyperlink" BasedOn="{StaticResource MaterialDesignCaptionHyperlink}" />
         </Style.Resources>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Regular"/>
     </Style>
-    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignBody1TextBlock">
+    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignBody1TextBlock"
+           BasedOn="{StaticResource MaterialDesignTextBlock}">
         <Style.Resources>
             <Style TargetType="Hyperlink" BasedOn="{StaticResource MaterialDesignBody1Hyperlink}" />
         </Style.Resources>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="Regular"/>
     </Style>
-    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignBody2TextBlock">
+    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignBody2TextBlock"
+           BasedOn="{StaticResource MaterialDesignTextBlock}">
         <Style.Resources>
             <Style TargetType="Hyperlink" BasedOn="{StaticResource MaterialDesignBody2Hyperlink}" />
         </Style.Resources>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="Medium"/>
     </Style>
-    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignSubheadingTextBlock">
+    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignSubheadingTextBlock"
+           BasedOn="{StaticResource MaterialDesignTextBlock}">
         <Style.Resources>
             <Style TargetType="Hyperlink" BasedOn="{StaticResource MaterialDesignSubheadingHyperlink}" />
         </Style.Resources>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontWeight" Value="Regular"/>
     </Style>
-    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignTitleTextBlock">
+    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignTitleTextBlock"
+           BasedOn="{StaticResource MaterialDesignTextBlock}">
         <Style.Resources>
             <Style TargetType="Hyperlink" BasedOn="{StaticResource MaterialDesignTitleHyperlink}" />
         </Style.Resources>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="FontWeight" Value="Medium"/>
     </Style>
-    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignHeadlineTextBlock">
+    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignHeadlineTextBlock"
+           BasedOn="{StaticResource MaterialDesignTextBlock}">
         <Style.Resources>
             <Style TargetType="Hyperlink" BasedOn="{StaticResource MaterialDesignHeadlineHyperlink}" />
         </Style.Resources>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="FontWeight" Value="Regular"/>
     </Style>
-    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignDisplay1TextBlock">
+    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignDisplay1TextBlock"
+           BasedOn="{StaticResource MaterialDesignTextBlock}">
         <Style.Resources>
             <Style TargetType="Hyperlink" BasedOn="{StaticResource MaterialDesignDisplay1Hyperlink}" />
         </Style.Resources>
         <Setter Property="FontSize" Value="34"/>
         <Setter Property="FontWeight" Value="Regular"/>
     </Style>
-    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignDisplay2TextBlock">
+    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignDisplay2TextBlock"
+           BasedOn="{StaticResource MaterialDesignTextBlock}">
         <Style.Resources>
             <Style TargetType="Hyperlink" BasedOn="{StaticResource MaterialDesignDisplay2Hyperlink}" />
         </Style.Resources>
         <Setter Property="FontSize" Value="45"/>
         <Setter Property="FontWeight" Value="Regular"/>
     </Style>
-    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignDisplay3TextBlock">
+    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignDisplay3TextBlock"
+           BasedOn="{StaticResource MaterialDesignTextBlock}">
         <Style.Resources>
             <Style TargetType="Hyperlink" BasedOn="{StaticResource MaterialDesignDisplay3Hyperlink}" />
         </Style.Resources>
         <Setter Property="FontSize" Value="56"/>
         <Setter Property="FontWeight" Value="Regular"/>
     </Style>
-    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignDisplay4TextBlock">
+    <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignDisplay4TextBlock"
+           BasedOn="{StaticResource MaterialDesignTextBlock}">
         <Style.Resources>
             <Style TargetType="Hyperlink" BasedOn="{StaticResource MaterialDesignDisplay4Hyperlink}" />
         </Style.Resources>

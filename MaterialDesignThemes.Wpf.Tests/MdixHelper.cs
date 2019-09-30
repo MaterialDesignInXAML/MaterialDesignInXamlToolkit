@@ -1,5 +1,6 @@
 ﻿using System;
-using System.IO.Packaging;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Xunit;
@@ -11,29 +12,57 @@ namespace MaterialDesignThemes.Wpf.Tests
         static MdixHelper()
         {
             var _ = Application.Current;
-
-            _defaultResourceDictionary = new Lazy<ResourceDictionary>(() => GetThemeResourceDictionary("Defaults"));
-            _genericResourceDictionary = new Lazy<ResourceDictionary>(GetGenericResourceDictionary);
         }
 
-        private static readonly Lazy<ResourceDictionary> _defaultResourceDictionary;
-        private static ResourceDictionary DefaultResourceDictionary => _defaultResourceDictionary.Value;
+        private static ResourceDictionary DefaultResourceDictionary => GetThemeResourceDictionary("Defaults");
 
-        private static readonly Lazy<ResourceDictionary> _genericResourceDictionary;
-        private static ResourceDictionary GenericResourceDictionary => _genericResourceDictionary.Value;
+        private static ResourceDictionary GenericResourceDictionary => GetGenericResourceDictionary();
 
-        public static void ApplyDefaultStyle<T>(this T control) where T : FrameworkElement
+        public static void ApplyStyle<T>(this T control, object styleKey, bool applyTemplate = true) where T : FrameworkElement
         {
-            Style style = GetDefaultStyle<T>();
-            Assert.True(style != null, $"Could not find default style for control type {typeof(T).FullName}");
+            Style style = GetStyle(styleKey);
+            Assert.True(style != null, $"Could not find style with key '{styleKey}' for control type {typeof(T).FullName}");
             control.Style = style;
-            Assert.True(control.ApplyTemplate(), "Failed to apply template ");
+            if (applyTemplate)
+            {
+                Assert.True(control.ApplyTemplate(), "Failed to apply template");
+            }
         }
 
-        private static Style GetDefaultStyle<T>() where T : FrameworkElement
+        public static void ApplyDefaultStyle<T>(this T control) where T : FrameworkElement => control.ApplyStyle(typeof(T));
+
+        public static IEnumerable<object> GetStyleKeysFor<T>()
         {
-            return DefaultResourceDictionary[typeof(T)] as Style ??
-                   GenericResourceDictionary[typeof(T)] as Style;
+            foreach (object key in GetKeysFromResourceDictionary(DefaultResourceDictionary))
+            {
+                yield return key;
+            }
+            ResourceDictionary controlResourceDictionary = GetThemeResourceDictionary(typeof(T).Name);
+            foreach (object key in GetKeysFromResourceDictionary(controlResourceDictionary))
+            {
+                yield return key;
+            }
+
+            //TODO: Make static once we go to C# 8
+            IEnumerable<object> GetKeysFromResourceDictionary(ResourceDictionary resourceDictionary)
+            {
+                foreach (object key in resourceDictionary.Keys)
+                {
+                    if (resourceDictionary[key] is Style style)
+                    {
+                        if (style.TargetType == typeof(T))
+                        {
+                            yield return key;
+                        }
+                    }
+                }
+            }
+        }
+
+        private static Style GetStyle(object key)
+        {
+            return DefaultResourceDictionary[key] as Style ??
+                   GenericResourceDictionary[key] as Style;
         }
 
         private static ResourceDictionary GetThemeResourceDictionary(string name)
