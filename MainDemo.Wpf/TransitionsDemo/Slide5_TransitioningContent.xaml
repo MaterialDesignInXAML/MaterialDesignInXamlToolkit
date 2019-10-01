@@ -18,7 +18,7 @@
             <materialDesign:ColorZone Mode="PrimaryMid" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="4">
                 <StackPanel Margin="16" Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="Account" Height="32" Width="32" />
-                    <TextBlock Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="16 0 0 0">Contacts</TextBlock>
+                    <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="16 0 0 0">Contacts</TextBlock>
                 </StackPanel>
             </materialDesign:ColorZone>
         </materialDesign:TransitioningContent>

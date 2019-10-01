@@ -22,8 +22,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel>
-            <TextBlock Style="{StaticResource MaterialDesignDisplay2TextBlock}">Icon Pack</TextBlock>
-            <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+            <TextBlock Style="{StaticResource MaterialDesignHeadline3TextBlock}">Icon Pack</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                        Margin="0 8 0 0">
                 Material Design In XAML Toolkit includes the Material Design Icons collection.
             </TextBlock>
@@ -70,7 +70,7 @@
                              MinWidth="200" VerticalAlignment="Center" />
                     </Grid>
                 </Border>
-                <TextBlock Margin="8 0 0 0" Style="{StaticResource MaterialDesignSubheadingTextBlock}" VerticalAlignment="Center">Usage:</TextBlock>
+                <TextBlock Margin="8 0 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" VerticalAlignment="Center">Usage:</TextBlock>
                 <materialDesign:ColorZone Mode="Standard" Margin="8" CornerRadius="2" Padding="6 2 6 2">
                     <TextBox IsReadOnly="True"
                              materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"

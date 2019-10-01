@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <materialDesign:ColorZone Mode="PrimaryDark" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="64">
-            <TextBlock Style="{DynamicResource MaterialDesignHeadlineTextBlock}" TextWrapping="Wrap" TextAlignment="Center">OK, we've seen some cool stuff.  Let's take a look at some more transition types.</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" TextWrapping="Wrap" TextAlignment="Center">OK, we've seen some cool stuff.  Let's take a look at some more transition types.</TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" 
                         Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
@@ -16,8 +16,8 @@
                         Margin="16">
                     <materialDesign:PackIcon Kind="StepBackward" />
                 </Button>
-                <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"                     
-                        Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"                    
+                <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
+                        Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
                         Margin="16">
                     <materialDesign:PackIcon Kind="StepForward" />
                 </Button>

@@ -11,10 +11,10 @@
               MaxWidth="600">
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition />                
+                <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="32"
-                       Style="{DynamicResource MaterialDesignHeadlineTextBlock}"
+                       Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                        TextWrapping="Wrap">
                 The transition will originate from where the user clicks the button.  Experiment with the back/forward buttons.
             </TextBlock>
@@ -24,13 +24,13 @@
                     Grid.Row="1">
                 <materialDesign:PackIcon Kind="StepBackward" />
             </Button>
-            <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"                     
+            <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
                     Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
                     HorizontalAlignment="Right"
                     Grid.Row="1"
                     >
                 <materialDesign:PackIcon Kind="StepForward" />
             </Button>
-        </Grid>                
+        </Grid>
     </materialDesign:ColorZone>
 </UserControl>

@@ -23,7 +23,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Toggles</TextBlock>
+        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}">Toggles</TextBlock>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 24 0 0">
             <smtx:XamlDisplay Key="buttons_33" Margin="5 5 8 8">
                 <ToggleButton Content="C" Style="{StaticResource MaterialDesignActionLightToggleButton}" IsChecked="True"
@@ -235,7 +235,7 @@
 
         </StackPanel>
         <Border Margin="0 24 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="5" Grid.ColumnSpan="2" />
-        <TextBlock Grid.Row="6" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 24">Checkboxes</TextBlock>
+        <TextBlock Grid.Row="6" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="0 24">Checkboxes</TextBlock>
         <smtx:XamlDisplay Key="fields_31" Grid.Row="7" HorizontalAlignment="Left">
             <StackPanel Margin="8 0">
                 <CheckBox IsChecked="True">Checked</CheckBox>

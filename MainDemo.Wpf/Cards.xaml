@@ -75,7 +75,7 @@
                         <materialDesign:PackIcon Kind="ShareVariant" />
                     </Button>
                     <StackPanel Grid.Row="1" Margin="8 24 8 4" >
-                        <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}" Margin="0">E.T. the Extra-Terrestrial</TextBlock>
+                        <TextBlock Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Margin="0">E.T. the Extra-Terrestrial</TextBlock>
                         <Viewbox Margin="0 4 0 8" Height="16" HorizontalAlignment="Left">
                             <materialDesign:RatingBar Value="3" Orientation="Horizontal" Foreground="Gold" Margin="0" />
                         </Viewbox>
@@ -132,7 +132,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Margin="16 16 16 4" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Call Jennifer</TextBlock>
+                        <TextBlock Grid.Row="0" Margin="16 16 16 4" Style="{StaticResource MaterialDesignHeadline5TextBlock}">Call Jennifer</TextBlock>
                         <Separator Grid.Row="1" Style="{StaticResource MaterialDesignLightSeparator}"/>
                         <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody2TextBlock}">March 19, 2016</TextBlock>
                         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="16 0 16 8" HorizontalAlignment="Right">

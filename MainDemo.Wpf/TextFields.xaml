@@ -72,7 +72,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Common Fields</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadline5TextBlock}">Common Fields</TextBlock>
         <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" />
         <smtx:XamlDisplay Key="fields_1" Grid.Column="1" Grid.Row="1">
             <TextBox x:Name="NameTextBox"
@@ -96,7 +96,7 @@
                 <ComboBoxItem>Windows</ComboBoxItem>
             </ComboBox>
         </smtx:XamlDisplay>
-        <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32 0 0 0">Multi-line</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="32 0 0 0">Multi-line</TextBlock>
 
         <smtx:XamlDisplay Key="fields_3" Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Margin="32 0 0 0">
             <TextBox TextWrapping="Wrap" VerticalAlignment="Stretch"
@@ -174,7 +174,7 @@
         </smtx:XamlDisplay>
 
         <StackPanel Grid.Row="5" Grid.Column="4" Grid.RowSpan="3" Margin="32 16 0 0">
-            <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Virtualised Comboboxes</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}">Virtualised Comboboxes</TextBlock>
             <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
                 <smtx:XamlDisplay Key="fields_10">
                     <ComboBox materialDesign:HintAssist.Hint="Virtualisation" 
@@ -247,7 +247,7 @@
                     </ComboBox>
                 </smtx:XamlDisplay>
             </StackPanel>
-            <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 16 0 5">Disabled Controls</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="0 16 0 5">Disabled Controls</TextBlock>
             <StackPanel Orientation="Horizontal">
                 <smtx:XamlDisplay Key="fields_13">
                     <TextBox materialDesign:HintAssist.Hint="I'm Disabled" IsEnabled="False" MinWidth="72"/>
@@ -302,7 +302,7 @@
                     FontSize="24"/>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+        <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                    Margin="0 48 0 0">DataTemplate Test</TextBlock>
 
         <smtx:XamlDisplay Key="fields_20" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 12 0 0" HorizontalAlignment="Left">
@@ -319,7 +319,7 @@
                 </ContentControl.ContentTemplate>
             </ContentControl>
         </smtx:XamlDisplay>
-        <TextBlock Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+        <TextBlock Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                    Margin="0 16 0 0">DataTemplateSelector Test</TextBlock>
         <smtx:XamlDisplay Key="fields_21" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 12 0 0" HorizontalAlignment="Left">
             <ContentControl Content="{Binding DemoItem}">
@@ -339,7 +339,7 @@
                 </ContentControl.ContentTemplateSelector>
             </ContentControl>
         </smtx:XamlDisplay>
-        <TextBlock Grid.Row="9" Grid.Column="4" Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+        <TextBlock Grid.Row="9" Grid.Column="4" Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                    Margin="0 48 0 0">Tight Space Validation</TextBlock>
         <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="4">
             <smtx:XamlDisplay Key="fields_22" HorizontalAlignment="Left">
@@ -402,7 +402,7 @@
             </StackPanel>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Filled text field</TextBlock>
+        <TextBlock Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="0,32,0,16">Filled text field</TextBlock>
         <smtx:XamlDisplay Key="fields_25" Grid.Row="14" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
             <StackPanel>
                 <CheckBox x:Name="MaterialDesignFilledTextFieldTextBoxEnabledComboBox"
@@ -413,7 +413,7 @@
             </StackPanel>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="15" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Outlined text field</TextBlock>
+        <TextBlock Grid.Row="15" Grid.Column="4" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="32,32,0,16">Outlined text field</TextBlock>
         <smtx:XamlDisplay Key="fields_26" Grid.Row="16" Grid.Column="4" Grid.RowSpan="2">
             <StackPanel>
                 <CheckBox x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" 
@@ -424,7 +424,7 @@
             </StackPanel>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0,32,0,16">Filled password field</TextBlock>
+        <TextBlock Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="0,32,0,16">Filled password field</TextBlock>
         <smtx:XamlDisplay Key="fields_28" Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="3">
             <StackPanel>
                 <CheckBox x:Name="MaterialDesignFilledPasswordFieldPasswordBoxEnabledComboBox"
@@ -436,7 +436,7 @@
             </StackPanel>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="18" Grid.Column="4" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32,32,0,16">Outlined password field</TextBlock>
+        <TextBlock Grid.Row="18" Grid.Column="4" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="32,32,0,16">Outlined password field</TextBlock>
         <smtx:XamlDisplay Key="fields_29" Grid.Row="19" Grid.Column="4" Margin="32,0,0,0">
             <StackPanel>
                 <CheckBox x:Name="MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox"
