@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Rating bar</TextBlock>
+        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}">Rating bar</TextBlock>
         <StackPanel Margin="0 16 0 0" Orientation="Horizontal">
             <smtx:XamlDisplay Key="buttons_58" VerticalContentAlignment="Top" Margin="5 0 0 5">
                 <materialDesign:RatingBar Value="3" x:Name="BasicRatingBar"  ValueChanged="BasicRatingBar_ValueChanged"/>

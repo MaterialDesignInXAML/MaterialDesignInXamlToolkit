@@ -43,7 +43,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Buttons</TextBlock>
+        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}">Buttons</TextBlock>
         <StackPanel Grid.Row="1">
             <StackPanel Orientation="Horizontal" Margin="0 24 0 0" >
                 <smtx:XamlDisplay Key="buttons_1" Margin="8 0">
@@ -226,7 +226,7 @@
             </StackPanel>
         </StackPanel>
         <Border Margin="0 24 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="2" />
-        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                    Grid.Row="3" Margin="0 24">Buttons - With Custom Corner Radius</TextBlock>
         <StackPanel Grid.Row="4" Orientation="Horizontal">
             <smtx:XamlDisplay Key="button_roundcorner_1" Margin="8 0">
@@ -272,7 +272,7 @@
             
         </StackPanel>
         <Border Margin="0 24 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="5" />
-        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                    Grid.Row="6" Margin="0 24">Buttons - With Progress</TextBlock>
         <StackPanel Grid.Row="7">
             <StackPanel Orientation="Horizontal">
@@ -374,7 +374,7 @@
 
         </StackPanel>
         <Border Margin="0 24 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="8" />
-        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                    Grid.Row="9" Margin="0 24">PopupBox</TextBlock>
         <StackPanel Grid.Row="10" Orientation="Horizontal">
             <smtx:XamlDisplay Key="buttons_10" Margin="8 0">
@@ -403,7 +403,7 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="8,8,8,16">OPTIONS</TextBlock>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="8,8,8,16">OPTIONS</TextBlock>
                             <TextBox Grid.Column="0" Grid.Row="1" materialDesign:HintAssist.Hint="Setting 1" Text="200"/>
                             <TextBox Grid.Column="0" Grid.Row="2" materialDesign:HintAssist.Hint="Setting 2" Text="400"/>
                             <TextBox Grid.Column="0" Grid.Row="3" materialDesign:HintAssist.Hint="Setting 3" Text="600"/>

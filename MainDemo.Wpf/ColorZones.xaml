@@ -10,8 +10,8 @@
     <ScrollViewer>
         <StackPanel>
             <StackPanel Margin="16">
-                <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}">Colour Zones</TextBlock>
-                <TextBlock TextWrapping="Wrap" MaxWidth="800" Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubheadingTextBlock}">The ColorZone control allows you to  easily define striking blocks of colour to give your application extra clarity and style, whilst still remaining within the bounds of your Material Design palette.</TextBlock>
+                <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}">Colour Zones</TextBlock>
+                <TextBlock TextWrapping="Wrap" MaxWidth="800" Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">The ColorZone control allows you to  easily define striking blocks of colour to give your application extra clarity and style, whilst still remaining within the bounds of your Material Design palette.</TextBlock>
                 <TextBlock Margin="0 16 0 0" FontSize="10">Invert the basic paper/body colours.</TextBlock>
             </StackPanel>
             <smtx:XamlDisplay Key="color_zones_inverted">
@@ -32,7 +32,7 @@
                 </materialDesign:ColorZone>
             </smtx:XamlDisplay>
             
-            <TextBlock Margin="0 16 0 0" TextWrapping="Wrap" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Use primary light back and fore colours.</TextBlock>
+            <TextBlock Margin="0 16 0 0" TextWrapping="Wrap" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use primary light back and fore colours.</TextBlock>
             <smtx:XamlDisplay Key="color_zones_primary_light">
                 <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
                     <StackPanel Orientation="Horizontal">
@@ -42,7 +42,7 @@
                 </materialDesign:ColorZone>
             </smtx:XamlDisplay>
             
-            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Use primary mid colours, and nest colour zones!</TextBlock>
+            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use primary mid colours, and nest colour zones!</TextBlock>
             <smtx:XamlDisplay Key="color_zones_primary_mid">
                 <materialDesign:ColorZone Mode="PrimaryMid" Padding="16">
                     <DockPanel>
@@ -79,7 +79,7 @@
                 </materialDesign:ColorZone>
             </smtx:XamlDisplay>
             
-            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Add in a corner radius and shadow.</TextBlock>
+            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Add in a corner radius and shadow.</TextBlock>
             <smtx:XamlDisplay Key="color_zones_primary_dark">
                 <materialDesign:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="3" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="2">
                     <StackPanel Orientation="Horizontal">
@@ -89,7 +89,7 @@
                 </materialDesign:ColorZone>
             </smtx:XamlDisplay>
             
-            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Use accent back and fore colours.</TextBlock>
+            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use accent back and fore colours.</TextBlock>
             <smtx:XamlDisplay Key="color_zones_accent">
                 <materialDesign:ColorZone Mode="Accent" Padding="16">
                     <StackPanel Orientation="Horizontal">

@@ -12,7 +12,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}">Chips</TextBlock>
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}">Chips</TextBlock>
         <StackPanel Grid.Row="1" Margin="0 16 0 0">
             <WrapPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
                 <smtx:XamlDisplay Key="chips_1" Margin="0 0 6 4">

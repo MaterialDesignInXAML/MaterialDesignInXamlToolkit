@@ -29,7 +29,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}">Basic Tree View:</TextBlock>
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}">Basic Tree View:</TextBlock>
         <smtx:XamlDisplay Key="trees_1" Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Top">
             <TreeView MinWidth="220">
                 <TreeViewItem Header="Fruit">
@@ -101,7 +101,7 @@
             </TreeView>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Column="1" Margin="32 0 0 0" Style="{StaticResource MaterialDesignTitleTextBlock}">MVVM/Binding:</TextBlock>
+        <TextBlock Grid.Column="1" Margin="32 0 0 0" Style="{StaticResource MaterialDesignHeadline6TextBlock}">MVVM/Binding:</TextBlock>
         <smtx:XamlDisplay Key="trees_2" Grid.Column="1" Grid.Row="1" 
                           Margin="32 0 0 0"
                           VerticalAlignment="Top" VerticalContentAlignment="Top">
@@ -152,7 +152,7 @@
             </Grid>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignTitleTextBlock}">Additional node content, syntax 1:</TextBlock>
+        <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline6TextBlock}">Additional node content, syntax 1:</TextBlock>
         <smtx:XamlDisplay Key="trees_3" Grid.Row="3">
             <TreeView>
                 <materialDesign:TreeViewAssist.AdditionalTemplate>
@@ -175,7 +175,7 @@
             </TreeView>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="2" Grid.Column="1" Margin="32 0 0 0" Style="{StaticResource MaterialDesignTitleTextBlock}">Additional node content, syntax 2:</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="32 0 0 0" Style="{StaticResource MaterialDesignHeadline6TextBlock}">Additional node content, syntax 2:</TextBlock>
         <smtx:XamlDisplay Key="trees_4" Grid.Row="3" Grid.Column="1" Margin="32 0 0 0" >
             <TreeView>
                 <materialDesign:TreeViewAssist.AdditionalTemplateSelector>
@@ -208,7 +208,7 @@
             </TreeView>
         </smtx:XamlDisplay>
 
-        <TextBlock Grid.Row="2" Grid.Column="2" Margin="32 0 0 0" Style="{StaticResource MaterialDesignTitleTextBlock}">Additional node content, showcase:</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2" Margin="32 0 0 0" Style="{StaticResource MaterialDesignHeadline6TextBlock}">Additional node content, showcase:</TextBlock>
         <smtx:XamlDisplay Key="trees_5" Grid.Row="3" Grid.Column="2" Margin="32 0 0 0" >
             <TreeView DisplayMemberPath="Name" MinWidth="220">
                 <TreeView.Resources>
