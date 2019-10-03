@@ -33,7 +33,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 # ![Alt text](web/images/MD4XAML28.png "In Action") See It Action
 
 * Download a pre-compiled demo from the [releases](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/releases) page.
-* Download the source and run the demo (compiling source requires VS2017+).
+* Download the source and run the demo ([more information](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Compiling-From-Source)).
 * Checkout [doobry](http://materialdesigninxaml.net/doobry).
 * Checkout [F1ix](http://materialdesigninxaml.net/f1ix).
 * Checkout [Motion List](https://github.com/MaterialDesignInXAML/MotionList).
