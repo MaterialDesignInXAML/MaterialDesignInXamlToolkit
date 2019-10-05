@@ -241,7 +241,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Ellipse x:Name="TodayBackground"
-                                 Fill="{DynamicResource PrimaryHueLightBrush}"
+                                 Fill="{DynamicResource SecondaryAccentBrush}"
                                  Opacity="0" />
                         <Ellipse x:Name="SelectedBackground"
                                  Fill="{DynamicResource PrimaryHueMidBrush}"
