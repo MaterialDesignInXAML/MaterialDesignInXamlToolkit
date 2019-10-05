@@ -1199,6 +1199,7 @@ namespace MaterialDesignThemes.Wpf
         GrainOff=BarleyOff,
         WheatOff=BarleyOff,
         Barn,
+        Farm=Barn,
         Barrel,
         Baseball,
         BaseballBat,
