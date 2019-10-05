@@ -15,123 +15,124 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Margin="8" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}">ListBox</TextBlock>
-        <Grid Grid.Row="1">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid Margin="8" >
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <smtx:XamlDisplay Key="list_1" Grid.Column="0">
-                <ListBox IsEnabled="{Binding IsChecked, ElementName=EnableListBox}">
-                    <TextBlock>Plain</TextBlock>
-                    <TextBlock>Old</TextBlock>
-                    <TextBlock>ListBox</TextBlock>
-                    <TextBlock>Full of junk</TextBlock>
-                </ListBox>
-            </smtx:XamlDisplay>
-            <CheckBox Name="EnableListBox" Grid.Column="0"  Grid.Row="1" IsChecked="True">Enabled</CheckBox>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}">ListBox</TextBlock>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <smtx:XamlDisplay Key="list_1" Grid.Column="0">
+                    <ListBox IsEnabled="{Binding IsChecked, ElementName=EnableListBox}">
+                        <TextBlock>Plain</TextBlock>
+                        <TextBlock>Old</TextBlock>
+                        <TextBlock>ListBox</TextBlock>
+                        <TextBlock>Full of junk</TextBlock>
+                    </ListBox>
+                </smtx:XamlDisplay>
+                <CheckBox Name="EnableListBox" Grid.Column="0"  Grid.Row="1" IsChecked="True">Enabled</CheckBox>
 
-            <smtx:XamlDisplay Key="list_2" Grid.Column="1" Grid.Row="0">
-                <!-- piece together your own items control to create some nice stuff that will make everyone think you are cool. and rightly so, because you are cool.  you might even be a hipster for all I know -->
-                <ItemsControl  ItemsSource="{Binding Items1}"
+                <smtx:XamlDisplay Key="list_2" Grid.Column="1" Grid.Row="0">
+                    <!-- piece together your own items control to create some nice stuff that will make everyone think you are cool. and rightly so, because you are cool.  you might even be a hipster for all I know -->
+                    <ItemsControl  ItemsSource="{Binding Items1}"
                       Grid.IsSharedSizeScope="True"
                       Margin="12 0 12 0">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="{x:Type domain:SelectableViewModel}">
-                            <Border x:Name="Border" Padding="8">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition SharedSizeGroup="Checkerz" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding IsSelected}"/>
-                                    <StackPanel Margin="8 0 0 0" Grid.Column="1">
-                                        <TextBlock FontWeight="Bold" Text="{Binding Name}" />
-                                        <TextBlock Text="{Binding Description}" />
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-                            <DataTemplate.Triggers>
-                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
-                                </DataTrigger>
-                            </DataTemplate.Triggers>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </smtx:XamlDisplay>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type domain:SelectableViewModel}">
+                                <Border x:Name="Border" Padding="8">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox VerticalAlignment="Center" IsChecked="{Binding IsSelected}"/>
+                                        <StackPanel Margin="8 0 0 0" Grid.Column="1">
+                                            <TextBlock FontWeight="Bold" Text="{Binding Name}" />
+                                            <TextBlock Text="{Binding Description}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </smtx:XamlDisplay>
 
-            <smtx:XamlDisplay Key="list_3" Grid.Column="2" Grid.Row="0">
-                <!-- and here's another -->
-                <ItemsControl ItemsSource="{Binding Items2}" Grid.IsSharedSizeScope="True">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="{x:Type domain:SelectableViewModel}">
-                            <Border x:Name="Border" Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition SharedSizeGroup="Checkerz" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <ToggleButton VerticalAlignment="Center" IsChecked="{Binding IsSelected}"
+                <smtx:XamlDisplay Key="list_3" Grid.Column="2" Grid.Row="0">
+                    <!-- and here's another -->
+                    <ItemsControl ItemsSource="{Binding Items2}" Grid.IsSharedSizeScope="True">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type domain:SelectableViewModel}">
+                                <Border x:Name="Border" Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <ToggleButton VerticalAlignment="Center" IsChecked="{Binding IsSelected}"
                                                   Style="{StaticResource MaterialDesignActionLightToggleButton}"
                                                   Content="{Binding Code}" />
-                                    <StackPanel Margin="8 0 0 0" Grid.Column="1">
-                                        <TextBlock FontWeight="Bold" Text="{Binding Name}" />
-                                        <TextBlock Text="{Binding Description}" />
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-                            <DataTemplate.Triggers>
-                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
-                                </DataTrigger>
-                            </DataTemplate.Triggers>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                                        <StackPanel Margin="8 0 0 0" Grid.Column="1">
+                                            <TextBlock FontWeight="Bold" Text="{Binding Name}" />
+                                            <TextBlock Text="{Binding Description}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </smtx:XamlDisplay>
+            </Grid>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Grid.Row="2" Margin="0 32 0 0">ListView</TextBlock>
+            <smtx:XamlDisplay Key="lists_4" Grid.Row="3">
+                <ListView>
+                    <ListViewItem>
+                        Hello
+                    </ListViewItem>
+                    <ListViewItem>
+                        World
+                    </ListViewItem>
+                    <ListViewItem>
+                        :)
+                    </ListViewItem>
+                </ListView>
+            </smtx:XamlDisplay>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Grid.Row="4" Margin="0 32 0 0">ListView.GridView</TextBlock>
+            <smtx:XamlDisplay Key="lists_5" Grid.Row="5">
+                <ListView ItemsSource="{Binding Items1}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Code}" Header="Code" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Description}" Header="Description" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </smtx:XamlDisplay>
         </Grid>
-        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Grid.Row="2" Margin="0 32 0 0">ListView</TextBlock>
-        <smtx:XamlDisplay Key="lists_4" Grid.Row="3">
-            <ListView>
-                <ListViewItem>
-                    Hello
-                </ListViewItem>
-                <ListViewItem>
-                    World
-                </ListViewItem>
-                <ListViewItem>
-                    :)
-                </ListViewItem>
-            </ListView>
-        </smtx:XamlDisplay>
-        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Grid.Row="4" Margin="0 32 0 0">ListView.GridView</TextBlock>
-        <smtx:XamlDisplay Key="lists_5" Grid.Row="5">
-            <ListView ItemsSource="{Binding Items1}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Code}" Header="Code" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Description}" Header="Description" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </smtx:XamlDisplay>
-    </Grid>
-
+    </ScrollViewer>
 </UserControl>
 
