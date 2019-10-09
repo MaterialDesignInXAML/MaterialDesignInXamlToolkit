@@ -263,6 +263,7 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="wpf:ToggleButtonAssist.SwitchTrackBackground" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Padding" Value="0 1 0 0"/>
         <Setter Property="Template">
@@ -331,9 +332,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid>
-                            <Rectangle x:Name="Track"
-                                       Fill="Black" HorizontalAlignment="Left" Height="15" Margin="4.211,5,4.211,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="40" RadiusY="7.5" RadiusX="7.5" Opacity="0.26"/>
-
+                            <Rectangle x:Name="Track" Fill= "{Binding Source=TemplatedParent, Path=(wpf:ToggleButtonAssist.SwitchTrackBackground)}" HorizontalAlignment="Left" Height="15" Margin="4.211,5,4.211,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="40" RadiusY="7.5" RadiusX="7.5" Opacity="0.26"/>
                             <Grid x:Name="ThumbHolder"
                                   HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Ellipse x:Name="RippleThumb"
@@ -372,7 +371,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="Thumb" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
-                            <Setter TargetName="Track" Property="Fill" Value="{DynamicResource PrimaryHueLightBrush}" />
+                                <Setter TargetName="Track" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.SwitchTrackBackground)}" />
                             <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
                         </Trigger>
                         <MultiTrigger>

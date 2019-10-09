@@ -149,6 +149,13 @@
                     </materialDesign:ToggleButtonAssist.OnContent>
                 </ToggleButton>
             </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="buttons_64" VerticalAlignment="Center" Margin="8 0 0 0">
+                <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
+                    <materialDesign:ToggleButtonAssist.SwitchTrackBackground>
+                        <SolidColorBrush Color="#ffab91"/>
+                    </materialDesign:ToggleButtonAssist.SwitchTrackBackground>
+                </ToggleButton>
+            </smtx:XamlDisplay>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="4" Margin="0 24 0 0" Orientation="Horizontal">
             <smtx:XamlDisplay Key="buttons_53" Margin="5 0 0 0" VerticalAlignment="Center">

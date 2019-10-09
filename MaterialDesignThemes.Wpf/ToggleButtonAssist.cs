@@ -1,10 +1,13 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
     public static class ToggleButtonAssist
     {
+        
         private static readonly DependencyPropertyKey HasOnContentPropertyKey =
             DependencyProperty.RegisterAttachedReadOnly(
                 "HasOnContent", typeof(bool), typeof(ToggleButtonAssist),
@@ -77,5 +80,21 @@ namespace MaterialDesignThemes.Wpf
         {
             return (DataTemplate) element.GetValue(OnContentTemplateProperty);
         }
+
+        public static DependencyProperty SwitchTrackBackgroundProperty =
+            DependencyProperty.RegisterAttached(
+                "SwitchTrackBackground", typeof(SolidColorBrush), typeof(ToggleButtonAssist),
+                new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+
+        public static void SetSwitchTrackBackground(DependencyObject element, SolidColorBrush value)
+        {
+            element.SetValue(SwitchTrackBackgroundProperty, value);
+        }
+
+        public static SolidColorBrush GetSwitchTrackBackground(DependencyObject element)
+        {
+            return (SolidColorBrush)element.GetValue(SwitchTrackBackgroundProperty);
+        }
+
     }
 }
