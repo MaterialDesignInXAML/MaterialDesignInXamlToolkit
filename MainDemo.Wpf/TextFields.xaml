@@ -20,6 +20,7 @@
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
                 <Setter Property="Margin" Value="0 8 0 8" />
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignPasswordBox}">
                 <Setter Property="Margin" Value="0 8 0 8" />
@@ -160,10 +161,13 @@
         </smtx:XamlDisplay>
         <smtx:XamlDisplay Key="fields_8" Grid.Row="4" Grid.Column="1">
             <TextBox materialDesign:HintAssist.Hint="Floating Hint" 
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                     VerticalAlignment="Center" />
         </smtx:XamlDisplay>
         <smtx:XamlDisplay Key="fields_9" Grid.Row="4" Grid.Column="3">
-            <ComboBox materialDesign:HintAssist.Hint="OS" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+            <ComboBox materialDesign:HintAssist.Hint="OS" 
+                      materialDesign:TextFieldAssist.HasClearButton="True" 
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                       materialDesign:TextFieldAssist.SuffixText="sw"
                       materialDesign:HintAssist.HelperText="Select one OS">
                 <ComboBoxItem>Android</ComboBoxItem>
@@ -262,7 +266,11 @@
         </StackPanel>
 
         <smtx:XamlDisplay Key="fields_16" Grid.Row="5" Grid.Column="1" Margin="0 8">
-            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="Good stuff" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:TextFieldAssist.SuffixText="mm">
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                     Text="Good stuff"
+                     VerticalAlignment="Center"
+                     materialDesign:TextFieldAssist.HasClearButton="True" 
+                     materialDesign:TextFieldAssist.SuffixText="mm">
                 <materialDesign:HintAssist.Hint>
                     <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
                         <materialDesign:PackIcon Kind="AccessPoint" />
