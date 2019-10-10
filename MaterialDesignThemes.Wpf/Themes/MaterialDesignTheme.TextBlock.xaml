@@ -6,7 +6,6 @@
 
     <Style TargetType="{x:Type TextBlock}" x:Key="MaterialDesignTextBlock">
         <Setter Property="Padding" Value="0,4" />
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="FontSize" Value="13" />
         <Setter Property="FontWeight" Value="Regular" />
     </Style>
