@@ -46,6 +46,7 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="ButtonRadiusRatio" Value=".835" />
         <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
+        <Setter Property="FlowDirection" Value="LeftToRight" />
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="ButtonStyle">
             <Setter.Value>
