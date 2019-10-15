@@ -7,7 +7,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class ToggleButtonAssist
     {
-        
+
         private static readonly DependencyPropertyKey HasOnContentPropertyKey =
             DependencyProperty.RegisterAttachedReadOnly(
                 "HasOnContent", typeof(bool), typeof(ToggleButtonAssist),
@@ -34,7 +34,7 @@ namespace MaterialDesignThemes.Wpf
         /// Allows on (IsChecked) content to be provided on supporting <see cref="ToggleButton"/> styles.
         /// </summary>
         public static readonly DependencyProperty OnContentProperty = DependencyProperty.RegisterAttached(
-            "OnContent", typeof (object), typeof (ToggleButtonAssist), new PropertyMetadata(default(object), OnContentPropertyChangedCallback));
+            "OnContent", typeof(object), typeof(ToggleButtonAssist), new PropertyMetadata(default(object), OnContentPropertyChangedCallback));
 
         private static void OnContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -56,14 +56,14 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public static object GetOnContent(DependencyObject element)
         {
-            return (object) element.GetValue(OnContentProperty);
+            return (object)element.GetValue(OnContentProperty);
         }
 
         /// <summary>
         /// Allows an on (IsChecked) template to be provided on supporting <see cref="ToggleButton"/> styles.
         /// </summary>
         public static readonly DependencyProperty OnContentTemplateProperty = DependencyProperty.RegisterAttached(
-            "OnContentTemplate", typeof (DataTemplate), typeof (ToggleButtonAssist), new PropertyMetadata(default(DataTemplate)));
+            "OnContentTemplate", typeof(DataTemplate), typeof(ToggleButtonAssist), new PropertyMetadata(default(DataTemplate)));
 
         /// <summary>
         /// Allows an on (IsChecked) template to be provided on supporting <see cref="ToggleButton"/> styles.
@@ -78,23 +78,35 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public static DataTemplate GetOnContentTemplate(DependencyObject element)
         {
-            return (DataTemplate) element.GetValue(OnContentTemplateProperty);
+            return (DataTemplate)element.GetValue(OnContentTemplateProperty);
         }
 
-        public static DependencyProperty SwitchTrackBackgroundProperty =
+        public static DependencyProperty SwitchTrackOnBackgroundProperty =
             DependencyProperty.RegisterAttached(
-                "SwitchTrackBackground", typeof(SolidColorBrush), typeof(ToggleButtonAssist),
-                new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+                "SwitchTrackOnBackground", typeof(SolidColorBrush), typeof(ToggleButtonAssist));
 
-        public static void SetSwitchTrackBackground(DependencyObject element, SolidColorBrush value)
+        public static void SetSwitchTrackOnBackground(DependencyObject element, SolidColorBrush value)
         {
-            element.SetValue(SwitchTrackBackgroundProperty, value);
+            element.SetValue(SwitchTrackOnBackgroundProperty, value);
         }
 
-        public static SolidColorBrush GetSwitchTrackBackground(DependencyObject element)
+        public static SolidColorBrush GetSwitchTrackOnBackground(DependencyObject element)
         {
-            return (SolidColorBrush)element.GetValue(SwitchTrackBackgroundProperty);
+            return (SolidColorBrush)element.GetValue(SwitchTrackOnBackgroundProperty);
         }
 
+        public static DependencyProperty SwitchTrackOffBackgroundProperty =
+            DependencyProperty.RegisterAttached(
+                "SwitchTrackOffBackground", typeof(SolidColorBrush), typeof(ToggleButtonAssist));
+
+        public static void SetSwitchTrackOffBackground(DependencyObject element, SolidColorBrush value)
+        {
+            element.SetValue(SwitchTrackOffBackgroundProperty, value);
+        }
+
+        public static SolidColorBrush GetSwitchTrackOffBackground(DependencyObject element)
+        {
+            return (SolidColorBrush)element.GetValue(SwitchTrackOffBackgroundProperty);
+        }
     }
 }
