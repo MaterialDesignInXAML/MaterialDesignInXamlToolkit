@@ -2727,6 +2727,8 @@ namespace MaterialDesignThemes.Wpf
         DebugStepInto,
         DebugStepOut,
         DebugStepOver,
+        Skip=DebugStepOver,
+        Jump=DebugStepOver,
         Decagram,
         Starburst=Decagram,
         DecagramOutline,
