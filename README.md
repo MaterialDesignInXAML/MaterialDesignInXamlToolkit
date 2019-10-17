@@ -30,7 +30,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 * Or, the more comprehensive [Starting Guide](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Getting-Started) guide.
 * Or, watch the [Material Design In XAML Toolkit An Introduction](https://www.youtube.com/watch?v=-n5yeEOsbCk) video.
 
-# ![Alt text](web/images/MD4XAML28.png "In Action") See It Action
+# ![Alt text](web/images/MD4XAML28.png "In Action") See It In Action
 
 * Download a pre-compiled demo from the [releases](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/releases) page.
 * Download the source and run the demo ([more information](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Compiling-From-Source)).
