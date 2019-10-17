@@ -34,6 +34,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 
 * Download a pre-compiled demo from the [releases](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/releases) page.
 * Download the source and run the demo ([more information](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Compiling-From-Source)).
+* Checkout [Keboo/MaterialDesign.Examples](https://github.com/Keboo/MaterialDesignInXaml.Examples)
 * Checkout [doobry](http://materialdesigninxaml.net/doobry).
 * Checkout [F1ix](http://materialdesigninxaml.net/f1ix).
 * Checkout [Motion List](https://github.com/MaterialDesignInXAML/MotionList).
