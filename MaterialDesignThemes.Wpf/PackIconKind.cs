@@ -898,6 +898,7 @@ namespace MaterialDesignThemes.Wpf
         AppsBox,
         Arch,
         Archive,
+        ArchiveOutline,
         ArmFlex,
         ArmFlexOutline,
         ArrangeBringForward,
