@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Navigation;
 using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -23,7 +23,7 @@ namespace MaterialDesignColors.WpfExample
 
         private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
+            Link.OpenInBrowser(e.Uri.AbsoluteUri);
         }
     }
 }
