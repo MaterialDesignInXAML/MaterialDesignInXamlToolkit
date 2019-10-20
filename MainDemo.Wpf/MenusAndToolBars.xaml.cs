@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -16,7 +16,7 @@ namespace MaterialDesignColors.WpfExample
 
         private void TwitterButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://twitter.com/James_Willock");
+            Link.OpenInBrowser("https://twitter.com/James_Willock");
         }
     }
 }
