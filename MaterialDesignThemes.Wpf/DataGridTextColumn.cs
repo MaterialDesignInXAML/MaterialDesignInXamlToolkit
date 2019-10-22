@@ -3,18 +3,18 @@ using System.Windows.Controls;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public class MaterialDataGridTextColumn : DataGridTextColumn
+    public class DataGridTextColumn : System.Windows.Controls.DataGridTextColumn
     {
         protected override object PrepareCellForEdit(FrameworkElement editingElement, RoutedEventArgs editingEventArgs)
         {
             var textBox = editingElement as TextBox;
             if (textBox != null)
-            {                
+            {
                 textBox.MaxLength = MaxLength;
                 textBox.SelectionStart = textBox.Text.Length;
             }
 
-            editingElement.Focus();            
+            editingElement.Focus();
 
             return null;
         }
