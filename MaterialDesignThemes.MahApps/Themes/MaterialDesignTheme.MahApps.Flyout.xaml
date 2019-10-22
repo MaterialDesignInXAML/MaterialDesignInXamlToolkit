@@ -4,7 +4,7 @@
                     xmlns:mahShared="http://metro.mahapps.com/winfx/xaml/shared"
                     xmlns:mahApps="clr-namespace:MaterialDesignThemes.MahApps"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+                    xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
 
     <DataTemplate x:Key="HeaderTemplate" x:Shared="False">
         <wpf:ColorZone x:Name="PART_ColorZone"
