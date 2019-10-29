@@ -27,7 +27,7 @@
                 <StackPanel>
                     <controls:ToggleSwitch IsChecked="True" HorizontalAlignment="Left" />
                     <Button Width="100" Margin="0 8 0 0" Content="Nice" HorizontalAlignment="Left"
-                            Style="{DynamicResource AccentedSquareButtonStyle}" />
+                            Style="{StaticResource MahApps.Styles.Button.AccentedSquare}" />
                 </StackPanel>
             </TabItem>
             <TabItem Header="Sliders">
@@ -56,7 +56,7 @@
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn Binding="{Binding IsChecked}"
                                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
+                                                EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                             <DataGridCheckBoxColumn.Header>
                                 <CheckBox IsChecked="False" IsEnabled="False"/>
                             </DataGridCheckBoxColumn.Header>

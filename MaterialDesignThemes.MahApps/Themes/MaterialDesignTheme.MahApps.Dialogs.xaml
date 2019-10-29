@@ -10,12 +10,25 @@
     <Style BasedOn="{StaticResource MaterialDesignFlatButton}"
            TargetType="{x:Type ButtonBase}" />
 
-    <Style x:Key="AccentedDialogSquareButton"
+    <Style x:Key="MahApps.Styles.Button.Dialogs" 
            BasedOn="{StaticResource MaterialDesignFlatButton}"
-           TargetType="{x:Type ButtonBase}" />
+           TargetType="{x:Type ButtonBase}">
+        <Setter Property="MinHeight" Value="35" />
+        <Setter Property="MinWidth" Value="80" />
+    </Style>
 
-    <Style x:Key="AccentedDialogHighlightedSquareButton"
+    <Style x:Key="MahApps.Styles.Button.Dialogs.Accent"
            BasedOn="{StaticResource MaterialDesignFlatButton}"
-           TargetType="{x:Type ButtonBase}"/>
+           TargetType="{x:Type ButtonBase}">
+        <Setter Property="MinHeight" Value="35" />
+        <Setter Property="MinWidth" Value="80" />
+    </Style>
+
+    <Style x:Key="MahApps.Styles.Button.Dialogs.AccentHighlight"
+           BasedOn="{StaticResource MaterialDesignFlatButton}"
+           TargetType="{x:Type ButtonBase}">
+        <Setter Property="MinHeight" Value="35" />
+        <Setter Property="MinWidth" Value="80" />
+    </Style>
 
 </ResourceDictionary>
