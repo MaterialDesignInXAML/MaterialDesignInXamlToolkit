@@ -1,13 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <FontFamily x:Key="DefaultFont">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
-    <FontFamily x:Key="HeaderFontFamily">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
-    <FontFamily x:Key="ContentFontFamily">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
-    <FontFamily x:Key="ToggleSwitchFontFamily">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
-    <FontFamily x:Key="ToggleSwitchHeaderFontFamily">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+    <FontFamily x:Key="MahApps.Fonts.Default">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+    <FontFamily x:Key="MahApps.Fonts.Header">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+    <FontFamily x:Key="MahApps.Fonts.Content">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+    <FontFamily x:Key="MahApps.Fonts.ToggleSwitch">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+    <FontFamily x:Key="MahApps.Fonts.ToggleSwitch.Header">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
 
-    <FontFamily x:Key="ToggleSwitchFontFamily.Win10">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
-    <FontFamily x:Key="ToggleSwitchHeaderFontFamily.Win10">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+    <FontFamily x:Key="MahApps.Fonts.ToggleSwitch.Win10">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+    <FontFamily x:Key="MahApps.Fonts.ToggleSwitch.Header.Win10">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
 
 </ResourceDictionary>

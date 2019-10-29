@@ -4,7 +4,7 @@
                     xmlns:mahShared="http://metro.mahapps.com/winfx/xaml/shared"
                     xmlns:mahApps="clr-namespace:MaterialDesignThemes.MahApps"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+                    xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
 
     <DataTemplate x:Key="HeaderTemplate" x:Shared="False">
         <wpf:ColorZone x:Name="PART_ColorZone"
@@ -29,11 +29,10 @@
                             <mahShared:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type mah:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type mah:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    <ContentControl Style="{DynamicResource PathIconContentControlStyle}"
-                                    Content="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
-                                    FlowDirection="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:Flyout}}, Path=FlowDirection}"
-                                    Width="16"
-                                    Height="16" />
+                    <wpf:PackIcon Kind="ChevronRight"
+                                  FlowDirection="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:Flyout}}, Path=FlowDirection}"
+                                  Width="{DynamicResource MahApps.Sizes.Font.FlyoutHeader}"
+                                  Height="{DynamicResource MahApps.Sizes.Font.FlyoutHeader}" />
                 </Button>
                 <ContentControl x:Name="PART_BackHeaderText"
                                 Margin="15 0 0 0"
@@ -238,7 +237,7 @@
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="mah:ControlsHelper.HeaderFontSize" Value="{DynamicResource FlyoutHeaderFontSize}" />
+        <Setter Property="mah:ControlsHelper.HeaderFontSize" Value="{DynamicResource MahApps.Sizes.Font.FlyoutHeader}" />
         <Setter Property="mah:ControlsHelper.HeaderMargin" Value="10" />
         <Setter Property="HeaderTemplate" Value="{StaticResource HeaderTemplate}" />
         <Setter Property="KeyboardNavigation.ControlTabNavigation" Value="Cycle" />

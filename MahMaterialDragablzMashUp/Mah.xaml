@@ -6,6 +6,7 @@
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:local="clr-namespace:MahAppsDragablzDemo"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:mdix="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
@@ -26,7 +27,7 @@
                 <StackPanel>
                     <controls:ToggleSwitch IsChecked="True" HorizontalAlignment="Left" />
                     <Button Width="100" Margin="0 8 0 0" Content="Nice" HorizontalAlignment="Left"
-                            Style="{DynamicResource AccentedSquareButtonStyle}" />
+                            Style="{StaticResource MahApps.Styles.Button.AccentedSquare}" />
                 </StackPanel>
             </TabItem>
             <TabItem Header="Sliders">
@@ -53,13 +54,16 @@
                         </ObjectDataProvider>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Binding="{Binding IsChecked}">
+                        <DataGridCheckBoxColumn Binding="{Binding IsChecked}"
+                                                ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                                                EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                             <DataGridCheckBoxColumn.Header>
                                 <CheckBox IsChecked="False" IsEnabled="False"/>
                             </DataGridCheckBoxColumn.Header>
                         </DataGridCheckBoxColumn>
-                        <DataGridTextColumn Header="Text" Binding="{Binding Text}"/>
-                        <DataGridComboBoxColumn Header="Combo" SelectedItemBinding="{Binding EnumValue}" ItemsSource="{Binding Source={StaticResource EnumValues}}"/>
+                        <mdix:DataGridTextColumn Header="Text" Binding="{Binding Text}" 
+                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <mdix:DataGridComboBoxColumn Header="Combo" SelectedItemBinding="{Binding EnumValue}" ItemsSource="{Binding Source={StaticResource EnumValues}}"/>
                         <controls:DataGridNumericUpDownColumn Binding="{Binding IntValue}"
                                                               Header="Numeric"
                                                               Minimum="0"
