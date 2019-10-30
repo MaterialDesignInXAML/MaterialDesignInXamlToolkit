@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using MahApps.Metro;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignThemes.MahApps
@@ -12,10 +13,6 @@ namespace MaterialDesignThemes.MahApps
     {
         public static void SetMahApps(this ResourceDictionary resourceDictionary, ITheme theme, BaseTheme baseTheme)
         {
-            resourceDictionary["Theme.Name"] = "";
-            resourceDictionary["Theme.DisplayName"] = "";
-            resourceDictionary["Theme.ColorScheme"] = "";
-
             resourceDictionary.SetMahAppsBaseTheme(baseTheme);
 
             resourceDictionary.SetBrush("Theme.ShowcaseBrush", new SolidColorBrush(theme.SecondaryMid.Color));
@@ -248,11 +245,11 @@ namespace MaterialDesignThemes.MahApps
 
         internal static void SetMahAppsBaseTheme(this ResourceDictionary resourceDictionary, BaseTheme baseTheme)
         {
-            resourceDictionary["Theme.BaseColorScheme"] = baseTheme.ToString(); ;
-
+            var foo = ThemeManager.Themes;
             switch (baseTheme)
             {
                 case BaseTheme.Light:
+                    resourceDictionary["Theme.BaseColorScheme"] = ThemeManager.BaseColorLight;
                     resourceDictionary.SetColor("MahApps.Colors.Black", Color.FromArgb(0xFF, 0x00, 0x00, 0x00));
                     resourceDictionary.SetColor("MahApps.Colors.Black20", Color.FromArgb(0x51, 0x00, 0x00, 0x00));
                     resourceDictionary.SetColor("MahApps.Colors.White", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
@@ -296,6 +293,7 @@ namespace MaterialDesignThemes.MahApps
                     break;
 
                 case BaseTheme.Dark:
+                    resourceDictionary["Theme.BaseColorScheme"] = ThemeManager.BaseColorDark;
                     resourceDictionary.SetColor("MahApps.Colors.Black", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
                     resourceDictionary.SetColor("MahApps.Colors.Black20", Color.FromArgb(0x51, 0xFF, 0xFF, 0xFF));
                     resourceDictionary.SetColor("MahApps.Colors.White", Color.FromArgb(0xFF, 0x25, 0x25, 0x25));
