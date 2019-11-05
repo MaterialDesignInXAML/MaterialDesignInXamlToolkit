@@ -54,7 +54,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static bool GetIsIndeterminate(DependencyObject element)
         {
-            return (bool)element.GetValue(IndicatorForegroundProperty);
+            return (bool)element.GetValue(IsIndeterminateProperty);
         }
 
         public static readonly DependencyProperty IndicatorForegroundProperty = DependencyProperty.RegisterAttached(
@@ -80,7 +80,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static Brush GetIndicatorBackground(DependencyObject element)
         {
-            return (Brush)element.GetValue(IndicatorForegroundProperty);
+            return (Brush)element.GetValue(IndicatorBackgroundProperty);
         }
 
         public static readonly DependencyProperty IsIndicatorVisibleProperty = DependencyProperty.RegisterAttached(

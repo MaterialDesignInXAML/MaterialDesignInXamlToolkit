@@ -64,12 +64,12 @@ namespace MaterialDesignThemes.Wpf
 
         public static PlacementMode GetPopupPlacement(DependencyObject element)
         {
-            return (PlacementMode)element.GetValue(UsePopupProperty);
+            return (PlacementMode)element.GetValue(PopupPlacementProperty);
         }
 
         public static void SetPopupPlacement(DependencyObject element, PlacementMode value)
         {
-            element.SetValue(UsePopupProperty, value);
+            element.SetValue(PopupPlacementProperty, value);
         }
 
         /// <summary>
