@@ -37,7 +37,7 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetBrush("MahApps.Brushes.WhiteColor", (Color)resourceDictionary["MahApps.Colors.White"]);
             resourceDictionary.SetBrush("MahApps.Brushes.BlackColor", (Color)resourceDictionary["MahApps.Colors.Black"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.WindowTitle", (Color)resourceDictionary["MahApps.Colors.Accent"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.WindowTitle", (Color)resourceDictionary["MahApps.Colors.HighlightDark"]);
             resourceDictionary.SetBrush("MahApps.Brushes.WindowTitle.NonActive", Color.FromRgb(0x80, 0x80, 0x80));
             resourceDictionary.SetBrush("MahApps.Brushes.Border.NonActive", Color.FromRgb(0x80, 0x80, 0x80));
 
