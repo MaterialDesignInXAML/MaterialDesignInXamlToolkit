@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignColors.WpfExample
 {
@@ -17,27 +18,27 @@ namespace MaterialDesignColors.WpfExample
 
         private void GitHubButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Process.Start(ConfigurationManager.AppSettings["GitHub"]);
+            Link.OpenInBrowser(ConfigurationManager.AppSettings["GitHub"]);
         }
 
         private void TwitterButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://twitter.com/James_Willock");
+            Link.OpenInBrowser("https://twitter.com/James_Willock");
         }
 
         private void ChatButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit");
+            Link.OpenInBrowser("https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit");
         }
 
         private void EmailButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Process.Start("mailto://james@dragablz.net");
+            Link.OpenInBrowser("mailto://james@dragablz.net");
         }
 
         private void DonateButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://opencollective.com/materialdesigninxaml");
+            Link.OpenInBrowser("https://opencollective.com/materialdesigninxaml");
         }
     }
 }

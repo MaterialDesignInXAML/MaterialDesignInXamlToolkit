@@ -30,16 +30,17 @@ Comprehensive and easy to use Material Design theme and control library for the 
 * Or, the more comprehensive [Starting Guide](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Getting-Started) guide.
 * Or, watch the [Material Design In XAML Toolkit An Introduction](https://www.youtube.com/watch?v=-n5yeEOsbCk) video.
 
-# ![Alt text](web/images/MD4XAML28.png "In Action") See It Action
+# ![Alt text](web/images/MD4XAML28.png "In Action") See It In Action
 
 * Download a pre-compiled demo from the [releases](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/releases) page.
 * Download the source and run the demo ([more information](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Compiling-From-Source)).
+* Checkout [Keboo/MaterialDesign.Examples](https://github.com/Keboo/MaterialDesignInXaml.Examples)
 * Checkout [doobry](http://materialdesigninxaml.net/doobry).
 * Checkout [F1ix](http://materialdesigninxaml.net/f1ix).
 * Checkout [Motion List](https://github.com/MaterialDesignInXAML/MotionList).
 
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Source Code
-To load the source project you will need Visual Studio 2017.  Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (``` Install-Package MaterialDesignThemes ```). There are two demo projects in the solution, restore the necessary NuGet packages and correct the programming syntax that is not compatible with C# versions lower than C# 7.0 (```currently used in Visual Studio 2017```). Then, you should be able to fire both of these projects up.  One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
+To load the source project you will need Visual Studio 2019.  Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (``` Install-Package MaterialDesignThemes ```). There are two demo projects in the solution, restore the necessary NuGet packages and correct the programming syntax that is not compatible with C# versions lower than C# 8.0 (```currently used in Visual Studio 2019```). Then, you should be able to fire both of these projects up.  One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
 
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 

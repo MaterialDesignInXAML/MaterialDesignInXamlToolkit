@@ -11,6 +11,7 @@
     <Version>1.0.1</Version>
     <AssemblyVersion>1.0.1</AssemblyVersion>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <Import Project="..\Versioning.targets" />
   <ItemGroup>
