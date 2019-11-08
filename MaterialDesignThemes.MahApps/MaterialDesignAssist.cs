@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -17,7 +15,9 @@ namespace MaterialDesignThemes.MahApps
 
             resourceDictionary.SetBrush("Theme.ShowcaseBrush", new SolidColorBrush(theme.SecondaryMid.Color));
 
+            resourceDictionary.SetColor("MahApps.Colors.HighlightLight", theme.PrimaryLight.Color);
             resourceDictionary.SetColor("MahApps.Colors.Highlight", theme.PrimaryMid.Color);
+            resourceDictionary.SetColor("MahApps.Colors.HighlightDark", theme.PrimaryDark.Color);
             resourceDictionary.SetColor("MahApps.Colors.AccentBase", theme.SecondaryDark.Color);
             resourceDictionary.SetColor("MahApps.Colors.Accent", theme.SecondaryMid.Color);
             resourceDictionary.SetColor("MahApps.Colors.Accent2", theme.SecondaryMid.Color);
@@ -37,7 +37,7 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetBrush("MahApps.Brushes.WhiteColor", (Color)resourceDictionary["MahApps.Colors.White"]);
             resourceDictionary.SetBrush("MahApps.Brushes.BlackColor", (Color)resourceDictionary["MahApps.Colors.Black"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.WindowTitle", (Color)resourceDictionary["MahApps.Colors.Accent"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.WindowTitle", (Color)resourceDictionary["MahApps.Colors.HighlightDark"]);
             resourceDictionary.SetBrush("MahApps.Brushes.WindowTitle.NonActive", Color.FromRgb(0x80, 0x80, 0x80));
             resourceDictionary.SetBrush("MahApps.Brushes.Border.NonActive", Color.FromRgb(0x80, 0x80, 0x80));
 
