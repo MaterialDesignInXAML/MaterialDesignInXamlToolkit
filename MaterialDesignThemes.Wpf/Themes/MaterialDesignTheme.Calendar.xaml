@@ -244,7 +244,7 @@
                                  Fill="Transparent"
                                  Opacity="0" 
                                  StrokeThickness="1"
-                                 Stroke="Black"/>
+                                 Stroke="{TemplateBinding Foreground}"/>
                         <Ellipse x:Name="SelectedBackground"
                                  Fill="{DynamicResource PrimaryHueMidBrush}"
                                  Opacity="0" />
