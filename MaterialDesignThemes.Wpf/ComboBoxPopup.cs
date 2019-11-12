@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +14,13 @@ namespace MaterialDesignThemes.Wpf
         Down,
         Up,
         Classic
+    }
+
+    public enum PopupPlacementMode
+    {
+        Auto,
+        Down,
+        Up
     }
 
     public class ComboBoxPopup : Popup
@@ -111,6 +117,22 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (ComboBoxPopupPlacement)GetValue(PopupPlacementProperty); }
             set { SetValue(PopupPlacementProperty, value); }
+        }
+
+        #endregion
+
+        #region PopupPlacementMode property
+
+        public static readonly DependencyProperty PopupPlacementModeProperty
+            = DependencyProperty.Register(nameof(PopupPlacementMode),
+                typeof(PopupPlacementMode),
+                typeof(ComboBoxPopup),
+                new PropertyMetadata(PopupPlacementMode.Auto));
+
+        public PopupPlacementMode PopupPlacementMode
+        {
+            get { return (PopupPlacementMode)GetValue(PopupPlacementModeProperty); }
+            set { SetValue(PopupPlacementModeProperty, value); }
         }
 
         #endregion
@@ -227,23 +249,37 @@ namespace MaterialDesignThemes.Wpf
             SetupVisiblePlacementWidth(visualAncestry);
 
             var data = GetPositioningData(visualAncestry, popupSize, targetSize, offset);
-            var preferUpIfSafe = data.LocationY + data.PopupSize.Height > data.ScreenHeight;
 
-            if (ClassicMode
-                || data.LocationX + data.PopupSize.Width - data.RealOffsetX > data.ScreenWidth
-                || data.LocationX - data.RealOffsetX < 0
-                || !preferUpIfSafe && data.LocationY - Math.Abs(data.NewDownY) < 0)
+            if (PopupPlacementMode == PopupPlacementMode.Auto)
             {
-                SetCurrentValue(PopupPlacementProperty, ComboBoxPopupPlacement.Classic);
-                return new[] { GetClassicPopupPlacement(this, data) };
+                var preferUpIfSafe = data.LocationY + data.PopupSize.Height > data.ScreenHeight;
+
+                if (ClassicMode
+                    || data.LocationX + data.PopupSize.Width - data.RealOffsetX > data.ScreenWidth
+                    || data.LocationX - data.RealOffsetX < 0
+                    || !preferUpIfSafe && data.LocationY - Math.Abs(data.NewDownY) < 0)
+                {
+                    SetCurrentValue(PopupPlacementProperty, ComboBoxPopupPlacement.Classic);
+                    return new[] { GetClassicPopupPlacement(this, data) };
+                }
+                if (preferUpIfSafe)
+                {
+                    SetCurrentValue(PopupPlacementProperty, ComboBoxPopupPlacement.Up);
+                    return new[] { GetUpPopupPlacement(data) };
+                }
+                SetCurrentValue(PopupPlacementProperty, ComboBoxPopupPlacement.Down);
+                return new[] { GetDownPopupPlacement(data) };
             }
-            if (preferUpIfSafe)
+            else if (PopupPlacementMode == PopupPlacementMode.Up)
             {
                 SetCurrentValue(PopupPlacementProperty, ComboBoxPopupPlacement.Up);
                 return new[] { GetUpPopupPlacement(data) };
             }
-            SetCurrentValue(PopupPlacementProperty, ComboBoxPopupPlacement.Down);
-            return new[] { GetDownPopupPlacement(data) };
+            else
+            {
+                SetCurrentValue(PopupPlacementProperty, ComboBoxPopupPlacement.Down);
+                return new[] { GetDownPopupPlacement(data) };
+            }
         }
 
         private void SetChildTemplateIfNeed(ControlTemplate template)

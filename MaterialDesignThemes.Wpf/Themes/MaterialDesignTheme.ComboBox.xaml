@@ -512,6 +512,7 @@
                                    SnapsToDevicePixels="True"
                                    UseLayoutRounding="True"
                                    Placement="Custom"
+                                   PopupPlacementMode="{Binding Path=(wpf:ComboBoxAssist.PopupPlacementMode), RelativeSource={RelativeSource TemplatedParent}}"
                                    PopupAnimation="Fade"
                                    VerticalOffset="0"
                                    DefaultVerticalOffset="5"

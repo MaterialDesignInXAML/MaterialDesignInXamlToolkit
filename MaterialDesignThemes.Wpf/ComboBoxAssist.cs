@@ -45,5 +45,26 @@ namespace MaterialDesignThemes.Wpf
         {
             element.SetValue(ShowSelectedItemProperty, value);
         }
+
+        /// <summary>
+        /// By default the popup placement is determined automatically based on available screen space.
+        /// Setting this attached property to "Up" or "Down" will override this behavior.
+        /// </summary>
+        public static readonly DependencyProperty PopupPlacementModeProperty = DependencyProperty.RegisterAttached(
+            "PopupPlacementMode",
+            typeof(PopupPlacementMode),
+            typeof(ComboBoxAssist),
+            new FrameworkPropertyMetadata(PopupPlacementMode.Auto,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+
+        public static PopupPlacementMode GetPopupPlacementMode(DependencyObject element)
+        {
+            return (PopupPlacementMode)element.GetValue(PopupPlacementModeProperty);
+        }
+
+        public static void SetPopupPlacementMode(DependencyObject element, object value)
+        {
+            element.SetValue(PopupPlacementModeProperty, value);
+        }
     }
 }
