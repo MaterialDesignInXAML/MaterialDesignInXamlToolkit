@@ -9,8 +9,8 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public static readonly DependencyProperty ClassicModeProperty = DependencyProperty.RegisterAttached(
             "ClassicMode",
-            typeof (bool),
-            typeof (ComboBoxAssist),
+            typeof(bool),
+            typeof(ComboBoxAssist),
             new FrameworkPropertyMetadata(false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
@@ -31,8 +31,8 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public static readonly DependencyProperty ShowSelectedItemProperty = DependencyProperty.RegisterAttached(
             "ShowSelectedItem",
-            typeof (bool),
-            typeof (ComboBoxAssist),
+            typeof(bool),
+            typeof(ComboBoxAssist),
             new FrameworkPropertyMetadata(false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
@@ -47,24 +47,23 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// By default the popup placement is determined automatically based on available screen space.
-        /// Setting this attached property to "Up" or "Down" will override this behavior.
+        /// By default popup down direction is preferred. Seeting this attached property to true will set up direction as preferred. 
         /// </summary>
-        public static readonly DependencyProperty PopupPlacementModeProperty = DependencyProperty.RegisterAttached(
-            "PopupPlacementMode",
-            typeof(PopupPlacementMode),
+        public static readonly DependencyProperty PreferPopupUpDirectionProperty = DependencyProperty.RegisterAttached(
+            "PreferPopupUpDirection",
+            typeof(bool),
             typeof(ComboBoxAssist),
-            new FrameworkPropertyMetadata(PopupPlacementMode.Auto,
+            new FrameworkPropertyMetadata(false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
-        public static PopupPlacementMode GetPopupPlacementMode(DependencyObject element)
+        public static bool GetPreferPopupUpDirection(DependencyObject element)
         {
-            return (PopupPlacementMode)element.GetValue(PopupPlacementModeProperty);
+            return (bool)element.GetValue(PreferPopupUpDirectionProperty);
         }
 
-        public static void SetPopupPlacementMode(DependencyObject element, object value)
+        public static void SetPreferPopupUpDirection(DependencyObject element, bool value)
         {
-            element.SetValue(PopupPlacementModeProperty, value);
+            element.SetValue(PreferPopupUpDirectionProperty, value);
         }
     }
 }

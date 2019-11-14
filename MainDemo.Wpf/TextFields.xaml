@@ -140,7 +140,7 @@
         <TextBlock Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="16 0 8 0">Fruit</TextBlock>
         <smtx:XamlDisplay Key="fields_5" Grid.Row="2" Grid.Column="3" >
             <ComboBox materialDesign:HintAssist.Hint="Search"
-                  IsEditable="True" materialDesign:HintAssist.HintOpacity=".26" materialDesign:ComboBoxAssist.PopupPlacementMode="Up">
+                  IsEditable="True" materialDesign:HintAssist.HintOpacity=".26" materialDesign:ComboBoxAssist.PreferPopupUpDirection="True">
                 <ComboBoxItem>Apple</ComboBoxItem>
                 <ComboBoxItem>Banana</ComboBoxItem>
                 <ComboBoxItem>Pear</ComboBoxItem>
