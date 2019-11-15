@@ -3,6 +3,9 @@
                     xmlns:mahShared="http://metro.mahapps.com/winfx/xaml/shared"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
+    </ResourceDictionary.MergedDictionaries>
 
     <mahShared:ThicknessBindingConverter x:Key="ThicknessBindingConverter" />
 
@@ -188,6 +191,6 @@
             </Setter.Value>
         </Setter>
         <Setter Property="UpDownButtonsWidth" Value="22" />
-        <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ValidationErrorTemplate}" />
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
     </Style>
 </ResourceDictionary>
