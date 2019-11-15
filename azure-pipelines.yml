@@ -17,7 +17,7 @@ variables:
   solution: 'MaterialDesignToolkit.Wpf.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'AppVeyor'
-  dotNetCoreVersion: '3.0.*'
+  dotNetCoreVersion: '3.0.x'
 
 steps:
 - task: UseDotNet@2

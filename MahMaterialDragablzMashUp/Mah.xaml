@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MahMaterialDragablzMashUp.Mah"
+<UserControl x:Class="MahMaterialDragablzMashUp.Mah"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -39,7 +39,7 @@
             </TabItem>
             <TabItem Header="NumericUpDown">
                 <StackPanel>
-                    <controls:NumericUpDown Margin="5"/>
+                    <controls:NumericUpDown Margin="5" Value="{Binding UpDownValue, ValidatesOnExceptions=True}"/>
                     <controls:NumericUpDown Culture="ar-EG" FlowDirection="RightToLeft" Margin="5"/>
                 </StackPanel>
             </TabItem>
