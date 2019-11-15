@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MaterialDesignColors.WpfExample.Grids"
+<UserControl x:Class="MaterialDesignColors.WpfExample.Grids"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -46,7 +46,7 @@
                                                            Header="Description"
                                                            MaxLength="255" 
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
-                            <materialDesign:DataGridTextColumn Binding="{Binding Numeric}"
+                        <materialDesign:DataGridTextColumn Binding="{Binding Numeric}"
                                                         Header="Number with long header"
                                                         Width="120"
                                                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
@@ -71,8 +71,8 @@
 
                         <!-- use custom combo box column to get better combos. Use ItemsSourceBinding as your binding template to be applied to each combo -->
                         <materialDesign:DataGridComboBoxColumn Header="Food" IsEditable="True"
-                                                                   SelectedValueBinding="{Binding Food}"
-                                                                   ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}">
+                                                               SelectedValueBinding="{Binding Food}"
+                                                               ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}">
                             <!--Setting the editing element style allows access to all of the combo box's properties
                             <materialDesign:MaterialDataGridComboBoxColumn.EditingElementStyle>
                                 <Style TargetType="ComboBox" BasedOn="{StaticResource {ComponentResourceKey TypeInTargetAssembly={x:Type ComboBox}, ResourceId=MaterialDataGridComboBoxColumnEditingStyle}}" >

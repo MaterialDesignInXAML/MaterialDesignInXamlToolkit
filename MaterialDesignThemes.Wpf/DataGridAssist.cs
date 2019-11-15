@@ -144,9 +144,27 @@ namespace MaterialDesignThemes.Wpf
             if (dataGrid == null) return;
 
             if ((bool) dependencyPropertyChangedEventArgs.NewValue)
+            {
                 dataGrid.PreviewMouseLeftButtonDown += DataGridOnPreviewMouseLeftButtonDown;
+                dataGrid.KeyDown += DataGridOnKeyDown;
+            }
             else
+            {
                 dataGrid.PreviewMouseLeftButtonDown -= DataGridOnPreviewMouseLeftButtonDown;
+                dataGrid.KeyDown -= DataGridOnKeyDown;
+            }
+        }
+
+        private static void DataGridOnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space &&
+                e.OriginalSource is DataGridCell cell &&
+                cell.IsReadOnly == false &&
+                cell.Column is DataGridComboBoxColumn &&
+                sender is DataGrid dataGrid)
+            {
+                dataGrid.BeginEdit();
+            }
         }
 
         private static void DataGridOnPreviewMouseLeftButtonDown(object sender,
@@ -159,7 +177,7 @@ namespace MaterialDesignThemes.Wpf
 
             while (inputHitTest != null)
             {
-                var dataGridCell = inputHitTest as DataGridCell;                
+                var dataGridCell = inputHitTest as DataGridCell;
                 if (dataGridCell != null && dataGrid.Equals(dataGridCell.GetVisualAncestry().OfType<DataGrid>().FirstOrDefault()))
                 {
                     if (dataGridCell.IsReadOnly) return;
