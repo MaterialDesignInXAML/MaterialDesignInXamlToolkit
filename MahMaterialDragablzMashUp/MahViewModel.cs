@@ -1,10 +1,38 @@
-﻿using System.Collections.ObjectModel;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
 
 namespace MahAppsDragablzDemo
 {
-    public class MahViewModel
+    public class MahViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public ObservableCollection<GridRowData> GridData { get; }
+
+        private int _UpDownValue;
+        public int UpDownValue
+        {
+            get
+            {
+                return _UpDownValue;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new Exception("Value must be positive");
+                }
+                if (_UpDownValue != value)
+                {
+                    _UpDownValue = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UpDownValue)));
+                }
+            }
+        }
 
         public MahViewModel()
         {
