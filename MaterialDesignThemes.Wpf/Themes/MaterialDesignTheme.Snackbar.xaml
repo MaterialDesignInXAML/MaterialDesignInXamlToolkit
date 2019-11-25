@@ -78,7 +78,7 @@
                                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"                                      
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           DockPanel.Dock="Left"
-                                          MaxHeight="36">
+                                          MaxHeight="42">
                             <ContentPresenter.Resources>
                                 <DataTemplate DataType="{x:Type system:String}">
                                     <TextBlock Text="{Binding}">
