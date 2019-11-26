@@ -7,7 +7,7 @@
     <authors>James Willock</authors>
     <owners>James Willock</owners>
     <licenseUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>    
+    <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>
     <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ResourceDictionary instances containing Material Design templates and styles for WPF controls in the MahApps library.</description>
@@ -17,15 +17,17 @@
     <dependencies>
       <dependency id="MaterialDesignColors" version="[1.2.0, 2.0)" />
     </dependencies>
+    <contentFiles>
+      <files include="MaterialDesignThemes.Wpf\bin\AppVeyor\net45\*.ttf" buildAction="None" />
+    </contentFiles>
   </metadata>
   <files>
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\net45\MaterialDesignThemes.Wpf.dll" target="lib\net45" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\net45\MaterialDesignThemes.Wpf.pdb" target="lib\net45" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\net45\MaterialDesignThemes.Wpf.xml" target="lib\net45" />
-    <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\net45\*.ttf" target="content" />
+    <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\net45\*.ttf" target="contentFiles" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\netcoreapp3.0\MaterialDesignThemes.Wpf.dll" target="lib\netcoreapp3.0" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\netcoreapp3.0\MaterialDesignThemes.Wpf.pdb" target="lib\netcoreapp3.0" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\netcoreapp3.0\MaterialDesignThemes.Wpf.xml" target="lib\netcoreapp3.0" />
-
   </files>
 </package>
