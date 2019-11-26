@@ -68,21 +68,14 @@ steps:
     ignoreLASTEXITCODE: true
 
 - task: PowerShell@2
-  displayName: 'Copy CS Files'
-  inputs:
-    targetType: 'inline'
-    script: 'robocopy MaterialDesignThemes.Wpf MaterialDesignThemes.Wpf\\bin\\AppVeyor\\src *.cs /S /XD bin obj'
-    ignoreLASTEXITCODE: true
-
-- task: PowerShell@2
-  displayName: 'Copy CS Files'
+  displayName: 'Copy MDIX Colors nuspec'
   inputs:
     targetType: 'inline'
     script: 'Copy-Item -Path ".\\MaterialDesignColors.nuspec" -Destination ".\\MaterialDesignColors.Wpf\\bin\\AppVeyor\\"'
     ignoreLASTEXITCODE: true
 
 - task: PowerShell@2
-  displayName: 'Copy CS Files'
+  displayName: 'Copy MDIX MahApps nuspec'
   inputs:
     targetType: 'inline'
     script: 'Copy-Item -Path ".\\MaterialDesignThemes.MahApps.nuspec" -Destination ".\\MaterialDesignThemes.MahApps\\bin\\Release\\"'
