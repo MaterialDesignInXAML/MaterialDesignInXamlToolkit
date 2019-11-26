@@ -13,7 +13,7 @@
     <description>ResourceDictionary instances containing standard Google Material Design swatches, for inclusion in a XAML application.</description>
     <releaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</releaseNotes>
     <copyright>Copyright 2015 James Willock/Mulholland Software Ltd</copyright>
-    <tags>WPF XAML WinRT Material Design Colour Color UI UX</tags>
+    <tags>WPF XAML Material Design Colour Color UI UX</tags>
   </metadata>
   <files>
     <file src="MaterialDesignColors.Wpf\bin\AppVeyor\net45\MaterialDesignColors.dll" target="lib\net45" />
