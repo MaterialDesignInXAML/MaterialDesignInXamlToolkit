@@ -16,7 +16,7 @@ pool:
 variables:
   solution: 'MaterialDesignToolkit.Wpf.sln'
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'AppVeyor'
+  buildConfiguration: 'Release'
   dotNetCoreVersion: '3.0.x'
 
 steps:
@@ -58,20 +58,20 @@ steps:
   name: "PublishDemoApp"
   inputs:
     artifactName: 'DemoApp'
-    targetPath: 'MainDemo.Wpf/bin/AppVeyor'
+    targetPath: 'MainDemo.Wpf/bin/Release'
 
 - task: PowerShell@2
   displayName: 'Copy MDIX nuspec'
   inputs:
     targetType: 'inline'
-    script: 'Copy-Item -Path ".\\MaterialDesignThemes.nuspec" -Destination ".\\MaterialDesignThemes.Wpf\\bin\\AppVeyor\\"'
+    script: 'Copy-Item -Path ".\\MaterialDesignThemes.nuspec" -Destination ".\\MaterialDesignThemes.Wpf\\bin\\$(buildConfiguration)\\"'
     ignoreLASTEXITCODE: true
 
 - task: PowerShell@2
   displayName: 'Copy MDIX Colors nuspec'
   inputs:
     targetType: 'inline'
-    script: 'Copy-Item -Path ".\\MaterialDesignColors.nuspec" -Destination ".\\MaterialDesignColors.Wpf\\bin\\AppVeyor\\"'
+    script: 'Copy-Item -Path ".\\MaterialDesignColors.nuspec" -Destination ".\\MaterialDesignColors.Wpf\\bin\\$(buildConfiguration)\\"'
     ignoreLASTEXITCODE: true
 
 - task: PowerShell@2
@@ -85,13 +85,13 @@ steps:
   name: "PublishMaterialDesign"
   inputs:
     artifactName: 'MDIX'
-    targetPath: 'MaterialDesignThemes.Wpf/bin/AppVeyor'
+    targetPath: 'MaterialDesignThemes.Wpf/bin/$(buildConfiguration)'
 
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesignColors"
   inputs:
     artifactName: 'MDIX.Colors'
-    targetPath: 'MaterialDesignColors.Wpf/bin/AppVeyor'
+    targetPath: 'MaterialDesignColors.Wpf/bin/$(buildConfiguration)'
 
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesignMahApps"

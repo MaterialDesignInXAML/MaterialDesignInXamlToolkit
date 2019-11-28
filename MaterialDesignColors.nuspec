@@ -7,7 +7,7 @@
     <authors>James Willock</authors>
     <owners>James Willock</owners>
     <licenseUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>    
+    <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>
     <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ResourceDictionary instances containing standard Google Material Design swatches, for inclusion in a XAML application.</description>
@@ -16,9 +16,9 @@
     <tags>WPF XAML Material Design Colour Color UI UX</tags>
   </metadata>
   <files>
-    <file src="MaterialDesignColors.Wpf\bin\AppVeyor\net45\MaterialDesignColors.dll" target="lib\net45" />
-    <file src="MaterialDesignColors.Wpf\bin\AppVeyor\net45\MaterialDesignColors.pdb" target="lib\net45" />
-    <file src="MaterialDesignColors.Wpf\bin\AppVeyor\netcoreapp3.0\MaterialDesignColors.dll" target="lib\netcoreapp3.0" />
-    <file src="MaterialDesignColors.Wpf\bin\AppVeyor\netcoreapp3.0\MaterialDesignColors.pdb" target="lib\netcoreapp3.0" />
+    <file src="MaterialDesignColors.Wpf\bin\Release\net45\MaterialDesignColors.dll" target="lib\net45" />
+    <file src="MaterialDesignColors.Wpf\bin\Release\net45\MaterialDesignColors.pdb" target="lib\net45" />
+    <file src="MaterialDesignColors.Wpf\bin\Release\netcoreapp3.0\MaterialDesignColors.dll" target="lib\netcoreapp3.0" />
+    <file src="MaterialDesignColors.Wpf\bin\Release\netcoreapp3.0\MaterialDesignColors.pdb" target="lib\netcoreapp3.0" />
   </files>
 </package>

@@ -9,18 +9,9 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>MahMaterialDragablzMashUp</AssemblyTitle>
     <Product>MahMaterialDragablzMashUp</Product>
-    <Copyright>Copyright ©  2015</Copyright>
+    <Copyright>Copyright ©  2019</Copyright>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
-    <Configurations>Debug;Release;AppVeyor</Configurations>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppVeyor|Any CPU'">
-    <OutputPath>bin\AppVeyor\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
+    <Configurations>Debug;Release</Configurations>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
@@ -35,11 +26,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ProfilePic.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="obj\AppVeyor\Dialogs.g.cs" />
-    <Compile Remove="obj\AppVeyor\FlyoutContent.g.cs" />
-    <Compile Remove="obj\AppVeyor\Mah.g.cs" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

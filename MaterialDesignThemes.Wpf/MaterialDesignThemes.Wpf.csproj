@@ -15,16 +15,10 @@
     <AssemblyVersion>1.0.1</AssemblyVersion>
     <NoWarn>CS1591;CS1574</NoWarn>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
-    <Configurations>Debug;Release;AppVeyor</Configurations>
-    <DocumentationFile>bin\$(Configuration)\MaterialDesignThemes.Wpf.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppVeyor|AnyCPU'">
-    <OutputPath>bin\AppVeyor\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
+    <Configurations>Debug;Release</Configurations>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\$(Configuration)\MaterialDesignThemes.Wpf.xml</DocumentationFile>
   </PropertyGroup>
   <Import Project="..\Versioning.targets" />
   <ItemGroup>
