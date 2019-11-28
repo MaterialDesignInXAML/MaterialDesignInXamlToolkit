@@ -17,15 +17,13 @@
     <dependencies>
       <dependency id="MaterialDesignColors" version="[1.2.0, 2.0)" />
     </dependencies>
-    <contentFiles>
-      <files include="MaterialDesignThemes.Wpf\bin\AppVeyor\net45\Resources\Roboto\*.ttf" buildAction="None" />
-    </contentFiles>
   </metadata>
   <files>
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\net45\MaterialDesignThemes.Wpf.dll" target="lib\net45" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\net45\MaterialDesignThemes.Wpf.pdb" target="lib\net45" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\net45\MaterialDesignThemes.Wpf.xml" target="lib\net45" />
-    <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\net45\Resources\Roboto\*.ttf" target="contentFiles" />
+    <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\net45\Resources\Roboto\*.ttf" target="build\Resources\Roboto" />
+    <file src="MaterialDesignThemes.Wpf\MaterialDesignThemes.targets" target="build" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\netcoreapp3.0\MaterialDesignThemes.Wpf.dll" target="lib\netcoreapp3.0" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\netcoreapp3.0\MaterialDesignThemes.Wpf.pdb" target="lib\netcoreapp3.0" />
     <file src="MaterialDesignThemes.Wpf\bin\AppVeyor\netcoreapp3.0\MaterialDesignThemes.Wpf.xml" target="lib\netcoreapp3.0" />

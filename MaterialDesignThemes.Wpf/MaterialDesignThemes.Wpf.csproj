@@ -10,12 +10,13 @@
     <Company>Mulholland Software/James Willock</Company>
     <Product>MaterialDesignColors.Wpf</Product>
     <Description>Material Design in XAML Toolkit - WPF Themes</Description>
-    <Copyright>Copyright © 2015</Copyright>
+    <Copyright>Copyright © 2019</Copyright>
     <Version>1.0.1</Version>
     <AssemblyVersion>1.0.1</AssemblyVersion>
     <NoWarn>CS1591;CS1574</NoWarn>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <Configurations>Debug;Release;AppVeyor</Configurations>
+    <DocumentationFile>bin\$(Configuration)\MaterialDesignThemes.Wpf.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppVeyor|AnyCPU'">
     <OutputPath>bin\AppVeyor\</OutputPath>
@@ -24,7 +25,6 @@
     <DebugType>pdbonly</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\AppVeyor\MaterialDesignThemes.Wpf.XML</DocumentationFile>
   </PropertyGroup>
   <Import Project="..\Versioning.targets" />
   <ItemGroup>
