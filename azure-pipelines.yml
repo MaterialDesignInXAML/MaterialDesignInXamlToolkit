@@ -58,7 +58,7 @@ steps:
   name: "PublishDemoApp"
   inputs:
     artifactName: 'DemoApp'
-    targetPath: 'MainDemo.Wpf/bin/Release'
+    targetPath: 'MainDemo.Wpf/bin/$(buildConfiguration)'
 
 - task: PowerShell@2
   displayName: 'Copy MDIX nuspec'
@@ -78,7 +78,7 @@ steps:
   displayName: 'Copy MDIX MahApps nuspec'
   inputs:
     targetType: 'inline'
-    script: 'Copy-Item -Path ".\\MaterialDesignThemes.MahApps.nuspec" -Destination ".\\MaterialDesignThemes.MahApps\\bin\\Release\\"'
+    script: 'Copy-Item -Path ".\\MaterialDesignThemes.MahApps.nuspec" -Destination ".\\MaterialDesignThemes.MahApps\\bin\\$(buildConfiguration)\\"'
     ignoreLASTEXITCODE: true
 
 - task: PublishPipelineArtifact@0
@@ -97,4 +97,4 @@ steps:
   name: "PublishMaterialDesignMahApps"
   inputs:
     artifactName: 'MDIX.MahApps'
-    targetPath: 'MaterialDesignThemes.MahApps/bin/Release'
+    targetPath: 'MaterialDesignThemes.MahApps/bin/$(buildConfiguration)'

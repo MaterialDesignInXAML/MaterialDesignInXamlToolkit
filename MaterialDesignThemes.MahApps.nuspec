@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>MaterialDesignThemes.MahApps</id>
-    <version>0.1.0-beta</version>
+    <version>$version$</version>
     <title>Material Design Themes XAML Resources For MahApps Controls</title>
     <authors>James Willock</authors>
     <owners>James Willock</owners>
@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ResourceDictionary instances containing Material Design templates and styles for WPF controls in the MahApps library.</description>
     <releaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</releaseNotes>
-    <copyright>Copyright 2019 James Willock/Mulholland Software Ltd</copyright>
+    <copyright>$copyright$</copyright>
     <tags>WPF XAML MahApps Material Design Theme Colour Color UI UX</tags>
     <dependencies>
       <dependency id="MaterialDesignColors" version="[1.2.0, 2.0)" />
@@ -21,6 +21,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="MaterialDesignThemes.MahApps\bin\Release\net45\MaterialDesignThemes.MahApps.dll" target="lib\net45" />
+    <file src="MaterialDesignThemes.MahApps\bin\$configuration$\net45\MaterialDesignThemes.MahApps.*" target="lib\net45" />
   </files>
 </package>

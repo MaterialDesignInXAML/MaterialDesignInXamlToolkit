@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>MaterialDesignThemes</id>
-    <version>0.1.0-beta</version>
+    <version>$version$</version>
     <title>Material Design Themes XAML Resources</title>
     <authors>James Willock</authors>
     <owners>James Willock</owners>
@@ -12,20 +12,16 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ResourceDictionary instances containing Material Design templates and styles for WPF controls in the MahApps library.</description>
     <releaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</releaseNotes>
-    <copyright>Copyright 2019 James Willock/Mulholland Software Ltd</copyright>
+    <copyright>$copyright$</copyright>
     <tags>WPF XAML Material Design Theme Colour Color UI UX</tags>
     <dependencies>
       <dependency id="MaterialDesignColors" version="[1.2.0, 2.0)" />
     </dependencies>
   </metadata>
   <files>
-    <file src="MaterialDesignThemes.Wpf\bin\Release\net45\MaterialDesignThemes.Wpf.dll" target="lib\net45" />
-    <file src="MaterialDesignThemes.Wpf\bin\Release\net45\MaterialDesignThemes.Wpf.pdb" target="lib\net45" />
-    <file src="MaterialDesignThemes.Wpf\bin\Release\net45\MaterialDesignThemes.Wpf.xml" target="lib\net45" />
-    <file src="MaterialDesignThemes.Wpf\bin\Release\net45\Resources\Roboto\*.ttf" target="build\Resources\Roboto" />
+    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net45\MaterialDesignThemes.Wpf.*" target="lib\net45" />
+    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\netcoreapp3.0\MaterialDesignThemes.Wpf.*" target="lib\netcoreapp3.0" />
+    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net45\Resources\Roboto\*.ttf" target="build\Resources\Roboto" />
     <file src="MaterialDesignThemes.Wpf\MaterialDesignThemes.targets" target="build" />
-    <file src="MaterialDesignThemes.Wpf\bin\Release\netcoreapp3.0\MaterialDesignThemes.Wpf.dll" target="lib\netcoreapp3.0" />
-    <file src="MaterialDesignThemes.Wpf\bin\Release\netcoreapp3.0\MaterialDesignThemes.Wpf.pdb" target="lib\netcoreapp3.0" />
-    <file src="MaterialDesignThemes.Wpf\bin\Release\netcoreapp3.0\MaterialDesignThemes.Wpf.xml" target="lib\netcoreapp3.0" />
   </files>
 </package>

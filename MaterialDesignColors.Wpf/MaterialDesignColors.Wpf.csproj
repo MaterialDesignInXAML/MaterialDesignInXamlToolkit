@@ -18,7 +18,6 @@
     <Configurations>Debug;Release</Configurations>
     <LangVersion>8.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="..\Versioning.targets" />
   <Import Project="..\.paket\Paket.Restore.targets" />
