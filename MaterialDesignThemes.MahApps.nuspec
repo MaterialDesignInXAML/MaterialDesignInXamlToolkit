@@ -23,6 +23,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="MaterialDesignThemes.MahApps\bin\$configuration$\net45\MaterialDesignThemes.MahApps.*" target="lib\net45" />
+    <file src="MaterialDesignThemes.MahApps\bin\$configuration$\net45\MaterialDesignThemes.MahApps.*" target="lib\net45" exclude="**\*.json" />
   </files>
 </package>

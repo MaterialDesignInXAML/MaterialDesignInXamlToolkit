@@ -20,7 +20,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="MaterialDesignColors.Wpf\bin\$configuration$\net45\MaterialDesignColors.*" target="lib\net45" />
-    <file src="MaterialDesignColors.Wpf\bin\$configuration$\netcoreapp3.0\MaterialDesignColors.*" target="lib\netcoreapp3.0" />
+    <file src="MaterialDesignColors.Wpf\bin\$configuration$\net45\MaterialDesignColors.*" target="lib\net45" exclude="**\*.json" />
+    <file src="MaterialDesignColors.Wpf\bin\$configuration$\netcoreapp3.0\MaterialDesignColors.*" target="lib\netcoreapp3.0" exclude="**\*.json" />
   </files>
 </package>

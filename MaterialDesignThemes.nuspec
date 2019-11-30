@@ -21,9 +21,9 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net45\MaterialDesignThemes.Wpf.*" target="lib\net45" />
-    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\netcoreapp3.0\MaterialDesignThemes.Wpf.*" target="lib\netcoreapp3.0" />
-    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net45\Resources\Roboto\*.ttf" target="build\Resources\Roboto" />
+    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net45\MaterialDesignThemes.Wpf.*" target="lib\net45" exclude="**\*.json" />
+    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\netcoreapp3.0\MaterialDesignThemes.Wpf.*" target="lib\netcoreapp3.0" exclude="**\*.json" />
+    <file src="MaterialDesignThemes.Wpf\Resources\Roboto\*.ttf" target="build\Resources\Roboto" />
     <file src="MaterialDesignThemes.Wpf\MaterialDesignThemes.targets" target="build" />
   </files>
 </package>
