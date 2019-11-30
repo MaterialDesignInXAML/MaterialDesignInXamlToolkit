@@ -6,7 +6,7 @@
     <title>Material Design Colors XAML Resources</title>
     <authors>James Willock</authors>
     <owners>James Willock</owners>
-    <licenseUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob/master/LICENSE</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>
     <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -14,6 +14,10 @@
     <releaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>WPF XAML Material Design Colour Color UI UX</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5" />
+      <group targetFramework=".NETCoreApp3.0" />
+    </dependencies>
   </metadata>
   <files>
     <file src="MaterialDesignColors.Wpf\bin\$configuration$\net45\MaterialDesignColors.*" target="lib\net45" />
