@@ -54,47 +54,32 @@ steps:
     command: test
     projects: '$(solution)'
 
+- task: PowerShell@2
+  name: "Build NuGets"
+  inputs: 
+    filePath: 'Scripts\\BuildNugets.ps1'
+    arguments: '-MDIXVersion $(mdixVersion) -MDIXMahAppsVersion $(mdixMahappsVersion) -MDIXColorsVersion $(mdixColorsVersion)'
+
 - task: PublishPipelineArtifact@0
   name: "PublishDemoApp"
   inputs:
     artifactName: 'DemoApp'
     targetPath: 'MainDemo.Wpf/bin/$(buildConfiguration)'
 
-- task: PowerShell@2
-  displayName: 'Copy MDIX nuspec'
-  inputs:
-    targetType: 'inline'
-    script: 'Copy-Item -Path ".\\MaterialDesignThemes.nuspec" -Destination ".\\MaterialDesignThemes.Wpf\\bin\\$(buildConfiguration)\\"'
-    ignoreLASTEXITCODE: true
-
-- task: PowerShell@2
-  displayName: 'Copy MDIX Colors nuspec'
-  inputs:
-    targetType: 'inline'
-    script: 'Copy-Item -Path ".\\MaterialDesignColors.nuspec" -Destination ".\\MaterialDesignColors.Wpf\\bin\\$(buildConfiguration)\\"'
-    ignoreLASTEXITCODE: true
-
-- task: PowerShell@2
-  displayName: 'Copy MDIX MahApps nuspec'
-  inputs:
-    targetType: 'inline'
-    script: 'Copy-Item -Path ".\\MaterialDesignThemes.MahApps.nuspec" -Destination ".\\MaterialDesignThemes.MahApps\\bin\\$(buildConfiguration)\\"'
-    ignoreLASTEXITCODE: true
-
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesign"
   inputs:
     artifactName: 'MDIX'
-    targetPath: 'MaterialDesignThemes.Wpf/bin/$(buildConfiguration)'
+    targetPath: 'MaterialDesignThemes.$(mdixVersion).nupkg'
 
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesignColors"
   inputs:
     artifactName: 'MDIX.Colors'
-    targetPath: 'MaterialDesignColors.Wpf/bin/$(buildConfiguration)'
+    targetPath: 'MaterialDesignColors.$(mdixColorsVersion).nupkg'
 
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesignMahApps"
   inputs:
     artifactName: 'MDIX.MahApps'
-    targetPath: 'MaterialDesignThemes.MahApps/bin/$(buildConfiguration)'
+    targetPath: 'MaterialDesignThemes.MahApps.$(mdixMahappsVersion).nupkg'

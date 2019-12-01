@@ -42,7 +42,7 @@ function New-Nuget {
   nuget pack "$NuSpecPath" -version "$Version" -Properties "Configuration=$configuration;Copywrite=$copywrite"
 }
 
-Push-Location ".."
+Push-Location "$(Join-Path $PSScriptRoot "..")"
 
 New-Nuget .\MaterialDesignColors.nuspec $MDIXColorsVersion
 New-Nuget .\MaterialDesignThemes.nuspec $MDIXVersion
