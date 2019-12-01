@@ -1,5 +1,11 @@
-$version = "1.2.3"
-$copywrite = "Copyright 2019 James Willock/Mulholland Software Ltd"
+param(
+  [string]$MDIXVersion = "1.0.0",
+  [string]$MDIXColorsVersion = "1.0.0",
+  [string]$MDIXMahAppsVersion = "1.0.0"
+)
+
+$year = [System.DateTime]::Now.ToString("yyyy")
+$copywrite = "Copyright $year James Willock/Mulholland Software Ltd"
 $configuration = "Release"
 
 function Update-Icon {
@@ -25,8 +31,21 @@ function Update-Icon {
   $xml.Save($Path)
 }
 
+function New-Nuget {
+  param (
+    [string]$NuSpecPath,
+    [string]$Version
+  )
 
-Update-Icon .\MaterialDesignColors.nuspec 
+  $NuSpecPath = Resolve-Path $NuSpecPath
+  Update-Icon "$NuSpecPath" 
+  nuget pack "$NuSpecPath" -version "$Version" -Properties "Configuration=$configuration;Copywrite=$copywrite"
+}
 
-nuget pack .\MaterialDesignColors.nuspec -version "$version" -Properties "Configuration=$configuration;Copywrite=$copywrite"
+Push-Location ".."
 
+New-Nuget .\MaterialDesignColors.nuspec $MDIXColorsVersion
+New-Nuget .\MaterialDesignThemes.nuspec $MDIXVersion
+New-Nuget .\MaterialDesignThemes.MahApps.nuspec $MDIXMahAppsVersion
+
+Pop-Location
