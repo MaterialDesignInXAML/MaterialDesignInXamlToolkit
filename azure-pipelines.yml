@@ -59,7 +59,7 @@ steps:
   displayName: "Build NuGets"
   inputs: 
     filePath: 'Scripts\\BuildNugets.ps1'
-    arguments: '-MDIXVersion $(mdixVersion) -MDIXMahAppsVersion $(mdixMahappsVersion) -MDIXColorsVersion $(mdixColorsVersion)'
+    arguments: '-MDIXVersion $(mdixVersion)-ci$(Build.BuildId) -MDIXMahAppsVersion $(mdixMahappsVersion)-ci$(Build.BuildId) -MDIXColorsVersion $(mdixColorsVersion)-ci$(Build.BuildId)'
 
 - task: PublishPipelineArtifact@0
   name: "PublishDemoApp"
