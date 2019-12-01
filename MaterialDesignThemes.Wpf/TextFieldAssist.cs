@@ -48,7 +48,7 @@ namespace MaterialDesignThemes.Wpf
         /// Controls the visibility of the underline decoration.
         /// </summary>
         public static readonly DependencyProperty DecorationVisibilityProperty = DependencyProperty.RegisterAttached(
-            "DecorationVisibility", typeof(Visibility), typeof(TextFieldAssist), new FrameworkPropertyMetadata(default(Visibility), FrameworkPropertyMetadataOptions.Inherits));
+            "DecorationVisibility", typeof(Visibility), typeof(TextFieldAssist), new PropertyMetadata(default(Visibility)));
 
         /// <summary>
         /// Controls the visibility of the underline decoration.
@@ -72,7 +72,7 @@ namespace MaterialDesignThemes.Wpf
         /// Controls the visibility of the filled text field.
         /// </summary>
         public static readonly DependencyProperty HasFilledTextFieldProperty = DependencyProperty.RegisterAttached(
-            "HasFilledTextField", typeof(bool), typeof(TextFieldAssist), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
+            "HasFilledTextField", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
 
         public static void SetHasFilledTextField(DependencyObject element, bool value)
         {
@@ -88,7 +88,7 @@ namespace MaterialDesignThemes.Wpf
         /// Controls the visibility of the text field area box.
         /// </summary>
         public static readonly DependencyProperty HasOutlinedTextFieldProperty = DependencyProperty.RegisterAttached(
-            "HasOutlinedTextField", typeof(bool), typeof(TextFieldAssist), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
+            "HasOutlinedTextField", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
 
         public static void SetHasOutlinedTextField(DependencyObject element, bool value)
         {
@@ -104,7 +104,7 @@ namespace MaterialDesignThemes.Wpf
         /// Controls the corner radius of the surrounding box.
         /// </summary>
         public static readonly DependencyProperty TextFieldCornerRadiusProperty = DependencyProperty.RegisterAttached(
-            "TextFieldCornerRadius", typeof(CornerRadius), typeof(TextFieldAssist), new FrameworkPropertyMetadata(new CornerRadius(0.0), FrameworkPropertyMetadataOptions.Inherits));
+            "TextFieldCornerRadius", typeof(CornerRadius), typeof(TextFieldAssist), new PropertyMetadata(new CornerRadius(0.0)));
 
         public static void SetTextFieldCornerRadius(DependencyObject element, CornerRadius value)
         {
@@ -120,7 +120,7 @@ namespace MaterialDesignThemes.Wpf
         /// Controls the corner radius of the bottom line of the surrounding box.
         /// </summary>
         public static readonly DependencyProperty UnderlineCornerRadiusProperty = DependencyProperty.RegisterAttached(
-            "UnderlineCornerRadius", typeof(CornerRadius), typeof(TextFieldAssist), new FrameworkPropertyMetadata(new CornerRadius(0.0), FrameworkPropertyMetadataOptions.Inherits));
+            "UnderlineCornerRadius", typeof(CornerRadius), typeof(TextFieldAssist), new PropertyMetadata(new CornerRadius(0.0)));
 
         public static void SetUnderlineCornerRadius(DependencyObject element, CornerRadius value)
         {
@@ -136,7 +136,7 @@ namespace MaterialDesignThemes.Wpf
         /// Controls the highlighting style of a text box.
         /// </summary>
         public static readonly DependencyProperty NewSpecHighlightingEnabledProperty = DependencyProperty.RegisterAttached(
-            "NewSpecHighlightingEnabled", typeof(bool), typeof(TextFieldAssist), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
+            "NewSpecHighlightingEnabled", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
 
         public static void SetNewSpecHighlightingEnabled(DependencyObject element, bool value)
         {
@@ -152,7 +152,7 @@ namespace MaterialDesignThemes.Wpf
         /// Enables a ripple effect on focusing the text box.
         /// </summary>
         public static readonly DependencyProperty RippleOnFocusEnabledProperty = DependencyProperty.RegisterAttached(
-            "RippleOnFocusEnabled", typeof(bool), typeof(TextFieldAssist), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
+            "RippleOnFocusEnabled", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
 
         public static void SetRippleOnFocusEnabled(DependencyObject element, bool value)
         {
@@ -168,7 +168,7 @@ namespace MaterialDesignThemes.Wpf
         /// The color for highlighting effects on the border of a text box.
         /// </summary>
         public static readonly DependencyProperty UnderlineBrushProperty = DependencyProperty.RegisterAttached(
-            "UnderlineBrush", typeof(Brush), typeof(TextFieldAssist), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+            "UnderlineBrush", typeof(Brush), typeof(TextFieldAssist), new PropertyMetadata(null));
 
         /// <summary>
         /// Sets the color for highlighting effects on the border of a text box.

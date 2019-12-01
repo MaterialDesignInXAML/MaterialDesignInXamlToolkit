@@ -350,6 +350,7 @@
         <Setter Property="Margin" Value="0 0 0 0" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DatePicker}">
@@ -373,7 +374,25 @@
                                            VerticalContentAlignment="Center"
                                            Style="{DynamicResource MaterialDesignDatePickerTextBox}"
                                            HorizontalAlignment="Stretch" 
-                                           wpf:HintAssist.HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                           wpf:HintAssist.IsFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:HintAssist.FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:HintAssist.FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:HintAssist.Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:HintAssist.HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:HintAssist.Foreground="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:HintAssist.HelperText="{Binding Path=(wpf:HintAssist.HelperText), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:TextFieldAssist.TextBoxViewMargin="{Binding Path=(wpf:TextFieldAssist.TextBoxViewMargin), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:TextFieldAssist.DecorationVisibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:TextFieldAssist.HasFilledTextField="{Binding Path=(wpf:TextFieldAssist.HasFilledTextField), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:TextFieldAssist.HasOutlinedTextField="{Binding Path=(wpf:TextFieldAssist.HasOutlinedTextField), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:TextFieldAssist.TextFieldCornerRadius="{Binding Path=(wpf:TextFieldAssist.TextFieldCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:TextFieldAssist.UnderlineCornerRadius="{Binding Path=(wpf:TextFieldAssist.UnderlineCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:TextFieldAssist.NewSpecHighlightingEnabled="{Binding Path=(wpf:TextFieldAssist.NewSpecHighlightingEnabled), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:TextFieldAssist.RippleOnFocusEnabled="{Binding Path=(wpf:TextFieldAssist.RippleOnFocusEnabled), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:TextFieldAssist.UnderlineBrush="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:TextFieldAssist.HasClearButton="{Binding Path=(wpf:TextFieldAssist.HasClearButton), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:TextFieldAssist.SuffixText="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}"
+                                           />
                         <Button x:Name="PART_Button"
                                 Foreground="{TemplateBinding BorderBrush}"
                                 Focusable="False"
