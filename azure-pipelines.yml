@@ -71,16 +71,16 @@ steps:
   name: "PublishMaterialDesign"
   inputs:
     artifactName: 'MDIX'
-    targetPath: 'MaterialDesignThemes.$(mdixVersion).nupkg'
+    targetPath: 'MaterialDesignThemes.$(mdixVersion)-ci$(Build.BuildId).nupkg'
 
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesignColors"
   inputs:
     artifactName: 'MDIX.Colors'
-    targetPath: 'MaterialDesignColors.$(mdixColorsVersion).nupkg'
+    targetPath: 'MaterialDesignColors.$(mdixColorsVersion)-ci$(Build.BuildId).nupkg'
 
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesignMahApps"
   inputs:
     artifactName: 'MDIX.MahApps'
-    targetPath: 'MaterialDesignThemes.MahApps.$(mdixMahappsVersion).nupkg'
+    targetPath: 'MaterialDesignThemes.MahApps.$(mdixMahappsVersion)-ci$(Build.BuildId).nupkg'
