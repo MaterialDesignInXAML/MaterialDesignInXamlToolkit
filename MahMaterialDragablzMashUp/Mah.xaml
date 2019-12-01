@@ -66,6 +66,8 @@
                         <mdix:DataGridComboBoxColumn Header="Combo" SelectedItemBinding="{Binding EnumValue}" ItemsSource="{Binding Source={StaticResource EnumValues}}"/>
                         <controls:DataGridNumericUpDownColumn Binding="{Binding IntValue}"
                                                               Header="Numeric"
+                                                              Width="300"
+                                                              TextAlignment="Center"
                                                               Minimum="0"
                                                               StringFormat="{}{0} km" />
                     </DataGrid.Columns>

@@ -12,4 +12,22 @@
     
     <Style TargetType="{x:Type controls:NumericUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
     <Style TargetType="{x:Type controls:RangeSlider}" BasedOn="{StaticResource MaterialDesignRangeSlider}" />
+
+    <Style x:Key="MahApps.Styles.NumericUpDown.DataGridColumn"
+           BasedOn="{StaticResource MaterialDesignNumericUpDown}"
+           TargetType="{x:Type controls:NumericUpDown}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HideUpDownButtons" Value="True" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="MahApps.Styles.NumericUpDown.DataGridColumnEditing"
+           BasedOn="{StaticResource MahApps.Styles.NumericUpDown.DataGridColumn}"
+           TargetType="{x:Type controls:NumericUpDown}">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
+        <Setter Property="HideUpDownButtons" Value="False" />
+    </Style>
 </ResourceDictionary>
