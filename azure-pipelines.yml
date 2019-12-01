@@ -18,6 +18,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   dotNetCoreVersion: '3.0.x'
+  nugetVersionSpec: '5.x.x'
 
 steps:
 - task: UseDotNet@2
@@ -27,7 +28,9 @@ steps:
     version: '$(dotNetCoreVersion)'
 
 - task: NuGetToolInstaller@0
-  displayName: 'Use latest NuGet'
+  displayName: 'Use NuGet $(nugetVersionSpec)'
+  inputs:
+    versionSpec: '$(nugetVersionSpec)'
 
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
