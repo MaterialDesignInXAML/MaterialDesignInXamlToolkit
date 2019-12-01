@@ -40,7 +40,7 @@
             <TabItem Header="NumericUpDown">
                 <StackPanel>
                     <controls:NumericUpDown Margin="5" Value="{Binding UpDownValue, ValidatesOnExceptions=True}"/>
-                    <controls:NumericUpDown Culture="ar-EG" FlowDirection="RightToLeft" Margin="5"/>
+                    <controls:NumericUpDown Culture="ar-EG" FlowDirection="RightToLeft" Margin="5" controls:TextBoxHelper.SelectAllOnFocus="True"/>
                 </StackPanel>
             </TabItem>
             <TabItem Header="DataGrid">
