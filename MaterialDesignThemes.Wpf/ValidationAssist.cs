@@ -122,5 +122,21 @@ namespace MaterialDesignThemes.Wpf
         {
             return (double)element.GetValue(FontSizeProperty);
         }
+
+        public static readonly DependencyProperty HasErrorProperty = DependencyProperty.RegisterAttached(
+            "HasError",
+            typeof(bool),
+            typeof(ValidationAssist),
+            new PropertyMetadata(default(bool)));
+
+        public static void SetHasError(DependencyObject element, bool value)
+        {
+            element.SetValue(HasErrorProperty, value);
+        }
+
+        public static bool GetHasError(DependencyObject element)
+        {
+            return (bool)element.GetValue(HasErrorProperty);
+        }
     }
 }
