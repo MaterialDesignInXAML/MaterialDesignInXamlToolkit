@@ -55,7 +55,7 @@ steps:
     projects: '$(solution)'
 
 - task: PowerShell@2
-  name: "Build NuGets"
+  displayName: "Build NuGets"
   inputs: 
     filePath: 'Scripts\\BuildNugets.ps1'
     arguments: '-MDIXVersion $(mdixVersion) -MDIXMahAppsVersion $(mdixMahappsVersion) -MDIXColorsVersion $(mdixColorsVersion)'
