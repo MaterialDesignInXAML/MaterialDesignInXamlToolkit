@@ -32,18 +32,16 @@ steps:
   inputs:
     versionSpec: '$(nugetVersionSpec)'
 
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
+- powershell: .paket\paket.exe restore
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
     command: restore
+    projects: $(solution)
 
-    projects: |
-     $(solution)
-
-- powershell: .paket\paket.exe restore
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
