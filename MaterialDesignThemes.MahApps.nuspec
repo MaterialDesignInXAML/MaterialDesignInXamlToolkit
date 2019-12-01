@@ -15,9 +15,11 @@
     <copyright>$copyright$</copyright>
     <tags>WPF XAML MahApps Material Design Theme Colour Color UI UX</tags>
     <dependencies>
-      <dependency id="MaterialDesignColors" version="[1.2.0, 2.0)" />
-      <dependency id="MaterialDesignThemes" version="[2.6.0, 3.0)" />
-      <dependency id="MahApps.Metro" version="1.6.*" />
+      <group>
+        <dependency id="MaterialDesignColors" version="[1.2.0, 2.0)" />
+        <dependency id="MaterialDesignThemes" version="[2.6.0, 3.0)" />
+        <dependency id="MahApps.Metro" version="1.6.*" />
+      </group>
       <group targetFramework=".NETFramework4.5" />
       <group targetFramework=".NETCoreApp3.0" />
     </dependencies>
