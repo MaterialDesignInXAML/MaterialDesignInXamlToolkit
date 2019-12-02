@@ -27,6 +27,17 @@
     <Style x:Key="MaterialDesignGridColumnHeaderGripper" TargetType="{x:Type Thumb}" BasedOn="{StaticResource MaterialDesignThumb}">
         <Setter Property="Width" Value="8"/>
         <Setter Property="Cursor" Value="SizeWE"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border x:Name="PART_Border"
+                            Cursor="SizeWE"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>
