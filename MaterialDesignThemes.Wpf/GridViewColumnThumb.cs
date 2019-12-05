@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public class GridViewColumnThumb : Thumb
+    internal class GridViewColumnThumb : Thumb
     {
         public GridViewColumnThumb() : base() { }
 

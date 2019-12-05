@@ -89,9 +89,9 @@
                 <ControlTemplate TargetType="GridViewColumnHeader">
                     <DockPanel>
                         <wpf:GridViewColumnThumb x:Name="PART_HeaderGripper"
-                               DockPanel.Dock="Right"
-                               Margin="0,0,-8,0"
-                               Style="{StaticResource MaterialDesignGridColumnHeaderGripper}" />
+                                                 DockPanel.Dock="Right"
+                                                 Margin="0,0,-8,0"
+                                                 Style="{StaticResource MaterialDesignGridViewColumnHeaderGripper}" />
                         <Border x:Name="HeaderBorder"
                                 Padding="{TemplateBinding Padding}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
