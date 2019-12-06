@@ -2,7 +2,7 @@
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:mahShared="http://metro.mahapps.com/winfx/xaml/shared"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+                    xmlns:mdix="http://materialdesigninxaml.net/winfx/xaml/themes">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -12,7 +12,7 @@
     <Style TargetType="{x:Type mah:NumericUpDown}" x:Key="MaterialDesignNumericUpDown">
         <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Control.Background}" />
         <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.Border}" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
         <Setter Property="ContextMenu" Value="{DynamicResource MahApps.TextBox.ContextMenu}" />
         <Setter Property="mah:ControlsHelper.FocusBorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.FocusBorder}" />
         <Setter Property="mah:ControlsHelper.MouseOverBorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.MouseOverBorder}" />
@@ -31,6 +31,7 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
         <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="mdix:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type mah:NumericUpDown}">
@@ -47,8 +48,13 @@
                                 <ColumnDefinition x:Name="PART_MiddleColumn" Width="Auto" />
                                 <ColumnDefinition x:Name="PART_RightColumn" Width="Auto" />
                             </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
                             <TextBox x:Name="PART_TextBox"
                                      Grid.Column="0"
+                                     Grid.Row="0"
                                      MinWidth="20"
                                      MinHeight="0"
                                      Margin="0"
@@ -71,7 +77,7 @@
                                      mah:TextBoxHelper.Watermark="{TemplateBinding mah:TextBoxHelper.Watermark}"
                                      mah:TextBoxHelper.WatermarkAlignment="{TemplateBinding mah:TextBoxHelper.WatermarkAlignment}"
                                      mah:TextBoxHelper.WatermarkTrimming="{TemplateBinding mah:TextBoxHelper.WatermarkTrimming}"
-                                     materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
+                                     mdix:TextFieldAssist.DecorationVisibility="Collapsed"
                                      Background="{x:Null}"
                                      BorderThickness="0"
                                      ContextMenu="{TemplateBinding ContextMenu}"
@@ -88,6 +94,7 @@
                                      VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" />
                             <RepeatButton x:Name="PART_NumericUp"
                                           Grid.Column="1"
+                                          Grid.Row="0"
                                           Width="{TemplateBinding UpDownButtonsWidth}"
                                           Margin="0"
                                           Delay="{TemplateBinding Delay}"
@@ -104,6 +111,7 @@
                             </RepeatButton>
                             <RepeatButton x:Name="PART_NumericDown"
                                           Grid.Column="2"
+                                          Grid.Row="0"
                                           Width="{TemplateBinding UpDownButtonsWidth}"
                                           Margin="0"
                                           VerticalContentAlignment="Center"
@@ -119,6 +127,15 @@
                                       Fill="{DynamicResource MahApps.Brushes.Gray1}"
                                       Stretch="Fill" />
                             </RepeatButton>
+
+                            <mdix:Underline 
+                                x:Name="Underline" 
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="3"
+                                Visibility="{Binding Path=(mdix:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                                CornerRadius="{Binding Path=(mdix:TextFieldAssist.UnderlineCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                                Background="{Binding Path=(mdix:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}" />
                         </Grid>
                         <Border x:Name="DisabledVisualElement"
                                 Background="{DynamicResource MahApps.Brushes.Controls.Disabled}"
@@ -227,11 +244,14 @@
                             <Setter TargetName="PART_NumericDown" Property="Background" Value="{DynamicResource MahApps.Brushes.Black}" />
                             <Setter TargetName="PolygonDown" Property="Fill" Value="{DynamicResource MahApps.Brushes.White}" />
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
+                        <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Base" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mah:ControlsHelper.MouseOverBorderBrush)}" />
                         </Trigger>
-                        <Trigger SourceName="PART_TextBox" Property="IsFocused" Value="true">
+                        <Trigger SourceName="PART_TextBox" Property="IsFocused" Value="True">
                             <Setter TargetName="Base" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mah:ControlsHelper.FocusBorderBrush)}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter TargetName="Underline" Property="IsActive" Value="True"/>
                         </Trigger>
                         <Trigger Property="HideUpDownButtons" Value="True">
                             <Setter TargetName="PART_NumericDown" Property="Visibility" Value="Collapsed" />

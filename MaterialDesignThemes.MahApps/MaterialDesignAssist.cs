@@ -69,11 +69,11 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetBrush("MahApps.Brushes.GrayNormal", (Color)resourceDictionary["MahApps.Colors.GrayNormal"]);
             resourceDictionary.SetBrush("MahApps.Brushes.GrayHover", (Color)resourceDictionary["MahApps.Colors.GrayHover"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border", (Color)resourceDictionary["MahApps.Colors.Gray6"]);
             resourceDictionary.SetBrush("MahApps.Brushes.Controls.Border", (Color)resourceDictionary["MahApps.Colors.Gray6"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border", theme.TextBoxBorder);
             resourceDictionary.SetBrush("MahApps.Brushes.TextBox.MouseOverInnerBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
             resourceDictionary.SetBrush("MahApps.Brushes.TextBox.FocusBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.MouseOverBorder", (Color)resourceDictionary["MahApps.Colors.Gray2"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.MouseOverBorder", theme.PrimaryMid.Color);
 
             resourceDictionary.SetBrush("MahApps.Brushes.Button.MouseOverBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
             resourceDictionary.SetBrush("MahApps.Brushes.Button.MouseOverInnerBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
