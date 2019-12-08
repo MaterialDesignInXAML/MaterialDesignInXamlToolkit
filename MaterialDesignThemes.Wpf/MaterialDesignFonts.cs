@@ -1,20 +1,21 @@
 ﻿using System;
 using System.IO;
+using System.Windows;
+using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public static class MaterialDesignFonts
+    [MarkupExtensionReturnType(typeof(FontFamily))]
+    public class MaterialDesignFont : MarkupExtension
     {
-        private static readonly Lazy<FontFamily> _roboto 
-            = new Lazy<FontFamily>(LoadRobotoFontFamily);
-
-        private static FontFamily LoadRobotoFontFamily()
+        private static readonly Lazy<FontFamily> _roboto
+            = new Lazy<FontFamily>(() => 
+                new FontFamily(new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/"), "./#Roboto"));
+        
+        public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            string fontDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "Roboto");
-            return new FontFamily(new Uri($"file:///{fontDirectory}"), "./#Roboto");
+            return _roboto.Value;
         }
-
-        public static FontFamily Roboto => _roboto.Value;
     }
 }
