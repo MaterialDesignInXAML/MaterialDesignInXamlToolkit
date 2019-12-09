@@ -1,13 +1,11 @@
 ﻿using System;
-using System.IO;
-using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
     [MarkupExtensionReturnType(typeof(FontFamily))]
-    public class MaterialDesignFont : MarkupExtension
+    public class MaterialDesignFontExtension : MarkupExtension
     {
         private static readonly Lazy<FontFamily> _roboto
             = new Lazy<FontFamily>(() => 
