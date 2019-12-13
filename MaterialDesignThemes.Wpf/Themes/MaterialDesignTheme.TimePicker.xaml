@@ -104,7 +104,7 @@
                                          wpf:TextFieldAssist.TextBoxViewMargin=".5 0 0 0"
                                          Margin="0"
                                          Template="{StaticResource TextBoxTemplate}"
-                                         />
+                                         Style="{DynamicResource MaterialDesignTextBoxBase}" />
                                 <Button x:Name="PART_Button"
                                         Grid.Column="1" 
                                         Foreground="{TemplateBinding BorderBrush}" 
