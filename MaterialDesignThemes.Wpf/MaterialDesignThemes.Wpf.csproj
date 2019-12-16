@@ -4,22 +4,21 @@
     <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <MDIXVersion>$(MDIX_CORE_VERSION)</MDIXVersion>
+    <MDIXVersion Condition="$(MDIXVersion) == '' Or $(MDIXVersion) == '*Undefined*'">1.0.1</MDIXVersion>
     <LangVersion>8.0</LangVersion>
     <AssemblyTitle>MaterialDesignThemes.Wpf</AssemblyTitle>
     <Company>Mulholland Software/James Willock</Company>
     <Product>MaterialDesignColors.Wpf</Product>
     <Description>Material Design in XAML Toolkit - WPF Themes</Description>
     <Copyright>Copyright © 2019</Copyright>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <Version>$(MDIXVersion)</Version>
+    <AssemblyVersion>$(MDIXVersion)</AssemblyVersion>
     <NoWarn>CS1591;CS1574</NoWarn>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <Configurations>Debug;Release</Configurations>
     <ErrorReport>prompt</ErrorReport>
     <DocumentationFile>bin\$(Configuration)\MaterialDesignThemes.Wpf.xml</DocumentationFile>
   </PropertyGroup>
-  <Import Project="..\Versioning.targets" />
   <ItemGroup>
     <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\BadgedEx.cs">
       <Paket>True</Paket>
