@@ -4,16 +4,15 @@
     <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <MDIXVersion>$(MDIX_MAHAPPS_VERSION)</MDIXVersion>
+    <MDIXMahAppsVersion Condition="$(MDIXMahAppsVersion) == '' Or $(MDIXMahAppsVersion) == '*Undefined*'">1.0.1</MDIXMahAppsVersion>
     <AssemblyTitle>MaterialDesignThemes.MahApps</AssemblyTitle>
     <Product>MaterialDesignThemes.MahApps</Product>
     <Copyright>Copyright © 2015-2016 James Willock, Mulholland Software &amp; Contributors</Copyright>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <Version>$(MDIXMahAppsVersion)</Version>
+    <AssemblyVersion>$(MDIXMahAppsVersion)</AssemblyVersion>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
-  <Import Project="..\Versioning.targets" />
   <ItemGroup>
     <None Include="paket.references" />
   </ItemGroup>

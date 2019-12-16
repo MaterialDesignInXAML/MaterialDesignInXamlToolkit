@@ -6,19 +6,18 @@
     <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <MDIXVersion>$(MDIX_COLORS_VERSION)</MDIXVersion>
+    <MDIXColorsVersion Condition="$(MDIXColorsVersion) == '' Or $(MDIXColorsVersion) == '*Undefined*'">1.0.1</MDIXColorsVersion>
     <AssemblyTitle>MaterialDesignColors.Wpf</AssemblyTitle>
     <Company>Mulholland Software/James Willock</Company>
     <Product>MaterialDesignColors.Wpf</Product>
     <Description>Material Design in XAML Toolkit - Colors</Description>
     <Copyright>Copyright © 2019</Copyright>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <Version>$(MDIXColorsVersion)</Version>
+    <AssemblyVersion>$(MDIXColorsVersion)</AssemblyVersion>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <Configurations>Debug;Release</Configurations>
     <LangVersion>8.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
-  <Import Project="..\Versioning.targets" />
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

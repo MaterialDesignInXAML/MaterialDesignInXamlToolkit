@@ -47,7 +47,7 @@ steps:
   displayName: 'dotnet build'
   inputs:
     projects: '$(solution)'
-    arguments: '/p:Configuration=$(buildConfiguration) /p:Platform="Any CPU" /p:MDIX_CORE_VERSION=$(mdixVersion).$(Build.BuildID) /p:MDIX_COLORS_VERSION=$(mdixColorsVersion).$(Build.BuildID) /p:MDIX_MAHAPPS_VERSION=$(mdixMahappsVersion).$(Build.BuildID)'
+    arguments: '/p:Configuration=$(buildConfiguration) /p:Platform="Any CPU" /p:MDIXVersion=$(mdixVersion).$(Build.BuildID) /p:MDIXColorsVersion=$(mdixColorsVersion).$(Build.BuildID) /p:MDIXMahAppsVersion=$(mdixMahappsVersion).$(Build.BuildID)'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
