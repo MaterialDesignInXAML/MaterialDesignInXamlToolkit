@@ -3214,6 +3214,8 @@ namespace MaterialDesignThemes.Wpf
         Eraser,
         EraserVariant,
         Escalator,
+        EscalatorDown,
+        EscalatorUp,
         Eslint,
         Et,
         Ethereum,
