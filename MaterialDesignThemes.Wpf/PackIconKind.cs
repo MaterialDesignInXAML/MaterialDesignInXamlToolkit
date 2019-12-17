@@ -4088,6 +4088,8 @@ namespace MaterialDesignThemes.Wpf
         Gradient,
         Grain,
         Graph,
+        Dependency=Graph,
+        Dependencies=Graph,
         GraphOutline,
         Graphql,
         GraveStone,
