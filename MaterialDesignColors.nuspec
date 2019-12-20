@@ -16,11 +16,11 @@
     <tags>WPF XAML Material Design Colour Color UI UX</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.5" />
-      <group targetFramework=".NETCoreApp3.0" />
+      <group targetFramework=".NETCoreApp3.1" />
     </dependencies>
   </metadata>
   <files>
     <file src="MaterialDesignColors.Wpf\bin\$configuration$\net45\MaterialDesignColors.*" target="lib\net45" exclude="**\*.json" />
-    <file src="MaterialDesignColors.Wpf\bin\$configuration$\netcoreapp3.0\MaterialDesignColors.*" target="lib\netcoreapp3.0" exclude="**\*.json" />
+    <file src="MaterialDesignColors.Wpf\bin\$configuration$\netcoreapp3.1\MaterialDesignColors.*" target="lib\netcoreapp3.1" exclude="**\*.json" />
   </files>
 </package>
