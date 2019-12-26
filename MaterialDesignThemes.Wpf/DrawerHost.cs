@@ -83,62 +83,69 @@ namespace MaterialDesignThemes.Wpf
             CommandBindings.Add(new CommandBinding(CloseDrawerCommand, CloseDrawerHandler));
             CommandBindings.Add(new CommandBinding(PinDrawerCommand, PinDrawerHanlder));
         }
-        #region openModeProperty
-        public enum DrawerHostOpenMode 
-        {
-            Standard, StaysOpen, Pinned
-        }
 
-        public DrawerHostOpenMode OpenMode {
+        #region OpenMode
+
+        public DrawerHostOpenMode OpenMode
+        {
             get { return (DrawerHostOpenMode)GetValue(OpenModeProperty); }
-            set { SetValue(OpenModeProperty , value); }
+            set { SetValue(OpenModeProperty, value); }
         }
 
         public static readonly DependencyProperty OpenModeProperty =
-            DependencyProperty.Register("OpenMode" , typeof(DrawerHostOpenMode) , typeof(DrawerHost) , new PropertyMetadata(DrawerHostOpenMode.Standard, OnOpenModePropertyChangedCallback));
+            DependencyProperty.Register("OpenMode", typeof(DrawerHostOpenMode), typeof(DrawerHost), new PropertyMetadata(DrawerHostOpenMode.Standard, OnOpenModePropertyChangedCallback));
 
-        private static void OnOpenModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs) {
+        private static void OnOpenModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
             var drawerHost = dependencyObject as DrawerHost;
             drawerHost.UpdateVisualStates();
         }
 
-        private void UpdateMainContentMargin() {
+        private void UpdateMainContentMargin()
+        {
             //Unfortunately, the animation code can only be done in CS not in XAML
             //I tried to do it in XAML, but then I found out this : 
             //According to https://docs.microsoft.com/en-us/dotnet/framework/wpf/graphics-multimedia/storyboards-overview,
             //You can't use data binding expressions in Storyboards or animation property value
-            var thicknessAnimation = new ThicknessAnimation()
-            {
-               EasingFunction = new SineEase() { EasingMode = EasingMode.EaseOut},
-               Duration = new Duration(new TimeSpan(0, 0, 0, 0, 400))
+            var thicknessAnimation = new ThicknessAnimation() {
+                EasingFunction = new SineEase() { EasingMode = EasingMode.EaseOut },
+                Duration = new Duration(new TimeSpan(0, 0, 0, 0, 400))
             };
-            if (OpenMode == DrawerHostOpenMode.Pinned) {
+            if (OpenMode == DrawerHostOpenMode.Pinned)
+            {
                 if (MoreThanOneDrawerOpened())
                     throw new Exception(
                         "Cannot set OpenMode = Pinned when there are more than one drawers are opened.");
-                if (IsLeftDrawerOpen) {                    
+                if (IsLeftDrawerOpen)
+                {
                     thicknessAnimation.To = new Thickness(_leftDrawerElement.ActualWidth, 0, 0, 0);
                 }
-                else if (IsTopDrawerOpen) {
+                else if (IsTopDrawerOpen)
+                {
                     thicknessAnimation.To = new Thickness(0, _topDrawerElement.ActualHeight, 0, 0);
                 }
-                else if (IsRightDrawerOpen) {
+                else if (IsRightDrawerOpen)
+                {
                     thicknessAnimation.To = new Thickness(0, 0, _rightDrawerElement.ActualWidth, 0);
                 }
-                else if (IsBottomDrawerOpen) {
+                else if (IsBottomDrawerOpen)
+                {
                     thicknessAnimation.To = new Thickness(0, 0, 0, _bottomDrawerElement.ActualHeight);
                 }
-                else {
+                else
+                {
                     thicknessAnimation.To = new Thickness(0, 0, 0, 0);
                 }
             }
-            else {
+            else
+            {
                 thicknessAnimation.To = new Thickness(0, 0, 0, 0);
             }
             _mainContent.BeginAnimation(MarginProperty, thicknessAnimation);
         }
 
-        private bool MoreThanOneDrawerOpened() {
+        private bool MoreThanOneDrawerOpened()
+        {
             int numberOfOpenedDrawer = 0;
             if (IsLeftDrawerOpen) numberOfOpenedDrawer++;
             if (IsTopDrawerOpen) numberOfOpenedDrawer++;
@@ -530,7 +537,7 @@ namespace MaterialDesignThemes.Wpf
                 PrepareZIndexes(BottomDrawerZIndexPropertyKey);
         }
 
-        private void TemplateContentCoverElementOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs) 
+        private void TemplateContentCoverElementOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             if (OpenMode != DrawerHostOpenMode.Standard) return;
             SetCurrentValue(IsLeftDrawerOpenProperty, false);
@@ -546,9 +553,9 @@ namespace MaterialDesignThemes.Wpf
             UpdateMainContentMargin();
 
             var anyOpen = IsTopDrawerOpen || IsLeftDrawerOpen || IsBottomDrawerOpen || IsRightDrawerOpen;
-            
+
             VisualStateManager.GoToState(this,
-                !anyOpen || OpenMode==DrawerHostOpenMode.Pinned ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
+                !anyOpen || OpenMode == DrawerHostOpenMode.Pinned ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
 
             VisualStateManager.GoToState(this,
                 IsLeftDrawerOpen ? TemplateLeftOpenStateName : TemplateLeftClosedStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
@@ -642,14 +649,17 @@ namespace MaterialDesignThemes.Wpf
 
         private bool _pinned = false;
         private DrawerHostOpenMode _previousMode;
-        private void PinDrawerHanlder(object sender , ExecutedRoutedEventArgs executedRoutedEventArgs) {
+        private void PinDrawerHanlder(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
+        {
             if (executedRoutedEventArgs.Handled) return;
-            if (!_pinned) {
+            if (!_pinned)
+            {
                 _previousMode = OpenMode;
                 SetCurrentValue(OpenModeProperty, DrawerHostOpenMode.Pinned);
                 _pinned = true;
             }
-            else {
+            else
+            {
                 SetCurrentValue(OpenModeProperty, _previousMode);
                 _pinned = false;
             }
