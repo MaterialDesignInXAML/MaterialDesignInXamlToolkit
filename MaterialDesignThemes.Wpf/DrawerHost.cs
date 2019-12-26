@@ -225,14 +225,6 @@ namespace MaterialDesignThemes.Wpf
             private set { SetValue(TopDrawerZIndexPropertyKey, value); }
         }
 
-        public static readonly DependencyProperty TopDrawerCloseOnClickAwayProperty = DependencyProperty.Register(
-            nameof(TopDrawerCloseOnClickAway), typeof(bool), typeof(DrawerHost), new PropertyMetadata(true));
-
-        public bool TopDrawerCloseOnClickAway
-        {
-            get { return (bool)GetValue(TopDrawerCloseOnClickAwayProperty); }
-            set { SetValue(TopDrawerCloseOnClickAwayProperty, value); }
-        }
         #endregion
 
         #region left drawer
@@ -302,15 +294,6 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (int)GetValue(LeftDrawerZIndexProperty); }
             private set { SetValue(LeftDrawerZIndexPropertyKey, value); }
-        }
-
-        public static readonly DependencyProperty LeftDrawerCloseOnClickAwayProperty = DependencyProperty.Register(
-            nameof(LeftDrawerCloseOnClickAway), typeof(bool), typeof(DrawerHost), new PropertyMetadata(true));
-
-        public bool LeftDrawerCloseOnClickAway
-        {
-            get { return (bool)GetValue(LeftDrawerCloseOnClickAwayProperty); }
-            set { SetValue(LeftDrawerCloseOnClickAwayProperty, value); }
         }
 
         #endregion
@@ -384,15 +367,6 @@ namespace MaterialDesignThemes.Wpf
             private set { SetValue(RightDrawerZIndexPropertyKey, value); }
         }
 
-        public static readonly DependencyProperty RightDrawerCloseOnClickAwayProperty = DependencyProperty.Register(
-            nameof(RightDrawerCloseOnClickAway), typeof(bool), typeof(DrawerHost), new PropertyMetadata(true));
-
-        public bool RightDrawerCloseOnClickAway
-        {
-            get { return (bool)GetValue(RightDrawerCloseOnClickAwayProperty); }
-            set { SetValue(RightDrawerCloseOnClickAwayProperty, value); }
-        }
-
         #endregion
 
         #region bottom drawer
@@ -462,15 +436,6 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (int)GetValue(BottomDrawerZIndexProperty); }
             private set { SetValue(BottomDrawerZIndexPropertyKey, value); }
-        }
-
-        public static readonly DependencyProperty BottomDrawerCloseOnClickAwayProperty = DependencyProperty.Register(
-            nameof(BottomDrawerCloseOnClickAway), typeof(bool), typeof(DrawerHost), new PropertyMetadata(true));
-
-        public bool BottomDrawerCloseOnClickAway
-        {
-            get { return (bool)GetValue(BottomDrawerCloseOnClickAwayProperty); }
-            set { SetValue(BottomDrawerCloseOnClickAwayProperty, value); }
         }
 
         #endregion
