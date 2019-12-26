@@ -67,8 +67,6 @@ steps:
     artifactName: 'DemoApp'
     targetPath: 'MainDemo.Wpf/bin/$(buildConfiguration)'
 
-- powershell: copy .\MaterialDesignThemes.nuspec .\MaterialDesignThemes.Wpf\bin\AppVeyor\
-
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesign"
   inputs:
