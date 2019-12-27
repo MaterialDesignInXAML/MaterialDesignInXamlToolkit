@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,14 +8,6 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public enum ComboBoxPopupPlacement
-    {
-        Undefined,
-        Down,
-        Up,
-        Classic
-    }
-
     public class ComboBoxPopup : Popup
     {
         #region UpContentTemplate property
@@ -117,18 +108,15 @@ namespace MaterialDesignThemes.Wpf
 
         #region Background property
 
-        private static readonly DependencyPropertyKey BackgroundPropertyKey =
-            DependencyProperty.RegisterReadOnly(
+        private static readonly DependencyProperty BackgroundProperty =
+            DependencyProperty.Register(
                 "Background", typeof(Brush), typeof(ComboBoxPopup),
                 new PropertyMetadata(default(Brush)));
-
-        public static readonly DependencyProperty BackgroundProperty =
-            BackgroundPropertyKey.DependencyProperty;
 
         public Brush Background
         {
             get { return (Brush) GetValue(BackgroundProperty); }
-            private set { SetValue(BackgroundPropertyKey, value); }
+            set { SetValue(BackgroundProperty, value); }
         }
 
         #endregion
@@ -199,18 +187,6 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private void SetupBackground(IEnumerable<DependencyObject> visualAncestry)
-        {
-            var background = visualAncestry
-                .Select(v => (v as Control)?.Background ?? (v as Panel)?.Background ?? (v as Border)?.Background)
-                .FirstOrDefault(v => v != null && !Equals(v, Brushes.Transparent) && v is SolidColorBrush);
-
-            if (background != null)
-            {
-                Background = background;
-            }
-        }
-
         private void SetupVisiblePlacementWidth(IEnumerable<DependencyObject> visualAncestry)
         {
             var parent = visualAncestry.OfType<Panel>().ElementAt(1);
@@ -221,8 +197,6 @@ namespace MaterialDesignThemes.Wpf
             Size popupSize, Size targetSize, Point offset)
         {
             var visualAncestry = PlacementTarget.GetVisualAncestry().ToList();
-
-            SetupBackground(visualAncestry);
 
             SetupVisiblePlacementWidth(visualAncestry);
 
@@ -273,8 +247,8 @@ namespace MaterialDesignThemes.Wpf
             var locationX = (int)(locationFromScreen.X - screen.Bounds.X) % screenWidth;
             var locationY = (int)(locationFromScreen.Y - screen.Bounds.Y) % screenHeight;
 
-            var upVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
-            var newUpY = upVerticalOffsetIndepent - popupSize.Height + targetSize.Height;
+            var upVerticalOffsetIndependent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
+            var newUpY = upVerticalOffsetIndependent - popupSize.Height + targetSize.Height;
             var newDownY = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);
 
             double offsetX;
@@ -341,10 +315,10 @@ namespace MaterialDesignThemes.Wpf
 
         private static CustomPopupPlacement GetClassicPopupPlacement(ComboBoxPopup popup, PositioningData data)
         {
-            var defaultVerticalOffsetIndepent = DpiHelper.TransformToDeviceY(data.MainVisual, popup.DefaultVerticalOffset);
+            var defaultVerticalOffsetIndependent = DpiHelper.TransformToDeviceY(data.MainVisual, popup.DefaultVerticalOffset);
             var newY = data.LocationY + data.PopupSize.Height > data.ScreenHeight
-                ? -(defaultVerticalOffsetIndepent + data.PopupSize.Height)
-                : defaultVerticalOffsetIndepent + data.TargetSize.Height;
+                ? -(defaultVerticalOffsetIndependent + data.PopupSize.Height)
+                : defaultVerticalOffsetIndependent + data.TargetSize.Height;
 
             return new CustomPopupPlacement(new Point(data.OffsetX, newY), PopupPrimaryAxis.Horizontal);
         }

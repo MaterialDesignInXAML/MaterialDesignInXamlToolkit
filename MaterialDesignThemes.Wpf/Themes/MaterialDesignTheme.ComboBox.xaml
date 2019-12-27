@@ -17,6 +17,7 @@
     <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
     <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearTextConverter" />
     <converters:NotConverter x:Key="NotConverter" />
+    <converters:FallbackBrushConverter x:Key="FallbackBrushConverter" />
 
     <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
     <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
@@ -518,10 +519,17 @@
                                    DefaultVerticalOffset="5"
                                    DownVerticalOffset="-15.5"
                                    UpVerticalOffset="15"
+                                   Tag="{DynamicResource MaterialDesignPaper}"
                                    ClassicMode="{Binding Path=(wpf:ComboBoxAssist.ClassicMode), RelativeSource={RelativeSource TemplatedParent}}"
                                    UpContentTemplate="{StaticResource PopupContentUpTemplate}"
                                    DownContentTemplate="{StaticResource PopupContentDownTemplate}"
                                    ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}">
+                    <wpf:ComboBoxPopup.Background>
+                        <MultiBinding Converter="{StaticResource FallbackBrushConverter}">
+                            <Binding Path="Background" RelativeSource="{RelativeSource TemplatedParent}" />
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
+                        </MultiBinding>
+                    </wpf:ComboBoxPopup.Background>
                     <ContentControl>
                         <ScrollViewer MaxHeight="{TemplateBinding MaxDropDownHeight}"
                                       Background="{Binding Background, ElementName=PART_Popup}">
