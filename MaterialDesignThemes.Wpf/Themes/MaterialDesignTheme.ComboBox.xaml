@@ -524,6 +524,7 @@
                                    ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}">
                     <ContentControl>
                         <ScrollViewer MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                      MinHeight="1"
                                       Background="{Binding Background, ElementName=PART_Popup}">
                             <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
                         </ScrollViewer>
