@@ -12,6 +12,7 @@
 
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" IsNotEmptyValue="Collapsed" />
     <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
+    <converters:MathConverter x:Key="DivisionMathConverter" Operation="Divide" />
     <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
     <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
     <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearTextConverter" />
