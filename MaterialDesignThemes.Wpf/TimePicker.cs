@@ -13,7 +13,7 @@ namespace MaterialDesignThemes.Wpf
 {
     [TemplatePart(Name = ButtonPartName, Type = typeof(Button))]
     [TemplatePart(Name = PopupPartName, Type = typeof(Popup))]
-    [TemplatePart(Name = TextBoxPartName, Type = typeof(TextBox))]
+    [TemplatePart(Name = TextBoxPartName, Type = typeof(TimePickerTextBox))]
     public class TimePicker : Control
     {
         public const string ButtonPartName = "PART_Button";
@@ -36,10 +36,12 @@ namespace MaterialDesignThemes.Wpf
 
         public TimePicker()
         {
-            _clock = new Clock {
+            _clock = new Clock 
+            {
                 DisplayAutomation = ClockDisplayAutomation.ToMinutesOnly
             };
-            _clockHostContentControl = new ContentControl {
+            _clockHostContentControl = new ContentControl 
+            {
                 Content = _clock
             };
             InitializeClock();
@@ -172,7 +174,7 @@ namespace MaterialDesignThemes.Wpf
                 //TODO set time
                 //dp._originalSelectedDate = dp.SelectedDate;
 
-                timePicker.Dispatcher.BeginInvoke(DispatcherPriority.Input, new Action(() =>
+                timePicker.Dispatcher?.BeginInvoke(DispatcherPriority.Input, new Action(() =>
                 {
                     timePicker._clock.Focus();
                 }));
@@ -438,14 +440,13 @@ namespace MaterialDesignThemes.Wpf
 
         private void PopupOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
-            var popup = sender as Popup;
-            if (popup == null || popup.StaysOpen) return;
+            if (!(sender is Popup popup) || popup.StaysOpen) return;
 
             if (_dropDownButton?.InputHitTest(mouseButtonEventArgs.GetPosition(_dropDownButton)) != null)
             {
                 // This popup is being closed by a mouse press on the drop down button 
                 // The following mouse release will cause the closed popup to immediately reopen. 
-                // Raise a flag to block reopeneing the popup
+                // Raise a flag to block re-opening the popup
                 _disablePopupReopen = true;
             }
         }
@@ -495,10 +496,8 @@ namespace MaterialDesignThemes.Wpf
 
         private void ClockChoiceMadeHandler(object sender, ClockChoiceMadeEventArgs clockChoiceMadeEventArgs)
         {
-            if (
-                (WithSeconds && (clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Seconds)) ||
-                (!WithSeconds && (clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Minutes))
-            )
+            if (WithSeconds && clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Seconds ||
+                !WithSeconds && clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Minutes)
             {
                 TogglePopup();
                 if (SelectedTime == null)
