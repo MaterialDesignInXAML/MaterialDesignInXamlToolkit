@@ -95,6 +95,8 @@ To load the source project you will need Visual Studio 2019. Don't worry if you 
 
 ![Alt text](web/images/screen-sliders.png "Sliders")
 
+![Alt text](web/images/screen-chips.png "Chips")
+
 ![Alt text](web/images/screen-typography.png "Typography")
 
 ![Alt text](web/images/screen-groupbox.png "Group Box")
