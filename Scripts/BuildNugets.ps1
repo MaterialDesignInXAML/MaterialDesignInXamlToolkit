@@ -31,6 +31,37 @@ function Update-Icon {
   $xml.Save($Path)
 }
 
+function Update-Versions {
+  param (
+    [string]$Path
+  )
+  $Path = Resolve-Path $Path
+  [xml] $xml = Get-Content $Path
+
+  foreach($dependency in $xml.package.metadata.dependencies.group.dependency){
+    if ($dependency.id -eq "MaterialDesignColors") {
+      $dependency.version = Get-VersionString $MDIXColorsVersion
+    } elseif ($dependency.id -eq "MaterialDesignThemes") {
+      $dependency.version = Get-VersionString $MDIXVersion
+    }
+  }
+  $xml.Save($Path)
+}
+
+function Get-VersionString {
+  param (
+    [string]$Version
+  )
+
+  $callback = {
+    [int]$args[0].Value + 1
+  }
+
+  $re = [regex]"^\d+"
+  $nextVersion = $re.Replace($Version, $callback)
+  return "[$Version,$nextVersion)" 
+}
+
 function New-Nuget {
   param (
     [string]$NuSpecPath,
@@ -43,6 +74,10 @@ function New-Nuget {
 }
 
 Push-Location "$(Join-Path $PSScriptRoot "..")"
+
+Update-Versions .\MaterialDesignColors.nuspec
+Update-Versions .\MaterialDesignThemes.nuspec
+Update-Versions .\MaterialDesignThemes.MahApps.nuspec
 
 New-Nuget .\MaterialDesignColors.nuspec $MDIXColorsVersion
 New-Nuget .\MaterialDesignThemes.nuspec $MDIXVersion
