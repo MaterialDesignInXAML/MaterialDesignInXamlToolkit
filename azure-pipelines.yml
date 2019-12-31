@@ -89,4 +89,4 @@ steps:
   name: "PublishScript"
   inputs:
     artifactName: 'Script'
-    targetPath: 'Scripts/UpdateNugets.ps1'
+    targetPath: 'Scripts\\UpdateNugets.ps1'
