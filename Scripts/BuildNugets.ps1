@@ -54,12 +54,12 @@ function Get-VersionString {
   )
 
   $callback = {
-    [int]$args[0].Value + 1
+    [int]$args[0].Groups[1].Value + 1
   }
 
-  $re = [regex]"^\d+"
+  $re = [regex]"^(\d+).*"
   $nextVersion = $re.Replace($Version, $callback)
-  return "[$Version,$nextVersion)" 
+  return "[$Version,$nextVersion.0)"
 }
 
 function New-Nuget {
