@@ -84,3 +84,9 @@ steps:
   inputs:
     artifactName: 'MDIX.MahApps'
     targetPath: 'MaterialDesignThemes.MahApps.$(mdixMahappsVersion)-ci$(Build.BuildId).nupkg'
+
+- task: PublishPipelineArtifact@0
+  name: "PublishScript"
+  inputs:
+    artifactName: 'Script'
+    targetPath: 'Scripts/UpdateNugets.ps1'
