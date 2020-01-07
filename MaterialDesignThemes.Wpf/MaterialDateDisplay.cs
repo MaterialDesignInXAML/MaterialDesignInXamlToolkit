@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,7 +20,25 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(
-            nameof(DisplayDate), typeof(DateTime), typeof(MaterialDateDisplay), new PropertyMetadata(default(DateTime), DisplayDatePropertyChangedCallback));
+            nameof(DisplayDate), typeof(DateTime), typeof(MaterialDateDisplay), new PropertyMetadata(default(DateTime), DisplayDatePropertyChangedCallback, DisplayDateCoerceValue));
+
+        private static object DisplayDateCoerceValue(DependencyObject d, object baseValue)
+        {
+            if (d is FrameworkElement element &&
+                element.Language.GetSpecificCulture() is CultureInfo culture &&
+                baseValue is DateTime displayDate)
+            {
+                if (displayDate < culture.Calendar.MinSupportedDateTime)
+                {
+                    return culture.Calendar.MinSupportedDateTime;
+                }
+                if (displayDate > culture.Calendar.MaxSupportedDateTime)
+                {
+                    return culture.Calendar.MaxSupportedDateTime;
+                }
+            }
+            return baseValue;
+        }
 
         private static void DisplayDatePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
