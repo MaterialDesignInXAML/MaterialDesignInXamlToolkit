@@ -383,6 +383,22 @@ namespace MaterialDesignThemes.Wpf
             return (string)element.GetValue(SuffixTextProperty);
         }
 
+        /// <summary>
+        /// Controls the visibility of the character counter.
+        /// </summary>
+        public static readonly DependencyProperty ShowCharacterCounterProperty = DependencyProperty.RegisterAttached(
+            "ShowCharacterCounter", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
+
+        public static void SetShowCharacterCounter(DependencyObject element, bool value)
+        {
+            element.SetValue(ShowCharacterCounterProperty, value);
+        }
+
+        public static bool GetShowCharacterCounter(DependencyObject element)
+        {
+            return (bool)element.GetValue(ShowCharacterCounterProperty);
+        }
+
         #region Methods
 
         /// <summary>
