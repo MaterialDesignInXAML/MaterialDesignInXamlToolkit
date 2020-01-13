@@ -12,6 +12,7 @@
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearTextConverter" />
     <converters:NotConverter x:Key="NotConverter" />
+    <converters:NotZeroConverter x:Key="NotZeroConverter" />
 
     <Style x:Key="MaterialDesignTextBoxBase" TargetType="{x:Type TextBoxBase}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
