@@ -308,15 +308,15 @@ namespace MaterialDesignThemes.Wpf
         private static void RemoveSpellingSuggestions(ContextMenu menu)
         {
             foreach (FrameworkElement item in (from item in menu.Items.OfType<FrameworkElement>()
-                                     where ReferenceEquals(item.Tag, typeof(Spelling))
-                                     select item).ToList())
+                                               where ReferenceEquals(item.Tag, typeof(Spelling))
+                                               select item).ToList())
             {
                 menu.Items.Remove(item);
             }
         }
 
         /// <summary>
-        /// Controls the visbility of the clear button.
+        /// Controls the visibility of the clear button.
         /// </summary>
         public static readonly DependencyProperty HasClearButtonProperty = DependencyProperty.RegisterAttached(
             "HasClearButton", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false, HasClearButtonChanged));
@@ -386,17 +386,17 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Controls the visibility of the character counter.
         /// </summary>
-        public static readonly DependencyProperty ShowCharacterCounterProperty = DependencyProperty.RegisterAttached(
-            "ShowCharacterCounter", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
+        public static readonly DependencyProperty CharacterCounterVisibilityProperty = DependencyProperty.RegisterAttached(
+            "CharacterCounterVisibility", typeof(CharacterCounterVisibility), typeof(TextFieldAssist), new PropertyMetadata(CharacterCounterVisibility.Collapsed));
 
-        public static void SetShowCharacterCounter(DependencyObject element, bool value)
+        public static void SetCharacterCounterVisibility(DependencyObject element, CharacterCounterVisibility value)
         {
-            element.SetValue(ShowCharacterCounterProperty, value);
+            element.SetValue(CharacterCounterVisibilityProperty, value);
         }
 
-        public static bool GetShowCharacterCounter(DependencyObject element)
+        public static bool GetCharacterCounterVisibility(DependencyObject element)
         {
-            return (bool)element.GetValue(ShowCharacterCounterProperty);
+            return (bool)element.GetValue(CharacterCounterVisibilityProperty);
         }
 
         #region Methods

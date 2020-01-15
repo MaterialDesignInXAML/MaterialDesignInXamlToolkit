@@ -136,8 +136,16 @@
                                 <Style.Triggers>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:TextFieldAssist.CharacterCounterVisibility)}" Value="Visible"/>
                                             <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(TextBox.MaxLength), Converter={StaticResource NotZeroConverter}}" Value="True"/>
-                                            <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:TextFieldAssist.ShowCharacterCounter)}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </MultiDataTrigger>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:TextFieldAssist.CharacterCounterVisibility)}" Value="WhenFocused"/>
+                                            <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.IsFocused}" Value="True"/>
+                                            <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(TextBox.MaxLength), Converter={StaticResource NotZeroConverter}}" Value="True"/>
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </MultiDataTrigger>

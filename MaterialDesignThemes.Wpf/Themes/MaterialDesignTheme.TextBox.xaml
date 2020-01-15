@@ -492,8 +492,16 @@
                                                     <Style.Triggers>
                                                         <MultiDataTrigger>
                                                             <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding Path=(wpf:TextFieldAssist.CharacterCounterVisibility), RelativeSource={RelativeSource TemplatedParent}}" Value="Visible" />
                                                                 <Condition Binding="{Binding Path=MaxLength, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotZeroConverter}}" Value="True" />
-                                                                <Condition Binding="{Binding Path=(wpf:TextFieldAssist.ShowCharacterCounter), RelativeSource={RelativeSource TemplatedParent}}" Value="True" />
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </MultiDataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding Path=(wpf:TextFieldAssist.CharacterCounterVisibility), RelativeSource={RelativeSource TemplatedParent}}" Value="WhenFocused" />
+                                                                <Condition Binding="{Binding Path=IsFocused, RelativeSource={RelativeSource TemplatedParent}}" Value="True" />
+                                                                <Condition Binding="{Binding Path=MaxLength, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotZeroConverter}}" Value="True" />
                                                             </MultiDataTrigger.Conditions>
                                                             <Setter Property="Visibility" Value="Visible" />
                                                         </MultiDataTrigger>
