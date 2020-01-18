@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -12,11 +13,12 @@ namespace MaterialDesignThemes.Wpf
         PrimaryDark,
         Accent,
         Light,
-        Dark
+        Dark,
+        Custom
     }
 
     /// <summary>
-    /// User a colour zone to easily switch the background and foreground colours, whilst still remaining within the selected Material Design palette.
+    /// User a colour zone to easily switch the background and foreground colours, from selected Material Design palette or custom ones.
     /// </summary>
     public class ColorZone : ContentControl
     {
@@ -26,21 +28,39 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ModeProperty = DependencyProperty.Register(
-            nameof(Mode), typeof (ColorZoneMode), typeof (ColorZone), new PropertyMetadata(default(ColorZoneMode)));
+            nameof(Mode), typeof(ColorZoneMode), typeof(ColorZone), new PropertyMetadata(default(ColorZoneMode)));
 
         public ColorZoneMode Mode
         {
-            get { return (ColorZoneMode) GetValue(ModeProperty); }
+            get { return (ColorZoneMode)GetValue(ModeProperty); }
             set { SetValue(ModeProperty, value); }
         }
 
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-            nameof(CornerRadius), typeof (CornerRadius), typeof (ColorZone), new PropertyMetadata(default(CornerRadius)));
+            nameof(CornerRadius), typeof(CornerRadius), typeof(ColorZone), new PropertyMetadata(default(CornerRadius)));
 
         public CornerRadius CornerRadius
         {
-            get { return (CornerRadius) GetValue(CornerRadiusProperty); }
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
+        }
+
+        public static readonly DependencyProperty CustomBackgroundProperty = DependencyProperty.Register(
+            nameof(CustomBackground), typeof(Brush), typeof(ColorZone), new PropertyMetadata(default(Brush)));
+
+        public Brush CustomBackground
+        {
+            get { return (Brush)GetValue(CustomBackgroundProperty); }
+            set { SetValue(CustomBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty CustomForegroundProperty = DependencyProperty.Register(
+            nameof(CustomForeground), typeof(Brush), typeof(ColorZone), new PropertyMetadata(default(Brush)));
+
+        public Brush CustomForeground
+        {
+            get { return (Brush)GetValue(CustomForegroundProperty); }
+            set { SetValue(CustomForegroundProperty, value); }
         }
     }
 }

@@ -489,6 +489,10 @@
                 <Setter Property="Background" Value="{DynamicResource MaterialDesignDarkBackground}" />
                 <Setter Property="Foreground" Value="{DynamicResource MaterialDesignDarkForeground}" />
             </Trigger>
+            <Trigger Property="Mode" Value="Custom">
+                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=CustomBackground}" />
+                <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=CustomForeground}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
