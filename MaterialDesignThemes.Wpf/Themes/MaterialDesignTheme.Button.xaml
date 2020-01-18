@@ -207,7 +207,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignOutlinedButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
-        <Setter Property="BorderBrush" Value="{StaticResource PrimaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:ButtonAssist.CornerRadius" Value="2" />
