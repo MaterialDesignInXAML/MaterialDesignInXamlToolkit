@@ -102,7 +102,7 @@
 
             <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use custom back and fore colours.</TextBlock>
             <smtx:XamlDisplay Key="color_zones_custom">
-                <materialDesign:ColorZone Mode="Custom" CustomBackground="Black" CustomForeground="White" Padding="16">
+                <materialDesign:ColorZone Mode="Custom" Background="Black" Foreground="White" Padding="16">
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                         <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>

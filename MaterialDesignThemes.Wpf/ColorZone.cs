@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -43,24 +42,6 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
-        }
-
-        public static readonly DependencyProperty CustomBackgroundProperty = DependencyProperty.Register(
-            nameof(CustomBackground), typeof(Brush), typeof(ColorZone), new PropertyMetadata(default(Brush)));
-
-        public Brush CustomBackground
-        {
-            get { return (Brush)GetValue(CustomBackgroundProperty); }
-            set { SetValue(CustomBackgroundProperty, value); }
-        }
-
-        public static readonly DependencyProperty CustomForegroundProperty = DependencyProperty.Register(
-            nameof(CustomForeground), typeof(Brush), typeof(ColorZone), new PropertyMetadata(default(Brush)));
-
-        public Brush CustomForeground
-        {
-            get { return (Brush)GetValue(CustomForegroundProperty); }
-            set { SetValue(CustomForegroundProperty, value); }
         }
     }
 }
