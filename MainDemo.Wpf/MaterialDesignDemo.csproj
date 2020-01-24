@@ -7,24 +7,16 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>MaterialDesignColors.WpfExample</AssemblyTitle>
     <Product>MaterialDesignColors.WpfExample</Product>
-    <Copyright>Copyright ©  2015</Copyright>
+    <Copyright>Copyright ©  2019</Copyright>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
-    <Configurations>Debug;Release;AppVeyor</Configurations>
+    <Configurations>Debug;Release</Configurations>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.0'">
     <UseWPF>true</UseWPF>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppVeyor|AnyCPU'">
-    <OutputPath>bin\AppVeyor\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="..\packages\ShowMeTheXAML.MSBuild\build\ShowMeTheXAML.MSBuild.targets" Label="Paket" />
   <Target Name="ShowMeTheXAML_EnsureXamlCreated" AfterTargets="BeforeCompile">
@@ -237,33 +229,14 @@
     <ProjectReference Include="..\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\ProfilePic.jpg" />
+    <Resource Include="Resources\*.jpg" />
+    <Resource Include="Resources\*.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ScreenGrabFromGoogle.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Chartridge046_small.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\ms-icon-310x310.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Contact.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="obj\AppVeyor\GeneratedInternalTypeHelper.g.cs" />
-    <Compile Remove="obj\AppVeyor\Lists.g.cs" />
-    <Compile Remove="obj\AppVeyor\Palette.g.cs" />
-    <Compile Remove="obj\AppVeyor\ShowMeTheXaml_XamlDictionary.g.cs" />
-    <Compile Remove="obj\AppVeyor\Sliders.g.cs" />
-    <Compile Remove="obj\AppVeyor\Transitions.g.cs" />
-    <Compile Remove="obj\AppVeyor\Typography.g.cs" />
-    <Compile Remove="obj\AppVeyor\Domain\SampleProgressDialog.g.cs" />
-    <Compile Remove="obj\AppVeyor\TransitionsDemo\Slide8_Details.g.cs" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

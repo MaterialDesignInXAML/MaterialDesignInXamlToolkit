@@ -65,8 +65,35 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <uwp:Shadow HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <PointerUpThemeAnimation Storyboard.TargetName="border"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PrimaryHueDarkBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ripple" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PrimaryHueDarkForegroundBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <PointerUpThemeAnimation Storyboard.TargetName="border"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundDisabled}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="2">
-                            <uwp:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"                                                               
+                            <uwp:Ripple x:Name="Ripple" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"                                                               
                                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                         IsTabStop="False"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -74,19 +101,6 @@
                                         Padding="{TemplateBinding Padding}" />
                         </Border>
                     </uwp:Shadow>
-                    <!--
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsDefaulted" Value="true">
-                    <Setter Property="BorderBrush" TargetName="border" Value="{ThemeResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AttentionToActionBrush}" />
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="false">
-                    <Setter Property="Opacity" Value="0.23"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-            -->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -153,7 +153,6 @@
                                         TextOptions.TextRenderingMode="Auto" 
                                         FocusManager.IsFocusScope="False"
                                         Foreground="{DynamicResource MaterialDesignBody}"
-                                        FontFamily="{StaticResource MaterialDesignFont}"
                                         Focusable="True"
                                         IsTabStop="False"
                                         Opacity="0"

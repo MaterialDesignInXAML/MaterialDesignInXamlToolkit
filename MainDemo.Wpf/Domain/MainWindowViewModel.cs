@@ -5,16 +5,68 @@ using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
 using System.Windows.Controls;
 using System;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MaterialDesignColors.WpfExample.Domain
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
         public MainWindowViewModel(ISnackbarMessageQueue snackbarMessageQueue)
         {
-            if (snackbarMessageQueue == null) throw new ArgumentNullException(nameof(snackbarMessageQueue));
+            _allItems = GenerateDemoItems(snackbarMessageQueue);
+            FilterItems(null);
+        }
 
-            DemoItems = new[]
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private string _searchKeyword;
+        private ObservableCollection<DemoItem> _allItems;
+        private ObservableCollection<DemoItem> _demoItems;
+        private DemoItem _selectedItem;
+
+
+        public string SearchKeyword
+        {
+            get => _searchKeyword;
+            set
+            {
+                _searchKeyword = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DemoItems)));
+                FilterItems(_searchKeyword);
+            }
+        }
+
+        public ObservableCollection<DemoItem> DemoItems
+        {
+            get => _demoItems;
+            set
+            {
+                _demoItems = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DemoItems)));
+            }
+        }
+
+        public DemoItem SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                if (value == null || value.Equals(_selectedItem)) return;
+
+                _selectedItem = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedItem)));
+            }
+        }
+
+
+        private ObservableCollection<DemoItem> GenerateDemoItems(ISnackbarMessageQueue snackbarMessageQueue)
+        {
+            if (snackbarMessageQueue == null)
+                throw new ArgumentNullException(nameof(snackbarMessageQueue));
+
+            return new ObservableCollection<DemoItem>
             {
                 new DemoItem("Home", new Home(),
                     new []
@@ -219,6 +271,14 @@ namespace MaterialDesignColors.WpfExample.Domain
             };
         }
 
-        public DemoItem[] DemoItems { get; }
+        private void FilterItems(string keyword)
+        {
+            var filteredItems =
+                string.IsNullOrWhiteSpace(keyword) ?
+                _allItems :
+                _allItems.Where(i => i.Name.ToLower().Contains(keyword.ToLower()));
+
+            DemoItems = new ObservableCollection<DemoItem>(filteredItems);
+        }
     }
 }

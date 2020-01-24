@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo
@@ -48,7 +49,7 @@ namespace MaterialDesignDemo
 
         private void OpenDotCom(object obj)
         {
-            Process.Start("https://materialdesignicons.com/");
+            Link.OpenInBrowser("https://materialdesignicons.com/");
         }
 
         private void Search(object obj)

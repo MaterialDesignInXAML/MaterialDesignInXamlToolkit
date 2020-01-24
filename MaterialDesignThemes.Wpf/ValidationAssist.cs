@@ -64,12 +64,12 @@ namespace MaterialDesignThemes.Wpf
 
         public static PlacementMode GetPopupPlacement(DependencyObject element)
         {
-            return (PlacementMode)element.GetValue(UsePopupProperty);
+            return (PlacementMode)element.GetValue(PopupPlacementProperty);
         }
 
         public static void SetPopupPlacement(DependencyObject element, PlacementMode value)
         {
-            element.SetValue(UsePopupProperty, value);
+            element.SetValue(PopupPlacementProperty, value);
         }
 
         /// <summary>
@@ -121,6 +121,22 @@ namespace MaterialDesignThemes.Wpf
         public static double GetFontSize(DependencyObject element)
         {
             return (double)element.GetValue(FontSizeProperty);
+        }
+
+        public static readonly DependencyProperty HasErrorProperty = DependencyProperty.RegisterAttached(
+            "HasError",
+            typeof(bool),
+            typeof(ValidationAssist),
+            new PropertyMetadata(default(bool)));
+
+        public static void SetHasError(DependencyObject element, bool value)
+        {
+            element.SetValue(HasErrorProperty, value);
+        }
+
+        public static bool GetHasError(DependencyObject element)
+        {
+            return (bool)element.GetValue(HasErrorProperty);
         }
     }
 }

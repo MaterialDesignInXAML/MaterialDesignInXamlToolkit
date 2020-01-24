@@ -5,6 +5,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
+        WindowStartupLocation="CenterScreen"
         Title="Material Design in XAML" Height="800" Width="1100"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -12,7 +13,8 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{StaticResource MaterialDesignFont}" Icon="favicon.ico">
+        FontFamily="{materialDesign:MaterialDesignFont}" 
+        Icon="favicon.ico">
     <Window.CommandBindings>
         <CommandBinding Command="Copy" Executed="OnCopy"></CommandBinding>
     </Window.CommandBindings>
@@ -38,14 +40,33 @@
     <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
-                <DockPanel MinWidth="212">
-                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
-                                    DockPanel.Dock="Top"
-                                    HorizontalAlignment="Right" Margin="16"
-                                    IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                    <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"
-                             ItemsSource="{Binding DemoItems}"
-                             PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
+                <DockPanel MinWidth="220">
+                    <ToggleButton 
+                        Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                        DockPanel.Dock="Top"
+                        HorizontalAlignment="Right" 
+                        Margin="16"
+                        IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+
+                    <TextBox 
+                        Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
+                        DockPanel.Dock="Top"
+                        Margin="16, 4"
+                        Width="200"
+                        BorderThickness="0"
+                        materialDesign:HintAssist.Hint="Search..."
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        materialDesign:TextFieldAssist.HasOutlinedTextField="True"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
+                        materialDesign:TextFieldAssist.TextFieldCornerRadius="4"/>
+
+                    <ListBox 
+                        x:Name="DemoItemsListBox" 
+                        Margin="0 16 0 16"
+                        SelectedIndex="0"
+                        SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
+                        ItemsSource="{Binding DemoItems}"
+                        PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
                         <ListBox.Resources>
                             <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
                         </ListBox.Resources>
@@ -88,7 +109,7 @@
                                   HorizontalScrollBarVisibility="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
                                   VerticalScrollBarVisibility="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}" 
                                   Padding="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.MarginRequirement}">
-                        <ContentControl Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
+                        <ContentControl Content="{Binding SelectedItem.Content, UpdateSourceTrigger=PropertyChanged}" />
                     </ScrollViewer>
 
                     <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"

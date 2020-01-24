@@ -2,6 +2,9 @@ $defaultStyleText = "(default style)"
 $headerMarkdown = "##"
 $listMarkdown = "-"
 $themesDirectory = "..\MaterialDesignThemes.Wpf\Themes\"
+$latestHash = git log -1 --pretty=format:"%H"
+$baseURL = "https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob"
+$filePathURL = "MaterialDesignThemes.Wpf/Themes"
 $outputFileName = "ControlStyleList.md"
 $themesFullDir = Join-Path $PSScriptRoot $themesDirectory 
 $outputFullDir = Join-Path $PSScriptRoot $outputFileName
@@ -30,11 +33,13 @@ Function Format-Output {
         }
         $previousFile = $style.File;
         
+        $linkAndStyleName = "[$($style.Style)]($($baseURL)/$($latestHash)/" +
+                            "$($filePathURL)/MaterialDesignTheme.$($style.File).xaml)";
         if ($style.IsDefault) {
-            Write-OutputFile ("$listMarkdown $($style.Style) $defaultStyleText" -replace '\s+', ' ')
+            Write-OutputFile ("$listMarkdown $($linkAndStyleName) $defaultStyleText" -replace '\s+', ' ')
         }
         else {
-            Write-OutputFile "$listMarkdown $($style.Style)"
+            Write-OutputFile "$listMarkdown $($linkAndStyleName)"
         }
     }
 }

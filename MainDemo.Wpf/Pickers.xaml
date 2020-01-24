@@ -72,6 +72,12 @@
                                         Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                                         materialDesign:HintAssist.Hint="Disabled" />
                 </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="pickers_13" HorizontalAlignment="Left" Margin="0 32 0 0">
+                    <DatePicker Width="140" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignFilledDatePicker}" />
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="pickers_14" HorizontalAlignment="Left" Margin="0 16 0 0">
+                    <DatePicker Width="140" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                </smtx:XamlDisplay>
             </StackPanel>
 
             <smtx:XamlDisplay Key="pickers_7" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 16 0 0">

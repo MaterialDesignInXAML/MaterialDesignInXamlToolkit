@@ -215,9 +215,6 @@
                                 <VisualState x:Name="Today">
                                     <Storyboard>
                                         <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TodayBackground"/>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText">
-                                            <DiscreteObjectKeyFrame Value="{DynamicResource PrimaryHueLightForegroundBrush}" KeyTime="0" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -241,8 +238,10 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Ellipse x:Name="TodayBackground"
-                                 Fill="{DynamicResource PrimaryHueLightBrush}"
-                                 Opacity="0" />
+                                 Fill="Transparent"
+                                 Opacity="0" 
+                                 StrokeThickness="1"
+                                 Stroke="{TemplateBinding Foreground}"/>
                         <Ellipse x:Name="SelectedBackground"
                                  Fill="{DynamicResource PrimaryHueMidBrush}"
                                  Opacity="0" />
@@ -294,7 +293,7 @@
                     <ControlTemplate.Resources>
                         <SineEase x:Key="EasingFunction" EasingMode="EaseOut"/>
                         <CubicEase x:Key="EasingFunctionIn" EasingMode="EaseIn"/>
-                        
+
                         <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
                             <TextBlock Foreground="{DynamicResource MaterialDesignToolTipBackground}"
                                        Opacity="0.65"
@@ -540,7 +539,7 @@
                                     <DoubleAnimation Storyboard.TargetName="PART_YearViewCopy"
                                                      Storyboard.TargetProperty="(UIElement.Opacity)"
                                                      From="1" To="0" Duration="0:0:0.450"/>
-                                    
+
                                     <DoubleAnimation Storyboard.TargetName="PART_YearViewCopy"
                                                      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                                      From="0" To="-240" Duration="0:0:0.450"

@@ -9,13 +9,13 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="MaterialDesign.RangeSlider.Thumb"
-           BasedOn="{StaticResource MahApps.Metro.Styles.Slider.Thumb}"
+           BasedOn="{StaticResource MahApps.Styles.Thumb.Slider}"
            TargetType="Thumb">
-        <Setter Property="Template" Value="{DynamicResource MaterialDesignSliderThumb}" />
+        <Setter Property="Template" Value="{StaticResource MaterialDesignSliderThumb}" />
     </Style>
 
     <Style x:Key="MaterialDesign.RangeSlider.HorizontalMiddleThumb"
-           BasedOn="{StaticResource MahApps.Metro.Styles.RangeSlider.HorizontalMiddleThumb}"
+           BasedOn="{StaticResource MahApps.Styles.MetroThumb.RangeSlider.HorizontalMiddleThumb}"
            TargetType="{x:Type controls:MetroThumb}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
@@ -47,7 +47,7 @@
     </Style>
 
     <Style x:Key="MaterialDesign.RangeSlider.HorizontalTrack"
-           BasedOn="{StaticResource MahApps.Metro.Styles.Slider.HorizontalTrack}"
+           BasedOn="{StaticResource MahApps.Styles.RepeatButton.Slider.HorizontalTrack}"
            TargetType="{x:Type RepeatButton}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Focusable" Value="False" />
@@ -96,7 +96,7 @@
                      Maximum="{TemplateBinding Maximum}"
                      Minimum="{TemplateBinding Minimum}"
                      Placement="Top"
-                     ReservedSpace="{DynamicResource HorizontalThumbWidth}"
+                     ReservedSpace="{DynamicResource MahApps.Sizes.Slider.HorizontalThumb.Width}"
                      SelectionEnd="{TemplateBinding SelectionEnd}"
                      SelectionStart="{TemplateBinding SelectionStart}"
                      TickFrequency="{TemplateBinding TickFrequency}"
@@ -110,7 +110,7 @@
                      Maximum="{TemplateBinding Maximum}"
                      Minimum="{TemplateBinding Minimum}"
                      Placement="Bottom"
-                     ReservedSpace="{DynamicResource HorizontalThumbWidth}"
+                     ReservedSpace="{DynamicResource MahApps.Sizes.Slider.HorizontalThumb.Width}"
                      SelectionEnd="{TemplateBinding SelectionEnd}"
                      SelectionStart="{TemplateBinding SelectionStart}"
                      TickFrequency="{TemplateBinding TickFrequency}"
@@ -211,7 +211,7 @@
                      Maximum="{TemplateBinding Maximum}"
                      Minimum="{TemplateBinding Minimum}"
                      Placement="Left"
-                     ReservedSpace="{DynamicResource VerticalThumbHeight}"
+                     ReservedSpace="{DynamicResource MahApps.Sizes.Slider.VerticalThumb.Height}"
                      SelectionEnd="{TemplateBinding SelectionEnd}"
                      SelectionStart="{TemplateBinding SelectionStart}"
                      TickFrequency="{TemplateBinding TickFrequency}"
@@ -225,7 +225,7 @@
                      Maximum="{TemplateBinding Maximum}"
                      Minimum="{TemplateBinding Minimum}"
                      Placement="Right"
-                     ReservedSpace="{DynamicResource VerticalThumbHeight}"
+                     ReservedSpace="{DynamicResource MahApps.Sizes.Slider.VerticalThumb.Height}"
                      SelectionEnd="{TemplateBinding SelectionEnd}"
                      SelectionStart="{TemplateBinding SelectionStart}"
                      TickFrequency="{TemplateBinding TickFrequency}"

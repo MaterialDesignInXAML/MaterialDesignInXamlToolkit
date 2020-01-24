@@ -10,7 +10,7 @@ namespace MaterialDesignDemo.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null) return null;
-            string lowerHexString(int i) => i.ToString("X").ToLower();
+            string lowerHexString(int i) => i.ToString("X2").ToLower();
             var brush = (SolidColorBrush)value;
             var hex = lowerHexString(brush.Color.R) +
                       lowerHexString(brush.Color.G) +

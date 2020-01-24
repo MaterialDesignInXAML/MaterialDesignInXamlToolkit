@@ -121,7 +121,6 @@
     
     <Style x:Key="MaterialDesignToolBar" TargetType="{x:Type ToolBar}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignToolBarBackground}"/>
-        <Setter Property="FontFamily" Value="{StaticResource MaterialDesignFont}"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="ClipToBounds" Value="True"/>
         <Setter Property="Template">

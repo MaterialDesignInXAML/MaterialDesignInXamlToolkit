@@ -2,25 +2,33 @@
 <package>
   <metadata>
     <id>MaterialDesignThemes.MahApps</id>
-    <version>0.1.0-beta</version>
+    <version>$version$</version>
     <title>Material Design Themes XAML Resources For MahApps Controls</title>
     <authors>James Willock</authors>
     <owners>James Willock</owners>
-    <licenseUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>    
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>
     <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ResourceDictionary instances containing Material Design templates and styles for WPF controls in the MahApps library.</description>
     <releaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</releaseNotes>
-    <copyright>Copyright 2015 James Willock/Mulholland Software Ltd</copyright>
-    <tags>WPF XAML WinRT Material Design Theme Colour Color UI UX</tags>
+    <copyright>$copyright$</copyright>
+    <tags>WPF XAML MahApps Material Design Theme Colour Color UI UX</tags>
     <dependencies>
-      <dependency id="MaterialDesignColors" version="[1.2.0, 2.0)" />
-      <dependency id="MaterialDesignThemes" version="[2.6.0, 3.0)" />
-      <dependency id="MahApps.Metro" version="1.6.*" />
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
+        <dependency id="MaterialDesignThemes" version="[3.0.0, 4.0)" />
+        <dependency id="MahApps.Metro" version="[2.0.0,3.0)" />
+      </group>
+      <group targetFramework=".NETCoreApp3.0">
+        <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
+        <dependency id="MaterialDesignThemes" version="[3.0.0, 4.0)" />
+        <dependency id="MahApps.Metro" version="[2.0.0,3.0)" />
+      </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="MaterialDesignThemes.MahApps\bin\Release\net45\MaterialDesignThemes.MahApps.dll" target="lib\net45" />
+    <file src="MaterialDesignThemes.MahApps\bin\$configuration$\net45\MaterialDesignThemes.MahApps.*" target="lib\net45" exclude="**\*.json" />
+    <file src="MaterialDesignThemes.MahApps\bin\$configuration$\netcoreapp3.0\MaterialDesignThemes.MahApps.*" target="lib\netcoreapp3.0" exclude="**\*.json" />
   </files>
 </package>

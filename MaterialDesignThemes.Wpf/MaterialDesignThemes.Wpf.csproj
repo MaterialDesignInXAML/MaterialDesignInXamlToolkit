@@ -4,29 +4,21 @@
     <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <MDIXVersion>$(MDIX_CORE_VERSION)</MDIXVersion>
-    <LangVersion>7.3</LangVersion>
+    <MDIXVersion Condition="$(MDIXVersion) == '' Or $(MDIXVersion) == '*Undefined*'">1.0.1</MDIXVersion>
+    <LangVersion>8.0</LangVersion>
     <AssemblyTitle>MaterialDesignThemes.Wpf</AssemblyTitle>
     <Company>Mulholland Software/James Willock</Company>
     <Product>MaterialDesignColors.Wpf</Product>
     <Description>Material Design in XAML Toolkit - WPF Themes</Description>
-    <Copyright>Copyright © 2015</Copyright>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <Copyright>Copyright © 2019</Copyright>
+    <Version>$(MDIXVersion)</Version>
+    <AssemblyVersion>$(MDIXVersion)</AssemblyVersion>
     <NoWarn>CS1591;CS1574</NoWarn>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
-    <Configurations>Debug;Release;AppVeyor</Configurations>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppVeyor|AnyCPU'">
-    <OutputPath>bin\AppVeyor\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
+    <Configurations>Debug;Release</Configurations>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\AppVeyor\MaterialDesignThemes.Wpf.XML</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\MaterialDesignThemes.Wpf.xml</DocumentationFile>
   </PropertyGroup>
-  <Import Project="..\Versioning.targets" />
   <ItemGroup>
     <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\BadgedEx.cs">
       <Paket>True</Paket>
@@ -36,180 +28,16 @@
       <Paket>True</Paket>
       <Link>ControlzEx/PopupEx.cs</Link>
     </Compile>
-    <!--<Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Badged.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Button.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Calendar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Card.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.CheckBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Chip.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Clock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.ColorPicker.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.ComboBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Dark.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.DataGrid.ComboBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.DataGrid.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.DatePicker.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Defaults.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.DialogHost.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Expander.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Flipper.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Font.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.GridSplitter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.GroupBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Hyperlink.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Label.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Light.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.ListBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.ListView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Menu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.PasswordBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.PopupBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.ProgressBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.RadioButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.RatingBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.RichTextBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.ScrollBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.ScrollViewer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Shadows.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Slider.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.SmartHint.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Snackbar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.TextBlock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.TextBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.Thumb.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.TimePicker.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.ToggleButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.ToolBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.ToolBarTray.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.ToolTip.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.TreeView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MaterialDesignTheme.ValidationErrorTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>-->
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
-    <Resource Include="Resources\Roboto\RobotoCondensed-Regular.ttf" />
-    <Resource Include="Resources\Roboto\RobotoCondensed-LightItalic.ttf" />
-    <Resource Include="Resources\Roboto\RobotoCondensed-Light.ttf" />
-    <Resource Include="Resources\Roboto\RobotoCondensed-Italic.ttf" />
-    <Resource Include="Resources\Roboto\RobotoCondensed-BoldItalic.ttf" />
-    <Resource Include="Resources\Roboto\RobotoCondensed-Bold.ttf" />
-    <Resource Include="Resources\Roboto\Roboto-ThinItalic.ttf" />
-    <Resource Include="Resources\Roboto\Roboto-Thin.ttf" />
-    <Resource Include="Resources\Roboto\Roboto-Regular.ttf" />
-    <Resource Include="Resources\Roboto\Roboto-MediumItalic.ttf" />
-    <Resource Include="Resources\Roboto\Roboto-Medium.ttf" />
-    <Resource Include="Resources\Roboto\Roboto-LightItalic.ttf" />
-    <Resource Include="Resources\Roboto\Roboto-Light.ttf" />
-    <Resource Include="Resources\Roboto\Roboto-Italic.ttf" />
-    <Resource Include="Resources\Roboto\Roboto-BoldItalic.ttf" />
-    <Resource Include="Resources\Roboto\Roboto-Bold.ttf" />
-    <Resource Include="Resources\Roboto\Roboto-BlackItalic.ttf" />
-    <Resource Include="Resources\Roboto\Roboto-Black.ttf" />
+    <Resource Include="Resources\Roboto\*.ttf" />
+    <Content Include="Resources\Roboto\*.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="obj\AppVeyor\GeneratedInternalTypeHelper.g.cs" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
