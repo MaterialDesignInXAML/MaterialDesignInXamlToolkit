@@ -14,6 +14,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <ControlTemplate.Resources>
+                        <converters:HorizontalThicknessConverter x:Key="HorizontalThicknessConverter" />
+                    </ControlTemplate.Resources>
                     <Grid Background="{TemplateBinding Background}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -42,7 +45,7 @@
                                                                 Columns="{Binding Path=TemplatedParent.View.Columns, RelativeSource={RelativeSource TemplatedParent}}"
                                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                         <!-- NB: Rectangle added to keep the width of the header ScrollViewer the same size as the list items -->
-                                        <Rectangle Margin="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ListViewAssist.ListViewItemPadding)}" />
+                                        <Rectangle Margin="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ListViewAssist.ListViewItemPadding), Converter={StaticResource HorizontalThicknessConverter}}" />
                                     </StackPanel>
                                 </Border>
 
