@@ -19,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty BackgroundProperty = DependencyProperty.RegisterAttached(
-            "Background", typeof(Brush), typeof(ColorZoneAssist), new FrameworkPropertyMetadata(default(Brush), FrameworkPropertyMetadataOptions.Inherits));
+            "Background", typeof(Brush), typeof(ColorZoneAssist), new FrameworkPropertyMetadata(default(Brush)));
 
         public static void SetBackground(DependencyObject element, Brush value)
         {
@@ -32,7 +32,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ForegroundProperty = DependencyProperty.RegisterAttached(
-            "Foreground", typeof(Brush), typeof(ColorZoneAssist), new FrameworkPropertyMetadata(default(Brush), FrameworkPropertyMetadataOptions.Inherits));
+            "Foreground", typeof(Brush), typeof(ColorZoneAssist), new FrameworkPropertyMetadata(default(Brush)));
 
         public static void SetForeground(DependencyObject element, Brush value)
         {
