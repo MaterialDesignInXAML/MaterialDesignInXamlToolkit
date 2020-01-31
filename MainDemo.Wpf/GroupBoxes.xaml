@@ -66,6 +66,12 @@
                 <Image Source="Resources/Contact.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
             </GroupBox>
         </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Key="groupbox_6" Grid.Column="2" Grid.Row="1">
+            <GroupBox Header="Custom Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ColorZoneAssist.Mode="Custom" materialDesign:ColorZoneAssist.Background="Black" materialDesign:ColorZoneAssist.Foreground="White">
+                    <TextBlock>My Content</TextBlock>
+                </GroupBox>
+            </smtx:XamlDisplay>
     </Grid>
 </UserControl>
 
