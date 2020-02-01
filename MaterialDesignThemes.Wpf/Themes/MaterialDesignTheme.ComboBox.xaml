@@ -471,7 +471,7 @@
                                        HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                                        Hint="{TemplateBinding wpf:HintAssist.Hint}" />
                     </Grid>
-                    <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top">
                         <TextBlock
                             FontSize="{TemplateBinding FontSize}"
                             Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
