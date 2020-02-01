@@ -15,7 +15,7 @@ namespace mdresgen
     static class IconThing
     {
         public static void Run()
-        {            
+        {
             Console.WriteLine("Downloading icon data...");
 
             var nameDataPairs = GetIcons(GetSourceData()).ToList();
@@ -47,7 +47,7 @@ namespace mdresgen
             webRequest.Credentials = CredentialCache.DefaultCredentials;
             if (webRequest.Proxy != null)
                 webRequest.Proxy.Credentials = CredentialCache.DefaultCredentials;
-            
+
             using (var sr = new StreamReader(webRequest.GetResponse().GetResponseStream()))
             {
                 var iconData = sr.ReadToEnd();
@@ -59,13 +59,15 @@ namespace mdresgen
         }
 
         private static IEnumerable<Icon> GetIcons(string sourceData)
-        {            
+        {
             var jObject = JObject.Parse(sourceData);
-            var icons = jObject["icons"].Select(t => new Icon(
-                t["name"].ToString().Underscore().Pascalize(),
-                t["data"].ToString(),
-                t["aliases"].ToObject<IEnumerable<string>>().Select(x => x.Underscore().Pascalize()).ToList() ))
-                .ToDictionary(icon => icon.Name);
+            var icons = new Icon[] { new Icon("None", string.Empty, new List<string>()) } //Add None value always to Enum at first place
+                .Concat(
+                   jObject["icons"].Select(t => new Icon(
+                   t["name"].ToString().Underscore().Pascalize(),
+                   t["data"].ToString(),
+                   t["aliases"].ToObject<IEnumerable<string>>().Select(x => x.Underscore().Pascalize()).ToList()))
+                ).ToDictionary(icon => icon.Name);
 
             //Clean up aliases to avoid naming collisions
             var seenAliases = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -84,7 +86,7 @@ namespace mdresgen
                     }
                 }
             }
-
+          
             return icons.Values;
 
             bool IsValidIdentifier(string identifier)
@@ -120,21 +122,21 @@ namespace mdresgen
             var generatedEnumDeclarationSyntax = emptyEnumDeclarationSyntaxNode.AddMembers(enumMemberDeclarationSyntaxs);
 
             generatedEnumDeclarationSyntax = AddLineFeedsToCommas(generatedEnumDeclarationSyntax);
-                
+
             var generatedNamespaceDeclarationSyntaxNode = namespaceDeclarationNode.ReplaceNode(enumDeclarationSyntaxNode, generatedEnumDeclarationSyntax);
             var generatedRootNode = rootNode.ReplaceNode(namespaceDeclarationNode, generatedNamespaceDeclarationSyntaxNode);
-            
+
             return generatedRootNode.ToFullString();
 
             IEnumerable<EnumMemberDeclarationSyntax> GetEnumMemberDeclarations(Icon icon)
             {
                 var emptyAttributes = new SyntaxList<AttributeListSyntax>();
                 SyntaxToken iconIdentifierToken = SyntaxFactory.Identifier(leadingTriviaList, icon.Name, SyntaxTriviaList.Empty);
-                
+
                 yield return SyntaxFactory.EnumMemberDeclaration(iconIdentifierToken);
                 foreach (string alias in icon.Aliases)
                 {
-                    yield return SyntaxFactory.EnumMemberDeclaration(emptyAttributes, 
+                    yield return SyntaxFactory.EnumMemberDeclaration(emptyAttributes,
                         SyntaxFactory.Identifier(leadingTriviaList, alias, SyntaxTriviaList.Empty),
                         SyntaxFactory.EqualsValueClause(SyntaxFactory.IdentifierName(icon.Name)));
                 }
