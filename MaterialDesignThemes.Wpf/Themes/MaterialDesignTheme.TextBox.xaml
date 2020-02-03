@@ -129,7 +129,7 @@
                                             <wpf:SmartHint.Hint>
                                                 <Border x:Name="HintBackgroundBorder" Background="Transparent" CornerRadius="2">
                                                     <ContentPresenter 
-                                                        x:Name="HintTextBlock" 
+                                                        x:Name="HintWrapper" 
                                                         Content="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"/>
                                                 </Border>
                                             </wpf:SmartHint.Hint>
@@ -237,7 +237,7 @@
                             <Setter TargetName="Hint" Property="Margin" Value="0,0,0,0" />
                             <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
                             <Setter TargetName="Hint" Property="FloatingOffset" Value="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FontSizeToHintOffsetConverter}}" />
-                            <Setter TargetName="HintTextBlock" Property="Opacity" Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="HintWrapper" Property="Opacity" Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
                             <Setter TargetName="HintBackgroundBorder" Property="Padding" Value="4, 0" />
                             <Setter TargetName="HintBackgroundBorder" Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
                         </Trigger>
@@ -247,7 +247,7 @@
                                 <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
                                 <Condition Property="IsKeyboardFocused" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="HintTextBlock" Property="Opacity" Value="1" />
+                            <Setter TargetName="HintWrapper" Property="Opacity" Value="1" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
