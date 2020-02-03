@@ -186,7 +186,7 @@
                             <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
                         </MultiTrigger>
                         <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
-                            <Setter TargetName="border" Property="Margin" Value="0 12 0 0" />
+                            <Setter TargetName="border" Property="Margin" Value="0 18 0 0" />
                         </Trigger>
                         <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
                             <Setter TargetName="textFieldBoxBorder" Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}"/>
