@@ -67,27 +67,40 @@ namespace mdresgen
                    t["name"].ToString().Underscore().Pascalize(),
                    t["data"].ToString(),
                    t["aliases"].ToObject<IEnumerable<string>>().Select(x => x.Underscore().Pascalize()).ToList()))
-                ).ToDictionary(icon => icon.Name);
+                );
+
+            var iconsByName = new Dictionary<string, Icon>();
+            foreach(Icon icon in icons)
+            {
+                if (iconsByName.ContainsKey(icon.Name))
+                {
+                    Console.WriteLine($"Ignoring duplicate icon '{icon.Name}'");
+                }
+                else
+                {
+                    iconsByName.Add(icon.Name, icon);
+                }
+            }
 
             //Clean up aliases to avoid naming collisions
             var seenAliases = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            foreach (var icon in icons.Values)
+            foreach (var icon in iconsByName.Values)
             {
                 seenAliases.Add(icon.Name);
             }
-            foreach (Icon icon in icons.Values)
+            foreach (Icon icon in iconsByName.Values)
             {
                 for (int i = icon.Aliases.Count - 1; i >= 0; i--)
                 {
                     string alias = icon.Aliases[i];
-                    if (icons.ContainsKey(alias) || !IsValidIdentifier(alias) || seenAliases.Add(alias) == false)
+                    if (iconsByName.ContainsKey(alias) || !IsValidIdentifier(alias) || seenAliases.Add(alias) == false)
                     {
                         icon.Aliases.RemoveAt(i);
                     }
                 }
             }
           
-            return icons.Values;
+            return iconsByName.Values.OrderBy(x => x.Name);
 
             bool IsValidIdentifier(string identifier)
             {
