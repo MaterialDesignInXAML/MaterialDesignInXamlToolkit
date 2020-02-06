@@ -121,10 +121,16 @@
                                        PopupAnimation="Fade"/>
                             </Grid>
                         </Border>
-                        <Line x:Name="DashedLine" VerticalAlignment="Bottom" Visibility="Hidden"
-                              StrokeThickness="{Binding BorderThickness.Bottom, ElementName=border, Converter={StaticResource DivisionMathConverter}, ConverterParameter=0.75}" StrokeDashArray="1,2.5" StrokeDashCap="Round"
-                              X1="0" X2="{Binding ActualWidth, ElementName=border}" Y1="0" Y2="0" 
-                              Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />
+                        <Path x:Name="DashedLine"
+                              VerticalAlignment="Bottom"
+                              Visibility="Collapsed"
+                              Stretch="Fill"
+                              Data="M 0,0 L 1,0"
+                              StrokeThickness="{Binding BorderThickness.Bottom, ElementName=border, Converter={StaticResource DivisionMathConverter}, ConverterParameter=0.75}"
+                              StrokeDashArray="1,2.5"
+                              StrokeDashCap="Round"
+                              Stroke="{TemplateBinding BorderBrush}"
+                              Opacity="0.56" />
                         <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
