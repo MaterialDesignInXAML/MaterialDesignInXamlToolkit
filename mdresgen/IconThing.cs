@@ -147,7 +147,7 @@ namespace mdresgen
                 SyntaxToken iconIdentifierToken = SyntaxFactory.Identifier(leadingTriviaList, icon.Name, SyntaxTriviaList.Empty);
 
                 yield return SyntaxFactory.EnumMemberDeclaration(iconIdentifierToken);
-                foreach (string alias in icon.Aliases)
+                foreach (string alias in icon.Aliases.OrderBy(x => x))
                 {
                     yield return SyntaxFactory.EnumMemberDeclaration(emptyAttributes,
                         SyntaxFactory.Identifier(leadingTriviaList, alias, SyntaxTriviaList.Empty),
