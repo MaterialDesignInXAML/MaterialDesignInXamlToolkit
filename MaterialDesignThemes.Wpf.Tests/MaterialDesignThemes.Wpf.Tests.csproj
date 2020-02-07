@@ -6,7 +6,7 @@
     <LangVersion>8.0</LangVersion>
     <AssemblyTitle>MaterialDesignThemes.Wpf.Tests</AssemblyTitle>
     <Product>MaterialDesignThemes.Wpf.Tests</Product>
-    <Copyright>Copyright ©  2015</Copyright>
+    <Copyright>Copyright © 2020</Copyright>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='net472'">
     <Reference Include="PresentationCore" />

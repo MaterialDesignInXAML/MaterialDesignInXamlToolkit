@@ -7,7 +7,7 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
 
     <DetectedMSBuildVersion>$(MSBuildVersion)</DetectedMSBuildVersion>
-    <DetectedMSBuildVersion Condition="$(MSBuildVersion) == ''">15.0.0</DetectedMSBuildVersion>
+    <DetectedMSBuildVersion Condition="'$(MSBuildVersion)' == ''">15.0.0</DetectedMSBuildVersion>
     <MSBuildSupportsHashing>false</MSBuildSupportsHashing>
     <MSBuildSupportsHashing Condition=" '$(DetectedMSBuildVersion)' &gt; '15.8.0' ">true</MSBuildSupportsHashing>
     <!-- Mark that this target file has been loaded.  -->
@@ -20,7 +20,7 @@
     <PaketBootstrapperStyle Condition="Exists('$(PaketToolsPath)paket.bootstrapper.proj')">proj</PaketBootstrapperStyle>
     <PaketExeImage>assembly</PaketExeImage>
     <PaketExeImage Condition=" '$(PaketBootstrapperStyle)' == 'proj' ">native</PaketExeImage>
-    <MonoPath Condition="'$(MonoPath)' == '' And Exists('/Library/Frameworks/Mono.framework/Commands/mono')">/Library/Frameworks/Mono.framework/Commands/mono</MonoPath>
+    <MonoPath Condition="'$(MonoPath)' == '' AND Exists('/Library/Frameworks/Mono.framework/Commands/mono')">/Library/Frameworks/Mono.framework/Commands/mono</MonoPath>
     <MonoPath Condition="'$(MonoPath)' == ''">mono</MonoPath>
 
     <!-- PaketBootStrapper  -->
@@ -28,51 +28,84 @@
     <PaketBootStrapperExePath Condition=" '$(PaketBootStrapperExePath)' == '' ">$(PaketToolsPath)paket.bootstrapper.exe</PaketBootStrapperExePath>
     <PaketBootStrapperExeDir Condition=" Exists('$(PaketBootStrapperExePath)') " >$([System.IO.Path]::GetDirectoryName("$(PaketBootStrapperExePath)"))\</PaketBootStrapperExeDir>
 
-    <!-- Paket -->
-
-    <!-- windows, root => tool => proj style => bootstrapper => global -->
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(OS)' == 'Windows_NT' AND Exists('$(PaketRootPath)paket.exe') ">$(PaketRootPath)paket.exe</PaketExePath>
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(OS)' == 'Windows_NT' AND Exists('$(PaketToolsPath)paket.exe') ">$(PaketToolsPath)paket.exe</PaketExePath>
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(OS)' == 'Windows_NT' AND '$(PaketBootstrapperStyle)' == 'proj' ">$(PaketToolsPath)paket.exe</PaketExePath>
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(OS)' == 'Windows_NT' AND Exists('$(PaketBootStrapperExeDir)') ">$(_PaketBootStrapperExeDir)paket.exe</PaketExePath>
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(OS)' == 'Windows_NT' ">paket.exe</PaketExePath>
-
-    <!-- no windows, try native paket as default,  root => tool => proj style => mono paket => bootstrpper => global -->
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(OS)' != 'Windows_NT' AND Exists('$(PaketRootPath)paket') ">$(PaketRootPath)paket</PaketExePath>
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(OS)' != 'Windows_NT' AND Exists('$(PaketToolsPath)paket') ">$(PaketToolsPath)paket</PaketExePath>
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(OS)' != 'Windows_NT' AND '$(PaketBootstrapperStyle)' == 'proj' ">$(PaketToolsPath)paket</PaketExePath>
-
-    <!-- no windows, try mono paket -->
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(OS)' != 'Windows_NT' AND Exists('$(PaketRootPath)paket.exe') ">$(PaketRootPath)paket.exe</PaketExePath>
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(OS)' != 'Windows_NT' AND Exists('$(PaketToolsPath)paket.exe') ">$(PaketToolsPath)paket.exe</PaketExePath>
-
-    <!-- no windows, try bootstrapper -->
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(OS)' != 'Windows_NT' AND Exists('$(PaketBootStrapperExeDir)') ">$(PaketBootStrapperExeDir)paket.exe</PaketExePath>
-
-    <!-- no windows, try global native paket -->
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(OS)' != 'Windows_NT' ">paket</PaketExePath>
-
-    <!-- Paket command -->
-    <_PaketExeExtension>$([System.IO.Path]::GetExtension("$(PaketExePath)"))</_PaketExeExtension>
-    <PaketCommand Condition=" '$(PaketCommand)' == '' AND '$(_PaketExeExtension)' == '.dll' ">dotnet "$(PaketExePath)"</PaketCommand>
-    <PaketCommand Condition=" '$(PaketCommand)' == '' AND '$(OS)' != 'Windows_NT' AND '$(_PaketExeExtension)' == '.exe' ">$(MonoPath) --runtime=v4.0.30319 "$(PaketExePath)"</PaketCommand>
-    <PaketCommand Condition=" '$(PaketCommand)' == '' ">"$(PaketExePath)"</PaketCommand>
-
-
-    <PaketBootStrapperCommand Condition=" '$(OS)' == 'Windows_NT'">"$(PaketBootStrapperExePath)"</PaketBootStrapperCommand>
+    <PaketBootStrapperCommand Condition=" '$(OS)' == 'Windows_NT' ">"$(PaketBootStrapperExePath)"</PaketBootStrapperCommand>
     <PaketBootStrapperCommand Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319 "$(PaketBootStrapperExePath)"</PaketBootStrapperCommand>
 
-    <!-- Disable automagic references for F# dotnet sdk -->
+    <!-- Disable automagic references for F# DotNet SDK -->
     <!-- This will not do anything for other project types -->
-    <!-- see https://github.com/fsharp/fslang-design/blob/master/RFCs/FS-1032-fsharp-in-dotnet-sdk.md -->
+    <!-- see https://github.com/fsharp/fslang-design/blob/master/tooling/FST-1002-fsharp-in-dotnet-sdk.md -->
     <DisableImplicitFSharpCoreReference>true</DisableImplicitFSharpCoreReference>
     <DisableImplicitSystemValueTupleReference>true</DisableImplicitSystemValueTupleReference>
 
     <!-- Disable Paket restore under NCrunch build -->
     <PaketRestoreDisabled Condition="'$(NCrunch)' == '1'">True</PaketRestoreDisabled>
 
+    <!-- Disable test for CLI tool completely - overrideable via properties in projects or via environment variables -->
+    <PaketDisableCliTest Condition=" '$(PaketDisableCliTest)' == '' ">False</PaketDisableCliTest>
+
     <PaketIntermediateOutputPath Condition=" '$(PaketIntermediateOutputPath)' == '' ">$(BaseIntermediateOutputPath.TrimEnd('\').TrimEnd('\/'))</PaketIntermediateOutputPath>
   </PropertyGroup>
+
+  <!-- Resolve how paket should be called -->
+  <!-- Current priority is: local (1: repo root, 2: .paket folder) => 3: as CLI tool => as bootstrapper (4: proj Bootstrapper style, 5: BootstrapperExeDir) => 6: global path variable -->
+  <Target Name="SetPaketCommand" >
+    <!-- Test if paket is available in the standard locations. If so, that takes priority. Case 1/2 - non-windows specific -->
+    <PropertyGroup Condition=" '$(OS)' != 'Windows_NT' ">
+      <!-- no windows, try native paket as default, root => tool -->
+      <PaketExePath Condition=" '$(PaketExePath)' == '' AND Exists('$(PaketRootPath)paket') ">$(PaketRootPath)paket</PaketExePath>
+      <PaketExePath Condition=" '$(PaketExePath)' == '' AND Exists('$(PaketToolsPath)paket') ">$(PaketToolsPath)paket</PaketExePath>
+    </PropertyGroup>
+
+    <!-- Test if paket is available in the standard locations. If so, that takes priority. Case 2/2 - same across platforms -->
+    <PropertyGroup>
+      <!-- root => tool -->
+      <PaketExePath Condition=" '$(PaketExePath)' == '' AND Exists('$(PaketRootPath)paket.exe') ">$(PaketRootPath)paket.exe</PaketExePath>
+      <PaketExePath Condition=" '$(PaketExePath)' == '' AND Exists('$(PaketToolsPath)paket.exe') ">$(PaketToolsPath)paket.exe</PaketExePath>
+    </PropertyGroup>
+
+    <!-- If paket hasn't be found in standard locations, test for CLI tool usage. -->
+    <!-- First test: Is CLI configured to be used in "dotnet-tools.json"? - can result in a false negative; only a positive outcome is reliable. -->
+    <PropertyGroup Condition=" '$(PaketExePath)' == '' ">
+      <_DotnetToolsJson Condition="Exists('$(PaketRootPath)/.config/dotnet-tools.json')">$([System.IO.File]::ReadAllText("$(PaketRootPath)/.config/dotnet-tools.json"))</_DotnetToolsJson>
+      <_ConfigContainsPaket Condition=" '$(_DotnetToolsJson)' != ''">$(_DotnetToolsJson.Contains('"paket"'))</_ConfigContainsPaket>
+      <_ConfigContainsPaket Condition=" '$(_ConfigContainsPaket)' == ''">false</_ConfigContainsPaket>
+    </PropertyGroup>
+
+    <!-- Second test: Call 'dotnet paket' and see if it returns without an error. Mute all the output. Only run if previous test failed and the test has not been disabled. -->
+    <!-- WARNING: This method can lead to processes hanging forever, and should be used as little as possible. See https://github.com/fsprojects/Paket/issues/3705 for details. -->
+    <Exec Condition=" '$(PaketExePath)' == '' AND !$(PaketDisableCliTest) AND !$(_ConfigContainsPaket)" Command="dotnet paket --version" IgnoreExitCode="true" StandardOutputImportance="low" StandardErrorImportance="low" >
+      <Output TaskParameter="ExitCode" PropertyName="LocalPaketToolExitCode" />
+    </Exec>
+
+    <!-- If paket is installed as CLI use that. Again, only if paket haven't already been found in standard locations. -->
+    <PropertyGroup Condition=" '$(PaketExePath)' == '' AND ($(_ConfigContainsPaket) OR '$(LocalPaketToolExitCode)' == '0') ">
+      <_PaketCommand>dotnet paket</_PaketCommand>
+    </PropertyGroup>
+
+    <!-- If neither local files nor CLI tool can be found, final attempt is searching for boostrapper config before falling back to global path variable. -->
+    <PropertyGroup Condition=" '$(PaketExePath)' == '' AND '$(_PaketCommand)' == '' ">
+      <!-- Test for bootstrapper setup -->
+      <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(PaketBootstrapperStyle)' == 'proj' ">$(PaketToolsPath)paket</PaketExePath>
+      <PaketExePath Condition=" '$(PaketExePath)' == '' AND Exists('$(PaketBootStrapperExeDir)') ">$(PaketBootStrapperExeDir)paket</PaketExePath>
+
+      <!-- If all else fails, use global path approach. -->
+      <PaketExePath Condition=" '$(PaketExePath)' == ''">paket</PaketExePath>
+    </PropertyGroup>
+
+    <!-- If not using CLI, setup correct execution command. -->
+    <PropertyGroup Condition=" '$(_PaketCommand)' == '' ">
+      <_PaketExeExtension>$([System.IO.Path]::GetExtension("$(PaketExePath)"))</_PaketExeExtension>
+      <_PaketCommand Condition=" '$(_PaketCommand)' == '' AND '$(_PaketExeExtension)' == '.dll' ">dotnet "$(PaketExePath)"</_PaketCommand>
+      <_PaketCommand Condition=" '$(_PaketCommand)' == '' AND '$(OS)' != 'Windows_NT' AND '$(_PaketExeExtension)' == '.exe' ">$(MonoPath) --runtime=v4.0.30319 "$(PaketExePath)"</_PaketCommand>
+      <_PaketCommand Condition=" '$(_PaketCommand)' == '' ">"$(PaketExePath)"</_PaketCommand>
+    </PropertyGroup>
+
+    <!-- The way to get a property to be available outside the target is to use this task. -->
+    <CreateProperty Value="$(_PaketCommand)">
+      <Output TaskParameter="Value" PropertyName="PaketCommand"/>
+    </CreateProperty>
+
+  </Target>
 
   <Target Name="PaketBootstrapping" Condition="Exists('$(PaketToolsPath)paket.bootstrapper.proj')">
     <MSBuild Projects="$(PaketToolsPath)paket.bootstrapper.proj" Targets="Restore" />
@@ -81,7 +114,7 @@
   <!-- Official workaround for https://docs.microsoft.com/en-us/visualstudio/msbuild/getfilehash-task?view=vs-2019 -->
   <UsingTask TaskName="Microsoft.Build.Tasks.GetFileHash" AssemblyName="Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Condition=" '$(MSBuildSupportsHashing)' == 'true' And '$(DetectedMSBuildVersion)' &lt; '16.0.360' " />
   <UsingTask TaskName="Microsoft.Build.Tasks.VerifyFileHash" AssemblyName="Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Condition=" '$(MSBuildSupportsHashing)' == 'true' And '$(DetectedMSBuildVersion)' &lt; '16.0.360' " />
-  <Target Name="PaketRestore" Condition="'$(PaketRestoreDisabled)' != 'True'" BeforeTargets="_GenerateDotnetCliToolReferenceSpecs;_GenerateProjectRestoreGraphPerFramework;_GenerateRestoreGraphWalkPerFramework;CollectPackageReferences" DependsOnTargets="PaketBootstrapping">
+  <Target Name="PaketRestore" Condition="'$(PaketRestoreDisabled)' != 'True'" BeforeTargets="_GenerateDotnetCliToolReferenceSpecs;_GenerateProjectRestoreGraphPerFramework;_GenerateRestoreGraphWalkPerFramework;CollectPackageReferences" DependsOnTargets="SetPaketCommand;PaketBootstrapping">
 
     <!-- Step 1 Check if lockfile is properly restored (if the hash of the lockfile and the cache-file match) -->
     <PropertyGroup>
@@ -103,7 +136,7 @@
         <!-- Parse our simple 'paket.restore.cached' json ...-->
         <PaketRestoreCachedSplitObject Include="$([System.Text.RegularExpressions.Regex]::Split(`$(PaketRestoreCachedContents)`, `{|}|,`))"></PaketRestoreCachedSplitObject>
         <!-- Keep Key, Value ItemGroup-->
-        <PaketRestoreCachedKeyValue Include="@(PaketRestoreCachedSplitObject)" 
+        <PaketRestoreCachedKeyValue Include="@(PaketRestoreCachedSplitObject)"
             Condition=" $([System.Text.RegularExpressions.Regex]::Split(`%(Identity)`, `&quot;: &quot;`).Length) &gt; 1 ">
           <Key>$([System.Text.RegularExpressions.Regex]::Split(`%(Identity)`, `": "`)[0].Replace(`"`, ``).Replace(` `, ``))</Key>
           <Value>$([System.Text.RegularExpressions.Regex]::Split(`%(Identity)`, `": "`)[1].Replace(`"`, ``).Replace(` `, ``))</Value>
@@ -116,7 +149,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(MSBuildSupportsHashing)' == 'true' And '$(CacheFilesExist)' == 'true' ">
-      <!-- If the restire file doesn't exist we need to restore, otherwise only if hashes don't match -->
+      <!-- If the restore file doesn't exist we need to restore, otherwise only if hashes don't match -->
       <PaketRestoreRequired>true</PaketRestoreRequired>
       <PaketRestoreRequired Condition=" '$(PaketRestoreLockFileHash)' == '$(ProjectsRestoredHash)' ">false</PaketRestoreRequired>
       <PaketRestoreRequired Condition=" '$(PaketRestoreLockFileHash)' == '' ">true</PaketRestoreRequired>
@@ -136,7 +169,7 @@
     <Exec Command='$(PaketBootStrapperCommand)' Condition=" '$(PaketBootstrapperStyle)' == 'classic' AND Exists('$(PaketBootStrapperExePath)') AND !(Exists('$(PaketExePath)'))" ContinueOnError="false" />
     <Error Text="Stop build because of PAKET_ERROR_ON_MSBUILD_EXEC and we need a full restore (hashes don't match)" Condition=" '$(PAKET_ERROR_ON_MSBUILD_EXEC)' == 'true' AND '$(PaketRestoreRequired)' == 'true' AND '$(PaketDisableGlobalRestore)' != 'true'" />
     <Exec Command='$(PaketCommand) restore' Condition=" '$(PaketRestoreRequired)' == 'true' AND '$(PaketDisableGlobalRestore)' != 'true' " ContinueOnError="false" />
-    
+
     <!-- Step 2 Detect project specific changes -->
     <ItemGroup>
       <MyTargetFrameworks Condition="'$(TargetFramework)' != '' " Include="$(TargetFramework)"></MyTargetFrameworks>
@@ -203,7 +236,7 @@
         <PackageName>$([System.String]::Copy('%(PaketReferencesFileLines.Identity)').Split(',')[0])</PackageName>
         <PackageVersion>$([System.String]::Copy('%(PaketReferencesFileLines.Identity)').Split(',')[1])</PackageVersion>
         <AllPrivateAssets>$([System.String]::Copy('%(PaketReferencesFileLines.Identity)').Split(',')[4])</AllPrivateAssets>
-        <CopyLocal Condition="'$(Splits)' == '6'">$([System.String]::Copy('%(PaketReferencesFileLines.Identity)').Split(',')[5])</CopyLocal>
+        <CopyLocal Condition="'%(PaketReferencesFileLinesInfo.Splits)' == '6'">$([System.String]::Copy('%(PaketReferencesFileLines.Identity)').Split(',')[5])</CopyLocal>
       </PaketReferencesFileLinesInfo>
       <PackageReference Include="%(PaketReferencesFileLinesInfo.PackageName)">
         <Version>%(PaketReferencesFileLinesInfo.PackageVersion)</Version>
@@ -246,7 +279,7 @@
     </PropertyGroup>
   </Target>
 
-  <Target Name="PaketOverrideNuspec" AfterTargets="GenerateNuspec" Condition="('$(IsPackable)' == '' Or '$(IsPackable)' == 'true') And Exists('$(PaketIntermediateOutputPath)/$(MSBuildProjectFile).references')" >
+  <Target Name="PaketOverrideNuspec" DependsOnTargets="SetPaketCommand" AfterTargets="GenerateNuspec" Condition="('$(IsPackable)' == '' Or '$(IsPackable)' == 'true') And Exists('$(PaketIntermediateOutputPath)/$(MSBuildProjectFile).references')" >
     <ItemGroup>
       <_NuspecFilesNewLocation Include="$(PaketIntermediateOutputPath)\$(Configuration)\*.nuspec"/>
       <MSBuildMajorVersion Include="$(DetectedMSBuildVersion.Replace(`-`, `.`).Split(`.`)[0])" />
@@ -300,7 +333,7 @@
               DevelopmentDependency="$(DevelopmentDependency)"
               BuildOutputInPackage="@(_BuildOutputInPackage)"
               TargetPathsToSymbols="@(_TargetPathsToSymbols)"
-              SymbolPackageFormat="symbols.nupkg"
+              SymbolPackageFormat="$(SymbolPackageFormat)"
               TargetFrameworks="@(_TargetFrameworks)"
               AssemblyName="$(AssemblyName)"
               PackageOutputPath="$(PackageOutputAbsolutePath)"
@@ -347,7 +380,7 @@
               DevelopmentDependency="$(DevelopmentDependency)"
               BuildOutputInPackage="@(_BuildOutputInPackage)"
               TargetPathsToSymbols="@(_TargetPathsToSymbols)"
-              SymbolPackageFormat="symbols.nupkg"
+              SymbolPackageFormat="$(SymbolPackageFormat)"
               TargetFrameworks="@(_TargetFrameworks)"
               AssemblyName="$(AssemblyName)"
               PackageOutputPath="$(PackageOutputAbsolutePath)"
