@@ -1,5 +1,5 @@
 source https://nuget.org/api/v2
-framework: net45, netcoreapp3.1
+framework: net45, net472, netcoreapp3.1
 
 nuget MahApps.Metro ~> 2.0.0-alpha0660
 nuget Dragablz ~> 0.0.3

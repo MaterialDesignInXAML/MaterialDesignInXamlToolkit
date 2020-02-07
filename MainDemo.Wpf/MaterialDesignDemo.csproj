@@ -15,8 +15,8 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.0'">
-    <UseWpf>true</UseWpf>
+  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
   <Import Project="..\packages\ShowMeTheXAML.MSBuild\build\ShowMeTheXAML.MSBuild.targets" Label="Paket" />
   <Target Name="ShowMeTheXAML_EnsureXamlCreated" AfterTargets="BeforeCompile">
