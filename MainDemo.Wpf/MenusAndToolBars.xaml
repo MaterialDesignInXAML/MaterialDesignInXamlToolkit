@@ -58,7 +58,7 @@
             <ToolBarTray>
                 <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
                     <Button ToolTip="Follow me on Twitter" Click="TwitterButton_OnClick">
-                        <materialDesign:PackIcon Kind="TwitterBox" />
+                        <materialDesign:PackIcon Kind="Twitter" />
                     </Button>
                     <Button ToolTip="Save">
                         <materialDesign:PackIcon Kind="ContentSave" />

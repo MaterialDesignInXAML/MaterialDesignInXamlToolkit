@@ -67,7 +67,7 @@
                                     <Button Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left"
                                             x:Name="GitHubButton" Click="GitHubButton_OnClick">
                                         <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="GithubCircle" />
+                                            <materialDesign:PackIcon Kind="Github" />
                                             <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">GitHub</TextBlock>
                                         </StackPanel>
                                     </Button>
@@ -110,7 +110,7 @@
                                 <ColumnDefinition Width="200" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Kind="GithubCircle" Width="160" Height="160" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <materialDesign:PackIcon Kind="Github" Width="160" Height="160" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             <StackPanel Grid.Column="1">
                                 <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="16 16 16 8">Open Source</TextBlock>
                                 <TextBlock TextWrapping="Wrap" Margin="16 0 16 8" Foreground="{DynamicResource MaterialDesignBodyLight}"
@@ -141,7 +141,7 @@
                                  Margin="32" Grid.Row="1">
             <StackPanel>
                 <Button ToolTip="GitHub" Click="GitHubButton_OnClick">
-                    <materialDesign:PackIcon Kind="GithubCircle" Height="20" Width="20" />
+                    <materialDesign:PackIcon Kind="Github" Height="20" Width="20" />
                 </Button>
                 <Button ToolTip="Twitter" Click="TwitterButton_OnClick"
                         Background="{DynamicResource PrimaryHueMidBrush}"
