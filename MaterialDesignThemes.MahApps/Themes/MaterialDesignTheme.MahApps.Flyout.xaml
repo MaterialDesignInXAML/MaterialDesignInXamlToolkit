@@ -91,11 +91,11 @@
                                                   ContentTemplate="{TemplateBinding HeaderTemplate}"
                                                   ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
                                                   DockPanel.Dock="Top"
-                                                  FontSize="{TemplateBinding mah:ControlsHelper.HeaderFontSize}"
-                                                  FontStretch="{TemplateBinding mah:ControlsHelper.HeaderFontStretch}"
-                                                  FontWeight="{TemplateBinding mah:ControlsHelper.HeaderFontWeight}"
-                                                  RecognizesAccessKey="True"
-                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                  FontFamily="{TemplateBinding mah:HeaderedControlHelper.HeaderFontFamily}"
+                                                  FontSize="{TemplateBinding mah:HeaderedControlHelper.HeaderFontSize}"
+                                                  FontStretch="{TemplateBinding mah:HeaderedControlHelper.HeaderFontStretch}"
+                                                  FontWeight="{TemplateBinding mah:HeaderedControlHelper.HeaderFontWeight}"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                     <ContentPresenter x:Name="PART_Content"
                                       ContentSource="Content"
                                       DockPanel.Dock="Bottom" />
@@ -237,8 +237,8 @@
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="mah:ControlsHelper.HeaderFontSize" Value="{DynamicResource MahApps.Sizes.Font.FlyoutHeader}" />
-        <Setter Property="mah:ControlsHelper.HeaderMargin" Value="10" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderFontSize" Value="{DynamicResource MahApps.Font.Size.Flyout.Header}" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderMargin" Value="10" />
         <Setter Property="HeaderTemplate" Value="{StaticResource HeaderTemplate}" />
         <Setter Property="KeyboardNavigation.ControlTabNavigation" Value="Cycle" />
         <Setter Property="KeyboardNavigation.DirectionalNavigation" Value="Cycle" />
@@ -251,10 +251,10 @@
         <Setter Property="mahApps:FlyoutAssist.HeaderShadowDepth" Value="Depth2" />
         <Style.Triggers>
             <Trigger Property="Position" Value="Right">
-                <Setter Property="mah:ControlsHelper.HeaderMargin" Value="10 25 10 10" />
+                <Setter Property="mah:HeaderedControlHelper.HeaderMargin" Value="10 25 10 10" />
             </Trigger>
             <Trigger Property="Position" Value="Left">
-                <Setter Property="mah:ControlsHelper.HeaderMargin" Value="10 25 10 10" />
+                <Setter Property="mah:HeaderedControlHelper.HeaderMargin" Value="10 25 10 10" />
             </Trigger>
             <Trigger Property="TitleVisibility" Value="Collapsed">
                 <Setter Property="mahApps:FlyoutAssist.HeaderColorMode" Value="Standard" />

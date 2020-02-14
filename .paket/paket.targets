@@ -10,15 +10,71 @@
     <PaketRestoreCacheFile>$(PaketRootPath)paket-files\paket.restore.cached</PaketRestoreCacheFile>
     <MonoPath Condition="'$(MonoPath)' == '' And Exists('/Library/Frameworks/Mono.framework/Commands/mono')">/Library/Frameworks/Mono.framework/Commands/mono</MonoPath>
     <MonoPath Condition="'$(MonoPath)' == ''">mono</MonoPath>
+
+    <!-- Disable test for CLI tool completely - overrideable via properties in projects or via environment variables -->
+    <PaketDisableCliTest Condition=" '$(PaketDisableCliTest)' == '' ">False</PaketDisableCliTest>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <!-- Paket command -->
-    <PaketExePath Condition=" '$(PaketExePath)' == '' AND Exists('$(PaketRootPath)paket.exe')">$(PaketRootPath)paket.exe</PaketExePath>
-    <PaketExePath Condition=" '$(PaketExePath)' == '' ">$(PaketToolsPath)paket.exe</PaketExePath>
-    <PaketCommand Condition=" '$(OS)' == 'Windows_NT'">"$(PaketExePath)"</PaketCommand>
-    <PaketCommand Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319 "$(PaketExePath)"</PaketCommand>
-  </PropertyGroup>
+  <!-- Resolve how paket should be called -->
+  <!-- Current priority is: local (1: repo root, 2: .paket folder) => 3: as CLI tool => as bootstrapper (4: proj Bootstrapper style, 5: BootstrapperExeDir) => 6: global path variable -->
+  <Target Name="SetPaketCommand" >
+    <!-- Test if paket is available in the standard locations. If so, that takes priority. Case 1/2 - non-windows specific -->
+    <PropertyGroup Condition=" '$(OS)' != 'Windows_NT' ">
+      <!-- no windows, try native paket as default, root => tool -->
+      <PaketExePath Condition=" '$(PaketExePath)' == '' AND Exists('$(PaketRootPath)paket') ">$(PaketRootPath)paket</PaketExePath>
+      <PaketExePath Condition=" '$(PaketExePath)' == '' AND Exists('$(PaketToolsPath)paket') ">$(PaketToolsPath)paket</PaketExePath>
+    </PropertyGroup>
+
+    <!-- Test if paket is available in the standard locations. If so, that takes priority. Case 2/2 - same across platforms -->
+    <PropertyGroup>
+      <!-- root => tool -->
+      <PaketExePath Condition=" '$(PaketExePath)' == '' AND Exists('$(PaketRootPath)paket.exe') ">$(PaketRootPath)paket.exe</PaketExePath>
+      <PaketExePath Condition=" '$(PaketExePath)' == '' AND Exists('$(PaketToolsPath)paket.exe') ">$(PaketToolsPath)paket.exe</PaketExePath>
+    </PropertyGroup>
+
+    <!-- If paket hasn't be found in standard locations, test for CLI tool usage. -->
+    <!-- First test: Is CLI configured to be used in "dotnet-tools.json"? - can result in a false negative; only a positive outcome is reliable. -->
+    <PropertyGroup Condition=" '$(PaketExePath)' == '' ">
+      <_DotnetToolsJson Condition="Exists('$(PaketRootPath)/.config/dotnet-tools.json')">$([System.IO.File]::ReadAllText("$(PaketRootPath)/.config/dotnet-tools.json"))</_DotnetToolsJson>
+      <_ConfigContainsPaket Condition=" '$(_DotnetToolsJson)' != ''">$(_DotnetToolsJson.Contains('"paket"'))</_ConfigContainsPaket>
+      <_ConfigContainsPaket Condition=" '$(_ConfigContainsPaket)' == ''">false</_ConfigContainsPaket>
+    </PropertyGroup>
+
+    <!-- Second test: Call 'dotnet paket' and see if it returns without an error. Mute all the output. Only run if previous test failed and the test has not been disabled. -->
+    <!-- WARNING: This method can lead to processes hanging forever, and should be used as little as possible. See https://github.com/fsprojects/Paket/issues/3705 for details. -->
+    <Exec Condition=" '$(PaketExePath)' == '' AND !$(PaketDisableCliTest) AND !$(_ConfigContainsPaket)" Command="dotnet paket --version" IgnoreExitCode="true" StandardOutputImportance="low" StandardErrorImportance="low" >
+      <Output TaskParameter="ExitCode" PropertyName="LocalPaketToolExitCode" />
+    </Exec>
+
+    <!-- If paket is installed as CLI use that. Again, only if paket haven't already been found in standard locations. -->
+    <PropertyGroup Condition=" '$(PaketExePath)' == '' AND ($(_ConfigContainsPaket) OR '$(LocalPaketToolExitCode)' == '0') ">
+      <_PaketCommand>dotnet paket</_PaketCommand>
+    </PropertyGroup>
+
+    <!-- If neither local files nor CLI tool can be found, final attempt is searching for boostrapper config before falling back to global path variable. -->
+    <PropertyGroup Condition=" '$(PaketExePath)' == '' AND '$(_PaketCommand)' == '' ">
+      <!-- Test for bootstrapper setup -->
+      <PaketExePath Condition=" '$(PaketExePath)' == '' AND '$(PaketBootstrapperStyle)' == 'proj' ">$(PaketToolsPath)paket</PaketExePath>
+      <PaketExePath Condition=" '$(PaketExePath)' == '' AND Exists('$(PaketBootStrapperExeDir)') ">$(PaketBootStrapperExeDir)paket</PaketExePath>
+
+      <!-- If all else fails, use global path approach. -->
+      <PaketExePath Condition=" '$(PaketExePath)' == ''">paket</PaketExePath>
+    </PropertyGroup>
+
+    <!-- If not using CLI, setup correct execution command. -->
+    <PropertyGroup Condition=" '$(_PaketCommand)' == '' ">
+      <_PaketExeExtension>$([System.IO.Path]::GetExtension("$(PaketExePath)"))</_PaketExeExtension>
+      <_PaketCommand Condition=" '$(_PaketCommand)' == '' AND '$(_PaketExeExtension)' == '.dll' ">dotnet "$(PaketExePath)"</_PaketCommand>
+      <_PaketCommand Condition=" '$(_PaketCommand)' == '' AND '$(OS)' != 'Windows_NT' AND '$(_PaketExeExtension)' == '.exe' ">$(MonoPath) --runtime=v4.0.30319 "$(PaketExePath)"</_PaketCommand>
+      <_PaketCommand Condition=" '$(_PaketCommand)' == '' ">"$(PaketExePath)"</_PaketCommand>
+    </PropertyGroup>
+
+    <!-- The way to get a property to be available outside the target is to use this task. -->
+    <CreateProperty Value="$(_PaketCommand)">
+      <Output TaskParameter="Value" PropertyName="PaketCommand"/>
+    </CreateProperty>
+
+  </Target>
 
   <Choose> <!-- MyProject.fsproj.paket.references has the highest precedence -->
     <When Condition="Exists('$(MSBuildProjectFullPath).paket.references')">
@@ -44,13 +100,15 @@
   </Choose>
 
   <PropertyGroup>
-  <!-- Commands -->
-    <RestoreCommand>$(PaketCommand) restore --references-file "$(PaketReferences)"</RestoreCommand>
     <!-- We need to ensure packages are restored prior to assembly resolve -->
     <BuildDependsOn Condition="$(RestorePackages) == 'true'">RestorePackages; $(BuildDependsOn);</BuildDependsOn>
   </PropertyGroup>
-  <Target Name="RestorePackages">
+
+  <Target Name="RestorePackages" DependsOnTargets="SetPaketCommand">
+
     <PropertyGroup>
+      <!-- Commands -->
+      <RestoreCommand>$(PaketCommand) restore --references-file "$(PaketReferences)"</RestoreCommand>
       <PaketRestoreRequired>true</PaketRestoreRequired>
     </PropertyGroup>
 
@@ -66,7 +124,7 @@
           IgnoreStandardErrorWarningFormat="true"
           WorkingDirectory="$(PaketRootPath)"
           ContinueOnError="false"
-          Condition=" '$(PaketRestoreRequired)' == 'true' AND Exists('$(PaketReferences)') AND '$(PaketReferences)' != '' " 
+          Condition=" '$(PaketRestoreRequired)' == 'true' AND Exists('$(PaketReferences)') AND '$(PaketReferences)' != '' "
     />
   </Target>
 </Project>

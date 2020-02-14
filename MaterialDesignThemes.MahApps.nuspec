@@ -20,7 +20,7 @@
         <dependency id="MaterialDesignThemes" version="[3.0.0, 4.0)" />
         <dependency id="MahApps.Metro" version="[2.0.0-*,3.0)" />
       </group>
-      <group targetFramework=".NETCoreApp3.0">
+      <group targetFramework=".NETCoreApp3.1">
         <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
         <dependency id="MaterialDesignThemes" version="[3.0.0, 4.0)" />
         <dependency id="MahApps.Metro" version="[2.0.0-*,3.0)" />
@@ -29,6 +29,6 @@
   </metadata>
   <files>
     <file src="MaterialDesignThemes.MahApps\bin\$configuration$\net45\MaterialDesignThemes.MahApps.*" target="lib\net45" exclude="**\*.json" />
-    <file src="MaterialDesignThemes.MahApps\bin\$configuration$\netcoreapp3.0\MaterialDesignThemes.MahApps.*" target="lib\netcoreapp3.0" exclude="**\*.json" />
+    <file src="MaterialDesignThemes.MahApps\bin\$configuration$\netcoreapp3.1\MaterialDesignThemes.MahApps.*" target="lib\netcoreapp3.1" exclude="**\*.json" />
   </files>
 </package>

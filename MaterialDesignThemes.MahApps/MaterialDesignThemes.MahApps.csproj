@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
+    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <MDIXMahAppsVersion Condition="$(MDIXMahAppsVersion) == '' Or $(MDIXMahAppsVersion) == '*Undefined*'">1.0.1</MDIXMahAppsVersion>
     <AssemblyTitle>MaterialDesignThemes.MahApps</AssemblyTitle>
     <Product>MaterialDesignThemes.MahApps</Product>
-    <Copyright>Copyright © 2015-2016 James Willock, Mulholland Software &amp; Contributors</Copyright>
+    <Copyright>Copyright © 2020 James Willock, Mulholland Software &amp; Contributors</Copyright>
     <Version>$(MDIXMahAppsVersion)</Version>
     <AssemblyVersion>$(MDIXMahAppsVersion)</AssemblyVersion>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <LangVersion>8.0</LangVersion>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />

@@ -3,11 +3,11 @@
   <PropertyGroup>
     <RootNamespace>MaterialDesignColors.Wpf.Fixture</RootNamespace>
     <AssemblyName>MaterialDesignColors.Wpf.Fixture</AssemblyName>
-    <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
+    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <AssemblyTitle>MaterialDesignColors.Wpf.Fixture</AssemblyTitle>
     <Product>MaterialDesignColors.Wpf.Fixture</Product>
-    <Copyright>Copyright ©  2015</Copyright>
+    <Copyright>Copyright © 2020</Copyright>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <Import Project="..\packages\xunit.core\build\xunit.core.props" Condition="Exists('..\packages\xunit.core\build\xunit.core.props')" Label="Paket" />

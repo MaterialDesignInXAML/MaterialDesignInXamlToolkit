@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net472;netcoreapp3.0</TargetFrameworks>
+    <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>MaterialDesignColors.WpfExample</AssemblyTitle>
     <Product>MaterialDesignColors.WpfExample</Product>
-    <Copyright>Copyright ©  2019</Copyright>
+    <Copyright>Copyright © 2020</Copyright>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <Configurations>Debug;Release</Configurations>
     <ErrorReport>prompt</ErrorReport>
@@ -15,7 +15,7 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.0'">
+  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <Import Project="..\packages\ShowMeTheXAML.MSBuild\build\ShowMeTheXAML.MSBuild.targets" Label="Paket" />
