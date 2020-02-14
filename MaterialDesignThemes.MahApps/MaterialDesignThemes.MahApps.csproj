@@ -12,6 +12,7 @@
     <AssemblyVersion>$(MDIXMahAppsVersion)</AssemblyVersion>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <LangVersion>8.0</LangVersion>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
