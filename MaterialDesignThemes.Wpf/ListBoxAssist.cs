@@ -42,7 +42,7 @@ namespace MaterialDesignThemes.Wpf
             if (ripple != null && listBoxItem.IsSelected)
             {
                 ripple.RaiseEvent(new MouseButtonEventArgs(mouseButtonEventArgs.MouseDevice, mouseButtonEventArgs.Timestamp, mouseButtonEventArgs.ChangedButton)
-                { RoutedEvent = Control.PreviewMouseLeftButtonDownEvent, Source = ripple }
+                { RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent, Source = ripple }
                 );
             }
         }
