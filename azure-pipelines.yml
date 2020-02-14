@@ -17,7 +17,7 @@ variables:
   solution: 'MaterialDesignToolkit.Wpf.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  dotNetCoreVersion: '3.0.x'
+  dotNetCoreVersion: '3.1.x'
   nugetVersionSpec: '5.x.x'
 
 steps:
