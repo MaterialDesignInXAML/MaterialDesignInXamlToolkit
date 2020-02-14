@@ -55,11 +55,10 @@
                 <smtx:XamlDisplay Key="chips_6" Margin="0 0 4 4">
                     <materialDesign:Chip Content="James Willock"
                                  IsDeletable="True"
-                                 x:Name="ButtonsDemoChip"
                                  Click="ButtonsDemoChip_OnClick"
                                  DeleteClick="ButtonsDemoChip_OnDeleteClick"
                                  ToolTip="Just a tool tip"
-                                 DeleteToolTip="Your friendly neighbour delete button"
+                                 DeleteToolTip="Your friendly neighbor delete button"
                                  >
                         <materialDesign:Chip.Icon>
                             <Image Source="Resources/ProfilePic.jpg"></Image>
@@ -93,9 +92,10 @@
             <smtx:XamlDisplay Key="chips_10" Margin="0 0 6 4">
                 <ListBox Style="{StaticResource MaterialDesignFilterChipListBox}">
                     <ListBoxItem>Mercury</ListBoxItem>
-                    <ListBoxItem>Venus</ListBoxItem>
+                    <ListBoxItem IsSelected="True">Venus</ListBoxItem>
                     <ListBoxItem>Earth</ListBoxItem>
                     <ListBoxItem>Mars</ListBoxItem>
+                    <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
                 </ListBox>
             </smtx:XamlDisplay>
         </StackPanel>
