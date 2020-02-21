@@ -61,7 +61,7 @@ namespace mdresgen
         private static IEnumerable<Icon> GetIcons(string sourceData)
         {
             var jObject = JObject.Parse(sourceData);
-            var icons = new Icon[] { new Icon("None", string.Empty, new List<string>()) } //Add None value always to Enum at first place
+            var icons = new[] { new Icon("None", string.Empty, new List<string>()) } //Add None value always to Enum at first place
                 .Concat(
                    jObject["icons"].Select(t => new Icon(
                    t["name"].ToString().Underscore().Pascalize(),
@@ -69,7 +69,7 @@ namespace mdresgen
                    t["aliases"].ToObject<IEnumerable<string>>().Select(x => x.Underscore().Pascalize()).ToList()))
                 );
 
-            var iconsByName = new Dictionary<string, Icon>();
+            var iconsByName = new Dictionary<string, Icon>(StringComparer.OrdinalIgnoreCase);
             foreach(Icon icon in icons)
             {
                 if (iconsByName.ContainsKey(icon.Name))
