@@ -267,7 +267,7 @@
         </StackPanel>
         <Border Margin="0 24 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="6" Grid.ColumnSpan="2" />
         <TextBlock Grid.Row="7" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="0 24">Checkboxes</TextBlock>
-        <smtx:XamlDisplay Key="fields_31" Grid.Row="8" HorizontalAlignment="Left">
+        <smtx:XamlDisplay Key="fields_35" Grid.Row="8" HorizontalAlignment="Left">
             <StackPanel Margin="8 0">
                 <CheckBox IsChecked="True">Checked</CheckBox>
                 <CheckBox IsChecked="False">Unchecked</CheckBox>

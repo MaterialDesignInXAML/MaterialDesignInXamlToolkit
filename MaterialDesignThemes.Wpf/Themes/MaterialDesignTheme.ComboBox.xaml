@@ -2,8 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
@@ -18,6 +17,7 @@
     <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearTextConverter" />
     <converters:NotConverter x:Key="NotConverter" />
     <converters:FallbackBrushConverter x:Key="FallbackBrushConverter" />
+    <converters:RemoveAlphaBrushConverter x:Key="RemoveAlphaBrushConverter" />
 
     <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
     <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
@@ -494,7 +494,8 @@
                       X1="0" X2="{Binding ActualWidth, ElementName=toggleButton}" Y1="0" Y2="0" 
                       Stroke="{TemplateBinding BorderBrush}" Opacity="0.56" />
                 <wpf:Underline x:Name="Underline"
-                               Grid.ColumnSpan="2" Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               wpf:TextFieldAssist.UnderlineBrush="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}"
                                IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
                                Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"
                                Background="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -519,6 +520,7 @@
                                    DefaultVerticalOffset="5"
                                    DownVerticalOffset="-15.5"
                                    UpVerticalOffset="15"
+                                   wpf:ColorZoneAssist.Mode="{Binding Path=(wpf:ColorZoneAssist.Mode), RelativeSource={RelativeSource TemplatedParent}}"
                                    Tag="{DynamicResource MaterialDesignPaper}"
                                    ClassicMode="{Binding Path=(wpf:ComboBoxAssist.ClassicMode), RelativeSource={RelativeSource TemplatedParent}}"
                                    UpContentTemplate="{StaticResource PopupContentUpTemplate}"
@@ -541,12 +543,12 @@
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger SourceName="PART_Popup" Property="PopupPlacement" Value="{x:Static materialDesign:ComboBoxPopupPlacement.Classic}">
+            <Trigger SourceName="PART_Popup" Property="PopupPlacement" Value="{x:Static wpf:ComboBoxPopupPlacement.Classic}">
                 <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
             </Trigger>
             <Trigger SourceName="PART_Popup" Property="IsOpen" Value="True">
                 <Setter Property="Background" TargetName="templateRoot" Value="{Binding Background, ElementName=PART_Popup}" />
-            </Trigger>
+            </Trigger>  
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="templateRoot" Property="Opacity" Value="0.56"/>
                 <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent"/>
@@ -628,8 +630,88 @@
                     <Condition Property="IsMouseOver" Value="true" />
                     <Condition Property="Validation.HasError" Value="false" />
                 </MultiTrigger.Conditions>
-                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
-                <Setter TargetName="Underline" Property="Background" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Standard"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesignPaper}" />
+                <Setter TargetName="PART_Popup" Property="Background" 
+                        Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignBody}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Inverted"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesignBody}" />
+                <Setter TargetName="PART_Popup" Property="Background" 
+                        Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignPaper}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="PrimaryLight" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter TargetName="PART_Popup" Property="Background" 
+                        Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter TargetName="PART_Popup" Property="Background" 
+                        Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="PrimaryDark"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource PrimaryHueDarkBrush}" />
+                <Setter TargetName="PART_Popup" Property="Background" 
+                        Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Accent"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryAccentBrush}" />
+                <Setter TargetName="PART_Popup" Property="Background" 
+                        Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Light"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesignLightBackground}" />
+                <Setter TargetName="PART_Popup" Property="Background" 
+                        Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignLightForeground}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Dark"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesignDarkBackground}" />
+                <Setter TargetName="PART_Popup" Property="Background" 
+                        Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignDarkForeground}" />
             </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -653,6 +735,8 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
         <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 1 0" />
+        <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />

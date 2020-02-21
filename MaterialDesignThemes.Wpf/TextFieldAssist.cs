@@ -69,7 +69,32 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Controls the visibility of the filled text field.
+        /// The attached WPF property for getting or setting the <see cref="Brush"/> value for an underline decoration.
+        /// </summary>
+        public static readonly DependencyProperty UnderlineBrushProperty = DependencyProperty.RegisterAttached(
+            "UnderlineBrush", typeof(Brush), typeof(TextFieldAssist), new PropertyMetadata(Brushes.Transparent));
+
+        /// <summary>
+        /// Sets the <see cref="Brush"/> used for underline decoration.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetUnderlineBrush(DependencyObject element, Brush value)
+        {
+            element.SetValue(UnderlineBrushProperty, value);
+        }
+
+        /// <summary>
+        /// Gets the <see cref="Brush"/> used for underline decoration.
+        /// </summary>
+        /// <param name="element"></param>
+        public static Brush GetUnderlineBrush(DependencyObject element)
+        {
+            return (Brush)element.GetValue(UnderlineBrushProperty);
+        }
+
+        /// <summary>
+        /// Controls the visbility of the text field box.
         /// </summary>
         public static readonly DependencyProperty HasFilledTextFieldProperty = DependencyProperty.RegisterAttached(
             "HasFilledTextField", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
@@ -162,28 +187,6 @@ namespace MaterialDesignThemes.Wpf
         public static bool GetRippleOnFocusEnabled(DependencyObject element)
         {
             return (bool)element.GetValue(RippleOnFocusEnabledProperty);
-        }
-
-        /// <summary>
-        /// The color for highlighting effects on the border of a text box.
-        /// </summary>
-        public static readonly DependencyProperty UnderlineBrushProperty = DependencyProperty.RegisterAttached(
-            "UnderlineBrush", typeof(Brush), typeof(TextFieldAssist), new PropertyMetadata(null));
-
-        /// <summary>
-        /// Sets the color for highlighting effects on the border of a text box.
-        /// </summary>
-        public static void SetUnderlineBrush(DependencyObject element, Brush value)
-        {
-            element.SetValue(UnderlineBrushProperty, value);
-        }
-
-        /// <summary>
-        /// Gets the color for highlighting effects on the border of a text box.
-        /// </summary>
-        public static Brush GetUnderlineBrush(DependencyObject element)
-        {
-            return (Brush)element.GetValue(UnderlineBrushProperty);
         }
 
         /// <summary>

@@ -191,7 +191,8 @@
     </Style>
 
     <Style TargetType="{x:Type local:Underline}">
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="local:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="Background" Value="{Binding Path=(local:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Bottom"/>

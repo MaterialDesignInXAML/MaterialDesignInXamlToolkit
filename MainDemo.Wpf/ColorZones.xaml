@@ -52,6 +52,15 @@
                         <StackPanel Orientation="Horizontal"
                             materialDesign:RippleAssist.IsCentered="True">
                             <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                            <ComboBox SelectedIndex="0" Margin="8 0 0 0" BorderThickness="0" 
+                                      materialDesign:ColorZoneAssist.Mode="Standard" 
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesignPaper}"
+                                      BorderBrush="{DynamicResource MaterialDesignPaper}">
+                                <ComboBoxItem>Android</ComboBoxItem>
+                                <ComboBoxItem>iOS</ComboBoxItem>
+                                <ComboBoxItem>Linux</ComboBoxItem>
+                                <ComboBoxItem>Windows</ComboBoxItem>
+                            </ComboBox>
                             <materialDesign:ColorZone Mode="Standard" Padding="8 4 8 4" CornerRadius="2" Panel.ZIndex="1"
                                    Margin="16 0 0 0"
                                    materialDesign:ShadowAssist.ShadowDepth="Depth1">
