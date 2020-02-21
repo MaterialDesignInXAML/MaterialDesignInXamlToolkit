@@ -16,7 +16,7 @@
         FontFamily="{materialDesign:MaterialDesignFont}" 
         Icon="favicon.ico">
     <Window.CommandBindings>
-        <CommandBinding Command="Copy" Executed="OnCopy"></CommandBinding>
+        <CommandBinding Command="Copy" Executed="OnCopy" />
     </Window.CommandBindings>
     <Window.Resources>
         <ResourceDictionary>

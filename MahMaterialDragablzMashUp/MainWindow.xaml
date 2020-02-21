@@ -12,6 +12,9 @@
                       GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
                       FontFamily="{StaticResource MahApps.Fonts.Default}"
                       Title="Material-MahApps-Dragablz Mash Up" Height="640" Width="800">
+    <Window.CommandBindings>
+        <CommandBinding Command="Copy" Executed="OnCopy" />
+    </Window.CommandBindings>
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>
             <controls:Flyout x:Name="LeftFlyout" Position="Left" Header="Settings" wpf:FlyoutAssist.HeaderColorMode="Accent">
