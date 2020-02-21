@@ -11,7 +11,7 @@
                        wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mahApps:FlyoutAssist.HeaderShadowDepth)}"
                        Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mahApps:FlyoutAssist.HeaderColorMode)}">
             <DockPanel x:Name="dpHeader"
-                       Margin="{Binding Path=(mah:ControlsHelper.HeaderMargin), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:Flyout}}, Mode=OneWay}"
+                       Margin="{Binding Path=(mah:HeaderedControlHelper.HeaderMargin), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:Flyout}}, Mode=OneWay}"
                        VerticalAlignment="Center"
                        LastChildFill="True">
                 <Button x:Name="PART_BackButton"

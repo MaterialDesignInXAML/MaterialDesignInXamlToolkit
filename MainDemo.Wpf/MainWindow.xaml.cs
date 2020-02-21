@@ -14,7 +14,8 @@ namespace MaterialDesignColors.WpfExample
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window {
+    public partial class MainWindow : Window
+    {
         public static Snackbar Snackbar;
         public MainWindow()
         {
@@ -33,7 +34,7 @@ namespace MaterialDesignColors.WpfExample
             DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue);
 
             Snackbar = this.MainSnackbar;
-        }        
+        }
 
         private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -50,12 +51,11 @@ namespace MaterialDesignColors.WpfExample
 
         private async void MenuPopupButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var sampleMessageDialog = new SampleMessageDialog
-            {
-                Message = {Text = ((ButtonBase) sender).Content.ToString()}
+            var sampleMessageDialog = new SampleMessageDialog {
+                Message = { Text = ((ButtonBase)sender).Content.ToString() }
             };
 
-            await DialogHost.Show(sampleMessageDialog, "RootDialog");            
+            await DialogHost.Show(sampleMessageDialog, "RootDialog");
         }
 
         private void OnCopy(object sender, ExecutedRoutedEventArgs e)
@@ -72,5 +72,5 @@ namespace MaterialDesignColors.WpfExample
                 }
             }
         }
-    } 
+    }
 }
