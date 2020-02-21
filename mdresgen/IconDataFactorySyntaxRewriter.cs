@@ -30,8 +30,15 @@ namespace mdresgen
         private static SeparatedSyntaxList<ExpressionSyntax> GetInitializerItems(
             IEnumerable<Icon> icons)
         {
+            var comma = SyntaxFactory.Token(SyntaxKind.CommaToken);
+            var trailingTriviaList = SyntaxTriviaList.Create(SyntaxFactory.ElasticCarriageReturnLineFeed);
+            var separator = SyntaxFactory.Identifier(SyntaxTriviaList.Empty, comma.Text, trailingTriviaList);
+
             var initializerExpressionSyntaxList = icons.Select(icon =>
             {
+                //Indent
+                var indent = SyntaxTriviaList.Create(SyntaxFactory.Whitespace("            "));
+
                 //create a member access expression
                 var memberAccessExpressionSyntax =
                     SyntaxFactory.MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression,
@@ -42,12 +49,13 @@ namespace mdresgen
                 var literalExpressionSyntax = SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression,
                     SyntaxFactory.Literal(icon.Data));
 
-                var separatedSyntaxList = SyntaxFactory.SeparatedList<ExpressionSyntax>(new ExpressionSyntax[] { memberAccessExpressionSyntax, literalExpressionSyntax });
-                var initializerExpressionSyntax = SyntaxFactory.InitializerExpression(SyntaxKind.ComplexElementInitializerExpression, separatedSyntaxList);
+                var separatedSyntaxList = SyntaxFactory.SeparatedList(new ExpressionSyntax[] { memberAccessExpressionSyntax, literalExpressionSyntax });
+                var initializerExpressionSyntax = SyntaxFactory.InitializerExpression(SyntaxKind.ComplexElementInitializerExpression, separatedSyntaxList)
+                    .WithLeadingTrivia(indent);
                 return (ExpressionSyntax)initializerExpressionSyntax;
-            });
+            }).ToList();
 
-            var result = SyntaxFactory.SeparatedList(initializerExpressionSyntaxList);
+            var result = SyntaxFactory.SeparatedList(initializerExpressionSyntaxList, Enumerable.Repeat(separator, initializerExpressionSyntaxList.Count - 1));
 
             return result;
         }
