@@ -18,7 +18,7 @@ namespace MaterialDesignThemes.Wpf
         private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _pausedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _messageWaitingEvent = new ManualResetEvent(false);
-        private Tuple<SnackbarMessageQueueItem, DateTime> _latestShownItem;
+        private SnackbarMessageQueueItem _latestShownMessage;
         private int _pauseCounter;
         private bool _isDisposed;
 
@@ -187,9 +187,9 @@ namespace MaterialDesignThemes.Wpf
 
         /// <summary>
         /// Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates. 
-        /// True to show every message even if there are duplicates.
+        /// False to show every message even if there are duplicates.
         /// </summary>
-        public bool IgnoreDuplicate { get; set; }
+        public bool DiscardDuplicates { get; set; }
 
         public void Enqueue(object content)
         {
@@ -301,17 +301,12 @@ namespace MaterialDesignThemes.Wpf
                 //show message
                 if (snackbar != null)
                 {
-                    var message = _snackbarMessages.First.Value;
-                    _snackbarMessages.RemoveFirst();
-                    if (_latestShownItem == null
-                        || IgnoreDuplicate
-                        || message.IgnoreDuplicate
-                        || !Equals(_latestShownItem.Item1.Content, message.Content)
-                        || !Equals(_latestShownItem.Item1.ActionContent, message.ActionContent)
-                        || _latestShownItem.Item2 <= DateTime.Now.Subtract(_latestShownItem.Item1.Duration))
+                    var message = GetSnackbarMessage();
+                    if (message != null)
                     {
                         await ShowAsync(snackbar, message);
-                        _latestShownItem = new Tuple<SnackbarMessageQueueItem, DateTime>(message, DateTime.Now);
+                        _latestShownMessage = message;
+                        message.LastShownAt = DateTime.Now;
                     }
                 }
                 else
@@ -324,6 +319,29 @@ namespace MaterialDesignThemes.Wpf
                     _messageWaitingEvent.Set();
                 else
                     _messageWaitingEvent.Reset();
+            }
+        }
+
+        /// <summary>
+        /// Removes the first message of the queue and checks
+        /// if the message should be shown. If the message does not
+        /// meet the criteria to be shown, this method returns null. 
+        /// </summary>
+        /// <returns>First Message from the Queue or null</returns>
+        private SnackbarMessageQueueItem GetSnackbarMessage()
+        {
+            var message = _snackbarMessages.First.Value;
+            _snackbarMessages.RemoveFirst();
+            if (_latestShownMessage == null
+                || _latestShownMessage.MessageExpired()
+                || message.ShowAlways
+                || !(DiscardDuplicates && message.Equals(_latestShownMessage)))
+            {
+                return message;
+            }
+            else
+            {
+                return null;
             }
         }
 
