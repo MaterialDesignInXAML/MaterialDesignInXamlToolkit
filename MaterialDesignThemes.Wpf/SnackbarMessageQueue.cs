@@ -290,7 +290,7 @@ namespace MaterialDesignThemes.Wpf
                 if (exemplar == null)
                 {
                     Trace.TraceWarning(
-                        "A snackbar message as waiting, but no Snackbar instances are assigned to the message queue.");
+                        "A snackbar message is waiting, but no Snackbar instances are assigned to the message queue.");
                     _disposedEvent.WaitOne(TimeSpan.FromSeconds(1));
                     continue;
                 }
