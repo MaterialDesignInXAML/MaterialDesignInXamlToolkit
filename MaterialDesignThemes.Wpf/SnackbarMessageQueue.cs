@@ -330,6 +330,9 @@ namespace MaterialDesignThemes.Wpf
         /// <returns>First Message from the Queue or null</returns>
         private SnackbarMessageQueueItem GetSnackbarMessage()
         {
+            if (_snackbarMessages.Count == 0)
+                return null;
+
             var message = _snackbarMessages.First.Value;
             _snackbarMessages.RemoveFirst();
             if (_latestShownMessage == null
