@@ -7009,6 +7009,7 @@ namespace MaterialDesignThemes.Wpf
         SizeXs,
         SizeXxl,
         SizeXxs,
+        SizeExtraExtraSmall=SizeXxs,
         SizeXxxl,
         Skate,
         IceSkate=Skate,
