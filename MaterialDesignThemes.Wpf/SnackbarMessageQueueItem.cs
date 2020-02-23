@@ -6,7 +6,7 @@ namespace MaterialDesignThemes.Wpf
     internal class SnackbarMessageQueueItem
     {
         public SnackbarMessageQueueItem(object content, TimeSpan duration, object actionContent = null, Action<object> actionHandler = null, object actionArgument = null, 
-                                        bool isPromoted = false, bool showAlways = false)
+                                        bool isPromoted = false, bool alwaysShow = false)
         {
             Content = content;
             Duration = duration;
@@ -14,7 +14,7 @@ namespace MaterialDesignThemes.Wpf
             ActionHandler = actionHandler;
             ActionArgument = actionArgument;
             IsPromoted = isPromoted;
-            ShowAlways = showAlways;
+            AlwaysShow = alwaysShow;
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Always show this message, even if it's a duplicate
         /// </summary>
-        public bool ShowAlways { get; }
+        public bool AlwaysShow { get; }
 
         /// <summary>
         /// Last time this message was shown
@@ -59,10 +59,7 @@ namespace MaterialDesignThemes.Wpf
 
         public bool MessageExpired()
         {
-            if (LastShownAt == null)
-                return true;
-            else
-                return LastShownAt <= DateTime.Now.Subtract(Duration);
+            return LastShownAt <= DateTime.Now.Subtract(Duration);
         }
 
         public override bool Equals(object obj)
@@ -70,15 +67,13 @@ namespace MaterialDesignThemes.Wpf
             if (!(obj is SnackbarMessageQueueItem message))
                 return false;
 
-            return Content.Equals(message.Content) && ActionContent.Equals(message.ActionContent);
+            return EqualityComparer<object>.Default.Equals(Content, message.Content)
+                   && EqualityComparer<object>.Default.Equals(ActionContent, message.ActionContent);
         }
 
         public override int GetHashCode()
         {
-            var hashCode = -724337062;
-            hashCode = hashCode * -1521134295 + EqualityComparer<object>.Default.GetHashCode(Content);
-            hashCode = hashCode * -1521134295 + EqualityComparer<object>.Default.GetHashCode(ActionContent);
-            return hashCode;
+            return (Content, ActionContent).GetHashCode();
         }
     }
 }

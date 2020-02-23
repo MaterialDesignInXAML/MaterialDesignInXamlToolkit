@@ -334,7 +334,7 @@ namespace MaterialDesignThemes.Wpf
             _snackbarMessages.RemoveFirst();
             if (_latestShownMessage == null
                 || _latestShownMessage.MessageExpired()
-                || message.ShowAlways
+                || message.AlwaysShow
                 || !(DiscardDuplicates && message.Equals(_latestShownMessage)))
             {
                 return message;
