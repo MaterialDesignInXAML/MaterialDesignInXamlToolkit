@@ -214,6 +214,13 @@
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
+                                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                                <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_ContentHost" Property="Height" Value="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
                                 <Condition Property="AcceptsReturn" Value="true" />
                                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
                                 <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
@@ -246,6 +253,13 @@
                                 <Condition Property="IsKeyboardFocused" Value="True" />
                             </MultiTrigger.Conditions>
                             <Setter TargetName="HintWrapper" Property="Opacity" Value="1" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                                <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_ContentHost" Property="Height" Value="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
