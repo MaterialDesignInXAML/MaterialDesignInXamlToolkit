@@ -263,9 +263,17 @@
                 </smtx:XamlDisplay>
                 <smtx:XamlDisplay Key="fields_15" Margin="16 0 0 0">
                     <PasswordBox Password="01234" IsEnabled="False" MinWidth="72"/>
-                </smtx:XamlDisplay>
-            </StackPanel>
-        </StackPanel>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="fields_33">
+               <ComboBox
+                  IsEnabled="False"
+                  materialDesign:HintAssist.Hint="Disabled Combo with Hint"
+                  materialDesign:HintAssist.IsFloating="True" >
+                  <ComboBoxItem IsSelected="True">Selected</ComboBoxItem>
+               </ComboBox>
+            </smtx:XamlDisplay>
+         </StackPanel>
+      </StackPanel>
 
         <smtx:XamlDisplay Key="fields_16" Grid.Row="5" Grid.Column="1" Margin="0 8">
             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
