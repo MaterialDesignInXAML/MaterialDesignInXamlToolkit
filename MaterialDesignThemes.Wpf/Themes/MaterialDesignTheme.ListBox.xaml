@@ -273,7 +273,8 @@
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Padding="{TemplateBinding Padding}"/>
+                                        Padding="{TemplateBinding Padding}"
+                                        RecognizesAccessKey="False"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
