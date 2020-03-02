@@ -33,7 +33,6 @@
             <ScrollBar 
                 x:Name="PART_VerticalScrollBar" 
                 AutomationProperties.AutomationId="VerticalScrollBar"
-                Cursor="Arrow" 
                 Grid.Column="1"
                 Maximum="{TemplateBinding ScrollableHeight}"
                 Minimum="0" 
@@ -45,7 +44,6 @@
             <ScrollBar 
                 x:Name="PART_HorizontalScrollBar"
                 AutomationProperties.AutomationId="HorizontalScrollBar" 
-                Cursor="Arrow" 
                 Grid.Column="0" 
                 Maximum="{TemplateBinding ScrollableWidth}" 
                 Minimum="0" 
