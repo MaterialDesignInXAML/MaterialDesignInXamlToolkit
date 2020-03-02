@@ -56,41 +56,25 @@
                 ViewportSize="{TemplateBinding ViewportWidth}" />
         </Grid>
         <ControlTemplate.Triggers>
-            
+
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True" />                    
-                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True" />
+                    <Condition Property="ComputedVerticalScrollBarVisibility" Value="Visible" />
+                    <Condition Property="IsMouseOver" Value="False" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="PART_VerticalScrollBar" Property="Visibility" Value="Visible"/>
-                <Setter TargetName="PART_HorizontalScrollBar" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="PART_VerticalScrollBar" Property="Visibility" Value="Hidden"/>
             </MultiTrigger>
 
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True" />
+                    <Condition Property="ComputedHorizontalScrollBarVisibility" Value="Visible" />
                     <Condition Property="IsMouseOver" Value="False" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="PART_VerticalScrollBar" Property="Visibility" Value="Hidden"/>
                 <Setter TargetName="PART_HorizontalScrollBar" Property="Visibility" Value="Hidden"/>
             </MultiTrigger>
-
-            <Trigger Property="HorizontalScrollBarVisibility" Value="Disabled">
-                <Setter TargetName="PART_HorizontalScrollBar" Property="Visibility" Value="Collapsed"/>
-            </Trigger>
-
-            <Trigger Property="HorizontalScrollBarVisibility" Value="Hidden">
-                <Setter TargetName="PART_HorizontalScrollBar" Property="Visibility" Value="Collapsed"/>
-            </Trigger>
-
-            <Trigger Property="VerticalScrollBarVisibility" Value="Disabled">
-                <Setter TargetName="PART_VerticalScrollBar" Property="Visibility" Value="Collapsed"/>
-            </Trigger>
-
-            <Trigger Property="VerticalScrollBarVisibility" Value="Hidden">
-                <Setter TargetName="PART_VerticalScrollBar" Property="Visibility" Value="Collapsed"/>
-            </Trigger>
-
+            
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
