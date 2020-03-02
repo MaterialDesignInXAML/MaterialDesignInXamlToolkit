@@ -14,6 +14,7 @@ nuget ShowMeTheXAML.AvalonEdit 1.1.0-ci73 ci
 nuget ShowMeTheXAML.MSBuild 1.1.0-ci73 ci
 
 nuget Microsoft.CSharp ~> 4.6.0
+nuget System.ValueTuple ~> 4.3.1 framework: net45
 nuget System.Data.DataSetExtensions ~> 4.6.0-preview3.19128.7
 nuget Microsoft.NETCore.Platforms ~> 3.0.0
 
