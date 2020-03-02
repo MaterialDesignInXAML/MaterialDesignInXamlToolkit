@@ -56,7 +56,12 @@ namespace MaterialDesignThemes.Wpf
             if (!timePicker._isManuallyMutatingText)
                 timePicker.SetSelectedTime();
             if (timePicker._textBox != null)
+            {
+                // Save and restore the cursor position
+                var caretIndex = timePicker._textBox.CaretIndex;
                 timePicker._textBox.Text = dependencyPropertyChangedEventArgs.NewValue as string ?? "";
+                timePicker._textBox.CaretIndex = caretIndex;
+            }
         }
 
         public string Text
