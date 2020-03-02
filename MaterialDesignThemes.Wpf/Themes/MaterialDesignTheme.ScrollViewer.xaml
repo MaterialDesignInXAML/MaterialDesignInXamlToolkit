@@ -17,7 +17,8 @@
                 x:Name="PART_Corner" 
                 Grid.Column="1" 
                 Fill="{DynamicResource MaterialDesignSelection}" 
-                Grid.Row="1"/>
+                Grid.Row="1"
+                Visibility="{Binding Path=(wpf:ScrollViewerAssist.CornerRectangleVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
 
             <ScrollContentPresenter 
                 x:Name="PART_ScrollContentPresenter" 
@@ -55,14 +56,7 @@
                 ViewportSize="{TemplateBinding ViewportWidth}" />
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="wpf:ScrollViewerAssist.CornerRectangleVisibility" Value="Collapsed">
-                <Setter TargetName="PART_Corner" Property="Visibility" Value="Collapsed"/>
-            </Trigger>
-
-            <Trigger Property="wpf:ScrollViewerAssist.CornerRectangleVisibility" Value="Hidden">
-                <Setter TargetName="PART_Corner" Property="Visibility" Value="Hidden"/>
-            </Trigger>
-
+            
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True" />                    
