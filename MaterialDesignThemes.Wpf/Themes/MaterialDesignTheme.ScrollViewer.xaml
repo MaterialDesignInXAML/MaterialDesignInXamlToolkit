@@ -79,7 +79,6 @@
                     <Condition Property="wpf:ScrollViewerAssist.ShowSeparators" Value="True" />
                     <Condition Property="ComputedVerticalScrollBarVisibility" Value="Visible" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="PART_TopSeparator" Property="Visibility" Value="Visible"/>
                 <Setter TargetName="PART_BottomSeparator" Property="Visibility" Value="Visible"/>
             </MultiTrigger>
 
