@@ -37,6 +37,19 @@ namespace MaterialDesignThemes.Wpf
             return (bool)element.GetValue(IsAutoHideEnabledProperty);
         }
 
+        public static readonly DependencyProperty ShowSeparatorsProperty = DependencyProperty.RegisterAttached(
+            "ShowSeparators", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(default(bool)));
+
+        public static void SetShowSeparators(DependencyObject element, bool value)
+        {
+            element.SetValue(ShowSeparatorsProperty, value);
+        }
+
+        public static bool GetShowSeparators(DependencyObject element)
+        {
+            return (bool)element.GetValue(ShowSeparatorsProperty);
+        }
+
         public static readonly DependencyProperty CornerRectangleVisibilityProperty = DependencyProperty.RegisterAttached(
             "CornerRectangleVisibility", typeof(Visibility), typeof(ScrollViewerAssist), new PropertyMetadata(default(Visibility)));
 

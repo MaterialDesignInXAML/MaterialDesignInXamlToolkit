@@ -20,15 +20,35 @@
                 Grid.Row="1"
                 Visibility="{Binding Path=(wpf:ScrollViewerAssist.CornerRectangleVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
 
+            <Separator 
+                x:Name="PART_TopSeparator" 
+                Background="{DynamicResource MaterialDesignSelection}"
+                Grid.Column="0" 
+                Grid.Row="0"
+                Opacity="0.4"
+                Margin="0"
+                VerticalAlignment="Top"
+                Visibility="Hidden"/>
+            
             <ScrollContentPresenter 
                 x:Name="PART_ScrollContentPresenter" 
                 CanContentScroll="{TemplateBinding CanContentScroll}"
                 CanHorizontallyScroll="False" CanVerticallyScroll="False"
                 ContentTemplate="{TemplateBinding ContentTemplate}"
                 Content="{TemplateBinding Content}"
-                Grid.Column="0" 
+                Grid.Column="0"
                 Margin="{TemplateBinding Padding}"
                 Grid.Row="0"/>
+
+            <Separator 
+                x:Name="PART_BottomSeparator"
+                Background="{DynamicResource MaterialDesignSelection}"
+                Grid.Column="0" 
+                Grid.Row="0"
+                Opacity="0.4"
+                Margin="0"
+                VerticalAlignment="Bottom"
+                Visibility="Hidden"/>
 
             <ScrollBar 
                 x:Name="PART_VerticalScrollBar" 
@@ -54,6 +74,14 @@
                 ViewportSize="{TemplateBinding ViewportWidth}" />
         </Grid>
         <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="wpf:ScrollViewerAssist.ShowSeparators" Value="True" />
+                    <Condition Property="ComputedVerticalScrollBarVisibility" Value="Visible" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_TopSeparator" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="PART_BottomSeparator" Property="Visibility" Value="Visible"/>
+            </MultiTrigger>
 
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -71,13 +99,11 @@
                     <Condition Property="IsMouseOver" Value="False" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="PART_HorizontalScrollBar" Property="Visibility" Value="Hidden"/>
-            </MultiTrigger>
-            
+            </MultiTrigger>            
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style TargetType="ScrollViewer" x:Key="MaterialDesignScrollViewer">
         <Setter Property="Template" Value="{StaticResource MaterialDesignScrollViewerTemplate}" />
     </Style>
-
 </ResourceDictionary>
