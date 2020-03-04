@@ -7,7 +7,7 @@
     <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
     <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
     <converters:RangePositionConverter x:Key="RangePositionConverter"/>
-    <converters:MathMultipleConverter x:Key="TranslateConverter" Operation="Multiply"/>
+    <converters:FloatingHintTransformConverter x:Key="FloatingHintTransformConverter" />
     <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
     <SineEase x:Key="AnimationEasingFunction" EasingMode="EaseOut"/>
 
@@ -126,7 +126,7 @@
                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Opacity="{TemplateBinding HintOpacity}"
                                         IsHitTestVisible="False"
-                                        IsTabStop="False"                                        
+                                        IsTabStop="False"
                                         RenderTransformOrigin="0,1">
                                     <ContentControl.Tag>
                                         <system:Double>0.0</system:Double>
@@ -152,22 +152,10 @@
                                         </TransformGroup>
                                     </ContentControl.LayoutTransform>
                                     <ContentControl.RenderTransform>
-                                        <TransformGroup>
-                                            <TranslateTransform>
-                                                <TranslateTransform.X>
-                                                    <MultiBinding Converter="{StaticResource TranslateConverter}">
-                                                        <Binding Path="Scale" ElementName="ScaleHost"/>
-                                                        <Binding Path="FloatingOffset.X" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                                    </MultiBinding>
-                                                </TranslateTransform.X>
-                                                <TranslateTransform.Y>
-                                                    <MultiBinding Converter="{StaticResource TranslateConverter}">
-                                                        <Binding Path="Scale" ElementName="ScaleHost"/>
-                                                        <Binding Path="FloatingOffset.Y" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                                    </MultiBinding>
-                                                </TranslateTransform.Y>
-                                            </TranslateTransform>
-                                        </TransformGroup>
+                                        <MultiBinding Converter="{StaticResource FloatingHintTransformConverter}">
+                                            <Binding Path="Scale" ElementName="ScaleHost"/>
+                                            <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                        </MultiBinding>
                                     </ContentControl.RenderTransform>
                                 </ContentControl>
                             </Grid>
@@ -177,5 +165,5 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
 </ResourceDictionary>
