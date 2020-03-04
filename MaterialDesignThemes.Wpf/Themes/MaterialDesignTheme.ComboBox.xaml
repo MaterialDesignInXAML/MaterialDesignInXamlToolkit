@@ -284,6 +284,11 @@
                     <VisualState Name="Unfocused" />
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
             <Border x:Name="BackBorder"
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"

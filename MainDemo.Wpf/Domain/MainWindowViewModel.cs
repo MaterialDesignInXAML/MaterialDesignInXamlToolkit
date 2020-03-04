@@ -121,10 +121,10 @@ namespace MaterialDesignColors.WpfExample.Domain
                     DocumentationLink.StyleLink("RatingBar"),
                     DocumentationLink.ApiLink<RatingBar>()
                 }),
-                new DemoItem("Fields", new TextFields(),
+                new DemoItem("Fields", new Fields(),
                     new []
                     {
-                        DocumentationLink.DemoPageLink<TextFields>(),
+                        DocumentationLink.DemoPageLink<Fields>(),
                         DocumentationLink.StyleLink("TextBox"),
                         DocumentationLink.StyleLink("ComboBox"),
                     })

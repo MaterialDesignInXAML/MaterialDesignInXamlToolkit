@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace MaterialDesignColors.WpfExample.Domain
 {
-    public class TextFieldsViewModel : INotifyPropertyChanged
+    public class FieldsViewModel : INotifyPropertyChanged
     {
         private string _name;
         private string _name2;
         private int? _selectedValueOne;
         private string _selectedTextTwo;
 
-        public TextFieldsViewModel()
+        public FieldsViewModel()
         {
             LongListToTestComboVirtualization = new List<int>(Enumerable.Range(0, 1000));
 
