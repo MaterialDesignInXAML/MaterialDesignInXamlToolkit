@@ -705,7 +705,6 @@ namespace MaterialDesignThemes.Wpf
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
             LoadedInstances.Remove(this);
-            SetCurrentValue(IsOpenProperty, false);
         }
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
