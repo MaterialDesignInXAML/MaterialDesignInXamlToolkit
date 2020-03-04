@@ -198,6 +198,16 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Equal(1, closingCount);
         }
 
+        [StaFact]
+        [Description("Issue 1618")]
+        public void WhenDialogHostIsUnloadedIsOpenRemainsTrue()
+        {
+            _dialogHost.IsOpen = true;
+            _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+
+            Assert.True(_dialogHost.IsOpen);
+        }
+
         private class TestDialog : Control
         {
             public void CloseDialog() => DialogHost.CloseDialogCommand.Execute(null, this);
