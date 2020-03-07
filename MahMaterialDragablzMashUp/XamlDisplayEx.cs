@@ -15,7 +15,7 @@ namespace MahAppsDragablzDemo
 
         public static Dock GetButtonDock(DependencyObject element)
         {
-            return (Dock) element.GetValue(ButtonDockProperty);
+            return (Dock)element.GetValue(ButtonDockProperty);
         }
     }
 }

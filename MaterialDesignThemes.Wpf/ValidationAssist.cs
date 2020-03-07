@@ -76,7 +76,7 @@ namespace MaterialDesignThemes.Wpf
         /// Framework use only.
         /// </summary>
         public static readonly DependencyProperty SuppressProperty = DependencyProperty.RegisterAttached(
-            "Suppress", typeof (bool), typeof (ValidationAssist), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits));
+            "Suppress", typeof(bool), typeof(ValidationAssist), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Framework use only.
@@ -93,7 +93,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public static bool GetSuppress(DependencyObject element)
         {
-            return (bool) element.GetValue(SuppressProperty);
+            return (bool)element.GetValue(SuppressProperty);
         }
 
         public static readonly DependencyProperty BackgroundProperty = DependencyProperty.RegisterAttached(
@@ -106,7 +106,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static Brush GetBackground(DependencyObject element)
         {
-            return (Brush) element.GetValue(BackgroundProperty);
+            return (Brush)element.GetValue(BackgroundProperty);
         }
 
 

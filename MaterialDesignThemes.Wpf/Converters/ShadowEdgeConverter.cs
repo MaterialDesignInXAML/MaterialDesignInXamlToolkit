@@ -57,8 +57,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             }
 
             var size = new GeometryDrawing(new SolidColorBrush(Colors.White), new Pen(), new RectangleGeometry(rect));
-            return new DrawingBrush(size)
-            {
+            return new DrawingBrush(size) {
                 Stretch = Stretch.None,
                 TileMode = TileMode.None,
                 Viewport = rect,

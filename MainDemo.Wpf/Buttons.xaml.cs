@@ -26,9 +26,9 @@ namespace MaterialDesignColors.WpfExample
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-	{
+        {
             Console.WriteLine("Just checking we haven't suppressed the button.");
-	}
+        }
 
         private void PopupBox_OnOpened(object sender, RoutedEventArgs e)
         {
@@ -44,9 +44,9 @@ namespace MaterialDesignColors.WpfExample
         {
             if (CountingBadge.Badge == null || Equals(CountingBadge.Badge, ""))
                 CountingBadge.Badge = 0;
-            
+
             var next = int.Parse(CountingBadge.Badge.ToString()) + 1;
-            
+
             CountingBadge.Badge = next < 21 ? (object)next : null;
         }
     }

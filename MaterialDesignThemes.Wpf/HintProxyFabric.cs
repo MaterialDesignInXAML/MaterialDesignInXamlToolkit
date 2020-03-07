@@ -26,7 +26,7 @@ namespace MaterialDesignThemes.Wpf
 
         static HintProxyFabric()
         {
-            Builders.Add(new HintProxyBuilder(c => c is ComboBox, c => new ComboBoxHintProxy((ComboBox) c)));
+            Builders.Add(new HintProxyBuilder(c => c is ComboBox, c => new ComboBoxHintProxy((ComboBox)c)));
             Builders.Add(new HintProxyBuilder(c => c is TextBox, c => new TextBoxHintProxy((TextBox)c)));
             Builders.Add(new HintProxyBuilder(c => c is RichTextBox, c => new RichTextBoxHintProxy((RichTextBox)c)));
             Builders.Add(new HintProxyBuilder(c => c is PasswordBox, c => new PasswordBoxHintProxy((PasswordBox)c)));

@@ -48,6 +48,6 @@ namespace MahMaterialDragablzMashUp
         public void Refresh()
         {
             CommandManager.InvalidateRequerySuggested();
-        }    
+        }
     }
 }

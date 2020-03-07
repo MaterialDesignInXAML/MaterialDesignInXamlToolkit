@@ -7,7 +7,7 @@ namespace MaterialDesignThemes.Wpf
     /// <summary>
     /// 
     /// </summary>
-    [TemplateVisualState(GroupName="ActivationStates", Name = ActiveStateName)]
+    [TemplateVisualState(GroupName = "ActivationStates", Name = ActiveStateName)]
     [TemplateVisualState(GroupName = "ActivationStates", Name = InactiveStateName)]
     public class Underline : Control
     {
