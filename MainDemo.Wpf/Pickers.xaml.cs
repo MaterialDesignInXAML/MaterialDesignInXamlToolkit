@@ -22,12 +22,14 @@ namespace MaterialDesignColors.WpfExample
 
         private void LocaleCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try {
-                var lang = System.Windows.Markup.XmlLanguage.GetLanguage((string) LocaleCombo.SelectedItem);
+            try
+            {
+                var lang = System.Windows.Markup.XmlLanguage.GetLanguage((string)LocaleCombo.SelectedItem);
                 LocaleDatePicker.Language = lang;
                 LocaleDatePickerRTL.Language = lang;
             }
-            catch {
+            catch
+            {
                 LocaleCombo.SelectedItem = "fr-CA";
             }
             //HACK: The calendar only refresh when we change the date
@@ -67,7 +69,7 @@ namespace MaterialDesignColors.WpfExample
 
         public void ClockDialogOpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)
         {
-            Clock.Time = ((PickersViewModel) DataContext).Time;
+            Clock.Time = ((PickersViewModel)DataContext).Time;
         }
 
         public void ClockDialogClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)

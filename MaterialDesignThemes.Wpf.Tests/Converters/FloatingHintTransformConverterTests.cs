@@ -10,7 +10,7 @@ namespace MaterialDesignThemes.Wpf.Tests.Converters
     public class FloatingHintTransformConverterTests
     {
         public static IEnumerable<object[]> InvalidParameters =>
-            new[] 
+            new[]
             {
                 new object[] {null, null},
                 new object[] {1.0, null},
@@ -44,5 +44,5 @@ namespace MaterialDesignThemes.Wpf.Tests.Converters
         }
     }
 
-    
+
 }

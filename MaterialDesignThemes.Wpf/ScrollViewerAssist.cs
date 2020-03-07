@@ -21,7 +21,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static double GetSyncHorizontalOffset(DependencyObject element)
         {
-            return (double) element.GetValue(HorizontalOffsetProperty);
+            return (double)element.GetValue(HorizontalOffsetProperty);
         }
     }
 }

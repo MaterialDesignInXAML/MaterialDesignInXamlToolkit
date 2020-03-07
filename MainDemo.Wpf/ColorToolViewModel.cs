@@ -89,7 +89,7 @@ namespace MaterialDesignDemo
         private void ChangeCustomColor(object obj)
         {
             var color = (Color)obj;
-            
+
             if (ActiveScheme == ColorScheme.Primary)
             {
                 _paletteHelper.ChangePrimaryColor(color);

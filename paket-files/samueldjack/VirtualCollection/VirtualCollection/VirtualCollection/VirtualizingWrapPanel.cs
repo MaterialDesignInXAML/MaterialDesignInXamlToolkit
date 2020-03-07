@@ -255,8 +255,7 @@ namespace VirtualCollection.VirtualCollection
 
             var lastRealizedIndex = Math.Min(firstRealizedIndex + completeRealizedLines * extentInfo.ItemsPerLine + 2, _itemsControl.Items.Count - 1);
 
-            return new ItemLayoutInfo
-            {
+            return new ItemLayoutInfo {
                 FirstRealizedItemIndex = firstRealizedIndex,
                 FirstRealizedItemLeft = firstRealizedItemLeft,
                 FirstRealizedLineTop = firstRealizedItemTop,
@@ -275,8 +274,7 @@ namespace VirtualCollection.VirtualCollection
             var totalLines = (int)Math.Ceiling((double)_itemsControl.Items.Count / itemsPerLine);
             var extentHeight = Math.Max(totalLines * ItemHeight, viewPortSize.Height);
 
-            return new ExtentInfo()
-            {
+            return new ExtentInfo() {
                 ItemsPerLine = itemsPerLine,
                 TotalLines = totalLines,
                 ExtentHeight = extentHeight,

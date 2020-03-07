@@ -87,8 +87,7 @@ namespace MaterialDesignThemes.Wpf
             var instance = (RatingBar)d;
             var args = new RoutedPropertyChangedEventArgs<int>(
                     (int)e.OldValue,
-                    (int)e.NewValue) 
-                { RoutedEvent = ValueChangedEvent };
+                    (int)e.NewValue) { RoutedEvent = ValueChangedEvent };
             instance.RaiseEvent(args);
         }
 
@@ -154,8 +153,7 @@ namespace MaterialDesignThemes.Wpf
             _ratingButtonsInternal.Clear();
             for (var i = Min; i <= Max; i++)
             {
-                _ratingButtonsInternal.Add(new RatingBarButton
-                {
+                _ratingButtonsInternal.Add(new RatingBarButton {
                     Content = i,
                     ContentTemplate = ValueItemTemplate,
                     ContentTemplateSelector = ValueItemTemplateSelector,

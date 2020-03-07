@@ -29,8 +29,7 @@ namespace MaterialDesignThemes.Wpf.Converters
         private static DropShadowEffect Clone(DropShadowEffect dropShadowEffect)
         {
             if (dropShadowEffect == null) return null;
-            return new DropShadowEffect()
-            {
+            return new DropShadowEffect() {
                 BlurRadius = dropShadowEffect.BlurRadius,
                 Color = dropShadowEffect.Color,
                 Direction = dropShadowEffect.Direction,

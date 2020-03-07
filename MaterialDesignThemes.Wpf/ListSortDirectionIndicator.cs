@@ -12,7 +12,7 @@ namespace MaterialDesignThemes.Wpf
         public const string DirectionGroupName = "Direction";
         public const string NoneStateName = "None";
         public const string AscendingStateName = "Ascending";
-        public const string DescendingStateName = "Descending";        
+        public const string DescendingStateName = "Descending";
 
         static ListSortDirectionIndicator()
         {
@@ -28,24 +28,24 @@ namespace MaterialDesignThemes.Wpf
 
 
         public static readonly DependencyProperty ListSortDirectionProperty = DependencyProperty.Register(
-            nameof(ListSortDirection), typeof (ListSortDirection?), typeof (ListSortDirectionIndicator), new PropertyMetadata(default(ListSortDirection?), ListSortDirectionPropertyChangedCallback));
+            nameof(ListSortDirection), typeof(ListSortDirection?), typeof(ListSortDirectionIndicator), new PropertyMetadata(default(ListSortDirection?), ListSortDirectionPropertyChangedCallback));
 
         private static void ListSortDirectionPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var indicator = (ListSortDirectionIndicator) dependencyObject;
+            var indicator = (ListSortDirectionIndicator)dependencyObject;
             indicator.GotoVisualState(true, indicator.ListSortDirection);
             indicator.IsNeutral = !indicator.ListSortDirection.HasValue;
         }
 
         public ListSortDirection? ListSortDirection
         {
-            get { return (ListSortDirection?) GetValue(ListSortDirectionProperty); }
+            get { return (ListSortDirection?)GetValue(ListSortDirectionProperty); }
             set { SetValue(ListSortDirectionProperty, value); }
         }
 
         private static readonly DependencyPropertyKey IsNeutralPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "IsNeutral", typeof (bool), typeof (ListSortDirectionIndicator),
+                "IsNeutral", typeof(bool), typeof(ListSortDirectionIndicator),
                 new PropertyMetadata(true));
 
         public static readonly DependencyProperty IsNeutralProperty =
@@ -53,7 +53,7 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsNeutral
         {
-            get { return (bool) GetValue(IsNeutralProperty); }
+            get { return (bool)GetValue(IsNeutralProperty); }
             private set { SetValue(IsNeutralPropertyKey, value); }
         }
 

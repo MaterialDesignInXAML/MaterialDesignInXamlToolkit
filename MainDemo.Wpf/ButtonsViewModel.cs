@@ -26,9 +26,9 @@ namespace MaterialDesignColors.WpfExample
             //up the progress on the button as it would be with a progress bar.
             //and then hide the button, do whatever action you want to do
             new DispatcherTimer(
-                TimeSpan.FromMilliseconds(100), 
-                DispatcherPriority.Normal, 
-                new EventHandler((o, e) => 
+                TimeSpan.FromMilliseconds(100),
+                DispatcherPriority.Normal,
+                new EventHandler((o, e) =>
                 {
                     if (dismissRequested)
                     {
@@ -92,7 +92,7 @@ namespace MaterialDesignColors.WpfExample
                         var currentProgressPercent = 100.0 / totalDuration * currentProgress;
 
                         SaveProgress = currentProgressPercent;
-                        
+
                         if (SaveProgress >= 100)
                         {
                             IsSaveComplete = true;
@@ -113,7 +113,7 @@ namespace MaterialDesignColors.WpfExample
         {
             get { return _showDismissButton; }
             set { this.MutateVerbose(ref _showDismissButton, value, RaisePropertyChanged()); }
-        }        
+        }
 
         public double DismissButtonProgress
         {

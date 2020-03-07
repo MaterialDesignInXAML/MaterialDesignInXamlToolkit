@@ -41,7 +41,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 return;
             }
-            
+
             colorPicker._inCallback = true;
             colorPicker.SetCurrentValue(HsbProperty, ((Color)e.NewValue).ToHsb());
             var args = new RoutedPropertyChangedEventArgs<Color>(

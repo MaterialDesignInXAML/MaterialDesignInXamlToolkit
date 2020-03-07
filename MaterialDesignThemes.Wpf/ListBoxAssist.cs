@@ -10,13 +10,13 @@ namespace MaterialDesignThemes.Wpf
     {
         static ListBoxAssist()
         {
-            EventManager.RegisterClassHandler(typeof (ListBox), UIElement.PreviewMouseLeftButtonDownEvent,
+            EventManager.RegisterClassHandler(typeof(ListBox), UIElement.PreviewMouseLeftButtonDownEvent,
                 new MouseButtonEventHandler(ListBoxMouseButtonEvent));
         }
 
         private static void ListBoxMouseButtonEvent(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
-            var senderElement = (UIElement) sender;
+            var senderElement = (UIElement)sender;
 
             if (!GetIsToggle(senderElement)) return;
 
@@ -41,8 +41,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (ripple != null && listBoxItem.IsSelected)
             {
-                ripple.RaiseEvent(new MouseButtonEventArgs(mouseButtonEventArgs.MouseDevice, mouseButtonEventArgs.Timestamp, mouseButtonEventArgs.ChangedButton)
-                { RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent, Source = ripple }
+                ripple.RaiseEvent(new MouseButtonEventArgs(mouseButtonEventArgs.MouseDevice, mouseButtonEventArgs.Timestamp, mouseButtonEventArgs.ChangedButton) { RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent, Source = ripple }
                 );
             }
         }

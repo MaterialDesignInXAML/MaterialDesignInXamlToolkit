@@ -4,7 +4,7 @@ namespace MaterialDesignThemes.Wpf
 {
     internal class SnackbarMessageQueueItem
     {
-        public SnackbarMessageQueueItem(object content, TimeSpan duration, object actionContent = null, Action<object> actionHandler = null, object actionArgument = null, 
+        public SnackbarMessageQueueItem(object content, TimeSpan duration, object actionContent = null, Action<object> actionHandler = null, object actionArgument = null,
             bool isPromoted = false, bool ignoreDuplicate = false)
         {
             Content = content;
