@@ -31,7 +31,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             DropShadowEffect dropShadow = ShadowInfo.GetDropShadow((ShadowDepth)values[2]);
             if (dropShadow == null)
             {
-                return Binding.DoNothing;
+                return null;
             }
 
             ShadowEdges edges = (ShadowEdges)values[3];
