@@ -1171,8 +1171,6 @@ namespace MaterialDesignThemes.Wpf
         BabyBottleOutline,
         BabyBuggy,
         Carriage=BabyBuggy,
-        Pram=BabyBuggy,
-        Stroller=BabyBuggy,
         BabyCarriage,
         Buggy = BabyCarriage,
         ChildFriendly = BabyCarriage,
