@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
@@ -17,6 +17,16 @@ namespace MaterialDesignThemes.Wpf.Tests
         {
             _timePicker = new TimePicker();
             _timePicker.ApplyDefaultStyle();
+        }
+
+        [StaFact]
+        public void DontOverwriteDate()
+        {
+            var expectedDate = new DateTime(2000, 1, 1, 20, 0, 0);
+
+            _timePicker.SelectedTime = expectedDate;
+
+            Assert.True(_timePicker.SelectedTime == expectedDate, $"Expected '{expectedDate}' but was '{_timePicker.SelectedTime}'");
         }
 
         [StaTheory]
