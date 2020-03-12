@@ -75,7 +75,7 @@ namespace MaterialDesignThemes.Wpf.Tests
                 var timeString = (string) data[5];
 
                 //Convert the date to Today
-                date = DateTime.Today.AddHours(date.Hour).AddMinutes(date.Minute).AddSeconds(withSeconds ? date.Second : 0);
+                date = DateTime.MinValue.AddHours(date.Hour).AddMinutes(date.Minute).AddSeconds(withSeconds ? date.Second : 0);
 
                 if (!is24Hour && date.Hour > 12 &&
                     (string.IsNullOrEmpty(culture.DateTimeFormat.AMDesignator) ||
