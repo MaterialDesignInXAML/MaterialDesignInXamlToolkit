@@ -25,11 +25,11 @@ namespace MaterialDesignThemes.Wpf.Converters
         {
             if (value is Point)
             {
-                var point = (Point) value;
+                var point = (Point)value;
                 return new object[] { point.X, point.Y };
             }
 
             return new object[0];
-        }        
+        }
     }
 }

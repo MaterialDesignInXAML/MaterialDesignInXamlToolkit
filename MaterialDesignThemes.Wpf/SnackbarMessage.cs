@@ -19,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
     public class SnackbarMessage : ContentControl
     {
         public const string ActionButtonPartName = "PART_ActionButton";
-        private Action _templateCleanupAction = () => {};
+        private Action _templateCleanupAction = () => { };
 
         static SnackbarMessage()
         {
@@ -31,7 +31,7 @@ namespace MaterialDesignThemes.Wpf
 
         public ICommand ActionCommand
         {
-            get { return (ICommand) GetValue(ActionCommandProperty); }
+            get { return (ICommand)GetValue(ActionCommandProperty); }
             set { SetValue(ActionCommandProperty, value); }
         }
 
@@ -40,7 +40,7 @@ namespace MaterialDesignThemes.Wpf
 
         public object ActionCommandParameter
         {
-            get { return (object) GetValue(ActionCommandParameterProperty); }
+            get { return (object)GetValue(ActionCommandParameterProperty); }
             set { SetValue(ActionCommandParameterProperty, value); }
         }
 
@@ -49,7 +49,7 @@ namespace MaterialDesignThemes.Wpf
 
         public object ActionContent
         {
-            get { return (object) GetValue(ActionContentProperty); }
+            get { return (object)GetValue(ActionContentProperty); }
             set { SetValue(ActionContentProperty, value); }
         }
 
@@ -58,16 +58,16 @@ namespace MaterialDesignThemes.Wpf
 
         public DataTemplate ActionContentTemplate
         {
-            get { return (DataTemplate) GetValue(ActionContentTemplateProperty); }
+            get { return (DataTemplate)GetValue(ActionContentTemplateProperty); }
             set { SetValue(ActionContentTemplateProperty, value); }
         }
 
         public static readonly DependencyProperty ActionContentStringFormatProperty = DependencyProperty.Register(
-            "ActionContentStringFormat", typeof(string ), typeof(SnackbarMessage), new PropertyMetadata(default(string )));
+            "ActionContentStringFormat", typeof(string), typeof(SnackbarMessage), new PropertyMetadata(default(string)));
 
         public string ActionContentStringFormat
         {
-            get { return (string ) GetValue(ActionContentStringFormatProperty); }
+            get { return (string)GetValue(ActionContentStringFormatProperty); }
             set { SetValue(ActionContentStringFormatProperty, value); }
         }
 
@@ -76,7 +76,7 @@ namespace MaterialDesignThemes.Wpf
 
         public DataTemplateSelector ActionContentTemplateSelector
         {
-            get { return (DataTemplateSelector) GetValue(ActionContentTemplateSelectorProperty); }
+            get { return (DataTemplateSelector)GetValue(ActionContentTemplateSelectorProperty); }
             set { SetValue(ActionContentTemplateSelectorProperty, value); }
         }
 
@@ -110,7 +110,7 @@ namespace MaterialDesignThemes.Wpf
                 _templateCleanupAction = () => buttonBase.Click -= ButtonBaseOnClick;
             }
             else
-                _templateCleanupAction = () => { };           
+                _templateCleanupAction = () => { };
 
             base.OnApplyTemplate();
         }

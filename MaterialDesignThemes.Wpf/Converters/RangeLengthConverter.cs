@@ -19,7 +19,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 
                 return Binding.DoNothing;
 
-            var percent =  (value - min) / (max - min);
+            var percent = (value - min) / (max - min);
             var length = percent * containerLength;
 
             return length > containerLength ? containerLength : length;

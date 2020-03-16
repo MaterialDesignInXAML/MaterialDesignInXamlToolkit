@@ -24,11 +24,11 @@ namespace MaterialDesignThemes.Wpf
         public PackIconKind Kind { get; set; }
 
         [ConstructorArgument("size")]
-        public double? Size { get; set; }        
+        public double? Size { get; set; }
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            var result = new PackIcon {Kind = Kind};
+            var result = new PackIcon { Kind = Kind };
 
             if (Size.HasValue)
             {

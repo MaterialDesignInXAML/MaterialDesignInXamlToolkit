@@ -50,7 +50,7 @@ namespace MaterialDesignColors.ColorManipulation
             Lab lab1 = color.ToLab();
             Lab lab2 = color.ToLab();
 
-            return Math.Sqrt(Math.Pow(lab2.L - lab1.L, 2) + 
+            return Math.Sqrt(Math.Pow(lab2.L - lab1.L, 2) +
                              Math.Pow(lab2.A - lab1.A, 2) +
                              Math.Pow(lab2.B - lab1.B, 2));
         }

@@ -11,7 +11,7 @@ namespace MaterialDesignColors.WpfExample.Domain
         {
             if (EqualityComparer<TField>.Default.Equals(field, newValue)) return;
             field = newValue;
-            raise?.Invoke(new PropertyChangedEventArgs(propertyName));            
+            raise?.Invoke(new PropertyChangedEventArgs(propertyName));
         }
     }
 }

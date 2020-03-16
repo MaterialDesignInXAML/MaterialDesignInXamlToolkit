@@ -11,7 +11,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
         /// Allows transitions to be disabled where supported.  Note this is an inheritable property.
         /// </summary>
         public static readonly DependencyProperty DisableTransitionsProperty = DependencyProperty.RegisterAttached(
-            "DisableTransitions", typeof (bool), typeof (TransitionAssist), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits));
+            "DisableTransitions", typeof(bool), typeof(TransitionAssist), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Allows transitions to be disabled where supported.  Note this is an inheritable property.
@@ -26,7 +26,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
         /// </summary>
         public static bool GetDisableTransitions(DependencyObject element)
         {
-            return (bool) element.GetValue(DisableTransitionsProperty);
+            return (bool)element.GetValue(DisableTransitionsProperty);
         }
     }
 }

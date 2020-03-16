@@ -15,7 +15,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static bool GetIsFloating(DependencyObject element)
         {
-            return (bool) element.GetValue(IsFloatingProperty);
+            return (bool)element.GetValue(IsFloatingProperty);
         }
 
         public static void SetIsFloating(DependencyObject element, bool value)

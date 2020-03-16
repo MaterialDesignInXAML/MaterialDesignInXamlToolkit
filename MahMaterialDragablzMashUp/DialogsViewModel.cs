@@ -28,8 +28,7 @@ namespace MahMaterialDragablzMashUp
 
         private void InputDialog()
         {
-            var metroDialogSettings = new MetroDialogSettings
-            {
+            var metroDialogSettings = new MetroDialogSettings {
                 CustomResourceDictionary = DialogDictionary,
                 NegativeButtonText = "CANCEL"
             };
@@ -39,8 +38,7 @@ namespace MahMaterialDragablzMashUp
 
         private async void ProgressDialog()
         {
-            var metroDialogSettings = new MetroDialogSettings
-            {
+            var metroDialogSettings = new MetroDialogSettings {
                 CustomResourceDictionary = DialogDictionary,
                 NegativeButtonText = "CANCEL"
             };

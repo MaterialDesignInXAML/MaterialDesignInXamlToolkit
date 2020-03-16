@@ -25,7 +25,7 @@ namespace MaterialDesignDemo
             SearchCommand = new AnotherCommandImplementation(Search);
             CopyToClipboardCommand = new AnotherCommandImplementation(CopyToClipboard);
             _packIconKinds = new Lazy<IEnumerable<PackIconKind>>(() =>
-                Enum.GetValues(typeof (PackIconKind))
+                Enum.GetValues(typeof(PackIconKind))
                     .OfType<PackIconKind>()
                     .Distinct()
                     .OrderBy(k => k.ToString(), StringComparer.InvariantCultureIgnoreCase).ToList()

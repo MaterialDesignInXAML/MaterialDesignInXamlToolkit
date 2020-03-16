@@ -15,7 +15,7 @@ namespace MaterialDesignThemes.Wpf
     [TemplateVisualState(GroupName = ContentStatesGroupName, Name = HintRestingPositionName)]
     [TemplateVisualState(GroupName = ContentStatesGroupName, Name = HintFloatingPositionName)]
     public class SmartHint : Control
-    {        
+    {
         public const string ContentStatesGroupName = "ContentStates";
 
         public const string HintRestingPositionName = "HintRestingPosition";
@@ -59,7 +59,7 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsContentNullOrEmpty
         {
-            get { return (bool) GetValue(IsContentNullOrEmptyProperty); }
+            get { return (bool)GetValue(IsContentNullOrEmptyProperty); }
             private set { SetValue(IsContentNullOrEmptyPropertyKey, value); }
         }
 
@@ -90,7 +90,7 @@ namespace MaterialDesignThemes.Wpf
 
         public bool UseFloating
         {
-            get { return (bool) GetValue(UseFloatingProperty); }
+            get { return (bool)GetValue(UseFloatingProperty); }
             set { SetValue(UseFloatingProperty, value); }
         }
 
@@ -114,7 +114,7 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (Point)GetValue(FloatingOffsetProperty); }
             set { SetValue(FloatingOffsetProperty, value); }
-        }        
+        }
 
         #endregion
 
@@ -125,7 +125,7 @@ namespace MaterialDesignThemes.Wpf
 
         public double HintOpacity
         {
-            get { return (double) GetValue(HintOpacityProperty); }
+            get { return (double)GetValue(HintOpacityProperty); }
             set { SetValue(HintOpacityProperty, value); }
         }
 
@@ -181,7 +181,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (HintProxy.IsLoaded)
                 RefreshState(true);
-            else            
+            else
                 HintProxy.Loaded += HintProxySetStateOnLoaded;
         }
 
@@ -202,7 +202,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (proxy == null) return;
             if (!proxy.IsVisible) return;
-            
+
             var action = new Action(() =>
             {
                 string state = string.Empty;
@@ -228,6 +228,6 @@ namespace MaterialDesignThemes.Wpf
             {
                 Dispatcher.BeginInvoke(action);
             }
-        }        
+        }
     }
 }

@@ -188,7 +188,7 @@ namespace MaterialDesignThemes.Wpf
             if (IsOpen)
                 throw new InvalidOperationException("DialogHost is already open.");
 
-            
+
             _dialogTaskCompletionSource = new TaskCompletionSource<object>();
 
             AssertTargetableContent();
@@ -196,7 +196,7 @@ namespace MaterialDesignThemes.Wpf
             _asyncShowOpenedEventHandler = openedEventHandler;
             _asyncShowClosingEventHandler = closingEventHandler;
             SetCurrentValue(IsOpenProperty, true);
-            
+
             object result = await _dialogTaskCompletionSource.Task;
 
             _asyncShowOpenedEventHandler = null;
@@ -267,7 +267,7 @@ namespace MaterialDesignThemes.Wpf
 
                 return;
             }
-            
+
             dialogHost.CurrentSession = new DialogSession(dialogHost);
             var window = Window.GetWindow(dialogHost);
             dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
@@ -596,7 +596,7 @@ namespace MaterialDesignThemes.Wpf
             DialogClosingCallback?.Invoke(this, dialogClosingEventArgs);
             _asyncShowClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
 
-            
+
             if (!dialogClosingEventArgs.IsCancelled)
             {
                 _dialogTaskCompletionSource?.TrySetResult(parameter);

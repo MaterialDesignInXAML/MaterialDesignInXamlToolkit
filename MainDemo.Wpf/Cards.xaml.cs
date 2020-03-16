@@ -15,7 +15,7 @@ namespace MaterialDesignColors.WpfExample
 
         private void Flipper_OnIsFlippedChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
         {
-            System.Diagnostics.Debug.WriteLine("Card is flipped = " + e.NewValue); 
+            System.Diagnostics.Debug.WriteLine("Card is flipped = " + e.NewValue);
         }
     }
 }

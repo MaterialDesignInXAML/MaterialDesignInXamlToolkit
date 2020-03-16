@@ -20,71 +20,71 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register(
-            "Icon", typeof (object), typeof (Chip), new PropertyMetadata(default(object)));
+            "Icon", typeof(object), typeof(Chip), new PropertyMetadata(default(object)));
 
         public object Icon
         {
-            get { return (object) GetValue(IconProperty); }
+            get { return (object)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
 
         public static readonly DependencyProperty IconBackgroundProperty = DependencyProperty.Register(
-            "IconBackground", typeof (Brush), typeof (Chip), new PropertyMetadata(default(Brush)));
+            "IconBackground", typeof(Brush), typeof(Chip), new PropertyMetadata(default(Brush)));
 
         public Brush IconBackground
         {
-            get { return (Brush) GetValue(IconBackgroundProperty); }
+            get { return (Brush)GetValue(IconBackgroundProperty); }
             set { SetValue(IconBackgroundProperty, value); }
         }
 
         public static readonly DependencyProperty IconForegroundProperty = DependencyProperty.Register(
-            "IconForeground", typeof (Brush), typeof (Chip), new PropertyMetadata(default(Brush)));
+            "IconForeground", typeof(Brush), typeof(Chip), new PropertyMetadata(default(Brush)));
 
         public Brush IconForeground
         {
-            get { return (Brush) GetValue(IconForegroundProperty); }
+            get { return (Brush)GetValue(IconForegroundProperty); }
             set { SetValue(IconForegroundProperty, value); }
         }
-    
+
         public static readonly DependencyProperty IsDeletableProperty = DependencyProperty.Register(
-            "IsDeletable", typeof (bool), typeof (Chip), new PropertyMetadata(default(bool)));
+            "IsDeletable", typeof(bool), typeof(Chip), new PropertyMetadata(default(bool)));
 
         /// <summary>
         /// Indicates if the delete button should be visible.
         /// </summary>
         public bool IsDeletable
         {
-            get { return (bool) GetValue(IsDeletableProperty); }
+            get { return (bool)GetValue(IsDeletableProperty); }
             set { SetValue(IsDeletableProperty, value); }
         }
 
         public static readonly DependencyProperty DeleteCommandProperty = DependencyProperty.Register(
-            "DeleteCommand", typeof (ICommand), typeof (Chip), new PropertyMetadata(default(ICommand)));        
+            "DeleteCommand", typeof(ICommand), typeof(Chip), new PropertyMetadata(default(ICommand)));
 
         public ICommand DeleteCommand
         {
-            get { return (ICommand) GetValue(DeleteCommandProperty); }
+            get { return (ICommand)GetValue(DeleteCommandProperty); }
             set { SetValue(DeleteCommandProperty, value); }
         }
 
         public static readonly DependencyProperty DeleteCommandParameterProperty = DependencyProperty.Register(
-            "DeleteCommandParameter", typeof (object), typeof (Chip), new PropertyMetadata(default(object)));
+            "DeleteCommandParameter", typeof(object), typeof(Chip), new PropertyMetadata(default(object)));
 
         public object DeleteCommandParameter
         {
-            get { return (object) GetValue(DeleteCommandParameterProperty); }
+            get { return (object)GetValue(DeleteCommandParameterProperty); }
             set { SetValue(DeleteCommandParameterProperty, value); }
         }
 
         public static readonly DependencyProperty DeleteToolTipProperty = DependencyProperty.Register(
-            "DeleteToolTip", typeof (object), typeof (Chip), new PropertyMetadata(default(object)));
+            "DeleteToolTip", typeof(object), typeof(Chip), new PropertyMetadata(default(object)));
 
         public object DeleteToolTip
         {
-            get { return (object) GetValue(DeleteToolTipProperty); }
+            get { return (object)GetValue(DeleteToolTipProperty); }
             set { SetValue(DeleteToolTipProperty, value); }
         }
-        
+
         /// <summary>
         /// Event correspond to delete button left mouse button click 
         /// </summary>

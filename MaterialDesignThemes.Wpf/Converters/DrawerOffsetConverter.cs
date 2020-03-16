@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
-{    
+{
     public class DrawerOffsetConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

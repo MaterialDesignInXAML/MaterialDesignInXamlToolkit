@@ -2,7 +2,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
 {
     public enum TransitionEffectKind
     {
-        None,        
+        None,
         ExpandIn,
         FadeIn,
         SlideInFromLeft,

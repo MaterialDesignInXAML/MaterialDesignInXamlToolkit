@@ -45,7 +45,7 @@ namespace MaterialDesignColors.WpfExample.Domain
             {
                 this.MutateVerbose(ref _selectedValueOne, value, RaisePropertyChanged());
             }
-        }        
+        }
 
         public string SelectedTextTwo
         {

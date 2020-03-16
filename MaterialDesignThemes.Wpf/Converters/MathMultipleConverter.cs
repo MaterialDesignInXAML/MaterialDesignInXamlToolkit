@@ -7,7 +7,7 @@ namespace MaterialDesignThemes.Wpf.Converters
     public sealed class MathMultipleConverter : IMultiValueConverter
     {
         public MathOperation Operation { get; set; }
-        
+
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null || value.Length < 2 || value[0] == null || value[1] == null) return Binding.DoNothing;
@@ -18,7 +18,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             switch (Operation)
             {
                 default:
-                // (case MathOperation.Add:)
+                    // (case MathOperation.Add:)
                     return value1 + value2;
                 case MathOperation.Divide:
                     return value1 / value2;
@@ -27,7 +27,7 @@ namespace MaterialDesignThemes.Wpf.Converters
                 case MathOperation.Subtract:
                     return value1 - value2;
             }
-            
+
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

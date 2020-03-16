@@ -22,14 +22,13 @@ namespace MaterialDesignThemes.Wpf.Transitions
             var transformGroup = new TransformGroup();
             transformGroup.Children.Add(scaleTransform);
             transformGroup.Children.Add(translateTransform);
-            var ellipseGeomotry = new EllipseGeometry()
-            {
+            var ellipseGeomotry = new EllipseGeometry() {
                 RadiusX = radius,
                 RadiusY = radius,
                 Transform = transformGroup
             };
-            
-            toSlide.SetCurrentValue(UIElement.ClipProperty, ellipseGeomotry);            
+
+            toSlide.SetCurrentValue(UIElement.ClipProperty, ellipseGeomotry);
             zIndexController.Stack(toSlide, fromSlide);
 
             var zeroKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
@@ -48,12 +47,12 @@ namespace MaterialDesignThemes.Wpf.Transitions
             fromSlide.BeginAnimation(UIElement.OpacityProperty, opacityAnimation);
 
             var scaleAnimation = new DoubleAnimationUsingKeyFrames();
-            scaleAnimation.Completed  += (sender, args) =>
-            {
-                toSlide.SetCurrentValue(UIElement.ClipProperty, null);
-                fromSlide.BeginAnimation(UIElement.OpacityProperty, null);
-                fromSlide.Opacity = 0;
-            };
+            scaleAnimation.Completed += (sender, args) =>
+           {
+               toSlide.SetCurrentValue(UIElement.ClipProperty, null);
+               fromSlide.BeginAnimation(UIElement.OpacityProperty, null);
+               fromSlide.Opacity = 0;
+           };
             scaleAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, zeroKeyTime));
             scaleAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, endKeyTime));
             scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);

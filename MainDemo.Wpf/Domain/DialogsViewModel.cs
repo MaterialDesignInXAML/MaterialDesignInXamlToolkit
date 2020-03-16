@@ -27,11 +27,10 @@ namespace MaterialDesignDemo.Domain
         private async void ExecuteRunDialog(object o)
         {
             //let's set up a little MVVM, cos that's what the cool kids are doing:
-            var view = new SampleDialog
-            {
+            var view = new SampleDialog {
                 DataContext = new SampleDialogViewModel()
             };
-            
+
             //show the dialog
             var result = await DialogHost.Show(view, "RootDialog", ClosingEventHandler);
 
@@ -47,8 +46,7 @@ namespace MaterialDesignDemo.Domain
         private async void ExecuteRunExtendedDialog(object o)
         {
             //let's set up a little MVVM, cos that's what the cool kids are doing:
-            var view = new SampleDialog
-            {
+            var view = new SampleDialog {
                 DataContext = new SampleDialogViewModel()
             };
 

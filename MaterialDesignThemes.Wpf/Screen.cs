@@ -141,7 +141,7 @@ namespace MaterialDesignThemes.Wpf
 
                 DeviceName = new string(info.szDevice);
                 DeviceName = DeviceName.TrimEnd((char)0);
-                
+
             }
             _hmonitor = monitor;
         }
@@ -306,7 +306,7 @@ namespace MaterialDesignThemes.Wpf
             }
             return new Screen((IntPtr)PRIMARY_MONITOR);
         }
-        
+
         /// <summary>
         /// Retrieves a <see cref='Screen'/> for the monitor that contains the largest region of the Rect.
         /// </summary>
@@ -371,7 +371,8 @@ namespace MaterialDesignThemes.Wpf
             // someone re-queries. We will re-add the event at that time.
             SystemEvents.DisplaySettingsChanging -= OnDisplaySettingsChanging;
 
-            // Display settings changed, so the set of screens we have is invalid.            _screens = null;
+            // Display settings changed, so the set of screens we have is invalid.
+            _screens = null;
         }
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static readonly DependencyProperty RotationXProperty =
             DependencyProperty.Register("RotationX", typeof(double), typeof(Plane3D), new UIPropertyMetadata(0.0, (d, args) => ((Plane3D)d).UpdateRotation()));
-        
+
         public double RotationX
         {
             get { return (double)GetValue(RotationXProperty); }
@@ -75,9 +75,9 @@ namespace MaterialDesignThemes.Wpf
 
         public double ZFactor
         {
-            get { return (double) GetValue(ZFactorProperty); }
+            get { return (double)GetValue(ZFactorProperty); }
             set { SetValue(ZFactorProperty, value); }
-        }        
+        }
 
         public FrameworkElement Child
         {
@@ -104,7 +104,7 @@ namespace MaterialDesignThemes.Wpf
                 AddLogicalChild(_logicalChild);
                 InvalidateMeasure();
             }
-        }        
+        }
 
         protected override Size MeasureOverride(Size availableSize)
         {
@@ -142,8 +142,7 @@ namespace MaterialDesignThemes.Wpf
 
         private FrameworkElement CreateVisualChild()
         {
-            var simpleQuad = new MeshGeometry3D
-            {
+            var simpleQuad = new MeshGeometry3D {
                 Positions = new Point3DCollection(Mesh),
                 TextureCoordinates = new PointCollection(TexCoords),
                 TriangleIndices = new Int32Collection(Indices)
@@ -161,8 +160,7 @@ namespace MaterialDesignThemes.Wpf
             var xfGroup = new Transform3DGroup { Children = { _scaleTransform, _rotationTransform } };
 
             var backModel = new GeometryModel3D { Geometry = simpleQuad, Transform = xfGroup, BackMaterial = backMaterial };
-            var m3DGroup = new Model3DGroup
-            {
+            var m3DGroup = new Model3DGroup {
                 Children = { new DirectionalLight(Colors.White, new Vector3D(0, 0, -1)),
                                  new DirectionalLight(Colors.White, new Vector3D(0.1, -0.1, 1)),
                                  backModel }
