@@ -26,7 +26,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
         {
             Loaded += (sender, args) => Run(TransitioningContentRunHint.Loaded);
             IsVisibleChanged += (sender, args) => Run(TransitioningContentRunHint.IsVisibleChanged);
-            
+
         }
 
         public static readonly DependencyProperty RunHintProperty = DependencyProperty.Register(

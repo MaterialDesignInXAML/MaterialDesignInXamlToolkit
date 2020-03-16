@@ -27,7 +27,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static CornerRadius GetThumbCornerRadius(DependencyObject element)
         {
-            return (CornerRadius) element.GetValue(ThumbCornerRadiusProperty);
+            return (CornerRadius)element.GetValue(ThumbCornerRadiusProperty);
         }
 
         public static readonly DependencyProperty ThumbWidthProperty = DependencyProperty.RegisterAttached(
@@ -40,7 +40,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static double GetThumbWidth(DependencyObject element)
         {
-            return (double) element.GetValue(ThumbWidthProperty);
+            return (double)element.GetValue(ThumbWidthProperty);
         }
 
         public static readonly DependencyProperty ThumbHeightProperty = DependencyProperty.RegisterAttached(
@@ -53,7 +53,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static double GetThumbHeight(DependencyObject element)
         {
-            return (double) element.GetValue(ThumbHeightProperty);
+            return (double)element.GetValue(ThumbHeightProperty);
         }
     }
 }

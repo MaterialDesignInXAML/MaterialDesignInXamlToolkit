@@ -27,7 +27,7 @@ namespace MaterialDesignColors.ColorManipulation
                 r = l * 255;
                 g = l * 255;
                 b = l * 255;
-}
+            }
             else
             {
                 double var_2;

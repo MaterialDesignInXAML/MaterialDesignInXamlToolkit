@@ -27,7 +27,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
             scaleAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(.8, endKeyTime));
             scaleAnimation.Completed += (sender, args) =>
             {
-                fromSlide.RenderTransform = null;                             
+                fromSlide.RenderTransform = null;
             };
             var opacityAnimation = new DoubleAnimationUsingKeyFrames();
             opacityAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, zeroKeyTime));
@@ -40,15 +40,15 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
             //slide in new slide setup
             var translateTransform = new TranslateTransform(0, toSlide.ActualHeight);
-            toSlide.RenderTransform = translateTransform;            
+            toSlide.RenderTransform = translateTransform;
             var slideAnimation = new DoubleAnimationUsingKeyFrames();
             slideAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(toSlide.ActualHeight, zeroKeyTime));
-            slideAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(toSlide.ActualHeight, midishKeyTime) { EasingFunction = _sineEase});
+            slideAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(toSlide.ActualHeight, midishKeyTime) { EasingFunction = _sineEase });
             slideAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, endKeyTime) { EasingFunction = _sineEase });
 
             //kick off!
             translateTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
-            scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);            
+            scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);
             scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
             fromSlide.BeginAnimation(UIElement.OpacityProperty, opacityAnimation);
 

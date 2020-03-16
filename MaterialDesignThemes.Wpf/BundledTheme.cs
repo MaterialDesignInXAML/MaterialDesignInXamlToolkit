@@ -20,7 +20,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private PrimaryColor? _primaryColor;
-        public PrimaryColor? PrimaryColor 
+        public PrimaryColor? PrimaryColor
         {
             get { return _primaryColor; }
             set
@@ -54,8 +54,8 @@ namespace MaterialDesignThemes.Wpf
                 SecondaryColor is SecondaryColor secondaryColor)
             {
                 var theme = Theme.Create(baseTheme.GetBaseTheme(),
-                    SwatchHelper.Lookup[(MaterialDesignColor) primaryColor],
-                    SwatchHelper.Lookup[(MaterialDesignColor) secondaryColor]);
+                    SwatchHelper.Lookup[(MaterialDesignColor)primaryColor],
+                    SwatchHelper.Lookup[(MaterialDesignColor)secondaryColor]);
 
                 ApplyTheme(theme);
             }

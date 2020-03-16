@@ -14,7 +14,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             popupBox.ApplyDefaultStyle();
 
             ToggleButton togglePart = popupBox.FindVisualChild<ToggleButton>(PopupBox.TogglePartName);
-            
+
             Assert.Equal(3, togglePart.TabIndex);
         }
 

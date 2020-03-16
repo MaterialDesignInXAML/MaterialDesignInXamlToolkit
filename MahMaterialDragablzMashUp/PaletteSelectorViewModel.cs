@@ -26,13 +26,12 @@ namespace MahMaterialDragablzMashUp
 
         private static void ApplyStyle(bool alternate)
         {
-            var resourceDictionary = new ResourceDictionary
-            {
+            var resourceDictionary = new ResourceDictionary {
                 Source = new Uri(@"pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml")
             };
 
             var styleKey = alternate ? "MaterialDesignAlternateTabablzControlStyle" : "MaterialDesignTabablzControlStyle";
-            var style = (Style) resourceDictionary[styleKey];
+            var style = (Style)resourceDictionary[styleKey];
 
             foreach (var tabablzControl in Dragablz.TabablzControl.GetLoadedInstances())
             {

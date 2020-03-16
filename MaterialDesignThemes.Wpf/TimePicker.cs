@@ -36,12 +36,10 @@ namespace MaterialDesignThemes.Wpf
 
         public TimePicker()
         {
-            _clock = new Clock 
-            {
+            _clock = new Clock {
                 DisplayAutomation = ClockDisplayAutomation.ToMinutesOnly
             };
-            _clockHostContentControl = new ContentControl 
-            {
+            _clockHostContentControl = new ContentControl {
                 Content = _clock
             };
             InitializeClock();

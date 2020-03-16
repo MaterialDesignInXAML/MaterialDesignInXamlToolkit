@@ -16,8 +16,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             var s = value as string;
             if (s != null)
             {
-                return new SnackbarMessage
-                {
+                return new SnackbarMessage {
                     Content = s
                 };
             }

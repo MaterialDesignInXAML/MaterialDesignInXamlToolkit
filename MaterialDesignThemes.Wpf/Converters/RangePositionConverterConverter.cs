@@ -9,7 +9,7 @@ namespace MaterialDesignThemes.Wpf.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if(values == null || values.Length != 3 || values.Any(v => v == null))
+            if (values == null || values.Length != 3 || values.Any(v => v == null))
                 return Binding.DoNothing;
 
             if (!double.TryParse(values[0].ToString(), out double positionAsScaleFactor)
@@ -18,7 +18,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 
                 return Binding.DoNothing;
 
-            var result = upper + (lower - upper)*positionAsScaleFactor;            
+            var result = upper + (lower - upper) * positionAsScaleFactor;
 
             return result;
         }

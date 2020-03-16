@@ -22,7 +22,7 @@ namespace MaterialDesignColors.WpfExample
             //eventArgs.Cancel();
 
             if (!Equals(eventArgs.Parameter, true)) return;
-            
+
             if (!string.IsNullOrWhiteSpace(FruitTextBox.Text))
                 FruitListBox.Items.Add(FruitTextBox.Text.Trim());
         }

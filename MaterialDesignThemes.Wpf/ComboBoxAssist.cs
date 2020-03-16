@@ -9,8 +9,8 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public static readonly DependencyProperty ClassicModeProperty = DependencyProperty.RegisterAttached(
             "ClassicMode",
-            typeof (bool),
-            typeof (ComboBoxAssist),
+            typeof(bool),
+            typeof(ComboBoxAssist),
             new FrameworkPropertyMetadata(false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
@@ -31,8 +31,8 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public static readonly DependencyProperty ShowSelectedItemProperty = DependencyProperty.RegisterAttached(
             "ShowSelectedItem",
-            typeof (bool),
-            typeof (ComboBoxAssist),
+            typeof(bool),
+            typeof(ComboBoxAssist),
             new FrameworkPropertyMetadata(false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 

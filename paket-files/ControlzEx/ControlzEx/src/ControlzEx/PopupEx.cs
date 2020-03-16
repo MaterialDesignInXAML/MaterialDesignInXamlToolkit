@@ -24,7 +24,7 @@ namespace ControlzEx
                                           typeof(bool),
                                           typeof(PopupEx),
                                           new PropertyMetadata(false));
-        
+
         /// <summary>
         /// Gets/sets if the popup can be closed by left mouse button down.
         /// </summary>
@@ -36,8 +36,8 @@ namespace ControlzEx
 
         public static readonly DependencyProperty AllowTopMostProperty
             = DependencyProperty.Register(nameof(AllowTopMost),
-                                          typeof(bool), 
-                                          typeof(PopupEx), 
+                                          typeof(bool),
+                                          typeof(PopupEx),
                                           new PropertyMetadata(true));
 
         public bool AllowTopMost

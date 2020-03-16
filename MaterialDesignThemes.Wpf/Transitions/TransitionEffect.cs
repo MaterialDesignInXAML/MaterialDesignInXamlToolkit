@@ -26,7 +26,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         public TimeSpan OffsetTime { get; set; } = TimeSpan.Zero;
 
-        public TimeSpan Duration { get; set; } = TimeSpan.FromMilliseconds(400);        
+        public TimeSpan Duration { get; set; } = TimeSpan.FromMilliseconds(400);
 
         public override Timeline Build<TSubject>(TSubject effectSubject)
         {
@@ -102,7 +102,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
         }
 
         private Timeline CreateExpandIn(ITransitionEffectSubject effectSubject)
-        {            
+        {
             var scaleXAnimation = new DoubleAnimationUsingKeyFrames();
             var zeroFrame = new DiscreteDoubleKeyFrame(0.0);
             var startFrame = new DiscreteDoubleKeyFrame(.5, effectSubject.Offset + OffsetTime);
@@ -123,7 +123,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
             parallelTimeline.Children.Add(scaleXAnimation);
             parallelTimeline.Children.Add(scaleYAnimation);
 
-            return parallelTimeline;           
+            return parallelTimeline;
         }
     }
 }

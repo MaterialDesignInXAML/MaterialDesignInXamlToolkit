@@ -115,7 +115,7 @@ namespace MaterialDesignThemes.Wpf
 
         public Brush Background
         {
-            get { return (Brush) GetValue(BackgroundProperty); }
+            get { return (Brush)GetValue(BackgroundProperty); }
             set { SetValue(BackgroundProperty, value); }
         }
 
@@ -173,7 +173,7 @@ namespace MaterialDesignThemes.Wpf
         public ComboBoxPopup()
         {
             CustomPopupPlacementCallback = ComboBoxCustomPopupPlacementCallback;
-            
+
         }
 
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
@@ -243,7 +243,7 @@ namespace MaterialDesignThemes.Wpf
             var screen = Screen.FromPoint(locationFromScreen);
             var screenWidth = (int)DpiHelper.TransformToDeviceX(mainVisual, (int)screen.Bounds.Width);
             var screenHeight = (int)DpiHelper.TransformToDeviceY(mainVisual, (int)screen.Bounds.Height);
-            
+
             //Adjust the location to be in terms of the current screen
             var locationX = (int)(locationFromScreen.X - screen.Bounds.X) % screenWidth;
             var locationY = (int)(locationFromScreen.Y - screen.Bounds.Y) % screenHeight;

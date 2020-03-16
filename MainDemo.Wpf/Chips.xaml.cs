@@ -11,7 +11,7 @@ namespace MaterialDesignColors.WpfExample
         public Chips()
         {
             InitializeComponent();
-			
+
         }
 
         private void ButtonsDemoChip_OnClick(object sender, RoutedEventArgs e)

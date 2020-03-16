@@ -88,7 +88,7 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DataTemplate SuppressAdditionalTemplate = NoAdditionalTemplateProvider.Value;
 
         public static DataTemplate CreateEmptyGridDataTemplate()
-        {            
+        {
             var xaml = "<DataTemplate><Grid /></DataTemplate>";
             var parserContext = new ParserContext();
             parserContext.XmlnsDictionary.Add("", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
@@ -97,7 +97,7 @@ namespace MaterialDesignThemes.Wpf
             using (var memoryStream = new MemoryStream(Encoding.ASCII.GetBytes(xaml)))
             {
                 return (DataTemplate)XamlReader.Load(memoryStream, parserContext);
-            }            
+            }
         }
     }
 }
