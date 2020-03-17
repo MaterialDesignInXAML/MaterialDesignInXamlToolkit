@@ -14,9 +14,9 @@
             </Grid.RowDefinitions>
 
             <Rectangle 
-                x:Name="PART_Corner" 
-                Grid.Column="1" 
-                Fill="{DynamicResource MaterialDesignSelection}" 
+                x:Name="PART_Corner"
+                Grid.Column="1"
+                Fill="{DynamicResource MaterialDesignSelection}"
                 Grid.Row="1"
                 Visibility="{Binding Path=(wpf:ScrollViewerAssist.CornerRectangleVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
 
@@ -29,7 +29,7 @@
                 Margin="0"
                 VerticalAlignment="Top"
                 Visibility="Hidden"/>
-            
+
             <ScrollContentPresenter 
                 x:Name="PART_ScrollContentPresenter" 
                 CanContentScroll="{TemplateBinding CanContentScroll}"
@@ -82,6 +82,14 @@
                 <Setter TargetName="PART_BottomSeparator" Property="Visibility" Value="Visible"/>
             </MultiTrigger>
 
+            <Trigger Property="VerticalOffset" Value="0">
+                <Setter TargetName="PART_TopSeparator" Property="Visibility" Value="Hidden" />
+            </Trigger>
+
+            <Trigger Property="wpf:ScrollViewerAssist.ShowSeparators" Value="False">
+                <Setter TargetName="PART_TopSeparator" Property="Visibility" Value="Hidden" />
+            </Trigger>
+
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True" />
@@ -98,7 +106,7 @@
                     <Condition Property="IsMouseOver" Value="False" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="PART_HorizontalScrollBar" Property="Visibility" Value="Hidden"/>
-            </MultiTrigger>            
+            </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
