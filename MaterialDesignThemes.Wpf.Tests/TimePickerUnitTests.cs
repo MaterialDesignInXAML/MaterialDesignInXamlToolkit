@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,13 +21,14 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [StaFact]
+        [Description("Issue 1691")]
         public void DontOverwriteDate()
         {
             var expectedDate = new DateTime(2000, 1, 1, 20, 0, 0);
 
             _timePicker.SelectedTime = expectedDate;
 
-            Assert.True(_timePicker.SelectedTime == expectedDate, $"Expected '{expectedDate}' but was '{_timePicker.SelectedTime}'");
+            Assert.Equal(_timePicker.SelectedTime, expectedDate);
         }
 
         [StaTheory]
@@ -40,9 +42,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             _timePicker.WithSeconds = withSeconds;
             _timePicker.SelectedTime = selectedTime;
 
-
-            string currentTestString = $"{culture.ThreeLetterISOLanguageName} {(is24Hour ? "24 Hour" : "12 Hour")} {format} format {(withSeconds ? "with seconds" : "")}";
-            Assert.True(expectedText == _timePicker.Text, $"Expected '{expectedText}' but was '{_timePicker.Text}' - {currentTestString}");
+            Assert.Equal(expectedText, _timePicker.Text);
         }
 
         [StaTheory]
@@ -59,8 +59,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             textBox.Text = timeString;
             textBox.RaiseEvent(new RoutedEventArgs(UIElement.LostFocusEvent));
 
-            string currentTestString = $"{culture.ThreeLetterISOLanguageName} {(is24Hour ? "24 Hour" : "12 Hour")} {format} format {(withSeconds ? "with seconds" : "")}";
-            Assert.True(expectedTime == _timePicker.SelectedTime, $"Expected '{expectedTime}' but was '{_timePicker.SelectedTime}' - {currentTestString}");
+            Assert.Equal(expectedTime, _timePicker.SelectedTime);
         }
 
         public static IEnumerable<object[]> GetParseLocalizedTimeStringData()
