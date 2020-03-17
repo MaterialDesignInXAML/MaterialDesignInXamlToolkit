@@ -96,7 +96,28 @@
                     <Condition Property="ComputedVerticalScrollBarVisibility" Value="Visible" />
                     <Condition Property="IsMouseOver" Value="False" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="PART_VerticalScrollBar" Property="Visibility" Value="Hidden"/>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                To="0"
+                                Duration="0:0:0.2"
+                                Storyboard.TargetProperty="Opacity"
+                                Storyboard.TargetName="PART_VerticalScrollBar"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                To="1"
+                                Duration="0:0:0.2"
+                                Storyboard.TargetProperty="Opacity"
+                                Storyboard.TargetName="PART_VerticalScrollBar"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
             </MultiTrigger>
 
             <MultiTrigger>
@@ -105,7 +126,28 @@
                     <Condition Property="ComputedHorizontalScrollBarVisibility" Value="Visible" />
                     <Condition Property="IsMouseOver" Value="False" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="PART_HorizontalScrollBar" Property="Visibility" Value="Hidden"/>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                To="0"
+                                Duration="0:0:0.2"
+                                Storyboard.TargetProperty="Opacity"
+                                Storyboard.TargetName="PART_HorizontalScrollBar"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                To="1"
+                                Duration="0:0:0.2"
+                                Storyboard.TargetProperty="Opacity"
+                                Storyboard.TargetName="PART_HorizontalScrollBar"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
             </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
