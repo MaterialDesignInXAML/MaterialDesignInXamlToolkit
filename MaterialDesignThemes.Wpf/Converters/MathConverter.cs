@@ -9,7 +9,8 @@ namespace MaterialDesignThemes.Wpf.Converters
         Add,
         Subtract,
         Multiply,
-        Divide
+        Divide,
+        Pow
     }
 
     public sealed class MathConverter : IValueConverter
@@ -32,6 +33,8 @@ namespace MaterialDesignThemes.Wpf.Converters
                         return value1 * value2;
                     case MathOperation.Subtract:
                         return value1 - value2;
+                    case MathOperation.Pow:
+                        return Math.Pow(value1, value2);
                     default:
                         return Binding.DoNothing;
                 }
