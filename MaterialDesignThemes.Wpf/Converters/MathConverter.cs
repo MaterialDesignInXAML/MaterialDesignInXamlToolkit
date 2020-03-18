@@ -4,15 +4,6 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    public enum MathOperation
-    {
-        Add,
-        Subtract,
-        Multiply,
-        Divide,
-        Pow
-    }
-
     public sealed class MathConverter : IValueConverter
     {
         public MathOperation Operation { get; set; }
