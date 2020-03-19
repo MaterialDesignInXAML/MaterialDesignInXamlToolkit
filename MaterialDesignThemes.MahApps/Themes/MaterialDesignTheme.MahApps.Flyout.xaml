@@ -45,14 +45,14 @@
         </wpf:ColorZone>
         <DataTemplate.Triggers>
             <DataTrigger Binding="{Binding Position, RelativeSource={RelativeSource AncestorType={x:Type mah:Flyout}}}" Value="Left">
-                <Setter TargetName="PART_BackHeaderText" Property="Margin" Value="0 0 15 0" />
-                <Setter TargetName="PART_BackHeaderText" Property="HorizontalAlignment" Value="Right" />
                 <Setter TargetName="PART_BackButton" Property="DockPanel.Dock" Value="Right" />
                 <Setter TargetName="PART_BackButton" Property="LayoutTransform">
                     <Setter.Value>
                         <ScaleTransform ScaleX="-1" />
                     </Setter.Value>
                 </Setter>
+                <Setter TargetName="PART_BackHeaderText" Property="HorizontalAlignment" Value="Right" />
+                <Setter TargetName="PART_BackHeaderText" Property="Margin" Value="0 0 15 0" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Position, RelativeSource={RelativeSource AncestorType={x:Type mah:Flyout}}}" Value="Top">
                 <Setter TargetName="PART_ColorZone" Property="VerticalAlignment" Value="Stretch" />
@@ -74,33 +74,38 @@
     </DataTemplate>
 
     <ControlTemplate x:Key="FlyoutTemplate" TargetType="{x:Type mah:Flyout}">
-        <Grid x:Name="PART_Root"
-              Background="{TemplateBinding Background}">
-            <Grid.RenderTransform>
+        <Border x:Name="PART_Root"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+            <Border.RenderTransform>
                 <TranslateTransform />
-            </Grid.RenderTransform>
-            <AdornerDecorator x:Name="PART_Border" CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
-                <Border Background="{TemplateBinding Background}" Effect="{DynamicResource MaterialDesignShadowDepth5}" />
-            </AdornerDecorator>
-            <AdornerDecorator>
-                <DockPanel FocusVisualStyle="{x:Null}" Focusable="False">
-                    <mah:MetroThumbContentControl x:Name="PART_Header"
-                                                  Content="{TemplateBinding Header}"
-                                                  ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mah:ControlsHelper.ContentCharacterCasing)}"
-                                                  ContentStringFormat="{TemplateBinding HeaderStringFormat}"
-                                                  ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                                  ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
-                                                  DockPanel.Dock="Top"
-                                                  FontFamily="{TemplateBinding mah:HeaderedControlHelper.HeaderFontFamily}"
-                                                  FontSize="{TemplateBinding mah:HeaderedControlHelper.HeaderFontSize}"
-                                                  FontStretch="{TemplateBinding mah:HeaderedControlHelper.HeaderFontStretch}"
-                                                  FontWeight="{TemplateBinding mah:HeaderedControlHelper.HeaderFontWeight}"
-                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                    <ContentPresenter x:Name="PART_Content"
-                                      ContentSource="Content"
-                                      DockPanel.Dock="Bottom" />
-                </DockPanel>
-            </AdornerDecorator>
+            </Border.RenderTransform>
+            <Grid>
+                <AdornerDecorator x:Name="PART_ShadowBorder" CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+                    <Border Background="{TemplateBinding Background}" Effect="{DynamicResource MaterialDesignShadowDepth5}" />
+                </AdornerDecorator>
+                <AdornerDecorator>
+                    <DockPanel FocusVisualStyle="{x:Null}" Focusable="False">
+                        <mah:MetroThumbContentControl x:Name="PART_Header"
+                                                      Padding="0"
+                                                      Content="{TemplateBinding Header}"
+                                                      ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mah:ControlsHelper.ContentCharacterCasing)}"
+                                                      ContentStringFormat="{TemplateBinding HeaderStringFormat}"
+                                                      ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                      ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                                                      DockPanel.Dock="Top"
+                                                      FontFamily="{TemplateBinding mah:HeaderedControlHelper.HeaderFontFamily}"
+                                                      FontSize="{TemplateBinding mah:HeaderedControlHelper.HeaderFontSize}"
+                                                      FontStretch="{TemplateBinding mah:HeaderedControlHelper.HeaderFontStretch}"
+                                                      FontWeight="{TemplateBinding mah:HeaderedControlHelper.HeaderFontWeight}"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <ContentPresenter x:Name="PART_Content"
+                                          ContentSource="Content"
+                                          DockPanel.Dock="Bottom" />
+                    </DockPanel>
+                </AdornerDecorator>
+            </Grid>
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup>
                     <VisualState x:Name="Default" />
@@ -131,7 +136,7 @@
                                                       Value="0" />
                             </DoubleAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
-                                                           Storyboard.TargetName="PART_Border"
+                                                           Storyboard.TargetName="PART_ShadowBorder"
                                                            Storyboard.TargetProperty="(UIElement.Opacity)">
                                 <SplineDoubleKeyFrame KeySpline="0.25,1,0.05,1"
                                                       KeyTime="00:00:00.750"
@@ -206,7 +211,7 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-        </Grid>
+        </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="Position" Value="Top">
                 <Setter TargetName="PART_Content" Property="DockPanel.Dock" Value="Right" />
@@ -236,6 +241,7 @@
     <Style TargetType="{x:Type mah:Flyout}">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="mah:HeaderedControlHelper.HeaderFontSize" Value="{DynamicResource MahApps.Font.Size.Flyout.Header}" />
         <Setter Property="mah:HeaderedControlHelper.HeaderMargin" Value="10" />
