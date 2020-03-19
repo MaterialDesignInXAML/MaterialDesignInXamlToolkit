@@ -37,7 +37,7 @@
             <TabItem Header="Button/Switch">
                 <StackPanel>
                     <smtx:XamlDisplay Key="ToggleSwitch_1" HorizontalAlignment="Left">
-                        <controls:ToggleSwitch IsChecked="True" HorizontalAlignment="Left" />
+                        <controls:ToggleSwitch IsOn="True" HorizontalAlignment="Left" />
                     </smtx:XamlDisplay>
                     <smtx:XamlDisplay Key="AccentSquareButton_1" HorizontalAlignment="Left">
                         <Button Width="100" Margin="0 8 0 0" Content="Nice" HorizontalAlignment="Left"
