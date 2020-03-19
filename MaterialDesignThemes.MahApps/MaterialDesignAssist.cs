@@ -73,10 +73,9 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border", theme.TextBoxBorder);
             resourceDictionary.SetBrush("MahApps.Brushes.TextBox.MouseOverInnerBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
             resourceDictionary.SetBrush("MahApps.Brushes.TextBox.FocusBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.MouseOverBorder", theme.PrimaryMid.Color);
+            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border.MouseOver", theme.PrimaryMid.Color);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.Button.MouseOverBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.Button.MouseOverInnerBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.Border.MouseOver", (Color)resourceDictionary["MahApps.Colors.Black"]);
             resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.MouseOverBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
             resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.MouseOverInnerBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
             resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.PopupBorder", (Color)resourceDictionary["MahApps.Colors.Gray4"]);
