@@ -29,25 +29,23 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetColor("MahApps.Colors.ProgressIndeterminate3", Color.FromArgb(0x4C, 0x00, 0x00, 0x00));
             resourceDictionary.SetColor("MahApps.Colors.ProgressIndeterminate4", Color.FromArgb(0x4C, 0x00, 0x00, 0x00));
 
-            resourceDictionary.SetBrush("MahApps.Brushes.Control.Background", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.White", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.Black", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.ThemeBackground", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.ThemeForeground", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
             resourceDictionary.SetBrush("MahApps.Brushes.Text", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.Label.Text", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.WhiteColor", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.BlackColor", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+
+            resourceDictionary.SetColor("MahApps.Colors.IdealForeground", theme.PrimaryMid.GetForegroundColor());
+            resourceDictionary.SetBrush("MahApps.Brushes.IdealForeground", theme.PrimaryMid.GetForegroundColor());
+            resourceDictionary.SetBrush("MahApps.Brushes.IdealForegroundDisabled", Color.FromRgb(0xAD, 0xAD, 0xAD));
+            resourceDictionary.SetBrush("MahApps.Brushes.Selected.Foreground", (Color)resourceDictionary["MahApps.Colors.IdealForeground"]);
 
             resourceDictionary.SetBrush("MahApps.Brushes.WindowTitle", (Color)resourceDictionary["MahApps.Colors.HighlightDark"]);
             resourceDictionary.SetBrush("MahApps.Brushes.WindowTitle.NonActive", Color.FromRgb(0x80, 0x80, 0x80));
             resourceDictionary.SetBrush("MahApps.Brushes.Border.NonActive", Color.FromRgb(0x80, 0x80, 0x80));
 
             resourceDictionary.SetBrush("MahApps.Brushes.Highlight", (Color)resourceDictionary["MahApps.Colors.Highlight"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.DisabledWhite", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.TransparentWhite", Color.FromArgb(0x00, 0xFF, 0xFF, 0xFF));
-            resourceDictionary.SetBrush("MahApps.Brushes.SemiTransparentWhite", Color.FromArgb(0x55, 0xFF, 0xFF, 0xFF));
-            resourceDictionary.SetBrush("MahApps.Brushes.SemiTransparentGray", Color.FromArgb(0x40, 0x80, 0x80, 0x80));
-            resourceDictionary.SetBrush("MahApps.Brushes.Controls.Disabled", Color.FromArgb(0xA5, 0xFF, 0xFF, 0xFF));
+            resourceDictionary.SetBrush("MahApps.Brushes.Transparent", Colors.Transparent);
+            resourceDictionary.SetBrush("MahApps.Brushes.SemiTransparent", (Color)resourceDictionary["MahApps.Colors.SemiTransparent"]);
 
             resourceDictionary.SetBrush("MahApps.Brushes.AccentBase", (Color)resourceDictionary["MahApps.Colors.AccentBase"]);
             resourceDictionary.SetBrush("MahApps.Brushes.Accent", (Color)resourceDictionary["MahApps.Colors.Accent"]);
@@ -66,32 +64,30 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetBrush("MahApps.Brushes.Gray9", (Color)resourceDictionary["MahApps.Colors.Gray9"]);
             resourceDictionary.SetBrush("MahApps.Brushes.Gray10", (Color)resourceDictionary["MahApps.Colors.Gray10"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.GrayNormal", (Color)resourceDictionary["MahApps.Colors.Gray"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.GrayHover", (Color)resourceDictionary["MahApps.Colors.Gray.MouseOver"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Gray", (Color)resourceDictionary["MahApps.Colors.Gray"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Gray.MouseOver", (Color)resourceDictionary["MahApps.Colors.Gray.MouseOver"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Gray.SemiTransparent", (Color)resourceDictionary["MahApps.Colors.Gray.SemiTransparent"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.Controls.Border", (Color)resourceDictionary["MahApps.Colors.Gray6"]);
             resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border", theme.TextBoxBorder);
-            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.MouseOverInnerBorder", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.FocusBorder", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border.Focus", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
             resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border.MouseOver", theme.PrimaryMid.Color);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.Button.Border.MouseOver", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.MouseOverBorder", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.MouseOverInnerBorder", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Control.Background", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Control.Border", (Color)resourceDictionary["MahApps.Colors.Gray6"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Control.Disabled", Color.FromArgb(0xA5, 0xFF, 0xFF, 0xFF));
+            resourceDictionary.SetBrush("MahApps.Brushes.Control.Validation", Color.FromArgb(0xFF, 0xDB, 0x00, 0x0C));
+
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.Border", (Color)resourceDictionary["MahApps.Colors.Gray6"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.Border.Focus", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.Border.MouseOver", (Color)resourceDictionary["MahApps.Colors.Gray6"]);
+
+            resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.Border.MouseOver", (Color)resourceDictionary["MahApps.Colors.Gray2"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.Border.Focus", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
             resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.PopupBorder", (Color)resourceDictionary["MahApps.Colors.Gray4"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox", (Color)resourceDictionary["MahApps.Colors.Gray6"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox", (Color)resourceDictionary["MahApps.Colors.Gray5"]);
             resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.MouseOver", (Color)resourceDictionary["MahApps.Colors.Gray2"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.Background", new LinearGradientBrush {
-                StartPoint = new Point(0.5, 0),
-                EndPoint = new Point(0.5, 1),
-                GradientStops = new GradientStopCollection
-                {
-                    new GradientStop((Color)resourceDictionary["MahApps.Colors.Gray7"], 0),
-                    new GradientStop((Color)resourceDictionary["MahApps.Colors.ThemeBackground"], 1)
-                }
-            });
             resourceDictionary.SetBrush("MahApps.Brushes.Thumb", (Color)resourceDictionary["MahApps.Colors.Gray5"]);
 
             resourceDictionary.SetBrush("MahApps.Brushes.Progress", new LinearGradientBrush {
@@ -112,21 +108,26 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetBrush("MahApps.Brushes.Flyout.Background", (Color)resourceDictionary["MahApps.Colors.Flyout"]);
             resourceDictionary.SetBrush("MahApps.Brushes.Flyout.Foreground", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.Window.FlyoutOverlay", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Window.FlyoutOverlay", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"], 0.5);
             resourceDictionary.SetBrush("MahApps.Brushes.Window.Background", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
             resourceDictionary.SetBrush("MahApps.Brushes.Separator", Color.FromArgb(0xFF, 0xC4, 0xC4, 0xC5));
 
-            resourceDictionary.SetBrush("MahApps.Brushes.FlatButton.Background", Color.FromRgb(0xD5, 0xD5, 0xD5));
-            resourceDictionary.SetBrush("MahApps.Brushes.FlatButton.Foreground", Color.FromRgb(0x22, 0x22, 0x22));
-            resourceDictionary.SetBrush("MahApps.Brushes.FlatButton.PressedBackground", (Color)resourceDictionary["MahApps.Colors.Button.Flat.Background.Pressed"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.FlatButton.PressedForeground", Colors.White);
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.Flat.Background", Color.FromRgb(0xD5, 0xD5, 0xD5));
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.Flat.Foreground", Color.FromRgb(0x22, 0x22, 0x22));
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.Flat.Background.MouseOver", Color.FromRgb(0xA9, 0xA9, 0xA9));
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.Flat.Background.Pressed", (Color)resourceDictionary["MahApps.Colors.Button.Flat.Background.Pressed"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.Flat.Foreground.Pressed", (Color)resourceDictionary["MahApps.Colors.Button.Flat.Foreground.Pressed"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.DarkIdealForegroundDisabled", Color.FromRgb(0xAD, 0xAD, 0xAD));
-            resourceDictionary.SetBrush("MahApps.Brushes.CleanWindowCloseButton.Background", Color.FromRgb(0xEB, 0x2F, 0x2F));
-            resourceDictionary.SetBrush("MahApps.Brushes.CleanWindowCloseButton.PressedBackground", Color.FromRgb(0x7C, 0x00, 0x00));
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.CleanWindow.Close.Background.MouseOver", Color.FromRgb(0xEB, 0x2F, 0x2F));
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.CleanWindow.Close.Foreground.MouseOver", Color.FromRgb(0xFF, 0xFF, 0xFF));
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.CleanWindow.Close.Background.Pressed", Color.FromRgb(0x7C, 0x00, 0x00));
+
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.Square.Background.MouseOver", (Color)resourceDictionary["MahApps.Colors.Gray8"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.Square.Foreground.MouseOver", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.AccentedSquare.Background.MouseOver", Color.FromArgb(0x66, 0x00, 0x00, 0x00));
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.AccentedSquare.Foreground.MouseOver", (Color)resourceDictionary["MahApps.Colors.IdealForeground"]);
 
             //CONTROL VALIDATION BRUSHES
-            resourceDictionary.SetBrush("MahApps.Brushes.Controls.Validation", Color.FromArgb(0xFF, 0xDB, 0x00, 0x0C));
             resourceDictionary.SetBrush("MahApps.Brushes.Validation1", Color.FromArgb(0x05, 0x2A, 0x2E, 0x31));
             resourceDictionary.SetBrush("MahApps.Brushes.Validation2", Color.FromArgb(0x15, 0x2A, 0x2E, 0x31));
             resourceDictionary.SetBrush("MahApps.Brushes.Validation3", Color.FromArgb(0x25, 0x2A, 0x2E, 0x31));
@@ -163,49 +164,291 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetBrush("MahApps.Brushes.TopMenuItem.PressedStroke", (Color)resourceDictionary["MahApps.Colors.TopMenuItem.PressedStroke"]);
             resourceDictionary.SetBrush("MahApps.Brushes.TopMenuItem.SelectionStroke", (Color)resourceDictionary["MahApps.Colors.TopMenuItem.SelectionStroke"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.MenuItem.DisabledForeground", (Color)resourceDictionary["MahApps.Colors.MenuItem.DisabledForeground"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.MenuItem.DisabledGlyphPanel", Color.FromRgb(0x84, 0x85, 0x89));
+            resourceDictionary.SetBrush("MahApps.Brushes.MenuItem.Foreground.Disabled", (Color)resourceDictionary["MahApps.Colors.MenuItem.DisabledForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.MenuItem.GlyphPanel.Disabled", Color.FromRgb(0x84, 0x85, 0x89));
 
             resourceDictionary.SetBrush("{x:Static SystemColors.MenuTextBrushKey}", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
 
             resourceDictionary.SetBrush("MahApps.Brushes.CheckmarkFill", (Color)resourceDictionary["MahApps.Colors.Accent"]);
             resourceDictionary.SetBrush("MahApps.Brushes.RightArrowFill", (Color)resourceDictionary["MahApps.Colors.Accent"]);
 
-            resourceDictionary.SetColor("MahApps.Colors.IdealForeground", theme.PrimaryMid.GetForegroundColor());
-            resourceDictionary.SetBrush("MahApps.Brushes.IdealForeground", theme.PrimaryMid.GetForegroundColor());
-            resourceDictionary.SetBrush("MahApps.Brushes.IdealForegroundDisabled", (Color)resourceDictionary["MahApps.Colors.IdealForeground"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.AccentSelectedColor", (Color)resourceDictionary["MahApps.Colors.IdealForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.WindowButtonCommands.Background.MouseOver", Color.FromArgb(0x66, 0xDC, 0xDC, 0xDC));
 
             //DataGrid brushes
 
-            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Highlight", (Color)resourceDictionary["MahApps.Colors.Accent"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.DisabledHighlight", (Color)resourceDictionary["MahApps.Colors.Gray7"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.HighlightText", (Color)resourceDictionary["MahApps.Colors.IdealForeground"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.MouseOverHighlight", (Color)resourceDictionary["MahApps.Colors.Accent3"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.FocusBorder", (Color)resourceDictionary["MahApps.Colors.Accent"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.InactiveSelectionHighlight", (Color)resourceDictionary["MahApps.Colors.Accent2"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.InactiveSelectionHighlightText", (Color)resourceDictionary["MahApps.Colors.IdealForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Selection.Background", (Color)resourceDictionary["MahApps.Colors.Accent"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Selection.BorderBrush", (Color)resourceDictionary["MahApps.Colors.Accent"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Selection.Background.Disabled", (Color)resourceDictionary["MahApps.Colors.Gray7"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Selection.BorderBrush.Disabled", (Color)resourceDictionary["MahApps.Colors.Gray7"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Selection.Text", (Color)resourceDictionary["MahApps.Colors.IdealForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Selection.Text.Disabled", (Color)resourceDictionary["MahApps.Colors.IdealForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Selection.Background.MouseOver", (Color)resourceDictionary["MahApps.Colors.Accent3"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Selection.BorderBrush.MouseOver", (Color)resourceDictionary["MahApps.Colors.Accent3"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Selection.BorderBrush.Focus", (Color)resourceDictionary["MahApps.Colors.Accent"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Selection.Background.Inactive", (Color)resourceDictionary["MahApps.Colors.Accent2"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Selection.BorderBrush.Inactive", (Color)resourceDictionary["MahApps.Colors.Accent2"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DataGrid.Selection.Text.Inactive", (Color)resourceDictionary["MahApps.Colors.IdealForeground"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.Pressed.Win10", (Color)resourceDictionary["MahApps.Colors.ToggleSwitchButton.Pressed.Win10"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.OffBorder.Win10", (Color)resourceDictionary["MahApps.Colors.ToggleSwitchButton.OffBorder.Win10"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.OffMouseOverBorder.Win10", (Color)resourceDictionary["MahApps.Colors.ToggleSwitchButton.OffMouseOverBorder.Win10"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.OffDisabledBorder.Win10", (Color)resourceDictionary["MahApps.Colors.ToggleSwitchButton.OffDisabledBorder.Win10"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.OffSwitch.Win10", Colors.Transparent);
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.OnSwitch.Win10", (Color)resourceDictionary["MahApps.Colors.Accent"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.OnSwitchDisabled.Win10", (Color)resourceDictionary["MahApps.Colors.ToggleSwitchButton.OnSwitchDisabled.Win10"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.OnSwitchMouseOver.Win10", (Color)resourceDictionary["MahApps.Colors.Accent2"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.ThumbIndicator.Win10", (Color)resourceDictionary["MahApps.Colors.ToggleSwitchButton.ThumbIndicator.Win10"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorMouseOver.Win10", (Color)resourceDictionary["MahApps.Colors.ToggleSwitchButton.ThumbIndicatorMouseOver.Win10"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorChecked.Win10", (Color)resourceDictionary["MahApps.Colors.IdealForeground"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorPressed.Win10", (Color)resourceDictionary["MahApps.Colors.ToggleSwitchButton.ThumbIndicatorPressed.Win10"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorDisabled.Win10", (Color)resourceDictionary["MahApps.Colors.ToggleSwitchButton.ThumbIndicatorDisabled.Win10"]);
-
-            resourceDictionary.SetBrush("MahApps.Brushes.Badged.DisabledBackground", (Color)resourceDictionary["MahApps.Colors.Badged.Background.Disabled"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Badged.Background", (Color)resourceDictionary["MahApps.Colors.AccentBase"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Badged.Background.Disabled", (Color)resourceDictionary["MahApps.Colors.Badged.Background.Disabled"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Badged.Foreground", (Color)resourceDictionary["MahApps.Colors.IdealForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Badged.Foreground.Disabled", (Color)resourceDictionary["MahApps.Colors.Badged.Foreground.Disabled"]);
 
             //HamburgerMenu
 
-            resourceDictionary.SetBrush("MahApps.HamburgerMenu.PaneBackground", Color.FromArgb(0xFF, 0x44, 0x44, 0x44));
-            resourceDictionary.SetBrush("MahApps.HamburgerMenu.PaneForeground", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
+            resourceDictionary.SetBrush("MahApps.HamburgerMenu.Pane.Background", Color.FromArgb(0xFF, 0x44, 0x44, 0x44));
+            resourceDictionary.SetBrush("MahApps.HamburgerMenu.Pane.Foreground", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
+
+            // DEFAULT COMMON CONTROL COLORS Win UWP
+
+            resourceDictionary.SetColor("MahApps.Colors.SystemAccent", theme.SecondaryDark.Color);
+
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundAccent", (Color)resourceDictionary["MahApps.Colors.SystemAccent"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundAltHigh", (Color)resourceDictionary["MahApps.Colors.SystemAltHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundAltMedium", (Color)resourceDictionary["MahApps.Colors.SystemAltMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundAltMediumHigh", (Color)resourceDictionary["MahApps.Colors.SystemAltMediumHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundAltMediumLow", (Color)resourceDictionary["MahApps.Colors.SystemAltMediumLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundBaseHigh", (Color)resourceDictionary["MahApps.Colors.SystemBaseHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundBaseLow", (Color)resourceDictionary["MahApps.Colors.SystemBaseLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundBaseMedium", (Color)resourceDictionary["MahApps.Colors.SystemBaseMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundBaseMediumHigh", (Color)resourceDictionary["MahApps.Colors.SystemBaseMediumHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundBaseMediumLow", (Color)resourceDictionary["MahApps.Colors.SystemBaseMediumLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundChromeBlackHigh", (Color)resourceDictionary["MahApps.Colors.SystemChromeBlackHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundChromeBlackLow", (Color)resourceDictionary["MahApps.Colors.SystemChromeBlackLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundChromeBlackMedium", (Color)resourceDictionary["MahApps.Colors.SystemChromeBlackMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundChromeBlackMediumLow", (Color)resourceDictionary["MahApps.Colors.SystemChromeBlackMediumLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundChromeMedium", (Color)resourceDictionary["MahApps.Colors.SystemChromeMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundChromeMediumLow", (Color)resourceDictionary["MahApps.Colors.SystemChromeMediumLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundChromeWhite", (Color)resourceDictionary["MahApps.Colors.SystemChromeWhite"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundListLow", (Color)resourceDictionary["MahApps.Colors.SystemListLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlBackgroundListMedium", (Color)resourceDictionary["MahApps.Colors.SystemListMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlDisabledAccent", (Color)resourceDictionary["MahApps.Colors.SystemAccent"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlDisabledBaseHigh", (Color)resourceDictionary["MahApps.Colors.SystemBaseHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlDisabledBaseLow", (Color)resourceDictionary["MahApps.Colors.SystemBaseLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlDisabledBaseMediumLow", (Color)resourceDictionary["MahApps.Colors.SystemBaseMediumLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlDisabledChromeDisabledHigh", (Color)resourceDictionary["MahApps.Colors.SystemChromeDisabledHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlDisabledChromeDisabledLow", (Color)resourceDictionary["MahApps.Colors.SystemChromeDisabledLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlDisabledChromeHigh", (Color)resourceDictionary["MahApps.Colors.SystemChromeHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlDisabledChromeMediumLow", (Color)resourceDictionary["MahApps.Colors.SystemChromeMediumLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlDisabledListMedium", (Color)resourceDictionary["MahApps.Colors.SystemListMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlDisabledTransparent", Colors.Transparent);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlErrorTextForeground", (Color)resourceDictionary["MahApps.Colors.SystemErrorText"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlFocusVisualPrimary", (Color)resourceDictionary["MahApps.Colors.SystemBaseHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlFocusVisualSecondary", (Color)resourceDictionary["MahApps.Colors.SystemAltMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundAccent", (Color)resourceDictionary["MahApps.Colors.SystemAccent"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundAltHigh", (Color)resourceDictionary["MahApps.Colors.SystemAltHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundAltMediumHigh", (Color)resourceDictionary["MahApps.Colors.SystemAltMediumHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundBaseHigh", (Color)resourceDictionary["MahApps.Colors.SystemBaseHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundBaseLow", (Color)resourceDictionary["MahApps.Colors.SystemBaseLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundBaseMedium", (Color)resourceDictionary["MahApps.Colors.SystemBaseMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundBaseMediumHigh", (Color)resourceDictionary["MahApps.Colors.SystemBaseMediumHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundBaseMediumLow", (Color)resourceDictionary["MahApps.Colors.SystemBaseMediumLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundChromeBlackHigh", (Color)resourceDictionary["MahApps.Colors.SystemChromeBlackHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundChromeBlackMedium", (Color)resourceDictionary["MahApps.Colors.SystemChromeBlackMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundChromeBlackMediumLow", (Color)resourceDictionary["MahApps.Colors.SystemChromeBlackMediumLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundChromeDisabledLow", (Color)resourceDictionary["MahApps.Colors.SystemChromeDisabledLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundChromeGray", (Color)resourceDictionary["MahApps.Colors.SystemChromeGray"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundChromeHigh", (Color)resourceDictionary["MahApps.Colors.SystemChromeHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundChromeMedium", (Color)resourceDictionary["MahApps.Colors.SystemChromeMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundChromeWhite", (Color)resourceDictionary["MahApps.Colors.SystemChromeWhite"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundListLow", (Color)resourceDictionary["MahApps.Colors.SystemListLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundListMedium", (Color)resourceDictionary["MahApps.Colors.SystemListMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlForegroundTransparent", Colors.Transparent);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAccent", (Color)resourceDictionary["MahApps.Colors.SystemAccent"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltAccent", (Color)resourceDictionary["MahApps.Colors.SystemAccent"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltAltHigh", (Color)resourceDictionary["MahApps.Colors.SystemAltHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltAltMediumHigh", (Color)resourceDictionary["MahApps.Colors.SystemAltMediumHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltBaseHigh", (Color)resourceDictionary["MahApps.Colors.SystemBaseHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltBaseLow", (Color)resourceDictionary["MahApps.Colors.SystemBaseLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltBaseMedium", (Color)resourceDictionary["MahApps.Colors.SystemBaseMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltBaseMediumHigh", (Color)resourceDictionary["MahApps.Colors.SystemBaseMediumHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltBaseMediumLow", (Color)resourceDictionary["MahApps.Colors.SystemBaseMediumLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltChromeWhite", (Color)resourceDictionary["MahApps.Colors.SystemChromeWhite"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltListAccentHigh", (Color)resourceDictionary["MahApps.Colors.SystemAccent"], baseTheme == BaseTheme.Light ? 0.7 : 0.9);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltListAccentLow", (Color)resourceDictionary["MahApps.Colors.SystemAccent"], baseTheme == BaseTheme.Light ? 0.4 : 0.6);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltListAccentMedium", (Color)resourceDictionary["MahApps.Colors.SystemAccent"], baseTheme == BaseTheme.Light ? 0.6 : 0.8);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightAltTransparent", Colors.Transparent);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightBaseHigh", (Color)resourceDictionary["MahApps.Colors.SystemBaseHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightBaseLow", (Color)resourceDictionary["MahApps.Colors.SystemBaseLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightBaseMedium", (Color)resourceDictionary["MahApps.Colors.SystemBaseMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightBaseMediumHigh", (Color)resourceDictionary["MahApps.Colors.SystemBaseMediumHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightBaseMediumLow", (Color)resourceDictionary["MahApps.Colors.SystemBaseMediumLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightChromeAltLow", (Color)resourceDictionary["MahApps.Colors.SystemChromeAltLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightChromeHigh", (Color)resourceDictionary["MahApps.Colors.SystemChromeHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightChromeWhite", (Color)resourceDictionary["MahApps.Colors.SystemChromeWhite"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightListAccentHigh", (Color)resourceDictionary["MahApps.Colors.SystemAccent"], baseTheme == BaseTheme.Light ? 0.7 : 0.9);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightListAccentLow", (Color)resourceDictionary["MahApps.Colors.SystemAccent"], baseTheme == BaseTheme.Light ? 0.4 : 0.6);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightListAccentMedium", (Color)resourceDictionary["MahApps.Colors.SystemAccent"], baseTheme == BaseTheme.Light ? 0.6 : 0.8);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightListLow", (Color)resourceDictionary["MahApps.Colors.SystemListLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightListMedium", (Color)resourceDictionary["MahApps.Colors.SystemListMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHighlightTransparent", Colors.Transparent);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHyperlinkBaseHigh", (Color)resourceDictionary["MahApps.Colors.SystemBaseHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHyperlinkBaseMedium", (Color)resourceDictionary["MahApps.Colors.SystemBaseMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHyperlinkBaseMediumHigh", (Color)resourceDictionary["MahApps.Colors.SystemBaseMediumHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlHyperlinkText", (Color)resourceDictionary["MahApps.Colors.SystemAccent"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlPageBackgroundAltHigh", (Color)resourceDictionary["MahApps.Colors.SystemAltHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlPageBackgroundAltMedium", (Color)resourceDictionary["MahApps.Colors.SystemAltMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlPageBackgroundBaseLow", (Color)resourceDictionary["MahApps.Colors.SystemBaseLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlPageBackgroundBaseMedium", (Color)resourceDictionary["MahApps.Colors.SystemBaseMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlPageBackgroundChromeLow", (Color)resourceDictionary["MahApps.Colors.SystemChromeLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlPageBackgroundChromeMediumLow", (Color)resourceDictionary["MahApps.Colors.SystemChromeMediumLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlPageBackgroundListLow", (Color)resourceDictionary["MahApps.Colors.SystemListLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlPageBackgroundMediumAltMedium", (Color)resourceDictionary["MahApps.Colors.SystemAltMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlPageBackgroundTransparent", Colors.Transparent);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlPageTextBaseHigh", (Color)resourceDictionary["MahApps.Colors.SystemBaseHigh"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlPageTextBaseMedium", (Color)resourceDictionary["MahApps.Colors.SystemBaseMedium"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlPageTextChromeBlackMediumLow", (Color)resourceDictionary["MahApps.Colors.SystemChromeBlackMediumLow"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlRevealFocusVisual", (Color)resourceDictionary["MahApps.Colors.SystemAccent"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlTransientBorder", Color.FromRgb(0x00, 0x00, 0x00), baseTheme == BaseTheme.Light ? 0.14 : 0.36);
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlTransparent", Colors.Transparent);
+
+            resourceDictionary.SetBrush("MahApps.Brushes.SystemControlDescriptionTextForeground", "MahApps.Brushes.SystemControlPageTextBaseMedium");
+
+            //  Resources for MahApps.Styles.CheckBox.Win10
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.ForegroundUnchecked", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.ForegroundUncheckedMouseOver", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.ForegroundUncheckedPressed", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.ForegroundUncheckedDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.ForegroundChecked", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.ForegroundCheckedMouseOver", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.ForegroundCheckedPressed", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.ForegroundCheckedDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.ForegroundIndeterminate", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.ForegroundIndeterminateMouseOver", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.ForegroundIndeterminatePressed", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.ForegroundIndeterminateDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BackgroundUnchecked", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BackgroundUncheckedMouseOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BackgroundUncheckedPressed", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BackgroundUncheckedDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BackgroundChecked", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BackgroundCheckedMouseOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BackgroundCheckedPressed", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BackgroundCheckedDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BackgroundIndeterminate", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BackgroundIndeterminateMouseOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BackgroundIndeterminatePressed", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BackgroundIndeterminateDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BorderBrushUnchecked", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BorderBrushUncheckedMouseOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BorderBrushUncheckedPressed", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BorderBrushUncheckedDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BorderBrushChecked", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BorderBrushCheckedMouseOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BorderBrushCheckedPressed", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BorderBrushCheckedDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BorderBrushIndeterminate", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BorderBrushIndeterminateMouseOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BorderBrushIndeterminatePressed", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.BorderBrushIndeterminateDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundStrokeUnchecked", "MahApps.Brushes.SystemControlForegroundBaseMediumHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundStrokeUncheckedMouseOver", "MahApps.Brushes.SystemControlHighlightBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundStrokeUncheckedPressed", "MahApps.Brushes.SystemControlHighlightTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundStrokeUncheckedDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundStrokeChecked", "MahApps.Brushes.SystemControlHighlightTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundStrokeCheckedMouseOver", "MahApps.Brushes.SystemControlHighlightBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundStrokeCheckedPressed", "MahApps.Brushes.SystemControlHighlightTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundStrokeCheckedDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundStrokeIndeterminate", "MahApps.Brushes.SystemControlForegroundAccent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundStrokeIndeterminateMouseOver", "MahApps.Brushes.SystemControlHighlightAccent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundStrokeIndeterminatePressed", "MahApps.Brushes.SystemControlHighlightBaseMedium");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundStrokeIndeterminateDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundFillUnchecked", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundFillUncheckedMouseOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundFillUncheckedPressed", "MahApps.Brushes.SystemControlBackgroundBaseMedium");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundFillUncheckedDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundFillChecked", "MahApps.Brushes.SystemControlHighlightAccent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundFillCheckedMouseOver", "MahApps.Brushes.SystemControlBackgroundAccent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundFillCheckedPressed", "MahApps.Brushes.SystemControlHighlightBaseMedium");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundFillCheckedDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundFillIndeterminate", "MahApps.Brushes.SystemControlHighlightTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundFillIndeterminateMouseOver", "MahApps.Brushes.SystemControlHighlightTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundFillIndeterminatePressed", "MahApps.Brushes.SystemControlHighlightTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckBackgroundFillIndeterminateDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckGlyphForegroundUnchecked", "MahApps.Brushes.SystemControlHighlightAltChromeWhite");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckGlyphForegroundUncheckedMouseOver", "MahApps.Brushes.SystemControlHighlightAltChromeWhite");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckGlyphForegroundUncheckedPressed", "MahApps.Brushes.SystemControlHighlightAltChromeWhite");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckGlyphForegroundUncheckedDisabled", "MahApps.Brushes.SystemControlHighlightAltChromeWhite");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckGlyphForegroundChecked", "MahApps.Brushes.SystemControlHighlightAltChromeWhite");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckGlyphForegroundCheckedMouseOver", "MahApps.Brushes.SystemControlForegroundChromeWhite");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckGlyphForegroundCheckedPressed", "MahApps.Brushes.SystemControlForegroundChromeWhite");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckGlyphForegroundCheckedDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckGlyphForegroundIndeterminate", "MahApps.Brushes.SystemControlForegroundBaseMediumHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckGlyphForegroundIndeterminateMouseOver", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckGlyphForegroundIndeterminatePressed", "MahApps.Brushes.SystemControlForegroundBaseMedium");
+            resourceDictionary.SetBrush("MahApps.Brushes.CheckBox.CheckGlyphForegroundIndeterminateDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+
+            //  Resources for MahApps.Styles.RadioButton.Win10
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.Foreground", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.ForegroundPointerOver", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.ForegroundPressed", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.ForegroundDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.Background", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.BackgroundPointerOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.BackgroundPressed", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.BackgroundDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.BorderBrush", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.BorderBrushPointerOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.BorderBrushPressed", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.BorderBrushDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseStroke", "MahApps.Brushes.SystemControlForegroundBaseMediumHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseStrokePointerOver", "MahApps.Brushes.SystemControlHighlightBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseStrokePressed", "MahApps.Brushes.SystemControlHighlightBaseMedium");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseStrokeDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseFill", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseFillPointerOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseFillPressed", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseFillDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseCheckedStroke", "MahApps.Brushes.SystemControlHighlightAccent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseCheckedStrokePointerOver", "MahApps.Brushes.SystemControlHighlightAccent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseCheckedStrokePressed", "MahApps.Brushes.SystemControlHighlightBaseMedium");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseCheckedStrokeDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseCheckedFill", "MahApps.Brushes.SystemControlHighlightAltTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseCheckedFillPointerOver", "MahApps.Brushes.SystemControlHighlightTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseCheckedFillPressed", "MahApps.Brushes.SystemControlHighlightTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.OuterEllipseCheckedFillDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.CheckGlyphFill", "MahApps.Brushes.SystemControlHighlightBaseMediumHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.CheckGlyphFillPointerOver", "MahApps.Brushes.SystemControlHighlightAltBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.CheckGlyphFillPressed", "MahApps.Brushes.SystemControlHighlightAltBaseMedium");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.CheckGlyphFillDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.CheckGlyphStroke", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.CheckGlyphStrokePointerOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.CheckGlyphStrokePressed", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.RadioButton.CheckGlyphStrokeDisabled", "MahApps.Brushes.SystemControlTransparent");
+
+            //  Resources for MahApps.Styles.ToggleSwitch
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.ContentForeground", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.ContentForegroundDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.HeaderForeground", "MahApps.Brushes.SystemControlForegroundBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.HeaderForegroundDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.ContainerBackground", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.ContainerBackgroundPointerOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.ContainerBackgroundPressed", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.ContainerBackgroundDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.FillOff", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.FillOffPointerOver", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.FillOffPressed", "MahApps.Brushes.SystemControlHighlightBaseMedium");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.FillOffDisabled", "MahApps.Brushes.SystemControlTransparent");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.StrokeOff", "MahApps.Brushes.SystemControlForegroundBaseMediumHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.StrokeOffPointerOver", "MahApps.Brushes.SystemControlHighlightBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.StrokeOffPressed", "MahApps.Brushes.SystemControlForegroundBaseMediumHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.StrokeOffDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.FillOn", "MahApps.Brushes.SystemControlHighlightAccent");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.FillOnPointerOver", "MahApps.Brushes.SystemControlHighlightAltListAccentHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.FillOnPressed", "MahApps.Brushes.SystemControlHighlightBaseMedium");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.FillOnDisabled", "MahApps.Brushes.SystemControlDisabledBaseLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.StrokeOn", "MahApps.Brushes.SystemControlHighlightBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.StrokeOnPointerOver", "MahApps.Brushes.SystemControlHighlightListAccentHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.StrokeOnPressed", "MahApps.Brushes.SystemControlHighlightBaseMedium");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.StrokeOnDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.KnobFillOff", "MahApps.Brushes.SystemControlForegroundBaseMediumHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.KnobFillOffPointerOver", "MahApps.Brushes.SystemControlHighlightBaseHigh");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.KnobFillOffPressed", "MahApps.Brushes.SystemControlHighlightAltChromeWhite");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.KnobFillOffDisabled", "MahApps.Brushes.SystemControlDisabledBaseMediumLow");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.KnobFillOn", "MahApps.Brushes.SystemControlHighlightAltChromeWhite");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.KnobFillOnPointerOver", "MahApps.Brushes.SystemControlHighlightChromeWhite");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.KnobFillOnPressed", "MahApps.Brushes.SystemControlHighlightAltChromeWhite");
+            resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitch.KnobFillOnDisabled", "MahApps.Brushes.SystemControlPageBackgroundBaseLow");
         }
 
         private static void SetBrush(this ResourceDictionary resourceDictionary, string name, Color value, double opacity = 1.0)
@@ -229,6 +472,18 @@ namespace MaterialDesignThemes.MahApps
                 }
             }
             resourceDictionary[name] = new SolidColorBrush(value) { Opacity = opacity }; //Set value directly
+        }
+
+        private static void SetBrush(this ResourceDictionary resourceDictionary, string name, string source)
+        {
+            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+            if (name == null) throw new ArgumentNullException(nameof(name));
+            if (source == null) throw new ArgumentNullException(nameof(source));
+
+            var sourceBrush = resourceDictionary[source] as SolidColorBrush;
+            if (sourceBrush is null) return;
+
+            SetBrush(resourceDictionary, name, sourceBrush.Color, sourceBrush.Opacity);
         }
 
         private static void SetBrush(this ResourceDictionary resourceDictionary, string name, Brush value)
