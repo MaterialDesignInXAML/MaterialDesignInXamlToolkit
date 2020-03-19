@@ -29,20 +29,20 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetColor("MahApps.Colors.ProgressIndeterminate3", Color.FromArgb(0x4C, 0x00, 0x00, 0x00));
             resourceDictionary.SetColor("MahApps.Colors.ProgressIndeterminate4", Color.FromArgb(0x4C, 0x00, 0x00, 0x00));
 
-            resourceDictionary.SetBrush("MahApps.Brushes.Control.Background", (Color)resourceDictionary["MahApps.Colors.White"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.White", (Color)resourceDictionary["MahApps.Colors.White"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.Black", (Color)resourceDictionary["MahApps.Colors.Black"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.Text", (Color)resourceDictionary["MahApps.Colors.Black"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.Label.Text", (Color)resourceDictionary["MahApps.Colors.Black"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.WhiteColor", (Color)resourceDictionary["MahApps.Colors.White"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.BlackColor", (Color)resourceDictionary["MahApps.Colors.Black"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Control.Background", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.White", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Black", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Text", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Label.Text", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.WhiteColor", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.BlackColor", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
 
             resourceDictionary.SetBrush("MahApps.Brushes.WindowTitle", (Color)resourceDictionary["MahApps.Colors.HighlightDark"]);
             resourceDictionary.SetBrush("MahApps.Brushes.WindowTitle.NonActive", Color.FromRgb(0x80, 0x80, 0x80));
             resourceDictionary.SetBrush("MahApps.Brushes.Border.NonActive", Color.FromRgb(0x80, 0x80, 0x80));
 
             resourceDictionary.SetBrush("MahApps.Brushes.Highlight", (Color)resourceDictionary["MahApps.Colors.Highlight"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.DisabledWhite", (Color)resourceDictionary["MahApps.Colors.White"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.DisabledWhite", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
 
             resourceDictionary.SetBrush("MahApps.Brushes.TransparentWhite", Color.FromArgb(0x00, 0xFF, 0xFF, 0xFF));
             resourceDictionary.SetBrush("MahApps.Brushes.SemiTransparentWhite", Color.FromArgb(0x55, 0xFF, 0xFF, 0xFF));
@@ -66,18 +66,18 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetBrush("MahApps.Brushes.Gray9", (Color)resourceDictionary["MahApps.Colors.Gray9"]);
             resourceDictionary.SetBrush("MahApps.Brushes.Gray10", (Color)resourceDictionary["MahApps.Colors.Gray10"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.GrayNormal", (Color)resourceDictionary["MahApps.Colors.GrayNormal"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.GrayHover", (Color)resourceDictionary["MahApps.Colors.GrayHover"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.GrayNormal", (Color)resourceDictionary["MahApps.Colors.Gray"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.GrayHover", (Color)resourceDictionary["MahApps.Colors.Gray.MouseOver"]);
 
             resourceDictionary.SetBrush("MahApps.Brushes.Controls.Border", (Color)resourceDictionary["MahApps.Colors.Gray6"]);
             resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border", theme.TextBoxBorder);
-            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.MouseOverInnerBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.FocusBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.MouseOverInnerBorder", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.TextBox.FocusBorder", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
             resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border.MouseOver", theme.PrimaryMid.Color);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.Button.Border.MouseOver", (Color)resourceDictionary["MahApps.Colors.Black"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.MouseOverBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.MouseOverInnerBorder", (Color)resourceDictionary["MahApps.Colors.Black"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Button.Border.MouseOver", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.MouseOverBorder", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.MouseOverInnerBorder", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
             resourceDictionary.SetBrush("MahApps.Brushes.ComboBox.PopupBorder", (Color)resourceDictionary["MahApps.Colors.Gray4"]);
 
             resourceDictionary.SetBrush("MahApps.Brushes.CheckBox", (Color)resourceDictionary["MahApps.Colors.Gray6"]);
@@ -89,7 +89,7 @@ namespace MaterialDesignThemes.MahApps
                 GradientStops = new GradientStopCollection
                 {
                     new GradientStop((Color)resourceDictionary["MahApps.Colors.Gray7"], 0),
-                    new GradientStop((Color)resourceDictionary["MahApps.Colors.White"], 1)
+                    new GradientStop((Color)resourceDictionary["MahApps.Colors.ThemeBackground"], 1)
                 }
             });
             resourceDictionary.SetBrush("MahApps.Brushes.Thumb", (Color)resourceDictionary["MahApps.Colors.Gray5"]);
@@ -110,15 +110,15 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetBrush("MahApps.Brushes.SliderTrack.Normal", (Color)resourceDictionary["MahApps.Colors.SliderTrack.Normal"]);
 
             resourceDictionary.SetBrush("MahApps.Brushes.Flyout.Background", (Color)resourceDictionary["MahApps.Colors.Flyout"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.Flyout.Foreground", (Color)resourceDictionary["MahApps.Colors.Black"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Flyout.Foreground", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.Window.FlyoutOverlay", (Color)resourceDictionary["MahApps.Colors.Black"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.Window.Background", (Color)resourceDictionary["MahApps.Colors.White"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Window.FlyoutOverlay", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Window.Background", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
             resourceDictionary.SetBrush("MahApps.Brushes.Separator", Color.FromArgb(0xFF, 0xC4, 0xC4, 0xC5));
 
             resourceDictionary.SetBrush("MahApps.Brushes.FlatButton.Background", Color.FromRgb(0xD5, 0xD5, 0xD5));
             resourceDictionary.SetBrush("MahApps.Brushes.FlatButton.Foreground", Color.FromRgb(0x22, 0x22, 0x22));
-            resourceDictionary.SetBrush("MahApps.Brushes.FlatButton.PressedBackground", (Color)resourceDictionary["MahApps.Colors.FlatButton.PressedBackground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.FlatButton.PressedBackground", (Color)resourceDictionary["MahApps.Colors.Button.Flat.Background.Pressed"]);
             resourceDictionary.SetBrush("MahApps.Brushes.FlatButton.PressedForeground", Colors.White);
 
             resourceDictionary.SetBrush("MahApps.Brushes.DarkIdealForegroundDisabled", Color.FromRgb(0xAD, 0xAD, 0xAD));
@@ -144,17 +144,17 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetBrush("MahApps.Brushes.Text.Validation", Colors.White);
 
             //WPF default colors
-            resourceDictionary.SetBrush("{x:Static SystemColors.WindowBrushKey}", (Color)resourceDictionary["MahApps.Colors.White"]);
-            resourceDictionary.SetBrush("{x:Static SystemColors.ControlTextBrushKey}", (Color)resourceDictionary["MahApps.Colors.Black"]);
+            resourceDictionary.SetBrush("{x:Static SystemColors.WindowBrushKey}", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
+            resourceDictionary.SetBrush("{x:Static SystemColors.ControlTextBrushKey}", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
 
             //menu default colors
-            resourceDictionary.SetBrush("MahApps.Brushes.Menu.Background", (Color)resourceDictionary["MahApps.Colors.White"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.ContextMenu.Background", (Color)resourceDictionary["MahApps.Colors.White"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.SubMenu.Background", (Color)resourceDictionary["MahApps.Colors.White"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.MenuItem.Background", (Color)resourceDictionary["MahApps.Colors.White"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Menu.Background", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.ContextMenu.Background", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SubMenu.Background", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.MenuItem.Background", (Color)resourceDictionary["MahApps.Colors.ThemeBackground"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.ContextMenu.Border", (Color)resourceDictionary["MahApps.Colors.Black"]);
-            resourceDictionary.SetBrush("MahApps.Brushes.SubMenu.Border", (Color)resourceDictionary["MahApps.Colors.Black"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.ContextMenu.Border", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.SubMenu.Border", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
 
             resourceDictionary.SetBrush("MahApps.Brushes.MenuItem.SelectionFill", (Color)resourceDictionary["MahApps.Colors.MenuItem.SelectionFill"]);
             resourceDictionary.SetBrush("MahApps.Brushes.MenuItem.SelectionStroke", (Color)resourceDictionary["MahApps.Colors.MenuItem.SelectionStroke"]);
@@ -166,7 +166,7 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetBrush("MahApps.Brushes.MenuItem.DisabledForeground", (Color)resourceDictionary["MahApps.Colors.MenuItem.DisabledForeground"]);
             resourceDictionary.SetBrush("MahApps.Brushes.MenuItem.DisabledGlyphPanel", Color.FromRgb(0x84, 0x85, 0x89));
 
-            resourceDictionary.SetBrush("{x:Static SystemColors.MenuTextBrushKey}", (Color)resourceDictionary["MahApps.Colors.Black"]);
+            resourceDictionary.SetBrush("{x:Static SystemColors.MenuTextBrushKey}", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
 
             resourceDictionary.SetBrush("MahApps.Brushes.CheckmarkFill", (Color)resourceDictionary["MahApps.Colors.Accent"]);
             resourceDictionary.SetBrush("MahApps.Brushes.RightArrowFill", (Color)resourceDictionary["MahApps.Colors.Accent"]);
@@ -200,7 +200,7 @@ namespace MaterialDesignThemes.MahApps
             resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorPressed.Win10", (Color)resourceDictionary["MahApps.Colors.ToggleSwitchButton.ThumbIndicatorPressed.Win10"]);
             resourceDictionary.SetBrush("MahApps.Brushes.ToggleSwitchButton.ThumbIndicatorDisabled.Win10", (Color)resourceDictionary["MahApps.Colors.ToggleSwitchButton.ThumbIndicatorDisabled.Win10"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.Badged.DisabledBackground", (Color)resourceDictionary["MahApps.Colors.Badged.DisabledBackground"]);
+            resourceDictionary.SetBrush("MahApps.Brushes.Badged.DisabledBackground", (Color)resourceDictionary["MahApps.Colors.Badged.Background.Disabled"]);
 
             //HamburgerMenu
 
@@ -249,10 +249,10 @@ namespace MaterialDesignThemes.MahApps
             {
                 case BaseTheme.Light:
                     resourceDictionary["Theme.BaseColorScheme"] = ThemeManager.BaseColorLight;
-                    resourceDictionary.SetColor("MahApps.Colors.Black", Color.FromArgb(0xFF, 0x00, 0x00, 0x00));
-                    resourceDictionary.SetColor("MahApps.Colors.Black20", Color.FromArgb(0x51, 0x00, 0x00, 0x00));
-                    resourceDictionary.SetColor("MahApps.Colors.White", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
-                    resourceDictionary.SetColor("MahApps.Colors.White20", Color.FromArgb(0x51, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.ThemeForeground", Color.FromArgb(0xFF, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.ThemeForeground20", Color.FromArgb(0x51, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.ThemeBackground", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.ThemeBackground20", Color.FromArgb(0x51, 0xFF, 0xFF, 0xFF));
                     resourceDictionary.SetColor("MahApps.Colors.Gray1", Color.FromArgb(0xFF, 0x33, 0x33, 0x33));
                     resourceDictionary.SetColor("MahApps.Colors.Gray2", Color.FromArgb(0xFF, 0x7F, 0x7F, 0x7F));
                     resourceDictionary.SetColor("MahApps.Colors.Gray3", Color.FromArgb(0xFF, 0x9D, 0x9D, 0x9D));
@@ -263,8 +263,10 @@ namespace MaterialDesignThemes.MahApps
                     resourceDictionary.SetColor("MahApps.Colors.Gray8", Color.FromArgb(0xFF, 0xE0, 0xE0, 0xE0));
                     resourceDictionary.SetColor("MahApps.Colors.Gray9", Color.FromArgb(0x5E, 0xC9, 0xC9, 0xC9));
                     resourceDictionary.SetColor("MahApps.Colors.Gray10", Color.FromArgb(0xFF, 0xF7, 0xF7, 0xF7));
-                    resourceDictionary.SetColor("MahApps.Colors.GrayNormal", Color.FromArgb(0xFF, 0xBE, 0xBE, 0xBE));
-                    resourceDictionary.SetColor("MahApps.Colors.GrayHover", Color.FromArgb(0xFF, 0x33, 0x33, 0x33));
+                    resourceDictionary.SetColor("MahApps.Colors.Gray", Color.FromArgb(0xFF, 0xBE, 0xBE, 0xBE));
+                    resourceDictionary.SetColor("MahApps.Colors.Gray.MouseOver", Color.FromArgb(0xFF, 0x33, 0x33, 0x33));
+                    resourceDictionary.SetColor("MahApps.Colors.Gray.SemiTransparent", Color.FromArgb(0x40, 0x80, 0x80, 0x80));
+                    resourceDictionary.SetColor("MahApps.Colors.SemiTransparent", Color.FromArgb(0x55, 0x00, 0x00, 0x00));
                     resourceDictionary.SetColor("MahApps.Colors.Flyout", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
                     resourceDictionary.SetColor("MahApps.Colors.MenuShadow", Color.FromArgb(0xFF, 0x00, 0x00, 0x00));
                     resourceDictionary.SetColor("MahApps.Colors.MenuItem.DisabledForeground", Color.FromArgb(0xFF, 0x7F, 0x7F, 0x7F));
@@ -273,30 +275,49 @@ namespace MaterialDesignThemes.MahApps
                     resourceDictionary.SetColor("MahApps.Colors.SliderThumb.Disabled", Color.FromArgb(0xFF, 0xA0, 0xA0, 0xA0));
                     resourceDictionary.SetColor("MahApps.Colors.SliderTrack.Hover", Color.FromArgb(0xFF, 0xD0, 0xD0, 0xD0));
                     resourceDictionary.SetColor("MahApps.Colors.SliderTrack.Normal", Color.FromArgb(0xFF, 0xC6, 0xC6, 0xC6));
-                    resourceDictionary.SetColor("MahApps.Colors.FlatButton.PressedBackground", Color.FromRgb(0x22, 0x22, 0x22));
+                    resourceDictionary.SetColor("MahApps.Colors.Button.Flat.Background.Pressed", Color.FromRgb(0x33, 0x33, 0x33));
+                    resourceDictionary.SetColor("MahApps.Colors.Button.Flat.Foreground.Pressed", Color.FromRgb(0xFF, 0xFF, 0xFF));
                     resourceDictionary.SetColor("MahApps.Colors.MenuItem.SelectionFill", Color.FromRgb(0xDE, 0xDE, 0xDE));
                     resourceDictionary.SetColor("MahApps.Colors.MenuItem.SelectionStroke", Color.FromRgb(0xDE, 0xDE, 0xDE));
                     resourceDictionary.SetColor("MahApps.Colors.TopMenuItem.PressedFill", Color.FromRgb(0xDE, 0xDE, 0xDE));
                     resourceDictionary.SetColor("MahApps.Colors.TopMenuItem.PressedStroke", Color.FromArgb(0xE0, 0x71, 0x70, 0x70));
                     resourceDictionary.SetColor("MahApps.Colors.TopMenuItem.SelectionStroke", Color.FromArgb(0x90, 0x71, 0x70, 0x70));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.Pressed.Win10", Color.FromArgb(0xFF, 0x66, 0x66, 0x66));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.OffBorder.Win10", Color.FromArgb(0xFF, 0x33, 0x33, 0x33));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.OffMouseOverBorder.Win10", Color.FromArgb(0xFF, 0x00, 0x00, 0x00));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.OffDisabledBorder.Win10", Color.FromArgb(0xFF, 0x99, 0x99, 0x99));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.OnSwitchDisabled.Win10", Color.FromArgb(0xFF, 0xCC, 0xCC, 0xCC));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.ThumbIndicator.Win10", Color.FromArgb(0xFF, 0x33, 0x33, 0x33));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.ThumbIndicatorMouseOver.Win10", Color.FromArgb(0xFF, 0x00, 0x00, 0x00));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.ThumbIndicatorPressed.Win10", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.ThumbIndicatorDisabled.Win10", Color.FromArgb(0xFF, 0x99, 0x99, 0x99));
-                    resourceDictionary.SetColor("MahApps.Colors.Badged.DisabledBackground", Color.FromArgb(0xFF, 0x99, 0x99, 0x99));
+                    resourceDictionary.SetColor("MahApps.Colors.Badged.Background.Disabled", Color.FromArgb(0xFF, 0x99, 0x99, 0x99));
+                    resourceDictionary.SetColor("MahApps.Colors.Badged.Foreground.Disabled", Color.FromArgb(0x99, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemAltHigh", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemAltLow", Color.FromArgb(0x33, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemAltMedium", Color.FromArgb(0x99, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemAltMediumHigh", Color.FromArgb(0xCC, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemAltMediumLow", Color.FromArgb(0x66, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemBaseHigh", Color.FromArgb(0xFF, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemBaseLow", Color.FromArgb(0x33, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemBaseMedium", Color.FromArgb(0x99, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemBaseMediumHigh", Color.FromArgb(0xCC, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemBaseMediumLow", Color.FromArgb(0x66, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeAltLow", Color.FromArgb(0xFF, 0x17, 0x17, 0x17));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeBlackHigh", Color.FromArgb(0xFF, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeBlackLow", Color.FromArgb(0x33, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeBlackMediumLow", Color.FromArgb(0x66, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeBlackMedium", Color.FromArgb(0xCC, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeDisabledHigh", Color.FromArgb(0xFF, 0xCC, 0xCC, 0xCC));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeDisabledLow", Color.FromArgb(0xFF, 0x7A, 0x7A, 0x7A));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeHigh", Color.FromArgb(0xFF, 0xCC, 0xCC, 0xCC));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeLow", Color.FromArgb(0xFF, 0xF2, 0xF2, 0xF2));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeMedium", Color.FromArgb(0xFF, 0xE6, 0xE6, 0xE6));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeMediumLow", Color.FromArgb(0xFF, 0xF2, 0xF2, 0xF2));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeWhite", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeGray", Color.FromArgb(0xFF, 0x76, 0x76, 0x76));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemListLow", Color.FromArgb(0x19, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemListMedium", Color.FromArgb(0x33, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemErrorText", Color.FromRgb(0xC5, 0x05, 0x00));
                     break;
 
                 case BaseTheme.Dark:
                     resourceDictionary["Theme.BaseColorScheme"] = ThemeManager.BaseColorDark;
-                    resourceDictionary.SetColor("MahApps.Colors.Black", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
-                    resourceDictionary.SetColor("MahApps.Colors.Black20", Color.FromArgb(0x51, 0xFF, 0xFF, 0xFF));
-                    resourceDictionary.SetColor("MahApps.Colors.White", Color.FromArgb(0xFF, 0x25, 0x25, 0x25));
-                    resourceDictionary.SetColor("MahApps.Colors.White20", Color.FromArgb(0x51, 0x25, 0x25, 0x25));
+                    resourceDictionary.SetColor("MahApps.Colors.ThemeForeground", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.ThemeForeground20", Color.FromArgb(0x51, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.ThemeBackground", Color.FromArgb(0xFF, 0x25, 0x25, 0x25));
+                    resourceDictionary.SetColor("MahApps.Colors.ThemeBackground20", Color.FromArgb(0x51, 0x25, 0x25, 0x25));
                     resourceDictionary.SetColor("MahApps.Colors.Gray1", Color.FromArgb(0xFF, 0xF9, 0xF9, 0xF9));
                     resourceDictionary.SetColor("MahApps.Colors.Gray2", Color.FromArgb(0xFF, 0x7F, 0x7F, 0x7F));
                     resourceDictionary.SetColor("MahApps.Colors.Gray3", Color.FromArgb(0xFF, 0x9D, 0x9D, 0x9D));
@@ -307,8 +328,10 @@ namespace MaterialDesignThemes.MahApps
                     resourceDictionary.SetColor("MahApps.Colors.Gray8", Color.FromArgb(0xFF, 0x45, 0x45, 0x45));
                     resourceDictionary.SetColor("MahApps.Colors.Gray9", Color.FromArgb(0x5E, 0xC9, 0xC9, 0xC9));
                     resourceDictionary.SetColor("MahApps.Colors.Gray10", Color.FromArgb(0xFF, 0x2F, 0x2F, 0x2F));
-                    resourceDictionary.SetColor("MahApps.Colors.GrayNormal", Color.FromArgb(0xFF, 0x7D, 0x7D, 0x7D));
-                    resourceDictionary.SetColor("MahApps.Colors.GrayHover", Color.FromArgb(0xFF, 0xAA, 0xAA, 0xAA));
+                    resourceDictionary.SetColor("MahApps.Colors.Gray", Color.FromArgb(0xFF, 0x7D, 0x7D, 0x7D));
+                    resourceDictionary.SetColor("MahApps.Colors.Gray.MouseOver", Color.FromArgb(0xFF, 0xAA, 0xAA, 0xAA));
+                    resourceDictionary.SetColor("MahApps.Colors.Gray.SemiTransparent", Color.FromArgb(0x40, 0x80, 0x80, 0x80));
+                    resourceDictionary.SetColor("MahApps.Colors.SemiTransparent", Color.FromArgb(0x55, 0xFF, 0xFF, 0xFF));
                     resourceDictionary.SetColor("MahApps.Colors.Flyout", Color.FromArgb(0xFF, 0x2B, 0x2B, 0x2B));
                     resourceDictionary.SetColor("MahApps.Colors.MenuShadow", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
                     resourceDictionary.SetColor("MahApps.Colors.MenuItem.DisabledForeground", Color.FromArgb(0xFF, 0x7E, 0x7E, 0x7E));
@@ -317,22 +340,41 @@ namespace MaterialDesignThemes.MahApps
                     resourceDictionary.SetColor("MahApps.Colors.SliderThumb.Disabled", Color.FromArgb(0xFF, 0x7E, 0x7E, 0x7E));
                     resourceDictionary.SetColor("MahApps.Colors.SliderTrack.Hover", Color.FromArgb(0xFF, 0x73, 0x73, 0x73));
                     resourceDictionary.SetColor("MahApps.Colors.SliderTrack.Normal", Color.FromArgb(0xFF, 0x6C, 0x6C, 0x6C));
-                    resourceDictionary.SetColor("MahApps.Colors.FlatButton.PressedBackground", Color.FromRgb(0x44, 0x44, 0x44));
+                    resourceDictionary.SetColor("MahApps.Colors.Button.Flat.Background.Pressed", Color.FromRgb(0x44, 0x44, 0x44));
+                    resourceDictionary.SetColor("MahApps.Colors.Button.Flat.Foreground.Pressed", Color.FromRgb(0xFF, 0xFF, 0xFF));
                     resourceDictionary.SetColor("MahApps.Colors.MenuItem.SelectionFill", Color.FromRgb(0x31, 0x31, 0x31));
                     resourceDictionary.SetColor("MahApps.Colors.MenuItem.SelectionStroke", Color.FromRgb(0x31, 0x31, 0x31));
                     resourceDictionary.SetColor("MahApps.Colors.TopMenuItem.PressedFill", Color.FromRgb(0x31, 0x31, 0x31));
                     resourceDictionary.SetColor("MahApps.Colors.TopMenuItem.PressedStroke", Color.FromArgb(0xE0, 0x71, 0x70, 0x70));
                     resourceDictionary.SetColor("MahApps.Colors.TopMenuItem.SelectionStroke", Color.FromArgb(0x90, 0x71, 0x70, 0x70));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.Pressed.Win10", Color.FromArgb(0xFF, 0x99, 0x99, 0x99));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.OffBorder.Win10", Color.FromArgb(0xFF, 0xCC, 0xCC, 0xCC));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.OffMouseOverBorder.Win10", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.OffDisabledBorder.Win10", Color.FromArgb(0xFF, 0x66, 0x66, 0x66));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.OnSwitchDisabled.Win10", Color.FromArgb(0xFF, 0x44, 0x44, 0x44));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.ThumbIndicator.Win10", Color.FromArgb(0xFF, 0xCC, 0xCC, 0xCC));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.ThumbIndicatorMouseOver.Win10", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.ThumbIndicatorPressed.Win10", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
-                    resourceDictionary.SetColor("MahApps.Colors.ToggleSwitchButton.ThumbIndicatorDisabled.Win10", Color.FromArgb(0xFF, 0x66, 0x66, 0x66));
-                    resourceDictionary.SetColor("MahApps.Colors.Badged.DisabledBackground", Color.FromArgb(0xFF, 0x66, 0x66, 0x66));
+                    resourceDictionary.SetColor("MahApps.Colors.Badged.Background.Disabled", Color.FromArgb(0xFF, 0x66, 0x66, 0x66));
+                    resourceDictionary.SetColor("MahApps.Colors.Badged.Foreground.Disabled", Color.FromArgb(0x99, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemAltHigh", Color.FromArgb(0xFF, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemAltLow", Color.FromArgb(0x33, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemAltMedium", Color.FromArgb(0x99, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemAltMediumHigh", Color.FromArgb(0xCC, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemAltMediumLow", Color.FromArgb(0x66, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemBaseHigh", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemBaseLow", Color.FromArgb(0x33, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemBaseMedium", Color.FromArgb(0x99, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemBaseMediumHigh", Color.FromArgb(0xCC, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemBaseMediumLow", Color.FromArgb(0x66, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeAltLow", Color.FromArgb(0xFF, 0xF2, 0xF2, 0xF2));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeBlackHigh", Color.FromArgb(0xFF, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeBlackLow", Color.FromArgb(0x33, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeBlackMediumLow", Color.FromArgb(0x66, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeBlackMedium", Color.FromArgb(0xCC, 0x00, 0x00, 0x00));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeDisabledHigh", Color.FromArgb(0xFF, 0x33, 0x33, 0x33));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeDisabledLow", Color.FromArgb(0xFF, 0x85, 0x85, 0x85));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeHigh", Color.FromArgb(0xFF, 0x76, 0x76, 0x76));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeLow", Color.FromArgb(0xFF, 0x17, 0x17, 0x17));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeMedium", Color.FromArgb(0xFF, 0x1F, 0x1F, 0x1F));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeMediumLow", Color.FromArgb(0xFF, 0x2B, 0x2B, 0x2B));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeWhite", Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemChromeGray", Color.FromArgb(0xFF, 0x76, 0x76, 0x76));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemListLow", Color.FromArgb(0x19, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemListMedium", Color.FromArgb(0x33, 0xFF, 0xFF, 0xFF));
+                    resourceDictionary.SetColor("MahApps.Colors.SystemErrorText", Color.FromRgb(0xFF, 0xF0, 0x00));
                     break;
             }
         }
