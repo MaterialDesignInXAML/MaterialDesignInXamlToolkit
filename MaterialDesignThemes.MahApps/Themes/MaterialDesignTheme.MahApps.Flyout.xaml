@@ -31,8 +31,8 @@
                     </i:Interaction.Triggers>
                     <wpf:PackIcon Kind="ChevronRight"
                                   FlowDirection="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:Flyout}}, Path=FlowDirection}"
-                                  Width="{DynamicResource MahApps.Sizes.Font.FlyoutHeader}"
-                                  Height="{DynamicResource MahApps.Sizes.Font.FlyoutHeader}" />
+                                  Width="{DynamicResource MahApps.Font.Size.Flyout.Header}"
+                                  Height="{DynamicResource MahApps.Font.Size.Flyout.Header}" />
                 </Button>
                 <ContentControl x:Name="PART_BackHeaderText"
                                 Margin="15 0 0 0"
