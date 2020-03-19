@@ -7,8 +7,6 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <mahShared:ThicknessBindingConverter x:Key="ThicknessBindingConverter" />
-
     <Style TargetType="{x:Type mah:NumericUpDown}" x:Key="MaterialDesignNumericUpDown">
         <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Control.Background}" />
         <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.Border}" />
