@@ -207,7 +207,7 @@
                                           Content="{TemplateBinding Content}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"                                          
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                           Margin="0,0,16,0" />
                             <ToggleButton IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                           VerticalAlignment="Center"
@@ -239,6 +239,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
+                    <ControlTemplate.Resources>
+                        <converters:ExpanderDirectionConverter x:Key="ExpanderDirectionConverter" />
+                        <converters:MathMultipleConverter x:Key="PowConverter" Operation="Pow" />
+                    </ControlTemplate.Resources>
                     <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ExpansionStates">
@@ -300,14 +304,32 @@
                                           ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
                                           ContentStringFormat="{TemplateBinding HeaderStringFormat}"/>
                             <Border Name="ContentSite">
-                                <Grid Name="ContentPanel"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                <Grid Name="ContentPanel" 
                                       Margin="{TemplateBinding Padding}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                    <Grid.LayoutTransform>
+                                        <ScaleTransform CenterX="{Binding ExpandDirection, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ExpanderDirectionConverter}, ConverterParameter='0,0.5,1,0.5'}" 
+                                                        CenterY="{Binding ExpandDirection, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ExpanderDirectionConverter}, ConverterParameter='0.5,1,0.5,0'}">
+                                            <ScaleTransform.ScaleX>
+                                                <MultiBinding Converter="{StaticResource PowConverter}">
+                                                    <Binding Path="Opacity" ElementName="PART_Content" />
+                                                    <Binding Path="ExpandDirection" RelativeSource="{RelativeSource TemplatedParent}" Converter="{StaticResource ExpanderDirectionConverter}" ConverterParameter="1,0,1,0" />
+                                                </MultiBinding>
+                                            </ScaleTransform.ScaleX>
+                                            <ScaleTransform.ScaleY>
+                                                <MultiBinding Converter="{StaticResource PowConverter}">
+                                                    <Binding Path="Opacity" ElementName="PART_Content" />
+                                                    <Binding Path="ExpandDirection" RelativeSource="{RelativeSource TemplatedParent}" Converter="{StaticResource ExpanderDirectionConverter}" ConverterParameter="0,1,0,1" />
+                                                </MultiBinding>
+                                            </ScaleTransform.ScaleY>
+                                        </ScaleTransform>
+                                    </Grid.LayoutTransform>
                                     <ContentPresenter Name="PART_Content" Focusable="False" Opacity="0"
                                                       ContentTemplate="{TemplateBinding ContentTemplate}"
                                                       ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                                      ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
+                                                      ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+
                                 </Grid>
                             </Border>
                         </DockPanel>
@@ -315,48 +337,24 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="ExpandDirection" Value="Right">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Left"/>
-                            <Setter Property="LayoutTransform" TargetName="ContentPanel">
-                                <Setter.Value>
-                                    <ScaleTransform CenterX="1" CenterY="0.5" 
-                                                    ScaleX="{Binding Opacity, ElementName=PART_Content}" />
-                                </Setter.Value>
-                            </Setter>
                             <Setter Property="Height" TargetName="ContentPanel" Value="Auto"/>
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignExpanderRightHeaderStyle}"/>
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Left">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Right"/>
-                            <Setter Property="LayoutTransform" TargetName="ContentPanel">
-                                <Setter.Value>
-                                    <ScaleTransform CenterX="0" CenterY="0.5" 
-                                                    ScaleX="{Binding Opacity, ElementName=PART_Content}" />
-                                </Setter.Value>
-                            </Setter>
                             <Setter Property="Height" TargetName="ContentPanel" Value="Auto"/>
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignExpanderLeftHeaderStyle}"/>
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Up">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Bottom"/>
-                            <Setter Property="LayoutTransform" TargetName="ContentPanel">
-                                <Setter.Value>
-                                    <ScaleTransform CenterX="0.5" CenterY="1" 
-                                                    ScaleY="{Binding Opacity, ElementName=PART_Content}" />
-                                </Setter.Value>
-                            </Setter>
                             <Setter Property="Width" TargetName="ContentPanel" Value="Auto"/>
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignExpanderUpHeaderStyle}"/>
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Down">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Top"/>
-                            <Setter Property="LayoutTransform" TargetName="ContentPanel">
-                                <Setter.Value>
-                                    <ScaleTransform CenterX="0.5" CenterY="0" 
-                                                    ScaleY="{Binding Opacity, ElementName=PART_Content}" />
-                                </Setter.Value>
-                            </Setter>
                             <Setter Property="Width" TargetName="ContentPanel" Value="Auto"/>
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignExpanderDownHeaderStyle}"/>
                         </Trigger>

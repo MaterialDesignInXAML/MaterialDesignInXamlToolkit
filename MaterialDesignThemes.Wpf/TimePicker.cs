@@ -300,7 +300,7 @@ namespace MaterialDesignThemes.Wpf
             }
 
             if (IsTimeValid(_textBox.Text, out DateTime time))
-                SetCurrentValue(SelectedTimeProperty, time);
+                SetCurrentValue(SelectedTimeProperty, SelectedTime?.Date.Add(time.TimeOfDay) ?? time);
 
             else // Invalid time, jump back to previous good time
                 SetInvalidTime();
@@ -379,7 +379,7 @@ namespace MaterialDesignThemes.Wpf
                 ParseTime(_textBox.Text, t =>
                 {
                     if (!beCautious || DateTimeToString(t) == _textBox.Text)
-                        SetCurrentValue(SelectedTimeProperty, t);
+                        SetCurrentValue(SelectedTimeProperty, SelectedTime?.Date.Add(t.TimeOfDay) ?? t);
                 });
             }
             else
@@ -400,7 +400,7 @@ namespace MaterialDesignThemes.Wpf
 
             return DateTime.TryParse(s,
                                      culture,
-                                     DateTimeStyles.AssumeLocal | DateTimeStyles.AllowWhiteSpaces,
+                                     DateTimeStyles.AssumeLocal | DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.NoCurrentDateDefault,
                                      out time);
         }
 

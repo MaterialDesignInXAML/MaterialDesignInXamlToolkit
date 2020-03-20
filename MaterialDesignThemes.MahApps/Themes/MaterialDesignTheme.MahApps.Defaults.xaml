@@ -29,7 +29,7 @@
     <Style x:Key="MahApps.Styles.NumericUpDown.DataGridColumnEditing"
            BasedOn="{StaticResource MahApps.Styles.NumericUpDown.DataGridColumn}"
            TargetType="{x:Type controls:NumericUpDown}">
-        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />
         <Setter Property="HideUpDownButtons" Value="False" />
     </Style>
 </ResourceDictionary>

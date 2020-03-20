@@ -59,7 +59,7 @@ namespace MaterialDesignThemes.MahApps
                 string colorScheme = $"MaterialDesign.{primaryColor}.{secondaryColor}";
 
                 ResourceDictionary rv;
-                if (ThemeManager.Themes.FirstOrDefault(x => x.BaseColorScheme == baseColorScheme && x.ColorScheme == colorScheme) is global::MahApps.Metro.Theme mahAppsTheme)
+                if (ThemeManager.Themes.FirstOrDefault(x => x.BaseColorScheme == baseColorScheme && x.ColorScheme == primaryColor.ToString()) is global::MahApps.Metro.Theme mahAppsTheme)
                 {
                     rv = mahAppsTheme.Resources;
                     rv.SetMahApps(theme, baseTheme);

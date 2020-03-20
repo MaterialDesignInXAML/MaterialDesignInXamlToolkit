@@ -26,6 +26,8 @@ namespace MaterialDesignThemes.Wpf.Converters
                     return value1 * value2;
                 case MathOperation.Subtract:
                     return value1 - value2;
+                case MathOperation.Pow:
+                    return Math.Pow(value1, value2);
             }
 
         }
