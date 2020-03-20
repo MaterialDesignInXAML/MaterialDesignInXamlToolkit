@@ -241,8 +241,8 @@ namespace MaterialDesignThemes.Wpf
             if (mainVisual == null) throw new ArgumentException($"{nameof(visualAncestry)} must contains unless one {nameof(Visual)} control inside.");
 
             var screen = Screen.FromPoint(locationFromScreen);
-            var screenWidth = (int)DpiHelper.TransformToDeviceX(mainVisual, (int)screen.Bounds.Width);
-            var screenHeight = (int)DpiHelper.TransformToDeviceY(mainVisual, (int)screen.Bounds.Height);
+            var screenWidth = (int)screen.Bounds.Width;
+            var screenHeight = (int)screen.Bounds.Height;
             
             //Adjust the location to be in terms of the current screen
             var locationX = (int)(locationFromScreen.X - screen.Bounds.X) % screenWidth;
