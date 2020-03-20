@@ -22,7 +22,7 @@ csharp_new_line_before_catch = true
 #place else statements on a new line
 csharp_new_line_before_else = true
 #require braces to be on a new line for methods, accessors, anonymous_methods, types, properties, control_blocks, and lambdas (also known as "Allman" style)
-csharp_new_line_before_open_brace = methods, accessors, anonymous_methods, types, properties, control_blocks, lambdas
+csharp_new_line_before_open_brace = all
 
 #Formatting - organize using options
 
