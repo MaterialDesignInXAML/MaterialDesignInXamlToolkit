@@ -142,7 +142,8 @@ namespace MaterialDesignThemes.Wpf
 
         private FrameworkElement CreateVisualChild()
         {
-            var simpleQuad = new MeshGeometry3D {
+            var simpleQuad = new MeshGeometry3D
+            {
                 Positions = new Point3DCollection(Mesh),
                 TextureCoordinates = new PointCollection(TexCoords),
                 TriangleIndices = new Int32Collection(Indices)
@@ -160,7 +161,8 @@ namespace MaterialDesignThemes.Wpf
             var xfGroup = new Transform3DGroup { Children = { _scaleTransform, _rotationTransform } };
 
             var backModel = new GeometryModel3D { Geometry = simpleQuad, Transform = xfGroup, BackMaterial = backMaterial };
-            var m3DGroup = new Model3DGroup {
+            var m3DGroup = new Model3DGroup
+            {
                 Children = { new DirectionalLight(Colors.White, new Vector3D(0, 0, -1)),
                                  new DirectionalLight(Colors.White, new Vector3D(0.1, -0.1, 1)),
                                  backModel }

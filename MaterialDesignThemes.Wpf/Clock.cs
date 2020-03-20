@@ -224,7 +224,8 @@ namespace MaterialDesignThemes.Wpf
         private static void OnClockChoiceMade(DependencyObject d, ClockDisplayMode displayMode)
         {
             var instance = (Clock)d;
-            var dragCompletedEventArgs = new ClockChoiceMadeEventArgs(displayMode) {
+            var dragCompletedEventArgs = new ClockChoiceMadeEventArgs(displayMode)
+            {
                 RoutedEvent = ClockChoiceMadeEvent,
             };
 

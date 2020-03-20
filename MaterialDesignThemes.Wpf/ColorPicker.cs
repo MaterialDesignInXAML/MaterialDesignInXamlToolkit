@@ -46,7 +46,8 @@ namespace MaterialDesignThemes.Wpf
             colorPicker.SetCurrentValue(HsbProperty, ((Color)e.NewValue).ToHsb());
             var args = new RoutedPropertyChangedEventArgs<Color>(
                 (Color)e.OldValue,
-                (Color)e.NewValue) { RoutedEvent = ColorChangedEvent };
+                (Color)e.NewValue)
+            { RoutedEvent = ColorChangedEvent };
             colorPicker.RaiseEvent(args);
             colorPicker._inCallback = false;
         }

@@ -79,7 +79,8 @@ namespace MaterialDesignThemes.Wpf
             {
                 SetLocalInfo(dependencyObject, new ShadowLocalInfo(dropShadowEffect.Opacity));
 
-                var doubleAnimation = new DoubleAnimation(1, new Duration(TimeSpan.FromMilliseconds(350))) {
+                var doubleAnimation = new DoubleAnimation(1, new Duration(TimeSpan.FromMilliseconds(350)))
+                {
                     FillBehavior = FillBehavior.HoldEnd
                 };
                 dropShadowEffect.BeginAnimation(DropShadowEffect.OpacityProperty, doubleAnimation);
@@ -89,7 +90,8 @@ namespace MaterialDesignThemes.Wpf
                 var shadowLocalInfo = GetLocalInfo(dependencyObject);
                 if (shadowLocalInfo == null) return;
 
-                var doubleAnimation = new DoubleAnimation(shadowLocalInfo.StandardOpacity, new Duration(TimeSpan.FromMilliseconds(350))) {
+                var doubleAnimation = new DoubleAnimation(shadowLocalInfo.StandardOpacity, new Duration(TimeSpan.FromMilliseconds(350)))
+                {
                     FillBehavior = FillBehavior.HoldEnd
                 };
                 dropShadowEffect.BeginAnimation(DropShadowEffect.OpacityProperty, doubleAnimation);

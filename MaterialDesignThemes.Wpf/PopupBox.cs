@@ -626,7 +626,8 @@ namespace MaterialDesignThemes.Wpf
                     UnfurlOrientation == Orientation.Vertical ? 0 : elementTranslateCoordinateFrom,
                     UnfurlOrientation == Orientation.Vertical ? elementTranslateCoordinateFrom : 0);
 
-                var transformGroup = new TransformGroup {
+                var transformGroup = new TransformGroup
+                {
                     Children = new TransformCollection(new Transform[]
                     {
                         new ScaleTransform(0, 0),

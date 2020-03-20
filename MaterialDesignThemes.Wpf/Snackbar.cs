@@ -77,7 +77,8 @@ namespace MaterialDesignThemes.Wpf
             var instance = d as Snackbar;
             var args = new RoutedPropertyChangedEventArgs<bool>(
                 (bool)e.OldValue,
-                (bool)e.NewValue) { RoutedEvent = IsActiveChangedEvent };
+                (bool)e.NewValue)
+            { RoutedEvent = IsActiveChangedEvent };
             instance?.RaiseEvent(args);
         }
 
@@ -156,7 +157,8 @@ namespace MaterialDesignThemes.Wpf
             var snackbar = (Snackbar)dependencyObject;
             if (snackbar.Message == null) return;
 
-            var dispatcherTimer = new DispatcherTimer {
+            var dispatcherTimer = new DispatcherTimer
+            {
                 Tag = new Tuple<Snackbar, SnackbarMessage>(snackbar, snackbar.Message),
                 Interval = snackbar.DeactivateStoryboardDuration
             };

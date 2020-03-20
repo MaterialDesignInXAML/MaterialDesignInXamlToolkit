@@ -244,7 +244,8 @@ namespace MaterialDesignThemes.Wpf
                 foreach (string suggestion in spellingError.Suggestions)
                 {
                     hasSuggestion = true;
-                    var menuItem = new MenuItem {
+                    var menuItem = new MenuItem
+                    {
                         CommandTarget = textBoxBase,
                         Command = EditingCommands.CorrectSpellingError,
                         CommandParameter = suggestion,
@@ -255,25 +256,29 @@ namespace MaterialDesignThemes.Wpf
                 }
                 if (!hasSuggestion)
                 {
-                    contextMenu.Items.Insert(insertionIndex++, new MenuItem {
+                    contextMenu.Items.Insert(insertionIndex++, new MenuItem
+                    {
                         Style = contextMenu.TryFindResource(Spelling.NoSuggestionsMenuItemStyleKey) as Style,
                         Tag = typeof(Spelling)
                     });
                 }
 
-                contextMenu.Items.Insert(insertionIndex++, new Separator {
+                contextMenu.Items.Insert(insertionIndex++, new Separator
+                {
                     Style = contextMenu.TryFindResource(Spelling.SeparatorStyleKey) as Style,
                     Tag = typeof(Spelling)
                 });
 
-                contextMenu.Items.Insert(insertionIndex++, new MenuItem {
+                contextMenu.Items.Insert(insertionIndex++, new MenuItem
+                {
                     Command = EditingCommands.IgnoreSpellingError,
                     CommandTarget = textBoxBase,
                     Style = contextMenu.TryFindResource(Spelling.IgnoreAllMenuItemStyleKey) as Style,
                     Tag = typeof(Spelling)
                 });
 
-                contextMenu.Items.Insert(insertionIndex, new Separator {
+                contextMenu.Items.Insert(insertionIndex, new Separator
+                {
                     Style = contextMenu.TryFindResource(Spelling.SeparatorStyleKey) as Style,
                     Tag = typeof(Spelling)
                 });

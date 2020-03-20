@@ -438,7 +438,8 @@ namespace MaterialDesignThemes.Wpf
 
         private static SnackbarMessage Create(SnackbarMessageQueueItem messageQueueItem)
         {
-            return new SnackbarMessage {
+            return new SnackbarMessage
+            {
                 Content = messageQueueItem.Content,
                 ActionContent = messageQueueItem.ActionContent
             };

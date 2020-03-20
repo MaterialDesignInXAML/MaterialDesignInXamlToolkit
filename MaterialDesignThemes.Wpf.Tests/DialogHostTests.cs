@@ -186,10 +186,12 @@ namespace MaterialDesignThemes.Wpf.Tests
                 closingCount++;
             }));
 
-            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left) {
+            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left)
+            {
                 RoutedEvent = UIElement.MouseLeftButtonUpEvent
             });
-            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left) {
+            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left)
+            {
                 RoutedEvent = UIElement.MouseLeftButtonUpEvent
             });
 

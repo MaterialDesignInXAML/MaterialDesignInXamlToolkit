@@ -91,7 +91,8 @@ namespace MaterialDesignThemes.Wpf
             DependencyObject d, double horizontalChange, double verticalChange)
         {
             var instance = (ClockItemButton)d;
-            var dragDeltaEventArgs = new DragDeltaEventArgs(horizontalChange, verticalChange) {
+            var dragDeltaEventArgs = new DragDeltaEventArgs(horizontalChange, verticalChange)
+            {
                 RoutedEvent = DragDeltaEvent,
                 Source = d
             };
@@ -116,7 +117,8 @@ namespace MaterialDesignThemes.Wpf
         private static void OnDragStarted(DependencyObject d, double horizontalOffset, double verticalOffset)
         {
             var instance = (ClockItemButton)d;
-            var dragStartedEventArgs = new DragStartedEventArgs(horizontalOffset, verticalOffset) {
+            var dragStartedEventArgs = new DragStartedEventArgs(horizontalOffset, verticalOffset)
+            {
                 RoutedEvent = DragStartedEvent,
                 Source = d
             };
@@ -127,7 +129,8 @@ namespace MaterialDesignThemes.Wpf
         private static void OnDragCompleted(DependencyObject d, double horizontalChange, double verticalChange, bool canceled)
         {
             var instance = (ClockItemButton)d;
-            var dragCompletedEventArgs = new DragCompletedEventArgs(horizontalChange, verticalChange, canceled) {
+            var dragCompletedEventArgs = new DragCompletedEventArgs(horizontalChange, verticalChange, canceled)
+            {
                 RoutedEvent = DragCompletedEvent,
                 Source = d
             };

@@ -138,7 +138,8 @@ namespace MaterialDesignThemes.Wpf
             var instance = (Flipper)d;
             var args = new RoutedPropertyChangedEventArgs<bool>(
                     (bool)e.OldValue,
-                    (bool)e.NewValue) { RoutedEvent = IsFlippedChangedEvent };
+                    (bool)e.NewValue)
+            { RoutedEvent = IsFlippedChangedEvent };
             instance.RaiseEvent(args);
         }
 

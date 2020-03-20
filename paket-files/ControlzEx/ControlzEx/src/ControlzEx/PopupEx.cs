@@ -332,7 +332,8 @@ namespace ControlzEx
 
             public static RECT Union(RECT rect1, RECT rect2)
             {
-                return new RECT {
+                return new RECT
+                {
                     Left = Math.Min(rect1.Left, rect2.Left),
                     Top = Math.Min(rect1.Top, rect2.Top),
                     Right = Math.Max(rect1.Right, rect2.Right),

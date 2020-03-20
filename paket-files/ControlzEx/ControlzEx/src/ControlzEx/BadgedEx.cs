@@ -93,7 +93,8 @@ namespace ControlzEx
 
             var args = new RoutedPropertyChangedEventArgs<object>(
                 e.OldValue,
-                e.NewValue) { RoutedEvent = BadgeChangedEvent };
+                e.NewValue)
+            { RoutedEvent = BadgeChangedEvent };
             instance.RaiseEvent(args);
         }
 

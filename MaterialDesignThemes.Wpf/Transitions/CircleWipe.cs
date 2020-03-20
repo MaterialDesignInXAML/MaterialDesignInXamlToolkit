@@ -22,7 +22,8 @@ namespace MaterialDesignThemes.Wpf.Transitions
             var transformGroup = new TransformGroup();
             transformGroup.Children.Add(scaleTransform);
             transformGroup.Children.Add(translateTransform);
-            var ellipseGeomotry = new EllipseGeometry() {
+            var ellipseGeomotry = new EllipseGeometry()
+            {
                 RadiusX = radius,
                 RadiusY = radius,
                 Transform = transformGroup
