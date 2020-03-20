@@ -72,5 +72,10 @@ namespace MaterialDesignColors.WpfExample
                 }
             }
         }
+
+        private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            DemoItemsSearchBox.Focus();
+        }
     }
 }
