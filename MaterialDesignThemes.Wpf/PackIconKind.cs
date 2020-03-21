@@ -4047,6 +4047,8 @@ namespace MaterialDesignThemes.Wpf
         FormatWrapSquare,
         FormatWrapTight,
         FormatWrapTopBottom,
+        FormDropdown,
+        FormSelect,
         Forum,
         MessageGroup=Forum,
         QuestionAnswer=Forum,
