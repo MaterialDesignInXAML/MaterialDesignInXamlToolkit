@@ -20,16 +20,6 @@
                 Grid.Row="1"
                 Visibility="{Binding Path=(wpf:ScrollViewerAssist.CornerRectangleVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
 
-            <Separator 
-                x:Name="PART_TopSeparator" 
-                Background="{DynamicResource MaterialDesignSelection}"
-                Grid.Column="0" 
-                Grid.Row="0"
-                Opacity="0.4"
-                Margin="0"
-                VerticalAlignment="Top"
-                Visibility="Hidden"/>
-
             <ScrollContentPresenter 
                 x:Name="PART_ScrollContentPresenter" 
                 CanContentScroll="{TemplateBinding CanContentScroll}"
@@ -39,6 +29,16 @@
                 Grid.Column="0"
                 Margin="{TemplateBinding Padding}"
                 Grid.Row="0"/>
+
+            <Separator 
+                x:Name="PART_TopSeparator" 
+                Background="{DynamicResource MaterialDesignSelection}"
+                Grid.Column="0" 
+                Grid.Row="0"
+                Opacity="0.4"
+                Margin="0"
+                VerticalAlignment="Top"
+                Visibility="Visible"/>
 
             <Separator 
                 x:Name="PART_BottomSeparator"
