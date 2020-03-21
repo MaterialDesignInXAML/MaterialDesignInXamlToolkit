@@ -170,6 +170,45 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
+        public static readonly DependencyProperty CornerRadiusProperty
+            = DependencyProperty.Register(
+                nameof(CornerRadius),
+                typeof(CornerRadius),
+                typeof(ComboBoxPopup),
+                new FrameworkPropertyMetadata(default(CornerRadius)));
+
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
+        public static readonly DependencyProperty ContentMarginProperty
+            = DependencyProperty.Register(
+                nameof(ContentMargin),
+                typeof(Thickness),
+                typeof(ComboBoxPopup),
+                new FrameworkPropertyMetadata(default(Thickness)));
+
+        public Thickness ContentMargin
+        {
+            get { return (Thickness)GetValue(ContentMarginProperty); }
+            set { SetValue(ContentMarginProperty, value); }
+        }
+
+        public static readonly DependencyProperty ContentMinWidthProperty
+            = DependencyProperty.Register(
+                nameof(ContentMinWidth),
+                typeof(double),
+                typeof(ComboBoxPopup),
+                new FrameworkPropertyMetadata(default(double)));
+
+        public double ContentMinWidth
+        {
+            get { return (double)GetValue(ContentMinWidthProperty); }
+            set { SetValue(ContentMinWidthProperty, value); }
+        }
+
         public ComboBoxPopup()
         {
             CustomPopupPlacementCallback = ComboBoxCustomPopupPlacementCallback;
