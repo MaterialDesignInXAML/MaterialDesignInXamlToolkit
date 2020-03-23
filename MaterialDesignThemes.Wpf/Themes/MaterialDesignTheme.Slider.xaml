@@ -177,15 +177,21 @@
             </Grid.RowDefinitions>
             <Viewbox x:Name="Pin" RenderTransformOrigin=".5,1">
                 <Grid>
-                    <Path Data="M13.437011,33.065002 C9.7268463,29.334181 7.812011,26.379009 4.874511,23.379009 1.687011,19.566509 0.12600673,17.206803 5.6843419E-14,14.127608 0.062010996,2.0027046 11.158781,-0.062991121 13.43702,0.0014351187 M13.438011,33.065016 C17.148173,29.334199 19.063008,26.379023 22.00051,23.379017 25.188007,19.566519 26.749013,17.206806 26.875018,14.127613 26.813007,2.002704 15.716239,-0.062987381 13.438,0.0014388781"
-                          Fill="{TemplateBinding Foreground}"
-                          Grid.Row="0" Margin="-7,2,-8,4" />
-                    <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=Value}" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"
-                               FontWeight="Normal" FontSize="11"
-                               Margin="-7 -6 -7 0"/>
-                </Grid>
-                <Viewbox.RenderTransform>
+                  <Path Data="M13.437011,33.065002 C9.7268463,29.334181 7.812011,26.379009 4.874511,23.379009 1.687011,19.566509 0.12600673,17.206803 5.6843419E-14,14.127608 0.062010996,2.0027046 11.158781,-0.062991121 13.43702,0.0014351187 M13.438011,33.065016 C17.148173,29.334199 19.063008,26.379023 22.00051,23.379017 25.188007,19.566519 26.749013,17.206806 26.875018,14.127613 26.813007,2.002704 15.716239,-0.062987381 13.438,0.0014388781"
+                        Fill="{TemplateBinding Foreground}"
+                        Grid.Row="0" Margin="-7,2,-8,4" />
+                  <Viewbox Grid.Row="0" Width="25"
+                     Margin="-7,-6,-7,0"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Stretch="Uniform">
+                       <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=Value}"
+                                  Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                  MinWidth="20" TextAlignment="Center"
+                                  FontWeight="Normal" FontSize="11"/>
+                  </Viewbox>
+               </Grid>
+            <Viewbox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="0" ScaleY="0" />
                         <TranslateTransform Y="4" />
@@ -363,11 +369,16 @@
                     <Path Data="M33.065002,13.437011 C29.334181,9.7268463 26.379009,7.812011 23.379009,4.874511 19.566509,1.687011 17.206803,0.12600673 14.127608,5.6843419E-14 2.0027046,0.062010996 -0.062991121,11.158781 0.0014351187,13.43702 M33.065016,13.438011 C29.334199,17.148173 26.379023,19.063008 23.379017,22.00051 19.566519,25.188007 17.206806,26.749013 14.127613,26.875018 2.002704,26.813007 -0.062987381,15.716239 0.0014388781,13.438"
                           Fill="{TemplateBinding Foreground}"
                           Grid.Row="0" Margin="-2,-7,6,-8" />
-                    <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=Value}" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"
-                               FontWeight="Normal" FontSize="11"
-                               Margin="-8 -7 8 -7"/>
-                </Grid>
+                     <Viewbox Grid.Row="0" Width="25"
+                              Margin="-8 -7 8 -7"
+                              HorizontalAlignment="Center" VerticalAlignment="Center">
+                          <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=Value}"
+                                     Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                     MinWidth="20"
+                                     TextAlignment="Center"
+                                     FontWeight="Normal" FontSize="11"/>
+                     </Viewbox>
+               </Grid>
                 <Viewbox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="0" ScaleY="0" />
