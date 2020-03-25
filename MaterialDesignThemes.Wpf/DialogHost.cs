@@ -628,17 +628,6 @@ namespace MaterialDesignThemes.Wpf
             return child;
         }
 
-        protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
-        {
-            var window = Window.GetWindow(this);
-            if (window != null && !window.IsActive)
-            {
-                window.Activate();
-                window.Focus();
-            }
-            base.OnPreviewMouseDown(e);
-        }
-
         private void ContentCoverGridOnMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             if (CloseOnClickAway && CurrentSession != null)
