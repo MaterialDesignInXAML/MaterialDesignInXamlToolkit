@@ -68,9 +68,7 @@ namespace MaterialDesignThemes.Wpf
         private DialogOpenedEventHandler _attachedDialogOpenedEventHandler;
         private DialogClosingEventHandler _attachedDialogClosingEventHandler;
         private IInputElement _restoreFocusDialogClose;
-        private IInputElement _restoreFocusWindowReactivation;
         private Action _currentSnackbarMessageQueueUnPauseAction;
-        private Action _closeCleanUp = () => { };
 
         static DialogHost()
         {
@@ -241,7 +239,6 @@ namespace MaterialDesignThemes.Wpf
 
             if (dialogHost.IsOpen)
             {
-                WatchWindowActivation(dialogHost);
                 dialogHost._currentSnackbarMessageQueueUnPauseAction = dialogHost.SnackbarMessageQueue?.Pause();
             }
             else
@@ -254,7 +251,6 @@ namespace MaterialDesignThemes.Wpf
                 }
                 dialogHost.CurrentSession.IsEnded = true;
                 dialogHost.CurrentSession = null;
-                dialogHost._closeCleanUp();
                 //NB: _dialogTaskCompletionSource is only set in the case where the dialog is shown with Show
                 //To get into this case you need to display the dialog with Show and then hide it by setting IsOpen to false
                 //Setting this here ensures the other 
@@ -627,6 +623,14 @@ namespace MaterialDesignThemes.Wpf
 
             return child;
         }
+        
+        protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            if (window != null && !window.IsActive)
+                window.Activate();
+            base.OnPreviewMouseDown(e);
+        }
 
         private void ContentCoverGridOnMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
@@ -704,39 +708,5 @@ namespace MaterialDesignThemes.Wpf
             LoadedInstances.Add(this);
         }
 
-        private static void WatchWindowActivation(DialogHost dialogHost)
-        {
-            var window = Window.GetWindow(dialogHost);
-            if (window != null)
-            {
-                window.Activated += dialogHost.WindowOnActivated;
-                window.Deactivated += dialogHost.WindowOnDeactivated;
-                dialogHost._closeCleanUp = () =>
-                {
-                    window.Activated -= dialogHost.WindowOnActivated;
-                    window.Deactivated -= dialogHost.WindowOnDeactivated;
-                };
-            }
-            else
-            {
-                dialogHost._closeCleanUp = () => { };
-            }
-        }
-
-        private void WindowOnDeactivated(object sender, EventArgs eventArgs)
-        {
-            _restoreFocusWindowReactivation = _popup != null ? FocusManager.GetFocusedElement((Window)sender) : null;
-        }
-
-        private void WindowOnActivated(object sender, EventArgs eventArgs)
-        {
-            if (_restoreFocusWindowReactivation != null)
-            {
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    Keyboard.Focus(_restoreFocusWindowReactivation);
-                }));
-            }
-        }
     }
 }
