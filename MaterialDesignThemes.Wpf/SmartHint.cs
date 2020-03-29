@@ -136,13 +136,6 @@ namespace MaterialDesignThemes.Wpf
             DefaultStyleKeyProperty.OverrideMetadata(typeof(SmartHint), new FrameworkPropertyMetadata(typeof(SmartHint)));
         }
 
-        public SmartHint()
-        {
-            IsHitTestVisible = false;
-            HorizontalAlignment = HorizontalAlignment.Left;
-            VerticalAlignment = VerticalAlignment.Top;
-        }
-
         private static void HintProxyPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var smartHint = dependencyObject as SmartHint;

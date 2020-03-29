@@ -738,7 +738,6 @@
                 CornerRadius="{Binding Path=(wpf:TextFieldAssist.TextFieldCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                 Background="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}"
                 BorderThickness="1"
-                Padding="0,8,0,0"
                 SnapsToDevicePixels="True">
             <Grid x:Name="InnerRoot">
                 <Grid.ColumnDefinitions>
@@ -753,16 +752,16 @@
                               IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                               Style="{StaticResource MaterialDesignComboBoxToggleButton}"
                               Padding="{TemplateBinding Padding}"/>
-                <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                      Margin="{TemplateBinding Padding}"
+                <Grid Margin="{TemplateBinding Padding}"
                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                       UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Grid x:Name="InputRoot">
+                    <Grid x:Name="InputRoot" 
+                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                         <ContentPresenter x:Name="contentPresenter"
                                           Content="{TemplateBinding SelectionBoxItem}"
                                           ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
@@ -776,18 +775,19 @@
                                  Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
                                  CaretBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}"
                                  Visibility="Collapsed" />
-
-                        <wpf:SmartHint x:Name="Hint"
-                                       HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                       UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                       UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
-                                       FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
-                                       FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"
-                                       HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                                       Hint="{TemplateBinding wpf:HintAssist.Hint}" />
                     </Grid>
+                    <wpf:SmartHint x:Name="Hint"
+                                   HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                   UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                   UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                   FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
+                                   FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"
+                                   HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                   Hint="{TemplateBinding wpf:HintAssist.Hint}"
+                                   VerticalAlignment="Stretch"
+                                   VerticalContentAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top">
                         <TextBlock
                             FontSize="{TemplateBinding FontSize}"
@@ -877,7 +877,7 @@
                 <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
-                <Setter TargetName="InnerRoot" Property="Margin" Value="0 12 0 0" />
+                <Setter TargetName="InputRoot" Property="Margin" Value="0 16 0 0" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -1075,9 +1075,11 @@
         <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:HintAssist.IsFloating" Value="True" />
+        <Setter Property="wpf:HintAssist.FloatingOffset" Value="0,-8" />
         <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="False" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        <Setter Property="Padding" Value="8,4,8,6" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="12,8,8,8" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFilledComboBoxTemplate}" />
     </Style>
 

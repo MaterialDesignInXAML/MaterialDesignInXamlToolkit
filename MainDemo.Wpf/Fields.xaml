@@ -457,10 +457,17 @@
         <TextBlock Grid.Row="18" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="0,32,0,16">Filled ComboBox</TextBlock>
         <smtx:XamlDisplay Key="fields_filled_combobox" Grid.Row="19" Grid.Column="1" Grid.ColumnSpan="3">
             <StackPanel>
-                <CheckBox x:Name="MaterialDesignFilledComboBoxEnabledComboBox"
-                          IsChecked="True" Margin="0,0,0,8">Enabled</CheckBox>
-                <ComboBox Style="{StaticResource MaterialDesignFilledComboBox}"
-                          VerticalAlignment="Top"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="MaterialDesignFilledComboBoxEnabledComboBox"
+                          IsChecked="True" Margin="0,0,0,8" Content="Enabled"/>
+                    <Button Content="Clear" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Right" 
+                            Grid.Column="1" Click="ClearFilledComboBox_Click"/>
+                </Grid>
+                <ComboBox Style="{StaticResource MaterialDesignFilledComboBox}" x:Name="FilledComboBx"
                           IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledComboBoxEnabledComboBox}"
                           materialDesign:HintAssist.Hint="Some item">
                     <ComboBoxItem Content="Item 1" />

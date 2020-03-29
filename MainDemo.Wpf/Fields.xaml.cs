@@ -20,5 +20,10 @@ namespace MaterialDesignColors.WpfExample
         {
             Link.OpenInBrowser(e.Uri.AbsoluteUri);
         }
+
+        private void ClearFilledComboBox_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            FilledComboBx.SelectedItem = null;
+        }
     }
 }
