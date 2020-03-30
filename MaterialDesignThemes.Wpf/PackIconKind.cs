@@ -4148,6 +4148,8 @@ namespace MaterialDesignThemes.Wpf
         LocalGasStation=GasStation,
         PetrolPump=GasStation,
         PetrolStation=GasStation,
+        GasStationOff,
+        GasStationOffOutline,
         GasStationOutline,
         FuelPumpOutline=GasStationOutline,
         FuelStationOutline=GasStationOutline,
