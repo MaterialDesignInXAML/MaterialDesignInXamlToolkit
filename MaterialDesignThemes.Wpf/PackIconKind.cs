@@ -2948,6 +2948,7 @@ namespace MaterialDesignThemes.Wpf
         CursorHand=CursorPointer,
         CursorText,
         Database,
+        Storage=Database,
         DatabaseCheck,
         DatabaseTick=DatabaseCheck,
         DatabaseEdit,
