@@ -484,7 +484,7 @@
                             Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                             Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}"
                             />
-                        <Button x:Name="PART_ClearButton" Height="Auto" Padding="2,0,-6,0" Style="{DynamicResource MaterialDesignToolButton}">
+                        <Button x:Name="PART_ClearButton" Height="Auto" Padding="2,0,-6,0" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
                             <Button.Visibility>
                                 <MultiBinding Converter="{StaticResource ClearTextConverter}">
                                     <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}"/>
@@ -794,7 +794,7 @@
                             Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                             Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}"
                             />
-                        <Button x:Name="PART_ClearButton" Height="Auto" Padding="2,0,-6,0" Style="{DynamicResource MaterialDesignToolButton}">
+                        <Button x:Name="PART_ClearButton" Height="Auto" Padding="2,0,-6,0" Style="{DynamicResource MaterialDesignToolButton}" Focusable="false">
                             <Button.Visibility>
                                 <MultiBinding Converter="{StaticResource ClearTextConverter}">
                                     <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}"/>
