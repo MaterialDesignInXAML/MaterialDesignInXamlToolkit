@@ -375,6 +375,7 @@
                         <DatePickerTextBox x:Name="PART_TextBox"
                                            Grid.Column="0"
                                            Focusable="{TemplateBinding Focusable}"
+                                           Background="{TemplateBinding Background}"
                                            Grid.Row="0"
                                            Padding="0,0,8,0"
                                            VerticalContentAlignment="Center"
