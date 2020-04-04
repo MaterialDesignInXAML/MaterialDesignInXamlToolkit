@@ -1,0 +1,22 @@
+﻿<FileList>
+  <File Reference = "MaterialDesignThemes.Wpf.dll">
+    <ToolboxItems VSCategory="MaterialDesignThemes.Wpf" BlendCategory="MaterialDesignThemes.Wpf">
+      <Item Type="MaterialDesignThemes.Wpf.Badged" />
+      <Item Type="MaterialDesignThemes.Wpf.Card" />
+      <Item Type="MaterialDesignThemes.Wpf.Chip" />
+      <Item Type="MaterialDesignThemes.Wpf.Clock" />
+      <Item Type="MaterialDesignThemes.Wpf.ColorPicker" />
+      <Item Type="MaterialDesignThemes.Wpf.ColorZone" />
+      <Item Type="MaterialDesignThemes.Wpf.DataGridComboBoxColumn" />
+      <Item Type="MaterialDesignThemes.Wpf.DataGridTextColumn" />
+      <Item Type="MaterialDesignThemes.Wpf.DialogHost" />
+      <Item Type="MaterialDesignThemes.Wpf.DrawerHost" />
+      <Item Type="MaterialDesignThemes.Wpf.Flipper" />
+      <Item Type="MaterialDesignThemes.Wpf.PackIcon" />
+      <Item Type="MaterialDesignThemes.Wpf.PopupBox" />
+      <Item Type="MaterialDesignThemes.Wpf.RatingBar" />
+      <Item Type="MaterialDesignThemes.Wpf.Snackbar" />
+      <Item Type="MaterialDesignThemes.Wpf.TimePicker" />
+    </ToolboxItems>
+  </File>
+</FileList>
