@@ -28,5 +28,6 @@
     <file src="MaterialDesignThemes.Wpf\bin\$configuration$\netcoreapp3.1\MaterialDesignThemes.Wpf.*" target="lib\netcoreapp3.1" exclude="**\*.json" />
     <file src="MaterialDesignThemes.Wpf\Resources\Roboto\*.ttf" target="build\Resources\Roboto" />
     <file src="MaterialDesignThemes.Wpf\MaterialDesignThemes.targets" target="build" />
+    <file src="MaterialDesignThemes.Wpf\VisualStudioToolsManifest.xml" target="tools"/>
   </files>
 </package>
