@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace MaterialDesignColors.WpfExample.Domain
 {
-    
+
     public class SelectableViewModel : INotifyPropertyChanged
     {
         private bool _isSelected;

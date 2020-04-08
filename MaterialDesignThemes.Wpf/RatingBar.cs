@@ -87,8 +87,8 @@ namespace MaterialDesignThemes.Wpf
             var instance = (RatingBar)d;
             var args = new RoutedPropertyChangedEventArgs<int>(
                     (int)e.OldValue,
-                    (int)e.NewValue) 
-                { RoutedEvent = ValueChangedEvent };
+                    (int)e.NewValue)
+            { RoutedEvent = ValueChangedEvent };
             instance.RaiseEvent(args);
         }
 

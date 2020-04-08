@@ -13,7 +13,7 @@ namespace MaterialDesignThemes.Wpf
 
             var location = element.TransformToAncestor(parent).Transform(new Point(0, 0));
 
-            int width = (int) Math.Floor(element.ActualWidth);
+            int width = (int)Math.Floor(element.ActualWidth);
             var hitTest = parent.InputHitTest(new Point(location.X + width, location.Y));
 
             if (IsAncestorTill(hitTest as FrameworkElement, element, parent))
@@ -22,12 +22,12 @@ namespace MaterialDesignThemes.Wpf
             }
 
             //BinarySearch here
-            int end = (int) Math.Floor(element.ActualWidth);
+            int end = (int)Math.Floor(element.ActualWidth);
             int start = 0;
 
             while (start < end)
             {
-                width = (end + start)/2;
+                width = (end + start) / 2;
                 hitTest = parent.InputHitTest(new Point(location.X + width, location.Y));
 
                 if (IsAncestorTill(hitTest as FrameworkElement, element, parent))

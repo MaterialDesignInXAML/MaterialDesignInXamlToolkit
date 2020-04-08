@@ -13,7 +13,8 @@ namespace MaterialDesignThemes.Wpf.Converters
             var solidColorBrush = value as SolidColorBrush;
             if (solidColorBrush == null) return Binding.DoNothing;
 
-            return new RadialGradientBrush(solidColorBrush.Color, Colors.Transparent) {
+            return new RadialGradientBrush(solidColorBrush.Color, Colors.Transparent)
+            {
                 Center = new Point(.5, .5),
                 GradientOrigin = new Point(.5, .5),
                 RadiusX = .75,

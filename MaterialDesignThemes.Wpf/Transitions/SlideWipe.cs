@@ -6,7 +6,7 @@ using System.Windows.Media.Animation;
 namespace MaterialDesignThemes.Wpf.Transitions
 {
     public class SlideWipe : ITransitionWipe
-    {        
+    {
         private readonly SineEase _sineEase = new SineEase();
 
         /// <summary>

@@ -21,7 +21,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
             // Set up time points
             var zeroKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
-            var endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(Duration.TotalSeconds/2));
+            var endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(Duration.TotalSeconds / 2));
 
             // From
             var fromAnimation = new DoubleAnimationUsingKeyFrames();

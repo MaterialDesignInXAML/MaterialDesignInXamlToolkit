@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 
-using WPFVisualTreeHelper= System.Windows.Media.VisualTreeHelper;
+using WPFVisualTreeHelper = System.Windows.Media.VisualTreeHelper;
 
 namespace MaterialDesignThemes.Wpf.Tests
 {

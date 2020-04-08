@@ -31,7 +31,7 @@ namespace MaterialDesignDemo.Domain
             {
                 DataContext = new SampleDialogViewModel()
             };
-            
+
             //show the dialog
             var result = await DialogHost.Show(view, "RootDialog", ClosingEventHandler);
 

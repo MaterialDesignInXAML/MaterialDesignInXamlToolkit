@@ -67,11 +67,11 @@ namespace MaterialDesignThemes.Wpf.Tests
             //for now just using the same set of data to make sure we can go both directions.
             foreach (object[] data in GetDisplaysExpectedTextData())
             {
-                var culture = (CultureInfo) data[0];
-                bool is24Hour = (bool) data[2];
-                var withSeconds = (bool) data[3];
-                var date = (DateTime) data[4];
-                var timeString = (string) data[5];
+                var culture = (CultureInfo)data[0];
+                bool is24Hour = (bool)data[2];
+                var withSeconds = (bool)data[3];
+                var date = (DateTime)data[4];
+                var timeString = (string)data[5];
 
                 //Convert the date to Today
                 date = DateTime.MinValue.AddHours(date.Hour).AddMinutes(date.Minute).AddSeconds(withSeconds ? date.Second : 0);

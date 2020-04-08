@@ -7,7 +7,7 @@ namespace MaterialDesignDemo.Domain
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if( value is bool && (bool) value)
+            if (value is bool && (bool)value)
             {
                 return ValidationResult.ValidResult;
             }

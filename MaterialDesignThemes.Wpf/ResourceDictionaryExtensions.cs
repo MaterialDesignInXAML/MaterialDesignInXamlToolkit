@@ -103,7 +103,7 @@ namespace MaterialDesignThemes.Wpf
             }
 
             //Attempt to simply look up the appropriate resources
-            return new Theme 
+            return new Theme
             {
                 PrimaryLight = new ColorPair(GetColor("PrimaryHueLightBrush"), GetColor("PrimaryHueLightForegroundBrush")),
                 PrimaryMid = new ColorPair(GetColor("PrimaryHueMidBrush"), GetColor("PrimaryHueMidForegroundBrush")),
@@ -183,7 +183,8 @@ namespace MaterialDesignThemes.Wpf
 
                 if (!brush.IsFrozen)
                 {
-                    var animation = new ColorAnimation {
+                    var animation = new ColorAnimation
+                    {
                         From = brush.Color,
                         To = value,
                         Duration = new Duration(TimeSpan.FromMilliseconds(300))

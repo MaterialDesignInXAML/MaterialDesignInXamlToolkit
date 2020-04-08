@@ -16,9 +16,9 @@ namespace MaterialDesignThemes.Wpf
         private Border _clipBorder;
 
         static Card()
-		{
+        {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Card), new FrameworkPropertyMetadata(typeof(Card)));
-		}
+        }
 
         public override void OnApplyTemplate()
         {
@@ -36,7 +36,7 @@ namespace MaterialDesignThemes.Wpf
             var farPoint = new Point(
                 Math.Max(0, _clipBorder.ActualWidth),
                 Math.Max(0, _clipBorder.ActualHeight));
-            
+
             var clipRect = new Rect(
                 new Point(),
                 new Point(farPoint.X, farPoint.Y));
@@ -45,25 +45,25 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty UniformCornerRadiusProperty = DependencyProperty.Register(
-            nameof(UniformCornerRadius), typeof (double), typeof (Card), new FrameworkPropertyMetadata(2.0, FrameworkPropertyMetadataOptions.AffectsMeasure));
+            nameof(UniformCornerRadius), typeof(double), typeof(Card), new FrameworkPropertyMetadata(2.0, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public double UniformCornerRadius
         {
-            get { return (double) GetValue(UniformCornerRadiusProperty); }
+            get { return (double)GetValue(UniformCornerRadiusProperty); }
             set { SetValue(UniformCornerRadiusProperty, value); }
         }
 
         private static readonly DependencyPropertyKey ContentClipPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "ContentClip", typeof (Geometry), typeof (Card),
+                "ContentClip", typeof(Geometry), typeof(Card),
                 new PropertyMetadata(default(Geometry)));
 
         public static readonly DependencyProperty ContentClipProperty =
-            ContentClipPropertyKey.DependencyProperty;        
+            ContentClipPropertyKey.DependencyProperty;
 
         public Geometry ContentClip
         {
-            get { return (Geometry) GetValue(ContentClipProperty); }
+            get { return (Geometry)GetValue(ContentClipProperty); }
             private set { SetValue(ContentClipPropertyKey, value); }
         }
     }

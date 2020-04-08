@@ -120,7 +120,7 @@ namespace MaterialDesignThemes.Wpf
         #region RippleOnTop
 
         public static readonly DependencyProperty RippleOnTopProperty = DependencyProperty.RegisterAttached(
-            "RippleOnTop", typeof(bool), typeof(RippleAssist), 
+            "RippleOnTop", typeof(bool), typeof(RippleAssist),
             new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static void SetRippleOnTop(DependencyObject element, bool value)

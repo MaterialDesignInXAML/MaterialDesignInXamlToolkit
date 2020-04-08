@@ -146,7 +146,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         public async Task WhenContentIsNullItThrows()
         {
             var ex = await Assert.ThrowsAsync<ArgumentNullException>(() => DialogHost.Show(null));
-            
+
             Assert.Equal("content", ex.ParamName);
         }
 
@@ -163,7 +163,7 @@ namespace MaterialDesignThemes.Wpf.Tests
                     e.Cancel();
                 }
             }
-            
+
             var dialogTask = DialogHost.Show("Content", ClosingHandler);
             _dialogHost.CurrentSession.Close("FirstResult");
             _dialogHost.CurrentSession.Close("SecondResult");
@@ -186,10 +186,12 @@ namespace MaterialDesignThemes.Wpf.Tests
                 closingCount++;
             }));
 
-            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left) {
+            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left)
+            {
                 RoutedEvent = UIElement.MouseLeftButtonUpEvent
             });
-            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left) {
+            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left)
+            {
                 RoutedEvent = UIElement.MouseLeftButtonUpEvent
             });
 

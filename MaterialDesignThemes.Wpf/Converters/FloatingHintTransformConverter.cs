@@ -14,7 +14,7 @@ namespace MaterialDesignThemes.Wpf.Converters
                 values[0] is double scale &&
                 values[1] is Point floatingOffset)
             {
-                return new TranslateTransform 
+                return new TranslateTransform
                 {
                     X = scale * floatingOffset.X,
                     Y = scale * floatingOffset.Y

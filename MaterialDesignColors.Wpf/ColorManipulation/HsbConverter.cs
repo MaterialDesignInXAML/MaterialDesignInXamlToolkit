@@ -82,7 +82,7 @@ namespace MaterialDesignColors.ColorManipulation
             return new Hsb(h, s, v);
         }
 
-        private static bool IsCloseTo(this double value, double target, double tolerance = double.Epsilon) 
+        private static bool IsCloseTo(this double value, double target, double tolerance = double.Epsilon)
             => Math.Abs(value - target) < tolerance;
     }
 }

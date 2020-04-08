@@ -51,7 +51,8 @@ namespace MaterialDesignColors.WpfExample
 
         private async void MenuPopupButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var sampleMessageDialog = new SampleMessageDialog {
+            var sampleMessageDialog = new SampleMessageDialog
+            {
                 Message = { Text = ((ButtonBase)sender).Content.ToString() }
             };
 

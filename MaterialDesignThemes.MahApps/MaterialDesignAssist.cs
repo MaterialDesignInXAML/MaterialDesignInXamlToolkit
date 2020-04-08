@@ -90,7 +90,8 @@ namespace MaterialDesignThemes.MahApps
 
             resourceDictionary.SetBrush("MahApps.Brushes.Thumb", (Color)resourceDictionary["MahApps.Colors.Gray5"]);
 
-            resourceDictionary.SetBrush("MahApps.Brushes.Progress", new LinearGradientBrush {
+            resourceDictionary.SetBrush("MahApps.Brushes.Progress", new LinearGradientBrush
+            {
                 StartPoint = new Point(1.002, 0.5),
                 EndPoint = new Point(0.001, 0.5),
                 GradientStops = new GradientStopCollection
@@ -462,7 +463,8 @@ namespace MaterialDesignThemes.MahApps
 
                 if (!brush.IsFrozen)
                 {
-                    var animation = new ColorAnimation {
+                    var animation = new ColorAnimation
+                    {
                         From = brush.Color,
                         To = value,
                         Duration = new Duration(TimeSpan.FromMilliseconds(300))

@@ -115,7 +115,7 @@ namespace MaterialDesignThemes.Wpf
 
         public Brush Background
         {
-            get { return (Brush) GetValue(BackgroundProperty); }
+            get { return (Brush)GetValue(BackgroundProperty); }
             set { SetValue(BackgroundProperty, value); }
         }
 
@@ -212,7 +212,7 @@ namespace MaterialDesignThemes.Wpf
         public ComboBoxPopup()
         {
             CustomPopupPlacementCallback = ComboBoxCustomPopupPlacementCallback;
-            
+
         }
 
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)

@@ -32,7 +32,7 @@ namespace MahMaterialDragablzMashUp
             };
 
             var styleKey = alternate ? "MaterialDesignAlternateTabablzControlStyle" : "MaterialDesignTabablzControlStyle";
-            var style = (Style) resourceDictionary[styleKey];
+            var style = (Style)resourceDictionary[styleKey];
 
             foreach (var tabablzControl in Dragablz.TabablzControl.GetLoadedInstances())
             {

@@ -44,7 +44,7 @@ namespace MaterialDesignThemes.Wpf
 
         public DataTemplate FrontContentTemplate
         {
-            get => (DataTemplate) GetValue(FrontContentTemplateProperty);
+            get => (DataTemplate)GetValue(FrontContentTemplateProperty);
             set => SetValue(FrontContentTemplateProperty, value);
         }
 
@@ -53,7 +53,7 @@ namespace MaterialDesignThemes.Wpf
 
         public DataTemplateSelector FrontContentTemplateSelector
         {
-            get => (DataTemplateSelector) GetValue(FrontContentTemplateSelectorProperty);
+            get => (DataTemplateSelector)GetValue(FrontContentTemplateSelectorProperty);
             set => SetValue(FrontContentTemplateSelectorProperty, value);
         }
 
@@ -62,7 +62,7 @@ namespace MaterialDesignThemes.Wpf
 
         public string FrontContentStringFormat
         {
-            get => (string) GetValue(FrontContentStringFormatProperty);
+            get => (string)GetValue(FrontContentStringFormatProperty);
             set => SetValue(FrontContentStringFormatProperty, value);
         }
 
@@ -71,7 +71,7 @@ namespace MaterialDesignThemes.Wpf
 
         public object BackContent
         {
-            get => (object) GetValue(BackContentProperty);
+            get => (object)GetValue(BackContentProperty);
             set => SetValue(BackContentProperty, value);
         }
 
@@ -109,13 +109,13 @@ namespace MaterialDesignThemes.Wpf
         {
             var flipper = (Flipper)dependencyObject;
             flipper.UpdateVisualStates(true);
-            flipper.RemeasureDuringFlip();            
+            flipper.RemeasureDuringFlip();
             OnIsFlippedChanged(flipper, dependencyPropertyChangedEventArgs);
-        }        
+        }
 
         public bool IsFlipped
         {
-            get => (bool) GetValue(IsFlippedProperty);
+            get => (bool)GetValue(IsFlippedProperty);
             set => SetValue(IsFlippedProperty, value);
         }
 
@@ -139,7 +139,7 @@ namespace MaterialDesignThemes.Wpf
             var args = new RoutedPropertyChangedEventArgs<bool>(
                     (bool)e.OldValue,
                     (bool)e.NewValue)
-                { RoutedEvent = IsFlippedChangedEvent };
+            { RoutedEvent = IsFlippedChangedEvent };
             instance.RaiseEvent(args);
         }
 
@@ -150,7 +150,7 @@ namespace MaterialDesignThemes.Wpf
             UpdateVisualStates(false);
 
             _plane3D = GetTemplateChild(Plane3DPartName) as Plane3D;
-        }        
+        }
 
         private void RemeasureDuringFlip()
         {
@@ -158,7 +158,7 @@ namespace MaterialDesignThemes.Wpf
             const int storyboardMs = 400;
             const int granularity = 6;
 
-            var remeasureInterval = new TimeSpan(0, 0, 0, 0, storyboardMs/granularity);
+            var remeasureInterval = new TimeSpan(0, 0, 0, 0, storyboardMs / granularity);
             var refreshCount = 0;
             var plane3D = _plane3D;
             if (plane3D == null) return;
@@ -182,7 +182,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void FlipHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
-            SetCurrentValue(IsFlippedProperty, !IsFlipped);            
+            SetCurrentValue(IsFlippedProperty, !IsFlipped);
         }
     }
 }

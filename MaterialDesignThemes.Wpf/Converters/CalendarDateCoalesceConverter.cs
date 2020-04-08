@@ -20,7 +20,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             if (!(values[0] is DateTime)) throw new ArgumentException("Unexpected", "values");
             if (values[1] != null && !(values[1] is DateTime?)) throw new ArgumentException("Unexpected", "values");
 
-            var selectedDate = (DateTime?) values[1];
+            var selectedDate = (DateTime?)values[1];
 
             return selectedDate ?? values[0];
         }

@@ -90,7 +90,7 @@ namespace MaterialDesignDemo.Domain
                 yield return "Fries";
                 yield return "Shake";
                 yield return "Lettuce";
-            }            
+            }
         }
     }
 }

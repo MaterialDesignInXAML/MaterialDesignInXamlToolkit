@@ -311,8 +311,8 @@ namespace MaterialDesignThemes.Wpf
         private static void RemoveSpellingSuggestions(ContextMenu menu)
         {
             foreach (FrameworkElement item in (from item in menu.Items.OfType<FrameworkElement>()
-                                     where ReferenceEquals(item.Tag, typeof(Spelling))
-                                     select item).ToList())
+                                               where ReferenceEquals(item.Tag, typeof(Spelling))
+                                               select item).ToList())
             {
                 menu.Items.Remove(item);
             }

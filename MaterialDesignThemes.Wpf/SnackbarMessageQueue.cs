@@ -78,7 +78,7 @@ namespace MaterialDesignThemes.Wpf
 
                 }).ContinueWith(t =>
                 {
-                    if (((UIElement) sender).IsMouseOver) return;
+                    if (((UIElement)sender).IsMouseOver) return;
                     lock (_waitHandleGate)
                     {
                         if (!_isWaitHandleDisposed)
@@ -213,7 +213,7 @@ namespace MaterialDesignThemes.Wpf
             if (content == null) throw new ArgumentNullException(nameof(content));
             if (actionContent == null) throw new ArgumentNullException(nameof(actionContent));
             if (actionHandler == null) throw new ArgumentNullException(nameof(actionHandler));
-            
+
             Enqueue(content, actionContent, _ => actionHandler(), promote, false, false);
         }
 

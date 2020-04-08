@@ -69,7 +69,8 @@ namespace MaterialDesignThemes.Wpf.Tests
         {
             var uri = new Uri(
                 $"/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{name}.xaml", UriKind.Relative);
-            return new ResourceDictionary {
+            return new ResourceDictionary
+            {
                 Source = uri
             };
         }
@@ -78,7 +79,8 @@ namespace MaterialDesignThemes.Wpf.Tests
         {
             var uri = new Uri(
                 $"/MaterialDesignThemes.Wpf;component/Themes/Generic.xaml", UriKind.Relative);
-            return new ResourceDictionary {
+            return new ResourceDictionary
+            {
                 Source = uri
             };
         }
