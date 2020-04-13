@@ -9,7 +9,7 @@
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="600"
-             d:DataContext="{d:DesignInstance domain:FieldsViewModelIsDesignTimeCreatable=False}">
+             d:DataContext="{d:DesignInstance domain:FieldsViewModel, IsDesignTimeCreatable=False}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
