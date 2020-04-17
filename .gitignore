@@ -22,6 +22,9 @@ bld/
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 
+# JetBrains Rider
+.idea
+
 # Roslyn cache directories
 *.ide/
 
