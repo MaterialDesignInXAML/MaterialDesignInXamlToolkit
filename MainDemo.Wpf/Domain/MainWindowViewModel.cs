@@ -125,8 +125,16 @@ namespace MaterialDesignColors.WpfExample.Domain
                     new []
                     {
                         DocumentationLink.DemoPageLink<Fields>(),
-                        DocumentationLink.StyleLink("TextBox"),
-                        DocumentationLink.StyleLink("ComboBox"),
+                        DocumentationLink.StyleLink("TextBox")
+                    })
+                    {
+                        VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                    },
+                new DemoItem("ComboBoxes", new ComboBoxes(),
+                    new []
+                    {
+                        DocumentationLink.DemoPageLink<ComboBoxes>(),
+                        DocumentationLink.StyleLink("ComboBox")
                     })
                     {
                         VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
