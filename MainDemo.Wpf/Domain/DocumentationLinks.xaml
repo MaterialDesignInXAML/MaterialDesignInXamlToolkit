@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="MaterialDesignDemo.Domain.DocumentationLinks"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance domain:DemoItem, IsDesignTimeCreatable=True }">
     <UserControl.Resources>
@@ -15,11 +15,11 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type domain:DocumentationLink}">
-                <Button x:Name="Root" ToolTip="Wiki Article" ToolTipService.InitialShowDelay="0" 
+                <Button x:Name="Root" ToolTip="Wiki Article" ToolTipService.InitialShowDelay="0"
                         Style="{DynamicResource MaterialDesignFlatButton}"
                         Command="{Binding Open}">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon x:Name="PackIcon" Kind="BookOpenVariant" />
+                        <materialDesign:PackIcon x:Name="PackIcon" Kind="BookOpenVariant" VerticalAlignment="Center" />
                         <TextBlock Margin="8 0 0 0" Style="{StaticResource MaterialDesignBody1TextBlock}"
                                    Text="{Binding Label, Mode=OneWay}" />
                     </StackPanel>
@@ -58,7 +58,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemContainerStyle>
                         <Style TargetType="ContentPresenter">
-                            <Setter Property="Margin" Value="0 0 32 0"></Setter>
+                            <Setter Property="Margin" Value="0 0 8 0" />
                         </Style>
                     </ItemsControl.ItemContainerStyle>
                 </ItemsControl>
