@@ -11,6 +11,7 @@
 
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" IsNotEmptyValue="Collapsed" />
     <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
+    <converters:MathConverter x:Key="MathSubtractConverter" Operation="Subtract" />
     <converters:MathConverter x:Key="DivisionMathConverter" Operation="Divide" />
     <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
     <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
@@ -77,8 +78,8 @@
                   </Grid.ColumnDefinitions>
                   <Border Grid.Column="0" Width="{StaticResource PopupLeftRightMargin}"/>
                   <Grid Grid.Column="1"
-                             Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth}"
-                             Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
+                        Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth, Converter={StaticResource MathSubtractConverter}, ConverterParameter=2}"
+                        Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
                   <Border Grid.Column="2" MinWidth="{StaticResource PopupLeftRightMargin}"/>
                </Grid>
                <Border Grid.Row="4"  Height="{StaticResource PopupTopBottomMargin}"/>
@@ -123,7 +124,7 @@
                     <Border Grid.Column="0"
                             Width="{StaticResource PopupLeftRightMargin}"/>
                     <Grid Grid.Column="1"
-                          Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth}"
+                          Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth, Converter={StaticResource MathSubtractConverter}, ConverterParameter=2}"
                           Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
                     <Border Grid.Column="2"
                             MinWidth="{StaticResource PopupLeftRightMargin}"/>
