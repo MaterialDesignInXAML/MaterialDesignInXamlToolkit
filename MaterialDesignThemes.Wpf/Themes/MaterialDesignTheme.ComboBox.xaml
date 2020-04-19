@@ -131,7 +131,6 @@
                 </Grid>
 
                 <Border Grid.Row="2"
-                        Background="{Binding ElementName=PART_Popup, Path=Background}"
                         Height="{StaticResource PopupContentPresenterExtend}"/>
 
                 <ContentPresenter Grid.Row="3"/>
