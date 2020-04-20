@@ -1,14 +1,13 @@
-﻿using System.Windows.Controls;
-using System.Windows.Navigation;
-using MaterialDesignColors.WpfExample.Domain;
+﻿using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignDemo.Domain;
+using System.Windows.Navigation;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
     /// <summary>
     /// Interaction logic for TextFields.xaml
     /// </summary>
-    public partial class Fields : UserControl
+    public partial class Fields
     {
         public Fields()
         {
@@ -19,11 +18,6 @@ namespace MaterialDesignColors.WpfExample
         private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             Link.OpenInBrowser(e.Uri.AbsoluteUri);
-        }
-
-        private void ClearFilledComboBox_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            FilledComboBx.SelectedItem = null;
         }
     }
 }
