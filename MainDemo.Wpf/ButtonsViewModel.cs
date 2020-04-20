@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Threading;
+using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignColors.WpfExample
 {

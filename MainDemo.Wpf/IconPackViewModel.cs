@@ -1,33 +1,16 @@
-﻿using MaterialDesignColors.WpfExample.Domain;
-using MaterialDesignDemo.Domain;
-using MaterialDesignThemes.Wpf;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignDemo.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo
 {
-    public class PackIconKindGroup
-    {
-        public PackIconKindGroup(PackIconKind kind, string[] all)
-        {
-            Kind = kind;
-            Aliases = all;
-            PrimaryName = all[0];
-            ToolTip = string.Join(Environment.NewLine, all);
-        }
-
-        public PackIconKind Kind { get; }
-        public string[] Aliases { get; }
-        public string PrimaryName { get; }
-        public string ToolTip { get; }
-    }
-
     public class IconPackViewModel : INotifyPropertyChanged
     {
         private readonly Lazy<IEnumerable<PackIconKindGroup>> _packIconKinds;
@@ -44,8 +27,8 @@ namespace MaterialDesignDemo
             _packIconKinds = new Lazy<IEnumerable<PackIconKindGroup>>(() =>
                 Enum.GetNames(typeof(PackIconKind))
                     .GroupBy(k => (PackIconKind) Enum.Parse(typeof(PackIconKind), k))
-                    .Select(g => new PackIconKindGroup(g.Key, g.OrderBy(i => i.ToString(), StringComparer.InvariantCultureIgnoreCase).ToArray()))
-                    .OrderBy(i => i.Aliases[0], StringComparer.InvariantCultureIgnoreCase)
+                    .Select(g => new PackIconKindGroup(g))
+                    .OrderBy(x => x.Kind)
                     .ToList());
         }
 
@@ -55,16 +38,12 @@ namespace MaterialDesignDemo
 
         private IEnumerable<PackIconKindGroup> _kinds;
         private PackIconKindGroup _group;
-        private PackIconKind? _kind;
+        private string _kind;
 
         public IEnumerable<PackIconKindGroup> Kinds
         {
             get => _kinds ??= _packIconKinds.Value;
-            set
-            {
-                _kinds = value;
-                OnPropertyChanged();
-            }
+            set => this.MutateVerbose(ref _kinds, value, e => PropertyChanged?.Invoke(this, e));
         }
 
         public PackIconKindGroup Group
@@ -72,20 +51,18 @@ namespace MaterialDesignDemo
             get => _group;
             set
             {
-                _group = value;
-                Kind = value?.Kind;
-                OnPropertyChanged();
+                if (this.MutateVerbose(ref _group, value, e => PropertyChanged?.Invoke(this, e)))
+                {
+                    Kind = value?.Kind;
+                }
+                
             }
         }
 
-        public PackIconKind? Kind
+        public string Kind
         {
             get => _kind;
-            set
-            {
-                _kind = value;
-                OnPropertyChanged();
-            }
+            set => this.MutateVerbose(ref _kind, value, e => PropertyChanged?.Invoke(this, e));
         }
 
         private void OpenDotCom(object obj)
@@ -99,9 +76,10 @@ namespace MaterialDesignDemo
             if (string.IsNullOrWhiteSpace(text))
                 Kinds = _packIconKinds.Value;
             else
+            {
                 Kinds = await Task.Run(() => _packIconKinds.Value
-                    .Where(x => x.ToolTip.ToString().IndexOf(text, StringComparison.CurrentCultureIgnoreCase) >= 0)
-                    .ToList());
+                    .Where(x => x.Aliases.Any(a => a.IndexOf(text, StringComparison.CurrentCultureIgnoreCase) >= 0))
+                    .ToList());}
         }
 
         private void CopyToClipboard(object obj)
@@ -112,10 +90,5 @@ namespace MaterialDesignDemo
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

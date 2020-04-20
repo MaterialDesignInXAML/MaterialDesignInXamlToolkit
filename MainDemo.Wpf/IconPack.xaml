@@ -6,13 +6,20 @@
              xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:virtualCollection="clr-namespace:VirtualCollection.VirtualCollection"
+             xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance materialDesignDemo:IconPackViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <materialDesign:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
+
+            <converters:StringJoinConverter x:Key="StringJoinConverter" Separator="{x:Static system:Environment.NewLine}"/>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -40,8 +47,8 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="materialDesignDemo:PackIconKindGroup">
-                    <DockPanel ToolTip="{Binding ToolTip}" Width="64" Height="64" Background="Transparent">
-                        <TextBlock Text="{Binding PrimaryName}" DockPanel.Dock="Bottom" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" />
+                    <DockPanel ToolTip="{Binding Aliases, Converter={StaticResource StringJoinConverter}}" Width="64" Height="64" Background="Transparent">
+                        <TextBlock Text="{Binding Kind}" DockPanel.Dock="Bottom" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" />
                         <materialDesign:PackIcon Kind="{Binding Kind}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="32" Height="32" />
                     </DockPanel>
                 </DataTemplate>
