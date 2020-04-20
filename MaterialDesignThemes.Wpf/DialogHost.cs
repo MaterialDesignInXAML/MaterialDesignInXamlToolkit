@@ -249,12 +249,12 @@ namespace MaterialDesignThemes.Wpf
                     dialogHost._currentSnackbarMessageQueueUnPauseAction();
                     dialogHost._currentSnackbarMessageQueueUnPauseAction = null;
                 }
+
+                var closeParameter = dialogHost.CurrentSession.CloseParameter;
                 dialogHost.CurrentSession.IsEnded = true;
                 dialogHost.CurrentSession = null;
                 //NB: _dialogTaskCompletionSource is only set in the case where the dialog is shown with Show
-                //To get into this case you need to display the dialog with Show and then hide it by setting IsOpen to false
-                //Setting this here ensures the other 
-                dialogHost._dialogTaskCompletionSource?.TrySetResult(null);
+                dialogHost._dialogTaskCompletionSource?.TrySetResult(closeParameter);
 
                 // Don't attempt to Invoke if _restoreFocusDialogClose hasn't been assigned yet. Can occur
                 // if the MainWindow has started up minimized. Even when Show() has been called, this doesn't
@@ -580,6 +580,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var dialogClosingEventArgs = new DialogClosingEventArgs(CurrentSession, parameter, DialogClosingEvent);
 
+            CurrentSession.CloseParameter = parameter;
             CurrentSession.IsEnded = true;
 
             //multiple ways of calling back that the dialog is closing:
@@ -592,16 +593,13 @@ namespace MaterialDesignThemes.Wpf
             DialogClosingCallback?.Invoke(this, dialogClosingEventArgs);
             _asyncShowClosingEventHandler?.Invoke(this, dialogClosingEventArgs);
 
-
-            if (!dialogClosingEventArgs.IsCancelled)
-            {
-                _dialogTaskCompletionSource?.TrySetResult(parameter);
-                SetCurrentValue(IsOpenProperty, false);
-            }
-            else
+            if (dialogClosingEventArgs.IsCancelled)
             {
                 CurrentSession.IsEnded = false;
+                return;
             }
+            
+            SetCurrentValue(IsOpenProperty, false);
         }
 
         /// <summary>
