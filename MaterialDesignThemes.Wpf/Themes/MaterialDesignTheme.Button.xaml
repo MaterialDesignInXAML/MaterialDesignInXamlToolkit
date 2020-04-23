@@ -154,6 +154,7 @@
                                 <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{DynamicResource PrimaryHueMidBrushColor}" Opacity="0.16"/>
                             </Border.Resources>
                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
+                                        ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Padding="{TemplateBinding Padding}"
@@ -226,6 +227,7 @@
                             <wpf:Ripple Content="{TemplateBinding Content}" 
                                         ContentTemplate="{TemplateBinding ContentTemplate}" 
                                         Focusable="False"
+                                        ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Padding="{TemplateBinding Padding}" 
@@ -266,6 +268,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ButtonBase">
                     <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
+                                ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Padding="{TemplateBinding Padding}"
@@ -335,6 +338,7 @@
                         </ProgressBar>
                         <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" />
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
+                                    ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                     Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}" ClipToBounds="True"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -449,6 +453,7 @@
                             </Ellipse.RenderTransform>
                         </Ellipse>
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
+                                    ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                     Padding="{TemplateBinding Padding}"
