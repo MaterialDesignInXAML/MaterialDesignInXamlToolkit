@@ -89,7 +89,16 @@
 
         <TextBlock Grid.Row="2" Style="{StaticResource ChipsHeadline}">Filter Chips</TextBlock>
         <StackPanel Grid.Row="3">
-            <smtx:XamlDisplay Key="chips_10" Margin="0 0 6 4">
+            <WrapPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay Key="chips_10" Margin="0 0 4 4">
+                    <CheckBox Style="{StaticResource MaterialDesignFilterChipCheckBox}">CheckBox</CheckBox>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="chips_11" Margin="0 0 4 4">
+                    <CheckBox Style="{StaticResource MaterialDesignFilterChipOutlineCheckBox}">Outline</CheckBox>
+                </smtx:XamlDisplay>
+            </WrapPanel>
+
+            <smtx:XamlDisplay Key="chips_12" Margin="0 0 6 4">
                 <ListBox Style="{StaticResource MaterialDesignFilterChipListBox}">
                     <ListBoxItem>Mercury</ListBoxItem>
                     <ListBoxItem IsSelected="True">Venus</ListBoxItem>
@@ -99,7 +108,6 @@
                 </ListBox>
             </smtx:XamlDisplay>
         </StackPanel>
-
     </Grid>
 </UserControl>
 
