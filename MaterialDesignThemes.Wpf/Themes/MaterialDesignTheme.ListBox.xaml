@@ -6,6 +6,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
         <ResourceDictionary>
             <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
         </ResourceDictionary>
@@ -443,6 +444,91 @@
 
     <Style x:Key="MaterialDesignFilterChipOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipOutlineListBoxItem}"/>
+    </Style>
+
+
+
+    <Style x:Key="MaterialDesignChoiceChipListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipRadioButton}" 
+                              IsChecked="{TemplateBinding IsSelected}"
+                              Content="{TemplateBinding Content}"                              
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                              GroupName="{Binding  RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignChoiceChipListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipListBoxItem}"/>
+    </Style>
+
+
+    <Style x:Key="MaterialDesignChoiceChipOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}" 
+                              IsChecked="{TemplateBinding IsSelected}"
+                              Content="{TemplateBinding Content}"                              
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignChoiceChipOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipOutlineListBoxItem}"/>
+    </Style>
+    
+    <Style x:Key="MaterialDesignChoiceChipAccentListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipAccentRadioButton}" 
+                              IsChecked="{TemplateBinding IsSelected}"
+                              Content="{TemplateBinding Content}"                              
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignChoiceChipAccentListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipAccentListBoxItem}"/>
+    </Style>
+
+
+    <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}" 
+                              IsChecked="{TemplateBinding IsSelected}"
+                              Content="{TemplateBinding Content}"                              
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipAccentOutlineListBoxItem}"/>
     </Style>
 
 </ResourceDictionary>
