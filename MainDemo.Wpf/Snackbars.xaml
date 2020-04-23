@@ -66,7 +66,7 @@
             <!--
                     * using a message queue to manage queuing of messages, and getting onto correct thread
                     * notice the shorthand syntax {materialDesign:MessageQueue} for creating a new message 
-                    queue without expanded XAML. useful in code-behind scenarios if you don not want to bind 
+                    queue without expanded XAML. useful in code-behind scenarios if you do not want to bind 
                     a message queue in to the snackbar.
                 -->
             <Border Background="{DynamicResource MaterialDesignSelection}"
