@@ -18,6 +18,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource ChipsHeadline}">Action Chips</TextBlock>
         <StackPanel Grid.Row="1">
@@ -116,6 +118,26 @@
                     <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
                 </ListBox>
             </smtx:XamlDisplay>
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" Style="{StaticResource ChipsHeadline}">Choice Chips</TextBlock>
+        <StackPanel Grid.Row="5">
+            <WrapPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay Key="chips_13" Margin="0 0 4 4">
+                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipRadioButton}" GroupName="Test">RadioButton</RadioButton>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="chips_14" Margin="0 0 4 4">
+                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}" GroupName="Test">Outline</RadioButton>
+                </smtx:XamlDisplay>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay Key="chips_15" Margin="0 0 4 4">
+                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipAccentRadioButton}" GroupName="Test">Secondary</RadioButton>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="chips_16" Margin="0 0 4 4">
+                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}" GroupName="Test">Secondary Outline</RadioButton>
+                </smtx:XamlDisplay>
+            </WrapPanel>
         </StackPanel>
     </Grid>
 </UserControl>
