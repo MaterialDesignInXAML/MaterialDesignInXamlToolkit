@@ -75,7 +75,7 @@ namespace MaterialDesignThemes.Wpf
             DefaultStyleKeyProperty.OverrideMetadata(typeof(DialogHost), new FrameworkPropertyMetadata(typeof(DialogHost)));
         }
 
-        #region .Show overloads
+        #region Show overloads
 
         /// <summary>
         /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -578,7 +578,7 @@ namespace MaterialDesignThemes.Wpf
 
         internal void Close(object parameter)
         {
-            var dialogClosingEventArgs = new DialogClosingEventArgs(CurrentSession, parameter, DialogClosingEvent);
+            var dialogClosingEventArgs = new DialogClosingEventArgs(CurrentSession, DialogClosingEvent);
 
             CurrentSession.CloseParameter = parameter;
             CurrentSession.IsEnded = true;
