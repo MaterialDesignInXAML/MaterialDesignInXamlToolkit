@@ -107,6 +107,15 @@
                     <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
                 </ListBox>
             </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="chips_13" Margin="0 0 6 4">
+                <ListBox Style="{StaticResource MaterialDesignFilterChipOutlineListBox}">
+                    <ListBoxItem>Mercury</ListBoxItem>
+                    <ListBoxItem IsSelected="True">Venus</ListBoxItem>
+                    <ListBoxItem>Earth</ListBoxItem>
+                    <ListBoxItem>Mars</ListBoxItem>
+                    <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
+                </ListBox>
+            </smtx:XamlDisplay>
         </StackPanel>
     </Grid>
 </UserControl>
