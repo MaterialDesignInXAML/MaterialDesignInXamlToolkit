@@ -9,7 +9,7 @@ namespace MaterialDesignThemes.Wpf
     /// </summary>
     /// <remarks>
     /// All icons sourced from Material Design Icons Font - https://materialdesignicons.com/ - in accordance of 
-    /// https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob/master/LICENSE.
+    /// https://github.com/Templarian/MaterialDesign/blob/master/LICENSE.
     /// </remarks>
     public enum PackIconKind
     {
