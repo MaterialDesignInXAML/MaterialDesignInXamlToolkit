@@ -64,6 +64,22 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [StaFact]
+        public async Task CanCloseDialogWithRoutedEvent()
+        {
+            Guid closeParameter = Guid.NewGuid();
+            Task<object> showTask = _dialogHost.ShowDialog("Content");
+            DialogSession session = _dialogHost.CurrentSession;
+            Assert.False(session.IsEnded);
+            
+            DialogHost.CloseDialogCommand.Execute(closeParameter, _dialogHost);
+
+            Assert.False(_dialogHost.IsOpen);
+            Assert.Null(_dialogHost.CurrentSession);
+            Assert.True(session.IsEnded);
+            Assert.Equal(closeParameter, await showTask);
+        }
+
+        [StaFact]
         public async Task DialogHostExposesSessionAsProperty()
         {
             var id = Guid.NewGuid();
@@ -210,9 +226,34 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.True(_dialogHost.IsOpen);
         }
 
-        private class TestDialog : Control
+        [StaFact]
+        [Description("Issue 1750")]
+        public async Task WhenSettingIsOpenToFalseItReturnsClosingParameterToShow()
         {
-            public void CloseDialog() => DialogHost.CloseDialogCommand.Execute(null, this);
+            Guid closeParameter = Guid.NewGuid();
+
+            Task<object> showTask = _dialogHost.ShowDialog("Content");
+            _dialogHost.CurrentSession.CloseParameter = closeParameter;
+
+            _dialogHost.IsOpen = false;
+
+            Assert.Equal(closeParameter, await showTask);
+        }
+
+        [StaFact]
+        [Description("Issue 1750")]
+        public async Task WhenClosingDialogReturnValueCanBeSpecifiedInClosingEventHandler()
+        {
+            Guid closeParameter = Guid.NewGuid();
+
+            Task<object> showTask = _dialogHost.ShowDialog("Content", (object sender, DialogClosingEventArgs args) =>
+            {
+                args.Session.CloseParameter = closeParameter;
+            });
+
+            DialogHost.CloseDialogCommand.Execute(null, _dialogHost);
+
+            Assert.Equal(closeParameter, await showTask);
         }
     }
 }

@@ -22,6 +22,11 @@ namespace MaterialDesignThemes.Wpf
         /// Client code cannot set this directly, this is internally managed.  To end the dialog session use <see cref="Close()"/>.
         /// </remarks>
         public bool IsEnded { get; internal set; }
+        
+        /// <summary>
+        /// The parameter passed to the <see cref="DialogHost.CloseDialogCommand" /> and return by <see cref="DialogHost.Show(object)"/>
+        /// </summary>
+        internal object CloseParameter { get; set; }
 
         /// <summary>
         /// Gets the <see cref="DialogHost.DialogContent"/> which is currently displayed, so this could be a view model or a UI element.

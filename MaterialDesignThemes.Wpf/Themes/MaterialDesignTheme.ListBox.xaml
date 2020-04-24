@@ -5,6 +5,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
         <ResourceDictionary>
             <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
         </ResourceDictionary>
@@ -346,144 +347,16 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignCardsListBoxItem}"/>
     </Style>
 
-    <Style x:Key="MaterialDesignFilterChipListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignChipBackground}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}"/>
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Height" Value="32" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="FontSize" Value="13" />
-        <Setter Property="Margin" Value="4" />
+    <Style x:Key="MaterialDesignFilterChipListBoxItem" TargetType="{x:Type ListBoxItem}">      
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Grid ClipToBounds="True">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Border CornerRadius="16" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" />
-                        <Border x:Name="MouseOverBorder"
-                                Opacity="0"
-                                CornerRadius="16"
-                                Grid.ColumnSpan="2" 
-                                Grid.Column="0"
-                                Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
-                        <Border x:Name="SelectedBackgroundBorder"
-                                Opacity="0"
-                                CornerRadius="16"
-                                Grid.ColumnSpan="2"
-                                Grid.Column="0"
-                                Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}" />
-                        <wpf:PackIcon x:Name="IconControl" 
-                                      Kind="Check"
-                                      Width="16"
-                                      Height="16"
-                                      Margin="-16,0,0,0"
-                                      VerticalAlignment="Center"
-                                      Grid.Column="0"
-                                      IsTabStop="False" />
-                        <ContentControl Content="{TemplateBinding Content}"
-                                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                        ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                                        x:Name="Content"
-                                        IsTabStop="False"
-                                        VerticalAlignment="Center"
-                                        Margin="0 0 10 0"
-                                        Grid.Column="1"/>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <CircleEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState Name="Normal"/>
-                                <VisualState Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" 
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0.1" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="Disabled"/>
-                            </VisualStateGroup>
-                            <VisualStateGroup Name="SelectionStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition To="Selected">
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
-                                                             Storyboard.TargetProperty="Opacity"
-                                                             To="0.18" Duration="0:0:0.2"/>
-                                            <ThicknessAnimation Storyboard.TargetName="IconControl"
-                                                                Storyboard.TargetProperty="Margin"
-                                                                To="4,0,4,0" Duration="0:0:0.2" />
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition To="SelectedUnfocused">
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
-                                                             Storyboard.TargetProperty="Opacity"
-                                                             To="0.18" Duration="0:0:0.2"/>
-                                            <ThicknessAnimation Storyboard.TargetName="IconControl"
-                                                                Storyboard.TargetProperty="Margin"
-                                                                To="4,0,4,0" Duration="0:0:0.2" />
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition To="Unselected">
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
-                                                             Storyboard.TargetProperty="Opacity"
-                                                             To="0" Duration="0:0:0.2"/>
-                                            <ThicknessAnimation Storyboard.TargetName="IconControl"
-                                                                Storyboard.TargetProperty="Margin"
-                                                                To="-16,0,10,0" Duration="0:0:0.2" />
-                                        </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState Name="Selected">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0.18" Duration="0"/>
-                                        <ThicknessAnimation Storyboard.TargetName="IconControl"
-                                                            Storyboard.TargetProperty="Margin"
-                                                            To="4,0,4,0" Duration="0" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="SelectedUnfocused">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0.18" Duration="0"/>
-                                        <ThicknessAnimation Storyboard.TargetName="IconControl"
-                                                            Storyboard.TargetProperty="Margin"
-                                                            To="4,0,4,0" Duration="0" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="Unselected">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0" Duration="0"/>
-                                        <ThicknessAnimation Storyboard.TargetName="IconControl"
-                                                            Storyboard.TargetProperty="Margin"
-                                                            To="-16,0,10,0" Duration="0" />
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value=".56" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
+                    <CheckBox Style="{StaticResource MaterialDesignFilterChipCheckBox}" 
+                              IsChecked="{TemplateBinding IsSelected}"
+                              Content="{TemplateBinding Content}"                              
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -537,6 +410,25 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignFilterChipOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <CheckBox Style="{StaticResource MaterialDesignFilterChipOutlineCheckBox}" 
+                              IsChecked="{TemplateBinding IsSelected}"
+                              Content="{TemplateBinding Content}"                              
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignFilterChipOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipOutlineListBoxItem}"/>
     </Style>
 
 </ResourceDictionary>
