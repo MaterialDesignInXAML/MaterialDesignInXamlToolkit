@@ -125,5 +125,11 @@ namespace MaterialDesignThemes.Wpf
 
         public static void SetInlineActionButtonMaxHeight(DependencyObject element, double value) => element.SetValue(InlineActionButtonMaxHeightProperty, value);
         public static double GetInlineActionButtonMaxHeight(DependencyObject element) => (double) element.GetValue(InlineActionButtonMaxHeightProperty);
+
+        public static readonly DependencyProperty ContentMaxHeightProperty = DependencyProperty.RegisterAttached(
+            "ContentMaxHeight", typeof(double), typeof(SnackbarMessage), new PropertyMetadata(default(double)));
+
+        public static void SetContentMaxHeight(DependencyObject element, double value) => element.SetValue(ContentMaxHeightProperty, value);
+        public static double GetContentMaxHeight(DependencyObject element) => (double) element.GetValue(ContentMaxHeightProperty);
     }
 }
