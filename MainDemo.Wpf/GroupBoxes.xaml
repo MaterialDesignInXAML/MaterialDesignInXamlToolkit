@@ -25,6 +25,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <smtx:XamlDisplay Key="groupbox_1" Grid.Column="0" Grid.Row="0">
@@ -53,7 +54,15 @@
             </GroupBox>
         </smtx:XamlDisplay>
 
+
         <smtx:XamlDisplay Key="groupbox_5" Grid.Column="1" Grid.Row="1">
+        <GroupBox Header="Custom Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" 
+                  materialDesign:ColorZoneAssist.Mode="Custom" materialDesign:ColorZoneAssist.Background="Black" materialDesign:ColorZoneAssist.Foreground="White">
+                <TextBlock>My Content</TextBlock>
+            </GroupBox>
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Key="groupbox_6" Grid.Column="0" Grid.Row="2">
             <GroupBox  Header="Card Group Box" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16">
                 <GroupBox.HeaderTemplate>
                     <DataTemplate>
@@ -67,11 +76,36 @@
             </GroupBox>
         </smtx:XamlDisplay>
 
-            <smtx:XamlDisplay Key="groupbox_6" Grid.Column="2" Grid.Row="1">
-            <GroupBox Header="Custom Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ColorZoneAssist.Mode="Custom" materialDesign:ColorZoneAssist.Background="Black" materialDesign:ColorZoneAssist.Foreground="White">
-                    <TextBlock>My Content</TextBlock>
-                </GroupBox>
-            </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Key="groupbox_7" Grid.Column="1" Grid.Row="2">
+            <GroupBox  Header="Card Group Box Accent" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" 
+                materialDesign:ColorZoneAssist.Mode="Accent">
+                <GroupBox.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ImageArea" Height="32" Width="32" VerticalAlignment="Center" />
+                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GroupBox.HeaderTemplate>
+                <Image Source="Resources/Contact.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </GroupBox>
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Key="groupbox_8" Grid.Column="2" Grid.Row="2">
+            <GroupBox  Header="Card Group Box Custom" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" 
+                materialDesign:ColorZoneAssist.Mode="Custom" materialDesign:ColorZoneAssist.Background="Black" materialDesign:ColorZoneAssist.Foreground="White">
+                <GroupBox.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ImageArea" Height="32" Width="32" VerticalAlignment="Center" />
+                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GroupBox.HeaderTemplate>
+                <Image Source="Resources/Contact.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </GroupBox>
+        </smtx:XamlDisplay>
     </Grid>
 </UserControl>
 
