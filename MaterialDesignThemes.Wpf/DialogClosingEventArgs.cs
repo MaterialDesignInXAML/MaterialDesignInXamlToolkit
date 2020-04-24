@@ -5,11 +5,14 @@ namespace MaterialDesignThemes.Wpf
 {
     public class DialogClosingEventArgs : RoutedEventArgs
     {
-        public DialogClosingEventArgs(DialogSession session, object parameter, RoutedEvent routedEvent) : base(routedEvent)
+        [Obsolete("Use DialogClosingEventArgs(DialogSession, RoutedEvent), the parameter should be set on the DialogSession.CloseParameter")]
+        public DialogClosingEventArgs(DialogSession session, object parameter, RoutedEvent routedEvent) 
+            : this(session, routedEvent)
+        { }
+
+        public DialogClosingEventArgs(DialogSession session, RoutedEvent routedEvent) : base(routedEvent)
         {
             Session = session ?? throw new ArgumentNullException(nameof(session));
-
-            Parameter = parameter;
         }
 
         /// <summary>
@@ -28,7 +31,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Gets the parameter originally provided to <see cref="DialogHost.CloseDialogCommand"/>/
         /// </summary>
-        public object Parameter { get; }
+        public object Parameter => Session.CloseParameter;
 
         /// <summary>
         /// Allows interaction with the current dialog session.
