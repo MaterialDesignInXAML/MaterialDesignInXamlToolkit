@@ -11,30 +11,31 @@
 
     <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
     <converters:MathMultipleConverter x:Key="MathMultipleConverter" Operation="Multiply" />
+    <converters:SnackbarActionButtonPlacementModeConverter x:Key="SnackbarActionButtonPlacementModeConverter" />
 
     <Style x:Key="MaterialDesignSnackbarActionButton" TargetType="Button">
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignSnackbarRipple}" />
-        <Setter Property="TextBlock.FontWeight" Value="Medium"/>
-        <Setter Property="TextBlock.FontSize" Value="14"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="24 0 24 0"/>
+        <Setter Property="TextBlock.FontWeight" Value="Medium" />
+        <Setter Property="TextBlock.FontSize" Value="14" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="24 0 24 0" />
         <Setter Property="Margin" Value="24 -14 -24 -14" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid x:Name="Root" Background="{TemplateBinding Background}">
-                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"    
-                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Padding="{TemplateBinding Padding}" 
+                                    Padding="{TemplateBinding Padding}"
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -42,7 +43,11 @@
                             <Setter Property="Background" Value="{DynamicResource MaterialDesignSnackbarMouseOver}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" Value="0.23"/>
+                            <Setter Property="Opacity" Value="0.23" />
+                        </Trigger>
+                        <Trigger Property="DockPanel.Dock" Value="Bottom">
+                            <Setter Property="Margin" Value="24 0 -24 -14" />
+                            <Setter Property="Padding" Value="24 8 24 8" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -67,18 +72,33 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="wpf:SnackbarMessage">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <ContentPresenter Content="{TemplateBinding Content}" 
+                    <DockPanel MaxHeight="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:Snackbar}}, Path=(wpf:SnackbarMessage.ContentMaxHeight)}">
+                        <!-- will become a Panel to wrap a "pretend" button -->
+                        <Button x:Name="PART_ActionButton"
+                                Command="{TemplateBinding ActionCommand}"
+                                CommandParameter="{TemplateBinding ActionCommandParameter}"
+                                Content="{TemplateBinding ActionContent}"
+                                ContentTemplate="{TemplateBinding ActionContentTemplate}"
+                                ContentStringFormat="{TemplateBinding ActionContentStringFormat}"
+                                ContentTemplateSelector="{TemplateBinding ActionContentTemplateSelector}"
+                                HorizontalAlignment="Right"
+                                Panel.ZIndex="1"
+                                Visibility="{TemplateBinding ActionContent, Converter={StaticResource NullableToVisibilityConverter}}"
+                                Style="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type wpf:Snackbar}}, Path=ActionButtonStyle}">
+                            <DockPanel.Dock>
+                                <MultiBinding Converter="{StaticResource SnackbarActionButtonPlacementModeConverter}">
+                                    <Binding RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" Path="ActionButtonPlacement" />
+                                    <Binding RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" Path="(wpf:SnackbarMessage.InlineActionButtonMaxHeight)" />
+                                    <Binding RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" Path="ActualHeight" />
+                                </MultiBinding>
+                            </DockPanel.Dock>
+                        </Button>
+
+                        <ContentPresenter Content="{TemplateBinding Content}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"                                      
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          DockPanel.Dock="Left"
-                                          MaxHeight="42">
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
                             <ContentPresenter.Resources>
                                 <DataTemplate DataType="{x:Type system:String}">
                                     <TextBlock Text="{Binding}">
@@ -93,20 +113,7 @@
                                 </DataTemplate>
                             </ContentPresenter.Resources>
                         </ContentPresenter>
-                        <!-- will become a Panel to wrap a "pretend" button -->
-                        <Button x:Name="PART_ActionButton"
-                                Grid.Column="1"
-                                Command="{TemplateBinding ActionCommand}"
-                                CommandParameter="{TemplateBinding ActionCommandParameter}"
-                                Content="{TemplateBinding ActionContent}" 
-                                ContentTemplate="{TemplateBinding ActionContentTemplate}"
-                                ContentStringFormat="{TemplateBinding ActionContentStringFormat}"
-                                ContentTemplateSelector="{TemplateBinding ActionContentTemplateSelector}"                                      
-                                HorizontalAlignment="Right"
-                                Visibility="{TemplateBinding ActionContent, Converter={StaticResource NullableToVisibilityConverter}}"
-                                Style="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type wpf:Snackbar}}, Path=ActionButtonStyle}"
-                                DockPanel.Dock="Right" />
-                    </Grid>
+                    </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -124,6 +131,8 @@
         <Setter Property="MaxWidth" Value="568" />
         <Setter Property="Padding" Value="24 14 24 14" />
         <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="wpf:SnackbarMessage.InlineActionButtonMaxHeight" Value="53" />
+        <Setter Property="wpf:SnackbarMessage.ContentMaxHeight" Value="61" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="wpf:Snackbar">
@@ -135,7 +144,8 @@
                                 </DoubleAnimation.EasingFunction>
                             </DoubleAnimation>
                             <DoubleAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Opacity" To="0" BeginTime="0" Duration="0" />
-                            <DoubleAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0.075" Duration="0:0:0.225">
+                            <DoubleAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0.075"
+                                             Duration="0:0:0.225">
                                 <DoubleAnimation.EasingFunction>
                                     <SineEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>
@@ -155,12 +165,12 @@
                         </StackPanel.Tag>
                         <StackPanel.Height>
                             <MultiBinding Converter="{StaticResource MathMultipleConverter}">
-                                <Binding ElementName="ContentBorder" Path="ActualHeight"/>
-                                <Binding RelativeSource="{RelativeSource Self}" Path="Tag"/>
+                                <Binding ElementName="ContentBorder" Path="ActualHeight" />
+                                <Binding RelativeSource="{RelativeSource Self}" Path="Tag" />
                             </MultiBinding>
                         </StackPanel.Height>
                         <Border x:Name="ContentBorder"
-                                Background="{TemplateBinding Background}" CornerRadius="2" SnapsToDevicePixels="True"                                
+                                Background="{TemplateBinding Background}" CornerRadius="2" SnapsToDevicePixels="True"
                                 VerticalAlignment="Stretch"
                                 MinHeight="24">
                             <ContentPresenter Content="{TemplateBinding Message}"
@@ -187,8 +197,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="HorizontalAlignment" Value="Stretch">
-                <Setter Property="MaxWidth" Value="{x:Static system:Double.MaxValue}">
-                </Setter>
+                <Setter Property="MaxWidth" Value="{x:Static system:Double.MaxValue}" />
             </Trigger>
         </Style.Triggers>
     </Style>
