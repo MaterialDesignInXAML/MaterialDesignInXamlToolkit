@@ -8,8 +8,8 @@ namespace MaterialDesignThemes.Wpf
     /// List of available icons for use with <see cref="PackIcon" />.
     /// </summary>
     /// <remarks>
-    /// All icons sourced from Material Design Icons Font - <see cref="https://materialdesignicons.com/"/> - in accordance of 
-    /// <see cref="https://github.com/Templarian/MaterialDesign/blob/master/license.txt"/>.
+    /// All icons sourced from Material Design Icons Font - https://materialdesignicons.com/ - in accordance of 
+    /// https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob/master/LICENSE.
     /// </remarks>
     public enum PackIconKind
     {
