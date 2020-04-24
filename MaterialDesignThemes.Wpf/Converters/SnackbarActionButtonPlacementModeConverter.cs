@@ -10,11 +10,12 @@ namespace MaterialDesignThemes.Wpf.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var mode = (SnackbarActionButtonPlacementMode) values[0];
-            var snackbarHeight = (double) values[1];
+            var inlineMaxHeight = (double) values[1];
+            var actualHeight = (double) values[2];
             return mode switch
             {
-                SnackbarActionButtonPlacementMode.Auto when snackbarHeight > 53 => Dock.Bottom,
-                SnackbarActionButtonPlacementMode.Auto => Dock.Right,
+                SnackbarActionButtonPlacementMode.Auto when actualHeight <= inlineMaxHeight => Dock.Right,
+                SnackbarActionButtonPlacementMode.Auto => Dock.Bottom,
                 SnackbarActionButtonPlacementMode.Inline => Dock.Right,
                 SnackbarActionButtonPlacementMode.SeparateLine => Dock.Bottom,
                 _ => Dock.Right
