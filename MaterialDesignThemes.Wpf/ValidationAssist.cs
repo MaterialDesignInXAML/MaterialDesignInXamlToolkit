@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls.Primitives;
-using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
@@ -138,5 +137,11 @@ namespace MaterialDesignThemes.Wpf
         {
             return (bool)element.GetValue(HasErrorProperty);
         }
+
+        public static readonly DependencyProperty HorizontalAlignmentProperty = DependencyProperty.RegisterAttached(
+            "HorizontalAlignment", typeof(HorizontalAlignment), typeof(ValidationAssist), new PropertyMetadata(HorizontalAlignment.Left));
+
+        public static void SetHorizontalAlignment(DependencyObject element, HorizontalAlignment value) => element.SetValue(HorizontalAlignmentProperty, value);
+        public static HorizontalAlignment GetHorizontalAlignment(DependencyObject element) => (HorizontalAlignment) element.GetValue(HorizontalAlignmentProperty);
     }
 }
