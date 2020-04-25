@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using MaterialDesignColors.WpfExample.Domain;
+using System.Linq;
 
 namespace MaterialDesignDemo.Domain
 {
@@ -11,28 +12,37 @@ namespace MaterialDesignDemo.Domain
         private readonly ObservableCollection<SelectableViewModel> _items1;
         private readonly ObservableCollection<SelectableViewModel> _items2;
         private readonly ObservableCollection<SelectableViewModel> _items3;
-        private bool? _isAllItems3Selected;
 
         public ListsAndGridsViewModel()
         {
             _items1 = CreateData();
             _items2 = CreateData();
             _items3 = CreateData();
+
+            foreach (var model in _items3)
+            {
+                model.PropertyChanged += (sender, args) =>
+                {
+                    if (args.PropertyName == nameof(SelectableViewModel.IsSelected))
+                        OnPropertyChanged(nameof(IsAllItems3Selected));
+                };
+            }
         }
 
         public bool? IsAllItems3Selected
         {
-            get { return _isAllItems3Selected; }
+            get
+            {
+                var selected = _items3.Select(item => item.IsSelected).Distinct().ToList();
+                return selected.Count == 1 ? selected.Single() : (bool?) null;
+            }
             set
             {
-                if (_isAllItems3Selected == value) return;
-
-                _isAllItems3Selected = value;
-
-                if (_isAllItems3Selected.HasValue)
-                    SelectAll(_isAllItems3Selected.Value, Items3);
-
-                OnPropertyChanged();
+                if (value.HasValue)
+                {
+                    SelectAll(value.Value, Items3);
+                    OnPropertyChanged();
+                }
             }
         }
 
