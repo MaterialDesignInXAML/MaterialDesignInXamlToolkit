@@ -123,6 +123,8 @@
                         </Border>
                         <Path x:Name="DashedLine"
                               VerticalAlignment="Bottom"
+                              Height="{Binding BorderThickness.Bottom, ElementName=border, Converter={StaticResource DivisionMathConverter}, ConverterParameter=0.75}"
+                              Width="{Binding ActualWidth, ElementName=border}"
                               Visibility="Collapsed"
                               Stretch="Fill"
                               Data="M 0,0 L 1,0"
