@@ -169,17 +169,9 @@
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsSelected" Value="True"/>
-                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}"/>
-            </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsSelected" Value="True"/>
                     <Condition Property="Selector.IsSelectionActive" Value="True"/>
                 </MultiTrigger.Conditions>
                 <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-                <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
             </MultiTrigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value=".56"/>
