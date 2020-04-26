@@ -84,7 +84,7 @@
                              GotFocus="TextBox_OnGotFocus"
                              Text="{Binding Kind, StringFormat='&lt;materialDesign:PackIcon Kind=&quot;{0}&quot; \/>'}" />
                 </materialDesign:ColorZone>
-                <materialDesign:PackIcon Kind="{Binding Kind}" VerticalAlignment="Center"
+                <materialDesign:PackIcon Kind="{Binding PackIconKind}" VerticalAlignment="Center"
                                          Visibility="{Binding Kind, Converter={StaticResource NullableToVisibilityConverter}}" />
                 <Button Margin="8 0" Command="{Binding CopyToClipboardCommand, Mode=OneTime}" CommandParameter="{Binding Kind}">
                     <StackPanel Orientation="Horizontal">

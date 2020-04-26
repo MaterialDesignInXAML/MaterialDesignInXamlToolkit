@@ -39,6 +39,7 @@ namespace MaterialDesignDemo
         private IEnumerable<PackIconKindGroup> _kinds;
         private PackIconKindGroup _group;
         private string _kind;
+        private PackIconKind _packIconKind;
 
         public IEnumerable<PackIconKindGroup> Kinds
         {
@@ -55,14 +56,23 @@ namespace MaterialDesignDemo
                 {
                     Kind = value?.Kind;
                 }
-                
             }
         }
 
         public string Kind
         {
             get => _kind;
-            set => this.MutateVerbose(ref _kind, value, e => PropertyChanged?.Invoke(this, e));
+            set
+            {
+                if (this.MutateVerbose(ref _kind, value, e => PropertyChanged?.Invoke(this, e)))
+                    PackIconKind = value != null ? (PackIconKind) Enum.Parse(typeof(PackIconKind), value) : default;
+            }
+        }
+
+        public PackIconKind PackIconKind
+        {
+            get => _packIconKind;
+            set => this.MutateVerbose(ref _packIconKind, value, e => PropertyChanged?.Invoke(this, e));
         }
 
         private void OpenDotCom(object obj)
@@ -79,7 +89,8 @@ namespace MaterialDesignDemo
             {
                 Kinds = await Task.Run(() => _packIconKinds.Value
                     .Where(x => x.Aliases.Any(a => a.IndexOf(text, StringComparison.CurrentCultureIgnoreCase) >= 0))
-                    .ToList());}
+                    .ToList());
+            }
         }
 
         private void CopyToClipboard(object obj)
