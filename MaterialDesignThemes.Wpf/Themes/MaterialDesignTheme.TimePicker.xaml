@@ -7,6 +7,7 @@
     </ResourceDictionary.MergedDictionaries>
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
     <converters:MathConverter Operation="Divide" x:Key="DivisionMathConverter" />
+    <converters:BottomThicknessConverter x:Key="BottomThicknessConverter" />
 
     <Style x:Key="MaterialDesignTimePicker" TargetType="{x:Type wpf:TimePicker}">
         <Setter Property="VerticalAlignment" Value="Center"/>
