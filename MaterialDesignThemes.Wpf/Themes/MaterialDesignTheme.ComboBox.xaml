@@ -12,6 +12,7 @@
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" IsNotEmptyValue="Collapsed" />
     <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
     <converters:MathConverter x:Key="DivisionMathConverter" Operation="Divide" />
+    <converters:BottomThicknessConverter x:Key="BottomThicknessConverter" />
     <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
     <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
     <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearTextConverter" />
@@ -486,10 +487,12 @@
                   Grid.ColumnSpan="2"
                   Grid.Column="0"
                   VerticalAlignment="Bottom"
+                  Height="{Binding RelativeSource={RelativeSource Self}, Path=StrokeThickness}"
+                  Width="{Binding ActualWidth, ElementName=toggleButton}"
                   Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource InverseBoolToVisConverter}}"
                   Data="M 0,0 L 1,0"
                   Stretch="Fill"
-                  StrokeThickness="{Binding BorderThickness.Bottom, ElementName=toggleButton, Converter={StaticResource DivisionMathConverter}, ConverterParameter=0.75}"
+                  StrokeThickness="{Binding BorderThickness, ElementName=toggleButton, Converter={StaticResource BottomThicknessConverter}, ConverterParameter=1.33}"
                   StrokeDashArray="1,2.5"
                   StrokeDashCap="Round"
                   Stroke="{TemplateBinding BorderBrush}"
@@ -796,10 +799,12 @@
                       Grid.ColumnSpan="2"
                       Grid.Column="0"
                       VerticalAlignment="Bottom"
+                      Height="{Binding RelativeSource={RelativeSource Self}, Path=StrokeThickness}"
+                      Width="{Binding ActualWidth, ElementName=toggleButton}"
                       Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource InverseBoolToVisConverter}}"
                       Data="M 0,0 L 1,0"
                       Stretch="Fill"
-                      StrokeThickness="{Binding BorderThickness.Bottom, ElementName=toggleButton, Converter={StaticResource DivisionMathConverter}, ConverterParameter=0.75}"
+                      StrokeThickness="{Binding BorderThickness, ElementName=toggleButton, Converter={StaticResource BottomThicknessConverter}, ConverterParameter=1.33}"
                       StrokeDashArray="1,2.5"
                       StrokeDashCap="Round"
                       Stroke="{TemplateBinding BorderBrush}"

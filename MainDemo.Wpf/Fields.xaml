@@ -102,6 +102,12 @@
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          FontSize="24" />
             </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="fields_13" Grid.Row="4" Grid.Column="3">
+                <TextBox materialDesign:HintAssist.Hint="I'm Disabled" IsEnabled="False" MinWidth="72" />
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="fields_15" Grid.Row="5" Grid.Column="3">
+                <PasswordBox Password="01234" IsEnabled="False" MinWidth="72" />
+            </smtx:XamlDisplay>
 
             <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="32 0 0 0">Multi-line</TextBlock>
             <smtx:XamlDisplay Key="fields_3" Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Margin="32 0 0 0">
