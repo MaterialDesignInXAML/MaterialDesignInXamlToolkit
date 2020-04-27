@@ -10,6 +10,7 @@
 
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <converters:BottomThicknessConverter x:Key="BottomThicknessConverter" />
     <converters:MathConverter Operation="Divide" x:Key="DivisionMathConverter" />
 
     <Style x:Key="MaterialDesignDatePickerTextBox" TargetType="{x:Type DatePickerTextBox}">
@@ -153,7 +154,7 @@
                                       Visibility="Collapsed"
                                       Stretch="Fill"
                                       Data="M 0,0 L 1,0"
-                                      StrokeThickness="{Binding BorderThickness.Bottom, ElementName=border, Converter={StaticResource DivisionMathConverter}, ConverterParameter=0.75}"
+                                      StrokeThickness="{Binding BorderThickness, ElementName=border, Converter={StaticResource BottomThicknessConverter}, ConverterParameter=1.33}"
                                       StrokeDashArray="1,2.5"
                                       StrokeDashCap="Round"
                                       Stroke="{TemplateBinding BorderBrush}"

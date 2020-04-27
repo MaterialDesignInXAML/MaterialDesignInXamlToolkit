@@ -9,6 +9,7 @@
 
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
     <converters:MathConverter Operation="Divide" x:Key="DivisionMathConverter" />
+    <converters:BottomThicknessConverter x:Key="BottomThicknessConverter" />
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearTextConverter" />
     <converters:NotConverter x:Key="NotConverter" />
@@ -166,7 +167,7 @@
                                       Width="{Binding ActualWidth, ElementName=border}"
                                       Stretch="Fill"
                                       Data="M 0,0 L 1,0"
-                                      StrokeThickness="{Binding BorderThickness.Bottom, ElementName=border, Converter={StaticResource DivisionMathConverter}, ConverterParameter=0.75}"
+                                      StrokeThickness="{Binding BorderThickness, ElementName=border, Converter={StaticResource BottomThicknessConverter}, ConverterParameter=1.33}"
                                       StrokeDashArray="1,2.5"
                                       StrokeDashCap="Round"
                                       Stroke="{TemplateBinding BorderBrush}"
