@@ -91,6 +91,17 @@
                             Click="MenuToggleButton_OnClick"/>
                         <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                             <StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Center"
+                                            Margin="10">
+                                    <TextBlock Text="Light"
+                                               Margin="0 0 10 0"/>
+                                    <ToggleButton x:Name="DarkModeToggleButton" 
+                                                  Click="MenuDarkModeButton_Click"/>
+                                    <TextBlock Text="Dark"
+                                               Margin="10 0 0 0"/>
+                                </StackPanel>
+                                <Separator/>
                                 <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
                                 <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
                                 <Button Content="Can't Touch This" IsEnabled="False" />
