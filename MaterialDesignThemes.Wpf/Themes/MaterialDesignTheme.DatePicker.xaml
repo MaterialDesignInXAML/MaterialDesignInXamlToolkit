@@ -118,7 +118,10 @@
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         SnapsToDevicePixels="True"
-                                        Padding="0 4 0 4">
+                                        Padding="0 4 0 4"
+                                        wpf:AdornerAssist.AdornerType="wpf:BottomDashedLineAdorner"
+                                        wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
+                                        wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
                                     <Grid x:Name="textFieldGrid"
                                           Margin="{TemplateBinding Padding}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -147,18 +150,6 @@
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Bottom"
                                         SnapsToDevicePixels="True" />
-                                <Path x:Name="DashedLine"
-                                      VerticalAlignment="Bottom"
-                                      Height="{Binding RelativeSource={RelativeSource Self}, Path=StrokeThickness}"
-                                      Width="{Binding ActualWidth, ElementName=border}"
-                                      Visibility="Collapsed"
-                                      Stretch="Fill"
-                                      Data="M 0,0 L 1,0"
-                                      StrokeThickness="{Binding BorderThickness, ElementName=border, Converter={StaticResource BottomThicknessConverter}, ConverterParameter=1.33}"
-                                      StrokeDashArray="1,2.5"
-                                      StrokeDashCap="Round"
-                                      Stroke="{TemplateBinding BorderBrush}"
-                                      Opacity="0.56" />
                                 <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"
                                                CornerRadius="{Binding Path=(wpf:TextFieldAssist.UnderlineCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                                Background="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -253,7 +244,7 @@
                                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
                                 <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="DashedLine" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="border" Property="wpf:AdornerAssist.ShowAdorner" Value="True" />
                         </MultiTrigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter TargetName="Underline" Property="IsActive" Value="True"/>

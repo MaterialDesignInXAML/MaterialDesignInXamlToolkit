@@ -95,7 +95,10 @@
                                 Background="{TemplateBinding Background}"
                                 x:Name="border"
                                 Padding="0 4 0 4"
-                                SnapsToDevicePixels="True">
+                                SnapsToDevicePixels="True"
+                                wpf:AdornerAssist.AdornerType="wpf:BottomDashedLineAdorner"
+                                wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
+                                wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
@@ -122,24 +125,12 @@
                                        PopupAnimation="Fade"/>
                             </Grid>
                         </Border>
-                        <Path x:Name="DashedLine"
-                              VerticalAlignment="Bottom"
-                              Height="{Binding RelativeSource={RelativeSource Self}, Path=StrokeThickness}"
-                              Width="{Binding ActualWidth, ElementName=border}"
-                              Visibility="Collapsed"
-                              Stretch="Fill"
-                              Data="M 0,0 L 1,0"
-                              StrokeThickness="{Binding BorderThickness, ElementName=border, Converter={StaticResource BottomThicknessConverter}, ConverterParameter=1.33}"
-                              StrokeDashArray="1,2.5"
-                              StrokeDashCap="Round"
-                              Stroke="{TemplateBinding BorderBrush}"
-                              Opacity="0.56" />
                         <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" TargetName="TemplateRoot" Value="0.56"/>
-                            <Setter Property="Visibility" TargetName="DashedLine"  Value="Visible" />
+                            <Setter Property="wpf:AdornerAssist.ShowAdorner" TargetName="border"  Value="True" />
                             <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
