@@ -6,6 +6,9 @@ namespace MaterialDesignThemes.Wpf
 {
     public class BottomDashedLineAdorner : Adorner
     {
+        private const double DefaultThicknessScale = 1.33;
+        private const double DefaultOpacity = 0.56;
+
         public BottomDashedLineAdorner(UIElement adornedElement) : base(adornedElement) { }
 
         protected override void OnRender(DrawingContext drawingContext)
@@ -37,13 +40,13 @@ namespace MaterialDesignThemes.Wpf
         public static Thickness GetThickness(DependencyObject element) => (Thickness) element.GetValue(ThicknessProperty);
 
         public static readonly DependencyProperty ThicknessScaleProperty = DependencyProperty.RegisterAttached(
-            "ThicknessScale", typeof(double), typeof(BottomDashedLineAdorner), new PropertyMetadata(1.33));
+            "ThicknessScale", typeof(double), typeof(BottomDashedLineAdorner), new PropertyMetadata(DefaultThicknessScale));
 
         public static void SetThicknessScale(DependencyObject element, double value) => element.SetValue(ThicknessScaleProperty, value);
         public static double GetThicknessScale(DependencyObject element) => (double) element.GetValue(ThicknessScaleProperty);
 
         public static readonly DependencyProperty BrushOpacityProperty = DependencyProperty.RegisterAttached(
-            "BrushOpacity", typeof(double), typeof(BottomDashedLineAdorner), new PropertyMetadata(0.56));
+            "BrushOpacity", typeof(double), typeof(BottomDashedLineAdorner), new PropertyMetadata(DefaultOpacity));
 
         public static void SetBrushOpacity(DependencyObject element, double value) => element.SetValue(BrushOpacityProperty, value);
         public static double GetBrushOpacity(DependencyObject element) => (double) element.GetValue(BrushOpacityProperty);
