@@ -27,6 +27,22 @@ namespace MaterialDesignThemes.Wpf
             drawingContext.Pop();
         }
 
+        public static readonly DependencyProperty IsAttachedProperty = DependencyProperty.RegisterAttached(
+            "IsAttached", typeof(bool), typeof(BottomDashedLineAdorner), new PropertyMetadata(default(bool), OnIsAttachedChanged));
+
+        public static void SetIsAttached(DependencyObject element, bool value) => element.SetValue(IsAttachedProperty, value);
+        public static bool GetIsAttached(DependencyObject element) => (bool) element.GetValue(IsAttachedProperty);
+
+        private static void OnIsAttachedChanged(DependencyObject @object, DependencyPropertyChangedEventArgs args)
+        {
+            var element = (UIElement) @object;
+            if (args.OldValue is bool oldValue && oldValue)
+                element.RemoveAdorner<BottomDashedLineAdorner>();
+
+            if (args.NewValue is bool newValue && newValue)
+                element.AddAdorner(new BottomDashedLineAdorner(element));
+        }
+
         public static readonly DependencyProperty BrushProperty = DependencyProperty.RegisterAttached(
             "Brush", typeof(Brush), typeof(BottomDashedLineAdorner), new PropertyMetadata(default(Brush)));
 

@@ -419,8 +419,7 @@
               Background="{TemplateBinding Background}"
               SnapsToDevicePixels="True">
             <Grid x:Name="InnerRoot"
-                  wpf:AdornerAssist.AdornerType="wpf:BottomDashedLineAdorner"
-                  wpf:AdornerAssist.ShowAdorner="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}"
+                  wpf:BottomDashedLineAdorner.IsAttached="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}"
                   wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
                   wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
                 <Grid.ColumnDefinitions>
@@ -720,8 +719,7 @@
                 BorderThickness="1"
                 SnapsToDevicePixels="True">
             <Grid x:Name="InnerRoot"
-                  wpf:AdornerAssist.AdornerType="wpf:BottomDashedLineAdorner"
-                  wpf:AdornerAssist.ShowAdorner="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}"
+                  wpf:BottomDashedLineAdorner.IsAttached="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}"
                   wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
                   wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
                 <Grid.ColumnDefinitions>

@@ -96,7 +96,6 @@
                                 x:Name="border"
                                 Padding="0 4 0 4"
                                 SnapsToDevicePixels="True"
-                                wpf:AdornerAssist.AdornerType="wpf:BottomDashedLineAdorner"
                                 wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
                                 wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
                             <Grid>
@@ -130,7 +129,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" TargetName="TemplateRoot" Value="0.56"/>
-                            <Setter Property="wpf:AdornerAssist.ShowAdorner" TargetName="border"  Value="True" />
+                            <Setter Property="wpf:BottomDashedLineAdorner.IsAttached" TargetName="border" Value="True" />
                             <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
