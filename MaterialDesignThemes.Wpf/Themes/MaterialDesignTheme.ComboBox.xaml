@@ -836,7 +836,7 @@
                                    ClassicMode="True"
                                    CornerRadius="0,0,2,2"
                                    ContentMargin="6,0,6,6"
-                                   HorizontalOffset="-2"
+                                   HorizontalOffset="-3"
                                    VerticalOffset="-1"
                                    ContentMinWidth="{Binding Path=ActualWidth, ElementName=templateRoot}"
                                    UpContentTemplate="{StaticResource PopupContentUpTemplate}"
