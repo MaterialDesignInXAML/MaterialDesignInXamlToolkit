@@ -1,25 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using MaterialDesignColors.WpfExample.Domain;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace MaterialDesignDemo.Domain
 {
     public class ListsAndGridsViewModel : INotifyPropertyChanged
     {
-        private readonly ObservableCollection<SelectableViewModel> _items1;
-        private readonly ObservableCollection<SelectableViewModel> _items2;
-        private readonly ObservableCollection<SelectableViewModel> _items3;
-
         public ListsAndGridsViewModel()
         {
-            _items1 = CreateData();
-            _items2 = CreateData();
-            _items3 = CreateData();
+            Items1 = CreateData();
+            Items2 = CreateData();
+            Items3 = CreateData();
 
-            foreach (var model in _items3)
+            foreach (var model in Items3)
             {
                 model.PropertyChanged += (sender, args) =>
                 {
@@ -33,7 +28,7 @@ namespace MaterialDesignDemo.Domain
         {
             get
             {
-                var selected = _items3.Select(item => item.IsSelected).Distinct().ToList();
+                var selected = Items3.Select(item => item.IsSelected).Distinct().ToList();
                 return selected.Count == 1 ? selected.Single() : (bool?) null;
             }
             set
@@ -80,10 +75,9 @@ namespace MaterialDesignDemo.Domain
             };
         }
 
-        public ObservableCollection<SelectableViewModel> Items1 => _items1;
-        public ObservableCollection<SelectableViewModel> Items2 => _items2;
-
-        public ObservableCollection<SelectableViewModel> Items3 => _items3;
+        public ObservableCollection<SelectableViewModel> Items1 { get; }
+        public ObservableCollection<SelectableViewModel> Items2 { get; }
+        public ObservableCollection<SelectableViewModel> Items3 { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -92,15 +86,6 @@ namespace MaterialDesignDemo.Domain
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public IEnumerable<string> Foods
-        {
-            get
-            {
-                yield return "Burger";
-                yield return "Fries";
-                yield return "Shake";
-                yield return "Lettuce";
-            }
-        }
+        public IEnumerable<string> Foods => new[] { "Burger", "Fries", "Shake", "Lettuce" };
     }
 }
