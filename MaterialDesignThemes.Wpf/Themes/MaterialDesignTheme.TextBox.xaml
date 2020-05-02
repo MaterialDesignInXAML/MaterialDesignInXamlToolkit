@@ -376,8 +376,13 @@
     <Style x:Key="MaterialDesignFilledTextFieldTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
         <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
         <Setter Property="wpf:TextFieldAssist.RippleOnFocusEnabled" Value="True" />
-        <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
+        <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
         <Setter Property="wpf:TextFieldAssist.UnderlineCornerRadius" Value="0" />
+        <Style.Triggers>
+            <Trigger Property="wpf:TextFieldAssist.DecorationVisibility" Value="Visible">
+                <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4 4 0 0" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="MaterialDesignOutlinedTextFieldTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
