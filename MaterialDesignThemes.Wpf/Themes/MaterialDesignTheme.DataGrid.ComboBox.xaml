@@ -99,7 +99,7 @@
                     <Border x:Name="templateRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"                                     
                                         SnapsToDevicePixels="true">
                         <Border x:Name="splitBorder" BorderBrush="Transparent" BorderThickness="0" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Top"  SnapsToDevicePixels="true">
-                            <Viewbox Width="12" Height="12" VerticalAlignment="Center" Margin="2 2 0 0">
+                            <Viewbox Width="8" Height="8" VerticalAlignment="Center" Margin="2 2 0 0">
                                 <Path x:Name="arrow" Data="M0,0L5,5L10,0H7Z" Fill="{TemplateBinding BorderBrush}" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Center" Canvas.Left="7" SnapsToDevicePixels="True"/>                                
                             </Viewbox>
                         </Border>
