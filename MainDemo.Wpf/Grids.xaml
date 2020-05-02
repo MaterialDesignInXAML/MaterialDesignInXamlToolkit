@@ -37,17 +37,19 @@
                             </DataGridCheckBoxColumn.Header>
                         </DataGridCheckBoxColumn>
                         <DataGridTextColumn Binding="{Binding Code}"
-                                        Header="Code"
-                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                                            Header="Code"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                         <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
                         <materialDesign:DataGridTextColumn Binding="{Binding Name}"
                                                            Header="Name"
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" 
-                                                           />
+                                                           ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                         <!-- set a max length to get an indicator in the editor -->
                         <materialDesign:DataGridTextColumn Binding="{Binding Description}"
                                                            Header="Description"
-                                                           MaxLength="255" 
+                                                           MaxLength="255"
+                                                           ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
                         <materialDesign:DataGridTextColumn Binding="{Binding Numeric}"
                                                         Header="Number with long header"
@@ -66,7 +68,7 @@
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="{x:Type TextBlock}">
+                                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
                                     <Setter Property="HorizontalAlignment" Value="Right" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
