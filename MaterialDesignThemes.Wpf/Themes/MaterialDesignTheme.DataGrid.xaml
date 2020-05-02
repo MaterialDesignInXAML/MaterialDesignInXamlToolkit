@@ -1,4 +1,4 @@
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
@@ -85,6 +85,7 @@
         <Setter Property="Margin" Value="0 0 0 -5" />
         <Setter Property="BorderThickness" Value="0 0 0 2"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -105,13 +106,22 @@
                                         BorderBrush="{DynamicResource MaterialDesignDivider}"
                                         BorderThickness="1">
                                     <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
-                                            Padding="0 -1 0 3">
-                                            <Grid>
+                                        <Border x:Name="border"
+                                                Grid.ColumnSpan="2"
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                Background="{TemplateBinding Background}" 
+                                                SnapsToDevicePixels="True"
+                                                Padding="0 -1 0 3">
+                                            <Grid Validation.ErrorTemplate="{StaticResource MaterialDesignValidationErrorTemplate}">
                                                 <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
                                                 <wpf:SmartHint x:Name="Hint"
                                                                Margin="1 0"
@@ -123,7 +133,28 @@
                                                                />
                                             </Grid>
                                         </Border>
-                                        <TextBlock Grid.Row="1" HorizontalAlignment="Right" Opacity=".56" Visibility="{TemplateBinding MaxLength, Converter={StaticResource NotZeroToVisibilityConverter}}">
+                                        <Border Grid.Row="1" Grid.Column="0"
+                                                Visibility="{TemplateBinding Validation.HasError, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                Background="{TemplateBinding wpf:ValidationAssist.Background}"
+                                                MaxWidth="{TemplateBinding ActualWidth}">
+                                            <ItemsControl ItemsSource="{TemplateBinding Validation.Errors}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate DataType="ValidationError">
+                                                        <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
+                                                                   FontSize="{TemplateBinding wpf:ValidationAssist.FontSize}"
+                                                                   HorizontalAlignment="{TemplateBinding wpf:ValidationAssist.HorizontalAlignment}"
+                                                                   Margin="0 2"
+                                                                   TextWrapping="Wrap"
+                                                                   Text="{Binding ErrorContent}"
+                                                                   UseLayoutRounding="false" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </Border>
+                                        <TextBlock Grid.Row="1" Grid.Column="1" 
+                                                   HorizontalAlignment="Right" 
+                                                   Opacity=".56" 
+                                                   Visibility="{TemplateBinding MaxLength, Converter={StaticResource NotZeroToVisibilityConverter}}">
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="{}{0}/{1}">
                                                     <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Text.Length" />
@@ -136,6 +167,11 @@
                             </Grid>
                         </controlzEx:PopupEx>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
