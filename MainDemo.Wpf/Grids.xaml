@@ -16,10 +16,10 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer>
-        <StackPanel>
-            <TextBlock>Custom Columns</TextBlock>
+        <StackPanel Margin="5 0 0 0">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Custom Columns"/>
             <smtx:XamlDisplay Key="grids_1">
-                <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
+                <DataGrid ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
                           materialDesign:DataGridAssist.CellPadding="13 8 8 8" materialDesign:DataGridAssist.ColumnHeaderPadding="8" HeadersVisibility="All">
                     <DataGrid.Resources>
                         <domain:BindingProxy x:Key="DataContextProxy" Data="{Binding}" />
@@ -89,15 +89,14 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </smtx:XamlDisplay>
-            <TextBlock Margin="0 24 0 0">Auto Generated Columns</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Auto Generated Columns" Margin="0 24 0 0"/>
             <smtx:XamlDisplay Key="grids_2">
-                <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" />
+                <DataGrid ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" />
             </smtx:XamlDisplay>
-            <TextBlock Margin="0 24 0 0">Custom Padding</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Custom Padding" Margin="0 24 0 0"/>
             <smtx:XamlDisplay Key="grids_3">
-                <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False"
-                           materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                           />
+                <DataGrid ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False"
+                          materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" />
             </smtx:XamlDisplay>
         </StackPanel>
     </ScrollViewer>
