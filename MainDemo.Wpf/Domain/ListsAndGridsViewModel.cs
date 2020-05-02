@@ -14,28 +14,28 @@ namespace MaterialDesignDemo.Domain
             Items2 = CreateData();
             Items3 = CreateData();
 
-            foreach (var model in Items3)
+            foreach (var model in Items1)
             {
                 model.PropertyChanged += (sender, args) =>
                 {
                     if (args.PropertyName == nameof(SelectableViewModel.IsSelected))
-                        OnPropertyChanged(nameof(IsAllItems3Selected));
+                        OnPropertyChanged(nameof(IsAllItems1Selected));
                 };
             }
         }
 
-        public bool? IsAllItems3Selected
+        public bool? IsAllItems1Selected
         {
             get
             {
-                var selected = Items3.Select(item => item.IsSelected).Distinct().ToList();
+                var selected = Items1.Select(item => item.IsSelected).Distinct().ToList();
                 return selected.Count == 1 ? selected.Single() : (bool?) null;
             }
             set
             {
                 if (value.HasValue)
                 {
-                    SelectAll(value.Value, Items3);
+                    SelectAll(value.Value, Items1);
                     OnPropertyChanged();
                 }
             }

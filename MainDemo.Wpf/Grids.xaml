@@ -19,7 +19,7 @@
         <StackPanel Margin="5 0 0 0">
             <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Custom Columns"/>
             <smtx:XamlDisplay Key="grids_1">
-                <DataGrid ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
+                <DataGrid ItemsSource="{Binding Items1}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
                           HeadersVisibility="All">
                     <DataGrid.Resources>
                         <domain:BindingProxy x:Key="DataContextProxy" Data="{Binding}" />
@@ -32,7 +32,7 @@
                                 <!--padding to allow hit test to pass thru for sorting -->
                                 <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
                                     <CheckBox HorizontalAlignment="Center"
-                                              IsChecked="{Binding Data.IsAllItems3Selected, Source={StaticResource DataContextProxy}}" />
+                                              IsChecked="{Binding Data.IsAllItems1Selected, Source={StaticResource DataContextProxy}}" />
                                 </Border>
                             </DataGridCheckBoxColumn.Header>
                         </DataGridCheckBoxColumn>
@@ -91,7 +91,7 @@
             </smtx:XamlDisplay>
             <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Auto Generated Columns" Margin="0 24 0 0"/>
             <smtx:XamlDisplay Key="grids_2">
-                <DataGrid ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" />
+                <DataGrid ItemsSource="{Binding Items2}" CanUserSortColumns="True" CanUserAddRows="False" />
             </smtx:XamlDisplay>
             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Custom Padding" Margin="0 24 0 0"/>
             <smtx:XamlDisplay Key="grids_3">
