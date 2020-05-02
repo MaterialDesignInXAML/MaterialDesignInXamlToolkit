@@ -157,6 +157,7 @@
                                         Background="{TemplateBinding BorderBrush}"
                                         Height="0"
                                         CornerRadius="{Binding Path=(wpf:TextFieldAssist.UnderlineCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                                        Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Bottom"
                                         SnapsToDevicePixels="True" />
