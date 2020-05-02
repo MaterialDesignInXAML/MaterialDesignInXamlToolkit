@@ -41,10 +41,17 @@
                                             ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                         <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
-                        <materialDesign:DataGridTextColumn Binding="{Binding Name}"
-                                                           Header="Name"
+                        <materialDesign:DataGridTextColumn Header="Name"
                                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+                            <materialDesign:DataGridTextColumn.Binding>
+                                <Binding Path="Name">
+                                    <Binding.ValidationRules>
+                                        <domain:NotEmptyValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </materialDesign:DataGridTextColumn.Binding>
+                        </materialDesign:DataGridTextColumn>
                         <!-- set a max length to get an indicator in the editor -->
                         <materialDesign:DataGridTextColumn Binding="{Binding Description}"
                                                            Header="Description"
