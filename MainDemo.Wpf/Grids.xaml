@@ -20,7 +20,7 @@
             <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Custom Columns"/>
             <smtx:XamlDisplay Key="grids_1">
                 <DataGrid ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
-                          materialDesign:DataGridAssist.CellPadding="13 8 8 8" materialDesign:DataGridAssist.ColumnHeaderPadding="8" HeadersVisibility="All">
+                          HeadersVisibility="All">
                     <DataGrid.Resources>
                         <domain:BindingProxy x:Key="DataContextProxy" Data="{Binding}" />
                     </DataGrid.Resources>
