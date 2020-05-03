@@ -144,6 +144,7 @@
     <Style x:Key="MaterialDesignToolToggleListBox" TargetType="{x:Type ListBox}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignToolBarBackground}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
@@ -176,7 +177,7 @@
                             BorderThickness="{TemplateBinding BorderThickness}" 
                             SnapsToDevicePixels="true"
                             Padding="{TemplateBinding Padding}">
-                        <wpf:Card wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}" HorizontalAlignment="Left" Background="{TemplateBinding Background}">
+                        <wpf:Card wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" Background="{TemplateBinding Background}">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </wpf:Card>
                     </Border>
@@ -194,6 +195,19 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignToolVerticalToggleListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignToolToggleListBox}">
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style x:Key="MaterialDesignToolToggleFlatListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignToolToggleListBox}">
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
     </Style>
