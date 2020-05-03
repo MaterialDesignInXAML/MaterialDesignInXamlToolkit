@@ -202,7 +202,7 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical" />
+                    <VirtualizingStackPanel Orientation="Vertical" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
