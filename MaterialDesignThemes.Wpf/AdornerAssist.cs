@@ -8,7 +8,7 @@ namespace MaterialDesignThemes.Wpf
     /// this is a simple utility to add and remove a single adorner to an element since there is no built-in way to do that in xaml.
     /// <a href="https://docs.microsoft.com/en-us/dotnet/framework/wpf/controls/adorners-overview">see here</a>
     /// </summary>
-    public static class AdornerEx
+    internal static class AdornerAssist
     {
         public static void AddAdorner<T>(this UIElement element, T adorner) where T : Adorner
         {
@@ -19,9 +19,9 @@ namespace MaterialDesignThemes.Wpf
         {
             var layer = AdornerLayer.GetAdornerLayer(element);
             var adorners = layer?.GetAdorners(element);
-            if (adorners == null) return;
+            if (adorners is null) return;
 
-            foreach (var adorner in adorners.Where(a => a is T))
+            foreach (var adorner in adorners.OfType<T>())
                 layer.Remove(adorner);
         }
     }
