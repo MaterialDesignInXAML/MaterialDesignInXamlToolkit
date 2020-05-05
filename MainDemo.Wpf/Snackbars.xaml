@@ -178,7 +178,7 @@
                         <materialDesign:Snackbar IsActive="True"
                                                  ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionMidButton}"
                                                  ActionButtonPlacement="Inline">
-                            <materialDesign:SnackbarMessage Content="Primary Mid" ActionContent="MID" />
+                            <materialDesign:SnackbarMessage Content="Primary Mid - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." ActionContent="MID" />
                         </materialDesign:Snackbar>
                     </smtx:XamlDisplay>
                     <smtx:XamlDisplay Key="snackbar_9" Margin="0 8 0 0">
