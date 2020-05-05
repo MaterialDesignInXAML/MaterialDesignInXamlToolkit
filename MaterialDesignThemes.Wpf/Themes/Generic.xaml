@@ -502,6 +502,7 @@
     <Style TargetType="{x:Type local:DrawerHost}">
         <Setter Property="local:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="OverlayBackground" Value="{StaticResource BlackBackground}" />
         <Setter Property="LeftDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="TopDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="RightDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
@@ -530,10 +531,6 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
-                                                                           Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
-                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="AnyOpen" To="AllClosed">
@@ -546,10 +543,6 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
-                                                                           Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame Value="{x:Null}" KeyTime="0:0:0.3" />
-                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -563,10 +556,6 @@
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="IsEnabled">
                                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
-                                                                           Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="AllClosed">
@@ -576,10 +565,6 @@
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="IsHitTestVisible">
                                             <DiscreteBooleanKeyFrame Value="False" />
                                         </BooleanAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame Value="{x:Null}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -770,7 +755,7 @@
                                         x:Name="ContentPresenter" Opacity="1"                    
                                         Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
                             </AdornerDecorator>
-                            <Grid x:Name="PART_ContentCover" Background="{x:Null}" Opacity="0" IsHitTestVisible="False" Focusable="False" />
+                            <Grid x:Name="PART_ContentCover" Background="{TemplateBinding OverlayBackground}" Opacity="0" IsHitTestVisible="False" Focusable="False" />
                             <Grid>
                                 <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch"
                                       x:Name="PART_LeftDrawer"
