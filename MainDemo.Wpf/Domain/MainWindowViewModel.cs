@@ -247,11 +247,10 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<DialogsViewModel>("Demo View Model", "Domain"),
                         DocumentationLink.ApiLink<DialogHost>()
                     }),
-                new DemoItem("Drawer", new Drawers { DataContext = new DrawersViewModel() },
+                new DemoItem("Drawer", new Drawers(),
                     new []
                     {
                         DocumentationLink.DemoPageLink<Drawers>("Demo View"),
-                        DocumentationLink.DemoPageLink<DrawersViewModel>("Demo View Model"),
                         DocumentationLink.ApiLink<DrawerHost>()
                     }),
                 new DemoItem("Snackbar", new Snackbars(),
