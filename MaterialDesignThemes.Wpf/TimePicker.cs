@@ -32,6 +32,29 @@ namespace MaterialDesignThemes.Wpf
         static TimePicker()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TimePicker), new FrameworkPropertyMetadata(typeof(TimePicker)));
+            EventManager.RegisterClassHandler(typeof(TimePicker), UIElement.GotFocusEvent, new RoutedEventHandler(OnGotFocus));
+        }
+
+        /// <summary>
+        ///     Called when this element gets focus.
+        /// </summary>
+        private static void OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            // When TimePicker gets focus move it to the TextBox
+            TimePicker picker = (TimePicker)sender;
+            if ((!e.Handled) && (picker._textBox != null))
+            {
+                if (e.OriginalSource == picker)
+                {
+                    picker._textBox.Focus();
+                    e.Handled = true;
+                }
+                else if (e.OriginalSource == picker._textBox)
+                {
+                    picker._textBox.SelectAll();
+                    e.Handled = true;
+                }
+            }
         }
 
         public TimePicker()
