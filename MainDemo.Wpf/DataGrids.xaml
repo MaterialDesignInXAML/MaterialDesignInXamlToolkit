@@ -1,4 +1,4 @@
-<UserControl x:Class="MaterialDesignColors.WpfExample.Grids"
+<UserControl x:Class="MaterialDesignColors.WpfExample.DataGrids"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,7 @@
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="600">
+             d:DesignHeight="300" d:DesignWidth="600" d:DataContext="{d:DesignInstance domain:ListsAndGridsViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,11 +16,11 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer>
-        <StackPanel>
-            <TextBlock>Custom Columns</TextBlock>
+        <StackPanel Margin="5 0 0 0">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Custom Columns"/>
             <smtx:XamlDisplay Key="grids_1">
-                <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
-                          materialDesign:DataGridAssist.CellPadding="13 8 8 8" materialDesign:DataGridAssist.ColumnHeaderPadding="8" HeadersVisibility="All">
+                <DataGrid ItemsSource="{Binding Items1}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
+                          HeadersVisibility="All">
                     <DataGrid.Resources>
                         <domain:BindingProxy x:Key="DataContextProxy" Data="{Binding}" />
                     </DataGrid.Resources>
@@ -32,23 +32,38 @@
                                 <!--padding to allow hit test to pass thru for sorting -->
                                 <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
                                     <CheckBox HorizontalAlignment="Center"
-                                              IsChecked="{Binding Data.IsAllItems3Selected, Source={StaticResource DataContextProxy}}" />
+                                              IsChecked="{Binding Data.IsAllItems1Selected, Source={StaticResource DataContextProxy}}" />
                                 </Border>
                             </DataGridCheckBoxColumn.Header>
                         </DataGridCheckBoxColumn>
                         <DataGridTextColumn Binding="{Binding Code}"
-                                        Header="Code"
-                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                                            Header="Code"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                         <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
-                        <materialDesign:DataGridTextColumn Binding="{Binding Name}"
-                                                           Header="Name"
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" 
-                                                           />
+                        <materialDesign:DataGridTextColumn Header="Name"
+                                                           ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+                            <materialDesign:DataGridTextColumn.Binding>
+                                <Binding Path="Name">
+                                    <Binding.ValidationRules>
+                                        <domain:NotEmptyValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </materialDesign:DataGridTextColumn.Binding>
+                        </materialDesign:DataGridTextColumn>
                         <!-- set a max length to get an indicator in the editor -->
-                        <materialDesign:DataGridTextColumn Binding="{Binding Description}"
-                                                           Header="Description"
-                                                           MaxLength="255" 
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                        <DataGridTextColumn Header="Description"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Description">
+                                    <Binding.ValidationRules>
+                                        <domain:NotEmptyValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
                         <materialDesign:DataGridTextColumn Binding="{Binding Numeric}"
                                                         Header="Number with long header"
                                                         Width="120"
@@ -66,7 +81,7 @@
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="{x:Type TextBlock}">
+                                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
                                     <Setter Property="HorizontalAlignment" Value="Right" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
@@ -87,15 +102,14 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </smtx:XamlDisplay>
-            <TextBlock Margin="0 24 0 0">Auto Generated Columns</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Auto Generated Columns" Margin="0 24 0 0"/>
             <smtx:XamlDisplay Key="grids_2">
-                <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False" />
+                <DataGrid ItemsSource="{Binding Items2}" CanUserSortColumns="True" CanUserAddRows="False" />
             </smtx:XamlDisplay>
-            <TextBlock Margin="0 24 0 0">Custom Padding</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Custom Padding" Margin="0 24 0 0"/>
             <smtx:XamlDisplay Key="grids_3">
-                <DataGrid  Margin="0 8 0 0" ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False"
-                           materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                           />
+                <DataGrid ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False"
+                          materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" />
             </smtx:XamlDisplay>
         </StackPanel>
     </ScrollViewer>
