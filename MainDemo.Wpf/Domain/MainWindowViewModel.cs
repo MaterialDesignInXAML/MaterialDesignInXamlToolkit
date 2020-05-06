@@ -207,10 +207,10 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<TreesViewModel>("Demo View Model"),
                         DocumentationLink.StyleLink("TreeView")
                     }),
-                new DemoItem("Grids", new Grids { DataContext = new ListsAndGridsViewModel()},
+                new DemoItem("Data Grids", new DataGrids { DataContext = new ListsAndGridsViewModel()},
                     new []
                     {
-                        DocumentationLink.DemoPageLink<Grids>("Demo View"),
+                        DocumentationLink.DemoPageLink<DataGrids>("Demo View"),
                         DocumentationLink.DemoPageLink<ListsAndGridsViewModel>("Demo View Model", "Domain"),
                         DocumentationLink.StyleLink("DataGrid")
                     }),

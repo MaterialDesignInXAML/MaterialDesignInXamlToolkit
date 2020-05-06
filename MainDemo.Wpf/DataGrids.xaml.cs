@@ -5,9 +5,9 @@ namespace MaterialDesignColors.WpfExample
     /// <summary>
     /// Interaction logic for Grids.xaml
     /// </summary>
-    public partial class Grids : UserControl
+    public partial class DataGrids : UserControl
     {
-        public Grids()
+        public DataGrids()
         {
             InitializeComponent();
         }

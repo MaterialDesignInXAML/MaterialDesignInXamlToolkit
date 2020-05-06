@@ -1,4 +1,4 @@
-<UserControl x:Class="MaterialDesignColors.WpfExample.Grids"
+<UserControl x:Class="MaterialDesignColors.WpfExample.DataGrids"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -53,11 +53,17 @@
                             </materialDesign:DataGridTextColumn.Binding>
                         </materialDesign:DataGridTextColumn>
                         <!-- set a max length to get an indicator in the editor -->
-                        <materialDesign:DataGridTextColumn Binding="{Binding Description}"
-                                                           Header="Description"
-                                                           MaxLength="255"
-                                                           ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                        <DataGridTextColumn Header="Description"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Description">
+                                    <Binding.ValidationRules>
+                                        <domain:NotEmptyValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
                         <materialDesign:DataGridTextColumn Binding="{Binding Numeric}"
                                                         Header="Number with long header"
                                                         Width="120"
