@@ -49,7 +49,7 @@
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
                                         <DoubleAnimation Duration="0" To=".75" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBackground"/>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText" FillBehavior="Stop">
                                             <DiscreteObjectKeyFrame Value="{DynamicResource PrimaryHueMidForegroundBrush}" KeyTime="0" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -167,7 +167,7 @@
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
                                         <DoubleAnimation Duration="0" To=".75" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBackground"/>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText" FillBehavior="Stop">
                                             <DiscreteObjectKeyFrame Value="{DynamicResource PrimaryHueMidForegroundBrush}" KeyTime="0" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
