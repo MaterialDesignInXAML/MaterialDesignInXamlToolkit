@@ -113,8 +113,6 @@
                                             AllowsTransparency="True">
                             <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"
                                       Foreground="{DynamicResource MaterialDesignBody}"
-                                      FontSize="15"
-                                      FontWeight="Regular"
                                       Padding="{TemplateBinding Padding}"
                                       RenderOptions.ClearTypeHint="Enabled"
                                       Margin="5">
