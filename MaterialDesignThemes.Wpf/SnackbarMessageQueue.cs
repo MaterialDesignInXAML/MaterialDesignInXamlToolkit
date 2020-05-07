@@ -18,7 +18,6 @@ namespace MaterialDesignThemes.Wpf
         private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _pausedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _messageWaitingEvent = new ManualResetEvent(false);
-        private Tuple<SnackbarMessageQueueItem, DateTime> _latestShownItem;
         private int _pauseCounter;
         private bool _isDisposed;
 
@@ -257,27 +256,27 @@ namespace MaterialDesignThemes.Wpf
 
             var snackbarMessageQueueItem = new SnackbarMessageQueueItem(content, durationOverride ?? _messageDuration,
                 actionContent, actionHandler, actionArgument, promote, neverConsiderToBeDuplicate);
-            if (promote)
-                InsertAsLastNotPromotedNode(snackbarMessageQueueItem);
-            else
-                _snackbarMessages.AddLast(snackbarMessageQueueItem);
+            InsertItem(snackbarMessageQueueItem);
 
             _messageWaitingEvent.Set();
         }
 
-        private void InsertAsLastNotPromotedNode(SnackbarMessageQueueItem snackbarMessageQueueItem)
+        private void InsertItem(SnackbarMessageQueueItem item)
         {
             var node = _snackbarMessages.First;
             while (node != null)
             {
-                if (!node.Value.IsPromoted)
+                if (!IgnoreDuplicate && item.IsDuplicate(node.Value))
+                    return;
+
+                if (item.IsPromoted && !node.Value.IsPromoted)
                 {
-                    _snackbarMessages.AddBefore(node, snackbarMessageQueueItem);
+                    _snackbarMessages.AddBefore(node, item);
                     return;
                 }
                 node = node.Next;
             }
-            _snackbarMessages.AddLast(snackbarMessageQueueItem);
+            _snackbarMessages.AddLast(item);
         }
 
         private async void PumpAsync()
@@ -301,18 +300,9 @@ namespace MaterialDesignThemes.Wpf
                 //show message
                 if (snackbar != null)
                 {
-                    var message = _snackbarMessages.First.Value;
+                    var message = _snackbarMessages.First!.Value;
+                    await ShowAsync(snackbar, message);
                     _snackbarMessages.RemoveFirst();
-                    if (_latestShownItem == null
-                        || IgnoreDuplicate
-                        || message.IgnoreDuplicate
-                        || !Equals(_latestShownItem.Item1.Content, message.Content)
-                        || !Equals(_latestShownItem.Item1.ActionContent, message.ActionContent)
-                        || _latestShownItem.Item2 <= DateTime.Now.Subtract(_latestShownItem.Item1.Duration))
-                    {
-                        await ShowAsync(snackbar, message);
-                        _latestShownItem = new Tuple<SnackbarMessageQueueItem, DateTime>(message, DateTime.Now);
-                    }
                 }
                 else
                 {

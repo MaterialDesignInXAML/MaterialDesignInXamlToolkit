@@ -50,5 +50,17 @@ namespace MaterialDesignThemes.Wpf
         /// Still display this message even if it is a duplicate.
         /// </summary>
         public bool IgnoreDuplicate { get; }
+
+        /// <summary>
+        /// Checks if given item is a duplicate to this
+        /// </summary>
+        /// <param name="item">Item to check for duplicate</param>
+        /// <returns><c>true</c> if given item is a duplicate to this, <c>false</c> otherwise</returns>
+        public bool IsDuplicate(SnackbarMessageQueueItem item)
+        {
+            return !IgnoreDuplicate
+                   && Equals(item.Content, Content)
+                   && Equals(item.ActionContent, ActionContent);
+        }
     }
 }
