@@ -250,7 +250,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                 new DemoItem("Drawer", new Drawers(),
                     new []
                     {
-                        DocumentationLink.DemoPageLink<Drawers>(),
+                        DocumentationLink.DemoPageLink<Drawers>("Demo View"),
                         DocumentationLink.ApiLink<DrawerHost>()
                     }),
                 new DemoItem("Snackbar", new Snackbars(),
