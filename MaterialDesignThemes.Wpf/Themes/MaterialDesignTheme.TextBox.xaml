@@ -34,6 +34,7 @@
         <Setter Property="wpf:TextFieldAssist.IncludeSpellingSuggestions" Value="{Binding RelativeSource={RelativeSource Self}, Path=(SpellCheck.IsEnabled)}" />
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="wpf:HintAssist.Background" Value="Transparent" />
         <Setter Property="ContextMenu" Value="{StaticResource MaterialDesignDefaultContextMenu}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -165,6 +166,7 @@
                         </MultiTrigger>
                         <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
                             <Setter TargetName="border" Property="Margin" Value="0 18 0 0" />
+                            <Setter TargetName="HintBackgroundBorder" Property="Background" Value="{Binding Path=(wpf:HintAssist.Background), RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
                         <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
                             <Setter TargetName="textFieldBoxBorder" Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}"/>
@@ -210,7 +212,6 @@
                             <Setter TargetName="Hint" Property="FloatingOffset" Value="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FontSizeToHintOffsetConverter}}" />
                             <Setter TargetName="HintWrapper" Property="Opacity" Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
                             <Setter TargetName="HintBackgroundBorder" Property="Padding" Value="4, 0" />
-                            <Setter TargetName="HintBackgroundBorder" Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -353,6 +354,7 @@
     <Style x:Key="MaterialDesignOutlinedTextFieldTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
         <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
+        <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesignPaper}" />
     </Style>
 
 </ResourceDictionary>
