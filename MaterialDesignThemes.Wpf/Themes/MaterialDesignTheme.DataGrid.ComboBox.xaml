@@ -27,8 +27,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                    <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    <Border
+                        x:Name="Bd"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        Padding="{TemplateBinding Padding}"
+                        SnapsToDevicePixels="true">
+                        <ContentPresenter
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
@@ -151,8 +160,19 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
             </Grid.ColumnDefinitions>
-            <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
-                <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" UseLayoutRounding="True">
+            <Popup 
+                x:Name="PART_Popup" 
+                AllowsTransparency="true" 
+                Grid.ColumnSpan="2" 
+                IsOpen="{Binding IsDropDownOpen, 
+                Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                Margin="1" 
+                PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" 
+                Placement="Bottom">
+                <Grid
+                    MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                    MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
+                    UseLayoutRounding="True">
                     <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                         <Border x:Name="shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2" BorderThickness="1"
                                 Effect="{DynamicResource MaterialDesignShadowDepth2}">
@@ -163,27 +183,51 @@
                         <ScrollViewer x:Name="DropDownScrollViewer">
                             <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                 <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                    <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                    <Rectangle
+                                        x:Name="opaqueRect" 
+                                        Fill="{Binding Background, ElementName=dropDownBorder}" 
+                                        Height="{Binding ActualHeight, ElementName=dropDownBorder}" 
+                                        Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
                                 </Canvas>
-                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" UseLayoutRounding="False" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <ItemsPresenter 
+                                    x:Name="ItemsPresenter"
+                                    KeyboardNavigation.DirectionalNavigation="Contained" 
+                                    UseLayoutRounding="False" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                             </Grid>
                         </ScrollViewer>
                     </Border>
                 </Grid>
             </Popup>
-            <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource MaterialDesignDataGridComboBoxToggleButton}"
-                                  />
-
-            <wpf:SmartHint x:Name="Hint"
-                           Margin="{TemplateBinding Padding}"
-                                   HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                   FontSize="{TemplateBinding FontSize}"
-                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                   UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                   UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
-                                   HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                                   Hint="{TemplateBinding wpf:HintAssist.Hint}" />
-            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>            
+            <ToggleButton
+                x:Name="toggleButton"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                Grid.ColumnSpan="2"
+                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                Style="{StaticResource MaterialDesignDataGridComboBoxToggleButton}" />
+            <wpf:SmartHint
+                x:Name="Hint"
+                Margin="{TemplateBinding Padding}"
+                HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                FontSize="{TemplateBinding FontSize}"
+                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                Hint="{TemplateBinding wpf:HintAssist.Hint}" />
+            <ContentPresenter
+                x:Name="contentPresenter"
+                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                Content="{TemplateBinding SelectionBoxItem}"
+                ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                IsHitTestVisible="false"
+                Margin="{TemplateBinding Padding}"
+                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />            
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
@@ -219,8 +263,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid>
-                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-											  />
+                        <ScrollViewer
+                            x:Name="PART_ContentHost"
+                            Focusable="false"
+                            HorizontalScrollBarVisibility="Hidden"
+                            VerticalScrollBarVisibility="Hidden" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -233,39 +280,80 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
             </Grid.ColumnDefinitions>
-            <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
-                <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" UseLayoutRounding="True">
+            <Popup
+                x:Name="PART_Popup"
+                AllowsTransparency="true"
+                Grid.ColumnSpan="2"
+                IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
+                Placement="Bottom">
+                <Grid
+                    MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                    MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
+                    UseLayoutRounding="True">
                     <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
-                        <Border x:Name="shadow" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2" BorderThickness="1"
-                                                Effect="{DynamicResource MaterialDesignShadowDepth2}">
-                        </Border>
+                        <Border
+                            x:Name="shadow"
+                            Background="{DynamicResource MaterialDesignPaper}"
+                            CornerRadius="2"
+                            BorderThickness="1"
+                            Effect="{DynamicResource MaterialDesignShadowDepth2}" />
                     </AdornerDecorator>
-                    <Border x:Name="dropDownBorder" Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}" Background="Transparent"
-                            CornerRadius="2" BorderThickness="1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                    <Border x:Name="dropDownBorder"
+                            Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}"
+                            Background="Transparent"
+                            CornerRadius="2"
+                            BorderThickness="1"
+                            BorderBrush="{DynamicResource MaterialDesignDivider}">
                         <ScrollViewer x:Name="DropDownScrollViewer">
                             <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                 <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                    <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                    <Rectangle
+                                        x:Name="opaqueRect"
+                                        Fill="{Binding Background, ElementName=dropDownBorder}"
+                                        Height="{Binding ActualHeight, ElementName=dropDownBorder}"
+                                        Width="{Binding ActualWidth, ElementName=dropDownBorder}" />
                                 </Canvas>
-                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" UseLayoutRounding="False" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <ItemsPresenter
+                                    x:Name="ItemsPresenter"
+                                    KeyboardNavigation.DirectionalNavigation="Contained"
+                                    UseLayoutRounding="False"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                             </Grid>
                         </ScrollViewer>
                     </Border>
                 </Grid>
             </Popup>
-            <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource MaterialDesignDataGridComboBoxToggleButton}"/>
-            <Border x:Name="border" Background="Transparent" Margin="{TemplateBinding BorderThickness}">
+            <ToggleButton 
+                x:Name="toggleButton" 
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}" 
+                Background="{TemplateBinding Background}" 
+                Grid.ColumnSpan="2"
+                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                Style="{StaticResource MaterialDesignDataGridComboBoxToggleButton}"/>
+            <Border
+                x:Name="border"
+                Background="Transparent"
+                Margin="{TemplateBinding BorderThickness}">
                 <Grid>
-                    <wpf:SmartHint x:Name="Hint"
-                                   Margin="{TemplateBinding Padding}"
-                                   HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                   FontSize="{TemplateBinding FontSize}"
-                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                   UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                   UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
-                                   HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                                   Hint="{TemplateBinding wpf:HintAssist.Hint}" />
-                    <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource MaterialDesignDataGridComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    <wpf:SmartHint
+                        x:Name="Hint"
+                        Margin="{TemplateBinding Padding}"
+                        HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                        FontSize="{TemplateBinding FontSize}"
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                        UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                        UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                        HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                        Hint="{TemplateBinding wpf:HintAssist.Hint}" />
+                    <TextBox
+                        x:Name="PART_EditableTextBox"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                        Margin="{TemplateBinding Padding}"
+                        Style="{StaticResource MaterialDesignDataGridComboBoxEditableTextBox}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
                 </Grid>
             </Border>
         </Grid>
