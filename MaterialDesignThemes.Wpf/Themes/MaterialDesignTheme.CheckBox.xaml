@@ -574,13 +574,11 @@
     
     <Style x:Key="MaterialDesignFilterChipPrimaryCheckBox" TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignFilterChipCheckBox}">
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
     </Style>
 
     <Style x:Key="MaterialDesignFilterChipAccentCheckBox" TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignFilterChipCheckBox}">
         <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
         <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
     </Style>
 
