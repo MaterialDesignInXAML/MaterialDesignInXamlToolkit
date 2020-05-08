@@ -167,6 +167,7 @@
                 IsOpen="{TemplateBinding IsDropDownOpen}"
                 Margin="1"
                 PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
+                PlacementTarget="{Binding RelativeSource={RelativeSource AncestorType=DataGridCell}}"
                 Placement="Bottom">
                 <Grid
                     MaxHeight="{TemplateBinding MaxDropDownHeight}"
@@ -239,6 +240,8 @@
         <ControlTemplate.Triggers>
             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                 <Setter Property="Margin" TargetName="shadow" Value="5,5,5,5"/>
+                <Setter TargetName="PART_Popup" Property="HorizontalOffset" Value="-5" />
+                <Setter TargetName="PART_Popup" Property="VerticalOffset" Value="-5" />
             </Trigger>
             <Trigger Property="HasItems" Value="false">
                 <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
@@ -293,6 +296,7 @@
                 Grid.ColumnSpan="2"
                 IsOpen="{TemplateBinding IsDropDownOpen}"
                 PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
+                PlacementTarget="{Binding RelativeSource={RelativeSource AncestorType=DataGridCell}}"
                 Placement="Bottom">
                 <Grid
                     MaxHeight="{TemplateBinding MaxDropDownHeight}"
@@ -369,6 +373,8 @@
         <ControlTemplate.Triggers>
             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                 <Setter Property="Margin" TargetName="shadow" Value="5,5,5,5"/>
+                <Setter TargetName="PART_Popup" Property="HorizontalOffset" Value="-5" />
+                <Setter TargetName="PART_Popup" Property="VerticalOffset" Value="-5" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Opacity" TargetName="border" Value="0.56"/>
