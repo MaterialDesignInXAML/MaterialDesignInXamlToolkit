@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="800" d:DesignWidth="1000">
     <UserControl.Resources>
         <Style x:Key="ChipsHeadline" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline6TextBlock}">
             <Setter Property="Margin" Value="0,16,0,16"/>
@@ -94,86 +94,143 @@
             <StackPanel Grid.Row="3">
                 <WrapPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
                     <smtx:XamlDisplay Key="chips_10" Margin="0 0 4 4">
-                        <CheckBox Style="{StaticResource MaterialDesignFilterChipCheckBox}">CheckBox</CheckBox>
+                        <CheckBox Style="{StaticResource MaterialDesignFilterChipCheckBox}" IsChecked="True">CheckBox</CheckBox>
                     </smtx:XamlDisplay>
                     <smtx:XamlDisplay Key="chips_11" Margin="0 0 4 4">
-                        <CheckBox Style="{StaticResource MaterialDesignFilterChipOutlineCheckBox}">Outline</CheckBox>
+                        <CheckBox Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" IsChecked="True">Primary</CheckBox>
+                    </smtx:XamlDisplay>
+                    <smtx:XamlDisplay Key="chips_12" Margin="0 0 4 4">
+                        <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentCheckBox}" IsChecked="True">Secondary</CheckBox>
+                    </smtx:XamlDisplay>
+                </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
+                        <smtx:XamlDisplay Key="chips_13" Margin="0 0 4 4">
+                        <CheckBox Style="{StaticResource MaterialDesignFilterChipOutlineCheckBox}" IsChecked="True">Outline</CheckBox>
+                    </smtx:XamlDisplay>
+                    <smtx:XamlDisplay Key="chips_14" Margin="0 0 4 4">
+                        <CheckBox Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}" IsChecked="True">Primary Outline</CheckBox>
+                    </smtx:XamlDisplay>
+                    <smtx:XamlDisplay Key="chips_15" Margin="0 0 4 4">
+                        <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}" IsChecked="True">Secondary Outline</CheckBox>
                     </smtx:XamlDisplay>
                 </WrapPanel>
 
-                <smtx:XamlDisplay Key="chips_12" Margin="0 0 6 4">
-                    <ListBox Style="{StaticResource MaterialDesignFilterChipListBox}">
-                        <ListBoxItem>Mercury</ListBoxItem>
-                        <ListBoxItem IsSelected="True">Venus</ListBoxItem>
-                        <ListBoxItem>Earth</ListBoxItem>
-                        <ListBoxItem>Mars</ListBoxItem>
-                        <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
-                    </ListBox>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="chips_13" Margin="0 0 6 4">
-                    <ListBox Style="{StaticResource MaterialDesignFilterChipOutlineListBox}">
-                        <ListBoxItem>Mercury</ListBoxItem>
-                        <ListBoxItem IsSelected="True">Venus</ListBoxItem>
-                        <ListBoxItem>Earth</ListBoxItem>
-                        <ListBoxItem>Mars</ListBoxItem>
-                        <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
-                    </ListBox>
-                </smtx:XamlDisplay>
+                <WrapPanel>
+                    <materialDesign:Card Margin="4">
+                        <smtx:XamlDisplay Key="chips_16" Margin="4">
+                            <ListBox Style="{StaticResource MaterialDesignFilterChipListBox}">
+                                <ListBoxItem>Mercury</ListBoxItem>
+                                <ListBoxItem IsSelected="True">Venus</ListBoxItem>
+                                <ListBoxItem>Earth</ListBoxItem>
+                                <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
+                            </ListBox>
+                        </smtx:XamlDisplay>
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="4">
+                        <smtx:XamlDisplay Key="chips_17" Margin="4">
+                            <ListBox Style="{StaticResource MaterialDesignFilterChipPrimaryListBox}">
+                                <ListBoxItem>Mercury</ListBoxItem>
+                                <ListBoxItem IsSelected="True">Venus</ListBoxItem>
+                                <ListBoxItem>Earth</ListBoxItem>
+                                <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
+                            </ListBox>
+                        </smtx:XamlDisplay>
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="4">
+                        <smtx:XamlDisplay Key="chips_18" Margin="4">
+                            <ListBox Style="{StaticResource MaterialDesignFilterChipAccentListBox}">
+                                <ListBoxItem>Mercury</ListBoxItem>
+                                <ListBoxItem IsSelected="True">Venus</ListBoxItem>
+                                <ListBoxItem>Earth</ListBoxItem>
+                                <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
+                            </ListBox>
+                        </smtx:XamlDisplay>
+                    </materialDesign:Card>
+                </WrapPanel>
+                <WrapPanel>
+                    <materialDesign:Card Margin="4">
+                        <smtx:XamlDisplay Key="chips_19" Margin="4">
+                            <ListBox Style="{StaticResource MaterialDesignFilterChipOutlineListBox}">
+                                <ListBoxItem>Mercury</ListBoxItem>
+                                <ListBoxItem IsSelected="True">Venus</ListBoxItem>
+                                <ListBoxItem>Earth</ListBoxItem>
+                                <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
+                            </ListBox>
+
+                        </smtx:XamlDisplay>
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="4">
+                        <smtx:XamlDisplay Key="chips_20" Margin="4">
+                            <ListBox Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineListBox}">
+                                <ListBoxItem>Mercury</ListBoxItem>
+                                <ListBoxItem IsSelected="True">Venus</ListBoxItem>
+                                <ListBoxItem>Earth</ListBoxItem>
+                                <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
+                            </ListBox>
+                        </smtx:XamlDisplay>
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="4">
+                        <smtx:XamlDisplay Key="chips_21" Margin="4">
+                            <ListBox Style="{StaticResource MaterialDesignFilterChipAccentOutlineListBox}">
+                                <ListBoxItem>Mercury</ListBoxItem>
+                                <ListBoxItem IsSelected="True">Venus</ListBoxItem>
+                                <ListBoxItem>Earth</ListBoxItem>
+                                <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
+                            </ListBox>
+                        </smtx:XamlDisplay>
+                    </materialDesign:Card>
+                </WrapPanel>
             </StackPanel>
 
             <TextBlock Grid.Row="4" Style="{StaticResource ChipsHeadline}">Choice Chips</TextBlock>
             <StackPanel Grid.Row="5">
                 <WrapPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
-                    <smtx:XamlDisplay Key="chips_14" Margin="0 0 4 4">
+                    <smtx:XamlDisplay Key="chips_22" Margin="0 0 4 4">
                         <RadioButton Style="{StaticResource MaterialDesignChoiceChipRadioButton}" GroupName="Test">RadioButton</RadioButton>
                     </smtx:XamlDisplay>
-                    <smtx:XamlDisplay Key="chips_15" Margin="0 0 4 4">
+                    <smtx:XamlDisplay Key="chips_23" Margin="0 0 4 4">
                         <RadioButton Style="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}" GroupName="Test">Outline</RadioButton>
                     </smtx:XamlDisplay>
-                    <smtx:XamlDisplay Key="chips_16" Margin="0 0 4 4">
+                    <smtx:XamlDisplay Key="chips_24" Margin="0 0 4 4">
                         <RadioButton Style="{StaticResource MaterialDesignChoiceChipAccentRadioButton}" GroupName="Test">Secondary</RadioButton>
                     </smtx:XamlDisplay>
-                    <smtx:XamlDisplay Key="chips_17" Margin="0 0 4 4">
+                    <smtx:XamlDisplay Key="chips_25" Margin="0 0 4 4">
                         <RadioButton Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}" GroupName="Test">Secondary Outline</RadioButton>
                     </smtx:XamlDisplay>
                 </WrapPanel>
 
-                <smtx:XamlDisplay Key="chips_18" Margin="0 0 6 4">
+                <smtx:XamlDisplay Key="chips_26" Margin="0 0 6 4">
                 <ListBox Style="{StaticResource MaterialDesignChoiceChipListBox}" x:Name="RadioButtonGroup1">
                         <ListBoxItem>Mercury</ListBoxItem>
                         <ListBoxItem IsSelected="True">Venus</ListBoxItem>
                         <ListBoxItem>Earth</ListBoxItem>
-                        <ListBoxItem>Mars</ListBoxItem>
                         <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
                     </ListBox>
                 </smtx:XamlDisplay>
             
-                <smtx:XamlDisplay Key="chips_19" Margin="0 0 6 4">
+                <smtx:XamlDisplay Key="chips_27" Margin="0 0 6 4">
                 <ListBox Style="{StaticResource MaterialDesignChoiceChipOutlineListBox}" x:Name="RadioButtonGroup2">
                         <ListBoxItem>Mercury</ListBoxItem>
                         <ListBoxItem IsSelected="True">Venus</ListBoxItem>
                         <ListBoxItem>Earth</ListBoxItem>
-                        <ListBoxItem>Mars</ListBoxItem>
                         <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
                     </ListBox>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="chips_20" Margin="0 0 6 4">
+                <smtx:XamlDisplay Key="chips_28" Margin="0 0 6 4">
                     <ListBox Style="{StaticResource MaterialDesignChoiceChipAccentListBox}" x:Name="RadioButtonGroup3">
                         <ListBoxItem>Mercury</ListBoxItem>
                         <ListBoxItem IsSelected="True">Venus</ListBoxItem>
                         <ListBoxItem>Earth</ListBoxItem>
-                        <ListBoxItem>Mars</ListBoxItem>
                         <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
                     </ListBox>
                 </smtx:XamlDisplay>
 
-                <smtx:XamlDisplay Key="chips_21" Margin="0 0 6 4">
+                <smtx:XamlDisplay Key="chips_29" Margin="0 0 6 4">
                     <ListBox Style="{StaticResource MaterialDesignChoiceChipAccentOutlineListBox}" x:Name="RadioButtonGroup4">
                         <ListBoxItem>Mercury</ListBoxItem>
                         <ListBoxItem IsSelected="True">Venus</ListBoxItem>
                         <ListBoxItem>Earth</ListBoxItem>
-                        <ListBoxItem>Mars</ListBoxItem>
                         <ListBoxItem IsEnabled="False">Pluto</ListBoxItem>
                     </ListBox>
                 </smtx:XamlDisplay>

@@ -413,6 +413,44 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignFilterChipPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <CheckBox Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" 
+                              IsChecked="{TemplateBinding IsSelected}"
+                              Content="{TemplateBinding Content}"                              
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignFilterChipPrimaryListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipPrimaryListBoxItem}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignFilterChipAccentListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentCheckBox}" 
+                              IsChecked="{TemplateBinding IsSelected}"
+                              Content="{TemplateBinding Content}"                              
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignFilterChipAccentListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipAccentListBoxItem}"/>
+    </Style>
+
     <Style x:Key="MaterialDesignFilterChipOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
             <Setter.Value>
@@ -430,6 +468,44 @@
 
     <Style x:Key="MaterialDesignFilterChipOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipOutlineListBoxItem}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignFilterChipPrimaryOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <CheckBox Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}" 
+                              IsChecked="{TemplateBinding IsSelected}"
+                              Content="{TemplateBinding Content}"                              
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="MaterialDesignFilterChipPrimaryOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipPrimaryOutlineListBoxItem}"/>
+    </Style>
+    
+    <Style x:Key="MaterialDesignFilterChipAccentOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}" 
+                              IsChecked="{TemplateBinding IsSelected}"
+                              Content="{TemplateBinding Content}"                              
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignFilterChipAccentOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipAccentOutlineListBoxItem}"/>
     </Style>
 
 

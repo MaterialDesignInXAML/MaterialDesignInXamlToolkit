@@ -415,7 +415,6 @@
                                 Opacity="0"
                                 CornerRadius="16"
                                 Grid.ColumnSpan="2"
-                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
                                 Grid.Column="0"
                                 Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}" />
                         <Border x:Name="SelectedBackgroundBorder"
@@ -423,7 +422,6 @@
                                 CornerRadius="16"
                                 Grid.ColumnSpan="2"
                                 Grid.Column="0"
-                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
                                 Background="{TemplateBinding Background}" />
                         <ContentControl Content="{TemplateBinding Content}"
                                         ContentTemplate="{TemplateBinding ContentTemplate}"
