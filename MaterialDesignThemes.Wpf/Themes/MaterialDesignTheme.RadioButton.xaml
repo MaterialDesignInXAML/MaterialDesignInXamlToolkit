@@ -386,8 +386,8 @@
 
 
     <Style x:Key="MaterialDesignChoiceChipRadioButton" TargetType="{x:Type RadioButton}">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Cursor" Value="Hand" />
@@ -515,9 +515,9 @@
     </Style>
 
     <Style x:Key="MaterialDesignChoiceChipOutlineRadioButton" TargetType="{x:Type RadioButton}">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Cursor" Value="Hand" />
@@ -658,15 +658,26 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignChoiceChipPrimaryRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+    </Style>
+
     <Style x:Key="MaterialDesignChoiceChipAccentRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
         <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
         <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
     </Style>
 
+    <Style x:Key="MaterialDesignChoiceChipPrimaryOutlineRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+    </Style>
+
     <Style x:Key="MaterialDesignChoiceChipAccentOutlineRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}">
-            <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
-            <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
-        </Style>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+    </Style>
 
 </ResourceDictionary>
