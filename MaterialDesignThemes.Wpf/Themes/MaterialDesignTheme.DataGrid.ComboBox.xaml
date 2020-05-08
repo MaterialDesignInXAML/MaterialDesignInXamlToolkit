@@ -201,14 +201,16 @@
             </Popup>
             <ToggleButton
                 x:Name="toggleButton"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 Background="{TemplateBinding Background}"
-                Grid.ColumnSpan="2"
                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                 Style="{StaticResource MaterialDesignDataGridComboBoxToggleButton}" />
             <wpf:SmartHint
                 x:Name="Hint"
+                Grid.Column="0"
                 Margin="{TemplateBinding Padding}"
                 HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                 FontSize="{TemplateBinding FontSize}"
@@ -219,6 +221,7 @@
                 Hint="{TemplateBinding wpf:HintAssist.Hint}" />
             <ContentPresenter
                 x:Name="contentPresenter"
+                Grid.Column="0"
                 ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                 ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                 Content="{TemplateBinding SelectionBoxItem}"
@@ -325,15 +328,17 @@
                 </Grid>
             </Popup>
             <ToggleButton 
-                x:Name="toggleButton" 
+                x:Name="toggleButton"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}" 
                 Background="{TemplateBinding Background}" 
-                Grid.ColumnSpan="2"
                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
                 Style="{StaticResource MaterialDesignDataGridComboBoxToggleButton}"/>
             <Border
                 x:Name="border"
+                Grid.Column="0"
                 Background="Transparent"
                 Margin="{TemplateBinding BorderThickness}">
                 <Grid>
