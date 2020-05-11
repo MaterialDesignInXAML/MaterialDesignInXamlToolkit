@@ -156,7 +156,7 @@ namespace MaterialDesignThemes.Wpf
         public SnackbarMessageQueue(TimeSpan messageDuration)
         {
             _messageDuration = messageDuration;
-            Task.Factory.StartNew(PumpAsync);
+            Task.Factory.StartNew(PumpAsync, TaskCreationOptions.LongRunning);
         }
 
         //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragabalz, 
