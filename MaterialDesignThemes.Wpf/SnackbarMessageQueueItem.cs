@@ -58,6 +58,11 @@ namespace MaterialDesignThemes.Wpf
         /// <returns><c>true</c> if given item is a duplicate to this, <c>false</c> otherwise</returns>
         public bool IsDuplicate(SnackbarMessageQueueItem item)
         {
+            if (item is null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
             return !IgnoreDuplicate
                    && Equals(item.Content, Content)
                    && Equals(item.ActionContent, ActionContent);
