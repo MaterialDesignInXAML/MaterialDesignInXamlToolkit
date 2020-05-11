@@ -104,7 +104,11 @@
             </smtx:XamlDisplay>
             <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Auto Generated Columns" Margin="0 24 0 0"/>
             <smtx:XamlDisplay Key="grids_2">
-                <DataGrid ItemsSource="{Binding Items2}" CanUserSortColumns="True" CanUserAddRows="False" />
+                <DataGrid ItemsSource="{Binding Items2}"
+                          CanUserSortColumns="True"
+                          CanUserAddRows="False"
+                          SelectionUnit="Cell"
+                          SelectionMode="Extended" />
             </smtx:XamlDisplay>
             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Custom Padding" Margin="0 24 0 0"/>
             <smtx:XamlDisplay Key="grids_3">
