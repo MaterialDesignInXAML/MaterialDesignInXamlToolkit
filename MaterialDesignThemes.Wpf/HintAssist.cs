@@ -154,6 +154,28 @@ namespace MaterialDesignThemes.Wpf
             element.SetValue(ForegroundProperty, value);
         }
 
+        /// <summary>
+        /// The color for the background of a focused control.
+        /// </summary>
+        public static readonly DependencyProperty BackgroundProperty = DependencyProperty.RegisterAttached(
+            "Background", typeof(Brush), typeof(HintAssist), new PropertyMetadata(null));
+
+        /// <summary>
+        /// Gets the color for the background of a focused control.
+        /// </summary>
+        public static Brush GetBackground(DependencyObject element)
+        {
+            return (Brush)element.GetValue(BackgroundProperty);
+        }
+
+        /// <summary>
+        /// Sets the color for the background of a focused control.
+        /// </summary>
+        public static void SetBackground(DependencyObject element, Brush value)
+        {
+            element.SetValue(BackgroundProperty, value);
+        }
+
         #endregion
 
         #region HelperText
