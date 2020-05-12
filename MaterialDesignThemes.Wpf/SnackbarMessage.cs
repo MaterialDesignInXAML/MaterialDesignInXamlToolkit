@@ -120,14 +120,21 @@ namespace MaterialDesignThemes.Wpf
             OnActionClick();
         }
 
+        /// <summary>
+        /// Maximum total height of snackbar for the action button to be inlined.
+        /// <para>
+        /// Default value (<c>55</c>) is between single line message (<c>48</c>) and two lined snackbar-message (<c>66</c>)
+        /// because tolerance is required (see <a href="https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/1812">issue</a>)
+        /// </para>
+        /// </summary>
         public static readonly DependencyProperty InlineActionButtonMaxHeightProperty = DependencyProperty.RegisterAttached(
-            "InlineActionButtonMaxHeight", typeof(double), typeof(SnackbarMessage), new PropertyMetadata(default(double)));
+            "InlineActionButtonMaxHeight", typeof(double), typeof(SnackbarMessage), new PropertyMetadata(55d));
 
         public static void SetInlineActionButtonMaxHeight(DependencyObject element, double value) => element.SetValue(InlineActionButtonMaxHeightProperty, value);
         public static double GetInlineActionButtonMaxHeight(DependencyObject element) => (double) element.GetValue(InlineActionButtonMaxHeightProperty);
 
         public static readonly DependencyProperty ContentMaxHeightProperty = DependencyProperty.RegisterAttached(
-            "ContentMaxHeight", typeof(double), typeof(SnackbarMessage), new PropertyMetadata(default(double)));
+            "ContentMaxHeight", typeof(double), typeof(SnackbarMessage), new PropertyMetadata(36d));
 
         public static void SetContentMaxHeight(DependencyObject element, double value) => element.SetValue(ContentMaxHeightProperty, value);
         public static double GetContentMaxHeight(DependencyObject element) => (double) element.GetValue(ContentMaxHeightProperty);

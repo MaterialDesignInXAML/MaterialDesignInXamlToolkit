@@ -132,8 +132,6 @@
         <Setter Property="MinWidth" Value="288" />
         <Setter Property="MaxWidth" Value="568" />
         <Setter Property="ClipToBounds" Value="True" />
-        <Setter Property="wpf:SnackbarMessage.InlineActionButtonMaxHeight" Value="55" />
-        <Setter Property="wpf:SnackbarMessage.ContentMaxHeight" Value="36" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="wpf:Snackbar">
