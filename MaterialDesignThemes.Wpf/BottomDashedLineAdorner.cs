@@ -37,10 +37,10 @@ namespace MaterialDesignThemes.Wpf
         {
             var element = (UIElement) @object;
             if (args.OldValue is bool oldValue && oldValue)
-                element.RemoveAdorner<BottomDashedLineAdorner>();
+                element.RemoveAdornersOfType<BottomDashedLineAdorner>();
 
             if (args.NewValue is bool newValue && newValue)
-                element.AddAdorner(new BottomDashedLineAdorner(element));
+                element.AddAdornerOfType(new BottomDashedLineAdorner(element));
         }
 
         public static readonly DependencyProperty BrushProperty = DependencyProperty.RegisterAttached(
