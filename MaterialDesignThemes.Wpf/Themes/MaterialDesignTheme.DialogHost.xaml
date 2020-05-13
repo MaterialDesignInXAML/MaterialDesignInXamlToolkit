@@ -147,8 +147,6 @@
                                         wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
                                         UniformCornerRadius="4"
                                         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-                                        TextElement.FontWeight="Regular"
-                                        TextElement.FontSize="13"
                                         TextOptions.TextFormattingMode="Ideal"
                                         TextOptions.TextRenderingMode="Auto" 
                                         FocusManager.IsFocusScope="False"
