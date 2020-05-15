@@ -351,7 +351,7 @@
                             </SelectiveScrollingGrid.RowDefinitions>
                             <DataGridCellsPresenter Grid.Column="1" ItemsPanel="{TemplateBinding ItemsPanel}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             <DataGridDetailsPresenter Grid.Column="1" Grid.Row="1" SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen, ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical}, Converter={x:Static DataGrid.RowDetailsScrollingConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Visibility="{TemplateBinding DetailsVisibility}"/>
-                            <DataGridRowHeader Grid.RowSpan="2" SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            <DataGridRowHeader Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
                         </SelectiveScrollingGrid>
                     </Border>
                 </ControlTemplate>
@@ -419,7 +419,8 @@
                                             Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
                                         <Border 
                                             BorderThickness="0 0 0 1" 
-                                            BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                                            BorderBrush="{DynamicResource MaterialDesignDivider}"
+                                            Grid.Row="0"
                                             Grid.Column="1" 
                                             Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}">
                                             <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" />
@@ -427,6 +428,7 @@
                                         <ScrollContentPresenter 
                                             x:Name="PART_ScrollContentPresenter" 
                                             CanContentScroll="{TemplateBinding CanContentScroll}"
+                                            Grid.Column="0"
                                             Grid.ColumnSpan="2" 
                                             Grid.Row="1"/>
                                         <ScrollBar 
