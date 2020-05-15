@@ -209,6 +209,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -230,17 +231,7 @@
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True"/>
                     <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=DataGridRow}}" Value="False" />
-                    <Condition Binding="{Binding (Selector.IsSelectionActive), RelativeSource={RelativeSource Self}}" Value="False"/>
                 </MultiDataTrigger.Conditions>
-                <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}"/>
-            </MultiDataTrigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True"/>
-                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=DataGridRow}}" Value="False" />
-                    <Condition Binding="{Binding (Selector.IsSelectionActive), RelativeSource={RelativeSource Self}}" Value="True"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
                 <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
             </MultiDataTrigger>
             <Trigger Property="IsEnabled" Value="False">
