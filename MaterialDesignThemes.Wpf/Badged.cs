@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media.Animation;
 using ControlzEx;
 
@@ -9,65 +7,58 @@ namespace MaterialDesignThemes.Wpf
     [TemplatePart(Name = BadgeContainerPartName, Type = typeof(UIElement))]
     public class Badged : BadgedEx
     {
-        public static readonly DependencyProperty BadgeChangedStoryboardProperty = DependencyProperty.Register(
-            "BadgeChangedStoryboard", typeof(Storyboard), typeof(Badged), new PropertyMetadata(default(Storyboard)));
+        private static readonly CornerRadius DefaultCornerRadius = new CornerRadius(9);
 
+        #region DependencyProperty : BadgeChangedStoryboardProperty
         public Storyboard BadgeChangedStoryboard
         {
-            get { return (Storyboard)this.GetValue(BadgeChangedStoryboardProperty); }
-            set { this.SetValue(BadgeChangedStoryboardProperty, value); }
+            get { return (Storyboard)GetValue(BadgeChangedStoryboardProperty); }
+            set { SetValue(BadgeChangedStoryboardProperty, value); }
         }
+        public static readonly DependencyProperty BadgeChangedStoryboardProperty
+            = DependencyProperty.Register(nameof(BadgeChangedStoryboard), typeof(Storyboard), typeof(Badged), new PropertyMetadata(default(Storyboard)));
+        #endregion
 
-        static Badged()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(Badged), new FrameworkPropertyMetadata(typeof(Badged)));
-        }
-
-        public static readonly DependencyProperty BadgeColorZoneModeProperty = DependencyProperty.Register(
-            "BadgeColorZoneMode", typeof(ColorZoneMode), typeof(Badged), new PropertyMetadata(default(ColorZoneMode)));
-
+        #region DependencyProperty : BadgeColorZoneModeProperty
         public ColorZoneMode BadgeColorZoneMode
         {
             get { return (ColorZoneMode)GetValue(BadgeColorZoneModeProperty); }
             set { SetValue(BadgeColorZoneModeProperty, value); }
         }
+        public static readonly DependencyProperty BadgeColorZoneModeProperty
+            = DependencyProperty.Register(nameof(BadgeColorZoneMode), typeof(ColorZoneMode), typeof(Badged), new PropertyMetadata(default(ColorZoneMode)));
+        #endregion
 
-        public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(Badged), new PropertyMetadata(new CornerRadius(9)));
-
+        #region DependencyProperty : CornerRadiusProperty
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
+        public static readonly DependencyProperty CornerRadiusProperty
+            = DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(Badged), new PropertyMetadata(DefaultCornerRadius));
+        #endregion
+        
+        static Badged()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Badged), new FrameworkPropertyMetadata(typeof(Badged)));
+        }
 
         public override void OnApplyTemplate()
         {
-            this.BadgeChanged -= this.OnBadgeChanged;
-
+            BadgeChanged -= OnBadgeChanged;
             base.OnApplyTemplate();
-
-            this.BadgeChanged += this.OnBadgeChanged;
+            BadgeChanged += OnBadgeChanged;
         }
 
         private void OnBadgeChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            var sb = this.BadgeChangedStoryboard;
-            if (this._badgeContainer != null && sb != null)
+            if (_badgeContainer is null || BadgeChangedStoryboard is null)
             {
-                try
-                {
-                    this._badgeContainer.BeginStoryboard(sb);
-                }
-                catch (Exception exc)
-                {
-                    Trace.WriteLine("Error during Storyboard execution, exception will be rethrown.");
-                    Trace.WriteLine($"{exc.Message} ({exc.GetType().FullName})");
-                    Trace.WriteLine(exc.StackTrace);
-
-                    throw;
-                }
+                return;
             }
+            
+            _badgeContainer.BeginStoryboard(BadgeChangedStoryboard);
         }
     }
 }
