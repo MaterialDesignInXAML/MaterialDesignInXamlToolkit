@@ -266,19 +266,21 @@
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid>
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
-                            <Grid Background="Transparent">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <wpf:ListSortDirectionIndicator Grid.Column="0" Width="0" Height="12" 
-                                                                x:Name="SortDirectionIndicator"
-                                                                ListSortDirection="{TemplateBinding SortDirection}"
-                                                                />
+                        <Border
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}">
+                            <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                                <wpf:ListSortDirectionIndicator
+                                    x:Name="SortDirectionIndicator"
+                                    ListSortDirection="{TemplateBinding SortDirection}"
+                                    HorizontalAlignment="Left"
+                                    Width="0"
+                                    Height="12"
+                                    Margin="-16 0 0 0"
+                                    Opacity="0.45" />
                                 <ContentPresenter
-                                    Grid.Column="1"
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     RecognizesAccessKey="True"
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
