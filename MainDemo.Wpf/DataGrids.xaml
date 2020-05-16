@@ -70,7 +70,7 @@
                                                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                    <Setter Property="HorizontalAlignment" Value="Right" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Right" />
                                     <Setter Property="ContentTemplate">
                                         <Setter.Value>
                                             <DataTemplate>
