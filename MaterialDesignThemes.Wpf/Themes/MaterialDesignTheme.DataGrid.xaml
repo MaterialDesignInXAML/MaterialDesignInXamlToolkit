@@ -362,7 +362,7 @@
                 <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}" />
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignDataGridRowHoverBackground}" />
             </Trigger>
             <Trigger Property="IsNewItem" Value="True">
                 <Setter Property="Margin" Value="{Binding NewItemMargin, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
