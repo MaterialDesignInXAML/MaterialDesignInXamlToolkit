@@ -373,8 +373,8 @@
     <Style x:Key="MaterialDesignDataGrid" TargetType="{x:Type DataGrid}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignSelection}"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="GridLinesVisibility" Value="Horizontal" />
         <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
