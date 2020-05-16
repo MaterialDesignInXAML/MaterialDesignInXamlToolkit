@@ -88,7 +88,8 @@
                         </materialDesign:DataGridTextColumn>
 
                         <!-- use custom combo box column to get better combos. Use ItemsSourceBinding as your binding template to be applied to each combo -->
-                        <materialDesign:DataGridComboBoxColumn Header="Food" IsEditable="True"
+                        <materialDesign:DataGridComboBoxColumn Header="Food with long header" IsEditable="True"
+                                                               Width="100"
                                                                SelectedValueBinding="{Binding Food}"
                                                                ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}">
                             <!--Setting the editing element style allows access to all of the combo box's properties
