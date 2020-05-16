@@ -123,7 +123,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static readonly DependencyProperty CellPaddingProperty = DependencyProperty.RegisterAttached(
             "CellPadding", typeof(Thickness), typeof(DataGridAssist),
-            new FrameworkPropertyMetadata(new Thickness(13, 8, 8, 8), FrameworkPropertyMetadataOptions.Inherits));
+            new FrameworkPropertyMetadata(new Thickness(16, 8, 16, 8), FrameworkPropertyMetadataOptions.Inherits));
 
         public static void SetCellPadding(DependencyObject element, Thickness value)
         {
@@ -137,7 +137,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static readonly DependencyProperty ColumnHeaderPaddingProperty = DependencyProperty.RegisterAttached(
             "ColumnHeaderPadding", typeof(Thickness), typeof(DataGridAssist),
-            new FrameworkPropertyMetadata(new Thickness(8), FrameworkPropertyMetadataOptions.Inherits));
+            new FrameworkPropertyMetadata(new Thickness(16, 10, 16, 10), FrameworkPropertyMetadataOptions.Inherits));
 
         public static void SetColumnHeaderPadding(DependencyObject element, Thickness value)
         {
