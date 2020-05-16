@@ -185,16 +185,20 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid>
-                        <Rectangle x:Name="Border" Fill="Transparent" SnapsToDevicePixels="True"/>
+                    <Border 
+                        x:Name="Border"
+                        Background="Transparent"
+                        BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                        BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={StaticResource BottomThicknessConverter}}"
+                        SnapsToDevicePixels="True">
                         <Polygon x:Name="Arrow" Fill="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Right" Margin="8,8,3,3" Opacity="0.5" Points="0,10 10,10 10,0" Stretch="Uniform" VerticalAlignment="Bottom"/>
-                    </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Stroke" TargetName="Border" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
+                            <Setter Property="Background" TargetName="Border" Value="{DynamicResource MaterialDesignDataGridRowHoverBackground}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Fill" TargetName="Border" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
+                            <Setter Property="Background" TargetName="Border" Value="{DynamicResource MaterialDesignSelection}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Visibility" TargetName="Arrow" Value="Collapsed"/>
