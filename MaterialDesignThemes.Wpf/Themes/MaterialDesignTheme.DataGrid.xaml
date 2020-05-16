@@ -245,7 +245,6 @@
   
     <Style x:Key="MaterialDesignDataGridColumnHeader" TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="TextBlock.FontSize" Value="12" />
         <Setter Property="TextBlock.FontWeight" Value="Medium" />
         <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:DataGridAssist.ColumnHeaderPadding)}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignColumnHeader}" />
