@@ -29,12 +29,15 @@
                                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                             <DataGridCheckBoxColumn.Header>
-                                <!--padding to allow hit test to pass thru for sorting -->
-                                <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
-                                    <CheckBox HorizontalAlignment="Center"
-                                              IsChecked="{Binding Data.IsAllItems1Selected, Source={StaticResource DataContextProxy}}" />
+                                <Border Background="Transparent">
+                                    <CheckBox IsChecked="{Binding Data.IsAllItems1Selected, Source={StaticResource DataContextProxy}}" />
                                 </Border>
                             </DataGridCheckBoxColumn.Header>
+                            <DataGridCheckBoxColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                </Style>
+                            </DataGridCheckBoxColumn.HeaderStyle>
                         </DataGridCheckBoxColumn>
                         <DataGridTextColumn Binding="{Binding Code}"
                                             Header="Code"
