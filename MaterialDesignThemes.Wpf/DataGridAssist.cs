@@ -267,5 +267,15 @@ namespace MaterialDesignThemes.Wpf
 
             return rect.Contains(mouseButtonEventArgs.GetPosition(frameworkElement));
         }
+
+        #region CornerRadius
+
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.RegisterAttached(
+            "CornerRadius", typeof(CornerRadius), typeof(DataGridAssist), new PropertyMetadata(new CornerRadius(4)));
+
+        public static void SetCornerRadius(DependencyObject element, CornerRadius value) => element.SetValue(CornerRadiusProperty, value);
+        public static CornerRadius GetCornerRadius(DependencyObject element) => (CornerRadius) element.GetValue(CornerRadiusProperty);
+
+        #endregion
     }
 }

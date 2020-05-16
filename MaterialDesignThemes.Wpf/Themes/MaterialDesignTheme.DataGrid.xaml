@@ -395,7 +395,8 @@
                         BorderBrush="{TemplateBinding BorderBrush}" 
                         BorderThickness="{TemplateBinding BorderThickness}" 
                         Background="{TemplateBinding Background}" 
-                        Padding="{TemplateBinding Padding}" 
+                        Padding="{TemplateBinding Padding}"
+                        CornerRadius="{TemplateBinding wpf:DataGridAssist.CornerRadius}"
                         SnapsToDevicePixels="True">
                         <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false">
                             <ScrollViewer.Template>
