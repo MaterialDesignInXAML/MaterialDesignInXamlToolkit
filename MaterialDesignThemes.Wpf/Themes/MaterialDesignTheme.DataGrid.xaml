@@ -282,8 +282,7 @@
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     RecognizesAccessKey="True"
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Margin="{TemplateBinding Padding}">
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                     <ContentPresenter.Resources>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextTrimming" Value="WordEllipsis" />
