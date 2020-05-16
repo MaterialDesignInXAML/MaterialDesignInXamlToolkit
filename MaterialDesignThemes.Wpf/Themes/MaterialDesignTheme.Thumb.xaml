@@ -22,11 +22,13 @@
     <Style x:Key="MaterialDesignGridRowHeaderGripper" TargetType="{x:Type Thumb}" BasedOn="{StaticResource MaterialDesignThumb}">
         <Setter Property="Height" Value="8"/>
         <Setter Property="Cursor" Value="SizeNS"/>
+        <Setter Property="Padding" Value="0" />
     </Style>
     
     <Style x:Key="MaterialDesignGridColumnHeaderGripper" TargetType="{x:Type Thumb}" BasedOn="{StaticResource MaterialDesignThumb}">
         <Setter Property="Width" Value="8"/>
         <Setter Property="Cursor" Value="SizeWE"/>
+        <Setter Property="Padding" Value="0" />
     </Style>
 
     <Style x:Key="MaterialDesignGridViewColumnHeaderGripper" TargetType="{x:Type Thumb}" BasedOn="{StaticResource MaterialDesignThumb}">
