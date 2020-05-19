@@ -400,125 +400,127 @@
         <Grid x:Name="templateRoot"
               Background="{TemplateBinding Background}"
               SnapsToDevicePixels="True">
-            <Grid x:Name="InnerRoot"
-                  wpf:BottomDashedLineAdorner.IsAttached="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}"
-                  wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
-                  wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
-                </Grid.ColumnDefinitions>
-                <ToggleButton x:Name="toggleButton"
-                              Grid.ColumnSpan="2"
-                              Background="{TemplateBinding Background}"
-                              BorderBrush="{TemplateBinding BorderBrush}"
-                              BorderThickness="{TemplateBinding BorderThickness}"
-                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                              Style="{StaticResource MaterialDesignComboBoxToggleButton}"/>
-                <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                      Margin="{TemplateBinding Padding}"
-                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                      UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid x:Name="InputRoot"
-                          HorizontalAlignment="Left">
-                        <ContentPresenter x:Name="contentPresenter"
-                                          Content="{TemplateBinding SelectionBoxItem}"
-                                          ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                          IsHitTestVisible="False"/>
-                        <TextBox x:Name="PART_EditableTextBox"
-                                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
-                                 HorizontalAlignment="Left"
-                                 HorizontalContentAlignment="Stretch"
-                                 Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
-                                 CaretBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}"
-                                 Visibility="Collapsed" />
+            <AdornerDecorator>
+                <Grid x:Name="InnerRoot"
+                    wpf:BottomDashedLineAdorner.IsAttached="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}"
+                    wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
+                    wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
+                  <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*" />
+                      <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
+                  </Grid.ColumnDefinitions>
+                  <ToggleButton x:Name="toggleButton"
+                                Grid.ColumnSpan="2"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                Style="{StaticResource MaterialDesignComboBoxToggleButton}"/>
+                  <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Margin="{TemplateBinding Padding}"
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                        UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                      <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="*"/>
+                          <ColumnDefinition Width="Auto"/>
+                      </Grid.ColumnDefinitions>
+                      <Grid x:Name="InputRoot"
+                            HorizontalAlignment="Left">
+                          <ContentPresenter x:Name="contentPresenter"
+                                            Content="{TemplateBinding SelectionBoxItem}"
+                                            ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                            IsHitTestVisible="False"/>
+                          <TextBox x:Name="PART_EditableTextBox"
+                                   IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                                   HorizontalAlignment="Left"
+                                   HorizontalContentAlignment="Stretch"
+                                   Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                                   CaretBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}"
+                                   Visibility="Collapsed" />
 
-                        <wpf:SmartHint x:Name="Hint"
-                                       HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                       UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                       UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
-                                       FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
-                                       FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"
-                                       HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                                       Hint="{TemplateBinding wpf:HintAssist.Hint}" />
-                    </Grid>
-                    <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top">
-                        <TextBlock
-                            FontSize="{TemplateBinding FontSize}"
-                            Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                            Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}"
-                            />
-                        <Button x:Name="PART_ClearButton" Height="Auto" Padding="2,0,-6,0" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
-                            <Button.Visibility>
-                                <MultiBinding Converter="{StaticResource ClearTextConverter}">
-                                    <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}"/>
-                                    <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                </MultiBinding>
-                            </Button.Visibility>
-                            <wpf:PackIcon Margin="0" Kind="CloseCircle" />
-                        </Button>
-                    </StackPanel>
-                </Grid>
-                <wpf:Underline x:Name="Underline"
-                               Grid.ColumnSpan="2"
-                               wpf:TextFieldAssist.UnderlineBrush="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}"
-                               IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
-                               Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"
-                               Background="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}" />
-                <Canvas Grid.Column="0" VerticalAlignment="Bottom">
-                    <TextBlock Canvas.Top="2" FontSize="10" MaxWidth="{Binding ActualWidth, ElementName=toggleButton}"
-                               Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                               Text="{Binding Path=(wpf:HintAssist.HelperText), RelativeSource={RelativeSource TemplatedParent}}" />
-                </Canvas>
+                          <wpf:SmartHint x:Name="Hint"
+                                         HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                         FontSize="{TemplateBinding FontSize}"
+                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                         UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                         UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                         FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
+                                         FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"
+                                         HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                         Hint="{TemplateBinding wpf:HintAssist.Hint}" />
+                      </Grid>
+                      <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top">
+                          <TextBlock
+                              FontSize="{TemplateBinding FontSize}"
+                              Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                              Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}"
+                              />
+                          <Button x:Name="PART_ClearButton" Height="Auto" Padding="2,0,-6,0" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
+                              <Button.Visibility>
+                                  <MultiBinding Converter="{StaticResource ClearTextConverter}">
+                                      <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}"/>
+                                      <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                  </MultiBinding>
+                              </Button.Visibility>
+                              <wpf:PackIcon Margin="0" Kind="CloseCircle" />
+                          </Button>
+                      </StackPanel>
+                  </Grid>
+                  <wpf:Underline x:Name="Underline"
+                                 Grid.ColumnSpan="2"
+                                 wpf:TextFieldAssist.UnderlineBrush="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}"
+                                 IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
+                                 Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                                 Background="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}" />
+                  <Canvas Grid.Column="0" VerticalAlignment="Bottom">
+                      <TextBlock Canvas.Top="2" FontSize="10" MaxWidth="{Binding ActualWidth, ElementName=toggleButton}"
+                                 Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                 Text="{Binding Path=(wpf:HintAssist.HelperText), RelativeSource={RelativeSource TemplatedParent}}" />
+                  </Canvas>
 
-                <wpf:ComboBoxPopup x:Name="PART_Popup"
-                                   Grid.Column="0"
-                                   AllowsTransparency="True"
-                                   Focusable="False"
-                                   HorizontalOffset="-11.5"
-                                   IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                   PlacementTarget="{Binding ElementName=templateRoot}"
-                                   SnapsToDevicePixels="True"
-                                   UseLayoutRounding="True"
-                                   Placement="Custom"
-                                   PopupAnimation="Fade"
-                                   VerticalOffset="0"
-                                   DefaultVerticalOffset="5"
-                                   DownVerticalOffset="-15.5"
-                                   UpVerticalOffset="15"
-                                   CornerRadius="2"
-                                   ContentMargin="6"
-                                   ContentMinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
-                                   wpf:ColorZoneAssist.Mode="{Binding Path=(wpf:ColorZoneAssist.Mode), RelativeSource={RelativeSource TemplatedParent}}"
-                                   Tag="{DynamicResource MaterialDesignPaper}"
-                                   ClassicMode="{Binding Path=(wpf:ComboBoxAssist.ClassicMode), RelativeSource={RelativeSource TemplatedParent}}"
-                                   UpContentTemplate="{StaticResource PopupContentUpTemplate}"
-                                   DownContentTemplate="{StaticResource PopupContentDownTemplate}"
-                                   ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}">
-                    <wpf:ComboBoxPopup.Background>
-                        <MultiBinding Converter="{StaticResource FallbackBrushConverter}">
-                            <Binding Path="Background" RelativeSource="{RelativeSource TemplatedParent}" />
-                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
-                        </MultiBinding>
-                    </wpf:ComboBoxPopup.Background>
-                    <ContentControl>
-                        <ScrollViewer MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                                      MinHeight="1"
-                                      Background="{Binding Background, ElementName=PART_Popup}">
-                            <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
-                        </ScrollViewer>
-                    </ContentControl>
-                </wpf:ComboBoxPopup>
-            </Grid>
+                  <wpf:ComboBoxPopup x:Name="PART_Popup"
+                                     Grid.Column="0"
+                                     AllowsTransparency="True"
+                                     Focusable="False"
+                                     HorizontalOffset="-11.5"
+                                     IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                     PlacementTarget="{Binding ElementName=templateRoot}"
+                                     SnapsToDevicePixels="True"
+                                     UseLayoutRounding="True"
+                                     Placement="Custom"
+                                     PopupAnimation="Fade"
+                                     VerticalOffset="0"
+                                     DefaultVerticalOffset="5"
+                                     DownVerticalOffset="-15.5"
+                                     UpVerticalOffset="15"
+                                     CornerRadius="2"
+                                     ContentMargin="6"
+                                     ContentMinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
+                                     wpf:ColorZoneAssist.Mode="{Binding Path=(wpf:ColorZoneAssist.Mode), RelativeSource={RelativeSource TemplatedParent}}"
+                                     Tag="{DynamicResource MaterialDesignPaper}"
+                                     ClassicMode="{Binding Path=(wpf:ComboBoxAssist.ClassicMode), RelativeSource={RelativeSource TemplatedParent}}"
+                                     UpContentTemplate="{StaticResource PopupContentUpTemplate}"
+                                     DownContentTemplate="{StaticResource PopupContentDownTemplate}"
+                                     ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}">
+                      <wpf:ComboBoxPopup.Background>
+                          <MultiBinding Converter="{StaticResource FallbackBrushConverter}">
+                              <Binding Path="Background" RelativeSource="{RelativeSource TemplatedParent}" />
+                              <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
+                          </MultiBinding>
+                      </wpf:ComboBoxPopup.Background>
+                      <ContentControl>
+                          <ScrollViewer MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                        MinHeight="1"
+                                        Background="{Binding Background, ElementName=PART_Popup}">
+                              <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
+                          </ScrollViewer>
+                      </ContentControl>
+                  </wpf:ComboBoxPopup>
+              </Grid>
+            </AdornerDecorator>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger SourceName="PART_Popup" Property="PopupPlacement" Value="{x:Static wpf:ComboBoxPopupPlacement.Classic}">
