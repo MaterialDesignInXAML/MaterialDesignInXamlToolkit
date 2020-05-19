@@ -7,7 +7,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class ThemeAssist
     {
-        internal static Brush GetTriggerColo(DependencyObject obj)
+        internal static Brush GetTriggerColor(DependencyObject obj)
         {
             return (Brush)obj.GetValue(TriggerBrushProperty);
         }
