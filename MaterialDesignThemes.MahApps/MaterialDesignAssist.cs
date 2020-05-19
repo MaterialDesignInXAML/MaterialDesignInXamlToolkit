@@ -2,8 +2,9 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using MahApps.Metro;
+using ControlzEx.Theming;
 using MaterialDesignThemes.Wpf;
+using Theme = ControlzEx.Theming.Theme;
 
 namespace MaterialDesignThemes.MahApps
 {
@@ -13,7 +14,8 @@ namespace MaterialDesignThemes.MahApps
         {
             resourceDictionary.SetMahAppsBaseTheme(baseTheme);
 
-            resourceDictionary.SetBrush("Theme.ShowcaseBrush", new SolidColorBrush(theme.SecondaryMid.Color));
+            resourceDictionary.SetBrush(Theme.ThemeShowcaseBrushKey, new SolidColorBrush(theme.SecondaryMid.Color));
+            resourceDictionary.SetColor(Theme.ThemePrimaryAccentColorKey, theme.SecondaryMid.Color);
 
             resourceDictionary.SetColor("MahApps.Colors.HighlightLight", theme.PrimaryLight.Color);
             resourceDictionary.SetColor("MahApps.Colors.Highlight", theme.PrimaryMid.Color);
@@ -501,7 +503,6 @@ namespace MaterialDesignThemes.MahApps
 
         internal static void SetMahAppsBaseTheme(this ResourceDictionary resourceDictionary, BaseTheme baseTheme)
         {
-            var foo = ThemeManager.Themes;
             switch (baseTheme)
             {
                 case BaseTheme.Light:
