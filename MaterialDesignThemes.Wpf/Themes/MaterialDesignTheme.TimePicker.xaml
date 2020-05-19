@@ -90,7 +90,8 @@
                         </ControlTemplate>
                     </ControlTemplate.Resources>
                     <Grid x:Name="TemplateRoot">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                      <AdornerDecorator>
+                          <Border BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
                                 x:Name="border"
@@ -124,6 +125,7 @@
                                        PopupAnimation="Fade"/>
                             </Grid>
                         </Border>
+                      </AdornerDecorator>
                         <wpf:Underline x:Name="Underline" Visibility="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
