@@ -92,7 +92,6 @@
 
             <StackPanel Grid.Row="2">
                 <TextBlock Style="{StaticResource ChipsHeadline}">Filter Chips</TextBlock>
-                <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" FontStyle="Italic" Margin="4 -18 4 4">Open issue: Not all primary and secondary colors are working well in dark mode</TextBlock>
             </StackPanel>
             <StackPanel Grid.Row="3">
                 <WrapPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
@@ -187,7 +186,6 @@
 
             <StackPanel Grid.Row="4">
                 <TextBlock Style="{StaticResource ChipsHeadline}">Choice Chips</TextBlock>
-                <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" FontStyle="Italic" Margin="4 -18 4 4">Open issue: Not all primary and secondary colors are working well in dark mode</TextBlock>
             </StackPanel>
             <StackPanel Grid.Row="5">
                 <WrapPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">

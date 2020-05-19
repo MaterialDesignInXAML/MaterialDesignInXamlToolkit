@@ -6,6 +6,7 @@
         <ResourceDictionary Source="MaterialDesignTheme.ValidationErrorTemplate.xaml" />
         <ResourceDictionary>
             <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
+            <converters:IsDarkConverter x:Key="IsDarkConverter" />
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
@@ -661,23 +662,71 @@
     <Style x:Key="MaterialDesignChoiceChipPrimaryRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="MaterialDesignChoiceChipAccentRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
         <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
         <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="MaterialDesignChoiceChipPrimaryOutlineRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}">
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="MaterialDesignChoiceChipAccentOutlineRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}">
         <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
         <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>
