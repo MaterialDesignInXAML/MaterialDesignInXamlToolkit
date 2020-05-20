@@ -6,6 +6,7 @@
         <ResourceDictionary Source="MaterialDesignTheme.ValidationErrorTemplate.xaml" />
         <ResourceDictionary>
             <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
+            <converters:IsDarkConverter x:Key="IsDarkConverter" />
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
@@ -382,6 +383,350 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+
+    <Style x:Key="MaterialDesignChoiceChipRadioButton" TargetType="{x:Type RadioButton}">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="MinWidth" Value="46" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="{x:Type wpf:PackIcon}" >
+                            <Setter Property="Width" Value="22" />
+                            <Setter Property="Height" Value="22" />
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <Grid ClipToBounds="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border CornerRadius="16" Background="{DynamicResource MaterialDesignChipBackground}" Grid.ColumnSpan="2" />
+                        <Border x:Name="MouseOverBorder"
+                                Opacity="0"
+                                CornerRadius="16"
+                                Grid.ColumnSpan="2"
+                                Grid.Column="0"
+                                Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}" />
+                        <Border x:Name="SelectedBackgroundBorder"
+                                Opacity="0"
+                                CornerRadius="16"
+                                Grid.ColumnSpan="2"
+                                Grid.Column="0"
+                                Background="{TemplateBinding Background}" />
+                        <ContentControl Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                        ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                        x:Name="Content"
+                                        IsTabStop="False"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Margin="10 0 10 0"
+                                        Grid.Column="1" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CircleEase EasingMode="EaseOut" />
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Normal" />
+                                <VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.1" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup Name="CheckStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="Checked">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.2" Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition To="CheckedUnfocused">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.2" Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition To="Unchecked">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0" Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.2" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="CheckedUnfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.2" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Unchecked">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value=".56" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignChoiceChipOutlineRadioButton" TargetType="{x:Type RadioButton}">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="MinWidth" Value="46" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="{x:Type wpf:PackIcon}" >
+                            <Setter Property="Width" Value="22" />
+                            <Setter Property="Height" Value="22" />
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <Grid ClipToBounds="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border CornerRadius="16" x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" />
+                        <Border x:Name="MouseOverBorder"
+                                Opacity="0"
+                                CornerRadius="16"
+                                Grid.ColumnSpan="2"
+                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
+                                Grid.Column="0"
+                                Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}" />
+                        <Border x:Name="SelectedBackgroundBorder"
+                                Opacity="0"
+                                CornerRadius="16"
+                                Grid.ColumnSpan="2"
+                                Grid.Column="0"
+                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}" />
+                        <ContentControl Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                        ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                        x:Name="Content"
+                                        IsTabStop="False"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Margin="10 0 10 0"
+                                        Grid.Column="1" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CircleEase EasingMode="EaseOut" />
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Normal" />
+                                <VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.1" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup Name="CheckStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="Checked">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.2" Duration="0:0:0.2" />
+                                            <DoubleAnimation Storyboard.TargetName="Border"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.3" Duration="0" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition To="CheckedUnfocused">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.2" Duration="0:0:0.2" />
+                                            <DoubleAnimation Storyboard.TargetName="Border"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.3" Duration="0" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition To="Unchecked">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0" Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.2" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.3" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="CheckedUnfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.2" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.3" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Unchecked">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value=".56" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignChoiceChipPrimaryRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MaterialDesignChoiceChipAccentRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MaterialDesignChoiceChipPrimaryOutlineRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MaterialDesignChoiceChipAccentOutlineRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}">
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>
