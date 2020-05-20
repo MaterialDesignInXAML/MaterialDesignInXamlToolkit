@@ -41,6 +41,8 @@ namespace MaterialDesignThemes.Wpf
         public Color CheckBoxDisabled { get; set; }
         public Color Divider { get; set; }
         public Color Selection { get; set; }
+        public Color ToolForeground { get; set; }
+        public Color ToolBackground { get; set; }
         public Color FlatButtonClick { get; set; }
         public Color FlatButtonRipple { get; set; }
         public Color ToolTipBackground { get; set; }

@@ -17,6 +17,8 @@ namespace MaterialDesignThemes.Wpf
         Color MaterialDesignTextBoxBorder { get; }
         Color MaterialDesignDivider { get; }
         Color MaterialDesignSelection { get; }
+        Color MaterialDesignToolForeground { get; }
+        Color MaterialDesignToolBackground { get; }
         Color MaterialDesignFlatButtonClick { get; }
         Color MaterialDesignFlatButtonRipple { get; }
         Color MaterialDesignToolTipBackground { get; }
