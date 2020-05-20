@@ -1,5 +1,5 @@
 ﻿using System;
-using MahApps.Metro;
+using ControlzEx.Theming;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignThemes.MahApps
@@ -10,8 +10,8 @@ namespace MaterialDesignThemes.MahApps
         {
             return baseTheme switch
             {
-                Wpf.BaseTheme.Light => ThemeManager.BaseColorLight,
-                Wpf.BaseTheme.Dark => ThemeManager.BaseColorDark,
+                BaseTheme.Light => ThemeManager.BaseColorLightConst,
+                BaseTheme.Dark => ThemeManager.BaseColorDarkConst,
                 _ => throw new InvalidOperationException()
             };
         }
