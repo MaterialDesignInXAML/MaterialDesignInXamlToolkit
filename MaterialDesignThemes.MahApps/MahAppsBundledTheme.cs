@@ -2,10 +2,11 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
-using MahApps.Metro;
+using ControlzEx.Theming;
 using MaterialDesignColors;
 using MaterialDesignColors.ColorManipulation;
 using MaterialDesignThemes.Wpf;
+using Theme = ControlzEx.Theming.Theme;
 
 namespace MaterialDesignThemes.MahApps
 {
@@ -57,9 +58,8 @@ namespace MaterialDesignThemes.MahApps
             {
                 string baseColorScheme = baseTheme.GetMahAppsBaseColorScheme();
                 string colorScheme = $"MaterialDesign.{primaryColor}.{secondaryColor}";
-
                 ResourceDictionary rv;
-                if (ThemeManager.Themes.FirstOrDefault(x => x.BaseColorScheme == baseColorScheme && x.ColorScheme == primaryColor.ToString()) is global::MahApps.Metro.Theme mahAppsTheme)
+                if (ThemeManager.Current.Themes.FirstOrDefault(x => x.BaseColorScheme == baseColorScheme && x.ColorScheme == primaryColor.ToString()) is Theme mahAppsTheme)
                 {
                     rv = mahAppsTheme.Resources;
                     rv.SetMahApps(theme, baseTheme);
@@ -70,16 +70,21 @@ namespace MaterialDesignThemes.MahApps
                 rv[GeneratedKey] = GeneratedKey;
                 rv.SetMahApps(theme, baseTheme);
 
-                rv["Theme.Name"] = $"MaterialDesign.{baseColorScheme}.{primaryColor}.{secondaryColor}";
-                rv["Theme.DisplayName"] = $"Material Design {primaryColor} with {secondaryColor}";
-                rv["Theme.ColorScheme"] = colorScheme;
-                ThemeManager.AddTheme(rv);
+                string themeName = $"MaterialDesign.{primaryColor}.{secondaryColor}.{baseColorScheme}";
+                string displayName = $"Material Design {primaryColor} with {secondaryColor}";
+                rv[Theme.ThemeNameKey] = themeName;
+                rv[Theme.ThemeDisplayNameKey] = displayName;
+                rv[Theme.ThemeColorSchemeKey] = colorScheme;
+                rv[Theme.ThemeBaseColorSchemeKey] = baseColorScheme;
+                var themeInstance = new Theme(new LibraryTheme(rv, null));
+                rv[Theme.ThemeInstanceKey] = themeInstance;
+                ThemeManager.Current.AddTheme(themeInstance);
 
                 return rv;
             }
         }
 
-        private void ThemeManagerOnThemeChanged(object sender, ThemeChangedEventArgs e)
+        private void ThemeManagerOnThemeChanged(object sender, Wpf.ThemeChangedEventArgs e)
         {
             ResourceDictionary resourceDictionary = e.ResourceDictionary;
 
