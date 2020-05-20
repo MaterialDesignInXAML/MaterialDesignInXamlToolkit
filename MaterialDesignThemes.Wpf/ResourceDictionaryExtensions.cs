@@ -62,6 +62,7 @@ namespace MaterialDesignThemes.Wpf
             SetSolidColorBrush(resourceDictionary, "MaterialDesignTextFieldBoxDisabledBackground", theme.TextFieldBoxDisabledBackground);
             SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaBorder", theme.TextAreaBorder);
             SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaInactiveBorder", theme.TextAreaInactiveBorder);
+            SetSolidColorBrush(resourceDictionary, "MaterialDesignDataGridRowHoverBackground", theme.DataGridRowHoverBackground);
 
             if (!(resourceDictionary.GetThemeManager() is ThemeManager themeManager))
             {
@@ -137,7 +138,8 @@ namespace MaterialDesignThemes.Wpf
                 TextFieldBoxHoverBackground = GetColor("MaterialDesignTextFieldBoxHoverBackground"),
                 TextFieldBoxDisabledBackground = GetColor("MaterialDesignTextFieldBoxDisabledBackground"),
                 TextAreaBorder = GetColor("MaterialDesignTextAreaBorder"),
-                TextAreaInactiveBorder = GetColor("MaterialDesignTextAreaInactiveBorder")
+                TextAreaInactiveBorder = GetColor("MaterialDesignTextAreaInactiveBorder"),
+                DataGridRowHoverBackground = GetColor("MaterialDesignDataGridRowHoverBackground")
             };
 
             Color GetColor(params string[] keys)

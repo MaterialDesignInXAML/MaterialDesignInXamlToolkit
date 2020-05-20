@@ -45,5 +45,7 @@ namespace MaterialDesignThemes.Wpf
         Color TextFieldBoxDisabledBackground { get; set; }
         Color TextAreaBorder { get; set; }
         Color TextAreaInactiveBorder { get; set; }
+        
+        Color DataGridRowHoverBackground { get; set; }
     }
 }
