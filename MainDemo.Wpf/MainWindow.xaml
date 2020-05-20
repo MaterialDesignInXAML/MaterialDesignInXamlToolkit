@@ -6,7 +6,9 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
         WindowStartupLocation="CenterScreen"
-        Title="Material Design in XAML" Height="800" Width="1100"
+        Title="Material Design in XAML" 
+        AutomationProperties.AutomationId="{Binding Title, RelativeSource={RelativeSource Self}}"
+        Height="800" Width="1100"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -82,7 +84,7 @@
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
                 <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                            Mode="PrimaryMid" DockPanel.Dock="Top">
+                                          Mode="PrimaryMid" DockPanel.Dock="Top">
                     <DockPanel>
                         <ToggleButton
                             x:Name="MenuToggleButton"
@@ -109,7 +111,7 @@
                                 <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
                             </StackPanel>
                         </materialDesign:PopupBox>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" AutomationProperties.AutomationId="Material Design In XAML Toolkit">Material Design In XAML Toolkit</TextBlock>
                     </DockPanel>
                 </materialDesign:ColorZone>
                 <Grid>
