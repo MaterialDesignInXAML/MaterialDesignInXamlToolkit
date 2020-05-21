@@ -40,7 +40,7 @@ namespace MaterialDesignThemes.Wpf
                 element.RemoveAdornersOfType<BottomDashedLineAdorner>();
 
             if (args.NewValue is bool newValue && newValue)
-                element.AddAdornerOfType(new BottomDashedLineAdorner(element));
+                element.AddAdorner(new BottomDashedLineAdorner(element));
         }
 
         public static readonly DependencyProperty BrushProperty = DependencyProperty.RegisterAttached(
