@@ -355,6 +355,8 @@
                                            Style="{DynamicResource MaterialDesignDatePickerTextBox}"
                                            HorizontalAlignment="Stretch"
                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           BorderThickness="{TemplateBinding BorderThickness}"
+                                           BorderBrush="{TemplateBinding BorderBrush}"
                                            wpf:HintAssist.IsFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
                                            wpf:HintAssist.FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
                                            wpf:HintAssist.FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"
