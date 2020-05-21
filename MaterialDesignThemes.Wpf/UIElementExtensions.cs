@@ -25,7 +25,7 @@ namespace MaterialDesignThemes.Wpf
             adornerLayer.Add(adorner);
         }
 
-        public static void RemoveAdornersOfType<T>(this UIElement element) where T : Adorner
+        public static void RemoveAdorners<TAdorner>(this UIElement element) where TAdorner : Adorner
         {
             var adornerLayer = AdornerLayer.GetAdornerLayer(element);
             var adorners = adornerLayer?.GetAdorners(element);
@@ -35,7 +35,7 @@ namespace MaterialDesignThemes.Wpf
                 return;
             }
 
-            foreach (var adorner in adorners.OfType<T>())
+            foreach (var adorner in adorners.OfType<TAdorner>())
             {
                 adornerLayer.Remove(adorner);
             }

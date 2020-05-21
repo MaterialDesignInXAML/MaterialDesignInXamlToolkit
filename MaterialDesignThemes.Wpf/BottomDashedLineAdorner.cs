@@ -37,7 +37,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var element = (UIElement) @object;
             if (args.OldValue is bool oldValue && oldValue)
-                element.RemoveAdornersOfType<BottomDashedLineAdorner>();
+                element.RemoveAdorners<BottomDashedLineAdorner>();
 
             if (args.NewValue is bool newValue && newValue)
                 element.AddAdorner(new BottomDashedLineAdorner(element));
