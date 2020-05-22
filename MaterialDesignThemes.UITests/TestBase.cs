@@ -14,10 +14,11 @@ namespace MaterialDesignThemes.UITests
 {
     public class TestBase
     {
-        protected WindowsDriver<WindowsElement>? Driver { get; private set; }
+#pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
+        protected WindowsDriver<WindowsElement> Driver { get; private set; }
+#pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
 
         private bool AppHasLaunched { get; set; }
-
 
         public void Click(AppiumWebElement element)
         {
@@ -109,9 +110,10 @@ namespace MaterialDesignThemes.UITests
 
             Driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appOptions);
 
-            var element = Driver.FindElementByName("Material Design In XAML Toolkit");
+            WindowsElement? element = Driver.FindElementByName("Material Design In XAML Toolkit");
 
             Assert.NotNull(element);
+
             AppHasLaunched = true;
         }
     }
