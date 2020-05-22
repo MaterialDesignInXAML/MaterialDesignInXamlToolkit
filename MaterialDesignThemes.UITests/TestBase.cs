@@ -8,6 +8,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
+using Xunit;
 
 namespace MaterialDesignThemes.UITests
 {
@@ -28,7 +29,6 @@ namespace MaterialDesignThemes.UITests
             WaitForElement(() => new Actions(Driver).SendKeys(element, input).Perform());
         }
 
-        // Would this be more readable/easier to use taking in two Points instead of four ints?
         public void DragAndDrop(AppiumWebElement element, int startOffsetX, int startOffsetY, int endOffsetX, int endOffsetY)
         {
             var crop = new Actions(Driver);
@@ -78,14 +78,15 @@ namespace MaterialDesignThemes.UITests
                 FileName = Path.Combine(workingDirectory, "MaterialDesignDemo.exe")
             };
 
-            Process[] inputProcess = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(processInfo.FileName));
-            if (inputProcess.Length == 0)
+            Process appProcess = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(processInfo.FileName))
+                .FirstOrDefault(x => !x.HasExited && x.MainWindowHandle != IntPtr.Zero);
+            if (appProcess is null)
             {
                 if (!File.Exists(Path.Combine(processInfo.WorkingDirectory, processInfo.FileName)))
                 {
                     throw new FileNotFoundException($"{processInfo.FileName} was not in expected directory: {processInfo.WorkingDirectory}");
                 }
-                var process = Process.Start(processInfo);
+                appProcess = Process.Start(processInfo);
 
                 //Forcing the the driver to wait for the application
                 await Task.Delay(TimeSpan.FromSeconds(2));
@@ -103,23 +104,14 @@ namespace MaterialDesignThemes.UITests
             }
 
             var appOptions = new AppiumOptions();
-            appOptions.AddAdditionalCapability("app", "Root");
             appOptions.AddAdditionalCapability("deviceName", "WindowsPC");
+            appOptions.AddAdditionalCapability("appTopLevelWindow", appProcess.MainWindowHandle.ToInt32().ToString("x"));
 
-            var desktopSession = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appOptions);
-            //var elements = Driver.FindElementsByName("Material Design In XAML Toolkit");
-            var wait = new WebDriverWait(desktopSession, TimeSpan.FromSeconds(20));
-            wait.IgnoreExceptionTypes(typeof(WebDriverException));
+            Driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appOptions);
 
-            WindowsElement app = wait.Until(d => desktopSession.FindElementByAccessibilityId("Material Design in XAML Toolkit"));
-            var window = app.GetAttribute("NativeWindowHandle");
-            window = int.Parse(window).ToString("x");
+            var element = Driver.FindElementByName("Material Design In XAML Toolkit");
 
-            var newOptions = new AppiumOptions();
-            newOptions.AddAdditionalCapability("appTopLevelWindow", window);
-
-            Driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), newOptions);
-            desktopSession.Dispose();
+            Assert.NotNull(element);
             AppHasLaunched = true;
         }
     }
