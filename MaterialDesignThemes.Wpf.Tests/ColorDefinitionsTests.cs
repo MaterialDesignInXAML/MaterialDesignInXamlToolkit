@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Linq;
 using System.Windows;
@@ -9,12 +8,6 @@ namespace MaterialDesignThemes.Wpf.Tests
 {
     public class ColorDefinitionsTests
     {
-        public ColorDefinitionsTests()
-        {
-            if (!UriParser.IsKnownScheme("pack"))
-                Assert.NotNull(new Application());
-        }
-
         [Fact]
         public void VerifyLightXamlColorsInTheme()
         {
@@ -32,11 +25,10 @@ namespace MaterialDesignThemes.Wpf.Tests
             var theme = new Theme();
             theme.SetBaseTheme(baseTheme);
 
-            var uri = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/" + xaml);
-            var resourceDictionary = new ResourceDictionary { Source = uri };
+            var resourceDictionary = MdixHelper.GetResourceDictionary(xaml);
 
             foreach (var (key, solidColorBrush) in resourceDictionary
-                .OfType<DictionaryEntry>()
+                .Cast<DictionaryEntry>()
                 .Where(e => e.Value is SolidColorBrush)
                 .Select(e => ((string) e.Key, (SolidColorBrush) e.Value))
                 .OrderBy(e => e.Item1))
@@ -75,8 +67,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             var theme = new Theme();
             theme.SetBaseTheme(baseTheme);
 
-            var uri = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/" + xaml);
-            var resourceDictionary = new ResourceDictionary { Source = uri };
+            var resourceDictionary = MdixHelper.GetResourceDictionary(xaml);
 
             var updatedDictionary = new ResourceDictionary();
             updatedDictionary.SetTheme(theme);
