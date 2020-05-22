@@ -53,6 +53,8 @@ namespace MaterialDesignThemes.Wpf
             theme.CheckBoxDisabled = baseTheme.MaterialDesignCheckBoxDisabled;
             theme.Divider = baseTheme.MaterialDesignDivider;
             theme.Selection = baseTheme.MaterialDesignSelection;
+            theme.ToolForeground = baseTheme.MaterialDesignToolForeground;
+            theme.ToolBackground = baseTheme.MaterialDesignToolBackground;
             theme.FlatButtonClick = baseTheme.MaterialDesignFlatButtonClick;
             theme.FlatButtonRipple = baseTheme.MaterialDesignFlatButtonRipple;
             theme.ToolTipBackground = baseTheme.MaterialDesignToolTipBackground;

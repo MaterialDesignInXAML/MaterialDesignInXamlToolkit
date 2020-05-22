@@ -27,6 +27,9 @@ namespace MaterialDesignThemes.Wpf
 
         Color Divider { get; set; }
         Color Selection { get; set; }
+        
+        Color ToolForeground { get; set; }
+        Color ToolBackground { get; set; }
 
         Color FlatButtonClick { get; set; }
         Color FlatButtonRipple { get; set; }
