@@ -4,6 +4,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters.CircularProgressBar
 {
+    [Obsolete("usage removed with #1854")]
     public class LargeArcConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)

@@ -118,7 +118,6 @@
     <circularProgressBar:StartPointConverter x:Key="StartPointConverter" />
     <circularProgressBar:ArcSizeConverter x:Key="ArcSizeConverter" />
     <circularProgressBar:ArcEndPointConverter x:Key="ArcEndPointConverter" />
-    <circularProgressBar:LargeArcConverter x:Key="LargeArcConverter" />
     <circularProgressBar:RotateTransformCentreConverter x:Key="RotateTransformCentreConverter" />
     <converters:NotZeroConverter x:Key="NotZeroConverter" />
 
