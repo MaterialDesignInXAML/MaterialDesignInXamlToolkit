@@ -1,7 +1,6 @@
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
-using System.Windows.Shapes;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -60,8 +59,9 @@ namespace MaterialDesignThemes.Wpf
             var targetElementBox = new Rect(AdornedElement.RenderSize);
             var lineThickness = GetThickness(AdornedElement).Bottom * GetThicknessScale(AdornedElement);
             var lineOpacity = GetBrushOpacity(AdornedElement);
+            var lineBrush = GetBrush(AdornedElement);
 
-            var pen = new Pen(GetBrush(AdornedElement), lineThickness)
+            var pen = new Pen(lineBrush, lineThickness)
             {
                 DashStyle = DashStyles.Dash,
                 DashCap = PenLineCap.Round
