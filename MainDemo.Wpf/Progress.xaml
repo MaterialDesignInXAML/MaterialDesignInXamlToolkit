@@ -193,7 +193,7 @@
             <EventTrigger.Actions>
                 <BeginStoryboard>
                     <Storyboard TargetName="DeterminateCircularProgress" TargetProperty="Value" RepeatBehavior="Forever" Duration="0:0:3">
-                        <DoubleAnimation From="0" To="100" Duration="0:0:2.5" FillBehavior="Stop">
+                        <DoubleAnimation From="0" To="100" Duration="0:0:2.5" FillBehavior="HoldEnd">
                             <DoubleAnimation.EasingFunction>
                                 <CircleEase EasingMode="EaseOut" />
                             </DoubleAnimation.EasingFunction>
