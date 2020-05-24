@@ -423,7 +423,7 @@
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="GridLinesVisibility" Value="Horizontal" />
         <Setter Property="HorizontalGridLinesBrush">
