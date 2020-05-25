@@ -41,7 +41,7 @@
                     </smtx:XamlDisplay>
                     <smtx:XamlDisplay Key="AccentSquareButton_1" HorizontalAlignment="Left">
                         <Button Width="100" Margin="0 8 0 0" Content="Nice" HorizontalAlignment="Left"
-                            Style="{StaticResource MahApps.Styles.Button.AccentedSquare}" />
+                                Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
                     </smtx:XamlDisplay>
                 </StackPanel>
             </TabItem>

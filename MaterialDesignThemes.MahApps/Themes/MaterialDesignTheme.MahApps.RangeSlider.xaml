@@ -15,7 +15,7 @@
     </Style>
 
     <Style x:Key="MaterialDesign.RangeSlider.HorizontalMiddleThumb"
-           BasedOn="{StaticResource MahApps.Styles.MetroThumb.RangeSlider.HorizontalMiddleThumb}"
+           BasedOn="{StaticResource MahApps.Styles.MetroThumb.RangeSlider.Horizontal.Middle}"
            TargetType="{x:Type controls:MetroThumb}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
