@@ -1,7 +1,7 @@
 source https://nuget.org/api/v2
 framework: net45, net452, net472, netcoreapp3.1
 
-nuget MahApps.Metro ~> 2.0.0-alpha0821
+nuget MahApps.Metro ~> 2.0.0
 nuget Dragablz ~> 0.0.3
 nuget NuGet.CommandLine
 nuget Shouldly ~> 3.0
