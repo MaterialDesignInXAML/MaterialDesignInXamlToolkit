@@ -6,7 +6,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    internal class ExpanderDirectionConverter : IValueConverter
+    public class ExpanderDirectionConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

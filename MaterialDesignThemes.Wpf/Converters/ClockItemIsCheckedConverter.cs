@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    internal class ClockItemIsCheckedConverter : IValueConverter
+    public class ClockItemIsCheckedConverter : IValueConverter
     {
         private readonly Func<DateTime> _currentTimeGetter;
         private readonly ClockDisplayMode _displayMode;

@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    internal class HorizontalThicknessConverter : IValueConverter
+    public class HorizontalThicknessConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

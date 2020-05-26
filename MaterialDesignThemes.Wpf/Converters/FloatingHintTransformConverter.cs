@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    internal class FloatingHintTransformConverter : IMultiValueConverter
+    public class FloatingHintTransformConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
