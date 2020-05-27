@@ -14,32 +14,32 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty IsAttachedProperty
             = DependencyProperty.RegisterAttached("IsAttached", typeof(bool), typeof(BottomDashedLineAdorner), new PropertyMetadata(default(bool), OnIsAttachedChanged));
 
-        public static bool GetIsAttached(DependencyObject element) { return (bool)element.GetValue(IsAttachedProperty); }
-        public static void SetIsAttached(DependencyObject element, bool value) { element.SetValue(IsAttachedProperty, value); }
+        public static bool GetIsAttached(DependencyObject element) => (bool)element.GetValue(IsAttachedProperty);
+        public static void SetIsAttached(DependencyObject element, bool value) => element.SetValue(IsAttachedProperty, value);
         #endregion
 
         #region AttachedProperty : BrushProperty
         public static readonly DependencyProperty BrushProperty
             = DependencyProperty.RegisterAttached("Brush", typeof(Brush), typeof(BottomDashedLineAdorner), new PropertyMetadata(default(Brush)));
 
-        public static Brush GetBrush(DependencyObject element) { return (Brush)element.GetValue(BrushProperty); }
-        public static void SetBrush(DependencyObject element, Brush value) { element.SetValue(BrushProperty, value); }
+        public static Brush GetBrush(DependencyObject element) => (Brush)element.GetValue(BrushProperty);
+        public static void SetBrush(DependencyObject element, Brush value) => element.SetValue(BrushProperty, value);
         #endregion
 
         #region AttachedProperty : ThicknessProperty
         public static readonly DependencyProperty ThicknessProperty
             = DependencyProperty.RegisterAttached("Thickness", typeof(Thickness), typeof(BottomDashedLineAdorner), new PropertyMetadata(DefaultThickness));
 
-        public static Thickness GetThickness(DependencyObject element) { return (Thickness)element.GetValue(ThicknessProperty); }
-        public static void SetThickness(DependencyObject element, Thickness value) { element.SetValue(ThicknessProperty, value); }
+        public static Thickness GetThickness(DependencyObject element) => (Thickness)element.GetValue(ThicknessProperty);
+        public static void SetThickness(DependencyObject element, Thickness value) => element.SetValue(ThicknessProperty, value);
         #endregion
 
         #region AttachedProperty : ThicknessScaleProperty
         public static readonly DependencyProperty ThicknessScaleProperty
             = DependencyProperty.RegisterAttached("ThicknessScale", typeof(double), typeof(BottomDashedLineAdorner), new PropertyMetadata(DefaultThicknessScale));
 
-        public static double GetThicknessScale(DependencyObject element) { return (double)element.GetValue(ThicknessScaleProperty); }
-        public static void SetThicknessScale(DependencyObject element, double value) { element.SetValue(ThicknessScaleProperty, value); }
+        public static double GetThicknessScale(DependencyObject element) => (double)element.GetValue(ThicknessScaleProperty);
+        public static void SetThicknessScale(DependencyObject element, double value) => element.SetValue(ThicknessScaleProperty, value);
         #endregion
 
         #region AttachedProperty : BrushOpacityProperty
