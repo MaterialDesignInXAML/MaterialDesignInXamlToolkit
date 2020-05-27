@@ -37,4 +37,6 @@
     <SolidColorBrush x:Key="MaterialDesignTextFieldBoxDisabledBackground" Color="#0DFFFFFF" po:Freeze="True" /> <!-- 5% white -->
     <SolidColorBrush x:Key="MaterialDesignTextAreaBorder" Color="#BCFFFFFF" po:Freeze="True" /> <!-- 74% white -->
     <SolidColorBrush x:Key="MaterialDesignTextAreaInactiveBorder" Color="#1AFFFFFF" po:Freeze="True" /> <!-- 10% white -->
+
+    <SolidColorBrush x:Key="MaterialDesignDataGridRowHoverBackground" Color="#14FFFFFF" po:Freeze="True" /> <!-- 8% white -->
 </ResourceDictionary>

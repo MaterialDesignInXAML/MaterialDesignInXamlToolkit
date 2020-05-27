@@ -5,35 +5,38 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    internal class RemoveAlphaBrushConverter : IValueConverter
+    internal class RemoveAlphaBrushConverter : IValueConverter, IMultiValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            => value is SolidColorBrush brush
+                ? new SolidColorBrush(RgbaToRgb(brush.Color, parameter))
+                : Binding.DoNothing;
+
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+            => values[0] is SolidColorBrush brush
+                ? new SolidColorBrush(RgbaToRgb(brush.Color, values[1]))
+                : Binding.DoNothing;
+
+        private static Color RgbaToRgb(Color rgba, object background)
         {
-            if (value is SolidColorBrush brush)
+            var backgroundColor = background switch
             {
-                Color background = Colors.White;
-                if (parameter is Color color)
-                {
-                    background = color;
-                }
-                return new SolidColorBrush(RgbaToRgb(brush.Color, background));
-            }
-            return Binding.DoNothing;
-        }
+                Color c => c,
+                SolidColorBrush b => b.Color,
+                _ => Colors.White
+            };
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+            var alpha = (double) rgba.A / byte.MaxValue;
+            var alphaReverse = 1 - alpha;
 
-        private static Color RgbaToRgb(Color rgba, Color background)
-        {
-            double alpha = (double)rgba.A / byte.MaxValue;
             return Color.FromRgb(
-                (byte)((1 - alpha) * background.R + alpha * rgba.R),
-                (byte)((1 - alpha) * background.G + alpha * rgba.G),
-                (byte)((1 - alpha) * background.B + alpha * rgba.B)
+                (byte) (alpha * rgba.R + alphaReverse * backgroundColor.R),
+                (byte) (alpha * rgba.G + alphaReverse * backgroundColor.G),
+                (byte) (alpha * rgba.B + alphaReverse * backgroundColor.B)
             );
         }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

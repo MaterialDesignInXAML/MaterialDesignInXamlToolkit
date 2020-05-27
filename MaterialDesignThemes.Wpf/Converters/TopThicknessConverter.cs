@@ -5,18 +5,12 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    public class BottomThicknessConverter : IValueConverter
+    internal class TopThicknessConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (!(value is Thickness thickness))
-                return Binding.DoNothing;
-
-            if (parameter == null)
-                return thickness.Bottom;
-
-            return thickness.Bottom * System.Convert.ToDouble(parameter, CultureInfo.InvariantCulture);
-        }
+            => value is Thickness thickness
+                ? new Thickness(0, thickness.Top, 0, 0)
+                : Binding.DoNothing;
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             => throw new NotImplementedException();

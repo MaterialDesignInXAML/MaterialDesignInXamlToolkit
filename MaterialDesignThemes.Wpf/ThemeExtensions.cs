@@ -68,6 +68,7 @@ namespace MaterialDesignThemes.Wpf
             theme.TextFieldBoxDisabledBackground = baseTheme.MaterialDesignTextFieldBoxDisabledBackground;
             theme.TextAreaBorder = baseTheme.MaterialDesignTextAreaBorder;
             theme.TextAreaInactiveBorder = baseTheme.MaterialDesignTextAreaInactiveBorder;
+            theme.DataGridRowHoverBackground = baseTheme.MaterialDesignDataGridRowHoverBackground;
         }
 
         public static void SetPrimaryColor(this ITheme theme, Color primaryColor)

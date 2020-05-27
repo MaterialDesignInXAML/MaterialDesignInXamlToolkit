@@ -19,7 +19,7 @@
         <StackPanel Margin="5 0 0 0">
             <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Custom Columns"/>
             <smtx:XamlDisplay Key="grids_1">
-                <DataGrid ItemsSource="{Binding Items1}" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False"
+                <DataGrid ItemsSource="{Binding Items1}" CanUserAddRows="False" AutoGenerateColumns="False"
                           HeadersVisibility="All">
                     <DataGrid.Resources>
                         <domain:BindingProxy x:Key="DataContextProxy" Data="{Binding}" />
@@ -29,12 +29,15 @@
                                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                             <DataGridCheckBoxColumn.Header>
-                                <!--padding to allow hit test to pass thru for sorting -->
-                                <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
-                                    <CheckBox HorizontalAlignment="Center"
-                                              IsChecked="{Binding Data.IsAllItems1Selected, Source={StaticResource DataContextProxy}}" />
+                                <Border Background="Transparent">
+                                    <CheckBox IsChecked="{Binding Data.IsAllItems1Selected, Source={StaticResource DataContextProxy}}" />
                                 </Border>
                             </DataGridCheckBoxColumn.Header>
+                            <DataGridCheckBoxColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                </Style>
+                            </DataGridCheckBoxColumn.HeaderStyle>
                         </DataGridCheckBoxColumn>
                         <DataGridTextColumn Binding="{Binding Code}"
                                             Header="Code"
@@ -70,7 +73,7 @@
                                                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                    <Setter Property="HorizontalAlignment" Value="Right" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Right" />
                                     <Setter Property="ContentTemplate">
                                         <Setter.Value>
                                             <DataTemplate>
@@ -88,7 +91,8 @@
                         </materialDesign:DataGridTextColumn>
 
                         <!-- use custom combo box column to get better combos. Use ItemsSourceBinding as your binding template to be applied to each combo -->
-                        <materialDesign:DataGridComboBoxColumn Header="Food" IsEditable="True"
+                        <materialDesign:DataGridComboBoxColumn Header="Food with long header" IsEditable="True"
+                                                               Width="100"
                                                                SelectedValueBinding="{Binding Food}"
                                                                ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}">
                             <!--Setting the editing element style allows access to all of the combo box's properties
@@ -105,14 +109,13 @@
             <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Auto Generated Columns" Margin="0 24 0 0"/>
             <smtx:XamlDisplay Key="grids_2">
                 <DataGrid ItemsSource="{Binding Items2}"
-                          CanUserSortColumns="True"
                           CanUserAddRows="False"
                           SelectionUnit="Cell"
                           SelectionMode="Extended" />
             </smtx:XamlDisplay>
             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Custom Padding" Margin="0 24 0 0"/>
             <smtx:XamlDisplay Key="grids_3">
-                <DataGrid ItemsSource="{Binding Items3}" CanUserSortColumns="True" CanUserAddRows="False"
+                <DataGrid ItemsSource="{Binding Items3}" CanUserSortColumns="False" CanUserAddRows="False"
                           materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" />
             </smtx:XamlDisplay>
         </StackPanel>
