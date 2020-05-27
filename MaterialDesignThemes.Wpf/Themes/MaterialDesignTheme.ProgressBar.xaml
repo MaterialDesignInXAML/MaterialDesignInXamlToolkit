@@ -118,7 +118,6 @@
     <circularProgressBar:StartPointConverter x:Key="StartPointConverter" />
     <circularProgressBar:ArcSizeConverter x:Key="ArcSizeConverter" />
     <circularProgressBar:ArcEndPointConverter x:Key="ArcEndPointConverter" />
-    <circularProgressBar:LargeArcConverter x:Key="LargeArcConverter" />
     <circularProgressBar:RotateTransformCentreConverter x:Key="RotateTransformCentreConverter" />
     <converters:NotZeroConverter x:Key="NotZeroConverter" />
 
@@ -165,14 +164,20 @@
                                         <PathFigure StartPoint="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource StartPointConverter}, Mode=OneWay}">
                                             <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource ArcSizeConverter}, Mode=OneWay}"
                                                         SweepDirection="Clockwise">
-                                                <ArcSegment.IsLargeArc>
-                                                    <MultiBinding Converter="{StaticResource LargeArcConverter}">
+                                                <ArcSegment.Point>
+                                                    <MultiBinding 
+                                                        Converter="{StaticResource ArcEndPointConverter}" 
+                                                        ConverterParameter="{x:Static circularProgressBar:ArcEndPointConverter.ParameterMidPoint}">
+                                                        <Binding ElementName="PathGrid" Path="ActualWidth" />
                                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value" />
                                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Minimum" />
                                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Maximum" />
                                                         <Binding ElementName="FullyIndeterminateGridScaleTransform" Path="ScaleX" />
                                                     </MultiBinding>
-                                                </ArcSegment.IsLargeArc>
+                                                </ArcSegment.Point>
+                                            </ArcSegment>
+                                            <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource ArcSizeConverter}, Mode=OneWay}"
+                                                        SweepDirection="Clockwise">
                                                 <ArcSegment.Point>
                                                     <MultiBinding Converter="{StaticResource ArcEndPointConverter}">
                                                         <Binding ElementName="PathGrid" Path="ActualWidth" />

@@ -7,6 +7,14 @@ namespace MaterialDesignThemes.Wpf.Converters.CircularProgressBar
 {
     public class ArcEndPointConverter : IMultiValueConverter
     {
+        /// <summary>
+        /// CircularProgressBar draws two arcs to support a full circle at 100 %.
+        /// With one arc at 100 % the start point is identical the end point, so nothing is drawn.
+        /// Midpoint at half of current percentage is the endpoint of the first arc
+        /// and the start point of the second arc.
+        /// </summary>
+        public const string ParameterMidPoint = "MidPoint";
+        
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var actualWidth = values[0].ExtractDouble();
@@ -27,6 +35,9 @@ namespace MaterialDesignThemes.Wpf.Converters.CircularProgressBar
             }
 
             var percent = maximum <= minimum ? 1.0 : (value - minimum) / (maximum - minimum);
+            if (Equals(parameter, ParameterMidPoint))
+                percent /= 2;
+                
             var degrees = 360 * percent;
             var radians = degrees * (Math.PI / 180);
 
