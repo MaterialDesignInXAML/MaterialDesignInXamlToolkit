@@ -44,7 +44,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		paket.lock = paket.lock
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.UITests", "MaterialDesignThemes.UITests\MaterialDesignThemes.UITests.csproj", "{594D2254-3623-4088-A8BD-D74B6E96DE9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesignThemes.UITests", "MaterialDesignThemes.UITests\MaterialDesignThemes.UITests.csproj", "{594D2254-3623-4088-A8BD-D74B6E96DE9F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CF0A27A8-EF82-44E5-B673-ECCC150C48ED} = {CF0A27A8-EF82-44E5-B673-ECCC150C48ED}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

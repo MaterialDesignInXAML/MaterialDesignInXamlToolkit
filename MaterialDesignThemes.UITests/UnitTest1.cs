@@ -13,7 +13,7 @@ namespace MaterialDesignThemes.UITests
         [Fact]
         public async Task CanOpenAllPagesOnTheDemoApp()
         {
-            await LaunchApplication();
+            LaunchApplication();
 
             WindowsElement? listBox = Driver.FindElementByName("DemoPagesListBox");
             Assert.NotNull(listBox);
