@@ -60,13 +60,13 @@
                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
                                                          x:Name="PopupBox">
                                     <materialDesign:PopupBox.ToggleContent>
-                                        <materialDesign:PackIcon Kind="Xaml" Cursor="Hand" ToolTip="View XAML" 
+                                        <materialDesign:PackIcon Kind="Xml" Cursor="Hand" ToolTip="View XAML" 
                                                                  Foreground="{DynamicResource PrimaryHueDarkBrush}" 
                                                                  Background="Transparent" 
                                                                  Margin="3">
                                             <materialDesign:PackIcon.Style>
                                                 <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                                                    <Setter Property="Opacity" Value="0.2" />
+                                                    <Setter Property="Opacity" Value="0.4" />
                                                     <Style.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
                                                             <Setter Property="Opacity" Value="1" />
