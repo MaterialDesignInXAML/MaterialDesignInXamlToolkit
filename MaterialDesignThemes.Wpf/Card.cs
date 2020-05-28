@@ -5,15 +5,37 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
-    /// <summary>
-    /// A card is a content control, styled according to Material Design guidelines.
-    /// </summary>
     [TemplatePart(Name = ClipBorderPartName, Type = typeof(Border))]
     public class Card : ContentControl
     {
+        private Border _clipBorder;
+        private static readonly double DefaultUniformCornerRadius = 2.0;
         public const string ClipBorderPartName = "PART_ClipBorder";
 
-        private Border _clipBorder;
+        #region DependencyProperty : UniformCornerRadiusProperty
+        public double UniformCornerRadius
+        {
+            get => (double)GetValue(UniformCornerRadiusProperty);
+            set => SetValue(UniformCornerRadiusProperty, value);
+        }
+        public static readonly DependencyProperty UniformCornerRadiusProperty
+            = DependencyProperty.Register(nameof(UniformCornerRadius), typeof(double), typeof(Card),
+                new FrameworkPropertyMetadata(DefaultUniformCornerRadius, FrameworkPropertyMetadataOptions.AffectsMeasure));
+        #endregion
+
+        #region DependencyProperty : ContentClipProperty
+        private static readonly DependencyPropertyKey ContentClipPropertyKey
+            = DependencyProperty.RegisterReadOnly(nameof(ContentClip), typeof(Geometry), typeof(Card), new PropertyMetadata(default(Geometry)));
+
+        public Geometry ContentClip
+        {
+            get => (Geometry)GetValue(ContentClipProperty);
+            private set => SetValue(ContentClipPropertyKey, value);
+        }
+
+        public static readonly DependencyProperty ContentClipProperty
+            = ContentClipPropertyKey.DependencyProperty;
+        #endregion
 
         static Card()
         {
@@ -31,40 +53,17 @@ namespace MaterialDesignThemes.Wpf
         {
             base.OnRenderSizeChanged(sizeInfo);
 
-            if (_clipBorder == null) return;
+            if (_clipBorder is null)
+            {
+                return;
+            }
 
-            var farPoint = new Point(
-                Math.Max(0, _clipBorder.ActualWidth),
-                Math.Max(0, _clipBorder.ActualHeight));
+            var farPointX = Math.Max(0, _clipBorder.ActualWidth);
+            var farPointY = Math.Max(0, _clipBorder.ActualHeight);
+            var farPoint = new Point(farPointX, farPointY);
 
-            var clipRect = new Rect(
-                new Point(),
-                new Point(farPoint.X, farPoint.Y));
-
+            var clipRect = new Rect(new Point(0, 0), farPoint);
             ContentClip = new RectangleGeometry(clipRect, UniformCornerRadius, UniformCornerRadius);
-        }
-
-        public static readonly DependencyProperty UniformCornerRadiusProperty = DependencyProperty.Register(
-            nameof(UniformCornerRadius), typeof(double), typeof(Card), new FrameworkPropertyMetadata(2.0, FrameworkPropertyMetadataOptions.AffectsMeasure));
-
-        public double UniformCornerRadius
-        {
-            get { return (double)GetValue(UniformCornerRadiusProperty); }
-            set { SetValue(UniformCornerRadiusProperty, value); }
-        }
-
-        private static readonly DependencyPropertyKey ContentClipPropertyKey =
-            DependencyProperty.RegisterReadOnly(
-                "ContentClip", typeof(Geometry), typeof(Card),
-                new PropertyMetadata(default(Geometry)));
-
-        public static readonly DependencyProperty ContentClipProperty =
-            ContentClipPropertyKey.DependencyProperty;
-
-        public Geometry ContentClip
-        {
-            get { return (Geometry)GetValue(ContentClipProperty); }
-            private set { SetValue(ContentClipPropertyKey, value); }
         }
     }
 }
