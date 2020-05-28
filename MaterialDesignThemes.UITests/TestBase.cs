@@ -2,9 +2,11 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using Xunit;
@@ -96,6 +98,9 @@ namespace MaterialDesignThemes.UITests
                     if (File.Exists(path))
                     {
                         Process.Start(path);
+                        // Wait to find socket
+                        using var client = new TcpClient();
+                        client.Connect("127.0.0.1", 4723);
                         return;
                     }
                 }

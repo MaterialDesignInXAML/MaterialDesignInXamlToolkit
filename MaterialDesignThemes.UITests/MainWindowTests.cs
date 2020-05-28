@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MaterialDesignThemes.UITests.DemoApp;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
@@ -8,22 +9,18 @@ using Xunit;
 
 namespace MaterialDesignThemes.UITests
 {
-    public class UnitTest1 : TestBase
+    public class MainWindowTests : TestBase
     {
         [Fact]
         public async Task CanOpenAllPagesOnTheDemoApp()
         {
             LaunchApplication();
 
-            WindowsElement? listBox = Driver.FindElementByName("DemoPagesListBox");
-            Assert.NotNull(listBox);
+            var mainWindow = new MainWindow(Driver);
 
-            IList<AppiumWebElement>? listItems = listBox.FindElements(By.XPath("//ListItem"));
-
-            foreach (AppiumWebElement? listItem in listItems)
+            foreach (AppiumWebElement? listItem in mainWindow.PageListItems)
             {
-                var hamburgerToggleButton = Driver.FindElementByName("HamburgerToggleButton");
-                hamburgerToggleButton.Click();
+                mainWindow.HamburgerToggleButton.Click();
                 await Task.Delay(TimeSpan.FromSeconds(1));
 
                 listItem.Click();
