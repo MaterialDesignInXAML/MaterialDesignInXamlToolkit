@@ -9,7 +9,7 @@ namespace MaterialDesignThemes.Wpf
     public class Card : ContentControl
     {
         private Border _clipBorder;
-        private static readonly double DefaultUniformCornerRadius = 2.0;
+        private const double DefaultUniformCornerRadius = 2.0;
         public const string ClipBorderPartName = "PART_ClipBorder";
 
         #region DependencyProperty : UniformCornerRadiusProperty
