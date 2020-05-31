@@ -4,9 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using Xunit;
@@ -14,7 +11,7 @@ using Xunit.Abstractions;
 
 namespace MaterialDesignThemes.UITests
 {
-    public class TestBase
+    public class TestBase : IDisposable
     {
 #if DEBUG
         private const string Configuration = "Debug";
@@ -22,25 +19,15 @@ namespace MaterialDesignThemes.UITests
         private const string Configuration = "Release";
 #endif
 
-        protected readonly ITestOutputHelper _output;
-
-#pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
         protected TestBase(ITestOutputHelper output)
-            => _output = output ?? throw new ArgumentNullException(nameof(output));
-
-        protected WindowsDriver<WindowsElement> Driver { get; private set; }
-#pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
-
-        private bool AppHasLaunched { get; set; }
-
-        protected void LaunchApplication()
         {
-            if (AppHasLaunched) return;
+            Output = output ?? throw new ArgumentNullException(nameof(output));
 
             IntPtr mainWindowHandle = StartApp();
 
-            //StartWinAppDriver();
-
+#if DEBUG
+            StartWinAppDriver();
+#endif
             var appOptions = new AppiumOptions();
             appOptions.AddAdditionalCapability("deviceName", "WindowsPC");
             appOptions.AddAdditionalCapability("appTopLevelWindow", mainWindowHandle.ToInt64().ToString("x"));
@@ -50,11 +37,15 @@ namespace MaterialDesignThemes.UITests
             WindowsElement? element = Driver.FindElementByName("Material Design In XAML Toolkit");
 
             Assert.NotNull(element);
-
-            AppHasLaunched = true;
         }
 
-        private static IntPtr StartApp()
+        protected WindowsDriver<WindowsElement> Driver { get; }
+        
+        protected ITestOutputHelper Output { get; }
+
+        private Process? ProcessToStop { get; set; }
+
+        private IntPtr StartApp()
         {
             string workingDirectory = Path.GetFullPath(@$"..\..\..\..\MainDemo.Wpf\bin\{Configuration}\netcoreapp3.1\");
             var processInfo = new ProcessStartInfo
@@ -71,7 +62,7 @@ namespace MaterialDesignThemes.UITests
                 {
                     throw new FileNotFoundException($"{processInfo.FileName} was not in expected directory: {processInfo.WorkingDirectory}");
                 }
-                appProcess = Process.Start(processInfo);
+                ProcessToStop = appProcess = Process.Start(processInfo);
                 appProcess.WaitForInputIdle();
                 while(appProcess?.MainWindowHandle == IntPtr.Zero)
                 {
@@ -92,6 +83,7 @@ namespace MaterialDesignThemes.UITests
             return appProcess.MainWindowHandle;
         }
 
+#if DEBUG
         private void StartWinAppDriver()
         {
             Process[] winappProcess = Process.GetProcessesByName("WinAppDriver");
@@ -103,7 +95,7 @@ namespace MaterialDesignThemes.UITests
                     var path = @$"{drive}Program Files (x86)\Windows Application Driver\WinAppDriver.exe";
                     if (File.Exists(path))
                     {
-                        _output.WriteLine($"Starting WinAppDriver {path}");
+                        Output.WriteLine($"Starting WinAppDriver {path}");
                         Process.Start(path);
                         // Wait to find socket
                         using var client = new TcpClient();
@@ -114,6 +106,7 @@ namespace MaterialDesignThemes.UITests
                 throw new InvalidOperationException("WinAppDriver was not found.");
             }
         }
+#endif
 
         private static void ShowWindow(IntPtr windowHandle)
         {
@@ -203,5 +196,28 @@ namespace MaterialDesignThemes.UITests
             [DllImport("User32.dll")]
             public static extern bool ShowWindow(IntPtr handle, int nCmdShow);
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    ProcessToStop?.Kill();
+                    ProcessToStop = null;
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

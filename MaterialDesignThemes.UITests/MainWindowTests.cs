@@ -16,13 +16,11 @@ namespace MaterialDesignThemes.UITests
         [Fact]
         public async Task CanOpenAllPagesOnTheDemoApp()
         {
-            LaunchApplication();
-
             var mainWindow = new MainWindow(Driver);
 
             foreach (AppiumWebElement? listItem in mainWindow.PageListItems)
             {
-                _output.WriteLine($"Opening page {listItem}");
+                Output.WriteLine($"Opening page {listItem}");
                 mainWindow.HamburgerToggleButton.Click();
                 await Task.Delay(TimeSpan.FromSeconds(1));
 
