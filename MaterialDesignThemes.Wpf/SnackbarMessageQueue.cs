@@ -97,6 +97,11 @@ namespace MaterialDesignThemes.Wpf
             {
                 _cleanUp();
             }
+
+            public void ForceSignal()
+            {
+                _waitHandle.Set();
+            }
         }
 
         #endregion
@@ -126,7 +131,8 @@ namespace MaterialDesignThemes.Wpf
                 Task.Factory.StartNew(() =>
                 {
                     //keep upping the completion time in case it's paused...
-                    while (DateTime.Now < _completionTime && !ceaseWaitHandle.WaitOne(granularity))
+                    while (DateTime.Now < _completionTime && !ceaseWaitHandle.WaitOne(granularity)
+                        && !signalWhenDurationPassedWaitHandle.WaitOne(TimeSpan.Zero))
                     {
                         if (pausedWaitHandle.WaitOne(TimeSpan.Zero))
                         {
@@ -424,18 +430,31 @@ namespace MaterialDesignThemes.Wpf
 
         private static async Task WaitForCompletionAsync(
             MouseNotOverManagedWaitHandle mouseNotOverManagedWaitHandle,
-            WaitHandle durationPassedWaitHandle, WaitHandle actionClickWaitHandle)
+            EventWaitHandle durationPassedWaitHandle, EventWaitHandle actionClickWaitHandle)
         {
-            await Task.WhenAny(
-                Task.Factory.StartNew(() =>
+            var durationTask = Task.Factory.StartNew(() =>
+            {
+                WaitHandle.WaitAll(new[]
                 {
-                    WaitHandle.WaitAll(new[]
-                    {
-                        mouseNotOverManagedWaitHandle.WaitHandle,
-                        durationPassedWaitHandle
-                    });
-                }),
-                Task.Factory.StartNew(actionClickWaitHandle.WaitOne));
+                    mouseNotOverManagedWaitHandle.WaitHandle,
+                    durationPassedWaitHandle
+                });
+            });
+            var actionClickTask = Task.Factory.StartNew(actionClickWaitHandle.WaitOne);
+            await Task.WhenAny(durationTask, actionClickTask);
+
+            if (!durationTask.IsCompleted)
+            {
+                mouseNotOverManagedWaitHandle.ForceSignal();
+                durationPassedWaitHandle.Set();
+                await durationTask;
+            }
+
+            if (!actionClickTask.IsCompleted)
+            {
+                actionClickWaitHandle.Set();
+                await actionClickTask;
+            }
         }
 
         private static void DoActionCallback(SnackbarMessageQueueItem messageQueueItem)
