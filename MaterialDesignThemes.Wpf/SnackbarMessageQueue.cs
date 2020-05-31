@@ -14,7 +14,9 @@ namespace MaterialDesignThemes.Wpf
     {
         private readonly TimeSpan _messageDuration;
         private readonly HashSet<Snackbar> _pairedSnackbars = new HashSet<Snackbar>();
+        private readonly object _pairedSnackbarsLock = new object();
         private readonly LinkedList<SnackbarMessageQueueItem> _snackbarMessages = new LinkedList<SnackbarMessageQueueItem>();
+        private readonly object _snackbarMessagesLock = new object();
         private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _pausedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _messageWaitingEvent = new ManualResetEvent(false);
@@ -165,9 +167,10 @@ namespace MaterialDesignThemes.Wpf
         {
             if (snackbar == null) throw new ArgumentNullException(nameof(snackbar));
 
-            _pairedSnackbars.Add(snackbar);
+            lock (_pairedSnackbarsLock)
+                _pairedSnackbars.Add(snackbar);
 
-            return () => _pairedSnackbars.Remove(snackbar);
+            return () => { lock (_pairedSnackbarsLock) _pairedSnackbars.Remove(snackbar); };
         }
 
         internal Action Pause()
@@ -263,20 +266,23 @@ namespace MaterialDesignThemes.Wpf
 
         private void InsertItem(SnackbarMessageQueueItem item)
         {
-            var node = _snackbarMessages.First;
-            while (node != null)
+            lock (_snackbarMessagesLock)
             {
-                if (!IgnoreDuplicate && item.IsDuplicate(node.Value))
-                    return;
-
-                if (item.IsPromoted && !node.Value.IsPromoted)
+                var node = _snackbarMessages.First;
+                while (node != null)
                 {
-                    _snackbarMessages.AddBefore(node, item);
-                    return;
+                    if (!IgnoreDuplicate && item.IsDuplicate(node.Value))
+                        return;
+
+                    if (item.IsPromoted && !node.Value.IsPromoted)
+                    {
+                        _snackbarMessages.AddBefore(node, item);
+                        return;
+                    }
+                    node = node.Next;
                 }
-                node = node.Next;
+                _snackbarMessages.AddLast(item);
             }
-            _snackbarMessages.AddLast(item);
         }
 
         private async void PumpAsync()
@@ -285,7 +291,9 @@ namespace MaterialDesignThemes.Wpf
             {
                 var eventId = WaitHandle.WaitAny(new WaitHandle[] { _disposedEvent, _messageWaitingEvent });
                 if (eventId == 0) continue;
-                var exemplar = _pairedSnackbars.FirstOrDefault();
+                Snackbar exemplar;
+                lock (_pairedSnackbarsLock)
+                    exemplar = _pairedSnackbars.FirstOrDefault();
                 if (exemplar == null)
                 {
                     Trace.TraceWarning(
@@ -294,15 +302,18 @@ namespace MaterialDesignThemes.Wpf
                     continue;
                 }
 
+                LinkedListNode<SnackbarMessageQueueItem> messageNode = null;
+
                 //find a target
                 var snackbar = await FindSnackbar(exemplar.Dispatcher);
 
                 //show message
                 if (snackbar != null)
                 {
-                    var message = _snackbarMessages.First!.Value;
-                    await ShowAsync(snackbar, message);
-                    _snackbarMessages.RemoveFirst();
+                    lock (_snackbarMessagesLock)
+                        messageNode = _snackbarMessages.First;
+                    if (messageNode != null)
+                        await ShowAsync(snackbar, messageNode.Value);
                 }
                 else
                 {
@@ -310,10 +321,15 @@ namespace MaterialDesignThemes.Wpf
                     _disposedEvent.WaitOne(TimeSpan.FromSeconds(1));
                 }
 
-                if (_snackbarMessages.Count > 0)
-                    _messageWaitingEvent.Set();
-                else
-                    _messageWaitingEvent.Reset();
+                lock (_snackbarMessagesLock)
+                {
+                    if (messageNode != null)
+                        _snackbarMessages.Remove(messageNode);
+                    if (_snackbarMessages.Count > 0)
+                        _messageWaitingEvent.Set();
+                    else
+                        _messageWaitingEvent.Reset();
+                }
             }
         }
 
@@ -321,6 +337,7 @@ namespace MaterialDesignThemes.Wpf
         {
             return dispatcher.InvokeAsync(() =>
             {
+                // _pairedSnackbars is modified only on the dispatcher thread. So, no lock is needed here.
                 return _pairedSnackbars.FirstOrDefault(sb =>
                 {
                     if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
