@@ -39,7 +39,7 @@ namespace MaterialDesignThemes.UITests
 
             IntPtr mainWindowHandle = StartApp();
 
-            StartWinAppDriver();
+            //StartWinAppDriver();
 
             var appOptions = new AppiumOptions();
             appOptions.AddAdditionalCapability("deviceName", "WindowsPC");

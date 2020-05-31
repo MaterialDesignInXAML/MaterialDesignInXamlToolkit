@@ -49,6 +49,7 @@ steps:
 - task: Windows Application Driver@0
   inputs:
     OperationType: 'Start'
+  displayName: 'Start WinAppDriver'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
@@ -59,6 +60,7 @@ steps:
 - task: Windows Application Driver@0
   inputs:
     OperationType: 'Stop'
+  displayName: 'Stop WinAppDriver'
   condition: always()
 
 - task: PowerShell@2
