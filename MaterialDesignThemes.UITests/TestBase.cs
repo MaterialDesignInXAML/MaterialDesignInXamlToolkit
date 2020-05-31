@@ -10,6 +10,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace MaterialDesignThemes.UITests
 {
@@ -21,7 +22,12 @@ namespace MaterialDesignThemes.UITests
         private const string Configuration = "Release";
 #endif
 
+        protected readonly ITestOutputHelper _output;
+
 #pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
+        protected TestBase(ITestOutputHelper output)
+            => _output = output ?? throw new ArgumentNullException(nameof(output));
+
         protected WindowsDriver<WindowsElement> Driver { get; private set; }
 #pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
 
@@ -86,7 +92,7 @@ namespace MaterialDesignThemes.UITests
             return appProcess.MainWindowHandle;
         }
 
-        private static void StartWinAppDriver()
+        private void StartWinAppDriver()
         {
             Process[] winappProcess = Process.GetProcessesByName("WinAppDriver");
             if (winappProcess.Length == 0)
@@ -97,6 +103,7 @@ namespace MaterialDesignThemes.UITests
                     var path = @$"{drive}Program Files (x86)\Windows Application Driver\WinAppDriver.exe";
                     if (File.Exists(path))
                     {
+                        _output.WriteLine($"Starting WinAppDriver {path}");
                         Process.Start(path);
                         // Wait to find socket
                         using var client = new TcpClient();

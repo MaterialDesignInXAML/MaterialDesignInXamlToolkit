@@ -46,11 +46,20 @@ steps:
     projects: '$(solution)'
     arguments: '/p:Configuration=$(buildConfiguration) /p:Platform="Any CPU" /p:MDIXVersion=$(mdixVersion).$(Build.BuildID) /p:MDIXColorsVersion=$(mdixColorsVersion).$(Build.BuildID) /p:MDIXMahAppsVersion=$(mdixMahappsVersion).$(Build.BuildID)'
 
+- task: Windows Application Driver@0
+  inputs:
+    OperationType: 'Start'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
   inputs:
     command: test
     projects: '$(solution)'
+
+- task: Windows Application Driver@0
+  inputs:
+    OperationType: 'Stop'
+  condition: always()
 
 - task: PowerShell@2
   displayName: "Build NuGets"
