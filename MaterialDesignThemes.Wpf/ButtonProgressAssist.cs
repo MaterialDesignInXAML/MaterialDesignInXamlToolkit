@@ -1,112 +1,76 @@
 ﻿using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
     public static class ButtonProgressAssist
     {
-        public static readonly DependencyProperty MinimumProperty = DependencyProperty.RegisterAttached(
-            "Minimum", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(double)));
+        private const double DefaultMaximum = 100.0;
 
-        public static void SetMinimum(DependencyObject element, double value)
-        {
-            element.SetValue(MinimumProperty, value);
-        }
+        #region AttachedProperty : MinimumProperty
+        public static readonly DependencyProperty MinimumProperty
+            = DependencyProperty.RegisterAttached("Minimum", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(double)));
 
-        public static double GetMinimum(DependencyObject element)
-        {
-            return (double)element.GetValue(MinimumProperty);
-        }
+        public static double GetMinimum(ButtonBase element) => (double)element.GetValue(MinimumProperty);
+        public static void SetMinimum(ButtonBase element, double value) => element.SetValue(MinimumProperty, value);
+        #endregion
 
-        public static readonly DependencyProperty MaximumProperty = DependencyProperty.RegisterAttached(
-            "Maximum", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(100.0));
+        #region AttachedProperty : MaximumProperty
+        public static readonly DependencyProperty MaximumProperty
+            = DependencyProperty.RegisterAttached("Maximum", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(DefaultMaximum));
 
-        public static void SetMaximum(DependencyObject element, double value)
-        {
-            element.SetValue(MaximumProperty, value);
-        }
+        public static double GetMaximum(ButtonBase element) => (double)element.GetValue(MaximumProperty);
+        public static void SetMaximum(ButtonBase element, double value) => element.SetValue(MaximumProperty, value);
+        #endregion
 
-        public static double GetMaximum(DependencyObject element)
-        {
-            return (double)element.GetValue(MaximumProperty);
-        }
+        #region AttachedProperty : ValueProperty
+        public static readonly DependencyProperty ValueProperty
+            = DependencyProperty.RegisterAttached("Value", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(double)));
+        
+        public static double GetValue(ButtonBase element) => (double)element.GetValue(ValueProperty);
+        public static void SetValue(ButtonBase element, double value) => element.SetValue(ValueProperty, value);
+        #endregion
 
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.RegisterAttached(
-            "Value", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(double)));
+        #region AttachedProperty : IsIndeterminate
+        public static readonly DependencyProperty IsIndeterminateProperty
+            = DependencyProperty.RegisterAttached("IsIndeterminate", typeof(bool), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(bool)));
 
-        public static void SetValue(DependencyObject element, double value)
-        {
-            element.SetValue(ValueProperty, value);
-        }
+        public static bool GetIsIndeterminate(ButtonBase element) => (bool)element.GetValue(IsIndeterminateProperty);
+        public static void SetIsIndeterminate(ButtonBase element, bool isIndeterminate) => element.SetValue(IsIndeterminateProperty, isIndeterminate);
+        #endregion
 
-        public static double GetValue(DependencyObject element)
-        {
-            return (double)element.GetValue(ValueProperty);
-        }
+        #region AttachedProperty : IndicatorForegroundProperty
+        public static readonly DependencyProperty IndicatorForegroundProperty
+            = DependencyProperty.RegisterAttached("IndicatorForeground", typeof(Brush), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(Brush)));
 
-        public static readonly DependencyProperty IsIndeterminateProperty = DependencyProperty.RegisterAttached(
-            "IsIndeterminate", typeof(bool), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(bool)));
+        public static Brush GetIndicatorForeground(ButtonBase element) => (Brush)element.GetValue(IndicatorForegroundProperty);
+        public static void SetIndicatorForeground(ButtonBase element, Brush indicatorForeground) => element.SetValue(IndicatorForegroundProperty, indicatorForeground);
+        #endregion
 
-        public static void SetIsIndeterminate(DependencyObject element, bool isIndeterminate)
-        {
-            element.SetValue(IsIndeterminateProperty, isIndeterminate);
-        }
+        #region AttachedProperty : IndicatorBackgroundProperty
+        public static readonly DependencyProperty IndicatorBackgroundProperty
+            = DependencyProperty.RegisterAttached("IndicatorBackground", typeof(Brush), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(Brush)));
 
-        public static bool GetIsIndeterminate(DependencyObject element)
-        {
-            return (bool)element.GetValue(IsIndeterminateProperty);
-        }
+        public static Brush GetIndicatorBackground(ButtonBase element) => (Brush)element.GetValue(IndicatorBackgroundProperty);
+        public static void SetIndicatorBackground(ButtonBase element, Brush indicatorBackground) => element.SetValue(IndicatorBackgroundProperty, indicatorBackground);
+        #endregion
 
-        public static readonly DependencyProperty IndicatorForegroundProperty = DependencyProperty.RegisterAttached(
-            "IndicatorForeground", typeof(Brush), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(Brush)));
+        #region AttachedProperty : IsIndicatorVisibleProperty
+        public static readonly DependencyProperty IsIndicatorVisibleProperty
+            = DependencyProperty.RegisterAttached("IsIndicatorVisible", typeof(bool), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(bool)));
+        
+        public static bool GetIsIndicatorVisible(ButtonBase element) => (bool)element.GetValue(IsIndicatorVisibleProperty);
+        public static void SetIsIndicatorVisible(ButtonBase element, bool isIndicatorVisible) => element.SetValue(IsIndicatorVisibleProperty, isIndicatorVisible);
+        #endregion
 
-        public static void SetIndicatorForeground(DependencyObject element, Brush indicatorForeground)
-        {
-            element.SetValue(IndicatorForegroundProperty, indicatorForeground);
-        }
+        #region AttachedProperty : OpacityProperty
 
-        public static Brush GetIndicatorForeground(DependencyObject element)
-        {
-            return (Brush)element.GetValue(IndicatorForegroundProperty);
-        }
+        public static readonly DependencyProperty OpacityProperty
+            = DependencyProperty.RegisterAttached("Opacity", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(double)));
 
-        public static readonly DependencyProperty IndicatorBackgroundProperty = DependencyProperty.RegisterAttached(
-            "IndicatorBackground", typeof(Brush), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(Brush)));
-
-        public static void SetIndicatorBackground(DependencyObject element, Brush indicatorBackground)
-        {
-            element.SetValue(IndicatorBackgroundProperty, indicatorBackground);
-        }
-
-        public static Brush GetIndicatorBackground(DependencyObject element)
-        {
-            return (Brush)element.GetValue(IndicatorBackgroundProperty);
-        }
-
-        public static readonly DependencyProperty IsIndicatorVisibleProperty = DependencyProperty.RegisterAttached(
-            "IsIndicatorVisible", typeof(bool), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(bool)));
-
-        public static void SetIsIndicatorVisible(DependencyObject element, bool isIndicatorVisible)
-        {
-            element.SetValue(IsIndicatorVisibleProperty, isIndicatorVisible);
-        }
-
-        public static bool GetIsIndicatorVisible(DependencyObject element)
-        {
-            return (bool)element.GetValue(IsIndicatorVisibleProperty);
-        }
-
-        public static readonly DependencyProperty OpacityProperty = DependencyProperty.RegisterAttached(
-            "Opacity", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(double)));
-
-        public static void SetOpacity(DependencyObject element, double opacity)
-        {
-            element.SetValue(OpacityProperty, opacity);
-        }
-
-        public static double GetOpacity(DependencyObject element)
-        {
-            return (double)element.GetValue(OpacityProperty);
-        }
+        public static double GetOpacity(ButtonBase element) => (double)element.GetValue(OpacityProperty);
+        public static void SetOpacity(ButtonBase element, double opacity) => element.SetValue(OpacityProperty, opacity);
+        #endregion
     }
 }
