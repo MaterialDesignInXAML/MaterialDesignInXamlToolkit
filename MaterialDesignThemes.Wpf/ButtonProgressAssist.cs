@@ -65,7 +65,6 @@ namespace MaterialDesignThemes.Wpf
         #endregion
 
         #region AttachedProperty : OpacityProperty
-
         public static readonly DependencyProperty OpacityProperty
             = DependencyProperty.RegisterAttached("Opacity", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(double)));
 
