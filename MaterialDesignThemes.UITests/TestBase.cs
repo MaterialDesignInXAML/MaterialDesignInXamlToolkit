@@ -38,6 +38,7 @@ namespace MaterialDesignThemes.UITests
             appOptions.AddAdditionalCapability("appTopLevelWindow", mainWindowHandle.ToInt64().ToString("x"));
 
             Driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appOptions);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }
 
         protected WindowsDriver<WindowsElement> Driver { get; }
