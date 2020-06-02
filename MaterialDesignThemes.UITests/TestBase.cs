@@ -19,11 +19,16 @@ namespace MaterialDesignThemes.UITests
         private const string Configuration = "Release";
 #endif
 
-        protected TestBase(ITestOutputHelper output)
+        protected TestBase(ITestOutputHelper output, string appPath)
         {
             Output = output ?? throw new ArgumentNullException(nameof(output));
 
-            IntPtr mainWindowHandle = StartApp();
+            if (appPath is null)
+            {
+                throw new ArgumentNullException(nameof(appPath));
+            }
+
+            IntPtr mainWindowHandle = StartApp(appPath);
 
 #if DEBUG
             StartWinAppDriver();
@@ -33,10 +38,6 @@ namespace MaterialDesignThemes.UITests
             appOptions.AddAdditionalCapability("appTopLevelWindow", mainWindowHandle.ToInt64().ToString("x"));
 
             Driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appOptions);
-
-            WindowsElement? element = Driver.FindElementByName("Material Design In XAML Toolkit");
-
-            Assert.NotNull(element);
         }
 
         protected WindowsDriver<WindowsElement> Driver { get; }
@@ -45,13 +46,12 @@ namespace MaterialDesignThemes.UITests
 
         private Process? ProcessToStop { get; set; }
 
-        private IntPtr StartApp()
+        private IntPtr StartApp(string appPath)
         {
-            string workingDirectory = Path.GetFullPath(@$"..\..\..\..\MainDemo.Wpf\bin\{Configuration}\netcoreapp3.1\");
             var processInfo = new ProcessStartInfo
             {
-                WorkingDirectory = workingDirectory,
-                FileName = Path.Combine(workingDirectory, "MaterialDesignDemo.exe")
+                WorkingDirectory = Path.GetDirectoryName(appPath) + Path.DirectorySeparatorChar,
+                FileName = appPath
             };
 
             Process appProcess = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(processInfo.FileName))

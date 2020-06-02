@@ -14,12 +14,12 @@ namespace MaterialDesignThemes.UITests.DemoApp
             => Driver = driver ?? throw new ArgumentNullException(nameof(driver));
 
         public WindowsElement PagesListBox 
-            => Driver.FindElementByName("DemoPagesListBox") ?? throw new InvalidOperationException();
+            => Driver.FindElementByName("DemoPagesListBox")!;
 
         public IList<AppiumWebElement> PageListItems
-            => PagesListBox.FindElements(By.XPath("//ListItem")) ?? throw new InvalidOperationException();
+            => PagesListBox.FindElements(By.XPath("//ListItem"))!;
 
         public WindowsElement HamburgerToggleButton 
-            => Driver.FindElementByName("HamburgerToggleButton") ?? throw new InvalidOperationException();
+            => Driver.FindElementByName("HamburgerToggleButton")!;
     }
 }
