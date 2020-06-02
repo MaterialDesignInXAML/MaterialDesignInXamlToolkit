@@ -20,7 +20,12 @@ namespace UITestCases.TestCases.DialogHost
 
         private int NumClicks { get; set; }
 
-        public Task Execute() => Task.CompletedTask;
+        public Task Execute()
+        {
+            NumClicks = 0;
+            SetClickText();
+            return Task.CompletedTask;
+        }
 
         private void TestOverlayClick(object sender, System.Windows.RoutedEventArgs e)
         {

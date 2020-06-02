@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -21,10 +24,15 @@ namespace UITestCases
 
         public MainWindowViewModel()
         {
-            TestCases = new ObservableCollection<ITestCase>
+            TestCases = new ObservableCollection<ITestCase>();
+
+            foreach(ITestCase testCase in 
+                Assembly.GetExecutingAssembly().GetTypes()
+                .Where(x => typeof(ITestCase).IsAssignableFrom(x) && x.IsClass && !x.IsAbstract)
+                .Select(x => (ITestCase)Activator.CreateInstance(x)))
             {
-                new DialogHostOverlay()
-            };
+                TestCases.Add(testCase);
+            }
 
             Execute = new RelayCommand(OnExecute);
         }
