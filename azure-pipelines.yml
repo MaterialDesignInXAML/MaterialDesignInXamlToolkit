@@ -54,8 +54,9 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
   inputs:
-    command: test --configuration $(buildConfiguration) --no-build
+    command: test
     projects: '$(solution)'
+    arguments: '--configuration $(buildConfiguration) --no-build'
 
 - task: Windows Application Driver@0
   inputs:
