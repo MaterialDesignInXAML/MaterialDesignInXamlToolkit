@@ -286,7 +286,7 @@
                 <StackPanel Orientation="Horizontal" Margin="4">
                     <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="True" Content="FIRST" />
                     <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="SECOND" />
-                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="THIRD" />
+                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" IsEnabled="False" Content="THIRD" />
                 </StackPanel>
             </smtx:XamlDisplay>
             <smtx:XamlDisplay Key="buttons_61" HorizontalAlignment="Left">
@@ -294,7 +294,7 @@
                     <StackPanel Orientation="Horizontal" Margin="2">
                         <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="True" Content="FIRST" />
                         <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="SECOND" />
-                        <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="THIRD" />
+                        <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" IsEnabled="False" Content="THIRD" />
                     </StackPanel>
                 </materialDesign:ColorZone>
             </smtx:XamlDisplay>
