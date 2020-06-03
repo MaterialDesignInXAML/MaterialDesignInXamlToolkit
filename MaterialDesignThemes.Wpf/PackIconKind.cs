@@ -5173,6 +5173,7 @@ namespace MaterialDesignThemes.Wpf
         Prize=License,
         Lifebuoy,
         LifePreserver=Lifebuoy,
+        Overboard=Lifebuoy,
         Lightbulb,
         Bulb=Lightbulb,
         Idea=Lightbulb,
