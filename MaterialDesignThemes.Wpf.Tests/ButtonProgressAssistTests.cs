@@ -13,7 +13,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             _testElement = new Button();
         }
 
-        [Fact]
+        [StaFact]
         public void TestMinimumProperty()
         {
             // Assert defaults
@@ -25,7 +25,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Equal(133.14, ButtonProgressAssist.GetMinimum(_testElement));
         }
 
-        [Fact]
+        [StaFact]
         public void TestMaximumProperty()
         {
             // Assert defaults
@@ -37,7 +37,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Equal(39.56, ButtonProgressAssist.GetMaximum(_testElement));
         }
 
-        [Fact]
+        [StaFact]
         public void TestValueProperty()
         {
             // Assert defaults
@@ -49,7 +49,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Equal(99.1, ButtonProgressAssist.GetValue(_testElement));
         }
 
-        [Fact]
+        [StaFact]
         public void TestIsIndeterminateProperty()
         {
             // Assert defaults
@@ -61,7 +61,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.False(ButtonProgressAssist.GetIsIndeterminate(_testElement));
         }
 
-        [Fact]
+        [StaFact]
         public void TestIndicatorForegroundProperty()
         {
             // Assert defaults
@@ -73,7 +73,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Equal(Brushes.LightBlue, ButtonProgressAssist.GetIndicatorForeground(_testElement));
         }
 
-        [Fact]
+        [StaFact]
         public void TestIndicatorBackgroundProperty()
         {
             // Assert defaults
@@ -85,7 +85,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Equal(Brushes.DarkGoldenrod, ButtonProgressAssist.GetIndicatorBackground(_testElement));
         }
 
-        [Fact]
+        [StaFact]
         public void TestIsIndicatorVisibleProperty()
         {
             // Assert defaults
@@ -97,7 +97,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.True(ButtonProgressAssist.GetIsIndicatorVisible(_testElement));
         }
 
-        [Fact]
+        [StaFact]
         public void TestOpacityProperty()
         {
             // Assert defaults
