@@ -53,5 +53,23 @@ namespace MaterialDesignThemes.Wpf.Tests
                 Source = uri
             };
         }
+
+        public static ResourceDictionary GetPrimaryColorResourceDictionary(string color)
+        {
+            var uri = new Uri($"/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.{color}.xaml", UriKind.Relative);
+            return new ResourceDictionary
+            {
+                Source = uri
+            };
+        }
+
+        public static ResourceDictionary GetSecondaryColorResourceDictionary(string color)
+        {
+            var uri = new Uri($"/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.{color}.xaml", UriKind.Relative);
+            return new ResourceDictionary
+            {
+                Source = uri
+            };
+        }
     }
 }
