@@ -7,6 +7,9 @@
     <AssemblyTitle>MaterialDesignThemes.Wpf.Tests</AssemblyTitle>
     <Product>MaterialDesignThemes.Wpf.Tests</Product>
     <Copyright>Copyright © 2020</Copyright>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\key.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='net472'">
     <Reference Include="PresentationCore" />
