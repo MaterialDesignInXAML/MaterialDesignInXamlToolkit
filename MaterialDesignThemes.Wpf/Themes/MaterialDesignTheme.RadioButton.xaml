@@ -246,18 +246,6 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Border Background="{TemplateBinding Background}">
-                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
-                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Padding="{TemplateBinding Padding}"
-                                        x:Name="contentPresenter"
-                                        Opacity=".82"
-                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        </Border>
-                        <Border x:Name="SelectionHighlightBorder" Background="{TemplateBinding BorderBrush}" Height="2"
-                                Grid.Row="1"
-                                Visibility="Hidden" />
                         <ProgressBar x:Name="ProgressBar"
                                        Style="{DynamicResource MaterialDesignLinearProgressBar}"
                                        Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
@@ -275,6 +263,18 @@
                                        BorderThickness="0"
                                        Grid.Row="0"
                                        Grid.RowSpan="2" />
+                        <Border Background="{TemplateBinding Background}" Grid.Row="0">
+                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Padding="{TemplateBinding Padding}"
+                                        x:Name="contentPresenter"
+                                        Opacity=".82"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Border>
+                        <Border x:Name="SelectionHighlightBorder" Background="{TemplateBinding BorderBrush}" Height="2"
+                                Grid.Row="1"
+                                Visibility="Hidden" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
