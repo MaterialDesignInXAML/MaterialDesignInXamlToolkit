@@ -84,7 +84,12 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Open when the mouse goes over the toggle button, or the space in which the popup box would occupy should it be open.
         /// </summary>
-        MouseOverEager
+        MouseOverEager,
+        /// <summary>
+        /// Open when the toggle or its chidren have keyboard focus;
+        /// </summary>
+        FocusWithin
+
     }
 
     /// <summary>
@@ -446,6 +451,10 @@ namespace MaterialDesignThemes.Wpf
             if (IsPopupOpen && !IsKeyboardFocusWithin && !StaysOpen)
             {
                 Close();
+            }
+            else if (!IsPopupOpen && PopupMode == PopupBoxPopupMode.FocusWithin && IsKeyboardFocusWithin)
+            {
+                SetCurrentValue(IsPopupOpenProperty, true);
             }
         }
 
