@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-//using System.Runtime.Remoting.Messaging;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -454,23 +453,17 @@ namespace MaterialDesignThemes.Wpf
             VisualStateManager.GoToState(this, IsPopupOpen ? PopupIsOpenStateName : PopupIsClosedStateName, false);
         }
 
-        //protected override void OnIsKeyboardFocusWithinChanged(DependencyPropertyChangedEventArgs e)
-        //{
-        //    base.OnIsKeyboardFocusWithinChanged(e);
-
-        //    if (IsPopupOpen && !IsKeyboardFocusWithin && !StaysOpen)
-        //    {
-        //        Close();
-        //    }
-        //}
-
         bool supressfirstElementGotFocus = true;
+        IInputElement firstchildelement = null;
+
         protected override void OnGotKeyboardFocus(KeyboardFocusChangedEventArgs e)
         {
             base.OnGotKeyboardFocus(e);
             if (supressfirstElementGotFocus == false) { return; }
 
-            if (!IsPopupOpen && PopupMode == PopupBoxPopupMode.ClickOrFocusWithin && IsKeyboardFocusWithin)
+            if (!IsPopupOpen && (PopupMode == PopupBoxPopupMode.ClickOrFocusWithin | 
+                                 PopupMode == PopupBoxPopupMode.MouseOverEagerOrFocusWithin | PopupMode == PopupBoxPopupMode.MouseOverOrFocusWithin)
+                             && IsKeyboardFocusWithin)
             {
                 SetCurrentValue(IsPopupOpenProperty, true);
                 if (_popupContentControl != null)
@@ -479,28 +472,28 @@ namespace MaterialDesignThemes.Wpf
 
                     //getting the first element, and ensure that when it gets focus again, move the focus outside of the Popup
                     //to avoid unwanted tab stop cycling only inside it.
-                    IInputElement firstelement = Keyboard.FocusedElement;
-                    if (firstelement == null) { return; }
-                    firstelement.LostKeyboardFocus += InnerFirstElement_LostKeyboardFocus;
-
-                    firstelement.GotKeyboardFocus += (s, e) =>
-                    {
-                        // handle this event only after a previous LostFocus is detected.
-                        if (supressfirstElementGotFocus == true) { return; }
-
-                        // skip Shift + Tab navigation
-                        if (e.KeyboardDevice.IsKeyDown(Key.LeftShift)) { return; }
-
-                        // the first element gets focus again by popup contained visual tree. Move the focus out of popup.
-                        firstelement.LostKeyboardFocus -= InnerFirstElement_LostKeyboardFocus;
-                        Close();
-                        MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-                        if (Parent != null) { ((UIElement)Parent).MoveFocus(new TraversalRequest(FocusNavigationDirection.Next)); }
-                        supressfirstElementGotFocus = true;
-                    };
-
+                    firstchildelement = Keyboard.FocusedElement;
+                    if (firstchildelement == null) { return; }
+                    firstchildelement.GotKeyboardFocus += InnerFirstElement_GotKeyboardFocus;
+                    firstchildelement.LostKeyboardFocus += InnerFirstElement_LostKeyboardFocus;
                 }
             }
+        }
+
+        private void InnerFirstElement_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            // handle this event only after a previous LostFocus is detected.
+            if (supressfirstElementGotFocus == true) { return; }
+
+            // skip Shift + Tab navigation
+            if (e.KeyboardDevice.IsKeyDown(Key.LeftShift)) { return; }
+
+            // the first element gets focus again by popup contained visual tree. Move the focus out of popup.
+            firstchildelement.LostKeyboardFocus -= InnerFirstElement_LostKeyboardFocus;
+            Close();
+            MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+            if (Parent != null) { ((UIElement)Parent).MoveFocus(new TraversalRequest(FocusNavigationDirection.Next)); }
+            supressfirstElementGotFocus = true;
         }
 
         private void InnerFirstElement_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
@@ -508,7 +501,7 @@ namespace MaterialDesignThemes.Wpf
             supressfirstElementGotFocus = false;
             // move to previous control if Shift + Tab is pressed on first element
             if (!e.KeyboardDevice.IsKeyDown(Key.LeftShift)) { return; }
-            (sender as UIElement).LostKeyboardFocus -= InnerFirstElement_LostKeyboardFocus;
+            firstchildelement.LostKeyboardFocus -= InnerFirstElement_LostKeyboardFocus;
             Close();
             MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
             if (Parent != null) { ((UIElement)Parent).MoveFocus(new TraversalRequest(FocusNavigationDirection.Previous)); }
@@ -578,6 +571,15 @@ namespace MaterialDesignThemes.Wpf
         {
             if (IsPopupOpen)
                 SetCurrentValue(IsPopupOpenProperty, false);
+
+            if (_popupContentControl != null && !_popupContentControl.IsKeyboardFocusWithin)
+            {
+                supressfirstElementGotFocus = true;
+
+                if (firstchildelement != null)
+                    firstchildelement.GotKeyboardFocus -= InnerFirstElement_GotKeyboardFocus;
+                    firstchildelement.LostKeyboardFocus -= InnerFirstElement_LostKeyboardFocus;
+            }
         }
 
         private CustomPopupPlacement[] GetPopupPlacement(Size popupSize, Size targetSize, Point offset)
