@@ -461,8 +461,8 @@ namespace MaterialDesignThemes.Wpf
             base.OnGotKeyboardFocus(e);
             if (supressfirstElementGotFocus == false) { return; }
 
-            if (!IsPopupOpen && (PopupMode == PopupBoxPopupMode.ClickOrFocusWithin | 
-                                 PopupMode == PopupBoxPopupMode.MouseOverEagerOrFocusWithin | PopupMode == PopupBoxPopupMode.MouseOverOrFocusWithin)
+            if (!IsPopupOpen && (PopupMode == PopupBoxPopupMode.ClickOrFocusWithin || 
+                                 PopupMode == PopupBoxPopupMode.MouseOverEagerOrFocusWithin || PopupMode == PopupBoxPopupMode.MouseOverOrFocusWithin)
                              && IsKeyboardFocusWithin)
             {
                 SetCurrentValue(IsPopupOpenProperty, true);
@@ -575,10 +575,11 @@ namespace MaterialDesignThemes.Wpf
             if (_popupContentControl != null && !_popupContentControl.IsKeyboardFocusWithin)
             {
                 supressfirstElementGotFocus = true;
-
                 if (firstchildelement != null)
+                {
                     firstchildelement.GotKeyboardFocus -= InnerFirstElement_GotKeyboardFocus;
                     firstchildelement.LostKeyboardFocus -= InnerFirstElement_LostKeyboardFocus;
+                }
             }
         }
 
@@ -836,7 +837,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void ToggleButtonOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
-            if ((PopupMode == PopupBoxPopupMode.Click | PopupMode == PopupBoxPopupMode.ClickOrFocusWithin) || !IsPopupOpen) return;
+            if ((PopupMode == PopupBoxPopupMode.Click || PopupMode == PopupBoxPopupMode.ClickOrFocusWithin) || !IsPopupOpen) return;
 
             if (ToggleCheckedContent != null)
             {
