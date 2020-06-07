@@ -105,6 +105,7 @@
                                         <wpf:SmartHint
                                             x:Name="Hint"
                                             Grid.Column="0"
+                                            Height="{Binding ActualHeight, ElementName=PART_ContentHost}"
                                             HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                             FontSize="{TemplateBinding FontSize}"
                                             Padding="{TemplateBinding Padding}"
@@ -121,6 +122,7 @@
                                             </wpf:SmartHint.Hint>
                                         </wpf:SmartHint>
                                         <StackPanel
+                                            Height="{Binding ActualHeight, ElementName=PART_ContentHost}"
                                             Orientation="Horizontal"
                                             Grid.Column="1"
                                             VerticalAlignment="Top">
