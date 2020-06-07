@@ -5,7 +5,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.Slider.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <converters:HsbToColorConverter x:Key="HsbToColorConverter" />
     <converters:HsbLinearGradientConverter x:Key="HsbLinearGradientConverter" />
