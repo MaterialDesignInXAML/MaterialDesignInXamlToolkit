@@ -36,7 +36,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="MaterialDesignRepeatButtonTransparent" TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -57,15 +57,23 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Border x:Name="border" Background="{DynamicResource MaterialDesignBody}" 
+                    <Border Background="Transparent">
+                        <Border x:Name="border" Background="{DynamicResource MaterialDesignBody}" 
                             Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"
                             SnapsToDevicePixels="True" Opacity="0.5" BorderThickness="0"
                             CornerRadius="{Binding Path=(wpf:ScrollBarAssist.ThumbCornerRadius), RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollBar}}"
                             />
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDragging" Value="true">
                             <Setter Property="Opacity" Value="0.8" TargetName="border" />
                         </Trigger>
+                        <DataTrigger Value="Vertical" Binding="{Binding Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollBar}}">
+                            <Setter TargetName="border" Property="Width" Value="{Binding Path=(wpf:ScrollBarAssist.ThumbWidth), RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollBar}}" />
+                        </DataTrigger>
+                        <DataTrigger Value="Horizontal" Binding="{Binding Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollBar}}">
+                            <Setter TargetName="border" Property="Height" Value="{Binding Path=(wpf:ScrollBarAssist.ThumbHeight), RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollBar}}" />
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -77,7 +85,7 @@
 
     <!-- Obsolete: will be removed in a future version -->
     <Style x:Key="MaterialDesignScrollBarThumbHorizontal" TargetType="{x:Type Thumb}" BasedOn="{StaticResource MaterialDesignScrollBarThumb}" />
-    
+
     <Style x:Key="MaterialDesignScrollBar" TargetType="{x:Type ScrollBar}">
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
@@ -130,8 +138,7 @@
                                 <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource MaterialDesignRepeatButtonTransparent}"/>
                             </Track.IncreaseRepeatButton>
                             <Track.Thumb>
-                                <Thumb Style="{StaticResource MaterialDesignScrollBarThumb}" 
-                                       Width="{Binding Path=(wpf:ScrollBarAssist.ThumbWidth), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <Thumb Style="{StaticResource MaterialDesignScrollBarThumb}" />
                             </Track.Thumb>
                         </Track>
                         <RepeatButton x:Name="PART_LineDownButton" Command="{x:Static ScrollBar.LineDownCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="2" Style="{StaticResource MaterialDesignScrollBarButton}">
@@ -198,8 +205,7 @@
                                         <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}" Style="{StaticResource MaterialDesignRepeatButtonTransparent}"/>
                                     </Track.IncreaseRepeatButton>
                                     <Track.Thumb>
-                                        <Thumb Style="{StaticResource MaterialDesignScrollBarThumb}" 
-                                               Height="{Binding Path=(wpf:ScrollBarAssist.ThumbHeight), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                        <Thumb Style="{StaticResource MaterialDesignScrollBarThumb}" />
                                     </Track.Thumb>
                                 </Track>
                                 <RepeatButton x:Name="PART_LineRightButton" Grid.Column="2" Command="{x:Static ScrollBar.LineRightCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Style="{StaticResource MaterialDesignScrollBarButton}">
