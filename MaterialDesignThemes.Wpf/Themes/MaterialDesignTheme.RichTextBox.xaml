@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="MaterialDesignTheme.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="MaterialDesignRichTextBox" TargetType="RichTextBox" BasedOn="{StaticResource MaterialDesignTextBoxBase}">
