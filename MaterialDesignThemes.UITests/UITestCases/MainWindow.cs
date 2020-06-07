@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 
 namespace MaterialDesignThemes.UITests.UITestCases
@@ -20,7 +16,7 @@ namespace MaterialDesignThemes.UITests.UITestCases
         public WindowsElement ExecuteButton
             => Driver.FindElementByName("Execute Test")!;
 
-        public AppiumWebElement GetTestCase(string testCaseName) 
-            => TestCaseListBox.FindElementByName(testCaseName);
+        public WindowsElement GetTestCase(string testCaseName) 
+            => (WindowsElement)TestCaseListBox.FindElementByName(testCaseName);
     }
 }

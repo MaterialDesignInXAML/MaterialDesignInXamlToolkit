@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
+using OpenQA.Selenium.Support.UI;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -13,12 +14,6 @@ namespace MaterialDesignThemes.UITests
 {
     public class TestBase : IDisposable
     {
-#if DEBUG
-        private const string Configuration = "Debug";
-#else
-        private const string Configuration = "Release";
-#endif
-
         protected TestBase(ITestOutputHelper output, string appPath)
         {
             Output = output ?? throw new ArgumentNullException(nameof(output));
@@ -28,22 +23,27 @@ namespace MaterialDesignThemes.UITests
                 throw new ArgumentNullException(nameof(appPath));
             }
 
-            IntPtr mainWindowHandle = StartApp(appPath);
-
 #if DEBUG
+            IntPtr mainWindowHandle = StartApp(appPath);
             StartWinAppDriver();
 #endif
             var appOptions = new AppiumOptions();
             appOptions.AddAdditionalCapability("deviceName", "WindowsPC");
+
+#if DEBUG
             appOptions.AddAdditionalCapability("appTopLevelWindow", mainWindowHandle.ToInt64().ToString("x"));
+#else
+            appOptions.AddAdditionalCapability("app", appPath);
+#endif
 
             Driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appOptions);
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }
 
         protected WindowsDriver<WindowsElement> Driver { get; }
         
         protected ITestOutputHelper Output { get; }
+
+        protected IClock Clock { get; } = new SystemClock();
 
         private Process? ProcessToStop { get; set; }
 
@@ -198,7 +198,7 @@ namespace MaterialDesignThemes.UITests
             public static extern bool ShowWindow(IntPtr handle, int nCmdShow);
         }
 
-        #region IDisposable Support
+#region IDisposable Support
         private bool disposedValue = false;
 
         protected virtual void Dispose(bool disposing)
@@ -219,6 +219,6 @@ namespace MaterialDesignThemes.UITests
         {
             Dispose(true);
         }
-        #endregion
+#endregion
     }
 }
