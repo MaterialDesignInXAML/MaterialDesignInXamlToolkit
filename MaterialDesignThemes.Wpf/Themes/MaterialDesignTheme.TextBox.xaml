@@ -91,49 +91,59 @@
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           MinWidth="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
-                                                      HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                      UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                                      />
-                                        <wpf:SmartHint x:Name="Hint"
-                                                       Grid.Column="0"
-                                                       HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                                       FontSize="{TemplateBinding FontSize}"
-                                                       Padding="{TemplateBinding Padding}"
-                                                       HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                                                       UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
-                                                       FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
-                                                       FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <ScrollViewer
+                                            x:Name="PART_ContentHost"
+                                            Focusable="false"
+                                            HorizontalScrollBarVisibility="Hidden"
+                                            VerticalScrollBarVisibility="Hidden"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                            UseLayoutRounding="{TemplateBinding UseLayoutRounding}" />
+                                        <wpf:SmartHint
+                                            x:Name="Hint"
+                                            Grid.Column="0"
+                                            HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                            FontSize="{TemplateBinding FontSize}"
+                                            Padding="{TemplateBinding Padding}"
+                                            HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                            UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
+                                            FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
+                                            FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}">
                                             <wpf:SmartHint.Hint>
                                                 <Border x:Name="HintBackgroundBorder" Background="Transparent" CornerRadius="2">
-                                                    <ContentPresenter 
-                                                        x:Name="HintWrapper" 
-                                                        Content="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                    <ContentPresenter
+                                                        x:Name="HintWrapper"
+                                                        Content="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}" />
                                                 </Border>
                                             </wpf:SmartHint.Hint>
                                         </wpf:SmartHint>
-                                    <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top" >
-                                        <TextBlock VerticalAlignment="Bottom"
-                                                   FontSize="{TemplateBinding FontSize}"
-                                                   Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
-                                                   Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}"
-                                                   />
-                                            <Button x:Name="PART_ClearButton" Height="Auto" Padding="2,0,0,0" Focusable="False"
+                                        <StackPanel
+                                            Orientation="Horizontal"
+                                            Grid.Column="1"
+                                            VerticalAlignment="Top">
+                                            <TextBlock
+                                                VerticalAlignment="Bottom"
+                                                FontSize="{TemplateBinding FontSize}"
+                                                Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                                Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}" />
+                                            <Button
+                                                x:Name="PART_ClearButton"
+                                                Height="Auto"
+                                                Padding="2,0,0,0"
+                                                Focusable="False"
                                                 Style="{DynamicResource MaterialDesignToolButton}">
-                                            <Button.Visibility>
-                                                <MultiBinding Converter="{StaticResource ClearTextConverter}">
-                                                    <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}"/>
-                                                    <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                                </MultiBinding>
-                                            </Button.Visibility>
-                                            <wpf:PackIcon Margin="0" Kind="CloseCircle" />
-                                        </Button>
-                                    </StackPanel>
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource ClearTextConverter}">
+                                                        <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}" />
+                                                        <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                                <wpf:PackIcon Margin="0" Kind="CloseCircle" />
+                                            </Button>
+                                        </StackPanel>
                                     </Grid>
                                 </Border>
                                </AdornerDecorator>
