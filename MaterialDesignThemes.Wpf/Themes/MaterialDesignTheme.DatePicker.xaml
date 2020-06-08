@@ -4,9 +4,9 @@
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="MaterialDesignTheme.Calendar.xaml" />
-        <ResourceDictionary Source="MaterialDesignTheme.ValidationErrorTemplate.xaml" />
-        <ResourceDictionary Source="MaterialDesignTheme.Menu.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Calendar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
