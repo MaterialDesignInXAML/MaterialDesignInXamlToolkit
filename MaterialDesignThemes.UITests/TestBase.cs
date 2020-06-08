@@ -24,17 +24,13 @@ namespace MaterialDesignThemes.UITests
             }
 
 #if DEBUG
-            IntPtr mainWindowHandle = StartApp(appPath);
             StartWinAppDriver();
 #endif
+            IntPtr mainWindowHandle = StartApp(appPath);
+
             var appOptions = new AppiumOptions();
             appOptions.AddAdditionalCapability("deviceName", "WindowsPC");
-
-#if DEBUG
             appOptions.AddAdditionalCapability("appTopLevelWindow", mainWindowHandle.ToInt64().ToString("x"));
-#else
-            appOptions.AddAdditionalCapability("app", appPath);
-#endif
 
             Driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appOptions);
         }
