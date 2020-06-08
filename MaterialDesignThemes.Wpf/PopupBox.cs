@@ -86,18 +86,18 @@ namespace MaterialDesignThemes.Wpf
         /// Open when the mouse goes over the toggle button, or the space in which the popup box would occupy should it be open.
         /// </summary>
         MouseOverEager,
-        /// <summary>
-        /// Open when the toggle button is clicked or its chidren have keyboard focus;
-        /// </summary>
-        ClickOrFocusWithin,
-        /// <summary>
-        /// Open when the mouse goes over the toggle button or its chidren have keyboard focus;
-        /// </summary>
-        MouseOverOrFocusWithin,
-        /// <summary>
-        /// Open when the mouse goes over the toggle button, or the space in which the popup box would occupy should it be open or its chidren have keyboard focus;
-        /// </summary>
-        MouseOverEagerOrFocusWithin
+        ///// <summary>
+        ///// Open when the toggle button is clicked or its chidren have keyboard focus;
+        ///// </summary>
+        //ClickOrFocusWithin,
+        ///// <summary>
+        ///// Open when the mouse goes over the toggle button or its chidren have keyboard focus;
+        ///// </summary>
+        //MouseOverOrFocusWithin,
+        ///// <summary>
+        ///// Open when the mouse goes over the toggle button, or the space in which the popup box would occupy should it be open or its chidren have keyboard focus;
+        ///// </summary>
+        //MouseOverEagerOrFocusWithin
 
     }
 
@@ -314,6 +314,18 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(PopupModeProperty, value); }
         }
 
+        public static readonly DependencyProperty OpenOnFocusWithinProperty = DependencyProperty.Register(
+            nameof(OpenOnFocusWithin), typeof(bool), typeof(PopupBox), new PropertyMetadata((bool)true));
+
+        /// <summary>
+        /// Gets or sets that the popup must open when it gets keyboard focus within.
+        /// </summary>
+        public bool OpenOnFocusWithin
+        {
+            get { return (bool)GetValue(OpenOnFocusWithinProperty); }
+            set { SetValue(OpenOnFocusWithinProperty, value); }
+        }
+
         /// <summary>
         /// Get or sets how to unfurl controls when opening the popups. Only child elements of type <see cref="ButtonBase"/> are animated.
         /// </summary>
@@ -453,17 +465,15 @@ namespace MaterialDesignThemes.Wpf
             VisualStateManager.GoToState(this, IsPopupOpen ? PopupIsOpenStateName : PopupIsClosedStateName, false);
         }
 
-        bool supressfirstElementGotFocus = true;
-        IInputElement firstchildelement = null;
+        private bool supressfirstElementGotFocus = true;
+        private IInputElement firstchildelement = null;
 
         protected override void OnGotKeyboardFocus(KeyboardFocusChangedEventArgs e)
         {
             base.OnGotKeyboardFocus(e);
             if (supressfirstElementGotFocus == false) { return; }
 
-            if (!IsPopupOpen && (PopupMode == PopupBoxPopupMode.ClickOrFocusWithin || 
-                                 PopupMode == PopupBoxPopupMode.MouseOverEagerOrFocusWithin || PopupMode == PopupBoxPopupMode.MouseOverOrFocusWithin)
-                             && IsKeyboardFocusWithin)
+            if (!IsPopupOpen && OpenOnFocusWithin && IsKeyboardFocusWithin)
             {
                 SetCurrentValue(IsPopupOpenProperty, true);
                 if (_popupContentControl != null)
@@ -500,7 +510,7 @@ namespace MaterialDesignThemes.Wpf
         {
             supressfirstElementGotFocus = false;
             // move to previous control if Shift + Tab is pressed on first element
-            if (!e.KeyboardDevice.IsKeyDown(Key.LeftShift)) { return; }
+            if (!e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Shift)) { return; }
             firstchildelement.LostKeyboardFocus -= InnerFirstElement_LostKeyboardFocus;
             Close();
             MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
@@ -512,8 +522,7 @@ namespace MaterialDesignThemes.Wpf
         protected override void OnMouseEnter(MouseEventArgs e)
         {
             if (IsEnabled && IsLoaded &&
-                (PopupMode == PopupBoxPopupMode.MouseOverEager || PopupMode == PopupBoxPopupMode.MouseOverEagerOrFocusWithin
-                 || PopupMode == PopupBoxPopupMode.MouseOver || PopupMode == PopupBoxPopupMode.MouseOverOrFocusWithin))
+                (PopupMode == PopupBoxPopupMode.MouseOverEager || PopupMode == PopupBoxPopupMode.MouseOver))
             {
                 if (_popupContentControl != null)
                 {
@@ -545,8 +554,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void OnLayoutUpdated(object sender, EventArgs eventArgs)
         {
-            if (_popupContentControl != null && _popup != null &&
-                (PopupMode == PopupBoxPopupMode.MouseOver || PopupMode == PopupBoxPopupMode.MouseOverEager || PopupMode == PopupBoxPopupMode.MouseOverOrFocusWithin || PopupMode == PopupBoxPopupMode.MouseOverEagerOrFocusWithin))
+            if (_popupContentControl != null && _popup != null && (PopupMode == PopupBoxPopupMode.MouseOver || PopupMode == PopupBoxPopupMode.MouseOverEager))
             {
                 Point relativePosition = _popupContentControl.TranslatePoint(new Point(), this);
                 if (relativePosition != _lastRelativePosition)
@@ -559,8 +567,7 @@ namespace MaterialDesignThemes.Wpf
 
         protected override void OnMouseLeave(MouseEventArgs e)
         {
-            if (PopupMode == PopupBoxPopupMode.MouseOverEager || PopupMode == PopupBoxPopupMode.MouseOverEagerOrFocusWithin
-                || PopupMode == PopupBoxPopupMode.MouseOver || PopupMode == PopupBoxPopupMode.MouseOverOrFocusWithin)
+            if ((PopupMode == PopupBoxPopupMode.MouseOverEager || PopupMode == PopupBoxPopupMode.MouseOver) && (!_popupContentControl?.IsKeyboardFocusWithin).Value && OpenOnFocusWithin)
 
                 Close();
 
@@ -837,7 +844,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void ToggleButtonOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
-            if ((PopupMode == PopupBoxPopupMode.Click || PopupMode == PopupBoxPopupMode.ClickOrFocusWithin) || !IsPopupOpen) return;
+            if ((PopupMode == PopupBoxPopupMode.Click) || !IsPopupOpen) return;
 
             if (ToggleCheckedContent != null)
             {
