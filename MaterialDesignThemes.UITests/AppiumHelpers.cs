@@ -38,7 +38,7 @@ namespace MaterialDesignThemes.UITests
             Func<bool> condition,
             TimeSpan? timeout = null,
             TimeSpan? pollingInterval = null)
-            => driver.WaitUntil<bool>(_ =>
+            => driver.WaitUntil(_ =>
             {
                 Assert.True(condition());
                 return true;
@@ -49,7 +49,7 @@ namespace MaterialDesignThemes.UITests
             Action condition,
             TimeSpan timeout,
             TimeSpan? pollingInterval = null)
-            => driver.WaitUntil<bool>(_ =>
+            => driver.WaitUntil(_ =>
             {
                 condition();
                 return true;

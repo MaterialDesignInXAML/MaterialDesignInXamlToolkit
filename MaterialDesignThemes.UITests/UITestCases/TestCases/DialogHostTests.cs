@@ -21,19 +21,19 @@ namespace MaterialDesignThemes.UITests.UITestCases.TestCases
             mainWindow.ExecuteButton.Click();
 
             WindowsElement resultTextBlock = Driver.FindElementByAccessibilityId("ResultTextBlock", TimeSpan.FromMilliseconds(200));
-            Assert.Equal("Clicks: 0", resultTextBlock.Text);
+            Driver.WaitFor(() => resultTextBlock.Text == "Clicks: 0");
 
             WindowsElement testOverlayButton = Driver.FindElementByAccessibilityId("TestOverlayButton", TimeSpan.FromSeconds(0.5));
             testOverlayButton.Click();
 
-            Assert.Equal("Clicks: 1", resultTextBlock.Text);
+            Driver.WaitFor(() => resultTextBlock.Text == "Clicks: 1");
 
             WindowsElement showDialogButton = Driver.FindElementByAccessibilityId("ShowDialogButton", TimeSpan.FromSeconds(0.5));
             showDialogButton.Click();
             //The presence of the close button indicates the dialog is shown
             WindowsElement closeDialogButton = Driver.FindElementByAccessibilityId("CloseDialogButton", TimeSpan.FromSeconds(0.5));
             testOverlayButton.Click();
-            Assert.Equal("Clicks: 1", resultTextBlock.Text);
+            Driver.WaitFor(() => resultTextBlock.Text == "Clicks: 1");
 
             closeDialogButton.Click();
 
