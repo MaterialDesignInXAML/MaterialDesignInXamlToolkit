@@ -33,7 +33,6 @@
         <Setter Property="wpf:TextFieldAssist.IncludeSpellingSuggestions" Value="{Binding RelativeSource={RelativeSource Self}, Path=(SpellCheck.IsEnabled)}" />
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
-        <Setter Property="wpf:HintAssist.Background" Value="Transparent" />
         <Setter Property="ContextMenu" Value="{StaticResource MaterialDesignDefaultContextMenu}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -114,7 +113,10 @@
                                             FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
                                             FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}">
                                             <wpf:SmartHint.Hint>
-                                                <Border x:Name="HintBackgroundBorder" Background="Transparent" CornerRadius="2">
+                                                <Border
+                                                    x:Name="HintBackgroundBorder"
+                                                    Background="{TemplateBinding wpf:HintAssist.Background}"
+                                                    CornerRadius="2">
                                                     <ContentPresenter
                                                         x:Name="HintWrapper"
                                                         Content="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -179,7 +181,6 @@
                         </MultiTrigger>
                         <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
                             <Setter TargetName="border" Property="Margin" Value="0 18 0 0" />
-                            <Setter TargetName="HintBackgroundBorder" Property="Background" Value="{Binding Path=(wpf:HintAssist.Background), RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
                         <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
                             <Setter TargetName="textFieldBoxBorder" Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}"/>
