@@ -170,8 +170,8 @@
                 <ControlTemplate TargetType="{x:Type ListBox}">
                     <ControlTemplate.Resources>
                         <Style TargetType="{x:Type wpf:PackIcon}" >
-                            <Setter Property="Width" Value="22" />
-                            <Setter Property="Height" Value="22" />
+                            <Setter Property="FrameworkElement.Width" Value="22" />
+                            <Setter Property="FrameworkElement.Height" Value="22" />
                         </Style>
                     </ControlTemplate.Resources>
                     <Border x:Name="Bd" 
@@ -402,8 +402,8 @@
                 <ControlTemplate TargetType="{x:Type ListBox}">
                     <ControlTemplate.Resources>
                         <Style TargetType="{x:Type wpf:PackIcon}" >
-                            <Setter Property="Width" Value="22" />
-                            <Setter Property="Height" Value="22" />
+                            <Setter Property="FrameworkElement.Width" Value="22" />
+                            <Setter Property="FrameworkElement.Height" Value="22" />
                         </Style>
                     </ControlTemplate.Resources>
                     <Border x:Name="Bd" 

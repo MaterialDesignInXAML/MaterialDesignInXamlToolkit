@@ -128,8 +128,8 @@
                 <ControlTemplate TargetType="{x:Type ToolBar}">
                     <ControlTemplate.Resources>
                         <Style TargetType="{x:Type wpf:PackIcon}" >
-                            <Setter Property="Width" Value="22" />
-                            <Setter Property="Height" Value="22" />
+                            <Setter Property="FrameworkElement.Width" Value="22" />
+                            <Setter Property="FrameworkElement.Height" Value="22" />
                         </Style>
                         <Style TargetType="ListBox" BasedOn="{StaticResource MaterialDesignToolToggleFlatListBox}">
                             <Setter Property="ItemContainerStyle">
