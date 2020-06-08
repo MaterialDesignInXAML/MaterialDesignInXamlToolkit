@@ -40,9 +40,6 @@ steps:
     command: restore
     projects: $(solution)
 
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
