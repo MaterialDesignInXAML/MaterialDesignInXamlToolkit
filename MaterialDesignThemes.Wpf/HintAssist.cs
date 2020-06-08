@@ -158,7 +158,7 @@ namespace MaterialDesignThemes.Wpf
         /// The color for the background of a focused control.
         /// </summary>
         public static readonly DependencyProperty BackgroundProperty = DependencyProperty.RegisterAttached(
-            "Background", typeof(Brush), typeof(HintAssist), new PropertyMetadata(null));
+            "Background", typeof(Brush), typeof(HintAssist), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
 
         /// <summary>
         /// Gets the color for the background of a focused control.
