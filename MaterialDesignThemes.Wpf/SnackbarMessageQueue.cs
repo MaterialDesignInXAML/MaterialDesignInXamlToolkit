@@ -168,9 +168,17 @@ namespace MaterialDesignThemes.Wpf
             if (snackbar == null) throw new ArgumentNullException(nameof(snackbar));
 
             lock (_pairedSnackbarsLock)
+            {
                 _pairedSnackbars.Add(snackbar);
+            }
 
-            return () => { lock (_pairedSnackbarsLock) _pairedSnackbars.Remove(snackbar); };
+            return () => 
+            { 
+                lock (_pairedSnackbarsLock) 
+                { 
+                    _pairedSnackbars.Remove(snackbar);
+                }
+            };
         }
 
         internal Action Pause()
@@ -293,7 +301,9 @@ namespace MaterialDesignThemes.Wpf
                 if (eventId == 0) continue;
                 Snackbar exemplar;
                 lock (_pairedSnackbarsLock)
+                {
                     exemplar = _pairedSnackbars.FirstOrDefault();
+                }
                 if (exemplar == null)
                 {
                     Trace.TraceWarning(
@@ -311,7 +321,9 @@ namespace MaterialDesignThemes.Wpf
                 if (snackbar != null)
                 {
                     lock (_snackbarMessagesLock)
+                    {
                         messageNode = _snackbarMessages.First;
+                    }
                     if (messageNode != null)
                         await ShowAsync(snackbar, messageNode.Value);
                 }
