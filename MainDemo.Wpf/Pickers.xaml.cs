@@ -35,8 +35,8 @@ namespace MaterialDesignColors.WpfExample
             //HACK: The calendar only refresh when we change the date
             LocaleDatePicker.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(1);
             LocaleDatePicker.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(-1);
-            LocaleDatePickerRTL.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(1);
-            LocaleDatePickerRTL.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(-1);
+            LocaleDatePickerRTL.DisplayDate = LocaleDatePickerRTL.DisplayDate.AddDays(1);
+            LocaleDatePickerRTL.DisplayDate = LocaleDatePickerRTL.DisplayDate.AddDays(-1);
         }
 
         private void LoadLocales()
