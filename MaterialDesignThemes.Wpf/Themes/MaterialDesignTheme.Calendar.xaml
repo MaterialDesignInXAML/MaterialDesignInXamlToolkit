@@ -384,6 +384,7 @@
                                             </wpf:MaterialDateDisplay>
                                         </Grid>
                                     </ControlTemplate>
+                                    <converters:CalendarYearMonthConverter x:Key="CalendarYearMonthConverter"/>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -413,8 +414,13 @@
                                            FontSize="14"
                                            Grid.Row="1" Grid.Column="1"
                                            FontWeight="SemiBold"
-                                           RenderTransformOrigin="0, 0.5"
-                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=DisplayDate, StringFormat=MMMM yyyy}">
+                                           RenderTransformOrigin="0, 0.5">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CalendarYearMonthConverter}">
+                                            <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" Path="DisplayDate"/>
+                                            <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" Path="Language"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
                                     <TextBlock.RenderTransform>
                                         <TranslateTransform X="0" Y="0"/>
                                     </TextBlock.RenderTransform>
