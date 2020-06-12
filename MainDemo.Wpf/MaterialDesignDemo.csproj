@@ -7,13 +7,9 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>MaterialDesignColors.WpfExample</AssemblyTitle>
     <Product>MaterialDesignColors.WpfExample</Product>
-    <Copyright>Copyright © 2020</Copyright>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
-    <Configurations>Debug;Release</Configurations>
-    <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
-    <LangVersion>8.0</LangVersion>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <Import Project="..\packages\ShowMeTheXAML.MSBuild\build\ShowMeTheXAML.MSBuild.targets" Label="Paket" />

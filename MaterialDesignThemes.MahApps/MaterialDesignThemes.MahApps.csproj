@@ -7,15 +7,10 @@
     <MDIXMahAppsVersion Condition="$(MDIXMahAppsVersion) == '' Or $(MDIXMahAppsVersion) == '*Undefined*'">1.0.1</MDIXMahAppsVersion>
     <AssemblyTitle>MaterialDesignThemes.MahApps</AssemblyTitle>
     <Product>MaterialDesignThemes.MahApps</Product>
-    <Copyright>Copyright © 2020 James Willock, Mulholland Software &amp; Contributors</Copyright>
     <Version>$(MDIXMahAppsVersion)</Version>
     <AssemblyVersion>$(MDIXMahAppsVersion)</AssemblyVersion>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
-    <LangVersion>8.0</LangVersion>
     <UseWPF>true</UseWPF>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\key.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
