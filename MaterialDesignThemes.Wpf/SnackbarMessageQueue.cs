@@ -56,11 +56,11 @@ namespace MaterialDesignThemes.Wpf
                 };
             }
 
-            public WaitHandle WaitHandle => _waitHandle;
+            public EventWaitHandle WaitHandle => _waitHandle;
 
-            private void UiElementOnMouseLeave(object sender, MouseEventArgs mouseEventArgs)
+            private async void UiElementOnMouseLeave(object sender, MouseEventArgs mouseEventArgs)
             {
-                Task.Factory.StartNew(() =>
+                await Task.Run(() =>
                 {
                     try
                     {
@@ -73,35 +73,22 @@ namespace MaterialDesignThemes.Wpf
                          * _cleanUp/Dispose() action might also happen, and the _disposedWaitHandle might get disposed
                          * just before we WaitOne. We wond add a lock in the _cleanUp because it might block for 2 seconds.
                          * We could use a Monitor.TryEnter in _cleanUp and run clean up after but oh my gosh it's just getting
-                         * too complicated for this use case, so for the rare times this happens, we can swallow safely                         
+                         * too complicated for this use case, so for the rare times this happens, we can swallow safely
                          */
                     }
-
-                }).ContinueWith(t =>
+                });
+                if (((UIElement)sender).IsMouseOver) return;
+                lock (_waitHandleGate)
                 {
-                    if (((UIElement)sender).IsMouseOver) return;
-                    lock (_waitHandleGate)
-                    {
-                        if (!_isWaitHandleDisposed)
-                            _waitHandle.Set();
-                    }
-                }, TaskScheduler.FromCurrentSynchronizationContext());
+                    if (!_isWaitHandleDisposed)
+                        _waitHandle.Set();
+                }
             }
 
-            private void UiElementOnMouseEnter(object sender, MouseEventArgs mouseEventArgs)
-            {
-                _waitHandle.Reset();
-            }
+            private void UiElementOnMouseEnter(object sender, MouseEventArgs mouseEventArgs) 
+                => _ = _waitHandle.Reset();
 
-            public void Dispose()
-            {
-                _cleanUp();
-            }
-
-            public void ForceSignal()
-            {
-                _waitHandle.Set();
-            }
+            public void Dispose() => _cleanUp();
         }
 
         #endregion
@@ -157,7 +144,8 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
-        public SnackbarMessageQueue() : this(TimeSpan.FromSeconds(3))
+        public SnackbarMessageQueue() 
+            : this(TimeSpan.FromSeconds(3))
         {
         }
 
@@ -207,37 +195,26 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public bool IgnoreDuplicate { get; set; }
 
-        public void Enqueue(object content)
-        {
-            Enqueue(content, false);
-        }
+        public void Enqueue(object content) => Enqueue(content, false);
 
-        public void Enqueue(object content, bool neverConsiderToBeDuplicate)
-        {
-            if (content == null) throw new ArgumentNullException(nameof(content));
+        public void Enqueue(object content, bool neverConsiderToBeDuplicate) 
+            => Enqueue(content, null, null, null, false, neverConsiderToBeDuplicate);
 
-            Enqueue(content, null, null, null, false, neverConsiderToBeDuplicate);
-        }
-
-        public void Enqueue(object content, object actionContent, Action actionHandler)
-        {
-            Enqueue(content, actionContent, actionHandler, false);
-        }
+        public void Enqueue(object content, object actionContent, Action actionHandler) 
+            => Enqueue(content, actionContent, actionHandler, false);
 
         public void Enqueue(object content, object actionContent, Action actionHandler, bool promote)
         {
-            if (content == null) throw new ArgumentNullException(nameof(content));
-            if (actionContent == null) throw new ArgumentNullException(nameof(actionContent));
-            if (actionHandler == null) throw new ArgumentNullException(nameof(actionHandler));
+            if (content is null) throw new ArgumentNullException(nameof(content));
+            if (actionContent is null) throw new ArgumentNullException(nameof(actionContent));
+            if (actionHandler is null) throw new ArgumentNullException(nameof(actionHandler));
 
             Enqueue(content, actionContent, _ => actionHandler(), promote, false, false);
         }
 
         public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
-            TArgument actionArgument)
-        {
-            Enqueue(content, actionContent, actionHandler, actionArgument, false, false);
-        }
+            TArgument actionArgument) 
+            => Enqueue(content, actionContent, actionHandler, actionArgument, false, false);
 
         public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
             TArgument actionArgument, bool promote) =>
@@ -246,9 +223,9 @@ namespace MaterialDesignThemes.Wpf
         public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
             TArgument actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null)
         {
-            if (content == null) throw new ArgumentNullException(nameof(content));
+            if (content is null) throw new ArgumentNullException(nameof(content));
 
-            if (actionContent == null ^ actionHandler == null)
+            if (actionContent is null ^ actionHandler is null)
             {
                 throw new ArgumentException("All action arguments must be provided if any are provided.",
                     actionContent != null ? nameof(actionContent) : nameof(actionHandler));
@@ -263,9 +240,9 @@ namespace MaterialDesignThemes.Wpf
         public void Enqueue(object content, object actionContent, Action<object> actionHandler,
             object actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null)
         {
-            if (content == null) throw new ArgumentNullException(nameof(content));
+            if (content is null) throw new ArgumentNullException(nameof(content));
 
-            if (actionContent == null ^ actionHandler == null)
+            if (actionContent is null ^ actionHandler is null)
             {
                 throw new ArgumentException("All action arguments must be provided if any are provided.",
                     actionContent != null ? nameof(actionContent) : nameof(actionHandler));
@@ -310,7 +287,7 @@ namespace MaterialDesignThemes.Wpf
                 {
                     exemplar = _pairedSnackbars.FirstOrDefault();
                 }
-                if (exemplar == null)
+                if (exemplar is null)
                 {
                     Trace.TraceWarning(
                         "A snackbar message as waiting, but no Snackbar instances are assigned to the message queue.");
@@ -372,8 +349,7 @@ namespace MaterialDesignThemes.Wpf
                     //create and show the message, setting up all the handles we need to wait on
                     var actionClickWaitHandle = new ManualResetEvent(false);
                     var mouseNotOverManagedWaitHandle =
-                        await
-                            snackbar.Dispatcher.InvokeAsync(
+                        await snackbar.Dispatcher.InvokeAsync(
                                 () => CreateAndShowMessage(snackbar, messageQueueItem, actionClickWaitHandle));
                     var durationPassedWaitHandle = new ManualResetEvent(false);
                     DurationMonitor.Start(messageQueueItem.Duration.Add(snackbar.ActivateStoryboardDuration),
@@ -430,9 +406,10 @@ namespace MaterialDesignThemes.Wpf
 
         private static async Task WaitForCompletionAsync(
             MouseNotOverManagedWaitHandle mouseNotOverManagedWaitHandle,
-            EventWaitHandle durationPassedWaitHandle, EventWaitHandle actionClickWaitHandle)
+            EventWaitHandle durationPassedWaitHandle,
+            EventWaitHandle actionClickWaitHandle)
         {
-            var durationTask = Task.Factory.StartNew(() =>
+            var durationTask = Task.Run(() =>
             {
                 WaitHandle.WaitAll(new[]
                 {
@@ -440,21 +417,14 @@ namespace MaterialDesignThemes.Wpf
                     durationPassedWaitHandle
                 });
             });
-            var actionClickTask = Task.Factory.StartNew(actionClickWaitHandle.WaitOne);
+            var actionClickTask = Task.Run(actionClickWaitHandle.WaitOne);
             await Task.WhenAny(durationTask, actionClickTask);
 
-            if (!durationTask.IsCompleted)
-            {
-                mouseNotOverManagedWaitHandle.ForceSignal();
-                durationPassedWaitHandle.Set();
-                await durationTask;
-            }
+            mouseNotOverManagedWaitHandle.WaitHandle.Set();
+            durationPassedWaitHandle.Set();
+            actionClickWaitHandle.Set();
 
-            if (!actionClickTask.IsCompleted)
-            {
-                actionClickWaitHandle.Set();
-                await actionClickTask;
-            }
+            await Task.WhenAll(durationTask, actionClickTask);
         }
 
         private static void DoActionCallback(SnackbarMessageQueueItem messageQueueItem)
