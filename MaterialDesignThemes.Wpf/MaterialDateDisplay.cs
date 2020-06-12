@@ -130,9 +130,16 @@ namespace MaterialDesignThemes.Wpf
                 return;
             }
 
-            ComponentOneContent = DisplayDate.ToString(dateTimeFormatInfo.MonthDayPattern.Replace("MMMM", "MMM"), culture).ToTitleCase(culture); //Day Month following culture order. We don't want the month to take too much space
-            ComponentTwoContent = DisplayDate.ToString("ddd,", culture).ToTitleCase(culture);   // Day of week first
-            ComponentThreeContent = DisplayDate.ToString("yyyy", culture).ToTitleCase(culture); // Year always top
+            var calendarFormatInfo = CalendarFormatInfo.FromCultureInfo(culture);
+            var displayDate = DisplayDate;
+            ComponentOneContent = FormatDate(calendarFormatInfo.ComponentOnePattern, displayDate, culture);
+            ComponentTwoContent = FormatDate(calendarFormatInfo.ComponentTwoPattern, displayDate, culture);
+            ComponentThreeContent = FormatDate(calendarFormatInfo.ComponentThreePattern, displayDate, culture);
+        }
+
+        private static string FormatDate(string format, DateTime displayDate, CultureInfo culture)
+        {
+            return string.IsNullOrEmpty(format) ? string.Empty : displayDate.ToString(format, culture).ToTitleCase(culture);
         }
 
         private void SetDisplayDateOfCalendar(DateTime displayDate)
