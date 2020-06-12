@@ -1,0 +1,14 @@
+<Project>
+  <PropertyGroup>
+    <Copyright>Copyright © 2020</Copyright>
+    <Company>Mulholland Software/James Willock</Company>
+
+    <Configurations>Debug;Release</Configurations>
+    <LangVersion>8.0</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\key.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+</Project>
