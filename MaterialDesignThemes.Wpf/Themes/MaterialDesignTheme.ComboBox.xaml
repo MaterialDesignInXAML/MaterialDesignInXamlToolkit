@@ -425,7 +425,7 @@
                           <ColumnDefinition Width="Auto"/>
                       </Grid.ColumnDefinitions>
                       <Grid x:Name="InputRoot"
-                            HorizontalAlignment="Left">
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                           <ContentPresenter x:Name="contentPresenter"
                                             Content="{TemplateBinding SelectionBoxItem}"
                                             ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
@@ -434,7 +434,7 @@
                                             IsHitTestVisible="False"/>
                           <TextBox x:Name="PART_EditableTextBox"
                                    IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
-                                   HorizontalAlignment="Left"
+                                   HorizontalAlignment="Stretch"
                                    HorizontalContentAlignment="Stretch"
                                    Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
                                    CaretBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}"
