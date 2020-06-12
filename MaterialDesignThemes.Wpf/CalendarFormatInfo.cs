@@ -62,11 +62,13 @@ namespace MaterialDesignThemes.Wpf
         /// <exception cref="ArgumentNullException"><paramref name="cultureNames"/> is null.</exception>
         public static void SetYearPattern(string[] cultureNames, string yearPattern)
         {
-            if (cultureNames == null)
+            if (cultureNames is null)
                 throw new ArgumentNullException(nameof(cultureNames));
 
             foreach (var cultureName in cultureNames)
+            {
                 SetYearPattern(cultureName, yearPattern);
+            }
         }
 
         /// <summary>
@@ -77,13 +79,17 @@ namespace MaterialDesignThemes.Wpf
         /// <exception cref="ArgumentNullException"><paramref name="cultureName"/> is null.</exception>
         public static void SetYearPattern(string cultureName, string yearPattern)
         {
-            if (cultureName == null)
+            if (cultureName is null)
                 throw new ArgumentNullException(nameof(cultureName));
 
             if (yearPattern != null)
+            {
                 _cultureYearPatterns[cultureName] = yearPattern;
+            }
             else
+            {
                 _cultureYearPatterns.Remove(cultureName);
+            }
             DiscardFormatInfoCache(cultureName);
         }
 
@@ -95,11 +101,13 @@ namespace MaterialDesignThemes.Wpf
         /// <exception cref="ArgumentNullException"><paramref name="cultureNames"/> is null.</exception>
         public static void SetDayOfWeekStyle(string[] cultureNames, DayOfWeekStyle dayOfWeekStyle)
         {
-            if (cultureNames == null)
+            if (cultureNames is null)
                 throw new ArgumentNullException(nameof(cultureNames));
 
             foreach (var cultureName in cultureNames)
+            {
                 SetDayOfWeekStyle(cultureName, dayOfWeekStyle);
+            }
         }
 
         /// <summary>
@@ -110,7 +118,7 @@ namespace MaterialDesignThemes.Wpf
         /// <exception cref="ArgumentNullException"><paramref name="cultureName"/> is null.</exception>
         public static void SetDayOfWeekStyle(string cultureName, DayOfWeekStyle dayOfWeekStyle)
         {
-            if (cultureName == null)
+            if (cultureName is null)
                 throw new ArgumentNullException(nameof(cultureName));
 
             _cultureDayOfWeekStyles[cultureName] = dayOfWeekStyle;
@@ -124,11 +132,13 @@ namespace MaterialDesignThemes.Wpf
         /// <exception cref="ArgumentNullException"><paramref name="cultureNames"/> is null.</exception>
         public static void ResetDayOfWeekStyle(string[] cultureNames)
         {
-            if (cultureNames == null)
+            if (cultureNames is null)
                 throw new ArgumentNullException(nameof(cultureNames));
 
             foreach (var cultureName in cultureNames)
+            {
                 ResetDayOfWeekStyle(cultureName);
+            }
         }
 
         /// <summary>
@@ -138,17 +148,17 @@ namespace MaterialDesignThemes.Wpf
         /// <exception cref="ArgumentNullException"><paramref name="cultureName"/> is null.</exception>
         public static void ResetDayOfWeekStyle(string cultureName)
         {
-            if (cultureName == null)
+            if (cultureName is null)
                 throw new ArgumentNullException(nameof(cultureName));
 
             if (_cultureDayOfWeekStyles.Remove(cultureName))
+            {
                 DiscardFormatInfoCache(cultureName);
+            }
         }
 
         private static void DiscardFormatInfoCache(string cultureName)
-        {
-            _formatInfoCache.Remove(cultureName);
-        }
+            => _ = _formatInfoCache.Remove(cultureName);
 
         private CalendarFormatInfo(string yearMonthPattern, string componentOnePattern, string componentTwoPattern, string componentThreePattern)
         {
@@ -166,7 +176,7 @@ namespace MaterialDesignThemes.Wpf
         /// <exception cref="ArgumentNullException"><paramref name="cultureInfo"/> is null.</exception>
         public static CalendarFormatInfo FromCultureInfo(CultureInfo cultureInfo)
         {
-            if (cultureInfo == null)
+            if (cultureInfo is null)
                 throw new ArgumentNullException(nameof(cultureInfo));
 
             CalendarFormatInfo calendarInfo;
@@ -185,16 +195,19 @@ namespace MaterialDesignThemes.Wpf
 
             var monthDayPattern = dateTimeFormat.MonthDayPattern.Replace("MMMM", "MMM");
             if (dayOfWeekStyle.IsFirst)
+            {
                 calendarInfo = new CalendarFormatInfo(dateTimeFormat.YearMonthPattern,
-                                                       monthDayPattern,
-                                                       dayOfWeekStyle.Pattern + dayOfWeekStyle.Separator,
-                                                       yearPattern);
+                                                      monthDayPattern,
+                                                      dayOfWeekStyle.Pattern + dayOfWeekStyle.Separator,
+                                                      yearPattern);
+            }
             else
+            {
                 calendarInfo = new CalendarFormatInfo(dateTimeFormat.YearMonthPattern,
-                                                       dayOfWeekStyle.Pattern,
-                                                       monthDayPattern + dayOfWeekStyle.Separator,
-                                                       yearPattern);
-
+                                                      dayOfWeekStyle.Pattern,
+                                                      monthDayPattern + dayOfWeekStyle.Separator,
+                                                      yearPattern);
+            }
             _formatInfoCache[cultureInfo.Name] = calendarInfo;
             return calendarInfo;
         }
@@ -219,13 +232,12 @@ namespace MaterialDesignThemes.Wpf
             /// </summary>
             public bool IsFirst { get; }
 
-            private const char EthiopicWordspace = '\u1361';
-            private const char EthiopicComma = '\u1363';
-            private const char EthiopicColon = '\u1365';
-            private const char ArabicComma = '\u060c';
+            private const string EthiopicWordspace = "\u1361";
+            private const string EthiopicComma = "\u1363";
+            private const string EthiopicColon = "\u1365";
+            private const string ArabicComma = "\u060c";
 
-            private static readonly string SeparatorChars =
-              new string(new char[] { ',', ArabicComma, EthiopicWordspace, EthiopicComma, EthiopicColon });
+            private const string SeparatorChars = "," + ArabicComma + EthiopicWordspace + EthiopicComma + EthiopicColon;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="DayOfWeekStyle"/> struct.
@@ -235,9 +247,9 @@ namespace MaterialDesignThemes.Wpf
             /// <param name="isFirst">A value indicating whether DayOfWeek is before MonthDay.</param>
             public DayOfWeekStyle(string pattern, string separator, bool isFirst)
             {
-                this.Pattern = pattern ?? string.Empty;
-                this.Separator = separator ?? string.Empty;
-                this.IsFirst = isFirst;
+                Pattern = pattern ?? string.Empty;
+                Separator = separator ?? string.Empty;
+                IsFirst = isFirst;
             }
 
             /// <summary>
@@ -248,7 +260,7 @@ namespace MaterialDesignThemes.Wpf
             /// <exception cref="ArgumentNullException"><paramref name="s"/> is null.</exception>
             public static DayOfWeekStyle Parse(string s)
             {
-                if (s == null)
+                if (s is null)
                     throw new ArgumentNullException(nameof(s));
 
                 if (s.StartsWith(ShortDayOfWeek, StringComparison.Ordinal))
@@ -272,11 +284,11 @@ namespace MaterialDesignThemes.Wpf
                     return new DayOfWeekStyle(ShortDayOfWeek, separator, false);
                 }
                 return new DayOfWeekStyle(ShortDayOfWeek, string.Empty, true);
+
+                static bool IsSpace(char c) => c == ' ' || c == '\'';
+
+                static bool IsSeparator(char c) => SeparatorChars.IndexOf(c) >= 0;
             }
-
-            private static bool IsSpace(char c) => c == ' ' || c == '\'';
-
-            private static bool IsSeparator(char c) => SeparatorChars.IndexOf(c) >= 0;
         }
     }
 }
