@@ -9,7 +9,7 @@
 
     <Style TargetType="{x:Type mah:NumericUpDown}" x:Key="MaterialDesignNumericUpDown">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.Border}" />
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
         <Setter Property="ContextMenu" Value="{DynamicResource MahApps.TextBox.ContextMenu}" />
         <Setter Property="mah:ControlsHelper.FocusBorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.Border.Focus}" />
