@@ -10,6 +10,7 @@
     <Product>MahMaterialDragablzMashUp</Product>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <Prefer32Bit>true</Prefer32Bit>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
