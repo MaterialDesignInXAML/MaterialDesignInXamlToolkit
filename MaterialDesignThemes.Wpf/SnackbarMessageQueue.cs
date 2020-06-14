@@ -23,40 +23,27 @@ namespace MaterialDesignThemes.Wpf
         private int _pauseCounter;
         private bool _isDisposed;
 
-        #region private class MouseNotOverManagedWaitHandle : IDisposable
+        #region MouseNotOverManagedWaitHandle
 
         private class MouseNotOverManagedWaitHandle : IDisposable
         {
+            private readonly UIElement _uiElement;
             private readonly ManualResetEvent _waitHandle;
             private readonly ManualResetEvent _disposedWaitHandle = new ManualResetEvent(false);
-            private Action _cleanUp;
-            private bool _isWaitHandleDisposed;
+            private bool _isDisposed;
             private readonly object _waitHandleGate = new object();
 
             public MouseNotOverManagedWaitHandle(UIElement uiElement)
             {
-                if (uiElement == null) throw new ArgumentNullException(nameof(uiElement));
-
+                _uiElement = uiElement ?? throw new ArgumentNullException(nameof(uiElement));
                 _waitHandle = new ManualResetEvent(!uiElement.IsMouseOver);
                 uiElement.MouseEnter += UiElementOnMouseEnter;
                 uiElement.MouseLeave += UiElementOnMouseLeave;
-
-                _cleanUp = () =>
-                {
-                    uiElement.MouseEnter -= UiElementOnMouseEnter;
-                    uiElement.MouseLeave -= UiElementOnMouseLeave;
-                    lock (_waitHandleGate)
-                    {
-                        _waitHandle.Dispose();
-                        _isWaitHandleDisposed = true;
-                    }
-                    _disposedWaitHandle.Set();
-                    _disposedWaitHandle.Dispose();
-                    _cleanUp = () => { };
-                };
             }
 
             public EventWaitHandle WaitHandle => _waitHandle;
+
+            private void UiElementOnMouseEnter(object sender, MouseEventArgs mouseEventArgs) => _waitHandle.Reset();
 
             private async void UiElementOnMouseLeave(object sender, MouseEventArgs mouseEventArgs)
             {
@@ -80,15 +67,26 @@ namespace MaterialDesignThemes.Wpf
                 if (((UIElement)sender).IsMouseOver) return;
                 lock (_waitHandleGate)
                 {
-                    if (!_isWaitHandleDisposed)
+                    if (!_isDisposed)
                         _waitHandle.Set();
                 }
             }
 
-            private void UiElementOnMouseEnter(object sender, MouseEventArgs mouseEventArgs) 
-                => _ = _waitHandle.Reset();
+            public void Dispose()
+            {
+                if (_isDisposed)
+                    return;
 
-            public void Dispose() => _cleanUp();
+                _uiElement.MouseEnter -= UiElementOnMouseEnter;
+                _uiElement.MouseLeave -= UiElementOnMouseLeave;
+                lock (_waitHandleGate)
+                {
+                    _waitHandle.Dispose();
+                    _isDisposed = true;
+                }
+                _disposedWaitHandle.Set();
+                _disposedWaitHandle.Dispose();
+            }
         }
 
         #endregion
