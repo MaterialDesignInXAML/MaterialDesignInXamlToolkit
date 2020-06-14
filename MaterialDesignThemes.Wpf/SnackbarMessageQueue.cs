@@ -12,6 +12,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public class SnackbarMessageQueue : ISnackbarMessageQueue, IDisposable
     {
+        private readonly Dispatcher _dispatcher;
         private readonly TimeSpan _messageDuration;
         private readonly HashSet<Snackbar> _pairedSnackbars = new HashSet<Snackbar>();
         private readonly object _pairedSnackbarsLock = new object();
@@ -20,6 +21,7 @@ namespace MaterialDesignThemes.Wpf
         private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _pausedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _messageWaitingEvent = new ManualResetEvent(false);
+        private readonly SemaphoreSlim _showMessageSemaphore = new SemaphoreSlim(1,1);
         private int _pauseCounter;
         private bool _isDisposed;
 
@@ -134,7 +136,8 @@ namespace MaterialDesignThemes.Wpf
         public SnackbarMessageQueue(TimeSpan messageDuration)
         {
             _messageDuration = messageDuration;
-            Task.Factory.StartNew(PumpAsync, TaskCreationOptions.LongRunning);
+            _dispatcher = Dispatcher.FromThread(Thread.CurrentThread)
+                          ?? throw new InvalidOperationException("SnackbarMessageQueue must be created in a dispatcher thread");
         }
 
         //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragablz, 
@@ -241,6 +244,7 @@ namespace MaterialDesignThemes.Wpf
         {
             lock (_snackbarMessagesLock)
             {
+                var added = false;
                 var node = _snackbarMessages.First;
                 while (node != null)
                 {
@@ -250,80 +254,72 @@ namespace MaterialDesignThemes.Wpf
                     if (item.IsPromoted && !node.Value.IsPromoted)
                     {
                         _snackbarMessages.AddBefore(node, item);
-                        return;
+                        added = true;
+                        break;
                     }
                     node = node.Next;
                 }
-                _snackbarMessages.AddLast(item);
+                if (!added)
+                    _snackbarMessages.AddLast(item);
+                
             }
+
+            _dispatcher.InvokeAsync(ShowNextAsync);
         }
 
-        private async void PumpAsync()
+        private async Task ShowNextAsync()
         {
-            while (!_isDisposed)
+            await _showMessageSemaphore.WaitAsync();
+            var repeatShowNext = false;
+            try
             {
-                var eventId = WaitHandle.WaitAny(new WaitHandle[] { _disposedEvent, _messageWaitingEvent });
-                if (eventId == 0) continue;
-                Snackbar exemplar;
-                lock (_pairedSnackbarsLock)
+                if (_isDisposed || _dispatcher.HasShutdownStarted)
+                    return;
+
+                var snackbar = FindSnackbar();
+                if (snackbar == null)
                 {
-                    exemplar = _pairedSnackbars.FirstOrDefault();
-                }
-                if (exemplar is null)
-                {
-                    Trace.TraceWarning(
-                        "A snackbar message as waiting, but no Snackbar instances are assigned to the message queue.");
-                    _disposedEvent.WaitOne(TimeSpan.FromSeconds(1));
-                    continue;
+                    Trace.TraceWarning("A snackbar message as waiting, but no snackbar instances are assigned to the message queue.");
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                    repeatShowNext = true;
+                    return;
                 }
 
-                LinkedListNode<SnackbarMessageQueueItem> messageNode = null;
-
-                //find a target
-                var snackbar = await FindSnackbar(exemplar.Dispatcher);
-
-                //show message
-                if (snackbar != null)
+                LinkedListNode<SnackbarMessageQueueItem> messageNode;
+                lock (_snackbarMessagesLock)
                 {
-                    lock (_snackbarMessagesLock)
-                    {
-                        messageNode = _snackbarMessages.First;
-                    }
-                    if (messageNode != null)
-                        await ShowAsync(snackbar, messageNode.Value);
+                    messageNode = _snackbarMessages.First;
                 }
-                else
-                {
-                    //no snackbar could be found, take a break
-                    _disposedEvent.WaitOne(TimeSpan.FromSeconds(1));
-                }
+                if (messageNode == null)
+                    return;
+                
+                await ShowAsync(snackbar, messageNode.Value);
 
                 lock (_snackbarMessagesLock)
                 {
-                    if (messageNode != null)
-                        _snackbarMessages.Remove(messageNode);
-                    if (_snackbarMessages.Count > 0)
-                        _messageWaitingEvent.Set();
-                    else
-                        _messageWaitingEvent.Reset();
+                    _snackbarMessages.Remove(messageNode);
+                    repeatShowNext = _snackbarMessages.Count > 0;
                 }
+            }
+            finally
+            {
+                _showMessageSemaphore.Release();
+                if (repeatShowNext)
+                    await _dispatcher.InvokeAsync(ShowNextAsync);
             }
         }
 
-        private DispatcherOperation<Snackbar> FindSnackbar(Dispatcher dispatcher)
+        private Snackbar FindSnackbar()
         {
-            return dispatcher.InvokeAsync(() =>
+            lock (_pairedSnackbarsLock)
             {
-                lock (_pairedSnackbars)
+                return _pairedSnackbars.FirstOrDefault(sb =>
                 {
-                    return _pairedSnackbars.FirstOrDefault(sb =>
-                    {
-                        if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
-                        var window = Window.GetWindow(sb);
-                        return window?.WindowState != WindowState.Minimized;
-                    });
-                }
-            });
+                    if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
+                    var window = Window.GetWindow(sb);
+                    return window?.WindowState != WindowState.Minimized;
+                });
+            }
         }
 
         private async Task ShowAsync(Snackbar snackbar, SnackbarMessageQueueItem messageQueueItem)
