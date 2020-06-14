@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignColors.ColorManipulation;
+using Microsoft.Win32;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -33,6 +35,11 @@ namespace MaterialDesignThemes.Wpf
             {
                 case BaseTheme.Dark: return Theme.Dark;
                 case BaseTheme.Light: return Theme.Light;
+                case BaseTheme.Inherit: return Theme.GetSystemTheme() switch
+                    {
+                        BaseTheme.Dark => Theme.Dark,
+                        _ => Theme.Light
+                    };
                 default: throw new InvalidOperationException();
             }
         }
