@@ -20,7 +20,14 @@ namespace MaterialDesignThemes.Wpf.Converters
             if (ticks == long.MaxValue)
                 return null;
 
-            return new DateTime(ticks).ToString(CalendarFormatInfo.FromCultureInfo(culture).YearMonthPattern, culture);
+            try
+            {
+                return new DateTime(ticks).ToString(CalendarFormatInfo.FromCultureInfo(culture).YearMonthPattern, culture);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return new DateTime(ticks).ToString("Y", CultureInfo.InvariantCulture);
+            }
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
