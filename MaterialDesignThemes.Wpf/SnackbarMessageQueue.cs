@@ -68,10 +68,10 @@ namespace MaterialDesignThemes.Wpf
                     }
                     catch (ObjectDisposedException)
                     {
-                        /* we are we suppresing this? 
+                        /* we are we suppressing this? 
                          * as we have switched out wait onto another thread, so we don't block the UI thread, the
                          * _cleanUp/Dispose() action might also happen, and the _disposedWaitHandle might get disposed
-                         * just before we WaitOne. We wond add a lock in the _cleanUp because it might block for 2 seconds.
+                         * just before we WaitOne. We want add a lock in the _cleanUp because it might block for 2 seconds.
                          * We could use a Monitor.TryEnter in _cleanUp and run clean up after but oh my gosh it's just getting
                          * too complicated for this use case, so for the rare times this happens, we can swallow safely
                          */
@@ -95,22 +95,15 @@ namespace MaterialDesignThemes.Wpf
 
         #region private class DurationMonitor
 
-        private class DurationMonitor
+        private static class DurationMonitor
         {
-            private DateTime _completionTime;
-
-            private DurationMonitor(
-                TimeSpan minimumDuration,
-                WaitHandle pausedWaitHandle,
-                EventWaitHandle signalWhenDurationPassedWaitHandle,
-                WaitHandle ceaseWaitHandle)
+            public static void Start(TimeSpan minimumDuration, WaitHandle pausedWaitHandle, EventWaitHandle signalWhenDurationPassedWaitHandle, WaitHandle ceaseWaitHandle)
             {
                 if (pausedWaitHandle == null) throw new ArgumentNullException(nameof(pausedWaitHandle));
-                if (signalWhenDurationPassedWaitHandle == null)
-                    throw new ArgumentNullException(nameof(signalWhenDurationPassedWaitHandle));
+                if (signalWhenDurationPassedWaitHandle == null) throw new ArgumentNullException(nameof(signalWhenDurationPassedWaitHandle));
                 if (ceaseWaitHandle == null) throw new ArgumentNullException(nameof(ceaseWaitHandle));
 
-                _completionTime = DateTime.Now.Add(minimumDuration);
+                var completionTime = DateTime.Now.Add(minimumDuration);
 
                 //this keeps the event waiting simpler, rather that actually watching play -> pause -> play -> pause etc
                 var granularity = TimeSpan.FromMilliseconds(200);
@@ -118,27 +111,18 @@ namespace MaterialDesignThemes.Wpf
                 Task.Factory.StartNew(() =>
                 {
                     //keep upping the completion time in case it's paused...
-                    while (DateTime.Now < _completionTime && !ceaseWaitHandle.WaitOne(granularity)
-                        && !signalWhenDurationPassedWaitHandle.WaitOne(TimeSpan.Zero))
+                    while (DateTime.Now < completionTime && !ceaseWaitHandle.WaitOne(granularity)
+                                                          && !signalWhenDurationPassedWaitHandle.WaitOne(TimeSpan.Zero))
                     {
                         if (pausedWaitHandle.WaitOne(TimeSpan.Zero))
                         {
-                            _completionTime = _completionTime.Add(granularity);
+                            completionTime = completionTime.Add(granularity);
                         }
                     }
 
-                    if (DateTime.Now >= _completionTime)
+                    if (DateTime.Now >= completionTime)
                         signalWhenDurationPassedWaitHandle.Set();
                 });
-            }
-
-            public static DurationMonitor Start(TimeSpan minimumDuration,
-                WaitHandle pausedWaitHandle,
-                EventWaitHandle signalWhenDurationPassedWaitHandle,
-                WaitHandle ceaseWaitHandle)
-            {
-                return new DurationMonitor(minimumDuration, pausedWaitHandle, signalWhenDurationPassedWaitHandle,
-                    ceaseWaitHandle);
             }
         }
 
@@ -155,8 +139,8 @@ namespace MaterialDesignThemes.Wpf
             Task.Factory.StartNew(PumpAsync, TaskCreationOptions.LongRunning);
         }
 
-        //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragabalz, 
-        //but this is an internal method so no one will know my direty Action disposer...
+        //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragablz, 
+        //but this is an internal method so no one will know my direct Action disposer...
         internal Action Pair(Snackbar snackbar)
         {
             if (snackbar == null) throw new ArgumentNullException(nameof(snackbar));
@@ -332,13 +316,15 @@ namespace MaterialDesignThemes.Wpf
         {
             return dispatcher.InvokeAsync(() =>
             {
-                // _pairedSnackbars is modified only on the dispatcher thread. So, no lock is needed here.
-                return _pairedSnackbars.FirstOrDefault(sb =>
+                lock (_pairedSnackbars)
                 {
-                    if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
-                    var window = Window.GetWindow(sb);
-                    return window?.WindowState != WindowState.Minimized;
-                });
+                    return _pairedSnackbars.FirstOrDefault(sb =>
+                    {
+                        if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
+                        var window = Window.GetWindow(sb);
+                        return window?.WindowState != WindowState.Minimized;
+                    });
+                }
             });
         }
 
@@ -411,7 +397,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var durationTask = Task.Run(() =>
             {
-                WaitHandle.WaitAll(new[]
+                WaitHandle.WaitAll(new WaitHandle[]
                 {
                     mouseNotOverManagedWaitHandle.WaitHandle,
                     durationPassedWaitHandle
