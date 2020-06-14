@@ -376,7 +376,11 @@ namespace MaterialDesignThemes.Wpf
             SnackbarMessageQueueItem messageQueueItem, EventWaitHandle actionClickWaitHandle)
         {
             var clickCount = 0;
-            var snackbarMessage = Create(messageQueueItem);
+            var snackbarMessage = new SnackbarMessage
+            {
+                Content = messageQueueItem.Content,
+                ActionContent = messageQueueItem.ActionContent
+            };
             snackbarMessage.ActionClick += (sender, args) =>
             {
                 if (++clickCount == 1)
@@ -426,15 +430,6 @@ namespace MaterialDesignThemes.Wpf
 
                 throw;
             }
-        }
-
-        private static SnackbarMessage Create(SnackbarMessageQueueItem messageQueueItem)
-        {
-            return new SnackbarMessage
-            {
-                Content = messageQueueItem.Content,
-                ActionContent = messageQueueItem.ActionContent
-            };
         }
 
         public void Dispose()
