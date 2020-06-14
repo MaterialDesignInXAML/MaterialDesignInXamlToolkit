@@ -290,7 +290,8 @@
                                     Width="0"
                                     Height="12"
                                     Margin="-16 0 0 0"
-                                    Opacity="0.45" />
+                                    Opacity="0.45"
+                                    Visibility="{Binding CanUserSortColumns, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                                 <ContentPresenter
                                     RecognizesAccessKey="True"
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
