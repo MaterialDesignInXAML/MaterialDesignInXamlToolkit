@@ -16,21 +16,21 @@ namespace MaterialDesignThemes.UITests.DemoApp
             Assert.NotNull(element);
         }
 
-        [Fact]
-        public void CanOpenAllPagesOnTheDemoApp()
-        {
-            var mainWindow = new MainWindow(Driver);
+        //[Fact]
+        //public void CanOpenAllPagesOnTheDemoApp()
+        //{
+        //    var mainWindow = new MainWindow(Driver);
 
-            foreach (AppiumWebElement? listItem in mainWindow.PageListItems)
-            {
-                var rect = mainWindow.PagesListBox.Rect;
-                Driver.WaitFor(() => mainWindow.PagesListBox.Rect.Right <= 1);
-                Driver.WaitFor(() => mainWindow.HamburgerToggleButton.Displayed);
-                mainWindow.HamburgerToggleButton.Click();
+        //    foreach (AppiumWebElement? listItem in mainWindow.PageListItems)
+        //    {
+        //        var rect = mainWindow.PagesListBox.Rect;
+        //        Driver.WaitFor(() => mainWindow.PagesListBox.Rect.Right <= 1);
+        //        Driver.WaitFor(() => mainWindow.HamburgerToggleButton.Displayed);
+        //        mainWindow.HamburgerToggleButton.Click();
 
-                Driver.WaitFor(() => listItem.Location.X >= 0);
-                listItem.Click();
-            }
-        }
+        //        Driver.WaitFor(() => listItem.Location.X >= 0);
+        //        listItem.Click();
+        //    }
+        //}
     }
 }

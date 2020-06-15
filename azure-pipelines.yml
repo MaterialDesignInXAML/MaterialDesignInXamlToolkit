@@ -64,6 +64,13 @@ steps:
   displayName: 'Stop WinAppDriver'
   condition: always()
 
+- task: PublishPipelineArtifact@0
+  name: "PublishUITestsScreenshots"
+  inputs:
+    artifactName: 'Screenshots'
+    targetPath: 'MaterialDesignThemes.UITests/bin/Release/netcoreapp3.1'
+  condition: always()
+
 - task: PowerShell@2
   displayName: "Build NuGets"
   inputs: 

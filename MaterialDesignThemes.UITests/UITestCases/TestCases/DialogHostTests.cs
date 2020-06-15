@@ -23,7 +23,7 @@ namespace MaterialDesignThemes.UITests.UITestCases.TestCases
                 testCase.Click();
                 mainWindow.ExecuteButton.Click();
 
-                WindowsElement resultTextBlock = Driver.FindElementByAccessibilityId("ResultTextBlock", TimeSpan.FromMilliseconds(200));
+                WindowsElement resultTextBlock = Driver.FindElementByAccessibilityId("ResultTextBlock", TimeSpan.FromSeconds(0.5));
                 Driver.WaitFor(() => resultTextBlock.Text == "Clicks: 0");
 
                 WindowsElement testOverlayButton = Driver.FindElementByAccessibilityId("TestOverlayButton", TimeSpan.FromSeconds(0.5));
@@ -52,8 +52,10 @@ namespace MaterialDesignThemes.UITests.UITestCases.TestCases
             {
                 var screenshot = Driver.GetScreenshot();
                 string fullPath = Path.GetFullPath($"{nameof(WhenDialogHostIsShown_OverlayPreventsClicking)}.jpg");
+                File.Delete(fullPath);
                 Output.WriteLine("Saving image " + fullPath);
                 screenshot.SaveAsFile(fullPath);
+                Output.WriteLine("Wrote image");
             }
         }
     }
