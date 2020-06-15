@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using Xunit;
@@ -16,21 +14,25 @@ namespace MaterialDesignThemes.UITests.DemoApp
             Assert.NotNull(element);
         }
 
-        //[Fact]
-        //public void CanOpenAllPagesOnTheDemoApp()
-        //{
-        //    var mainWindow = new MainWindow(Driver);
+        [Fact]
+        public void CanOpenAllPagesOnTheDemoApp()
+        {
+            using var recorder = new TestRecorder(Driver, Output);
 
-        //    foreach (AppiumWebElement? listItem in mainWindow.PageListItems)
-        //    {
-        //        var rect = mainWindow.PagesListBox.Rect;
-        //        Driver.WaitFor(() => mainWindow.PagesListBox.Rect.Right <= 1);
-        //        Driver.WaitFor(() => mainWindow.HamburgerToggleButton.Displayed);
-        //        mainWindow.HamburgerToggleButton.Click();
+            var mainWindow = new MainWindow(Driver);
 
-        //        Driver.WaitFor(() => listItem.Location.X >= 0);
-        //        listItem.Click();
-        //    }
-        //}
+            foreach (AppiumWebElement? listItem in mainWindow.PageListItems)
+            {
+                var rect = mainWindow.PagesListBox.Rect;
+                Driver.WaitFor(() => mainWindow.PagesListBox.Rect.Right <= 1);
+                Driver.WaitFor(() => mainWindow.HamburgerToggleButton.Displayed);
+                mainWindow.HamburgerToggleButton.Click();
+
+                Driver.WaitFor(() => listItem.Location.X >= 0);
+                listItem.Click();
+            }
+
+            recorder.Success();
+        }
     }
 }

@@ -76,7 +76,7 @@ dotnet_style_predefined_type_for_member_access = true:suggestion
 #Style - implicit and explicit types
 
 #prefer var is used to declare variables with built-in system types such as int
-csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_for_built_in_types = false:suggestion
 #prefer var when the type is already mentioned on the right-hand side of a declaration expression
 csharp_style_var_when_type_is_apparent = true:suggestion
 
