@@ -267,19 +267,20 @@ namespace MaterialDesignThemes.Wpf
         private async Task ShowNextAsync()
         {
             await _showMessageSemaphore.WaitAsync();
-            var repeatShowNext = false;
             try
             {
-                if (_isDisposed || _dispatcher.HasShutdownStarted)
-                    return;
-
-                var snackbar = FindSnackbar();
-                if (snackbar == null)
+                Snackbar snackbar;
+                while (true)
                 {
+                    if (_isDisposed || _dispatcher.HasShutdownStarted)
+                        return;
+
+                    snackbar = FindSnackbar();
+                    if (snackbar != null)
+                        break;
+
                     Trace.TraceWarning("A snackbar message as waiting, but no snackbar instances are assigned to the message queue.");
                     await Task.Delay(TimeSpan.FromSeconds(1));
-                    repeatShowNext = true;
-                    return;
                 }
 
                 LinkedListNode<SnackbarMessageQueueItem> messageNode;
@@ -295,14 +296,11 @@ namespace MaterialDesignThemes.Wpf
                 lock (_snackbarMessagesLock)
                 {
                     _snackbarMessages.Remove(messageNode);
-                    repeatShowNext = _snackbarMessages.Count > 0;
                 }
             }
             finally
             {
                 _showMessageSemaphore.Release();
-                if (repeatShowNext)
-                    await _dispatcher.InvokeAsync(ShowNextAsync);
             }
         }
 
