@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Support.UI;
@@ -16,7 +15,7 @@ namespace MaterialDesignThemes.UITests
         public static WindowsElement FindElementByAccessibilityId(
             this WindowsDriver<WindowsElement> driver, 
             string selector, 
-            TimeSpan timeout,
+            TimeSpan? timeout = null,
             TimeSpan? pollingInterval = null)
         {
             if (driver is null)
@@ -42,12 +41,12 @@ namespace MaterialDesignThemes.UITests
             {
                 Assert.True(condition());
                 return true;
-            }, timeout ?? TimeSpan.FromSeconds(2), pollingInterval);
+            }, timeout, pollingInterval);
 
         public static void WaitUntil(
             this WindowsDriver<WindowsElement> driver,
             Action condition,
-            TimeSpan timeout,
+            TimeSpan? timeout = null,
             TimeSpan? pollingInterval = null)
             => driver.WaitUntil(_ =>
             {
@@ -58,7 +57,7 @@ namespace MaterialDesignThemes.UITests
         public static void WaitUntil(
             this WindowsDriver<WindowsElement> driver,
             Action<WindowsDriver<WindowsElement>> condition,
-            TimeSpan timeout,
+            TimeSpan? timeout = null,
             TimeSpan? pollingInterval = null)
             => driver.WaitUntil<bool>(driver =>
             {
@@ -69,14 +68,14 @@ namespace MaterialDesignThemes.UITests
         public static TResult WaitUntil<TResult>(
             this WindowsDriver<WindowsElement> driver,
             Func<TResult> condition,
-            TimeSpan timeout,
+            TimeSpan? timeout = null,
             TimeSpan? pollingInterval = null) 
             => driver.WaitUntil(_ => condition(), timeout, pollingInterval);
 
         public static TResult WaitUntil<TResult>(
             this WindowsDriver<WindowsElement> driver,
             Func<WindowsDriver<WindowsElement>, TResult> condition,
-            TimeSpan timeout,
+            TimeSpan? timeout = null,
             TimeSpan? pollingInterval = null)
         {
             if (driver is null)
@@ -99,13 +98,14 @@ namespace MaterialDesignThemes.UITests
 
         private static DefaultWait GetWait(
             WindowsDriver<WindowsElement> driver,
-            TimeSpan timeout,
+            TimeSpan? timeout,
             TimeSpan? pollingInterval = null)
         {
-            TimeSpan interval = pollingInterval ?? TimeSpan.FromMilliseconds(timeout.TotalMilliseconds / 10);
+            TimeSpan timeoutValue = timeout ?? TimeSpan.FromSeconds(5);
+            TimeSpan interval = pollingInterval ?? TimeSpan.FromMilliseconds(timeoutValue.TotalMilliseconds / 10);
             var wait = new DefaultWait(driver, Clock)
             {
-                Timeout = timeout,
+                Timeout = timeoutValue,
                 PollingInterval = interval
             };
             return wait;
