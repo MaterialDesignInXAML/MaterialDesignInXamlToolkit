@@ -60,7 +60,7 @@ namespace MaterialDesignThemes.Wpf
                         /* we are we suppressing this? 
                          * as we have switched out wait onto another thread, so we don't block the UI thread, the
                          * _cleanUp/Dispose() action might also happen, and the _disposedWaitHandle might get disposed
-                         * just before we WaitOne. We want add a lock in the _cleanUp because it might block for 2 seconds.
+                         * just before we WaitOne. We won't add a lock in the _cleanUp because it might block for 2 seconds.
                          * We could use a Monitor.TryEnter in _cleanUp and run clean up after but oh my gosh it's just getting
                          * too complicated for this use case, so for the rare times this happens, we can swallow safely
                          */
@@ -141,7 +141,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragablz, 
-        //but this is an internal method so no one will know my direct Action disposer...
+        //but this is an internal method so no one will know my dirty Action disposer...
         internal Action Pair(Snackbar snackbar)
         {
             if (snackbar == null) throw new ArgumentNullException(nameof(snackbar));
