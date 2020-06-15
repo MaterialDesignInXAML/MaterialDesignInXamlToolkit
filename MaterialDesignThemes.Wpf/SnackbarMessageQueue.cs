@@ -15,7 +15,6 @@ namespace MaterialDesignThemes.Wpf
         private readonly Dispatcher _dispatcher;
         private readonly TimeSpan _messageDuration;
         private readonly HashSet<Snackbar> _pairedSnackbars = new HashSet<Snackbar>();
-        private readonly object _pairedSnackbarsLock = new object();
         private readonly LinkedList<SnackbarMessageQueueItem> _snackbarMessages = new LinkedList<SnackbarMessageQueueItem>();
         private readonly object _snackbarMessagesLock = new object();
         private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
@@ -143,18 +142,9 @@ namespace MaterialDesignThemes.Wpf
         {
             if (snackbar == null) throw new ArgumentNullException(nameof(snackbar));
 
-            lock (_pairedSnackbarsLock)
-            {
-                _pairedSnackbars.Add(snackbar);
-            }
+           _pairedSnackbars.Add(snackbar);
 
-            return () => 
-            { 
-                lock (_pairedSnackbarsLock) 
-                { 
-                    _pairedSnackbars.Remove(snackbar);
-                }
-            };
+            return () => _pairedSnackbars.Remove(snackbar);
         }
 
         internal Action Pause()
@@ -304,18 +294,12 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private Snackbar FindSnackbar()
+        private Snackbar FindSnackbar() => _pairedSnackbars.FirstOrDefault(sb =>
         {
-            lock (_pairedSnackbarsLock)
-            {
-                return _pairedSnackbars.FirstOrDefault(sb =>
-                {
-                    if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
-                    var window = Window.GetWindow(sb);
-                    return window?.WindowState != WindowState.Minimized;
-                });
-            }
-        }
+            if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
+            var window = Window.GetWindow(sb);
+            return window?.WindowState != WindowState.Minimized;
+        });
 
         private async Task ShowAsync(Snackbar snackbar, SnackbarMessageQueueItem messageQueueItem)
         {
