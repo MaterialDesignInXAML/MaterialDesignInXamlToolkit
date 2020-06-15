@@ -19,7 +19,6 @@ namespace MaterialDesignThemes.Wpf
         private readonly object _snackbarMessagesLock = new object();
         private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _pausedEvent = new ManualResetEvent(false);
-        private readonly ManualResetEvent _messageWaitingEvent = new ManualResetEvent(false);
         private readonly SemaphoreSlim _showMessageSemaphore = new SemaphoreSlim(1,1);
         private int _pauseCounter;
         private bool _isDisposed;
@@ -223,8 +222,6 @@ namespace MaterialDesignThemes.Wpf
             var snackbarMessageQueueItem = new SnackbarMessageQueueItem(content, durationOverride ?? _messageDuration,
                 actionContent, actionHandler, actionArgument, promote, neverConsiderToBeDuplicate);
             InsertItem(snackbarMessageQueueItem);
-
-            _messageWaitingEvent.Set();
         }
 
         private void InsertItem(SnackbarMessageQueueItem item)
