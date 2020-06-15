@@ -93,40 +93,37 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
-        #region private class DurationMonitor
-
-        private static class DurationMonitor
+        private void StartDuration(TimeSpan minimumDuration, EventWaitHandle durationPassedWaitHandle)
         {
-            public static void Start(TimeSpan minimumDuration, WaitHandle pausedWaitHandle, EventWaitHandle signalWhenDurationPassedWaitHandle, WaitHandle ceaseWaitHandle)
+            if (durationPassedWaitHandle == null) throw new ArgumentNullException(nameof(durationPassedWaitHandle));
+
+            var completionTime = DateTime.Now.Add(minimumDuration);
+
+            //this keeps the event waiting simpler, rather that actually watching play -> pause -> play -> pause etc
+            var granularity = TimeSpan.FromMilliseconds(200);
+
+            Task.Factory.StartNew(() =>
             {
-                if (pausedWaitHandle == null) throw new ArgumentNullException(nameof(pausedWaitHandle));
-                if (signalWhenDurationPassedWaitHandle == null) throw new ArgumentNullException(nameof(signalWhenDurationPassedWaitHandle));
-                if (ceaseWaitHandle == null) throw new ArgumentNullException(nameof(ceaseWaitHandle));
-
-                var completionTime = DateTime.Now.Add(minimumDuration);
-
-                //this keeps the event waiting simpler, rather that actually watching play -> pause -> play -> pause etc
-                var granularity = TimeSpan.FromMilliseconds(200);
-
-                Task.Factory.StartNew(() =>
+                while (true)
                 {
-                    //keep upping the completion time in case it's paused...
-                    while (DateTime.Now < completionTime && !ceaseWaitHandle.WaitOne(granularity)
-                                                          && !signalWhenDurationPassedWaitHandle.WaitOne(TimeSpan.Zero))
+                    if (DateTime.Now >= completionTime) // time is over
                     {
-                        if (pausedWaitHandle.WaitOne(TimeSpan.Zero))
-                        {
-                            completionTime = completionTime.Add(granularity);
-                        }
+                        durationPassedWaitHandle.Set();
+                        break;
                     }
-
-                    if (DateTime.Now >= completionTime)
-                        signalWhenDurationPassedWaitHandle.Set();
-                });
-            }
+                    
+                    if (_disposedEvent.WaitOne(granularity)) // queue is disposed
+                        break;
+                    
+                    if (durationPassedWaitHandle.WaitOne(TimeSpan.Zero)) // manual exit (like message action click)
+                        break;
+                    
+                    if (_pausedEvent.WaitOne(TimeSpan.Zero)) // on pause completion time is extended
+                        completionTime = completionTime.Add(granularity);
+                }
+            });
         }
 
-        #endregion
 
         public SnackbarMessageQueue() 
             : this(TimeSpan.FromSeconds(3))
@@ -332,8 +329,7 @@ namespace MaterialDesignThemes.Wpf
                         await snackbar.Dispatcher.InvokeAsync(
                                 () => CreateAndShowMessage(snackbar, messageQueueItem, actionClickWaitHandle));
                     var durationPassedWaitHandle = new ManualResetEvent(false);
-                    DurationMonitor.Start(messageQueueItem.Duration.Add(snackbar.ActivateStoryboardDuration),
-                        _pausedEvent, durationPassedWaitHandle, _disposedEvent);
+                    StartDuration(messageQueueItem.Duration.Add(snackbar.ActivateStoryboardDuration), durationPassedWaitHandle);
 
                     //wait until time span completed (including pauses and mouse overs), or the action is clicked
                     await WaitForCompletionAsync(mouseNotOverManagedWaitHandle, durationPassedWaitHandle, actionClickWaitHandle);
