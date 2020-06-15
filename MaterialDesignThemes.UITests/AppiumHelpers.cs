@@ -12,7 +12,7 @@ namespace MaterialDesignThemes.UITests
     {
         private static IClock Clock { get; } = new SystemClock();
 
-        public static WindowsElement FindElementByAccessibilityId(
+        public static WindowsElement GetElementByAccessibilityId(
             this WindowsDriver<WindowsElement> driver, 
             string selector, 
             TimeSpan? timeout = null,
