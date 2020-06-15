@@ -14,7 +14,7 @@ namespace MaterialDesignThemes.UITests
 
         public static WindowsElement GetElementByAccessibilityId(
             this WindowsDriver<WindowsElement> driver, 
-            string selector, 
+            string selector,
             TimeSpan? timeout = null,
             TimeSpan? pollingInterval = null)
         {

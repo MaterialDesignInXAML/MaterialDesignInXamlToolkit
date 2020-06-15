@@ -49,6 +49,7 @@ steps:
 - task: Windows Application Driver@0
   inputs:
     OperationType: 'Start'
+    AgentResolution: '1080p'
   displayName: 'Start WinAppDriver'
 
 - task: DotNetCoreCLI@2
