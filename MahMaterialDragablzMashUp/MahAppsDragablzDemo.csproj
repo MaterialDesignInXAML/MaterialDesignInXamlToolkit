@@ -23,5 +23,10 @@
   <ItemGroup>
     <Resource Include="Resources\ProfilePic.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="Dragablz">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
