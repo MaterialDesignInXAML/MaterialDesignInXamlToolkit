@@ -1,0 +1,14 @@
+{
+  "solution": {
+    "path": "MaterialDesignToolkit.Full.sln",
+    "projects": [
+      "MahMaterialDragablzMashUp\\MahAppsDragablzDemo.csproj",
+      "MainDemo.Wpf\\MaterialDesignDemo.csproj",
+      "MaterialDesignColors.Wpf.Tests\\MaterialDesignColors.Wpf.Tests.csproj",
+      "MaterialDesignColors.Wpf\\MaterialDesignColors.Wpf.csproj",
+      "MaterialDesignThemes.MahApps\\MaterialDesignThemes.MahApps.csproj",
+      "MaterialDesignThemes.Wpf.Tests\\MaterialDesignThemes.Wpf.Tests.csproj",
+      "MaterialDesignThemes.Wpf\\MaterialDesignThemes.Wpf.csproj"
+    ]
+  }
+}

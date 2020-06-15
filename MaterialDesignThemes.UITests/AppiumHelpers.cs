@@ -101,7 +101,7 @@ namespace MaterialDesignThemes.UITests
             TimeSpan? timeout,
             TimeSpan? pollingInterval = null)
         {
-            TimeSpan timeoutValue = timeout ?? TimeSpan.FromSeconds(5);
+            TimeSpan timeoutValue = timeout ?? TimeSpan.FromSeconds(3);
             TimeSpan interval = pollingInterval ?? TimeSpan.FromMilliseconds(timeoutValue.TotalMilliseconds / 10);
             var wait = new DefaultWait(driver, Clock)
             {
