@@ -194,26 +194,25 @@ namespace MaterialDesignThemes.UITests
         }
 
 #region IDisposable Support
-        private bool disposedValue = false;
+        private bool IsDisposed { get; set; }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!IsDisposed)
             {
                 if (disposing)
                 {
+                    Output.WriteLine($"Stopping process: {ProcessToStop?.Id.ToString() ?? "<none>"}");
                     ProcessToStop?.Kill();
                     ProcessToStop = null;
+                    Output.WriteLine("Process killed");
                 }
 
-                disposedValue = true;
+                IsDisposed = true;
             }
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-#endregion
+        public void Dispose() => Dispose(true);
+        #endregion
     }
 }
