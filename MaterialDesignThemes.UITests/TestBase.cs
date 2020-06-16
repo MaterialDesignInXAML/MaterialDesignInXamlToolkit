@@ -25,12 +25,13 @@ namespace MaterialDesignThemes.UITests
 #if DEBUG
             StartWinAppDriver();
 #endif
-            IntPtr mainWindowHandle = StartApp(appPath);
+            //IntPtr mainWindowHandle = StartApp(appPath);
 
             var appOptions = new AppiumOptions();
             appOptions.AddAdditionalCapability("deviceName", "WindowsPC");
-            appOptions.AddAdditionalCapability("appTopLevelWindow", mainWindowHandle.ToInt64().ToString("x"));
-
+            appOptions.AddAdditionalCapability("platformName", "windows");
+            //appOptions.AddAdditionalCapability("appTopLevelWindow", mainWindowHandle.ToInt64().ToString("x"));
+            appOptions.AddAdditionalCapability("app", appPath);
             Driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appOptions);
         }
 
@@ -194,26 +195,28 @@ namespace MaterialDesignThemes.UITests
         }
 
 #region IDisposable Support
-        private bool disposedValue = false;
+        private bool IsDisposed { get; set; }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!IsDisposed)
             {
                 if (disposing)
                 {
+                    Driver.CloseApp();
+                    Driver.Dispose();
+
+                    Output.WriteLine($"Stopping process: {ProcessToStop?.Id.ToString() ?? "<none>"}");
                     ProcessToStop?.Kill();
                     ProcessToStop = null;
+                    Output.WriteLine("Process killed");
                 }
 
-                disposedValue = true;
+                IsDisposed = true;
             }
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-#endregion
+        public void Dispose() => Dispose(true);
+        #endregion
     }
 }

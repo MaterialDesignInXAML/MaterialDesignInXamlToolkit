@@ -31,6 +31,8 @@ namespace MaterialDesignThemes.UITests
             Directory = callerFilePath.Substring(callerFilePath.IndexOf(_ProjectName) + _ProjectName.Length + 1);
             Directory = Path.ChangeExtension(Directory, "").TrimEnd('.');
             Directory = Path.Combine(Path.GetFullPath("."), "Screenshots", Directory);
+            System.IO.Directory.CreateDirectory(Directory);
+
 
             BaseFileName = unitTestMethod;
             foreach (var invalidChar in Path.GetInvalidFileNameChars())
@@ -49,7 +51,6 @@ namespace MaterialDesignThemes.UITests
 
         private void SaveScreenshot(string suffix)
         {
-            System.IO.Directory.CreateDirectory(Directory);
             string fileName = $"{BaseFileName}{suffix}.jpg";
             string fullPath = Path.Combine(Directory, fileName);
             File.Delete(fullPath);
