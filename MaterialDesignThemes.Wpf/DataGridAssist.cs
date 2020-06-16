@@ -148,7 +148,6 @@ namespace MaterialDesignThemes.Wpf
 
         public static bool GetEnableEditBoxAssist(DataGrid element)
             => (bool)element.GetValue(EnableEditBoxAssistProperty);
-
         public static void SetEnableEditBoxAssist(DataGrid element, bool value)
             => element.SetValue(EnableEditBoxAssistProperty, value);
 
