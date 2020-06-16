@@ -10,7 +10,7 @@ namespace MaterialDesignThemes.UITests.DemoApp
         public DemoAppTests(ITestOutputHelper output)
             : base(output, App.DemoAppPath)
         {
-            WindowsElement? element = Driver.FindElementByName("Material Design In XAML Toolkit");
+            WindowsElement? element = Driver.GetElementByName("Material Design In XAML Toolkit");
             Assert.NotNull(element);
         }
 

@@ -12,6 +12,27 @@ namespace MaterialDesignThemes.UITests
     {
         private static IClock Clock { get; } = new SystemClock();
 
+        public static WindowsElement GetElementByName(
+            this WindowsDriver<WindowsElement> driver,
+            string name,
+            TimeSpan? timeout = null,
+            TimeSpan? pollingInterval = null)
+        {
+            if (driver is null)
+            {
+                throw new ArgumentNullException(nameof(driver));
+            }
+
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException($"'{nameof(name)}' cannot be null or empty", nameof(name));
+            }
+
+            DefaultWait wait = GetWait(driver, timeout, pollingInterval);
+            wait.IgnoreExceptionTypes(typeof(WebDriverException));
+            return wait.Until(driver => driver.FindElementByName(name)!);
+        }
+
         public static WindowsElement GetElementByAccessibilityId(
             this WindowsDriver<WindowsElement> driver, 
             string selector,
