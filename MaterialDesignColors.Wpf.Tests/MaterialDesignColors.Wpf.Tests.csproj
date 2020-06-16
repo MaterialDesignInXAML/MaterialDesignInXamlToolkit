@@ -1,12 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <RootNamespace>MaterialDesignColors.Wpf.Fixture</RootNamespace>
-    <AssemblyName>MaterialDesignColors.Wpf.Fixture</AssemblyName>
-    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <AssemblyTitle>MaterialDesignColors.Wpf.Fixture</AssemblyTitle>
-    <Product>MaterialDesignColors.Wpf.Fixture</Product>
+    <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
+    <AssemblyTitle>MaterialDesignColors.Wpf.Tests</AssemblyTitle>
+    <Product>MaterialDesignColors.Wpf.Tests</Product>
   </PropertyGroup>
   <Import Project="..\packages\xunit.core\build\xunit.core.props" Condition="Exists('..\packages\xunit.core\build\xunit.core.props')" Label="Paket" />
   <Import Project="..\packages\xunit.runner.visualstudio\build\$(__paket__xunit_runner_visualstudio_props).props" Condition="Exists('..\packages\xunit.runner.visualstudio\build\$(__paket__xunit_runner_visualstudio_props).props')" Label="Paket" />

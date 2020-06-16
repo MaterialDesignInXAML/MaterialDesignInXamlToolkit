@@ -58,13 +58,13 @@ csharp_preserve_single_line_statements = true
 #Style - expression bodied member options
 
 #prefer block bodies for accessors
-csharp_style_expression_bodied_accessors = false:suggestion
+csharp_style_expression_bodied_accessors = when_on_single_line:suggestion
 #prefer block bodies for constructors
-csharp_style_expression_bodied_constructors = false:suggestion
+csharp_style_expression_bodied_constructors = when_on_single_line:suggestion
 #prefer block bodies for methods
 csharp_style_expression_bodied_methods = when_on_single_line:suggestion
 #prefer block bodies for properties
-csharp_style_expression_bodied_properties = false:suggestion
+csharp_style_expression_bodied_properties = when_on_single_line:suggestion
 
 #Style - expression level options
 
@@ -76,7 +76,7 @@ dotnet_style_predefined_type_for_member_access = true:suggestion
 #Style - implicit and explicit types
 
 #prefer var is used to declare variables with built-in system types such as int
-csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_for_built_in_types = false:suggestion
 #prefer var when the type is already mentioned on the right-hand side of a declaration expression
 csharp_style_var_when_type_is_apparent = true:suggestion
 
