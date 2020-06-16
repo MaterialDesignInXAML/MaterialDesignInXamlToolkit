@@ -25,12 +25,13 @@ namespace MaterialDesignThemes.UITests
 #if DEBUG
             StartWinAppDriver();
 #endif
-            IntPtr mainWindowHandle = StartApp(appPath);
+            //IntPtr mainWindowHandle = StartApp(appPath);
 
             var appOptions = new AppiumOptions();
             appOptions.AddAdditionalCapability("deviceName", "WindowsPC");
-            appOptions.AddAdditionalCapability("appTopLevelWindow", mainWindowHandle.ToInt64().ToString("x"));
-
+            appOptions.AddAdditionalCapability("platformName", "windows");
+            //appOptions.AddAdditionalCapability("appTopLevelWindow", mainWindowHandle.ToInt64().ToString("x"));
+            appOptions.AddAdditionalCapability("app", appPath);
             Driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appOptions);
         }
 
@@ -202,6 +203,9 @@ namespace MaterialDesignThemes.UITests
             {
                 if (disposing)
                 {
+                    Driver.CloseApp();
+                    Driver.Dispose();
+
                     Output.WriteLine($"Stopping process: {ProcessToStop?.Id.ToString() ?? "<none>"}");
                     ProcessToStop?.Kill();
                     ProcessToStop = null;
