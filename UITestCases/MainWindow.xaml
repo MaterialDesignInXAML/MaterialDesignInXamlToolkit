@@ -15,7 +15,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{materialDesign:MaterialDesignFont}" 
-        Title="MainWindow"
+        Title="MainWindow" Topmost="True"
         d:DataContext="{d:DesignInstance Type={x:Type local:MainWindowViewModel}}">
     <Window.Resources>
         <local:TestCaseNameConverter x:Key="TestCaseNameConverter" />

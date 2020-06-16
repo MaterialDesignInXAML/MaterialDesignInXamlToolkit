@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using Xunit;
 using Xunit.Abstractions;
@@ -19,9 +17,7 @@ namespace MaterialDesignThemes.UITests.UITestCases.TestCases
             using var recorder = new TestRecorder(Driver, Output);
 
             var mainWindow = new MainWindow(Driver);
-            AppiumWebElement testCase = mainWindow.GetTestCase("DialogHost/ShowsDialog");
-            testCase.Click();
-            mainWindow.ExecuteButton.Click();
+            mainWindow.ExecuteTestCase("DialogHost/ShowsDialog");
 
             WindowsElement resultTextBlock = Driver.GetElementByAccessibilityId("ResultTextBlock");
             Driver.WaitFor(() => resultTextBlock.Text == "Clicks: 0");
