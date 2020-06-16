@@ -26,9 +26,12 @@ namespace MaterialDesignThemes.UITests.DemoApp
                 var rect = mainWindow.PagesListBox.Rect;
                 Driver.WaitFor(() => mainWindow.PagesListBox.Rect.Right <= 1);
                 Driver.WaitFor(() => mainWindow.HamburgerToggleButton.Displayed);
-                mainWindow.HamburgerToggleButton.Click();
-
-                Driver.WaitFor(() => listItem.Location.X >= 0);
+                
+                Driver.WaitFor(() =>
+                {
+                    mainWindow.HamburgerToggleButton.Click();
+                    return mainWindow.PagesListBox.Rect.X >= 0;
+                });
                 listItem.Click();
             }
 
