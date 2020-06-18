@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace MaterialDesignThemes.Wpf
@@ -223,8 +224,8 @@ namespace MaterialDesignThemes.Wpf
 
                     switch (dataGridCell?.Content)
                     {
-                        // Send a 'left click' routed command to the checkbox
-                        case CheckBox checkBox:
+                        // Send a 'left click' routed command to the toggleButton
+                        case ToggleButton toggleButton:
                             {
                                 var newMouseEvent = new MouseButtonEventArgs(mouseArgs.MouseDevice, 0, MouseButton.Left)
                                 {
@@ -232,7 +233,7 @@ namespace MaterialDesignThemes.Wpf
                                     Source = dataGrid
                                 };
 
-                                checkBox.RaiseEvent(newMouseEvent);
+                                toggleButton.RaiseEvent(newMouseEvent);
                                 break;
                             }
 
