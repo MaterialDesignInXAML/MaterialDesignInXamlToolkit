@@ -19,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
         private readonly object _snackbarMessagesLock = new object();
         private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _pausedEvent = new ManualResetEvent(false);
-        private readonly SemaphoreSlim _showMessageSemaphore = new SemaphoreSlim(1,1);
+        private readonly SemaphoreSlim _showMessageSemaphore = new SemaphoreSlim(1, 1);
         private int _pauseCounter;
         private bool _isDisposed;
 
@@ -91,55 +91,27 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
-        private void StartDuration(TimeSpan minimumDuration, EventWaitHandle durationPassedWaitHandle)
-        {
-            if (durationPassedWaitHandle == null) throw new ArgumentNullException(nameof(durationPassedWaitHandle));
-
-            var completionTime = DateTime.Now.Add(minimumDuration);
-
-            //this keeps the event waiting simpler, rather that actually watching play -> pause -> play -> pause etc
-            var granularity = TimeSpan.FromMilliseconds(200);
-
-            Task.Factory.StartNew(() =>
-            {
-                while (true)
-                {
-                    if (DateTime.Now >= completionTime) // time is over
-                    {
-                        durationPassedWaitHandle.Set();
-                        break;
-                    }
-                    
-                    if (_disposedEvent.WaitOne(granularity)) // queue is disposed
-                        break;
-                    
-                    if (durationPassedWaitHandle.WaitOne(TimeSpan.Zero)) // manual exit (like message action click)
-                        break;
-                    
-                    if (_pausedEvent.WaitOne(TimeSpan.Zero)) // on pause completion time is extended
-                        completionTime = completionTime.Add(granularity);
-                }
-            });
-        }
-
-
         public SnackbarMessageQueue() 
             : this(TimeSpan.FromSeconds(3))
         {
         }
 
         public SnackbarMessageQueue(TimeSpan messageDuration)
+            : this(messageDuration, Dispatcher.FromThread(Thread.CurrentThread)
+                          ?? throw new InvalidOperationException("SnackbarMessageQueue must be created in a dispatcher thread"))
+        { }
+
+        public SnackbarMessageQueue(TimeSpan messageDuration, Dispatcher dispatcher)
         {
             _messageDuration = messageDuration;
-            _dispatcher = Dispatcher.FromThread(Thread.CurrentThread)
-                          ?? throw new InvalidOperationException("SnackbarMessageQueue must be created in a dispatcher thread");
+            _dispatcher = dispatcher ?? throw new ArgumentNullException(nameof(dispatcher));
         }
 
         //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragablz, 
         //but this is an internal method so no one will know my dirty Action disposer...
         internal Action Pair(Snackbar snackbar)
         {
-            if (snackbar == null) throw new ArgumentNullException(nameof(snackbar));
+            if (snackbar is null) throw new ArgumentNullException(nameof(snackbar));
 
            _pairedSnackbars.Add(snackbar);
 
@@ -251,9 +223,42 @@ namespace MaterialDesignThemes.Wpf
             _dispatcher.InvokeAsync(ShowNextAsync);
         }
 
+        private void StartDuration(TimeSpan minimumDuration, EventWaitHandle durationPassedWaitHandle)
+        {
+            if (durationPassedWaitHandle is null) throw new ArgumentNullException(nameof(durationPassedWaitHandle));
+
+            var completionTime = DateTime.Now.Add(minimumDuration);
+
+            //this keeps the event waiting simpler, rather that actually watching play -> pause -> play -> pause etc
+            var granularity = TimeSpan.FromMilliseconds(200);
+
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    if (DateTime.Now >= completionTime) // time is over
+                    {
+                        durationPassedWaitHandle.Set();
+                        break;
+                    }
+
+                    if (_disposedEvent.WaitOne(granularity)) // queue is disposed
+                        break;
+
+                    if (durationPassedWaitHandle.WaitOne(TimeSpan.Zero)) // manual exit (like message action click)
+                        break;
+
+                    if (_pausedEvent.WaitOne(TimeSpan.Zero)) // on pause completion time is extended
+                        completionTime = completionTime.Add(granularity);
+                }
+            });
+        }
+
+
         private async Task ShowNextAsync()
         {
-            await _showMessageSemaphore.WaitAsync();
+            await _showMessageSemaphore.WaitAsync()
+                .ConfigureAwait(true);
             try
             {
                 Snackbar snackbar;
@@ -267,7 +272,7 @@ namespace MaterialDesignThemes.Wpf
                         break;
 
                     Trace.TraceWarning("A snackbar message as waiting, but no snackbar instances are assigned to the message queue.");
-                    await Task.Delay(TimeSpan.FromSeconds(1));
+                    await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
                 }
 
                 LinkedListNode<SnackbarMessageQueueItem> messageNode;
@@ -275,10 +280,11 @@ namespace MaterialDesignThemes.Wpf
                 {
                     messageNode = _snackbarMessages.First;
                 }
-                if (messageNode == null)
+                if (messageNode is null)
                     return;
                 
-                await ShowAsync(snackbar, messageNode.Value);
+                await ShowAsync(snackbar, messageNode.Value)
+                    .ConfigureAwait(false);
 
                 lock (_snackbarMessagesLock)
                 {
@@ -289,14 +295,14 @@ namespace MaterialDesignThemes.Wpf
             {
                 _showMessageSemaphore.Release();
             }
-        }
 
-        private Snackbar FindSnackbar() => _pairedSnackbars.FirstOrDefault(sb =>
-        {
-            if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
-            var window = Window.GetWindow(sb);
-            return window?.WindowState != WindowState.Minimized;
-        });
+            Snackbar FindSnackbar() => _pairedSnackbars.FirstOrDefault(sb =>
+            {
+                if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
+                var window = Window.GetWindow(sb);
+                return window?.WindowState != WindowState.Minimized;
+            });
+        }
 
         private async Task ShowAsync(Snackbar snackbar, SnackbarMessageQueueItem messageQueueItem)
         {
