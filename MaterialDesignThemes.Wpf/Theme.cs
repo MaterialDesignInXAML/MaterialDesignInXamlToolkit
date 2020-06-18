@@ -37,7 +37,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static Theme Create(IBaseTheme baseTheme, Color primary, Color accent)
         {
-            if (baseTheme == null) throw new ArgumentNullException(nameof(baseTheme));
+            if (baseTheme is null) throw new ArgumentNullException(nameof(baseTheme));
             var theme = new Theme();
 
             theme.SetBaseTheme(baseTheme);
