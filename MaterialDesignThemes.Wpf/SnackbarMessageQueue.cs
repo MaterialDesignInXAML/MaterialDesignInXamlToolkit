@@ -12,51 +12,38 @@ namespace MaterialDesignThemes.Wpf
 {
     public class SnackbarMessageQueue : ISnackbarMessageQueue, IDisposable
     {
+        private readonly Dispatcher _dispatcher;
         private readonly TimeSpan _messageDuration;
         private readonly HashSet<Snackbar> _pairedSnackbars = new HashSet<Snackbar>();
-        private readonly object _pairedSnackbarsLock = new object();
         private readonly LinkedList<SnackbarMessageQueueItem> _snackbarMessages = new LinkedList<SnackbarMessageQueueItem>();
         private readonly object _snackbarMessagesLock = new object();
         private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _pausedEvent = new ManualResetEvent(false);
-        private readonly ManualResetEvent _messageWaitingEvent = new ManualResetEvent(false);
+        private readonly SemaphoreSlim _showMessageSemaphore = new SemaphoreSlim(1, 1);
         private int _pauseCounter;
         private bool _isDisposed;
 
-        #region private class MouseNotOverManagedWaitHandle : IDisposable
+        #region MouseNotOverManagedWaitHandle
 
         private class MouseNotOverManagedWaitHandle : IDisposable
         {
+            private readonly UIElement _uiElement;
             private readonly ManualResetEvent _waitHandle;
             private readonly ManualResetEvent _disposedWaitHandle = new ManualResetEvent(false);
-            private Action _cleanUp;
-            private bool _isWaitHandleDisposed;
+            private bool _isDisposed;
             private readonly object _waitHandleGate = new object();
 
             public MouseNotOverManagedWaitHandle(UIElement uiElement)
             {
-                if (uiElement == null) throw new ArgumentNullException(nameof(uiElement));
-
+                _uiElement = uiElement ?? throw new ArgumentNullException(nameof(uiElement));
                 _waitHandle = new ManualResetEvent(!uiElement.IsMouseOver);
                 uiElement.MouseEnter += UiElementOnMouseEnter;
                 uiElement.MouseLeave += UiElementOnMouseLeave;
-
-                _cleanUp = () =>
-                {
-                    uiElement.MouseEnter -= UiElementOnMouseEnter;
-                    uiElement.MouseLeave -= UiElementOnMouseLeave;
-                    lock (_waitHandleGate)
-                    {
-                        _waitHandle.Dispose();
-                        _isWaitHandleDisposed = true;
-                    }
-                    _disposedWaitHandle.Set();
-                    _disposedWaitHandle.Dispose();
-                    _cleanUp = () => { };
-                };
             }
 
             public EventWaitHandle WaitHandle => _waitHandle;
+
+            private void UiElementOnMouseEnter(object sender, MouseEventArgs mouseEventArgs) => _waitHandle.Reset();
 
             private async void UiElementOnMouseLeave(object sender, MouseEventArgs mouseEventArgs)
             {
@@ -68,10 +55,10 @@ namespace MaterialDesignThemes.Wpf
                     }
                     catch (ObjectDisposedException)
                     {
-                        /* we are we suppresing this? 
+                        /* we are we suppressing this? 
                          * as we have switched out wait onto another thread, so we don't block the UI thread, the
                          * _cleanUp/Dispose() action might also happen, and the _disposedWaitHandle might get disposed
-                         * just before we WaitOne. We wond add a lock in the _cleanUp because it might block for 2 seconds.
+                         * just before we WaitOne. We won't add a lock in the _cleanUp because it might block for 2 seconds.
                          * We could use a Monitor.TryEnter in _cleanUp and run clean up after but oh my gosh it's just getting
                          * too complicated for this use case, so for the rare times this happens, we can swallow safely
                          */
@@ -80,65 +67,25 @@ namespace MaterialDesignThemes.Wpf
                 if (((UIElement)sender).IsMouseOver) return;
                 lock (_waitHandleGate)
                 {
-                    if (!_isWaitHandleDisposed)
+                    if (!_isDisposed)
                         _waitHandle.Set();
                 }
             }
 
-            private void UiElementOnMouseEnter(object sender, MouseEventArgs mouseEventArgs) 
-                => _ = _waitHandle.Reset();
-
-            public void Dispose() => _cleanUp();
-        }
-
-        #endregion
-
-        #region private class DurationMonitor
-
-        private class DurationMonitor
-        {
-            private DateTime _completionTime;
-
-            private DurationMonitor(
-                TimeSpan minimumDuration,
-                WaitHandle pausedWaitHandle,
-                EventWaitHandle signalWhenDurationPassedWaitHandle,
-                WaitHandle ceaseWaitHandle)
+            public void Dispose()
             {
-                if (pausedWaitHandle == null) throw new ArgumentNullException(nameof(pausedWaitHandle));
-                if (signalWhenDurationPassedWaitHandle == null)
-                    throw new ArgumentNullException(nameof(signalWhenDurationPassedWaitHandle));
-                if (ceaseWaitHandle == null) throw new ArgumentNullException(nameof(ceaseWaitHandle));
+                if (_isDisposed)
+                    return;
 
-                _completionTime = DateTime.Now.Add(minimumDuration);
-
-                //this keeps the event waiting simpler, rather that actually watching play -> pause -> play -> pause etc
-                var granularity = TimeSpan.FromMilliseconds(200);
-
-                Task.Factory.StartNew(() =>
+                _uiElement.MouseEnter -= UiElementOnMouseEnter;
+                _uiElement.MouseLeave -= UiElementOnMouseLeave;
+                lock (_waitHandleGate)
                 {
-                    //keep upping the completion time in case it's paused...
-                    while (DateTime.Now < _completionTime && !ceaseWaitHandle.WaitOne(granularity)
-                        && !signalWhenDurationPassedWaitHandle.WaitOne(TimeSpan.Zero))
-                    {
-                        if (pausedWaitHandle.WaitOne(TimeSpan.Zero))
-                        {
-                            _completionTime = _completionTime.Add(granularity);
-                        }
-                    }
-
-                    if (DateTime.Now >= _completionTime)
-                        signalWhenDurationPassedWaitHandle.Set();
-                });
-            }
-
-            public static DurationMonitor Start(TimeSpan minimumDuration,
-                WaitHandle pausedWaitHandle,
-                EventWaitHandle signalWhenDurationPassedWaitHandle,
-                WaitHandle ceaseWaitHandle)
-            {
-                return new DurationMonitor(minimumDuration, pausedWaitHandle, signalWhenDurationPassedWaitHandle,
-                    ceaseWaitHandle);
+                    _waitHandle.Dispose();
+                    _isDisposed = true;
+                }
+                _disposedWaitHandle.Set();
+                _disposedWaitHandle.Dispose();
             }
         }
 
@@ -150,29 +97,25 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public SnackbarMessageQueue(TimeSpan messageDuration)
+            : this(messageDuration, Dispatcher.FromThread(Thread.CurrentThread)
+                          ?? throw new InvalidOperationException("SnackbarMessageQueue must be created in a dispatcher thread"))
+        { }
+
+        public SnackbarMessageQueue(TimeSpan messageDuration, Dispatcher dispatcher)
         {
             _messageDuration = messageDuration;
-            Task.Factory.StartNew(PumpAsync, TaskCreationOptions.LongRunning);
+            _dispatcher = dispatcher ?? throw new ArgumentNullException(nameof(dispatcher));
         }
 
-        //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragabalz, 
-        //but this is an internal method so no one will know my direty Action disposer...
+        //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragablz, 
+        //but this is an internal method so no one will know my dirty Action disposer...
         internal Action Pair(Snackbar snackbar)
         {
-            if (snackbar == null) throw new ArgumentNullException(nameof(snackbar));
+            if (snackbar is null) throw new ArgumentNullException(nameof(snackbar));
 
-            lock (_pairedSnackbarsLock)
-            {
-                _pairedSnackbars.Add(snackbar);
-            }
+           _pairedSnackbars.Add(snackbar);
 
-            return () => 
-            { 
-                lock (_pairedSnackbarsLock) 
-                { 
-                    _pairedSnackbars.Remove(snackbar);
-                }
-            };
+            return () => _pairedSnackbars.Remove(snackbar);
         }
 
         internal Action Pause()
@@ -251,14 +194,13 @@ namespace MaterialDesignThemes.Wpf
             var snackbarMessageQueueItem = new SnackbarMessageQueueItem(content, durationOverride ?? _messageDuration,
                 actionContent, actionHandler, actionArgument, promote, neverConsiderToBeDuplicate);
             InsertItem(snackbarMessageQueueItem);
-
-            _messageWaitingEvent.Set();
         }
 
         private void InsertItem(SnackbarMessageQueueItem item)
         {
             lock (_snackbarMessagesLock)
             {
+                var added = false;
                 var node = _snackbarMessages.First;
                 while (node != null)
                 {
@@ -268,77 +210,97 @@ namespace MaterialDesignThemes.Wpf
                     if (item.IsPromoted && !node.Value.IsPromoted)
                     {
                         _snackbarMessages.AddBefore(node, item);
-                        return;
+                        added = true;
+                        break;
                     }
                     node = node.Next;
                 }
-                _snackbarMessages.AddLast(item);
+                if (!added)
+                    _snackbarMessages.AddLast(item);
+                
             }
+
+            _dispatcher.InvokeAsync(ShowNextAsync);
         }
 
-        private async void PumpAsync()
+        private void StartDuration(TimeSpan minimumDuration, EventWaitHandle durationPassedWaitHandle)
         {
-            while (!_isDisposed)
+            if (durationPassedWaitHandle is null) throw new ArgumentNullException(nameof(durationPassedWaitHandle));
+
+            var completionTime = DateTime.Now.Add(minimumDuration);
+
+            //this keeps the event waiting simpler, rather that actually watching play -> pause -> play -> pause etc
+            var granularity = TimeSpan.FromMilliseconds(200);
+
+            Task.Run(() =>
             {
-                var eventId = WaitHandle.WaitAny(new WaitHandle[] { _disposedEvent, _messageWaitingEvent });
-                if (eventId == 0) continue;
-                Snackbar exemplar;
-                lock (_pairedSnackbarsLock)
+                while (true)
                 {
-                    exemplar = _pairedSnackbars.FirstOrDefault();
-                }
-                if (exemplar is null)
-                {
-                    Trace.TraceWarning(
-                        "A snackbar message as waiting, but no Snackbar instances are assigned to the message queue.");
-                    _disposedEvent.WaitOne(TimeSpan.FromSeconds(1));
-                    continue;
-                }
-
-                LinkedListNode<SnackbarMessageQueueItem> messageNode = null;
-
-                //find a target
-                var snackbar = await FindSnackbar(exemplar.Dispatcher);
-
-                //show message
-                if (snackbar != null)
-                {
-                    lock (_snackbarMessagesLock)
+                    if (DateTime.Now >= completionTime) // time is over
                     {
-                        messageNode = _snackbarMessages.First;
+                        durationPassedWaitHandle.Set();
+                        break;
                     }
-                    if (messageNode != null)
-                        await ShowAsync(snackbar, messageNode.Value);
+
+                    if (_disposedEvent.WaitOne(granularity)) // queue is disposed
+                        break;
+
+                    if (durationPassedWaitHandle.WaitOne(TimeSpan.Zero)) // manual exit (like message action click)
+                        break;
+
+                    if (_pausedEvent.WaitOne(TimeSpan.Zero)) // on pause completion time is extended
+                        completionTime = completionTime.Add(granularity);
                 }
-                else
+            });
+        }
+
+
+        private async Task ShowNextAsync()
+        {
+            await _showMessageSemaphore.WaitAsync()
+                .ConfigureAwait(true);
+            try
+            {
+                Snackbar snackbar;
+                while (true)
                 {
-                    //no snackbar could be found, take a break
-                    _disposedEvent.WaitOne(TimeSpan.FromSeconds(1));
+                    if (_isDisposed || _dispatcher.HasShutdownStarted)
+                        return;
+
+                    snackbar = FindSnackbar();
+                    if (snackbar != null)
+                        break;
+
+                    Trace.TraceWarning("A snackbar message as waiting, but no snackbar instances are assigned to the message queue.");
+                    await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
                 }
+
+                LinkedListNode<SnackbarMessageQueueItem> messageNode;
+                lock (_snackbarMessagesLock)
+                {
+                    messageNode = _snackbarMessages.First;
+                }
+                if (messageNode is null)
+                    return;
+                
+                await ShowAsync(snackbar, messageNode.Value)
+                    .ConfigureAwait(false);
 
                 lock (_snackbarMessagesLock)
                 {
-                    if (messageNode != null)
-                        _snackbarMessages.Remove(messageNode);
-                    if (_snackbarMessages.Count > 0)
-                        _messageWaitingEvent.Set();
-                    else
-                        _messageWaitingEvent.Reset();
+                    _snackbarMessages.Remove(messageNode);
                 }
             }
-        }
-
-        private DispatcherOperation<Snackbar> FindSnackbar(Dispatcher dispatcher)
-        {
-            return dispatcher.InvokeAsync(() =>
+            finally
             {
-                // _pairedSnackbars is modified only on the dispatcher thread. So, no lock is needed here.
-                return _pairedSnackbars.FirstOrDefault(sb =>
-                {
-                    if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
-                    var window = Window.GetWindow(sb);
-                    return window?.WindowState != WindowState.Minimized;
-                });
+                _showMessageSemaphore.Release();
+            }
+
+            Snackbar FindSnackbar() => _pairedSnackbars.FirstOrDefault(sb =>
+            {
+                if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
+                var window = Window.GetWindow(sb);
+                return window?.WindowState != WindowState.Minimized;
             });
         }
 
@@ -352,8 +314,7 @@ namespace MaterialDesignThemes.Wpf
                         await snackbar.Dispatcher.InvokeAsync(
                                 () => CreateAndShowMessage(snackbar, messageQueueItem, actionClickWaitHandle));
                     var durationPassedWaitHandle = new ManualResetEvent(false);
-                    DurationMonitor.Start(messageQueueItem.Duration.Add(snackbar.ActivateStoryboardDuration),
-                        _pausedEvent, durationPassedWaitHandle, _disposedEvent);
+                    StartDuration(messageQueueItem.Duration.Add(snackbar.ActivateStoryboardDuration), durationPassedWaitHandle);
 
                     //wait until time span completed (including pauses and mouse overs), or the action is clicked
                     await WaitForCompletionAsync(mouseNotOverManagedWaitHandle, durationPassedWaitHandle, actionClickWaitHandle);
@@ -392,7 +353,11 @@ namespace MaterialDesignThemes.Wpf
             SnackbarMessageQueueItem messageQueueItem, EventWaitHandle actionClickWaitHandle)
         {
             var clickCount = 0;
-            var snackbarMessage = Create(messageQueueItem);
+            var snackbarMessage = new SnackbarMessage
+            {
+                Content = messageQueueItem.Content,
+                ActionContent = messageQueueItem.ActionContent
+            };
             snackbarMessage.ActionClick += (sender, args) =>
             {
                 if (++clickCount == 1)
@@ -411,7 +376,7 @@ namespace MaterialDesignThemes.Wpf
         {
             var durationTask = Task.Run(() =>
             {
-                WaitHandle.WaitAll(new[]
+                WaitHandle.WaitAll(new WaitHandle[]
                 {
                     mouseNotOverManagedWaitHandle.WaitHandle,
                     durationPassedWaitHandle
@@ -442,15 +407,6 @@ namespace MaterialDesignThemes.Wpf
 
                 throw;
             }
-        }
-
-        private static SnackbarMessage Create(SnackbarMessageQueueItem messageQueueItem)
-        {
-            return new SnackbarMessage
-            {
-                Content = messageQueueItem.Content,
-                ActionContent = messageQueueItem.ActionContent
-            };
         }
 
         public void Dispose()

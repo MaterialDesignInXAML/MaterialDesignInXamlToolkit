@@ -45,7 +45,7 @@ namespace MaterialDesignThemes.Wpf
         private static void MessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var snackbar = (Snackbar) dependencyObject;
-            (snackbar._messageQueueRegistrationCleanUp ?? (() => { }))();
+            snackbar._messageQueueRegistrationCleanUp?.Invoke();
             var messageQueue = dependencyPropertyChangedEventArgs.NewValue as SnackbarMessageQueue;
             snackbar._messageQueueRegistrationCleanUp = messageQueue?.Pair(snackbar);
         }
