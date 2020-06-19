@@ -53,7 +53,12 @@ namespace MaterialDesignThemes.Wpf
         public SnackbarMessageQueue MessageQueue
         {
             get => (SnackbarMessageQueue) GetValue(MessageQueueProperty);
-            set => SetValue(MessageQueueProperty, value);
+            set
+            {
+                if (!(value is null) && value.Dispatcher != Dispatcher)
+                    throw new InvalidOperationException("Objects must be created by the same thread.");
+                SetValue(MessageQueueProperty, value);
+            }
         }
 
         public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
