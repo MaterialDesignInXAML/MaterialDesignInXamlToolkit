@@ -19,6 +19,7 @@ namespace MahMaterialDragablzMashUp
 
             PaletteHelper paletteHelper = new PaletteHelper();
             ITheme theme = paletteHelper.GetTheme();
+
             IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark;
         }
 

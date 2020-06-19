@@ -108,7 +108,7 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="8">
             <TextBlock VerticalAlignment="Center">Light</TextBlock>
-            <ToggleButton Margin="8 0 16 0" Command="{Binding ToggleBaseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" />
+            <ToggleButton Margin="8 0 16 0" IsChecked="{Binding IsDarkTheme}"/>
             <TextBlock VerticalAlignment="Center">Dark</TextBlock>
         </StackPanel>
         <DockPanel>
