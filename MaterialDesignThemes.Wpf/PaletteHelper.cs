@@ -19,5 +19,12 @@ namespace MaterialDesignThemes.Wpf
                 throw new InvalidOperationException("Cannot set theme outside of a WPF application. Use ResourceDictionaryExtensions.SetTheme on the appropriate resource dictionary instead.");
             Application.Current.Resources.SetTheme(theme);
         }
+
+        public virtual IThemeManager GetThemeManager()
+        {
+            if (Application.Current == null)
+                throw new InvalidOperationException("Cannot get ThemeManager. Use ResourceDictionaryExtensions.GetThemeManager on the appropriate resource dictionary instead.");
+            return Application.Current.Resources.GetThemeManager();
+        }
     }
 }

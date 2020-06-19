@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignColors.ColorManipulation;
-using Microsoft.Win32;
 
 namespace MaterialDesignThemes.Wpf
 {
     public static class ThemeExtensions
     {
-        internal static ColorPair ToPairedColor(this Hue hue)
-        {
-            return new ColorPair(hue.Color, hue.Foreground);
-        }
+        internal static ColorPair ToPairedColor(this Hue hue) 
+            => new ColorPair(hue.Color, hue.Foreground);
 
         internal static void SetPalette(this ITheme theme, Palette palette)
         {
@@ -44,9 +40,17 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        public static BaseTheme GetBaseTheme(this ITheme theme)
+        {
+            if (theme is null) throw new ArgumentNullException(nameof(theme));
+
+            var foreground = theme.Background.ContrastingForegroundColor();
+            return foreground == Colors.Black ? BaseTheme.Light : BaseTheme.Dark;
+        }
+
         public static void SetBaseTheme(this ITheme theme, IBaseTheme baseTheme)
         {
-            if (theme == null) throw new ArgumentNullException(nameof(theme));
+            if (theme is null) throw new ArgumentNullException(nameof(theme));
 
             theme.ValidationError = baseTheme.ValidationErrorColor;
             theme.Background = baseTheme.MaterialDesignBackground;
@@ -80,7 +84,8 @@ namespace MaterialDesignThemes.Wpf
 
         public static void SetPrimaryColor(this ITheme theme, Color primaryColor)
         {
-            if (theme == null) throw new ArgumentNullException(nameof(theme));
+            if (theme is null) throw new ArgumentNullException(nameof(theme));
+
             theme.PrimaryLight = primaryColor.Lighten();
             theme.PrimaryMid = primaryColor;
             theme.PrimaryDark = primaryColor.Darken();
