@@ -11,13 +11,19 @@
              d:DesignHeight="300" d:DesignWidth="600"
              d:DataContext="{d:DesignInstance domain:FieldsViewModel, IsDesignTimeCreatable=False}">
     <UserControl.Resources>
-        <Style x:Key="SectionTitle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock }">
-            <Setter Property="Margin" Value="0 32 0 0" />
-        </Style>
-        <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
-            <Setter Property="Margin" Value="16 0" />
-            <Setter Property="VerticalAlignment" Value="Bottom" />
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="SectionTitle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock }">
+                <Setter Property="Margin" Value="0 32 0 0" />
+            </Style>
+            <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
+                <Setter Property="Margin" Value="16 0" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
     <StackPanel Margin="16 0" VerticalAlignment="Top" HorizontalAlignment="Left">
         <TextBlock Style="{StaticResource SectionTitle}" Margin="0">ComboBoxes</TextBlock>
@@ -49,7 +55,7 @@
                 <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                           materialDesign:TextFieldAssist.HasClearButton="True"
                           materialDesign:TextFieldAssist.SuffixText="sw"
-                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryAccentBrush}"
+                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
                           materialDesign:ColorZoneAssist.Mode="Inverted"
                           materialDesign:HintAssist.Hint="OS"
                           materialDesign:HintAssist.HelperText="Select one OS"
@@ -195,5 +201,21 @@
                 </ComboBox>
             </StackPanel>
         </smtx:XamlDisplay>
+
+        <TextBlock Style="{StaticResource SectionTitle}">Outline ComboBox</TextBlock>
+        <StackPanel>
+            <CheckBox x:Name="MaterialDesignOutlineComboBoxEnabledComboBox"
+                      IsChecked="True" Margin="16,2,0,8" Content="Enabled" />
+            <smtx:XamlDisplay Key="outline_combobox" HorizontalAlignment="Left">
+                <ComboBox Style="{StaticResource MaterialDesignFilledComboBox}"
+                          IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlineComboBoxEnabledComboBox}"
+                          materialDesign:HintAssist.Hint="Some item"
+                          Width="256">
+                    <ComboBoxItem Content="Item 1" />
+                    <ComboBoxItem Content="Item 2" />
+                    <ComboBoxItem Content="Item 3" />
+                </ComboBox>
+            </smtx:XamlDisplay>
+        </StackPanel>
     </StackPanel>
 </UserControl>
