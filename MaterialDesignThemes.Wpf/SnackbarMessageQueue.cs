@@ -23,6 +23,11 @@ namespace MaterialDesignThemes.Wpf
         private int _pauseCounter;
         private bool _isDisposed;
 
+        /// <summary>
+        /// Gets the <see cref="System.Windows.Threading.Dispatcher"/> this <see cref="SnackbarMessageQueue"/> is associated with.
+        /// </summary>
+        internal Dispatcher Dispatcher => _dispatcher;
+
         #region MouseNotOverManagedWaitHandle
 
         private class MouseNotOverManagedWaitHandle : IDisposable
