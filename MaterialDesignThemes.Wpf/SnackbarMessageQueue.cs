@@ -334,7 +334,7 @@ namespace MaterialDesignThemes.Wpf
 
                     mouseNotOverManagedWaitHandle.Dispose();
                     durationPassedWaitHandle.Dispose();
-
+                    actionClickWaitHandle.Dispose();
                 })
                 .ContinueWith(t =>
                 {
