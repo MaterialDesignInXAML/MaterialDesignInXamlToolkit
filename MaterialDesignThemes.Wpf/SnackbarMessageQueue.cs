@@ -277,7 +277,7 @@ namespace MaterialDesignThemes.Wpf
                         break;
 
                     Trace.TraceWarning("A snackbar message as waiting, but no snackbar instances are assigned to the message queue.");
-                    await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
+                    await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(true);
                 }
 
                 LinkedListNode<SnackbarMessageQueueItem> messageNode;
