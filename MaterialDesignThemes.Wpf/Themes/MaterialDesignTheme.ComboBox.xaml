@@ -288,7 +288,8 @@
                                                    Converter={StaticResource BrushRoundConverter}}"
                         Focusable="False"
                         Padding="{TemplateBinding Padding}"
-                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                        RecognizesAccessKey="False" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="False">
