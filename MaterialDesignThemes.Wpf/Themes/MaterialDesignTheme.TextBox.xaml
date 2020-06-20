@@ -91,11 +91,19 @@
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           MinWidth="1">
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            x:Name="PrefixTextBlock"
+                                            Grid.Column="0"
+                                            FontSize="{TemplateBinding FontSize}"
+                                            Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                            Text="{Binding Path=(wpf:TextFieldAssist.PrefixText), RelativeSource={RelativeSource TemplatedParent}}" />
                                         <ScrollViewer
                                             x:Name="PART_ContentHost"
+                                            Grid.Column="1"
                                             Focusable="false"
                                             HorizontalScrollBarVisibility="Hidden"
                                             VerticalScrollBarVisibility="Hidden"
@@ -103,7 +111,7 @@
                                             UseLayoutRounding="{TemplateBinding UseLayoutRounding}" />
                                         <wpf:SmartHint
                                             x:Name="Hint"
-                                            Grid.Column="0"
+                                            Grid.Column="1"
                                             Height="{Binding ActualHeight, ElementName=PART_ContentHost}"
                                             HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                             FontSize="{TemplateBinding FontSize}"
@@ -124,12 +132,10 @@
                                             </wpf:SmartHint.Hint>
                                         </wpf:SmartHint>
                                         <StackPanel
-                                            Height="{Binding ActualHeight, ElementName=PART_ContentHost}"
                                             Orientation="Horizontal"
-                                            Grid.Column="1"
-                                            VerticalAlignment="Top">
+                                            Grid.Column="2">
                                             <TextBlock
-                                                VerticalAlignment="Bottom"
+                                                x:Name="SuffixTextBlock"
                                                 FontSize="{TemplateBinding FontSize}"
                                                 Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                                                 Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -192,6 +198,8 @@
                             <Setter TargetName="border" Property="Cursor" Value="IBeam" />
                             <Setter TargetName="Hint" Property="Margin" Value="0,0,0,16" />
                             <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,8,0,8" />
+                            <Setter TargetName="PrefixTextBlock" Property="Margin" Value="0 0 0 0" />
+                            <Setter TargetName="SuffixTextBlock" Property="Margin" Value="0 0 0 0" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -200,6 +208,15 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,0,0,8" />
                             <Setter TargetName="Hint" Property="Margin" Value="0,0,0,0" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
+                                <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                                <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PrefixTextBlock" Property="Margin" Value="0 8 0 0" />
+                            <Setter TargetName="SuffixTextBlock" Property="Margin" Value="0 8 0 0" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

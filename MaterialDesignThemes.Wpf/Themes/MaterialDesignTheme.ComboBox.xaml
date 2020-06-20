@@ -421,10 +421,17 @@
                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                         UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                       <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="Auto"/>
                           <ColumnDefinition Width="*"/>
                           <ColumnDefinition Width="Auto"/>
                       </Grid.ColumnDefinitions>
-                      <Grid x:Name="InputRoot"
+                      <TextBlock
+                          Grid.Column="0"
+                          FontSize="{TemplateBinding FontSize}"
+                          Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                          Text="{Binding Path=(wpf:TextFieldAssist.PrefixText), RelativeSource={RelativeSource TemplatedParent}}"
+                          />
+                      <Grid x:Name="InputRoot" Grid.Column="1" 
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                           <ContentPresenter x:Name="contentPresenter"
                                             Content="{TemplateBinding SelectionBoxItem}"
@@ -451,7 +458,7 @@
                                          HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                                          Hint="{TemplateBinding wpf:HintAssist.Hint}" />
                       </Grid>
-                      <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top">
+                      <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Top">
                           <TextBlock
                               FontSize="{TemplateBinding FontSize}"
                               Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
@@ -721,10 +728,19 @@
                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                       UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="PrefixTextBlock"
+                            Grid.Column="0"
+                            FontSize="{TemplateBinding FontSize}"
+                            Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                            Text="{Binding Path=(wpf:TextFieldAssist.PrefixText), RelativeSource={RelativeSource TemplatedParent}}"
+                            VerticalAlignment="Center"
+                            />
                     <Grid x:Name="InputRoot" 
+                          Grid.Column="1"
                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                         <ContentPresenter x:Name="contentPresenter"
@@ -742,6 +758,7 @@
                                  Visibility="Collapsed" />
                     </Grid>
                     <wpf:SmartHint x:Name="Hint"
+                                   Grid.Column="1"
                                    HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                    FontSize="{TemplateBinding FontSize}"
                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
@@ -753,8 +770,9 @@
                                    Hint="{TemplateBinding wpf:HintAssist.Hint}"
                                    VerticalAlignment="Stretch"
                                    VerticalContentAlignment="Center"/>
-                    <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Center">
                         <TextBlock
+                            x:Name="SuffixTextBlock"
                             FontSize="{TemplateBinding FontSize}"
                             Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                             Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}"
@@ -832,6 +850,14 @@
             <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
                 <Setter TargetName="InputRoot" Property="Margin" Value="0 16 0 0" />
             </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
+                    <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PrefixTextBlock" Property="Margin" Value="0 16 0 0" />
+                <Setter TargetName="SuffixTextBlock" Property="Margin" Value="0 16 0 0" />
+            </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />

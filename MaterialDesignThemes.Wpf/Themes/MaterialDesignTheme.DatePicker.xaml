@@ -375,6 +375,7 @@
                                            wpf:TextFieldAssist.RippleOnFocusEnabled="{Binding Path=(wpf:TextFieldAssist.RippleOnFocusEnabled), RelativeSource={RelativeSource TemplatedParent}}"
                                            wpf:TextFieldAssist.UnderlineBrush="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}"
                                            wpf:TextFieldAssist.HasClearButton="{Binding Path=(wpf:TextFieldAssist.HasClearButton), RelativeSource={RelativeSource TemplatedParent}}"
+                                           wpf:TextFieldAssist.PrefixText="{Binding Path=(wpf:TextFieldAssist.PrefixText), RelativeSource={RelativeSource TemplatedParent}}"
                                            wpf:TextFieldAssist.SuffixText="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}"
                                            />
                         <Button x:Name="PART_Button"
