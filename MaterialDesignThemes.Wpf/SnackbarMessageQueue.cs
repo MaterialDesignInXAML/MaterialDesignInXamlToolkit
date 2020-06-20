@@ -311,47 +311,28 @@ namespace MaterialDesignThemes.Wpf
 
         private async Task ShowAsync(Snackbar snackbar, SnackbarMessageQueueItem messageQueueItem)
         {
-            await Task.Run(async () =>
-                {
-                    //create and show the message, setting up all the handles we need to wait on
-                    var actionClickWaitHandle = new ManualResetEvent(false);
-                    var mouseNotOverManagedWaitHandle =
-                        await snackbar.Dispatcher.InvokeAsync(
-                                () => CreateAndShowMessage(snackbar, messageQueueItem, actionClickWaitHandle));
-                    var durationPassedWaitHandle = new ManualResetEvent(false);
-                    StartDuration(messageQueueItem.Duration.Add(snackbar.ActivateStoryboardDuration), durationPassedWaitHandle);
+            //create and show the message, setting up all the handles we need to wait on
+            var actionClickWaitHandle = new ManualResetEvent(false);
+            var mouseNotOverManagedWaitHandle = CreateAndShowMessage(snackbar, messageQueueItem, actionClickWaitHandle);
+            var durationPassedWaitHandle = new ManualResetEvent(false);
+            StartDuration(messageQueueItem.Duration.Add(snackbar.ActivateStoryboardDuration), durationPassedWaitHandle);
 
-                    //wait until time span completed (including pauses and mouse overs), or the action is clicked
-                    await WaitForCompletionAsync(mouseNotOverManagedWaitHandle, durationPassedWaitHandle, actionClickWaitHandle);
+            //wait until time span completed (including pauses and mouse overs), or the action is clicked
+            await WaitForCompletionAsync(mouseNotOverManagedWaitHandle, durationPassedWaitHandle, actionClickWaitHandle);
 
-                    //close message on snackbar
-                    await
-                        snackbar.Dispatcher.InvokeAsync(
-                            () => snackbar.SetCurrentValue(Snackbar.IsActiveProperty, false));
+            //close message on snackbar
+            snackbar.SetCurrentValue(Snackbar.IsActiveProperty, false);
 
-                    //we could wait for the animation event, but just doing 
-                    //this for now...at least it is prevent extra call back hell
-                    _disposedEvent.WaitOne(snackbar.DeactivateStoryboardDuration);
+            //we could wait for the animation event, but just doing 
+            //this for now...at least it is prevent extra call back hell
+            await Task.Delay(snackbar.DeactivateStoryboardDuration);
 
-                    //remove message on snackbar
-                    await snackbar.Dispatcher.InvokeAsync(
-                        () => snackbar.SetCurrentValue(Snackbar.MessageProperty, null));
+            //remove message on snackbar
+            snackbar.SetCurrentValue(Snackbar.MessageProperty, null);
 
-                    mouseNotOverManagedWaitHandle.Dispose();
-                    durationPassedWaitHandle.Dispose();
-
-                })
-                .ContinueWith(t =>
-                {
-                    if (t.Exception == null) return;
-
-                    var exc = t.Exception.InnerExceptions.FirstOrDefault() ?? t.Exception;
-                    Trace.WriteLine("Error occured whilst showing Snackbar, exception will be rethrown.");
-                    Trace.WriteLine($"{exc.Message} ({exc.GetType().FullName})");
-                    Trace.WriteLine(exc.StackTrace);
-
-                    throw t.Exception;
-                });
+            mouseNotOverManagedWaitHandle.Dispose();
+            durationPassedWaitHandle.Dispose();
+            actionClickWaitHandle.Dispose();
         }
 
         private static MouseNotOverManagedWaitHandle CreateAndShowMessage(UIElement snackbar,
