@@ -40,7 +40,8 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty MessageQueueProperty = DependencyProperty.Register(
-            nameof(MessageQueue), typeof(SnackbarMessageQueue), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessageQueue), MessageQueuePropertyChangedCallback));
+            nameof(MessageQueue), typeof(SnackbarMessageQueue), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessageQueue), MessageQueuePropertyChangedCallback),
+            MessageQueueValidateValueCallback);
 
         private static void MessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -50,15 +51,17 @@ namespace MaterialDesignThemes.Wpf
             snackbar._messageQueueRegistrationCleanUp = messageQueue?.Pair(snackbar);
         }
 
+        private static bool MessageQueueValidateValueCallback(object value)
+        {
+            if (value is null || ((SnackbarMessageQueue)value).Dispatcher == Dispatcher.CurrentDispatcher)
+                return true;
+            throw new ArgumentException("SnackbarMessageQueue must be created by the same thread.", nameof(value));
+        }
+
         public SnackbarMessageQueue MessageQueue
         {
             get => (SnackbarMessageQueue) GetValue(MessageQueueProperty);
-            set
-            {
-                if (!(value is null) && value.Dispatcher != Dispatcher)
-                    throw new InvalidOperationException("Objects must be created by the same thread.");
-                SetValue(MessageQueueProperty, value);
-            }
+            set => SetValue(MessageQueueProperty, value);
         }
 
         public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
