@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Media3D;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -219,6 +221,13 @@ namespace MaterialDesignThemes.Wpf
                 var elementHitBox = new Rect(element.RenderSize);
                 if (elementHitBox.Contains(mousePosition))
                 {
+
+                    if (dataGridCell.Column.GetType() == typeof(DataGridTemplateColumn))
+                    {
+                        AllowDirectEditWithoutFocusTemplateColumn(sender, mouseArgs);
+                        return;
+                    }
+
                     dataGrid.CurrentCell = new DataGridCellInfo(dataGridCell);
                     dataGrid.BeginEdit();
 
@@ -253,6 +262,24 @@ namespace MaterialDesignThemes.Wpf
                             }
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Allows editing of components inside of a datagrid cell template with a single left click.
+        /// </summary>
+        private static void AllowDirectEditWithoutFocusTemplateColumn(object sender, MouseButtonEventArgs mouseArgs)
+        {
+            var dataGrid = (DataGrid)sender;
+
+            var inputHitTest =
+                dataGrid.InputHitTest(mouseArgs.GetPosition((DataGrid)sender)) as DependencyObject;
+
+            while (inputHitTest != null)
+            {
+                inputHitTest = (inputHitTest is Visual || inputHitTest is Visual3D)
+                    ? VisualTreeHelper.GetParent(inputHitTest)
+                    : null;
             }
         }
     }
