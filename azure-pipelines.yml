@@ -17,16 +17,9 @@ variables:
   solution: 'MaterialDesignToolkit.Full.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  dotNetCoreVersion: '3.1.x'
   nugetVersionSpec: '5.x.x'
 
 steps:
-- task: UseDotNet@2
-  displayName: 'Use dotNet $(dotNetCoreVersion)'
-  inputs:
-    packageType: 'sdk'
-    version: '$(dotNetCoreVersion)'
-
 - task: NuGetToolInstaller@0
   displayName: 'Use NuGet $(nugetVersionSpec)'
   inputs:
