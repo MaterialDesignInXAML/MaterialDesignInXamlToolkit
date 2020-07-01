@@ -21,6 +21,11 @@ namespace MaterialDesignThemes.UITests
             {
                 throw new ArgumentNullException(nameof(appPath));
             }
+            appPath = Path.GetFullPath(appPath);
+            if (!File.Exists(appPath))
+            {
+                throw new FileNotFoundException($"Failed to file app '{appPath}'");
+            }
 
 #if DEBUG
             StartWinAppDriver();
