@@ -6635,6 +6635,7 @@ namespace MaterialDesignThemes.Wpf
         PlugSocketEu=PowerSocketEu,
         PowerSocketEurope=PowerSocketEu,
         PowerSocketFr,
+        PowerSocketIt,
         PowerSocketJp,
         PowerSocketUk,
         PlugSocketUk=PowerSocketUk,
