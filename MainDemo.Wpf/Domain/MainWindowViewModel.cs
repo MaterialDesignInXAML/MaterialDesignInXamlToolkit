@@ -25,6 +25,8 @@ namespace MaterialDesignColors.WpfExample.Domain
         private ObservableCollection<DemoItem> _allItems;
         private ObservableCollection<DemoItem> _demoItems;
         private DemoItem _selectedItem;
+        private bool _demoItemsPrevButtonStatus;
+        private bool _demoItemsNextButtonStatus;
 
 
         public string SearchKeyword
@@ -57,9 +59,31 @@ namespace MaterialDesignColors.WpfExample.Domain
 
                 _selectedItem = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedItem)));
+
+                DemoItemsPrevButtonStatus = _selectedItem != _allItems.First();
+                DemoItemsNextButtonStatus = _selectedItem != _allItems.Last();
             }
         }
 
+        public bool DemoItemsPrevButtonStatus
+        {
+            get => _demoItemsPrevButtonStatus;
+            set
+            {
+                _demoItemsPrevButtonStatus = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DemoItemsPrevButtonStatus)));
+            }
+        }
+
+        public bool DemoItemsNextButtonStatus
+        {
+            get => _demoItemsNextButtonStatus;
+            set
+            {
+                _demoItemsNextButtonStatus = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DemoItemsNextButtonStatus)));
+            }
+        }
 
         private ObservableCollection<DemoItem> GenerateDemoItems(ISnackbarMessageQueue snackbarMessageQueue)
         {

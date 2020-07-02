@@ -99,6 +99,7 @@
                                 x:Name="PrevItemButton"
                                 Margin="24,0,12,0"
                                 ToolTip="Previous Item"
+                                IsEnabled="{Binding DemoItemsPrevButtonStatus}"
                                 Content="{materialDesign:PackIcon Kind=ArrowLeft, Size=24}"
                                 Style="{DynamicResource MaterialDesignToolButton}"
                                 Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
@@ -108,7 +109,8 @@
                             <Button 
                                 x:Name="NextItemButton"
                                 Margin="8,0,0,0"
-                                ToolTip="Next Item"                                
+                                ToolTip="Next Item"
+                                IsEnabled="{Binding DemoItemsNextButtonStatus}"
                                 Content="{materialDesign:PackIcon Kind=ArrowRight, Size=24}"
                                 Style="{DynamicResource MaterialDesignToolButton}"
                                 Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
