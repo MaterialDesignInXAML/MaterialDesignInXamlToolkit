@@ -102,5 +102,17 @@ namespace MaterialDesignColors.WpfExample
 
             paletteHelper.SetTheme(theme);
         }
+
+        private void PrevItemButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (DemoItemsListBox.SelectedIndex == 0) return;
+            DemoItemsListBox.SelectedIndex--;
+        }
+
+        private void NextItemButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (DemoItemsListBox.SelectedIndex == DemoItemsListBox.Items.Count - 1) return;
+            DemoItemsListBox.SelectedIndex++;
+        }
     }
 }

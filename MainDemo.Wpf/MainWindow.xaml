@@ -4,6 +4,7 @@
         xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:converters="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
         WindowStartupLocation="CenterScreen"
         Title="Material Design in XAML" 
@@ -87,12 +88,33 @@
                 <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                           Mode="PrimaryMid" DockPanel.Dock="Top">
                     <DockPanel>
-                        <ToggleButton
-                            x:Name="MenuToggleButton"
-                            Style="{StaticResource MaterialDesignHamburgerToggleButton}"
-                            IsChecked="False"
-                            Click="MenuToggleButton_OnClick"
-                            AutomationProperties.Name="HamburgerToggleButton"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton
+                                x:Name="MenuToggleButton"
+                                Style="{StaticResource MaterialDesignHamburgerToggleButton}"
+                                IsChecked="False"
+                                Click="MenuToggleButton_OnClick"
+                                AutomationProperties.Name="HamburgerToggleButton"/>
+                            <Button
+                                x:Name="PrevItemButton"
+                                Margin="24,0,12,0"
+                                ToolTip="Previous Item"
+                                Content="{materialDesign:PackIcon Kind=ArrowLeft, Size=24}"
+                                Style="{DynamicResource MaterialDesignToolButton}"
+                                Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
+                                materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                Click="PrevItemButton_OnClick"/>
+                            
+                            <Button 
+                                x:Name="NextItemButton"
+                                Margin="8,0,0,0"
+                                ToolTip="Next Item"                                
+                                Content="{materialDesign:PackIcon Kind=ArrowRight, Size=24}"
+                                Style="{DynamicResource MaterialDesignToolButton}"
+                                Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
+                                materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                Click="NextItemButton_OnClick"/>
+                        </StackPanel>
                         <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal"
