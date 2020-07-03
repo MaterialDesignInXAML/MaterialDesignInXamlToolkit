@@ -40,6 +40,11 @@ namespace MaterialDesignDemo
             }
         }
 
+        private void SnackBar4_OnClearClick(object sender, RoutedEventArgs e)
+        {
+            SnackbarFour.MessageQueue.Clear();
+        }
+
         private void SnackBar7_OnClick(object sender, RoutedEventArgs e)
         {
             var duration = MessageDurationOverrideSlider.Value;
