@@ -8012,6 +8012,8 @@ namespace MaterialDesignThemes.Wpf
         Coupon=TicketPercent,
         Voucher=TicketPercent,
         TicketPercentOutline,
+        CouponOutline=TicketPercentOutline,
+        VoucherOutline=TicketPercentOutline,
         Tie,
         Tilde,
         Timelapse,
