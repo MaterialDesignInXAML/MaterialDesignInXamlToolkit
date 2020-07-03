@@ -386,6 +386,16 @@ namespace MaterialDesignThemes.Wpf
             return (string)element.GetValue(SuffixTextProperty);
         }
 
+        /// <summary>
+        /// PrefixText dependency property
+        /// </summary>
+        public static readonly DependencyProperty PrefixTextProperty = DependencyProperty.RegisterAttached(
+            "PrefixText", typeof(string), typeof(TextFieldAssist), new PropertyMetadata(default(string)));
+
+        public static void SetPrefixText(DependencyObject element, string value) => element.SetValue(PrefixTextProperty, value);
+
+        public static string GetPrefixText(DependencyObject element) => (string)element.GetValue(PrefixTextProperty);
+
         #region Methods
 
         /// <summary>
