@@ -17,6 +17,14 @@ namespace MaterialDesignColors.WpfExample.Domain
         {
             _allItems = GenerateDemoItems(snackbarMessageQueue);
             FilterItems(null);
+
+            MovePrevCommand = new AnotherCommandImplementation(
+                _ => SelectedIndex--,
+                _ => SelectedIndex > 0);
+
+            MoveNextCommand = new AnotherCommandImplementation(
+               _ => SelectedIndex++,
+               _ => SelectedIndex < _allItems.Count - 1);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -25,8 +33,7 @@ namespace MaterialDesignColors.WpfExample.Domain
         private ObservableCollection<DemoItem> _allItems;
         private ObservableCollection<DemoItem> _demoItems;
         private DemoItem _selectedItem;
-        private bool _demoItemsPrevButtonStatus;
-        private bool _demoItemsNextButtonStatus;
+        private int _selectedIndex;
 
 
         public string SearchKeyword
@@ -59,31 +66,21 @@ namespace MaterialDesignColors.WpfExample.Domain
 
                 _selectedItem = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedItem)));
-
-                DemoItemsPrevButtonStatus = _selectedItem != _allItems.First();
-                DemoItemsNextButtonStatus = _selectedItem != _allItems.Last();
             }
         }
 
-        public bool DemoItemsPrevButtonStatus
+        public int SelectedIndex
         {
-            get => _demoItemsPrevButtonStatus;
+            get => _selectedIndex;
             set
             {
-                _demoItemsPrevButtonStatus = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DemoItemsPrevButtonStatus)));
+                _selectedIndex = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedIndex)));
             }
         }
 
-        public bool DemoItemsNextButtonStatus
-        {
-            get => _demoItemsNextButtonStatus;
-            set
-            {
-                _demoItemsNextButtonStatus = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DemoItemsNextButtonStatus)));
-            }
-        }
+        public AnotherCommandImplementation MovePrevCommand { get; }
+        public AnotherCommandImplementation MoveNextCommand { get; }
 
         private ObservableCollection<DemoItem> GenerateDemoItems(ISnackbarMessageQueue snackbarMessageQueue)
         {

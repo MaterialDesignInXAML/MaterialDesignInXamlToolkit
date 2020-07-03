@@ -68,7 +68,7 @@
                     <ListBox 
                         x:Name="DemoItemsListBox" 
                         Margin="0 16 0 16"
-                        SelectedIndex="0"
+                        SelectedIndex="{Binding SelectedIndex}"
                         SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
                         ItemsSource="{Binding DemoItems}"
                         PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
@@ -96,26 +96,22 @@
                                 Click="MenuToggleButton_OnClick"
                                 AutomationProperties.Name="HamburgerToggleButton"/>
                             <Button
-                                x:Name="PrevItemButton"
                                 Margin="24,0,12,0"
                                 ToolTip="Previous Item"
-                                IsEnabled="{Binding DemoItemsPrevButtonStatus}"
+                                Command="{Binding MovePrevCommand}"
                                 Content="{materialDesign:PackIcon Kind=ArrowLeft, Size=24}"
                                 Style="{DynamicResource MaterialDesignToolButton}"
                                 Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
-                                materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                Click="PrevItemButton_OnClick"/>
+                                materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"/>
                             
                             <Button 
-                                x:Name="NextItemButton"
                                 Margin="8,0,0,0"
                                 ToolTip="Next Item"
-                                IsEnabled="{Binding DemoItemsNextButtonStatus}"
+                                Command="{Binding MoveNextCommand}"
                                 Content="{materialDesign:PackIcon Kind=ArrowRight, Size=24}"
                                 Style="{DynamicResource MaterialDesignToolButton}"
                                 Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
-                                materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                Click="NextItemButton_OnClick"/>
+                                materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"/>
                         </StackPanel>
                         <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                             <StackPanel>
