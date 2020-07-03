@@ -24,6 +24,15 @@ namespace MaterialDesignThemes.Wpf
         private bool _isDisposed;
 
         /// <summary>
+        /// If set, the active snackbar will be closed.
+        /// </summary>
+        /// <remarks>
+        /// Available only while the snackbar is displayed.
+        /// Should be locked by <see cref="_snackbarMessagesLock"/>.
+        /// </remarks>
+        private ManualResetEvent _closeSnackbarEvent = null;
+
+        /// <summary>
         /// Gets the <see cref="System.Windows.Threading.Dispatcher"/> this <see cref="SnackbarMessageQueue"/> is associated with.
         /// </summary>
         internal Dispatcher Dispatcher => _dispatcher;
@@ -228,6 +237,19 @@ namespace MaterialDesignThemes.Wpf
             _dispatcher.InvokeAsync(ShowNextAsync);
         }
 
+        /// <summary>
+        /// Clear the message queue and close the active snackbar.
+        /// This method can be called from any thread.
+        /// </summary>
+        public void Clear()
+        {
+            lock (_snackbarMessagesLock)
+            {
+                _snackbarMessages.Clear();
+                _closeSnackbarEvent?.Set();
+            }
+        }
+
         private void StartDuration(TimeSpan minimumDuration, EventWaitHandle durationPassedWaitHandle)
         {
             if (durationPassedWaitHandle is null) throw new ArgumentNullException(nameof(durationPassedWaitHandle));
@@ -284,16 +306,20 @@ namespace MaterialDesignThemes.Wpf
                 lock (_snackbarMessagesLock)
                 {
                     messageNode = _snackbarMessages.First;
+                    if (messageNode is null)
+                        return;
+                    _closeSnackbarEvent = new ManualResetEvent(false);
                 }
-                if (messageNode is null)
-                    return;
                 
-                await ShowAsync(snackbar, messageNode.Value)
+                await ShowAsync(snackbar, messageNode.Value, _closeSnackbarEvent)
                     .ConfigureAwait(false);
 
                 lock (_snackbarMessagesLock)
                 {
-                    _snackbarMessages.Remove(messageNode);
+                    if (messageNode.List == _snackbarMessages)    // Check if it has not been cleared.
+                        _snackbarMessages.Remove(messageNode);
+                    _closeSnackbarEvent.Dispose();
+                    _closeSnackbarEvent = null;
                 }
             }
             finally
@@ -309,10 +335,9 @@ namespace MaterialDesignThemes.Wpf
             });
         }
 
-        private async Task ShowAsync(Snackbar snackbar, SnackbarMessageQueueItem messageQueueItem)
+        private async Task ShowAsync(Snackbar snackbar, SnackbarMessageQueueItem messageQueueItem, ManualResetEvent actionClickWaitHandle)
         {
             //create and show the message, setting up all the handles we need to wait on
-            var actionClickWaitHandle = new ManualResetEvent(false);
             var mouseNotOverManagedWaitHandle = CreateAndShowMessage(snackbar, messageQueueItem, actionClickWaitHandle);
             var durationPassedWaitHandle = new ManualResetEvent(false);
             StartDuration(messageQueueItem.Duration.Add(snackbar.ActivateStoryboardDuration), durationPassedWaitHandle);
@@ -332,7 +357,6 @@ namespace MaterialDesignThemes.Wpf
 
             mouseNotOverManagedWaitHandle.Dispose();
             durationPassedWaitHandle.Dispose();
-            actionClickWaitHandle.Dispose();
         }
 
         private static MouseNotOverManagedWaitHandle CreateAndShowMessage(UIElement snackbar,
