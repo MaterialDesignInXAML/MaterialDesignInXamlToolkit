@@ -221,10 +221,10 @@ namespace MaterialDesignThemes.Wpf
                 var elementHitBox = new Rect(element.RenderSize);
                 if (elementHitBox.Contains(mousePosition))
                 {
-
+                    //if it is a DataGridTemplateColumn we want the
+                    //click to react however it would naturally on the control
                     if (dataGridCell.Column.GetType() == typeof(DataGridTemplateColumn))
                     {
-                        AllowDirectEditWithoutFocusTemplateColumn(sender, mouseArgs);
                         return;
                     }
 
@@ -262,24 +262,6 @@ namespace MaterialDesignThemes.Wpf
                             }
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// Allows editing of components inside of a datagrid cell template with a single left click.
-        /// </summary>
-        private static void AllowDirectEditWithoutFocusTemplateColumn(object sender, MouseButtonEventArgs mouseArgs)
-        {
-            var dataGrid = (DataGrid)sender;
-
-            var inputHitTest =
-                dataGrid.InputHitTest(mouseArgs.GetPosition((DataGrid)sender)) as DependencyObject;
-
-            while (inputHitTest != null)
-            {
-                inputHitTest = (inputHitTest is Visual || inputHitTest is Visual3D)
-                    ? VisualTreeHelper.GetParent(inputHitTest)
-                    : null;
             }
         }
     }
