@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Media3D;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -219,6 +221,13 @@ namespace MaterialDesignThemes.Wpf
                 var elementHitBox = new Rect(element.RenderSize);
                 if (elementHitBox.Contains(mousePosition))
                 {
+                    //if it is a DataGridTemplateColumn we want the
+                    //click to react however it would naturally on the control
+                    if (dataGridCell.Column.GetType() == typeof(DataGridTemplateColumn))
+                    {
+                        return;
+                    }
+
                     dataGrid.CurrentCell = new DataGridCellInfo(dataGridCell);
                     dataGrid.BeginEdit();
 
