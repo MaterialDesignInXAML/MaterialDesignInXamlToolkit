@@ -190,7 +190,10 @@ namespace MaterialDesignThemes.Wpf
             _dialogTaskCompletionSource = new TaskCompletionSource<object>();
 
             AssertTargetableContent();
-            DialogContent = content;
+
+            if (content != null)
+                DialogContent = content;
+
             _asyncShowOpenedEventHandler = openedEventHandler;
             _asyncShowClosingEventHandler = closingEventHandler;
             SetCurrentValue(IsOpenProperty, true);
