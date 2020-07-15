@@ -21,17 +21,10 @@ namespace VTTests
         {
             public IService? Service { get; set; }
 
-            protected override async void OnStartup(StartupEventArgs e)
+            protected override void OnStartup(StartupEventArgs e)
             {
                 base.OnStartup(e);
-                Service = Test.StartService(this);
-
-                //var app = Test.ConnectToApp();
-                //await app.InitialzeWithMaterialDesign();
-                //IWindow window = await app.CreateWindow(@"<Button Content=""Button"" />");
-                //var bitmap = await window.GetBitmap();
-                //using var file = File.OpenWrite("Test.bmp");
-                //await bitmap.Save(file);
+                Service = Server.Start(this);
             }
 
             protected override void OnExit(ExitEventArgs e)

@@ -16,7 +16,7 @@ namespace VTTests.Internal
                 throw new ArgumentNullException(nameof(application));
             }
 
-            Server = new NamedPipeServer(Test.PipePrefix + id);
+            Server = new NamedPipeServer(VTTests.Server.PipePrefix + id);
 
             Protocol.BindService(Server.ServiceBinder, new VisualTreeService(application));
             Server.Start();

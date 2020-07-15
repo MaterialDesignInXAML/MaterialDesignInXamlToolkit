@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Media;
-using Newtonsoft.Json.Serialization;
+﻿using System.Windows.Media;
 
 namespace VTTests
 {

@@ -20,7 +20,7 @@ namespace MaterialDesignThemes.UITests
         {
             Output = output ?? throw new ArgumentNullException(nameof(output));
 
-            App = Test.StartApp(@"VTTests.exe");
+            App = VTTests.App.StartRemote();
         }
 
         protected async Task<Color> GetThemeColor(string name)

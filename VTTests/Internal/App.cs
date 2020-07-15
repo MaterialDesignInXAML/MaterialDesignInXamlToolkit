@@ -1,28 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace VTTests.Internal
 {
-    internal class ManagedApp : App
-    {
-        public ManagedApp(Process managedProcess, Protocol.ProtocolClient client) 
-            : base(client)
-        {
-            ManagedProcess = managedProcess ?? throw new ArgumentNullException(nameof(managedProcess));
-        }
-
-        public Process ManagedProcess { get; }
-
-        public override void Dispose()
-        {
-            base.Dispose();
-            ManagedProcess.Kill();
-            ManagedProcess.WaitForExit();
-        }
-    }
 
     internal class App : IApp
     {
@@ -32,9 +14,7 @@ namespace VTTests.Internal
         private Protocol.ProtocolClient Client { get; }
 
         public virtual void Dispose()
-        {
-            
-        }
+        { }
 
         public async Task Initialize(string applicationResourceXaml, params string[] assemblies)
         {

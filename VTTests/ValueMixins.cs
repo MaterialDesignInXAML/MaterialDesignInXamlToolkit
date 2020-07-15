@@ -5,7 +5,6 @@ using System.Windows.Media;
 
 namespace VTTests
 {
-
     public static class ValueMixins
     {
         [return:MaybeNull]

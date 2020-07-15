@@ -22,7 +22,7 @@ using Point = System.Windows.Point;
 
 namespace VTTests
 {
-    public class VisualTreeService : Protocol.ProtocolBase
+    internal class VisualTreeService : Protocol.ProtocolBase
     {
         private static Guid Initialized { get; } = Guid.NewGuid();
 

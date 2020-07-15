@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Interactions;
-using PInvoke;
 using static PInvoke.User32;
 
 namespace VTTests
 {
-
     public static class VisualElementMixins
     {
         public static async Task<IVisualElement?> SetXamlContent(this IVisualElement containerElement, string xaml)
@@ -68,7 +63,9 @@ namespace VTTests
             }
 
             IValue value = await element.GetProperty(propertyName);
+#pragma warning disable CS8603 // Possible null reference return.
             return value.GetValueAs<T>();
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         public static async Task<bool> GetIsVisible(this IVisualElement element)
