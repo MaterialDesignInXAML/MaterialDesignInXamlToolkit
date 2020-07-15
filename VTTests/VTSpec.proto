@@ -1,0 +1,147 @@
+syntax = "proto3";
+
+option csharp_namespace = "VTTests";
+
+package VTTests;
+
+// The visual tree service definition.
+service Protocol {
+
+  //Get windows in app
+  rpc GetWindows (GetWindowsQuery) returns (GetWindowsResult);
+
+  //Get the main windowIds
+  rpc GetMainWindow (GetWindowsQuery) returns (GetWindowsResult);
+
+  //Get elements
+  rpc GetElement (ElementQuery) returns (ElementResult);
+
+  //Retrieve the property off of an element
+  rpc GetProperty (PropertyQuery) returns (PropertyResult);
+
+  // Returns the effective background color, by attempting to look at the backgrounds of parent elements
+  rpc GetEffectiveBackground (EffectiveBackgroundQuery) returns (EffectiveBackgroundResult);
+
+  //Sets a property
+  rpc SetProperty (SetPropertyRequest) returns (PropertyResult);
+
+  //Get resource
+  rpc GetResource (ResourceQuery) returns (ResourceResult);
+
+  //Get the screen coordinates of an element
+  rpc GetCoordinates (CoordinatesQuery) returns (CoordinatesResult);
+
+  //Create a new window with the given configuration
+  rpc CreateWindow (WindowConfiguration) returns (WindowResult);
+
+  //Initialize the application
+  rpc InitializeApplication (ApplicationConfiguration) returns (ApplicationResult);
+
+  //Get an image of the specified element
+  rpc GetImage (ImageQuery) returns (ImageResult);
+}
+
+message GetWindowsQuery {
+}
+
+message GetWindowsResult {
+  repeated string windowIds = 1;
+}
+
+message ElementQuery {
+  string windowId = 1;
+  string parentId = 2;
+  string query = 3;
+}
+
+message ElementResult {
+  repeated string errorMessages = 1;
+  repeated string elementIds = 2;
+}
+
+message PropertyQuery {
+  string elementId = 1;
+  string name = 2;
+}
+
+message EffectiveBackgroundQuery {
+  string elementId = 1;
+}
+
+message EffectiveBackgroundResult {
+  repeated string errorMessages = 1;
+  int32 red = 2;
+  int32 green = 3;
+  int32 blue = 4;
+  int32 alpha = 5;
+}
+
+message SetPropertyRequest {
+  string elementId = 1;
+  string name = 2;
+  string value = 3;
+  string valueType = 4;
+}
+
+message PropertyResult {
+  repeated string errorMessages = 1;
+  string value = 2;
+  string valueType = 3;
+  string propertyType = 4;
+}
+
+message ResourceQuery {
+  string elementId = 1;
+  string key = 2;
+}
+
+message ResourceResult {
+  repeated string errorMessages = 1;
+  string key = 2;
+  string value = 3;
+  string valueType = 4;
+}
+
+message CoordinatesQuery {
+  string elementId = 1;
+}
+
+message CoordinatesResult {
+  repeated string errorMessages = 1;
+  double left = 2;
+  double top = 3;
+  double right = 4;
+  double bottom = 5;
+}
+
+message XmlNamespaceConfiguration {
+  string prefix = 1;
+  string value = 2;
+}
+
+message ApplicationConfiguration {
+  repeated string assembliesToLoad = 1;
+  string applicationResourceXaml = 2;
+}
+
+message ApplicationResult {
+  repeated string errorMessages = 1;
+}
+
+message WindowConfiguration {
+  string xaml = 1;
+}
+
+message WindowResult {
+  repeated string errorMessages = 1;
+  string windowsId = 2;
+}
+
+message ImageQuery {
+  string elementId = 1;
+}
+
+message ImageResult {
+  repeated string errorMessages = 1;
+  bytes data = 2;
+}
