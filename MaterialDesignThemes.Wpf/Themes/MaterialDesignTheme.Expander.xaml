@@ -44,13 +44,12 @@
     </Style>
 
     <Style x:Key="MaterialDesignHorizontalHeaderStyle" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Padding" Value="24 12 24 12"/>
         <Setter Property="Background" Value="Transparent"/>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}">
+                    <Border Background="{TemplateBinding Background}" Padding="24 12 24 12">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -96,13 +95,12 @@
     </Style>
 
     <Style x:Key="MaterialDesignVerticalHeaderStyle" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Padding" Value="12 24 12 24"/>
         <Setter Property="Background" Value="Transparent"/>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}">
+                    <Border Background="{TemplateBinding Background}" Padding="12 24 12 24">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
