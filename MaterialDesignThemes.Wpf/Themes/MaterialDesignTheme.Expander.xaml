@@ -3,186 +3,91 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
-    <converters:MathMultipleConverter x:Key="MathMlpMultipleConverter" Operation="Multiply" />
-
     <Style x:Key="MaterialDesignExpanderToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border Background="Transparent">
+
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CheckStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition From="Unchecked" To="Checked">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <QuarticEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-180"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition GeneratedDuration="0" To="Unchecked">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="-180"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition GeneratedDuration="0" To="Checked">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="Checked" GeneratedDuration="0" To="Unchecked">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <QuarticEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="-180"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Checked">
                                     <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-180"/>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPathRotateTransform" Storyboard.TargetProperty="Angle">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="180"/>
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unchecked">
                                     <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ExpandPath">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPathRotateTransform" Storyboard.TargetProperty="Angle">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <wpf:PackIcon Kind="ChevronDown" Opacity=".38" x:Name="ExpandPath" RenderTransformOrigin="0.5,0.5"
-                                      Height="24" Width="24" Foreground="{TemplateBinding Foreground}">
+
+                        <wpf:PackIcon x:Name="ExpandPath" Kind="ChevronDown"
+                                      Opacity="0.38" Height="24" Width="24"
+                                      Foreground="{TemplateBinding Foreground}"
+                                      RenderTransformOrigin="0.5 0.5">
                             <wpf:PackIcon.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform/>
-                                    <RotateTransform />
-                                    <TranslateTransform/>
-                                </TransformGroup>
+                                <RotateTransform x:Name="ExpandPathRotateTransform"/>
                             </wpf:PackIcon.RenderTransform>
                         </wpf:PackIcon>
+
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignExpanderRightHeaderStyle" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ExpanderAssist.RightHeaderPadding)}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <ToggleButton Grid.Row="0"
-                                      HorizontalAlignment="Center"
-                                      Foreground="{TemplateBinding Foreground}"
-                                      IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                      Style="{StaticResource MaterialDesignExpanderToggleButton}"
-                                      RenderTransformOrigin="0.5,0.5">
-                                <ToggleButton.RenderTransform>
-                                    <RotateTransform Angle="-90"/>
-                                </ToggleButton.RenderTransform>
-                            </ToggleButton>
-                            <ContentPresenter Grid.Row="1"
-                                          HorizontalAlignment="Center"
-                                          Margin="0,16,0,0"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                          VerticalAlignment="Top" />
-                        </Grid>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <Style x:Key="MaterialDesignHorizontalHeaderStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Padding" Value="24 12 24 12"/>
+        <Setter Property="Background" Value="Transparent"/>
 
-    <Style x:Key="MaterialDesignExpanderLeftHeaderStyle" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="HorizontalAlignment" Value="Right" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ExpanderAssist.LeftHeaderPadding)}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <ToggleButton Grid.Row="0"
-                                      HorizontalAlignment="Center"
-                                      Foreground="{TemplateBinding Foreground}"
-                                      IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                      Style="{StaticResource MaterialDesignExpanderToggleButton}"
-                                      RenderTransformOrigin="0.5,0.5">
-                                <ToggleButton.RenderTransform>
-                                    <RotateTransform Angle="90"/>
-                                </ToggleButton.RenderTransform>
-                            </ToggleButton>
-                            <ContentPresenter Grid.Row="1"
-                                          HorizontalAlignment="Center"
-                                          Margin="0,16,0,0"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                          VerticalAlignment="Top" />
-                        </Grid>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="MaterialDesignExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ExpanderAssist.DownHeaderPadding)}">
+                    <Border Background="{TemplateBinding Background}">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <ContentPresenter Content="{TemplateBinding Content}"
+
+                            <ContentPresenter Grid.Column="0"
+                                              VerticalAlignment="Center"
+                                              Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                              VerticalAlignment="Center"
-                                              Margin="0,0,16,0" />
-                            <ToggleButton Grid.Column="1"
+                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
+
+                            <ToggleButton x:Name="ExpanderButton"
+                                          Grid.Column="2"
                                           VerticalAlignment="Center"
+                                          RenderTransformOrigin="0.5 0.5"
                                           Foreground="{TemplateBinding Foreground}"
-                                          IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                          Style="{StaticResource MaterialDesignExpanderToggleButton}"/>
+                                          IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ToggleButton.Style>
+                                    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignExpanderToggleButton}">
+                                        <Style.Triggers>
+
+                                            <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander, AncestorLevel=1}}" Value="Up">
+                                                <Setter Property="RenderTransform">
+                                                    <Setter.Value>
+                                                        <RotateTransform Angle="180"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+
+                                        </Style.Triggers>
+                                    </Style>
+                                </ToggleButton.Style>
+                            </ToggleButton>
+
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -190,35 +95,59 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignExpanderUpHeaderStyle" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Center" />
+    <Style x:Key="MaterialDesignVerticalHeaderStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Padding" Value="12 24 12 24"/>
+        <Setter Property="Background" Value="Transparent"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ExpanderAssist.UpHeaderPadding)}">
+                    <Border Background="{TemplateBinding Background}">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <ContentPresenter VerticalAlignment="Center"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                          Margin="0,0,16,0" />
-                            <ToggleButton IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="16"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <ToggleButton x:Name="ExpanderButton"
+                                          Grid.Column="0"
                                           VerticalAlignment="Center"
+                                          RenderTransformOrigin="0.5 0.5"
                                           Foreground="{TemplateBinding Foreground}"
-                                          Style="{StaticResource MaterialDesignExpanderToggleButton}"
-                                          RenderTransformOrigin="0.5,0.5"
-                                          Grid.Column="1">
-                                <ToggleButton.RenderTransform>
-                                    <RotateTransform Angle="-180"/>
-                                </ToggleButton.RenderTransform>
+                                          IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ToggleButton.Style>
+                                    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignExpanderToggleButton}">
+                                        <Style.Triggers>
+
+                                            <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander, AncestorLevel=1}}" Value="Left">
+                                                <Setter Property="RenderTransform">
+                                                    <Setter.Value>
+                                                        <RotateTransform Angle="90"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+
+                                            <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander, AncestorLevel=1}}" Value="Right">
+                                                <Setter Property="RenderTransform">
+                                                    <Setter.Value>
+                                                        <RotateTransform Angle="-90"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+
+                                        </Style.Triggers>
+                                    </Style>
+                                </ToggleButton.Style>
                             </ToggleButton>
+
+                            <ContentPresenter Grid.Column="2"
+                                              VerticalAlignment="Center"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
+
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -232,10 +161,6 @@
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
-        <Setter Property="wpf:ExpanderAssist.DownHeaderPadding" Value="24,12,24,12"/>
-        <Setter Property="wpf:ExpanderAssist.UpHeaderPadding" Value="24,12,24,12"/>
-        <Setter Property="wpf:ExpanderAssist.LeftHeaderPadding" Value="12,24,12,24"/>
-        <Setter Property="wpf:ExpanderAssist.RightHeaderPadding" Value="12,24,12,24"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
@@ -246,44 +171,22 @@
                     <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ExpansionStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0" To="Expanded">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <CubicEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="1" Duration="0:0:0.3"/>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition GeneratedDuration="0" To="Collapsed">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <CubicEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="0" Duration="0:0:0.3"/>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Expanded">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="1" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                         </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" From="0" To="1" Duration="0:0:0.3"/>
+                                        <DoubleAnimation Storyboard.TargetName="ContentPanelScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="0" To="1" Duration="0:0:0.3"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Collapsed">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" To="0" Duration="0"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
                                         </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Content" From="1" To="0" Duration="0:0:0.3"/>
+                                        <DoubleAnimation Storyboard.TargetName="ContentPanelScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="1" To="0" Duration="0:0:0.3"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -295,7 +198,7 @@
                                           DockPanel.Dock="Top"
                                           BorderThickness="0" Cursor="Hand"
                                           IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                          Style="{StaticResource MaterialDesignExpanderDownHeaderStyle}"
+                                          Style="{StaticResource MaterialDesignHorizontalHeaderStyle}"
                                           TextElement.FontSize="15"
                                           Opacity=".87"
                                           Foreground="{TemplateBinding Foreground}"
@@ -309,23 +212,11 @@
                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                     <Grid.LayoutTransform>
-                                        <ScaleTransform CenterX="{Binding ExpandDirection, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ExpanderDirectionConverter}, ConverterParameter='0,0.5,1,0.5'}" 
-                                                        CenterY="{Binding ExpandDirection, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ExpanderDirectionConverter}, ConverterParameter='0.5,1,0.5,0'}">
-                                            <ScaleTransform.ScaleX>
-                                                <MultiBinding Converter="{StaticResource PowConverter}">
-                                                    <Binding Path="Opacity" ElementName="PART_Content" />
-                                                    <Binding Path="ExpandDirection" RelativeSource="{RelativeSource TemplatedParent}" Converter="{StaticResource ExpanderDirectionConverter}" ConverterParameter="1,0,1,0" />
-                                                </MultiBinding>
-                                            </ScaleTransform.ScaleX>
-                                            <ScaleTransform.ScaleY>
-                                                <MultiBinding Converter="{StaticResource PowConverter}">
-                                                    <Binding Path="Opacity" ElementName="PART_Content" />
-                                                    <Binding Path="ExpandDirection" RelativeSource="{RelativeSource TemplatedParent}" Converter="{StaticResource ExpanderDirectionConverter}" ConverterParameter="0,1,0,1" />
-                                                </MultiBinding>
-                                            </ScaleTransform.ScaleY>
-                                        </ScaleTransform>
+                                        <ScaleTransform CenterX="0.5" 
+                                                        CenterY="0.5"
+                                                        x:Name="ContentPanelScaleTransform"/>
                                     </Grid.LayoutTransform>
-                                    <ContentPresenter Name="PART_Content" Focusable="False" Opacity="0"
+                                    <ContentPresenter Name="PART_Content" Focusable="False"
                                                       ContentTemplate="{TemplateBinding ContentTemplate}"
                                                       ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
@@ -338,25 +229,25 @@
                         <Trigger Property="ExpandDirection" Value="Right">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Left"/>
                             <Setter Property="Height" TargetName="ContentPanel" Value="Auto"/>
-                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignExpanderRightHeaderStyle}"/>
+                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignVerticalHeaderStyle}"/>
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Left">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Right"/>
                             <Setter Property="Height" TargetName="ContentPanel" Value="Auto"/>
-                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignExpanderLeftHeaderStyle}"/>
+                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignVerticalHeaderStyle}"/>
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Up">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Bottom"/>
                             <Setter Property="Width" TargetName="ContentPanel" Value="Auto"/>
-                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignExpanderUpHeaderStyle}"/>
+                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignHorizontalHeaderStyle}"/>
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Down">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Top"/>
                             <Setter Property="Width" TargetName="ContentPanel" Value="Auto"/>
-                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignExpanderDownHeaderStyle}"/>
+                            <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignHorizontalHeaderStyle}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
