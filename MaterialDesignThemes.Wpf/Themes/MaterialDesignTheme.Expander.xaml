@@ -109,7 +109,7 @@
                             </Grid.RowDefinitions>
 
                             <ToggleButton x:Name="ExpanderButton"
-                                          Grid.Column="0"
+                                          Grid.Row="0"
                                           VerticalAlignment="Center"
                                           RenderTransformOrigin="0.5 0.5"
                                           Foreground="{TemplateBinding Foreground}"
@@ -139,7 +139,7 @@
                                 </ToggleButton.Style>
                             </ToggleButton>
 
-                            <ContentPresenter Grid.Column="2"
+                            <ContentPresenter Grid.Row="2"
                                               VerticalAlignment="Center"
                                               Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
