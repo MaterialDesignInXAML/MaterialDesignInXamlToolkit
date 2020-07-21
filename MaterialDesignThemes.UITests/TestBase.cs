@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
-using VTTests;
+using XAMLTest;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -20,7 +20,7 @@ namespace MaterialDesignThemes.UITests
         {
             Output = output ?? throw new ArgumentNullException(nameof(output));
 
-            App = VTTests.App.StartRemote();
+            App = XAMLTest.App.StartRemote();
         }
 
         protected async Task<Color> GetThemeColor(string name)

@@ -2,11 +2,11 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using VTTests;
+using XAMLTest;
 
 namespace MaterialDesignThemes.UITests
 {
-    public static class VTMixins
+    public static class XamlTestMixins
     {
         public static async Task InitialzeWithMaterialDesign(this IApp app)
         {
