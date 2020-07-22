@@ -3,6 +3,12 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
+    <Duration x:Key="ExpandDuration">0:0:0.250</Duration>
+    <Duration x:Key="CollapseDuration">0:0:0.200</Duration>
+
+    <KeyTime x:Key="ExpandKeyTime">0:0:0.250</KeyTime>
+    <KeyTime x:Key="CollapseKeyTime">0:0:0.200</KeyTime>
+
     <Style x:Key="MaterialDesignExpanderToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="Template">
             <Setter.Value>
@@ -14,14 +20,14 @@
                                 <VisualState x:Name="Checked">
                                     <Storyboard>
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPathRotateTransform" Storyboard.TargetProperty="Angle">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="180"/>
+                                            <EasingDoubleKeyFrame KeyTime="{StaticResource ExpandKeyTime}" Value="180"/>
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unchecked">
                                     <Storyboard>
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPathRotateTransform" Storyboard.TargetProperty="Angle">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                            <EasingDoubleKeyFrame KeyTime="{StaticResource CollapseKeyTime}" Value="0"/>
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -49,7 +55,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="24 12 24 12">
+                    <Border Background="{TemplateBinding Background}" Padding="{Binding Path=(wpf:ExpanderAssist.HorizontalHeaderPadding) , RelativeSource={RelativeSource AncestorType=Expander, AncestorLevel=1}}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -100,7 +106,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{TemplateBinding Background}" Padding="12 24 12 24">
+                    <Border Background="{TemplateBinding Background}" Padding="{Binding Path=(wpf:ExpanderAssist.VerticalHeaderPadding) , RelativeSource={RelativeSource AncestorType=Expander, AncestorLevel=1}}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -159,35 +165,58 @@
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
-                    <ControlTemplate.Resources>
-                        <converters:ExpanderDirectionConverter x:Key="ExpanderDirectionConverter" />
-                        <converters:MathMultipleConverter x:Key="PowConverter" Operation="Pow" />
-                    </ControlTemplate.Resources>
                     <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+
                         <VisualStateManager.VisualStateGroups>
+                            
                             <VisualStateGroup x:Name="ExpansionStates">
+                                <VisualStateGroup.Transitions>
+
+                                    <VisualTransition From="Collapsed" To="Expanded">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentPanel" From="0" To="1" Duration="{StaticResource ExpandDuration}"/>
+                                            <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="0" To="1" Duration="{StaticResource ExpandDuration}">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseInOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </VisualTransition>
+
+                                    <VisualTransition From="Expanded" To="Collapsed">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentPanel" From="1" To="0" Duration="{StaticResource CollapseDuration}"/>
+                                            <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="1" To="0" Duration="{StaticResource CollapseDuration}">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseInOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </VisualTransition>
+
+                                </VisualStateGroup.Transitions>
+                                
                                 <VisualState x:Name="Expanded">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentSite" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentPanel" From="0" To="1" Duration="0:0:0.3"/>
-                                        <DoubleAnimation Storyboard.TargetName="ContentPanelScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="0" To="1" Duration="0:0:0.3"/>
                                     </Storyboard>
                                 </VisualState>
+                                
                                 <VisualState x:Name="Collapsed">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentSite" Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentPanel" From="1" To="0" Duration="0:0:0.3"/>
-                                        <DoubleAnimation Storyboard.TargetName="ContentPanelScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="1" To="0" Duration="0:0:0.3"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
+                            
                         </VisualStateManager.VisualStateGroups>
                         <DockPanel Background="{TemplateBinding Background}">
                             <ToggleButton Name="HeaderSite"
@@ -198,25 +227,24 @@
                                           IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                           Style="{StaticResource MaterialDesignHorizontalHeaderStyle}"
                                           TextElement.FontSize="15"
-                                          Opacity=".87"
+                                          Opacity="0.87"
                                           Foreground="{TemplateBinding Foreground}"
                                           Content="{TemplateBinding Header}"
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"
                                           ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
                                           ContentStringFormat="{TemplateBinding HeaderStringFormat}"/>
                             <Border Name="ContentSite">
-                                <Grid Name="ContentPanel" 
+                                <Border.LayoutTransform>
+                                    <ScaleTransform x:Name="ContentSiteScaleTransform"/>
+                                </Border.LayoutTransform>
+                                <Grid Name="ContentPanel"
                                       Margin="{TemplateBinding Padding}"
                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                    <Grid.LayoutTransform>
-                                        <ScaleTransform x:Name="ContentPanelScaleTransform"/>
-                                    </Grid.LayoutTransform>
                                     <ContentPresenter Name="PART_Content" Focusable="False"
                                                       ContentTemplate="{TemplateBinding ContentTemplate}"
                                                       ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                                      ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
-
+                                                      ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
                                 </Grid>
                             </Border>
                         </DockPanel>
@@ -224,25 +252,21 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="ExpandDirection" Value="Right">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Left"/>
-                            <Setter Property="Height" TargetName="ContentPanel" Value="Auto"/>
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignVerticalHeaderStyle}"/>
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Left">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Right"/>
-                            <Setter Property="Height" TargetName="ContentPanel" Value="Auto"/>
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignVerticalHeaderStyle}"/>
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Up">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Bottom"/>
-                            <Setter Property="Width" TargetName="ContentPanel" Value="Auto"/>
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignHorizontalHeaderStyle}"/>
                         </Trigger>
 
                         <Trigger Property="ExpandDirection" Value="Down">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Top"/>
-                            <Setter Property="Width" TargetName="ContentPanel" Value="Auto"/>
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignHorizontalHeaderStyle}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
