@@ -1,7 +1,6 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
     <Duration x:Key="ExpandDuration">0:0:0.250</Duration>
     <Duration x:Key="CollapseDuration">0:0:0.200</Duration>
@@ -14,7 +13,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border Background="Transparent">
-
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CheckStates">
                                 <VisualState x:Name="Checked">
@@ -42,7 +40,7 @@
                                 <RotateTransform x:Name="ExpandPathRotateTransform"/>
                             </wpf:PackIcon.RenderTransform>
                         </wpf:PackIcon>
-
+                        
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -62,14 +60,14 @@
                                 <ColumnDefinition Width="16"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-
+                            
                             <ContentPresenter Grid.Column="0"
                                               VerticalAlignment="Center"
                                               Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
-
+                            
                             <ToggleButton x:Name="ExpanderButton"
                                           Grid.Column="2"
                                           VerticalAlignment="Center"
@@ -79,7 +77,6 @@
                                 <ToggleButton.Style>
                                     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignExpanderToggleButton}">
                                         <Style.Triggers>
-
                                             <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander, AncestorLevel=1}}" Value="Up">
                                                 <Setter Property="RenderTransform">
                                                     <Setter.Value>
@@ -87,12 +84,11 @@
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
-
                                         </Style.Triggers>
                                     </Style>
                                 </ToggleButton.Style>
                             </ToggleButton>
-
+                            
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -123,7 +119,7 @@
                                 <ToggleButton.Style>
                                     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignExpanderToggleButton}">
                                         <Style.Triggers>
-
+                                            
                                             <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander, AncestorLevel=1}}" Value="Left">
                                                 <Setter Property="RenderTransform">
                                                     <Setter.Value>
@@ -139,7 +135,7 @@
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
-
+                                            
                                         </Style.Triggers>
                                     </Style>
                                 </ToggleButton.Style>
@@ -151,7 +147,7 @@
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
-
+                            
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -165,17 +161,15 @@
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
                     <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
-
                         <VisualStateManager.VisualStateGroups>
-                            
                             <VisualStateGroup x:Name="ExpansionStates">
-                                <VisualStateGroup.Transitions>
 
+                                <VisualStateGroup.Transitions>
                                     <VisualTransition From="Collapsed" To="Expanded">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentPanel" From="0" To="1" Duration="{StaticResource ExpandDuration}"/>
@@ -197,9 +191,8 @@
                                             </DoubleAnimation>
                                         </Storyboard>
                                     </VisualTransition>
-
                                 </VisualStateGroup.Transitions>
-                                
+
                                 <VisualState x:Name="Expanded">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentSite" Storyboard.TargetProperty="Visibility">
@@ -207,7 +200,7 @@
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-                                
+
                                 <VisualState x:Name="Collapsed">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentSite" Storyboard.TargetProperty="Visibility">
@@ -215,9 +208,10 @@
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
+
                             </VisualStateGroup>
-                            
                         </VisualStateManager.VisualStateGroups>
+
                         <DockPanel Background="{TemplateBinding Background}">
                             <ToggleButton Name="HeaderSite"
                                           Focusable="False"
@@ -233,20 +227,25 @@
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"
                                           ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
                                           ContentStringFormat="{TemplateBinding HeaderStringFormat}"/>
+
                             <Border Name="ContentSite">
                                 <Border.LayoutTransform>
                                     <ScaleTransform x:Name="ContentSiteScaleTransform"/>
                                 </Border.LayoutTransform>
+
                                 <Grid Name="ContentPanel"
                                       Margin="{TemplateBinding Padding}"
                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+
                                     <ContentPresenter Name="PART_Content" Focusable="False"
                                                       ContentTemplate="{TemplateBinding ContentTemplate}"
                                                       ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
+
                                 </Grid>
                             </Border>
+
                         </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -274,5 +273,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>
