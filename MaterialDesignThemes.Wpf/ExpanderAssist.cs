@@ -1,67 +1,33 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace MaterialDesignThemes.Wpf
 {
     public static class ExpanderAssist
     {
-        public static readonly DependencyProperty LeftHeaderPaddingProperty =
-            DependencyProperty.RegisterAttached(
-                "LeftHeaderPadding", typeof(Thickness), typeof(ExpanderAssist),
-                new FrameworkPropertyMetadata(new Thickness(0, 0, 0, 0), FrameworkPropertyMetadataOptions.Inherits));
+        private static readonly Thickness DefaultHorizontalHeaderPadding = new Thickness(24, 12, 24, 12);
+        private static readonly Thickness DefaultVerticalHeaderPadding = new Thickness(12, 24, 12, 24);
 
-        public static void SetLeftHeaderPadding(DependencyObject element, Thickness value)
-        {
-            element.SetValue(LeftHeaderPaddingProperty, value);
-        }
+        #region AttachedProperty : HorizontalHeaderPaddingProperty
+        public static readonly DependencyProperty HorizontalHeaderPaddingProperty
+            = DependencyProperty.RegisterAttached("HorizontalHeaderPadding", typeof(Thickness), typeof(ExpanderAssist),
+                new FrameworkPropertyMetadata(DefaultHorizontalHeaderPadding, FrameworkPropertyMetadataOptions.Inherits));
 
-        public static Thickness GetLeftHeaderPadding(DependencyObject element)
-        {
-            return (Thickness)element.GetValue(LeftHeaderPaddingProperty);
-        }
+        public static Thickness GetHorizontalHeaderPadding(Expander element)
+            => (Thickness)element.GetValue(HorizontalHeaderPaddingProperty);
+        public static void SetHorizontalHeaderPadding(Expander element, Thickness value)
+            => element.SetValue(HorizontalHeaderPaddingProperty, value);
+        #endregion
 
-        public static readonly DependencyProperty RightHeaderPaddingProperty =
-            DependencyProperty.RegisterAttached(
-                "RightHeaderPadding", typeof(Thickness), typeof(ExpanderAssist),
-                new FrameworkPropertyMetadata(new Thickness(0, 0, 0, 0), FrameworkPropertyMetadataOptions.Inherits));
+        #region AttachedProperty : VerticalHeaderPaddingProperty
+        public static readonly DependencyProperty VerticalHeaderPaddingProperty
+            = DependencyProperty.RegisterAttached("VerticalHeaderPadding", typeof(Thickness), typeof(ExpanderAssist),
+                new FrameworkPropertyMetadata(DefaultVerticalHeaderPadding, FrameworkPropertyMetadataOptions.Inherits));
 
-        public static void SetRightHeaderPadding(DependencyObject element, Thickness value)
-        {
-            element.SetValue(RightHeaderPaddingProperty, value);
-        }
-
-        public static Thickness GetRightHeaderPadding(DependencyObject element)
-        {
-            return (Thickness)element.GetValue(RightHeaderPaddingProperty);
-        }
-
-        public static readonly DependencyProperty UpHeaderPaddingProperty =
-            DependencyProperty.RegisterAttached(
-                "UpHeaderPadding", typeof(Thickness), typeof(ExpanderAssist),
-                new FrameworkPropertyMetadata(new Thickness(0, 0, 0, 0), FrameworkPropertyMetadataOptions.Inherits));
-
-        public static void SetUpHeaderPadding(DependencyObject element, Thickness value)
-        {
-            element.SetValue(UpHeaderPaddingProperty, value);
-        }
-
-        public static Thickness GetUpHeaderPadding(DependencyObject element)
-        {
-            return (Thickness)element.GetValue(UpHeaderPaddingProperty);
-        }
-
-        public static readonly DependencyProperty DownHeaderPaddingProperty =
-            DependencyProperty.RegisterAttached(
-                "DownHeaderPadding", typeof(Thickness), typeof(ExpanderAssist),
-                new FrameworkPropertyMetadata(new Thickness(0, 0, 0, 0), FrameworkPropertyMetadataOptions.Inherits));
-
-        public static void SetDownHeaderPadding(DependencyObject element, Thickness value)
-        {
-            element.SetValue(DownHeaderPaddingProperty, value);
-        }
-
-        public static Thickness GetDownHeaderPadding(DependencyObject element)
-        {
-            return (Thickness)element.GetValue(DownHeaderPaddingProperty);
-        }
+        public static Thickness GetVerticalHeaderPadding(Expander element)
+            => (Thickness)element.GetValue(VerticalHeaderPaddingProperty);
+        public static void SetVerticalHeaderPadding(Expander element, Thickness value)
+            => element.SetValue(VerticalHeaderPaddingProperty, value);
+        #endregion
     }
 }
