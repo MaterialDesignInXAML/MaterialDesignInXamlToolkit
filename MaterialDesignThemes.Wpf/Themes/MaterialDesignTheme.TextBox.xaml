@@ -14,6 +14,7 @@
     <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearTextConverter" />
     <converters:NotConverter x:Key="NotConverter" />
     <converters:FontSizeToHintOffsetConverter x:Key="FontSizeToHintOffsetConverter" />
+    <converters:FontToLineHeightConverter x:Key="FontToLineHeightConverter" />
 
     <Style x:Key="MaterialDesignTextBoxBase" TargetType="{x:Type TextBoxBase}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
@@ -112,7 +113,6 @@
                                         <wpf:SmartHint
                                             x:Name="Hint"
                                             Grid.Column="1"
-                                            Height="{Binding ActualHeight, ElementName=PART_ContentHost}"
                                             HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                             FontSize="{TemplateBinding FontSize}"
                                             Padding="{TemplateBinding Padding}"
@@ -130,6 +130,12 @@
                                                         Content="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}" />
                                                 </Border>
                                             </wpf:SmartHint.Hint>
+                                            <wpf:SmartHint.Height>
+                                                    <MultiBinding Converter="{StaticResource FontToLineHeightConverter}">
+                                                    <Binding Path="FontFamily" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                    <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                </MultiBinding>
+                                            </wpf:SmartHint.Height>
                                         </wpf:SmartHint>
                                         <StackPanel
                                             Orientation="Horizontal"
@@ -141,7 +147,6 @@
                                                 Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}" />
                                             <Button
                                                 x:Name="PART_ClearButton"
-                                                Height="Auto"
                                                 Padding="2,0,0,0"
                                                 Focusable="False"
                                                 Style="{DynamicResource MaterialDesignToolButton}">
@@ -151,6 +156,12 @@
                                                         <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}" />
                                                     </MultiBinding>
                                                 </Button.Visibility>
+                                                <Button.Height>
+                                                    <MultiBinding Converter="{StaticResource FontToLineHeightConverter}">
+                                                        <Binding Path="FontFamily" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                        <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                    </MultiBinding>
+                                                </Button.Height>
                                                 <wpf:PackIcon Margin="0" Kind="CloseCircle" />
                                             </Button>
                                         </StackPanel>
