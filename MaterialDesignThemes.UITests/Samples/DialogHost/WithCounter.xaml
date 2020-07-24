@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="UITestCases.TestCases.DialogHost.DialogHostOverlay"
+﻿<UserControl x:Class="MaterialDesignThemes.UITests.Samples.DialogHost.WithCounter"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,21 +6,24 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <materialDesign:DialogHost AutomationProperties.AutomationId="DialogHost">
+    <materialDesign:DialogHost>
         <materialDesign:DialogHost.DialogContent>
             <StackPanel Margin="10">
                 <TextBlock Text="Some Text" />
                 <Button Content="Close" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                        AutomationProperties.AutomationId="CloseDialogButton"/>
+                        x:Name="CloseDialogButton"/>
             </StackPanel>
         </materialDesign:DialogHost.DialogContent>
 
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Button Content="Show Dialog" AutomationProperties.AutomationId="ShowDialogButton"
+            <Button Content="Show Dialog"
+                    x:Name="ShowDialogButton"
                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"/>
-            <Button Content="Test Overlay" AutomationProperties.AutomationId="TestOverlayButton" Margin="0,10"
+            <Button Content="Test Overlay"
+                    Margin="0,10"
+                    x:Name="TestOverlayButton"
                     Click="TestOverlayClick"/>
-            <TextBlock x:Name="ResultTextBlock" AutomationProperties.AutomationId="ResultTextBlock" />
+            <TextBlock x:Name="ResultTextBlock" />
         </StackPanel>
     </materialDesign:DialogHost>
 </UserControl>
