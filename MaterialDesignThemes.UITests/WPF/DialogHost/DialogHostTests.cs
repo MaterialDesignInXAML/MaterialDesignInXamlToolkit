@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MaterialDesignThemes.UITests.Samples.DialogHost;
-using XAMLTest;
+using XamlTest;
 using Xunit;
 using Xunit.Abstractions;
 

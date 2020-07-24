@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Media;
-using XAMLTest;
+using XamlTest;
 using Xunit;
 using Xunit.Abstractions;
 

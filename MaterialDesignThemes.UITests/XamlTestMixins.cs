@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using XAMLTest;
+using XamlTest;
 
 namespace MaterialDesignThemes.UITests
 {
