@@ -9,7 +9,7 @@ using Xunit;
 namespace MaterialDesignThemes.Wpf.Tests.Converters
 {
 
-    public class ExpanderDirectinConverterTests
+    public class ExpanderDirectionConverterTests
     {
         [Theory]
         [InlineData(null, null, null)]
