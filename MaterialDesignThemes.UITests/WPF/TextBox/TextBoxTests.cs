@@ -22,7 +22,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
 
             //Arrange
             IVisualElement grid = await LoadXaml(@"
-<Grid>
+<Grid Margin=""30"">
     <TextBox Style=""{StaticResource MaterialDesignFloatingHintTextBox}""
         VerticalAlignment=""Top""
         materialDesign:TextFieldAssist.HasClearButton=""True""
@@ -37,11 +37,14 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
     </TextBox >
 </Grid>");
             IVisualElement textBox = await grid.GetElement("/TextBox");
+            IVisualElement clearButton = await grid.GetElement("PART_ClearButton");
 
             double initialHeight = await textBox.GetActualHeight();
 
             //Act
-            await textBox.SetText($"Some text");
+            await textBox.MoveKeyboardFocus();
+            //Delay needed to accout for transition storyboard
+            await Task.Delay(MaterialDesignTextBox.FocusedAimationTime);
 
             //Assert
             double height = await textBox.GetActualHeight();

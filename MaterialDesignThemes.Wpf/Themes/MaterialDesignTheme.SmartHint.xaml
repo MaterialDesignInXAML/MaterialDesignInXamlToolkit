@@ -6,7 +6,6 @@
 
     <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
     <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
-    <converters:RangePositionConverter x:Key="RangePositionConverter"/>
     <converters:FloatingHintTransformConverter x:Key="FloatingHintTransformConverter" />
     <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
     <SineEase x:Key="AnimationEasingFunction" EasingMode="EaseOut"/>
@@ -132,29 +131,11 @@
                                     <ContentControl.Tag>
                                         <system:Double>0.0</system:Double>
                                     </ContentControl.Tag>
-                                    <ContentControl.LayoutTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform>
-                                                <ScaleTransform.ScaleX>
-                                                    <MultiBinding Converter="{StaticResource RangePositionConverter}">
-                                                        <Binding Path="Scale" ElementName="ScaleHost"/>
-                                                        <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                                        <Binding Source="{StaticResource NoContentFloatingScale}"/>
-                                                    </MultiBinding>
-                                                </ScaleTransform.ScaleX>
-                                                <ScaleTransform.ScaleY>
-                                                    <MultiBinding Converter="{StaticResource RangePositionConverter}">
-                                                        <Binding Path="Scale" ElementName="ScaleHost"/>
-                                                        <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                                        <Binding Source="{StaticResource NoContentFloatingScale}"/>
-                                                    </MultiBinding>
-                                                </ScaleTransform.ScaleY>
-                                            </ScaleTransform>
-                                        </TransformGroup>
-                                    </ContentControl.LayoutTransform>
                                     <ContentControl.RenderTransform>
                                         <MultiBinding Converter="{StaticResource FloatingHintTransformConverter}">
                                             <Binding Path="Scale" ElementName="ScaleHost"/>
+                                            <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                            <Binding Source="{StaticResource NoContentFloatingScale}"/>
                                             <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         </MultiBinding>
                                     </ContentControl.RenderTransform>
