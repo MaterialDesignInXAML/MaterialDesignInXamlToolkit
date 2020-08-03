@@ -80,12 +80,9 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
             await textBox.SetText("");
 
             //Assert
-            double height = await textBox.GetActualHeight();
-            Assert.Equal(initialHeight, height);
+            await Wait.For(async () => Assert.Equal(initialHeight, await textBox.GetActualHeight()));
             Rect rect = await textBox.GetCoordinates();
             Assert.Equal(initialRect, rect);
-
-
             recorder.Success();
         }
     }
