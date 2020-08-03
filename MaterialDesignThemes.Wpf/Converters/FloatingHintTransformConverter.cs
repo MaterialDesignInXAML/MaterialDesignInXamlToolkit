@@ -11,10 +11,10 @@ namespace MaterialDesignThemes.Wpf.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values == null || values.Length != 4 || values.Any(v => v == null))
-                return Binding.DoNothing;
-
-            if (!double.TryParse(values[0].ToString(), out double scale)
+            if (values == null 
+                || values.Length != 4 
+                || values.Any(v => v == null)
+                || !double.TryParse(values[0].ToString(), out double scale)
                 || !double.TryParse(values[1].ToString(), out double lower)
                 || !double.TryParse(values[2].ToString(), out double upper)
                 || !(values[3] is Point floatingOffset))
