@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows;
 using XamlTest;
 using Xunit;
 using Xunit.Abstractions;
@@ -68,6 +69,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
 </Grid>");
             IVisualElement textBox = await grid.GetElement("/TextBox");
 
+            Rect initialRect = await textBox.GetCoordinates();
             double initialHeight = await textBox.GetActualHeight();
 
             await textBox.SetText($"Line 1{Environment.NewLine}Line 2");
@@ -80,6 +82,9 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
             //Assert
             double height = await textBox.GetActualHeight();
             Assert.Equal(initialHeight, height);
+            Rect rect = await textBox.GetCoordinates();
+            Assert.Equal(initialRect, rect);
+
 
             recorder.Success();
         }
