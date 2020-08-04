@@ -24,6 +24,42 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
             //Arrange
             IVisualElement grid = await LoadXaml(@"
 <Grid Margin=""30"">
+    <TextBox VerticalAlignment=""Top""
+             Text=""Some Text""
+             materialDesign:TextFieldAssist.HasClearButton=""True"">
+    </TextBox>
+</Grid>");
+            IVisualElement textBox = await grid.GetElement("/TextBox");
+            IVisualElement clearButton = await grid.GetElement("PART_ClearButton");
+
+            await textBox.MoveKeyboardFocus();
+            //Delay needed to accout for transition storyboard
+            await Task.Delay(MaterialDesignTextBox.FocusedAimationTime);
+
+            double initialHeight = await textBox.GetActualHeight();
+
+            //Act
+            await clearButton.Click();
+
+            //Assert
+            await Task.Delay(MaterialDesignTextBox.FocusedAimationTime);
+
+            double height = await textBox.GetActualHeight();
+            Assert.Equal(initialHeight, height);
+
+            recorder.Success();
+        }
+
+
+        [Fact]
+        [Description("Issue 1883")]
+        public async Task OnClearButtonWithHintShown_ControlHeighDoesNotChange()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            //Arrange
+            IVisualElement grid = await LoadXaml(@"
+<Grid Margin=""30"">
     <TextBox Style=""{StaticResource MaterialDesignFloatingHintTextBox}""
         VerticalAlignment=""Top""
         materialDesign:TextFieldAssist.HasClearButton=""True""
@@ -35,7 +71,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
                 <TextBlock>WiFi</TextBlock>
             </StackPanel>
          </materialDesign:HintAssist.Hint >
-    </TextBox >
+    </TextBox>
 </Grid>");
             IVisualElement textBox = await grid.GetElement("/TextBox");
             IVisualElement clearButton = await grid.GetElement("PART_ClearButton");
