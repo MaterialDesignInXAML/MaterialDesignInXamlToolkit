@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using MaterialDesignThemes.Wpf.Transitions;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -143,5 +146,45 @@ namespace MaterialDesignThemes.Wpf
 
         public static void SetHorizontalAlignment(DependencyObject element, HorizontalAlignment value) => element.SetValue(HorizontalAlignmentProperty, value);
         public static HorizontalAlignment GetHorizontalAlignment(DependencyObject element) => (HorizontalAlignment) element.GetValue(HorizontalAlignmentProperty);
+
+        public static readonly DependencyProperty ValidateeProperty = DependencyProperty.RegisterAttached(
+            "Validatee", typeof(DependencyObject), typeof(ValidationAssist), new PropertyMetadata(null, ValidateeChangedCallback));
+        public static void SetValidatee(DependencyObject element, DependencyObject value) => element.SetValue(ValidateeProperty, value);
+        public static DependencyObject GetValidatee(DependencyObject element) => (DependencyObject)element.GetValue(ValidateeProperty);
+
+        public static readonly DependencyProperty ValidateeOpacityProperty = DependencyProperty.RegisterAttached(
+            "ValidateeOpacity", typeof(double), typeof(ValidationAssist), new FrameworkPropertyMetadata(1.0));
+        public static void SetValidateeOpacity(DependencyObject element, double value) => element.SetValue(ValidateeOpacityProperty, value);
+        public static double GetValidateeOpacity(DependencyObject element) => (double)element.GetValue(ValidateeOpacityProperty);
+
+        private static readonly DependencyProperty DetachValidateeProperty = DependencyProperty.RegisterAttached(
+            "DetachValidatee", typeof(Action), typeof(ValidationAssist), new PropertyMetadata(null));
+        private static void SetDetachValidatee(DependencyObject element, Action value) => element.SetValue(DetachValidateeProperty, value);
+        private static Action GetDetachValidatee(DependencyObject element) => (Action)element.GetValue(DetachValidateeProperty);
+
+        private static void ValidateeChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            GetDetachValidatee(d)?.Invoke();
+            SetDetachValidatee(d, Attach(d as FrameworkElement, e.NewValue as DependencyObject));
+
+            static Action Attach(FrameworkElement element, DependencyObject validatee)
+            {
+                if (element is null)
+                    return null;
+                var slide = validatee.GetVisualAncestry().OfType<TransitionerSlide>().FirstOrDefault();
+                if (slide is null)
+                    return null;
+
+                EventHandler opacityChanged = (sender, e) => SetValidateeOpacity(element, slide.Opacity);
+                RoutedEventHandler unloaded = (sender, e) => GetDetachValidatee(element)?.Invoke();
+                slide.OpacityChanged += opacityChanged;
+                element.Unloaded += unloaded;
+                return () => {
+                    slide.OpacityChanged -= opacityChanged;
+                    element.Unloaded -= unloaded;
+                    SetDetachValidatee(element, null);
+                };
+            }
+        }
     }
 }

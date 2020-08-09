@@ -18,7 +18,8 @@
             </DataTemplate>
         </ControlTemplate.Resources>
         <StackPanel>
-            <AdornedElementPlaceholder Name="Placeholder" />
+            <AdornedElementPlaceholder Name="Placeholder"
+                                       wpf:ValidationAssist.Validatee="{Binding ElementName=Placeholder, Path=AdornedElement}"/>
             <Border x:Name="DefaultErrorViewer"
                     Visibility="Collapsed"
                     Background="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Background)}">
@@ -29,6 +30,7 @@
                            Margin="0 2"
                            TextWrapping="Wrap"
                            Text="{Binding CurrentItem.ErrorContent}"
+                           Opacity="{Binding Path=(wpf:ValidationAssist.ValidateeOpacity), ElementName=Placeholder}"
                            UseLayoutRounding="false" />
             </Border>
             <controlzEx:PopupEx x:Name="ValidationPopup"
@@ -43,6 +45,7 @@
                                Margin="0 2"
                                TextWrapping="Wrap"
                                Text="{Binding CurrentItem.ErrorContent}"
+                               Opacity="{Binding Path=(wpf:ValidationAssist.ValidateeOpacity), ElementName=Placeholder}"
                                UseLayoutRounding="false" />
                 </Border>
             </controlzEx:PopupEx>

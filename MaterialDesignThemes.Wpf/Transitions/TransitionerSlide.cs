@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace MaterialDesignThemes.Wpf.Transitions
 {
@@ -10,6 +11,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
         static TransitionerSlide()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TransitionerSlide), new FrameworkPropertyMetadata(typeof(TransitionerSlide)));
+            OpacityProperty.OverrideMetadata(typeof(TransitionerSlide), new UIPropertyMetadata(OpacityChangedCallback));
         }
 
         public static readonly DependencyProperty TransitionOriginProperty = DependencyProperty.Register(
@@ -66,6 +68,13 @@ namespace MaterialDesignThemes.Wpf.Transitions
             if (State != TransitionerSlideState.Current) return;
 
             RunOpeningEffects();
+        }
+
+        public event EventHandler OpacityChanged;
+
+        private static void OpacityChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((TransitionerSlide)d).OpacityChanged?.Invoke(d, EventArgs.Empty);
         }
     }
 }
