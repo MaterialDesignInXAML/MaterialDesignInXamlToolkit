@@ -4,10 +4,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <StartupObject></StartupObject>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="favicon.ico" />
     <None Remove="ms-icon-310x310.png" />
+    <None Remove="View\favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="favicon.ico" />
     <Resource Include="ms-icon-310x310.png" />
+    <Resource Include="View\favicon.ico" />
   </ItemGroup>
 
 </Project>
