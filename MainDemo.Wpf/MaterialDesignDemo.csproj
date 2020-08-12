@@ -12,6 +12,7 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <UseWPF>true</UseWPF>
     <SignAssembly>false</SignAssembly>
+    <ApplicationManifest>App.manifest</ApplicationManifest>
   </PropertyGroup>
   <Import Project="..\packages\ShowMeTheXAML.MSBuild\build\ShowMeTheXAML.MSBuild.targets" Label="Paket" />
   <Target Name="ShowMeTheXAML_EnsureXamlCreated" AfterTargets="BeforeCompile">
