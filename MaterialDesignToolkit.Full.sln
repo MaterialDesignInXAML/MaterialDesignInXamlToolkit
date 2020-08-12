@@ -49,6 +49,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesignThemes.UITest
 		{CF0A27A8-EF82-44E5-B673-ECCC150C48ED} = {CF0A27A8-EF82-44E5-B673-ECCC150C48ED}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.Wpf.ThemeCreator", "MaterialDesignThemes.Wpf.ThemeCreator\MaterialDesignThemes.Wpf.ThemeCreator.csproj", "{5065A159-33DB-421A-9383-DFA467D5E1EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -189,6 +191,22 @@ Global
 		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|x64.Build.0 = Release|Any CPU
 		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|x86.ActiveCfg = Release|Any CPU
 		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|x86.Build.0 = Release|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Debug|ARM.Build.0 = Debug|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Debug|x64.Build.0 = Debug|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Debug|x86.Build.0 = Debug|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Release|ARM.Build.0 = Release|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Release|x64.ActiveCfg = Release|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Release|x64.Build.0 = Release|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Release|x86.ActiveCfg = Release|Any CPU
+		{5065A159-33DB-421A-9383-DFA467D5E1EC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
