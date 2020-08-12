@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using XamlTest;
 using Xunit;
 using Xunit.Abstractions;
@@ -119,6 +120,34 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
             await Wait.For(async () => Assert.Equal(initialHeight, await textBox.GetActualHeight()));
             Rect rect = await textBox.GetCoordinates();
             Assert.Equal(initialRect, rect);
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Issue 2002")]
+        public async Task OnTextBoxDisabled_FloatingHintBackgroundIsOpaque()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml(@"
+<Grid Background=""Red"">
+    <TextBox
+        Style=""{StaticResource MaterialDesignOutlinedTextFieldTextBox}""
+        VerticalAlignment=""Top""
+        Height=""100""
+        Text=""Some content to force hint to float""
+        IsEnabled=""false""
+        Margin=""30""
+        materialDesign:HintAssist.Hint=""This is a text area""/>
+</Grid>");
+            IVisualElement textBox = await grid.GetElement("/TextBox");
+            //textFieldGrid is the element just inside of the border
+            IVisualElement textFieldGrid = await textBox.GetElement("textFieldGrid");
+            IVisualElement hintBackground = await textBox.GetElement("HintBackgroundBorder");
+
+            Color background = await hintBackground.GetEffectiveBackground(textFieldGrid);
+
+            Assert.Equal(255, background.A);
             recorder.Success();
         }
     }
