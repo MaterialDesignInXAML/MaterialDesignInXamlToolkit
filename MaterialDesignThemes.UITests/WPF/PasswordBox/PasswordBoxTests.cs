@@ -22,18 +22,16 @@ namespace MaterialDesignThemes.UITests.WPF.PasswordBox
             var stackPanel = await LoadXaml(@"
 <StackPanel>
     <PasswordBox materialDesign:TextFieldAssist.HasClearButton=""True""/>
-    <TextBox/>
 </StackPanel>");
             var passwordBox = await stackPanel.GetElement("/PasswordBox");
-            var textBox = await stackPanel.GetElement("/TextBox");
 
-            var initialRect = await textBox.GetCoordinates();
+            var initialRect = await passwordBox.GetCoordinates();
 
             //Act
             await passwordBox.SetProperty<string>(nameof(Controls.PasswordBox.Password), "x");
 
             //Assert
-            var rect = await textBox.GetCoordinates();
+            var rect = await passwordBox.GetCoordinates();
             Assert.Equal(initialRect, rect);
 
             recorder.Success();
