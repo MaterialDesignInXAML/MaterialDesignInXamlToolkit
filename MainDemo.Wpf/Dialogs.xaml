@@ -42,7 +42,10 @@
                 <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"
                            Margin="8 0 8 0">SAMPLE 1: Localized dialog encapsulating specific content, launched from a routed command, response handled in code-behind.</TextBlock>
                 <smtx:XamlDisplay Key="dialogs_sample1" Grid.Column="0" Grid.Row="1" Margin="5 0 0 0">
-                    <materialDesign:DialogHost DialogClosing="Sample1_DialogHost_OnDialogClosing" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:DialogHost DialogClosing="Sample1_DialogHost_OnDialogClosing"
+                                               DialogTheme="Inherit"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center">
                         <materialDesign:DialogHost.DialogContent>
                             <StackPanel Margin="16">
                                 <TextBlock>Add a new fruit.</TextBlock>
@@ -149,11 +152,13 @@
                            Grid.Column="3" Grid.Row="0" Margin="8 0 8 0"
                            >SAMPLE 4: Dialog managed from view model using IsOpen and custom commands (ignoring the provided routed commands). This also uses a custom brush to dim the background.</TextBlock>
                 <smtx:XamlDisplay Key="dialogs_sample4"  Grid.Column="3" Grid.Row="1" >
-                    <materialDesign:DialogHost HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           IsOpen="{Binding IsSample4DialogOpen}"
-                                           DialogContent="{Binding Sample4Content}"
-                                           CloseOnClickAway="True"
-                                           OverlayBackground="{DynamicResource PrimaryHueDarkBrush}">
+                    <materialDesign:DialogHost HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               IsOpen="{Binding IsSample4DialogOpen}"
+                                               DialogContent="{Binding Sample4Content}"
+                                               CloseOnClickAway="True"
+                                               OverlayBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                               DialogTheme="Inherit">
                         <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                             MinWidth="256" MinHeight="256" ClipToBounds="True">
                             <Button HorizontalAlignment="Center" VerticalAlignment="Center"
