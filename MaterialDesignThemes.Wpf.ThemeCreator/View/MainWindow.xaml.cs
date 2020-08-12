@@ -42,6 +42,7 @@ namespace MaterialDesignThemes.Wpf.ThemeCreator
             if (newdarkbased.IsChecked ?? false) { vm.Brushes = Model.BrushColor.FromDark(); } else { vm.Brushes = Model.BrushColor.FromLight(); }
             CustomBaseColorTheme theme = BuildTheme();
             ApplyTheme(theme);
+            path = null;
         }
 
         private void OpenProject_Button_Click(object sender, RoutedEventArgs e)
@@ -97,7 +98,7 @@ namespace MaterialDesignThemes.Wpf.ThemeCreator
 
         private void Flush()
         {
-            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
             {
                 var th = BuildTheme();
                 //XamlWriter.Save(th, fs);
@@ -111,7 +112,6 @@ namespace MaterialDesignThemes.Wpf.ThemeCreator
                 fs.Dispose();
             }
         }
-
 
         private bool lockrefresh = true;
         private void EditorViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
