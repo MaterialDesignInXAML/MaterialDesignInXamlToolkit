@@ -123,12 +123,12 @@
                                             FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}">
                                                 <wpf:SmartHint.Hint>
                                                     <Border
-                                                    x:Name="HintBackgroundBorder"
-                                                    Background="{TemplateBinding wpf:HintAssist.Background}"
-                                                    CornerRadius="2">
+                                                        x:Name="HintBackgroundBorder"
+                                                        Background="{TemplateBinding wpf:HintAssist.Background}"
+                                                        CornerRadius="2">
                                                         <ContentPresenter
-                                                        x:Name="HintWrapper"
-                                                        Content="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}" />
+                                                            x:Name="HintWrapper"
+                                                            Content="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}" />
                                                     </Border>
                                                 </wpf:SmartHint.Hint>
                                             </wpf:SmartHint>
