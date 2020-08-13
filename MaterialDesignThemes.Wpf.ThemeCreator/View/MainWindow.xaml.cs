@@ -131,7 +131,23 @@ namespace MaterialDesignThemes.Wpf.ThemeCreator
 
             coloreditordialogacceptbutton.CommandParameter = entry;
             cpicker.Color = entry.Color;
+            lockrefresh = true;
+            alphaslider.Value = (double)cpicker.Color.A;
+            lockrefresh = false;
         }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (lockrefresh) { return; }
+            cpicker.Color = new Color
+            {
+                A = (byte)e.NewValue,
+                R = cpicker.Color.R,
+                G = cpicker.Color.G,
+                B = cpicker.Color.B
+            };
+        }
+
 
         private void AcceptColor(object sender, DialogClosingEventArgs eventArgs)
         {
