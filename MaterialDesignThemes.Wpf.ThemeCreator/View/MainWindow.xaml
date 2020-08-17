@@ -6,18 +6,18 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:viewemodel="clr-namespace:MaterialDesignThemes.Wpf.ThemeCreator.ViewModel"
         xmlns:model="clr-namespace:MaterialDesignThemes.Wpf.ThemeCreator.Model"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
-        FontFamily="{materialDesign:MaterialDesignFont}" 
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="MaterialDesignInXAML Theme Creator" 
-        Height="740" Width="1000" 
+        Height="740" d:DesignWidth="2000" Width="1010" 
         Icon="/View/favicon.ico">
     <Window.Resources>
         <viewemodel:EditorViewModel x:Key="VM" PropertyChanged="EditorViewModel_PropertyChanged" />
@@ -139,7 +139,7 @@
                           materialDesign:ColorZoneAssist.Mode="Standard"
                           Style="{StaticResource MaterialDesignCardGroupBox}"
                           materialDesign:ShadowAssist.ShadowDepth="Depth0" Grid.RowSpan="2">
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                         <ItemsControl ItemsSource="{Binding Brushes}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type model:BrushColor}">
@@ -199,8 +199,8 @@
                             <ResourceDictionary>
                                 <ResourceDictionary.MergedDictionaries>
                                     <materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="Purple" SecondaryColor="Lime"  />
-                                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                                    <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />-->
                                 </ResourceDictionary.MergedDictionaries>
                             </ResourceDictionary>
                         </Grid.Resources>
@@ -208,7 +208,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        <materialDesign:ColorZone Padding="16" 
+                        <materialDesign:ColorZone Padding="8" 
                                                   materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                                   Mode="PrimaryMid">
 
@@ -239,82 +239,289 @@
 
 
                         </materialDesign:ColorZone>
-                        <Grid Grid.Row="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="245*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="300"/>
-                                <ColumnDefinition Width="290"/>
-                            </Grid.ColumnDefinitions>
-                            <GroupBox Header="Form" 
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="300"/>
+                                    <ColumnDefinition Width="300"/>
+                                    <ColumnDefinition Width="300"/>
+
+                                </Grid.ColumnDefinitions>
+                                <GroupBox Header="Form" 
                                       Margin="10"
                                       materialDesign:ColorZoneAssist.Mode="Standard"
                                       materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                       Style="{DynamicResource MaterialDesignCardGroupBox}">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Text Field" Margin="3" />
-                                    <ComboBox Style="{DynamicResource MaterialDesignFloatingHintComboBox}" Grid.Row="1" materialDesign:HintAssist.Hint="Selector Field" Margin="3">
-                                        opt01
-                                    </ComboBox>
-                                    <DatePicker Style="{DynamicResource MaterialDesignFloatingHintDatePicker}" Grid.Row="2" materialDesign:HintAssist.Hint="Date Selector" />
-                                </Grid>
-                            </GroupBox>
-                            <GroupBox Header="Buttons" 
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Text Field" Margin="3" />
+                                        <ComboBox Style="{DynamicResource MaterialDesignFloatingHintComboBox}" Grid.Row="1" materialDesign:HintAssist.Hint="Selector Field" Margin="3">
+                                            <sys:String>option 1</sys:String>
+                                            <sys:String>option 2</sys:String>
+                                            <sys:String>option 3</sys:String>
+                                            <sys:String>option 4</sys:String>
+                                        </ComboBox>
+                                        <DatePicker Style="{DynamicResource MaterialDesignFloatingHintDatePicker}" Grid.Row="2" materialDesign:HintAssist.Hint="Date Selector" Margin="3" />
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Buttons" 
                                       Margin="10"
                                       Grid.Row="1"
                                       materialDesign:ColorZoneAssist.Mode="Standard"
                                       materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                                      VerticalAlignment="Top"
                                       Style="{DynamicResource MaterialDesignCardGroupBox}">
-                                <UniformGrid Columns="3" >
-                                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Margin="5">Flat</Button>
-                                    <Button Style="{DynamicResource MaterialDesignFlatAccentButton}" Margin="5">Flat AC</Button>
-                                    <Button Style="{DynamicResource MaterialDesignFlatAccentBgButton}" Margin="5">Flat AC BG</Button>
-                                    <Button Style="{DynamicResource MaterialDesignFlatLightBgButton }" Margin="5">Flat PR</Button>
-                                    <Button Style="{DynamicResource MaterialDesignFlatMidBgButton }" Margin="5">Flat PR</Button>
-                                    <Button Style="{DynamicResource MaterialDesignFlatDarkBgButton }" Margin="5">Flat PR</Button>
-                                    <Button Style="{DynamicResource MaterialDesignFloatingActionButton}" Margin="5">Act</Button>
-                                    <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}" Margin="5">Act Ac</Button>
-                                    <Button Style="{DynamicResource MaterialDesignIconButton}" Margin="5">
-                                        <materialDesign:PackIcon Kind="Emoticon" />
-                                    </Button>
-                                </UniformGrid>
-                            </GroupBox>
-
-                            <GroupBox Header="Toggles" 
+                                    <UniformGrid Columns="3" HorizontalAlignment="Stretch" >
+                                        <Button Style="{DynamicResource MaterialDesignFlatButton}" Margin="5">FLAT</Button>
+                                        <Button Style="{DynamicResource MaterialDesignFlatAccentButton}" Margin="5">Flat AC</Button>
+                                        <Button Style="{DynamicResource MaterialDesignFlatAccentBgButton}" Margin="5">Flat AC BG</Button>
+                                        <Button Style="{DynamicResource MaterialDesignFlatLightBgButton }" Margin="5">Flat PR</Button>
+                                        <Button Style="{DynamicResource MaterialDesignFlatMidBgButton }" Margin="5">Flat PR</Button>
+                                        <Button Style="{DynamicResource MaterialDesignFlatDarkBgButton }" Margin="5">Flat PR</Button>
+                                        <Button Style="{DynamicResource MaterialDesignFloatingActionButton}" Margin="5">Act</Button>
+                                        <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}" Margin="5">Act Ac</Button>
+                                        <Button Style="{DynamicResource MaterialDesignIconButton}" Margin="5">
+                                            <materialDesign:PackIcon Kind="Emoticon" />
+                                        </Button>
+                                    </UniformGrid>
+                                </GroupBox>
+                                <GroupBox Header="Toggles" 
                                       Margin="10"
                                       Grid.Column="1"
                                       materialDesign:ColorZoneAssist.Mode="Standard"
                                       materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                       Style="{DynamicResource MaterialDesignCardGroupBox}">
-                                <UniformGrid Columns="5" >
-                                    <CheckBox Style="{DynamicResource MaterialDesignLightCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
-                                    <CheckBox Style="{DynamicResource MaterialDesignCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
-                                    <CheckBox Style="{DynamicResource MaterialDesignDarkCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
-                                    <CheckBox Style="{DynamicResource MaterialDesignAccentCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
-                                    <CheckBox Style="{DynamicResource MaterialDesignCheckBox}" IsChecked="True" IsEnabled="False" HorizontalAlignment="Center" />
-                                    <RadioButton Style="{DynamicResource MaterialDesignDarkRadioButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                    <RadioButton Style="{DynamicResource MaterialDesignRadioButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                    <RadioButton Style="{DynamicResource MaterialDesignLightRadioButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                    <RadioButton Style="{DynamicResource MaterialDesignAccentRadioButton}" IsChecked="True" GroupName="accent" HorizontalAlignment="Center" />
-                                    <RadioButton Style="{DynamicResource MaterialDesignRadioButton}" IsChecked="True" IsEnabled="False" GroupName="disabled" HorizontalAlignment="Center" />
-                                    <ToggleButton Style="{DynamicResource MaterialDesignSwitchDarkToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                    <ToggleButton Style="{DynamicResource MaterialDesignSwitchToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                    <ToggleButton Style="{DynamicResource MaterialDesignSwitchLightToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                    <ToggleButton Style="{DynamicResource MaterialDesignSwitchAccentToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                    <ToggleButton Style="{DynamicResource MaterialDesignSwitchToggleButton}" IsChecked="True" IsEnabled="False" HorizontalAlignment="Center" />
-                                </UniformGrid>
-                            </GroupBox>
+                                    <UniformGrid Columns="5" >
+                                        <CheckBox Style="{DynamicResource MaterialDesignLightCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <CheckBox Style="{DynamicResource MaterialDesignCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <CheckBox Style="{DynamicResource MaterialDesignDarkCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <CheckBox Style="{DynamicResource MaterialDesignAccentCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <CheckBox Style="{DynamicResource MaterialDesignCheckBox}" IsChecked="True" IsEnabled="False" HorizontalAlignment="Center" />
+                                        <RadioButton Style="{DynamicResource MaterialDesignDarkRadioButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <RadioButton Style="{DynamicResource MaterialDesignRadioButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <RadioButton Style="{DynamicResource MaterialDesignLightRadioButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <RadioButton Style="{DynamicResource MaterialDesignAccentRadioButton}" IsChecked="True" GroupName="accent" HorizontalAlignment="Center" />
+                                        <RadioButton Style="{DynamicResource MaterialDesignRadioButton}" IsChecked="True" IsEnabled="False" GroupName="disabled" HorizontalAlignment="Center" />
+                                        <ToggleButton Style="{DynamicResource MaterialDesignSwitchDarkToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <ToggleButton Style="{DynamicResource MaterialDesignSwitchToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <ToggleButton Style="{DynamicResource MaterialDesignSwitchLightToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <ToggleButton Style="{DynamicResource MaterialDesignSwitchAccentToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <ToggleButton Style="{DynamicResource MaterialDesignSwitchToggleButton}" IsChecked="True" IsEnabled="False" HorizontalAlignment="Center" />
+                                    </UniformGrid>
+                                </GroupBox>
+                                <GroupBox Header="DataGrid" 
+                                      Margin="10"
+                                      Grid.Column="1"
+                                      Grid.Row="1"
+                                      materialDesign:ColorZoneAssist.Mode="Standard"
+                                      materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                      Style="{DynamicResource MaterialDesignCardGroupBox}">
+                                    <DataGrid IsReadOnly="True">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Binding="{Binding}" Header="Column Header:" />
+                                        </DataGrid.Columns>
+                                        <DataGrid.Items>
+                                            <sys:String>Row1</sys:String>
+                                            <sys:String>Row2</sys:String>
+                                            <sys:String>Row3</sys:String>
+                                            <sys:String>Row4</sys:String>
+                                            <sys:String>Row5</sys:String>
+                                        </DataGrid.Items>
+                                    </DataGrid>
+                                </GroupBox>
+                                <GroupBox Header="Tabs and Navigation Rail"
+                                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                                      materialDesign:ColorZoneAssist.Mode="Standard"
+                                      materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                      Margin="10" 
+                                      Grid.RowSpan="2"
+                                      Grid.Column="2">
+                                    <StackPanel>
+                                        <TabControl materialDesign:ColorZoneAssist.Mode="Standard" 
+                                                    HorizontalContentAlignment="Stretch" 
+                                                    VerticalContentAlignment="Stretch" 
+                                                    Margin="0,0,0,20"
+                                                    TabStripPlacement="Top" >
+                                            <TabItem >
+                                                <TabItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" Kind="PodiumFirst"/>
+                                                        <TextBlock Text="FIRST" VerticalAlignment="Center" Margin="0,2,0,0" />
+                                                    </StackPanel>
+                                                </TabItem.Header>
+                                                <TextBlock Padding="2" TextWrapping="Wrap" TextAlignment="Justify"  >
+                                                    Default
+                                                </TextBlock>
+                                            </TabItem>
+                                            <TabItem>
+                                                <TabItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="PodiumSecond" Margin="4"/>
+                                                        <TextBlock Text="SECOND" VerticalAlignment="Center" Margin="0,2,0,0" />
+                                                    </StackPanel>
+                                                </TabItem.Header>
+                                                <TextBlock Padding="2" TextWrapping="Wrap" TextAlignment="Justify"  >
+                                                    Default - Tab2
+                                                </TextBlock>
+                                            </TabItem>
+                                        </TabControl>
+                                        <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryMid" 
+                                                    HorizontalContentAlignment="Stretch" 
+                                                    VerticalContentAlignment="Stretch" 
+                                                    Margin="0,0,0,20"
+                                                    TabStripPlacement="Top" >
+                                            <TabItem >
+                                                <TabItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" Kind="PodiumFirst"/>
+                                                        <TextBlock Text="FIRST" VerticalAlignment="Center" Margin="0,2,0,0" />
+                                                    </StackPanel>
+                                                </TabItem.Header>
+                                                <Grid>
+                                                    <TextBlock Padding="2" TextWrapping="Wrap" TextAlignment="Justify"  >
+                                                    ColorZone = PrimaryMid
+                                                    </TextBlock>
+                                                </Grid>
+                                            </TabItem>
+                                            <TabItem>
+                                                <TabItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="PodiumSecond" Margin="4"/>
+                                                        <TextBlock Text="SECOND" VerticalAlignment="Center" Margin="0,2,0,0" />
+                                                    </StackPanel>
+                                                </TabItem.Header>
+                                                <TextBlock Padding="2" TextWrapping="Wrap" TextAlignment="Justify"  >
+                                                    ColorZone = PrimaryMid - Tab2
+                                                </TextBlock>
+                                            </TabItem>
+                                        </TabControl>
+                                        <TabControl materialDesign:ColorZoneAssist.Mode="Accent" 
+                                                    HorizontalContentAlignment="Stretch" 
+                                                    VerticalContentAlignment="Stretch" 
+                                                    Margin="0,0,0,20"
+                                                    TabStripPlacement="Top" >
+                                            <TabItem >
+                                                <TabItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" Kind="PodiumFirst"/>
+                                                        <TextBlock Text="FIRST" VerticalAlignment="Center" Margin="0,2,0,0" />
+                                                    </StackPanel>
+                                                </TabItem.Header>
+                                                <TextBlock Padding="2" TextWrapping="Wrap" TextAlignment="Justify"  >
+                                                    ColorZone = Accent
+                                                </TextBlock>
+                                            </TabItem>
+                                            <TabItem>
+                                                <TabItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="PodiumSecond" Margin="4"/>
+                                                        <TextBlock Text="SECOND" VerticalAlignment="Center" Margin="0,2,0,0" />
+                                                    </StackPanel>
+                                                </TabItem.Header>
+                                                <TextBlock Padding="2" TextWrapping="Wrap" TextAlignment="Justify"  >
+                                                    ColorZone = Accent - Tab2
+                                                </TextBlock>
+                                            </TabItem>
+                                        </TabControl>
+                                        <TabControl materialDesign:ColorZoneAssist.Mode="Standard" 
+                                                    HorizontalContentAlignment="Left" 
+                                                    VerticalContentAlignment="Stretch" 
+                                                    Margin="0,0,0,20"
+                                                    TabStripPlacement="Top" >
+                                            <TabItem >
+                                                <TabItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" Kind="PodiumFirst"/>
+                                                        <TextBlock Text="FIRST" VerticalAlignment="Center" Margin="0,2,0,0" />
+                                                    </StackPanel>
+                                                </TabItem.Header>
+                                                <TextBlock Padding="2" TextWrapping="Wrap" TextAlignment="Justify"  >
+                                                    Left Aligned Tabs
+                                                </TextBlock>
+                                            </TabItem>
+                                            <TabItem>
+                                                <TabItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="PodiumSecond" Margin="4"/>
+                                                        <TextBlock Text="SECOND" VerticalAlignment="Center" Margin="0,2,0,0" />
+                                                    </StackPanel>
+                                                </TabItem.Header>
+                                                <TextBlock Padding="2" TextWrapping="Wrap" TextAlignment="Justify"  >
+                                                     Left Aligned Tabs - Tab2
+                                                </TextBlock>
+                                            </TabItem>
+                                        </TabControl>
+                                        <TabControl materialDesign:ColorZoneAssist.Mode="Standard" 
+                                                    HorizontalContentAlignment="Right" 
+                                                    VerticalContentAlignment="Stretch" 
+                                                    Margin="0,0,0,20"
+                                                    TabStripPlacement="Top" >
+                                            <TabItem >
+                                                <TabItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" Kind="PodiumFirst"/>
+                                                        <TextBlock Text="FIRST" VerticalAlignment="Center" Margin="0,2,0,0" />
+                                                    </StackPanel>
+                                                </TabItem.Header>
+                                                <TextBlock Padding="2" TextWrapping="Wrap" TextAlignment="Justify"  >
+                                                    Right Aligned Tabs
+                                                </TextBlock>
+                                            </TabItem>
+                                            <TabItem>
+                                                <TabItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="PodiumSecond" Margin="4"/>
+                                                        <TextBlock Text="SECOND" VerticalAlignment="Center" Margin="0,2,0,0" />
+                                                    </StackPanel>
+                                                </TabItem.Header>
+                                                <TextBlock Padding="2" TextWrapping="Wrap" TextAlignment="Justify"  >
+                                                     Right Aligned Tabs - Tab2
+                                                </TextBlock>
+                                            </TabItem>
+                                        </TabControl>
+                                        <TabControl materialDesign:ColorZoneAssist.Mode="Standard" 
+                                                    HorizontalContentAlignment="Center" 
+                                                    VerticalContentAlignment="Stretch" 
+                                                    Margin="0,0,0,20"
+                                                    TabStripPlacement="Top" >
+                                            <TabItem >
+                                                <TabItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" Kind="PodiumFirst"/>
+                                                        <TextBlock Text="FIRST" VerticalAlignment="Center" Margin="0,2,0,0" />
+                                                    </StackPanel>
+                                                </TabItem.Header>
+                                                <TextBlock Padding="2" TextWrapping="Wrap" TextAlignment="Justify"  >
+                                                    Centered Tabs
+                                                </TextBlock>
+                                            </TabItem>
+                                            <TabItem>
+                                                <TabItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="PodiumSecond" Margin="4"/>
+                                                        <TextBlock Text="SECOND" VerticalAlignment="Center" Margin="0,2,0,0" />
+                                                    </StackPanel>
+                                                </TabItem.Header>
+                                                <TextBlock Padding="2" TextWrapping="Wrap" TextAlignment="Justify"  >
+                                                     Centered Tabs - Tab2
+                                                </TextBlock>
+                                            </TabItem>
+                                        </TabControl>
 
-                        </Grid>
-                        <materialDesign:PopupBox Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox }" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Row="1"/>
+                                    </StackPanel>
+
+                                </GroupBox>
+
+                            </Grid>
+                        </ScrollViewer>
+                        <!--<materialDesign:PopupBox Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox }" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Row="1"/>-->
                     </Grid>
                 </GroupBox>
             </Grid>
