@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Windows;
 using MaterialDesignThemes.UITests.Samples.DialogHost;
 using XamlTest;
 using Xunit;
@@ -18,6 +19,7 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHost
             await using var recorder = new TestRecorder(App);
 
             IVisualElement dialogHost = await LoadUserControl<WithCounter>();
+            IVisualElement overlay = await dialogHost.GetElement("PART_ContentCoverGrid");
 
             IVisualElement resultTextBlock = await dialogHost.GetElement("ResultTextBlock");
             await Wait.For(async () => await resultTextBlock.GetText() == "Clicks: 0");
@@ -36,14 +38,9 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHost
             await Wait.For(async () => await resultTextBlock.GetText() == "Clicks: 1");
             await closeDialogButton.Click();
 
-
-            await Wait.For(async () =>
-            {
-                Output.WriteLine("Input");
-                await testOverlayButton.Click();
-                Assert.Equal("Clicks: 2", await resultTextBlock.GetText());
-                Output.WriteLine("Output");
-            });
+            await Wait.For(async () => await overlay.GetVisibility() != Visibility.Visible);
+            await testOverlayButton.Click();
+            await Wait.For(async () => Assert.Equal("Clicks: 2", await resultTextBlock.GetText()));
         }
     }
 }
