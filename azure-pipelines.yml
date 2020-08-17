@@ -58,6 +58,7 @@ steps:
   inputs:
     artifactName: 'Screenshots'
     targetPath: 'MaterialDesignThemes.UITests/bin/$(buildConfiguration)/netcoreapp3.1/Screenshots'
+  condition: always()
 
 - task: PowerShell@2
   displayName: "Build NuGets"
