@@ -918,6 +918,9 @@
     <Style TargetType="{x:Type transitions:TransitioningContent}" BasedOn="{StaticResource {x:Type transitions:TransitioningContentBase}}" />
 
     <Style TargetType="{x:Type transitions:TransitionerSlide}" BasedOn="{StaticResource {x:Type transitions:TransitioningContentBase}}">
+        <Style.Resources>
+            <converters:NotZeroConverter x:Key="NotZeroConverter"/>
+        </Style.Resources>
         <Setter Property="RenderTransformOrigin" Value=".5,.5" />
         <Setter Property="IsEnabled" Value="False" />
         <Setter Property="Visibility" Value="Hidden" />
@@ -926,6 +929,13 @@
                 <Setter Property="Visibility" Value="Visible" />
                 <Setter Property="IsEnabled" Value="True" />
             </Trigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding State, RelativeSource={RelativeSource Self}}" Value="Previous" />
+                    <Condition Binding="{Binding Opacity, RelativeSource={RelativeSource Self}, Converter={StaticResource NotZeroConverter}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Visibility" Value="Visible" />
+            </MultiDataTrigger>
         </Style.Triggers>
     </Style>
 
