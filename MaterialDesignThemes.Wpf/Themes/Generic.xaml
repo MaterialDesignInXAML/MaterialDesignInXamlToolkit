@@ -752,7 +752,7 @@
                         <Grid x:Name="RootGrid">
                             <AdornerDecorator>
                                 <ContentPresenter 
-                                        x:Name="ContentPresenter" Opacity="1"                    
+                                        x:Name="ContentPresenter" Opacity="1"
                                         Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
                             </AdornerDecorator>
                             <Grid x:Name="PART_ContentCover" Background="{TemplateBinding OverlayBackground}" Opacity="0" IsHitTestVisible="False" Focusable="False">
@@ -892,8 +892,8 @@
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
                             x:Name="Border">
                         <ContentPresenter 
-                                x:Name="ContentPresenter"                    
-                                Margin="{TemplateBinding Padding}"                            
+                                x:Name="ContentPresenter"
+                                Margin="{TemplateBinding Padding}"
                                 Content="{TemplateBinding ContentControl.Content}" 
                                 ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
                                 ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" 
@@ -925,9 +925,6 @@
             <Trigger Property="State" Value="Current">
                 <Setter Property="Visibility" Value="Visible" />
                 <Setter Property="IsEnabled" Value="True" />
-            </Trigger>
-            <Trigger Property="State" Value="Previous">
-                <Setter Property="Visibility" Value="Visible" />
             </Trigger>
         </Style.Triggers>
     </Style>
