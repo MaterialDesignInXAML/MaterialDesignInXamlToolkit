@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using XamlTest;
 using Xunit;
@@ -47,6 +49,40 @@ namespace MaterialDesignThemes.UITests.WPF.ListBox
 
             float contrastRatio = foreground.ContrastRatio(effectiveBackground);
             Assert.True(contrastRatio >= MaterialDesignSpec.MinimumContrastSmallText);
+
+            recorder.Success();
+        }
+
+        [Theory]
+        [Description("Issue 1994")]
+        [InlineData("MaterialDesignFilterChipListBox")]
+        [InlineData("MaterialDesignFilterChipPrimaryListBox")]
+        [InlineData("MaterialDesignFilterChipAccentListBox")]
+        [InlineData("MaterialDesignFilterChipOutlineListBox")]
+        [InlineData("MaterialDesignFilterChipPrimaryOutlineListBox")]
+        [InlineData("MaterialDesignFilterChipAccentOutlineListBox")]
+        [InlineData("MaterialDesignChoiceChipListBox")]
+        [InlineData("MaterialDesignChoiceChipPrimaryListBox")]
+        [InlineData("MaterialDesignChoiceChipAccentListBox")]
+        [InlineData("MaterialDesignChoiceChipOutlineListBox")]
+        [InlineData("MaterialDesignChoiceChipPrimaryOutlineListBox")]
+        [InlineData("MaterialDesignChoiceChipAccentOutlineListBox")]
+        public async Task OnClickChoiceChipListBox_ChangesSelectedItem(string listBoxStyle)
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement listBox = await LoadXaml($@"
+<ListBox x:Name=""ChipsListBox"" Style=""{{StaticResource {listBoxStyle}}}"">
+    <ListBoxItem>Mercury</ListBoxItem>
+    <ListBoxItem>Venus</ListBoxItem>
+    <ListBoxItem>Earth</ListBoxItem>
+    <ListBoxItem>Pluto</ListBoxItem>
+</ListBox>
+");
+            IVisualElement earth = await listBox.GetElement("/ListBoxItem[2]");
+            await earth.Click();
+
+            await Wait.For(async () => Assert.Equal(2, await listBox.GetProperty<int>(nameof(Selector.SelectedIndex))));
 
             recorder.Success();
         }
