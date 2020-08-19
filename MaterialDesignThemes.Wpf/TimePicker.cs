@@ -323,8 +323,7 @@ namespace MaterialDesignThemes.Wpf
             }
 
             if (IsTimeValid(_textBox.Text, out DateTime time))
-                SetCurrentValue(SelectedTimeProperty, SelectedTime?.Date.Add(time.TimeOfDay) ?? time);
-
+                SetSelectedTime(time);
             else // Invalid time, jump back to previous good time
                 SetInvalidTime();
         }
@@ -395,6 +394,11 @@ namespace MaterialDesignThemes.Wpf
                 SetSelectedTime(true);
         }
 
+        private void SetSelectedTime(in DateTime time)
+        {
+            SetCurrentValue(SelectedTimeProperty, (SelectedTime?.Date ?? DateTime.Today).Add(time.TimeOfDay));
+        }
+
         private void SetSelectedTime(bool beCautious = false)
         {
             if (!string.IsNullOrEmpty(_textBox?.Text))
@@ -402,7 +406,7 @@ namespace MaterialDesignThemes.Wpf
                 ParseTime(_textBox.Text, t =>
                 {
                     if (!beCautious || DateTimeToString(t) == _textBox.Text)
-                        SetCurrentValue(SelectedTimeProperty, SelectedTime?.Date.Add(t.TimeOfDay) ?? t);
+                        SetSelectedTime(t);
                 });
             }
             else
