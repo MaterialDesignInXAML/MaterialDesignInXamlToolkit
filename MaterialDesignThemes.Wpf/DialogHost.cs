@@ -185,7 +185,7 @@ namespace MaterialDesignThemes.Wpf
         ///  Close a modal dialog.
         /// </summary>
         /// <param name="dialogIdentifier"> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. </param>
-        public static void Close(object dialogIdentifier)
+        public static void CloseDailog(object dialogIdentifier)
         {
             if (dialogIdentifier == null) throw new ArgumentNullException(nameof(dialogIdentifier));
 
@@ -595,7 +595,7 @@ namespace MaterialDesignThemes.Wpf
                     "Content cannot be passed to a dialog via the OpenDialog if DialogContent already has a binding.");
         }
 
-        internal void dialogClose(object parameter)
+        internal void Close(object parameter)
         {
             var dialogClosingEventArgs = new DialogClosingEventArgs(CurrentSession, DialogClosingEvent);
 
@@ -652,7 +652,7 @@ namespace MaterialDesignThemes.Wpf
         private void ContentCoverGridOnMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             if (CloseOnClickAway && CurrentSession != null)
-                dialogClose(CloseOnClickAwayParameter);
+                Close(CloseOnClickAwayParameter);
         }
 
         private void OpenDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
@@ -705,7 +705,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (executedRoutedEventArgs.Handled) return;
 
-            dialogClose(executedRoutedEventArgs.Parameter);
+            Close(executedRoutedEventArgs.Parameter);
 
             executedRoutedEventArgs.Handled = true;
         }
