@@ -2532,6 +2532,8 @@ namespace MaterialDesignThemes.Wpf
         CigarOff,
         Circle,
         Lens=Circle,
+        CircleBox,
+        CircleBoxOutline,
         CircleDouble,
         CircleEditOutline,
         CircleExpand,
