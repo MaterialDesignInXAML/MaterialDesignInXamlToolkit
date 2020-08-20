@@ -185,7 +185,7 @@ namespace MaterialDesignThemes.Wpf
         ///  Close a modal dialog.
         /// </summary>
         /// <param name="dialogIdentifier"> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. </param>
-        public static void CloseDailog(object dialogIdentifier)
+        public static void CloseDialog(object dialogIdentifier)
         {
             if (dialogIdentifier == null) throw new ArgumentNullException(nameof(dialogIdentifier));
 
