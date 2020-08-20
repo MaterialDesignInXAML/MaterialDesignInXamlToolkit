@@ -181,6 +181,22 @@ namespace MaterialDesignThemes.Wpf
             return await targets[0].ShowInternal(content, openedEventHandler, closingEventHandler);
         }
 
+        /// <summary>
+        ///  Close a modal dialog.
+        /// </summary>
+        /// <param name="dialogIdentifier"> of the instance where the dialog should be shown. Typically this will match an identifer set in XAML. </param>
+        public static void Close(object dialogIdentifier)
+        {
+            if (dialogIdentifier == null) throw new ArgumentNullException(nameof(dialogIdentifier));
+
+            if (LoadedInstances.Count == 0)
+                throw new InvalidOperationException("No loaded DialogHost instances.");
+
+            var targets = LoadedInstances.FirstOrDefault(dh => dialogIdentifier == null || Equals(dh.Identifier, dialogIdentifier));
+            if (targets != null)
+                CloseDialogCommand.Execute(false, null);
+        }
+
         internal async Task<object> ShowInternal(object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         {
             if (IsOpen)
@@ -579,7 +595,7 @@ namespace MaterialDesignThemes.Wpf
                     "Content cannot be passed to a dialog via the OpenDialog if DialogContent already has a binding.");
         }
 
-        internal void Close(object parameter)
+        internal void dialogClose(object parameter)
         {
             var dialogClosingEventArgs = new DialogClosingEventArgs(CurrentSession, DialogClosingEvent);
 
@@ -636,7 +652,7 @@ namespace MaterialDesignThemes.Wpf
         private void ContentCoverGridOnMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             if (CloseOnClickAway && CurrentSession != null)
-                Close(CloseOnClickAwayParameter);
+                dialogClose(CloseOnClickAwayParameter);
         }
 
         private void OpenDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
@@ -689,7 +705,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (executedRoutedEventArgs.Handled) return;
 
-            Close(executedRoutedEventArgs.Parameter);
+            dialogClose(executedRoutedEventArgs.Parameter);
 
             executedRoutedEventArgs.Handled = true;
         }
