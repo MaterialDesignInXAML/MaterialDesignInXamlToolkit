@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using XamlTest;
 using Xunit;
 using Xunit.Abstractions;
@@ -163,5 +164,166 @@ namespace MaterialDesignThemes.UITests.WPF.TimePicker
             }
             return today;
         }
+
+#if false // These tests cannot be compiled until IVisualElement.SendInput and IVisualElement.SendKey are supported.
+        [Theory]
+        [InlineData("1:2")]
+        [InlineData("1:02")]
+        [InlineData("1:02 AM")]
+        public async Task OnLostFocusIfTimeHasBeenChanged_TextWillbeFormated(string text)
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var stackPanel = await LoadXaml(@"
+<StackPanel>
+    <materialDesign:TimePicker/>
+    <TextBox/>
+</StackPanel>");
+            var timePicker = await stackPanel.GetElement("/TimePicker");
+            var timePickerTextBox = await timePicker.GetElement("/TimePickerTextBox");
+            var textBox = await stackPanel.GetElement("/TextBox");
+
+            await timePickerTextBox.MoveKeyboardFocus();
+            await timePickerTextBox.SendInput(text);
+            await textBox.MoveKeyboardFocus();
+
+            var actual = await timePickerTextBox.GetText();
+            Assert.Equal("1:02 AM", actual);
+
+            recorder.Success();
+        }
+
+        [Theory]
+        [InlineData("1:2")]
+        [InlineData("1:02")]
+        [InlineData("1:02 AM")]
+        public async Task OnLostFocusIfTimeHasNotBeenChanged_TextWillbeFormated(string text)
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var stackPanel = await LoadXaml(@"
+<StackPanel>
+    <materialDesign:TimePicker/>
+    <TextBox/>
+</StackPanel>");
+            var timePicker = await stackPanel.GetElement("/TimePicker");
+            var timePickerTextBox = await timePicker.GetElement("/TimePickerTextBox");
+            var textBox = await stackPanel.GetElement("/TextBox");
+
+            await timePicker.SetSelectedTime(new DateTime (2020, 8, 10, 1, 2, 0)); 
+            await timePickerTextBox.MoveKeyboardFocus();
+            await timePickerTextBox.SendInput(text);
+            await textBox.MoveKeyboardFocus();
+
+            var actual = await timePickerTextBox.GetText();
+            Assert.Equal("1:02 AM", actual);
+
+            recorder.Success();
+        }
+
+        [Theory]
+        [InlineData("1:2")]
+        [InlineData("1:02")]
+        [InlineData("1:02 AM")]
+        public async Task OnEnterKeyDownIfTimeHasNotBeenChanged_TextWillbeFormated(string text)
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var stackPanel = await LoadXaml(@"
+<StackPanel>
+    <materialDesign:TimePicker/>
+</StackPanel>");
+            var timePicker = await stackPanel.GetElement("/TimePicker");
+            var timePickerTextBox = await timePicker.GetElement("/TimePickerTextBox");
+
+            await timePicker.SetSelectedTime(new DateTime (2020, 8, 10, 1, 2, 0)); 
+            await timePickerTextBox.MoveKeyboardFocus();
+            await timePickerTextBox.SendInput(text);
+            await timePickerTextBox.SendKey(Key.Enter);
+
+            var actual = await timePickerTextBox.GetText();
+            Assert.Equal("1:02 AM", actual);
+
+            recorder.Success();
+        }
+
+        [Theory]
+        [InlineData("1:2")]
+        [InlineData("1:02")]
+        [InlineData("1:02 AM")]
+        public async Task OnEnterKeyDownIfTimeHasBeenChanged_TextWillbeFormated(string text)
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var stackPanel = await LoadXaml(@"
+<StackPanel>
+    <materialDesign:TimePicker/>
+</StackPanel>");
+            var timePicker = await stackPanel.GetElement("/TimePicker");
+            var timePickerTextBox = await timePicker.GetElement("/TimePickerTextBox");
+
+            await timePicker.SetSelectedTime(new DateTime (2020, 8, 10, 1, 3, 0)); 
+            await timePickerTextBox.MoveKeyboardFocus();
+            await timePickerTextBox.SendInput(text);
+            await timePickerTextBox.SendKey(Key.Enter);
+
+            var actual = await timePickerTextBox.GetText();
+            Assert.Equal("1:02 AM", actual);
+
+            recorder.Success();
+        }
+
+        [Theory]
+        [InlineData("1:2")]
+        [InlineData("1:02")]
+        [InlineData("1:02 AM")]
+        public async Task OnTimePickedIfTimeHasBeenChanged_TextWillbeFormated(string text)
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var stackPanel = await LoadXaml(@"
+<StackPanel>
+    <materialDesign:TimePicker/>
+</StackPanel>");
+            var timePicker = await stackPanel.GetElement("/TimePicker");
+            var timePickerTextBox = await timePicker.GetElement("/TimePickerTextBox");
+
+            await timePicker.SetSelectedTime(new DateTime(2020, 8, 10, 1, 2, 0));
+            await timePickerTextBox.MoveKeyboardFocus();
+            await timePickerTextBox.SendInput(text);
+            await timePicker.PickClock(1, 3);
+
+            var actual = await timePickerTextBox.GetText();
+            Assert.Equal("1:03 AM", actual);
+
+            recorder.Success();
+        }
+
+        [Theory]
+        [InlineData("1:2")]
+        [InlineData("1:02")]
+        [InlineData("1:02 AM")]
+        public async Task OnTimePickedIfTimeHasNotBeenChanged_TextWillbeFormated(string text)
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var stackPanel = await LoadXaml(@"
+<StackPanel>
+    <materialDesign:TimePicker/>
+</StackPanel>");
+            var timePicker = await stackPanel.GetElement("/TimePicker");
+            var timePickerTextBox = await timePicker.GetElement("/TimePickerTextBox");
+
+            await timePicker.SetSelectedTime(new DateTime(2020, 8, 10, 1, 2, 0));
+            await timePickerTextBox.MoveKeyboardFocus();
+            await timePickerTextBox.SendInput(text);
+            await timePicker.PickClock(1, 2);
+
+            var actual = await timePickerTextBox.GetText();
+            Assert.Equal("1:02 AM", actual);
+
+            recorder.Success();
+        }
+#endif
     }
 }
