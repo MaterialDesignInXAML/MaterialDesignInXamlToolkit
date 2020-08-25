@@ -1,0 +1,221 @@
+﻿<UserControl x:Class="MaterialDesignColors.WpfExample.NavigationRail"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="General" Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5" materialDesign:ShadowAssist.ShadowEdges="Right" Grid.RowSpan="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <smtx:XamlDisplay Key="navrail_1" Margin="5,5,5,0" >
+                    <TabControl Style="{DynamicResource MaterialDesignNavigatilRailTabControl}">
+                        <TabItem Style="{DynamicResource MaterialDesignNavigationRailTabItem}" >
+                            <TabItem.Header>
+                                <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
+                            </TabItem.Header>
+                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                                <Run Text="tab 1 content. Default look and behaviors. "/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run FontStyle="Italic">
+                                    Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+                        <TabItem Style="{DynamicResource MaterialDesignNavigationRailTabItem}" >
+                            <TabItem.Header>
+                                <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
+                            </TabItem.Header>
+                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                                <Run Text="tab 2 content. Default look and behaviors. "/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run FontStyle="Italic">
+                                    Praesent sed dui arcu. Vivamus porta auctor sagittis
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+                    </TabControl>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="navrail_4" Margin="5,5,5,0" Grid.Column="1" materialDesign:ColorZoneAssist.Mode="Accent" >
+                    <TabControl Style="{DynamicResource MaterialDesignNavigatilRailTabControl}">
+                        <TabItem Style="{DynamicResource MaterialDesignNavigationRailTabItem}" >
+                            <TabItem.Header>
+                                <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
+                            </TabItem.Header>
+                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                                <Run Text="tab 1 content. Default look and behaviors. "/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run FontStyle="Italic">
+                                    Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+                        <TabItem Style="{DynamicResource MaterialDesignNavigationRailTabItem}" >
+                            <TabItem.Header>
+                                <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
+                            </TabItem.Header>
+                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                                <Run Text="tab 2 content. Default look and behaviors. "/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run FontStyle="Italic">
+                                    Praesent sed dui arcu. Vivamus porta auctor sagittis
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+                    </TabControl>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="navrail_2" Margin="5,5,5,0" Grid.Row="1" >
+                    <TabControl Style="{DynamicResource MaterialDesignNavigatilRailTabControl}" TabStripPlacement="Right">
+                        <TabItem Style="{DynamicResource MaterialDesignNavigationRailTabItem}" >
+                            <TabItem.Header>
+                                <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
+                            </TabItem.Header>
+                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                                <Run Text="tab 1 content. Default look and right aligned. "/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run FontStyle="Italic">
+                                    Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+                        <TabItem Style="{DynamicResource MaterialDesignNavigationRailTabItem}" >
+                            <TabItem.Header>
+                                <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
+                            </TabItem.Header>
+                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                                <Run Text="tab 2 content. Default look and right aligned. "/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run FontStyle="Italic">
+                                    Praesent sed dui arcu. Vivamus porta auctor sagittis
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+                        <TabItem Style="{DynamicResource MaterialDesignNavigationRailTabItem}" >
+                            <TabItem.Header>
+                                <materialDesign:PackIcon Kind="Tree" Width="24" Height="24"/>
+                            </TabItem.Header>
+                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                                <Run Text="tab 3 content. Default look and right aligned. "/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run FontStyle="Italic">
+                                    Praesent sed dui arcu. Vivamus porta auctor sagittis
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+                    </TabControl>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay Key="navrail_3" Margin="5,5,5,0" Grid.Row="1" Grid.Column="1">
+                    <TabControl Style="{DynamicResource MaterialDesignNavigatilRailTabControl}" materialDesign:ColorZoneAssist.Mode="PrimaryMid">
+                        <TabItem Style="{DynamicResource MaterialDesignNavigationRailTabItem}" >
+                            <TabItem.Header>
+                                <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
+                            </TabItem.Header>
+                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                                <Run Text="tab 1 content. Default look and behaviors. "/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run FontStyle="Italic">
+                                    Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+                        <TabItem Style="{DynamicResource MaterialDesignNavigationRailTabItem}" >
+                            <TabItem.Header>
+                                <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
+                            </TabItem.Header>
+                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                                <Run Text="tab 2 content. Default look and behaviors. "/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run FontStyle="Italic">
+                                    Praesent sed dui arcu. Vivamus porta auctor sagittis
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+                        <TabItem Style="{DynamicResource MaterialDesignNavigationRailTabItem}" >
+                            <TabItem.Header>
+                                <materialDesign:PackIcon Kind="Tree" Width="24" Height="24"/>
+                            </TabItem.Header>
+                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                                <Run Text="tab 3 content. Default look and right aligned. "/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run FontStyle="Italic">
+                                    Praesent sed dui arcu. Vivamus porta auctor sagittis
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+                    </TabControl>
+                </smtx:XamlDisplay>
+
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Custom Floating Content" Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
+            <smtx:XamlDisplay>
+                <TabControl Style="{DynamicResource MaterialDesignNavigatilRailTabControl}">
+                    <materialDesign:NavigationRailAssist.FloatingContent>
+                        <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}" Margin="0,8">
+                            <materialDesign:PackIcon Kind="Plus" />
+                        </Button>
+                    </materialDesign:NavigationRailAssist.FloatingContent>
+                    <TabItem Style="{DynamicResource MaterialDesignNavigationRailTabItem}" >
+                        <TabItem.Header>
+                            <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
+                        </TabItem.Header>
+                        <TextBlock Padding="5" TextWrapping="Wrap" >
+                        <Run Text="tab 1 content. Default look and behaviors. "/>
+                        <LineBreak/>
+                        <LineBreak/>
+                        <Run FontStyle="Italic">
+                            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                        </Run>
+                        </TextBlock>
+                    </TabItem>
+                    <TabItem Style="{DynamicResource MaterialDesignNavigationRailTabItem}" >
+                        <TabItem.Header>
+                            <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
+                        </TabItem.Header>
+                        <TextBlock Padding="5" TextWrapping="Wrap" >
+                        <Run Text="tab 2 content. Default look and behaviors. "/>
+                        <LineBreak/>
+                        <LineBreak/>
+                        <Run FontStyle="Italic">
+                            Praesent sed dui arcu. Vivamus porta auctor sagittis
+                        </Run>
+                        </TextBlock>
+                    </TabItem>
+                </TabControl>
+            </smtx:XamlDisplay>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Grid.Row="1" Header="Expandable" Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
+            <TextBlock>
+                Cooming soon...
+            </TextBlock>
+        </GroupBox>
+    </Grid>
+</UserControl>

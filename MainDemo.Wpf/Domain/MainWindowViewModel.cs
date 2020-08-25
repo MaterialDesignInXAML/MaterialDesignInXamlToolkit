@@ -273,6 +273,15 @@ namespace MaterialDesignColors.WpfExample.Domain
                 {
                     VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
                 },
+                new DemoItem("Navigation Rail", new NavigationRail { DataContext = null},
+                    new []
+                    {
+                        DocumentationLink.DemoPageLink<NavigationRail>("Demo View"),
+                        DocumentationLink.StyleLink("Tabs"),
+                    })
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
                 new DemoItem("Dialogs", new Dialogs { DataContext = new DialogsViewModel()},
                     new []
                     {

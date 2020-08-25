@@ -30,13 +30,16 @@
                                KeyboardNavigation.TabNavigation="Local">
                         <wpf:ColorZone x:Name="PART_ColorZone" 
                                        DockPanel.Dock="Top"
+                                       Focusable="False"
                                        Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Mode)}" 
                                        wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
-                                       wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}">
+                                       wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}" 
+                                       Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}">
                             <UniformGrid x:Name="HeaderPanel"
                                          Rows="1"
                                          Background="{Binding ElementName=PART_ColorZone, Path=Background}"
                                          IsItemsHost="True"
+                                         Focusable="False"
                                          KeyboardNavigation.TabIndex="1"
                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
                         </wpf:ColorZone>
@@ -45,6 +48,7 @@
                                        VerticalAlignment="Stretch"
                                        HorizontalAlignment="Stretch"
                                        Mode="Standard" 
+                                       Focusable="False"
                                        Foreground="{DynamicResource MaterialDesignBody}"
                                        Background="{x:Null}">
                             <ContentPresenter x:Name="PART_SelectedContentHost"
@@ -197,6 +201,213 @@
     <Style TargetType="{x:Type TabItem}" x:Key="MaterialDesignTabItemCompact" BasedOn="{StaticResource MaterialDesignTabItem}">
         <Setter Property="Height" Value="48" />
     </Style>
+
+    <!--NAVIGATION RAIL-->
+
+    <Style  TargetType="{x:Type TabControl}" x:Key="MaterialDesignNavigatilRailTabControl">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="FontFamily" Value="{wpf:MaterialDesignFont}" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
+        <Setter Property="TabStripPlacement" Value="Left" />
+        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth2"/>
+        <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Right"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <DockPanel Background="{TemplateBinding Background}" 
+                               KeyboardNavigation.TabNavigation="Local">
+
+                        <Grid x:Name="tabgrid" DockPanel.Dock="Left">
+                            <!--tabs-->
+                            <wpf:Card wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
+                                      wpf:ShadowAssist.ShadowEdges="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowEdges)}"
+                                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                                      BorderThickness="{TemplateBinding BorderThickness}"
+                                      x:Name="shadowassist" RenderTransformOrigin="0.5,0.5">
+                            </wpf:Card>
+
+                            <wpf:ColorZone x:Name="PART_ColorZone" 
+                                           Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Mode)}" 
+                                           wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
+                                           wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="1*"/>
+                                    </Grid.RowDefinitions>
+                                    <ContentPresenter Focusable="False" 
+                                                      Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:NavigationRailAssist.FloatingContent)}" />
+                                    <UniformGrid x:Name="HeaderPanel"
+                                         Rows="1"
+                                         Grid.Row="1"
+                                         Background="{Binding ElementName=PART_ColorZone, Path=Background}"
+                                         IsItemsHost="True"
+                                         Focusable="False"
+                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                                </Grid>
+                            </wpf:ColorZone>
+
+                        </Grid>
+                        <!--selected content-->
+                        <wpf:ColorZone x:Name="PART_ColorZoneSelectedContent" 
+                                       Padding="{TemplateBinding Padding}" 
+                                       VerticalAlignment="Stretch"
+                                       HorizontalAlignment="Stretch"
+                                       Mode="Standard" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"
+                                       Background="{x:Null}">
+                            <ContentPresenter x:Name="PART_SelectedContentHost"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                              Focusable="False"
+                                              Margin="{TemplateBinding Padding}"
+                                              TextElement.Foreground="{Binding ElementName=PART_ColorZoneSelectedContent, Path=Foreground}"
+                                              TextBlock.Foreground="{Binding ElementName=PART_ColorZoneSelectedContent, Path=Foreground}"
+                                              ContentSource="SelectedContent"
+                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}">
+                            </ContentPresenter>
+                        </wpf:ColorZone>
+                    </DockPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="Standard">
+                            <Setter TargetName="PART_ColorZone" Property="Background" Value="Transparent"/>
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Top">
+                            <Setter TargetName="tabgrid" Property="DockPanel.Dock" Value="Top"/>
+                            <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Bottom"/>
+                            <Setter Property="BorderThickness" Value="0,0,0,1" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Bottom">
+                            <Setter TargetName="tabgrid" Property="DockPanel.Dock" Value="Bottom"/>
+                            <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Top"/>
+                            <Setter Property="BorderThickness" Value="0,1,0,0" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Left">
+                            <Setter TargetName="tabgrid" Property="DockPanel.Dock" Value="Left"/>
+                            <Setter TargetName="HeaderPanel" Property="Rows" Value="0"/>
+                            <Setter TargetName="HeaderPanel" Property="Columns" Value="1"/>
+                            <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Right"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Right">
+                            <Setter TargetName="tabgrid" Property="DockPanel.Dock" Value="Right"/>
+                            <Setter TargetName="HeaderPanel" Property="Rows" Value="0"/>
+                            <Setter TargetName="HeaderPanel" Property="Columns" Value="1"/>
+                            <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Left"/>
+                            <Setter Property="BorderThickness" Value="1,0,0,0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type TabItem}" x:Key="MaterialDesignNavigationRailTabItem">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="Padding" Value="16"/>
+        <Setter Property="Height" Value="72" />
+        <Setter Property="Width" Value="72" />
+        <Setter Property="FontFamily" Value="{wpf:MaterialDesignFont}" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Grid x:Name="Root" >
+                        <wpf:ColorZone Grid.RowSpan="2" x:Name="tabitemcz"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch"
+                                       Focusable="False"
+                                       Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Mode)}" 
+                                       Background="{x:Null}"
+                                       wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
+                                       wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}">
+                            <wpf:Ripple Focusable="False"
+                                        FontFamily="{wpf:MaterialDesignFont}"
+                                        Content="{TemplateBinding Header}" 
+                                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                        ContentStringFormat="{TemplateBinding HeaderStringFormat}"
+                                        HorizontalContentAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        RecognizesAccessKey="True"
+                                        x:Name="contentPresenter"
+                                        Opacity=".82"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                        Padding="{TemplateBinding Padding}"
+                                        TextBlock.FontWeight="Medium"
+                                        TextBlock.FontSize="15"
+                                        TextOptions.TextFormattingMode="Ideal" 
+                                        TextOptions.TextRenderingMode="Auto">
+                            </wpf:Ripple>
+                        </wpf:ColorZone>
+                        <Border x:Name="SelectionHighlightBsorder" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="0"
+                                Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                            <!--<Border.RenderTransform>
+                                <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="1" />
+                            </Border.RenderTransform>-->
+                            <Rectangle x:Name="PART_BackgroundSelection" Fill="{TemplateBinding Background}" Opacity="0.12"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.23"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="contentPresenter" Property="Opacity" Value="1"/>
+                            <Setter TargetName="SelectionHighlightBsorder" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True"/>
+                                <Condition Property="wpf:ColorZoneAssist.Mode" Value="Standard"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="contentPresenter" Property="Opacity" Value="1"/>
+                            <Setter TargetName="SelectionHighlightBsorder" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="contentPresenter" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                        </MultiTrigger>
+
+                        <!--<DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom">
+                            <Setter TargetName="SelectionHighlightBsorder" Property="BorderThickness" Value="0,2,0,0" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Left">
+                            <Setter TargetName="SelectionHighlightBsorder" Property="BorderThickness" Value="0,0,2,0" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right">
+                            <Setter TargetName="SelectionHighlightBsorder" Property="BorderThickness" Value="2,0,0,0" />
+                        </DataTrigger>-->
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid">
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryLight">
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryDark">
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="Accent">
+                            <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 
 </ResourceDictionary>
