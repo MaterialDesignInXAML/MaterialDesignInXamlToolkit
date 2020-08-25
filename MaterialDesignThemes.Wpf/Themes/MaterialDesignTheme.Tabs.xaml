@@ -35,12 +35,15 @@
                                        wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}">
                             <UniformGrid x:Name="HeaderPanel"
                                          Rows="1"
+                                         Background="{Binding ElementName=PART_ColorZone, Path=Background}"
                                          IsItemsHost="True"
                                          KeyboardNavigation.TabIndex="1"
                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
                         </wpf:ColorZone>
                         <wpf:ColorZone x:Name="PART_ColorZoneSelectedContent" 
                                        Padding="{TemplateBinding Padding}" 
+                                       VerticalAlignment="Stretch"
+                                       HorizontalAlignment="Stretch"
                                        Mode="Standard" 
                                        Foreground="{DynamicResource MaterialDesignBody}"
                                        Background="{x:Null}">
@@ -84,14 +87,13 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Padding" Value="16 12 16 12"/>
-        <Setter Property="Height" Value="48" />
+        <Setter Property="Height" Value="72" />
         <Setter Property="FontFamily" Value="{wpf:MaterialDesignFont}" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
-                    <Grid x:Name="Root" 
-                          SnapsToDevicePixels="True">
+                    <Grid x:Name="Root" >
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="SelectionStates">
@@ -115,11 +117,12 @@
                         </VisualStateManager.VisualStateGroups>
 
 
-                        <wpf:ColorZone Grid.RowSpan="2" 
+                        <wpf:ColorZone Grid.RowSpan="2" x:Name="tabitemcz"
                                        HorizontalAlignment="Stretch"
                                        VerticalAlignment="Stretch"
                                        Focusable="False"
                                        Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Mode)}" 
+                                       Background="{x:Null}"
                                        wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
                                        wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}">
                             <wpf:Ripple Focusable="False"
@@ -128,14 +131,14 @@
                                         Content="{TemplateBinding Header}" 
                                         ContentTemplate="{TemplateBinding HeaderTemplate}"
                                         ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                        ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                        ContentStringFormat="{TemplateBinding HeaderStringFormat}"
                                         HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center"
                                         RecognizesAccessKey="True"
                                         x:Name="contentPresenter"
                                         Opacity=".82"
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                        Margin="0,0,0,0" 
+                                        Padding="{TemplateBinding Padding}"
                                         TextBlock.FontWeight="Medium"
                                         TextBlock.FontSize="15"
                                         TextOptions.TextFormattingMode="Ideal" 
@@ -192,7 +195,7 @@
     </Style>
 
     <Style TargetType="{x:Type TabItem}" x:Key="MaterialDesignTabItemCompact" BasedOn="{StaticResource MaterialDesignTabItem}">
-        <Setter Property="Height" Value="32" />
+        <Setter Property="Height" Value="48" />
     </Style>
 
 
