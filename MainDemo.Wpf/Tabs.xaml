@@ -75,7 +75,7 @@
         </GroupBox>
         <GroupBox Grid.Column="1" Header="Colors" Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
             <StackPanel>
-                <smtx:XamlDisplay Key="tab_7" Margin="5,5,5,0" >
+                <smtx:XamlDisplay Key="tab_8" Margin="5,5,5,0" >
                     <TabControl materialDesign:ColorZoneAssist.Mode="Standard">
                         <TabItem Header="Standard 1">
                             <TextBlock Background="LightGray" Padding="5" Text="tab 1 content..."/>
@@ -85,7 +85,7 @@
                         </TabItem>
                     </TabControl>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="tab_7" Margin="5,10,5,0" >
+                <smtx:XamlDisplay Key="tab_9" Margin="5,10,5,0" >
                     <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryDark">
                         <TabItem Header="Primary Dark 1">
                             <TextBlock Background="LightGray" Padding="5" Text="tab 1 content..."/>
@@ -95,7 +95,7 @@
                         </TabItem>
                     </TabControl>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="tab_7" Margin="5,10,5,0" >
+                <smtx:XamlDisplay Key="tab_10" Margin="5,10,5,0" >
                     <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryMid">
                         <TabItem Header="Primary Mid 1">
                             <TextBlock Background="LightGray" Padding="5" Text="tab 1 content..."/>
@@ -105,7 +105,7 @@
                         </TabItem>
                     </TabControl>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="tab_7" Margin="5,10,5,0" >
+                <smtx:XamlDisplay Key="tab_11" Margin="5,10,5,0" >
                     <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryLight">
                         <TabItem Header="Primary Light 1">
                             <TextBlock Background="LightGray" Padding="5" Text="tab 1 content..."/>
@@ -115,7 +115,7 @@
                         </TabItem>
                     </TabControl>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="tab_7" Margin="5,10,5,0" >
+                <smtx:XamlDisplay Key="tab_12" Margin="5,10,5,0" >
                     <TabControl materialDesign:ColorZoneAssist.Mode="Accent">
                         <TabItem Header="Accent 1">
                             <TextBlock Background="LightGray" Padding="5" Text="tab 1 content..."/>
@@ -129,7 +129,7 @@
         </GroupBox>
         <GroupBox Grid.Column="2" Header="Styles" Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
             <StackPanel>
-                <smtx:XamlDisplay Key="tab_7" Margin="5,5,5,0" >
+                <smtx:XamlDisplay Key="tab_13" Margin="5,5,5,0" >
                     <TabControl materialDesign:ColorZoneAssist.Mode="Standard">
                         <TabItem Header="Compact 1">
                             <TextBlock Background="LightGray" Padding="5" Text="default (compact) 1..."/>
@@ -139,7 +139,7 @@
                         </TabItem>
                     </TabControl>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="tab_7" Margin="5,10,5,0" >
+                <smtx:XamlDisplay Key="tab_14" Margin="5,10,5,0" >
                     <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryMid">
                         <TabItem Style="{DynamicResource MaterialDesignTabItem}">
                             <TabItem.Header>
@@ -161,7 +161,7 @@
                         </TabItem>
                     </TabControl>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="tab_7" Margin="5,10,5,0" >
+                <smtx:XamlDisplay Key="tab_15" Margin="5,10,5,0" >
                     <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryMid">
                         <TabItem >
                             <TabItem.Header>
@@ -183,7 +183,7 @@
                         </TabItem>
                     </TabControl>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="tab_7" Margin="5,10,5,0" >
+                <smtx:XamlDisplay Key="tab_16" Margin="5,10,5,0" >
                     <TabControl materialDesign:ColorZoneAssist.Mode="Accent">
                         <TabItem >
                             <TabItem.Header>

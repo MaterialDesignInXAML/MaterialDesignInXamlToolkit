@@ -176,7 +176,7 @@
             </Grid>
         </GroupBox>
         <GroupBox Grid.Column="1" Header="Custom Floating Content" Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
-            <smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="navrail_floating_1">
                 <TabControl Style="{DynamicResource MaterialDesignNavigatilRailTabControl}" 
                             materialDesign:ColorZoneAssist.Mode="PrimaryDark">
                     <materialDesign:NavigationRailAssist.FloatingContent>
