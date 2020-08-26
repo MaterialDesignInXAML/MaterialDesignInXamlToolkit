@@ -32,7 +32,7 @@
                             <TabItem.Header>
                                 <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
                             </TabItem.Header>
-                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                            <TextBlock Background="LightGray" Padding="5" TextWrapping="Wrap" >
                                 <Run Text="tab 1 content. Default look and behaviors. "/>
                                 <LineBreak/>
                                 <LineBreak/>
@@ -92,7 +92,7 @@
                             <TabItem.Header>
                                 <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
                             </TabItem.Header>
-                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                            <TextBlock Background="LightGray" Padding="5" TextWrapping="Wrap" >
                                 <Run Text="tab 1 content. Default look and right aligned. "/>
                                 <LineBreak/>
                                 <LineBreak/>
@@ -177,7 +177,8 @@
         </GroupBox>
         <GroupBox Grid.Column="1" Header="Custom Floating Content" Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
             <smtx:XamlDisplay>
-                <TabControl Style="{DynamicResource MaterialDesignNavigatilRailTabControl}">
+                <TabControl Style="{DynamicResource MaterialDesignNavigatilRailTabControl}" 
+                            materialDesign:ColorZoneAssist.Mode="PrimaryDark">
                     <materialDesign:NavigationRailAssist.FloatingContent>
                         <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}" Margin="0,8">
                             <materialDesign:PackIcon Kind="Plus" />

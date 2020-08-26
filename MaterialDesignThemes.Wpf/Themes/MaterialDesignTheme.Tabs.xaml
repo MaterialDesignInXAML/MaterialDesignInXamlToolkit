@@ -207,7 +207,7 @@
     <Style  TargetType="{x:Type TabControl}" x:Key="MaterialDesignNavigatilRailTabControl">
         <Setter Property="Background" Value="{x:Null}"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
-        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="FontFamily" Value="{wpf:MaterialDesignFont}" />
@@ -232,10 +232,11 @@
                             </wpf:Card>
 
                             <wpf:ColorZone x:Name="PART_ColorZone" 
+                                           VerticalAlignment="Stretch"
                                            Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Mode)}" 
                                            wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
                                            wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}">
-                                <Grid>
+                                <Grid Background="{Binding ElementName=PART_ColorZone, Path=Background}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="1*"/>
@@ -243,9 +244,9 @@
                                     <ContentPresenter Focusable="False" 
                                                       Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:NavigationRailAssist.FloatingContent)}" />
                                     <UniformGrid x:Name="HeaderPanel"
+                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                          Rows="1"
                                          Grid.Row="1"
-                                         Background="{Binding ElementName=PART_ColorZone, Path=Background}"
                                          IsItemsHost="True"
                                          Focusable="False"
                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
