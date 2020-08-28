@@ -96,7 +96,7 @@
                                 </materialDesign:PopupBox>
                                 <Grid>
                                     <AdornerDecorator>
-                                        <Border BorderBrush="{DynamicResource SecondaryAccentBrush}" Opacity=".4" Margin="-5">
+                                        <Border BorderBrush="{DynamicResource SecondaryHueMidBrush}" Opacity=".4" Margin="-5">
                                             <Border.Style>
                                                 <Style TargetType="Border">
                                                     <Setter Property="BorderThickness" Value="0" />

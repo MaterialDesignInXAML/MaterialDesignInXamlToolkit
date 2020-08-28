@@ -163,8 +163,8 @@
     </Style>
 
     <Style x:Key="MaterialDesignActionAccentToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignActionToggleButton}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
     </Style>
 
@@ -430,7 +430,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignSwitchAccentToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
     </Style>
 
     <Style x:Key="MaterialDesignHamburgerToggleButton" TargetType="{x:Type ToggleButton}">

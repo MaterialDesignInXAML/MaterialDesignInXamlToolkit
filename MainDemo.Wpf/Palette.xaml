@@ -38,7 +38,7 @@
                 Grid.Row="1" Grid.Column="2">
             <TextBlock Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">Dark</TextBlock>
         </Border>
-        <Border Background="{DynamicResource SecondaryAccentBrush}"
+        <Border Background="{DynamicResource SecondaryHueMidBrush}"
                 Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0">
             <TextBlock Foreground="{DynamicResource SecondaryAccentForegroundBrush}">Accent</TextBlock>
         </Border>

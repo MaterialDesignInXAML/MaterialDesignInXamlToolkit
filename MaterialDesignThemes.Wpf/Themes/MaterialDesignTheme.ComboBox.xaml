@@ -675,7 +675,7 @@
                     <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
                     <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Accent"/>
                 </MultiTrigger.Conditions>
-                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryAccentBrush}" />
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter TargetName="PART_Popup" Property="Background" 
                         Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
                 <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
@@ -981,7 +981,7 @@
                     <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
                     <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Accent"/>
                 </MultiTrigger.Conditions>
-                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryAccentBrush}" />
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter TargetName="PART_Popup" Property="Background" 
                         Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
                 <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />

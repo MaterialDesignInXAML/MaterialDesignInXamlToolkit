@@ -417,8 +417,8 @@
     <Style TargetType="{x:Type wpf:PopupBox}" 
            x:Key="MaterialDesignMultiFloatingActionAccentPopupBox"
            BasedOn="{StaticResource MaterialDesignMultiFloatingActionPopupBox}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
     </Style>
 

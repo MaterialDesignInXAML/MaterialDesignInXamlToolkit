@@ -479,7 +479,7 @@
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
             </Trigger>
             <Trigger Property="Mode" Value="Accent">
-                <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
             </Trigger>
             <Trigger Property="Mode" Value="Light">

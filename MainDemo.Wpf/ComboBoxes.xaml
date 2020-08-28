@@ -59,7 +59,7 @@
                 <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                           materialDesign:TextFieldAssist.HasClearButton="True"
                           materialDesign:TextFieldAssist.SuffixText="sw"
-                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryAccentBrush}"
+                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
                           materialDesign:ColorZoneAssist.Mode="Inverted"
                           materialDesign:HintAssist.Hint="OS"
                           materialDesign:HintAssist.HelperText="Select one OS"
