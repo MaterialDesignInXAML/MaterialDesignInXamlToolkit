@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -83,7 +83,7 @@ namespace MaterialDesignThemes.Wpf
                 return theme;
             }
 
-            Color secondaryMid = GetColor("SecondaryHueMidBrush", "SecondaryAccentBrush");
+            Color secondaryMid = GetColor("SecondaryHueMidBrush");
             Color secondaryMidForeground = GetColor("SecondaryHueMidForegroundBrush", "SecondaryAccentForegroundBrush");
 
             if (!TryGetColor("SecondaryHueLightBrush", out Color secondaryLight))
