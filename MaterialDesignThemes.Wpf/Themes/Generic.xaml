@@ -480,7 +480,7 @@
             </Trigger>
             <Trigger Property="Mode" Value="Accent">
                 <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-                <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
             </Trigger>
             <Trigger Property="Mode" Value="Light">
                 <Setter Property="Background" Value="{DynamicResource MaterialDesignLightBackground}" />

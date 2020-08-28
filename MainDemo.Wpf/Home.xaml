@@ -160,7 +160,7 @@
                 </Button>
                 <Button ToolTip="Email" Click="EmailButton_OnClick"
                         Background="{DynamicResource SecondaryHueMidBrush}"
-                        Foreground="{DynamicResource SecondaryAccentForegroundBrush}"
+                        Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
                         >
                     <materialDesign:PackIcon Kind="Email" />
                 </Button>

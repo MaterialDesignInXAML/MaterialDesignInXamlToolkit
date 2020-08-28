@@ -419,7 +419,7 @@
            BasedOn="{StaticResource MaterialDesignMultiFloatingActionPopupBox}">
         <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
     </Style>
 
 </ResourceDictionary>

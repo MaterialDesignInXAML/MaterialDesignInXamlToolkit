@@ -40,7 +40,7 @@
         </Border>
         <Border Background="{DynamicResource SecondaryHueMidBrush}"
                 Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0">
-            <TextBlock Foreground="{DynamicResource SecondaryAccentForegroundBrush}">Accent</TextBlock>
+            <TextBlock Foreground="{DynamicResource SecondaryHueMidForegroundBrush}">Accent</TextBlock>
         </Border>
     </Grid>
 </UserControl>

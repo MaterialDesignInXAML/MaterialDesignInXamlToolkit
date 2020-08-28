@@ -165,7 +165,7 @@
     <Style x:Key="MaterialDesignActionAccentToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignActionToggleButton}">
         <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignFlatToggleButton" TargetType="{x:Type ToggleButton}">

@@ -678,7 +678,7 @@
                 <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter TargetName="PART_Popup" Property="Background" 
                         Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -984,7 +984,7 @@
                 <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter TargetName="PART_Popup" Property="Background" 
                         Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>

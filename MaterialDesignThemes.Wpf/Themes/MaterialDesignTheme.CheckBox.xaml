@@ -47,7 +47,7 @@
     <Style x:Key="MaterialDesignActionAccentCheckBox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignActionCheckBox}">
         <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignCheckBox" TargetType="{x:Type CheckBox}">
