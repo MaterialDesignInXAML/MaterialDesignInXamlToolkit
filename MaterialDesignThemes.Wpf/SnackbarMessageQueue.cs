@@ -298,7 +298,7 @@ namespace MaterialDesignThemes.Wpf
                     if (snackbar != null)
                         break;
 
-                    Trace.TraceWarning("A snackbar message as waiting, but no snackbar instances are assigned to the message queue.");
+                    Trace.TraceWarning("A snackbar message is waiting, but no snackbar instances are assigned to the message queue.");
                     await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(true);
                 }
 
