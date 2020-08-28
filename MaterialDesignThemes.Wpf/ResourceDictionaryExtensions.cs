@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -32,7 +32,6 @@ namespace MaterialDesignThemes.Wpf
 
 
             //NB: These are here for backwards compatibility, and will be removed in a future version.
-            SetSolidColorBrush(resourceDictionary, "SecondaryAccentBrush", theme.SecondaryMid.Color);
             SetSolidColorBrush(resourceDictionary, "SecondaryAccentForegroundBrush", theme.SecondaryMid.ForegroundColor ?? theme.SecondaryMid.Color.ContrastingForegroundColor());
 
             SetSolidColorBrush(resourceDictionary, "ValidationErrorBrush", theme.ValidationError);
