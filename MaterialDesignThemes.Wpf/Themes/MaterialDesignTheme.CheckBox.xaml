@@ -256,8 +256,6 @@
         <Setter Property="Height" Value="32" />
         <Setter Property="MinWidth" Value="46" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="FontSize" Value="13" />
-        <Setter Property="Margin" Value="4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
