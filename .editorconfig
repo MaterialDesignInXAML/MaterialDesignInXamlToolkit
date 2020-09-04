@@ -1,4 +1,21 @@
-# Rules in this file were initially inferred by Visual Studio IntelliCode from the C:\Users\bushc\Source\Repos\MaterialDesignInXamlToolkit codebase based on best match to current usage at 8/14/2018
+# Remove the line below if you want to inherit .editorconfig settings from higher directories
+root = true
+
+##### All files #####
+[*]
+
+#### Core EditorConfig Options ####
+
+# Indentation and spacing
+indent_size = 4
+indent_style = space
+tab_width = 4
+
+# New line preferences
+insert_final_newline = false
+trim_trailing_whitespace = true
+
+# The following rules were initially inferred by Visual Studio IntelliCode from the C:\Users\bushc\Source\Repos\MaterialDesignInXamlToolkit codebase based on best match to current usage at 8/14/2018
 # You can modify the rules from these initially generated values to suit your own policies
 # You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
 [*.cs]
