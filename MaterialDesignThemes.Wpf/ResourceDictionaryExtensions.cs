@@ -30,6 +30,11 @@ namespace MaterialDesignThemes.Wpf
             SetSolidColorBrush(resourceDictionary, "SecondaryHueDarkBrush", theme.SecondaryDark.Color);
             SetSolidColorBrush(resourceDictionary, "SecondaryHueDarkForegroundBrush", theme.SecondaryDark.ForegroundColor ?? theme.SecondaryDark.Color.ContrastingForegroundColor());
 
+            //NB: These are here for backwards compatibility, and will be removed in a future version.
+            //These will be removed in version 4.0.0
+            SetSolidColorBrush(resourceDictionary, "SecondaryAccentBrush", theme.SecondaryMid.Color);
+            SetSolidColorBrush(resourceDictionary, "SecondaryAccentForegroundBrush", theme.SecondaryMid.ForegroundColor ?? theme.SecondaryMid.Color.ContrastingForegroundColor());
+
             SetSolidColorBrush(resourceDictionary, "ValidationErrorBrush", theme.ValidationError);
             resourceDictionary["ValidationErrorColor"] = theme.ValidationError;
 
