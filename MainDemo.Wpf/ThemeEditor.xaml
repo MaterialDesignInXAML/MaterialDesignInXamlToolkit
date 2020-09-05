@@ -76,7 +76,7 @@
             </StackPanel>
         </materialDesign:ColorZone>
 
-        <materialDesign:DialogHost x:Name="coloreditordialoghost" 
+        <materialDesign:DialogHost x:Name="ColorEditorDialogHost" 
                                    Grid.Row="1" 
                                    Grid.ColumnSpan="2" 
                                    DialogClosing="AcceptColor">
