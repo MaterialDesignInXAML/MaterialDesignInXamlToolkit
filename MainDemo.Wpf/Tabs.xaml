@@ -14,7 +14,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Alignment" Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
+        <GroupBox Header="Alignment" Style="{StaticResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
             <StackPanel>
                 <smtx:XamlDisplay Key="tab_1" Margin="5,5,5,0" >
                     <TabControl>
@@ -73,7 +73,7 @@
                 </smtx:XamlDisplay>
             </StackPanel>
         </GroupBox>
-        <GroupBox Grid.Column="1" Header="Colors" Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
+        <GroupBox Grid.Column="1" Header="Colors" Style="{StaticResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
             <StackPanel>
                 <smtx:XamlDisplay Key="tab_8" Margin="5,5,5,0" >
                     <TabControl materialDesign:ColorZoneAssist.Mode="Standard">
@@ -127,7 +127,7 @@
                 </smtx:XamlDisplay>
             </StackPanel>
         </GroupBox>
-        <GroupBox Grid.Column="2" Header="Styles" Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
+        <GroupBox Grid.Column="2" Header="Styles" Style="{StaticResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
             <StackPanel>
                 <smtx:XamlDisplay Key="tab_13" Margin="5,5,5,0" >
                     <TabControl materialDesign:ColorZoneAssist.Mode="Standard">
@@ -141,7 +141,7 @@
                 </smtx:XamlDisplay>
                 <smtx:XamlDisplay Key="tab_14" Margin="5,10,5,0" >
                     <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryMid">
-                        <TabItem Style="{DynamicResource MaterialDesignTabItem}">
+                        <TabItem Style="{StaticResource MaterialDesignTabItem}">
                             <TabItem.Header>
                                 <StackPanel HorizontalAlignment="Center">
                                     <materialDesign:PackIcon Kind="Telephone" HorizontalAlignment="Center" Width="24" Height="24"/>
@@ -150,7 +150,7 @@
                             </TabItem.Header>
                             <TextBlock Background="LightGray" Padding="5" Text="Tall 1..."/>
                         </TabItem>
-                        <TabItem Style="{DynamicResource MaterialDesignTabItem}">
+                        <TabItem Style="{StaticResource MaterialDesignTabItem}">
                             <TabItem.Header>
                                 <StackPanel HorizontalAlignment="Center">
                                     <materialDesign:PackIcon Kind="Message" HorizontalAlignment="Center" Width="24" Height="24"/>
