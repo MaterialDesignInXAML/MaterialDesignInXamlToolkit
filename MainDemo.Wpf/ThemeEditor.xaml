@@ -81,7 +81,7 @@
                                    Grid.ColumnSpan="2" 
                                    DialogClosing="AcceptColor">
             <materialDesign:DialogHost.DialogContent>
-                <Grid Margin="0,0,0,10" x:Name="coloreditordialog" >
+                <Grid Margin="0,0,0,10" x:Name="ColorEditorDialog" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="Auto"/>
