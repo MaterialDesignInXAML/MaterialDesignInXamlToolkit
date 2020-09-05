@@ -452,7 +452,7 @@
                                             <TranslateTransform X="0"/>
                                         </Border.RenderTransform>
                                     </Border>
-                                    <Grid x:Name="PART_MonthView" RenderTransformOrigin="0, 0.5">
+                                    <Grid x:Name="PART_MonthView" RenderTransformOrigin="0, 0.5" IsSharedSizeScope="True">
                                         <Grid.RenderTransform>
                                             <TranslateTransform X="0" />
                                         </Grid.RenderTransform>
@@ -466,13 +466,13 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
                                         </Grid.RowDefinitions>
                                     </Grid>
                                 </Grid>
