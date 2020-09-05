@@ -137,8 +137,8 @@
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Margin" Value="2"/>
-        <Setter Property="Width" Value="34" />
-        <Setter Property="Height" Value="34" />
+        <Setter Property="Width" Value="28" />
+        <Setter Property="Height" Value="28" />
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -390,7 +390,7 @@
                                     <converters:CalendarYearMonthConverter x:Key="CalendarYearMonthConverter"/>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
@@ -414,14 +414,15 @@
                                         Visibility="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Height="Auto"
                                         Margin="20 15" />
-                                <Button x:Name="PART_PreviousButton" Grid.Row="1" Grid.Column="0" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
-                                            Margin="6 0 0 0" Foreground="{TemplateBinding Foreground}" />
                                 <TextBlock x:Name="CurrentDateTextBlock"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           Margin="8"
+                                           Grid.Row="1" 
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left" 
+                                           VerticalAlignment="Center"
+                                           Margin="13 8 8 8"
                                            FontSize="14"
-                                           Grid.Row="1" Grid.Column="1"
                                            FontWeight="SemiBold"
+                                           Opacity="0.56"
                                            RenderTransformOrigin="0, 0.5">
                                     <TextBlock.Text>
                                         <MultiBinding Converter="{StaticResource CalendarYearMonthConverter}">
@@ -433,8 +434,28 @@
                                         <TranslateTransform X="0" Y="0"/>
                                     </TextBlock.RenderTransform>
                                 </TextBlock>
-                                <Button x:Name="PART_NextButton" Grid.Row="1" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="36" Template="{StaticResource NextButtonTemplate}" Width="32"
-                                            Margin="0 0 6 0" Foreground="{TemplateBinding Foreground}" />
+                                <Button x:Name="PART_PreviousButton"
+                                        Grid.Row="1"
+                                        Grid.Column="1" 
+                                        Focusable="False" 
+                                        HorizontalAlignment="Left" 
+                                        Height="36" 
+                                        Width="32"
+                                        Template="{StaticResource PreviousButtonTemplate}"
+                                        Margin="3 0"
+                                        Opacity="0.56"
+                                        Foreground="{TemplateBinding Foreground}" />
+                                <Button x:Name="PART_NextButton" 
+                                        Grid.Row="1" 
+                                        Grid.Column="2" 
+                                        Focusable="False" 
+                                        HorizontalAlignment="Right"
+                                        Height="36"
+                                        Width="32"
+                                        Template="{StaticResource NextButtonTemplate}"
+                                        Margin="3 0"
+                                        Opacity="0.56"
+                                        Foreground="{TemplateBinding Foreground}" />
 
                                 <Grid x:Name="MonthViewWrapperGrid"
                                       Grid.ColumnSpan="3"
