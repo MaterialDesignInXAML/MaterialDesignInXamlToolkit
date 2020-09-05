@@ -108,7 +108,7 @@
                                 IsDefault="True"
                                 Margin="0 8 8 0"
                                 Command="materialDesign:DialogHost.CloseDialogCommand"
-                                x:Name="coloreditordialogacceptbutton">
+                                x:Name="ColorEditorDialogAcceptButton">
                             <!--<Button.CommandParameter>
                                 <system:Boolean>True</system:Boolean>
                             </Button.CommandParameter>-->
