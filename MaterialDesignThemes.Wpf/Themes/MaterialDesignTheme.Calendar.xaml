@@ -3,6 +3,9 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:globalization="clr-namespace:System.Globalization;assembly=mscorlib">
+
+    <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    
     <Style x:Key="MaterialDesignCalendarButton" TargetType="{x:Type CalendarButton}">
         <Setter Property="MinWidth" Value="5"/>
         <Setter Property="MinHeight" Value="5"/>
@@ -400,12 +403,17 @@
                                 <Border Grid.ColumnSpan="3" Grid.Row="0" Background="{DynamicResource PrimaryHueMidBrush}" />
                                 <Button x:Name="PART_HeaderButton"
                                         Grid.Row="0"
+                                        Grid.Column="0"
                                         Grid.ColumnSpan="3"
-                                        FontWeight="Bold" Focusable="False" FontSize="10.5"
-                                        HorizontalAlignment="Left" VerticalAlignment="Center"
+                                        FontWeight="Bold"
+                                        Focusable="False"
+                                        FontSize="10.5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
                                         Template="{StaticResource HeaderButtonTemplate}"
+                                        Visibility="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Height="Auto"
-                                        Margin="20 15"/>
+                                        Margin="20 15" />
                                 <Button x:Name="PART_PreviousButton" Grid.Row="1" Grid.Column="0" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
                                             Margin="6 0 0 0" Foreground="{TemplateBinding Foreground}" />
                                 <TextBlock x:Name="CurrentDateTextBlock"
@@ -611,7 +619,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Calendar}">
-                    <CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItemPortrait}"/>
+                    <CalendarItem
+                        x:Name="PART_CalendarItem"
+                        Style="{DynamicResource MaterialDesignCalendarItemPortrait}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        wpf:CalendarAssist.IsHeaderVisible="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

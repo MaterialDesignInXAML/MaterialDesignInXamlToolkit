@@ -32,7 +32,8 @@
                 </smtx:XamlDisplay>
                 <smtx:XamlDisplay Key="pickers_2" HorizontalAlignment="Left" Margin="0 16 0 0" >
                     <DatePicker x:Name="FutureDatePicker" Width="100"
-                                materialDesign:HintAssist.Hint="Future Date">
+                                materialDesign:HintAssist.Hint="Future Date"
+                                materialDesign:CalendarAssist.IsHeaderVisible="False">
                         <DatePicker.SelectedDate>
                             <Binding Path="FutureValidatingDate" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
