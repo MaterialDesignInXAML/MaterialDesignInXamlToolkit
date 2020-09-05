@@ -29,7 +29,7 @@ namespace MaterialDesignDemo
             InitializeComponent();
         }
 
-        private string path = null;
+        private string _existingFilePath = null;
 
         private void NewProject_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -43,22 +43,22 @@ namespace MaterialDesignDemo
             if (newdarkbased.IsChecked ?? false) { vm.Brushes = MaterialDesignColors.WpfExample.Domain.BrushColor.FromDark(); } else { vm.Brushes = MaterialDesignColors.WpfExample.Domain.BrushColor.FromLight(); }
             CustomBaseColorTheme theme = BuildTheme();
             ApplyTheme(theme);
-            path = null;
+            _existingFilePath = null;
         }
 
         private void OpenProject_Button_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
-            ofd.Filter = "XAML Files (*.xaml|*.xaml;)";
+            ofd.Filter = "XAML Files (*.xaml)|*.xaml";
             ofd.Multiselect = false;
             ofd.CheckFileExists = true;
             ofd.Title = "Select theme project file to edit...";
             if (ofd.ShowDialog() == false) { return; }
 
-            path = ofd.FileName;
+            _existingFilePath = ofd.FileName;
             try
             {
-                using (FileStream fs = new FileStream(path, FileMode.Open))
+                using (FileStream fs = new FileStream(_existingFilePath, FileMode.Open))
                 {
                     CustomBaseColorTheme project = (CustomBaseColorTheme)XamlReader.Load(fs);
                     fs.Close();
@@ -78,7 +78,7 @@ namespace MaterialDesignDemo
 
         private void SaveProject_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(_existingFilePath))
             {
                 SaveProjectAs_Button_Click(sender, e);
                 return;
@@ -89,17 +89,17 @@ namespace MaterialDesignDemo
         private void SaveProjectAs_Button_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog sfd = new Microsoft.Win32.SaveFileDialog();
-            sfd.Filter = "XAML Files (*.xaml|*.xaml;)";
+            sfd.Filter = "XAML Files (*.xaml)|*.xaml";
             sfd.Title = "Choose the location to save...";
             sfd.FileName = "YourOwnThemeColors.xaml";
             if (sfd.ShowDialog() == false) { return; }
-            path = sfd.FileName;
+            _existingFilePath = sfd.FileName;
             Flush();
         }
 
         private void Flush()
         {
-            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
+            using (FileStream fs = new FileStream(_existingFilePath, FileMode.Create, FileAccess.ReadWrite))
             {
                 var th = BuildTheme();
                 //XamlWriter.Save(th, fs);
@@ -109,8 +109,6 @@ namespace MaterialDesignDemo
                     th.Clear();
                     System.Xaml.XamlServices.Save(xmlWriter, th);
                 }
-                fs.Close();
-                fs.Dispose();
             }
         }
 
@@ -167,7 +165,7 @@ namespace MaterialDesignDemo
             MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel vm = (MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel)FindResource("VM");
 
             CustomBaseColorTheme result = new CustomBaseColorTheme();
-            result.DesignTime = true;
+            //result.DesignTime = true;
             foreach (MaterialDesignColors.WpfExample.Domain.BrushColor entry in vm.Brushes)
             {
                 result.GetType().GetProperty(entry.Name).SetValue(result, entry.Color);

@@ -31,7 +31,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button ToolTip="New Theme Project" 
                         ToolTipService.InitialShowDelay="0"
-                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Style="{StaticResource MaterialDesignFlatButton}"
                         Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
                         Click="NewProject_Button_Click">
                     <StackPanel Orientation="Horizontal">
@@ -42,7 +42,7 @@
                 </Button>
                 <Button ToolTip="Open Theme Project" 
                             ToolTipService.InitialShowDelay="0"
-                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
                             Click="OpenProject_Button_Click">
                     <StackPanel Orientation="Horizontal">
@@ -53,7 +53,7 @@
                 </Button>
                 <Button ToolTip="Save Current Project" 
                             ToolTipService.InitialShowDelay="0"
-                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
                             Click="SaveProject_Button_Click">
                     <StackPanel Orientation="Horizontal">
@@ -64,7 +64,7 @@
                 </Button>
                 <Button ToolTip="Save Current Project As" 
                             ToolTipService.InitialShowDelay="0"
-                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
                             Click="SaveProjectAs_Button_Click">
                     <StackPanel Orientation="Horizontal">
@@ -98,10 +98,10 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Text="A:" Margin="3" VerticalAlignment="Center" />
-                        <Slider Style="{DynamicResource MaterialDesignSlider}" Grid.Column="1" x:Name="alphaslider" Minimum="0" Maximum="255" Margin="3" ValueChanged="Slider_ValueChanged" SmallChange="1" />
+                        <Slider Style="{StaticResource MaterialDesignSlider}" Grid.Column="1" x:Name="alphaslider" Minimum="0" Maximum="255" Margin="3" ValueChanged="Slider_ValueChanged" SmallChange="1" />
                     </Grid>
 
-                    <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Hex" Text="{Binding ElementName=cpicker, Path=Color, Mode=TwoWay}" Grid.Row="2" Margin="10,0" />
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Hex" Text="{Binding ElementName=cpicker, Path=Color, Mode=TwoWay}" Grid.Row="2" Margin="10,0" />
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3" >
                         <Button Style="{StaticResource MaterialDesignFlatButton}"
@@ -215,13 +215,13 @@
                                     <TextBlock Text="App Title Area" 
                                                VerticalAlignment="Center" 
                                                Margin="10,0,0,0"
-                                               Style="{DynamicResource  MaterialDesignHeadline6TextBlock }" />
+                                               Style="{StaticResource  MaterialDesignHeadline6TextBlock }" />
                                 </StackPanel>
 
                                 <Button ToolTip="Command 1" 
                                         ToolTipService.InitialShowDelay="0"
                                         HorizontalAlignment="Right"
-                                        Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Style="{StaticResource MaterialDesignFlatButton}"
                                         Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" >
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Kind="MicrosoftXboxController" VerticalAlignment="Center" />
@@ -251,21 +251,21 @@
                                       Margin="10"
                                       materialDesign:ColorZoneAssist.Mode="Standard"
                                       materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                                      Style="{DynamicResource MaterialDesignCardGroupBox}">
+                                      Style="{StaticResource MaterialDesignCardGroupBox}">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
-                                        <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Text Field" Margin="3" />
-                                        <ComboBox Style="{DynamicResource MaterialDesignFloatingHintComboBox}" Grid.Row="1" materialDesign:HintAssist.Hint="Selector Field" Margin="3">
+                                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Text Field" Margin="3" />
+                                        <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" Grid.Row="1" materialDesign:HintAssist.Hint="Selector Field" Margin="3">
                                             <sys:String>option 1</sys:String>
                                             <sys:String>option 2</sys:String>
                                             <sys:String>option 3</sys:String>
                                             <sys:String>option 4</sys:String>
                                         </ComboBox>
-                                        <DatePicker Style="{DynamicResource MaterialDesignFloatingHintDatePicker}" Grid.Row="2" materialDesign:HintAssist.Hint="Date Selector" Margin="3" />
+                                        <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Grid.Row="2" materialDesign:HintAssist.Hint="Date Selector" Margin="3" />
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Header="Buttons" 
@@ -273,17 +273,17 @@
                                       Grid.Row="1"
                                       materialDesign:ColorZoneAssist.Mode="Standard"
                                       materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                                      Style="{DynamicResource MaterialDesignCardGroupBox}">
+                                      Style="{StaticResource MaterialDesignCardGroupBox}">
                                     <UniformGrid Columns="3" HorizontalAlignment="Stretch" >
-                                        <Button Style="{DynamicResource MaterialDesignFlatButton}" Margin="5">FLAT</Button>
-                                        <Button Style="{DynamicResource MaterialDesignFlatAccentButton}" Margin="5">Flat AC</Button>
-                                        <Button Style="{DynamicResource MaterialDesignFlatAccentBgButton}" Margin="5">Flat AC BG</Button>
-                                        <Button Style="{DynamicResource MaterialDesignFlatLightBgButton }" Margin="5">Flat PR</Button>
-                                        <Button Style="{DynamicResource MaterialDesignFlatMidBgButton }" Margin="5">Flat PR</Button>
-                                        <Button Style="{DynamicResource MaterialDesignFlatDarkBgButton }" Margin="5">Flat PR</Button>
-                                        <Button Style="{DynamicResource MaterialDesignFloatingActionButton}" Margin="5">Act</Button>
-                                        <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}" Margin="5">Act Ac</Button>
-                                        <Button Style="{DynamicResource MaterialDesignIconButton}" Margin="5">
+                                        <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="5">FLAT</Button>
+                                        <Button Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="5">Flat AC</Button>
+                                        <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}" Margin="5">Flat AC BG</Button>
+                                        <Button Style="{StaticResource MaterialDesignFlatLightBgButton }" Margin="5">Flat PR</Button>
+                                        <Button Style="{StaticResource MaterialDesignFlatMidBgButton }" Margin="5">Flat PR</Button>
+                                        <Button Style="{StaticResource MaterialDesignFlatDarkBgButton }" Margin="5">Flat PR</Button>
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="5">Act</Button>
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Margin="5">Act Ac</Button>
+                                        <Button Style="{StaticResource MaterialDesignIconButton}" Margin="5">
                                             <materialDesign:PackIcon Kind="Emoticon" />
                                         </Button>
                                     </UniformGrid>
@@ -293,23 +293,23 @@
                                       Grid.Column="1"
                                       materialDesign:ColorZoneAssist.Mode="Standard"
                                       materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                                      Style="{DynamicResource MaterialDesignCardGroupBox}">
+                                      Style="{StaticResource MaterialDesignCardGroupBox}">
                                     <UniformGrid Columns="5" >
-                                        <CheckBox Style="{DynamicResource MaterialDesignLightCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
-                                        <CheckBox Style="{DynamicResource MaterialDesignCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
-                                        <CheckBox Style="{DynamicResource MaterialDesignDarkCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
-                                        <CheckBox Style="{DynamicResource MaterialDesignAccentCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
-                                        <CheckBox Style="{DynamicResource MaterialDesignCheckBox}" IsChecked="True" IsEnabled="False" HorizontalAlignment="Center" />
-                                        <RadioButton Style="{DynamicResource MaterialDesignDarkRadioButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                        <RadioButton Style="{DynamicResource MaterialDesignRadioButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                        <RadioButton Style="{DynamicResource MaterialDesignLightRadioButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                        <RadioButton Style="{DynamicResource MaterialDesignAccentRadioButton}" IsChecked="True" GroupName="accent" HorizontalAlignment="Center" />
-                                        <RadioButton Style="{DynamicResource MaterialDesignRadioButton}" IsChecked="True" IsEnabled="False" GroupName="disabled" HorizontalAlignment="Center" />
-                                        <ToggleButton Style="{DynamicResource MaterialDesignSwitchDarkToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                        <ToggleButton Style="{DynamicResource MaterialDesignSwitchToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                        <ToggleButton Style="{DynamicResource MaterialDesignSwitchLightToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                        <ToggleButton Style="{DynamicResource MaterialDesignSwitchAccentToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
-                                        <ToggleButton Style="{DynamicResource MaterialDesignSwitchToggleButton}" IsChecked="True" IsEnabled="False" HorizontalAlignment="Center" />
+                                        <CheckBox Style="{StaticResource MaterialDesignLightCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <CheckBox Style="{StaticResource MaterialDesignCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <CheckBox Style="{StaticResource MaterialDesignDarkCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <CheckBox Style="{StaticResource MaterialDesignCheckBox}" IsChecked="True" IsEnabled="False" HorizontalAlignment="Center" />
+                                        <RadioButton Style="{StaticResource MaterialDesignDarkRadioButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <RadioButton Style="{StaticResource MaterialDesignRadioButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <RadioButton Style="{StaticResource MaterialDesignLightRadioButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <RadioButton Style="{StaticResource MaterialDesignAccentRadioButton}" IsChecked="True" GroupName="accent" HorizontalAlignment="Center" />
+                                        <RadioButton Style="{StaticResource MaterialDesignRadioButton}" IsChecked="True" IsEnabled="False" GroupName="disabled" HorizontalAlignment="Center" />
+                                        <ToggleButton Style="{StaticResource MaterialDesignSwitchDarkToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <ToggleButton Style="{StaticResource MaterialDesignSwitchLightToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" IsChecked="True" HorizontalAlignment="Center" />
+                                        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" IsChecked="True" IsEnabled="False" HorizontalAlignment="Center" />
                                     </UniformGrid>
                                 </GroupBox>
                                 <GroupBox Header="DataGrid" 
@@ -318,7 +318,7 @@
                                       Grid.Row="1"
                                       materialDesign:ColorZoneAssist.Mode="Standard"
                                       materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                                      Style="{DynamicResource MaterialDesignCardGroupBox}">
+                                      Style="{StaticResource MaterialDesignCardGroupBox}">
                                     <DataGrid IsReadOnly="True">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Binding="{Binding}" Header="Column Header:" />
@@ -333,7 +333,7 @@
                                     </DataGrid>
                                 </GroupBox>
                                 <!--<GroupBox Header="Tabs and Navigation Rail"
-                                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                                      Style="{StaticResource MaterialDesignCardGroupBox}"
                                       materialDesign:ColorZoneAssist.Mode="Standard"
                                       materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                       Margin="10" 
@@ -517,7 +517,7 @@
 
                             </Grid>
                         </ScrollViewer>
-                        <!--<materialDesign:PopupBox Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox }" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Row="1"/>-->
+                        <!--<materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox }" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Row="1"/>-->
                     </Grid>
                 </GroupBox>
             </Grid>
@@ -538,8 +538,8 @@
 
                     <TextBlock Text="Base Theme:" Margin="3" />
                     <StackPanel Grid.Row="1" Margin="10,3">
-                        <RadioButton IsChecked="True" Content="Light" Style="{DynamicResource MaterialDesignAccentRadioButton}" />
-                        <RadioButton x:Name="newdarkbased" Content="Dark" Style="{DynamicResource MaterialDesignAccentRadioButton}" />
+                        <RadioButton IsChecked="True" Content="Light" Style="{StaticResource MaterialDesignAccentRadioButton}" />
+                        <RadioButton x:Name="newdarkbased" Content="Dark" Style="{StaticResource MaterialDesignAccentRadioButton}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" >
                         <Button Style="{StaticResource MaterialDesignFlatButton}"

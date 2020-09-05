@@ -5,8 +5,6 @@ namespace MaterialDesignThemes.Wpf
 {
     public class CustomBaseColorTheme : ResourceDictionary, IBaseTheme
     {
-        public bool DesignTime { get; set; } = false;
-
         private Color? _primaryColor;
         public Color? PrimaryColor
         {
@@ -16,7 +14,6 @@ namespace MaterialDesignThemes.Wpf
                 if (_primaryColor != value)
                 {
                     _primaryColor = value;
-                    if (!DesignTime) { SetTheme(); }
                 }
             }
         }
@@ -30,7 +27,6 @@ namespace MaterialDesignThemes.Wpf
                 if (_secondaryColor != value)
                 {
                     _secondaryColor = value;
-                    if (!DesignTime) { SetTheme(); }
                 }
             }
         }
