@@ -124,28 +124,28 @@ namespace MaterialDesignDemo
 
         private void EditColorButton_Click(object sender, RoutedEventArgs e)
         {
-            coloreditordialoghost.IsOpen = true;
+            ColorEditorDialogHost.IsOpen = true;
 
             MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel vm = (MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel)FindResource("VM");
             MaterialDesignColors.WpfExample.Domain.BrushColor entry = (MaterialDesignColors.WpfExample.Domain.BrushColor)((Button)sender).DataContext;
             if (entry == null) { return; }
 
-            coloreditordialogacceptbutton.CommandParameter = entry;
-            cpicker.Color = entry.Color;
+            ColorEditorDialogAcceptButton.CommandParameter = entry;
+            ColorPicker.Color = entry.Color;
             lockrefresh = true;
-            alphaslider.Value = (double)cpicker.Color.A;
+            alphaslider.Value = (double)ColorPicker.Color.A;
             lockrefresh = false;
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (lockrefresh) { return; }
-            cpicker.Color = new Color
+            ColorPicker.Color = new Color
             {
                 A = (byte)e.NewValue,
-                R = cpicker.Color.R,
-                G = cpicker.Color.G,
-                B = cpicker.Color.B
+                R = ColorPicker.Color.R,
+                G = ColorPicker.Color.G,
+                B = ColorPicker.Color.B
             };
         }
 
@@ -156,7 +156,7 @@ namespace MaterialDesignDemo
             MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel vm = (MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel)FindResource("VM");
             MaterialDesignColors.WpfExample.Domain.BrushColor entry = (MaterialDesignColors.WpfExample.Domain.BrushColor)eventArgs.Parameter;
             if (entry == null) { return; }
-            entry.Color = cpicker.Color;
+            entry.Color = ColorPicker.Color;
             lockrefresh = true;
             CustomBaseColorTheme theme = BuildTheme();
             ApplyTheme(theme);

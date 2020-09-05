@@ -76,12 +76,12 @@
             </StackPanel>
         </materialDesign:ColorZone>
 
-        <materialDesign:DialogHost x:Name="coloreditordialoghost" 
+        <materialDesign:DialogHost x:Name="ColorEditorDialogHost" 
                                    Grid.Row="1" 
                                    Grid.ColumnSpan="2" 
                                    DialogClosing="AcceptColor">
             <materialDesign:DialogHost.DialogContent>
-                <Grid Margin="0,0,0,10" x:Name="coloreditordialog" >
+                <Grid Margin="0,0,0,10" x:Name="ColorEditorDialog" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="Auto"/>
@@ -89,7 +89,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <materialDesign:ColorPicker x:Name="cpicker" Width="200" Height="200" />
+                    <materialDesign:ColorPicker x:Name="ColorPicker" Width="200" Height="200" />
 
                     <Grid Grid.Row="1" Margin="10" >
                         <Grid.ColumnDefinitions>
@@ -108,7 +108,7 @@
                                 IsDefault="True"
                                 Margin="0 8 8 0"
                                 Command="materialDesign:DialogHost.CloseDialogCommand"
-                                x:Name="coloreditordialogacceptbutton">
+                                x:Name="ColorEditorDialogAcceptButton">
                             <!--<Button.CommandParameter>
                                 <system:Boolean>True</system:Boolean>
                             </Button.CommandParameter>-->
