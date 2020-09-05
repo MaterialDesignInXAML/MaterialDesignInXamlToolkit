@@ -89,7 +89,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <materialDesign:ColorPicker x:Name="cpicker" Width="200" Height="200" />
+                    <materialDesign:ColorPicker x:Name="ColorPicker" Width="200" Height="200" />
 
                     <Grid Grid.Row="1" Margin="10" >
                         <Grid.ColumnDefinitions>
