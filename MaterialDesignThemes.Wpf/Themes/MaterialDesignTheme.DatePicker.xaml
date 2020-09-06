@@ -309,7 +309,12 @@
                 <ControlTemplate TargetType="{x:Type Calendar}">
                     <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                         <Border Effect="{DynamicResource MaterialDesignShadowDepth4}" Padding="16 8 16 24">
-                            <CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItemPortrait}" />
+                            <CalendarItem
+                                x:Name="PART_CalendarItem"
+                                Style="{DynamicResource MaterialDesignCalendarItemPortrait}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}"
+                                wpf:CalendarAssist.IsHeaderVisible="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible}" />
                         </Border>
                     </AdornerDecorator>
                 </ControlTemplate>
@@ -432,6 +437,15 @@
                         <Trigger Property="Validation.HasError" Value="True">
                             <Setter TargetName="PART_TextBox" Property="wpf:ValidationAssist.HasError" Value="True" />
                             <Setter TargetName="PART_Button" Property="Foreground" Value="{DynamicResource ValidationErrorBrush}"/>
+                        </Trigger>
+                        <Trigger Property="wpf:CalendarAssist.IsHeaderVisible" Value="False">
+                            <Setter Property="CalendarStyle">
+                                <Setter.Value>
+                                    <Style TargetType="Calendar" BasedOn="{StaticResource MaterialDesignDatePickerCalendarPortrait}">
+                                        <Setter Property="wpf:CalendarAssist.IsHeaderVisible" Value="False" />
+                                    </Style>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
