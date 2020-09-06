@@ -165,7 +165,6 @@ namespace MaterialDesignThemes.UITests.WPF.TimePicker
             return today;
         }
 
-#if false // These tests cannot be compiled until IVisualElement.SendInput and IVisualElement.SendKey are supported.
         [Theory]
         [InlineData("1:2")]
         [InlineData("1:02")]
@@ -184,7 +183,7 @@ namespace MaterialDesignThemes.UITests.WPF.TimePicker
             var textBox = await stackPanel.GetElement("/TextBox");
 
             await timePickerTextBox.MoveKeyboardFocus();
-            await timePickerTextBox.SendInput(text);
+            await timePickerTextBox.SendInput($"{text}");
             await textBox.MoveKeyboardFocus();
 
             var actual = await timePickerTextBox.GetText();
@@ -212,7 +211,7 @@ namespace MaterialDesignThemes.UITests.WPF.TimePicker
 
             await timePicker.SetSelectedTime(new DateTime (2020, 8, 10, 1, 2, 0)); 
             await timePickerTextBox.MoveKeyboardFocus();
-            await timePickerTextBox.SendInput(text);
+            await timePickerTextBox.SendInput($"{text}");
             await textBox.MoveKeyboardFocus();
 
             var actual = await timePickerTextBox.GetText();
@@ -238,8 +237,7 @@ namespace MaterialDesignThemes.UITests.WPF.TimePicker
 
             await timePicker.SetSelectedTime(new DateTime (2020, 8, 10, 1, 2, 0)); 
             await timePickerTextBox.MoveKeyboardFocus();
-            await timePickerTextBox.SendInput(text);
-            await timePickerTextBox.SendKey(Key.Enter);
+            await timePickerTextBox.SendInput($"{text}{Key.Enter}");
 
             var actual = await timePickerTextBox.GetText();
             Assert.Equal("1:02 AM", actual);
@@ -264,8 +262,7 @@ namespace MaterialDesignThemes.UITests.WPF.TimePicker
 
             await timePicker.SetSelectedTime(new DateTime (2020, 8, 10, 1, 3, 0)); 
             await timePickerTextBox.MoveKeyboardFocus();
-            await timePickerTextBox.SendInput(text);
-            await timePickerTextBox.SendKey(Key.Enter);
+            await timePickerTextBox.SendInput($"{text}{Key.Enter}");
 
             var actual = await timePickerTextBox.GetText();
             Assert.Equal("1:02 AM", actual);
@@ -290,7 +287,7 @@ namespace MaterialDesignThemes.UITests.WPF.TimePicker
 
             await timePicker.SetSelectedTime(new DateTime(2020, 8, 10, 1, 2, 0));
             await timePickerTextBox.MoveKeyboardFocus();
-            await timePickerTextBox.SendInput(text);
+            await timePickerTextBox.SendInput($"{text}");
             await timePicker.PickClock(1, 3);
 
             var actual = await timePickerTextBox.GetText();
@@ -316,7 +313,7 @@ namespace MaterialDesignThemes.UITests.WPF.TimePicker
 
             await timePicker.SetSelectedTime(new DateTime(2020, 8, 10, 1, 2, 0));
             await timePickerTextBox.MoveKeyboardFocus();
-            await timePickerTextBox.SendInput(text);
+            await timePickerTextBox.SendInput($"{text}");
             await timePicker.PickClock(1, 2);
 
             var actual = await timePickerTextBox.GetText();
@@ -324,6 +321,5 @@ namespace MaterialDesignThemes.UITests.WPF.TimePicker
 
             recorder.Success();
         }
-#endif
     }
 }
