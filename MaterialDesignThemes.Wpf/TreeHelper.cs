@@ -6,13 +6,13 @@ namespace MaterialDesignThemes.Wpf
 {
     internal static class TreeHelper
     {
-        public static double GetVisibleWidth(FrameworkElement element, UIElement parent, FlowDirection flowDirection)
+        public static double GetVisibleWidth(FrameworkElement element, FrameworkElement parent, FlowDirection flowDirection)
         {
             if (element == null) throw new ArgumentNullException(nameof(element));
             if (parent == null) throw new ArgumentNullException(nameof(parent));
 
             var location = element.TransformToAncestor(parent).Transform(new Point(0, 0));
-            if (flowDirection == FlowDirection.RightToLeft)
+            if (flowDirection != parent.FlowDirection)
                 location.X -= element.ActualWidth;
 
             int width = (int)Math.Floor(element.ActualWidth);
