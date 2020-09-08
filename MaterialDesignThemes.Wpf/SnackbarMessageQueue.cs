@@ -352,6 +352,11 @@ namespace MaterialDesignThemes.Wpf
             //this for now...at least it is prevent extra call back hell
             await Task.Delay(snackbar.DeactivateStoryboardDuration);
 
+            //this prevents missing resource warnings after the message is removed from the Snackbar
+            //see https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/2040
+            if (snackbar.Message != null)
+                snackbar.Message.Resources = SnackbarMessage.defaultResources;
+
             //remove message on snackbar
             snackbar.SetCurrentValue(Snackbar.MessageProperty, null);
 
