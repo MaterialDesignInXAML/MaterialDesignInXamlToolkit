@@ -31,7 +31,16 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty MessageProperty = DependencyProperty.Register(
-            nameof(Message), typeof(SnackbarMessage), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessage)));
+            nameof(Message), typeof(SnackbarMessage), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessage), MessagePropertyChangedCallback));
+
+        private static void MessagePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var snackbar = (Snackbar)dependencyObject;
+            //this prevents missing resource warnings after the message is removed from the Snackbar
+            //see https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/2040
+            if (snackbar.Message != null)
+                snackbar.Message.Resources = SnackbarMessage.defaultResources;
+        }
 
         public SnackbarMessage Message
         {
