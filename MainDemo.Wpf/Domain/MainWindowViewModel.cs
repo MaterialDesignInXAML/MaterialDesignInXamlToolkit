@@ -277,7 +277,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                     new []
                     {
                         DocumentationLink.DemoPageLink<NavigationRail>("Demo View"),
-                        DocumentationLink.StyleLink("Tabs"),
+                        DocumentationLink.StyleLink("TabControl"),
                     })
                 {
                     VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
