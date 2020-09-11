@@ -174,15 +174,15 @@ namespace MaterialDesignThemes.Wpf
         ///  Close a modal dialog.
         /// </summary>
         /// <param name="dialogIdentifier"> of the instance where the dialog should be closed. Typically this will match an identifer set in XAML. </param>
-        public static void CloseDialog(object dialogIdentifier)
-            => CloseDialog(dialogIdentifier, null);
+        public static void Close(object dialogIdentifier)
+            => Close(dialogIdentifier, null);
 
         /// <summary>
         ///  Close a modal dialog.
         /// </summary>
         /// <param name="dialogIdentifier"> of the instance where the dialog should be closed. Typically this will match an identifer set in XAML. </param>
         /// <param name="parameter"> to provide to close handler</param>
-        public static void CloseDialog(object dialogIdentifier, object parameter)
+        public static void Close(object dialogIdentifier, object parameter)
         {
             DialogHost dialogHost = GetInstance(dialogIdentifier);
             if (dialogHost.CurrentSession is { } currentSession)
@@ -606,7 +606,7 @@ namespace MaterialDesignThemes.Wpf
                     "Content cannot be passed to a dialog via the OpenDialog if DialogContent already has a binding.");
         }
 
-        internal void Close(object parameter)
+        internal void InternalClose(object parameter)
         {
             var dialogClosingEventArgs = new DialogClosingEventArgs(CurrentSession, DialogClosingEvent);
 
@@ -663,7 +663,7 @@ namespace MaterialDesignThemes.Wpf
         private void ContentCoverGridOnMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             if (CloseOnClickAway && CurrentSession != null)
-                Close(CloseOnClickAwayParameter);
+                InternalClose(CloseOnClickAwayParameter);
         }
 
         private void OpenDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
@@ -716,7 +716,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (executedRoutedEventArgs.Handled) return;
 
-            Close(executedRoutedEventArgs.Parameter);
+            InternalClose(executedRoutedEventArgs.Parameter);
 
             executedRoutedEventArgs.Handled = true;
         }
