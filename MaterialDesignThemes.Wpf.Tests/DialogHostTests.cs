@@ -126,7 +126,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => DialogHost.Show("Content", id));
 
-            Assert.Equal($"No loaded DialogHost have an {nameof(DialogHost.Identifier)} property matching dialogIdentifier argument.", ex.Message);
+            Assert.Equal($"No loaded DialogHost have an {nameof(DialogHost.Identifier)} property matching dialogIdentifier ('{id}') argument.", ex.Message);
         }
 
         [StaFact]
@@ -142,7 +142,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             otherDialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
 
-            Assert.Equal("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.", ex.Message);
+            Assert.Equal("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.", ex.Message);
         }
 
         [StaFact]
