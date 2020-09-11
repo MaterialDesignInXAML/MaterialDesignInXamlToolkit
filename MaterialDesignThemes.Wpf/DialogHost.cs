@@ -166,19 +166,8 @@ namespace MaterialDesignThemes.Wpf
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
         public static async Task<object> Show(object content, object dialogIdentifier, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         {
-            if (content == null) throw new ArgumentNullException(nameof(content));
-
-            if (LoadedInstances.Count == 0)
-                throw new InvalidOperationException("No loaded DialogHost instances.");
-            LoadedInstances.First().Dispatcher.VerifyAccess();
-
-            var targets = LoadedInstances.Where(dh => dialogIdentifier == null || Equals(dh.Identifier, dialogIdentifier)).ToList();
-            if (targets.Count == 0)
-                throw new InvalidOperationException($"No loaded DialogHost have an {nameof(Identifier)} property matching {nameof(dialogIdentifier)} argument.");
-            if (targets.Count > 1)
-                throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
-
-            return await targets[0].ShowInternal(content, openedEventHandler, closingEventHandler);
+            if (content is null) throw new ArgumentNullException(nameof(content));
+            return await GetInstance(dialogIdentifier).ShowInternal(content, openedEventHandler, closingEventHandler);
         }
 
         /// <summary>
@@ -186,15 +175,37 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         /// <param name="dialogIdentifier"> of the instance where the dialog should be closed. Typically this will match an identifer set in XAML. </param>
         public static void CloseDialog(object dialogIdentifier)
-        {
-            if (dialogIdentifier == null) throw new ArgumentNullException(nameof(dialogIdentifier));
+            => CloseDialog(dialogIdentifier, null);
 
+        /// <summary>
+        ///  Close a modal dialog.
+        /// </summary>
+        /// <param name="dialogIdentifier"> of the instance where the dialog should be closed. Typically this will match an identifer set in XAML. </param>
+        /// <param name="parameter"> to provide to close handler</param>
+        public static void CloseDialog(object dialogIdentifier, object parameter)
+        {
+            DialogHost dialogHost = GetInstance(dialogIdentifier);
+            if (dialogHost.CurrentSession is { } currentSession)
+            {
+                currentSession.Close(parameter);
+                return;
+            }
+            throw new InvalidOperationException("DialogHost is not open.");
+        }
+
+        private static DialogHost GetInstance(object dialogIdentifier)
+        {
             if (LoadedInstances.Count == 0)
                 throw new InvalidOperationException("No loaded DialogHost instances.");
+            LoadedInstances.First().Dispatcher.VerifyAccess();
 
-            var targets = LoadedInstances.FirstOrDefault(dh => dialogIdentifier == null || Equals(dh.Identifier, dialogIdentifier));
-            if (targets != null)
-                CloseDialogCommand.Execute(false, null);
+            var targets = LoadedInstances.Where(dh => dialogIdentifier == null || Equals(dh.Identifier, dialogIdentifier)).ToList();
+            if (targets.Count == 0)
+                throw new InvalidOperationException($"No loaded DialogHost have an {nameof(Identifier)} property matching {nameof(dialogIdentifier)} ('{dialogIdentifier}') argument.");
+            if (targets.Count > 1)
+                throw new InvalidOperationException("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
+
+            return targets[0];
         }
 
         internal async Task<object> ShowInternal(object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
