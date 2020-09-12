@@ -155,6 +155,10 @@ namespace MaterialDesignColors.WpfExample.Domain
                     {
                         VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
                     },
+                new DemoItem("Fields line up", new FieldsLineUp(), new []
+                {
+                    DocumentationLink.DemoPageLink<FieldsLineUp>()
+                }),
                 new DemoItem("ComboBoxes", new ComboBoxes(),
                     new []
                     {
@@ -309,11 +313,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                     new []
                     {
                         DocumentationLink.DemoPageLink<Shadows>(),
-                    }),
-                new DemoItem("TextField line up", new TextFieldLineUp(), new []
-                {
-                    DocumentationLink.DemoPageLink<TextFieldLineUp>()
-                })
+                    })
             };
         }
 
