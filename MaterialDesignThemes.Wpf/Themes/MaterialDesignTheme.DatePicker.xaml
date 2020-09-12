@@ -332,7 +332,6 @@
         <Setter Property="SelectedDateFormat" Value="Short" />
         <Setter Property="BorderThickness" Value="0 0 0 1" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        <Setter Property="Margin" Value="0 0 0 0" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
