@@ -1,0 +1,155 @@
+<UserControl x:Class="MaterialDesignDemo.TextFieldLineUp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <ComboBox
+            x:Name="FontSizeComboBox"
+            materialDesign:HintAssist.Hint="FontSize"
+            materialDesign:HintAssist.IsFloating="True"
+            HorizontalAlignment="Left"
+            SelectedValuePath="Tag"
+            Margin="20 0 0 20">
+            <ComboBoxItem Tag="10">10</ComboBoxItem>
+            <ComboBoxItem Tag="12">12</ComboBoxItem>
+            <ComboBoxItem Tag="14" IsSelected="True">14</ComboBoxItem>
+            <ComboBoxItem Tag="16">16</ComboBoxItem>
+            <ComboBoxItem Tag="20">20</ComboBoxItem>
+        </ComboBox>
+        <Grid
+            TextElement.FontSize="{Binding ElementName=FontSizeComboBox, Path=SelectedValue}">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="2" />
+                </Style>
+                <Style x:Key="NotAvailable" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+                    <Setter Property="Text" Value="N/A" />
+                    <Setter Property="Opacity" Value="0.24" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Default" />
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Floating" />
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="Filled" />
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="Outlined" />
+
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="TextField" />
+            <TextBlock Grid.Column="2" Grid.Row="0" Text="ComboBox" />
+            <TextBlock Grid.Column="3" Grid.Row="0" Text="DatePicker" />
+            <TextBlock Grid.Column="4" Grid.Row="0" Text="TimePicker" />
+
+            <TextBox
+                Grid.Column="1"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text" />
+            <TextBox
+                Grid.Column="1"
+                Grid.Row="2"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text"
+                materialDesign:HintAssist.IsFloating="True" />
+            <TextBox
+                Grid.Column="1"
+                Grid.Row="3"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text"
+                Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" />
+            <TextBox
+                Grid.Column="1"
+                Grid.Row="4"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text"
+                Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" />
+
+            <ComboBox
+                Grid.Column="2"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text" />
+            <ComboBox
+                Grid.Column="2"
+                Grid.Row="2"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text"
+                materialDesign:HintAssist.IsFloating="true" />
+            <ComboBox
+                Grid.Column="2"
+                Grid.Row="3"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text"
+                Style="{StaticResource MaterialDesignFilledComboBox}" />
+            <TextBlock
+                Grid.Column="2"
+                Grid.Row="4"
+                Style="{StaticResource NotAvailable}" />
+
+            <DatePicker
+                Grid.Column="3"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text" />
+            <DatePicker
+                Grid.Column="3"
+                Grid.Row="2"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text"
+                materialDesign:HintAssist.IsFloating="True" />
+            <DatePicker
+                Grid.Column="3"
+                Grid.Row="3"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text"
+                Style="{StaticResource MaterialDesignFilledDatePicker}" />
+            <DatePicker
+                Grid.Column="3"
+                Grid.Row="4"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text"
+                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+
+            <materialDesign:TimePicker
+                Grid.Column="4"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text" />
+            <materialDesign:TimePicker
+                Grid.Column="4"
+                Grid.Row="2"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Text"
+                Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
+            <TextBlock
+                Grid.Column="4"
+                Grid.Row="3"
+                Style="{StaticResource NotAvailable}" />
+            <TextBlock
+                Grid.Column="4"
+                Grid.Row="4"
+                Style="{StaticResource NotAvailable}" />
+
+        </Grid>
+    </StackPanel>
+</UserControl>

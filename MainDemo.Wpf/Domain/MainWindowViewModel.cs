@@ -310,6 +310,10 @@ namespace MaterialDesignColors.WpfExample.Domain
                     {
                         DocumentationLink.DemoPageLink<Shadows>(),
                     }),
+                new DemoItem("TextField line up", new TextFieldLineUp(), new []
+                {
+                    DocumentationLink.DemoPageLink<TextFieldLineUp>()
+                })
             };
         }
 
