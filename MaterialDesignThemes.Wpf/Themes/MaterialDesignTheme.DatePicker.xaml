@@ -386,7 +386,7 @@
                                 Foreground="{TemplateBinding BorderBrush}"
                                 Focusable="False"
                                 HorizontalAlignment="Right"
-                                Margin="4 0 0 -3"
+                                Margin="4 0 0 0"
                                 Template="{StaticResource DropDownButtonTemplate}" 
                                 Padding="0"
                                 Height="17" />
@@ -399,12 +399,12 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
                             <Setter TargetName="PART_TextBox" Property="Padding" Value="0,0,22,0" />
-                            <Setter TargetName="PART_Button" Property="Margin" Value="4 0 12 -3" />
+                            <Setter TargetName="PART_Button" Property="Margin" Value="4 0 12 0" />
                             <Setter TargetName="PART_Button" Property="Height" Value="20" />
                         </Trigger>
                         <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
                             <Setter TargetName="PART_TextBox" Property="Padding" Value="0,0,22,0" />
-                            <Setter TargetName="PART_Button" Property="Margin" Value="4 0 12 -3" />
+                            <Setter TargetName="PART_Button" Property="Margin" Value="4 0 12 0" />
                             <Setter TargetName="PART_Button" Property="Height" Value="20" />
                         </Trigger>
                         <MultiTrigger>
