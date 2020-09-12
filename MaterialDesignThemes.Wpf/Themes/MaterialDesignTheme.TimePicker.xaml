@@ -16,6 +16,7 @@
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
         <Setter Property="wpf:HintAssist.Hint" Value="Select time" />
         <Setter Property="ClockStyle" Value="{DynamicResource MaterialDesignClock}" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
@@ -94,7 +95,6 @@
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
                                 x:Name="border"
-                                Padding="0 4 0 4"
                                 SnapsToDevicePixels="True"
                                 wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
                                 wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
@@ -106,6 +106,7 @@
                                 <wpf:TimePickerTextBox BorderThickness="0" x:Name="PART_TextBox"
                                          wpf:TextFieldAssist.TextBoxViewMargin=".5 0 0 0"
                                          Margin="0"
+                                         Padding="{TemplateBinding Padding}"
                                          Template="{StaticResource TextBoxTemplate}"
                                          Style="{DynamicResource MaterialDesignTextBoxBase}" />
                                 <Button x:Name="PART_Button"

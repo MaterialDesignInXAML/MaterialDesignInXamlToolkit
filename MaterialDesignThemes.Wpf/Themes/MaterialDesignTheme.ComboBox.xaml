@@ -417,10 +417,15 @@
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                 Style="{StaticResource MaterialDesignComboBoxToggleButton}"/>
-                  <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                        Margin="{TemplateBinding Padding}"
-                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                  <Border 
+                      Grid.Column="0"
+                      Grid.Row="0"
+                      BorderBrush="Transparent"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                      Margin="{TemplateBinding Padding}">
+                  <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                         UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                       <Grid.ColumnDefinitions>
                           <ColumnDefinition Width="Auto"/>
@@ -477,6 +482,7 @@
                           </Button>
                       </StackPanel>
                   </Grid>
+                  </Border>
                   <wpf:Underline x:Name="Underline"
                                  Grid.ColumnSpan="2"
                                  wpf:TextFieldAssist.UnderlineBrush="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource TemplatedParent}}"
@@ -1022,7 +1028,7 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemSelectedCollapsedStyle}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-        <Setter Property="Padding" Value="0 6 0 6" />
+        <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
         <Setter Property="VerticalContentAlignment" Value="Top" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>

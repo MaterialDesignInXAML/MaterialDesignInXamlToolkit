@@ -31,6 +31,7 @@
         <Setter Property="VerticalContentAlignment" Value="Top"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
@@ -86,11 +87,9 @@
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         SnapsToDevicePixels="True"
-                                        Padding="0 4 0 4"
                                         wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
                                         wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
                                     <Grid x:Name="textFieldGrid"
-                                          Margin="{TemplateBinding Padding}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           MinWidth="1">
