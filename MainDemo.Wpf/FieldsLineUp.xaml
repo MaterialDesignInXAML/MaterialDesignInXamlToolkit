@@ -120,8 +120,7 @@
 
             <DatePicker
                 Grid.Column="4"
-                Grid.Row="1"
-                VerticalAlignment="Top" />
+                Grid.Row="1" />
             <DatePicker
                 Grid.Column="4"
                 Grid.Row="2"
