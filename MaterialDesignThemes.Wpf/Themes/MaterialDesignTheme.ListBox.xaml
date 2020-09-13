@@ -371,7 +371,12 @@
                               Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontStretch="{TemplateBinding FontStretch}"
+                              FontStyle="{TemplateBinding FontStyle}"
+                              FontWeight="{TemplateBinding FontWeight}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -436,7 +441,12 @@
                               Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontStretch="{TemplateBinding FontStretch}"
+                              FontStyle="{TemplateBinding FontStyle}"
+                              FontWeight="{TemplateBinding FontWeight}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -455,7 +465,12 @@
                               Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontStretch="{TemplateBinding FontStretch}"
+                              FontStyle="{TemplateBinding FontStyle}"
+                              FontWeight="{TemplateBinding FontWeight}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -474,7 +489,12 @@
                               Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontStretch="{TemplateBinding FontStretch}"
+                              FontStyle="{TemplateBinding FontStyle}"
+                              FontWeight="{TemplateBinding FontWeight}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -493,6 +513,11 @@
                               Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontStretch="{TemplateBinding FontStretch}"
+                              FontStyle="{TemplateBinding FontStyle}"
+                              FontWeight="{TemplateBinding FontWeight}"
                               ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
                 </ControlTemplate>
             </Setter.Value>
@@ -512,6 +537,11 @@
                               Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontStretch="{TemplateBinding FontStretch}"
+                              FontStyle="{TemplateBinding FontStyle}"
+                              FontWeight="{TemplateBinding FontWeight}"
                               ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
                 </ControlTemplate>
             </Setter.Value>
@@ -527,12 +557,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <RadioButton Style="{StaticResource MaterialDesignChoiceChipRadioButton}" 
-                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              GroupName="{Binding  RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                 Content="{TemplateBinding Content}"
+                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                 FontFamily="{TemplateBinding FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 FontStretch="{TemplateBinding FontStretch}"
+                                 FontStyle="{TemplateBinding FontStyle}"
+                                 FontWeight="{TemplateBinding FontWeight}"
+                                 GroupName="{Binding  RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -548,12 +583,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <RadioButton Style="{StaticResource MaterialDesignChoiceChipPrimaryRadioButton}" 
-                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                 Content="{TemplateBinding Content}"
+                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                 FontFamily="{TemplateBinding FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 FontStretch="{TemplateBinding FontStretch}"
+                                 FontStyle="{TemplateBinding FontStyle}"
+                                 FontWeight="{TemplateBinding FontWeight}"
+                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -568,12 +608,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <RadioButton Style="{StaticResource MaterialDesignChoiceChipAccentRadioButton}" 
-                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                 Content="{TemplateBinding Content}"
+                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                 FontFamily="{TemplateBinding FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 FontStretch="{TemplateBinding FontStretch}"
+                                 FontStyle="{TemplateBinding FontStyle}"
+                                 FontWeight="{TemplateBinding FontWeight}"
+                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -588,12 +633,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <RadioButton Style="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}" 
-                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                 Content="{TemplateBinding Content}"
+                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                 FontFamily="{TemplateBinding FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 FontStretch="{TemplateBinding FontStretch}"
+                                 FontStyle="{TemplateBinding FontStyle}"
+                                 FontWeight="{TemplateBinding FontWeight}"
+                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -608,12 +658,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <RadioButton Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}" 
-                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                 Content="{TemplateBinding Content}"
+                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                 FontFamily="{TemplateBinding FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 FontStretch="{TemplateBinding FontStretch}"
+                                 FontStyle="{TemplateBinding FontStyle}"
+                                 FontWeight="{TemplateBinding FontWeight}"
+                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -628,12 +683,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <RadioButton Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}" 
-                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                 Content="{TemplateBinding Content}"
+                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                 FontFamily="{TemplateBinding FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 FontStretch="{TemplateBinding FontStretch}"
+                                 FontStyle="{TemplateBinding FontStyle}"
+                                 FontWeight="{TemplateBinding FontWeight}"
+                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
