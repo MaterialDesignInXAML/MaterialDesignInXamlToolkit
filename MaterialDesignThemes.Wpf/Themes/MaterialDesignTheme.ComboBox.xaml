@@ -554,7 +554,7 @@
                 <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
-                <Setter TargetName="InnerRoot" Property="Margin" Value="0 11.5 0 0" />
+                <Setter TargetName="InnerRoot" Property="Margin" Value="{x:Static wpf:Constants.TextBoxFloatingHintPadding}" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
