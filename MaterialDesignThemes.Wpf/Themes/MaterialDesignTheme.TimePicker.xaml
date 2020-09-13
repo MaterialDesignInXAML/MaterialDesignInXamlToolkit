@@ -53,7 +53,8 @@
                                                FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}"
                                                Hint="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}"
                                                HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                               HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                               HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                               Padding="{TemplateBinding Padding}"/>
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <MultiTrigger>
@@ -146,7 +147,7 @@
                             <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
                         </Trigger>
                         <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
-                            <Setter TargetName="border" Property="Margin" Value="0 12 0 0" />
+                            <Setter TargetName="border" Property="Margin" Value="{x:Static wpf:Constants.TextBoxFloatingHintPadding}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

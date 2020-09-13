@@ -26,6 +26,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="ContextMenu" Value="{StaticResource MaterialDesignDefaultContextMenu}" />
         <Setter Property="Template">
@@ -98,11 +99,9 @@
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         SnapsToDevicePixels="True"
-                                        Padding="0 4 0 4"
                                         wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
                                         wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
                                     <Grid x:Name="textFieldGrid"
-                                          Margin="{TemplateBinding Padding}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           MinWidth="1">
@@ -151,7 +150,7 @@
                             <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
                         </MultiTrigger>
                         <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
-                            <Setter TargetName="border" Property="Margin" Value="0 18 0 0" />
+                            <Setter TargetName="border" Property="Margin" Value="{x:Static wpf:Constants.TextBoxFloatingHintPadding}" />
                         </Trigger>
                         <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
                             <Setter Property="VerticalContentAlignment" Value="Top" />
@@ -355,7 +354,6 @@
                                            Focusable="{TemplateBinding Focusable}"
                                            Background="{TemplateBinding Background}"
                                            Grid.Row="0"
-                                           Padding="0,0,8,0"
                                            VerticalContentAlignment="Center"
                                            Style="{DynamicResource MaterialDesignDatePickerTextBox}"
                                            HorizontalAlignment="Stretch"
