@@ -7,25 +7,59 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <StackPanel
-            Orientation="Horizontal"
-            Margin="20 0 0 20">
-            <TextBlock
-                Text="FontSize"
-                VerticalAlignment="Bottom" />
-            <Slider
-                x:Name="FontSizeSlider"
-                Minimum="8"
-                Maximum="24"
-                Value="14"
-                Style="{StaticResource MaterialDesignDiscreteSlider}"
-                ToolTip="FontSize"
-                Margin="10 0"
-                Width="100" />
-            <TextBlock
-                Text="{Binding ElementName=FontSizeSlider, Path=Value}"
-                VerticalAlignment="Bottom" />
-        </StackPanel>
+        <materialDesign:ColorZone
+            Mode="PrimaryLight"
+            Margin="20"
+            Padding="5">
+            <StackPanel
+                Orientation="Horizontal">
+                <TextBlock
+                    Text="FontSize"
+                    VerticalAlignment="Bottom" />
+                <Slider
+                    x:Name="FontSizeSlider"
+                    Minimum="8"
+                    Maximum="24"
+                    Value="14"
+                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    ToolTip="FontSize"
+                    Margin="10 0"
+                    Width="100" />
+                <TextBlock
+                    Text="{Binding ElementName=FontSizeSlider, Path=Value}"
+                    VerticalAlignment="Bottom" />
+                <TextBlock
+                    Margin="20 0 0 0"
+                    Text="Vertical padding"
+                    VerticalAlignment="Bottom" />
+                <Slider
+                    x:Name="VerticalPaddingSlider"
+                    Minimum="0"
+                    Maximum="16"
+                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    ToolTip="Vertical padding"
+                    Margin="10 0"
+                    Width="100" />
+                <TextBlock
+                    Text="{Binding ElementName=VerticalPaddingSlider, Path=Value}"
+                    VerticalAlignment="Bottom" />
+                <TextBlock
+                    Margin="20 0 0 0"
+                    Text="Horizontal padding"
+                    VerticalAlignment="Bottom" />
+                <Slider
+                    x:Name="HorizontalPaddingSlider"
+                    Minimum="0"
+                    Maximum="16"
+                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    ToolTip="Horizontal padding"
+                    Margin="10 0"
+                    Width="100" />
+                <TextBlock
+                    Text="{Binding ElementName=HorizontalPaddingSlider, Path=Value}"
+                    VerticalAlignment="Bottom" />
+            </StackPanel>
+        </materialDesign:ColorZone>
         <Grid
             x:Name="FieldsLineUpGrid"
             TextElement.FontSize="{Binding ElementName=FontSizeSlider, Path=Value}"

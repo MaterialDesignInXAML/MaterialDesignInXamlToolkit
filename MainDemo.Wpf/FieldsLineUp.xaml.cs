@@ -9,19 +9,31 @@ namespace MaterialDesignDemo
 {
     public partial class FieldsLineUp
     {
-        private IEnumerable<FrameworkElement> Elements => FieldsLineUpGrid.Children
-            .Cast<FrameworkElement>()
-            .Where(e => !(e is TextBlock));
+        private IEnumerable<Control> Controls => FieldsLineUpGrid.Children.OfType<Control>();
 
         public FieldsLineUp()
         {
             InitializeComponent();
+            VerticalPaddingSlider.Value = Controls.OfType<TextBox>().First().Padding.Top;
+            VerticalPaddingSlider.ValueChanged += delegate
+            {
+                var padding = VerticalPaddingSlider.Value;
+                foreach (var element in Controls)
+                    element.Padding = new Thickness(element.Padding.Left, padding, element.Padding.Right, padding);
+            };
+            HorizontalPaddingSlider.Value = Controls.OfType<TextBox>().First().Padding.Left;
+            HorizontalPaddingSlider.ValueChanged += delegate
+            {
+                var padding = HorizontalPaddingSlider.Value;
+                foreach (var element in Controls)
+                    element.Padding = new Thickness(padding, element.Padding.Top, padding, element.Padding.Bottom);
+            };
 
-            foreach (var element in Elements)
+            foreach (var element in Controls)
             {
                 element.SetValue(HintAssist.HintProperty, "Hint");
                 element.VerticalAlignment = VerticalAlignment.Top;
-                element.Margin = new Thickness(1, 5, 1, 5);
+                element.Margin = new Thickness(2, 5, 2, 5);
                 SetValue(element);
             }
         }
