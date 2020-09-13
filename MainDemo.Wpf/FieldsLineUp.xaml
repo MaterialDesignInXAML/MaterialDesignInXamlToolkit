@@ -7,22 +7,29 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <ComboBox
-            x:Name="FontSizeComboBox"
-            materialDesign:HintAssist.Hint="FontSize"
-            materialDesign:HintAssist.IsFloating="True"
-            HorizontalAlignment="Left"
-            SelectedValuePath="Tag"
+        <StackPanel
+            Orientation="Horizontal"
             Margin="20 0 0 20">
-            <ComboBoxItem Tag="10">10</ComboBoxItem>
-            <ComboBoxItem Tag="12">12</ComboBoxItem>
-            <ComboBoxItem Tag="14" IsSelected="True">14</ComboBoxItem>
-            <ComboBoxItem Tag="16">16</ComboBoxItem>
-            <ComboBoxItem Tag="20">20</ComboBoxItem>
-        </ComboBox>
+            <TextBlock
+                Text="FontSize"
+                VerticalAlignment="Bottom" />
+            <Slider
+                x:Name="FontSizeSlider"
+                Minimum="8"
+                Maximum="24"
+                Value="14"
+                Style="{StaticResource MaterialDesignDiscreteSlider}"
+                ToolTip="FontSize"
+                Margin="10 0"
+                Width="100" />
+            <TextBlock
+                Text="{Binding ElementName=FontSizeSlider, Path=Value}"
+                VerticalAlignment="Bottom" />
+        </StackPanel>
         <Grid
             x:Name="FieldsLineUpGrid"
-            TextElement.FontSize="{Binding ElementName=FontSizeComboBox, Path=SelectedValue}">
+            TextElement.FontSize="{Binding ElementName=FontSizeSlider, Path=Value}"
+            HorizontalAlignment="Left">
             <Grid.Resources>
                 <Style TargetType="TextBlock">
                     <Setter Property="VerticalAlignment" Value="Center" />
@@ -45,11 +52,11 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
+                <ColumnDefinition MinWidth="100" />
+                <ColumnDefinition MinWidth="100" />
+                <ColumnDefinition MinWidth="100" />
+                <ColumnDefinition MinWidth="100" />
+                <ColumnDefinition MinWidth="100" />
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Default" />
