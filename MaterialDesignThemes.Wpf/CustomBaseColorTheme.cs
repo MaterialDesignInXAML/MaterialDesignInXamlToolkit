@@ -5,7 +5,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public class CustomBaseColorTheme : ResourceDictionary, IBaseTheme
     {
-        private Color? _primaryColor;
+        private Color? _primaryColor = Colors.Purple;
         public Color? PrimaryColor
         {
             get { return _primaryColor; }
@@ -18,7 +18,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private Color? _secondaryColor;
+        private Color? _secondaryColor = Colors.Lime;
         public Color? SecondaryColor
         {
             get { return _secondaryColor; }
@@ -60,14 +60,20 @@ namespace MaterialDesignThemes.Wpf
         public Color MaterialDesignTextAreaInactiveBorder  { get; set; } = (Color) ColorConverter.ConvertFromString("#0F000000");
         public Color MaterialDesignDataGridRowHoverBackground  { get; set; } = (Color) ColorConverter.ConvertFromString("#0A000000");
 
+
+        public CustomBaseColorTheme()
+        {
+            SetTheme();
+        }
+
         public void SetTheme()
         {
-            if (PrimaryColor is Color primaryColor &&
-                SecondaryColor is Color secondaryColor)
-            {
-                var theme = Theme.Create(this, primaryColor, secondaryColor);
+            //if (PrimaryColor is Color primaryColor &&
+            //    SecondaryColor is Color secondaryColor)
+            //{
+                var theme = Theme.Create(this, _primaryColor ?? Colors.Purple, _secondaryColor ?? Colors.Lime);
                 ApplyTheme(theme);
-            }
+            //}
         }
 
         protected virtual void ApplyTheme(ITheme theme)
