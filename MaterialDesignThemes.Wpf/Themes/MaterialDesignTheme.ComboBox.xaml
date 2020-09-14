@@ -81,7 +81,7 @@
                              Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
                   <Border Grid.Column="2" MinWidth="{StaticResource PopupLeftRightMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
                </Grid>
-               <Border Grid.Row="4"  Height="{StaticResource PopupTopBottomMargin}"/>
+               <Border Grid.Row="4" Height="{StaticResource PopupTopBottomMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
             </Grid>
          </Border>
       </Grid>
@@ -399,6 +399,7 @@
     <ControlTemplate x:Key="MaterialDesignFloatingHintComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid x:Name="templateRoot"
               Background="{TemplateBinding Background}"
+              UseLayoutRounding="True"
               SnapsToDevicePixels="True">
             <AdornerDecorator>
                 <Grid x:Name="InnerRoot"
@@ -465,7 +466,7 @@
                               Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                               Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}"
                               />
-                          <Button x:Name="PART_ClearButton" Height="Auto" Padding="2,0,-6,0" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
+                          <Button x:Name="PART_ClearButton" Height="Auto" Padding="2,-1,-1,-1" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
                               <Button.Visibility>
                                   <MultiBinding Converter="{StaticResource ClearTextConverter}">
                                       <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}"/>
@@ -492,7 +493,8 @@
                                      Grid.Column="0"
                                      AllowsTransparency="True"
                                      Focusable="False"
-                                     HorizontalOffset="-11.5"
+                                     HorizontalOffset="0"
+                                     RelativeHorizontalOffset="-23"
                                      IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                      PlacementTarget="{Binding ElementName=templateRoot}"
                                      SnapsToDevicePixels="True"
@@ -501,7 +503,7 @@
                                      PopupAnimation="Fade"
                                      VerticalOffset="0"
                                      DefaultVerticalOffset="5"
-                                     DownVerticalOffset="-15.5"
+                                     DownVerticalOffset="-15"
                                      UpVerticalOffset="15"
                                      CornerRadius="2"
                                      ContentMargin="6"
@@ -816,8 +818,10 @@
                                    ClassicMode="True"
                                    CornerRadius="0,0,2,2"
                                    ContentMargin="6,0,6,6"
-                                   HorizontalOffset="-3"
-                                   VerticalOffset="-1"
+                                   HorizontalOffset="0"
+                                   RelativeHorizontalOffset="-6"
+                                   VerticalOffset="0"
+                                   DefaultVerticalOffset="-1"
                                    ContentMinWidth="{Binding Path=ActualWidth, ElementName=templateRoot}"
                                    UpContentTemplate="{StaticResource PopupContentUpTemplate}"
                                    DownContentTemplate="{StaticResource PopupContentDownTemplate}"
