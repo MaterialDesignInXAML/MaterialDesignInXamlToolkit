@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MaterialDesignThemes.Wpf;
 using System.Windows.Markup;
+using System.Windows.Media;
 using System.Xml;
+using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo
 {
@@ -39,8 +29,16 @@ namespace MaterialDesignDemo
         private void NewProjectDialog_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
             if (eventArgs.Parameter == null) { return; }
-            MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel vm = (MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel)FindResource("VM");
-            if (newdarkbased.IsChecked ?? false) { vm.Brushes = MaterialDesignColors.WpfExample.Domain.BrushColor.FromDark(); } else { vm.Brushes = MaterialDesignColors.WpfExample.Domain.BrushColor.FromLight(); }
+            ThemeEditorViewModel vm = (ThemeEditorViewModel)DataContext;
+
+            if (newdarkbased.IsChecked ?? false)
+            {
+                vm.Brushes = BrushColor.FromDark();
+            }
+            else
+            {
+                vm.Brushes = BrushColor.FromLight();
+            }
             CustomBaseColorTheme theme = BuildTheme();
             ApplyTheme(theme);
             _existingFilePath = null;
@@ -63,8 +61,8 @@ namespace MaterialDesignDemo
                     CustomBaseColorTheme project = (CustomBaseColorTheme)XamlReader.Load(fs);
                     fs.Close();
                     fs.Dispose();
-                    MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel vm = (MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel)FindResource("VM");
-                    vm.Brushes = MaterialDesignColors.WpfExample.Domain.BrushColor.LoadFromXAML(project);
+                    ThemeEditorViewModel vm = (ThemeEditorViewModel)DataContext;
+                    vm.Brushes = BrushColor.LoadFromXAML(project);
                     CustomBaseColorTheme theme = BuildTheme();
                     ApplyTheme(theme);
                 }
@@ -99,74 +97,77 @@ namespace MaterialDesignDemo
 
         private void Flush()
         {
-            using (FileStream fs = new FileStream(_existingFilePath, FileMode.Create, FileAccess.ReadWrite))
+            using FileStream fs = new FileStream(_existingFilePath, FileMode.Create, FileAccess.ReadWrite);
+            var th = BuildTheme();
+            //XamlWriter.Save(th, fs);
+            var xmlWriterSettings = new XmlWriterSettings() { Indent = true, NewLineOnAttributes = true };
+            using (XmlWriter xmlWriter = XmlWriter.Create(fs, xmlWriterSettings))
             {
-                var th = BuildTheme();
-                //XamlWriter.Save(th, fs);
-                var xmlWriterSettings = new XmlWriterSettings() { Indent = true, NewLineOnAttributes = true };
-                using (XmlWriter xmlWriter = XmlWriter.Create(fs, xmlWriterSettings))
-                {
-                    th.Clear();
-                    System.Xaml.XamlServices.Save(xmlWriter, th);
-                }
+                th.Clear();
+                System.Xaml.XamlServices.Save(xmlWriter, th);
             }
         }
 
-        private bool lockrefresh = true;
+        private bool _lockRefresh = true;
         private void EditorViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (lockrefresh) { return; }
-            CustomBaseColorTheme builttheme = BuildTheme();
-            ApplyTheme(builttheme);
+            if (_lockRefresh) { return; }
+            if (e.PropertyName == nameof(ThemeEditorViewModel.Brushes))
+            {
+                CustomBaseColorTheme builtTheme = BuildTheme();
+                ApplyTheme(builtTheme);
+            }
         }
 
         private void EditColorButton_Click(object sender, RoutedEventArgs e)
         {
             ColorEditorDialogHost.IsOpen = true;
 
-            MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel vm = (MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel)FindResource("VM");
-            MaterialDesignColors.WpfExample.Domain.BrushColor entry = (MaterialDesignColors.WpfExample.Domain.BrushColor)((Button)sender).DataContext;
+            ThemeEditorViewModel vm = (ThemeEditorViewModel)DataContext;
+            BrushColor entry = (BrushColor)((Button)sender).DataContext;
             if (entry == null) { return; }
 
             ColorEditorDialogAcceptButton.CommandParameter = entry;
-            ColorPicker.Color = entry.Color;
-            lockrefresh = true;
-            alphaslider.Value = (double)ColorPicker.Color.A;
-            lockrefresh = false;
+            vm.SelectedColor = entry.Color;
+            _lockRefresh = true;
+            alphaslider.Value = entry.Color.A;
+            _lockRefresh = false;
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (lockrefresh) { return; }
-            ColorPicker.Color = new Color
+            if (_lockRefresh) { return; }
+            ThemeEditorViewModel vm = (ThemeEditorViewModel)DataContext;
+
+            vm.SelectedColor = new Color
             {
                 A = (byte)e.NewValue,
-                R = ColorPicker.Color.R,
-                G = ColorPicker.Color.G,
-                B = ColorPicker.Color.B
+                R = vm.SelectedColor.R,
+                G = vm.SelectedColor.G,
+                B = vm.SelectedColor.B
             };
         }
 
 
         private void AcceptColor(object sender, DialogClosingEventArgs eventArgs)
         {
-            lockrefresh = false;
-            MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel vm = (MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel)FindResource("VM");
-            MaterialDesignColors.WpfExample.Domain.BrushColor entry = (MaterialDesignColors.WpfExample.Domain.BrushColor)eventArgs.Parameter;
+            _lockRefresh = false;
+            ThemeEditorViewModel vm = (ThemeEditorViewModel)DataContext;
+            BrushColor entry = (BrushColor)eventArgs.Parameter;
             if (entry == null) { return; }
-            entry.Color = ColorPicker.Color;
-            lockrefresh = true;
+            entry.Color = vm.SelectedColor;
+            _lockRefresh = true;
             CustomBaseColorTheme theme = BuildTheme();
             ApplyTheme(theme);
         }
 
         private CustomBaseColorTheme BuildTheme()
         {
-            MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel vm = (MaterialDesignColors.WpfExample.Domain.ThemeEditorViewModel)FindResource("VM");
+            ThemeEditorViewModel vm = (ThemeEditorViewModel)DataContext;
 
             CustomBaseColorTheme result = new CustomBaseColorTheme();
             //result.DesignTime = true;
-            foreach (MaterialDesignColors.WpfExample.Domain.BrushColor entry in vm.Brushes)
+            foreach (BrushColor entry in vm.Brushes)
             {
                 result.GetType().GetProperty(entry.Name).SetValue(result, entry.Color);
             }
@@ -178,7 +179,6 @@ namespace MaterialDesignDemo
             samplegrid.Resources.MergedDictionaries[0] = theme;
             theme.SetTheme();
         }
-
     }
 
 }

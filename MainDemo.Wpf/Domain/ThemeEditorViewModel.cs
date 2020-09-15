@@ -9,11 +9,28 @@ namespace MaterialDesignColors.WpfExample.Domain
         private ObservableCollection<BrushColor> _brushes = BrushColor.FromLight();
         public ObservableCollection<BrushColor> Brushes
         {
-            get { return _brushes; }
+            get => _brushes;
             set
             {
-                _brushes = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Brushes"));
+                if (_brushes != value)
+                {
+                    _brushes = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Brushes)));
+                }
+            }
+        }
+
+        private Color _selectedColor;
+        public Color SelectedColor
+        {
+            get => _selectedColor;
+            set
+            {
+                if (_selectedColor != value)
+                {
+                    _selectedColor = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedColor)));
+                }
             }
         }
 

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:viewmodel="clr-namespace:MaterialDesignColors.WpfExample.Domain"
+        xmlns:viewModel="clr-namespace:MaterialDesignColors.WpfExample.Domain"
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -12,13 +12,12 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
         mc:Ignorable="d"
-        d:DesignHeight="740" d:DesignWidth="2000"  >
-    <UserControl.Resources>
-        <viewmodel:ThemeEditorViewModel x:Key="VM" PropertyChanged="EditorViewModel_PropertyChanged" />
-    </UserControl.Resources>
-    <Grid DataContext="{StaticResource VM}">
+        d:DesignHeight="740" d:DesignWidth="2000">
+    <UserControl.DataContext>
+        <viewModel:ThemeEditorViewModel PropertyChanged="EditorViewModel_PropertyChanged" />
+    </UserControl.DataContext>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
@@ -89,7 +88,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <materialDesign:ColorPicker x:Name="ColorPicker" Width="200" Height="200" />
+                    <materialDesign:ColorPicker Width="200" Height="200" Color="{Binding SelectedColor, Delay=200}"/>
 
                     <Grid Grid.Row="1" Margin="10" >
                         <Grid.ColumnDefinitions>
@@ -98,10 +97,12 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Text="A:" Margin="3" VerticalAlignment="Center" />
-                        <Slider Style="{StaticResource MaterialDesignSlider}" Grid.Column="1" x:Name="alphaslider" Minimum="0" Maximum="255" Margin="3" ValueChanged="Slider_ValueChanged" SmallChange="1" />
+                        <Slider Style="{StaticResource MaterialDesignSlider}" Grid.Column="1" x:Name="alphaslider" Minimum="0" Maximum="255" Margin="3" 
+                                ValueChanged="Slider_ValueChanged" SmallChange="1" />
                     </Grid>
 
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Hex" Text="{Binding ElementName=cpicker, Path=Color, Mode=TwoWay}" Grid.Row="2" Margin="10,0" />
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Hex" 
+                             Text="{Binding SelectedColor, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Margin="10,0" />
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3" >
                         <Button Style="{StaticResource MaterialDesignFlatButton}"
@@ -138,7 +139,7 @@
                     <ScrollViewer  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding Brushes}">
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="{x:Type viewmodel:BrushColor}">
+                                <DataTemplate DataType="{x:Type viewModel:BrushColor}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1*" MaxWidth="200"/>

@@ -116,7 +116,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<ColorToolViewModel>("Demo View Model"),
                         DocumentationLink.ApiLink<PaletteHelper>()
                     }),
-                new DemoItem("Theme Editor", new ThemeEditor { DataContext = null },
+                new DemoItem("Theme Editor", new ThemeEditor(),
                     new []
                     {
                         DocumentationLink.ApiLink<ThemeEditor>()
