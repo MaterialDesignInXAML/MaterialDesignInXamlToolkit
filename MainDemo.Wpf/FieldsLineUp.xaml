@@ -11,54 +11,95 @@
             Mode="PrimaryLight"
             Margin="20"
             Padding="5">
-            <StackPanel
-                Orientation="Horizontal">
+            <Grid
+                HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="Slider" BasedOn="{StaticResource MaterialDesignSlider}">
+                        <Setter Property="Width" Value="130" />
+                        <Setter Property="Margin" Value="10 0" />
+                        <Setter Property="IsSnapToTickEnabled" Value="True" />
+                    </Style>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+                        <Setter Property="Margin" Value="10 0" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                    </Style>
+                </Grid.Resources>
                 <TextBlock
-                    Text="FontSize"
-                    VerticalAlignment="Bottom" />
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Text="{Binding Value, ElementName=FontSizeSlider, StringFormat=FontSize: {0}}" />
                 <Slider
                     x:Name="FontSizeSlider"
+                    Grid.Column="0"
+                    Grid.Row="1"
                     Minimum="8"
                     Maximum="24"
-                    Value="14"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
-                    ToolTip="FontSize"
-                    Margin="10 0"
-                    Width="100" />
+                    Value="14" />
                 <TextBlock
-                    Text="{Binding ElementName=FontSizeSlider, Path=Value}"
-                    VerticalAlignment="Bottom" />
-                <TextBlock
-                    Margin="20 0 0 0"
-                    Text="Vertical padding"
-                    VerticalAlignment="Bottom" />
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Text="{Binding Value, ElementName=HorizontalPaddingSlider, StringFormat=Horizontal padding: {0}}" />
                 <Slider
-                    x:Name="VerticalPaddingSlider"
-                    Minimum="0"
-                    Maximum="16"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
-                    ToolTip="Vertical padding"
-                    Margin="10 0"
-                    Width="100" />
-                <TextBlock
-                    Text="{Binding ElementName=VerticalPaddingSlider, Path=Value}"
-                    VerticalAlignment="Bottom" />
-                <TextBlock
-                    Margin="20 0 0 0"
-                    Text="Horizontal padding"
-                    VerticalAlignment="Bottom" />
-                <Slider
+                    Grid.Column="1"
+                    Grid.Row="1"
                     x:Name="HorizontalPaddingSlider"
                     Minimum="0"
                     Maximum="16"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
-                    ToolTip="Horizontal padding"
-                    Margin="10 0"
-                    Width="100" />
+                    Value="0" />
                 <TextBlock
-                    Text="{Binding ElementName=HorizontalPaddingSlider, Path=Value}"
-                    VerticalAlignment="Bottom" />
-            </StackPanel>
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    Text="{Binding Value, ElementName=VerticalPaddingSlider, StringFormat=Vertical padding: {0}}" />
+                <Slider
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    x:Name="VerticalPaddingSlider"
+                    Minimum="0"
+                    Maximum="16"
+                    Value="4" />
+                <TextBlock
+                    Grid.Column="3"
+                    Grid.Row="0"
+                    Text="IsEnabled" />
+                <CheckBox
+                    x:Name="IsEnabledCheckBox"
+                    Grid.Column="3"
+                    Grid.Row="1"
+                    IsChecked="True"
+                    HorizontalAlignment="Center" />
+                <TextBox
+                    x:Name="PrefixTextBox"
+                    Grid.Column="4"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    materialDesign:HintAssist.Hint="Prefix"
+                    materialDesign:HintAssist.IsFloating="True"
+                    Margin="10 0"
+                    Width="100"
+                    VerticalAlignment="Center" />
+                <TextBox
+                    x:Name="SuffixTextBox"
+                    Grid.Column="5"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    materialDesign:HintAssist.Hint="Suffix"
+                    materialDesign:HintAssist.IsFloating="True"
+                    Margin="10 0"
+                    Width="100"
+                    VerticalAlignment="Center" />
+            </Grid>
         </materialDesign:ColorZone>
         <Grid
             x:Name="FieldsLineUpGrid"
