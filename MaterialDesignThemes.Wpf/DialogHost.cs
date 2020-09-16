@@ -166,19 +166,46 @@ namespace MaterialDesignThemes.Wpf
         /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
         public static async Task<object> Show(object content, object dialogIdentifier, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         {
-            if (content == null) throw new ArgumentNullException(nameof(content));
+            if (content is null) throw new ArgumentNullException(nameof(content));
+            return await GetInstance(dialogIdentifier).ShowInternal(content, openedEventHandler, closingEventHandler);
+        }
 
+        /// <summary>
+        ///  Close a modal dialog.
+        /// </summary>
+        /// <param name="dialogIdentifier"> of the instance where the dialog should be closed. Typically this will match an identifer set in XAML. </param>
+        public static void Close(object dialogIdentifier)
+            => Close(dialogIdentifier, null);
+
+        /// <summary>
+        ///  Close a modal dialog.
+        /// </summary>
+        /// <param name="dialogIdentifier"> of the instance where the dialog should be closed. Typically this will match an identifer set in XAML. </param>
+        /// <param name="parameter"> to provide to close handler</param>
+        public static void Close(object dialogIdentifier, object parameter)
+        {
+            DialogHost dialogHost = GetInstance(dialogIdentifier);
+            if (dialogHost.CurrentSession is { } currentSession)
+            {
+                currentSession.Close(parameter);
+                return;
+            }
+            throw new InvalidOperationException("DialogHost is not open.");
+        }
+
+        private static DialogHost GetInstance(object dialogIdentifier)
+        {
             if (LoadedInstances.Count == 0)
                 throw new InvalidOperationException("No loaded DialogHost instances.");
             LoadedInstances.First().Dispatcher.VerifyAccess();
 
             var targets = LoadedInstances.Where(dh => dialogIdentifier == null || Equals(dh.Identifier, dialogIdentifier)).ToList();
             if (targets.Count == 0)
-                throw new InvalidOperationException($"No loaded DialogHost have an {nameof(Identifier)} property matching {nameof(dialogIdentifier)} argument.");
+                throw new InvalidOperationException($"No loaded DialogHost have an {nameof(Identifier)} property matching {nameof(dialogIdentifier)} ('{dialogIdentifier}') argument.");
             if (targets.Count > 1)
-                throw new InvalidOperationException("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
+                throw new InvalidOperationException("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
 
-            return await targets[0].ShowInternal(content, openedEventHandler, closingEventHandler);
+            return targets[0];
         }
 
         /// <summary>
@@ -595,7 +622,7 @@ namespace MaterialDesignThemes.Wpf
                     "Content cannot be passed to a dialog via the OpenDialog if DialogContent already has a binding.");
         }
 
-        internal void Close(object parameter)
+        internal void InternalClose(object parameter)
         {
             var dialogClosingEventArgs = new DialogClosingEventArgs(CurrentSession, DialogClosingEvent);
 
@@ -652,7 +679,7 @@ namespace MaterialDesignThemes.Wpf
         private void ContentCoverGridOnMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             if (CloseOnClickAway && CurrentSession != null)
-                Close(CloseOnClickAwayParameter);
+                InternalClose(CloseOnClickAwayParameter);
         }
 
         private void OpenDialogHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
@@ -705,7 +732,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (executedRoutedEventArgs.Handled) return;
 
-            Close(executedRoutedEventArgs.Parameter);
+            InternalClose(executedRoutedEventArgs.Parameter);
 
             executedRoutedEventArgs.Handled = true;
         }

@@ -70,7 +70,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             Task<object> showTask = _dialogHost.ShowDialog("Content");
             DialogSession session = _dialogHost.CurrentSession;
             Assert.False(session.IsEnded);
-            
+
             DialogHost.CloseDialogCommand.Execute(closeParameter, _dialogHost);
 
             Assert.False(_dialogHost.IsOpen);
@@ -126,7 +126,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => DialogHost.Show("Content", id));
 
-            Assert.Equal($"No loaded DialogHost have an {nameof(DialogHost.Identifier)} property matching dialogIdentifier argument.", ex.Message);
+            Assert.Equal($"No loaded DialogHost have an {nameof(DialogHost.Identifier)} property matching dialogIdentifier ('{id}') argument.", ex.Message);
         }
 
         [StaFact]
@@ -142,7 +142,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             otherDialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
 
-            Assert.Equal("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.", ex.Message);
+            Assert.Equal("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.", ex.Message);
         }
 
         [StaFact]
@@ -255,5 +255,69 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             Assert.Equal(closeParameter, await showTask);
         }
+
+        [StaFact]
+        [Description("Pull Request 2029")]
+        public void WhenClosingDialogItThrowsWhenNoInstancesLoaded()
+        {
+            _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+
+            var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null));
+            Assert.Equal("No loaded DialogHost instances.", ex.Message);
+        }
+
+        [StaFact]
+        [Description("Pull Request 2029")]
+        public void WhenClosingDialogWithInvalidIdentifierItThrowsWhenNoMatchingInstances()
+        {
+            object id = Guid.NewGuid();
+            var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(id));
+            Assert.Equal($"No loaded DialogHost have an Identifier property matching dialogIdentifier ('{id}') argument.", ex.Message);
+        }
+
+        [StaFact]
+        [Description("Pull Request 2029")]
+        public void WhenClosingDialogWithMultipleDialogHostsItThrowsTooManyMatchingInstances()
+        {
+            var secondInstance = new DialogHost();
+            try
+            {
+                secondInstance.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+                var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null));
+                Assert.Equal("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.", ex.Message);
+            }
+            finally
+            {
+                secondInstance.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+            }
+        }
+
+        [StaFact]
+        [Description("Pull Request 2029")]
+        public void WhenClosingDialogThatIsNotOpenItThrowsDialogNotOpen()
+        {
+            var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null));
+            Assert.Equal("DialogHost is not open.", ex.Message);
+        }
+
+        [StaFact]
+        [Description("Pull Request 2029")]
+        public void WhenClosingDialogWithParameterItPassesParameterToHandlers()
+        {
+            object parameter = Guid.NewGuid();
+            object closingParameter = null;
+            _dialogHost.DialogClosing += DialogClosing;
+            _dialogHost.IsOpen = true;
+
+            DialogHost.Close(null, parameter);
+
+            Assert.Equal(parameter, closingParameter);
+
+            void DialogClosing(object sender, DialogClosingEventArgs eventArgs)
+            {
+                closingParameter = eventArgs.Parameter;
+            }
+        }
+
     }
 }

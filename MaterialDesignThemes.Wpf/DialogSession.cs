@@ -55,7 +55,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (IsEnded) throw new InvalidOperationException("Dialog session has ended.");
 
-            _owner.Close(null);
+            _owner.InternalClose(null);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (IsEnded) throw new InvalidOperationException("Dialog session has ended.");
 
-            _owner.Close(parameter);
+            _owner.InternalClose(parameter);
         }
     }
 }

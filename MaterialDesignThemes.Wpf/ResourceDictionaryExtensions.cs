@@ -30,8 +30,8 @@ namespace MaterialDesignThemes.Wpf
             SetSolidColorBrush(resourceDictionary, "SecondaryHueDarkBrush", theme.SecondaryDark.Color);
             SetSolidColorBrush(resourceDictionary, "SecondaryHueDarkForegroundBrush", theme.SecondaryDark.ForegroundColor ?? theme.SecondaryDark.Color.ContrastingForegroundColor());
 
-
             //NB: These are here for backwards compatibility, and will be removed in a future version.
+            //These will be removed in version 4.0.0
             SetSolidColorBrush(resourceDictionary, "SecondaryAccentBrush", theme.SecondaryMid.Color);
             SetSolidColorBrush(resourceDictionary, "SecondaryAccentForegroundBrush", theme.SecondaryMid.ForegroundColor ?? theme.SecondaryMid.Color.ContrastingForegroundColor());
 
@@ -84,8 +84,8 @@ namespace MaterialDesignThemes.Wpf
                 return theme;
             }
 
-            Color secondaryMid = GetColor("SecondaryHueMidBrush", "SecondaryAccentBrush");
-            Color secondaryMidForeground = GetColor("SecondaryHueMidForegroundBrush", "SecondaryAccentForegroundBrush");
+            Color secondaryMid = GetColor("SecondaryHueMidBrush");
+            Color secondaryMidForeground = GetColor("SecondaryHueMidForegroundBrush");
 
             if (!TryGetColor("SecondaryHueLightBrush", out Color secondaryLight))
             {

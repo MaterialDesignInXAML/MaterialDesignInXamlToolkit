@@ -80,10 +80,7 @@ namespace MaterialDesignThemes.Wpf
                 timePicker.SetSelectedTime();
             if (timePicker._textBox != null)
             {
-                // Save and restore the cursor position
-                var caretIndex = timePicker._textBox.CaretIndex;
-                timePicker._textBox.Text = dependencyPropertyChangedEventArgs.NewValue as string ?? "";
-                timePicker._textBox.CaretIndex = caretIndex;
+                timePicker.UpdateTextBoxText(dependencyPropertyChangedEventArgs.NewValue as string ?? "");
             }
         }
 
@@ -322,9 +319,12 @@ namespace MaterialDesignThemes.Wpf
                 return;
             }
 
-            if (IsTimeValid(_textBox.Text, out DateTime time))
-                SetCurrentValue(SelectedTimeProperty, SelectedTime?.Date.Add(time.TimeOfDay) ?? time);
-
+            var currentText = _textBox.Text;
+            if (IsTimeValid(currentText, out DateTime time))
+            {
+                SetSelectedTime(time);
+                UpdateTextBoxTextIfNeeded(currentText);
+            }
             else // Invalid time, jump back to previous good time
                 SetInvalidTime();
         }
@@ -395,14 +395,40 @@ namespace MaterialDesignThemes.Wpf
                 SetSelectedTime(true);
         }
 
+        private void UpdateTextBoxText(string text)
+        {
+            // Save and restore the cursor position
+            var caretIndex = _textBox.CaretIndex;
+            _textBox.Text = text;
+            _textBox.CaretIndex = caretIndex;
+        }
+
+        private void UpdateTextBoxTextIfNeeded(string lastText)
+        {
+            if (_textBox.Text == lastText)
+            {
+                var formattedText = DateTimeToString(SelectedTime);
+                if (formattedText != lastText)
+                    UpdateTextBoxText(formattedText);
+            }
+        }
+
+        private void SetSelectedTime(in DateTime time)
+        {
+            SetCurrentValue(SelectedTimeProperty, (SelectedTime?.Date ?? DateTime.Today).Add(time.TimeOfDay));
+        }
+
         private void SetSelectedTime(bool beCautious = false)
         {
-            if (!string.IsNullOrEmpty(_textBox?.Text))
+            var currentText = _textBox?.Text;
+            if (!string.IsNullOrEmpty(currentText))
             {
-                ParseTime(_textBox.Text, t =>
+                ParseTime(currentText, t =>
                 {
-                    if (!beCautious || DateTimeToString(t) == _textBox.Text)
-                        SetCurrentValue(SelectedTimeProperty, SelectedTime?.Date.Add(t.TimeOfDay) ?? t);
+                    if (!beCautious || DateTimeToString(t) == currentText)
+                        SetSelectedTime(t);
+                    if (!beCautious)
+                        UpdateTextBoxTextIfNeeded(currentText);
                 });
             }
             else
