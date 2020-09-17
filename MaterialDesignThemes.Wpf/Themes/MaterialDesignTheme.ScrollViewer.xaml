@@ -27,7 +27,6 @@
                 ContentTemplate="{TemplateBinding ContentTemplate}"
                 Content="{TemplateBinding Content}"
                 Grid.Column="0"
-                Margin="{TemplateBinding Padding}"
                 Grid.Row="0"/>
 
             <Separator 
@@ -88,6 +87,10 @@
 
             <Trigger Property="wpf:ScrollViewerAssist.ShowSeparators" Value="False">
                 <Setter TargetName="PART_TopSeparator" Property="Visibility" Value="Hidden" />
+            </Trigger>
+            
+            <Trigger Property="wpf:ScrollViewerAssist.IgnorePadding" Value="False">
+                <Setter TargetName="PART_ScrollContentPresenter" Property="Margin" Value="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}" />
             </Trigger>
 
             <MultiTrigger>
