@@ -319,5 +319,19 @@ namespace MaterialDesignThemes.Wpf.Tests
             }
         }
 
+        [StaFact]
+        public void WhenOpenDialogsAreOpenIsExist()
+        {
+            object id = Guid.NewGuid();
+            _dialogHost.Identifier = id;
+            bool isExist = false;
+            _ = _dialogHost.ShowDialog("Content", new DialogOpenedEventHandler((sender, arg) =>
+            {
+                isExist = DialogHost.IsExistDialog(id);
+            }));
+            Assert.True(isExist);
+            DialogHost.CloseDialogCommand.Execute(null, _dialogHost);
+            Assert.False(DialogHost.IsExistDialog(id));
+        }
     }
 }
