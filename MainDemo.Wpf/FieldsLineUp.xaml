@@ -20,6 +20,8 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -79,9 +81,30 @@
                     Grid.Row="1"
                     IsChecked="True"
                     HorizontalAlignment="Center" />
+                <TextBlock
+                    Grid.Column="4"
+                    Grid.Row="0"
+                    Text="HasClearButton" />
+                <CheckBox
+                    x:Name="HasClearButtonCheckBox"
+                    Grid.Column="4"
+                    Grid.Row="1"
+                    IsChecked="False"
+                    HorizontalAlignment="Center" />
+                <TextBox
+                    x:Name="HintTextBox"
+                    Grid.Column="5"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    materialDesign:HintAssist.Hint="Hint"
+                    materialDesign:HintAssist.IsFloating="True"
+                    Margin="10 0"
+                    Width="100"
+                    Text="Hint"
+                    VerticalAlignment="Center" />
                 <TextBox
                     x:Name="PrefixTextBox"
-                    Grid.Column="4"
+                    Grid.Column="6"
                     Grid.Row="0"
                     Grid.RowSpan="2"
                     materialDesign:HintAssist.Hint="Prefix"
@@ -91,7 +114,7 @@
                     VerticalAlignment="Center" />
                 <TextBox
                     x:Name="SuffixTextBox"
-                    Grid.Column="5"
+                    Grid.Column="7"
                     Grid.Row="0"
                     Grid.RowSpan="2"
                     materialDesign:HintAssist.Hint="Suffix"
@@ -103,7 +126,8 @@
         </materialDesign:ColorZone>
         <Grid
             x:Name="FieldsLineUpGrid"
-            TextElement.FontSize="{Binding ElementName=FontSizeSlider, Path=Value}"
+            TextElement.FontSize="{Binding Value, ElementName=FontSizeSlider}"
+            IsEnabled="{Binding IsChecked, ElementName=IsEnabledCheckBox}"
             HorizontalAlignment="Left">
             <Grid.Resources>
                 <Style TargetType="TextBlock">

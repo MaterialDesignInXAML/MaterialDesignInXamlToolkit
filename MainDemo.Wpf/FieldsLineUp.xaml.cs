@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 
 namespace MaterialDesignDemo
@@ -32,9 +33,10 @@ namespace MaterialDesignDemo
 
             foreach (var element in Controls)
             {
-                element.SetValue(HintAssist.HintProperty, "Hint");
-                element.SetBinding(TextFieldAssist.PrefixTextProperty, new Binding("Text") { ElementName = nameof(PrefixTextBox) });
-                element.SetBinding(TextFieldAssist.SuffixTextProperty, new Binding("Text") { ElementName = nameof(SuffixTextBox) });
+                element.SetBinding(HintAssist.HintProperty, new Binding(nameof(TextBox.Text)) { ElementName = nameof(HintTextBox) });
+                element.SetBinding(TextFieldAssist.HasClearButtonProperty, new Binding(nameof(CheckBox.IsChecked)) { ElementName = nameof(HasClearButtonCheckBox) });
+                element.SetBinding(TextFieldAssist.PrefixTextProperty, new Binding(nameof(TextBox.Text)) { ElementName = nameof(PrefixTextBox) });
+                element.SetBinding(TextFieldAssist.SuffixTextProperty, new Binding(nameof(TextBox.Text)) { ElementName = nameof(SuffixTextBox) });
                 element.VerticalAlignment = VerticalAlignment.Top;
                 element.Margin = new Thickness(2, 5, 2, 5);
                 SetValue(element);
