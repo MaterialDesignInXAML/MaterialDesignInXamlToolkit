@@ -28,11 +28,11 @@
                 </Grid.RowDefinitions>
                 <smtx:XamlDisplay Key="navrail_1" Margin="5,5,5,0" >
                     <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}">
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
+                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}">
                             <TabItem.Header>
                                 <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
                             </TabItem.Header>
-                            <TextBlock Background="LightGray" Padding="5" TextWrapping="Wrap" >
+                            <TextBlock Padding="5" TextWrapping="Wrap" >
                                 <Run Text="tab 1 content. Default look and behaviors. "/>
                                 <LineBreak/>
                                 <LineBreak/>
@@ -56,8 +56,9 @@
                         </TabItem>
                     </TabControl>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="navrail_4" Margin="5,5,5,0" Grid.Column="1" materialDesign:ColorZoneAssist.Mode="Accent" >
-                    <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}">
+                <smtx:XamlDisplay Key="navrail_4" Margin="5,5,5,0" Grid.Column="1">
+                    <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                                materialDesign:ColorZoneAssist.Mode="Accent">
                         <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
                             <TabItem.Header>
                                 <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
@@ -92,7 +93,7 @@
                             <TabItem.Header>
                                 <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
                             </TabItem.Header>
-                            <TextBlock Background="LightGray" Padding="5" TextWrapping="Wrap" >
+                            <TextBlock Padding="5" TextWrapping="Wrap" >
                                 <Run Text="tab 1 content. Default look and right aligned. "/>
                                 <LineBreak/>
                                 <LineBreak/>

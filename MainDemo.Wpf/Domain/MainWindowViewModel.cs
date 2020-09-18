@@ -264,15 +264,6 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<Progress>(),
                         DocumentationLink.StyleLink("ProgressBar")
                     }),
-                new DemoItem("Tabs", new Tabs { DataContext = null},
-                    new []
-                    {
-                        DocumentationLink.DemoPageLink<Tabs>("Demo View"),
-                        DocumentationLink.StyleLink("Tabs"),
-                    })
-                {
-                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
-                },
                 new DemoItem("Navigation Rail", new NavigationRail { DataContext = null},
                     new []
                     {
