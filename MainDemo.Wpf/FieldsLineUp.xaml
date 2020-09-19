@@ -11,118 +11,107 @@
             Mode="PrimaryLight"
             Margin="20"
             Padding="5">
-            <Grid
-                HorizontalAlignment="Left">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.Resources>
-                    <Style TargetType="Slider" BasedOn="{StaticResource MaterialDesignSlider}">
-                        <Setter Property="Width" Value="130" />
-                        <Setter Property="Margin" Value="10 0" />
-                        <Setter Property="IsSnapToTickEnabled" Value="True" />
-                    </Style>
-                    <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
-                        <Setter Property="Margin" Value="10 0" />
-                        <Setter Property="HorizontalAlignment" Value="Center" />
-                    </Style>
-                </Grid.Resources>
-                <TextBlock
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    Text="{Binding Value, ElementName=FontSizeSlider, StringFormat=FontSize: {0}}" />
-                <Slider
-                    x:Name="FontSizeSlider"
-                    Grid.Column="0"
-                    Grid.Row="1"
-                    Minimum="8"
-                    Maximum="24"
-                    Value="14" />
-                <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="0"
-                    Text="{Binding Value, ElementName=HorizontalPaddingSlider, StringFormat=Horizontal padding: {0}}" />
-                <Slider
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    x:Name="HorizontalPaddingSlider"
-                    Minimum="0"
-                    Maximum="16"
-                    Value="0" />
-                <TextBlock
-                    Grid.Column="2"
-                    Grid.Row="0"
-                    Text="{Binding Value, ElementName=VerticalPaddingSlider, StringFormat=Vertical padding: {0}}" />
-                <Slider
-                    Grid.Column="2"
-                    Grid.Row="1"
-                    x:Name="VerticalPaddingSlider"
-                    Minimum="0"
-                    Maximum="16"
-                    Value="4" />
-                <TextBlock
-                    Grid.Column="3"
-                    Grid.Row="0"
-                    Text="IsEnabled" />
-                <CheckBox
-                    x:Name="IsEnabledCheckBox"
-                    Grid.Column="3"
-                    Grid.Row="1"
-                    IsChecked="True"
-                    HorizontalAlignment="Center" />
-                <TextBlock
-                    Grid.Column="4"
-                    Grid.Row="0"
-                    Text="HasClearButton" />
-                <CheckBox
-                    x:Name="HasClearButtonCheckBox"
-                    Grid.Column="4"
-                    Grid.Row="1"
-                    IsChecked="False"
-                    HorizontalAlignment="Center" />
-                <TextBox
-                    x:Name="HintTextBox"
-                    Grid.Column="5"
-                    Grid.Row="0"
-                    Grid.RowSpan="2"
-                    materialDesign:HintAssist.Hint="Hint"
-                    materialDesign:HintAssist.IsFloating="True"
-                    Margin="10 0"
-                    Width="100"
-                    Text="Hint"
-                    VerticalAlignment="Center" />
-                <TextBox
-                    x:Name="PrefixTextBox"
-                    Grid.Column="6"
-                    Grid.Row="0"
-                    Grid.RowSpan="2"
-                    materialDesign:HintAssist.Hint="Prefix"
-                    materialDesign:HintAssist.IsFloating="True"
-                    Margin="10 0"
-                    Width="100"
-                    VerticalAlignment="Center" />
-                <TextBox
-                    x:Name="SuffixTextBox"
-                    Grid.Column="7"
-                    Grid.Row="0"
-                    Grid.RowSpan="2"
-                    materialDesign:HintAssist.Hint="Suffix"
-                    materialDesign:HintAssist.IsFloating="True"
-                    Margin="10 0"
-                    Width="100"
-                    VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel
+                Orientation="Horizontal">
+                <Grid
+                    HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="Slider" BasedOn="{StaticResource MaterialDesignSlider}">
+                            <Setter Property="Width" Value="130" />
+                            <Setter Property="Margin" Value="10 0" />
+                            <Setter Property="IsSnapToTickEnabled" Value="True" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+                            <Setter Property="Margin" Value="10 0" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </Grid.Resources>
+                    <TextBlock
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="0">
+                        <Run Text="FontSize" />
+                        <Run Text="{Binding Value, ElementName=FontSizeSlider, Mode=OneWay}" FontStyle="Italic" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="FontSizeSlider"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Minimum="8"
+                        Maximum="24"
+                        Value="14" />
+                    <TextBlock
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        Text="Padding" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Grid.Row="1">
+                        <Run Text="horizontal" />
+                        <Run Text="{Binding Value, ElementName=HorizontalPaddingSlider, Mode=OneWay}" FontStyle="Italic" />
+                    </TextBlock>
+                    <Slider
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        x:Name="HorizontalPaddingSlider"
+                        Minimum="0"
+                        Maximum="16"
+                        Value="0" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Grid.Row="2">
+                        <Run Text="vertical" />
+                        <Run Text="{Binding Value, ElementName=VerticalPaddingSlider, Mode=OneWay}" FontStyle="Italic" />
+                    </TextBlock>
+                    <Slider
+                        Grid.Column="2"
+                        Grid.Row="2"
+                        x:Name="VerticalPaddingSlider"
+                        Minimum="0"
+                        Maximum="16"
+                        Value="4" />
+                </Grid>
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                            <Setter Property="MinWidth" Value="200" />
+                            <Setter Property="materialDesign:HintAssist.IsFloating" Value="True" />
+                            <Setter Property="Margin" Value="10 4" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBox x:Name="HintTextBox" materialDesign:HintAssist.Hint="HintAssist.Hint" Text="Hint" />
+                    <TextBox x:Name="HelperTextBox" materialDesign:HintAssist.Hint="HintAssist.HelperText" />
+                    <TextBox x:Name="ValidationErrorTextBox" materialDesign:HintAssist.Hint="Validation error" />
+                    <TextBox x:Name="PrefixTextBox" materialDesign:HintAssist.Hint="TextFieldAssist.PrefixText" />
+                    <TextBox x:Name="SuffixTextBox" materialDesign:HintAssist.Hint="TextFieldAssist.SuffixText" />
+                </StackPanel>
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
+                            <Setter Property="Margin" Value="10 4" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <CheckBox x:Name="IsEnabledCheckBox" Content="IsEnabled" IsChecked="True" />
+                    <CheckBox x:Name="HasClearButtonCheckBox" Content="TextFieldAssist.HasClearButton" />
+                </StackPanel>
+            </StackPanel>
         </materialDesign:ColorZone>
         <Grid
             x:Name="FieldsLineUpGrid"

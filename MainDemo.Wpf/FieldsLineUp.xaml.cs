@@ -1,6 +1,7 @@
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +13,28 @@ namespace MaterialDesignDemo
     public partial class FieldsLineUp
     {
         private IEnumerable<Control> Controls => FieldsLineUpGrid.Children.OfType<Control>();
+
+        private class ValidationErrorRule : ValidationRule
+        {
+            public string ErrorMessage { get; set; }
+
+            public override ValidationResult Validate(object value, CultureInfo cultureInfo) => ErrorMessage != null
+                ? new ValidationResult(false, ErrorMessage)
+                : ValidationResult.ValidResult;
+        }
+
+        private static readonly ValidationErrorRule ValidationRule = new ValidationErrorRule();
+
+        public string StringValue { get; set; } = "Text";
+        public int IntValue { get; set; } = 0;
+        public DateTime? DateTimeValue { get; set; } = DateTime.Now;
+
+        private static readonly Dictionary<Type, string> BindingPaths = new Dictionary<Type, string>
+        {
+            [typeof(string)] = nameof(StringValue),
+            [typeof(int)] = nameof(IntValue),
+            [typeof(DateTime?)] = nameof(DateTimeValue)
+        };
 
         public FieldsLineUp()
         {
@@ -31,40 +54,71 @@ namespace MaterialDesignDemo
                     element.Padding = new Thickness(padding, element.Padding.Top, padding, element.Padding.Bottom);
             };
 
-            foreach (var element in Controls)
+            ValidationErrorTextBox.TextChanged += delegate
             {
-                element.SetBinding(HintAssist.HintProperty, new Binding(nameof(TextBox.Text)) { ElementName = nameof(HintTextBox) });
-                element.SetBinding(TextFieldAssist.HasClearButtonProperty, new Binding(nameof(CheckBox.IsChecked)) { ElementName = nameof(HasClearButtonCheckBox) });
-                element.SetBinding(TextFieldAssist.PrefixTextProperty, new Binding(nameof(TextBox.Text)) { ElementName = nameof(PrefixTextBox) });
-                element.SetBinding(TextFieldAssist.SuffixTextProperty, new Binding(nameof(TextBox.Text)) { ElementName = nameof(SuffixTextBox) });
-                element.VerticalAlignment = VerticalAlignment.Top;
-                element.Margin = new Thickness(2, 5, 2, 5);
-                SetValue(element);
+                var error = ValidationErrorTextBox.Text.Trim();
+                ValidationRule.ErrorMessage = string.IsNullOrEmpty(error) ? null : error;
+                foreach (var control in Controls)
+                {
+                    var property = GetValueProperty(control);
+                    if (property != null)
+                        control.GetBindingExpression(property)?.UpdateSource();
+                }
+            };
+
+            foreach (var control in Controls)
+            {
+                control.SetBinding(HintAssist.HintProperty, new Binding(nameof(TextBox.Text)) { ElementName = nameof(HintTextBox) });
+                control.SetBinding(HintAssist.HelperTextProperty, new Binding(nameof(TextBox.Text)) { ElementName = nameof(HelperTextBox) });
+                control.SetBinding(TextFieldAssist.HasClearButtonProperty, new Binding(nameof(CheckBox.IsChecked)) { ElementName = nameof(HasClearButtonCheckBox) });
+                control.SetBinding(TextFieldAssist.PrefixTextProperty, new Binding(nameof(TextBox.Text)) { ElementName = nameof(PrefixTextBox) });
+                control.SetBinding(TextFieldAssist.SuffixTextProperty, new Binding(nameof(TextBox.Text)) { ElementName = nameof(SuffixTextBox) });
+                control.VerticalAlignment = VerticalAlignment.Top;
+                control.Margin = new Thickness(2, 5, 2, 5);
+                SetValue(control);
             }
         }
 
-        private static void SetValue(FrameworkElement element)
+        private static void SetValue(Control control)
         {
-            switch (element)
+            switch (control)
             {
-                case TextBox textBox:
-                    textBox.Text = nameof(TextBox.Text);
-                    break;
                 case PasswordBox passwordBox:
                     passwordBox.Password = nameof(PasswordBox.Password);
                     break;
                 case ComboBox comboBox:
                     foreach (var number in Enumerable.Range(1, 5))
                         comboBox.Items.Add(new ComboBoxItem { Content = nameof(ComboBox.Text) + number });
-                    comboBox.SelectedIndex = 0;
+                    SetBinding(comboBox);
                     break;
-                case DatePicker datePicker:
-                    datePicker.SelectedDate = DateTime.Now;
-                    break;
-                case TimePicker timePicker:
-                    timePicker.SelectedTime = DateTime.Now;
+                default:
+                    SetBinding(control);
                     break;
             }
+        }
+
+        private static DependencyProperty GetValueProperty(Control control) => control switch
+        {
+            TextBox _ => TextBox.TextProperty,
+            PasswordBox _ => null,
+            ComboBox _ => Selector.SelectedIndexProperty,
+            DatePicker _ => DatePicker.SelectedDateProperty,
+            TimePicker _ => TimePicker.SelectedTimeProperty,
+            _ => null
+        };
+
+        private static void SetBinding(Control control)
+        {
+            var property = GetValueProperty(control);
+            if (property == null)
+                return;
+            control.SetBinding(property, new Binding(BindingPaths[property.PropertyType])
+            {
+                Mode = BindingMode.TwoWay,
+                RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(FieldsLineUp), 1),
+                ValidationRules = { ValidationRule },
+                ValidatesOnDataErrors = true
+            });
         }
     }
 }
