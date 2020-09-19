@@ -16,6 +16,8 @@
     <converters:FontSizeToHintOffsetConverter x:Key="FontSizeToHintOffsetConverter" />
     <converters:FontToLineHeightConverter x:Key="FontToLineHeightConverter" />
     <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
+    <converters:FloatingOffsetCalculationConverter x:Key="FloatingOffsetCalculationConverter" />
+    <converters:FloatingOffsetMarginConverter x:Key="FloatingOffsetMarginConverter" />
 
     <Point x:Key="DefaultFloatingOffset">1,-16</Point>
 
@@ -84,6 +86,7 @@
                         <AdornerDecorator>
                             <Border
                                 x:Name="border"
+                                Padding="{TemplateBinding Padding}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
@@ -95,7 +98,6 @@
                                     x:Name="textFieldGrid"
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    Margin="{TemplateBinding Padding}"
                                     MinWidth="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -205,7 +207,24 @@
                                 <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
                                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="border" Property="Padding" Value="{x:Static wpf:Constants.TextBoxFloatingHintPadding}" />
+                            <Setter TargetName="Hint" Property="FloatingOffset">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource FloatingOffsetCalculationConverter}">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontFamily" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontSize" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.FloatingScale)" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="textFieldGrid" Property="Margin">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource FloatingOffsetMarginConverter}">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontFamily" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontSize" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.FloatingScale)" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                         </MultiTrigger>
                         <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
                             <Setter Property="Padding" Value="16 8" />
