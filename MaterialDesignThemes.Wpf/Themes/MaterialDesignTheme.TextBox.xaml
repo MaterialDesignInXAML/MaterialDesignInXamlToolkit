@@ -47,25 +47,25 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="FocusStates">
                                 <VisualState x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform" From="0" To="1" Duration="0:0:0.3">
+                                    <Storyboard TargetName="RippleOnFocusScaleTransform">
+                                        <DoubleAnimation Storyboard.TargetProperty="ScaleX" From="0" To="1" Duration="0:0:0.3">
                                             <DoubleAnimation.EasingFunction>
                                                 <SineEase EasingMode="EaseOut" />
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
-                                        <DoubleAnimation Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform" From="0" To="1" Duration="0:0:0.3">
+                                        <DoubleAnimation Storyboard.TargetProperty="ScaleY" From="0" To="1" Duration="0:0:0.3">
                                             <DoubleAnimation.EasingFunction>
                                                 <SineEase EasingMode="EaseOut" />
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
-                                        <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform" To="0" BeginTime="0:0:0.45" Duration="0" />
-                                        <DoubleAnimation Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform" To="0" BeginTime="0:0:0.45" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetProperty="ScaleX" To="0" BeginTime="0:0:0.45" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetProperty="ScaleY" To="0" BeginTime="0:0:0.45" Duration="0" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unfocused">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ScaleTransform" To="0" Duration="0" />
-                                        <DoubleAnimation Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ScaleTransform" To="0" Duration="0" />
+                                    <Storyboard TargetName="RippleOnFocusScaleTransform">
+                                        <DoubleAnimation Storyboard.TargetProperty="ScaleX" To="0" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetProperty="ScaleY" To="0" Duration="0" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -78,7 +78,7 @@
                             Visibility="{TemplateBinding wpf:TextFieldAssist.RippleOnFocusEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                             RenderTransformOrigin="0.5,0.5">
                             <Border.RenderTransform>
-                                <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
+                                <ScaleTransform x:Name="RippleOnFocusScaleTransform" ScaleX="0" ScaleY="0" />
                             </Border.RenderTransform>
                         </Border>
                         <AdornerDecorator>
