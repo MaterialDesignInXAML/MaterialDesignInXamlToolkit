@@ -90,8 +90,10 @@
             </smtx:XamlDisplay>
 
             <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Add in a corner radius and shadow.</TextBlock>
-            <smtx:XamlDisplay Key="color_zones_primary_dark">
-                <materialDesign:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="3" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="2">
+            <smtx:XamlDisplay Key="color_zones_primary_dark" Padding="10">
+                <materialDesign:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="10"
+                                          materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                                          ClipToBounds="False">
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                         <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
