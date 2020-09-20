@@ -24,7 +24,6 @@
         <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="1 0 1 0" />
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="CaretBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-        <Setter Property="KeyboardNavigation.TabNavigation" Value="Local"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -33,11 +32,12 @@
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
-        <Setter Property="wpf:TextFieldAssist.IncludeSpellingSuggestions" Value="{Binding RelativeSource={RelativeSource Self}, Path=(SpellCheck.IsEnabled)}" />
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="ContextMenu" Value="{StaticResource MaterialDesignDefaultContextMenu}"/>
         <Setter Property="Cursor" Value="IBeam"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="Local"/>
+        <Setter Property="wpf:TextFieldAssist.IncludeSpellingSuggestions" Value="{Binding RelativeSource={RelativeSource Self}, Path=(SpellCheck.IsEnabled)}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
@@ -109,6 +109,7 @@
                                     <ScrollViewer
                                         x:Name="PART_ContentHost"
                                         Grid.Column="1"
+                                        Panel.ZIndex="1"
                                         Focusable="false"
                                         HorizontalScrollBarVisibility="Hidden"
                                         VerticalScrollBarVisibility="Hidden"
