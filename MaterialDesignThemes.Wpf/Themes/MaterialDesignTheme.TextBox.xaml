@@ -127,7 +127,8 @@
                                         HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                         UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
                                         FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
-                                        FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}">
+                                        FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
+                                        Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}">
                                         <wpf:SmartHint.Hint>
                                             <Border
                                                 x:Name="HintBackgroundBorder"
