@@ -16,8 +16,7 @@
     <converters:FontSizeToHintOffsetConverter x:Key="FontSizeToHintOffsetConverter" />
     <converters:FontToLineHeightConverter x:Key="FontToLineHeightConverter" />
     <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
-    <converters:FloatingOffsetCalculationConverter x:Key="FloatingOffsetCalculationConverter" />
-    <converters:FloatingOffsetMarginConverter x:Key="FloatingOffsetMarginConverter" />
+    <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
 
     <Point x:Key="DefaultFloatingOffset">1,-16</Point>
 
@@ -210,7 +209,7 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="Hint" Property="FloatingOffset">
                                 <Setter.Value>
-                                    <MultiBinding Converter="{StaticResource FloatingOffsetCalculationConverter}">
+                                    <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontFamily" />
                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontSize" />
                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.FloatingScale)" />
@@ -219,7 +218,7 @@
                             </Setter>
                             <Setter TargetName="textFieldGrid" Property="Margin">
                                 <Setter.Value>
-                                    <MultiBinding Converter="{StaticResource FloatingOffsetMarginConverter}">
+                                    <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontFamily" />
                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontSize" />
                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.FloatingScale)" />
@@ -237,19 +236,17 @@
                             <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
                             <Setter Property="Padding" Value="16" />
                             <Setter TargetName="Underline" Property="Visibility" Value="Collapsed" />
-                            <Setter TargetName="Hint" Property="Margin" Value="1,0,0,0" />
                             <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
                             <Setter TargetName="Hint" Property="FloatingOffset">
                                 <Setter.Value>
-                                    <MultiBinding Converter="{StaticResource FontSizeToHintOffsetConverter}"
-                                                  ConverterParameter="{StaticResource DefaultFloatingOffset}">
-                                        <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
-                                        <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                    <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontFamily" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontSize" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.FloatingScale)" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Padding" />
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
-                            <Setter TargetName="HintWrapper" Property="Opacity"
-                                    Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
