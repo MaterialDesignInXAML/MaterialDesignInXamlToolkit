@@ -291,8 +291,8 @@
                                 <Condition Property="IsEnabled" Value="False" />
                                 <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaInactiveBorder}" />
                             <Setter TargetName="border" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+                            <Setter TargetName="textFieldBoxBottomLine" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
                             <Setter TargetName="textFieldBoxBottomLine" Property="Height" Value="1" />
                         </MultiTrigger>
                         <MultiTrigger>
