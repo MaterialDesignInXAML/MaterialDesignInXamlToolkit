@@ -8,12 +8,9 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
-    <converters:MathConverter Operation="Divide" x:Key="DivisionMathConverter" />
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearTextConverter" />
     <converters:NotConverter x:Key="NotConverter" />
-    <converters:FontSizeToHintOffsetConverter x:Key="FontSizeToHintOffsetConverter" />
     <converters:FontToLineHeightConverter x:Key="FontToLineHeightConverter" />
     <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
     <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
