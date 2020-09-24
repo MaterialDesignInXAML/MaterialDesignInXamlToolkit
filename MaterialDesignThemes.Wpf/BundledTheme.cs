@@ -3,6 +3,21 @@ using MaterialDesignColors;
 
 namespace MaterialDesignThemes.Wpf
 {
+    public class ColorAdjustment
+    {
+        public float DesiredContrastRatio { get; set; } = 4.5f;
+
+        public Contrast Contrast { get; set; } = Contrast.Medium;
+    }
+
+    public enum Contrast
+    {
+        None,
+        Low,
+        Medium,
+        High
+    }
+
     public class BundledTheme : ResourceDictionary
     {
         private BaseTheme? _baseTheme;
@@ -47,13 +62,27 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        private ColorAdjustment? _colorAdjustment = new ColorAdjustment();
+        public ColorAdjustment ColorAdjustment
+        {
+            get => _colorAdjustment;
+            set
+            {
+                if (_colorAdjustment != value)
+                {
+                    _colorAdjustment = value;
+                    SetTheme();
+                }
+            }
+        }
+
         private void SetTheme()
         {
             if (BaseTheme is BaseTheme baseTheme &&
                 PrimaryColor is PrimaryColor primaryColor &&
                 SecondaryColor is SecondaryColor secondaryColor)
             {
-                var theme = Theme.Create(baseTheme.GetBaseTheme(),
+                ITheme theme = Theme.Create(baseTheme.GetBaseTheme(),
                     SwatchHelper.Lookup[(MaterialDesignColor)primaryColor],
                     SwatchHelper.Lookup[(MaterialDesignColor)secondaryColor]);
 
@@ -63,7 +92,7 @@ namespace MaterialDesignThemes.Wpf
 
         protected virtual void ApplyTheme(ITheme theme)
         {
-            this.SetTheme(theme);
+            this.SetTheme(theme, ColorAdjustment);
         }
     }
 }

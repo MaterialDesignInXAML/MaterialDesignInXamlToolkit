@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using System.Windows.Media;
 using ControlzEx.Theming;
 using MaterialDesignColors;
-using MaterialDesignColors.ColorManipulation;
 using MaterialDesignThemes.Wpf;
 using Theme = ControlzEx.Theming.Theme;
 

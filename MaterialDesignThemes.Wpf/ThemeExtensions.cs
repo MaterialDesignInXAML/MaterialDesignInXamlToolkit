@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
+using System.Drawing.Text;
 using System.Linq;
 using System.Windows.Media;
 using MaterialDesignColors;
@@ -9,7 +11,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class ThemeExtensions
     {
-        internal static ColorPair ToPairedColor(this Hue hue) 
+        internal static ColorPair ToPairedColor(this Hue hue)
             => new ColorPair(hue.Color, hue.Foreground);
 
         internal static void SetPalette(this ITheme theme, Palette palette)
@@ -31,7 +33,8 @@ namespace MaterialDesignThemes.Wpf
             {
                 case BaseTheme.Dark: return Theme.Dark;
                 case BaseTheme.Light: return Theme.Light;
-                case BaseTheme.Inherit: return Theme.GetSystemTheme() switch
+                case BaseTheme.Inherit:
+                    return Theme.GetSystemTheme() switch
                     {
                         BaseTheme.Dark => Theme.Dark,
                         _ => Theme.Light
@@ -46,6 +49,13 @@ namespace MaterialDesignThemes.Wpf
 
             var foreground = theme.Background.ContrastingForegroundColor();
             return foreground == Colors.Black ? BaseTheme.Light : BaseTheme.Dark;
+        }
+
+        public static ITheme AdjustColors(this ITheme theme)
+        {
+            theme.PrimaryMid = theme.PrimaryMid.Color.EnsureContrastRatio(theme.Background, 4.5f);
+
+            return theme;
         }
 
         public static void SetBaseTheme(this ITheme theme, IBaseTheme baseTheme)
