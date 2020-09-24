@@ -1,37 +1,78 @@
 ﻿using System.Windows;
 using System.Windows.Media;
+using MaterialDesignColors;
 
 namespace MaterialDesignThemes.Wpf
 {
     public class CustomBaseColorTheme : ResourceDictionary, IBaseTheme
     {
-        private Color? _primaryColor = Colors.Purple;
-        public Color? PrimaryColor
+        private Color? _primaryBackgroundColor = Colors.Purple;
+        public Color? PrimaryBackgroundColor
         {
-            get { return _primaryColor; }
+            get { return _primaryBackgroundColor; }
             set
             {
-                if (_primaryColor != value)
+                if (_primaryBackgroundColor != value)
                 {
-                    _primaryColor = value;
+                    _primaryBackgroundColor = value;
                 }
             }
         }
 
-        private Color? _secondaryColor = Colors.Lime;
-        public Color? SecondaryColor
+        private Color? _primaryForegroundColor = Colors.White;
+        public Color? PrimaryForegroundColor
         {
-            get { return _secondaryColor; }
+            get { return _primaryForegroundColor; }
             set
             {
-                if (_secondaryColor != value)
+                if (_primaryForegroundColor != value)
                 {
-                    _secondaryColor = value;
+                    _primaryForegroundColor = value;
                 }
             }
         }
 
-        public Color ValidationErrorColor  { get; set; } = (Color) ColorConverter.ConvertFromString("#f44336");
+
+        private Color? _secondaryBackgroundColor = Colors.Lime;
+        public Color? SecondaryBackgroundColor
+        {
+            get { return _secondaryBackgroundColor; }
+            set
+            {
+                if (_secondaryBackgroundColor != value)
+                {
+                    _secondaryBackgroundColor = value;
+                }
+            }
+        }
+
+        private Color? _secondaryForegroundColor = Colors.Black;
+        public Color? SecondaryForegroundColor
+        {
+            get { return _secondaryForegroundColor; }
+            set
+            {
+                if (_secondaryForegroundColor != value)
+                {
+                    _secondaryForegroundColor = value;
+                }
+            }
+        }
+
+        private Color _validationErrorColor = (Color)ColorConverter.ConvertFromString("#f44336");
+        public Color ValidationErrorColor
+        { 
+            get { return _validationErrorColor; }
+            set
+            {
+                if (_validationErrorColor != value)
+                {
+                    _validationErrorColor = value;
+                }
+                SetTheme();
+            }
+        }
+
         public Color MaterialDesignBackground  { get; set; } = (Color) ColorConverter.ConvertFromString("#FFFFFFFF");
         public Color MaterialDesignPaper  { get; set; } = (Color) ColorConverter.ConvertFromString("#FFFAFAFA");
         public Color MaterialDesignCardBackground  { get; set; } = (Color) ColorConverter.ConvertFromString("#FFFFFFFF");
@@ -61,19 +102,16 @@ namespace MaterialDesignThemes.Wpf
         public Color MaterialDesignDataGridRowHoverBackground  { get; set; } = (Color) ColorConverter.ConvertFromString("#0A000000");
 
 
-        public CustomBaseColorTheme()
-        {
-            SetTheme();
-        }
-
         public void SetTheme()
         {
-            //if (PrimaryColor is Color primaryColor &&
-            //    SecondaryColor is Color secondaryColor)
-            //{
-                var theme = Theme.Create(this, _primaryColor ?? Colors.Purple, _secondaryColor ?? Colors.Lime);
-                ApplyTheme(theme);
-            //}
+            var theme = Theme.Create(this, _primaryBackgroundColor ?? Colors.Purple, _secondaryBackgroundColor ?? Colors.Lime);
+            theme.PrimaryLight = new ColorPair(theme.PrimaryLight.Color, _primaryForegroundColor);
+            theme.PrimaryMid = new ColorPair(theme.PrimaryMid.Color, _primaryForegroundColor);
+            theme.PrimaryDark = new ColorPair(theme.PrimaryDark.Color, _primaryForegroundColor);
+            theme.SecondaryLight = new ColorPair(theme.SecondaryLight.Color, _secondaryForegroundColor);
+            theme.SecondaryMid = new ColorPair(theme.SecondaryMid.Color, _secondaryForegroundColor);
+            theme.SecondaryDark = new ColorPair(theme.SecondaryDark.Color, _secondaryForegroundColor);
+            ApplyTheme(theme);
         }
 
         protected virtual void ApplyTheme(ITheme theme)

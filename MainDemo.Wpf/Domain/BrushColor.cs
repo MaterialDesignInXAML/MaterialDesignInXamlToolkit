@@ -10,8 +10,10 @@ namespace MaterialDesignColors.WpfExample.Domain
         public static ObservableCollection<BrushColor> FromDark()
         {
             ObservableCollection<BrushColor> result = new ObservableCollection<BrushColor>();
-            result.Add(new BrushColor("PrimaryColor", Colors.Purple));
-            result.Add(new BrushColor("SecondaryColor", Colors.Lime));
+            result.Add(new BrushColor("PrimaryBackgroundColor", Colors.Purple));
+            result.Add(new BrushColor("PrimaryForegroundColor", Colors.White));
+            result.Add(new BrushColor("SecondaryBackgroundColor", Colors.Lime));
+            result.Add(new BrushColor("SecondaryForegroundColor", Colors.Black));
             result.Add(new BrushColor("ValidationErrorColor", (Color)ColorConverter.ConvertFromString("#f44336")));
             result.Add(new BrushColor("MaterialDesignBackground", (Color)ColorConverter.ConvertFromString("#FF000000")));
             result.Add(new BrushColor("MaterialDesignPaper", (Color)ColorConverter.ConvertFromString("#FF303030")));
@@ -46,8 +48,10 @@ namespace MaterialDesignColors.WpfExample.Domain
         public static ObservableCollection<BrushColor> FromLight()
         {
             ObservableCollection<BrushColor> result = new ObservableCollection<BrushColor>();
-            result.Add(new BrushColor("PrimaryColor", Colors.Purple));
-            result.Add(new BrushColor("SecondaryColor", Colors.Lime));
+            result.Add(new BrushColor("PrimaryBackgroundColor", Colors.Purple));
+            result.Add(new BrushColor("PrimaryForegroundColor", Colors.White));
+            result.Add(new BrushColor("SecondaryBackgroundColor", Colors.Lime));
+            result.Add(new BrushColor("SecondaryForegroundColor", Colors.Black));
             result.Add(new BrushColor("ValidationErrorColor", (Color)ColorConverter.ConvertFromString("#f44336")));
             result.Add(new BrushColor("MaterialDesignBackground", (Color)ColorConverter.ConvertFromString("#FFFFFFFF")));
             result.Add(new BrushColor("MaterialDesignPaper", (Color)ColorConverter.ConvertFromString("#FFFAFAFA")));
@@ -82,8 +86,10 @@ namespace MaterialDesignColors.WpfExample.Domain
         public static ObservableCollection<BrushColor> LoadFromXAML(MaterialDesignThemes.Wpf.CustomBaseColorTheme dictionary)
         {
             ObservableCollection<BrushColor> result = new ObservableCollection<BrushColor>();
-            result.Add(new BrushColor("PrimaryColor", dictionary.PrimaryColor ?? Colors.Purple));
-            result.Add(new BrushColor("SecondaryColor", dictionary.SecondaryColor ?? Colors.Lime));
+            result.Add(new BrushColor("PrimaryBackgroundColor", dictionary.PrimaryBackgroundColor.Value));
+            result.Add(new BrushColor("PrimaryForegroundColor", dictionary.PrimaryForegroundColor.Value));
+            result.Add(new BrushColor("SecondaryBackgroundColor", dictionary.SecondaryBackgroundColor.Value));
+            result.Add(new BrushColor("SecondaryForegroundColor", dictionary.SecondaryForegroundColor.Value));
             result.Add(new BrushColor("ValidationErrorColor", dictionary.ValidationErrorColor));
             result.Add(new BrushColor("MaterialDesignBackground", dictionary.MaterialDesignBackground));
             result.Add(new BrushColor("MaterialDesignPaper", dictionary.MaterialDesignPaper));
