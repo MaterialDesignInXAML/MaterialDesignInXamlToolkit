@@ -61,6 +61,7 @@ namespace MaterialDesignThemes.Wpf
         public static void SetBaseTheme(this ITheme theme, IBaseTheme baseTheme)
         {
             if (theme is null) throw new ArgumentNullException(nameof(theme));
+            if (baseTheme is null) throw new ArgumentNullException(nameof(baseTheme));
 
             theme.ValidationError = baseTheme.MaterialDesignValidationErrorColor;
             theme.Background = baseTheme.MaterialDesignBackground;

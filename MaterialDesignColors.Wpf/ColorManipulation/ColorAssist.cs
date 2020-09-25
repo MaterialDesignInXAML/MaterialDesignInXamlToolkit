@@ -65,7 +65,9 @@ namespace MaterialDesignColors.ColorManipulation
             Color finalColor = foreground;
             double? adjust = null;
 
-            while (Math.Abs(ratio - targetRatio) > tollerance && finalColor != Colors.White && finalColor != Colors.Black)
+            while (Math.Abs(ratio - targetRatio) > tollerance &&
+                   finalColor != Colors.White &&
+                   finalColor != Colors.Black)
             {
                 if (ratio - targetRatio < 0.0)
                 {

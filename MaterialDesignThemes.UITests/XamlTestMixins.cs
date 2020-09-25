@@ -2,20 +2,25 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using MaterialDesignColors;
+using MaterialDesignThemes.Wpf;
 using XamlTest;
 
 namespace MaterialDesignThemes.UITests
 {
     public static class XamlTestMixins
     {
-        public static async Task InitialzeWithMaterialDesign(this IApp app)
+        public static async Task InitialzeWithMaterialDesign(this IApp app,
+            BaseTheme baseTheme = BaseTheme.Light,
+            PrimaryColor primary = PrimaryColor.DeepPurple,
+            SecondaryColor secondary = SecondaryColor.Lime)
         {
-            string applicationResourceXaml = @"<ResourceDictionary 
+            string applicationResourceXaml = $@"<ResourceDictionary 
 xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
 xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
 xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
     <ResourceDictionary.MergedDictionaries>
-        <materialDesign:BundledTheme BaseTheme=""Light"" PrimaryColor=""DeepPurple"" SecondaryColor=""Lime"" />
+        <materialDesign:BundledTheme BaseTheme=""{baseTheme}"" PrimaryColor=""{primary}"" SecondaryColor=""{secondary}"" />
 
         <ResourceDictionary Source = ""pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"" />
     </ResourceDictionary.MergedDictionaries>

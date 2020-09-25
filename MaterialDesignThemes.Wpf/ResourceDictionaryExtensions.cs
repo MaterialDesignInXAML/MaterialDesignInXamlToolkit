@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -9,15 +10,15 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class ResourceDictionaryExtensions
     {
-        private static Guid CurrentThemeKey { get; } = Guid.NewGuid();
-        private static Guid ThemeManagerKey { get; } = Guid.NewGuid();
+        private const string CurrentThemeKey = nameof(CurrentThemeKey);
+        private const string ThemeManagerKey = nameof(ThemeManagerKey);
 
         public static void SetTheme(this ResourceDictionary resourceDictionary, ITheme theme)
             => SetTheme(resourceDictionary, theme, null);
 
         public static void SetTheme(this ResourceDictionary resourceDictionary, ITheme theme, ColorAdjustment colorAdjustment)
         {
-            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+            if (resourceDictionary is null) throw new ArgumentNullException(nameof(resourceDictionary));
 
             if (theme is Theme internalTheme)
             {
@@ -37,7 +38,7 @@ namespace MaterialDesignThemes.Wpf
 
                         break;
                     case Contrast.Medium:
-                        primaryMid = primaryMid.EnsureContrastRatio(theme.Background, colorAdjustment.DesiredContrastRatio, out double offset);
+                        primaryMid = primaryMid.EnsureContrastRatio(theme.Paper, colorAdjustment.DesiredContrastRatio, out double offset);
                         if (Math.Abs(offset) > 0.0)
                         {
                             primaryDark = primaryDark.ShiftLightness(offset);
@@ -112,7 +113,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static ITheme GetTheme(this ResourceDictionary resourceDictionary)
         {
-            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+            if (resourceDictionary is null) throw new ArgumentNullException(nameof(resourceDictionary));
             if (resourceDictionary[CurrentThemeKey] is ITheme theme)
             {
                 return theme;
