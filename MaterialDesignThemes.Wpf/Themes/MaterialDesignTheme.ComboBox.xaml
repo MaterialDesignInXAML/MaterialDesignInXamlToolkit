@@ -81,7 +81,7 @@
                              Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
                   <Border Grid.Column="2" MinWidth="{StaticResource PopupLeftRightMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
                </Grid>
-               <Border Grid.Row="4"  Height="{StaticResource PopupTopBottomMargin}"/>
+               <Border Grid.Row="4" Height="{StaticResource PopupTopBottomMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
             </Grid>
          </Border>
       </Grid>
@@ -288,7 +288,8 @@
                                                    Converter={StaticResource BrushRoundConverter}}"
                         Focusable="False"
                         Padding="{TemplateBinding Padding}"
-                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                        RecognizesAccessKey="False" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="False">
@@ -398,6 +399,7 @@
     <ControlTemplate x:Key="MaterialDesignFloatingHintComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid x:Name="templateRoot"
               Background="{TemplateBinding Background}"
+              UseLayoutRounding="True"
               SnapsToDevicePixels="True">
             <AdornerDecorator>
                 <Grid x:Name="InnerRoot"
@@ -421,11 +423,18 @@
                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                         UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                       <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="Auto"/>
                           <ColumnDefinition Width="*"/>
                           <ColumnDefinition Width="Auto"/>
                       </Grid.ColumnDefinitions>
-                      <Grid x:Name="InputRoot"
-                            HorizontalAlignment="Left">
+                      <TextBlock
+                          Grid.Column="0"
+                          FontSize="{TemplateBinding FontSize}"
+                          Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                          Text="{Binding Path=(wpf:TextFieldAssist.PrefixText), RelativeSource={RelativeSource TemplatedParent}}"
+                          />
+                      <Grid x:Name="InputRoot" Grid.Column="1" 
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                           <ContentPresenter x:Name="contentPresenter"
                                             Content="{TemplateBinding SelectionBoxItem}"
                                             ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
@@ -434,7 +443,7 @@
                                             IsHitTestVisible="False"/>
                           <TextBox x:Name="PART_EditableTextBox"
                                    IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
-                                   HorizontalAlignment="Left"
+                                   HorizontalAlignment="Stretch"
                                    HorizontalContentAlignment="Stretch"
                                    Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
                                    CaretBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}"
@@ -451,13 +460,13 @@
                                          HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                                          Hint="{TemplateBinding wpf:HintAssist.Hint}" />
                       </Grid>
-                      <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top">
+                      <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Top">
                           <TextBlock
                               FontSize="{TemplateBinding FontSize}"
                               Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                               Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}"
                               />
-                          <Button x:Name="PART_ClearButton" Height="Auto" Padding="2,0,-6,0" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
+                          <Button x:Name="PART_ClearButton" Height="Auto" Padding="2,-1,-1,-1" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
                               <Button.Visibility>
                                   <MultiBinding Converter="{StaticResource ClearTextConverter}">
                                       <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}"/>
@@ -484,7 +493,8 @@
                                      Grid.Column="0"
                                      AllowsTransparency="True"
                                      Focusable="False"
-                                     HorizontalOffset="-11.5"
+                                     HorizontalOffset="0"
+                                     RelativeHorizontalOffset="-23"
                                      IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                      PlacementTarget="{Binding ElementName=templateRoot}"
                                      SnapsToDevicePixels="True"
@@ -493,7 +503,7 @@
                                      PopupAnimation="Fade"
                                      VerticalOffset="0"
                                      DefaultVerticalOffset="5"
-                                     DownVerticalOffset="-15.5"
+                                     DownVerticalOffset="-15"
                                      UpVerticalOffset="15"
                                      CornerRadius="2"
                                      ContentMargin="6"
@@ -667,10 +677,10 @@
                     <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
                     <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Accent"/>
                 </MultiTrigger.Conditions>
-                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryAccentBrush}" />
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter TargetName="PART_Popup" Property="Background" 
                         Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -721,10 +731,19 @@
                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                       UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="PrefixTextBlock"
+                            Grid.Column="0"
+                            FontSize="{TemplateBinding FontSize}"
+                            Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                            Text="{Binding Path=(wpf:TextFieldAssist.PrefixText), RelativeSource={RelativeSource TemplatedParent}}"
+                            VerticalAlignment="Center"
+                            />
                     <Grid x:Name="InputRoot" 
+                          Grid.Column="1"
                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                         <ContentPresenter x:Name="contentPresenter"
@@ -742,6 +761,7 @@
                                  Visibility="Collapsed" />
                     </Grid>
                     <wpf:SmartHint x:Name="Hint"
+                                   Grid.Column="1"
                                    HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                    FontSize="{TemplateBinding FontSize}"
                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
@@ -753,8 +773,9 @@
                                    Hint="{TemplateBinding wpf:HintAssist.Hint}"
                                    VerticalAlignment="Stretch"
                                    VerticalContentAlignment="Center"/>
-                    <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Center">
                         <TextBlock
+                            x:Name="SuffixTextBlock"
                             FontSize="{TemplateBinding FontSize}"
                             Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                             Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}"
@@ -797,8 +818,10 @@
                                    ClassicMode="True"
                                    CornerRadius="0,0,2,2"
                                    ContentMargin="6,0,6,6"
-                                   HorizontalOffset="-3"
-                                   VerticalOffset="-1"
+                                   HorizontalOffset="0"
+                                   RelativeHorizontalOffset="-6"
+                                   VerticalOffset="0"
+                                   DefaultVerticalOffset="-1"
                                    ContentMinWidth="{Binding Path=ActualWidth, ElementName=templateRoot}"
                                    UpContentTemplate="{StaticResource PopupContentUpTemplate}"
                                    DownContentTemplate="{StaticResource PopupContentDownTemplate}"
@@ -832,6 +855,14 @@
             <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
                 <Setter TargetName="InputRoot" Property="Margin" Value="0 16 0 0" />
             </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
+                    <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PrefixTextBlock" Property="Margin" Value="0 16 0 0" />
+                <Setter TargetName="SuffixTextBlock" Property="Margin" Value="0 16 0 0" />
+            </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
@@ -954,10 +985,10 @@
                     <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
                     <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Accent"/>
                 </MultiTrigger.Conditions>
-                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryAccentBrush}" />
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter TargetName="PART_Popup" Property="Background" 
                         Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>

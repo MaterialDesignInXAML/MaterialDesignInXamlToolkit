@@ -8,17 +8,18 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.NumericUpDown.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.RangeSlider.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.WindowCommands.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
     <Style TargetType="{x:Type controls:NumericUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
     <Style TargetType="{x:Type controls:RangeSlider}" BasedOn="{StaticResource MaterialDesignRangeSlider}" />
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MahApps.MaterialDesignTextBox}" />
+    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MahApps.MaterialDesignPasswordBox}" />
 
     <Style x:Key="MahApps.Styles.NumericUpDown.DataGridColumn"
            BasedOn="{StaticResource MaterialDesignNumericUpDown}"
            TargetType="{x:Type controls:NumericUpDown}">
-        <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HideUpDownButtons" Value="True" />
         <Setter Property="MinHeight" Value="0" />
@@ -29,7 +30,6 @@
     <Style x:Key="MahApps.Styles.NumericUpDown.DataGridColumnEditing"
            BasedOn="{StaticResource MahApps.Styles.NumericUpDown.DataGridColumn}"
            TargetType="{x:Type controls:NumericUpDown}">
-        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />
         <Setter Property="HideUpDownButtons" Value="False" />
     </Style>
 </ResourceDictionary>

@@ -9,10 +9,8 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class ThemeExtensions
     {
-        internal static ColorPair ToPairedColor(this Hue hue)
-        {
-            return new ColorPair(hue.Color, hue.Foreground);
-        }
+        internal static ColorPair ToPairedColor(this Hue hue) 
+            => new ColorPair(hue.Color, hue.Foreground);
 
         internal static void SetPalette(this ITheme theme, Palette palette)
         {
@@ -33,13 +31,26 @@ namespace MaterialDesignThemes.Wpf
             {
                 case BaseTheme.Dark: return Theme.Dark;
                 case BaseTheme.Light: return Theme.Light;
+                case BaseTheme.Inherit: return Theme.GetSystemTheme() switch
+                    {
+                        BaseTheme.Dark => Theme.Dark,
+                        _ => Theme.Light
+                    };
                 default: throw new InvalidOperationException();
             }
         }
 
+        public static BaseTheme GetBaseTheme(this ITheme theme)
+        {
+            if (theme is null) throw new ArgumentNullException(nameof(theme));
+
+            var foreground = theme.Background.ContrastingForegroundColor();
+            return foreground == Colors.Black ? BaseTheme.Light : BaseTheme.Dark;
+        }
+
         public static void SetBaseTheme(this ITheme theme, IBaseTheme baseTheme)
         {
-            if (theme == null) throw new ArgumentNullException(nameof(theme));
+            if (theme is null) throw new ArgumentNullException(nameof(theme));
 
             theme.ValidationError = baseTheme.ValidationErrorColor;
             theme.Background = baseTheme.MaterialDesignBackground;
@@ -73,7 +84,8 @@ namespace MaterialDesignThemes.Wpf
 
         public static void SetPrimaryColor(this ITheme theme, Color primaryColor)
         {
-            if (theme == null) throw new ArgumentNullException(nameof(theme));
+            if (theme is null) throw new ArgumentNullException(nameof(theme));
+
             theme.PrimaryLight = primaryColor.Lighten();
             theme.PrimaryMid = primaryColor;
             theme.PrimaryDark = primaryColor.Darken();

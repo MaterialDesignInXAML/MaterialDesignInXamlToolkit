@@ -45,7 +45,7 @@
                             <SolidColorBrush Color="{Binding ExemplarHue.Color, Mode=OneTime}" />
                         </Border.Background>
                         <Button Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PaletteSelector}}, Path=DataContext.ApplyPrimaryCommand, Mode=OneTime}"
-                                        CommandParameter="{Binding}">
+                                CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Primary" />
                                 <Viewbox Width="16" Height="16">
@@ -63,7 +63,7 @@
                             <SolidColorBrush Color="{Binding AccentExemplarHue.Color, Mode=OneTime}" />
                         </Border.Background>
                         <Button Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PaletteSelector}}, Path=DataContext.ApplyAccentCommand, Mode=OneTime}"
-                                            CommandParameter="{Binding}">
+                                CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Accent" />
                                 <Viewbox Width="16" Height="16">
@@ -92,7 +92,8 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Margin="8">
                 <TextBlock VerticalAlignment="Center">Light</TextBlock>
-                <ToggleButton Margin="8 0 16 0" Command="{Binding ToggleBaseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" />
+                <ToggleButton Margin="8 0 16 0"
+                              IsChecked="{Binding IsDarkTheme}"/>
                 <TextBlock VerticalAlignment="Center">Dark</TextBlock>
             </StackPanel>
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0 12 0 0">

@@ -33,7 +33,20 @@ namespace MaterialDesignColors.WpfExample
 
             DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue);
 
-            Snackbar = this.MainSnackbar;
+            PaletteHelper paletteHelper = new PaletteHelper();
+            ITheme theme = paletteHelper.GetTheme();
+
+            DarkModeToggleButton.IsChecked = theme.GetBaseTheme() == BaseTheme.Dark;
+
+            if (paletteHelper.GetThemeManager() is { } themeManager)
+            {
+                themeManager.ThemeChanged += (_, e) =>
+                {
+                    DarkModeToggleButton.IsChecked = e.NewTheme?.GetBaseTheme() == BaseTheme.Dark;
+                };
+            }
+
+            Snackbar = MainSnackbar;
         }
 
         private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -74,22 +87,18 @@ namespace MaterialDesignColors.WpfExample
             }
         }
 
-        private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            DemoItemsSearchBox.Focus();
-        }
+        private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e) 
+            => DemoItemsSearchBox.Focus();
 
-        private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
-        {
-            ModifyTheme(theme => theme.SetBaseTheme(DarkModeToggleButton.IsChecked == true ? Theme.Dark : Theme.Light));
-        }
+        private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e) 
+            => ModifyTheme(DarkModeToggleButton.IsChecked == true);
 
-        private static void ModifyTheme(Action<ITheme> modificationAction)
+        private static void ModifyTheme(bool isDarkTheme)
         {
             PaletteHelper paletteHelper = new PaletteHelper();
             ITheme theme = paletteHelper.GetTheme();
 
-            modificationAction?.Invoke(theme);
+            theme.SetBaseTheme(isDarkTheme ? Theme.Dark : Theme.Light);
 
             paletteHelper.SetTheme(theme);
         }

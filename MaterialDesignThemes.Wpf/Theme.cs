@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Media;
 using MaterialDesignColors;
+using Microsoft.Win32;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -9,9 +10,34 @@ namespace MaterialDesignThemes.Wpf
         public static IBaseTheme Light { get; } = new MaterialDesignLightTheme();
         public static IBaseTheme Dark { get; } = new MaterialDesignDarkTheme();
 
+        /// <summary>
+        /// Get the current Windows theme.
+        /// Based on ControlzEx
+        /// https://github.com/ControlzEx/ControlzEx/blob/48230bb023c588e1b7eb86ea83f7ddf7d25be735/src/ControlzEx/Theming/WindowsThemeHelper.cs#L19
+        /// </summary>
+        /// <returns></returns>
+        public static BaseTheme? GetSystemTheme()
+        {
+            try
+            {
+                var registryValue = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", null);
+
+                if (registryValue is null)
+                {
+                    return null;
+                }
+
+                return Convert.ToBoolean(registryValue) ? BaseTheme.Light : BaseTheme.Dark;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public static Theme Create(IBaseTheme baseTheme, Color primary, Color accent)
         {
-            if (baseTheme == null) throw new ArgumentNullException(nameof(baseTheme));
+            if (baseTheme is null) throw new ArgumentNullException(nameof(baseTheme));
             var theme = new Theme();
 
             theme.SetBaseTheme(baseTheme);

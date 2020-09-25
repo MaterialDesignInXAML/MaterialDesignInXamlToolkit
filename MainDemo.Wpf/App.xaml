@@ -12,21 +12,21 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <!-- This is the current way to setup your app's initial theme -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-
-                <!-- However, however you can make it simpler by just using one of the built-in themes. This is functionally identical to what is above.-->
-                <!--<materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />-->
+                <materialDesign:BundledTheme BaseTheme="Inherit" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
 
                 <!-- If you would prefer to use your own colors there is an option for that as well -->
                 <!--<materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="Aqua" SecondaryColor="DarkGreen" />-->
+
+                <!-- You can also use the built in theme dictionaries as well
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                -->
 
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
 
                 <ResourceDictionary Source="pack://application:,,,/ShowMeTheXAML.AvalonEdit;component/Themes/xamldisplayer.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
 
             <Style TargetType="smtx:XamlDisplay" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
                 <Style.Resources>
@@ -96,7 +96,7 @@
                                 </materialDesign:PopupBox>
                                 <Grid>
                                     <AdornerDecorator>
-                                        <Border BorderBrush="{DynamicResource SecondaryAccentBrush}" Opacity=".4" Margin="-5">
+                                        <Border BorderBrush="{DynamicResource SecondaryHueMidBrush}" Opacity=".4" Margin="-5">
                                             <Border.Style>
                                                 <Style TargetType="Border">
                                                     <Setter Property="BorderThickness" Value="0" />

@@ -14,19 +14,12 @@ pool:
   vmImage: 'windows-2019'
 
 variables:
-  solution: 'MaterialDesignToolkit.Wpf.sln'
+  solution: 'MaterialDesignToolkit.Full.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  dotNetCoreVersion: '3.1.x'
   nugetVersionSpec: '5.x.x'
 
 steps:
-- task: UseDotNet@2
-  displayName: 'Use dotNet $(dotNetCoreVersion)'
-  inputs:
-    packageType: 'sdk'
-    version: '$(dotNetCoreVersion)'
-
 - task: NuGetToolInstaller@0
   displayName: 'Use NuGet $(nugetVersionSpec)'
   inputs:
@@ -47,10 +40,25 @@ steps:
     arguments: '/p:Configuration=$(buildConfiguration) /p:Platform="Any CPU" /p:MDIXVersion=$(mdixVersion).$(Build.BuildID) /p:MDIXColorsVersion=$(mdixColorsVersion).$(Build.BuildID) /p:MDIXMahAppsVersion=$(mdixMahappsVersion).$(Build.BuildID)'
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
+  displayName: 'Unit Tests'
   inputs:
     command: test
-    projects: '$(solution)'
+    projects: '**/*.Tests.csproj'
+    arguments: '--configuration $(buildConfiguration) --no-build'
+
+- task: DotNetCoreCLI@2
+  displayName: 'UI Tests'
+  inputs:
+    command: test
+    projects: '**/*.UITests'
+    arguments: '--configuration $(buildConfiguration) --no-build'
+
+- task: PublishPipelineArtifact@0
+  name: "PublishUITestsScreenshots"
+  inputs:
+    artifactName: 'Screenshots'
+    targetPath: 'MaterialDesignThemes.UITests/bin/$(buildConfiguration)/netcoreapp3.1/Screenshots'
+  condition: always()
 
 - task: PowerShell@2
   displayName: "Build NuGets"

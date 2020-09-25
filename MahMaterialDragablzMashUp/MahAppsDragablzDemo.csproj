@@ -8,10 +8,9 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>MahMaterialDragablzMashUp</AssemblyTitle>
     <Product>MahMaterialDragablzMashUp</Product>
-    <Copyright>Copyright © 2020</Copyright>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
-    <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
@@ -23,6 +22,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ProfilePic.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="Dragablz">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

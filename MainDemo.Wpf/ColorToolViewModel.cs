@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo
@@ -47,6 +48,19 @@ namespace MaterialDesignDemo
             }
         }
 
+        private bool _isDarkTheme;
+        public bool IsDarkTheme
+        {
+            get => _isDarkTheme;
+            set
+            {
+                if (this.MutateVerbose(ref _isDarkTheme, value, e => PropertyChanged?.Invoke(this, e)))
+                {
+                    ApplyBase(value);
+                }
+            }
+        }
+
         public IEnumerable<ISwatch> Swatches { get; } = SwatchHelper.Swatches;
 
         public ICommand ChangeCustomHueCommand { get; }
@@ -84,6 +98,16 @@ namespace MaterialDesignDemo
             _secondaryColor = theme.SecondaryMid.Color;
 
             SelectedColor = _primaryColor;
+
+            IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark;
+
+            if (_paletteHelper.GetThemeManager() is { } themeManager)
+            {
+                themeManager.ThemeChanged += (_, e) =>
+                {
+                    IsDarkTheme = e.NewTheme?.GetBaseTheme() == BaseTheme.Dark;
+                };
+            }
         }
 
         private void ChangeCustomColor(object obj)

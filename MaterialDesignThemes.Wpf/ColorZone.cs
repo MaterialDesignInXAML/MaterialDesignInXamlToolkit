@@ -1,21 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public enum ColorZoneMode
-    {
-        Standard,
-        Inverted,
-        PrimaryLight,
-        PrimaryMid,
-        PrimaryDark,
-        Accent,
-        Light,
-        Dark,
-        Custom
-    }
 
     /// <summary>
     /// User a colour zone to easily switch the background and foreground colours, from selected Material Design palette or custom ones.
@@ -32,8 +19,8 @@ namespace MaterialDesignThemes.Wpf
 
         public ColorZoneMode Mode
         {
-            get { return (ColorZoneMode)GetValue(ModeProperty); }
-            set { SetValue(ModeProperty, value); }
+            get => (ColorZoneMode)GetValue(ModeProperty);
+            set => SetValue(ModeProperty, value);
         }
 
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
@@ -41,8 +28,8 @@ namespace MaterialDesignThemes.Wpf
 
         public CornerRadius CornerRadius
         {
-            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
+            get => (CornerRadius)GetValue(CornerRadiusProperty);
+            set => SetValue(CornerRadiusProperty, value);
         }
     }
 }

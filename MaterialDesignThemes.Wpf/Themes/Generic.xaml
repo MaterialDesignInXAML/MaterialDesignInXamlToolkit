@@ -425,6 +425,7 @@
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ColorZone}">
@@ -447,7 +448,7 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
-                                ClipToBounds="True">
+                                ClipToBounds="{TemplateBinding ClipToBounds}">
                             <ContentPresenter Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               TextElement.Foreground="{TemplateBinding Foreground}"
@@ -479,8 +480,8 @@
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
             </Trigger>
             <Trigger Property="Mode" Value="Accent">
-                <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}" />
-                <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
             </Trigger>
             <Trigger Property="Mode" Value="Light">
                 <Setter Property="Background" Value="{DynamicResource MaterialDesignLightBackground}" />
@@ -752,7 +753,7 @@
                         <Grid x:Name="RootGrid">
                             <AdornerDecorator>
                                 <ContentPresenter 
-                                        x:Name="ContentPresenter" Opacity="1"                    
+                                        x:Name="ContentPresenter" Opacity="1"
                                         Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
                             </AdornerDecorator>
                             <Grid x:Name="PART_ContentCover" Background="{TemplateBinding OverlayBackground}" Opacity="0" IsHitTestVisible="False" Focusable="False">
@@ -892,8 +893,8 @@
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
                             x:Name="Border">
                         <ContentPresenter 
-                                x:Name="ContentPresenter"                    
-                                Margin="{TemplateBinding Padding}"                            
+                                x:Name="ContentPresenter"
+                                Margin="{TemplateBinding Padding}"
                                 Content="{TemplateBinding ContentControl.Content}" 
                                 ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
                                 ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" 
@@ -918,6 +919,9 @@
     <Style TargetType="{x:Type transitions:TransitioningContent}" BasedOn="{StaticResource {x:Type transitions:TransitioningContentBase}}" />
 
     <Style TargetType="{x:Type transitions:TransitionerSlide}" BasedOn="{StaticResource {x:Type transitions:TransitioningContentBase}}">
+        <Style.Resources>
+            <converters:NotZeroConverter x:Key="NotZeroConverter"/>
+        </Style.Resources>
         <Setter Property="RenderTransformOrigin" Value=".5,.5" />
         <Setter Property="IsEnabled" Value="False" />
         <Setter Property="Visibility" Value="Hidden" />
@@ -926,9 +930,13 @@
                 <Setter Property="Visibility" Value="Visible" />
                 <Setter Property="IsEnabled" Value="True" />
             </Trigger>
-            <Trigger Property="State" Value="Previous">
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding State, RelativeSource={RelativeSource Self}}" Value="Previous" />
+                    <Condition Binding="{Binding Opacity, RelativeSource={RelativeSource Self}, Converter={StaticResource NotZeroConverter}}" Value="True" />
+                </MultiDataTrigger.Conditions>
                 <Setter Property="Visibility" Value="Visible" />
-            </Trigger>
+            </MultiDataTrigger>
         </Style.Triggers>
     </Style>
 

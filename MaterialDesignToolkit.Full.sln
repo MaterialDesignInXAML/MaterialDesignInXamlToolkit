@@ -35,12 +35,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		azure-pipelines.yml = azure-pipelines.yml
+		Directory.Build.props = Directory.Build.props
 		global.json = global.json
 		MaterialDesignColors.nuspec = MaterialDesignColors.nuspec
 		MaterialDesignThemes.MahApps.nuspec = MaterialDesignThemes.MahApps.nuspec
 		MaterialDesignThemes.nuspec = MaterialDesignThemes.nuspec
 		paket.dependencies = paket.dependencies
 		paket.lock = paket.lock
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesignThemes.UITests", "MaterialDesignThemes.UITests\MaterialDesignThemes.UITests.csproj", "{594D2254-3623-4088-A8BD-D74B6E96DE9F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CF0A27A8-EF82-44E5-B673-ECCC150C48ED} = {CF0A27A8-EF82-44E5-B673-ECCC150C48ED}
 	EndProjectSection
 EndProject
 Global
@@ -167,6 +173,22 @@ Global
 		{A361C80E-F6CD-4C57-A96C-002DB159C1F4}.Release|x64.Build.0 = Release|Any CPU
 		{A361C80E-F6CD-4C57-A96C-002DB159C1F4}.Release|x86.ActiveCfg = Release|Any CPU
 		{A361C80E-F6CD-4C57-A96C-002DB159C1F4}.Release|x86.Build.0 = Release|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Debug|ARM.Build.0 = Debug|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Debug|x64.Build.0 = Debug|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Debug|x86.Build.0 = Debug|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|ARM.Build.0 = Release|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|x64.ActiveCfg = Release|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|x64.Build.0 = Release|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|x86.ActiveCfg = Release|Any CPU
+		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

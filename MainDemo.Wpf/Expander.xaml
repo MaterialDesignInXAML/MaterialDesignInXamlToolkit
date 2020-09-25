@@ -47,7 +47,7 @@
                         </StackPanel>
                     </Expander>
                     <Expander HorizontalAlignment="Stretch" Header="Custom Header Padding"
-                          materialDesign:ExpanderAssist.DownHeaderPadding="35,2,24,2">
+                          materialDesign:ExpanderAssist.HorizontalHeaderPadding="35,2,24,2">
                         <StackPanel Orientation="Vertical"
                                 TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
                                 Margin="24,8,24,16">
@@ -151,7 +151,7 @@
                         </StackPanel>
                     </Expander>
                     <Border Background="{DynamicResource MaterialDesignDivider}" Width="1" VerticalAlignment="Stretch" SnapsToDevicePixels="True" />
-                    <Expander ExpandDirection="Right" materialDesign:ExpanderAssist.RightHeaderPadding="0,35,0,5">
+                    <Expander ExpandDirection="Right" materialDesign:ExpanderAssist.VerticalHeaderPadding="0,35,0,5">
                         <Expander.Header>
                             <TextBlock Text="Custom Header Padding" RenderTransformOrigin=".5,.5">
                                 <TextBlock.LayoutTransform>

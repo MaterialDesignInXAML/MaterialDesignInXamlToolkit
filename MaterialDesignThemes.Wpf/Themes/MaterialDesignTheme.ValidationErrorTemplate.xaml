@@ -96,6 +96,11 @@
                 <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
                 <Setter TargetName="DefaultErrorViewer" Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
             </DataTrigger>
+
+            <DataTrigger Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:TextFieldAssist.HasOutlinedTextField)}" Value="True">
+                <Setter TargetName="DefaultErrorViewer" Property="Margin" Value="0,2,0,0"/>
+                <Setter TargetName="ValidationPopup" Property="VerticalOffset" Value="2"/>
+            </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 </ResourceDictionary>

@@ -124,9 +124,9 @@
     </Style>
 
     <Style x:Key="MaterialDesignRaisedAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignFlatButton" TargetType="{x:Type ButtonBase}">
@@ -188,7 +188,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignFlatAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignFlatAccentBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
@@ -289,7 +289,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
-        <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryAccentBrush}" />
+        <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryHueMidBrush}" />
         <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource MaterialDesignDivider}" />
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -399,9 +399,9 @@
     </Style>
 
     <Style x:Key="MaterialDesignFloatingActionMiniAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
         <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidBrush}" />
     </Style>
 
@@ -420,9 +420,9 @@
     </Style>
 
     <Style x:Key="MaterialDesignFloatingActionAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
         <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidBrush}" />
     </Style>
 

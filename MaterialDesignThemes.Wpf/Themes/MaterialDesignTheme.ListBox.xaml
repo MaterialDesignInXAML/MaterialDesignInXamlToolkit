@@ -362,16 +362,21 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignCardsListBoxItem}"/>
     </Style>
 
-    <Style x:Key="MaterialDesignFilterChipListBoxItem" TargetType="{x:Type ListBoxItem}">      
+    <Style x:Key="MaterialDesignFilterChipListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <CheckBox Style="{StaticResource MaterialDesignFilterChipCheckBox}" 
-                              IsChecked="{TemplateBinding IsSelected}"
-                              Content="{TemplateBinding Content}"                              
+                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                              Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontStretch="{TemplateBinding FontStretch}"
+                              FontStyle="{TemplateBinding FontStyle}"
+                              FontWeight="{TemplateBinding FontWeight}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -432,11 +437,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <CheckBox Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" 
-                              IsChecked="{TemplateBinding IsSelected}"
-                              Content="{TemplateBinding Content}"                              
+                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                              Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontStretch="{TemplateBinding FontStretch}"
+                              FontStyle="{TemplateBinding FontStyle}"
+                              FontWeight="{TemplateBinding FontWeight}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -451,11 +461,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentCheckBox}" 
-                              IsChecked="{TemplateBinding IsSelected}"
-                              Content="{TemplateBinding Content}"                              
+                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                              Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontStretch="{TemplateBinding FontStretch}"
+                              FontStyle="{TemplateBinding FontStyle}"
+                              FontWeight="{TemplateBinding FontWeight}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -470,11 +485,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <CheckBox Style="{StaticResource MaterialDesignFilterChipOutlineCheckBox}" 
-                              IsChecked="{TemplateBinding IsSelected}"
-                              Content="{TemplateBinding Content}"                              
+                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                              Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
+                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontStretch="{TemplateBinding FontStretch}"
+                              FontStyle="{TemplateBinding FontStyle}"
+                              FontWeight="{TemplateBinding FontWeight}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -489,10 +509,15 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <CheckBox Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}" 
-                              IsChecked="{TemplateBinding IsSelected}"
-                              Content="{TemplateBinding Content}"                              
+                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                              Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontStretch="{TemplateBinding FontStretch}"
+                              FontStyle="{TemplateBinding FontStyle}"
+                              FontWeight="{TemplateBinding FontWeight}"
                               ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
                 </ControlTemplate>
             </Setter.Value>
@@ -508,10 +533,15 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}" 
-                              IsChecked="{TemplateBinding IsSelected}"
-                              Content="{TemplateBinding Content}"                              
+                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                              Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontStretch="{TemplateBinding FontStretch}"
+                              FontStyle="{TemplateBinding FontStyle}"
+                              FontWeight="{TemplateBinding FontWeight}"
                               ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
                 </ControlTemplate>
             </Setter.Value>
@@ -521,20 +551,23 @@
     <Style x:Key="MaterialDesignFilterChipAccentOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipAccentOutlineListBoxItem}"/>
     </Style>
-    
-
 
     <Style x:Key="MaterialDesignChoiceChipListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <RadioButton Style="{StaticResource MaterialDesignChoiceChipRadioButton}" 
-                              IsChecked="{TemplateBinding IsSelected}"
-                              Content="{TemplateBinding Content}"                              
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              GroupName="{Binding  RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                 Content="{TemplateBinding Content}"
+                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                 FontFamily="{TemplateBinding FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 FontStretch="{TemplateBinding FontStretch}"
+                                 FontStyle="{TemplateBinding FontStyle}"
+                                 FontWeight="{TemplateBinding FontWeight}"
+                                 GroupName="{Binding  RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -550,12 +583,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <RadioButton Style="{StaticResource MaterialDesignChoiceChipPrimaryRadioButton}" 
-                              IsChecked="{TemplateBinding IsSelected}"
-                              Content="{TemplateBinding Content}"                              
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                 Content="{TemplateBinding Content}"
+                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                 FontFamily="{TemplateBinding FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 FontStretch="{TemplateBinding FontStretch}"
+                                 FontStyle="{TemplateBinding FontStyle}"
+                                 FontWeight="{TemplateBinding FontWeight}"
+                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -565,18 +603,22 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipPrimaryListBoxItem}"/>
     </Style>
 
-
     <Style x:Key="MaterialDesignChoiceChipAccentListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <RadioButton Style="{StaticResource MaterialDesignChoiceChipAccentRadioButton}" 
-                              IsChecked="{TemplateBinding IsSelected}"
-                              Content="{TemplateBinding Content}"                              
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                 Content="{TemplateBinding Content}"
+                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                 FontFamily="{TemplateBinding FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 FontStretch="{TemplateBinding FontStretch}"
+                                 FontStyle="{TemplateBinding FontStyle}"
+                                 FontWeight="{TemplateBinding FontWeight}"
+                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -586,19 +628,22 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipAccentListBoxItem}"/>
     </Style>
 
-
-
     <Style x:Key="MaterialDesignChoiceChipOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <RadioButton Style="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}" 
-                              IsChecked="{TemplateBinding IsSelected}"
-                              Content="{TemplateBinding Content}"                              
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                 Content="{TemplateBinding Content}"
+                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                 FontFamily="{TemplateBinding FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 FontStretch="{TemplateBinding FontStretch}"
+                                 FontStyle="{TemplateBinding FontStyle}"
+                                 FontWeight="{TemplateBinding FontWeight}"
+                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -613,12 +658,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <RadioButton Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}" 
-                              IsChecked="{TemplateBinding IsSelected}"
-                              Content="{TemplateBinding Content}"                              
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                 Content="{TemplateBinding Content}"
+                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                 FontFamily="{TemplateBinding FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 FontStretch="{TemplateBinding FontStretch}"
+                                 FontStyle="{TemplateBinding FontStyle}"
+                                 FontWeight="{TemplateBinding FontWeight}"
+                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -633,12 +683,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <RadioButton Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}" 
-                              IsChecked="{TemplateBinding IsSelected}"
-                              Content="{TemplateBinding Content}"                              
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                 Content="{TemplateBinding Content}"
+                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                 FontFamily="{TemplateBinding FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 FontStretch="{TemplateBinding FontStretch}"
+                                 FontStyle="{TemplateBinding FontStyle}"
+                                 FontWeight="{TemplateBinding FontWeight}"
+                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

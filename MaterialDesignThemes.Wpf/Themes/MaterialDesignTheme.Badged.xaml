@@ -122,8 +122,8 @@
                 <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
             </Trigger>
             <Trigger Property="BadgeColorZoneMode" Value="Accent">
-                <Setter Property="BadgeBackground" Value="{DynamicResource SecondaryAccentBrush}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+                <Setter Property="BadgeBackground" Value="{DynamicResource SecondaryHueMidBrush}" />
+                <Setter Property="BadgeForeground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
             </Trigger>
             <Trigger Property="BadgeColorZoneMode" Value="Light">
                 <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignLightBackground}" />

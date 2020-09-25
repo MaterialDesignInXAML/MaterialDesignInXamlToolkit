@@ -27,6 +27,17 @@ namespace MaterialDesignThemes.MahApps
                     case Wpf.BaseTheme.Dark:
                         MergedDictionaries.Add(dark);
                         break;
+                    case Wpf.BaseTheme.Inherit:
+                        switch(Wpf.Theme.GetSystemTheme())
+                        {
+                            case Wpf.BaseTheme.Dark:
+                                MergedDictionaries.Add(dark);
+                                break;
+                            default:
+                                MergedDictionaries.Add(light);
+                                break;
+                        }
+                        break;
                 }
 
                 IThemeManager themeManager = this.GetThemeManager();
@@ -41,7 +52,7 @@ namespace MaterialDesignThemes.MahApps
         {
             if (PrimaryColor is PrimaryColor primaryColor &&
                 SecondaryColor is SecondaryColor secondaryColor &&
-                BaseTheme is BaseTheme baseTheme)
+                BaseTheme is BaseTheme)
             {
                 light = GetResourceDictionary(theme, primaryColor, secondaryColor, Wpf.BaseTheme.Light);
                 dark = GetResourceDictionary(theme, primaryColor, secondaryColor, Wpf.BaseTheme.Dark);
@@ -90,9 +101,7 @@ namespace MaterialDesignThemes.MahApps
 
             ITheme newTheme = e.NewTheme;
 
-            var foreground = newTheme.Background.ContrastingForegroundColor();
-
-            BaseTheme baseTheme = foreground == Colors.Black ? Wpf.BaseTheme.Light : Wpf.BaseTheme.Dark;
+            BaseTheme baseTheme = newTheme.GetBaseTheme();
 
             if (TryGetResourceDictionaries(newTheme, out ResourceDictionary light, out ResourceDictionary dark))
             {

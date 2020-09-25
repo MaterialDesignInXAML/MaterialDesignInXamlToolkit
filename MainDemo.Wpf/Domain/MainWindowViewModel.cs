@@ -17,6 +17,14 @@ namespace MaterialDesignColors.WpfExample.Domain
         {
             _allItems = GenerateDemoItems(snackbarMessageQueue);
             FilterItems(null);
+
+            MovePrevCommand = new AnotherCommandImplementation(
+                _ => SelectedIndex--,
+                _ => SelectedIndex > 0);
+
+            MoveNextCommand = new AnotherCommandImplementation(
+               _ => SelectedIndex++,
+               _ => SelectedIndex < _allItems.Count - 1);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -25,6 +33,7 @@ namespace MaterialDesignColors.WpfExample.Domain
         private ObservableCollection<DemoItem> _allItems;
         private ObservableCollection<DemoItem> _demoItems;
         private DemoItem _selectedItem;
+        private int _selectedIndex;
 
 
         public string SearchKeyword
@@ -60,6 +69,18 @@ namespace MaterialDesignColors.WpfExample.Domain
             }
         }
 
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set
+            {
+                _selectedIndex = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedIndex)));
+            }
+        }
+
+        public AnotherCommandImplementation MovePrevCommand { get; }
+        public AnotherCommandImplementation MoveNextCommand { get; }
 
         private ObservableCollection<DemoItem> GenerateDemoItems(ISnackbarMessageQueue snackbarMessageQueue)
         {
@@ -108,13 +129,17 @@ namespace MaterialDesignColors.WpfExample.Domain
                     {
                         VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
                     },
-                new DemoItem("Toggles", new Toggles(), new []
-                {
-                    DocumentationLink.DemoPageLink<Toggles>(),
-                    DocumentationLink.StyleLink("ToggleButton"),
-                    DocumentationLink.StyleLink("CheckBox"),
-                    DocumentationLink.ApiLink<Toggles>()
-                }),
+                new DemoItem("Toggles", new Toggles(), 
+                    new []
+                    {
+                        DocumentationLink.DemoPageLink<Toggles>(),
+                        DocumentationLink.StyleLink("ToggleButton"),
+                        DocumentationLink.StyleLink("CheckBox"),
+                        DocumentationLink.ApiLink<Toggles>()
+                    })
+                    {
+                        VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                    },
                 new DemoItem("Rating Bar", new RatingBar(), new []
                 {
                     DocumentationLink.DemoPageLink<RatingBar>(),
@@ -239,6 +264,15 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<Progress>(),
                         DocumentationLink.StyleLink("ProgressBar")
                     }),
+                new DemoItem("Navigation Rail", new NavigationRail { DataContext = null},
+                    new []
+                    {
+                        DocumentationLink.DemoPageLink<NavigationRail>("Demo View"),
+                        DocumentationLink.StyleLink("TabControl"),
+                    })
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
                 new DemoItem("Dialogs", new Dialogs { DataContext = new DialogsViewModel()},
                     new []
                     {

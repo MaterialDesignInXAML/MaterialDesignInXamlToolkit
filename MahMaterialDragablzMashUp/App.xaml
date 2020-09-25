@@ -5,14 +5,14 @@
              xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-             xmlns:smtxAe="clr-namespace:ShowMeTheXAML.AvalonEdit;assembly=ShowMeTheXAML.AvalonEdit"           
+             xmlns:smtxAe="clr-namespace:ShowMeTheXAML.AvalonEdit;assembly=ShowMeTheXAML.AvalonEdit"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:mahDemo="clr-namespace:MahAppsDragablzDemo"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <materialDesign:MahAppsBundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Purple"/>
+                <materialDesign:MahAppsBundledTheme BaseTheme="Inherit" PrimaryColor="DeepPurple" SecondaryColor="Purple"/>
 
                 <!-- MahApps -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
@@ -119,7 +119,7 @@
                                 </materialDesign:PopupBox>
                                 <Grid>
                                     <AdornerDecorator>
-                                        <Border BorderBrush="{DynamicResource SecondaryAccentBrush}" Opacity=".4" Margin="-5">
+                                        <Border BorderBrush="{DynamicResource SecondaryHueMidBrush}" Opacity=".4" Margin="-5">
                                             <Border.Style>
                                                 <Style TargetType="Border">
                                                     <Setter Property="BorderThickness" Value="0" />

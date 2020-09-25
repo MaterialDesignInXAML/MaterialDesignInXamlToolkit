@@ -45,11 +45,21 @@
                     <ComboBoxItem>Orange</ComboBoxItem>
                 </ComboBox>
             </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="comboboxes_11">
+                <ComboBox materialDesign:HintAssist.Hint="Prefix"
+                          materialDesign:TextFieldAssist.PrefixText="$"
+                          IsEditable="True">
+                    <ComboBoxItem>Android</ComboBoxItem>
+                    <ComboBoxItem>iOS</ComboBoxItem>
+                    <ComboBoxItem>Linux</ComboBoxItem>
+                    <ComboBoxItem>Windows</ComboBoxItem>
+                </ComboBox>
+            </smtx:XamlDisplay>
             <smtx:XamlDisplay Key="comboboxes_3">
                 <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                           materialDesign:TextFieldAssist.HasClearButton="True"
                           materialDesign:TextFieldAssist.SuffixText="sw"
-                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryAccentBrush}"
+                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
                           materialDesign:ColorZoneAssist.Mode="Inverted"
                           materialDesign:HintAssist.Hint="OS"
                           materialDesign:HintAssist.HelperText="Select one OS"

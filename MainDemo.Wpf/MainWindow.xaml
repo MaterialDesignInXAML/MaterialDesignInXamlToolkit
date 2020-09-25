@@ -4,9 +4,12 @@
         xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:converters="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
         WindowStartupLocation="CenterScreen"
-        Title="Material Design in XAML" Height="800" Width="1100"
+        Title="Material Design in XAML" 
+        AutomationProperties.Name="{Binding Title, RelativeSource={RelativeSource Self}}"
+        Height="800" Width="1100"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -37,7 +40,7 @@
             </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
-    <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+    <materialDesign:DialogHost Identifier="RootDialog" DialogTheme="Inherit" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel MinWidth="220">
@@ -65,16 +68,17 @@
                     <ListBox 
                         x:Name="DemoItemsListBox" 
                         Margin="0 16 0 16"
-                        SelectedIndex="0"
+                        SelectedIndex="{Binding SelectedIndex}"
                         SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
                         ItemsSource="{Binding DemoItems}"
-                        PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
+                        PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
+                        AutomationProperties.Name="DemoPagesListBox">
                         <ListBox.Resources>
                             <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
                         </ListBox.Resources>
                         <ListBox.ItemTemplate>
                             <DataTemplate DataType="domain:DemoItem">
-                                <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />
+                                <TextBlock Text="{Binding Name}" Margin="32 0 32 0" AutomationProperties.AutomationId="DemoItemPage" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
@@ -82,13 +86,33 @@
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
                 <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                            Mode="PrimaryMid" DockPanel.Dock="Top">
+                                          Mode="PrimaryMid" DockPanel.Dock="Top">
                     <DockPanel>
-                        <ToggleButton
-                            x:Name="MenuToggleButton"
-                            Style="{StaticResource MaterialDesignHamburgerToggleButton}"
-                            IsChecked="False"
-                            Click="MenuToggleButton_OnClick"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton
+                                x:Name="MenuToggleButton"
+                                Style="{StaticResource MaterialDesignHamburgerToggleButton}"
+                                IsChecked="False"
+                                Click="MenuToggleButton_OnClick"
+                                AutomationProperties.Name="HamburgerToggleButton"/>
+                            <Button
+                                Margin="24,0,12,0"
+                                ToolTip="Previous Item"
+                                Command="{Binding MovePrevCommand}"
+                                Content="{materialDesign:PackIcon Kind=ArrowLeft, Size=24}"
+                                Style="{DynamicResource MaterialDesignToolButton}"
+                                Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
+                                materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+                            
+                            <Button 
+                                Margin="8,0,0,0"
+                                ToolTip="Next Item"
+                                Command="{Binding MoveNextCommand}"
+                                Content="{materialDesign:PackIcon Kind=ArrowRight, Size=24}"
+                                Style="{DynamicResource MaterialDesignToolButton}"
+                                Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
+                                materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+                        </StackPanel>
                         <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal"
@@ -109,7 +133,7 @@
                                 <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
                             </StackPanel>
                         </materialDesign:PopupBox>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" AutomationProperties.Name="Material Design In XAML Toolkit">Material Design In XAML Toolkit</TextBlock>
                     </DockPanel>
                 </materialDesign:ColorZone>
                 <Grid>

@@ -131,8 +131,8 @@
     </Style>
 
     <Style x:Key="MaterialDesignAccentRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignUserForegroundRadioButton" TargetType="{x:Type RadioButton}">
@@ -225,7 +225,7 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
         <Setter Property="MinWidth" Value="80" />
@@ -233,7 +233,11 @@
         <Setter Property="TextBlock.FontWeight" Value="Medium"/>
         <Setter Property="TextBlock.FontSize" Value="14"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>      
+        <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesignDivider}" />
+        <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="Transparent" />
+        <Setter Property="wpf:ButtonProgressAssist.IsIndicatorVisible" Value="False" />
+        <Setter Property="wpf:ButtonProgressAssist.Opacity" Value=".4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
@@ -242,7 +246,24 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Border Background="{TemplateBinding Background}">
+                        <ProgressBar x:Name="ProgressBar"
+                                       Style="{DynamicResource MaterialDesignLinearProgressBar}"
+                                       Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
+                                       Maximum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Maximum)}"
+                                       Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorForeground)}"
+                                       Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
+                                       Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}"
+                                       IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}"
+                                       Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={StaticResource BooleanToVisibilityConverter}}"
+                                       Height="{TemplateBinding Height}"
+                                       Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth}"
+                                       Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       BorderThickness="0"
+                                       Grid.Row="0"
+                                       Grid.RowSpan="2" />
+                        <Border Background="{TemplateBinding Background}" Grid.Row="0">
                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -253,7 +274,7 @@
                         </Border>
                         <Border x:Name="SelectionHighlightBorder" Background="{TemplateBinding BorderBrush}" Height="2"
                                 Grid.Row="1"
-                                Visibility="Hidden"/>
+                                Visibility="Hidden" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">

@@ -114,7 +114,10 @@
                             </Grid.ColumnDefinitions>
                             <TextBox AcceptsReturn="True" x:Name="ExampleFourTextBox" TextWrapping="Wrap"
                                      Text="Message One&#x0d;&#x0a;Message Two&#x0d;&#x0a;Message Three&#x0d;&#x0a;Duplicate&#x0d;&#x0a;Duplicate&#x0d;&#x0a;Duplicate&#x0d;&#x0a;Start Fresh&#x0d;&#x0a;Goodbye" />
-                            <Button Click="SnackBar4_OnClick" HorizontalAlignment="Center" Grid.Column="1">Send</Button>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <Button Click="SnackBar4_OnClick" HorizontalAlignment="Center">Send</Button>
+                                <Button Click="SnackBar4_OnClearClick" HorizontalAlignment="Center" Margin="0 8">Clear</Button>
+                            </StackPanel>
                         </Grid>
                     </StackPanel>
                     <smtx:XamlDisplay Key="snackbar_4">

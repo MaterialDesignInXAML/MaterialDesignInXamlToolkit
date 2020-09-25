@@ -90,8 +90,10 @@
             </smtx:XamlDisplay>
 
             <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Add in a corner radius and shadow.</TextBlock>
-            <smtx:XamlDisplay Key="color_zones_primary_dark">
-                <materialDesign:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="3" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="2">
+            <smtx:XamlDisplay Key="color_zones_primary_dark" Padding="10">
+                <materialDesign:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="10"
+                                          materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                                          ClipToBounds="False">
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                         <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
@@ -109,12 +111,15 @@
                 </materialDesign:ColorZone>
             </smtx:XamlDisplay>
 
-            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use custom back and fore colours.</TextBlock>
-            <smtx:XamlDisplay Key="color_zones_custom">
-                <materialDesign:ColorZone Mode="Custom" Background="Black" Foreground="White" Padding="16">
+            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use custom back and fore colours. Disabled ClipToBounds</TextBlock>
+            <smtx:XamlDisplay Key="color_zones_custom" Margin="0 16">
+                <materialDesign:ColorZone Mode="Custom" Background="Black" Foreground="White" Padding="16 0" ClipToBounds="False">
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                        <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
+                        <TextBlock VerticalAlignment="Center" Margin="16 0">Material Design In XAML Toolkit</TextBlock>
+                        <materialDesign:Badged Badge="123" VerticalAlignment="Center">
+                            <Button>Some action</Button>
+                        </materialDesign:Badged>
                     </StackPanel>
                 </materialDesign:ColorZone>
             </smtx:XamlDisplay>

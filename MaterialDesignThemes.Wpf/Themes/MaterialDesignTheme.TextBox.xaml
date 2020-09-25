@@ -14,6 +14,10 @@
     <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearTextConverter" />
     <converters:NotConverter x:Key="NotConverter" />
     <converters:FontSizeToHintOffsetConverter x:Key="FontSizeToHintOffsetConverter" />
+    <converters:FontToLineHeightConverter x:Key="FontToLineHeightConverter" />
+    <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
+
+    <Point x:Key="DefaultFloatingOffset">1,-16</Point>
 
     <Style x:Key="MaterialDesignTextBoxBase" TargetType="{x:Type TextBoxBase}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
@@ -91,11 +95,19 @@
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           MinWidth="1">
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            x:Name="PrefixTextBlock"
+                                            Grid.Column="0"
+                                            FontSize="{TemplateBinding FontSize}"
+                                            Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
+                                            Text="{Binding Path=(wpf:TextFieldAssist.PrefixText), RelativeSource={RelativeSource TemplatedParent}}" />
                                         <ScrollViewer
                                             x:Name="PART_ContentHost"
+                                            Grid.Column="1"
                                             Focusable="false"
                                             HorizontalScrollBarVisibility="Hidden"
                                             VerticalScrollBarVisibility="Hidden"
@@ -103,8 +115,7 @@
                                             UseLayoutRounding="{TemplateBinding UseLayoutRounding}" />
                                         <wpf:SmartHint
                                             x:Name="Hint"
-                                            Grid.Column="0"
-                                            Height="{Binding ActualHeight, ElementName=PART_ContentHost}"
+                                            Grid.Column="1"
                                             HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                             FontSize="{TemplateBinding FontSize}"
                                             Padding="{TemplateBinding Padding}"
@@ -112,30 +123,27 @@
                                             UseFloating="{Binding Path=(wpf:HintAssist.IsFloating), RelativeSource={RelativeSource TemplatedParent}}"
                                             FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale), RelativeSource={RelativeSource TemplatedParent}}"
                                             FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset), RelativeSource={RelativeSource TemplatedParent}}">
-                                            <wpf:SmartHint.Hint>
-                                                <Border
-                                                    x:Name="HintBackgroundBorder"
-                                                    Background="{TemplateBinding wpf:HintAssist.Background}"
-                                                    CornerRadius="2">
-                                                    <ContentPresenter
-                                                        x:Name="HintWrapper"
-                                                        Content="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}" />
-                                                </Border>
-                                            </wpf:SmartHint.Hint>
-                                        </wpf:SmartHint>
+                                                <wpf:SmartHint.Hint>
+                                                    <Border
+                                                        x:Name="HintBackgroundBorder"
+                                                        Background="{TemplateBinding wpf:HintAssist.Background}"
+                                                        CornerRadius="2">
+                                                        <ContentPresenter
+                                                            x:Name="HintWrapper"
+                                                            Content="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource TemplatedParent}}" />
+                                                    </Border>
+                                                </wpf:SmartHint.Hint>
+                                            </wpf:SmartHint>
                                         <StackPanel
-                                            Height="{Binding ActualHeight, ElementName=PART_ContentHost}"
                                             Orientation="Horizontal"
-                                            Grid.Column="1"
-                                            VerticalAlignment="Top">
+                                            Grid.Column="2">
                                             <TextBlock
-                                                VerticalAlignment="Bottom"
+                                                x:Name="SuffixTextBlock"
                                                 FontSize="{TemplateBinding FontSize}"
                                                 Opacity="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}"
                                                 Text="{Binding Path=(wpf:TextFieldAssist.SuffixText), RelativeSource={RelativeSource TemplatedParent}}" />
                                             <Button
                                                 x:Name="PART_ClearButton"
-                                                Height="Auto"
                                                 Padding="2,0,0,0"
                                                 Focusable="False"
                                                 Style="{DynamicResource MaterialDesignToolButton}">
@@ -145,6 +153,12 @@
                                                         <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}" />
                                                     </MultiBinding>
                                                 </Button.Visibility>
+                                                <Button.Height>
+                                                    <MultiBinding Converter="{StaticResource FontToLineHeightConverter}">
+                                                        <Binding Path="FontFamily" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                        <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                    </MultiBinding>
+                                                </Button.Height>
                                                 <wpf:PackIcon Margin="0" Kind="CloseCircle" />
                                             </Button>
                                         </StackPanel>
@@ -192,6 +206,8 @@
                             <Setter TargetName="border" Property="Cursor" Value="IBeam" />
                             <Setter TargetName="Hint" Property="Margin" Value="0,0,0,16" />
                             <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,8,0,8" />
+                            <Setter TargetName="PrefixTextBlock" Property="Margin" Value="0 0 0 0" />
+                            <Setter TargetName="SuffixTextBlock" Property="Margin" Value="0 0 0 0" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -200,6 +216,15 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,0,0,8" />
                             <Setter TargetName="Hint" Property="Margin" Value="0,0,0,0" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
+                                <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                                <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PrefixTextBlock" Property="Margin" Value="0 8 0 0" />
+                            <Setter TargetName="SuffixTextBlock" Property="Margin" Value="0 8 0 0" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -215,19 +240,34 @@
                             <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
                             <Setter TargetName="textFieldBoxBorder" Property="Padding" Value="0,8,0,0" />
                             <Setter TargetName="textFieldBoxBorder" Property="Margin" Value="-1" />
-                            <Setter TargetName="textFieldGrid" Property="Margin" Value="12,0,12,0" />
+                            <Setter TargetName="textFieldGrid" Property="Margin" Value="16,0,16,0" />
                             <Setter TargetName="border" Property="BorderThickness" Value="0" />
                             <Setter TargetName="border" Property="Cursor" Value="IBeam" />
                             <Setter TargetName="border" Property="Margin" Value="0 0 0 0" />
                             <Setter TargetName="Underline" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_ContentHost" Property="Margin" Value="0,0,0,8" />
-                            <Setter TargetName="Hint" Property="Margin" Value="0,0,0,0" />
+                            <Setter TargetName="Hint" Property="Margin" Value="1,0,0,0" />
                             <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
-                            <Setter TargetName="Hint" Property="FloatingOffset" Value="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FontSizeToHintOffsetConverter}}" />
+                            <Setter TargetName="Hint" Property="FloatingOffset">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource FontSizeToHintOffsetConverter}"
+                                                  ConverterParameter="{StaticResource DefaultFloatingOffset}">
+                                        <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                        <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                             <Setter TargetName="HintWrapper" Property="Opacity" Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                                <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                                <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
+                            </MultiTrigger.Conditions>
                             <Setter TargetName="HintBackgroundBorder" Property="Padding" Value="4, 0" />
                             <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesignPaper}" />
-                        </Trigger>
+                        </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
@@ -245,7 +285,6 @@
                             <Setter Property="VerticalContentAlignment" Value="Top" />
                         </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="border" Property="Opacity" Value="0.42" />
                             <Setter TargetName="textFieldBoxBottomLine" Property="Height" Value="0" />
                         </Trigger>
                         <MultiTrigger>
@@ -262,6 +301,25 @@
                             </MultiTrigger.Conditions>
                             <Setter Property="Opacity" TargetName="border" Value="0.42"/>
                             <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="true" />
+                                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HintWrapper" Property="Opacity" Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="false" />
+                                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PrefixTextBlock" Property="Opacity" Value="0.42"/>
+                            <Setter TargetName="PART_ContentHost" Property="Opacity" Value="0.42"/>
+                            <Setter TargetName="HintWrapper" Property="Opacity"
+                                    Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MathMultiplyConverter}, ConverterParameter=0.42}"/>
+                            <Setter TargetName="SuffixTextBlock" Property="Opacity" Value="0.42"/>
+                            <Setter TargetName="PART_ClearButton" Property="Opacity" Value="0.42"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
