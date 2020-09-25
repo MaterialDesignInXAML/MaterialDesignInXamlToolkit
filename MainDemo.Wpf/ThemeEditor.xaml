@@ -39,6 +39,17 @@
                                    Text="New" />
                     </StackPanel>
                 </Button>
+                <Button ToolTip="Create From DemoApp Color Tool" 
+                        ToolTipService.InitialShowDelay="0"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
+                        Click="CreateFrom_Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Theme" VerticalAlignment="Center" />
+                        <TextBlock Margin="8 0 0 0" Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                   Text="From Color Tool" />
+                    </StackPanel>
+                </Button>
                 <Button ToolTip="Open Theme Project" 
                             ToolTipService.InitialShowDelay="0"
                             Style="{StaticResource MaterialDesignFlatButton}"
@@ -70,6 +81,17 @@
                         <materialDesign:PackIcon Kind="ContentSaveSettingsOutline"  VerticalAlignment="Center" />
                         <TextBlock Margin="8 0 0 0" Style="{StaticResource MaterialDesignBody1TextBlock}"
                                    Text="Save As" />
+                    </StackPanel>
+                </Button>
+                <Button ToolTip="Apply current colors to the Demo Application" 
+                        ToolTipService.InitialShowDelay="0"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
+                        Click="ApplyToDemoApp_Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Paint" VerticalAlignment="Center" />
+                        <TextBlock Margin="8 0 0 0" Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                   Text="Apply to DemoApp" />
                     </StackPanel>
                 </Button>
             </StackPanel>

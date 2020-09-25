@@ -44,6 +44,51 @@ namespace MaterialDesignDemo
             _existingFilePath = null;
         }
 
+        private void CreateFrom_Button_Click(object sender, RoutedEventArgs e)
+        {
+            ThemeEditorViewModel vm = (ThemeEditorViewModel)DataContext;
+            PaletteHelper _paletteHelper = new PaletteHelper();
+            var colors = _paletteHelper.GetTheme();
+            vm.Brushes = BrushColor.FromLight();
+
+            vm.Brushes[0].Color = colors.PrimaryMid.Color;
+            vm.Brushes[1].Color = colors.PrimaryMid.ForegroundColor.Value;
+            vm.Brushes[2].Color = colors.SecondaryMid.Color;
+            vm.Brushes[3].Color = colors.SecondaryMid.ForegroundColor.Value;
+            vm.Brushes[4].Color = colors.ValidationError;
+            vm.Brushes[5].Color = colors.Background;
+            vm.Brushes[6].Color = colors.Paper;
+            vm.Brushes[7].Color = colors.CardBackground;
+            vm.Brushes[8].Color = colors.ToolBarBackground;
+            vm.Brushes[9].Color = colors.Body;
+            vm.Brushes[10].Color = colors.BodyLight;
+            vm.Brushes[11].Color = colors.ColumnHeader;
+            vm.Brushes[12].Color = colors.CheckBoxOff;
+            vm.Brushes[13].Color = colors.CheckBoxDisabled;
+            vm.Brushes[14].Color = colors.TextBoxBorder;
+            vm.Brushes[15].Color = colors.Divider;
+            vm.Brushes[16].Color = colors.Selection;
+            vm.Brushes[17].Color = colors.ToolForeground;
+            vm.Brushes[18].Color = colors.ToolBackground;
+            vm.Brushes[19].Color = colors.FlatButtonClick;
+            vm.Brushes[20].Color = colors.FlatButtonRipple;
+            vm.Brushes[21].Color = colors.ToolTipBackground;
+            vm.Brushes[22].Color = colors.ChipBackground;
+            vm.Brushes[23].Color = colors.SnackbarBackground;
+            vm.Brushes[24].Color = colors.SnackbarMouseOver;
+            vm.Brushes[25].Color = colors.SnackbarRipple;
+            vm.Brushes[26].Color = colors.TextFieldBoxBackground;
+            vm.Brushes[27].Color = colors.TextFieldBoxHoverBackground;
+            vm.Brushes[28].Color = colors.TextFieldBoxDisabledBackground;
+            vm.Brushes[29].Color = colors.TextAreaBorder;
+            vm.Brushes[30].Color = colors.TextAreaInactiveBorder;
+            vm.Brushes[31].Color = colors.DataGridRowHoverBackground;
+
+            CustomBaseColorTheme theme = BuildTheme();
+            ApplyTheme(theme);
+            _existingFilePath = null;
+        }
+
         private void OpenProject_Button_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
@@ -94,6 +139,13 @@ namespace MaterialDesignDemo
             _existingFilePath = sfd.FileName;
             Flush();
         }
+
+        private void ApplyToDemoApp_Button_Click(object sender, RoutedEventArgs e)
+        {
+            CustomBaseColorTheme theme = BuildTheme();
+            ApplyThemeEntireApp(theme);
+        }
+
 
         private void Flush()
         {
@@ -166,7 +218,6 @@ namespace MaterialDesignDemo
             ThemeEditorViewModel vm = (ThemeEditorViewModel)DataContext;
 
             CustomBaseColorTheme result = new CustomBaseColorTheme();
-            //result.DesignTime = true;
             foreach (BrushColor entry in vm.Brushes)
             {
                 result.GetType().GetProperty(entry.Name).SetValue(result, entry.Color);
@@ -179,6 +230,14 @@ namespace MaterialDesignDemo
             samplegrid.Resources.MergedDictionaries[0] = theme;
             theme.SetTheme();
         }
+
+        private void ApplyThemeEntireApp(CustomBaseColorTheme theme)
+        {
+            Application.Current.Resources.MergedDictionaries[0] = theme;
+            theme.SetTheme();
+            Application.Current.MainWindow.UpdateLayout();
+        }
+
     }
 
 }
