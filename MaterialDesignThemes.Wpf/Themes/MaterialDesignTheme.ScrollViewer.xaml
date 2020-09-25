@@ -56,7 +56,8 @@
                 Grid.Column="1"
                 Maximum="{TemplateBinding ScrollableHeight}"
                 Minimum="0" 
-                Grid.Row="0" 
+                Grid.Row="0"
+                Cursor="Arrow"
                 Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" 
                 Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
                 ViewportSize="{TemplateBinding ViewportHeight}" />
@@ -68,7 +69,8 @@
                 Maximum="{TemplateBinding ScrollableWidth}" 
                 Minimum="0" 
                 Orientation="Horizontal" 
-                Grid.Row="1" 
+                Grid.Row="1"
+                Cursor="Arrow"
                 Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
                 Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
                 ViewportSize="{TemplateBinding ViewportWidth}" />
