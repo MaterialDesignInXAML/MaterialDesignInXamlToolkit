@@ -20,6 +20,7 @@
     <converters:FallbackBrushConverter x:Key="FallbackBrushConverter" />
     <converters:RemoveAlphaBrushConverter x:Key="RemoveAlphaBrushConverter" />
     <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
+    <converters:FontToLineHeightConverter x:Key="FontToLineHeightConverter" />
 
     <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
     <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
@@ -405,6 +406,7 @@
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
+                SnapsToDevicePixels="True"
                 wpf:BottomDashedLineAdorner.IsAttached="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}"
                 wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
                 wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
@@ -471,18 +473,30 @@
                                                HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                                Hint="{TemplateBinding wpf:HintAssist.Hint}" />
                             </Grid>
-                            <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Top">
+                            <StackPanel
+                                Orientation="Horizontal"
+                                Grid.Column="2">
                                 <TextBlock
                                     FontSize="{TemplateBinding FontSize}"
                                     Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                     Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
-                                <Button x:Name="PART_ClearButton" Height="Auto" Padding="2 0 0 0" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
+                                <Button
+                                    x:Name="PART_ClearButton"
+                                    Padding="2,0,0,0"
+                                    Focusable="False"
+                                    Style="{DynamicResource MaterialDesignToolButton}">
                                     <Button.Visibility>
                                         <MultiBinding Converter="{StaticResource ClearTextConverter}">
                                             <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}" />
                                             <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}" />
                                         </MultiBinding>
                                     </Button.Visibility>
+                                    <Button.Height>
+                                        <MultiBinding Converter="{StaticResource FontToLineHeightConverter}">
+                                            <Binding Path="FontFamily" RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        </MultiBinding>
+                                    </Button.Height>
                                     <wpf:PackIcon Margin="0" Kind="CloseCircle" />
                                 </Button>
                             </StackPanel>
@@ -750,6 +764,7 @@
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
+                SnapsToDevicePixels="True"
                 wpf:BottomDashedLineAdorner.IsAttached="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}"
                 wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
                 wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
@@ -1129,8 +1144,13 @@
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Padding" Value="12,8,8,8" />
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFilledComboBoxTemplate}" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="MaterialDesignFloatingHintComboBox"
