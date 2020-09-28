@@ -573,7 +573,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="templateRoot" Property="Opacity" Value="0.56" />
-                <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent" />
+                <Setter TargetName="templateRoot" Property="BorderBrush" Value="Transparent" />
             </Trigger>
             <Trigger Property="IsEditable" Value="True">
                 <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
@@ -764,10 +764,7 @@
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
-                SnapsToDevicePixels="True"
-                wpf:BottomDashedLineAdorner.IsAttached="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}"
-                wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
-                wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}">
+                SnapsToDevicePixels="True">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
