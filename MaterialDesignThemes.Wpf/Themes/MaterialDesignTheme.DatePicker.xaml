@@ -511,7 +511,7 @@
                             Foreground="{TemplateBinding BorderBrush}"
                             Focusable="False"
                             HorizontalAlignment="Right"
-                            VerticalAlignment="Bottom"
+                            VerticalAlignment="Center"
                             Template="{StaticResource CalendarButtonTemplate}"
                             Margin="{TemplateBinding Padding, Converter={StaticResource PickerInnerPaddingConverter}, ConverterParameter={x:Static wpf:Constants.InnerButtonMarginLeft}}"
                             Height="16" />
