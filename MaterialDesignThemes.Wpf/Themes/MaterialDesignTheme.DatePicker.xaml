@@ -480,6 +480,7 @@
                             VerticalContentAlignment="Center"
                             HorizontalAlignment="Stretch"
                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
                             wpf:HintAssist.IsFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
                             wpf:HintAssist.FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                             wpf:HintAssist.FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
@@ -570,7 +571,7 @@
                         
                         <Trigger Property="Validation.HasError" Value="True">
                             <Setter TargetName="PART_TextBox" Property="wpf:ValidationAssist.HasError" Value="True" />
-                            <Setter TargetName="PART_Button" Property="Foreground" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
