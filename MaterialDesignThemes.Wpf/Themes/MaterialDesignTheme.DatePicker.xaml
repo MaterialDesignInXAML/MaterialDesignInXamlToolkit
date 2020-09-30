@@ -515,7 +515,7 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             Template="{StaticResource CalendarButtonTemplate}"
-                            Margin="{TemplateBinding Padding, Converter={StaticResource PickerInnerPaddingConverter}, ConverterParameter={x:Static wpf:Constants.InnerButtonMarginLeft}}"
+                            Margin="{TemplateBinding Padding, Converter={StaticResource PickerInnerPaddingConverter}}"
                             Height="16" />
                         <Popup
                             x:Name="PART_Popup"
@@ -543,6 +543,22 @@
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
                             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Button" Property="Margin">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource PickerInnerPaddingConverter}">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Padding" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontFamily" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontSize" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.FloatingScale)" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
