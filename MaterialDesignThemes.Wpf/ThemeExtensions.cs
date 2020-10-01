@@ -9,7 +9,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class ThemeExtensions
     {
-        internal static ColorPair ToPairedColor(this Hue hue) 
+        internal static ColorPair ToPairedColor(this Hue hue)
             => new ColorPair(hue.Color, hue.Foreground);
 
         internal static void SetPalette(this ITheme theme, Palette palette)
@@ -52,7 +52,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (theme is null) throw new ArgumentNullException(nameof(theme));
 
-            theme.ValidationError = baseTheme.ValidationErrorColor;
+            theme.ValidationError = baseTheme.MaterialDesignValidationErrorColor;
             theme.Background = baseTheme.MaterialDesignBackground;
             theme.Paper = baseTheme.MaterialDesignPaper;
             theme.CardBackground = baseTheme.MaterialDesignCardBackground;

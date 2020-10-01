@@ -384,8 +384,8 @@
                             <Setter TargetName="textFieldBoxBorder" Property="BorderThickness" Value="2" />
                         </MultiTrigger>
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
-                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
+                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -394,7 +394,7 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="textFieldBoxBorder" Property="Margin" Value="-2" />
                             <Setter TargetName="textFieldBoxBorder" Property="BorderThickness" Value="2" />
-                            <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter TargetName="textFieldBoxBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

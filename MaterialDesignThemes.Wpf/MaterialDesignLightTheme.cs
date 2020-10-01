@@ -4,7 +4,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public class MaterialDesignLightTheme : IBaseTheme
     {
-        public Color ValidationErrorColor { get; } = (Color)ColorConverter.ConvertFromString("#F44336");
+        public Color MaterialDesignValidationErrorColor { get; } = (Color)ColorConverter.ConvertFromString("#F44336");
         public Color MaterialDesignBackground { get; } = (Color)ColorConverter.ConvertFromString("#FFFFFFFF");
         public Color MaterialDesignPaper { get; } = (Color)ColorConverter.ConvertFromString("#FFFAFAFA");
         public Color MaterialDesignCardBackground { get; } = (Color)ColorConverter.ConvertFromString("#FFFFFFFF");
