@@ -192,10 +192,10 @@
             <TextBlock Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadline5TextBlock}">Outlined fields</TextBlock>
             <smtx:XamlDisplay Grid.Row="1" Grid.Column="0" Key="fields_25">
                 <StackPanel>
-                    <CheckBox x:Name="MaterialDesignFilledTextFieldTextBoxEnabledComboBox">Enabled</CheckBox>
-                    <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                    <CheckBox x:Name="MaterialDesignFilledTextBoxEnabledComboBox">Enabled</CheckBox>
+                    <TextBox Style="{StaticResource MaterialDesignFilledTextBox}"
                              VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" MaxWidth="400" materialDesign:HintAssist.Hint="Floating hint in a box"
-                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}" />
+                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" />
                 </StackPanel>
             </smtx:XamlDisplay>
             <smtx:XamlDisplay Grid.Row="1" Grid.Column="1" Key="fields_28">
