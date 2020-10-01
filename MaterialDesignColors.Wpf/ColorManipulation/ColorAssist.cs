@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignColors.ColorManipulation
 {
-    public static class ColorHelper
+    public static class ColorAssist
     {
         public static Color ContrastingForegroundColor(this Color color)
         {
