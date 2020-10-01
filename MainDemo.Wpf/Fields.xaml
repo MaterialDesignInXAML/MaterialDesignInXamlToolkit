@@ -201,7 +201,7 @@
             <smtx:XamlDisplay Grid.Row="1" Grid.Column="1" Key="fields_28">
                 <StackPanel>
                     <CheckBox x:Name="MaterialDesignFilledPasswordFieldPasswordBoxEnabledComboBox">Enabled</CheckBox>
-                    <PasswordBox Style="{StaticResource MaterialDesignFilledPasswordFieldPasswordBox}"
+                    <PasswordBox Style="{StaticResource MaterialDesignFilledPasswordBox}"
                                  VerticalAlignment="Top"
                                  IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledPasswordFieldPasswordBoxEnabledComboBox}"
                                  materialDesign:HintAssist.Hint="Password" />
