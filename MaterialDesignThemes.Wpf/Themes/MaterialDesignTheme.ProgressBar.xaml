@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:circularProgressBar="clr-namespace:MaterialDesignThemes.Wpf.Converters.CircularProgressBar"
                     xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
     
     <Style x:Key="MaterialDesignLinearProgressBar" TargetType="{x:Type ProgressBar}">
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}"/>
@@ -79,7 +80,7 @@
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="transitions:TransitionAssist.DisableTransitions" Value="True">
+                        <Trigger Property="wpf:TransitionAssist.DisableTransitions" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard Storyboard="{StaticResource OnLoadedNoAnimation}" Name="BeginStoryboardOnLoadedNoAnimation" />
                             </Trigger.EnterActions>
@@ -90,7 +91,7 @@
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsVisible" Value="True" />
-                                <Condition Property="transitions:TransitionAssist.DisableTransitions" Value="False" />
+                                <Condition Property="wpf:TransitionAssist.DisableTransitions" Value="False" />
                             </MultiTrigger.Conditions>
                             <MultiTrigger.EnterActions>
                                 <BeginStoryboard Storyboard="{StaticResource OnLoaded}" Name="BeginStoryboardOnLoaded" />
