@@ -132,7 +132,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
             IVisualElement grid = await LoadXaml(@"
 <Grid Background=""Red"">
     <TextBox
-        Style=""{StaticResource MaterialDesignOutlinedTextFieldTextBox}""
+        Style=""{StaticResource MaterialDesignOutlinedTextBox}""
         VerticalAlignment=""Top""
         Height=""100""
         Text=""Some content to force hint to float""
