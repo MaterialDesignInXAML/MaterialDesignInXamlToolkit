@@ -64,7 +64,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Validation.HasError" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -76,7 +76,7 @@
         <Setter Property="Validation.ErrorTemplate">
             <Setter.Value>
                 <ControlTemplate>
-                    <Border BorderBrush="{DynamicResource ValidationErrorBrush}"
+                    <Border BorderBrush="{DynamicResource MaterialDesignValidationErrorBrush}"
                             Margin="-1 0 -1 -4"
                             BorderThickness="0 0 0 2"
                             Padding="1 0 1 2">
@@ -146,7 +146,7 @@
                                             <ItemsControl ItemsSource="{TemplateBinding Validation.Errors}">
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate DataType="ValidationError">
-                                                        <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
+                                                        <TextBlock Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
                                                                    FontSize="{TemplateBinding wpf:ValidationAssist.FontSize}"
                                                                    HorizontalAlignment="{TemplateBinding wpf:ValidationAssist.HorizontalAlignment}"
                                                                    Margin="0 2"
@@ -175,7 +175,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Validation.HasError" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
