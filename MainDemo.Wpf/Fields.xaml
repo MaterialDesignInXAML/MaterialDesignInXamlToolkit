@@ -209,11 +209,11 @@
             </smtx:XamlDisplay>
             <smtx:XamlDisplay Grid.Row="1" Grid.Column="2" Key="fields_26">
                 <StackPanel>
-                    <CheckBox x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox">Enabled</CheckBox>
-                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                    <CheckBox x:Name="MaterialDesignOutlinedTextBoxEnabledComboBox">Enabled</CheckBox>
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              VerticalAlignment="Top" Height="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
                              materialDesign:HintAssist.Hint="This is a text area"
-                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox}" />
+                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
                 </StackPanel>
             </smtx:XamlDisplay>
             <smtx:XamlDisplay Grid.Row="1" Grid.Column="3" Key="fields_29">
