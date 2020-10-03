@@ -154,11 +154,11 @@
                     <TextBox
                         Grid.Column="1"
                         Grid.Row="3"
-                        Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" />
+                        Style="{StaticResource MaterialDesignFilledTextBox}" />
                     <TextBox
                         Grid.Column="1"
                         Grid.Row="4"
-                        Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" />
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />
 
                     <PasswordBox
                         Grid.Column="2"
@@ -170,11 +170,11 @@
                     <PasswordBox
                         Grid.Column="2"
                         Grid.Row="3"
-                        Style="{StaticResource MaterialDesignFilledPasswordFieldPasswordBox}" />
+                        Style="{StaticResource MaterialDesignFilledPasswordBox}" />
                     <PasswordBox
                         Grid.Column="2"
                         Grid.Row="4"
-                        Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}" />
+                        Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
 
                     <ComboBox
                         Grid.Column="3"
