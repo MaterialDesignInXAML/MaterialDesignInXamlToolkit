@@ -1,13 +1,12 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Xml.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace mdresgen
 {
@@ -31,7 +30,7 @@ namespace mdresgen
         private const string RecommendedPrimaryTemplateLocation = "RecommendedPrimaryTemplate.xaml";
         private const string RecommendedAccentTemplateLocation = "RecommendedAccentTemplate.xaml";
 
-        private static readonly IDictionary<string, Color> ClassNameToForegroundIndex = new Dictionary<string, Color>()
+        private static readonly IDictionary<string, Color> ClassNameToForegroundIndex = new Dictionary<string, Color>
         {
             {"color", Color.FromArgb((int) (255*0.87), 255, 255, 255)},
             {"color ", Color.FromArgb((int) (255*0.87), 255, 255, 255)},
@@ -47,11 +46,8 @@ namespace mdresgen
             var xDocument = XDocument.Load(BaseSnippetLocation);
             var palette = JsonConvert.DeserializeObject<MdPalette>(File.ReadAllText(MdPaletteJsonLocation));
 
-            //https://coolsubhash-tech.blogspot.com/2016/10/resolved-existing-connection-was.html
-            ServicePointManager.SecurityProtocol = ServicePointManager.SecurityProtocol | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-
             if (args.Length == 0)
-                GenerateXaml(xDocument, false);
+                GenerateXaml(xDocument);
             else if (args.Contains("class-swatches"))
                 GenerateClasses(palette);
             else if (args.Contains("all-swatches"))
@@ -68,19 +64,16 @@ namespace mdresgen
             else if (args.Contains("old-named"))
                 GenerateOldXaml(xDocument, true);
             else if (args.Contains("old"))
-                GenerateOldXaml(xDocument, false);
+                GenerateOldXaml(xDocument);
             else if (args.Contains("icons"))
                 IconThing.Run();
             else
-                GenerateXaml(xDocument, false);
+                GenerateXaml(xDocument);
 
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("FINISHED");
-            if (!Console.IsInputRedirected)
-            {
-                Console.ReadKey();
-            }
+            if (!Console.IsInputRedirected) Console.ReadKey();
         }
 
 
@@ -106,7 +99,7 @@ namespace mdresgen
                 sb.AppendLine("using MaterialDesignColors.Wpf;");
                 sb.AppendLine();
                 sb.AppendLine("namespace MaterialDesignColors.Recommended");
-                sb.AppendLine("{"); 
+                sb.AppendLine("{");
                 sb.AppendLine($"\tpublic class {shortName}Swatch : ISwatch");
                 sb.AppendLine("\t{");
                 sb.Append(colors.ToString());
@@ -184,9 +177,7 @@ namespace mdresgen
         {
             Console.WriteLine("Generating old {0} XAMLs", named ? "named" : "regular");
 
-            bool dummy;
-
-            foreach (var color in xDocument.Root.Elements("section").Select(el => ToResourceDictionary(el, out dummy, named)))
+            foreach (var color in xDocument.Root.Elements("section").Select(el => ToResourceDictionary(el, out _, named)))
             {
                 color.Item2.Save(
                     string.Format(
@@ -241,7 +232,7 @@ namespace mdresgen
                 ByteToHex(foregroundColour.G),
                 ByteToHex(foregroundColour.B));
 
-            var foregroundOpacity = Math.Round((double)foregroundColour.A / (255.0), 2);
+            var foregroundOpacity = Math.Round(foregroundColour.A / (255.0), 2);
 
             return new JObject(
                 new JProperty("backgroundName", string.Format("{0}{1}", prefix, name)),
