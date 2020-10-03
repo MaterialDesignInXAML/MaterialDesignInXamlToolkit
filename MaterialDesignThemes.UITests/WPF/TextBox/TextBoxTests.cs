@@ -100,7 +100,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
             //Arrange
             IVisualElement grid = await LoadXaml(@"
 <Grid>
-    <TextBox Style=""{StaticResource MaterialDesignFilledTextFieldTextBox}""
+    <TextBox Style=""{StaticResource MaterialDesignFilledTextBox}""
              materialDesign:HintAssist.Hint=""Floating hint in a box""
              VerticalAlignment=""Top""/>
 </Grid>");
