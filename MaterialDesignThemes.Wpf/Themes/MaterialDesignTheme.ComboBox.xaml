@@ -430,6 +430,7 @@
                         Grid.Row="0"
                         Padding="{TemplateBinding Padding}">
                         <Grid
+                            x:Name="InnerRoot"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                             UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -444,36 +445,38 @@
                                 FontSize="{TemplateBinding FontSize}"
                                 Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                 Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}" />
-                            <Grid
-                                x:Name="InputRoot"
-                                Grid.Column="1"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch">
-                                <ContentPresenter x:Name="contentPresenter"
-                                                  Content="{TemplateBinding SelectionBoxItem}"
-                                                  ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                                  IsHitTestVisible="False" />
-                                <TextBox x:Name="PART_EditableTextBox"
-                                         IsReadOnly="{TemplateBinding IsReadOnly}"
-                                         HorizontalAlignment="Stretch"
-                                         HorizontalContentAlignment="Stretch"
-                                         Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
-                                         CaretBrush="{TemplateBinding BorderBrush}"
-                                         Visibility="Collapsed" />
 
-                                <wpf:SmartHint x:Name="Hint"
-                                               HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                               FontSize="{TemplateBinding FontSize}"
-                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                               UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                               UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
-                                               FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
-                                               FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
-                                               HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                               Hint="{TemplateBinding wpf:HintAssist.Hint}" />
-                            </Grid>
+                            <ContentPresenter
+                                x:Name="contentPresenter"
+                                Grid.Column="1"
+                                Content="{TemplateBinding SelectionBoxItem}"
+                                ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                IsHitTestVisible="False" />
+                            <TextBox
+                                x:Name="PART_EditableTextBox"
+                                Grid.Column="1"
+                                IsReadOnly="{TemplateBinding IsReadOnly}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Stretch"
+                                Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                                CaretBrush="{TemplateBinding BorderBrush}"
+                                Visibility="Collapsed" />
+
+                            <wpf:SmartHint
+                                x:Name="Hint"
+                                Grid.Column="1"
+                                HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                FontSize="{TemplateBinding FontSize}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
+                                FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
+                                FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
+                                HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                                Hint="{TemplateBinding wpf:HintAssist.Hint}" />
+
                             <StackPanel
                                 Orientation="Horizontal"
                                 Grid.Column="2">
@@ -481,23 +484,13 @@
                                     FontSize="{TemplateBinding FontSize}"
                                     Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                     Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
-                                <Button
-                                    x:Name="PART_ClearButton"
-                                    Padding="2,0,0,0"
-                                    Focusable="False"
-                                    Style="{DynamicResource MaterialDesignToolButton}">
+                                <Button x:Name="PART_ClearButton" Height="Auto" Padding="2 0 0 0" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
                                     <Button.Visibility>
                                         <MultiBinding Converter="{StaticResource ClearTextConverter}">
                                             <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}" />
                                             <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}" />
                                         </MultiBinding>
                                     </Button.Visibility>
-                                    <Button.Height>
-                                        <MultiBinding Converter="{StaticResource FontToLineHeightConverter}">
-                                            <Binding Path="FontFamily" RelativeSource="{RelativeSource TemplatedParent}" />
-                                            <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
-                                        </MultiBinding>
-                                    </Button.Height>
                                     <wpf:PackIcon Margin="0" Kind="CloseCircle" />
                                 </Button>
                             </StackPanel>
@@ -510,6 +503,7 @@
                         IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
                         wpf:TextFieldAssist.UnderlineBrush="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
                         Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}"
+                        CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
                         Background="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}" />
                     <Canvas
                         Grid.Column="0"
@@ -592,7 +586,7 @@
                         </MultiBinding>
                     </Setter.Value>
                 </Setter>
-                <Setter TargetName="InputRoot" Property="Margin">
+                <Setter TargetName="InnerRoot" Property="Margin">
                     <Setter.Value>
                         <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
                             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontFamily" />
