@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
 
-    <Color x:Key="ValidationErrorColor">#f44336</Color>
-    <SolidColorBrush x:Key="ValidationErrorBrush" Color="{StaticResource ValidationErrorColor}"/>
+    <Color x:Key="MaterialDesignValidationErrorColor">#f44336</Color>
+    <SolidColorBrush x:Key="MaterialDesignValidationErrorBrush" Color="{StaticResource MaterialDesignValidationErrorColor}"/>
 
     <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FF000000" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FF303030" po:Freeze="True" />

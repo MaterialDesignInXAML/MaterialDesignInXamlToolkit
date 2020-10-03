@@ -52,7 +52,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (theme is null) throw new ArgumentNullException(nameof(theme));
 
-            theme.ValidationError = baseTheme.ValidationErrorColor;
+            theme.ValidationError = baseTheme.MaterialDesignValidationErrorColor;
             theme.Background = baseTheme.MaterialDesignBackground;
             theme.Paper = baseTheme.MaterialDesignPaper;
             theme.CardBackground = baseTheme.MaterialDesignCardBackground;

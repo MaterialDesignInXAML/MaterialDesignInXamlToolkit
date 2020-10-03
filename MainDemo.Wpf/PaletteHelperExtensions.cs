@@ -11,9 +11,9 @@ namespace MaterialDesignDemo
         {
             ITheme theme = paletteHelper.GetTheme();
 
-            theme.PrimaryLight = new ColorPair(color.Lighten(), theme.PrimaryLight.ForegroundColor);
-            theme.PrimaryMid = new ColorPair(color, theme.PrimaryMid.ForegroundColor);
-            theme.PrimaryDark = new ColorPair(color.Darken(), theme.PrimaryDark.ForegroundColor);
+            theme.PrimaryLight = new ColorPair(color.Lighten());
+            theme.PrimaryMid = new ColorPair(color);
+            theme.PrimaryDark = new ColorPair(color.Darken());
 
             paletteHelper.SetTheme(theme);
         }
@@ -22,9 +22,9 @@ namespace MaterialDesignDemo
         {
             ITheme theme = paletteHelper.GetTheme();
 
-            theme.SecondaryLight = new ColorPair(color.Lighten(), theme.SecondaryLight.ForegroundColor);
-            theme.SecondaryMid = new ColorPair(color, theme.SecondaryMid.ForegroundColor);
-            theme.SecondaryDark = new ColorPair(color.Darken(), theme.SecondaryDark.ForegroundColor);
+            theme.SecondaryLight = new ColorPair(color.Lighten());
+            theme.SecondaryMid = new ColorPair(color);
+            theme.SecondaryDark = new ColorPair(color.Darken());
 
             paletteHelper.SetTheme(theme);
         }

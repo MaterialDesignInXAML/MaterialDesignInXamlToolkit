@@ -583,7 +583,7 @@
                         
                         <Trigger Property="Validation.HasError" Value="True">
                             <Setter TargetName="PART_TextBox" Property="wpf:ValidationAssist.HasError" Value="True" />
-                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

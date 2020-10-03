@@ -156,22 +156,6 @@
         </Setter>
     </Style>
 
-    <!--OBSOLETE: To be removed in next major version -->
-    <Style x:Key="MaterialDesignExpanderLeftHeaderStyle" TargetType="{x:Type ToggleButton}"
-           BasedOn="{StaticResource MaterialDesignHorizontalHeaderStyle}" />
-    
-    <!--OBSOLETE: To be removed in next major version -->
-    <Style x:Key="MaterialDesignExpanderRightHeaderStyle" TargetType="{x:Type ToggleButton}"
-           BasedOn="{StaticResource MaterialDesignHorizontalHeaderStyle}" />
-
-    <!--OBSOLETE: To be removed in next major version -->
-    <Style x:Key="MaterialDesignExpanderUpHeaderStyle" TargetType="{x:Type ToggleButton}"
-           BasedOn="{StaticResource MaterialDesignVerticalHeaderStyle}"/>
-    
-    <!--OBSOLETE: To be removed in next major version -->
-    <Style x:Key="MaterialDesignExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}"
-           BasedOn="{StaticResource MaterialDesignVerticalHeaderStyle}" />
-
     <Style x:Key="MaterialDesignExpander" TargetType="{x:Type Expander}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />

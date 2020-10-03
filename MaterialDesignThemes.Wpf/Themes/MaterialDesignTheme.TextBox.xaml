@@ -376,8 +376,8 @@
                         
                         <!-- Validation.HasError -->
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
-                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
+                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -386,7 +386,7 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="border" Property="Margin" Value="-1" />
                             <Setter Property="BorderThickness" Value="2" />
-                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -409,14 +409,14 @@
         <Setter Property="wpf:HintAssist.IsFloating" Value="True"/>
     </Style>
 
-    <Style x:Key="MaterialDesignFilledTextFieldTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+    <Style x:Key="MaterialDesignFilledTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
         <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
         <Setter Property="wpf:TextFieldAssist.RippleOnFocusEnabled" Value="True" />
         <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
         <Setter Property="wpf:TextFieldAssist.UnderlineCornerRadius" Value="0" />
     </Style>
 
-    <Style x:Key="MaterialDesignOutlinedTextFieldTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+    <Style x:Key="MaterialDesignOutlinedTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
         <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
     </Style>

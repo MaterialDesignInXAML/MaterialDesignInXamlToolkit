@@ -655,16 +655,16 @@
                 <Setter TargetName="Underline" Property="IsActive" Value="True" />
             </Trigger>
             <Trigger Property="Validation.HasError" Value="True">
-                <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
-                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsMouseOver" Value="True" />
                     <Condition Property="Validation.HasError" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
-                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -990,16 +990,16 @@
                 <Setter TargetName="Underline" Property="IsActive" Value="True" />
             </Trigger>
             <Trigger Property="Validation.HasError" Value="True">
-                <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
-                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsMouseOver" Value="True" />
                     <Condition Property="Validation.HasError" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
-                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -1114,6 +1114,7 @@
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
         <Style.Triggers>
             <Trigger Property="IsKeyboardFocused" Value="True">

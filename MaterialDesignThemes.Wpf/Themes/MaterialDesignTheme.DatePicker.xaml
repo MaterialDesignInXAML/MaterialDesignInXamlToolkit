@@ -400,8 +400,8 @@
                         
                         <!-- Validation.HasError -->
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}"/>
-                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
+                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -410,7 +410,7 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="border" Property="Margin" Value="-1" />
                             <Setter Property="BorderThickness" Value="2" />
-                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -601,7 +601,7 @@
                         
                         <Trigger Property="Validation.HasError" Value="True">
                             <Setter TargetName="PART_TextBox" Property="wpf:ValidationAssist.HasError" Value="True" />
-                            <Setter Property="BorderBrush" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

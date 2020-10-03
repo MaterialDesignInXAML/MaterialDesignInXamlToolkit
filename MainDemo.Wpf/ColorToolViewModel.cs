@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -40,7 +41,18 @@ namespace MaterialDesignDemo
                     _selectedColor = value;
                     OnPropertyChanged();
 
-                    if (value is Color color)
+                    // if we are triggering a change internally its a hue change and the colors will match
+                    // so we don't want to trigger a custom color change.
+                    var currentSchemeColor = ActiveScheme switch
+                    {
+                        ColorScheme.Primary => _primaryColor,
+                        ColorScheme.Secondary => _secondaryColor,
+                        ColorScheme.PrimaryForeground => _primaryForegroundColor,
+                        ColorScheme.SecondaryForeground => _secondaryForegroundColor,
+                        _ => throw new NotSupportedException($"{ActiveScheme} is not a handled ColorScheme.. Ye daft programmer!")
+                    };
+
+                    if (_selectedColor != currentSchemeColor && value is Color color)
                     {
                         ChangeCustomColor(color);
                     }
@@ -174,11 +186,13 @@ namespace MaterialDesignDemo
             {
                 _paletteHelper.ChangePrimaryColor(hue);
                 _primaryColor = hue;
+                _primaryForegroundColor = _paletteHelper.GetTheme().PrimaryMid.GetForegroundColor();
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
                 _paletteHelper.ChangeSecondaryColor(hue);
                 _secondaryColor = hue;
+                _secondaryForegroundColor = _paletteHelper.GetTheme().SecondaryMid.GetForegroundColor();
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {

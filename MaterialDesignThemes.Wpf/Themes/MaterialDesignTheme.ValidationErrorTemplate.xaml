@@ -7,7 +7,7 @@
     <ControlTemplate x:Key="MaterialDesignValidationErrorTemplate">
         <ControlTemplate.Resources>
             <DataTemplate DataType="{x:Type ValidationError}">
-                <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
+                <TextBlock Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
                            FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
                            MaxWidth="{Binding ElementName=Placeholder, Path=ActualWidth}"
                            HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
@@ -22,7 +22,7 @@
             <Border x:Name="DefaultErrorViewer"
                     Visibility="Collapsed"
                     Background="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Background)}">
-                <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
+                <TextBlock Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
                            FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
                            MaxWidth="{Binding ElementName=Placeholder, Path=ActualWidth}"
                            HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
@@ -37,7 +37,7 @@
                                 PlacementTarget="{Binding ElementName=Placeholder, Mode=OneWay}"
                                 AllowsTransparency="True">
                 <Border x:Name="PopupBorder" Background="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Background)}">
-                    <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
+                    <TextBlock Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
                                FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
                                HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
                                Margin="0 2"

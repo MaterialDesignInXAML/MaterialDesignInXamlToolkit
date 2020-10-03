@@ -32,11 +32,11 @@ namespace MaterialDesignThemes.Wpf
 
             //NB: These are here for backwards compatibility, and will be removed in a future version.
             //These will be removed in version 4.0.0
-            SetSolidColorBrush(resourceDictionary, "SecondaryAccentBrush", theme.SecondaryMid.Color);
-            SetSolidColorBrush(resourceDictionary, "SecondaryAccentForegroundBrush", theme.SecondaryMid.ForegroundColor ?? theme.SecondaryMid.Color.ContrastingForegroundColor());
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueMidBrush", theme.SecondaryMid.Color);
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueMidForegroundBrush", theme.SecondaryMid.ForegroundColor ?? theme.SecondaryMid.Color.ContrastingForegroundColor());
 
-            SetSolidColorBrush(resourceDictionary, "ValidationErrorBrush", theme.ValidationError);
-            resourceDictionary["ValidationErrorColor"] = theme.ValidationError;
+            SetSolidColorBrush(resourceDictionary, "MaterialDesignValidationErrorBrush", theme.ValidationError);
+            resourceDictionary["MaterialDesignValidationErrorColor"] = theme.ValidationError;
 
             SetSolidColorBrush(resourceDictionary, "MaterialDesignBackground", theme.Background);
             SetSolidColorBrush(resourceDictionary, "MaterialDesignPaper", theme.Paper);
@@ -143,7 +143,7 @@ namespace MaterialDesignThemes.Wpf
                 ToolForeground = GetColor("MaterialDesignToolForeground"),
                 ToolTipBackground = GetColor("MaterialDesignToolTipBackground"),
                 Paper = GetColor("MaterialDesignPaper"),
-                ValidationError = GetColor("ValidationErrorBrush")
+                ValidationError = GetColor("MaterialDesignValidationErrorBrush")
             };
 
             Color GetColor(params string[] keys)
