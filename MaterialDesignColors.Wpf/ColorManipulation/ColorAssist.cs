@@ -102,6 +102,9 @@ namespace MaterialDesignColors.ColorManipulation
         }
 
         public static Color ContrastingForegroundColor(this Color color)
+            => color.IsLightColor() ? Colors.Black : Colors.White;
+
+        public static bool IsLightColor(this Color color)
         {
             double rgb_srgb(double d)
             {
@@ -115,8 +118,10 @@ namespace MaterialDesignColors.ColorManipulation
             var b = rgb_srgb(color.B);
 
             var luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-            return luminance > 0.179 ? Colors.Black : Colors.White;
+            return luminance > 0.179;
         }
+
+        public static bool IsDarkColor(this Color color) => !IsLightColor(color);
 
         public static Color ShiftLightness(this Color color, double amount = 1.0f)
         {

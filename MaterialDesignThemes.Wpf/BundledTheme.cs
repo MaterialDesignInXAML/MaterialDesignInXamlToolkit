@@ -35,7 +35,7 @@ namespace MaterialDesignThemes.Wpf
         private BaseTheme? _baseTheme;
         public BaseTheme? BaseTheme
         {
-            get { return _baseTheme; }
+            get => _baseTheme;
             set
             {
                 if (_baseTheme != value)
@@ -49,7 +49,7 @@ namespace MaterialDesignThemes.Wpf
         private PrimaryColor? _primaryColor;
         public PrimaryColor? PrimaryColor
         {
-            get { return _primaryColor; }
+            get => _primaryColor;
             set
             {
                 if (_primaryColor != value)
@@ -63,7 +63,7 @@ namespace MaterialDesignThemes.Wpf
         private SecondaryColor? _secondaryColor;
         public SecondaryColor? SecondaryColor
         {
-            get { return _secondaryColor; }
+            get => _secondaryColor;
             set
             {
                 if (_secondaryColor != value)
@@ -102,9 +102,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        protected virtual void ApplyTheme(ITheme theme)
-        {
+        protected virtual void ApplyTheme(ITheme theme) =>
             this.SetTheme(theme, ColorAdjustment);
-        }
     }
 }

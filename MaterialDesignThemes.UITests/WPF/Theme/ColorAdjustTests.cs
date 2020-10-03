@@ -53,9 +53,9 @@ namespace MaterialDesignThemes.UITests.WPF.Theme
                 Color smallTextForeground = await smallText.GetForegroundColor();
                 Color smallTextBackground = await smallText.GetEffectiveBackground();
 
-                var largeContrastRatio = ColorHelper.ContrastRatio(largeTextForeground, largeTextBackground);
+                var largeContrastRatio = ColorAssist.ContrastRatio(largeTextForeground, largeTextBackground);
                 Assert.True(largeContrastRatio >= MaterialDesignSpec.MinimumContrastLargeText, $"Large font contrast ratio '{largeContrastRatio}' does not meet material design spec {MaterialDesignSpec.MinimumContrastLargeText}");
-                var smallContrastRatio = ColorHelper.ContrastRatio(smallTextForeground, smallTextBackground);
+                var smallContrastRatio = ColorAssist.ContrastRatio(smallTextForeground, smallTextBackground);
                 Assert.True(smallContrastRatio >= MaterialDesignSpec.MinimumContrastSmallText, $"Small font contrast ratio '{smallContrastRatio}' does not meet material design spec {MaterialDesignSpec.MinimumContrastSmallText}");
             }
         }
