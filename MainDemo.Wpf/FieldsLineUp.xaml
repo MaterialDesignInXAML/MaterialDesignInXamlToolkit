@@ -203,14 +203,14 @@
                 Grid.Column="5"
                 Grid.Row="2"
                 Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
-            <TextBlock
+            <materialDesign:TimePicker
                 Grid.Column="5"
                 Grid.Row="3"
-                Style="{StaticResource NotAvailable}" />
-            <TextBlock
+                Style="{StaticResource MaterialDesignFilledTimePicker}" />
+            <materialDesign:TimePicker
                 Grid.Column="5"
                 Grid.Row="4"
-                Style="{StaticResource NotAvailable}" />
+                Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
 
         </Grid>
     </StackPanel>
