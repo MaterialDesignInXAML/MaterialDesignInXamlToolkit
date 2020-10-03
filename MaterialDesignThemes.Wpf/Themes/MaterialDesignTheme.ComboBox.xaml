@@ -524,8 +524,8 @@
                                        RelativeHorizontalOffset="-23"
                                        IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                        PlacementTarget="{Binding ElementName=templateRoot}"
-                                       SnapsToDevicePixels="True"
-                                       UseLayoutRounding="True"
+                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                       UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                                        Placement="Custom"
                                        PopupAnimation="Fade"
                                        VerticalOffset="0"
@@ -873,8 +873,8 @@
                                        RelativeHorizontalOffset="-6"
                                        IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                        PlacementTarget="{Binding ElementName=templateRoot}"
-                                       SnapsToDevicePixels="True"
-                                       UseLayoutRounding="True"
+                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                       UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                                        Placement="Custom"
                                        PopupAnimation="Fade"
                                        VerticalOffset="0"
@@ -1108,7 +1108,6 @@
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
-        <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
         <Style.Triggers>
             <Trigger Property="IsKeyboardFocused" Value="True">
