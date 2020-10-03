@@ -399,7 +399,6 @@
     <ControlTemplate x:Key="MaterialDesignFloatingHintComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid x:Name="templateRoot"
               Background="{TemplateBinding Background}"
-              UseLayoutRounding="True"
               SnapsToDevicePixels="True">
             <AdornerDecorator>
                 <Grid x:Name="InnerRoot"
@@ -1035,6 +1034,7 @@
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
         <Style.Triggers>
             <Trigger Property="IsKeyboardFocused" Value="True">
