@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -44,31 +44,33 @@ namespace mdresgen
         static void Main(string[] args)
         {
             var xDocument = XDocument.Load(BaseSnippetLocation);
+            var xmlRoot = xDocument.Root ??
+                          throw new InvalidDataException("The input document does not contain a root");
             var palette = JsonConvert.DeserializeObject<MdPalette>(File.ReadAllText(MdPaletteJsonLocation));
 
             if (args.Length == 0)
-                GenerateXaml(xDocument);
+                GenerateXaml(xmlRoot);
             else if (args.Contains("class-swatches"))
                 GenerateClasses(palette);
             else if (args.Contains("all-swatches"))
             {
-                GenerateXaml(xDocument);
-                GenerateXaml(xDocument, true);
-                GenerateOldXaml(xDocument);
-                GenerateOldXaml(xDocument, true);
+                GenerateXaml(xmlRoot);
+                GenerateXaml(xmlRoot, true);
+                GenerateOldXaml(xmlRoot);
+                GenerateOldXaml(xmlRoot, true);
             }
             else if (args.Contains("json"))
-                GenerateJson(xDocument);
+                GenerateJson(xmlRoot);
             else if (args.Contains("named"))
-                GenerateXaml(xDocument, true);
+                GenerateXaml(xmlRoot, true);
             else if (args.Contains("old-named"))
-                GenerateOldXaml(xDocument, true);
+                GenerateOldXaml(xmlRoot, true);
             else if (args.Contains("old"))
-                GenerateOldXaml(xDocument);
+                GenerateOldXaml(xmlRoot);
             else if (args.Contains("icons"))
                 IconThing.Run();
             else
-                GenerateXaml(xDocument);
+                GenerateXaml(xmlRoot);
 
             Console.WriteLine();
             Console.WriteLine();
@@ -120,7 +122,7 @@ namespace mdresgen
             }
         }
 
-        private static void GenerateXaml(XDocument xDocument, bool named = false)
+        private static void GenerateXaml(XElement xDocument, bool named = false)
         {
             Console.WriteLine("Generating {0} XAMLs & recommended colors", named ? "named" : "regular");
             Console.WriteLine();
@@ -128,7 +130,7 @@ namespace mdresgen
             var recommendedPrimary = File.ReadAllText(RecommendedPrimaryTemplateLocation);
             var recommendedAccent = File.ReadAllText(RecommendedAccentTemplateLocation);
 
-            foreach (var color in xDocument.Root.Elements("section"))
+            foreach (var color in xDocument.Elements("section"))
             {
                 bool primaryEmpty;
                 bool accentEmpty;
@@ -173,11 +175,11 @@ namespace mdresgen
             }
         }
 
-        private static void GenerateOldXaml(XDocument xDocument, bool named = false)
+        private static void GenerateOldXaml(XElement xDocument, bool named = false)
         {
             Console.WriteLine("Generating old {0} XAMLs", named ? "named" : "regular");
 
-            foreach (var color in xDocument.Root.Elements("section").Select(el => ToResourceDictionary(el, out _, named)))
+            foreach (var color in xDocument.Elements("section").Select(el => ToResourceDictionary(el, out _, named)))
             {
                 color.Item2.Save(
                     string.Format(
@@ -187,18 +189,18 @@ namespace mdresgen
             }
         }
 
-        private static void GenerateJson(XDocument xDocument)
+        private static void GenerateJson(XElement xDocument)
         {
             const string file = @"..\..\..\web\scripts\Swatches.js";
 
 
             var json = new JArray(
-                xDocument.Root.Elements("section")
+                xDocument.Elements("section")
                     .Select(sectionElement => new JObject(
                         new JProperty("name", GetColourName(sectionElement)),
                         new JProperty("colors",
                             new JArray(
-                                sectionElement.Element("ul").Elements("li").Skip(1).Select(CreateJsonColourPair)
+                                sectionElement.Element("ul")!.Elements("li").Skip(1).Select(CreateJsonColourPair)
                                 )
                             )
                         ))
@@ -222,7 +224,8 @@ namespace mdresgen
                 name = name.Skip(1).Aggregate("", (current, next) => current + next);
             }
 
-            var liClass = liElement.Attribute("class").Value;
+            var liClass = liElement.Attribute("class")?.Value ??
+                          throw new InvalidDataException("The attribute 'class' was not found");
             Color foregroundColour;
             if (!ClassNameToForegroundIndex.TryGetValue(liClass, out foregroundColour))
                 throw new Exception("Unable to map foreground color from class " + liClass);
@@ -252,13 +255,13 @@ namespace mdresgen
             XNamespace defaultNamespace = @"http://schemas.microsoft.com/winfx/2006/xaml/presentation";
 
             var xNamespace = XNamespace.Get("http://schemas.microsoft.com/winfx/2006/xaml");
-            var doc =
-                new XDocument(new XElement(defaultNamespace + "ResourceDictionary",
-                    new XAttribute(XNamespace.Xmlns + "x", xNamespace)));
+            var root = new XElement(defaultNamespace + "ResourceDictionary",
+                new XAttribute(XNamespace.Xmlns + "x", xNamespace));
+            var doc = new XDocument(root);
 
-            foreach (var liElement in sectionElement.Element("ul").Elements("li").Skip(1))
+            foreach (var liElement in sectionElement.Element("ul")!.Elements("li").Skip(1))
             {
-                if (AddColour(liElement, defaultNamespace, xNamespace, doc, named ? colour : "", mode))
+                if (AddColour(liElement, defaultNamespace, xNamespace, root, named ? colour : "", mode))
                     empty = false;
             }
 
@@ -268,10 +271,10 @@ namespace mdresgen
 
         private static string GetColourName(XElement sectionElement)
         {
-            return sectionElement.Element("ul").Element("li").Elements("span").First().Value;
+            return sectionElement.Element("ul")!.Element("li")!.Elements("span").First().Value;
         }
 
-        private static bool AddColour(XElement liElement, XNamespace defaultNamespace, XNamespace xNamespace, XDocument doc, string swatchName = "", ColorMode mode = ColorMode.All)
+        private static bool AddColour(XElement liElement, XNamespace defaultNamespace, XNamespace xNamespace, XElement doc, string swatchName = "", ColorMode mode = ColorMode.All)
         {
             var name = liElement.Elements("span").First().Value;
             var hex = liElement.Elements("span").Last().Value;
@@ -294,9 +297,9 @@ namespace mdresgen
             var backgroundColourElement = new XElement(defaultNamespace + "Color", hex);
             // new XAttribute()
             backgroundColourElement.Add(new XAttribute(xNamespace + "Key", string.Format("{0}{1}{2}", swatchName, prefix, name)));
-            doc.Root.Add(backgroundColourElement);
+            doc.Add(backgroundColourElement);
 
-            var liClass = liElement.Attribute("class").Value;
+            var liClass = liElement.Attribute("class")!.Value;
             Color foregroundColour;
             if (!ClassNameToForegroundIndex.TryGetValue(liClass, out foregroundColour))
                 throw new Exception("Unable to map foreground color from class " + liClass);
@@ -309,7 +312,7 @@ namespace mdresgen
 
             var foregroundColourElement = new XElement(defaultNamespace + "Color", foreGroundColorHex);
             foregroundColourElement.Add(new XAttribute(xNamespace + "Key", string.Format("{0}{1}{2}Foreground", swatchName, prefix, name)));
-            doc.Root.Add(foregroundColourElement);
+            doc.Add(foregroundColourElement);
 
             return true;
         }
