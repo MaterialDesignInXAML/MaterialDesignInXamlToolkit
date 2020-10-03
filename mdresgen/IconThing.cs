@@ -41,21 +41,19 @@ namespace mdresgen
 
         private static string GetSourceData()
         {
-            var webRequest = WebRequest.CreateDefault(
-                new Uri("https://materialdesignicons.com/api/package/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B"));
+            var webClient = new WebClient();
 
-            webRequest.Credentials = CredentialCache.DefaultCredentials;
-            if (webRequest.Proxy != null)
-                webRequest.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webClient.Credentials = CredentialCache.DefaultCredentials;
+            if (webClient.Proxy != null)
+                webClient.Proxy.Credentials = CredentialCache.DefaultCredentials;
 
-            using (var sr = new StreamReader(webRequest.GetResponse().GetResponseStream()))
-            {
-                var iconData = sr.ReadToEnd();
+            var iconData =
+                webClient.DownloadString(
+                    "https://materialdesignicons.com/api/package/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B");
 
-                Console.WriteLine("Got.");
+            Console.WriteLine("Got.");
 
-                return iconData;
-            }
+            return iconData;
         }
 
         private static IEnumerable<Icon> GetIcons(string sourceData)
@@ -99,7 +97,7 @@ namespace mdresgen
                     }
                 }
             }
-          
+
             return iconsByName.Values.OrderBy(x => x.Name);
 
             bool IsValidIdentifier(string identifier)
