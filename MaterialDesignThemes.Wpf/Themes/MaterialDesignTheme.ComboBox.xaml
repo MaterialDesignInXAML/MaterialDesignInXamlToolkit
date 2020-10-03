@@ -444,7 +444,8 @@
                                 Grid.Column="0"
                                 FontSize="{TemplateBinding FontSize}"
                                 Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}" />
+                                Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}"
+                                IsHitTestVisible="False" />
 
                             <ContentPresenter
                                 x:Name="contentPresenter"
@@ -483,7 +484,8 @@
                                 <TextBlock
                                     FontSize="{TemplateBinding FontSize}"
                                     Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                    Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
+                                    Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
+                                    IsHitTestVisible="False" />
                                 <Button x:Name="PART_ClearButton" Height="Auto" Padding="2 0 0 0" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
                                     <Button.Visibility>
                                         <MultiBinding Converter="{StaticResource ClearTextConverter}">
@@ -794,7 +796,8 @@
                                 Grid.Column="0"
                                 FontSize="{TemplateBinding FontSize}"
                                 Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}" />
+                                Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}"
+                                IsHitTestVisible="False" />
 
                             <ContentPresenter
                                 x:Name="contentPresenter"
@@ -832,7 +835,8 @@
                                     x:Name="SuffixTextBlock"
                                     FontSize="{TemplateBinding FontSize}"
                                     Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                    Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
+                                    Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
+                                    IsHitTestVisible="False" />
                                 <Button x:Name="PART_ClearButton" Height="Auto" Padding="2 0 0 0" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
                                     <Button.Visibility>
                                         <MultiBinding Converter="{StaticResource ClearTextConverter}">
