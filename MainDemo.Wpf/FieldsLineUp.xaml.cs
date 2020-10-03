@@ -63,6 +63,8 @@ namespace MaterialDesignDemo
                 });
                 control.VerticalAlignment = VerticalAlignment.Top;
                 control.Margin = new Thickness(2, 10, 2, 10);
+                if (control is ComboBox comboBox)
+                    comboBox.SetBinding(ComboBox.IsEditableProperty, new Binding(nameof(CheckBox.IsChecked)) { ElementName = nameof(IsEditableCheckBox) });
                 SetValue(control);
             }
         }
