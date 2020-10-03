@@ -18,7 +18,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   nugetVersionSpec: '5.x.x'
-  mdixColorsVersion: '1.2.8'
+  mdixColorsVersion: '2.0.0'
   mdixMahAppsVersion: '0.1.6'
   mdixVersion: '4.0.0'
 
