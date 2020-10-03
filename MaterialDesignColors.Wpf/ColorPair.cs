@@ -9,7 +9,7 @@ namespace MaterialDesignColors
 
         /// <summary>
         /// The foreground or opposite color. If left null, this will be calculated for you.
-        /// Calculated by calling ColorHelper.ContrastingForegroundColor()
+        /// Calculated by calling ColorAssist.ContrastingForegroundColor()
         /// </summary>
         public Color? ForegroundColor { get; set; }
 
