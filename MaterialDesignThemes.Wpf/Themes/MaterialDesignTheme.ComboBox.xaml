@@ -602,6 +602,7 @@
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Underline" Property="Visibility" Value="Hidden" />
                 <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent" />
+                <Setter TargetName="templateRoot" Property="BorderBrush" Value="Transparent" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
