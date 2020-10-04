@@ -685,6 +685,7 @@
                                         <Storyboard>
                                             <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_TopDrawer" Duration="0:0:0.4">
                                                 <ThicknessAnimation.EasingFunction>
+                                                    <SineEase EasingMode="EaseOut" />
                                                 </ThicknessAnimation.EasingFunction>
                                             </ThicknessAnimation>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TopDrawerShadow" Storyboard.TargetProperty="Opacity">
