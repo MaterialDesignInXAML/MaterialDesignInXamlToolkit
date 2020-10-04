@@ -1,35 +1,8 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using MaterialDesignColors;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public class ColorAdjustment
-    {
-        public float DesiredContrastRatio { get; set; } = 4.5f;
-
-        public Contrast Contrast { get; set; } = Contrast.Medium;
-
-        public ColorSelection Colors { get; set; }
-    }
-
-    [Flags]
-    public enum ColorSelection
-    {
-        None = 0,
-        Primary = 1,
-        Secondary = 2,
-        All = Primary | Secondary
-    }
-
-    public enum Contrast
-    {
-        None,
-        Low,
-        Medium,
-        High
-    }
-
     public class BundledTheme : ResourceDictionary
     {
         private BaseTheme? _baseTheme;
@@ -74,7 +47,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private ColorAdjustment _colorAdjustment = new ColorAdjustment();
+        private ColorAdjustment _colorAdjustment;
         public ColorAdjustment ColorAdjustment
         {
             get => _colorAdjustment;

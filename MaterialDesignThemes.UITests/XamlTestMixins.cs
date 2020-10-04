@@ -13,14 +13,21 @@ namespace MaterialDesignThemes.UITests
         public static async Task InitialzeWithMaterialDesign(this IApp app,
             BaseTheme baseTheme = BaseTheme.Light,
             PrimaryColor primary = PrimaryColor.DeepPurple,
-            SecondaryColor secondary = SecondaryColor.Lime)
+            SecondaryColor secondary = SecondaryColor.Lime,
+            ColorAdjustment? colorAdjustment = null)
         {
+            string colorAdjustString = "";
+            if (colorAdjustment != null)
+            {
+                colorAdjustString = "ColorAdjustment=\"{materialDesign:ColorAdjustment}\"";
+            }
+
             string applicationResourceXaml = $@"<ResourceDictionary 
 xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
 xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
 xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
     <ResourceDictionary.MergedDictionaries>
-        <materialDesign:BundledTheme BaseTheme=""{baseTheme}"" PrimaryColor=""{primary}"" SecondaryColor=""{secondary}"" />
+        <materialDesign:BundledTheme BaseTheme=""{baseTheme}"" PrimaryColor=""{primary}"" SecondaryColor=""{secondary}"" {colorAdjustString}/>
 
         <ResourceDictionary Source = ""pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"" />
     </ResourceDictionary.MergedDictionaries>

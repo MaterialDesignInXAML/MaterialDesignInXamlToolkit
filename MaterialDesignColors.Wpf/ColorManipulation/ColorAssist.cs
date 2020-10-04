@@ -53,42 +53,96 @@ namespace MaterialDesignColors.ColorManipulation
             return (l1 + 0.05f) / (l2 + 0.05f);
         }
 
+        /// <summary>
+        /// Adjust the foreground color to have an acceptable contrast ratio.
+        /// </summary>
+        /// <param name="foreground">The foreground color</param>
+        /// <param name="background">The background color</param>
+        /// <param name="targetRatio">The target contrast ratio</param>
+        /// <param name="tollerance">The tollerance to the contrast ratio needs to be within</param>
+        /// <returns>The updated foreground color with the target contrast ratio with the background</returns>
         public static Color EnsureContrastRatio(this Color foreground, Color background, float targetRatio, float tollerance = 0.1f)
             => EnsureContrastRatio(foreground, background, targetRatio, out _, tollerance);
 
+        /// <summary>
+        /// Adjust the foreground color to have an acceptable contrast ratio.
+        /// </summary>
+        /// <param name="foreground">The foreground color</param>
+        /// <param name="background">The background color</param>
+        /// <param name="targetRatio">The target contrast ratio</param>
+        /// <param name="offset">The offset that was applied</param>
+        /// <param name="tollerance">The tollerance to the contrast ratio needs to be within</param>
+        /// <returns>The updated foreground color with the target contrast ratio with the background</returns>
         public static Color EnsureContrastRatio(this Color foreground, Color background, float targetRatio, out double offset, float tollerance = 0.1f)
         {
             offset = 0.0f;
             float ratio = foreground.ContrastRatio(background);
             if (ratio > targetRatio) return foreground;
 
+            var contrastWithWhite = background.ContrastRatio(Colors.White);
+            var contrastWithBlack = background.ContrastRatio(Colors.Black);
+
+            var shouldDarken = contrastWithBlack > contrastWithWhite;
+
+            //Lighten is negative
             Color finalColor = foreground;
             double? adjust = null;
 
-            while (Math.Abs(ratio - targetRatio) > tollerance &&
+            while ((ratio < targetRatio || ratio > targetRatio + tollerance) &&
                    finalColor != Colors.White &&
                    finalColor != Colors.Black)
             {
                 if (ratio - targetRatio < 0.0)
                 {
-                    if (adjust > 0)
+                    //Move offset of foreground further away from background
+                    if (shouldDarken)
                     {
-                        adjust /= -2;
+                        if (adjust < 0)
+                        {
+                            adjust /= -2;
+                        }
+                        else if (adjust == null)
+                        {
+                            adjust = 1.0f;
+                        }
                     }
-                    else if (adjust == null)
+                    else
                     {
-                        adjust = -1.0f;
+                        if (adjust > 0)
+                        {
+                            adjust /= -2;
+                        }
+                        else if (adjust == null)
+                        {
+                            adjust = -1.0f;
+                        }
                     }
                 }
                 else
                 {
-                    if (adjust < 0)
+                    //Move offset of foreground closer to background
+                    if (shouldDarken)
                     {
-                        adjust /= -2;
+                        if (adjust > 0)
+                        {
+                            adjust /= -2;
+                        }
+                        else if (adjust == null)
+                        {
+                            adjust = -1.0f;
+                        }
+
                     }
-                    else if (adjust == null)
+                    else
                     {
-                        adjust = 1.0f;
+                        if (adjust < 0)
+                        {
+                            adjust /= -2;
+                        }
+                        else if (adjust == null)
+                        {
+                            adjust = 1.0f;
+                        }
                     }
                 }
 

@@ -1,21 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
-    <AssemblyTitle>MaterialDesignColors.Wpf.Tests</AssemblyTitle>
-    <Product>MaterialDesignColors.Wpf.Tests</Product>
-  </PropertyGroup>
-  <Import Project="..\packages\xunit.core\build\xunit.core.props" Condition="Exists('..\packages\xunit.core\build\xunit.core.props')" Label="Paket" />
-  <Import Project="..\packages\xunit.runner.visualstudio\build\$(__paket__xunit_runner_visualstudio_props).props" Condition="Exists('..\packages\xunit.runner.visualstudio\build\$(__paket__xunit_runner_visualstudio_props).props')" Label="Paket" />
-  <Import Project="..\packages\xunit.core\build\xunit.core.targets" Condition="Exists('..\packages\xunit.core\build\xunit.core.targets')" Label="Paket" />
-  <ItemGroup>
-    <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="paket.references" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <Import Project="..\.paket\Paket.Restore.targets" />
+    <PropertyGroup>
+        <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
+        <AssemblyTitle>MaterialDesignColors.Wpf.Tests</AssemblyTitle>
+        <Product>MaterialDesignColors.Wpf.Tests</Product>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(TargetFramework)'=='net472'">
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Xaml" />
+        <Reference Include="System.Xml.Linq" />
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <Import Project="..\packages\xunit.core\build\xunit.core.props" Condition="Exists('..\packages\xunit.core\build\xunit.core.props')" Label="Paket" />
+    <Import Project="..\packages\xunit.runner.visualstudio\build\$(__paket__xunit_runner_visualstudio_props).props" Condition="Exists('..\packages\xunit.runner.visualstudio\build\$(__paket__xunit_runner_visualstudio_props).props')" Label="Paket" />
+    <Import Project="..\packages\xunit.core\build\xunit.core.targets" Condition="Exists('..\packages\xunit.core\build\xunit.core.targets')" Label="Paket" />
+    <ItemGroup>
+        <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="paket.references" />
+    </ItemGroup>
+    <ItemGroup>
+        <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    </ItemGroup>
+    <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

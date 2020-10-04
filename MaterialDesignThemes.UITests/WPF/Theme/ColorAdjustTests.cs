@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using MaterialDesignColors;
@@ -19,13 +19,20 @@ namespace MaterialDesignThemes.UITests.WPF.Theme
             : base(output)
         { }
 
+        public static IEnumerable<object[]> PrimaryColors()
+        {
+            return Enum.GetValues(typeof(PrimaryColor))
+                .OfType<PrimaryColor>()
+                .Select(x => new object[] { x });
+        }
+
         [Theory]
-        [InlineData(PrimaryColor.DeepPurple)]
+        [MemberData(nameof(PrimaryColors))]
         public async Task PrimaryColor_AdjustToTheme(PrimaryColor primary)
         {
             await using var recorder = new TestRecorder(App);
 
-            await App.InitialzeWithMaterialDesign(BaseTheme.Light, primary);
+            await App.InitialzeWithMaterialDesign(BaseTheme.Light, primary, colorAdjustment:new ColorAdjustment());
 
             IWindow window = await App.CreateWindow<ColorAdjustWindow>();
             await recorder.SaveScreenshot();

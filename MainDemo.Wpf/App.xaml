@@ -12,7 +12,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <!-- This is the current way to setup your app's initial theme -->
-                <materialDesign:BundledTheme BaseTheme="Inherit" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <materialDesign:BundledTheme BaseTheme="Inherit" PrimaryColor="DeepPurple" SecondaryColor="Lime"
+                                             ColorAdjustment="{materialDesign:ColorAdjustment}" />
 
                 <!-- If you would prefer to use your own colors there is an option for that as well -->
                 <!--<materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="Aqua" SecondaryColor="DarkGreen" />-->
