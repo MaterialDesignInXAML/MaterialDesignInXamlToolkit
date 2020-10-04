@@ -1,12 +1,11 @@
 using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using MaterialDesignColors.WpfExample.Domain;
 
 namespace MaterialDesignColors.WpfExample
 {
-    public partial class Buttons : UserControl
+    public partial class Buttons
     {
         public Buttons()
         {

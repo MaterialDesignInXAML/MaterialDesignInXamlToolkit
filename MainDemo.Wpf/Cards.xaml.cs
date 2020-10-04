@@ -1,9 +1,8 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 
 namespace MaterialDesignColors.WpfExample
 {
-    public partial class Cards : UserControl
+    public partial class Cards
     {
         public Cards() => InitializeComponent();
 
