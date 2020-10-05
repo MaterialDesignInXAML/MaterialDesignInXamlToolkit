@@ -1,15 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignDemo
+﻿namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for Drawers.xaml
-    /// </summary>
-    public partial class Drawers : UserControl
+    public partial class Drawers
     {
-        public Drawers()
-        {
-            InitializeComponent();
-        }
+        public Drawers() => InitializeComponent();
     }
 }
