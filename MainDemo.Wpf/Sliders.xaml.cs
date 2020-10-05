@@ -1,15 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignColors.WpfExample
+﻿namespace MaterialDesignColors.WpfExample
 {
-    /// <summary>
-    /// Interaction logic for Sliders.xaml
-    /// </summary>
-    public partial class Sliders : UserControl
+    public partial class Sliders
     {
-        public Sliders()
-        {
-            InitializeComponent();
-        }
+        public Sliders() => InitializeComponent();
     }
 }
