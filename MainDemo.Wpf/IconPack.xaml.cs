@@ -5,15 +5,9 @@ using System.Windows.Input;
 
 namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for Icons.xaml
-    /// </summary>
-    public partial class IconPack : UserControl
+    public partial class IconPack
     {
-        public IconPack()
-        {
-            InitializeComponent();
-        }
+        public IconPack() => InitializeComponent();
 
         private void TextBox_OnGotFocus(object sender, RoutedEventArgs e)
         {
