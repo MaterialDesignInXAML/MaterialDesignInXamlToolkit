@@ -112,6 +112,7 @@
                                 IsChecked="False"
                                 Click="MenuToggleButton_OnClick"
                                 AutomationProperties.Name="HamburgerToggleButton"/>
+                            
                             <Button
                                 Margin="24,0,12,0"
                                 ToolTip="Previous Item"
