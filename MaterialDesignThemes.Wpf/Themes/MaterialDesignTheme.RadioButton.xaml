@@ -292,8 +292,9 @@
 
     <Style x:Key="MaterialDesignToolRadioButton" TargetType="{x:Type RadioButton}">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}"/>
+        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="14 6 14 6" />
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
