@@ -455,7 +455,8 @@
                                     ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
                                     ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                     ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                    IsHitTestVisible="False" />
+                                    IsHitTestVisible="False"
+                                    Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}" />
                                 <TextBox
                                     x:Name="PART_EditableTextBox"
                                     Grid.Column="1"
@@ -477,7 +478,8 @@
                                     FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                     FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                                     HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                    Hint="{TemplateBinding wpf:HintAssist.Hint}" />
+                                    Hint="{TemplateBinding wpf:HintAssist.Hint}"
+                                    Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}" />
 
                                 <StackPanel
                                     Orientation="Horizontal"
@@ -804,7 +806,8 @@
                                     ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
                                     ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                     ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                    IsHitTestVisible="False" />
+                                    IsHitTestVisible="False"
+                                    Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}" />
                                 <TextBox
                                     x:Name="PART_EditableTextBox"
                                     Grid.Column="1"
@@ -826,7 +829,8 @@
                                     FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                     FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                                     HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                    Hint="{TemplateBinding wpf:HintAssist.Hint}" />
+                                    Hint="{TemplateBinding wpf:HintAssist.Hint}"
+                                    Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}" />
 
                                 <StackPanel Orientation="Horizontal" Grid.Column="2">
                                     <TextBlock

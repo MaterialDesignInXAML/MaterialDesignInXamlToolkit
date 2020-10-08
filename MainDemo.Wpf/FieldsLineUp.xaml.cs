@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 
 namespace MaterialDesignDemo
@@ -26,20 +27,12 @@ namespace MaterialDesignDemo
         public FieldsLineUp()
         {
             InitializeComponent();
-            VerticalPaddingSlider.Value = Controls.OfType<TextBox>().First().Padding.Top;
-            VerticalPaddingSlider.ValueChanged += delegate
-            {
-                var padding = VerticalPaddingSlider.Value;
-                foreach (var element in Controls)
-                    element.Padding = new Thickness(element.Padding.Left, padding, element.Padding.Right, padding);
-            };
             HorizontalPaddingSlider.Value = Controls.OfType<TextBox>().First().Padding.Left;
-            HorizontalPaddingSlider.ValueChanged += delegate
-            {
-                var padding = HorizontalPaddingSlider.Value;
-                foreach (var element in Controls)
-                    element.Padding = new Thickness(padding, element.Padding.Top, padding, element.Padding.Bottom);
-            };
+            HorizontalPaddingSlider.ValueChanged += delegate { UpdateThickness(HorizontalPaddingSlider, PaddingProperty, true); };
+            VerticalPaddingSlider.Value = Controls.OfType<TextBox>().First().Padding.Top;
+            VerticalPaddingSlider.ValueChanged += delegate { UpdateThickness(VerticalPaddingSlider, PaddingProperty, false); };
+            HorizontalTextBoxViewMarginSlider.Value = ((Thickness)Controls.OfType<TextBox>().First().GetValue(TextFieldAssist.TextBoxViewMarginProperty)).Left;
+            HorizontalTextBoxViewMarginSlider.ValueChanged += delegate { UpdateThickness(HorizontalTextBoxViewMarginSlider, TextFieldAssist.TextBoxViewMarginProperty, true); };
 
             ValidationErrorTextBox.TextChanged += delegate
             {
@@ -66,6 +59,19 @@ namespace MaterialDesignDemo
                 if (control is ComboBox comboBox)
                     comboBox.SetBinding(ComboBox.IsEditableProperty, new Binding(nameof(CheckBox.IsChecked)) { ElementName = nameof(IsEditableCheckBox) });
                 SetValue(control);
+            }
+        }
+
+        private void UpdateThickness(RangeBase slider, DependencyProperty property, bool horizontal)
+        {
+            var newValue = slider.Value;
+            foreach (var element in Controls)
+            {
+                var current = (Thickness)element.GetValue(property);
+                var updated = horizontal
+                    ? new Thickness(newValue, current.Top, newValue, current.Bottom)
+                    : new Thickness(current.Left, newValue, current.Right, newValue);
+                element.SetValue(property, updated);
             }
         }
 

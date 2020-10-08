@@ -41,6 +41,7 @@
                             Value="14" />
                         <TextBlock>
                             <Run Text="Padding" FontFamily="Consolas" />
+                            <LineBreak />
                             <Run Text="horizontal" />
                             <Run Text="{Binding Value, ElementName=HorizontalPaddingSlider, Mode=OneWay}" FontStyle="Italic" />
                         </TextBlock>
@@ -51,11 +52,23 @@
                             Value="0" />
                         <TextBlock>
                             <Run Text="Padding" FontFamily="Consolas" />
+                            <LineBreak />
                             <Run Text="vertical" />
                             <Run Text="{Binding Value, ElementName=VerticalPaddingSlider, Mode=OneWay}" FontStyle="Italic" />
                         </TextBlock>
                         <Slider
                             x:Name="VerticalPaddingSlider"
+                            Minimum="0"
+                            Maximum="16"
+                            Value="4" />
+                        <TextBlock>
+                            <Run Text="TextFieldAssist.TextBoxViewMargin" FontFamily="Consolas" />
+                            <LineBreak />
+                            <Run Text="horizontal" />
+                            <Run Text="{Binding Value, ElementName=HorizontalTextBoxViewMarginSlider, Mode=OneWay}" FontStyle="Italic" />
+                        </TextBlock>
+                        <Slider
+                            x:Name="HorizontalTextBoxViewMarginSlider"
                             Minimum="0"
                             Maximum="16"
                             Value="4" />
