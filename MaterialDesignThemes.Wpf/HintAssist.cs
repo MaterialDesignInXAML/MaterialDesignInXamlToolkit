@@ -7,7 +7,7 @@ namespace MaterialDesignThemes.Wpf
     {
         private const double DefaultFloatingScale = 0.74;
         private const double DefaultHintOpacity = 0.56;
-        private static readonly Point DefaultFloatingOffset = new Point(1, -16);
+        private static readonly Point DefaultFloatingOffset = new Point(0, -16);
         private static readonly Brush DefaultBackground = new SolidColorBrush(Colors.Transparent);
 
         #region AttachedProperty : IsFloatingProperty

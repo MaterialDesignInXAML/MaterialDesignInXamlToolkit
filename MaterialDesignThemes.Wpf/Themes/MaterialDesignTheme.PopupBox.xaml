@@ -150,7 +150,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
         <Setter Property="PlacementMode" Value="TopAndAlignCentres" />
-        <Setter Property="PopupMode" Value="MouseOverEager" />
+        <Setter Property="PopupMode" Value="Click" />
         <Setter Property="ToolTipService.Placement" Value="Left" />
         <Setter Property="ToolTipService.IsEnabled" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Left" />
