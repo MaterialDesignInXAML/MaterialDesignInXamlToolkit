@@ -53,9 +53,11 @@
                <TextBlock VerticalAlignment="Bottom" Text="Maximum"/>
                <TextBox x:Name="sliderMaxH" Text="100000" Margin="4 0" VerticalAlignment="Bottom"/>
                <Slider Minimum="0" Maximum="{Binding Text, ElementName=sliderMaxH, Mode=OneWay}" Style="{StaticResource MaterialDesignDiscreteSlider}" 
-                     ToolTip="MaterialDesignDiscreteSlider"
-                     Value="50"
-                     Width="280" />
+                       ToolTip="MaterialDesignDiscreteSlider"
+                       Value="50"
+                       Width="280"
+                       TickFrequency="5000"
+                       TickPlacement="BottomRight"/>
            </StackPanel>
          </smtx:XamlDisplay>
         <smtx:XamlDisplay Key="slider_7" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Margin="24 8 0 0">
