@@ -10,6 +10,8 @@
         Accent,
         Light,
         Dark,
+        AccentLight,
+        AccentDark,
         Custom
     }
 }
