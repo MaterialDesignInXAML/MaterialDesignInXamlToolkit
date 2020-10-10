@@ -51,7 +51,7 @@
       <smtx:XamlDisplay Key="slider_6" Grid.Row="3" Grid.Column="0" Margin="8 0 0 0">
            <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
                <TextBlock VerticalAlignment="Bottom" Text="Maximum"/>
-               <TextBox x:Name="sliderMaxH" Text="100000" VerticalAlignment="Bottom"/>
+               <TextBox x:Name="sliderMaxH" Text="100000" Margin="4 0" VerticalAlignment="Bottom"/>
                <Slider Minimum="0" Maximum="{Binding Text, ElementName=sliderMaxH, Mode=OneWay}" Style="{StaticResource MaterialDesignDiscreteSlider}" 
                      ToolTip="MaterialDesignDiscreteSlider"
                      Value="50"
@@ -61,7 +61,7 @@
         <smtx:XamlDisplay Key="slider_7" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Margin="24 8 0 0">
          <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
             <TextBlock VerticalAlignment="Center" Text="Maximum"/>
-            <TextBox x:Name="sliderMaxV" Text="100000" VerticalAlignment="Center"/>
+            <TextBox x:Name="sliderMaxV" Text="100000" Margin="4 0" VerticalAlignment="Center"/>
             <Slider Orientation="Vertical" Minimum="0" Maximum="{Binding Text, ElementName=sliderMaxV, Mode=OneWay}" Height="100"
                     Style="{StaticResource MaterialDesignDiscreteSlider}" 
                     ToolTip="MaterialDesignDiscreteSlider"/>
