@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -192,6 +193,24 @@ namespace MaterialDesignThemes.Wpf
             }
             throw new InvalidOperationException("DialogHost is not open.");
         }
+
+        /// <summary>
+        /// Retrieve the current dialog session for a DialogHost
+        /// </summary>
+        /// <param name="dialogIdentifier">The identifier to use to retrieve the DialogHost</param>
+        /// <returns>The DialogSession if one is in process, or null</returns>
+        public static DialogSession GetDialogSession(object dialogIdentifier)
+        {
+            DialogHost dialogHost = GetInstance(dialogIdentifier);
+            return dialogHost.CurrentSession;
+        }
+
+        /// <summary>
+        /// dialog instance exists
+        /// </summary>
+        /// <param name="dialogIdentifier">of the instance where the dialog should be closed. Typically this will match an identifer set in XAML.</param>
+        /// <returns></returns>
+        public static bool IsDialogOpen(object dialogIdentifier) => GetDialogSession(dialogIdentifier)?.IsEnded == false;
 
         private static DialogHost GetInstance(object dialogIdentifier)
         {
@@ -628,7 +647,7 @@ namespace MaterialDesignThemes.Wpf
                 CurrentSession.IsEnded = false;
                 return;
             }
-            
+
             SetCurrentValue(IsOpenProperty, false);
         }
 
@@ -651,7 +670,7 @@ namespace MaterialDesignThemes.Wpf
 
             return child;
         }
-        
+
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
         {
             var window = Window.GetWindow(this);
