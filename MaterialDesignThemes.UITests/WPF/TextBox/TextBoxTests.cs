@@ -142,7 +142,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
 </Grid>");
             IVisualElement textBox = await grid.GetElement("/TextBox");
             //textFieldGrid is the element just inside of the border
-            IVisualElement textFieldGrid = await textBox.GetElement("textFieldGrid");
+            IVisualElement textFieldGrid = await textBox.GetElement("grid");
             IVisualElement hintBackground = await textBox.GetElement("HintBackgroundBorder");
 
             Color background = await hintBackground.GetEffectiveBackground(textFieldGrid);

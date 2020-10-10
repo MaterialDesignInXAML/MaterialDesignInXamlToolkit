@@ -43,7 +43,6 @@ namespace MaterialDesignThemes.Wpf
             return (Thickness)element.GetValue(TextBoxViewMarginProperty);
         }
 
-
         /// <summary>
         /// Controls the visibility of the underline decoration.
         /// </summary>
@@ -311,8 +310,8 @@ namespace MaterialDesignThemes.Wpf
         private static void RemoveSpellingSuggestions(ContextMenu menu)
         {
             foreach (FrameworkElement item in (from item in menu.Items.OfType<FrameworkElement>()
-                                               where ReferenceEquals(item.Tag, typeof(Spelling))
-                                               select item).ToList())
+                where ReferenceEquals(item.Tag, typeof(Spelling))
+                select item).ToList())
             {
                 menu.Items.Remove(item);
             }
@@ -337,7 +336,6 @@ namespace MaterialDesignThemes.Wpf
             else
                 box.Loaded += (sender, args) =>
                     SetClearHandler(box);
-
         }
 
         private static void SetClearHandler(Control box)
@@ -405,15 +403,22 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="margin">The margin.</param>
         private static void ApplyTextBoxViewMargin(Control textBox, Thickness margin)
         {
-            if (margin.Equals(new Thickness(double.NegativeInfinity)))
-            {
+            if (margin.Equals(new Thickness(double.NegativeInfinity))
+                || textBox.Template == null)
                 return;
+
+            if (textBox is ComboBox
+                && textBox.Template.FindName("PART_EditableTextBox", textBox) is TextBox editableTextBox)
+            {
+                textBox = editableTextBox;
+                if (textBox.Template == null)
+                    return;
+                textBox.ApplyTemplate();
             }
 
-            if ((textBox.Template?.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content is FrameworkElement frameworkElement)
-            {
+            if (textBox.Template.FindName("PART_ContentHost", textBox) is ScrollViewer scrollViewer
+                && scrollViewer.Content is FrameworkElement frameworkElement)
                 frameworkElement.Margin = margin;
-            }
         }
 
         /// <summary>
