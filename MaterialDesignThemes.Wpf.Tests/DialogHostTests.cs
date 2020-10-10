@@ -327,11 +327,11 @@ namespace MaterialDesignThemes.Wpf.Tests
             bool isExist = false;
             _ = _dialogHost.ShowDialog("Content", new DialogOpenedEventHandler((sender, arg) =>
             {
-                isExist = DialogHost.IsExistDialog(id);
+                isExist = DialogHost.IsDialogOpen(id);
             }));
             Assert.True(isExist);
-            DialogHost.CloseDialogCommand.Execute(null, _dialogHost);
-            Assert.False(DialogHost.IsExistDialog(id));
+            DialogHost.Close(id);
+            Assert.False(DialogHost.IsDialogOpen(id));
         }
     }
 }

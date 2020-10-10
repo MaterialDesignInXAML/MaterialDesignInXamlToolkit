@@ -195,21 +195,22 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
+        /// Retrieve the current dialog session for a DialogHost
+        /// </summary>
+        /// <param name="dialogIdentifier">The identifier to use to retrieve the DialogHost</param>
+        /// <returns>The DialogSession if one is in process, or null</returns>
+        public static DialogSession GetDialogSession(object dialogIdentifier)
+        {
+            DialogHost dialogHost = GetInstance(dialogIdentifier);
+            return dialogHost.CurrentSession;
+        }
+
+        /// <summary>
         /// dialog instance exists
         /// </summary>
         /// <param name="dialogIdentifier">of the instance where the dialog should be closed. Typically this will match an identifer set in XAML.</param>
         /// <returns></returns>
-        public static bool IsExistDialog(object dialogIdentifier)
-        {
-            if (LoadedInstances.Count == 0)
-                return false;
-            var target = LoadedInstances.FirstOrDefault(dh => dialogIdentifier == null ||
-            (Equals(dh.Identifier, dialogIdentifier) && dh.IsOpen == true));
-            if (target == null)
-                return false;
-            else
-                return true;
-        }
+        public static bool IsDialogOpen(object dialogIdentifier) => GetDialogSession(dialogIdentifier)?.IsEnded == false;
 
         private static DialogHost GetInstance(object dialogIdentifier)
         {
@@ -224,22 +225,6 @@ namespace MaterialDesignThemes.Wpf
                 throw new InvalidOperationException("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
 
             return targets[0];
-        }
-
-        /// <summary>
-        ///  Close a modal dialog.
-        /// </summary>
-        /// <param name="dialogIdentifier"> of the instance where the dialog should be closed. Typically this will match an identifer set in XAML. </param>
-        public static void CloseDialog(object dialogIdentifier)
-        {
-            if (dialogIdentifier == null) throw new ArgumentNullException(nameof(dialogIdentifier));
-
-            if (LoadedInstances.Count == 0)
-                throw new InvalidOperationException("No loaded DialogHost instances.");
-
-            var targets = LoadedInstances.FirstOrDefault(dh => dialogIdentifier == null || Equals(dh.Identifier, dialogIdentifier));
-            if (targets != null)
-                CloseDialogCommand.Execute(false, null);
         }
 
         internal async Task<object> ShowInternal(object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
