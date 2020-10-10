@@ -399,7 +399,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <materialDesign:ColorZone Mode="Accent" Padding="6">
+                            <materialDesign:ColorZone Mode="SecondaryMid" Padding="6">
                                 <StackPanel Orientation="Horizontal">
                                     <Button
                                         Style="{StaticResource MaterialDesignToolForegroundButton}"
@@ -486,7 +486,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <materialDesign:ColorZone Mode="Accent" Padding="6">
+                        <materialDesign:ColorZone Mode="SecondaryMid" Padding="6">
                             <StackPanel Orientation="Horizontal">
                                 <Button
                                     Style="{StaticResource MaterialDesignToolForegroundButton}"

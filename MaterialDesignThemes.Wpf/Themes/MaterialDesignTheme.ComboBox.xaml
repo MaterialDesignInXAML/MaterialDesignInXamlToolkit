@@ -722,8 +722,8 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
-                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Accent" />
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="SecondaryMid"/>
                 </MultiTrigger.Conditions>
                 <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter TargetName="PART_Popup" Property="Background"
@@ -1057,8 +1057,8 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
-                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Accent" />
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="SecondaryMid"/>
                 </MultiTrigger.Conditions>
                 <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter TargetName="PART_Popup" Property="Background"

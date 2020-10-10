@@ -7,8 +7,17 @@
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <ScrollViewer>
-        <StackPanel>
+        <StackPanel Margin="0,20">
             <StackPanel Margin="16">
                 <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}">Colour Zones</TextBlock>
                 <TextBlock TextWrapping="Wrap" MaxWidth="800" Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">The ColorZone control allows you to  easily define striking blocks of colour to give your application extra clarity and style, whilst still remaining within the bounds of your Material Design palette.</TextBlock>
@@ -26,14 +35,14 @@
                             </ListBox>
                         </materialDesign:PopupBox>
                         <StackPanel Orientation="Horizontal">
-                            <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                            <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
                             <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
                         </StackPanel>
                     </DockPanel>
                 </materialDesign:ColorZone>
             </smtx:XamlDisplay>
 
-            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use primary light back and fore colours.</TextBlock>
+            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use primary light background and foreground colours.</TextBlock>
             <smtx:XamlDisplay Key="color_zones_primary_light">
                 <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
                     <StackPanel Orientation="Horizontal">
@@ -70,13 +79,13 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <Button Style="{DynamicResource MaterialDesignToolButton}">
+                                    <Button Style="{StaticResource MaterialDesignToolButton}">
                                         <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
                                     </Button>
                                     <TextBox Grid.Column="1" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Build a search bar" 
                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
                                      MinWidth="200" VerticalAlignment="Center" />
-                                    <Button Style="{DynamicResource MaterialDesignToolButton}" Grid.Column="2">
+                                    <Button Style="{StaticResource MaterialDesignToolButton}" Grid.Column="2">
                                         <materialDesign:PackIcon Kind="Microphone" Opacity=".56" Margin="8 0 0 0" />
                                     </Button>
                                 </Grid>
@@ -101,9 +110,9 @@
                 </materialDesign:ColorZone>
             </smtx:XamlDisplay>
 
-            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use accent back and fore colours.</TextBlock>
-            <smtx:XamlDisplay Key="color_zones_accent">
-                <materialDesign:ColorZone Mode="Accent" Padding="16">
+            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use secondary mid background and foreground colours.</TextBlock>
+            <smtx:XamlDisplay Key="color_zones_secondary_mid">
+                <materialDesign:ColorZone Mode="SecondaryMid" Padding="16">
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                         <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">Material Design In XAML Toolkit</TextBlock>
@@ -111,7 +120,7 @@
                 </materialDesign:ColorZone>
             </smtx:XamlDisplay>
 
-            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use custom back and fore colours. Disabled ClipToBounds</TextBlock>
+            <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use custom background and foreground colours. Disabled ClipToBounds</TextBlock>
             <smtx:XamlDisplay Key="color_zones_custom" Margin="0 16">
                 <materialDesign:ColorZone Mode="Custom" Background="Black" Foreground="White" Padding="16 0" ClipToBounds="False">
                     <StackPanel Orientation="Horizontal">
