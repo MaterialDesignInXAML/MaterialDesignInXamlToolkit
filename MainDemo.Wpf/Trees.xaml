@@ -183,7 +183,7 @@
                         <domain:TreeExampleSimpleTemplateSelector>
                             <domain:TreeExampleSimpleTemplateSelector.SolarSystemTemplate>
                                 <DataTemplate>
-                                    <materialDesign:ColorZone Mode="Accent" CornerRadius="6" materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                                    <materialDesign:ColorZone Mode="SecondaryMid" CornerRadius="6" materialDesign:ShadowAssist.ShadowDepth="Depth1"
                                                           Margin="2">
                                         <DockPanel LastChildFill="True">
                                             <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" Margin="8 -6 8 -6" DockPanel.Dock="Right">

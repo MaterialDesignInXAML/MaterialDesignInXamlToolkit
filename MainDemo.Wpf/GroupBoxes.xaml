@@ -49,7 +49,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay Key="groupbox_4" Grid.Column="0" Grid.Row="1">
-            <GroupBox Header="Accent Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ColorZoneAssist.Mode="Accent">
+            <GroupBox Header="Accent Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ColorZoneAssist.Mode="SecondaryMid">
                 <TextBlock>My Content</TextBlock>
             </GroupBox>
         </smtx:XamlDisplay>
@@ -79,7 +79,7 @@
 
         <smtx:XamlDisplay Key="groupbox_7" Grid.Column="1" Grid.Row="2">
             <GroupBox  Header="Card Group Box Accent" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" 
-                materialDesign:ColorZoneAssist.Mode="Accent">
+                materialDesign:ColorZoneAssist.Mode="SecondaryMid">
                 <GroupBox.HeaderTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

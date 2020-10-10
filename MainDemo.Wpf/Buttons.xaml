@@ -200,7 +200,7 @@
                 <smtx:XamlDisplay Key="buttons_17" Margin="8 0">
                     <materialDesign:Badged
                         Badge="{materialDesign:PackIcon Heart}"
-                        BadgeColorZoneMode="Accent">
+                        BadgeColorZoneMode="SecondaryMid">
                         <Button Content="LOVE"/>
                     </materialDesign:Badged>
                 </smtx:XamlDisplay>

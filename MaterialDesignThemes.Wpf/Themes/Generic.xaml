@@ -479,9 +479,17 @@
                 <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
             </Trigger>
-            <Trigger Property="Mode" Value="Accent">
+            <Trigger Property="Mode" Value="SecondaryLight">
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="Mode" Value="SecondaryMid">
                 <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="Mode" Value="SecondaryDark">
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
             </Trigger>
             <Trigger Property="Mode" Value="Light">
                 <Setter Property="Background" Value="{DynamicResource MaterialDesignLightBackground}" />
@@ -491,14 +499,6 @@
                 <Setter Property="Background" Value="{DynamicResource MaterialDesignDarkBackground}" />
                 <Setter Property="Foreground" Value="{DynamicResource MaterialDesignDarkForeground}" />
             </Trigger>
-            <Trigger Property="Mode" Value="AccentLight">
-                <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
-                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
-            </Trigger>
-            <Trigger Property="Mode" Value="AccentDark">
-                <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
-                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
-            </Trigger>            
             <Trigger Property="Mode" Value="Custom">
                 <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:ColorZoneAssist.Background)}" />
                 <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:ColorZoneAssist.Foreground)}" />

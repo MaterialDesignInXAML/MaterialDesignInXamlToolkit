@@ -58,7 +58,7 @@
                 </smtx:XamlDisplay>
                 <smtx:XamlDisplay Key="navrail_4" Margin="5,5,5,0" Grid.Column="1">
                     <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
-                                materialDesign:ColorZoneAssist.Mode="Accent">
+                                materialDesign:ColorZoneAssist.Mode="SecondaryMid">
                         <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
                             <TabItem.Header>
                                 <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>

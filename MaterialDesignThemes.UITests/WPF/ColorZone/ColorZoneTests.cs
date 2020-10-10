@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf;
 using XamlTest;
@@ -24,7 +21,9 @@ namespace MaterialDesignThemes.UITests.WPF.ColorZone
         [InlineData(ColorZoneMode.PrimaryLight, "PrimaryHueLightBrush", "PrimaryHueLightForegroundBrush")]
         [InlineData(ColorZoneMode.PrimaryMid, "PrimaryHueMidBrush", "PrimaryHueMidForegroundBrush")]
         [InlineData(ColorZoneMode.PrimaryDark, "PrimaryHueDarkBrush", "PrimaryHueDarkForegroundBrush")]
-        [InlineData(ColorZoneMode.Accent, "SecondaryHueMidBrush", "SecondaryHueMidForegroundBrush")]
+        [InlineData(ColorZoneMode.SecondaryLight, "SecondaryHueLightBrush", "SecondaryHueLightForegroundBrush")]
+        [InlineData(ColorZoneMode.SecondaryMid, "SecondaryHueMidBrush", "SecondaryHueMidForegroundBrush")]
+        [InlineData(ColorZoneMode.SecondaryDark, "SecondaryHueDarkBrush", "SecondaryHueDarkForegroundBrush")]
         [InlineData(ColorZoneMode.Light, "MaterialDesignLightBackground", "MaterialDesignLightForeground")]
         [InlineData(ColorZoneMode.Dark, "MaterialDesignDarkBackground", "MaterialDesignDarkForeground")]
         public async Task Mode_SetsThemeColors(ColorZoneMode mode, string backgroundBrush, string foregroundBrush)
