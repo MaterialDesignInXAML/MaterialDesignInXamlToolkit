@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <DockPanel>
-        <smtx:XamlDisplay Key="menus_1" DockPanel.Dock="Top" Margin="5 5 0 5">
+        <smtx:XamlDisplay UniqueKey="menus_1" DockPanel.Dock="Top" Margin="5 5 0 5">
             <Menu IsMainMenu="True">
                 <MenuItem Header="_File">
                     <MenuItem Header="Save">
@@ -54,7 +54,7 @@
             </Menu>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Key="menus_2" DockPanel.Dock="Top" Margin="5 0 0 0">
+        <smtx:XamlDisplay UniqueKey="menus_2" DockPanel.Dock="Top" Margin="5 0 0 0">
             <ToolBarTray>
                 <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
                     <Button ToolTip="Follow me on Twitter" Click="TwitterButton_OnClick">
@@ -157,11 +157,11 @@
             </ToolBarTray>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Key="menus_3" Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <smtx:XamlDisplay UniqueKey="menus_3" Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
             <TextBox Text="With Default Context Menu" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Key="menus_4" Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <smtx:XamlDisplay UniqueKey="menus_4" Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
             <TextBox Text="With Custom Context Menu">
                 <TextBox.ContextMenu>
                     <ContextMenu>

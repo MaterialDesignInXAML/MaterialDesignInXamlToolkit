@@ -32,7 +32,7 @@
                                       Margin="0 8 0 0" />
                     </StackPanel>
 
-                    <smtx:XamlDisplay Key="snackbar_1">
+                    <smtx:XamlDisplay UniqueKey="snackbar_1">
                         <!-- simplest form -->
                         <materialDesign:Snackbar Message="hello 1"
                                                  IsActive="False"
@@ -53,7 +53,7 @@
                                       Margin="0 8 0 0" />
                     </StackPanel>
 
-                    <smtx:XamlDisplay Key="snackbar_2">
+                    <smtx:XamlDisplay UniqueKey="snackbar_2">
                         <!-- long hand form for setting the message -->
                         <materialDesign:Snackbar IsActive="False" x:Name="SnackbarTwo">
                             <materialDesign:SnackbarMessage Content="Hello 2" ActionContent="UNDO" />
@@ -91,7 +91,7 @@
                             <Button Click="SnackBar3_OnClick" Margin="16 0 0 0" Grid.Column="1">Send</Button>
                         </Grid>
                     </StackPanel>
-                    <smtx:XamlDisplay Key="snackbar_3" VerticalContentAlignment="Top">
+                    <smtx:XamlDisplay UniqueKey="snackbar_3" VerticalContentAlignment="Top">
                         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
                                                  x:Name="SnackbarThree" />
                     </smtx:XamlDisplay>
@@ -120,7 +120,7 @@
                             </StackPanel>
                         </Grid>
                     </StackPanel>
-                    <smtx:XamlDisplay Key="snackbar_4">
+                    <smtx:XamlDisplay UniqueKey="snackbar_4">
                         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
                                                  x:Name="SnackbarFour" />
                     </smtx:XamlDisplay>
@@ -139,7 +139,7 @@
                         <ToggleButton IsChecked="{Binding ElementName=SnackbarFive, Path=IsActive, Mode=TwoWay}"
                                       Margin="0 8 0 0" />
                     </StackPanel>
-                    <smtx:XamlDisplay Key="snackbar_5" HorizontalAlignment="Stretch">
+                    <smtx:XamlDisplay UniqueKey="snackbar_5" HorizontalAlignment="Stretch">
                         <materialDesign:Snackbar HorizontalAlignment="Stretch"
                                                  x:Name="SnackbarFive">
                             <materialDesign:SnackbarMessage Content="This Snackbar is stretched horizontally. Consider allowing your content to push up."
@@ -166,25 +166,25 @@
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Example 6.</TextBlock>
                     <TextBlock TextWrapping="WrapWithOverflow">Action button colour variations.</TextBlock>
-                    <smtx:XamlDisplay Key="snackbar_6" Margin="0 8 0 0">
+                    <smtx:XamlDisplay UniqueKey="snackbar_6" Margin="0 8 0 0">
                         <materialDesign:Snackbar IsActive="True">
                             <materialDesign:SnackbarMessage Content="Default - accent" ActionContent="ACCENT" />
                         </materialDesign:Snackbar>
                     </smtx:XamlDisplay>
-                    <smtx:XamlDisplay Key="snackbar_7" Margin="0 8 0 0">
+                    <smtx:XamlDisplay UniqueKey="snackbar_7" Margin="0 8 0 0">
                         <materialDesign:Snackbar IsActive="True"
                                                  ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionLightButton}">
                             <materialDesign:SnackbarMessage Content="Primary Light - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." ActionContent="LIGHT - very long text" />
                         </materialDesign:Snackbar>
                     </smtx:XamlDisplay>
-                    <smtx:XamlDisplay Key="snackbar_8" Margin="0 8 0 0">
+                    <smtx:XamlDisplay UniqueKey="snackbar_8" Margin="0 8 0 0">
                         <materialDesign:Snackbar IsActive="True"
                                                  ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionMidButton}"
                                                  ActionButtonPlacement="Inline">
                             <materialDesign:SnackbarMessage Content="Primary Mid - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." ActionContent="MID" />
                         </materialDesign:Snackbar>
                     </smtx:XamlDisplay>
-                    <smtx:XamlDisplay Key="snackbar_9" Margin="0 8 0 0">
+                    <smtx:XamlDisplay UniqueKey="snackbar_9" Margin="0 8 0 0">
                         <materialDesign:Snackbar IsActive="True"
                                                  ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionDarkButton}"
                                                  ActionButtonPlacement="SeparateLine">
@@ -217,7 +217,7 @@
                             <Button Click="SnackBar7_OnClick" HorizontalAlignment="Center" Grid.Column="2">Send</Button>
                         </Grid>
                     </StackPanel>
-                    <smtx:XamlDisplay Key="snackbar_10">
+                    <smtx:XamlDisplay UniqueKey="snackbar_10">
                         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}"
                                                  x:Name="SnackbarSeven" />
                     </smtx:XamlDisplay>

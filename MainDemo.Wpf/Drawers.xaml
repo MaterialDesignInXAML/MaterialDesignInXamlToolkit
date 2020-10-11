@@ -14,7 +14,7 @@
             <ToggleButton Margin="8 0 16 0" x:Name="BackgroundToggle" />
             <TextBlock VerticalAlignment="Center">Primary Overlay Background</TextBlock>
         </StackPanel>
-        <smtx:XamlDisplay Key="drawers_1" MaxHeight="{x:Static system:Double.MaxValue}" Margin="5">
+        <smtx:XamlDisplay UniqueKey="drawers_1" MaxHeight="{x:Static system:Double.MaxValue}" Margin="5">
             <materialDesign:DrawerHost Margin="32" 
                                        HorizontalAlignment="Center" 
                                        VerticalAlignment="Center" 

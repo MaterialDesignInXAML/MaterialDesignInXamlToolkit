@@ -24,7 +24,7 @@
             </StackPanel>
 
             <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Invert the basic paper/body colours.</TextBlock>
-            <smtx:XamlDisplay Key="color_zones_inverted">
+            <smtx:XamlDisplay UniqueKey="color_zones_inverted">
                 <materialDesign:ColorZone Mode="Inverted" Padding="16">
                     <DockPanel>
                         <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges">
@@ -43,7 +43,7 @@
             </smtx:XamlDisplay>
 
             <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use primary light background and foreground colours.</TextBlock>
-            <smtx:XamlDisplay Key="color_zones_primary_light">
+            <smtx:XamlDisplay UniqueKey="color_zones_primary_light">
                 <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
@@ -53,7 +53,7 @@
             </smtx:XamlDisplay>
 
             <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use primary mid colours, and nest colour zones!</TextBlock>
-            <smtx:XamlDisplay Key="color_zones_primary_mid">
+            <smtx:XamlDisplay UniqueKey="color_zones_primary_mid">
                 <materialDesign:ColorZone Mode="PrimaryMid" Padding="16">
                     <DockPanel>
                         <ToggleButton Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" VerticalAlignment="Center"
@@ -99,7 +99,7 @@
             </smtx:XamlDisplay>
 
             <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Add in a corner radius and shadow.</TextBlock>
-            <smtx:XamlDisplay Key="color_zones_primary_dark" Padding="10">
+            <smtx:XamlDisplay UniqueKey="color_zones_primary_dark" Padding="10">
                 <materialDesign:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="10"
                                           materialDesign:ShadowAssist.ShadowDepth="Depth3"
                                           ClipToBounds="False">
@@ -111,7 +111,7 @@
             </smtx:XamlDisplay>
 
             <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use secondary mid background and foreground colours.</TextBlock>
-            <smtx:XamlDisplay Key="color_zones_secondary_mid">
+            <smtx:XamlDisplay UniqueKey="color_zones_secondary_mid">
                 <materialDesign:ColorZone Mode="SecondaryMid" Padding="16">
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
@@ -121,7 +121,7 @@
             </smtx:XamlDisplay>
 
             <TextBlock Margin="0 16 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}">Use custom background and foreground colours. Disabled ClipToBounds</TextBlock>
-            <smtx:XamlDisplay Key="color_zones_custom" Margin="0 16">
+            <smtx:XamlDisplay UniqueKey="color_zones_custom" Margin="0 16">
                 <materialDesign:ColorZone Mode="Custom" Background="Black" Foreground="White" Padding="16 0" ClipToBounds="False">
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />

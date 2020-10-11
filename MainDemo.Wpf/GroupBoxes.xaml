@@ -28,19 +28,19 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <smtx:XamlDisplay Key="groupbox_1" Grid.Column="0" Grid.Row="0">
+        <smtx:XamlDisplay UniqueKey="groupbox_1" Grid.Column="0" Grid.Row="0">
             <GroupBox Header="Default Look" Margin="16">
                 <TextBlock>My Content</TextBlock>
             </GroupBox>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Key="groupbox_2" Grid.Column="1" Grid.Row="0">
+        <smtx:XamlDisplay UniqueKey="groupbox_2" Grid.Column="1" Grid.Row="0">
             <GroupBox Header="Shadow Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">
                 <TextBlock Margin="6,6,6,6" TextWrapping="Wrap">Short loin picanha boudin pork belly. Ground round porchetta biltong, cow t-bone tri-tip strip steak chuck filet mignon jowl turducken. Landjaeger strip steak pork chop, jowl sirloin pork capicola andouille. Kevin ribeye tongue, drumstick hamburger frankfurter t-bone corned beef beef biltong cow venison. Biltong picanha bresaola pork belly, filet mignon spare ribs doner pork chop kielbasa. Swine flank drumstick pork belly pancetta spare ribs rump filet mignon.</TextBlock>
             </GroupBox>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Key="groupbox_3" Grid.Column="2" Grid.Row="0">
+        <smtx:XamlDisplay UniqueKey="groupbox_3" Grid.Column="2" Grid.Row="0">
             <Border Background="{DynamicResource MaterialDesignBackground}">
                 <GroupBox Header="Transparent Background" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" UseLayoutRounding="True" SnapsToDevicePixels="True">
                     <TextBlock>My Content</TextBlock>
@@ -48,21 +48,21 @@
             </Border>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Key="groupbox_4" Grid.Column="0" Grid.Row="1">
+        <smtx:XamlDisplay UniqueKey="groupbox_4" Grid.Column="0" Grid.Row="1">
             <GroupBox Header="Accent Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ColorZoneAssist.Mode="SecondaryMid">
                 <TextBlock>My Content</TextBlock>
             </GroupBox>
         </smtx:XamlDisplay>
 
 
-        <smtx:XamlDisplay Key="groupbox_5" Grid.Column="1" Grid.Row="1">
+        <smtx:XamlDisplay UniqueKey="groupbox_5" Grid.Column="1" Grid.Row="1">
         <GroupBox Header="Custom Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" 
                   materialDesign:ColorZoneAssist.Mode="Custom" materialDesign:ColorZoneAssist.Background="Black" materialDesign:ColorZoneAssist.Foreground="White">
                 <TextBlock>My Content</TextBlock>
             </GroupBox>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Key="groupbox_6" Grid.Column="0" Grid.Row="2">
+        <smtx:XamlDisplay UniqueKey="groupbox_6" Grid.Column="0" Grid.Row="2">
             <GroupBox  Header="Card Group Box" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16">
                 <GroupBox.HeaderTemplate>
                     <DataTemplate>
@@ -77,7 +77,7 @@
         </smtx:XamlDisplay>
 
 
-        <smtx:XamlDisplay Key="groupbox_7" Grid.Column="1" Grid.Row="2">
+        <smtx:XamlDisplay UniqueKey="groupbox_7" Grid.Column="1" Grid.Row="2">
             <GroupBox  Header="Card Group Box Accent" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" 
                 materialDesign:ColorZoneAssist.Mode="SecondaryMid">
                 <GroupBox.HeaderTemplate>
@@ -92,7 +92,7 @@
             </GroupBox>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Key="groupbox_8" Grid.Column="2" Grid.Row="2">
+        <smtx:XamlDisplay UniqueKey="groupbox_8" Grid.Column="2" Grid.Row="2">
             <GroupBox  Header="Card Group Box Custom" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" 
                 materialDesign:ColorZoneAssist.Mode="Custom" materialDesign:ColorZoneAssist.Background="Black" materialDesign:ColorZoneAssist.Foreground="White">
                 <GroupBox.HeaderTemplate>

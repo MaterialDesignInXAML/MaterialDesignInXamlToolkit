@@ -36,7 +36,7 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <smtx:XamlDisplay Key="list_1" Grid.Column="0">
+                <smtx:XamlDisplay UniqueKey="list_1" Grid.Column="0">
                     <ListBox IsEnabled="{Binding IsChecked, ElementName=EnableListBox}">
                         <TextBlock>Plain</TextBlock>
                         <TextBlock>Old</TextBlock>
@@ -46,7 +46,7 @@
                 </smtx:XamlDisplay>
                 <CheckBox Name="EnableListBox" Grid.Column="0"  Grid.Row="1" IsChecked="True">Enabled</CheckBox>
 
-                <smtx:XamlDisplay Key="list_2" Grid.Column="1" Grid.Row="0">
+                <smtx:XamlDisplay UniqueKey="list_2" Grid.Column="1" Grid.Row="0">
                     <!-- piece together your own items control to create some nice stuff that will make everyone think you are cool. and rightly so, because you are cool.  you might even be a hipster for all I know -->
                     <ItemsControl  ItemsSource="{Binding Items1}"
                       Grid.IsSharedSizeScope="True"
@@ -76,7 +76,7 @@
                     </ItemsControl>
                 </smtx:XamlDisplay>
 
-                <smtx:XamlDisplay Key="list_3" Grid.Column="2" Grid.Row="0">
+                <smtx:XamlDisplay UniqueKey="list_3" Grid.Column="2" Grid.Row="0">
                     <!-- and here's another -->
                     <ItemsControl ItemsSource="{Binding Items2}" Grid.IsSharedSizeScope="True">
                         <ItemsControl.ItemTemplate>
@@ -107,7 +107,7 @@
                 </smtx:XamlDisplay>
             </Grid>
             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Grid.Row="2" Margin="0 32 0 0">ListView</TextBlock>
-            <smtx:XamlDisplay Key="lists_4" Grid.Row="3">
+            <smtx:XamlDisplay UniqueKey="lists_4" Grid.Row="3">
                 <ListView>
                     <ListViewItem>
                         Hello
@@ -121,7 +121,7 @@
                 </ListView>
             </smtx:XamlDisplay>
             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Grid.Row="4" Margin="0 32 0 0">ListView.GridView</TextBlock>
-            <smtx:XamlDisplay Key="lists_5" Grid.Row="5">
+            <smtx:XamlDisplay UniqueKey="lists_5" Grid.Row="5">
                 <ListView ItemsSource="{Binding Items1}">
                     <ListView.View>
                         <GridView>

@@ -27,28 +27,28 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <smtx:XamlDisplay Key="progress_1" Margin="24" Grid.RowSpan="2">
+        <smtx:XamlDisplay UniqueKey="progress_1" Margin="24" Grid.RowSpan="2">
             <!-- linear progress bars (the default style -->
             <ProgressBar Orientation="Vertical" Value="25" />
         </smtx:XamlDisplay>
-        <smtx:XamlDisplay Key="progress_2" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="24">
+        <smtx:XamlDisplay UniqueKey="progress_2" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="24">
             <ProgressBar Orientation="Vertical" Height="10" IsIndeterminate="True" />
         </smtx:XamlDisplay>
         <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch">
-            <smtx:XamlDisplay Key="progress_3" Margin="24">
+            <smtx:XamlDisplay UniqueKey="progress_3" Margin="24">
                 <ProgressBar Value="25" Height="10" />
             </smtx:XamlDisplay>
 
-            <smtx:XamlDisplay Key="progress_4" Margin="24">
+            <smtx:XamlDisplay UniqueKey="progress_4" Margin="24">
                 <ProgressBar Value="50" materialDesign:TransitionAssist.DisableTransitions="True" />
             </smtx:XamlDisplay>
 
-            <smtx:XamlDisplay Key="progress_5" Margin="24">
+            <smtx:XamlDisplay UniqueKey="progress_5" Margin="24">
                 <!-- should disable on 2nd transition... -->
                 <ProgressBar Value="75" />
             </smtx:XamlDisplay>
 
-            <smtx:XamlDisplay Key="progress_6" Margin="24">
+            <smtx:XamlDisplay UniqueKey="progress_6" Margin="24">
                 <ProgressBar IsIndeterminate="True" />
             </smtx:XamlDisplay>
         </StackPanel>
@@ -74,27 +74,27 @@
                 No extra control is required for the circular style, it is purely a standard ProgressBar, with the MaterialDesignCircularProgressBar style applied.
             </TextBlock>
 
-            <smtx:XamlDisplay Key="progress_7" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
+            <smtx:XamlDisplay UniqueKey="progress_7" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
                 <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
                              x:Name="DeterminateCircularProgress"/>
             </smtx:XamlDisplay>
             <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap">Standard deterministic progress bar, running from 0 to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value property.</TextBlock>
 
-            <smtx:XamlDisplay Key="progress_8" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
+            <smtx:XamlDisplay UniqueKey="progress_8" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
                 <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
                          Value="35"
                          IsIndeterminate="True"/>
             </smtx:XamlDisplay>
             <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" TextWrapping="Wrap">Indeterminate progress bar, at 35%.</TextBlock>
 
-            <smtx:XamlDisplay Key="progress_9" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
+            <smtx:XamlDisplay UniqueKey="progress_9" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
                 <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
                              Value="0"
                              IsIndeterminate="True"/>
             </smtx:XamlDisplay>
             <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" TextWrapping="Wrap">Fully indeterminate progress bar, using .Value=0 to inform the theme.</TextBlock>
 
-            <smtx:XamlDisplay Key="progress_10" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
+            <smtx:XamlDisplay UniqueKey="progress_10" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
                 <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
                              Value="20"
                              IsIndeterminate="True"
@@ -102,7 +102,7 @@
             </smtx:XamlDisplay>
             <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" TextWrapping="Wrap">An indeterminate job transitioning to a determinate job, completing to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value and .IsIndeterminate properties.</TextBlock>
 
-            <smtx:XamlDisplay Key="progress_11" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
+            <smtx:XamlDisplay UniqueKey="progress_11" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
                 <materialDesign:Card UniformCornerRadius="14" Padding="4">
                     <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
                                  Value="50"
@@ -111,7 +111,7 @@
             </smtx:XamlDisplay>
             <TextBlock Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap">Wrap in a Card control to raise the material.</TextBlock>
 
-            <smtx:XamlDisplay Key="progress_12" Grid.Row="6" Grid.Column="0"
+            <smtx:XamlDisplay UniqueKey="progress_12" Grid.Row="6" Grid.Column="0"
                               VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12">
                 <materialDesign:Card UniformCornerRadius="14" 
                                      RenderTransformOrigin=".5,.5"
