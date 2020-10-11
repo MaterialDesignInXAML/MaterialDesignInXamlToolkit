@@ -1,15 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignColors.WpfExample
+﻿namespace MaterialDesignColors.WpfExample
 {
-    /// <summary>
-    /// Interaktionslogik für Expander.xaml
-    /// </summary>
-    public partial class Expander : UserControl
+    public partial class Expander
     {
-        public Expander()
-        {
-            InitializeComponent();
-        }
+        public Expander() => InitializeComponent();
     }
 }

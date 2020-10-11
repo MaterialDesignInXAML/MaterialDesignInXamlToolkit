@@ -4,9 +4,6 @@ using System.Windows.Navigation;
 
 namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for TextFields.xaml
-    /// </summary>
     public partial class Fields
     {
         public Fields()
@@ -16,8 +13,6 @@ namespace MaterialDesignDemo
         }
 
         private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            Link.OpenInBrowser(e.Uri.AbsoluteUri);
-        }
+            => Link.OpenInBrowser(e.Uri.AbsoluteUri);
     }
 }
