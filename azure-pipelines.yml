@@ -26,12 +26,12 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'restore tools'
   inputs:
-    command: tool restore
+    arguments: tool restore
 
 - task: DotNetCoreCLI@2
   displayName: 'paket restore'
   inputs:
-    command: paket restore
+    arguments: paket restore
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
