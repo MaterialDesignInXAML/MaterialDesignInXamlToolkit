@@ -24,9 +24,9 @@ variables:
 steps:
 
 - task: DotNetCoreCLI@2
-  displayName: 'restore dependencies & tools'
+  displayName: 'restore tools'
   inputs:
-    command: restore
+    command: tool restore
 
 - task: DotNetCoreCLI@2
   displayName: 'paket restore'
