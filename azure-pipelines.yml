@@ -17,24 +17,21 @@ variables:
   solution: 'MaterialDesignToolkit.Full.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  nugetVersionSpec: '5.x.x'
   mdixColorsVersion: '2.0.0'
   mdixMahAppsVersion: '0.1.6'
   mdixVersion: '4.0.0'
 
 steps:
-- task: NuGetToolInstaller@0
-  displayName: 'Use NuGet $(nugetVersionSpec)'
-  inputs:
-    versionSpec: '$(nugetVersionSpec)'
-
-- powershell: .paket\paket.exe restore
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet restore'
+  displayName: 'restore tools'
   inputs:
-    command: restore
-    projects: $(solution)
+    command: restore tools
+
+- task: DotNetCoreCLI@2
+  displayName: 'paket restore'
+  inputs:
+    command: paket restore
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
