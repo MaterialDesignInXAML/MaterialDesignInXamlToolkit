@@ -117,6 +117,7 @@
                 <TextBox
                     x:Name="sliderMaxH"
                     Text="100000"
+                    Margin="4 0"
                     VerticalAlignment="Bottom"/>
                
                 <Slider
