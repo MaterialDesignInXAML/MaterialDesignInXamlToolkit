@@ -24,16 +24,18 @@ variables:
 steps:
 
 - task: DotNetCoreCLI@2
-  displayName: 'restore tools'
+  displayName: 'Restore tools'
   inputs:
     command: custom 
-    custom: tool restore
+    custom: tool
+    arguments: restore
 
 - task: DotNetCoreCLI@2
-  displayName: 'paket restore'
+  displayName: 'Restore via paket'
   inputs:
     command: custom 
-    custom: paket restore
+    custom: paket 
+    arguments: restore
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
