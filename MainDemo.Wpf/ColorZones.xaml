@@ -98,7 +98,7 @@
                     Padding="16">
                     <DockPanel>
                         <ToggleButton
-                            Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
+                            Style="{DynamicResource MaterialDesignSwitchAccentToggleButton}"
                             VerticalAlignment="Center"
                             DockPanel.Dock="Right"/>
                         
