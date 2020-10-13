@@ -153,7 +153,7 @@
                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                 Text="Custom Padding" Margin="0 24 0 0"/>
             
-            <smtx:XamlDisplay Key="grids_3">
+            <smtx:XamlDisplay UniqueKey="grids_3">
                 <DataGrid
                     ItemsSource="{Binding Items3}"
                     CanUserSortColumns="False"

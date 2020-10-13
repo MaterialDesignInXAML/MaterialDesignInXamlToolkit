@@ -226,7 +226,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="fields_32"
+                UniqueKey="fields_32"
                 Grid.Row="3"
                 Grid.RowSpan="2"
                 Grid.Column="4"

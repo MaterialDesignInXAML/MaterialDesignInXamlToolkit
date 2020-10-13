@@ -102,7 +102,7 @@
                 VerticalAlignment="Center"
                 Text="Customise On Content:"/>
             
-            <smtx:XamlDisplay Key="buttons_39">
+            <smtx:XamlDisplay UniqueKey="buttons_39">
                 <ToggleButton
                     Style="{StaticResource MaterialDesignActionToggleButton}"
                     ToolTip="MaterialDesignActionLightToggleButton"
@@ -118,7 +118,7 @@
             Margin="0 24 0 0"
             Orientation="Horizontal">
             <smtx:XamlDisplay
-                Key="buttons_40"
+                UniqueKey="buttons_40"
                 Margin="5 5 8 8"
                 VerticalAlignment="Center">
                 <RadioButton
@@ -164,7 +164,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_44"
+                UniqueKey="buttons_44"
                 Margin="0 5 8 8"
                 VerticalAlignment="Center">
                 <CheckBox
@@ -400,7 +400,7 @@
             Grid.Row="1"
             Margin="25,24,0,0">
             <smtx:XamlDisplay
-                Key="buttons_56"
+                UniqueKey="buttons_56"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top">
                 <!-- the following based on https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons -->

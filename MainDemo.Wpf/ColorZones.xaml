@@ -40,7 +40,6 @@
             <smtx:XamlDisplay UniqueKey="color_zones_inverted">
                 <materialDesign:ColorZone
                     Mode="Inverted"
-                    UniqueKey="color_zones_inverted"
                     Padding="16">
 
                     <DockPanel>
