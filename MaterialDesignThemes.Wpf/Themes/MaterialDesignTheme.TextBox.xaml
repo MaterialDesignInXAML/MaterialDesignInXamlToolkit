@@ -121,6 +121,7 @@
                                         Grid.Column="1"
                                         HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                         FontSize="{TemplateBinding FontSize}"
+                                        FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
                                         HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                         UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
                                         FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"

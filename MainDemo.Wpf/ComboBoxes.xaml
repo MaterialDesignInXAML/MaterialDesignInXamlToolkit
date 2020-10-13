@@ -220,6 +220,19 @@
                     </ComboBox.ItemsPanel>
                 </ComboBox>
             </smtx:XamlDisplay>
+            <smtx:XamlDisplay Key="comboboxes_12">
+                <ComboBox materialDesign:HintAssist.Hint="(Change fontfamily float hint)"
+                          materialDesign:HintAssist.FontFamily="Verdana"
+                          MinWidth="72"
+                          ItemsSource="{Binding LongListToTestComboVirtualization}"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </smtx:XamlDisplay>
         </StackPanel>
 
         <TextBlock

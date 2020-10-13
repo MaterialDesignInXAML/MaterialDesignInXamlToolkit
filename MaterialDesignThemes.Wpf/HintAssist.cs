@@ -66,6 +66,17 @@ namespace MaterialDesignThemes.Wpf
             => element.SetValue(HintOpacityProperty, value);
         #endregion
 
+        #region AttachedProperty : HintFontFamilyProperty
+        public static readonly DependencyProperty FontFamilyProperty
+            = DependencyProperty.RegisterAttached("FontFamily", typeof(FontFamily), typeof(HintAssist),
+                new PropertyMetadata(default));
+
+        public static FontFamily GetFontFamily(DependencyObject element)
+            => (FontFamily)element.GetValue(FontFamilyProperty);
+        public static void SetFontFamily(DependencyObject element, FontFamily value)
+            => element.SetValue(FontFamilyProperty, value);
+        #endregion
+
         #region AttachedProperty : ForegroundProperty
         public static readonly DependencyProperty ForegroundProperty
             = DependencyProperty.RegisterAttached("Foreground", typeof(Brush), typeof(HintAssist), new PropertyMetadata(default(Brush)));
