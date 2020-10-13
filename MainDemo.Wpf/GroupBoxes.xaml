@@ -1,109 +1,204 @@
-﻿<UserControl x:Class="MaterialDesignColors.WpfExample.GroupBoxes"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+﻿<UserControl
+    x:Class="MaterialDesignColors.WpfExample.GroupBoxes"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    mc:Ignorable="d" 
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+    
     <UserControl.Resources>
-
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.GroupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.GroupBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
     </UserControl.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
-        <smtx:XamlDisplay UniqueKey="groupbox_1" Grid.Column="0" Grid.Row="0">
-            <GroupBox Header="Default Look" Margin="16">
-                <TextBlock>My Content</TextBlock>
+        <smtx:XamlDisplay
+            UniqueKey="groupbox_1"
+            Grid.Column="0"
+            Grid.Row="0">
+            <GroupBox
+                Header="Default Look"
+                Margin="16">
+                <TextBlock Text="My Content"/>
             </GroupBox>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay UniqueKey="groupbox_2" Grid.Column="1" Grid.Row="0">
-            <GroupBox Header="Shadow Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">
-                <TextBlock Margin="6,6,6,6" TextWrapping="Wrap">Short loin picanha boudin pork belly. Ground round porchetta biltong, cow t-bone tri-tip strip steak chuck filet mignon jowl turducken. Landjaeger strip steak pork chop, jowl sirloin pork capicola andouille. Kevin ribeye tongue, drumstick hamburger frankfurter t-bone corned beef beef biltong cow venison. Biltong picanha bresaola pork belly, filet mignon spare ribs doner pork chop kielbasa. Swine flank drumstick pork belly pancetta spare ribs rump filet mignon.</TextBlock>
+        <smtx:XamlDisplay
+            UniqueKey="groupbox_2"
+            Grid.Column="1"
+            Grid.Row="0">
+            <GroupBox
+                Header="Shadow Header"
+                Style="{DynamicResource MaterialDesignGroupBox}"
+                Margin="16"
+                materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                BorderThickness="0">
+                <TextBlock
+                    Margin="6,6,6,6"
+                    TextWrapping="Wrap"
+                    Text="Short loin picanha boudin pork belly. Ground round porchetta biltong, cow t-bone tri-tip strip steak chuck filet mignon jowl turducken. Landjaeger strip steak pork chop, jowl sirloin pork capicola andouille. Kevin ribeye tongue, drumstick hamburger frankfurter t-bone corned beef beef biltong cow venison. Biltong picanha bresaola pork belly, filet mignon spare ribs doner pork chop kielbasa. Swine flank drumstick pork belly pancetta spare ribs rump filet mignon."/>
             </GroupBox>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay UniqueKey="groupbox_3" Grid.Column="2" Grid.Row="0">
+        <smtx:XamlDisplay
+            UniqueKey="groupbox_3"
+            Grid.Column="2"
+            Grid.Row="0">
             <Border Background="{DynamicResource MaterialDesignBackground}">
-                <GroupBox Header="Transparent Background" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" UseLayoutRounding="True" SnapsToDevicePixels="True">
-                    <TextBlock>My Content</TextBlock>
+                <GroupBox
+                    Header="Transparent Background"
+                    Style="{DynamicResource MaterialDesignGroupBox}"
+                    Margin="16"
+                    UseLayoutRounding="True">
+                    <TextBlock Text="My Content"/>
                 </GroupBox>
             </Border>
         </smtx:XamlDisplay>
-
-        <smtx:XamlDisplay UniqueKey="groupbox_4" Grid.Column="0" Grid.Row="1">
-            <GroupBox Header="Accent Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ColorZoneAssist.Mode="SecondaryMid">
-                <TextBlock>My Content</TextBlock>
+        <smtx:XamlDisplay
+            UniqueKey="groupbox_4"
+            Grid.Column="0"
+            Grid.Row="1">
+            <GroupBox
+                Header="Accent Header"
+                Style="{DynamicResource MaterialDesignGroupBox}"
+                Margin="16"
+                materialDesign:ColorZoneAssist.Mode="SecondaryMid">
+                <TextBlock Text="My Content"/>
             </GroupBox>
         </smtx:XamlDisplay>
 
-
-        <smtx:XamlDisplay UniqueKey="groupbox_5" Grid.Column="1" Grid.Row="1">
-        <GroupBox Header="Custom Header" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" 
-                  materialDesign:ColorZoneAssist.Mode="Custom" materialDesign:ColorZoneAssist.Background="Black" materialDesign:ColorZoneAssist.Foreground="White">
-                <TextBlock>My Content</TextBlock>
+        <smtx:XamlDisplay
+            UniqueKey="groupbox_5"
+            Grid.Column="1"
+            Grid.Row="1">
+            <GroupBox
+                Header="Custom Header"
+                Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" 
+                materialDesign:ColorZoneAssist.Mode="Custom"
+                materialDesign:ColorZoneAssist.Background="Black"
+                materialDesign:ColorZoneAssist.Foreground="White">
+                <TextBlock Text="My Content"/>
             </GroupBox>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay UniqueKey="groupbox_6" Grid.Column="0" Grid.Row="2">
-            <GroupBox  Header="Card Group Box" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16">
+        <smtx:XamlDisplay
+            UniqueKey="groupbox_6"
+            Grid.Column="0"
+            Grid.Row="2">
+            <GroupBox
+                Header="Card Group Box"
+                Style="{DynamicResource MaterialDesignCardGroupBox}"
+                Margin="16">
                 <GroupBox.HeaderTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ImageArea" Height="32" Width="32" VerticalAlignment="Center" />
-                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="{Binding}"/>
+                            <materialDesign:PackIcon
+                                Kind="ImageArea"
+                                Height="32"
+                                Width="32"
+                                VerticalAlignment="Center"/>
+                            
+                            <TextBlock
+                                Margin="8,0,0,0"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Text="{Binding}"/>
                         </StackPanel>
                     </DataTemplate>
                 </GroupBox.HeaderTemplate>
-                <Image Source="Resources/Contact.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                
+                <Image
+                    Source="Resources/Contact.png"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
             </GroupBox>
         </smtx:XamlDisplay>
 
-
-        <smtx:XamlDisplay UniqueKey="groupbox_7" Grid.Column="1" Grid.Row="2">
-            <GroupBox  Header="Card Group Box Accent" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" 
+        <smtx:XamlDisplay
+            UniqueKey="groupbox_7"
+            Grid.Column="1"
+            Grid.Row="2">
+            <GroupBox
+                Header="Card Group Box Accent"
+                Style="{DynamicResource MaterialDesignCardGroupBox}"
+                Margin="16" 
                 materialDesign:ColorZoneAssist.Mode="SecondaryMid">
                 <GroupBox.HeaderTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ImageArea" Height="32" Width="32" VerticalAlignment="Center" />
-                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="{Binding}"/>
+                            <materialDesign:PackIcon
+                                Kind="ImageArea"
+                                Height="32"
+                                Width="32"
+                                VerticalAlignment="Center"/>
+                            
+                            <TextBlock
+                                Margin="8,0,0,0"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Text="{Binding}"/>
                         </StackPanel>
                     </DataTemplate>
                 </GroupBox.HeaderTemplate>
-                <Image Source="Resources/Contact.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                
+                <Image
+                    Source="Resources/Contact.png"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
             </GroupBox>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay UniqueKey="groupbox_8" Grid.Column="2" Grid.Row="2">
-            <GroupBox  Header="Card Group Box Custom" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" 
-                materialDesign:ColorZoneAssist.Mode="Custom" materialDesign:ColorZoneAssist.Background="Black" materialDesign:ColorZoneAssist.Foreground="White">
+        <smtx:XamlDisplay
+            UniqueKey="groupbox_8"
+            Grid.Column="2"
+            Grid.Row="2">
+            <GroupBox
+                Header="Card Group Box Custom"
+                Style="{DynamicResource MaterialDesignCardGroupBox}"
+                Margin="16" 
+                materialDesign:ColorZoneAssist.Mode="Custom"
+                materialDesign:ColorZoneAssist.Background="Black"
+                materialDesign:ColorZoneAssist.Foreground="White">
                 <GroupBox.HeaderTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ImageArea" Height="32" Width="32" VerticalAlignment="Center" />
-                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="{Binding}"/>
+                            <materialDesign:PackIcon
+                                Kind="ImageArea"
+                                Height="32"
+                                Width="32"
+                                VerticalAlignment="Center"/>
+                            
+                            <TextBlock
+                                Margin="8,0,0,0"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Text="{Binding}"/>
                         </StackPanel>
                     </DataTemplate>
                 </GroupBox.HeaderTemplate>
-                <Image Source="Resources/Contact.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                
+                <Image
+                    Source="Resources/Contact.png"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
             </GroupBox>
         </smtx:XamlDisplay>
     </Grid>

@@ -1,81 +1,101 @@
-﻿<UserControl x:Class="MaterialDesignDemo.ComboBoxes"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
-             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="600"
-             d:DataContext="{d:DesignInstance domain:FieldsViewModel, IsDesignTimeCreatable=False}">
+﻿<UserControl
+    x:Class="MaterialDesignDemo.ComboBoxes"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:colorsDomain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:demoAppDomain="clr-namespace:MaterialDesignDemo.Domain"
+    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="600"
+    d:DataContext="{d:DesignInstance colorsDomain:FieldsViewModel, IsDesignTimeCreatable=False}">
+    
     <UserControl.Resources>
         <Style x:Key="SectionTitle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock }">
             <Setter Property="Margin" Value="0 32 0 0" />
         </Style>
+        
         <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
             <Setter Property="Margin" Value="16 0" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
         </Style>
     </UserControl.Resources>
-    <StackPanel Margin="16 0" VerticalAlignment="Top" HorizontalAlignment="Left">
-        <TextBlock Style="{StaticResource SectionTitle}" Margin="0">ComboBoxes</TextBlock>
+    
+    <StackPanel
+        Margin="16 0"
+        VerticalAlignment="Top"
+        HorizontalAlignment="Left">
+        <TextBlock
+            Style="{StaticResource SectionTitle}"
+            Margin="0"
+            Text="ComboBoxes"/>
+        
         <StackPanel Orientation="Horizontal">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
                     <Setter Property="Width" Value="96" />
                 </Style>
             </StackPanel.Resources>
+     
             <smtx:XamlDisplay UniqueKey="comboboxes_1">
+
                 <ComboBox materialDesign:HintAssist.Hint="OS">
-                    <ComboBoxItem>Android</ComboBoxItem>
-                    <ComboBoxItem>iOS</ComboBoxItem>
-                    <ComboBoxItem>Linux</ComboBoxItem>
-                    <ComboBoxItem>Windows</ComboBoxItem>
+                    <ComboBoxItem Content="Android"/>
+                    <ComboBoxItem Content="iOS"/>
+                    <ComboBoxItem Content="Linux"/>
+                    <ComboBoxItem Content="Windows"/>
                 </ComboBox>
-            </smtx:XamlDisplay>
+            </smtx:XamlDisplay>           
             <smtx:XamlDisplay UniqueKey="comboboxes_2">
-                <ComboBox materialDesign:HintAssist.Hint="Search"
-                          materialDesign:HintAssist.HintOpacity=".26"
-                          IsEditable="True">
-                    <ComboBoxItem>Apple</ComboBoxItem>
-                    <ComboBoxItem>Banana</ComboBoxItem>
-                    <ComboBoxItem>Pear</ComboBoxItem>
-                    <ComboBoxItem>Orange</ComboBoxItem>
+                <ComboBox
+                    materialDesign:HintAssist.Hint="Search"
+                    materialDesign:HintAssist.HintOpacity=".26"
+                    IsEditable="True">
+                    <ComboBoxItem Content="Apple"/>
+                    <ComboBoxItem Content="Banana"/>
+                    <ComboBoxItem Content="Pear"/>
+                    <ComboBoxItem Content="Orange"/>
                 </ComboBox>
             </smtx:XamlDisplay>
+            
             <smtx:XamlDisplay UniqueKey="comboboxes_11">
-                <ComboBox materialDesign:HintAssist.Hint="Prefix"
-                          materialDesign:TextFieldAssist.PrefixText="$"
-                          IsEditable="True">
-                    <ComboBoxItem>Android</ComboBoxItem>
-                    <ComboBoxItem>iOS</ComboBoxItem>
-                    <ComboBoxItem>Linux</ComboBoxItem>
-                    <ComboBoxItem>Windows</ComboBoxItem>
+                <ComboBox
+                    materialDesign:HintAssist.Hint="Prefix"
+                    materialDesign:TextFieldAssist.PrefixText="$"
+                    IsEditable="True">
+                    <ComboBoxItem Content="Android"/>
+                    <ComboBoxItem Content="iOS"/>
+                    <ComboBoxItem Content="Linux"/>
+                    <ComboBoxItem Content="Windows"/>
                 </ComboBox>
             </smtx:XamlDisplay>
+            
             <smtx:XamlDisplay UniqueKey="comboboxes_3">
-                <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                          materialDesign:TextFieldAssist.HasClearButton="True"
-                          materialDesign:TextFieldAssist.SuffixText="sw"
-                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
-                          materialDesign:ColorZoneAssist.Mode="Inverted"
-                          materialDesign:HintAssist.Hint="OS"
-                          materialDesign:HintAssist.HelperText="Select one OS"
-                          MinWidth="128">
-                    <ComboBoxItem>Android</ComboBoxItem>
-                    <ComboBoxItem>iOS</ComboBoxItem>
-                    <ComboBoxItem>Linux</ComboBoxItem>
-                    <ComboBoxItem>Windows</ComboBoxItem>
+                <ComboBox
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    materialDesign:TextFieldAssist.SuffixText="sw"
+                    materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                    materialDesign:ColorZoneAssist.Mode="Inverted"
+                    materialDesign:HintAssist.Hint="OS"
+                    materialDesign:HintAssist.HelperText="Select one OS"
+                    MinWidth="128">
+                    <ComboBoxItem Content="Android"/>
+                    <ComboBoxItem Content="iOS"/>
+                    <ComboBoxItem Content="Linux"/>
+                    <ComboBoxItem Content="Windows"/>
                 </ComboBox>
             </smtx:XamlDisplay>
+            
             <smtx:XamlDisplay UniqueKey="comboboxes_4">
                 <ComboBox
                     IsEnabled="False"
                     materialDesign:HintAssist.Hint="Disabled Combo with Hint"
                     materialDesign:HintAssist.IsFloating="True">
-                    <ComboBoxItem IsSelected="True">Selected</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True" Content="Selected"/>
                 </ComboBox>
             </smtx:XamlDisplay>
         </StackPanel>
@@ -87,47 +107,71 @@
                     <Setter Property="HorizontalAlignment" Value="Left" />
                 </Style>
             </StackPanel.Resources>
+       
             <smtx:XamlDisplay UniqueKey="comboboxes_9">
+
                 <StackPanel>
-                    <CheckBox x:Name="DisplaySelectedItemCheckBox" IsThreeState="False" Margin="0 8 0 0">
-                        Display Selected Item In Drop Down
-                    </CheckBox>
-                    <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=DisplaySelectedItemCheckBox, Path=IsChecked}">
-                        <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
-                        <ComboBoxItem>Banana</ComboBoxItem>
-                        <ComboBoxItem>Pear</ComboBoxItem>
-                        <ComboBoxItem>Orange</ComboBoxItem>
+                    <CheckBox
+                        x:Name="DisplaySelectedItemCheckBox"
+                        IsThreeState="False"
+                        Margin="0 8 0 0"
+                        Content="Display Selected Item In Drop Down"/>
+
+                    <ComboBox
+                        materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=DisplaySelectedItemCheckBox, Path=IsChecked}">
+                        <ComboBoxItem IsSelected="True" Content="Apple"/>
+                        <ComboBoxItem Content="Banana"/>
+                        <ComboBoxItem Content="Pear"/>
+                        <ComboBoxItem Content="Orange"/>
                     </ComboBox>
                 </StackPanel>
             </smtx:XamlDisplay>
+
             <smtx:XamlDisplay UniqueKey="comboboxes_10">
+
                 <StackPanel>
-                    <CheckBox x:Name="ClassicModeCheckBox" IsThreeState="False" IsChecked="True">Use classic mode</CheckBox>
+                    <CheckBox
+                        x:Name="ClassicModeCheckBox"
+                        IsThreeState="False"
+                        IsChecked="True"
+                        Content="Use classic mode"/>
+                    
                     <ComboBox materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}">
-                        <ComboBoxItem IsSelected="True">Apple</ComboBoxItem>
-                        <ComboBoxItem>Banana</ComboBoxItem>
-                        <ComboBoxItem>Pear</ComboBoxItem>
-                        <ComboBoxItem>Orange</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True" Content="Apple"/>
+                        <ComboBoxItem Content="Banana"/>
+                        <ComboBoxItem Content="Pear"/>
+                        <ComboBoxItem Content="Orange"/>
                     </ComboBox>
                 </StackPanel>
             </smtx:XamlDisplay>
         </StackPanel>
 
 
-        <TextBlock Style="{StaticResource SectionTitle}">Virtualised ComboBoxes</TextBlock>
+        <TextBlock
+            Style="{StaticResource SectionTitle}"
+            Text="Virtualised ComboBoxes"/>
+
         <StackPanel Orientation="Horizontal">
+
             <smtx:XamlDisplay UniqueKey="comboboxes_5">
-                <ComboBox materialDesign:HintAssist.Hint="Virtualisation"
-                          MinWidth="72"
-                          ItemsSource="{Binding LongListToTestComboVirtualization}"
-                          SelectedValue="{Binding SelectedValueOne}">
+                <ComboBox
+                    materialDesign:HintAssist.Hint="Virtualisation"
+                    MinWidth="72"
+                    ItemsSource="{Binding LongListToTestComboVirtualization}"
+                    SelectedValue="{Binding SelectedValueOne}">
+
                     <ComboBox.SelectedItem>
-                        <Binding Path="SelectedValueOne" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding
+                            Path="SelectedValueOne"
+                            Mode="TwoWay"
+                            UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
-                                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                                <demoAppDomain:NotEmptyValidationRule
+                                    ValidatesOnTargetUpdated="True" />
                             </Binding.ValidationRules>
                         </Binding>
                     </ComboBox.SelectedItem>
+                    
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel />
@@ -135,7 +179,9 @@
                     </ComboBox.ItemsPanel>
                 </ComboBox>
             </smtx:XamlDisplay>
+
             <smtx:XamlDisplay UniqueKey="comboboxes_6">
+
                 <ComboBox materialDesign:HintAssist.Hint="(editable)"
                           MinWidth="72"
                           IsEditable="True"
@@ -143,7 +189,7 @@
                     <ComboBox.Text>
                         <Binding Path="SelectedTextTwo" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
-                                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                                <demoAppDomain:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                             </Binding.ValidationRules>
                         </Binding>
                     </ComboBox.Text>
@@ -181,27 +227,43 @@
             </smtx:XamlDisplay>
         </StackPanel>
 
+        <TextBlock
+            Style="{StaticResource SectionTitle}"
+            Text="Filled ComboBox"/>
+        
+        <smtx:XamlDisplay
+            UniqueKey="comboboxes_filled_combobox"
+            HorizontalAlignment="Left">
 
-        <TextBlock Style="{StaticResource SectionTitle}">Filled ComboBox</TextBlock>
-        <smtx:XamlDisplay UniqueKey="comboboxes_filled_combobox" HorizontalAlignment="Left">
             <StackPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <CheckBox x:Name="MaterialDesignFilledComboBoxEnabledComboBox"
-                              IsChecked="True" Margin="0,0,0,8" Content="Enabled" />
-                    <Button Content="Clear" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Right"
-                            Grid.Column="1" Click="ClearFilledComboBox_Click" />
+                    <CheckBox
+                        x:Name="MaterialDesignFilledComboBoxEnabledComboBox"
+                        IsChecked="True"
+                        Margin="0,0,0,8"
+                        Content="Enabled"/>
+                    
+                    <Button
+                        Content="Clear"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        HorizontalAlignment="Right"
+                        Grid.Column="1"
+                        Click="ClearFilledComboBox_Click" />
                 </Grid>
-                <ComboBox Style="{StaticResource MaterialDesignFilledComboBox}" x:Name="FilledComboBox"
-                          IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledComboBoxEnabledComboBox}"
-                          materialDesign:HintAssist.Hint="Some item"
-                          Width="256">
-                    <ComboBoxItem Content="Item 1" />
-                    <ComboBoxItem Content="Item 2" />
-                    <ComboBoxItem Content="Item 3" />
+                
+                <ComboBox
+                    x:Name="FilledComboBox"
+                    Style="{StaticResource MaterialDesignFilledComboBox}" 
+                    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledComboBoxEnabledComboBox}"
+                    materialDesign:HintAssist.Hint="Some item"
+                    Width="256">
+                    <ComboBoxItem Content="Item 1"/>
+                    <ComboBoxItem Content="Item 2"/>
+                    <ComboBoxItem Content="Item 3"/>
                 </ComboBox>
             </StackPanel>
         </smtx:XamlDisplay>

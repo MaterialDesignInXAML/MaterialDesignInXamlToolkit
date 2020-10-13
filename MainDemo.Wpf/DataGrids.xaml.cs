@@ -1,15 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignColors.WpfExample
+﻿namespace MaterialDesignColors.WpfExample
 {
-    /// <summary>
-    /// Interaction logic for Grids.xaml
-    /// </summary>
-    public partial class DataGrids : UserControl
+    public partial class DataGrids
     {
-        public DataGrids()
-        {
-            InitializeComponent();
-        }
+        public DataGrids() => InitializeComponent();
     }
 }

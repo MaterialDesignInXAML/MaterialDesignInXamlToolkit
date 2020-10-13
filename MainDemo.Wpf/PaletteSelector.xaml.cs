@@ -1,15 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignColors.WpfExample
+﻿namespace MaterialDesignColors.WpfExample
 {
-    /// <summary>
-    /// Interaction logic for PaletteSelector.xaml
-    /// </summary>
-    public partial class PaletteSelector : UserControl
+    public partial class PaletteSelector
     {
-        public PaletteSelector()
-        {
-            InitializeComponent();
-        }
+        public PaletteSelector() => InitializeComponent();
     }
 }

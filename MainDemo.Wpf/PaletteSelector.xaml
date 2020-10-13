@@ -1,74 +1,101 @@
-﻿<UserControl x:Class="MaterialDesignColors.WpfExample.PaletteSelector"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
-             xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
-             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+﻿<UserControl
+    x:Class="MaterialDesignColors.WpfExample.PaletteSelector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:MaterialDesignColors.WpfExample"
+    xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
+    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+    mc:Ignorable="d" 
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+
     <UserControl.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
-            <Setter Property="Margin" Value="0" />
-            <Setter Property="CommandParameter" Value="{Binding}" />
-            <Setter Property="VerticalAlignment" Value="Stretch" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="CommandParameter" Value="{Binding}"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Foreground">
                 <Setter.Value>
-                    <SolidColorBrush Color="{Binding ExemplarHue.Foreground, Mode=OneTime}" />
+                    <SolidColorBrush Color="{Binding ExemplarHue.Foreground, Mode=OneTime}"/>
                 </Setter.Value>
             </Setter>
         </Style>
+
         <Style x:Key="PalettePath" TargetType="Path">
-            <Setter Property="Data" Value="M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z" />
+            <Setter Property="Data" Value="M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z"/>
             <Setter Property="Fill">
                 <Setter.Value>
-                    <SolidColorBrush Color="{Binding ExemplarHue.Foreground, Mode=OneTime}" />
+                    <SolidColorBrush Color="{Binding ExemplarHue.Foreground, Mode=OneTime}"/>
                 </Setter.Value>
             </Setter>
         </Style>
+
         <DataTemplate DataType="{x:Type materialDesignColors:Swatch}">
-            <wpf:Card Margin="2 2 6 6" Width="240">
+            <wpf:Card
+                Margin="2 2 6 6"
+                Width="240">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Name}" Margin="8" Grid.ColumnSpan="2" />
-                    <Border Grid.Row="1" Grid.Column="0" MinWidth="120">
+
+                    <TextBlock
+                        Text="{Binding Name}"
+                        Margin="8"
+                        Grid.ColumnSpan="2"/>
+
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        MinWidth="120">
                         <Border.Background>
-                            <SolidColorBrush Color="{Binding ExemplarHue.Color, Mode=OneTime}" />
+                            <SolidColorBrush Color="{Binding ExemplarHue.Color, Mode=OneTime}"/>
                         </Border.Background>
-                        <Button Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PaletteSelector}}, Path=DataContext.ApplyPrimaryCommand, Mode=OneTime}"
-                                CommandParameter="{Binding}">
+
+                        <Button
+                            Command="{Binding RelativeSource={RelativeSource FindAncestor,
+                                    AncestorType={x:Type local:PaletteSelector}},
+                                    Path=DataContext.ApplyPrimaryCommand, Mode=OneTime}"
+                            CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Primary" />
+                                <TextBlock Text="Primary"/>
                                 <Viewbox Width="16" Height="16">
                                     <Canvas Width="24" Height="24">
-                                        <Path Style="{StaticResource PalettePath}" />
+                                        <Path Style="{StaticResource PalettePath}"/>
                                     </Canvas>
                                 </Viewbox>
                             </StackPanel>
                         </Button>
                     </Border>
-                    <Border Grid.Row="1" Grid.Column="1" 
-                                        Visibility="{Binding IsAccented, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneTime}"
-                                        Width="120">
+
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="1" 
+                        Width="120"
+                        Visibility="{Binding IsAccented, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneTime}">
                         <Border.Background>
-                            <SolidColorBrush Color="{Binding AccentExemplarHue.Color, Mode=OneTime}" />
+                            <SolidColorBrush Color="{Binding AccentExemplarHue.Color, Mode=OneTime}"/>
                         </Border.Background>
-                        <Button Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PaletteSelector}}, Path=DataContext.ApplyAccentCommand, Mode=OneTime}"
-                                CommandParameter="{Binding}">
+
+                        <Button
+                            Command="{Binding RelativeSource={RelativeSource FindAncestor,
+                                    AncestorType={x:Type local:PaletteSelector}},
+                                    Path=DataContext.ApplyAccentCommand, Mode=OneTime}"
+                            CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Accent" />
+                                <TextBlock Text="Accent"/>
                                 <Viewbox Width="16" Height="16">
                                     <Canvas Width="24" Height="24">
-                                        <Path Style="{StaticResource PalettePath}" />
+                                        <Path Style="{StaticResource PalettePath}"/>
                                     </Canvas>
                                 </Viewbox>
                             </StackPanel>
@@ -78,34 +105,58 @@
             </wpf:Card>
         </DataTemplate>
     </UserControl.Resources>
+
     <DockPanel>
-        <wpf:Card DockPanel.Dock="Top" Margin="2">
+        <wpf:Card
+            DockPanel.Dock="Top"
+            Margin="2">
             <DockPanel>
-                <local:Palette DockPanel.Dock="Left" Width="200" />    
-                <TextBlock Margin="16" TextWrapping="Wrap" VerticalAlignment="Center">This is your current palette.  Configure your initial palette in App.xaml, but palettes can be changed at runtime.</TextBlock>
+                <local:Palette
+                    DockPanel.Dock="Left"
+                    Width="200"/>
+                <TextBlock
+                    Margin="16"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Center"
+                    Text="This is your current palette. Configure your initial palette in App.xaml, but palettes can be changed at runtime."/>
             </DockPanel>
         </wpf:Card>
+
         <Grid Margin="0 16 0 0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Margin="8">
-                <TextBlock VerticalAlignment="Center">Light</TextBlock>
-                <ToggleButton Margin="8 0 16 0"
-                              IsChecked="{Binding IsDarkTheme}"/>
-                <TextBlock VerticalAlignment="Center">Dark</TextBlock>
+
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="8">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Text="Light"/>
+
+                <ToggleButton
+                    Margin="8 0 16 0"
+                    IsChecked="{Binding IsDarkTheme}"/>
+
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Text="Dark"/>
             </StackPanel>
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0 12 0 0">
+
+            <ScrollViewer
+                Grid.Row="1"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Disabled"
+                Margin="0 12 0 0">
                 <ItemsControl ItemsSource="{Binding Swatches, Mode=OneTime}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel />
+                            <WrapPanel/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
             </ScrollViewer>
         </Grid>
     </DockPanel>
-
 </UserControl>

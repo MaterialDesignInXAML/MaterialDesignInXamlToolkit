@@ -1,12 +1,11 @@
 using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using MaterialDesignColors.WpfExample.Domain;
 
 namespace MaterialDesignColors.WpfExample
 {
-    public partial class Buttons : UserControl
+    public partial class Buttons
     {
         public Buttons()
         {
@@ -17,7 +16,7 @@ namespace MaterialDesignColors.WpfExample
         public ICommand FloatingActionDemoCommand { get; }
 
         private void Execute(object o)
-            => Console.WriteLine("Floating action button command. - " + (o ?? "NULL").ToString());
+            => Console.WriteLine($"Floating action button command. - {o ?? "NULL"}");
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
             => Console.WriteLine("Just checking we haven't suppressed the button.");
@@ -30,7 +29,7 @@ namespace MaterialDesignColors.WpfExample
 
         private void CountingButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (CountingBadge.Badge == null || Equals(CountingBadge.Badge, ""))
+            if (CountingBadge.Badge == null || Equals(CountingBadge.Badge, string.Empty))
                 CountingBadge.Badge = 0;
 
             var next = int.Parse(CountingBadge.Badge.ToString()) + 1;

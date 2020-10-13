@@ -1,13 +1,12 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 
 namespace MaterialDesignColors.WpfExample
 {
-    public partial class Cards : UserControl
+    public partial class Cards
     {
         public Cards() => InitializeComponent();
 
         private void Flipper_OnIsFlippedChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
-            => System.Diagnostics.Debug.WriteLine("Card is flipped = " + e.NewValue);
+            => System.Diagnostics.Debug.WriteLine($"Card is flipped = {e.NewValue}");
     }
 }

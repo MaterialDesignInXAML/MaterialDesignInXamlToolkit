@@ -1,15 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignDemo
+﻿namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for Transitions.xaml
-    /// </summary>
-    public partial class Transitions : UserControl
+    public partial class Transitions
     {
-        public Transitions()
-        {
-            InitializeComponent();
-        }
+        public Transitions() => InitializeComponent();
     }
 }

@@ -1,37 +1,51 @@
-﻿<UserControl x:Class="MaterialDesignColors.WpfExample.Trees"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
-             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+﻿<UserControl
+    x:Class="MaterialDesignColors.WpfExample.Trees"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:domain="clr-namespace:MaterialDesignColors.WpfExample.Domain"
+    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    mc:Ignorable="d" 
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
+    <ScrollViewer
+        VerticalScrollBarVisibility="Auto"
+        HorizontalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}">Basic Tree View:</TextBlock>
-            <smtx:XamlDisplay UniqueKey="trees_1" Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Top">
+            <TextBlock
+                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                Text="Basic Tree View:"/>
+
+            <smtx:XamlDisplay
+                UniqueKey="trees_1"
+                Grid.Column="0"
+                Grid.Row="1"
+                VerticalContentAlignment="Top">
                 <TreeView MinWidth="220">
                     <TreeViewItem Header="Fruit">
                         <TreeViewItem>
@@ -39,11 +53,14 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Viewbox Width="16" Height="16">
                                         <Canvas Width="24" Height="24">
-                                            <Path Data="M20,10C22,13 17,22 15,22C13,22 13,21 12,21C11,21 11,22 9,22C7,22 2,13 4,10C6,7 9,7 11,8V5C5.38,8.07 4.11,3.78 4.11,3.78C4.11,3.78 6.77,0.19 11,5V3H13V8C15,7 18,7 20,10Z" 
-                                          Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=Foreground}" />
+                                            <Path
+                                                Data="M20,10C22,13 17,22 15,22C13,22 13,21 12,21C11,21 11,22 9,22C7,22 2,13 4,10C6,7 9,7 11,8V5C5.38,8.07 4.11,3.78 4.11,3.78C4.11,3.78 6.77,0.19 11,5V3H13V8C15,7 18,7 20,10Z" 
+                                                Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=Foreground}"/>
                                         </Canvas>
                                     </Viewbox>
-                                    <TextBlock Margin="8 0 0 0">Apple</TextBlock>
+                                    <TextBlock
+                                        Margin="8 0 0 0"
+                                        Text="Apple"/>
                                 </StackPanel>
                             </TreeViewItem.Header>
                         </TreeViewItem>
@@ -55,18 +72,24 @@
                         <TreeViewItem Header="Pear"/>
                         <TreeViewItem Header="Strawberry"/>
                     </TreeViewItem>
-                    <TreeViewItem Header="OS" IsExpanded="True">
+
+                    <TreeViewItem
+                        Header="OS"
+                        IsExpanded="True">
                         <TreeViewItem Header="Amiga"/>
                         <TreeViewItem>
                             <TreeViewItem.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <Viewbox Width="16" Height="16">
                                         <Canvas Width="24" Height="24">
-                                            <Path Data="M15,5H14V4H15M10,5H9V4H10M15.53,2.16L16.84,0.85C17.03,0.66 17.03,0.34 16.84,0.14C16.64,-0.05 16.32,-0.05 16.13,0.14L14.65,1.62C13.85,1.23 12.95,1 12,1C11.04,1 10.14,1.23 9.34,1.63L7.85,0.14C7.66,-0.05 7.34,-0.05 7.15,0.14C6.95,0.34 6.95,0.66 7.15,0.85L8.46,2.16C6.97,3.26 6,5 6,7H18C18,5 17,3.25 15.53,2.16M20.5,8A1.5,1.5 0 0,0 19,9.5V16.5A1.5,1.5 0 0,0 20.5,18A1.5,1.5 0 0,0 22,16.5V9.5A1.5,1.5 0 0,0 20.5,8M3.5,8A1.5,1.5 0 0,0 2,9.5V16.5A1.5,1.5 0 0,0 3.5,18A1.5,1.5 0 0,0 5,16.5V9.5A1.5,1.5 0 0,0 3.5,8M6,18A1,1 0 0,0 7,19H8V22.5A1.5,1.5 0 0,0 9.5,24A1.5,1.5 0 0,0 11,22.5V19H13V22.5A1.5,1.5 0 0,0 14.5,24A1.5,1.5 0 0,0 16,22.5V19H17A1,1 0 0,0 18,18V8H6V18Z" 
-                                          Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=Foreground}" />
+                                            <Path
+                                                Data="M15,5H14V4H15M10,5H9V4H10M15.53,2.16L16.84,0.85C17.03,0.66 17.03,0.34 16.84,0.14C16.64,-0.05 16.32,-0.05 16.13,0.14L14.65,1.62C13.85,1.23 12.95,1 12,1C11.04,1 10.14,1.23 9.34,1.63L7.85,0.14C7.66,-0.05 7.34,-0.05 7.15,0.14C6.95,0.34 6.95,0.66 7.15,0.85L8.46,2.16C6.97,3.26 6,5 6,7H18C18,5 17,3.25 15.53,2.16M20.5,8A1.5,1.5 0 0,0 19,9.5V16.5A1.5,1.5 0 0,0 20.5,18A1.5,1.5 0 0,0 22,16.5V9.5A1.5,1.5 0 0,0 20.5,8M3.5,8A1.5,1.5 0 0,0 2,9.5V16.5A1.5,1.5 0 0,0 3.5,18A1.5,1.5 0 0,0 5,16.5V9.5A1.5,1.5 0 0,0 3.5,8M6,18A1,1 0 0,0 7,19H8V22.5A1.5,1.5 0 0,0 9.5,24A1.5,1.5 0 0,0 11,22.5V19H13V22.5A1.5,1.5 0 0,0 14.5,24A1.5,1.5 0 0,0 16,22.5V19H17A1,1 0 0,0 18,18V8H6V18Z" 
+                                                Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=Foreground}"/>
                                         </Canvas>
                                     </Viewbox>
-                                    <TextBlock Margin="8 0 0 0">Android</TextBlock>
+                                    <TextBlock
+                                        Margin="8 0 0 0"
+                                        Text="Android"/>
                                 </StackPanel>
                             </TreeViewItem.Header>
                         </TreeViewItem>
@@ -76,11 +99,14 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Viewbox Width="16" Height="16">
                                         <Canvas Width="24" Height="24">
-                                            <Path Data="M13.18,14.5C12.53,15.26 11.47,15.26 10.82,14.5L7.44,10.5C7.16,11.28 7,12.12 7,13C7,14.67 7.57,16.18 8.5,17.27C10,17.37 11.29,17.96 11.78,19C11.85,19 11.93,19 12.22,19C12.71,18 13.95,17.44 15.46,17.33C16.41,16.24 17,14.7 17,13C17,12.12 16.84,11.28 16.56,10.5L13.18,14.5M20,20.75C20,21.3 19.3,22 18.75,22H13.25C12.7,22 12,21.3 12,20.75C12,21.3 11.3,22 10.75,22H5.25C4.7,22 4,21.3 4,20.75C4,19.45 4.94,18.31 6.3,17.65C5.5,16.34 5,14.73 5,13C4,15 2.7,15.56 2.09,15C1.5,14.44 1.79,12.83 3.1,11.41C3.84,10.6 5,9.62 5.81,9.25C6.13,8.56 6.54,7.93 7,7.38V7A5,5 0 0,1 12,2A5,5 0 0,1 17,7V7.38C17.46,7.93 17.87,8.56 18.19,9.25C19,9.62 20.16,10.6 20.9,11.41C22.21,12.83 22.5,14.44 21.91,15C21.3,15.56 20,15 19,13C19,14.75 18.5,16.37 17.67,17.69C19.05,18.33 20,19.44 20,20.75M9.88,9C9.46,9.5 9.46,10.27 9.88,10.75L11.13,12.25C11.54,12.73 12.21,12.73 12.63,12.25L13.88,10.75C14.29,10.27 14.29,9.5 13.88,9H9.88M10,5.25C9.45,5.25 9,5.9 9,7C9,8.1 9.45,8.75 10,8.75C10.55,8.75 11,8.1 11,7C11,5.9 10.55,5.25 10,5.25M14,5.25C13.45,5.25 13,5.9 13,7C13,8.1 13.45,8.75 14,8.75C14.55,8.75 15,8.1 15,7C15,5.9 14.55,5.25 14,5.25Z" 
-                                          Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=Foreground}" />
+                                            <Path
+                                                Data="M13.18,14.5C12.53,15.26 11.47,15.26 10.82,14.5L7.44,10.5C7.16,11.28 7,12.12 7,13C7,14.67 7.57,16.18 8.5,17.27C10,17.37 11.29,17.96 11.78,19C11.85,19 11.93,19 12.22,19C12.71,18 13.95,17.44 15.46,17.33C16.41,16.24 17,14.7 17,13C17,12.12 16.84,11.28 16.56,10.5L13.18,14.5M20,20.75C20,21.3 19.3,22 18.75,22H13.25C12.7,22 12,21.3 12,20.75C12,21.3 11.3,22 10.75,22H5.25C4.7,22 4,21.3 4,20.75C4,19.45 4.94,18.31 6.3,17.65C5.5,16.34 5,14.73 5,13C4,15 2.7,15.56 2.09,15C1.5,14.44 1.79,12.83 3.1,11.41C3.84,10.6 5,9.62 5.81,9.25C6.13,8.56 6.54,7.93 7,7.38V7A5,5 0 0,1 12,2A5,5 0 0,1 17,7V7.38C17.46,7.93 17.87,8.56 18.19,9.25C19,9.62 20.16,10.6 20.9,11.41C22.21,12.83 22.5,14.44 21.91,15C21.3,15.56 20,15 19,13C19,14.75 18.5,16.37 17.67,17.69C19.05,18.33 20,19.44 20,20.75M9.88,9C9.46,9.5 9.46,10.27 9.88,10.75L11.13,12.25C11.54,12.73 12.21,12.73 12.63,12.25L13.88,10.75C14.29,10.27 14.29,9.5 13.88,9H9.88M10,5.25C9.45,5.25 9,5.9 9,7C9,8.1 9.45,8.75 10,8.75C10.55,8.75 11,8.1 11,7C11,5.9 10.55,5.25 10,5.25M14,5.25C13.45,5.25 13,5.9 13,7C13,8.1 13.45,8.75 14,8.75C14.55,8.75 15,8.1 15,7C15,5.9 14.55,5.25 14,5.25Z" 
+                                                Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=Foreground}"/>
                                         </Canvas>
                                     </Viewbox>
-                                    <TextBlock Margin="8 0 0 0">Linux</TextBlock>
+                                    <TextBlock
+                                        Margin="8 0 0 0"
+                                        Text="Linux"/>
                                 </StackPanel>
                             </TreeViewItem.Header>
                         </TreeViewItem>
@@ -90,7 +116,7 @@
                                     <Viewbox Width="16" Height="16">
                                         <Canvas Width="24" Height="24">
                                             <Path Data="M3,12V6.75L9,5.43V11.91L3,12M20,3V11.75L10,11.9V5.21L20,3M3,13L9,13.09V19.9L3,18.75V13M20,13.25V22L10,20.09V13.1L20,13.25Z" 
-                                          Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=Foreground}" />
+                                          Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=Foreground}"/>
                                         </Canvas>
                                     </Viewbox>
                                     <TextBlock Margin="8 0 0 0">Windows</TextBlock>
@@ -98,125 +124,222 @@
                             </TreeViewItem.Header>
                         </TreeViewItem>
                     </TreeViewItem>
-                    <TreeViewItem Header="Empty" />
+
+                    <TreeViewItem Header="Empty"/>
                 </TreeView>
             </smtx:XamlDisplay>
 
-            <TextBlock Grid.Column="1" Margin="32 0 0 0" Style="{StaticResource MaterialDesignHeadline6TextBlock}">MVVM/Binding:</TextBlock>
-            <smtx:XamlDisplay UniqueKey="trees_2" Grid.Column="1" Grid.Row="1" 
-                          Margin="32 0 0 0"
-                          VerticalAlignment="Top" VerticalContentAlignment="Top">
+            <TextBlock
+                Grid.Column="1"
+                Margin="32 0 0 0"
+                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                Text="MVVM/Binding:"/>
+
+            <smtx:XamlDisplay
+                UniqueKey="trees_2"
+                Grid.Column="1"
+                Grid.Row="1" 
+                Margin="32 0 0 0"
+                VerticalAlignment="Top"
+                VerticalContentAlignment="Top">
                 <Grid MinWidth="220">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TreeView Grid.Row="0"
-                      ItemsSource="{Binding MovieCategories}"
-                      MinWidth="220"
-                      SelectedItemChanged="TreeView_SelectedItemChanged">
+                    <TreeView
+                        Grid.Row="0"
+                        ItemsSource="{Binding MovieCategories}"
+                        MinWidth="220"
+                        SelectedItemChanged="TreeView_SelectedItemChanged">
                         <TreeView.Resources>
-                            <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}"
-                                              ItemsSource="{Binding Movies}">
-                                <TextBlock Text="{Binding Name}" Margin="3 2"/>
+                            <HierarchicalDataTemplate
+                                DataType="{x:Type domain:MovieCategory}"
+                                ItemsSource="{Binding Movies}">
+                                <TextBlock
+                                    Text="{Binding Name}"
+                                    Margin="3,2"/>
                             </HierarchicalDataTemplate>
+
                             <DataTemplate DataType="{x:Type domain:Movie}">
-                                <TextBlock Text="{Binding Name}" Margin="3 2"
-                                   ToolTip="{Binding Director}"/>
+                                <TextBlock
+                                    Text="{Binding Name}"
+                                    Margin="3 2"
+                                    ToolTip="{Binding Director}"/>
                             </DataTemplate>
                         </TreeView.Resources>
                     </TreeView>
-                    <materialDesign:PopupBox Grid.Row="1"
-                                     Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
-                                     PlacementMode="LeftAndAlignMiddles"
-                                     UnfurlOrientation="Horizontal"
-                                     ToolTip="Manage items"
-                                     Margin="0 0 10 10"
-                                     HorizontalAlignment="Right" VerticalAlignment="Bottom">
+
+                    <materialDesign:PopupBox
+                        Grid.Row="1"
+                        Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+                        PlacementMode="LeftAndAlignMiddles"
+                        UnfurlOrientation="Horizontal"
+                        ToolTip="Manage items"
+                        Margin="0 0 10 10"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom">
                         <StackPanel Orientation="Horizontal">
-                            <Button ToolTip="Add an item"
-                            Command="{Binding AddCommand}">
-                                <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
-                              Stretch="Uniform"
-                              Width="15" Height="15"
-                              Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
+                            <Button
+                                ToolTip="Add an item"
+                                Command="{Binding AddCommand}">
+                                <Path
+                                    Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+                                    Stretch="Uniform"
+                                    Width="15" Height="15"
+                                    Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
                             </Button>
-                            <Button ToolTip="Remove selected item"
-                            Command="{Binding RemoveSelectedItemCommand}">
-                                <Path Data="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
-                              Stretch="Uniform"
-                              Width="15" Height="15"
-                              Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
+
+                            <Button
+                                ToolTip="Remove selected item"
+                                Command="{Binding RemoveSelectedItemCommand}">
+                                <Path
+                                    Data="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
+                                    Stretch="Uniform"
+                                    Width="15" Height="15"
+                                    Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
                             </Button>
                         </StackPanel>
                     </materialDesign:PopupBox>
                 </Grid>
             </smtx:XamlDisplay>
 
-            <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline6TextBlock}">Additional node content, syntax 1:</TextBlock>
-            <smtx:XamlDisplay UniqueKey="trees_3" Grid.Row="3">
+            <TextBlock
+                Grid.Row="2"
+                Text="Additional node content, syntax 1:"
+                Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
+
+            <smtx:XamlDisplay
+                UniqueKey="trees_3"
+                Grid.Row="3">
                 <TreeView>
                     <materialDesign:TreeViewAssist.AdditionalTemplate>
                         <DataTemplate>
-                            <materialDesign:ColorZone Mode="PrimaryLight" CornerRadius="6">
-                                <TextBlock FontSize="10" Margin="8 1 8 1" FontStyle="Italic">8 planets</TextBlock>
+                            <materialDesign:ColorZone
+                                Mode="PrimaryLight"
+                                CornerRadius="6">
+                                <TextBlock
+                                    FontSize="10"
+                                    Margin="8 1 8 1"
+                                    FontStyle="Italic"
+                                    Text="8 planets"/>
                             </materialDesign:ColorZone>
                         </DataTemplate>
                     </materialDesign:TreeViewAssist.AdditionalTemplate>
+
                     <TreeViewItem Header="Solar System">
-                        <TreeViewItem Header="Mercury" materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}" />
-                        <TreeViewItem Header="Venus" materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}" />
-                        <TreeViewItem Header="Earth" materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}" />
-                        <TreeViewItem Header="Mars" materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}" />
-                        <TreeViewItem Header="Jupiter" materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}" />
-                        <TreeViewItem Header="Saturn" materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}" />
-                        <TreeViewItem Header="Uranus" materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}" />
-                        <TreeViewItem Header="Neptune" materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}" />
+                        <TreeViewItem
+                            Header="Mercury"
+                            materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"/>
+
+                        <TreeViewItem
+                            Header="Venus"
+                            materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"/>
+
+                        <TreeViewItem
+                            Header="Earth"
+                            materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"/>
+
+                        <TreeViewItem
+                            Header="Mars"
+                            materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"/>
+
+                        <TreeViewItem
+                            Header="Jupiter"
+                            materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"/>
+
+                        <TreeViewItem
+                            Header="Saturn"
+                            materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"/>
+
+                        <TreeViewItem
+                            Header="Uranus"
+                            materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"/>
+
+                        <TreeViewItem
+                            Header="Neptune"
+                            materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"/>
                     </TreeViewItem>
                 </TreeView>
             </smtx:XamlDisplay>
 
-            <TextBlock Grid.Row="2" Grid.Column="1" Margin="32 0 0 0" Style="{StaticResource MaterialDesignHeadline6TextBlock}">Additional node content, syntax 2:</TextBlock>
-            <smtx:XamlDisplay UniqueKey="trees_4" Grid.Row="3" Grid.Column="1" Margin="32 0 0 0" >
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="32 0 0 0"
+                Text="Additional node content, syntax 2:"
+                Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
+
+            <smtx:XamlDisplay
+                UniqueKey="trees_4"
+                Grid.Row="3"
+                Grid.Column="1"
+                Margin="32 0 0 0">
                 <TreeView>
                     <materialDesign:TreeViewAssist.AdditionalTemplateSelector>
                         <domain:TreeExampleSimpleTemplateSelector>
                             <domain:TreeExampleSimpleTemplateSelector.SolarSystemTemplate>
                                 <DataTemplate>
-                                    <materialDesign:ColorZone Mode="SecondaryMid" CornerRadius="6" materialDesign:ShadowAssist.ShadowDepth="Depth1"
-                                                          Margin="2">
+                                    <materialDesign:ColorZone
+                                        Mode="SecondaryMid"
+                                        CornerRadius="6"
+                                        materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                                        Margin="2">
                                         <DockPanel LastChildFill="True">
-                                            <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" Margin="8 -6 8 -6" DockPanel.Dock="Right">
-                                                <materialDesign:PackIcon Kind="Magnify" />
-                                            </Button>
-                                            <TextBlock FontSize="11" Margin="8 0 0 0" VerticalAlignment="Center" FontStyle="Italic">8 planets</TextBlock>
+                                            <Button
+                                                Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                                                Margin="8 -6 8 -6"
+                                                DockPanel.Dock="Right"
+                                                Content="{materialDesign:PackIcon Kind=Search}"/>
+
+                                            <TextBlock
+                                                FontSize="11"
+                                                Margin="8 0 0 0"
+                                                VerticalAlignment="Center"
+                                                FontStyle="Italic"
+                                                Text="8 planets"/>
                                         </DockPanel>
                                     </materialDesign:ColorZone>
                                 </DataTemplate>
                             </domain:TreeExampleSimpleTemplateSelector.SolarSystemTemplate>
                         </domain:TreeExampleSimpleTemplateSelector>
                     </materialDesign:TreeViewAssist.AdditionalTemplateSelector>
+
                     <TreeViewItem Header="Solar System">
-                        <TreeViewItem Header="Mercury" />
-                        <TreeViewItem Header="Venus" />
-                        <TreeViewItem Header="Earth" />
-                        <TreeViewItem Header="Mars" />
-                        <TreeViewItem Header="Jupiter" />
-                        <TreeViewItem Header="Saturn" />
-                        <TreeViewItem Header="Uranus" />
-                        <TreeViewItem Header="Neptune" />
+                        <TreeViewItem Header="Mercury"/>
+                        <TreeViewItem Header="Venus"/>
+                        <TreeViewItem Header="Earth"/>
+                        <TreeViewItem Header="Mars"/>
+                        <TreeViewItem Header="Jupiter"/>
+                        <TreeViewItem Header="Saturn"/>
+                        <TreeViewItem Header="Uranus"/>
+                        <TreeViewItem Header="Neptune"/>
                     </TreeViewItem>
                 </TreeView>
             </smtx:XamlDisplay>
 
-            <TextBlock Grid.Row="2" Grid.Column="2" Margin="32 0 0 0" Style="{StaticResource MaterialDesignHeadline6TextBlock}">Additional node content, showcase:</TextBlock>
-            <smtx:XamlDisplay UniqueKey="trees_5" Grid.Row="3" Grid.Column="2" Margin="32 0 0 0" >
-                <TreeView DisplayMemberPath="Name" MinWidth="220">
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="2"
+                Margin="32 0 0 0"
+                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                Text="Additional node content, showcase:"/>
+
+            <smtx:XamlDisplay
+                UniqueKey="trees_5"
+                Grid.Row="3"
+                Grid.Column="2"
+                Margin="32 0 0 0">
+                <TreeView
+                    DisplayMemberPath="Name"
+                    MinWidth="220">
                     <TreeView.Resources>
                         <DataTemplate DataType="{x:Type domain:Planet}">
                             <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="GoogleEarth" />
-                                <TextBlock Text="{Binding Name,Mode=OneTime}" Margin="12 0 0 0" />
+                                <materialDesign:PackIcon Kind="GoogleEarth"/>
+                                <TextBlock
+                                    Text="{Binding Name,Mode=OneTime}"
+                                    Margin="12 0 0 0"/>
                             </StackPanel>
                         </DataTemplate>
                     </TreeView.Resources>
@@ -224,54 +347,130 @@
                         <domain:TreeExampleSimpleTemplateSelector>
                             <domain:TreeExampleSimpleTemplateSelector.SolarSystemTemplate>
                                 <DataTemplate>
-                                    <materialDesign:ColorZone Mode="Standard" CornerRadius="6" materialDesign:ShadowAssist.ShadowDepth="Depth1"
-                                                          Margin="2">
+                                    <materialDesign:ColorZone
+                                        Mode="Standard"
+                                        CornerRadius="6"
+                                        materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                                        Margin="2">
                                         <DockPanel LastChildFill="True">
-                                            <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" Margin="8 -6 8 -6" DockPanel.Dock="Right">
-                                                <materialDesign:PackIcon Kind="Magnify" />
-                                            </Button>
-                                            <TextBlock FontSize="11" Margin="8 0 0 0" VerticalAlignment="Center" FontStyle="Italic">8 planets</TextBlock>
+                                            <Button
+                                                Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                                                Margin="8 -6 8 -6"
+                                                DockPanel.Dock="Right"
+                                                Content="{materialDesign:PackIcon Kind=Search}"/>
+
+                                            <TextBlock
+                                                FontSize="11"
+                                                Margin="8 0 0 0"
+                                                VerticalAlignment="Center"
+                                                FontStyle="Italic"
+                                                Text="8 planets"/>
                                         </DockPanel>
                                     </materialDesign:ColorZone>
                                 </DataTemplate>
                             </domain:TreeExampleSimpleTemplateSelector.SolarSystemTemplate>
+
                             <domain:TreeExampleSimpleTemplateSelector.PlanetTemplate>
                                 <DataTemplate DataType="{x:Type domain:Planet}">
-                                    <Grid TextElement.FontSize="10" TextElement.FontStyle="Italic" Margin="8 0 0 0">
+                                    <Grid
+                                        TextElement.FontSize="10"
+                                        TextElement.FontStyle="Italic"
+                                        Margin="8 0 0 0">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
+
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="From Sun" />
-                                        <TextBlock Grid.Column="1" Margin="3 0 0 0" Text="{Binding DistanceFromSun, Mode=OneTime, StringFormat={}{0}AU}" />
-                                        <TextBlock Grid.Row="1" Text="From Earth" />
-                                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="3 0 0 0" Text="{Binding DistanceFromEarth,Mode=OneTime, StringFormat={}{0}AU}" />
-                                        <TextBlock Grid.Column="2" Text="Velocity" Margin="12 0 0 0" />
-                                        <TextBlock Grid.Column="3" Margin="3 0 0 0" Text="{Binding Velocity,Mode=OneTime, StringFormat={}{0}km/s}" />
+
+                                        <TextBlock Text="From Sun"/>
+
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Margin="3 0 0 0"
+                                            Text="{Binding DistanceFromSun, Mode=OneTime, StringFormat={}{0}AU}"/>
+
+                                        <TextBlock
+                                            Grid.Row="1"
+                                            Text="From Earth"/>
+
+                                        <TextBlock
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Margin="3 0 0 0"
+                                            Text="{Binding DistanceFromEarth,Mode=OneTime, StringFormat={}{0}AU}"/>
+
+                                        <TextBlock
+                                            Grid.Column="2"
+                                            Text="Velocity"
+                                            Margin="12 0 0 0"/>
+
+                                        <TextBlock
+                                            Grid.Column="3"
+                                            Margin="3 0 0 0"
+                                            Text="{Binding Velocity,Mode=OneTime, StringFormat={}{0}km/s}"/>
                                     </Grid>
                                 </DataTemplate>
                             </domain:TreeExampleSimpleTemplateSelector.PlanetTemplate>
                         </domain:TreeExampleSimpleTemplateSelector>
                     </materialDesign:TreeViewAssist.AdditionalTemplateSelector>
+
                     <TreeViewItem Header="Solar System">
-                        <domain:Planet Name="Mercury" DistanceFromSun=".42" DistanceFromEarth="1.4" Velocity="44.29" />
-                        <domain:Planet Name="Venus" DistanceFromSun=".73" DistanceFromEarth="1.69" Velocity="34.82" />
-                        <domain:Planet Name="Earth" DistanceFromSun="0.99" DistanceFromEarth="0" Velocity="30.16" />
-                        <domain:Planet Name="Mars" DistanceFromSun="1.59" DistanceFromEarth="1.55" Velocity="23.12" />
-                        <domain:Planet Name="Jupiter" DistanceFromSun="5.43" DistanceFromEarth="5.29" Velocity="12.51" />
-                        <domain:Planet Name="Saturn" DistanceFromSun="10.07" DistanceFromEarth="10.69" Velocity="9.14" />
-                        <domain:Planet Name="Uranus" DistanceFromSun="19.90" DistanceFromEarth="20.37" Velocity="6.55" />
-                        <domain:Planet Name="Neptune" DistanceFromSun="29.94" DistanceFromEarth="30.88" Velocity="5.45" />
+                        <domain:Planet
+                            Name="Mercury"
+                            DistanceFromSun=".42"
+                            DistanceFromEarth="1.4"
+                            Velocity="44.29"/>
+
+                        <domain:Planet
+                            Name="Venus"
+                            DistanceFromSun=".73"
+                            DistanceFromEarth="1.69"
+                            Velocity="34.82"/>
+
+                        <domain:Planet
+                            Name="Earth"
+                            DistanceFromSun="0.99"
+                            DistanceFromEarth="0"
+                            Velocity="30.16"/>
+
+                        <domain:Planet
+                            Name="Mars"
+                            DistanceFromSun="1.59"
+                            DistanceFromEarth="1.55"
+                            Velocity="23.12"/>
+
+                        <domain:Planet
+                            Name="Jupiter"
+                            DistanceFromSun="5.43"
+                            DistanceFromEarth="5.29"
+                            Velocity="12.51"/>
+
+                        <domain:Planet
+                            Name="Saturn"
+                            DistanceFromSun="10.07"
+                            DistanceFromEarth="10.69"
+                            Velocity="9.14"/>
+
+                        <domain:Planet
+                            Name="Uranus"
+                            DistanceFromSun="19.90"
+                            DistanceFromEarth="20.37"
+                            Velocity="6.55"/>
+
+                        <domain:Planet
+                            Name="Neptune"
+                            DistanceFromSun="29.94"
+                            DistanceFromEarth="30.88"
+                            Velocity="5.45"/>
                     </TreeViewItem>
                 </TreeView>
             </smtx:XamlDisplay>
         </Grid>
     </ScrollViewer>
 </UserControl>
-
