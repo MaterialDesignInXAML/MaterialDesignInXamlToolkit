@@ -246,7 +246,7 @@
                                           BorderThickness="0" Cursor="Hand"
                                           IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                           Style="{StaticResource MaterialDesignHorizontalHeaderStyle}"
-                                          TextElement.FontSize="15"
+                                          TextElement.FontSize="{TemplateBinding wpf:ExpanderAssist.HeaderFontSize}"
                                           Opacity="0.87"
                                           Foreground="{TemplateBinding Foreground}"
                                           Content="{TemplateBinding Header}"

@@ -31,5 +31,15 @@ namespace MaterialDesignThemes.Wpf
             => element.SetValue(VerticalHeaderPaddingProperty, value);
         #endregion
 
+        #region AttachedProperty : HeaderFontSizeProperty
+        public static readonly DependencyProperty HeaderFontSizeProperty
+            = DependencyProperty.RegisterAttached("HeaderFontSize", typeof(double), typeof(ExpanderAssist),
+                new FrameworkPropertyMetadata(15.0));
+
+        public static double GetHeaderFontSize(Expander element)
+            => (double)element.GetValue(HeaderFontSizeProperty);
+        public static void SetHeaderFontSize(Expander element, double value)
+            => element.SetValue(HeaderFontSizeProperty, value);
+        #endregion
     }
 }
