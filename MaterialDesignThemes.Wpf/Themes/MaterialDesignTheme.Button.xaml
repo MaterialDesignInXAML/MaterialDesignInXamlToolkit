@@ -218,9 +218,6 @@
                                 CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
-                            <Border.Resources>
-                                <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{DynamicResource PrimaryHueMidBrushColor}" Opacity="0.06"/>
-                            </Border.Resources>
                             <wpf:Ripple Content="{TemplateBinding Content}" 
                                         ContentTemplate="{TemplateBinding ContentTemplate}" 
                                         Focusable="False"
@@ -242,7 +239,11 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Background" TargetName="border" Value="{Binding Foreground,
+                                                                                        RelativeSource={RelativeSource Mode=TemplatedParent},
+                                                                                        Converter={StaticResource BrushOpacityConverter},
+                                                                                        ConverterParameter=0.16}" />
+
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
