@@ -169,9 +169,6 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="Button.IsDefaulted" Value="true">
-                            <!--Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/-->
-                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource PrimaryHueMidBrush}" />
                             <Setter Property="Background" TargetName="border" Value="{Binding Foreground,
