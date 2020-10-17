@@ -57,7 +57,7 @@
                     <system:Double x:Key="IconSize">24</system:Double>
                 </StackPanel.Resources>
                 
-                <smtx:XamlDisplay Key="buttons_1" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_1" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                         ToolTip="MaterialDesignFloatingActionMiniLightButton">
@@ -68,7 +68,7 @@
                     </Button>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_2" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_2" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         HorizontalAlignment="Left"
@@ -80,7 +80,7 @@
                     </Button>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_3" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_3" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                         ToolTip="MaterialDesignFloatingActionMiniDarkButton">
@@ -91,7 +91,7 @@
                     </Button>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_4" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_4" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                         ToolTip="MaterialDesignFloatingActionMiniAccentButton">
@@ -102,7 +102,7 @@
                     </Button>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_5" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_5" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                         ToolTip="MaterialDesignFloatingActionLightButton">
@@ -113,7 +113,7 @@
                     </Button>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_6" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_6" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionButton}"
                         ToolTip="MaterialDesignFloatingActionButton">
@@ -124,7 +124,7 @@
                     </Button>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_7" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_7" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                         ToolTip="MaterialDesignFloatingActionDarkButton">
@@ -135,7 +135,7 @@
                     </Button>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_8" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_8" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
                         ToolTip="MaterialDesignFloatingActionAccentButton">
@@ -155,7 +155,7 @@
                     <system:Double x:Key="ButtonWidth">100</system:Double>
                 </StackPanel.Resources>
                 
-                <smtx:XamlDisplay Key="buttons_12" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_12" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
                         Width="{StaticResource ButtonWidth}"
@@ -163,7 +163,7 @@
                         Content="_LIGHT"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_13" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_13" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         Width="{StaticResource ButtonWidth}"
@@ -171,7 +171,7 @@
                         Content="_MID"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_14" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_14" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Width="{StaticResource ButtonWidth}"
@@ -179,7 +179,7 @@
                         Content="_DARK"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_15" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_15" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedAccentButton}"
                         Width="{StaticResource ButtonWidth}"
@@ -191,13 +191,13 @@
             <StackPanel
                 Orientation="Horizontal"
                 Margin="0 24 0 0">
-                <smtx:XamlDisplay Key="buttons_16" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_16" Margin="8 0">
                     <materialDesign:Badged Badge="3">
                         <Button Content="MAIL"/>
                     </materialDesign:Badged>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_17" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_17" Margin="8 0">
                     <materialDesign:Badged
                         Badge="{materialDesign:PackIcon Heart}"
                         BadgeColorZoneMode="SecondaryMid">
@@ -205,7 +205,7 @@
                     </materialDesign:Badged>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_18" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_18" Margin="8 0">
                     <materialDesign:Badged
                         Badge="DANGER"
                         BadgeColorZoneMode="Dark">
@@ -213,7 +213,7 @@
                     </materialDesign:Badged>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_19" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_19" Margin="8 0">
                     <materialDesign:Badged
                         x:Name="CountingBadge"
                         BadgeColorZoneMode="PrimaryDark">
@@ -224,7 +224,7 @@
                     </materialDesign:Badged>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_20180807" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_20180807" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedLightButton}" Width="150"
                         ToolTip="Resource name: MaterialDesignRaisedLightButton"
@@ -233,7 +233,7 @@
                         Command="{Binding IncrementOrClickMeCountCommand }"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_20" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_20" Margin="8 0">
                     <Button
                         Content="{materialDesign:PackIcon AirplaneTakeoff}"
                         ToolTip="Icon" />
@@ -248,7 +248,7 @@
                     <system:Double x:Key="ButtonWidth">150</system:Double>
                 </StackPanel.Resources>
                 
-                <smtx:XamlDisplay Key="buttons_21" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_21" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedAccentButton}"
                         Width="{StaticResource ButtonWidth}"
@@ -257,7 +257,7 @@
                         Content="CUSTOM RIPPLE"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_22" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_22" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedAccentButton}"
                         Width="{StaticResource ButtonWidth}"
@@ -266,7 +266,7 @@
                         Content="NO RIPPLE"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_23" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_23" Margin="8 0">
                     <RepeatButton
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignRaisedButton"
@@ -277,7 +277,7 @@
             <StackPanel
                 Orientation="Horizontal"
                 Margin="0 24 0 0">
-                <smtx:XamlDisplay Key="buttons_24" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_24" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFlatButton}"
                         Click="ButtonBase_OnClick"
@@ -285,49 +285,49 @@
                         Content="ACCEPT"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_25" Margin="0 0 8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_25" Margin="0 0 8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFlatButton}"
                         ToolTip="MaterialDesignFlatButton"
                         Content="CANCEL"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_25_1" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_25_1" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFlatLightBgButton}"
                         ToolTip="MaterialDesignFlatLightButton"
                         Content="Okay"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_25_2" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_25_2" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFlatMidBgButton}"
                         ToolTip="MaterialDesignFlatMidButton"
                         Content="Okay"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_25_3" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_25_3" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFlatDarkBgButton}"
                         ToolTip="MaterialDesignFlatDarkButton"
                         Content="Okay"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_25_4" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_25_4" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFlatAccentBgButton}"
                         ToolTip="MaterialDesignFlatAccentBackgroundButton"
                         Content="Okay"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_outlined_1" Margin="20 0 0 0">
+                <smtx:XamlDisplay UniqueKey="buttons_outlined_1" Margin="20 0 0 0">
                     <Button
                         Style="{StaticResource MaterialDesignOutlinedButton}"
                         ToolTip="MaterialDesignOutlinedButton"
                         Content="LEARN MORE"/>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_outlined_2" >
+                <smtx:XamlDisplay UniqueKey="buttons_outlined_2" >
                     <Button
                         Style="{StaticResource MaterialDesignOutlinedButton}"
                         IsEnabled="False"
@@ -338,7 +338,7 @@
             <StackPanel
                 Orientation="Horizontal"
                 Margin="0 12 0 0">
-                <smtx:XamlDisplay Key="buttons_251" >
+                <smtx:XamlDisplay UniqueKey="buttons_251" >
                     <Button
                         Style="{StaticResource MaterialDesignIconButton}"
                         ToolTip="MaterialDesignIconButton">
@@ -346,7 +346,7 @@
                     </Button>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_252">
+                <smtx:XamlDisplay UniqueKey="buttons_252">
                     <Button
                         Style="{StaticResource MaterialDesignIconButton}"
                         ToolTip="MaterialDesignIconButton"
@@ -355,7 +355,7 @@
                     </Button>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_253">
+                <smtx:XamlDisplay UniqueKey="buttons_253">
                     <Button
                         Style="{StaticResource MaterialDesignIconForegroundButton}"
                         ToolTip="MaterialDesignIconForegroundButton">
@@ -363,7 +363,7 @@
                     </Button>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_254">
+                <smtx:XamlDisplay UniqueKey="buttons_254">
                     <Button
                         Style="{StaticResource MaterialDesignIconButton}"
                         ToolTip="MaterialDesignIconButton"
@@ -395,7 +395,7 @@
                 <system:Double x:Key="ButtonHeight">50</system:Double>
             </StackPanel.Resources>
 
-            <smtx:XamlDisplay Key="button_roundcorner_1" Margin="8 0">
+            <smtx:XamlDisplay UniqueKey="button_roundcorner_1" Margin="8 0">
                 <Grid Width="{StaticResource GridWidth}">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
@@ -407,7 +407,7 @@
                 </Grid>
             </smtx:XamlDisplay>
             
-            <smtx:XamlDisplay Key="button_roundcorner_2" Margin="8 0">
+            <smtx:XamlDisplay UniqueKey="button_roundcorner_2" Margin="8 0">
                 <Grid Width="{StaticResource GridWidth}">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedButton}"
@@ -419,7 +419,7 @@
                 </Grid>
             </smtx:XamlDisplay>
             
-            <smtx:XamlDisplay Key="button_roundcorner_3" Margin="8 0">
+            <smtx:XamlDisplay UniqueKey="button_roundcorner_3" Margin="8 0">
                 <Grid Width="{StaticResource GridWidth}">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
@@ -431,7 +431,7 @@
                 </Grid>
             </smtx:XamlDisplay>
             
-            <smtx:XamlDisplay Key="button_roundcorner_4" Margin="8 0">
+            <smtx:XamlDisplay UniqueKey="button_roundcorner_4" Margin="8 0">
                 <Grid Width="{StaticResource GridWidth}">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedAccentButton}"
@@ -457,7 +457,7 @@
 
         <StackPanel Grid.Row="7">
             <StackPanel Orientation="Horizontal">
-                <smtx:XamlDisplay Key="buttons_26" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_26" Margin="8 0">
                     <Grid Width="124">
                         <!-- raised button with progress, useful to auto dismiss/accept something -->
                         <Button
@@ -482,7 +482,7 @@
                     </Grid>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_27" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_27" Margin="8 0">
                     <Grid Width="124">
                         <Button
                             Style="{StaticResource MaterialDesignRaisedButton}"
@@ -493,7 +493,7 @@
                     </Grid>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_28" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_28" Margin="8 0">
                     <StackPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
                         <!-- floating action button with progress -->
                         <TextBlock
@@ -544,7 +544,7 @@
                     VerticalAlignment="Center"
                     Text="Variations:"/>
                 
-                <smtx:XamlDisplay Key="buttons_29" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_29" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionButton}"
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
@@ -553,7 +553,7 @@
                         Content="{materialDesign:PackIcon DotsHorizontal}" />
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_30" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_30" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
@@ -561,7 +561,7 @@
                         Content="{materialDesign:PackIcon DotsHorizontal}" />
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_31" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_31" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionButton}"
                         Background="#81d4fa"
@@ -574,7 +574,7 @@
                         Content="{materialDesign:PackIcon DotsHorizontal}" />
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="buttons_32" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_32" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
@@ -599,7 +599,7 @@
         <StackPanel
             Grid.Row="10"
             Orientation="Horizontal">
-            <smtx:XamlDisplay Key="buttons_10" Margin="8 0">
+            <smtx:XamlDisplay UniqueKey="buttons_10" Margin="8 0">
                 <StackPanel Orientation="Horizontal">
                     <CheckBox
                         Name="PopupEnabled"
@@ -717,7 +717,7 @@
                 </StackPanel>
             </smtx:XamlDisplay>
             
-            <smtx:XamlDisplay Key="buttons_11" Margin="8 0 0 5">
+            <smtx:XamlDisplay UniqueKey="buttons_11" Margin="8 0 0 5">
                 <materialDesign:PopupBox
                     Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
                     PlacementMode="BottomAndAlignCentres"
@@ -748,7 +748,7 @@
                 </materialDesign:PopupBox>
             </smtx:XamlDisplay>
             
-            <smtx:XamlDisplay Key="buttons_9" Margin="8 0 0 5">
+            <smtx:XamlDisplay UniqueKey="buttons_9" Margin="8 0 0 5">
                 <materialDesign:PopupBox
                     Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
                     PlacementMode="BottomAndAlignCentres"

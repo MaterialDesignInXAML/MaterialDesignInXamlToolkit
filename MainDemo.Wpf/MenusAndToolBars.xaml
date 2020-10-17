@@ -11,7 +11,7 @@
     d:DesignWidth="300">
     <DockPanel>
         <smtx:XamlDisplay
-            Key="menus_1"
+            UniqueKey="menus_1"
             DockPanel.Dock="Top"
             Margin="5 5 0 5">
             <Menu IsMainMenu="True">
@@ -78,7 +78,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            Key="menus_2"
+            UniqueKey="menus_2"
             DockPanel.Dock="Top"
             Margin="5 0 0 0">
             <ToolBarTray>
@@ -217,7 +217,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            Key="menus_3"
+            UniqueKey="menus_3"
             Margin="16"
             VerticalAlignment="Top"
             HorizontalAlignment="Left">
@@ -225,7 +225,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            Key="menus_4"
+            UniqueKey="menus_4"
             Margin="16"
             VerticalAlignment="Top"
             HorizontalAlignment="Left">

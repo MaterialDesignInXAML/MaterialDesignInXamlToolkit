@@ -34,7 +34,7 @@
         </Grid.RowDefinitions>
         
         <smtx:XamlDisplay
-            Key="slider_1"
+            UniqueKey="slider_1"
             Margin="5 5 0 0">
             <Slider
                 TickFrequency="5"
@@ -50,7 +50,7 @@
             Grid.Column="1"
             Grid.RowSpan="3"
             Margin="0 36 0 0">
-            <smtx:XamlDisplay Key="slider_2">
+            <smtx:XamlDisplay UniqueKey="slider_2">
                 <Slider
                     TickFrequency="5"
                     TickPlacement="BottomRight"
@@ -60,7 +60,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="slider_3"
+                UniqueKey="slider_3"
                 Margin="24 8 0 8">
                 <Slider
                     TickFrequency="25"
@@ -73,7 +73,7 @@
         </StackPanel>
         
         <smtx:XamlDisplay
-            Key="slider_4"
+            UniqueKey="slider_4"
             Grid.Row="1"
             Grid.Column="0"
             Margin="5 36 0 0">
@@ -88,7 +88,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="slider_5"
+            UniqueKey="slider_5"
             Grid.Row="2"
             Grid.Column="0"
             Margin="5 36 0 0">
@@ -103,7 +103,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            Key="slider_6"
+            UniqueKey="slider_6"
             Grid.Row="3"
             Grid.Column="0"
             Margin="8 0 0 0">
@@ -133,7 +133,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="slider_7"
+            UniqueKey="slider_7"
             Grid.Row="4"
             Grid.Column="0"
             HorizontalAlignment="Left"

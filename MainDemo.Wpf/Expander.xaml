@@ -48,8 +48,7 @@
                 <ColumnDefinition Width="800" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            
-            <smtx:XamlDisplay Key="explander_1">
+            <smtx:XamlDisplay UniqueKey="explander_1">
                 <StackPanel>
                     <Expander
                         HorizontalAlignment="Stretch"
@@ -104,7 +103,7 @@
             </smtx:XamlDisplay>
 
             <smtx:XamlDisplay
-                Key="expander_2"
+                UniqueKey="expander_2"
                 Grid.Column="0"
                 Grid.Row="1"
                 Margin="4 24 0 0">
@@ -153,8 +152,9 @@
                 </materialDesign:Card>
             </smtx:XamlDisplay>
 
+
             <smtx:XamlDisplay
-                Key="expander_3"
+                UniqueKey="expander_3"
                 Grid.Column="1"
                 Grid.Row="0"
                 Grid.RowSpan="2"

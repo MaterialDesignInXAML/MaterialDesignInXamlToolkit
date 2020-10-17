@@ -30,9 +30,8 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
         <smtx:XamlDisplay
-            Key="groupbox_1"
+            UniqueKey="groupbox_1"
             Grid.Column="0"
             Grid.Row="0">
             <GroupBox
@@ -43,7 +42,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            Key="groupbox_2"
+            UniqueKey="groupbox_2"
             Grid.Column="1"
             Grid.Row="0">
             <GroupBox
@@ -60,7 +59,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            Key="groupbox_3"
+            UniqueKey="groupbox_3"
             Grid.Column="2"
             Grid.Row="0">
             <Border Background="{DynamicResource MaterialDesignBackground}">
@@ -73,9 +72,8 @@
                 </GroupBox>
             </Border>
         </smtx:XamlDisplay>
-
         <smtx:XamlDisplay
-            Key="groupbox_4"
+            UniqueKey="groupbox_4"
             Grid.Column="0"
             Grid.Row="1">
             <GroupBox
@@ -88,7 +86,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            Key="groupbox_5"
+            UniqueKey="groupbox_5"
             Grid.Column="1"
             Grid.Row="1">
             <GroupBox
@@ -102,7 +100,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            Key="groupbox_6"
+            UniqueKey="groupbox_6"
             Grid.Column="0"
             Grid.Row="2">
             <GroupBox
@@ -135,7 +133,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            Key="groupbox_7"
+            UniqueKey="groupbox_7"
             Grid.Column="1"
             Grid.Row="2">
             <GroupBox
@@ -169,7 +167,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            Key="groupbox_8"
+            UniqueKey="groupbox_8"
             Grid.Column="2"
             Grid.Row="2">
             <GroupBox

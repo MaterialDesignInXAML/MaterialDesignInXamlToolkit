@@ -48,6 +48,7 @@
                 </Grid.ColumnDefinitions>
 
                 <!--#region SAMPLE 1-->
+
                 <TextBlock
                     TextWrapping="Wrap"
                     HorizontalAlignment="Center"
@@ -56,7 +57,7 @@
                     Text="SAMPLE 1: Localized dialog encapsulating specific content, launched from a routed command, response handled in code-behind."/>
                 
                 <smtx:XamlDisplay
-                    Key="dialogs_sample1"
+                    UniqueKey="dialogs_sample1"
                     Grid.Column="0"
                     Grid.Row="1"
                     Margin="5 0 0 0">
@@ -155,7 +156,7 @@
                 <smtx:XamlDisplay
                     Grid.Column="1"
                     Grid.Row="1"
-                    Key="dialogs_sample2">
+                    UniqueKey="dialogs_sample2">
                     <StackPanel VerticalAlignment="Center">
                         <!--the request to open the dialog will bubble up to the top-most DialogHost,
                             but we can used the attached property based event to handle the response -->
@@ -207,10 +208,12 @@
                     Text="SAMPLE 3: Open and listen to the dialog entirely from code in a view model."/>
                 
                 <!-- Executes a command on DialogsViewModel.cs, which will launch the dialog from code -->
+
                 <smtx:XamlDisplay
                     Grid.Column="2"
                     Grid.Row="1"
-                    Key="dialogs_sample3">
+                    UniqueKey="dialogs_sample3">
+
                     <StackPanel>
                         <Button
                             Command="{Binding RunDialogCommand}"
@@ -237,7 +240,7 @@
                     Text="SAMPLE 4: Dialog managed from view model using IsOpen and custom commands (ignoring the provided routed commands). This also uses a custom brush to dim the background."/>
 
                 <smtx:XamlDisplay
-                    Key="dialogs_sample4"
+                    UniqueKey="dialogs_sample4"
                     Grid.Column="3"
                     Grid.Row="1" >
                     <materialDesign:DialogHost
@@ -276,7 +279,7 @@
                     Text="SAMPLE 5: Localized dialog encapsulating specific content, launched from a routed command. This dialog is contained inside of the visual tree rather than the normal dialog which uses a popup."/>
                 
                 <smtx:XamlDisplay
-                    Key="dialogs_sample5"
+                    UniqueKey="dialogs_sample5"
                     Grid.Column="4"
                     Grid.Row="1"
                     Margin="10">

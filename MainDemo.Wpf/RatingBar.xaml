@@ -19,7 +19,7 @@
             Margin="0 16 0 0"
             Orientation="Horizontal">
             <smtx:XamlDisplay
-                Key="buttons_58"
+                UniqueKey="buttons_58"
                 VerticalContentAlignment="Top"
                 Margin="5 0 0 5">
                 <materialDesign:RatingBar
@@ -34,7 +34,7 @@
                 Margin="10,2,0,0"/>
 
             <smtx:XamlDisplay
-                Key="buttons_59"
+                UniqueKey="buttons_59"
                 Margin="24 0 0 5">
                 <materialDesign:RatingBar
                     x:Name="CustomRatingBar"
@@ -59,14 +59,13 @@
                     </materialDesign:RatingBar.ValueItemTemplate>
                 </materialDesign:RatingBar>                
             </smtx:XamlDisplay>
-            
             <TextBlock
                 Text="{Binding ElementName=CustomRatingBar, Path=Value, StringFormat=Rating: {0}}"
                 VerticalAlignment="Top"
                 Margin="10,2,0,0"/>
             
             <smtx:XamlDisplay
-                Key="buttons_62"
+                UniqueKey="buttons_62"
                 VerticalContentAlignment="Top"
                 Margin="5 0 0 5">
                 <materialDesign:RatingBar

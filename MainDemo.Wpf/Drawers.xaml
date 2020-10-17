@@ -27,9 +27,9 @@
                 VerticalAlignment="Center"
                 Text="Primary Overlay Background"/>
         </StackPanel>
-        
+
         <smtx:XamlDisplay
-            Key="drawers_1"
+            UniqueKey="drawers_1"
             MaxHeight="{x:Static system:Double.MaxValue}"
             Margin="5">
             <materialDesign:DrawerHost
@@ -38,6 +38,7 @@
                 VerticalAlignment="Center" 
                 BorderThickness="2" 
                 BorderBrush="{DynamicResource MaterialDesignDivider}">
+
                 <materialDesign:DrawerHost.Style>
                     <Style TargetType="materialDesign:DrawerHost" BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
                         <Style.Triggers>

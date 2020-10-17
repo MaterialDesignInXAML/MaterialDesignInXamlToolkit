@@ -30,9 +30,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <smtx:XamlDisplay
-            Key="progress_1"
+            UniqueKey="progress_1"
             Margin="24"
             Grid.RowSpan="2">
             <!-- linear progress bars (the default style -->
@@ -40,9 +40,9 @@
                 Orientation="Vertical"
                 Value="25"/>
         </smtx:XamlDisplay>
-        
+
         <smtx:XamlDisplay
-            Key="progress_2"
+            UniqueKey="progress_2"
             Grid.Column="1"
             Grid.Row="0"
             Grid.RowSpan="2"
@@ -58,7 +58,7 @@
             Grid.Column="2"
             HorizontalAlignment="Stretch">
             <smtx:XamlDisplay
-                Key="progress_3"
+                UniqueKey="progress_3"
                 Margin="24">
                 <ProgressBar
                     Value="25"
@@ -66,7 +66,7 @@
             </smtx:XamlDisplay>
 
             <smtx:XamlDisplay
-                Key="progress_4"
+                UniqueKey="progress_4"
                 Margin="24">
                 <ProgressBar
                     Value="50"
@@ -74,14 +74,14 @@
             </smtx:XamlDisplay>
 
             <smtx:XamlDisplay
-                Key="progress_5"
+                UniqueKey="progress_5"
                 Margin="24">
                 <!-- should disable on 2nd transition... -->
                 <ProgressBar Value="75"/>
             </smtx:XamlDisplay>
 
             <smtx:XamlDisplay
-                Key="progress_6"
+                UniqueKey="progress_6"
                 Margin="24">
                 <ProgressBar IsIndeterminate="True"/>
             </smtx:XamlDisplay>
@@ -116,7 +116,7 @@
                 Text="No extra control is required for the circular style, it is purely a standard ProgressBar, with the MaterialDesignCircularProgressBar style applied."/>
             
             <smtx:XamlDisplay
-                Key="progress_7"
+                UniqueKey="progress_7"
                 Grid.Row="1"
                 Grid.Column="0"
                 VerticalAlignment="Center"
@@ -135,7 +135,7 @@
                 Text="Standard deterministic progress bar, running from 0 to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value property."/>
             
             <smtx:XamlDisplay
-                Key="progress_8"
+                UniqueKey="progress_8"
                 Grid.Row="2"
                 Grid.Column="0"
                 VerticalAlignment="Center"
@@ -155,7 +155,7 @@
                 Text="Indeterminate progress bar, at 35%."/>
 
             <smtx:XamlDisplay
-                Key="progress_9"
+                UniqueKey="progress_9"
                 Grid.Row="3"
                 Grid.Column="0"
                 VerticalAlignment="Center"
@@ -174,7 +174,7 @@
                 Text="Fully indeterminate progress bar, using .Value=0 to inform the theme."/>
 
             <smtx:XamlDisplay
-                Key="progress_10"
+                UniqueKey="progress_10"
                 Grid.Row="4"
                 Grid.Column="0"
                 VerticalAlignment="Center"
@@ -195,7 +195,7 @@
                 Text="An indeterminate job transitioning to a determinate job, completing to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value and .IsIndeterminate properties."/>
 
             <smtx:XamlDisplay
-                Key="progress_11"
+                UniqueKey="progress_11"
                 Grid.Row="5"
                 Grid.Column="0"
                 VerticalAlignment="Center"
@@ -219,7 +219,7 @@
                 Text="Wrap in a Card control to raise the material."/>
 
             <smtx:XamlDisplay
-                Key="progress_12"
+                UniqueKey="progress_12"
                 Grid.Row="6"
                 Grid.Column="0"
                 VerticalAlignment="Center"

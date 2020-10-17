@@ -37,13 +37,12 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
             <TextBlock
                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                 Text="Basic Tree View:"/>
 
             <smtx:XamlDisplay
-                Key="trees_1"
+                UniqueKey="trees_1"
                 Grid.Column="0"
                 Grid.Row="1"
                 VerticalContentAlignment="Top">
@@ -137,7 +136,7 @@
                 Text="MVVM/Binding:"/>
 
             <smtx:XamlDisplay
-                Key="trees_2"
+                UniqueKey="trees_2"
                 Grid.Column="1"
                 Grid.Row="1" 
                 Margin="32 0 0 0"
@@ -211,7 +210,7 @@
                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
 
             <smtx:XamlDisplay
-                Key="trees_3"
+                UniqueKey="trees_3"
                 Grid.Row="3">
                 <TreeView>
                     <materialDesign:TreeViewAssist.AdditionalTemplate>
@@ -272,7 +271,7 @@
                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
 
             <smtx:XamlDisplay
-                Key="trees_4"
+                UniqueKey="trees_4"
                 Grid.Row="3"
                 Grid.Column="1"
                 Margin="32 0 0 0">
@@ -327,7 +326,7 @@
                 Text="Additional node content, showcase:"/>
 
             <smtx:XamlDisplay
-                Key="trees_5"
+                UniqueKey="trees_5"
                 Grid.Row="3"
                 Grid.Column="2"
                 Margin="32 0 0 0">

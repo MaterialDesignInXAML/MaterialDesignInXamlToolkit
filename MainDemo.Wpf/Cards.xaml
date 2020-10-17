@@ -22,7 +22,7 @@
     </UserControl.Resources>
     <WrapPanel Margin="0 0 8 8">
         <smtx:XamlDisplay
-            Key="cards_1"
+            UniqueKey="cards_1"
             Margin="4 4 0 0"
             VerticalContentAlignment="Top">
             <materialDesign:Card Width="200">
@@ -84,7 +84,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            Key="cards_2"
+            UniqueKey="cards_2"
             Margin="4 4 0 0"
             VerticalContentAlignment="Top">
             <materialDesign:Card Width="220">
@@ -191,7 +191,7 @@
         
         <StackPanel>
             <smtx:XamlDisplay
-                Key="cards_3"
+                UniqueKey="cards_3"
                 Margin="4 4 0 0"
                 VerticalContentAlignment="Top">
                 <materialDesign:Card Background="#03a9f4"
@@ -247,7 +247,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="cards_4"
+                UniqueKey="cards_4"
                 Margin="4 4 0 0"
                 VerticalContentAlignment="Top">
                 <materialDesign:Card Background="{DynamicResource PrimaryHueLightBrush}"
@@ -261,7 +261,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="cards_5"
+                UniqueKey="cards_5"
                 Margin="4 4 0 0">
                 <materialDesign:Card
                     Background="{DynamicResource PrimaryHueDarkBrush}"
@@ -277,7 +277,7 @@
         </StackPanel>
         
         <smtx:XamlDisplay
-            Key="cards_6"
+            UniqueKey="cards_6"
             Margin="4 4 0 0"
             VerticalContentAlignment="Top">
             <materialDesign:Card
@@ -334,7 +334,7 @@
         -->
         <StackPanel>
             <smtx:XamlDisplay
-                Key="cards_7"
+                UniqueKey="cards_7"
                 Margin="4 4 0 0"
                 VerticalContentAlignment="Top">
                 <materialDesign:Flipper
@@ -360,7 +360,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="cards_8"
+                UniqueKey="cards_8"
                 Margin="4 4 0 0"
                 VerticalContentAlignment="Top">
                 <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}">
@@ -466,7 +466,7 @@
         </StackPanel>
 
         <smtx:XamlDisplay
-            Key="cards_9"
+            UniqueKey="cards_9"
             Margin="4 4 0 0"
             VerticalContentAlignment="Top">
             <materialDesign:Flipper

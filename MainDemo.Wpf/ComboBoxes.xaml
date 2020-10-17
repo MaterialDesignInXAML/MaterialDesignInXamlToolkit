@@ -39,17 +39,17 @@
                     <Setter Property="Width" Value="96" />
                 </Style>
             </StackPanel.Resources>
-            
-            <smtx:XamlDisplay Key="comboboxes_1">
+     
+            <smtx:XamlDisplay UniqueKey="comboboxes_1">
+
                 <ComboBox materialDesign:HintAssist.Hint="OS">
                     <ComboBoxItem Content="Android"/>
                     <ComboBoxItem Content="iOS"/>
                     <ComboBoxItem Content="Linux"/>
                     <ComboBoxItem Content="Windows"/>
                 </ComboBox>
-            </smtx:XamlDisplay>
-            
-            <smtx:XamlDisplay Key="comboboxes_2">
+            </smtx:XamlDisplay>           
+            <smtx:XamlDisplay UniqueKey="comboboxes_2">
                 <ComboBox
                     materialDesign:HintAssist.Hint="Search"
                     materialDesign:HintAssist.HintOpacity=".26"
@@ -61,7 +61,7 @@
                 </ComboBox>
             </smtx:XamlDisplay>
             
-            <smtx:XamlDisplay Key="comboboxes_11">
+            <smtx:XamlDisplay UniqueKey="comboboxes_11">
                 <ComboBox
                     materialDesign:HintAssist.Hint="Prefix"
                     materialDesign:TextFieldAssist.PrefixText="$"
@@ -73,7 +73,7 @@
                 </ComboBox>
             </smtx:XamlDisplay>
             
-            <smtx:XamlDisplay Key="comboboxes_3">
+            <smtx:XamlDisplay UniqueKey="comboboxes_3">
                 <ComboBox
                     Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                     materialDesign:TextFieldAssist.HasClearButton="True"
@@ -90,7 +90,7 @@
                 </ComboBox>
             </smtx:XamlDisplay>
             
-            <smtx:XamlDisplay Key="comboboxes_4">
+            <smtx:XamlDisplay UniqueKey="comboboxes_4">
                 <ComboBox
                     IsEnabled="False"
                     materialDesign:HintAssist.Hint="Disabled Combo with Hint"
@@ -107,8 +107,9 @@
                     <Setter Property="HorizontalAlignment" Value="Left" />
                 </Style>
             </StackPanel.Resources>
-            
-            <smtx:XamlDisplay Key="comboboxes_9">
+       
+            <smtx:XamlDisplay UniqueKey="comboboxes_9">
+
                 <StackPanel>
                     <CheckBox
                         x:Name="DisplaySelectedItemCheckBox"
@@ -125,8 +126,9 @@
                     </ComboBox>
                 </StackPanel>
             </smtx:XamlDisplay>
-            
-            <smtx:XamlDisplay Key="comboboxes_10">
+
+            <smtx:XamlDisplay UniqueKey="comboboxes_10">
+
                 <StackPanel>
                     <CheckBox
                         x:Name="ClassicModeCheckBox"
@@ -150,12 +152,14 @@
             Text="Virtualised ComboBoxes"/>
 
         <StackPanel Orientation="Horizontal">
-            <smtx:XamlDisplay Key="comboboxes_5">
+
+            <smtx:XamlDisplay UniqueKey="comboboxes_5">
                 <ComboBox
                     materialDesign:HintAssist.Hint="Virtualisation"
                     MinWidth="72"
                     ItemsSource="{Binding LongListToTestComboVirtualization}"
                     SelectedValue="{Binding SelectedValueOne}">
+
                     <ComboBox.SelectedItem>
                         <Binding
                             Path="SelectedValueOne"
@@ -175,8 +179,9 @@
                     </ComboBox.ItemsPanel>
                 </ComboBox>
             </smtx:XamlDisplay>
-            
-            <smtx:XamlDisplay Key="comboboxes_6">
+
+            <smtx:XamlDisplay UniqueKey="comboboxes_6">
+
                 <ComboBox materialDesign:HintAssist.Hint="(editable)"
                           MinWidth="72"
                           IsEditable="True"
@@ -195,7 +200,7 @@
                     </ComboBox.ItemsPanel>
                 </ComboBox>
             </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="comboboxes_7">
+            <smtx:XamlDisplay UniqueKey="comboboxes_7">
                 <ComboBox materialDesign:HintAssist.Hint="(float hint)"
                           ItemsSource="{Binding LongListToTestComboVirtualization}"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -206,7 +211,7 @@
                     </ComboBox.ItemsPanel>
                 </ComboBox>
             </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="comboboxes_8">
+            <smtx:XamlDisplay UniqueKey="comboboxes_8">
                 <ComboBox materialDesign:HintAssist.Hint="(large float hint)"
                           materialDesign:HintAssist.FloatingScale="1.5"
                           materialDesign:HintAssist.FloatingOffset="0, -24"
@@ -227,8 +232,9 @@
             Text="Filled ComboBox"/>
         
         <smtx:XamlDisplay
-            Key="comboboxes_filled_combobox"
+            UniqueKey="comboboxes_filled_combobox"
             HorizontalAlignment="Left">
+
             <StackPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>

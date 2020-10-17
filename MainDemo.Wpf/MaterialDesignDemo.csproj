@@ -14,7 +14,7 @@
     <SignAssembly>false</SignAssembly>
     <ApplicationManifest>App.manifest</ApplicationManifest>
   </PropertyGroup>
-  <Import Project="..\packages\ShowMeTheXAML.MSBuild\build\ShowMeTheXAML.MSBuild.targets" Label="Paket" />
+  <Import Project="..\packages\ShowMeTheXAML.MSBuild\build\netstandard2.0\ShowMeTheXAML.MSBuild.targets" Label="Paket" />
   <Target Name="ShowMeTheXAML_EnsureXamlCreated" AfterTargets="BeforeCompile">
     <Error Condition="('$(ShowMeTheXAMLGeneratedFileName)' == '' Or $(ShowMeTheXAMLGeneratedFileName) == '*Undefined*') And Exists('..\packages\ShowMeTheXAML.MSBuild\build\ShowMeTheXAML.MSBuild.targets')" Text="ShowMeTheXAML was added to the $(ProjectName) project. Please rebuild the project." />
   </Target>

@@ -48,7 +48,7 @@
             Text="Headline 1  - MaterialDesignHeadline1TextBlock"/>
         
         <smtx:XamlDisplay
-            Key="typography_101"
+            UniqueKey="typography_101"
             Grid.Row="0"
             Grid.Column="2"
             Margin="0 4 0 4">
@@ -58,7 +58,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            Key="typography_102"
+            UniqueKey="typography_102"
             Grid.Row="0"
             Grid.Column="4"
             Margin="0 4 0 4">
@@ -76,7 +76,7 @@
             Text="Headline 2 - MaterialDesignHeadline2TextBlock"/>
         
         <smtx:XamlDisplay
-            Key="typography_103"
+            UniqueKey="typography_103"
             Grid.Row="1"
             Grid.Column="2"
             Margin="0 4 0 4">
@@ -86,7 +86,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="typography_104"
+            UniqueKey="typography_104"
             Grid.Row="1"
             Grid.Column="4"
             Margin="0 4 0 4">
@@ -104,7 +104,7 @@
             Text="Headline 3 - MaterialDesignHeadline3TextBlock"/>
         
         <smtx:XamlDisplay
-            Key="typography_105"
+            UniqueKey="typography_105"
             Grid.Row="2"
             Grid.Column="2"
             Margin="0 4 0 4">
@@ -114,7 +114,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="typography_106"
+            UniqueKey="typography_106"
             Grid.Row="2"
             Grid.Column="4"
             Margin="0 4 0 4">
@@ -131,7 +131,7 @@
             Text="Headline 4 - MaterialDesignHeadline4TextBlock"/>
         
         <smtx:XamlDisplay
-            Key="typography_107"
+            UniqueKey="typography_107"
             Grid.Row="3"
             Grid.Column="2"
             Margin="0 4 0 4">
@@ -141,7 +141,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="typography_108"
+            UniqueKey="typography_108"
             Grid.Row="3"
             Grid.Column="4"
             Margin="0 4 0 4">
@@ -158,7 +158,7 @@
             Text="Headline 5 - MaterialDesignHeadline5TextBlock"/>
         
         <smtx:XamlDisplay
-            Key="typography_109"
+            UniqueKey="typography_109"
             Grid.Row="4"
             Grid.Column="2"
             Margin="0 4 0 6">
@@ -168,7 +168,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="typography_110"
+            UniqueKey="typography_110"
             Grid.Row="4"
             Grid.Column="4"
             Margin="0 4 0 4">
@@ -187,7 +187,7 @@
             Text="Headline 6 - MaterialDesignHeadline6TextBlock"/>
         
         <smtx:XamlDisplay
-            Key="typography_111"
+            UniqueKey="typography_111"
             Grid.Row="5"
             Grid.Column="2"
             Margin="0 4 0 6">
@@ -197,7 +197,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="typography_112"
+            UniqueKey="typography_112"
             Grid.Row="5"
             Grid.Column="4"
             Margin="0 4 0 4">
@@ -216,7 +216,7 @@
             Text="Subtitle 1 - MaterialDesignSubtitle1TextBlock"/>
         
         <smtx:XamlDisplay
-            Key="typography_113"
+            UniqueKey="typography_113"
             Grid.Row="6"
             Grid.Column="2"
             Margin="0 8 0 8">
@@ -226,7 +226,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="typography_114"
+            UniqueKey="typography_114"
             Grid.Row="6"
             Grid.Column="4"
             Margin="0 4 0 4">
@@ -243,7 +243,7 @@
             Text="Subtitle 2 - MaterialDesignSubtitle2TextBlock"/>
         
         <smtx:XamlDisplay
-            Key="typography_115"
+            UniqueKey="typography_115"
             Grid.Row="7"
             Grid.Column="2"
             Margin="0 8 0 8">
@@ -253,7 +253,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="typography_116"
+            UniqueKey="typography_116"
             Grid.Row="7"
             Grid.Column="4"
             Margin="0 4 0 4">
@@ -270,7 +270,7 @@
             Text="Body 1 - MaterialDesignBody1TextBlock"/>
         
         <smtx:XamlDisplay
-            Key="typography_117"
+            UniqueKey="typography_117"
             Grid.Row="8"
             Grid.Column="2"
             Margin="0 8 0 8">
@@ -280,7 +280,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="typography_118"
+            UniqueKey="typography_118"
             Grid.Row="8"
             Grid.Column="4"
             Margin="0 4 0 4">
@@ -299,7 +299,7 @@
             Text="Body 2 - MaterialDesignBody2TextBlock"/>
         
         <smtx:XamlDisplay
-            Key="typography_119"
+            UniqueKey="typography_119"
             Grid.Row="9"
             Grid.Column="2"
             Margin="0 8 0 8">
@@ -309,7 +309,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="typography_120"
+            UniqueKey="typography_120"
             Grid.Row="9"
             Grid.Column="4"
             Margin="0 4 0 4">
@@ -326,7 +326,7 @@
             Text="Caption - MaterialDesignCaptionTextBlock"/>
         
         <smtx:XamlDisplay
-            Key="typography_121"
+            UniqueKey="typography_121"
             Grid.Row="10"
             Grid.Column="2"
             Margin="0 8 0 8">
@@ -336,7 +336,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="typography_122"
+            UniqueKey="typography_122"
             Grid.Row="10"
             Grid.Column="4"
             Margin="0 4 0 4">
@@ -353,7 +353,7 @@
             Text="Overline - MaterialDesignOverlineTextBlock"/>
 
         <smtx:XamlDisplay
-            Key="typography_123"
+            UniqueKey="typography_123"
             Grid.Row="11"
             Grid.Column="2"
             Margin="0 8 0 8">
@@ -363,7 +363,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="typography_124"
+            UniqueKey="typography_124"
             Grid.Row="11"
             Grid.Column="4"
             Margin="0 4 0 4">
@@ -380,7 +380,7 @@
             Text="Button - MaterialDesignButtonTextBlock"/>
         
         <smtx:XamlDisplay
-            Key="typography_125"
+            UniqueKey="typography_125"
             Grid.Row="12"
             Grid.Column="2"
             Margin="0 8 0 8">

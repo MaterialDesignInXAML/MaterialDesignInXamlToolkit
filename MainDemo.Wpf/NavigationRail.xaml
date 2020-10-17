@@ -45,9 +45,9 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                
+              
                 <smtx:XamlDisplay
-                    Key="navrail_1"
+                    UniqueKey="navrail_1"
                     Margin="5,5,5,0">
                     <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}">
                         <TabItem
@@ -77,9 +77,8 @@
                         </TabItem>
                     </TabControl>
                 </smtx:XamlDisplay>
-
                 <smtx:XamlDisplay
-                    Key="navrail_4"
+                    UniqueKey="navrail_4"
                     Margin="5,5,5,0"
                     Grid.Column="1">
                     <TabControl
@@ -111,10 +110,9 @@
                             </TextBlock>
                         </TabItem>
                     </TabControl>
-                </smtx:XamlDisplay>
-                
+                </smtx:XamlDisplay>      
                 <smtx:XamlDisplay
-                    Key="navrail_2"
+                    UniqueKey="navrail_2"
                     Margin="5,5,5,0"
                     Grid.Row="1">
                     <TabControl
@@ -159,10 +157,9 @@
                             </TextBlock>
                         </TabItem>
                     </TabControl>
-                </smtx:XamlDisplay>
-                
+                </smtx:XamlDisplay>     
                 <smtx:XamlDisplay
-                    Key="navrail_3"
+                    UniqueKey="navrail_3"
                     Margin="5,5,5,0"
                     Grid.Row="1"
                     Grid.Column="1">
@@ -211,14 +208,13 @@
                 </smtx:XamlDisplay>
             </Grid>
         </GroupBox>
-        
         <GroupBox
             Grid.Column="1"
             Header="Floating Action Button"
             Style="{StaticResource MaterialDesignCardGroupBox}"
             materialDesign:ColorZoneAssist.Mode="Standard"
             Margin="5">
-            <smtx:XamlDisplay Key="navrail_floating_1">
+            <smtx:XamlDisplay UniqueKey="navrail_floating_1">
                 <TabControl
                     Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
                     materialDesign:ColorZoneAssist.Mode="PrimaryDark">
@@ -266,7 +262,7 @@
             materialDesign:ColorZoneAssist.Mode="Standard"
             Margin="5">
             <StackPanel Orientation="Horizontal">
-                <smtx:XamlDisplay Key="navrail_noshadow_1">
+                <smtx:XamlDisplay UniqueKey="navrail_noshadow_1">
                     <TabControl
                         Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
                         materialDesign:ColorZoneAssist.Mode="Standard"
@@ -281,7 +277,7 @@
                     </TabControl>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="navrail_wshadow_1">
+                <smtx:XamlDisplay UniqueKey="navrail_wshadow_1">
                     <TabControl
                         Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
                         materialDesign:ColorZoneAssist.Mode="Standard"
@@ -296,7 +292,7 @@
                     </TabControl>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="navrail_wshadow_2">
+                <smtx:XamlDisplay UniqueKey="navrail_wshadow_2">
                     <TabControl
                         Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
                         materialDesign:ColorZoneAssist.Mode="Standard"
@@ -311,7 +307,7 @@
                     </TabControl>
                 </smtx:XamlDisplay>
                 
-                <smtx:XamlDisplay Key="navrail_wshadow_3">
+                <smtx:XamlDisplay UniqueKey="navrail_wshadow_3">
                     <TabControl
                         Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
                         materialDesign:ColorZoneAssist.Mode="Standard"

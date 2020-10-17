@@ -28,7 +28,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock
+      <TextBlock
             Style="{StaticResource MaterialDesignHeadline5TextBlock}"
             Text="Toggles"/>
 
@@ -38,7 +38,7 @@
             Orientation="Horizontal"
             Margin="0 24 0 0">
             <smtx:XamlDisplay
-                Key="buttons_33"
+                UniqueKey="buttons_33"
                 Margin="5 5 8 8">
                 <ToggleButton
                     Content="C"
@@ -48,7 +48,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_34"
+                UniqueKey="buttons_34"
                 Margin="0 5 8 8">
                 <ToggleButton
                     Content="H"
@@ -58,7 +58,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_35"
+                UniqueKey="buttons_35"
                 Margin="0 5 8 8">
                 <!-- checkbox style same as toggle button -->
                 <CheckBox
@@ -68,7 +68,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_36"
+                UniqueKey="buttons_36"
                 Margin="0 5 8 8">
                 <ToggleButton
                     Content="C"
@@ -78,7 +78,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_37"
+                UniqueKey="buttons_37"
                 Margin="0 5 8 8">
                 <ToggleButton
                     Content="K"
@@ -88,7 +88,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_38"
+                UniqueKey="buttons_38"
                 Margin="0 5 8 8">
                 <ToggleButton
                     Style="{StaticResource MaterialDesignActionToggleButton}"
@@ -102,7 +102,7 @@
                 VerticalAlignment="Center"
                 Text="Customise On Content:"/>
             
-            <smtx:XamlDisplay Key="buttons_39">
+            <smtx:XamlDisplay UniqueKey="buttons_39">
                 <ToggleButton
                     Style="{StaticResource MaterialDesignActionToggleButton}"
                     ToolTip="MaterialDesignActionLightToggleButton"
@@ -118,7 +118,7 @@
             Margin="0 24 0 0"
             Orientation="Horizontal">
             <smtx:XamlDisplay
-                Key="buttons_40"
+                UniqueKey="buttons_40"
                 Margin="5 5 8 8"
                 VerticalAlignment="Center">
                 <RadioButton
@@ -136,7 +136,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_41"
+                UniqueKey="buttons_41"
                 Margin="0 5 8 8"
                 VerticalAlignment="Center">
                 <RadioButton
@@ -145,7 +145,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_42"
+                UniqueKey="buttons_42"
                 Margin="0 5 8 8"
                 VerticalAlignment="Center">
                 <RadioButton
@@ -155,7 +155,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_43"
+                UniqueKey="buttons_43"
                 Margin="0 5 8 8"
                 VerticalAlignment="Center">
                 <CheckBox
@@ -164,7 +164,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_44"
+                UniqueKey="buttons_44"
                 Margin="0 5 8 8"
                 VerticalAlignment="Center">
                 <CheckBox
@@ -182,7 +182,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_45"
+                UniqueKey="buttons_45"
                 Margin="0 5 8 8"
                 VerticalAlignment="Center">
                 <CheckBox
@@ -197,7 +197,7 @@
             Grid.Row="3"
             Margin="5 8 0 8"
             Orientation="Horizontal">
-            <smtx:XamlDisplay Key="buttons_65">
+            <smtx:XamlDisplay UniqueKey="buttons_65">
                 <RadioButton
                     IsChecked="True"
                     Content="Light"
@@ -205,7 +205,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_66"
+                UniqueKey="buttons_66"
                 Margin="8 0 0 0">
                 <RadioButton
                     IsChecked="True"
@@ -214,7 +214,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_67"
+                UniqueKey="buttons_67"
                 Margin="8 0 0 0">
                 <RadioButton
                     IsChecked="True"
@@ -223,7 +223,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_68"
+                UniqueKey="buttons_68"
                 Margin="8 0 0 0">
                 <CheckBox
                     IsChecked="True"
@@ -232,7 +232,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_69"
+                UniqueKey="buttons_69"
                 Margin="8 0 0 0">
                 <CheckBox
                     IsChecked="True"
@@ -241,7 +241,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_70"
+                UniqueKey="buttons_70"
                 Margin="8 0 0 0">
                 <CheckBox
                     IsChecked="True"
@@ -256,7 +256,7 @@
             Margin="0 24 0 0"
             Orientation="Horizontal">
             <smtx:XamlDisplay
-                Key="buttons_46"
+                UniqueKey="buttons_46"
                 VerticalAlignment="Center"
                 Margin="5 0 0 0">
                 <ToggleButton
@@ -265,7 +265,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_47"
+                UniqueKey="buttons_47"
                 VerticalAlignment="Center"
                 Margin="8 0 0 0">
                 <ToggleButton
@@ -274,7 +274,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_48"
+                UniqueKey="buttons_48"
                 VerticalAlignment="Center"
                 Margin="8 0 0 0">
                 <ToggleButton
@@ -284,7 +284,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_49"
+                UniqueKey="buttons_49"
                 VerticalAlignment="Center"
                 Margin="8 0 0 0">
                 <ToggleButton
@@ -294,7 +294,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_50"
+                UniqueKey="buttons_50"
                 VerticalAlignment="Center"
                 Margin="8 0 0 0">
                 <ToggleButton
@@ -304,7 +304,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_51"
+                UniqueKey="buttons_51"
                 VerticalAlignment="Center"
                 Margin="8 0 0 0">
                 <ToggleButton
@@ -314,7 +314,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_52"
+                UniqueKey="buttons_52"
                 VerticalAlignment="Center"
                 Margin="8 0 0 0">
                 <ToggleButton
@@ -333,9 +333,9 @@
                     </materialDesign:ToggleButtonAssist.OnContent>
                 </ToggleButton>
             </smtx:XamlDisplay>
-            
+   
             <smtx:XamlDisplay
-                Key="buttons_64"
+                UniqueKey="buttons_64"
                 VerticalAlignment="Center"
                 Margin="8 0 0 0">
                 <ToggleButton
@@ -358,7 +358,7 @@
             Margin="0 24 0 0"
             Orientation="Horizontal">
             <smtx:XamlDisplay
-                Key="buttons_53"
+                UniqueKey="buttons_53"
                 Margin="5 0 0 0"
                 VerticalAlignment="Center">
                 <ToggleButton
@@ -372,7 +372,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_54"
+                UniqueKey="buttons_54"
                 Margin="8 0 0 0"
                 VerticalAlignment="Center">
                 <ToggleButton
@@ -383,7 +383,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_55"
+                UniqueKey="buttons_55"
                 Margin="8 0 0 0"
                 VerticalAlignment="Center">
                 <ToggleButton
@@ -400,7 +400,7 @@
             Grid.Row="1"
             Margin="25,24,0,0">
             <smtx:XamlDisplay
-                Key="buttons_56"
+                UniqueKey="buttons_56"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top">
                 <!-- the following based on https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons -->
@@ -422,7 +422,7 @@
             </smtx:XamlDisplay>
 
             <smtx:XamlDisplay
-                Key="buttons_63"
+                UniqueKey="buttons_63"
                 HorizontalAlignment="Left">
                 <!-- the following based on https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons -->
                 <ListBox
@@ -444,7 +444,7 @@
         </StackPanel>
 
         <smtx:XamlDisplay
-            Key="buttons_57"
+            UniqueKey="buttons_57"
             Grid.Column="1"
             Grid.Row="4"
             HorizontalAlignment="Left"
@@ -470,7 +470,7 @@
             Grid.Row="5"
             Margin="0 24 0 0">
             <smtx:XamlDisplay
-                Key="buttons_60"
+                UniqueKey="buttons_60"
                 HorizontalAlignment="Left">
                 <StackPanel
                     Orientation="Horizontal"
@@ -497,7 +497,7 @@
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay
-                Key="buttons_61"
+                UniqueKey="buttons_61"
                 HorizontalAlignment="Left">
                 <materialDesign:ColorZone Mode="PrimaryMid">
                     <StackPanel
@@ -542,7 +542,7 @@
             Text="Checkboxes"/>
 
         <smtx:XamlDisplay
-            Key="checkboxes_1"
+            UniqueKey="checkboxes_1"
             Grid.Row="8"
             Grid.Column="0"
             HorizontalAlignment="Left">
@@ -581,7 +581,7 @@
         </smtx:XamlDisplay>
         
         <smtx:XamlDisplay
-            Key="checkboxes_2"
+            UniqueKey="checkboxes_2"
             Grid.Row="8"
             Grid.Column="1"
             HorizontalAlignment="Left"

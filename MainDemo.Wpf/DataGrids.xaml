@@ -26,7 +26,7 @@
                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                 Text="Custom Columns"/>
             
-            <smtx:XamlDisplay Key="grids_1">
+            <smtx:XamlDisplay UniqueKey="grids_1">
                 <DataGrid
                     ItemsSource="{Binding Items1}"
                     CanUserAddRows="False" AutoGenerateColumns="False"
@@ -141,7 +141,7 @@
                 Text="Auto Generated Columns"
                 Margin="0 24 0 0"/>
             
-            <smtx:XamlDisplay Key="grids_2">
+            <smtx:XamlDisplay UniqueKey="grids_2">
                 <DataGrid
                     ItemsSource="{Binding Items2}"
                     CanUserAddRows="False"
@@ -153,13 +153,14 @@
                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                 Text="Custom Padding" Margin="0 24 0 0"/>
             
-            <smtx:XamlDisplay Key="grids_3">
+            <smtx:XamlDisplay UniqueKey="grids_3">
                 <DataGrid
                     ItemsSource="{Binding Items3}"
                     CanUserSortColumns="False"
                     CanUserAddRows="False"
                     materialDesign:DataGridAssist.CellPadding="4 2 2 2"
                     materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" />
+
             </smtx:XamlDisplay>
         </StackPanel>
     </ScrollViewer>
