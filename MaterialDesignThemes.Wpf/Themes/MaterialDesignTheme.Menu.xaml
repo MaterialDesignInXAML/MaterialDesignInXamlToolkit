@@ -8,6 +8,30 @@
 
     <converters:TextFieldHintVisibilityConverter x:Key="StringIsEmptyVisibilityConverter" IsEmptyValue="Collapsed" IsNotEmptyValue="Visible"/>
     <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
+    
+    <ContextMenu x:Key="MaterialDesignDefaultContextMenu">
+        <MenuItem Command="Cut">
+            <MenuItem.Icon>
+                <wpf:PackIcon Kind="ContentCut" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Command="Copy">
+            <MenuItem.Icon>
+                <wpf:PackIcon Kind="ContentCopy" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Command="Paste">
+            <MenuItem.Icon>
+                <wpf:PackIcon Kind="ContentPaste" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator />
+        <MenuItem Command="SelectAll">
+            <MenuItem.Icon>
+                <wpf:PackIcon Kind="SelectAll" />
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
 
     <Style x:Key="MaterialDesignSeparator" TargetType="{x:Type Separator}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}"/>
@@ -31,6 +55,7 @@
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="TextBlock.FontSize" Value="15"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuBase}">
@@ -51,11 +76,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuBase}">
                     <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
-                        <Border Background="{TemplateBinding Background}"
-                                Effect="{DynamicResource MaterialDesignShadowDepth1}"
-                                Margin="3"
-                                CornerRadius="2">
-                            <Border Background="Transparent">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}" Margin="3"
+                                    CornerRadius="2" Effect="{DynamicResource MaterialDesignShadowDepth1}"></Border>
+                        
+                            <Border Margin="3" Background="Transparent">
                                 <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                     <Grid RenderOptions.ClearTypeHint="Enabled" Margin="0 16">
                                         <ItemsPresenter x:Name="ItemsPresenter"
@@ -66,7 +91,7 @@
                                     </Grid>
                                 </ScrollViewer>
                             </Border>
-                        </Border>
+                        </Grid>
                     </AdornerDecorator>
                 </ControlTemplate>
             </Setter.Value>
@@ -81,8 +106,8 @@
                 <ControlTemplate TargetType="{x:Type MenuItem}">
                     <ControlTemplate.Resources>
                         <Style TargetType="{x:Type wpf:PackIcon}" >
-                            <Setter Property="Width" Value="16" />
-                            <Setter Property="Height" Value="16" />
+                            <Setter Property="FrameworkElement.Width" Value="16" />
+                            <Setter Property="FrameworkElement.Height" Value="16" />
                         </Style>
                     </ControlTemplate.Resources>
                     <Grid ClipToBounds="True">

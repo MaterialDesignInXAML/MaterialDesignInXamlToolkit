@@ -3,6 +3,7 @@ using MaterialDesignThemes.MahApps;
 using MaterialDesignThemes.Wpf;
 using System.Windows;
 using MaterialDesignColors;
+using ShowMeTheXAML;
 
 namespace MahMaterialDragablzMashUp
 {
@@ -13,6 +14,7 @@ namespace MahMaterialDragablzMashUp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            XamlDisplay.Init();
             base.OnStartup(e);
         }
     }

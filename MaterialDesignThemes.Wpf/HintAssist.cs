@@ -5,190 +5,107 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class HintAssist
     {
-        #region UseFloating
+        private const double DefaultFloatingScale = 0.74;
+        private const double DefaultHintOpacity = 0.56;
+        private static readonly Point DefaultFloatingOffset = new Point(0, -16);
+        private static readonly Brush DefaultBackground = new SolidColorBrush(Colors.Transparent);
 
-        public static readonly DependencyProperty IsFloatingProperty = DependencyProperty.RegisterAttached(
-            "IsFloating",
-            typeof(bool),
-            typeof(HintAssist),
-            new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits));
+        #region AttachedProperty : IsFloatingProperty
+        public static readonly DependencyProperty IsFloatingProperty
+            = DependencyProperty.RegisterAttached("IsFloating", typeof(bool), typeof(HintAssist),
+                new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits));
 
         public static bool GetIsFloating(DependencyObject element)
-        {
-            return (bool) element.GetValue(IsFloatingProperty);
-        }
-
+            => (bool)element.GetValue(IsFloatingProperty);
         public static void SetIsFloating(DependencyObject element, bool value)
-        {
-            element.SetValue(IsFloatingProperty, value);
-        }
-
+            => element.SetValue(IsFloatingProperty, value);
         #endregion
 
-        #region FloatingScale & FloatingOffset
-
-        public static readonly DependencyProperty FloatingScaleProperty = DependencyProperty.RegisterAttached(
-            "FloatingScale",
-            typeof(double),
-            typeof(HintAssist),
-            new FrameworkPropertyMetadata(0.74d, FrameworkPropertyMetadataOptions.Inherits));
+        #region AttachedProperty : FloatingScaleProperty
+        public static readonly DependencyProperty FloatingScaleProperty
+            = DependencyProperty.RegisterAttached("FloatingScale", typeof(double), typeof(HintAssist),
+                new FrameworkPropertyMetadata(DefaultFloatingScale, FrameworkPropertyMetadataOptions.Inherits));
 
         public static double GetFloatingScale(DependencyObject element)
-        {
-            return (double)element.GetValue(FloatingScaleProperty);
-        }
-
+            => (double)element.GetValue(FloatingScaleProperty);
         public static void SetFloatingScale(DependencyObject element, double value)
-        {
-            element.SetValue(FloatingScaleProperty, value);
-        }
+            => element.SetValue(FloatingScaleProperty, value);
+        #endregion
 
-        public static readonly DependencyProperty FloatingOffsetProperty = DependencyProperty.RegisterAttached(
-            "FloatingOffset",
-            typeof(Point),
-            typeof(HintAssist),
-            new FrameworkPropertyMetadata(new Point(1, -16), FrameworkPropertyMetadataOptions.Inherits));
+        #region AttachedProperty : FloatingOffsetProperty
+        public static readonly DependencyProperty FloatingOffsetProperty
+            = DependencyProperty.RegisterAttached("FloatingOffset", typeof(Point), typeof(HintAssist),
+                new FrameworkPropertyMetadata(DefaultFloatingOffset, FrameworkPropertyMetadataOptions.Inherits));
 
         public static Point GetFloatingOffset(DependencyObject element)
-        {
-            return (Point)element.GetValue(FloatingOffsetProperty);
-        }
+            => (Point)element.GetValue(FloatingOffsetProperty);
 
         public static void SetFloatingOffset(DependencyObject element, Point value)
-        {
-            element.SetValue(FloatingOffsetProperty, value);
-        }
+            => element.SetValue(FloatingOffsetProperty, value);
         #endregion
 
-        #region Hint
+        #region AttachedProperty : HintProperty
+        public static readonly DependencyProperty HintProperty
+            = DependencyProperty.RegisterAttached("Hint", typeof(object), typeof(HintAssist),
+                new FrameworkPropertyMetadata(default, FrameworkPropertyMetadataOptions.Inherits));
 
-        /// <summary>
-        /// The hint property
-        /// </summary>
-        public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
-            "Hint",
-            typeof(object),
-            typeof(HintAssist),
-            new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
-
-        /// <summary>
-        /// Sets the hint.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="value">The value.</param>
-        public static void SetHint(DependencyObject element, object value)
-        {
-            element.SetValue(HintProperty, value);
-        }
-
-        /// <summary>
-        /// Gets the hint.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <returns>
-        /// The <see cref="string" />.
-        /// </returns>
         public static object GetHint(DependencyObject element)
-        {
-            return element.GetValue(HintProperty);
-        }
-
+            => element.GetValue(HintProperty);
+        public static void SetHint(DependencyObject element, object value)
+            => element.SetValue(HintProperty, value);
         #endregion
 
-        #region HintOpacity
+        #region AttachedProperty : HintOpacityProperty
+        public static readonly DependencyProperty HintOpacityProperty
+            = DependencyProperty.RegisterAttached("HintOpacity", typeof(double), typeof(HintAssist), 
+                new PropertyMetadata(DefaultHintOpacity));
 
-        /// <summary>
-        /// The hint opacity property
-        /// </summary>
-        public static readonly DependencyProperty HintOpacityProperty = DependencyProperty.RegisterAttached(
-            "HintOpacity",
-            typeof(double),
-            typeof(HintAssist),
-            new PropertyMetadata(.56));
-
-        /// <summary>
-        /// Gets the text box view margin.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <returns>
-        /// The <see cref="Thickness" />.
-        /// </returns>
         public static double GetHintOpacityProperty(DependencyObject element)
-        {
-            return (double)element.GetValue(HintOpacityProperty);
-        }
-
-        /// <summary>
-        /// Sets the hint opacity.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="value">The value.</param>
+            => (double)element.GetValue(HintOpacityProperty);
         public static void SetHintOpacity(DependencyObject element, double value)
-        {
-            element.SetValue(HintOpacityProperty, value);
-        }
-
+            => element.SetValue(HintOpacityProperty, value);
         #endregion
 
-        #region Brushes
+        #region AttachedProperty : HintFontFamilyProperty
+        public static readonly DependencyProperty FontFamilyProperty
+            = DependencyProperty.RegisterAttached("FontFamily", typeof(FontFamily), typeof(HintAssist),
+                new PropertyMetadata(default));
 
-        /// <summary>
-        /// The color for the text of a focused control.
-        /// </summary>
-        public static readonly DependencyProperty ForegroundProperty = DependencyProperty.RegisterAttached(
-            "Foreground", typeof(Brush), typeof(HintAssist), new PropertyMetadata(null));
+        public static FontFamily GetFontFamily(DependencyObject element)
+            => (FontFamily)element.GetValue(FontFamilyProperty);
+        public static void SetFontFamily(DependencyObject element, FontFamily value)
+            => element.SetValue(FontFamilyProperty, value);
+        #endregion
 
-        /// <summary>
-        /// Gets the color for the text of a focused control.
-        /// </summary>
+        #region AttachedProperty : ForegroundProperty
+        public static readonly DependencyProperty ForegroundProperty
+            = DependencyProperty.RegisterAttached("Foreground", typeof(Brush), typeof(HintAssist), new PropertyMetadata(default(Brush)));
+
         public static Brush GetForeground(DependencyObject element)
-        {
-            return (Brush)element.GetValue(ForegroundProperty);
-        }
-
-        /// <summary>
-        /// Sets the color for the text of a focused control.
-        /// </summary>
+            => (Brush)element.GetValue(ForegroundProperty);
         public static void SetForeground(DependencyObject element, Brush value)
-        {
-            element.SetValue(ForegroundProperty, value);
-        }
-
+            => element.SetValue(ForegroundProperty, value);
         #endregion
 
-        #region HelperText
+        #region AttachedProperty : BackgroundProperty
+        public static readonly DependencyProperty BackgroundProperty
+            = DependencyProperty.RegisterAttached("Background", typeof(Brush), typeof(HintAssist), new PropertyMetadata(DefaultBackground));
+        
+        public static Brush GetBackground(DependencyObject element)
+            => (Brush)element.GetValue(BackgroundProperty);
+        public static void SetBackground(DependencyObject element, Brush value)
+            => element.SetValue(BackgroundProperty, value);
+        #endregion
 
-        /// <summary>
-        /// The HelperText property
-        /// </summary>
-        public static readonly DependencyProperty HelperTextProperty = DependencyProperty.RegisterAttached(
-            "HelperText",
-            typeof(string),
-            typeof(HintAssist),
-            new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
+        #region AttachedProperty : HelperTextProperty
+        public static readonly DependencyProperty HelperTextProperty
+            = DependencyProperty.RegisterAttached("HelperText", typeof(string), typeof(HintAssist),
+                new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
 
-        /// <summary>
-        /// Sets the HelperText.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="value">The value.</param>
-        public static void SetHelperText(DependencyObject element, object value)
-        {
-            element.SetValue(HelperTextProperty, value);
-        }
-
-        /// <summary>
-        /// Gets the HelperText.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <returns>
-        /// The <see cref="string" />.
-        /// </returns>
         public static object GetHelperText(DependencyObject element)
-        {
-            return element.GetValue(HelperTextProperty);
-        }
-
+             => element.GetValue(HelperTextProperty);
+        public static void SetHelperText(DependencyObject element, object value)
+            => element.SetValue(HelperTextProperty, value);
         #endregion
     }
 }

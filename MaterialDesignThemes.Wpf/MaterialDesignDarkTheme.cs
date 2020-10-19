@@ -4,7 +4,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public class MaterialDesignDarkTheme : IBaseTheme
     {
-        public Color ValidationErrorColor { get; } = (Color)ColorConverter.ConvertFromString("#f44336");
+        public Color MaterialDesignValidationErrorColor { get; } = (Color)ColorConverter.ConvertFromString("#f44336");
         public Color MaterialDesignBackground { get; } = (Color)ColorConverter.ConvertFromString("#FF000000");
         public Color MaterialDesignPaper { get; } = (Color)ColorConverter.ConvertFromString("#FF303030");
         public Color MaterialDesignCardBackground { get; } = (Color)ColorConverter.ConvertFromString("#FF424242");
@@ -17,6 +17,8 @@ namespace MaterialDesignThemes.Wpf
         public Color MaterialDesignTextBoxBorder { get; } = (Color)ColorConverter.ConvertFromString("#89FFFFFF");
         public Color MaterialDesignDivider { get; } = (Color)ColorConverter.ConvertFromString("#1FFFFFFF");
         public Color MaterialDesignSelection { get; } = (Color)ColorConverter.ConvertFromString("#757575");
+        public Color MaterialDesignToolForeground { get; } = (Color)ColorConverter.ConvertFromString("#FF616161");
+        public Color MaterialDesignToolBackground { get; } = (Color)ColorConverter.ConvertFromString("#FFe0e0e0");
         public Color MaterialDesignFlatButtonClick { get; } = (Color)ColorConverter.ConvertFromString("#19757575");
         public Color MaterialDesignFlatButtonRipple { get; } = (Color)ColorConverter.ConvertFromString("#FFB6B6B6");
         public Color MaterialDesignToolTipBackground { get; } = (Color)ColorConverter.ConvertFromString("#eeeeee");
@@ -28,6 +30,7 @@ namespace MaterialDesignThemes.Wpf
         public Color MaterialDesignTextFieldBoxHoverBackground { get; } = (Color)ColorConverter.ConvertFromString("#1FFFFFFF");
         public Color MaterialDesignTextFieldBoxDisabledBackground { get; } = (Color)ColorConverter.ConvertFromString("#0DFFFFFF");
         public Color MaterialDesignTextAreaBorder { get; } = (Color)ColorConverter.ConvertFromString("#BCFFFFFF");
-        public Color MaterialDesignTextAreaInactiveBorder { get; } = (Color)ColorConverter.ConvertFromString("#1AFFFFFF");
+        public Color MaterialDesignTextAreaInactiveBorder { get; } = (Color)ColorConverter.ConvertFromString("#29FFFFFF");
+        public Color MaterialDesignDataGridRowHoverBackground { get; } = (Color)ColorConverter.ConvertFromString("#14FFFFFF");
     }
 }

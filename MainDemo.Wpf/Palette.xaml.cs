@@ -1,15 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignColors.WpfExample
+﻿namespace MaterialDesignColors.WpfExample
 {
-    /// <summary>
-    /// Interaction logic for Palette.xaml
-    /// </summary>
-    public partial class Palette : UserControl
+    public partial class Palette
     {
-        public Palette()
-        {
-            InitializeComponent();
-        }
+        public Palette() => InitializeComponent();
     }
 }

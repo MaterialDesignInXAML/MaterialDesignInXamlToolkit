@@ -15,5 +15,5 @@ namespace MaterialDesignThemes.Wpf.Converters
         {
             return !(value as bool?) ?? !bool.Parse(value.ToString());
         }
-    }    
+    }
 }

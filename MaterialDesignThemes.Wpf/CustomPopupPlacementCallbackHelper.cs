@@ -10,7 +10,7 @@ namespace MaterialDesignThemes.Wpf
         static CustomPopupPlacementCallbackHelper()
         {
             LargePopupCallback =
-                (size, targetSize, offset) => new[] {new CustomPopupPlacement(new Point(), PopupPrimaryAxis.Horizontal)};
+                (size, targetSize, offset) => new[] { new CustomPopupPlacement(new Point(), PopupPrimaryAxis.Horizontal) };
         }
     }
 }

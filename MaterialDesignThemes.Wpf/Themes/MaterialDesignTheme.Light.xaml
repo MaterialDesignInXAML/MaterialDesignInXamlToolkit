@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
 
-    <Color x:Key="ValidationErrorColor">#f44336</Color>
-    <SolidColorBrush x:Key="ValidationErrorBrush" Color="{StaticResource ValidationErrorColor}" po:Freeze="True" />
+    <Color x:Key="MaterialDesignValidationErrorColor">#f44336</Color>
+    <SolidColorBrush x:Key="MaterialDesignValidationErrorBrush" Color="{StaticResource MaterialDesignValidationErrorColor}" po:Freeze="True" />
 
     <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FFFFFFFF" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FFfafafa" po:Freeze="True" />
@@ -36,5 +36,7 @@
     <SolidColorBrush x:Key="MaterialDesignTextFieldBoxHoverBackground" Color="#14000000" po:Freeze="True" /> <!-- 8% black -->
     <SolidColorBrush x:Key="MaterialDesignTextFieldBoxDisabledBackground" Color="#08000000" po:Freeze="True" /> <!-- 3% black -->
     <SolidColorBrush x:Key="MaterialDesignTextAreaBorder" Color="#BC000000" po:Freeze="True" /> <!-- 74% black -->
-    <SolidColorBrush x:Key="MaterialDesignTextAreaInactiveBorder" Color="#0F000000" po:Freeze="True" /> <!-- 6% black -->
+    <SolidColorBrush x:Key="MaterialDesignTextAreaInactiveBorder" Color="#29000000" po:Freeze="True" /> <!-- 41% black (= 74% * 56%) -->
+
+    <SolidColorBrush x:Key="MaterialDesignDataGridRowHoverBackground" Color="#0A000000" po:Freeze="True" /> <!-- 4% black -->
 </ResourceDictionary>

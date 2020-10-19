@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls.Primitives;
-using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
@@ -76,7 +75,7 @@ namespace MaterialDesignThemes.Wpf
         /// Framework use only.
         /// </summary>
         public static readonly DependencyProperty SuppressProperty = DependencyProperty.RegisterAttached(
-            "Suppress", typeof (bool), typeof (ValidationAssist), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits));
+            "Suppress", typeof(bool), typeof(ValidationAssist), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Framework use only.
@@ -93,7 +92,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public static bool GetSuppress(DependencyObject element)
         {
-            return (bool) element.GetValue(SuppressProperty);
+            return (bool)element.GetValue(SuppressProperty);
         }
 
         public static readonly DependencyProperty BackgroundProperty = DependencyProperty.RegisterAttached(
@@ -106,7 +105,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static Brush GetBackground(DependencyObject element)
         {
-            return (Brush) element.GetValue(BackgroundProperty);
+            return (Brush)element.GetValue(BackgroundProperty);
         }
 
 
@@ -122,5 +121,27 @@ namespace MaterialDesignThemes.Wpf
         {
             return (double)element.GetValue(FontSizeProperty);
         }
+
+        public static readonly DependencyProperty HasErrorProperty = DependencyProperty.RegisterAttached(
+            "HasError",
+            typeof(bool),
+            typeof(ValidationAssist),
+            new PropertyMetadata(default(bool)));
+
+        public static void SetHasError(DependencyObject element, bool value)
+        {
+            element.SetValue(HasErrorProperty, value);
+        }
+
+        public static bool GetHasError(DependencyObject element)
+        {
+            return (bool)element.GetValue(HasErrorProperty);
+        }
+
+        public static readonly DependencyProperty HorizontalAlignmentProperty = DependencyProperty.RegisterAttached(
+            "HorizontalAlignment", typeof(HorizontalAlignment), typeof(ValidationAssist), new PropertyMetadata(HorizontalAlignment.Left));
+
+        public static void SetHorizontalAlignment(DependencyObject element, HorizontalAlignment value) => element.SetValue(HorizontalAlignmentProperty, value);
+        public static HorizontalAlignment GetHorizontalAlignment(DependencyObject element) => (HorizontalAlignment) element.GetValue(HorizontalAlignmentProperty);
     }
 }

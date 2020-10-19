@@ -3,33 +3,16 @@
   <PropertyGroup>
     <RootNamespace>MaterialDesignColors</RootNamespace>
     <AssemblyName>MaterialDesignColors</AssemblyName>
-    <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
+    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <MDIXVersion>$(MDIX_COLORS_VERSION)</MDIXVersion>
+    <MDIXColorsVersion Condition="$(MDIXColorsVersion) == '' Or $(MDIXColorsVersion) == '*Undefined*'">1.0.1</MDIXColorsVersion>
     <AssemblyTitle>MaterialDesignColors.Wpf</AssemblyTitle>
-    <Company>Mulholland Software/James Willock</Company>
     <Product>MaterialDesignColors.Wpf</Product>
     <Description>Material Design in XAML Toolkit - Colors</Description>
-    <Copyright>Copyright © 2015</Copyright>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <Version>$(MDIXColorsVersion)</Version>
+    <AssemblyVersion>$(MDIXColorsVersion)</AssemblyVersion>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
-    <Configurations>Debug;Release;AppVeyor</Configurations>
-    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppVeyor|AnyCPU'">
-    <OutputPath>bin\AppVeyor\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <Import Project="..\Versioning.targets" />
-  <ItemGroup>
-    <Compile Remove="ColorManipulation\Hsv.cs" />
-    <Compile Remove="ColorManipulation\HsvConverter.cs" />
-  </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

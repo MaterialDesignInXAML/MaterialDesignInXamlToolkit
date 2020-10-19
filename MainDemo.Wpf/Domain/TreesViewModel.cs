@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignColors.WpfExample.Domain
 {
@@ -24,7 +25,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
             return TreeViewAssist.SuppressAdditionalTemplate;
         }
-    }    
+    }
 
     public sealed class Movie
     {
@@ -86,13 +87,13 @@ namespace MaterialDesignColors.WpfExample.Domain
         {
             MovieCategories = new ObservableCollection<MovieCategory>
             {
-                new MovieCategory("Action",                
+                new MovieCategory("Action",
                     new Movie ("Predator", "John McTiernan"),
                     new Movie("Alien", "Ridley Scott"),
                     new Movie("Prometheus", "Ridley Scott")),
                 new MovieCategory("Comedy",
                     new Movie("EuroTrip", "Jeff Schaffer"),
-                    new Movie("EuroTrip", "Jeff Schaffer")                                            
+                    new Movie("EuroTrip", "Jeff Schaffer")
                 )
             };
 
@@ -136,7 +137,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
             return string.Join(string.Empty,
                 Enumerable.Range(0, length)
-                .Select(v => (char) random.Next('a', 'z' + 1)));
+                .Select(v => (char)random.Next('a', 'z' + 1)));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

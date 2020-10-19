@@ -1,15 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignColors.WpfExample
+﻿namespace MaterialDesignColors.WpfExample
 {
-    /// <summary>
-    /// Interaction logic for GroupBoxes.xaml
-    /// </summary>
-    public partial class GroupBoxes : UserControl
+    public partial class GroupBoxes
     {
-        public GroupBoxes()
-        {
-            InitializeComponent();
-        }
+        public GroupBoxes() => InitializeComponent();
     }
 }

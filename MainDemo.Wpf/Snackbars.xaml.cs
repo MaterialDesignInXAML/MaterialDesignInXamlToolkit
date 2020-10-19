@@ -2,19 +2,12 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for Snackbars.xaml
-    /// </summary>
-    public partial class Snackbars : UserControl
+    public partial class Snackbars
     {
-        public Snackbars()
-        {
-            InitializeComponent();
-        }
+        public Snackbars() => InitializeComponent();
 
         private void SnackBar3_OnClick(object sender, RoutedEventArgs e)
         {
@@ -39,6 +32,9 @@ namespace MaterialDesignDemo
                 s);
             }
         }
+
+        private void SnackBar4_OnClearClick(object sender, RoutedEventArgs e)
+            => SnackbarFour.MessageQueue.Clear();
 
         private void SnackBar7_OnClick(object sender, RoutedEventArgs e)
         {

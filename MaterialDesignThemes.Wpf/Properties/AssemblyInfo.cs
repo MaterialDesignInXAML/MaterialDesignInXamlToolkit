@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Markup;
@@ -22,11 +22,18 @@ using System.Windows.Markup;
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
 
 
-[assembly:ThemeInfo(
+[assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
-                             //(used if a resource is not found in the page, 
-                             // or application resource dictionaries)
+                                     //(used if a resource is not found in the page, 
+                                     // or application resource dictionaries)
     ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
-                                      //(used if a resource is not found in the page, 
-                                      // app, or any theme specific resource dictionaries)
+                                              //(used if a resource is not found in the page, 
+                                              // app, or any theme specific resource dictionaries)
 )]
+
+[assembly: InternalsVisibleTo("MaterialDesignThemes.Wpf.Tests, PublicKey=" +
+    "002400000480000094000000060200000024000052534131000400000100010049bc83151c3134" +
+    "36a8868431b570bc5d626bc74d2d414b3147ae4e5945b69da039e5d22906b224557e5a8dfb3f86" +
+    "0f0bec65b13217a0eaa37f0cced961386e92fd4d920179893d348b0210660f73e47adbc481c7b5" +
+    "b63afbf3e60199685794599d28e915a30ca7dc879d9ad0dd0a0e7ea5e99937d637c4b1cb671fa4" +
+    "425248dd")]

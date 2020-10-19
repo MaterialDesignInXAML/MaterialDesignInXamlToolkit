@@ -6,10 +6,7 @@ using System.Windows.Controls;
 
 namespace MaterialDesignColors.WpfExample
 {
-    /// <summary>
-    /// Interaction logic for Pickers.xaml
-    /// </summary>
-    public partial class Pickers : UserControl
+    public partial class Pickers
     {
         public Pickers()
         {
@@ -22,19 +19,21 @@ namespace MaterialDesignColors.WpfExample
 
         private void LocaleCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try {
-                var lang = System.Windows.Markup.XmlLanguage.GetLanguage((string) LocaleCombo.SelectedItem);
+            try
+            {
+                var lang = System.Windows.Markup.XmlLanguage.GetLanguage((string)LocaleCombo.SelectedItem);
                 LocaleDatePicker.Language = lang;
                 LocaleDatePickerRTL.Language = lang;
             }
-            catch {
+            catch
+            {
                 LocaleCombo.SelectedItem = "fr-CA";
             }
             //HACK: The calendar only refresh when we change the date
             LocaleDatePicker.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(1);
             LocaleDatePicker.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(-1);
-            LocaleDatePickerRTL.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(1);
-            LocaleDatePickerRTL.DisplayDate = LocaleDatePicker.DisplayDate.AddDays(-1);
+            LocaleDatePickerRTL.DisplayDate = LocaleDatePickerRTL.DisplayDate.AddDays(1);
+            LocaleDatePickerRTL.DisplayDate = LocaleDatePickerRTL.DisplayDate.AddDays(-1);
         }
 
         private void LoadLocales()
@@ -48,9 +47,7 @@ namespace MaterialDesignColors.WpfExample
         }
 
         public void CalendarDialogOpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)
-        {
-            Calendar.SelectedDate = ((PickersViewModel)DataContext).Date;
-        }
+            => Calendar.SelectedDate = ((PickersViewModel)DataContext).Date;
 
         public void CalendarDialogClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
         {
@@ -66,9 +63,7 @@ namespace MaterialDesignColors.WpfExample
         }
 
         public void ClockDialogOpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)
-        {
-            Clock.Time = ((PickersViewModel) DataContext).Time;
-        }
+            => Clock.Time = ((PickersViewModel)DataContext).Time;
 
         public void ClockDialogClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
         {

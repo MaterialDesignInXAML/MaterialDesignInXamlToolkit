@@ -1,10 +1,15 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
-        <ResourceDictionary Source="MaterialDesignTheme.ValidationErrorTemplate.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
+    <converters:IsDarkConverter x:Key="IsDarkConverter" />
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -40,9 +45,9 @@
     </Style>
 
     <Style x:Key="MaterialDesignActionAccentCheckBox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignActionCheckBox}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignCheckBox" TargetType="{x:Type CheckBox}">
@@ -85,7 +90,9 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Viewbox Width="18" Height="18"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        <Viewbox Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:CheckBoxAssist.CheckBoxSize)}"
+                                 Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:CheckBoxAssist.CheckBoxSize)}"
+                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                  FlowDirection="LeftToRight">
                             <Canvas Width="24" Height="24">
                                 <Path x:Name="Graphic"
@@ -128,8 +135,8 @@
                             <Setter Property="Fill" TargetName="Graphic" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource ValidationErrorBrush}" />
-                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -140,19 +147,16 @@
     <Style x:Key="MaterialDesignLightCheckBox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignDarkCheckBox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignAccentCheckBox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignUserForegroundCheckBox" TargetType="{x:Type CheckBox}">
@@ -234,8 +238,8 @@
                             <Setter Property="Opacity" TargetName="Graphic" Value="0.56"/>
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource ValidationErrorBrush}" />
-                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -243,4 +247,397 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignFilterChipCheckBox" TargetType="CheckBox">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="MinWidth" Value="46" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="{x:Type wpf:PackIcon}" >
+                            <Setter Property="FrameworkElement.Width" Value="22" />
+                            <Setter Property="FrameworkElement.Height" Value="22" />
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <Grid ClipToBounds="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border CornerRadius="16" Background="{DynamicResource MaterialDesignChipBackground}" Grid.ColumnSpan="2" />
+                        <Border x:Name="MouseOverBorder"
+                                Opacity="0"
+                                CornerRadius="16"
+                                Grid.ColumnSpan="2"
+                                Grid.Column="0"
+                                Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}" />
+                        <Border x:Name="SelectedBackgroundBorder"
+                                Opacity="0"
+                                CornerRadius="16"
+                                Grid.ColumnSpan="2"
+                                Grid.Column="0"
+                                Background="{TemplateBinding Background}" />
+                        <wpf:PackIcon x:Name="IconControl"
+                                      Kind="Check"
+                                      Width="16"
+                                      Height="16"
+                                      Margin="-16,0,0,0"
+                                      VerticalAlignment="Center"
+                                      Grid.Column="0"
+                                      IsTabStop="False" />
+                        <ContentControl Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                        ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                        x:Name="Content"
+                                        IsTabStop="False"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Margin="0 0 10 0"
+                                        Grid.Column="1" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CircleEase EasingMode="EaseOut" />
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Normal" />
+                                <VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.1" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup Name="CheckStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="Checked">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.2" Duration="0:0:0.2" />
+                                            <ThicknessAnimation Storyboard.TargetName="IconControl"
+                                                                Storyboard.TargetProperty="Margin"
+                                                                To="4,0,4,0" Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition To="CheckedUnfocused">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.2" Duration="0:0:0.2" />
+                                            <ThicknessAnimation Storyboard.TargetName="IconControl"
+                                                                Storyboard.TargetProperty="Margin"
+                                                                To="4,0,4,0" Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition To="Unchecked">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0" Duration="0:0:0.2" />
+                                            <ThicknessAnimation Storyboard.TargetName="IconControl"
+                                                                Storyboard.TargetProperty="Margin"
+                                                                To="-16,0,10,0" Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.2" Duration="0" />
+                                        <ThicknessAnimation Storyboard.TargetName="IconControl"
+                                                            Storyboard.TargetProperty="Margin"
+                                                            To="4,0,4,0" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="CheckedUnfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.2" Duration="0" />
+                                        <ThicknessAnimation Storyboard.TargetName="IconControl"
+                                                            Storyboard.TargetProperty="Margin"
+                                                            To="4,0,4,0" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Unchecked">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" Duration="0" />
+                                        <ThicknessAnimation Storyboard.TargetName="IconControl"
+                                                            Storyboard.TargetProperty="Margin"
+                                                            To="-16,0,10,0" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value=".56" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesignChipBackground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignFilterChipOutlineCheckBox" TargetType="CheckBox">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="MinWidth" Value="46" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="{x:Type wpf:PackIcon}" >
+                            <Setter Property="FrameworkElement.Width" Value="22" />
+                            <Setter Property="FrameworkElement.Height" Value="22" />
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <Grid ClipToBounds="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border CornerRadius="16" x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" />
+                        <Border x:Name="MouseOverBorder"
+                                Opacity="0"
+                                CornerRadius="16"
+                                Grid.ColumnSpan="2"
+                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
+                                Grid.Column="0"
+                                Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}" />
+                        <Border x:Name="SelectedBackgroundBorder"
+                                Opacity="0"
+                                CornerRadius="16"
+                                Grid.ColumnSpan="2"
+                                Grid.Column="0"
+                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}" />
+                        <wpf:PackIcon x:Name="IconControl"
+                                      Kind="Check"
+                                      Width="16"
+                                      Height="16"
+                                      Margin="-16,0,0,0"
+                                      VerticalAlignment="Center"
+                                      Grid.Column="0"
+                                      IsTabStop="False" />
+                        <ContentControl Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                        ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                                        x:Name="Content"
+                                        IsTabStop="False"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Margin="0 0 10 0"
+                                        Grid.Column="1" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CircleEase EasingMode="EaseOut" />
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Normal" />
+                                <VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.1" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup Name="CheckStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="Checked">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.2" Duration="0:0:0.2" />
+                                            <DoubleAnimation Storyboard.TargetName="Border"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.2" Duration="0" />
+                                            <ThicknessAnimation Storyboard.TargetName="IconControl"
+                                                                Storyboard.TargetProperty="Margin"
+                                                                To="4,0,4,0" Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition To="CheckedUnfocused">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.2" Duration="0:0:0.2" />
+                                            <DoubleAnimation Storyboard.TargetName="Border"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.2" Duration="0" />
+                                            <ThicknessAnimation Storyboard.TargetName="IconControl"
+                                                                Storyboard.TargetProperty="Margin"
+                                                                To="4,0,4,0" Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition To="Unchecked">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0" Duration="0:0:0.2" />
+                                            <ThicknessAnimation Storyboard.TargetName="IconControl"
+                                                                Storyboard.TargetProperty="Margin"
+                                                                To="-16,0,10,0" Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.2" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.2" Duration="0" />
+                                        <ThicknessAnimation Storyboard.TargetName="IconControl"
+                                                            Storyboard.TargetProperty="Margin"
+                                                            To="4,0,4,0" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="CheckedUnfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.2" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.2" Duration="0" />
+                                        <ThicknessAnimation Storyboard.TargetName="IconControl"
+                                                            Storyboard.TargetProperty="Margin"
+                                                            To="4,0,4,0" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Unchecked">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" Duration="0" />
+                                        <ThicknessAnimation Storyboard.TargetName="IconControl"
+                                                            Storyboard.TargetProperty="Margin"
+                                                            To="-16,0,10,0" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value=".56" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="MaterialDesignFilterChipPrimaryCheckBox" TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignFilterChipCheckBox}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MaterialDesignFilterChipAccentCheckBox" TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignFilterChipCheckBox}">
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="MaterialDesignFilterChipPrimaryOutlineCheckBox" TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignFilterChipOutlineCheckBox}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+        
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MaterialDesignFilterChipAccentOutlineCheckBox" TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignFilterChipOutlineCheckBox}">
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

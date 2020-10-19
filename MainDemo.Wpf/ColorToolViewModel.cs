@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo
@@ -39,10 +41,34 @@ namespace MaterialDesignDemo
                     _selectedColor = value;
                     OnPropertyChanged();
 
-                    if (value is Color color)
+                    // if we are triggering a change internally its a hue change and the colors will match
+                    // so we don't want to trigger a custom color change.
+                    var currentSchemeColor = ActiveScheme switch
+                    {
+                        ColorScheme.Primary => _primaryColor,
+                        ColorScheme.Secondary => _secondaryColor,
+                        ColorScheme.PrimaryForeground => _primaryForegroundColor,
+                        ColorScheme.SecondaryForeground => _secondaryForegroundColor,
+                        _ => throw new NotSupportedException($"{ActiveScheme} is not a handled ColorScheme.. Ye daft programmer!")
+                    };
+
+                    if (_selectedColor != currentSchemeColor && value is Color color)
                     {
                         ChangeCustomColor(color);
                     }
+                }
+            }
+        }
+
+        private bool _isDarkTheme;
+        public bool IsDarkTheme
+        {
+            get => _isDarkTheme;
+            set
+            {
+                if (this.MutateVerbose(ref _isDarkTheme, value, e => PropertyChanged?.Invoke(this, e)))
+                {
+                    ApplyBase(value);
                 }
             }
         }
@@ -84,12 +110,22 @@ namespace MaterialDesignDemo
             _secondaryColor = theme.SecondaryMid.Color;
 
             SelectedColor = _primaryColor;
+
+            IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark;
+
+            if (_paletteHelper.GetThemeManager() is { } themeManager)
+            {
+                themeManager.ThemeChanged += (_, e) =>
+                {
+                    IsDarkTheme = e.NewTheme?.GetBaseTheme() == BaseTheme.Dark;
+                };
+            }
         }
 
         private void ChangeCustomColor(object obj)
         {
             var color = (Color)obj;
-            
+
             if (ActiveScheme == ColorScheme.Primary)
             {
                 _paletteHelper.ChangePrimaryColor(color);
@@ -150,11 +186,13 @@ namespace MaterialDesignDemo
             {
                 _paletteHelper.ChangePrimaryColor(hue);
                 _primaryColor = hue;
+                _primaryForegroundColor = _paletteHelper.GetTheme().PrimaryMid.GetForegroundColor();
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
                 _paletteHelper.ChangeSecondaryColor(hue);
                 _secondaryColor = hue;
+                _secondaryForegroundColor = _paletteHelper.GetTheme().SecondaryMid.GetForegroundColor();
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {

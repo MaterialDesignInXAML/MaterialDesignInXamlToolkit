@@ -19,7 +19,7 @@ namespace MaterialDesignDemo
 
         public static double GetUniformCornerRadius(DependencyObject element)
         {
-            return (double) element.GetValue(UniformCornerRadiusProperty);
+            return (double)element.GetValue(UniformCornerRadiusProperty);
         }
     }
 }

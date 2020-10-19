@@ -4,7 +4,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public interface IBaseTheme
     {
-        Color ValidationErrorColor { get; }
+        Color MaterialDesignValidationErrorColor { get; }
         Color MaterialDesignBackground { get; }
         Color MaterialDesignPaper { get; }
         Color MaterialDesignCardBackground { get; }
@@ -17,6 +17,8 @@ namespace MaterialDesignThemes.Wpf
         Color MaterialDesignTextBoxBorder { get; }
         Color MaterialDesignDivider { get; }
         Color MaterialDesignSelection { get; }
+        Color MaterialDesignToolForeground { get; }
+        Color MaterialDesignToolBackground { get; }
         Color MaterialDesignFlatButtonClick { get; }
         Color MaterialDesignFlatButtonRipple { get; }
         Color MaterialDesignToolTipBackground { get; }
@@ -29,5 +31,6 @@ namespace MaterialDesignThemes.Wpf
         Color MaterialDesignTextFieldBoxDisabledBackground { get; }
         Color MaterialDesignTextAreaBorder { get; }
         Color MaterialDesignTextAreaInactiveBorder { get; }
+        Color MaterialDesignDataGridRowHoverBackground { get; }
     }
 }

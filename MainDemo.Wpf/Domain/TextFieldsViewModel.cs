@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignColors.WpfExample.Domain
 {
-    public class TextFieldsViewModel : INotifyPropertyChanged
+    public class FieldsViewModel : INotifyPropertyChanged
     {
         private string _name;
         private string _name2;
         private int? _selectedValueOne;
         private string _selectedTextTwo;
 
-        public TextFieldsViewModel()
+        public FieldsViewModel()
         {
             LongListToTestComboVirtualization = new List<int>(Enumerable.Range(0, 1000));
 
@@ -45,7 +46,7 @@ namespace MaterialDesignColors.WpfExample.Domain
             {
                 this.MutateVerbose(ref _selectedValueOne, value, RaisePropertyChanged());
             }
-        }        
+        }
 
         public string SelectedTextTwo
         {

@@ -8,7 +8,7 @@ using Xunit;
 namespace MaterialDesignThemes.Wpf.Tests
 {
 
-    public class  ColorPickerTests
+    public class ColorPickerTests
     {
         private readonly ColorPicker _colorPicker;
         private readonly Slider _hueSlider;
@@ -118,9 +118,9 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             double lastBrightness = _colorPicker.Color.ToHsb().Brightness;
 
-            while(Canvas.GetTop(_saturationBrightnessPickerThumb) < _saturationBrightnessPicker.ActualHeight)
+            while (Canvas.GetTop(_saturationBrightnessPickerThumb) < _saturationBrightnessPicker.ActualHeight)
             {
-                DragThumb(verticalOffset:10);
+                DragThumb(verticalOffset: 10);
                 double currentBrightness = _colorPicker.Color.ToHsb().Brightness;
                 Assert.True(currentBrightness < lastBrightness, $"At top {Canvas.GetTop(_saturationBrightnessPicker)}, brightness {currentBrightness} is not less than {lastBrightness}");
             }
@@ -134,7 +134,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             double lastSaturation = _colorPicker.Color.ToHsb().Saturation;
 
-            while(Canvas.GetLeft(_saturationBrightnessPicker) < _saturationBrightnessPicker.ActualWidth)
+            while (Canvas.GetLeft(_saturationBrightnessPicker) < _saturationBrightnessPicker.ActualWidth)
             {
                 DragThumb(horizontalOffset: 10);
                 double currentSaturation = _colorPicker.Color.ToHsb().Saturation;

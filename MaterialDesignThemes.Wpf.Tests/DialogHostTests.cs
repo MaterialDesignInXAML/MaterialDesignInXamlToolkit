@@ -64,6 +64,22 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [StaFact]
+        public async Task CanCloseDialogWithRoutedEvent()
+        {
+            Guid closeParameter = Guid.NewGuid();
+            Task<object> showTask = _dialogHost.ShowDialog("Content");
+            DialogSession session = _dialogHost.CurrentSession;
+            Assert.False(session.IsEnded);
+
+            DialogHost.CloseDialogCommand.Execute(closeParameter, _dialogHost);
+
+            Assert.False(_dialogHost.IsOpen);
+            Assert.Null(_dialogHost.CurrentSession);
+            Assert.True(session.IsEnded);
+            Assert.Equal(closeParameter, await showTask);
+        }
+
+        [StaFact]
         public async Task DialogHostExposesSessionAsProperty()
         {
             var id = Guid.NewGuid();
@@ -110,7 +126,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => DialogHost.Show("Content", id));
 
-            Assert.Equal($"No loaded DialogHost have an {nameof(DialogHost.Identifier)} property matching dialogIdentifier argument.", ex.Message);
+            Assert.Equal($"No loaded DialogHost have an {nameof(DialogHost.Identifier)} property matching dialogIdentifier ('{id}') argument.", ex.Message);
         }
 
         [StaFact]
@@ -126,7 +142,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             otherDialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
 
-            Assert.Equal("Multiple viable DialogHosts.  Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.", ex.Message);
+            Assert.Equal("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.", ex.Message);
         }
 
         [StaFact]
@@ -146,7 +162,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         public async Task WhenContentIsNullItThrows()
         {
             var ex = await Assert.ThrowsAsync<ArgumentNullException>(() => DialogHost.Show(null));
-            
+
             Assert.Equal("content", ex.ParamName);
         }
 
@@ -163,7 +179,7 @@ namespace MaterialDesignThemes.Wpf.Tests
                     e.Cancel();
                 }
             }
-            
+
             var dialogTask = DialogHost.Show("Content", ClosingHandler);
             _dialogHost.CurrentSession.Close("FirstResult");
             _dialogHost.CurrentSession.Close("SecondResult");
@@ -186,10 +202,12 @@ namespace MaterialDesignThemes.Wpf.Tests
                 closingCount++;
             }));
 
-            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left) {
+            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left)
+            {
                 RoutedEvent = UIElement.MouseLeftButtonUpEvent
             });
-            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left) {
+            contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left)
+            {
                 RoutedEvent = UIElement.MouseLeftButtonUpEvent
             });
 
@@ -198,9 +216,122 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Equal(1, closingCount);
         }
 
-        private class TestDialog : Control
+        [StaFact]
+        [Description("Issue 1618")]
+        public void WhenDialogHostIsUnloadedIsOpenRemainsTrue()
         {
-            public void CloseDialog() => DialogHost.CloseDialogCommand.Execute(null, this);
+            _dialogHost.IsOpen = true;
+            _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+
+            Assert.True(_dialogHost.IsOpen);
+        }
+
+        [StaFact]
+        [Description("Issue 1750")]
+        public async Task WhenSettingIsOpenToFalseItReturnsClosingParameterToShow()
+        {
+            Guid closeParameter = Guid.NewGuid();
+
+            Task<object> showTask = _dialogHost.ShowDialog("Content");
+            _dialogHost.CurrentSession.CloseParameter = closeParameter;
+
+            _dialogHost.IsOpen = false;
+
+            Assert.Equal(closeParameter, await showTask);
+        }
+
+        [StaFact]
+        [Description("Issue 1750")]
+        public async Task WhenClosingDialogReturnValueCanBeSpecifiedInClosingEventHandler()
+        {
+            Guid closeParameter = Guid.NewGuid();
+
+            Task<object> showTask = _dialogHost.ShowDialog("Content", (object sender, DialogClosingEventArgs args) =>
+            {
+                args.Session.CloseParameter = closeParameter;
+            });
+
+            DialogHost.CloseDialogCommand.Execute(null, _dialogHost);
+
+            Assert.Equal(closeParameter, await showTask);
+        }
+
+        [StaFact]
+        [Description("Pull Request 2029")]
+        public void WhenClosingDialogItThrowsWhenNoInstancesLoaded()
+        {
+            _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+
+            var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null));
+            Assert.Equal("No loaded DialogHost instances.", ex.Message);
+        }
+
+        [StaFact]
+        [Description("Pull Request 2029")]
+        public void WhenClosingDialogWithInvalidIdentifierItThrowsWhenNoMatchingInstances()
+        {
+            object id = Guid.NewGuid();
+            var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(id));
+            Assert.Equal($"No loaded DialogHost have an Identifier property matching dialogIdentifier ('{id}') argument.", ex.Message);
+        }
+
+        [StaFact]
+        [Description("Pull Request 2029")]
+        public void WhenClosingDialogWithMultipleDialogHostsItThrowsTooManyMatchingInstances()
+        {
+            var secondInstance = new DialogHost();
+            try
+            {
+                secondInstance.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+                var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null));
+                Assert.Equal("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.", ex.Message);
+            }
+            finally
+            {
+                secondInstance.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+            }
+        }
+
+        [StaFact]
+        [Description("Pull Request 2029")]
+        public void WhenClosingDialogThatIsNotOpenItThrowsDialogNotOpen()
+        {
+            var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null));
+            Assert.Equal("DialogHost is not open.", ex.Message);
+        }
+
+        [StaFact]
+        [Description("Pull Request 2029")]
+        public void WhenClosingDialogWithParameterItPassesParameterToHandlers()
+        {
+            object parameter = Guid.NewGuid();
+            object closingParameter = null;
+            _dialogHost.DialogClosing += DialogClosing;
+            _dialogHost.IsOpen = true;
+
+            DialogHost.Close(null, parameter);
+
+            Assert.Equal(parameter, closingParameter);
+
+            void DialogClosing(object sender, DialogClosingEventArgs eventArgs)
+            {
+                closingParameter = eventArgs.Parameter;
+            }
+        }
+
+        [StaFact]
+        public void WhenOpenDialogsAreOpenIsExist()
+        {
+            object id = Guid.NewGuid();
+            _dialogHost.Identifier = id;
+            bool isExist = false;
+            _ = _dialogHost.ShowDialog("Content", new DialogOpenedEventHandler((sender, arg) =>
+            {
+                isExist = DialogHost.IsDialogOpen(id);
+            }));
+            Assert.True(isExist);
+            DialogHost.Close(id);
+            Assert.False(DialogHost.IsDialogOpen(id));
         }
     }
 }

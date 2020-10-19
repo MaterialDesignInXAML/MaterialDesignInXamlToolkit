@@ -1,10 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-
-namespace MaterialDesignColors.WpfExample.Domain
+namespace MaterialDesignDemo.Domain
 {
-    
     public class SelectableViewModel : INotifyPropertyChanged
     {
         private bool _isSelected;
@@ -16,7 +15,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get => _isSelected;
             set
             {
                 if (_isSelected == value) return;
@@ -27,7 +26,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
         public char Code
         {
-            get { return _code; }
+            get => _code;
             set
             {
                 if (_code == value) return;
@@ -38,7 +37,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set
             {
                 if (_name == value) return;
@@ -49,7 +48,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
         public string Description
         {
-            get { return _description; }
+            get => _description;
             set
             {
                 if (_description == value) return;
@@ -60,10 +59,10 @@ namespace MaterialDesignColors.WpfExample.Domain
 
         public double Numeric
         {
-            get { return _numeric; }
+            get => _numeric;
             set
             {
-                if (_numeric == value) return;
+                if (Math.Abs(_numeric - value) < 0.01) return;
                 _numeric = value;
                 OnPropertyChanged();
             }
@@ -71,7 +70,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
         public string Food
         {
-            get { return _food; }
+            get => _food;
             set
             {
                 if (_food == value) return;
@@ -84,8 +83,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

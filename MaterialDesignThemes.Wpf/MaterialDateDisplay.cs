@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,7 +20,25 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(
-            nameof(DisplayDate), typeof(DateTime), typeof(MaterialDateDisplay), new PropertyMetadata(default(DateTime), DisplayDatePropertyChangedCallback));
+            nameof(DisplayDate), typeof(DateTime), typeof(MaterialDateDisplay), new PropertyMetadata(default(DateTime), DisplayDatePropertyChangedCallback, DisplayDateCoerceValue));
+
+        private static object DisplayDateCoerceValue(DependencyObject d, object baseValue)
+        {
+            if (d is FrameworkElement element &&
+                element.Language.GetSpecificCulture() is CultureInfo culture &&
+                baseValue is DateTime displayDate)
+            {
+                if (displayDate < culture.Calendar.MinSupportedDateTime)
+                {
+                    return culture.Calendar.MinSupportedDateTime;
+                }
+                if (displayDate > culture.Calendar.MaxSupportedDateTime)
+                {
+                    return culture.Calendar.MaxSupportedDateTime;
+                }
+            }
+            return baseValue;
+        }
 
         private static void DisplayDatePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -111,9 +130,16 @@ namespace MaterialDesignThemes.Wpf
                 return;
             }
 
-            ComponentOneContent = DisplayDate.ToString(dateTimeFormatInfo.MonthDayPattern.Replace("MMMM", "MMM"), culture).ToTitleCase(culture); //Day Month following culture order. We don't want the month to take too much space
-            ComponentTwoContent = DisplayDate.ToString("ddd,", culture).ToTitleCase(culture);   // Day of week first
-            ComponentThreeContent = DisplayDate.ToString("yyyy", culture).ToTitleCase(culture); // Year always top
+            var calendarFormatInfo = CalendarFormatInfo.FromCultureInfo(culture);
+            var displayDate = DisplayDate;
+            ComponentOneContent = FormatDate(calendarFormatInfo.ComponentOnePattern, displayDate, culture);
+            ComponentTwoContent = FormatDate(calendarFormatInfo.ComponentTwoPattern, displayDate, culture);
+            ComponentThreeContent = FormatDate(calendarFormatInfo.ComponentThreePattern, displayDate, culture);
+        }
+
+        private static string FormatDate(string format, DateTime displayDate, CultureInfo culture)
+        {
+            return string.IsNullOrEmpty(format) ? string.Empty : displayDate.ToString(format, culture).ToTitleCase(culture);
         }
 
         private void SetDisplayDateOfCalendar(DateTime displayDate)

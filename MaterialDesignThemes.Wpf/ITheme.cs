@@ -27,6 +27,9 @@ namespace MaterialDesignThemes.Wpf
 
         Color Divider { get; set; }
         Color Selection { get; set; }
+        
+        Color ToolForeground { get; set; }
+        Color ToolBackground { get; set; }
 
         Color FlatButtonClick { get; set; }
         Color FlatButtonRipple { get; set; }
@@ -45,5 +48,7 @@ namespace MaterialDesignThemes.Wpf
         Color TextFieldBoxDisabledBackground { get; set; }
         Color TextAreaBorder { get; set; }
         Color TextAreaInactiveBorder { get; set; }
+        
+        Color DataGridRowHoverBackground { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+
     <ControlTemplate x:Key="MaterialDesignScrollViewerTemplate" TargetType="{x:Type ScrollViewer}">
         <Grid x:Name="Grid" Background="{TemplateBinding Background}">
             <Grid.ColumnDefinitions>
@@ -10,15 +12,152 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Rectangle x:Name="Corner" Grid.Column="1" Fill="{DynamicResource MaterialDesignSelection}" Grid.Row="1"/>
-            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="0" Margin="{TemplateBinding Padding}" Grid.Row="0"/>
-            <ScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Grid.Column="1" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Grid.Row="0" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" />
-            <ScrollBar x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Grid.Column="0" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" Grid.Row="1" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" />
+
+            <Rectangle 
+                x:Name="PART_Corner"
+                Grid.Column="1"
+                Fill="{DynamicResource MaterialDesignSelection}"
+                Grid.Row="1"
+                Visibility="{Binding Path=(wpf:ScrollViewerAssist.CornerRectangleVisibility), RelativeSource={RelativeSource TemplatedParent}}"/>
+
+            <ScrollContentPresenter 
+                x:Name="PART_ScrollContentPresenter" 
+                CanContentScroll="{TemplateBinding CanContentScroll}"
+                CanHorizontallyScroll="False" CanVerticallyScroll="False"
+                ContentTemplate="{TemplateBinding ContentTemplate}"
+                Content="{TemplateBinding Content}"
+                Grid.Column="0"
+                Grid.Row="0"/>
+
+            <Separator 
+                x:Name="PART_TopSeparator" 
+                Background="{DynamicResource MaterialDesignSelection}"
+                Grid.Column="0" 
+                Grid.Row="0"
+                Opacity="0.4"
+                Margin="0"
+                VerticalAlignment="Top"
+                Visibility="Visible"/>
+
+            <Separator 
+                x:Name="PART_BottomSeparator"
+                Background="{DynamicResource MaterialDesignSelection}"
+                Grid.Column="0" 
+                Grid.Row="0"
+                Opacity="0.4"
+                Margin="0"
+                VerticalAlignment="Bottom"
+                Visibility="Hidden"/>
+
+            <ScrollBar 
+                x:Name="PART_VerticalScrollBar" 
+                AutomationProperties.AutomationId="VerticalScrollBar"
+                Grid.Column="1"
+                Maximum="{TemplateBinding ScrollableHeight}"
+                Minimum="0" 
+                Grid.Row="0"
+                Cursor="Arrow"
+                Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" 
+                Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                ViewportSize="{TemplateBinding ViewportHeight}" />
+
+            <ScrollBar 
+                x:Name="PART_HorizontalScrollBar"
+                AutomationProperties.AutomationId="HorizontalScrollBar" 
+                Grid.Column="0" 
+                Maximum="{TemplateBinding ScrollableWidth}" 
+                Minimum="0" 
+                Orientation="Horizontal" 
+                Grid.Row="1"
+                Cursor="Arrow"
+                Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                ViewportSize="{TemplateBinding ViewportWidth}" />
         </Grid>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="wpf:ScrollViewerAssist.ShowSeparators" Value="True" />
+                    <Condition Property="ComputedVerticalScrollBarVisibility" Value="Visible" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_BottomSeparator" Property="Visibility" Value="Visible"/>
+            </MultiTrigger>
+
+            <Trigger Property="VerticalOffset" Value="0">
+                <Setter TargetName="PART_TopSeparator" Property="Visibility" Value="Hidden" />
+            </Trigger>
+
+            <Trigger Property="wpf:ScrollViewerAssist.ShowSeparators" Value="False">
+                <Setter TargetName="PART_TopSeparator" Property="Visibility" Value="Hidden" />
+            </Trigger>
+            
+            <Trigger Property="wpf:ScrollViewerAssist.IgnorePadding" Value="False">
+                <Setter TargetName="PART_ScrollContentPresenter" Property="Margin" Value="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Trigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True" />
+                    <Condition Property="ComputedVerticalScrollBarVisibility" Value="Visible" />
+                    <Condition Property="IsMouseOver" Value="False" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                To="0"
+                                Duration="0:0:0.2"
+                                Storyboard.TargetProperty="Opacity"
+                                Storyboard.TargetName="PART_VerticalScrollBar"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                To="1"
+                                Duration="0:0:0.2"
+                                Storyboard.TargetProperty="Opacity"
+                                Storyboard.TargetName="PART_VerticalScrollBar"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True" />
+                    <Condition Property="ComputedHorizontalScrollBarVisibility" Value="Visible" />
+                    <Condition Property="IsMouseOver" Value="False" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                To="0"
+                                Duration="0:0:0.2"
+                                Storyboard.TargetProperty="Opacity"
+                                Storyboard.TargetName="PART_HorizontalScrollBar"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                To="1"
+                                Duration="0:0:0.2"
+                                Storyboard.TargetProperty="Opacity"
+                                Storyboard.TargetName="PART_HorizontalScrollBar"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style TargetType="ScrollViewer" x:Key="MaterialDesignScrollViewer">
         <Setter Property="Template" Value="{StaticResource MaterialDesignScrollViewerTemplate}" />
     </Style>
-    
 </ResourceDictionary>

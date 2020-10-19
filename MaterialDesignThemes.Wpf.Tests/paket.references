@@ -2,6 +2,6 @@ Shouldly
 xunit
 xunit.runner.visualstudio
 Xunit.StaFact
-System.Data.DataSetExtensions
+Microsoft.NET.Test.Sdk
 Microsoft.CSharp
 System.Net.Http

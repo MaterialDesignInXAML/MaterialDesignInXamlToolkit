@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +20,17 @@ namespace MaterialDesignThemes.Wpf.Tests
             _timePicker.ApplyDefaultStyle();
         }
 
+        [StaFact]
+        [Description("Issue 1691")]
+        public void DontOverwriteDate()
+        {
+            var expectedDate = new DateTime(2000, 1, 1, 20, 0, 0);
+
+            _timePicker.SelectedTime = expectedDate;
+
+            Assert.Equal(_timePicker.SelectedTime, expectedDate);
+        }
+
         [StaTheory]
         [MemberData(nameof(GetDisplaysExpectedTextData))]
         public void DisplaysExpectedText(CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds,
@@ -30,9 +42,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             _timePicker.WithSeconds = withSeconds;
             _timePicker.SelectedTime = selectedTime;
 
-
-            string currentTestString = $"{culture.ThreeLetterISOLanguageName} {(is24Hour ? "24 Hour" : "12 Hour")} {format} format {(withSeconds ? "with seconds" : "")}";
-            Assert.True(expectedText == _timePicker.Text, $"Expected '{expectedText}' but was '{_timePicker.Text}' - {currentTestString}");
+            Assert.Equal(expectedText, _timePicker.Text);
         }
 
         [StaTheory]
@@ -44,13 +54,13 @@ namespace MaterialDesignThemes.Wpf.Tests
             _timePicker.SelectedTimeFormat = format;
             _timePicker.Is24Hours = is24Hour;
             _timePicker.WithSeconds = withSeconds;
+            _timePicker.SelectedTime = DateTime.MinValue;
 
             var textBox = _timePicker.FindVisualChild<TextBox>(TimePicker.TextBoxPartName);
             textBox.Text = timeString;
             textBox.RaiseEvent(new RoutedEventArgs(UIElement.LostFocusEvent));
 
-            string currentTestString = $"{culture.ThreeLetterISOLanguageName} {(is24Hour ? "24 Hour" : "12 Hour")} {format} format {(withSeconds ? "with seconds" : "")}";
-            Assert.True(expectedTime == _timePicker.SelectedTime, $"Expected '{expectedTime}' but was '{_timePicker.SelectedTime}' - {currentTestString}");
+            Assert.Equal(expectedTime, _timePicker.SelectedTime);
         }
 
         public static IEnumerable<object[]> GetParseLocalizedTimeStringData()
@@ -58,14 +68,14 @@ namespace MaterialDesignThemes.Wpf.Tests
             //for now just using the same set of data to make sure we can go both directions.
             foreach (object[] data in GetDisplaysExpectedTextData())
             {
-                var culture = (CultureInfo) data[0];
-                bool is24Hour = (bool) data[2];
-                var withSeconds = (bool) data[3];
-                var date = (DateTime) data[4];
-                var timeString = (string) data[5];
+                var culture = (CultureInfo)data[0];
+                bool is24Hour = (bool)data[2];
+                var withSeconds = (bool)data[3];
+                var date = (DateTime)data[4];
+                var timeString = (string)data[5];
 
                 //Convert the date to Today
-                date = DateTime.Today.AddHours(date.Hour).AddMinutes(date.Minute).AddSeconds(withSeconds ? date.Second : 0);
+                date = DateTime.MinValue.AddHours(date.Hour).AddMinutes(date.Minute).AddSeconds(withSeconds ? date.Second : 0);
 
                 if (!is24Hour && date.Hour > 12 &&
                     (string.IsNullOrEmpty(culture.DateTimeFormat.AMDesignator) ||

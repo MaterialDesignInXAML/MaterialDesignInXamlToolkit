@@ -88,6 +88,20 @@ namespace MaterialDesignThemes.Wpf
             return style;
         }
 
+        protected override void CancelCellEdit(FrameworkElement editingElement, object uneditedValue)
+        {
+            if (editingElement is ComboBox comboBox)
+                comboBox.SetCurrentValue(ComboBox.IsDropDownOpenProperty, false);
+            base.CancelCellEdit(editingElement, uneditedValue);
+        }
+
+        protected override bool CommitCellEdit(FrameworkElement editingElement)
+        {
+            if (editingElement is ComboBox comboBox)
+                comboBox.SetCurrentValue(ComboBox.IsDropDownOpenProperty, false);
+            return base.CommitCellEdit(editingElement);
+        }
+
         /*
         /// <summary>
         ///     Assigns the Binding to the desired property on the target object.

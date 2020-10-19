@@ -27,7 +27,7 @@ namespace ControlzEx
 
         public object Badge
         {
-            get { return (object) GetValue(BadgeProperty); }
+            get { return (object)GetValue(BadgeProperty); }
             set { SetValue(BadgeProperty, value); }
         }
 
@@ -36,7 +36,7 @@ namespace ControlzEx
 
         public Brush BadgeBackground
         {
-            get { return (Brush) GetValue(BadgeBackgroundProperty); }
+            get { return (Brush)GetValue(BadgeBackgroundProperty); }
             set { SetValue(BadgeBackgroundProperty, value); }
         }
 
@@ -45,16 +45,16 @@ namespace ControlzEx
 
         public Brush BadgeForeground
         {
-            get { return (Brush) GetValue(BadgeForegroundProperty); }
+            get { return (Brush)GetValue(BadgeForegroundProperty); }
             set { SetValue(BadgeForegroundProperty, value); }
         }
 
         public static readonly DependencyProperty BadgePlacementModeProperty = DependencyProperty.Register(
-            "BadgePlacementMode", typeof(BadgePlacementMode), typeof(BadgedEx), new PropertyMetadata(default(BadgePlacementMode)));        
+            "BadgePlacementMode", typeof(BadgePlacementMode), typeof(BadgedEx), new PropertyMetadata(default(BadgePlacementMode)));
 
         public BadgePlacementMode BadgePlacementMode
         {
-            get { return (BadgePlacementMode) GetValue(BadgePlacementModeProperty); }
+            get { return (BadgePlacementMode)GetValue(BadgePlacementModeProperty); }
             set { SetValue(BadgePlacementModeProperty, value); }
         }
 
@@ -81,35 +81,36 @@ namespace ControlzEx
 
         public bool IsBadgeSet
         {
-            get { return (bool) GetValue(IsBadgeSetProperty); }
+            get { return (bool)GetValue(IsBadgeSetProperty); }
             private set { SetValue(IsBadgeSetPropertyKey, value); }
         }
 
         private static void OnBadgeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {            
+        {
             var instance = (BadgedEx)d;
 
             instance.IsBadgeSet = !string.IsNullOrWhiteSpace(e.NewValue as string) || (e.NewValue != null && !(e.NewValue is string));
 
             var args = new RoutedPropertyChangedEventArgs<object>(
                 e.OldValue,
-                e.NewValue) {RoutedEvent = BadgeChangedEvent};
+                e.NewValue)
+            { RoutedEvent = BadgeChangedEvent };
             instance.RaiseEvent(args);
-        } 
+        }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
             _badgeContainer = GetTemplateChild(BadgeContainerPartName) as FrameworkElement;
-        }        
+        }
 
         protected override Size ArrangeOverride(Size arrangeBounds)
         {
             var result = base.ArrangeOverride(arrangeBounds);
 
             if (_badgeContainer == null) return result;
-            
+
             var containerDesiredSize = _badgeContainer.DesiredSize;
             if ((containerDesiredSize.Width <= 0.0 || containerDesiredSize.Height <= 0.0)
                 && !double.IsNaN(_badgeContainer.ActualWidth) && !double.IsInfinity(_badgeContainer.ActualWidth)

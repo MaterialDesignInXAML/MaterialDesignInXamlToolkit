@@ -19,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
     public class SnackbarMessage : ContentControl
     {
         public const string ActionButtonPartName = "PART_ActionButton";
-        private Action _templateCleanupAction = () => {};
+        private Action _templateCleanupAction = () => { };
 
         static SnackbarMessage()
         {
@@ -31,7 +31,7 @@ namespace MaterialDesignThemes.Wpf
 
         public ICommand ActionCommand
         {
-            get { return (ICommand) GetValue(ActionCommandProperty); }
+            get { return (ICommand)GetValue(ActionCommandProperty); }
             set { SetValue(ActionCommandProperty, value); }
         }
 
@@ -40,7 +40,7 @@ namespace MaterialDesignThemes.Wpf
 
         public object ActionCommandParameter
         {
-            get { return (object) GetValue(ActionCommandParameterProperty); }
+            get { return (object)GetValue(ActionCommandParameterProperty); }
             set { SetValue(ActionCommandParameterProperty, value); }
         }
 
@@ -49,7 +49,7 @@ namespace MaterialDesignThemes.Wpf
 
         public object ActionContent
         {
-            get { return (object) GetValue(ActionContentProperty); }
+            get { return (object)GetValue(ActionContentProperty); }
             set { SetValue(ActionContentProperty, value); }
         }
 
@@ -58,16 +58,16 @@ namespace MaterialDesignThemes.Wpf
 
         public DataTemplate ActionContentTemplate
         {
-            get { return (DataTemplate) GetValue(ActionContentTemplateProperty); }
+            get { return (DataTemplate)GetValue(ActionContentTemplateProperty); }
             set { SetValue(ActionContentTemplateProperty, value); }
         }
 
         public static readonly DependencyProperty ActionContentStringFormatProperty = DependencyProperty.Register(
-            "ActionContentStringFormat", typeof(string ), typeof(SnackbarMessage), new PropertyMetadata(default(string )));
+            "ActionContentStringFormat", typeof(string), typeof(SnackbarMessage), new PropertyMetadata(default(string)));
 
         public string ActionContentStringFormat
         {
-            get { return (string ) GetValue(ActionContentStringFormatProperty); }
+            get { return (string)GetValue(ActionContentStringFormatProperty); }
             set { SetValue(ActionContentStringFormatProperty, value); }
         }
 
@@ -76,7 +76,7 @@ namespace MaterialDesignThemes.Wpf
 
         public DataTemplateSelector ActionContentTemplateSelector
         {
-            get { return (DataTemplateSelector) GetValue(ActionContentTemplateSelectorProperty); }
+            get { return (DataTemplateSelector)GetValue(ActionContentTemplateSelectorProperty); }
             set { SetValue(ActionContentTemplateSelectorProperty, value); }
         }
 
@@ -110,7 +110,7 @@ namespace MaterialDesignThemes.Wpf
                 _templateCleanupAction = () => buttonBase.Click -= ButtonBaseOnClick;
             }
             else
-                _templateCleanupAction = () => { };           
+                _templateCleanupAction = () => { };
 
             base.OnApplyTemplate();
         }
@@ -119,5 +119,24 @@ namespace MaterialDesignThemes.Wpf
         {
             OnActionClick();
         }
+
+        /// <summary>
+        /// Maximum total height of snackbar for the action button to be inlined.
+        /// <para>
+        /// Default value (<c>55</c>) is between single line message (<c>48</c>) and two lined snackbar-message (<c>66</c>)
+        /// because tolerance is required (see <a href="https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/1812">issue</a>)
+        /// </para>
+        /// </summary>
+        public static readonly DependencyProperty InlineActionButtonMaxHeightProperty = DependencyProperty.RegisterAttached(
+            "InlineActionButtonMaxHeight", typeof(double), typeof(SnackbarMessage), new PropertyMetadata(55d));
+
+        public static void SetInlineActionButtonMaxHeight(DependencyObject element, double value) => element.SetValue(InlineActionButtonMaxHeightProperty, value);
+        public static double GetInlineActionButtonMaxHeight(DependencyObject element) => (double) element.GetValue(InlineActionButtonMaxHeightProperty);
+
+        public static readonly DependencyProperty ContentMaxHeightProperty = DependencyProperty.RegisterAttached(
+            "ContentMaxHeight", typeof(double), typeof(SnackbarMessage), new PropertyMetadata(36d));
+
+        public static void SetContentMaxHeight(DependencyObject element, double value) => element.SetValue(ContentMaxHeightProperty, value);
+        public static double GetContentMaxHeight(DependencyObject element) => (double) element.GetValue(ContentMaxHeightProperty);
     }
 }

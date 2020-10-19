@@ -43,7 +43,6 @@ namespace MaterialDesignThemes.Wpf
             return (Thickness)element.GetValue(TextBoxViewMarginProperty);
         }
 
-
         /// <summary>
         /// Controls the visibility of the underline decoration.
         /// </summary>
@@ -69,7 +68,32 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Controls the visibility of the filled text field.
+        /// The attached WPF property for getting or setting the <see cref="Brush"/> value for an underline decoration.
+        /// </summary>
+        public static readonly DependencyProperty UnderlineBrushProperty = DependencyProperty.RegisterAttached(
+            "UnderlineBrush", typeof(Brush), typeof(TextFieldAssist), new PropertyMetadata(Brushes.Transparent));
+
+        /// <summary>
+        /// Sets the <see cref="Brush"/> used for underline decoration.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetUnderlineBrush(DependencyObject element, Brush value)
+        {
+            element.SetValue(UnderlineBrushProperty, value);
+        }
+
+        /// <summary>
+        /// Gets the <see cref="Brush"/> used for underline decoration.
+        /// </summary>
+        /// <param name="element"></param>
+        public static Brush GetUnderlineBrush(DependencyObject element)
+        {
+            return (Brush)element.GetValue(UnderlineBrushProperty);
+        }
+
+        /// <summary>
+        /// Controls the visbility of the text field box.
         /// </summary>
         public static readonly DependencyProperty HasFilledTextFieldProperty = DependencyProperty.RegisterAttached(
             "HasFilledTextField", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
@@ -162,28 +186,6 @@ namespace MaterialDesignThemes.Wpf
         public static bool GetRippleOnFocusEnabled(DependencyObject element)
         {
             return (bool)element.GetValue(RippleOnFocusEnabledProperty);
-        }
-
-        /// <summary>
-        /// The color for highlighting effects on the border of a text box.
-        /// </summary>
-        public static readonly DependencyProperty UnderlineBrushProperty = DependencyProperty.RegisterAttached(
-            "UnderlineBrush", typeof(Brush), typeof(TextFieldAssist), new PropertyMetadata(null));
-
-        /// <summary>
-        /// Sets the color for highlighting effects on the border of a text box.
-        /// </summary>
-        public static void SetUnderlineBrush(DependencyObject element, Brush value)
-        {
-            element.SetValue(UnderlineBrushProperty, value);
-        }
-
-        /// <summary>
-        /// Gets the color for highlighting effects on the border of a text box.
-        /// </summary>
-        public static Brush GetUnderlineBrush(DependencyObject element)
-        {
-            return (Brush)element.GetValue(UnderlineBrushProperty);
         }
 
         /// <summary>
@@ -308,8 +310,8 @@ namespace MaterialDesignThemes.Wpf
         private static void RemoveSpellingSuggestions(ContextMenu menu)
         {
             foreach (FrameworkElement item in (from item in menu.Items.OfType<FrameworkElement>()
-                                     where ReferenceEquals(item.Tag, typeof(Spelling))
-                                     select item).ToList())
+                where ReferenceEquals(item.Tag, typeof(Spelling))
+                select item).ToList())
             {
                 menu.Items.Remove(item);
             }
@@ -334,7 +336,6 @@ namespace MaterialDesignThemes.Wpf
             else
                 box.Loaded += (sender, args) =>
                     SetClearHandler(box);
-
         }
 
         private static void SetClearHandler(Control box)
@@ -383,6 +384,16 @@ namespace MaterialDesignThemes.Wpf
             return (string)element.GetValue(SuffixTextProperty);
         }
 
+        /// <summary>
+        /// PrefixText dependency property
+        /// </summary>
+        public static readonly DependencyProperty PrefixTextProperty = DependencyProperty.RegisterAttached(
+            "PrefixText", typeof(string), typeof(TextFieldAssist), new PropertyMetadata(default(string)));
+
+        public static void SetPrefixText(DependencyObject element, string value) => element.SetValue(PrefixTextProperty, value);
+
+        public static string GetPrefixText(DependencyObject element) => (string)element.GetValue(PrefixTextProperty);
+
         #region Methods
 
         /// <summary>
@@ -392,15 +403,22 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="margin">The margin.</param>
         private static void ApplyTextBoxViewMargin(Control textBox, Thickness margin)
         {
-            if (margin.Equals(new Thickness(double.NegativeInfinity)))
-            {
+            if (margin.Equals(new Thickness(double.NegativeInfinity))
+                || textBox.Template == null)
                 return;
+
+            if (textBox is ComboBox
+                && textBox.Template.FindName("PART_EditableTextBox", textBox) is TextBox editableTextBox)
+            {
+                textBox = editableTextBox;
+                if (textBox.Template == null)
+                    return;
+                textBox.ApplyTemplate();
             }
 
-            if ((textBox.Template?.FindName("PART_ContentHost", textBox) as ScrollViewer)?.Content is FrameworkElement frameworkElement)
-            {
+            if (textBox.Template.FindName("PART_ContentHost", textBox) is ScrollViewer scrollViewer
+                && scrollViewer.Content is FrameworkElement frameworkElement)
                 frameworkElement.Margin = margin;
-            }
         }
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static readonly DependencyProperty RotationXProperty =
             DependencyProperty.Register("RotationX", typeof(double), typeof(Plane3D), new UIPropertyMetadata(0.0, (d, args) => ((Plane3D)d).UpdateRotation()));
-        
+
         public double RotationX
         {
             get { return (double)GetValue(RotationXProperty); }
@@ -75,9 +75,9 @@ namespace MaterialDesignThemes.Wpf
 
         public double ZFactor
         {
-            get { return (double) GetValue(ZFactorProperty); }
+            get { return (double)GetValue(ZFactorProperty); }
             set { SetValue(ZFactorProperty, value); }
-        }        
+        }
 
         public FrameworkElement Child
         {
@@ -104,7 +104,7 @@ namespace MaterialDesignThemes.Wpf
                 AddLogicalChild(_logicalChild);
                 InvalidateMeasure();
             }
-        }        
+        }
 
         protected override Size MeasureOverride(Size availableSize)
         {

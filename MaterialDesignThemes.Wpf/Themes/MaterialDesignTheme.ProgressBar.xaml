@@ -1,8 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:circularProgressBar="clr-namespace:MaterialDesignThemes.Wpf.Converters.CircularProgressBar"
                     xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
     
     <Style x:Key="MaterialDesignLinearProgressBar" TargetType="{x:Type ProgressBar}">
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}"/>
@@ -79,7 +80,7 @@
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="transitions:TransitionAssist.DisableTransitions" Value="True">
+                        <Trigger Property="wpf:TransitionAssist.DisableTransitions" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard Storyboard="{StaticResource OnLoadedNoAnimation}" Name="BeginStoryboardOnLoadedNoAnimation" />
                             </Trigger.EnterActions>
@@ -90,7 +91,7 @@
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsVisible" Value="True" />
-                                <Condition Property="transitions:TransitionAssist.DisableTransitions" Value="False" />
+                                <Condition Property="wpf:TransitionAssist.DisableTransitions" Value="False" />
                             </MultiTrigger.Conditions>
                             <MultiTrigger.EnterActions>
                                 <BeginStoryboard Storyboard="{StaticResource OnLoaded}" Name="BeginStoryboardOnLoaded" />
@@ -118,7 +119,6 @@
     <circularProgressBar:StartPointConverter x:Key="StartPointConverter" />
     <circularProgressBar:ArcSizeConverter x:Key="ArcSizeConverter" />
     <circularProgressBar:ArcEndPointConverter x:Key="ArcEndPointConverter" />
-    <circularProgressBar:LargeArcConverter x:Key="LargeArcConverter" />
     <circularProgressBar:RotateTransformCentreConverter x:Key="RotateTransformCentreConverter" />
     <converters:NotZeroConverter x:Key="NotZeroConverter" />
 
@@ -134,7 +134,7 @@
                         <Storyboard x:Key="IsIndeterminateStoryboard" TargetName="RotateTransform" TargetProperty="Angle" RepeatBehavior="Forever">
                             <DoubleAnimation From="0" To="359" Duration="0:0:2" />
                         </Storyboard>
-                        <Storyboard x:Key="IsFullyIndeterminateScaleStoryboard">
+                        <Storyboard x:Key="IsFullyIndeterminateStoryboard">
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FullyIndeterminateGridScaleTransform"
                                                            Storyboard.TargetProperty="ScaleX"
                                                            RepeatBehavior="Forever">
@@ -165,14 +165,20 @@
                                         <PathFigure StartPoint="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource StartPointConverter}, Mode=OneWay}">
                                             <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource ArcSizeConverter}, Mode=OneWay}"
                                                         SweepDirection="Clockwise">
-                                                <ArcSegment.IsLargeArc>
-                                                    <MultiBinding Converter="{StaticResource LargeArcConverter}">
+                                                <ArcSegment.Point>
+                                                    <MultiBinding 
+                                                        Converter="{StaticResource ArcEndPointConverter}" 
+                                                        ConverterParameter="{x:Static circularProgressBar:ArcEndPointConverter.ParameterMidPoint}">
+                                                        <Binding ElementName="PathGrid" Path="ActualWidth" />
                                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value" />
                                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Minimum" />
                                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Maximum" />
                                                         <Binding ElementName="FullyIndeterminateGridScaleTransform" Path="ScaleX" />
                                                     </MultiBinding>
-                                                </ArcSegment.IsLargeArc>
+                                                </ArcSegment.Point>
+                                            </ArcSegment>
+                                            <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource ArcSizeConverter}, Mode=OneWay}"
+                                                        SweepDirection="Clockwise">
                                                 <ArcSegment.Point>
                                                     <MultiBinding Converter="{StaticResource ArcEndPointConverter}">
                                                         <Binding ElementName="PathGrid" Path="ActualWidth" />
@@ -204,7 +210,6 @@
                                 <Condition Binding="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource NotZeroConverter}}" Value="True" />
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.EnterActions>
-                                <RemoveStoryboard BeginStoryboardName="IsFullyIndeterminateStoryboard" />
                                 <BeginStoryboard Storyboard="{StaticResource IsIndeterminateStoryboard}"
                                                  Name="IsIndeterminateStoryboard"/>
                             </MultiDataTrigger.EnterActions>
@@ -215,12 +220,11 @@
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsIndeterminate" Value="True" />
-                                <Condition Property="Value" Value="0" />
                                 <Condition Property="IsVisible" Value="True" />
+                                <Condition Property="Value" Value="0" />
                             </MultiTrigger.Conditions>
                             <MultiTrigger.EnterActions>
-                                <RemoveStoryboard BeginStoryboardName="IsIndeterminateStoryboard" />
-                                <BeginStoryboard Storyboard="{StaticResource IsFullyIndeterminateScaleStoryboard}"
+                                <BeginStoryboard Storyboard="{StaticResource IsFullyIndeterminateStoryboard}"
                                                  Name="IsFullyIndeterminateStoryboard"/>
                             </MultiTrigger.EnterActions>
                             <MultiTrigger.ExitActions>

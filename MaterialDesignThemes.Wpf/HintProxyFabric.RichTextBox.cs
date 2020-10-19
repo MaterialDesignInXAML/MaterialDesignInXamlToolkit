@@ -24,7 +24,8 @@ namespace MaterialDesignThemes.Wpf
                     _richTextBox.Document.ContentEnd
                 );
 
-                return string.IsNullOrWhiteSpace(textRange.Text);
+                return string.IsNullOrEmpty(textRange.Text) || 
+                    textRange.Text == Environment.NewLine;
             }
 
             public bool IsFocused() => _richTextBox.IsKeyboardFocused;

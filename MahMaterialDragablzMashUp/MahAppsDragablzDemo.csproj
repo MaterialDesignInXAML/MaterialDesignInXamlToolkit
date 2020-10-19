@@ -2,28 +2,15 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net45</TargetFrameworks>
+    <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>MahMaterialDragablzMashUp</AssemblyTitle>
     <Product>MahMaterialDragablzMashUp</Product>
-    <Copyright>Copyright ©  2015</Copyright>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
-    <Configurations>Debug;Release;AppVeyor</Configurations>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppVeyor|Any CPU'">
-    <OutputPath>bin\AppVeyor\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
@@ -37,9 +24,9 @@
     <Resource Include="Resources\ProfilePic.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="obj\AppVeyor\Dialogs.g.cs" />
-    <Compile Remove="obj\AppVeyor\FlyoutContent.g.cs" />
-    <Compile Remove="obj\AppVeyor\Mah.g.cs" />
+    <PackageReference Update="Dragablz">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

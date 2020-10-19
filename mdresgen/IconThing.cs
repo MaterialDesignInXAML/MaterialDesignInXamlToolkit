@@ -15,7 +15,7 @@ namespace mdresgen
     static class IconThing
     {
         public static void Run()
-        {            
+        {
             Console.WriteLine("Downloading icon data...");
 
             var nameDataPairs = GetIcons(GetSourceData()).ToList();
@@ -47,7 +47,7 @@ namespace mdresgen
             webRequest.Credentials = CredentialCache.DefaultCredentials;
             if (webRequest.Proxy != null)
                 webRequest.Proxy.Credentials = CredentialCache.DefaultCredentials;
-            
+
             using (var sr = new StreamReader(webRequest.GetResponse().GetResponseStream()))
             {
                 var iconData = sr.ReadToEnd();
@@ -59,33 +59,48 @@ namespace mdresgen
         }
 
         private static IEnumerable<Icon> GetIcons(string sourceData)
-        {            
+        {
             var jObject = JObject.Parse(sourceData);
-            var icons = jObject["icons"].Select(t => new Icon(
-                t["name"].ToString().Underscore().Pascalize(),
-                t["data"].ToString(),
-                t["aliases"].ToObject<IEnumerable<string>>().Select(x => x.Underscore().Pascalize()).ToList() ))
-                .ToDictionary(icon => icon.Name);
+            var icons = new[] { new Icon("None", string.Empty, new List<string>()) } //Add None value always to Enum at first place
+                .Concat(
+                   jObject["icons"].Select(t => new Icon(
+                   t["name"].ToString().Underscore().Pascalize(),
+                   t["data"].ToString(),
+                   t["aliases"].ToObject<IEnumerable<string>>().Select(x => x.Underscore().Pascalize()).ToList()))
+                );
+
+            var iconsByName = new Dictionary<string, Icon>(StringComparer.OrdinalIgnoreCase);
+            foreach(Icon icon in icons)
+            {
+                if (iconsByName.ContainsKey(icon.Name))
+                {
+                    Console.WriteLine($"Ignoring duplicate icon '{icon.Name}'");
+                }
+                else
+                {
+                    iconsByName.Add(icon.Name, icon);
+                }
+            }
 
             //Clean up aliases to avoid naming collisions
             var seenAliases = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            foreach (var icon in icons.Values)
+            foreach (var icon in iconsByName.Values)
             {
                 seenAliases.Add(icon.Name);
             }
-            foreach (Icon icon in icons.Values)
+            foreach (Icon icon in iconsByName.Values)
             {
                 for (int i = icon.Aliases.Count - 1; i >= 0; i--)
                 {
                     string alias = icon.Aliases[i];
-                    if (icons.ContainsKey(alias) || !IsValidIdentifier(alias) || seenAliases.Add(alias) == false)
+                    if (iconsByName.ContainsKey(alias) || !IsValidIdentifier(alias) || seenAliases.Add(alias) == false)
                     {
                         icon.Aliases.RemoveAt(i);
                     }
                 }
             }
-
-            return icons.Values;
+          
+            return iconsByName.Values.OrderBy(x => x.Name);
 
             bool IsValidIdentifier(string identifier)
             {
@@ -120,21 +135,21 @@ namespace mdresgen
             var generatedEnumDeclarationSyntax = emptyEnumDeclarationSyntaxNode.AddMembers(enumMemberDeclarationSyntaxs);
 
             generatedEnumDeclarationSyntax = AddLineFeedsToCommas(generatedEnumDeclarationSyntax);
-                
+
             var generatedNamespaceDeclarationSyntaxNode = namespaceDeclarationNode.ReplaceNode(enumDeclarationSyntaxNode, generatedEnumDeclarationSyntax);
             var generatedRootNode = rootNode.ReplaceNode(namespaceDeclarationNode, generatedNamespaceDeclarationSyntaxNode);
-            
+
             return generatedRootNode.ToFullString();
 
             IEnumerable<EnumMemberDeclarationSyntax> GetEnumMemberDeclarations(Icon icon)
             {
                 var emptyAttributes = new SyntaxList<AttributeListSyntax>();
                 SyntaxToken iconIdentifierToken = SyntaxFactory.Identifier(leadingTriviaList, icon.Name, SyntaxTriviaList.Empty);
-                
+
                 yield return SyntaxFactory.EnumMemberDeclaration(iconIdentifierToken);
-                foreach (string alias in icon.Aliases)
+                foreach (string alias in icon.Aliases.OrderBy(x => x))
                 {
-                    yield return SyntaxFactory.EnumMemberDeclaration(emptyAttributes, 
+                    yield return SyntaxFactory.EnumMemberDeclaration(emptyAttributes,
                         SyntaxFactory.Identifier(leadingTriviaList, alias, SyntaxTriviaList.Empty),
                         SyntaxFactory.EqualsValueClause(SyntaxFactory.IdentifierName(icon.Name)));
                 }

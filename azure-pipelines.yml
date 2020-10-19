@@ -14,94 +14,88 @@ pool:
   vmImage: 'windows-2019'
 
 variables:
-  solution: 'MaterialDesignToolkit.Wpf.sln'
+  solution: 'MaterialDesignToolkit.Full.sln'
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'AppVeyor'
-  dotNetCoreVersion: '3.0.*'
+  buildConfiguration: 'Release'
+  mdixColorsVersion: '2.0.0'
+  mdixMahAppsVersion: '0.1.6'
+  mdixVersion: '4.0.0'
 
 steps:
-- task: UseDotNet@2
-  displayName: 'Use dotNet $(dotNetCoreVersion)'
-  inputs:
-    packageType: 'sdk'
-    version: '$(dotNetCoreVersion)'
-
-- task: NuGetToolInstaller@0
-  displayName: 'Use latest NuGet'
-
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet restore'
+  displayName: 'Restore tools'
   inputs:
-    command: restore
+    command: custom 
+    custom: tool
+    arguments: restore
 
-    projects: |
-     $(solution)
-
-- powershell: .paket\paket.exe restore
+- task: DotNetCoreCLI@2
+  displayName: 'Restore via paket'
+  inputs:
+    command: custom 
+    custom: paket 
+    arguments: restore
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
     projects: '$(solution)'
-    arguments: '/p:Configuration=$(buildConfiguration) /p:Platform="Any CPU" /p:MDIX_CORE_VERSION=$(mdixVersion).$(Build.BuildID) /p:MDIX_COLORS_VERSION=$(mdixColorsVersion).$(Build.BuildID) /p:MDIX_MAHAPPS_VERSION=$(mdixMahappsVersion).$(Build.BuildID)'
+    arguments: '/p:Configuration=$(buildConfiguration) /p:Platform="Any CPU" /p:MDIXVersion=$(mdixVersion).$(Build.BuildID) /p:MDIXColorsVersion=$(mdixColorsVersion).$(Build.BuildID) /p:MDIXMahAppsVersion=$(mdixMahappsVersion).$(Build.BuildID)'
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
+  displayName: 'Unit Tests'
   inputs:
     command: test
-    projects: '$(solution)'
+    projects: '**/*.Tests.csproj'
+    arguments: '--configuration $(buildConfiguration) --no-build'
+
+- task: DotNetCoreCLI@2
+  displayName: 'UI Tests'
+  inputs:
+    command: test
+    projects: '**/*.UITests'
+    arguments: '--configuration $(buildConfiguration) --no-build'
+
+- task: PublishPipelineArtifact@0
+  name: "PublishUITestsScreenshots"
+  inputs:
+    artifactName: 'Screenshots'
+    targetPath: 'MaterialDesignThemes.UITests/bin/$(buildConfiguration)/netcoreapp3.1/Screenshots'
+  condition: always()
+
+- task: PowerShell@2
+  displayName: "Build NuGets"
+  inputs: 
+    filePath: 'Scripts\\BuildNugets.ps1'
+    arguments: '-MDIXVersion $(mdixVersion)-ci$(Build.BuildId) -MDIXMahAppsVersion $(mdixMahappsVersion)-ci$(Build.BuildId) -MDIXColorsVersion $(mdixColorsVersion)-ci$(Build.BuildId)'
 
 - task: PublishPipelineArtifact@0
   name: "PublishDemoApp"
   inputs:
     artifactName: 'DemoApp'
-    targetPath: 'MainDemo.Wpf/bin/AppVeyor'
-
-- task: PowerShell@2
-  displayName: 'Copy MDIX nuspec'
-  inputs:
-    targetType: 'inline'
-    script: 'Copy-Item -Path ".\\MaterialDesignThemes.nuspec" -Destination ".\\MaterialDesignThemes.Wpf\\bin\\AppVeyor\\"'
-    ignoreLASTEXITCODE: true
-
-- task: PowerShell@2
-  displayName: 'Copy CS Files'
-  inputs:
-    targetType: 'inline'
-    script: 'robocopy MaterialDesignThemes.Wpf MaterialDesignThemes.Wpf\\bin\\AppVeyor\\src *.cs /S /XD bin obj'
-    ignoreLASTEXITCODE: true
-
-- task: PowerShell@2
-  displayName: 'Copy CS Files'
-  inputs:
-    targetType: 'inline'
-    script: 'Copy-Item -Path ".\\MaterialDesignColors.nuspec" -Destination ".\\MaterialDesignColors.Wpf\\bin\\AppVeyor\\"'
-    ignoreLASTEXITCODE: true
-
-- task: PowerShell@2
-  displayName: 'Copy CS Files'
-  inputs:
-    targetType: 'inline'
-    script: 'Copy-Item -Path ".\\MaterialDesignThemes.MahApps.nuspec" -Destination ".\\MaterialDesignThemes.MahApps\\bin\\Release\\"'
-    ignoreLASTEXITCODE: true
+    targetPath: 'MainDemo.Wpf/bin/$(buildConfiguration)'
 
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesign"
   inputs:
     artifactName: 'MDIX'
-    targetPath: 'MaterialDesignThemes.Wpf/bin/AppVeyor'
+    targetPath: 'MaterialDesignThemes.$(mdixVersion)-ci$(Build.BuildId).nupkg'
 
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesignColors"
   inputs:
     artifactName: 'MDIX.Colors'
-    targetPath: 'MaterialDesignColors.Wpf/bin/AppVeyor'
+    targetPath: 'MaterialDesignColors.$(mdixColorsVersion)-ci$(Build.BuildId).nupkg'
 
 - task: PublishPipelineArtifact@0
   name: "PublishMaterialDesignMahApps"
   inputs:
     artifactName: 'MDIX.MahApps'
-    targetPath: 'MaterialDesignThemes.MahApps/bin/Release'
+    targetPath: 'MaterialDesignThemes.MahApps.$(mdixMahappsVersion)-ci$(Build.BuildId).nupkg'
+
+- task: PublishPipelineArtifact@0
+  name: "PublishScript"
+  inputs:
+    artifactName: 'Script'
+    targetPath: 'Scripts\\UpdateNugets.ps1'

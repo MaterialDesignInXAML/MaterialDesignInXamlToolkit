@@ -12,7 +12,7 @@ namespace MaterialDesignThemes.Wpf.Converters
         public Brush LowValue { get; set; } = Brushes.Black;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {            
+        {
             var solidColorBrush = value as SolidColorBrush;
             if (solidColorBrush == null) return null;
 

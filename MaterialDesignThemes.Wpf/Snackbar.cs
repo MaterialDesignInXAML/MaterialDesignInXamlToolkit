@@ -7,6 +7,13 @@ using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
 {
+    public enum SnackbarActionButtonPlacementMode
+    {
+        Auto,
+        Inline,
+        SeparateLine
+    }
+
     /// <summary>
     /// Implements a <see cref="Snackbar"/> inspired by the Material Design specs (https://material.google.com/components/snackbars-toasts.html).
     /// </summary>
@@ -16,7 +23,7 @@ namespace MaterialDesignThemes.Wpf
         private const string ActivateStoryboardName = "ActivateStoryboard";
         private const string DeactivateStoryboardName = "DeactivateStoryboard";
 
-        private Action _messageQueueRegistrationCleanUp = null;
+        private Action _messageQueueRegistrationCleanUp;
 
         static Snackbar()
         {
@@ -28,25 +35,33 @@ namespace MaterialDesignThemes.Wpf
 
         public SnackbarMessage Message
         {
-            get { return (SnackbarMessage) GetValue(MessageProperty); }
-            set { SetValue(MessageProperty, value); }
+            get => (SnackbarMessage) GetValue(MessageProperty);
+            set => SetValue(MessageProperty, value);
         }
 
         public static readonly DependencyProperty MessageQueueProperty = DependencyProperty.Register(
-            nameof(MessageQueue), typeof(SnackbarMessageQueue), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessageQueue), MessageQueuePropertyChangedCallback));
+            nameof(MessageQueue), typeof(SnackbarMessageQueue), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessageQueue), MessageQueuePropertyChangedCallback),
+            MessageQueueValidateValueCallback);
 
         private static void MessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var snackbar = (Snackbar) dependencyObject;
-            (snackbar._messageQueueRegistrationCleanUp ?? (() => { }))();            
+            snackbar._messageQueueRegistrationCleanUp?.Invoke();
             var messageQueue = dependencyPropertyChangedEventArgs.NewValue as SnackbarMessageQueue;
             snackbar._messageQueueRegistrationCleanUp = messageQueue?.Pair(snackbar);
         }
 
+        private static bool MessageQueueValidateValueCallback(object value)
+        {
+            if (value is null || ((SnackbarMessageQueue)value).Dispatcher == Dispatcher.CurrentDispatcher)
+                return true;
+            throw new ArgumentException("SnackbarMessageQueue must be created by the same thread.", nameof(value));
+        }
+
         public SnackbarMessageQueue MessageQueue
         {
-            get { return (SnackbarMessageQueue) GetValue(MessageQueueProperty); }
-            set { SetValue(MessageQueueProperty, value); }
+            get => (SnackbarMessageQueue) GetValue(MessageQueueProperty);
+            set => SetValue(MessageQueueProperty, value);
         }
 
         public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
@@ -54,48 +69,37 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsActive
         {
-            get { return (bool) GetValue(IsActiveProperty); }
-            set { SetValue(IsActiveProperty, value); }
+            get => (bool) GetValue(IsActiveProperty);
+            set => SetValue(IsActiveProperty, value);
         }
 
         public event RoutedPropertyChangedEventHandler<bool> IsActiveChanged
         {
-            add { AddHandler(IsActiveChangedEvent, value); }
-            remove { RemoveHandler(IsActiveChangedEvent, value); }
+            add => AddHandler(IsActiveChangedEvent, value);
+            remove => RemoveHandler(IsActiveChangedEvent, value);
         }
 
-        public static readonly RoutedEvent IsActiveChangedEvent =
-            EventManager.RegisterRoutedEvent(
-                nameof(IsActiveChanged),
-                RoutingStrategy.Bubble,
-                typeof(RoutedPropertyChangedEventHandler<bool>),
-                typeof(Snackbar));
+        public static readonly RoutedEvent IsActiveChangedEvent = EventManager.RegisterRoutedEvent(
+            nameof(IsActiveChanged), RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<bool>), typeof(Snackbar));
 
-        private static void OnIsActiveChanged(
-            DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsActiveChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var instance = d as Snackbar;
-            var args = new RoutedPropertyChangedEventArgs<bool>(
-                (bool) e.OldValue,
-                (bool) e.NewValue) {RoutedEvent = IsActiveChangedEvent };
+            var args = new RoutedPropertyChangedEventArgs<bool>((bool) e.OldValue, (bool) e.NewValue)
+                { RoutedEvent = IsActiveChangedEvent };
             instance?.RaiseEvent(args);
-        }        
+        }
 
-        public static readonly RoutedEvent DeactivateStoryboardCompletedEvent =
-            EventManager.RegisterRoutedEvent(
-                nameof(DeactivateStoryboardCompleted),
-                RoutingStrategy.Bubble,
-                typeof(SnackbarMessageEventArgs),
-                typeof(Snackbar));
+        public static readonly RoutedEvent DeactivateStoryboardCompletedEvent = EventManager.RegisterRoutedEvent(
+            nameof(DeactivateStoryboardCompleted), RoutingStrategy.Bubble, typeof(SnackbarMessageEventArgs), typeof(Snackbar));
 
         public event RoutedPropertyChangedEventHandler<SnackbarMessage> DeactivateStoryboardCompleted
         {
-            add { AddHandler(DeactivateStoryboardCompletedEvent, value); }
-            remove { RemoveHandler(DeactivateStoryboardCompletedEvent, value); }
+            add => AddHandler(DeactivateStoryboardCompletedEvent, value);
+            remove => RemoveHandler(DeactivateStoryboardCompletedEvent, value);
         }
 
-        private static void OnDeactivateStoryboardCompleted(
-            IInputElement snackbar, SnackbarMessage message)
+        private static void OnDeactivateStoryboardCompleted(IInputElement snackbar, SnackbarMessage message)
         {
             var args = new SnackbarMessageEventArgs(DeactivateStoryboardCompletedEvent, message);
             snackbar.RaiseEvent(args);
@@ -110,8 +114,8 @@ namespace MaterialDesignThemes.Wpf
 
         public Style ActionButtonStyle
         {
-            get { return (Style) GetValue(ActionButtonStyleProperty); }
-            set { SetValue(ActionButtonStyleProperty, value); }
+            get => (Style) GetValue(ActionButtonStyleProperty);
+            set => SetValue(ActionButtonStyleProperty, value);
         }
 
         public override void OnApplyTemplate()
@@ -120,21 +124,21 @@ namespace MaterialDesignThemes.Wpf
             //we either build a storyboard in code and subscribe to completed event, 
             //or take the not 100% proof of the storyboard duration from the storyboard itself
             //...HOWEVER...we can both methods result can work under the same public API so 
-            //we can flip the implementation if this version doesnt pan out
+            //we can flip the implementation if this version does not pan out
 
             //(currently we have no even on the activate animation; don't 
             // need it just now, but it would mirror the deactivate)
 
             ActivateStoryboardDuration = GetStoryboardResourceDuration(ActivateStoryboardName);
             DeactivateStoryboardDuration = GetStoryboardResourceDuration(DeactivateStoryboardName);
-            
+
             base.OnApplyTemplate();
-        }        
+        }
 
         private TimeSpan GetStoryboardResourceDuration(string resourceName)
         {
             var storyboard = Template.Resources.Contains(resourceName)
-                ? (Storyboard)Template.Resources[resourceName]
+                ? (Storyboard) Template.Resources[resourceName]
                 : null;
 
             return storyboard != null && storyboard.Duration.HasTimeSpan
@@ -151,9 +155,9 @@ namespace MaterialDesignThemes.Wpf
         {
             OnIsActiveChanged(dependencyObject, dependencyPropertyChangedEventArgs);
 
-            if ((bool)dependencyPropertyChangedEventArgs.NewValue) return;
+            if ((bool) dependencyPropertyChangedEventArgs.NewValue) return;
 
-            var snackbar = (Snackbar)dependencyObject;
+            var snackbar = (Snackbar) dependencyObject;
             if (snackbar.Message == null) return;
 
             var dispatcherTimer = new DispatcherTimer
@@ -162,16 +166,25 @@ namespace MaterialDesignThemes.Wpf
                 Interval = snackbar.DeactivateStoryboardDuration
             };
             dispatcherTimer.Tick += DeactivateStoryboardDispatcherTimerOnTick;
-            dispatcherTimer.Start();            
+            dispatcherTimer.Start();
         }
 
         private static void DeactivateStoryboardDispatcherTimerOnTick(object sender, EventArgs eventArgs)
         {
-            var dispatcherTimer = (DispatcherTimer)sender;
-            dispatcherTimer.Stop(); 
+            var dispatcherTimer = (DispatcherTimer) sender;
+            dispatcherTimer.Stop();
             dispatcherTimer.Tick -= DeactivateStoryboardDispatcherTimerOnTick;
-            var source = (Tuple<Snackbar, SnackbarMessage>)dispatcherTimer.Tag;
+            var source = (Tuple<Snackbar, SnackbarMessage>) dispatcherTimer.Tag;
             OnDeactivateStoryboardCompleted(source.Item1, source.Item2);
         }
-    }    
+
+        public static readonly DependencyProperty ActionButtonPlacementProperty = DependencyProperty.Register(
+            nameof(ActionButtonPlacement), typeof(SnackbarActionButtonPlacementMode), typeof(Snackbar), new PropertyMetadata(SnackbarActionButtonPlacementMode.Auto));
+
+        public SnackbarActionButtonPlacementMode ActionButtonPlacement
+        {
+            get => (SnackbarActionButtonPlacementMode) GetValue(ActionButtonPlacementProperty);
+            set => SetValue(ActionButtonPlacementProperty, value);
+        }
+    }
 }

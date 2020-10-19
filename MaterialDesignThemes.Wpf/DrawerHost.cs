@@ -78,6 +78,15 @@ namespace MaterialDesignThemes.Wpf
             CommandBindings.Add(new CommandBinding(CloseDrawerCommand, CloseDrawerHandler));
         }
 
+        public static readonly DependencyProperty OverlayBackgroundProperty = DependencyProperty.Register(
+            nameof(OverlayBackground), typeof(Brush), typeof(DrawerHost), new PropertyMetadata(default(Brush)));
+
+        public Brush OverlayBackground
+        {
+            get { return (Brush)GetValue(OverlayBackgroundProperty); }
+            set { SetValue(OverlayBackgroundProperty, value); }
+        }
+
         #region top drawer
 
         public static readonly DependencyProperty TopDrawerContentProperty = DependencyProperty.Register(

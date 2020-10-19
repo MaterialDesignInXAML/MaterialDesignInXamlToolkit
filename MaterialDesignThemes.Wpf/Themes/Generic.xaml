@@ -191,7 +191,8 @@
     </Style>
 
     <Style TargetType="{x:Type local:Underline}">
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="local:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="Background" Value="{Binding Path=(local:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Bottom"/>
@@ -424,6 +425,7 @@
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="ClipToBounds" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ColorZone}">
@@ -446,7 +448,7 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
-                                ClipToBounds="True">
+                                ClipToBounds="{TemplateBinding ClipToBounds}">
                             <ContentPresenter Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               TextElement.Foreground="{TemplateBinding Foreground}"
@@ -477,9 +479,17 @@
                 <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
             </Trigger>
-            <Trigger Property="Mode" Value="Accent">
-                <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}" />
-                <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}" />
+            <Trigger Property="Mode" Value="SecondaryLight">
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="Mode" Value="SecondaryMid">
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="Mode" Value="SecondaryDark">
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
             </Trigger>
             <Trigger Property="Mode" Value="Light">
                 <Setter Property="Background" Value="{DynamicResource MaterialDesignLightBackground}" />
@@ -489,6 +499,10 @@
                 <Setter Property="Background" Value="{DynamicResource MaterialDesignDarkBackground}" />
                 <Setter Property="Foreground" Value="{DynamicResource MaterialDesignDarkForeground}" />
             </Trigger>
+            <Trigger Property="Mode" Value="Custom">
+                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:ColorZoneAssist.Background)}" />
+                <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:ColorZoneAssist.Foreground)}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -497,6 +511,7 @@
     <Style TargetType="{x:Type local:DrawerHost}">
         <Setter Property="local:ShadowAssist.ShadowDepth" Value="Depth3" />
         <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="OverlayBackground" Value="{StaticResource BlackBackground}" />
         <Setter Property="LeftDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="TopDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="RightDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
@@ -525,10 +540,6 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
-                                                                           Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
-                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="AnyOpen" To="AllClosed">
@@ -541,10 +552,6 @@
                                                     </EasingDoubleKeyFrame.EasingFunction>
                                                 </EasingDoubleKeyFrame>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
-                                                                           Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame Value="{x:Null}" KeyTime="0:0:0.3" />
-                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -558,10 +565,6 @@
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="IsEnabled">
                                             <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
                                         </BooleanAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
-                                                                           Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame Value="{StaticResource BlackBackground}" KeyTime="0" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="AllClosed">
@@ -571,10 +574,6 @@
                                         <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="IsHitTestVisible">
                                             <DiscreteBooleanKeyFrame Value="False" />
                                         </BooleanAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" 
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame Value="{x:Null}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -762,10 +761,20 @@
                         <Grid x:Name="RootGrid">
                             <AdornerDecorator>
                                 <ContentPresenter 
-                                        x:Name="ContentPresenter" Opacity="1"                    
+                                        x:Name="ContentPresenter" Opacity="1"
                                         Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
                             </AdornerDecorator>
-                            <Grid x:Name="PART_ContentCover" Background="{x:Null}" Opacity="0" IsHitTestVisible="False" Focusable="False" />
+                            <Grid x:Name="PART_ContentCover" Background="{TemplateBinding OverlayBackground}" Opacity="0" IsHitTestVisible="False" Focusable="False">
+                                <Grid.Style>
+                                    <Style TargetType="Grid">
+                                        <Style.Triggers>
+                                            <Trigger Property="Opacity" Value="0">
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                            </Grid>
                             <Grid>
                                 <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch"
                                       x:Name="PART_LeftDrawer"
@@ -892,8 +901,8 @@
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
                             x:Name="Border">
                         <ContentPresenter 
-                                x:Name="ContentPresenter"                    
-                                Margin="{TemplateBinding Padding}"                            
+                                x:Name="ContentPresenter"
+                                Margin="{TemplateBinding Padding}"
                                 Content="{TemplateBinding ContentControl.Content}" 
                                 ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
                                 ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" 
@@ -918,6 +927,9 @@
     <Style TargetType="{x:Type transitions:TransitioningContent}" BasedOn="{StaticResource {x:Type transitions:TransitioningContentBase}}" />
 
     <Style TargetType="{x:Type transitions:TransitionerSlide}" BasedOn="{StaticResource {x:Type transitions:TransitioningContentBase}}">
+        <Style.Resources>
+            <converters:NotZeroConverter x:Key="NotZeroConverter"/>
+        </Style.Resources>
         <Setter Property="RenderTransformOrigin" Value=".5,.5" />
         <Setter Property="IsEnabled" Value="False" />
         <Setter Property="Visibility" Value="Hidden" />
@@ -926,9 +938,13 @@
                 <Setter Property="Visibility" Value="Visible" />
                 <Setter Property="IsEnabled" Value="True" />
             </Trigger>
-            <Trigger Property="State" Value="Previous">
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding State, RelativeSource={RelativeSource Self}}" Value="Previous" />
+                    <Condition Binding="{Binding Opacity, RelativeSource={RelativeSource Self}, Converter={StaticResource NotZeroConverter}}" Value="True" />
+                </MultiDataTrigger.Conditions>
                 <Setter Property="Visibility" Value="Visible" />
-            </Trigger>
+            </MultiDataTrigger>
         </Style.Triggers>
     </Style>
 

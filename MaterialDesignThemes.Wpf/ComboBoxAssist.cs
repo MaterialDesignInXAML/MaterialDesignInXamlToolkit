@@ -9,20 +9,16 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public static readonly DependencyProperty ClassicModeProperty = DependencyProperty.RegisterAttached(
             "ClassicMode",
-            typeof (bool),
-            typeof (ComboBoxAssist),
+            typeof(bool),
+            typeof(ComboBoxAssist),
             new FrameworkPropertyMetadata(false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         public static bool GetClassicMode(DependencyObject element)
-        {
-            return (bool)element.GetValue(ClassicModeProperty);
-        }
+            => (bool)element.GetValue(ClassicModeProperty);
 
-        public static void SetClassicMode(DependencyObject element, object value)
-        {
-            element.SetValue(ClassicModeProperty, value);
-        }
+        public static void SetClassicMode(DependencyObject element, bool value)
+            => element.SetValue(ClassicModeProperty, value);
 
         /// <summary>
         /// By default the selected item is hidden from the drop down list, as per Material Design specifications. 
@@ -31,19 +27,15 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public static readonly DependencyProperty ShowSelectedItemProperty = DependencyProperty.RegisterAttached(
             "ShowSelectedItem",
-            typeof (bool),
-            typeof (ComboBoxAssist),
+            typeof(bool),
+            typeof(ComboBoxAssist),
             new FrameworkPropertyMetadata(false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         public static bool GetShowSelectedItem(DependencyObject element)
-        {
-            return (bool)element.GetValue(ShowSelectedItemProperty);
-        }
+            => (bool)element.GetValue(ShowSelectedItemProperty);
 
-        public static void SetShowSelectedItem(DependencyObject element, object value)
-        {
-            element.SetValue(ShowSelectedItemProperty, value);
-        }
+        public static void SetShowSelectedItem(DependencyObject element, bool value)
+            => element.SetValue(ShowSelectedItemProperty, value);
     }
 }

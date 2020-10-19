@@ -101,7 +101,7 @@
                         <ToggleButton x:Name="PART_Toggle" Style="{StaticResource ToggleButtonStyle}" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                                       Content="{TemplateBinding ToggleContent}" ContentTemplate="{TemplateBinding ToggleContentTemplate}"
                                       Cursor="Hand" TabIndex="{TemplateBinding TabIndex}" VerticalAlignment="Center" IsTabStop="{TemplateBinding IsTabStop}"
-                                      />
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
                         <controlzEx:PopupEx x:Name="PART_Popup" 
                                             IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                                             CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
@@ -113,8 +113,6 @@
                                             AllowsTransparency="True">
                             <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"
                                       Foreground="{DynamicResource MaterialDesignBody}"
-                                      FontSize="15"
-                                      FontWeight="Regular"
                                       Padding="{TemplateBinding Padding}"
                                       RenderOptions.ClearTypeHint="Enabled"
                                       Margin="5">
@@ -152,7 +150,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
         <Setter Property="PlacementMode" Value="TopAndAlignCentres" />
-        <Setter Property="PopupMode" Value="MouseOverEager" />
+        <Setter Property="PopupMode" Value="Click" />
         <Setter Property="ToolTipService.Placement" Value="Left" />
         <Setter Property="ToolTipService.IsEnabled" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -419,9 +417,9 @@
     <Style TargetType="{x:Type wpf:PopupBox}" 
            x:Key="MaterialDesignMultiFloatingActionAccentPopupBox"
            BasedOn="{StaticResource MaterialDesignMultiFloatingActionPopupBox}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
     </Style>
 
 </ResourceDictionary>

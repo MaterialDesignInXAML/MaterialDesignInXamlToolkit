@@ -16,9 +16,10 @@
 
     <Page.Resources>
         <ResourceDictionary>
-            
-            
-
+            <Style TargetType="ToggleSwitch" BasedOn="{StaticResource MaterialDesignToggleSwitch}">
+                <Setter Property="Width" Value="100" />
+                <Setter Property="Margin" Value="10" />
+            </Style>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -26,13 +27,18 @@
         <StackPanel>
             <TextBlock FontSize="28" Margin="8 0 0 0">Material Design In XAML Toolkit</TextBlock>
             <TextBlock Margin="8 0 0 0" Foreground="{ThemeResource MaterialDesignBodyLight}">UWP Edition</TextBlock>
-            <StackPanel Margin="8 8 0 0" Orientation="Horizontal" VerticalAlignment="Top">
-                <Button Width="100" Style="{StaticResource MaterialDesignRaisedLightButton}">LIGHT</Button>
-                <Button Margin="8 0 0 0" Width="100" Style="{StaticResource MaterialDesignRaisedButton}">MID</Button>
-                <Button Margin="8 0 0 0" Width="100" Style="{StaticResource MaterialDesignRaisedDarkButton}">DARK</Button>
-                <Button Margin="8 0 0 0" Width="100" Style="{StaticResource MaterialDesignRaisedAccentButton}">ACCENT</Button>
+            <StackPanel Margin="10" Orientation="Horizontal" VerticalAlignment="Top" >
+                <Button x:Name="Button1" Margin="10" Width="100" Style="{StaticResource MaterialDesignRaisedLightButton}">LIGHT</Button>
+                <Button x:Name="Button2" Margin="10" Width="100" Style="{StaticResource MaterialDesignRaisedButton}">MID</Button>
+                <Button x:Name="Button3" Margin="10" Width="100" Style="{StaticResource MaterialDesignRaisedDarkButton}">DARK</Button>
+                <Button x:Name="Button4" Margin="10" Width="100" Style="{StaticResource MaterialDesignRaisedAccentButton}">ACCENT</Button>
             </StackPanel>
-            <ToggleSwitch Style="{StaticResource MaterialDesignToggleSwitch}" />
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <ToggleSwitch IsOn="{x:Bind Button1.IsEnabled, Mode=TwoWay}"  />
+                <ToggleSwitch IsOn="{x:Bind Button2.IsEnabled, Mode=TwoWay}" />
+                <ToggleSwitch IsOn="{x:Bind Button3.IsEnabled, Mode=TwoWay}" />
+                <ToggleSwitch IsOn="{x:Bind Button4.IsEnabled, Mode=TwoWay}" />
+            </StackPanel>
             <CheckBox Style="{StaticResource MaterialDesignCheckBox}">Material Design</CheckBox>
         </StackPanel>
     </Grid>
