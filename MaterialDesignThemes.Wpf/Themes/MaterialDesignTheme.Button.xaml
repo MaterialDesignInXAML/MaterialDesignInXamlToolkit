@@ -170,7 +170,6 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource PrimaryHueMidBrush}" />
                             <Setter Property="Background" TargetName="border" Value="{Binding Foreground,
                                                                                         RelativeSource={RelativeSource Mode=TemplatedParent},
                                                                                         Converter={StaticResource BrushOpacityConverter},
