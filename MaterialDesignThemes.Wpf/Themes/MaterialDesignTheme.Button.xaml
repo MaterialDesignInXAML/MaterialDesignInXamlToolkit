@@ -186,6 +186,7 @@
 
     <Style x:Key="MaterialDesignFlatAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueMidBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignFlatAccentBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
