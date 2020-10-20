@@ -108,7 +108,7 @@ To load the source project you will need Visual Studio 2019. Don't worry if you 
 
 ## Contributors
 
-This project exists thanks to all the people who contribute.
+This project exists now and  thanks to all the people who have contributed.
 <a href="https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/graphs/contributors"><img src="https://opencollective.com/materialdesigninxaml/contributors.svg?width=890&button=false" /></a>
 
 ## Backers
