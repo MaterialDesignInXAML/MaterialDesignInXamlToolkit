@@ -215,7 +215,7 @@
                         <Border Background="{TemplateBinding Background}"
                                 x:Name="border" 
                                 CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderBrush="{TemplateBinding Foreground}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
                             <wpf:Ripple Content="{TemplateBinding Content}" 
                                         ContentTemplate="{TemplateBinding ContentTemplate}" 
