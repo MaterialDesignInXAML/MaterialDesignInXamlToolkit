@@ -1,11 +1,12 @@
 source https://nuget.org/api/v2
 framework: net45, net452, net472, netcoreapp3.1
 
+storage: none
+
 nuget MahApps.Metro ~> 2.0.0
 nuget Dragablz ~> 0.0.3
 nuget NuGet.CommandLine
 nuget Shouldly ~> 3.0
-nuget System.Net.Http >= 4.0
 nuget xunit ~> 2.4
 nuget xunit.runner.visualstudio ~> 2.4
 nuget Xunit.StaFact ~> 1.0.11-beta
