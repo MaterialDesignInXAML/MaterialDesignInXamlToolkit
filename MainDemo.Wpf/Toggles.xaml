@@ -591,6 +591,10 @@
                     IsChecked="True"
                     Content="Custom Size"
                     materialDesign:CheckBoxAssist.CheckBoxSize="30"/>
+                <CheckBox
+                    IsChecked="True"
+                    Content="Ripple disabled"
+                    materialDesign:RippleAssist.IsDisabled="True"/>
             </StackPanel>
         </smtx:XamlDisplay>
     </Grid>

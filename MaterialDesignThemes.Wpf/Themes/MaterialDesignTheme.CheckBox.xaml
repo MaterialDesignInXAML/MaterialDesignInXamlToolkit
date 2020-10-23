@@ -114,9 +114,15 @@
                         <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <EventTrigger RoutedEvent="ButtonBase.Click">
-                            <BeginStoryboard Storyboard="{StaticResource Click}"/>
-                        </EventTrigger>
+                         <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="true" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:RippleAssist.IsDisabled)}" Value="false" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Click}"/>
+                            </MultiDataTrigger.EnterActions>
+                        </MultiDataTrigger>
                         <Trigger Property="HasContent" Value="true">
                             <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}"/>
                             <Setter Property="Padding" Value="4,2,0,0"/>
