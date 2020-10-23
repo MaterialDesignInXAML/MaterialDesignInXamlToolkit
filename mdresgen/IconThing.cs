@@ -25,18 +25,29 @@ namespace mdresgen
 
             Console.WriteLine("Updating enum...");
             var newEnumSource = UpdateEnum("PackIconKind.template.cs", nameDataPairs);
-            Write(newEnumSource, "PackIconKind.cs");
+            Write(newEnumSource, Path.Combine("MaterialDesignThemes.Wpf", "PackIconKind.cs"));
 
             Console.WriteLine("Updating data factory...");
             var newDataFactorySource = UpdateDataFactory("PackIconDataFactory.template.cs", nameDataPairs);
-            Write(newDataFactorySource, "PackIconDataFactory.cs");
+            Write(newDataFactorySource, Path.Combine("MaterialDesignThemes.Wpf", "PackIconDataFactory.cs"));
 
             Console.WriteLine("done");
         }
 
-        private static void Write(string content, string filename)
+        private static void Write(string content, string filePath)
         {
-            File.WriteAllText(Path.Combine(@"..\..\..\MaterialDesignThemes.Wpf\", filename), content);
+            for(string currentDirectory = Path.GetFullPath(".");
+                !string.IsNullOrEmpty(Path.GetDirectoryName(currentDirectory));
+                currentDirectory = Path.GetDirectoryName(currentDirectory))
+            {
+                string path = Path.Combine(currentDirectory, filePath);
+                if (File.Exists(path))
+                {
+                    File.WriteAllText(path, content);
+                    return;
+                }
+            }
+            Console.WriteLine($"WARNING: Failed to find '{filePath}'");
         }
 
         private static string GetSourceData()
@@ -50,8 +61,6 @@ namespace mdresgen
             var iconData =
                 webClient.DownloadString(
                     "https://materialdesignicons.com/api/package/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B");
-
-            Console.WriteLine("Got.");
 
             return iconData;
         }
