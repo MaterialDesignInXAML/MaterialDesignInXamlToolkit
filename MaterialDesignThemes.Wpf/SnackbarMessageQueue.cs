@@ -69,7 +69,7 @@ namespace MaterialDesignThemes.Wpf
                     }
                     catch (ObjectDisposedException)
                     {
-                        /* we are we suppressing this? 
+                        /* we are we suppressing this?
                          * as we have switched out wait onto another thread, so we don't block the UI thread, the
                          * _cleanUp/Dispose() action might also happen, and the _disposedWaitHandle might get disposed
                          * just before we WaitOne. We won't add a lock in the _cleanUp because it might block for 2 seconds.
@@ -105,7 +105,7 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
-        public SnackbarMessageQueue() 
+        public SnackbarMessageQueue()
             : this(TimeSpan.FromSeconds(3))
         {
         }
@@ -121,7 +121,7 @@ namespace MaterialDesignThemes.Wpf
             _dispatcher = dispatcher ?? throw new ArgumentNullException(nameof(dispatcher));
         }
 
-        //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragablz, 
+        //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragablz,
         //but this is an internal method so no one will know my dirty Action disposer...
         internal Action Pair(Snackbar snackbar)
         {
@@ -147,17 +147,17 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates. 
+        /// Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates.
         /// True to show every message even if there are duplicates.
         /// </summary>
         public bool IgnoreDuplicate { get; set; }
 
         public void Enqueue(object content) => Enqueue(content, false);
 
-        public void Enqueue(object content, bool neverConsiderToBeDuplicate) 
+        public void Enqueue(object content, bool neverConsiderToBeDuplicate)
             => Enqueue(content, null, null, null, false, neverConsiderToBeDuplicate);
 
-        public void Enqueue(object content, object actionContent, Action actionHandler) 
+        public void Enqueue(object content, object actionContent, Action actionHandler)
             => Enqueue(content, actionContent, actionHandler, false);
 
         public void Enqueue(object content, object actionContent, Action actionHandler, bool promote)
@@ -170,7 +170,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
-            TArgument actionArgument) 
+            TArgument actionArgument)
             => Enqueue(content, actionContent, actionHandler, actionArgument, false, false);
 
         public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
@@ -191,7 +191,7 @@ namespace MaterialDesignThemes.Wpf
             Action<object> handler = actionHandler != null
                 ? new Action<object>(argument => actionHandler((TArgument)argument))
                 : null;
-            Enqueue(content, actionContent, handler, actionArgument, promote, neverConsiderToBeDuplicate);
+            Enqueue(content, actionContent, handler, actionArgument, promote, neverConsiderToBeDuplicate, durationOverride);
         }
 
         public void Enqueue(object content, object actionContent, Action<object> actionHandler,
@@ -231,7 +231,7 @@ namespace MaterialDesignThemes.Wpf
                 }
                 if (!added)
                     _snackbarMessages.AddLast(item);
-                
+
             }
 
             _dispatcher.InvokeAsync(ShowNextAsync);
@@ -310,7 +310,7 @@ namespace MaterialDesignThemes.Wpf
                         return;
                     _closeSnackbarEvent = new ManualResetEvent(false);
                 }
-                
+
                 await ShowAsync(snackbar, messageNode.Value, _closeSnackbarEvent)
                     .ConfigureAwait(false);
 
@@ -348,7 +348,7 @@ namespace MaterialDesignThemes.Wpf
             //close message on snackbar
             snackbar.SetCurrentValue(Snackbar.IsActiveProperty, false);
 
-            //we could wait for the animation event, but just doing 
+            //we could wait for the animation event, but just doing
             //this for now...at least it is prevent extra call back hell
             await Task.Delay(snackbar.DeactivateStoryboardDuration);
 
