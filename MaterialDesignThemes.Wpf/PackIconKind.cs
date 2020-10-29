@@ -7672,6 +7672,8 @@ namespace MaterialDesignThemes.Wpf
         RobotDeadOutline,
         RobotExcited,
         RobotExcitedOutline,
+        RobotHappy,
+        RobotHappyOutline,
         RobotIndustrial,
         Assembly=RobotIndustrial,
         Autonomous=RobotIndustrial,
