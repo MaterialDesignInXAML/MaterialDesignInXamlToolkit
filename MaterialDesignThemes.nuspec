@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>
     <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>ResourceDictionary instances containing Material Design templates and styles for WPF controls in the MahApps library.</description>
+    <description>ResourceDictionary instances containing Material Design templates and styles for WPF controls in .NET.</description>
     <releaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>WPF XAML Material Design Theme Colour Color UI UX</tags>
