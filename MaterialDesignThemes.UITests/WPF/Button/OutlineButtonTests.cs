@@ -76,11 +76,14 @@ namespace MaterialDesignThemes.UITests.WPF.Button
 
             //Act
             await button.MoveCursorToElement(Position.Center);
-            SolidColorBrush internalBorderBackground = await internalBorder.GetProperty<SolidColorBrush>(nameof(Border.Background));
+            await Wait.For(async () =>
+            {
+                SolidColorBrush internalBorderBackground = await internalBorder.GetProperty<SolidColorBrush>(nameof(Border.Background));
 
-            //Assert
-            Assert.Equal(midColor, internalBorderBackground.Color);
-
+                //Assert
+                Assert.Equal(midColor, internalBorderBackground.Color);
+            });
+            
             recorder.Success();
         }
     }
