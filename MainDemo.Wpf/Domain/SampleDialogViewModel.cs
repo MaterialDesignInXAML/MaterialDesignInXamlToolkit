@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel;
-using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignDemo.Domain
 {

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignColors;
-using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignDemo.Domain;
 using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 

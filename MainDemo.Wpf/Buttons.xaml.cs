@@ -1,9 +1,9 @@
 using System;
 using System.Windows;
 using System.Windows.Input;
-using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
     public partial class Buttons
     {

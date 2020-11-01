@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Controls;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
     public partial class Pickers
     {

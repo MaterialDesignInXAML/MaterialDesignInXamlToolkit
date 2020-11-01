@@ -1,7 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
     public partial class Dialogs
     {

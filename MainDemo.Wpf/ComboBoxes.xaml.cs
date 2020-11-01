@@ -1,4 +1,4 @@
-﻿using MaterialDesignColors.WpfExample.Domain;
+﻿using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignDemo
 {

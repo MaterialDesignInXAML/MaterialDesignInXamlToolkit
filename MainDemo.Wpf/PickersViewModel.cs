@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
     public class PickersViewModel : INotifyPropertyChanged
     {

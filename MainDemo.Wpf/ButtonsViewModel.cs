@@ -1,11 +1,11 @@
-﻿using MaterialDesignColors.WpfExample.Domain;
+﻿using MaterialDesignDemo.Domain;
 using System;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Threading;
 using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
     public class ButtonsViewModel : INotifyPropertyChanged
     {

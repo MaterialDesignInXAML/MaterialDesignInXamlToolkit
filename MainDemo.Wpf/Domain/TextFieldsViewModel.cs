@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignColors.WpfExample.Domain
+namespace MaterialDesignDemo.Domain
 {
     public class FieldsViewModel : INotifyPropertyChanged
     {
