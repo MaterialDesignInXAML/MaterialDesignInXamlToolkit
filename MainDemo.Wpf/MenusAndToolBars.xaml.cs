@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
     public partial class MenusAndToolBars
     {

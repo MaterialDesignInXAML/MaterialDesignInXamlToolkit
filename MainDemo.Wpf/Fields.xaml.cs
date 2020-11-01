@@ -1,4 +1,4 @@
-﻿using MaterialDesignColors.WpfExample.Domain;
+﻿using MaterialDesignDemo.Domain;
 using MaterialDesignDemo.Domain;
 using System.Windows.Navigation;
 

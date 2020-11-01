@@ -9,7 +9,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MaterialDesignColors.WpfExample.Domain
+namespace MaterialDesignDemo.Domain
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {

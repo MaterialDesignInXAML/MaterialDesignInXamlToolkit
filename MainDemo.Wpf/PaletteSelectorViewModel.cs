@@ -1,4 +1,5 @@
-﻿using MaterialDesignColors.WpfExample.Domain;
+﻿using MaterialDesignColors;
+using MaterialDesignDemo.Domain;
 using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 using System;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
     public class PaletteSelectorViewModel : INotifyPropertyChanged
     {
