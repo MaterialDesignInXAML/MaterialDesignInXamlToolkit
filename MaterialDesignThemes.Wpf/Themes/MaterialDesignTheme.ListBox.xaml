@@ -53,7 +53,7 @@
                                 <VisualState Name="MouseOver">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
-                                                         To="0.1" Duration="0"/>
+                                                         To="0.03" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState Name="Disabled"/>
