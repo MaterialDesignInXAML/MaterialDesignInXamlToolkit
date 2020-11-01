@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -338,7 +338,10 @@ namespace MaterialDesignThemes.Wpf
         private async Task ShowAsync(Snackbar snackbar, SnackbarMessageQueueItem messageQueueItem, ManualResetEvent actionClickWaitHandle)
         {
             //create and show the message, setting up all the handles we need to wait on
-            var mouseNotOverManagedWaitHandle = CreateAndShowMessage(snackbar, messageQueueItem, actionClickWaitHandle);
+            var tuple = CreateAndShowMessage(snackbar, messageQueueItem, actionClickWaitHandle);
+            var snackbarMessage = tuple.Item1;
+            var mouseNotOverManagedWaitHandle = tuple.Item2;
+
             var durationPassedWaitHandle = new ManualResetEvent(false);
             StartDuration(messageQueueItem.Duration.Add(snackbar.ActivateStoryboardDuration), durationPassedWaitHandle);
 
@@ -352,6 +355,10 @@ namespace MaterialDesignThemes.Wpf
             //this for now...at least it is prevent extra call back hell
             await Task.Delay(snackbar.DeactivateStoryboardDuration);
 
+            //this prevents missing resource warnings after the message is removed from the Snackbar
+            //see https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/2040
+            snackbarMessage.Resources = SnackbarMessage.defaultResources;
+
             //remove message on snackbar
             snackbar.SetCurrentValue(Snackbar.MessageProperty, null);
 
@@ -359,7 +366,7 @@ namespace MaterialDesignThemes.Wpf
             durationPassedWaitHandle.Dispose();
         }
 
-        private static MouseNotOverManagedWaitHandle CreateAndShowMessage(UIElement snackbar,
+        private static Tuple<SnackbarMessage, MouseNotOverManagedWaitHandle> CreateAndShowMessage(UIElement snackbar,
             SnackbarMessageQueueItem messageQueueItem, EventWaitHandle actionClickWaitHandle)
         {
             var clickCount = 0;
@@ -376,7 +383,7 @@ namespace MaterialDesignThemes.Wpf
             };
             snackbar.SetCurrentValue(Snackbar.MessageProperty, snackbarMessage);
             snackbar.SetCurrentValue(Snackbar.IsActiveProperty, true);
-            return new MouseNotOverManagedWaitHandle(snackbar);
+            return Tuple.Create(snackbarMessage, new MouseNotOverManagedWaitHandle(snackbar));
         }
 
         private static async Task WaitForCompletionAsync(

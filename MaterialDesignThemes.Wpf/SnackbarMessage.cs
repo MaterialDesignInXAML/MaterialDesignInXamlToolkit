@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
 using MaterialDesignThemes.Wpf.Converters;
 
 namespace MaterialDesignThemes.Wpf
@@ -18,6 +19,12 @@ namespace MaterialDesignThemes.Wpf
     [TemplatePart(Name = ActionButtonPartName, Type = typeof(ButtonBase))]
     public class SnackbarMessage : ContentControl
     {
+        internal static readonly ResourceDictionary defaultResources = new ResourceDictionary
+        {
+            { "SecondaryHueMidBrush", Brushes.Transparent },
+            { "MaterialDesignSnackbarRipple", Brushes.Transparent },
+        };
+
         public const string ActionButtonPartName = "PART_ActionButton";
         private Action _templateCleanupAction = () => { };
 
