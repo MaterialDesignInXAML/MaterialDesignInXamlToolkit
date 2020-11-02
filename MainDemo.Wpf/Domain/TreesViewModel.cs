@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignColors.WpfExample.Domain
+namespace MaterialDesignDemo.Domain
 {
     public class TreeExampleSimpleTemplateSelector : DataTemplateSelector
     {

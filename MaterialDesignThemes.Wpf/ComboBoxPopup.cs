@@ -209,6 +209,17 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(ContentMinWidthProperty, value); }
         }
 
+        public static readonly DependencyProperty RelativeHorizontalOffsetProperty
+            = DependencyProperty.Register(
+                nameof(RelativeHorizontalOffset), typeof(double), typeof(ComboBoxPopup),
+                new FrameworkPropertyMetadata(default(double)));
+
+        public double RelativeHorizontalOffset
+        {
+            get => (double)GetValue(RelativeHorizontalOffsetProperty);
+            set => SetValue(RelativeHorizontalOffsetProperty, value);
+        }
+
         public ComboBoxPopup()
         {
             CustomPopupPlacementCallback = ComboBoxCustomPopupPlacementCallback;
@@ -230,7 +241,7 @@ namespace MaterialDesignThemes.Wpf
         private void SetupVisiblePlacementWidth(IEnumerable<DependencyObject> visualAncestry)
         {
             var parent = visualAncestry.OfType<Panel>().ElementAt(1);
-            VisiblePlacementWidth = TreeHelper.GetVisibleWidth((FrameworkElement)PlacementTarget, parent);
+            VisiblePlacementWidth = TreeHelper.GetVisibleWidth((FrameworkElement)PlacementTarget, parent, FlowDirection);
         }
 
         private CustomPopupPlacement[] ComboBoxCustomPopupPlacementCallback(
@@ -240,13 +251,13 @@ namespace MaterialDesignThemes.Wpf
 
             SetupVisiblePlacementWidth(visualAncestry);
 
-            var data = GetPositioningData(visualAncestry, popupSize, targetSize, offset);
+            var data = GetPositioningData(visualAncestry, popupSize, targetSize);
             var preferUpIfSafe = data.LocationY + data.PopupSize.Height > data.ScreenHeight;
 
             if (ClassicMode
-                || data.LocationX + data.PopupSize.Width - data.RealOffsetX > data.ScreenWidth
-                || data.LocationX - data.RealOffsetX < 0
-                || !preferUpIfSafe && data.LocationY - Math.Abs(data.NewDownY) < 0)
+                || data.PopupLocationX + data.PopupSize.Width > data.ScreenWidth
+                || data.PopupLocationX < 0
+                || !preferUpIfSafe && data.LocationY + data.NewDownY < 0)
             {
                 SetCurrentValue(PopupPlacementProperty, ComboBoxPopupPlacement.Classic);
                 return new[] { GetClassicPopupPlacement(this, data) };
@@ -272,7 +283,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private PositioningData GetPositioningData(IEnumerable<DependencyObject> visualAncestry, Size popupSize, Size targetSize, Point offset)
+        private PositioningData GetPositioningData(IEnumerable<DependencyObject> visualAncestry, Size popupSize, Size targetSize)
         {
             var locationFromScreen = PlacementTarget.PointToScreen(new Point(0, 0));
 
@@ -290,15 +301,11 @@ namespace MaterialDesignThemes.Wpf
             var upVerticalOffsetIndependent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
             var newUpY = upVerticalOffsetIndependent - popupSize.Height + targetSize.Height;
             var newDownY = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);
-
-            double offsetX;
-            const int rtlHorizontalOffset = 20;
-
+            var offsetX = DpiHelper.TransformToDeviceX(mainVisual, RelativeHorizontalOffset);
             if (FlowDirection == FlowDirection.LeftToRight)
-                offsetX = DpiHelper.TransformToDeviceX(mainVisual, offset.X);
+                offsetX = Round(offsetX);
             else
-                offsetX = DpiHelper.TransformToDeviceX(mainVisual,
-                    offset.X - targetSize.Width - rtlHorizontalOffset);
+                offsetX = Math.Truncate(offsetX - targetSize.Width);
 
             return new PositioningData(
                 mainVisual, offsetX,
@@ -307,6 +314,8 @@ namespace MaterialDesignThemes.Wpf
                 locationX, locationY,
                 screenHeight, screenWidth);
         }
+
+        private static double Round(double val) => val < 0 ? (int)(val - 0.5) : (int)(val + 0.5);
 
         private static PropertyChangedCallback CreateTemplatePropertyChangedCallback(ComboBoxPopupPlacement popupPlacement)
         {
@@ -379,7 +388,7 @@ namespace MaterialDesignThemes.Wpf
             public double OffsetX { get; }
             public double NewUpY { get; }
             public double NewDownY { get; }
-            public double RealOffsetX => (PopupSize.Width - TargetSize.Width) / 2.0;
+            public double PopupLocationX => LocationX + OffsetX;
             public Size PopupSize { get; }
             public Size TargetSize { get; }
             public double LocationX { get; }
@@ -390,9 +399,9 @@ namespace MaterialDesignThemes.Wpf
             public PositioningData(Visual mainVisual, double offsetX, double newUpY, double newDownY, Size popupSize, Size targetSize, double locationX, double locationY, double screenHeight, double screenWidth)
             {
                 MainVisual = mainVisual;
-                OffsetX = offsetX;
-                NewUpY = newUpY;
-                NewDownY = newDownY;
+                OffsetX = Round(offsetX);
+                NewUpY = Round(newUpY);
+                NewDownY = Round(newDownY);
                 PopupSize = popupSize; TargetSize = targetSize;
                 LocationX = locationX; LocationY = locationY;
                 ScreenWidth = screenWidth; ScreenHeight = screenHeight;

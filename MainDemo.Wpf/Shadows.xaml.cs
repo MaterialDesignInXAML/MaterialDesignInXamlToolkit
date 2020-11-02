@@ -1,15 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignColors.WpfExample
+﻿namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for Shadows.xaml
-    /// </summary>
-    public partial class Shadows : UserControl
+    public partial class Shadows
     {
-        public Shadows()
-        {
-            InitializeComponent();
-        }
+        public Shadows() => InitializeComponent();
     }
 }

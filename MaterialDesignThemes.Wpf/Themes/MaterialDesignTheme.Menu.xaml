@@ -55,6 +55,7 @@
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="TextBlock.FontSize" Value="15"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuBase}">
@@ -75,11 +76,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuBase}">
                     <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
-                        <Border Background="{TemplateBinding Background}"
-                                Effect="{DynamicResource MaterialDesignShadowDepth1}"
-                                Margin="3"
-                                CornerRadius="2">
-                            <Border Background="Transparent">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}" Margin="3"
+                                    CornerRadius="2" Effect="{DynamicResource MaterialDesignShadowDepth1}"></Border>
+                        
+                            <Border Margin="3" Background="Transparent">
                                 <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                     <Grid RenderOptions.ClearTypeHint="Enabled" Margin="0 16">
                                         <ItemsPresenter x:Name="ItemsPresenter"
@@ -90,7 +91,7 @@
                                     </Grid>
                                 </ScrollViewer>
                             </Border>
-                        </Border>
+                        </Grid>
                     </AdornerDecorator>
                 </ControlTemplate>
             </Setter.Value>

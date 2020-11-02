@@ -5,18 +5,13 @@
     <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <AssemblyTitle>MaterialDesignColors.WpfExample</AssemblyTitle>
-    <Product>MaterialDesignColors.WpfExample</Product>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <Prefer32Bit>true</Prefer32Bit>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <UseWPF>true</UseWPF>
     <SignAssembly>false</SignAssembly>
+    <ApplicationManifest>App.manifest</ApplicationManifest>
   </PropertyGroup>
-  <Import Project="..\packages\ShowMeTheXAML.MSBuild\build\ShowMeTheXAML.MSBuild.targets" Label="Paket" />
-  <Target Name="ShowMeTheXAML_EnsureXamlCreated" AfterTargets="BeforeCompile">
-    <Error Condition="('$(ShowMeTheXAMLGeneratedFileName)' == '' Or $(ShowMeTheXAMLGeneratedFileName) == '*Undefined*') And Exists('..\packages\ShowMeTheXAML.MSBuild\build\ShowMeTheXAML.MSBuild.targets')" Text="ShowMeTheXAML was added to the $(ProjectName) project. Please rebuild the project." />
-  </Target>
   <ItemGroup Condition="'$(TargetFramework)'=='net472'">
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />

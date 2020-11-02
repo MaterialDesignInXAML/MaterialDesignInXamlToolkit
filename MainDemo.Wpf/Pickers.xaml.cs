@@ -4,12 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Controls;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for Pickers.xaml
-    /// </summary>
-    public partial class Pickers : UserControl
+    public partial class Pickers
     {
         public Pickers()
         {
@@ -50,9 +47,7 @@ namespace MaterialDesignColors.WpfExample
         }
 
         public void CalendarDialogOpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)
-        {
-            Calendar.SelectedDate = ((PickersViewModel)DataContext).Date;
-        }
+            => Calendar.SelectedDate = ((PickersViewModel)DataContext).Date;
 
         public void CalendarDialogClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
         {
@@ -68,9 +63,7 @@ namespace MaterialDesignColors.WpfExample
         }
 
         public void ClockDialogOpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)
-        {
-            Clock.Time = ((PickersViewModel)DataContext).Time;
-        }
+            => Clock.Time = ((PickersViewModel)DataContext).Time;
 
         public void ClockDialogClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
         {

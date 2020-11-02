@@ -9,7 +9,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MaterialDesignColors.WpfExample.Domain
+namespace MaterialDesignDemo.Domain
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
@@ -19,22 +19,33 @@ namespace MaterialDesignColors.WpfExample.Domain
             FilterItems(null);
 
             MovePrevCommand = new AnotherCommandImplementation(
-                _ => SelectedIndex--,
+                _ =>
+                {
+                    if (!string.IsNullOrWhiteSpace(SearchKeyword))
+                        SearchKeyword = string.Empty;
+
+                    SelectedIndex--;
+                },
                 _ => SelectedIndex > 0);
 
             MoveNextCommand = new AnotherCommandImplementation(
-               _ => SelectedIndex++,
+               _ =>
+               {
+                   if (!string.IsNullOrWhiteSpace(SearchKeyword))
+                       SearchKeyword = string.Empty;
+
+                   SelectedIndex++;
+               },
                _ => SelectedIndex < _allItems.Count - 1);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _searchKeyword;
-        private ObservableCollection<DemoItem> _allItems;
+        private readonly ObservableCollection<DemoItem> _allItems;
         private ObservableCollection<DemoItem> _demoItems;
         private DemoItem _selectedItem;
         private int _selectedIndex;
-
+        private string _searchKeyword;
 
         public string SearchKeyword
         {
@@ -42,7 +53,7 @@ namespace MaterialDesignColors.WpfExample.Domain
             set
             {
                 _searchKeyword = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DemoItems)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SearchKeyword)));
                 FilterItems(_searchKeyword);
             }
         }
@@ -160,6 +171,10 @@ namespace MaterialDesignColors.WpfExample.Domain
                     {
                         VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
                     },
+                new DemoItem("Fields line up", new FieldsLineUp(), new []
+                {
+                    DocumentationLink.DemoPageLink<FieldsLineUp>()
+                }),
                 new DemoItem("ComboBoxes", new ComboBoxes(),
                     new []
                     {
@@ -269,6 +284,15 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<Progress>(),
                         DocumentationLink.StyleLink("ProgressBar")
                     }),
+                new DemoItem("Navigation Rail", new NavigationRail { DataContext = null},
+                    new []
+                    {
+                        DocumentationLink.DemoPageLink<NavigationRail>("Demo View"),
+                        DocumentationLink.StyleLink("TabControl"),
+                    })
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
                 new DemoItem("Dialogs", new Dialogs { DataContext = new DialogsViewModel()},
                     new []
                     {
@@ -305,7 +329,7 @@ namespace MaterialDesignColors.WpfExample.Domain
                     new []
                     {
                         DocumentationLink.DemoPageLink<Shadows>(),
-                    }),
+                    })
             };
         }
 

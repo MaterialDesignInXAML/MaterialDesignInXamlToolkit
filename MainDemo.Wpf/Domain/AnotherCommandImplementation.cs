@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace MaterialDesignColors.WpfExample.Domain
+namespace MaterialDesignDemo.Domain
 {
     /// <summary>
     /// No WPF project is complete without it's own version of this.

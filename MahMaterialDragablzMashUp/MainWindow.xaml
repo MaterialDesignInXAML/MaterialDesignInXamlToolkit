@@ -20,7 +20,7 @@
     </controls:MetroWindow.WindowButtonCommands>
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>
-            <controls:Flyout x:Name="LeftFlyout" Position="Left" Header="Settings" wpf:FlyoutAssist.HeaderColorMode="Accent">
+            <controls:Flyout x:Name="LeftFlyout" Position="Left" Header="Settings" wpf:FlyoutAssist.HeaderColorMode="SecondaryMid">
                 <mahMaterialDragablzMashUp:FlyoutContent />
             </controls:Flyout>
         </controls:FlyoutsControl>

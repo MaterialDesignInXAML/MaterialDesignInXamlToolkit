@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignColors.WpfExample.Domain
+namespace MaterialDesignDemo.Domain
 {
     public class DocumentationLink
     {

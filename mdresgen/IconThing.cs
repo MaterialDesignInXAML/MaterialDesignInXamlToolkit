@@ -25,37 +25,44 @@ namespace mdresgen
 
             Console.WriteLine("Updating enum...");
             var newEnumSource = UpdateEnum("PackIconKind.template.cs", nameDataPairs);
-            Write(newEnumSource, "PackIconKind.cs");
+            Write(newEnumSource, Path.Combine("MaterialDesignThemes.Wpf", "PackIconKind.cs"));
 
             Console.WriteLine("Updating data factory...");
             var newDataFactorySource = UpdateDataFactory("PackIconDataFactory.template.cs", nameDataPairs);
-            Write(newDataFactorySource, "PackIconDataFactory.cs");
+            Write(newDataFactorySource, Path.Combine("MaterialDesignThemes.Wpf", "PackIconDataFactory.cs"));
 
             Console.WriteLine("done");
         }
 
-        private static void Write(string content, string filename)
+        private static void Write(string content, string filePath)
         {
-            File.WriteAllText(Path.Combine(@"..\..\..\MaterialDesignThemes.Wpf\", filename), content);
+            for(string currentDirectory = Path.GetFullPath(".");
+                !string.IsNullOrEmpty(Path.GetDirectoryName(currentDirectory));
+                currentDirectory = Path.GetDirectoryName(currentDirectory))
+            {
+                string path = Path.Combine(currentDirectory, filePath);
+                if (File.Exists(path))
+                {
+                    File.WriteAllText(path, content);
+                    return;
+                }
+            }
+            Console.WriteLine($"WARNING: Failed to find '{filePath}'");
         }
 
         private static string GetSourceData()
         {
-            var webRequest = WebRequest.CreateDefault(
-                new Uri("https://materialdesignicons.com/api/package/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B"));
+            var webClient = new WebClient();
 
-            webRequest.Credentials = CredentialCache.DefaultCredentials;
-            if (webRequest.Proxy != null)
-                webRequest.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webClient.Credentials = CredentialCache.DefaultCredentials;
+            if (webClient.Proxy != null)
+                webClient.Proxy.Credentials = CredentialCache.DefaultCredentials;
 
-            using (var sr = new StreamReader(webRequest.GetResponse().GetResponseStream()))
-            {
-                var iconData = sr.ReadToEnd();
+            var iconData =
+                webClient.DownloadString(
+                    "https://materialdesignicons.com/api/package/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B");
 
-                Console.WriteLine("Got.");
-
-                return iconData;
-            }
+            return iconData;
         }
 
         private static IEnumerable<Icon> GetIcons(string sourceData)
@@ -99,7 +106,7 @@ namespace mdresgen
                     }
                 }
             }
-          
+
             return iconsByName.Values.OrderBy(x => x.Name);
 
             bool IsValidIdentifier(string identifier)

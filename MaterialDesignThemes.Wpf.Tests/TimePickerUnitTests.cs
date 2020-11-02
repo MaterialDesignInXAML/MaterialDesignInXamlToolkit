@@ -54,6 +54,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             _timePicker.SelectedTimeFormat = format;
             _timePicker.Is24Hours = is24Hour;
             _timePicker.WithSeconds = withSeconds;
+            _timePicker.SelectedTime = DateTime.MinValue;
 
             var textBox = _timePicker.FindVisualChild<TextBox>(TimePicker.TextBoxPartName);
             textBox.Text = timeString;

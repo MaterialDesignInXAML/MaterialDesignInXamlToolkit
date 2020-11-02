@@ -1,16 +1,8 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignColors.WpfExample
+﻿namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for Toggles.xaml
-    /// </summary>
-    public partial class Toggles : UserControl
+    public partial class Toggles
     {
-        public Toggles()
-        {
-            InitializeComponent();
-        }
+        public Toggles() => InitializeComponent();
 
     }
 }

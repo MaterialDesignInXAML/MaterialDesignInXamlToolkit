@@ -4,7 +4,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public class MaterialDesignLightTheme : IBaseTheme
     {
-        public Color ValidationErrorColor { get; } = (Color)ColorConverter.ConvertFromString("#F44336");
+        public Color MaterialDesignValidationErrorColor { get; } = (Color)ColorConverter.ConvertFromString("#F44336");
         public Color MaterialDesignBackground { get; } = (Color)ColorConverter.ConvertFromString("#FFFFFFFF");
         public Color MaterialDesignPaper { get; } = (Color)ColorConverter.ConvertFromString("#FFFAFAFA");
         public Color MaterialDesignCardBackground { get; } = (Color)ColorConverter.ConvertFromString("#FFFFFFFF");
@@ -30,7 +30,7 @@ namespace MaterialDesignThemes.Wpf
         public Color MaterialDesignTextFieldBoxHoverBackground { get; } = (Color)ColorConverter.ConvertFromString("#14000000");
         public Color MaterialDesignTextFieldBoxDisabledBackground { get; } = (Color)ColorConverter.ConvertFromString("#08000000");
         public Color MaterialDesignTextAreaBorder { get; } = (Color)ColorConverter.ConvertFromString("#BC000000");
-        public Color MaterialDesignTextAreaInactiveBorder { get; } = (Color)ColorConverter.ConvertFromString("#0F000000");
+        public Color MaterialDesignTextAreaInactiveBorder { get; } = (Color)ColorConverter.ConvertFromString("#29000000");
         public Color MaterialDesignDataGridRowHoverBackground { get; } = (Color)ColorConverter.ConvertFromString("#0A000000");
     }
 }

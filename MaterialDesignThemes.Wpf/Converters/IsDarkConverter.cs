@@ -16,7 +16,7 @@ namespace MaterialDesignThemes.Wpf.Converters
                 Color c => c,
                 _ => (Color?)null
             } is Color color
-                ? color.ContrastingForegroundColor() == Colors.White
+                ? color.IsDarkColor()
                 : Binding.DoNothing;
         }
 

@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
+using MaterialDesignColors;
+using MaterialDesignThemes.Wpf;
 using XamlTest;
 using Xunit;
 using Xunit.Abstractions;

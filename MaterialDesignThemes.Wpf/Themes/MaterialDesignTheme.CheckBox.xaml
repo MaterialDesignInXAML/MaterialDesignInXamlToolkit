@@ -45,9 +45,9 @@
     </Style>
 
     <Style x:Key="MaterialDesignActionAccentCheckBox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignActionCheckBox}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignCheckBox" TargetType="{x:Type CheckBox}">
@@ -114,9 +114,15 @@
                         <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <EventTrigger RoutedEvent="ButtonBase.Click">
-                            <BeginStoryboard Storyboard="{StaticResource Click}"/>
-                        </EventTrigger>
+                         <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="true" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:RippleAssist.IsDisabled)}" Value="false" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Click}"/>
+                            </MultiDataTrigger.EnterActions>
+                        </MultiDataTrigger>
                         <Trigger Property="HasContent" Value="true">
                             <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}"/>
                             <Setter Property="Padding" Value="4,2,0,0"/>
@@ -135,8 +141,8 @@
                             <Setter Property="Fill" TargetName="Graphic" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource ValidationErrorBrush}" />
-                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -155,8 +161,8 @@
     </Style>
 
     <Style x:Key="MaterialDesignAccentCheckBox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignUserForegroundCheckBox" TargetType="{x:Type CheckBox}">
@@ -238,8 +244,8 @@
                             <Setter Property="Opacity" TargetName="Graphic" Value="0.56"/>
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource ValidationErrorBrush}" />
-                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource ValidationErrorBrush}" />
+                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -256,8 +262,6 @@
         <Setter Property="Height" Value="32" />
         <Setter Property="MinWidth" Value="46" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="FontSize" Value="13" />
-        <Setter Property="Margin" Value="4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">

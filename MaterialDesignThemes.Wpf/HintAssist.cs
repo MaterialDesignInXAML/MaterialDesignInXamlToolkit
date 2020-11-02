@@ -7,7 +7,7 @@ namespace MaterialDesignThemes.Wpf
     {
         private const double DefaultFloatingScale = 0.74;
         private const double DefaultHintOpacity = 0.56;
-        private static readonly Point DefaultFloatingOffset = new Point(1, -16);
+        private static readonly Point DefaultFloatingOffset = new Point(0, -16);
         private static readonly Brush DefaultBackground = new SolidColorBrush(Colors.Transparent);
 
         #region AttachedProperty : IsFloatingProperty
@@ -64,6 +64,17 @@ namespace MaterialDesignThemes.Wpf
             => (double)element.GetValue(HintOpacityProperty);
         public static void SetHintOpacity(DependencyObject element, double value)
             => element.SetValue(HintOpacityProperty, value);
+        #endregion
+
+        #region AttachedProperty : HintFontFamilyProperty
+        public static readonly DependencyProperty FontFamilyProperty
+            = DependencyProperty.RegisterAttached("FontFamily", typeof(FontFamily), typeof(HintAssist),
+                new PropertyMetadata(default));
+
+        public static FontFamily GetFontFamily(DependencyObject element)
+            => (FontFamily)element.GetValue(FontFamilyProperty);
+        public static void SetFontFamily(DependencyObject element, FontFamily value)
+            => element.SetValue(FontFamilyProperty, value);
         #endregion
 
         #region AttachedProperty : ForegroundProperty

@@ -111,8 +111,8 @@
                             <Setter Property="Opacity" TargetName="Graphic" Value="0.56"/>
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource ValidationErrorBrush}"/>
-                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
+                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -131,8 +131,8 @@
     </Style>
 
     <Style x:Key="MaterialDesignAccentRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignUserForegroundRadioButton" TargetType="{x:Type RadioButton}">
@@ -212,8 +212,8 @@
                             <Setter Property="Opacity" TargetName="Graphic" Value="0.56"/>
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource ValidationErrorBrush}"/>
-                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource ValidationErrorBrush}"/>
+                            <Setter Property="Fill" TargetName="Graphic" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
+                            <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -225,7 +225,7 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
         <Setter Property="MinWidth" Value="80" />
@@ -292,8 +292,9 @@
 
     <Style x:Key="MaterialDesignToolRadioButton" TargetType="{x:Type RadioButton}">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}"/>
+        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="14 6 14 6" />
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>

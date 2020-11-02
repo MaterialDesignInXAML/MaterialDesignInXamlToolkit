@@ -1,10 +1,7 @@
-﻿using MaterialDesignColors.WpfExample.Domain;
+﻿using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for ComboBoxes.xaml
-    /// </summary>
     public partial class ComboBoxes
     {
         public ComboBoxes()
@@ -14,8 +11,6 @@ namespace MaterialDesignDemo
         }
 
         private void ClearFilledComboBox_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            FilledComboBox.SelectedItem = null;
-        }
+            => FilledComboBox.SelectedItem = null;
     }
 }

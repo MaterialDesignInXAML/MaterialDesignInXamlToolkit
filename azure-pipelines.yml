@@ -17,21 +17,25 @@ variables:
   solution: 'MaterialDesignToolkit.Full.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  nugetVersionSpec: '5.x.x'
+  mdixColorsVersion: '2.0.0'
+  mdixMahAppsVersion: '0.1.6'
+  mdixVersion: '4.0.0'
 
 steps:
-- task: NuGetToolInstaller@0
-  displayName: 'Use NuGet $(nugetVersionSpec)'
-  inputs:
-    versionSpec: '$(nugetVersionSpec)'
-
-- powershell: .paket\paket.exe restore
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet restore'
+  displayName: 'Restore tools'
   inputs:
-    command: restore
-    projects: $(solution)
+    command: custom 
+    custom: tool
+    arguments: restore
+
+- task: DotNetCoreCLI@2
+  displayName: 'Restore via paket'
+  inputs:
+    command: custom 
+    custom: paket 
+    arguments: restore
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
@@ -46,33 +50,19 @@ steps:
     projects: '**/*.Tests.csproj'
     arguments: '--configuration $(buildConfiguration) --no-build'
 
-- task: Windows Application Driver@0
-  displayName: 'Start WinAppDriver'
-  inputs:
-    OperationType: 'Start'
-    AgentResolution: '1080p'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-
 - task: DotNetCoreCLI@2
   displayName: 'UI Tests'
   inputs:
     command: test
     projects: '**/*.UITests'
     arguments: '--configuration $(buildConfiguration) --no-build'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-
-- task: Windows Application Driver@0
-  displayName: 'Stop WinAppDriver'
-  inputs:
-    OperationType: 'Stop'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
 - task: PublishPipelineArtifact@0
   name: "PublishUITestsScreenshots"
   inputs:
     artifactName: 'Screenshots'
     targetPath: 'MaterialDesignThemes.UITests/bin/$(buildConfiguration)/netcoreapp3.1/Screenshots'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  condition: always()
 
 - task: PowerShell@2
   displayName: "Build NuGets"

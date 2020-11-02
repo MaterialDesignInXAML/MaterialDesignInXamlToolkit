@@ -1,15 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignColors.WpfExample
+﻿namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for ColorZones.xaml
-    /// </summary>
-    public partial class ColorZones : UserControl
+    public partial class ColorZones
     {
-        public ColorZones()
-        {
-            InitializeComponent();
-        }
+        public ColorZones() => InitializeComponent();
     }
 }

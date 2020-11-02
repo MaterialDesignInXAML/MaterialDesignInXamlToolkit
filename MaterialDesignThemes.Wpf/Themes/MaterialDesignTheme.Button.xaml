@@ -10,6 +10,7 @@
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converters:BorderClipConverter x:Key="BorderClipConverter" />
+            <converters:BrushOpacityConverter x:Key="BrushOpacityConverter" />
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
@@ -124,9 +125,9 @@
     </Style>
 
     <Style x:Key="MaterialDesignRaisedAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignFlatButton" TargetType="{x:Type ButtonBase}">
@@ -150,9 +151,6 @@
                         <Border Background="{TemplateBinding Background}" x:Name="border" 
                                 CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                 BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <Border.Resources>
-                                <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{DynamicResource PrimaryHueMidBrushColor}" Opacity="0.16"/>
-                            </Border.Resources>
                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
                                         ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -171,12 +169,11 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="Button.IsDefaulted" Value="true">
-                            <!--Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/-->
-                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource PrimaryHueMidBrush}" />
-                            <Setter Property="Background" TargetName="border" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Background" TargetName="border" Value="{Binding Foreground,
+                                                                                        RelativeSource={RelativeSource Mode=TemplatedParent},
+                                                                                        Converter={StaticResource BrushOpacityConverter},
+                                                                                        ConverterParameter=0.16}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
@@ -188,7 +185,8 @@
     </Style>
 
     <Style x:Key="MaterialDesignFlatAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueMidBrush}"/>
     </Style>
 
     <Style x:Key="MaterialDesignFlatAccentBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
@@ -208,7 +206,7 @@
     </Style>
 
     <Style x:Key="MaterialDesignOutlinedButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="wpf:ButtonAssist.CornerRadius" Value="2" />
         <Setter Property="Template">
@@ -220,9 +218,6 @@
                                 CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
-                            <Border.Resources>
-                                <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{DynamicResource PrimaryHueMidBrushColor}" Opacity="0.06"/>
-                            </Border.Resources>
                             <wpf:Ripple Content="{TemplateBinding Content}" 
                                         ContentTemplate="{TemplateBinding ContentTemplate}" 
                                         Focusable="False"
@@ -244,7 +239,11 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Background" TargetName="border" Value="{Binding Foreground,
+                                                                                        RelativeSource={RelativeSource Mode=TemplatedParent},
+                                                                                        Converter={StaticResource BrushOpacityConverter},
+                                                                                        ConverterParameter=0.16}" />
+
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
@@ -289,7 +288,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
-        <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryAccentBrush}" />
+        <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryHueMidBrush}" />
         <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource MaterialDesignDivider}" />
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -399,9 +398,9 @@
     </Style>
 
     <Style x:Key="MaterialDesignFloatingActionMiniAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
         <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidBrush}" />
     </Style>
 
@@ -420,9 +419,9 @@
     </Style>
 
     <Style x:Key="MaterialDesignFloatingActionAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
         <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidBrush}" />
     </Style>
 

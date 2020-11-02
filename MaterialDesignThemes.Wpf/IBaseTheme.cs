@@ -4,7 +4,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public interface IBaseTheme
     {
-        Color ValidationErrorColor { get; }
+        Color MaterialDesignValidationErrorColor { get; }
         Color MaterialDesignBackground { get; }
         Color MaterialDesignPaper { get; }
         Color MaterialDesignCardBackground { get; }

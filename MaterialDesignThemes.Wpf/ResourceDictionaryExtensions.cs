@@ -9,34 +9,58 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class ResourceDictionaryExtensions
     {
-        private static Guid CurrentThemeKey { get; } = Guid.NewGuid();
-        private static Guid ThemeManagerKey { get; } = Guid.NewGuid();
+        private const string CurrentThemeKey = nameof(MaterialDesignThemes) + "." + nameof(CurrentThemeKey);
+        private const string ThemeManagerKey = nameof(MaterialDesignThemes) + "." + nameof(ThemeManagerKey);
 
         public static void SetTheme(this ResourceDictionary resourceDictionary, ITheme theme)
+            => SetTheme(resourceDictionary, theme, null);
+
+        public static void SetTheme(this ResourceDictionary resourceDictionary, ITheme theme, ColorAdjustment colorAdjustment)
         {
-            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+            if (resourceDictionary is null) throw new ArgumentNullException(nameof(resourceDictionary));
 
-            SetSolidColorBrush(resourceDictionary, "PrimaryHueLightBrush", theme.PrimaryLight.Color);
-            SetSolidColorBrush(resourceDictionary, "PrimaryHueLightForegroundBrush", theme.PrimaryLight.ForegroundColor ?? theme.PrimaryLight.Color.ContrastingForegroundColor());
-            SetSolidColorBrush(resourceDictionary, "PrimaryHueMidBrush", theme.PrimaryMid.Color);
-            SetSolidColorBrush(resourceDictionary, "PrimaryHueMidForegroundBrush", theme.PrimaryMid.ForegroundColor ?? theme.PrimaryMid.Color.ContrastingForegroundColor());
-            SetSolidColorBrush(resourceDictionary, "PrimaryHueDarkBrush", theme.PrimaryDark.Color);
-            SetSolidColorBrush(resourceDictionary, "PrimaryHueDarkForegroundBrush", theme.PrimaryDark.ForegroundColor ?? theme.PrimaryDark.Color.ContrastingForegroundColor());
+            if (theme is Theme internalTheme)
+            {
+                colorAdjustment ??= internalTheme.ColorAdjustment;
+                internalTheme.ColorAdjustment = colorAdjustment;
+            }
 
-            SetSolidColorBrush(resourceDictionary, "SecondaryHueLightBrush", theme.SecondaryLight.Color);
-            SetSolidColorBrush(resourceDictionary, "SecondaryHueLightForegroundBrush", theme.SecondaryLight.ForegroundColor ?? theme.SecondaryLight.Color.ContrastingForegroundColor());
-            SetSolidColorBrush(resourceDictionary, "SecondaryHueMidBrush", theme.SecondaryMid.Color);
-            SetSolidColorBrush(resourceDictionary, "SecondaryHueMidForegroundBrush", theme.SecondaryMid.ForegroundColor ?? theme.SecondaryMid.Color.ContrastingForegroundColor());
-            SetSolidColorBrush(resourceDictionary, "SecondaryHueDarkBrush", theme.SecondaryDark.Color);
-            SetSolidColorBrush(resourceDictionary, "SecondaryHueDarkForegroundBrush", theme.SecondaryDark.ForegroundColor ?? theme.SecondaryDark.Color.ContrastingForegroundColor());
+            Color primaryLight = theme.PrimaryLight.Color;
+            Color primaryMid = theme.PrimaryMid.Color;
+            Color primaryDark = theme.PrimaryDark.Color;
 
+            Color secondaryLight = theme.SecondaryLight.Color;
+            Color secondaryMid = theme.SecondaryMid.Color;
+            Color secondaryDark = theme.SecondaryDark.Color;
 
-            //NB: These are here for backwards compatibility, and will be removed in a future version.
-            SetSolidColorBrush(resourceDictionary, "SecondaryAccentBrush", theme.SecondaryMid.Color);
-            SetSolidColorBrush(resourceDictionary, "SecondaryAccentForegroundBrush", theme.SecondaryMid.ForegroundColor ?? theme.SecondaryMid.Color.ContrastingForegroundColor());
+            if (colorAdjustment is { })
+            {
+                if (colorAdjustment.Colors.HasFlag(ColorSelection.Primary))
+                {
+                    AdjustColors(theme.Paper, colorAdjustment, ref primaryLight, ref primaryMid, ref primaryDark);
+                }
+                if (colorAdjustment.Colors.HasFlag(ColorSelection.Secondary))
+                {
+                    AdjustColors(theme.Paper, colorAdjustment, ref secondaryLight, ref secondaryMid, ref secondaryDark);
+                }
+            }
 
-            SetSolidColorBrush(resourceDictionary, "ValidationErrorBrush", theme.ValidationError);
-            resourceDictionary["ValidationErrorColor"] = theme.ValidationError;
+            SetSolidColorBrush(resourceDictionary, "PrimaryHueLightBrush", primaryLight);
+            SetSolidColorBrush(resourceDictionary, "PrimaryHueLightForegroundBrush", theme.PrimaryLight.ForegroundColor ?? primaryLight.ContrastingForegroundColor());
+            SetSolidColorBrush(resourceDictionary, "PrimaryHueMidBrush", primaryMid);
+            SetSolidColorBrush(resourceDictionary, "PrimaryHueMidForegroundBrush", theme.PrimaryMid.ForegroundColor ?? primaryMid.ContrastingForegroundColor());
+            SetSolidColorBrush(resourceDictionary, "PrimaryHueDarkBrush", primaryDark);
+            SetSolidColorBrush(resourceDictionary, "PrimaryHueDarkForegroundBrush", theme.PrimaryDark.ForegroundColor ?? primaryDark.ContrastingForegroundColor());
+
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueLightBrush", secondaryLight);
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueLightForegroundBrush", theme.SecondaryLight.ForegroundColor ?? secondaryLight.ContrastingForegroundColor());
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueMidBrush", secondaryMid);
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueMidForegroundBrush", theme.SecondaryMid.ForegroundColor ?? secondaryMid.ContrastingForegroundColor());
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueDarkBrush", secondaryDark);
+            SetSolidColorBrush(resourceDictionary, "SecondaryHueDarkForegroundBrush", theme.SecondaryDark.ForegroundColor ?? secondaryDark.ContrastingForegroundColor());
+
+            SetSolidColorBrush(resourceDictionary, "MaterialDesignValidationErrorBrush", theme.ValidationError);
+            resourceDictionary["MaterialDesignValidationErrorColor"] = theme.ValidationError;
 
             SetSolidColorBrush(resourceDictionary, "MaterialDesignBackground", theme.Background);
             SetSolidColorBrush(resourceDictionary, "MaterialDesignPaper", theme.Paper);
@@ -78,14 +102,14 @@ namespace MaterialDesignThemes.Wpf
 
         public static ITheme GetTheme(this ResourceDictionary resourceDictionary)
         {
-            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+            if (resourceDictionary is null) throw new ArgumentNullException(nameof(resourceDictionary));
             if (resourceDictionary[CurrentThemeKey] is ITheme theme)
             {
                 return theme;
             }
 
-            Color secondaryMid = GetColor("SecondaryHueMidBrush", "SecondaryAccentBrush");
-            Color secondaryMidForeground = GetColor("SecondaryHueMidForegroundBrush", "SecondaryAccentForegroundBrush");
+            Color secondaryMid = GetColor("SecondaryHueMidBrush");
+            Color secondaryMidForeground = GetColor("SecondaryHueMidForegroundBrush");
 
             if (!TryGetColor("SecondaryHueLightBrush", out Color secondaryLight))
             {
@@ -143,7 +167,7 @@ namespace MaterialDesignThemes.Wpf
                 ToolForeground = GetColor("MaterialDesignToolForeground"),
                 ToolTipBackground = GetColor("MaterialDesignToolTipBackground"),
                 Paper = GetColor("MaterialDesignPaper"),
-                ValidationError = GetColor("ValidationErrorBrush")
+                ValidationError = GetColor("MaterialDesignValidationErrorBrush")
             };
 
             Color GetColor(params string[] keys)
@@ -203,6 +227,62 @@ namespace MaterialDesignThemes.Wpf
             var newBrush = new SolidColorBrush(value);
             newBrush.Freeze();
             sourceDictionary[name] = newBrush;
+        }
+
+        private static void AdjustColors(Color background, ColorAdjustment colorAdjustment, ref Color light, ref Color mid, ref Color dark)
+        {
+            double offset;
+            switch (colorAdjustment.Contrast)
+            {
+                case Contrast.Low:
+                    if (background.IsLightColor())
+                    {
+                        dark = dark.EnsureContrastRatio(background, colorAdjustment.DesiredContrastRatio, out offset);
+                        if (Math.Abs(offset) > 0.0)
+                        {
+                            mid = mid.ShiftLightness(offset);
+                            light = light.ShiftLightness(offset);
+                        }
+                    }
+                    else
+                    {
+                        light = light.EnsureContrastRatio(background, colorAdjustment.DesiredContrastRatio, out offset);
+                        if (Math.Abs(offset) > 0.0)
+                        {
+                            mid = mid.ShiftLightness(offset);
+                            dark = dark.ShiftLightness(offset);
+                        }
+                    }
+                    break;
+                case Contrast.Medium:
+                    mid = mid.EnsureContrastRatio(background, colorAdjustment.DesiredContrastRatio, out offset);
+                    if (Math.Abs(offset) > 0.0)
+                    {
+                        dark = dark.ShiftLightness(offset);
+                        light = light.ShiftLightness(offset);
+                    }
+                    break;
+                case Contrast.High:
+                    if (background.IsLightColor())
+                    {
+                        light = light.EnsureContrastRatio(background, colorAdjustment.DesiredContrastRatio, out offset);
+                        if (Math.Abs(offset) > 0.0)
+                        {
+                            mid = mid.ShiftLightness(offset);
+                            dark = dark.ShiftLightness(offset);
+                        }
+                    }
+                    else
+                    {
+                        dark = dark.EnsureContrastRatio(background, colorAdjustment.DesiredContrastRatio, out offset);
+                        if (Math.Abs(offset) > 0.0)
+                        {
+                            light = light.ShiftLightness(offset);
+                            mid = mid.ShiftLightness(offset);
+                        }
+                    }
+                    break;
+            }
         }
 
         private class ThemeManager : IThemeManager

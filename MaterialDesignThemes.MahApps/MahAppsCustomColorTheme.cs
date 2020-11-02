@@ -88,9 +88,9 @@ namespace MaterialDesignThemes.MahApps
 
             ITheme newTheme = e.NewTheme;
 
-            var foreground = newTheme.Background.ContrastingForegroundColor();
-
-            BaseTheme baseTheme = foreground == Colors.Black ? Wpf.BaseTheme.Light : Wpf.BaseTheme.Dark;
+            BaseTheme baseTheme = newTheme.Background.IsLightColor()
+                ? Wpf.BaseTheme.Light
+                : Wpf.BaseTheme.Dark;
 
             if (TryGetResourceDictionaries(newTheme, out ResourceDictionary light, out ResourceDictionary dark))
             {
