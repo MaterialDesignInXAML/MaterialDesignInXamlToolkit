@@ -27,7 +27,7 @@ namespace MaterialDesignColors
             var manager = new ResourceManager(resourcesName, assembly);
             var resourceSet = manager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
             var dictionaryEntries = resourceSet.OfType<DictionaryEntry>().ToList();
-            var assemblyName = assembly.GetName().Name;
+            string? assemblyName = assembly.GetName().Name;
 
             var regex = new Regex(@"^themes\/materialdesigncolor\.(?<name>[a-z]+)\.(?<type>primary|accent)\.baml$");
 
@@ -54,49 +54,47 @@ namespace MaterialDesignColors
 
         public IEnumerable<Swatch> Swatches { get; }
 
-        private static Swatch CreateSwatch(string name, ResourceDictionary primaryDictionary, ResourceDictionary accentDictionary)
+        private static Swatch CreateSwatch(string name, ResourceDictionary? primaryDictionary, ResourceDictionary? accentDictionary)
         {
-            var primaryHues = new List<Hue>();
-            var accentHues = new List<Hue>();
+            return new Swatch(name, GetHues(primaryDictionary), GetHues(accentDictionary));
 
-            if (primaryDictionary != null)
+            static List<Hue> GetHues(ResourceDictionary? resourceDictionary)
             {
-                foreach (var entry in primaryDictionary.OfType<DictionaryEntry>()
-                    .OrderBy(de => de.Key)
-                    .Where(de => !de.Key.ToString().EndsWith("Foreground", StringComparison.Ordinal)))
+                var hues = new List<Hue>();
+                if (resourceDictionary != null)
                 {
-                    var colour = (Color)entry.Value;
-                    var foregroundColour = (Color)
-                        primaryDictionary.OfType<DictionaryEntry>()
-                            .Single(de => de.Key.ToString().Equals(entry.Key.ToString() + "Foreground"))
-                            .Value;
+                    foreach (var entry in resourceDictionary.OfType<DictionaryEntry>()
+                        .OrderBy(de => de.Key)
+                        .Where(de => !(de.Key.ToString() ?? "").EndsWith("Foreground", StringComparison.Ordinal)))
+                    {
 
-                    primaryHues.Add(new Hue(entry.Key.ToString(), colour, foregroundColour));
+                        hues.Add(GetHue(resourceDictionary, entry));
+                    }
                 }
+                return hues;
             }
 
-            if (accentDictionary != null)
+            static Hue GetHue(ResourceDictionary dictionary, DictionaryEntry entry)
             {
-                foreach (var entry in accentDictionary.OfType<DictionaryEntry>()
-                    .OrderBy(de => de.Key)
-                    .Where(de => !de.Key.ToString().EndsWith("Foreground", StringComparison.Ordinal)))
+                if (!(entry.Value is Color colour))
                 {
-                    var colour = (Color)entry.Value;
-                    var foregroundColour = (Color)
-                        accentDictionary.OfType<DictionaryEntry>()
-                            .Single(de => de.Key.ToString().Equals(entry.Key.ToString() + "Foreground"))
-                            .Value;
-
-                    accentHues.Add(new Hue(entry.Key.ToString(), colour, foregroundColour));
+                    throw new InvalidOperationException($"Entry {entry.Key} was not of type {nameof(Color)}");
                 }
-            }
+                string foregroundKey = entry.Key?.ToString() + "Foreground";
+                if (!(dictionary.OfType<DictionaryEntry>()
+                        .Single(de => string.Equals(de.Key.ToString(), foregroundKey, StringComparison.Ordinal))
+                        .Value is Color foregroundColour))
+                {
+                    throw new InvalidOperationException($"Entry {foregroundKey} was not of type {nameof(Color)}");
+                }
 
-            return new Swatch(name, primaryHues, accentHues);
+                return new Hue(entry.Key?.ToString() ?? "", colour, foregroundColour);
+            }
         }
 
-        private static ResourceDictionary Read(string assemblyName, string path)
+        private static ResourceDictionary? Read(string? assemblyName, string? path)
         {
-            if (assemblyName == null || path == null)
+            if (assemblyName is null || path is null)
                 return null;
 
             return (ResourceDictionary)Application.LoadComponent(new Uri(

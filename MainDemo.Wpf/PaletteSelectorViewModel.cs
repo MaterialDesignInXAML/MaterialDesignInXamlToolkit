@@ -1,11 +1,10 @@
-﻿using MaterialDesignColors;
-using MaterialDesignDemo.Domain;
-using MaterialDesignDemo.Domain;
-using MaterialDesignThemes.Wpf;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
+using MaterialDesignColors;
+using MaterialDesignDemo.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo
 {

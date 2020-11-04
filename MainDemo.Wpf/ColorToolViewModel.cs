@@ -6,7 +6,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignDemo.Domain;
-using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo
