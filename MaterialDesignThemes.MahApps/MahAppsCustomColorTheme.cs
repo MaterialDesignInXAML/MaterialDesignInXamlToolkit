@@ -5,6 +5,7 @@ using System.Windows.Media;
 using ControlzEx.Theming;
 using MaterialDesignColors.ColorManipulation;
 using MaterialDesignThemes.Wpf;
+using System.Diagnostics.CodeAnalysis;
 using Theme = ControlzEx.Theming.Theme;
 
 namespace MaterialDesignThemes.MahApps
@@ -16,7 +17,7 @@ namespace MaterialDesignThemes.MahApps
         protected override void ApplyTheme(ITheme theme)
         {
             base.ApplyTheme(theme);
-            if (TryGetResourceDictionaries(theme, out ResourceDictionary light, out ResourceDictionary dark))
+            if (TryGetResourceDictionaries(theme, out ResourceDictionary? light, out ResourceDictionary? dark))
             {
                 switch (BaseTheme)
                 {
@@ -36,7 +37,7 @@ namespace MaterialDesignThemes.MahApps
             }
         }
 
-        private bool TryGetResourceDictionaries(ITheme theme, out ResourceDictionary light, out ResourceDictionary dark)
+        private bool TryGetResourceDictionaries(ITheme theme, out ResourceDictionary? light, out ResourceDictionary? dark)
         {
             if (PrimaryColor is Color primaryColor &&
                 SecondaryColor is Color secondaryColor &&
@@ -66,8 +67,10 @@ namespace MaterialDesignThemes.MahApps
                     return rv;
                 }
 
-                rv = new ResourceDictionary();
-                rv[GeneratedKey] = GeneratedKey;
+                rv = new ResourceDictionary
+                {
+                    [GeneratedKey] = GeneratedKey
+                };
                 rv.SetMahApps(theme, baseTheme);
 
                 rv[Theme.ThemeNameKey] = $"MaterialDesign.{primaryColor}.{secondaryColor}.{baseColorScheme}";
@@ -82,7 +85,7 @@ namespace MaterialDesignThemes.MahApps
             }
         }
 
-        private void ThemeManagerOnThemeChanged(object sender, Wpf.ThemeChangedEventArgs e)
+        private void ThemeManagerOnThemeChanged(object? sender, Wpf.ThemeChangedEventArgs e)
         {
             ResourceDictionary resourceDictionary = e.ResourceDictionary;
 
@@ -92,7 +95,7 @@ namespace MaterialDesignThemes.MahApps
                 ? Wpf.BaseTheme.Light
                 : Wpf.BaseTheme.Dark;
 
-            if (TryGetResourceDictionaries(newTheme, out ResourceDictionary light, out ResourceDictionary dark))
+            if (TryGetResourceDictionaries(newTheme, out ResourceDictionary? light, out ResourceDictionary? dark))
             {
                 for (int i = resourceDictionary.MergedDictionaries.Count - 1; i >= 0; i--)
                 {
