@@ -3639,6 +3639,7 @@ namespace MaterialDesignThemes.Wpf
         DogService,
         GuideDog=DogService,
         DogSide,
+        DogSideOff,
         Dolby,
         Dolly,
         HandTruck=Dolly,
