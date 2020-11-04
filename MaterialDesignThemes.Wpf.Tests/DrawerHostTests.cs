@@ -43,60 +43,20 @@ namespace MaterialDesignThemes.Wpf.Tests
 
         [StaFact]
         [Description("Issue 2015")]
-        public void WhenOpenedDrawerOpenedCallbackIsExecuted()
-        {
-            Dock expectedPosition = Dock.Left;
-            Dock openedPosition = Dock.Top;
-            _drawerHost.DrawerOpenedCallback += DrawerOpened;
-            _drawerHost.IsLeftDrawerOpen = true;
-
-            DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
-
-            Assert.Equal(expectedPosition, openedPosition);
-
-            void DrawerOpened(object sender, DrawerOpenedEventArgs eventArgs)
-            {
-                openedPosition = eventArgs.Dock;
-            }
-        }
-
-        [StaFact]
-        [Description("Issue 2015")]
         public void WhenClosingDrawerClosingEventIsRaised()
         {
             Dock expectedPosition = Dock.Left;
-            Dock closingPosition = Dock.Top;
+            Dock closedPosition = Dock.Top;
             _drawerHost.DrawerClosing += DrawerClosing;
             _drawerHost.IsLeftDrawerOpen = true;
 
             DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
 
-            Assert.Equal(expectedPosition, closingPosition);
+            Assert.Equal(expectedPosition, closedPosition);
 
             void DrawerClosing(object sender, DrawerClosingEventArgs eventArgs)
             {
-                closingPosition = eventArgs.Dock;
-            }
-        }
-
-
-
-        [StaFact]
-        [Description("Issue 2015")]
-        public void WhenClosingDrawerClosingCallbackIsExecuted()
-        {
-            Dock expectedPosition = Dock.Left;
-            Dock closingPosition = Dock.Top;
-            _drawerHost.DrawerClosingCallback += DrawerClosing;
-            _drawerHost.IsLeftDrawerOpen = true;
-
-            DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
-
-            Assert.Equal(expectedPosition, closingPosition);
-
-            void DrawerClosing(object sender, DrawerClosingEventArgs eventArgs)
-            {
-                closingPosition = eventArgs.Dock;
+                closedPosition = eventArgs.Dock;
             }
         }
     }

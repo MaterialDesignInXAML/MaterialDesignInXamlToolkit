@@ -56,9 +56,6 @@ namespace MaterialDesignThemes.Wpf
         private FrameworkElement _rightDrawerElement;
         private FrameworkElement _bottomDrawerElement;
 
-        private DrawerOpenedEventHandler _attachedDrawerOpenedEventHandler;
-        private DrawerClosingEventHandler _attachedDrawerClosingEventHandler;
-
         private bool _lockZIndexes;
 
         private readonly IDictionary<DependencyProperty, DependencyPropertyKey> _zIndexPropertyLookup = new Dictionary<DependencyProperty, DependencyPropertyKey>
@@ -415,44 +412,16 @@ namespace MaterialDesignThemes.Wpf
             EventManager.RegisterRoutedEvent(
                 "DrawerOpened",
                 RoutingStrategy.Bubble,
-                typeof(DrawerOpenedEventHandler),
+                typeof(EventHandler<DrawerOpenedEventArgs>),
                 typeof(DrawerHost));
 
         /// <summary>
         /// Raised when a drawer is opened.
         /// </summary>
-        public event DrawerOpenedEventHandler DrawerOpened
+        public event EventHandler<DrawerOpenedEventArgs> DrawerOpened
         {
             add { AddHandler(DrawerOpenedEvent, value); }
             remove { RemoveHandler(DrawerOpenedEvent, value); }
-        }
-
-        /// <summary>
-        /// Attached property which can be used on the <see cref="Button"/> which instigated the <see cref="OpenDrawerCommand"/> to process the event.
-        /// </summary>
-        public static readonly DependencyProperty DrawerOpenedAttachedProperty = DependencyProperty.RegisterAttached(
-            "DrawerOpenedAttached", typeof(DrawerOpenedEventHandler), typeof(DrawerHost), new PropertyMetadata(default(DrawerOpenedEventHandler)));
-
-        public static void SetDrawerOpenedAttached(DependencyObject element, DrawerOpenedEventHandler value)
-        {
-            element.SetValue(DrawerOpenedAttachedProperty, value);
-        }
-
-        public static DrawerOpenedEventHandler GetDrawerOpenedAttached(DependencyObject element)
-        {
-            return (DrawerOpenedEventHandler)element.GetValue(DrawerOpenedAttachedProperty);
-        }
-
-        public static readonly DependencyProperty DrawerOpenedCallbackProperty = DependencyProperty.Register(
-            nameof(DrawerOpenedCallback), typeof(DrawerOpenedEventHandler), typeof(DrawerHost), new PropertyMetadata(default(DrawerOpenedEventHandler)));
-
-        /// <summary>
-        /// Callback fired when the <see cref="DrawerOpened"/> event is fired, allowing the event to be processed from a binding/view model.
-        /// </summary>
-        public DrawerOpenedEventHandler DrawerOpenedCallback
-        {
-            get { return (DrawerOpenedEventHandler)GetValue(DrawerOpenedCallbackProperty); }
-            set { SetValue(DrawerOpenedCallbackProperty, value); }
         }
 
         protected void OnDrawerOpened(DrawerOpenedEventArgs eventArgs)
@@ -468,44 +437,16 @@ namespace MaterialDesignThemes.Wpf
             EventManager.RegisterRoutedEvent(
                 "DrawerClosing",
                 RoutingStrategy.Bubble,
-                typeof(DrawerClosingEventHandler),
+                typeof(EventHandler<DrawerClosingEventArgs>),
                 typeof(DrawerHost));
 
         /// <summary>
-        /// Raised just before a drawer is closed.
+        /// Raised when a drawer is closing.
         /// </summary>
-        public event DrawerClosingEventHandler DrawerClosing
+        public event EventHandler<DrawerClosingEventArgs> DrawerClosing
         {
             add { AddHandler(DrawerClosingEvent, value); }
             remove { RemoveHandler(DrawerClosingEvent, value); }
-        }
-
-        /// <summary>
-        /// Attached property which can be used on the <see cref="Button"/> which instigated the <see cref="OpenDrawerCommand"/> to process the closing event.
-        /// </summary>
-        public static readonly DependencyProperty DrawerClosingAttachedProperty = DependencyProperty.RegisterAttached(
-            "DrawerClosingAttached", typeof(DrawerClosingEventHandler), typeof(DrawerHost), new PropertyMetadata(default(DrawerClosingEventHandler)));
-
-        public static void SetDrawerClosingAttached(DependencyObject element, DrawerClosingEventHandler value)
-        {
-            element.SetValue(DrawerClosingAttachedProperty, value);
-        }
-
-        public static DrawerClosingEventHandler GetDrawerClosingAttached(DependencyObject element)
-        {
-            return (DrawerClosingEventHandler)element.GetValue(DrawerClosingAttachedProperty);
-        }
-
-        public static readonly DependencyProperty DrawerClosingCallbackProperty = DependencyProperty.Register(
-            nameof(DrawerClosingCallback), typeof(DrawerClosingEventHandler), typeof(DrawerHost), new PropertyMetadata(default(DrawerClosingEventHandler)));
-
-        /// <summary>
-        /// Callback fired when the <see cref="DrawerClosing"/> event is fired, allowing the event to be processed from a binding/view model.
-        /// </summary>
-        public DrawerClosingEventHandler DrawerClosingCallback
-        {
-            get { return (DrawerClosingEventHandler)GetValue(DrawerClosingCallbackProperty); }
-            set { SetValue(DrawerClosingCallbackProperty, value); }
         }
 
         protected void OnDrawerClosing(DrawerClosingEventArgs eventArgs)
@@ -646,12 +587,8 @@ namespace MaterialDesignThemes.Wpf
         {
             //multiple ways of calling back that the drawer has opened:
             // * routed event
-            // * the attached property (which should be applied to the button which opened the drawer
-            // * straight forward dependency property
             var drawerOpenedEventArgs = new DrawerOpenedEventArgs(dock, DrawerOpenedEvent);
             drawerHost.OnDrawerOpened(drawerOpenedEventArgs);
-            drawerHost._attachedDrawerOpenedEventHandler?.Invoke(drawerHost, drawerOpenedEventArgs);
-            drawerHost.DrawerOpenedCallback?.Invoke(drawerHost, drawerOpenedEventArgs);
         }
 
         private void PrepareZIndexes(DependencyPropertyKey zIndexDependencyPropertyKey)
@@ -675,11 +612,7 @@ namespace MaterialDesignThemes.Wpf
                 var drawerClosingEventArgs = new DrawerClosingEventArgs(dock, DrawerClosingEvent);
                 //multiple ways of calling back that the drawer is closing:
                 // * routed event
-                // * the attached property (which should be applied to the button which opened the drawer
-                // * straight forward dependency property
                 OnDrawerClosing(drawerClosingEventArgs);
-                _attachedDrawerClosingEventHandler?.Invoke(this, drawerClosingEventArgs);
-                DrawerClosingCallback?.Invoke(this, drawerClosingEventArgs);
 
                 if (drawerClosingEventArgs.IsCancelled)
                 {
@@ -695,12 +628,6 @@ namespace MaterialDesignThemes.Wpf
         private void OpenDrawerHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
             if (executedRoutedEventArgs.Handled) return;
-
-            if (executedRoutedEventArgs.OriginalSource is DependencyObject dependencyObject)
-            {
-                _attachedDrawerOpenedEventHandler = GetDrawerOpenedAttached(dependencyObject);
-                _attachedDrawerClosingEventHandler = GetDrawerClosingAttached(dependencyObject);
-            }
 
             SetOpenFlag(executedRoutedEventArgs, true);
 
