@@ -15,7 +15,7 @@ namespace MaterialDesignThemes.Wpf
         public static void SetTheme(this ResourceDictionary resourceDictionary, ITheme theme)
             => SetTheme(resourceDictionary, theme, null);
 
-        public static void SetTheme(this ResourceDictionary resourceDictionary, ITheme theme, ColorAdjustment colorAdjustment)
+        public static void SetTheme(this ResourceDictionary resourceDictionary, ITheme theme, ColorAdjustment? colorAdjustment)
         {
             if (resourceDictionary is null) throw new ArgumentNullException(nameof(resourceDictionary));
 
@@ -194,16 +194,16 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        public static IThemeManager GetThemeManager(this ResourceDictionary resourceDictionary)
+        public static IThemeManager? GetThemeManager(this ResourceDictionary resourceDictionary)
         {
-            if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
+            if (resourceDictionary is null) throw new ArgumentNullException(nameof(resourceDictionary));
             return resourceDictionary[ThemeManagerKey] as IThemeManager;
         }
 
         internal static void SetSolidColorBrush(this ResourceDictionary sourceDictionary, string name, Color value)
         {
-            if (sourceDictionary == null) throw new ArgumentNullException(nameof(sourceDictionary));
-            if (name == null) throw new ArgumentNullException(nameof(name));
+            if (sourceDictionary is null) throw new ArgumentNullException(nameof(sourceDictionary));
+            if (name is null) throw new ArgumentNullException(nameof(name));
 
             sourceDictionary[name + "Color"] = value;
 
@@ -290,16 +290,12 @@ namespace MaterialDesignThemes.Wpf
             private ResourceDictionary _ResourceDictionary;
 
             public ThemeManager(ResourceDictionary resourceDictionary)
-            {
-                _ResourceDictionary = resourceDictionary ?? throw new ArgumentNullException(nameof(resourceDictionary));
-            }
+                => _ResourceDictionary = resourceDictionary ?? throw new ArgumentNullException(nameof(resourceDictionary));
 
-            public event EventHandler<ThemeChangedEventArgs> ThemeChanged;
+            public event EventHandler<ThemeChangedEventArgs>? ThemeChanged;
 
             public void OnThemeChange(ITheme oldTheme, ITheme newTheme)
-            {
-                ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(_ResourceDictionary, oldTheme, newTheme));
-            }
+                => ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(_ResourceDictionary, oldTheme, newTheme));
         }
     }
 }

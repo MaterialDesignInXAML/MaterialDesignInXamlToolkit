@@ -44,7 +44,7 @@ namespace MaterialDesignThemes.Wpf
         /// Gets the icon path data for the current <see cref="Kind"/>.
         /// </summary>
         [TypeConverter(typeof(GeometryConverter))]
-        public string Data
+        public string? Data
         {
             get => (string)GetValue(DataProperty);
             private set => SetValue(DataPropertyKey, value);
@@ -58,7 +58,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void UpdateData()
         {
-            string data = null;
+            string? data = null;
             _dataIndex.Value?.TryGetValue(Kind, out data);
             Data = data;
         }

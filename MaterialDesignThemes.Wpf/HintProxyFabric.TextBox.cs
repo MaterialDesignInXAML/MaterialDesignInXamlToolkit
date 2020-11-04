@@ -10,8 +10,6 @@ namespace MaterialDesignThemes.Wpf
         {
             private readonly TextBox _textBox;
 
-            public object Content => _textBox.Text;
-
             public bool IsLoaded => _textBox.IsLoaded;
 
             public bool IsVisible => _textBox.IsVisible;
@@ -20,10 +18,10 @@ namespace MaterialDesignThemes.Wpf
 
             public bool IsFocused() => _textBox.IsKeyboardFocused;
 
-            public event EventHandler ContentChanged;
-            public event EventHandler IsVisibleChanged;
-            public event EventHandler Loaded;
-            public event EventHandler FocusedChanged;
+            public event EventHandler? ContentChanged;
+            public event EventHandler? IsVisibleChanged;
+            public event EventHandler? Loaded;
+            public event EventHandler? FocusedChanged;
 
             public TextBoxHintProxy(TextBox textBox)
             {
@@ -35,24 +33,16 @@ namespace MaterialDesignThemes.Wpf
             }
 
             private void TextBoxIsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
-            {
-                FocusedChanged?.Invoke(sender, EventArgs.Empty);
-            }
+                => FocusedChanged?.Invoke(sender, EventArgs.Empty);
 
             private void TextBoxIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-            {
-                IsVisibleChanged?.Invoke(sender, EventArgs.Empty);
-            }
+                => IsVisibleChanged?.Invoke(sender, EventArgs.Empty);
 
             private void TextBoxLoaded(object sender, RoutedEventArgs e)
-            {
-                Loaded?.Invoke(sender, EventArgs.Empty);
-            }
+                => Loaded?.Invoke(sender, EventArgs.Empty);
 
             private void TextBoxTextChanged(object sender, TextChangedEventArgs e)
-            {
-                ContentChanged?.Invoke(sender, EventArgs.Empty);
-            }
+                => ContentChanged?.Invoke(sender, EventArgs.Empty);
 
             public void Dispose()
             {

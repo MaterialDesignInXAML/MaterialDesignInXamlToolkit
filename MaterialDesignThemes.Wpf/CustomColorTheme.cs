@@ -47,8 +47,8 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private ColorAdjustment _colorAdjustment;
-        public ColorAdjustment ColorAdjustment
+        private ColorAdjustment? _colorAdjustment;
+        public ColorAdjustment? ColorAdjustment
         {
             get => _colorAdjustment;
             set

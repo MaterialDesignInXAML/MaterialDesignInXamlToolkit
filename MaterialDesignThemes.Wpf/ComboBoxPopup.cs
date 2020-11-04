@@ -238,7 +238,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private void SetupVisiblePlacementWidth(IEnumerable<DependencyObject> visualAncestry)
+        private void SetupVisiblePlacementWidth(IEnumerable<DependencyObject?> visualAncestry)
         {
             var parent = visualAncestry.OfType<Panel>().ElementAt(1);
             VisiblePlacementWidth = TreeHelper.GetVisibleWidth((FrameworkElement)PlacementTarget, parent, FlowDirection);
@@ -283,12 +283,12 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private PositioningData GetPositioningData(IEnumerable<DependencyObject> visualAncestry, Size popupSize, Size targetSize)
+        private PositioningData GetPositioningData(IEnumerable<DependencyObject?> visualAncestry, Size popupSize, Size targetSize)
         {
             var locationFromScreen = PlacementTarget.PointToScreen(new Point(0, 0));
 
             var mainVisual = visualAncestry.OfType<Visual>().LastOrDefault();
-            if (mainVisual == null) throw new ArgumentException($"{nameof(visualAncestry)} must contains unless one {nameof(Visual)} control inside.");
+            if (mainVisual is null) throw new ArgumentException($"{nameof(visualAncestry)} must contains unless one {nameof(Visual)} control inside.");
 
             var screen = Screen.FromPoint(locationFromScreen);
             var screenWidth = (int)screen.Bounds.Width;

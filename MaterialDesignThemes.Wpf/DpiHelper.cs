@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
 
@@ -14,8 +15,11 @@ namespace MaterialDesignThemes.Wpf
 
         static DpiHelper()
         {
-            var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static);
-            var dpiYProperty = typeof(SystemParameters).GetProperty("Dpi", BindingFlags.NonPublic | BindingFlags.Static);
+            var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static)
+                ?? throw new InvalidOperationException($"Could not find DpiX property on {nameof(SystemParameters)}");
+            var dpiYProperty = typeof(SystemParameters).GetProperty("Dpi", BindingFlags.NonPublic | BindingFlags.Static)
+                ?? throw new InvalidOperationException($"Could not find Dpi property on {nameof(SystemParameters)}");
+
 
             DpiX = (int)dpiXProperty.GetValue(null, null);
             DpiY = (int)dpiYProperty.GetValue(null, null);
@@ -37,14 +41,8 @@ namespace MaterialDesignThemes.Wpf
             return TransformToDeviceX(x);
         }
 
-        public static double TransformToDeviceY(double y)
-        {
-            return y * DpiY / StandardDpiY;
-        }
+        public static double TransformToDeviceY(double y) => y * DpiY / StandardDpiY;
 
-        public static double TransformToDeviceX(double x)
-        {
-            return x * DpiX / StandardDpiX;
-        }
+        public static double TransformToDeviceX(double x) => x * DpiX / StandardDpiX;
     }
 }

@@ -75,14 +75,10 @@ namespace MaterialDesignThemes.Wpf.Transitions
         }
 
         protected override bool IsItemItsOwnContainerOverride(object item)
-        {
-            return item is TransitionerSlide;
-        }
+            => item is TransitionerSlide;
 
         protected override DependencyObject GetContainerForItemOverride()
-        {
-            return new TransitionerSlide();
-        }
+            => new TransitionerSlide();
 
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
@@ -164,9 +160,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
         }
 
         private static bool IsSafePositive(double @double)
-        {
-            return !double.IsNaN(@double) && !double.IsInfinity(@double) && @double > 0.0;
-        }
+            => !double.IsNaN(@double) && !double.IsInfinity(@double) && @double > 0.0;
 
         private TransitionerSlide GetSlide(object item)
         {
@@ -180,7 +174,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
         {
             if (!IsLoaded) return;
 
-            TransitionerSlide oldSlide = null, newSlide = null;
+            TransitionerSlide? oldSlide = null, newSlide = null;
             for (var index = 0; index < Items.Count; index++)
             {
                 var slide = GetSlide(Items[index]);
@@ -248,15 +242,10 @@ namespace MaterialDesignThemes.Wpf.Transitions
             return DefaultTransitionOrigin;
         }
 
-        void IZIndexController.Stack(params TransitionerSlide[] highestToLowest)
-        {
-            DoStack(highestToLowest);
-        }
+        void IZIndexController.Stack(params TransitionerSlide?[] highestToLowest) => DoStack(highestToLowest);
 
-        private static void DoStack(params TransitionerSlide[] highestToLowest)
+        private static void DoStack(params TransitionerSlide?[] highestToLowest)
         {
-            if (highestToLowest == null) return;
-
             var pos = highestToLowest.Length;
             foreach (var slide in highestToLowest.Where(s => s != null))
             {

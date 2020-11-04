@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Threading;
@@ -28,7 +29,7 @@ namespace MaterialDesignThemes.Wpf
 
             [DllImport(User32, ExactSpelling = true)]
             [ResourceExposure(ResourceScope.None)]
-            public static extern bool EnumDisplayMonitors(HandleRef hdc, COMRECT rcClip, MonitorEnumProc lpfnEnum, IntPtr dwData);
+            public static extern bool EnumDisplayMonitors(HandleRef hdc, COMRECT? rcClip, MonitorEnumProc lpfnEnum, IntPtr dwData);
 
             [DllImport(User32, ExactSpelling = true)]
             [ResourceExposure(ResourceScope.None)]
@@ -117,7 +118,7 @@ namespace MaterialDesignThemes.Wpf
         private const int MONITORINFOF_PRIMARY = 0x00000001;
 
         private static readonly bool _multiMonitorSupport = NativeMethods.GetSystemMetrics(NativeMethods.SM_CMONITORS) != 0;
-        private static Screen[] _screens;
+        private static Screen[]? _screens;
 
         private Screen(IntPtr monitor)
         {
@@ -149,7 +150,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Gets an array of all of the displays on the system.
         /// </summary>
-        public static Screen[] AllScreens
+        public static Screen[]? AllScreens
         {
             get
             {
@@ -174,7 +175,14 @@ namespace MaterialDesignThemes.Wpf
                     }
                     else
                     {
-                        _screens = new[] { PrimaryScreen };
+                        if (PrimaryScreen is Screen screen)
+                        {
+                            _screens = new[] { screen };
+                        }
+                        else
+                        {
+                            _screens = null;
+                        }
                     }
 
                     // Now that we have our screens, attach a display setting changed
@@ -204,13 +212,13 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Gets the primary display.
         /// </summary>
-        public static Screen PrimaryScreen
+        public static Screen? PrimaryScreen
         {
             get
             {
                 if (_multiMonitorSupport)
                 {
-                    foreach (Screen screen in AllScreens)
+                    foreach (Screen screen in AllScreens ?? Enumerable.Empty<Screen>())
                     {
                         if (screen.Primary)
                         {

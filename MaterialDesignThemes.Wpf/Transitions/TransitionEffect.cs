@@ -28,14 +28,14 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         public TimeSpan Duration { get; set; } = TimeSpan.FromMilliseconds(400);
 
-        public override Timeline Build<TSubject>(TSubject effectSubject)
+        public override Timeline? Build<TSubject>(TSubject effectSubject)
         {
             if (effectSubject == null) throw new ArgumentNullException(nameof(effectSubject));
 
-            Timeline timeline = null;
-            DependencyProperty property = null;
-            DependencyObject target = null;
-            string targetName = null;
+            Timeline? timeline = null;
+            DependencyProperty? property = null;
+            DependencyObject? target = null;
+            string? targetName = null;
             switch (Kind)
             {
                 //we need these long winded property paths as combined storyboards wont play directly on transforms
@@ -72,7 +72,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (timeline == null || (target == null && targetName == null)) return null;
+            if (timeline is null || (target is null && targetName is null)) return null;
             timeline.Duration = Duration + effectSubject.Offset;
             if (target != null)
                 Storyboard.SetTarget(timeline, target);

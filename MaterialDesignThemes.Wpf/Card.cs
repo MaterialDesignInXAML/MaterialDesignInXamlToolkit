@@ -8,7 +8,7 @@ namespace MaterialDesignThemes.Wpf
     [TemplatePart(Name = ClipBorderPartName, Type = typeof(Border))]
     public class Card : ContentControl
     {
-        private Border _clipBorder;
+        private Border? _clipBorder;
         private const double DefaultUniformCornerRadius = 2.0;
         public const string ClipBorderPartName = "PART_ClipBorder";
 

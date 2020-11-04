@@ -179,14 +179,12 @@ namespace MaterialDesignThemes.Wpf
             if (cultureInfo is null)
                 throw new ArgumentNullException(nameof(cultureInfo));
 
-            CalendarFormatInfo calendarInfo;
-            if (_formatInfoCache.TryGetValue(cultureInfo.Name, out calendarInfo))
+            if (_formatInfoCache.TryGetValue(cultureInfo.Name, out var calendarInfo))
                 return calendarInfo;
 
             var dateTimeFormat = cultureInfo.DateTimeFormat;
 
-            string yearPattern;
-            if (!_cultureYearPatterns.TryGetValue(cultureInfo.Name, out yearPattern))
+            if (!_cultureYearPatterns.TryGetValue(cultureInfo.Name, out string? yearPattern))
                 yearPattern = "yyyy";
 
             DayOfWeekStyle dayOfWeekStyle;
