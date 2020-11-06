@@ -7,7 +7,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 {
     public class BrushOpacityConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is SolidColorBrush brush)
             {
@@ -20,7 +20,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             return null;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object value, Type targetType, object? parameter, CultureInfo culture)
             => Binding.DoNothing;
     }
 }

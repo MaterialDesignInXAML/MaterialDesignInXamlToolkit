@@ -511,7 +511,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private void PopupOnClosed(object sender, EventArgs eventArgs)
+        private void PopupOnClosed(object? sender, EventArgs eventArgs)
         {
             if (IsDropDownOpen)
             {
@@ -527,7 +527,7 @@ namespace MaterialDesignThemes.Wpf
             //OnCalendarClosed(new RoutedEventArgs());
         }
 
-        private void PopupOnOpened(object sender, EventArgs eventArgs)
+        private void PopupOnOpened(object? sender, EventArgs eventArgs)
         {
             if (!IsDropDownOpen)
             {

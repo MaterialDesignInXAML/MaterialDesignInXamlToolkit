@@ -84,6 +84,6 @@ namespace MaterialDesignThemes.Wpf
         public Color TextAreaInactiveBorder { get; set; }
         public Color DataGridRowHoverBackground { get; set; }
 
-        public ColorAdjustment ColorAdjustment { get; set; }
+        public ColorAdjustment? ColorAdjustment { get; set; }
     }
 }

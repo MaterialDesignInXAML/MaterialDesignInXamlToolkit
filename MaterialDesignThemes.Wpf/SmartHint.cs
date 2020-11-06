@@ -136,7 +136,7 @@ namespace MaterialDesignThemes.Wpf
             DefaultStyleKeyProperty.OverrideMetadata(typeof(SmartHint), new FrameworkPropertyMetadata(typeof(SmartHint)));
         }
 
-        private static void HintProxyPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private static void HintProxyPropertyChangedCallback(DependencyObject? dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var smartHint = dependencyObject as SmartHint;
             if (smartHint is null) return;
@@ -160,7 +160,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        protected virtual void OnHintProxyFocusedChanged(object sender, EventArgs e)
+        protected virtual void OnHintProxyFocusedChanged(object? sender, EventArgs e)
         {
             if (HintProxy is { } hintProxy)
             {
@@ -171,7 +171,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        protected virtual void OnHintProxyContentChanged(object sender, EventArgs e)
+        protected virtual void OnHintProxyContentChanged(object? sender, EventArgs e)
         {
             IsContentNullOrEmpty = HintProxy?.IsEmpty() == true;
 
@@ -184,7 +184,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private void HintProxySetStateOnLoaded(object sender, EventArgs e)
+        private void HintProxySetStateOnLoaded(object? sender, EventArgs e)
         {
             RefreshState(false);
             if (HintProxy is { } hintProxy)
@@ -193,7 +193,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        protected virtual void OnHintProxyIsVisibleChanged(object sender, EventArgs e)
+        protected virtual void OnHintProxyIsVisibleChanged(object? sender, EventArgs e)
             => RefreshState(false);
 
         private void RefreshState(bool useTransitions)

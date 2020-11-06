@@ -14,20 +14,18 @@ namespace MaterialDesignThemes.Wpf.Converters
     /// </remarks>
     public class CalendarDateCoalesceConverter : IMultiValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (values.Length != 2) throw new ArgumentException("Unexpected", "values");
-            if (!(values[0] is DateTime)) throw new ArgumentException("Unexpected", "values");
-            if (values[1] != null && !(values[1] is DateTime?)) throw new ArgumentException("Unexpected", "values");
+            if (values?.Length != 2) throw new ArgumentException("Must specify two values", "values");
+            if (values[0] is not DateTime) throw new ArgumentException($"First value should be a {nameof(DateTime)}", "values");
+            if (values[1] is not null && values[1] is not DateTime) throw new ArgumentException($"Second value should be null or a {nameof(DateTime)}", "values");
 
             var selectedDate = (DateTime?)values[1];
 
             return selectedDate ?? values[0];
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            return null;
-        }
+        public object?[]? ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture)
+            => null;
     }
 }

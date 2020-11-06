@@ -17,11 +17,11 @@ namespace MaterialDesignThemes.Wpf.Transitions
         public const string SkewTransformPartName = "PART_SkewTransform";
         public const string TranslateTransformPartName = "PART_TranslateTransform";
 
-        private MatrixTransform _matrixTransform;
-        private RotateTransform _rotateTransform;
-        private ScaleTransform _scaleTransform;
-        private SkewTransform _skewTransform;
-        private TranslateTransform _translateTransform;
+        private MatrixTransform? _matrixTransform;
+        private RotateTransform? _rotateTransform;
+        private ScaleTransform? _scaleTransform;
+        private SkewTransform? _skewTransform;
+        private TranslateTransform? _translateTransform;
 
         static TransitioningContentBase()
         {
@@ -69,9 +69,9 @@ namespace MaterialDesignThemes.Wpf.Transitions
         /// Gets or sets the transition to run when the content is loaded and made visible.
         /// </summary>
         [TypeConverter(typeof(TransitionEffectTypeConverter))]
-        public TransitionEffectBase OpeningEffect
+        public TransitionEffectBase? OpeningEffect
         {
-            get => (TransitionEffectBase)GetValue(OpeningEffectProperty);
+            get => (TransitionEffectBase?)GetValue(OpeningEffectProperty);
             set => SetValue(OpeningEffectProperty, value);
         }
 
@@ -106,16 +106,16 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         protected virtual void RunOpeningEffects()
         {
-            if (!IsLoaded || _matrixTransform == null)
+            if (!IsLoaded || _matrixTransform is null)
             {
                 return;
             }
 
             var storyboard = new Storyboard();
-            var openingEffect = OpeningEffect?.Build(this);
+            Timeline? openingEffect = OpeningEffect?.Build(this);
             if (openingEffect != null)
                 storyboard.Children.Add(openingEffect);
-            foreach (var effect in OpeningEffects.Select(e => e.Build(this)).Where(tl => tl != null))
+            foreach (var effect in OpeningEffects.Select(e => e.Build(this)).Where(tl => tl is not null))
             {
                 storyboard.Children.Add(effect);
             }
@@ -132,7 +132,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 return fe;
             }
 
-            if (NameScope.GetNameScope(this) == null)
+            if (NameScope.GetNameScope(this) is null)
             {
                 NameScope.SetNameScope(this, new NameScope());
             }

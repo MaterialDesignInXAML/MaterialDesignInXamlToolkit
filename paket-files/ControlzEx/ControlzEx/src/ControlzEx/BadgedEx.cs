@@ -20,33 +20,33 @@ namespace ControlzEx
     public class BadgedEx : ContentControl
     {
         public const string BadgeContainerPartName = "PART_BadgeContainer";
-        protected FrameworkElement _badgeContainer;
+        protected FrameworkElement? _badgeContainer;
 
         public static readonly DependencyProperty BadgeProperty = DependencyProperty.Register(
             "Badge", typeof(object), typeof(BadgedEx), new FrameworkPropertyMetadata(default(object), FrameworkPropertyMetadataOptions.AffectsArrange, OnBadgeChanged));
 
-        public object Badge
+        public object? Badge
         {
-            get { return (object)GetValue(BadgeProperty); }
-            set { SetValue(BadgeProperty, value); }
+            get => GetValue(BadgeProperty);
+            set => SetValue(BadgeProperty, value);
         }
 
         public static readonly DependencyProperty BadgeBackgroundProperty = DependencyProperty.Register(
             "BadgeBackground", typeof(Brush), typeof(BadgedEx), new PropertyMetadata(default(Brush)));
 
-        public Brush BadgeBackground
+        public Brush? BadgeBackground
         {
-            get { return (Brush)GetValue(BadgeBackgroundProperty); }
-            set { SetValue(BadgeBackgroundProperty, value); }
+            get => (Brush?)GetValue(BadgeBackgroundProperty);
+            set => SetValue(BadgeBackgroundProperty, value);
         }
 
         public static readonly DependencyProperty BadgeForegroundProperty = DependencyProperty.Register(
             "BadgeForeground", typeof(Brush), typeof(BadgedEx), new PropertyMetadata(default(Brush)));
 
-        public Brush BadgeForeground
+        public Brush? BadgeForeground
         {
-            get { return (Brush)GetValue(BadgeForegroundProperty); }
-            set { SetValue(BadgeForegroundProperty, value); }
+            get => (Brush?)GetValue(BadgeForegroundProperty);
+            set => SetValue(BadgeForegroundProperty, value);
         }
 
         public static readonly DependencyProperty BadgePlacementModeProperty = DependencyProperty.Register(
@@ -54,8 +54,8 @@ namespace ControlzEx
 
         public BadgePlacementMode BadgePlacementMode
         {
-            get { return (BadgePlacementMode)GetValue(BadgePlacementModeProperty); }
-            set { SetValue(BadgePlacementModeProperty, value); }
+            get => (BadgePlacementMode)GetValue(BadgePlacementModeProperty);
+            set => SetValue(BadgePlacementModeProperty, value);
         }
 
         public static readonly RoutedEvent BadgeChangedEvent =
@@ -81,8 +81,8 @@ namespace ControlzEx
 
         public bool IsBadgeSet
         {
-            get { return (bool)GetValue(IsBadgeSetProperty); }
-            private set { SetValue(IsBadgeSetPropertyKey, value); }
+            get => (bool)GetValue(IsBadgeSetProperty);
+            private set => SetValue(IsBadgeSetPropertyKey, value);
         }
 
         private static void OnBadgeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -91,10 +91,12 @@ namespace ControlzEx
 
             instance.IsBadgeSet = !string.IsNullOrWhiteSpace(e.NewValue as string) || (e.NewValue != null && !(e.NewValue is string));
 
-            var args = new RoutedPropertyChangedEventArgs<object>(
+            var args = new RoutedPropertyChangedEventArgs<object?>(
                 e.OldValue,
                 e.NewValue)
-            { RoutedEvent = BadgeChangedEvent };
+            {
+                RoutedEvent = BadgeChangedEvent
+            };
             instance.RaiseEvent(args);
         }
 
@@ -109,7 +111,7 @@ namespace ControlzEx
         {
             var result = base.ArrangeOverride(arrangeBounds);
 
-            if (_badgeContainer == null) return result;
+            if (_badgeContainer is null) return result;
 
             var containerDesiredSize = _badgeContainer.DesiredSize;
             if ((containerDesiredSize.Width <= 0.0 || containerDesiredSize.Height <= 0.0)

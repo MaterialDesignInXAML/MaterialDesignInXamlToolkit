@@ -53,9 +53,9 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         /// <param name="leaf"></param>
         /// <returns></returns>
-        public static IEnumerable<DependencyObject?> GetVisualAncestry(this DependencyObject leaf)
+        public static IEnumerable<DependencyObject> GetVisualAncestry(this DependencyObject? leaf)
         {
-            while (leaf != null)
+            while (leaf is not null)
             {
                 yield return leaf;
                 leaf = VisualTreeHelper.GetParent(leaf);
@@ -64,14 +64,14 @@ namespace MaterialDesignThemes.Wpf
 
         public static IEnumerable<DependencyObject?> GetLogicalAncestry(this DependencyObject leaf)
         {
-            while (leaf != null)
+            while (leaf is not null)
             {
                 yield return leaf;
                 leaf = LogicalTreeHelper.GetParent(leaf);
             }
         }
 
-        public static bool IsDescendantOf(this DependencyObject leaf, DependencyObject ancestor)
+        public static bool IsDescendantOf(this DependencyObject? leaf, DependencyObject? ancestor)
         {
             DependencyObject? parent = null;
             foreach (var node in leaf.GetVisualAncestry())

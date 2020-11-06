@@ -9,26 +9,26 @@ namespace MaterialDesignThemes.Wpf.Converters
     {
         public static readonly ShadowConverter Instance = new ShadowConverter();
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (!(value is ShadowDepth)) return null;
-
-            return Clone(Convert((ShadowDepth)value));
+            if (value is ShadowDepth depth)
+            {
+                return Clone(Convert(depth));
+            }
+            return null;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+            => throw new NotImplementedException();
 
-        public static DropShadowEffect Convert(ShadowDepth shadowDepth)
+        public static DropShadowEffect? Convert(ShadowDepth shadowDepth)
         {
             return ShadowInfo.GetDropShadow(shadowDepth);
         }
 
-        private static DropShadowEffect Clone(DropShadowEffect dropShadowEffect)
+        private static DropShadowEffect? Clone(DropShadowEffect? dropShadowEffect)
         {
-            if (dropShadowEffect == null) return null;
+            if (dropShadowEffect is null) return null;
             return new DropShadowEffect()
             {
                 BlurRadius = dropShadowEffect.BlurRadius,

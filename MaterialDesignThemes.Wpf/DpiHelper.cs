@@ -21,8 +21,8 @@ namespace MaterialDesignThemes.Wpf
                 ?? throw new InvalidOperationException($"Could not find Dpi property on {nameof(SystemParameters)}");
 
 
-            DpiX = (int)dpiXProperty.GetValue(null, null);
-            DpiY = (int)dpiYProperty.GetValue(null, null);
+            DpiX = (int)dpiXProperty.GetValue(null, null)!;
+            DpiY = (int)dpiYProperty.GetValue(null, null)!;
         }
 
         public static double TransformToDeviceY(Visual visual, double y)
