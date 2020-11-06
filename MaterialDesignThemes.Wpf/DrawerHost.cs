@@ -1,11 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using MaterialDesignThemes.Wpf.Transitions;
-using System.Collections.Generic;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -135,7 +134,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsTopDrawerOpenProperty = DependencyProperty.Register(
-            nameof(IsTopDrawerOpen), typeof(bool), typeof(DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsDrawerOpenPropertyChangedCallback));
+            nameof(IsTopDrawerOpen), typeof(bool), typeof(DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsTopDrawerOpenPropertyChangedCallback));
 
         public bool IsTopDrawerOpen
         {
@@ -164,6 +163,7 @@ namespace MaterialDesignThemes.Wpf
             get { return (bool)GetValue(TopDrawerCloseOnClickAwayProperty); }
             set { SetValue(TopDrawerCloseOnClickAwayProperty, value); }
         }
+
         #endregion
 
         #region left drawer
@@ -214,7 +214,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsLeftDrawerOpenProperty = DependencyProperty.Register(
-            nameof(IsLeftDrawerOpen), typeof(bool), typeof(DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsDrawerOpenPropertyChangedCallback));
+            nameof(IsLeftDrawerOpen), typeof(bool), typeof(DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsLeftDrawerOpenPropertyChangedCallback));
 
         public bool IsLeftDrawerOpen
         {
@@ -294,7 +294,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsRightDrawerOpenProperty = DependencyProperty.Register(
-            nameof(IsRightDrawerOpen), typeof(bool), typeof(DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsDrawerOpenPropertyChangedCallback));
+            nameof(IsRightDrawerOpen), typeof(bool), typeof(DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsRightDrawerOpenPropertyChangedCallback));
 
         public bool IsRightDrawerOpen
         {
@@ -374,7 +374,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsBottomDrawerOpenProperty = DependencyProperty.Register(
-            nameof(IsBottomDrawerOpen), typeof(bool), typeof(DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsDrawerOpenPropertyChangedCallback));
+            nameof(IsBottomDrawerOpen), typeof(bool), typeof(DrawerHost), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsBottomDrawerOpenPropertyChangedCallback));
 
         public bool IsBottomDrawerOpen
         {
@@ -402,6 +402,56 @@ namespace MaterialDesignThemes.Wpf
         {
             get { return (bool)GetValue(BottomDrawerCloseOnClickAwayProperty); }
             set { SetValue(BottomDrawerCloseOnClickAwayProperty, value); }
+        }
+
+        #endregion
+
+        #region open drawer events/callbacks
+
+        public static readonly RoutedEvent DrawerOpenedEvent =
+            EventManager.RegisterRoutedEvent(
+                "DrawerOpened",
+                RoutingStrategy.Bubble,
+                typeof(EventHandler<DrawerOpenedEventArgs>),
+                typeof(DrawerHost));
+
+        /// <summary>
+        /// Raised when a drawer is opened.
+        /// </summary>
+        public event EventHandler<DrawerOpenedEventArgs> DrawerOpened
+        {
+            add { AddHandler(DrawerOpenedEvent, value); }
+            remove { RemoveHandler(DrawerOpenedEvent, value); }
+        }
+
+        protected void OnDrawerOpened(DrawerOpenedEventArgs eventArgs)
+        {
+            RaiseEvent(eventArgs);
+        }
+
+        #endregion
+
+        #region close drawer events/callbacks
+
+        public static readonly RoutedEvent DrawerClosingEvent =
+            EventManager.RegisterRoutedEvent(
+                "DrawerClosing",
+                RoutingStrategy.Bubble,
+                typeof(EventHandler<DrawerClosingEventArgs>),
+                typeof(DrawerHost));
+
+        /// <summary>
+        /// Raised when a drawer is closing.
+        /// </summary>
+        public event EventHandler<DrawerClosingEventArgs> DrawerClosing
+        {
+            add { AddHandler(DrawerClosingEvent, value); }
+            remove { RemoveHandler(DrawerClosingEvent, value); }
+        }
+
+        protected void OnDrawerClosing(DrawerClosingEventArgs eventArgs)
+        {
+            RaiseEvent(eventArgs);
         }
 
         #endregion
@@ -500,12 +550,45 @@ namespace MaterialDesignThemes.Wpf
                 IsBottomDrawerOpen ? TemplateBottomOpenStateName : TemplateBottomClosedStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
         }
 
-        private static void IsDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private static void IsTopDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            IsDrawerOpenPropertyChanged(dependencyObject, dependencyPropertyChangedEventArgs, Dock.Top);
+        }
+
+        private static void IsLeftDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            IsDrawerOpenPropertyChanged(dependencyObject, dependencyPropertyChangedEventArgs, Dock.Left);
+        }
+
+        private static void IsRightDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            IsDrawerOpenPropertyChanged(dependencyObject, dependencyPropertyChangedEventArgs, Dock.Right);
+        }
+
+        private static void IsBottomDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            IsDrawerOpenPropertyChanged(dependencyObject, dependencyPropertyChangedEventArgs, Dock.Bottom);
+        }
+
+        private static void IsDrawerOpenPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs, Dock dock)
         {
             var drawerHost = (DrawerHost)dependencyObject;
             if (!drawerHost._lockZIndexes && (bool)dependencyPropertyChangedEventArgs.NewValue)
                 drawerHost.PrepareZIndexes(drawerHost._zIndexPropertyLookup[dependencyPropertyChangedEventArgs.Property]);
             drawerHost.UpdateVisualStates();
+
+            if ((bool)dependencyPropertyChangedEventArgs.NewValue)
+            {
+                RaiseDrawerOpened(drawerHost, dock);
+            }
+        }
+
+        private static void RaiseDrawerOpened(DrawerHost drawerHost, Dock dock)
+        {
+            //multiple ways of calling back that the drawer has opened:
+            // * routed event
+            var drawerOpenedEventArgs = new DrawerOpenedEventArgs(dock, DrawerOpenedEvent);
+            drawerHost.OnDrawerOpened(drawerOpenedEventArgs);
         }
 
         private void PrepareZIndexes(DependencyPropertyKey zIndexDependencyPropertyKey)
@@ -523,6 +606,19 @@ namespace MaterialDesignThemes.Wpf
         private void CloseDrawerHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
             if (executedRoutedEventArgs.Handled) return;
+
+            if (executedRoutedEventArgs.Parameter is Dock dock)
+            {
+                var drawerClosingEventArgs = new DrawerClosingEventArgs(dock, DrawerClosingEvent);
+                //multiple ways of calling back that the drawer is closing:
+                // * routed event
+                OnDrawerClosing(drawerClosingEventArgs);
+
+                if (drawerClosingEventArgs.IsCancelled)
+                {
+                    return;
+                }
+            }
 
             SetOpenFlag(executedRoutedEventArgs, false);
 
