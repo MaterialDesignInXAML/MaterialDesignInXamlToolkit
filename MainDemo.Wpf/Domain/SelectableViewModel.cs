@@ -7,11 +7,11 @@ namespace MaterialDesignDemo.Domain
     public class SelectableViewModel : INotifyPropertyChanged
     {
         private bool _isSelected;
-        private string _name;
-        private string _description;
+        private string? _name;
+        private string? _description;
         private char _code;
         private double _numeric;
-        private string _food;
+        private string? _food;
 
         public bool IsSelected
         {
@@ -35,7 +35,7 @@ namespace MaterialDesignDemo.Domain
             }
         }
 
-        public string Name
+        public string? Name
         {
             get => _name;
             set
@@ -46,7 +46,7 @@ namespace MaterialDesignDemo.Domain
             }
         }
 
-        public string Description
+        public string? Description
         {
             get => _description;
             set
@@ -68,7 +68,7 @@ namespace MaterialDesignDemo.Domain
             }
         }
 
-        public string Food
+        public string? Food
         {
             get => _food;
             set
@@ -79,11 +79,9 @@ namespace MaterialDesignDemo.Domain
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

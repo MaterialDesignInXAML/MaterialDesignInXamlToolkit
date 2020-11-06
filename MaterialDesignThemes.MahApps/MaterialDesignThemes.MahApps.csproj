@@ -11,9 +11,6 @@
     <AssemblyVersion>$(MDIXMahAppsVersion)</AssemblyVersion>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <UseWPF>true</UseWPF>
-    <Nullable>enable</Nullable>
-    <WarningsAsErrors />
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />

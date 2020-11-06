@@ -29,18 +29,17 @@ namespace MaterialDesignThemes.Wpf
 
         public static IBaseTheme GetBaseTheme(this BaseTheme baseTheme)
         {
-            switch (baseTheme)
+            return baseTheme switch
             {
-                case BaseTheme.Dark: return Theme.Dark;
-                case BaseTheme.Light: return Theme.Light;
-                case BaseTheme.Inherit:
-                    return Theme.GetSystemTheme() switch
-                    {
-                        BaseTheme.Dark => Theme.Dark,
-                        _ => Theme.Light
-                    };
-                default: throw new InvalidOperationException();
-            }
+                BaseTheme.Dark => Theme.Dark,
+                BaseTheme.Light => Theme.Light,
+                BaseTheme.Inherit => Theme.GetSystemTheme() switch
+                {
+                    BaseTheme.Dark => Theme.Dark,
+                    _ => Theme.Light
+                },
+                _ => throw new InvalidOperationException(),
+            };
         }
 
         public static BaseTheme GetBaseTheme(this ITheme theme)
@@ -104,7 +103,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static void SetSecondaryColor(this ITheme theme, Color accentColor)
         {
-            if (theme == null) throw new ArgumentNullException(nameof(theme));
+            if (theme is null) throw new ArgumentNullException(nameof(theme));
             theme.SecondaryLight = accentColor.Lighten();
             theme.SecondaryMid = accentColor;
             theme.SecondaryDark = accentColor.Darken();

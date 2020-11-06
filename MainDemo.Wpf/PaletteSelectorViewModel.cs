@@ -10,7 +10,7 @@ namespace MaterialDesignDemo
 {
     public class PaletteSelectorViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public PaletteSelectorViewModel()
         {
@@ -52,8 +52,13 @@ namespace MaterialDesignDemo
 
         public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o));
 
-        private static void ApplyAccent(Swatch swatch) 
-            => ModifyTheme(theme => theme.SetSecondaryColor(swatch.AccentExemplarHue.Color));
+        private static void ApplyAccent(Swatch swatch)
+        {
+            if (swatch is { AccentExemplarHue: not null } )
+            {
+                ModifyTheme(theme => theme.SetSecondaryColor(swatch.AccentExemplarHue.Color));
+            }
+        }
 
         private static void ModifyTheme(Action<ITheme> modificationAction)
         {

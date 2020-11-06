@@ -13,7 +13,7 @@ namespace MaterialDesignDemo
 {
     public partial class MainWindow
     {
-        public static Snackbar Snackbar;
+        public static Snackbar Snackbar = new Snackbar();
         public MainWindow()
         {
             InitializeComponent();
@@ -22,10 +22,10 @@ namespace MaterialDesignDemo
             {
                 //note you can use the message queue from any thread, but just for the demo here we 
                 //need to get the message queue from the snackbar, so need to be on the dispatcher
-                MainSnackbar.MessageQueue.Enqueue("Welcome to Material Design In XAML Tookit");
+                MainSnackbar.MessageQueue?.Enqueue("Welcome to Material Design In XAML Tookit");
             }, TaskScheduler.FromCurrentSynchronizationContext());
 
-            DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue);
+            DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue!);
 
             var paletteHelper = new PaletteHelper();
             var theme = paletteHelper.GetTheme();

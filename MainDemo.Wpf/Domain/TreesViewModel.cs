@@ -1,21 +1,20 @@
-﻿using MaterialDesignThemes.Wpf;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using MaterialDesignDemo.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo.Domain
 {
     public class TreeExampleSimpleTemplateSelector : DataTemplateSelector
     {
-        public DataTemplate PlanetTemplate { get; set; }
+        public DataTemplate? PlanetTemplate { get; set; }
 
-        public DataTemplate SolarSystemTemplate { get; set; }
+        public DataTemplate? SolarSystemTemplate { get; set; }
 
-        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        public override DataTemplate? SelectTemplate(object item, DependencyObject container)
         {
             if (item is Planet)
                 return PlanetTemplate;
@@ -42,7 +41,7 @@ namespace MaterialDesignDemo.Domain
 
     public class Planet
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public double DistanceFromSun { get; set; }
 
@@ -66,7 +65,7 @@ namespace MaterialDesignDemo.Domain
 
     public sealed class TreesViewModel : INotifyPropertyChanged
     {
-        private object _selectedItem;
+        private object? _selectedItem;
 
         public ObservableCollection<MovieCategory> MovieCategories { get; }
 
@@ -74,13 +73,10 @@ namespace MaterialDesignDemo.Domain
 
         public AnotherCommandImplementation RemoveSelectedItemCommand { get; }
 
-        public object SelectedItem
+        public object? SelectedItem
         {
-            get { return _selectedItem; }
-            set
-            {
-                this.MutateVerbose(ref _selectedItem, value, args => PropertyChanged?.Invoke(this, args));
-            }
+            get => _selectedItem;
+            set => this.MutateVerbose(ref _selectedItem, value, args => PropertyChanged?.Invoke(this, args));
         }
 
         public TreesViewModel()
@@ -140,6 +136,6 @@ namespace MaterialDesignDemo.Domain
                 .Select(v => (char)random.Next('a', 'z' + 1)));
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }
