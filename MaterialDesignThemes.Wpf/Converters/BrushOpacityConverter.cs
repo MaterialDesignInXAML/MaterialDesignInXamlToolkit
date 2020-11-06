@@ -11,7 +11,7 @@ namespace MaterialDesignThemes.Wpf.Converters
         {
             if (value is SolidColorBrush brush)
             {
-                var opacity = System.Convert.ToDouble(parameter, culture);
+                var opacity = System.Convert.ToDouble(parameter, CultureInfo.InvariantCulture);
                 return new SolidColorBrush(brush.Color)
                 {
                     Opacity = opacity
