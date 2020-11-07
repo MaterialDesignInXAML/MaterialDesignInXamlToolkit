@@ -35,7 +35,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             Assert.Equal(expectedPosition, openedPosition);
 
-            void DrawerOpened(object sender, DrawerOpenedEventArgs eventArgs)
+            void DrawerOpened(object? sender, DrawerOpenedEventArgs eventArgs)
             {
                 openedPosition = eventArgs.Dock;
             }
@@ -54,7 +54,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             Assert.Equal(expectedPosition, closedPosition);
 
-            void DrawerClosing(object sender, DrawerClosingEventArgs eventArgs)
+            void DrawerClosing(object? sender, DrawerClosingEventArgs eventArgs)
             {
                 closedPosition = eventArgs.Dock;
             }

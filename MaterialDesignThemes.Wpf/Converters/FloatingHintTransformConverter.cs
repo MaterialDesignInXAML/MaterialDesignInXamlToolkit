@@ -9,14 +9,14 @@ namespace MaterialDesignThemes.Wpf.Converters
 {
     internal class FloatingHintTransformConverter : IMultiValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
         {
             if (values == null 
                 || values.Length != 4 
                 || values.Any(v => v == null)
-                || !double.TryParse(values[0].ToString(), out double scale)
-                || !double.TryParse(values[1].ToString(), out double lower)
-                || !double.TryParse(values[2].ToString(), out double upper)
+                || !double.TryParse(values[0]?.ToString(), out double scale)
+                || !double.TryParse(values[1]?.ToString(), out double lower)
+                || !double.TryParse(values[2]?.ToString(), out double upper)
                 || !(values[3] is Point floatingOffset))
             {
                 return Transform.Identity;
@@ -38,9 +38,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             return transformGroup;
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public object?[]? ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture)
+            => throw new NotImplementedException();
     }
 }

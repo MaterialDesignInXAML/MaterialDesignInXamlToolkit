@@ -38,8 +38,7 @@ namespace MaterialDesignThemes.MahApps
                         break;
                 }
 
-                IThemeManager themeManager = this.GetThemeManager();
-                if (themeManager != null)
+                if (this.GetThemeManager() is IThemeManager themeManager)
                 {
                     themeManager.ThemeChanged += ThemeManagerOnThemeChanged;
                 }

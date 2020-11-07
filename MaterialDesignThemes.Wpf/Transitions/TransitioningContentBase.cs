@@ -115,7 +115,8 @@ namespace MaterialDesignThemes.Wpf.Transitions
             Timeline? openingEffect = OpeningEffect?.Build(this);
             if (openingEffect != null)
                 storyboard.Children.Add(openingEffect);
-            foreach (var effect in OpeningEffects.Select(e => e.Build(this)).Where(tl => tl is not null))
+            foreach (var effect in OpeningEffects.Select(e => e.Build(this))
+                .Where(static tl => tl is not null))
             {
                 storyboard.Children.Add(effect);
             }

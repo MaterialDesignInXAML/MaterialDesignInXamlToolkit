@@ -167,7 +167,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         /// <param name="dialogIdentifier"> of the instance where the dialog should be closed. Typically this will match an identifer set in XAML. </param>
         /// <param name="parameter"> to provide to close handler</param>
-        public static void Close(object dialogIdentifier, object? parameter)
+        public static void Close(object? dialogIdentifier, object? parameter)
         {
             DialogHost dialogHost = GetInstance(dialogIdentifier);
             if (dialogHost.CurrentSession is { } currentSession)

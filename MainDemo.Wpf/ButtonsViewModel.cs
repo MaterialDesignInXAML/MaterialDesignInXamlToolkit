@@ -98,7 +98,10 @@ namespace MaterialDesignDemo
                             IsSaveComplete = true;
                             IsSaving = false;
                             SaveProgress = 0;
-                            ((DispatcherTimer)o).Stop();
+                            if (o is DispatcherTimer timer)
+                            {
+                                timer.Stop();
+                            }
                         }
 
                     }), Dispatcher.CurrentDispatcher);
