@@ -21,8 +21,10 @@
     <Resource Include="Resources\ProfilePic.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Update="Dragablz">
-      <NoWarn>NU1701</NoWarn>
-    </PackageReference>
+    <PackageReference Include="Dragablz" />
+    <PackageReference Include="MahApps.Metro" />
+    <PackageReference Include="ShowMeTheXAML" />
+    <PackageReference Include="ShowMeTheXAML.AvalonEdit" />
+    <PackageReference Include="ShowMeTheXAML.MSBuild" />
   </ItemGroup>
 </Project>

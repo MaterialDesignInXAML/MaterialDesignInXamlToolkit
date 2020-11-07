@@ -97,9 +97,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid>
-                        <controlzEx:PopupEx IsOpen="True" AllowsTransparency="True" Placement="RelativePoint" HorizontalOffset="-6" VerticalOffset="-6" 
-                                            PlacementTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}}"                                                              
-                                            PopupAnimation="Fade">
+                        <wpf:PopupEx IsOpen="True" AllowsTransparency="True" Placement="RelativePoint" HorizontalOffset="-6" VerticalOffset="-6" 
+                                     PlacementTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}}"                                                              
+                                     PopupAnimation="Fade">
                             <Grid>
                                 <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                                     <Border Background="{DynamicResource MaterialDesignPaper}" CornerRadius="2"
@@ -173,7 +173,7 @@
                                     </Grid>
                                 </Border>
                             </Grid>
-                        </controlzEx:PopupEx>
+                        </wpf:PopupEx>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Validation.HasError" Value="True">

@@ -6,9 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:virtualCollection="clr-namespace:VirtualCollection.VirtualCollection"
     xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:virtualCollection="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel" xmlns:sys="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
@@ -52,13 +52,11 @@
         <ListBox
             Grid.Row="1"
             Margin="0 8 0 0"
-            ItemsSource="{Binding Kinds}"            
+            ItemsSource="{Binding Kinds}"
             SelectedItem="{Binding Group}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <virtualCollection:VirtualizingWrapPanel
-                        ItemHeight="80"
-                        ItemWidth="80"/>
+                    <virtualCollection:VirtualizingWrapPanel />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
             

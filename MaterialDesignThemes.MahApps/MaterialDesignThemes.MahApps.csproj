@@ -16,4 +16,7 @@
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
     <ProjectReference Include="..\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
   </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MahApps.Metro" />
+    </ItemGroup>
 </Project>

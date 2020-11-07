@@ -21,4 +21,10 @@
         <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
         <ProjectReference Include="..\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
     </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="xunit" />
+        <PackageReference Include="xunit.runner.visualstudio" />
+        <PackageReference Include="Xunit.StaFact" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    </ItemGroup>
 </Project>

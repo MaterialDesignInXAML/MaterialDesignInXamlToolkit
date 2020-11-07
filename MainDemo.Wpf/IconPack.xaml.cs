@@ -7,7 +7,10 @@ namespace MaterialDesignDemo
 {
     public partial class IconPack
     {
-        public IconPack() => InitializeComponent();
+        public IconPack()
+        {
+            InitializeComponent();
+        }
 
         private void TextBox_OnGotFocus(object sender, RoutedEventArgs e)
         {
