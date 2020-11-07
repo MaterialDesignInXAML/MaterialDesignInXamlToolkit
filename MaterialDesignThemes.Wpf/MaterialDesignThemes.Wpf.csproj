@@ -25,7 +25,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="paket.references" />
     <Resource Include="Resources\Roboto\*.ttf" />
     <Content Include="Resources\Roboto\*.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -34,5 +33,4 @@
   <ItemGroup>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
   </ItemGroup>
-  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

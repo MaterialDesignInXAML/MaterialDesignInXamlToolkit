@@ -13,9 +13,6 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="paket.references" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
     <ProjectReference Include="..\MaterialDesignThemes.MahApps\MaterialDesignThemes.MahApps.csproj" />
     <ProjectReference Include="..\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
@@ -28,5 +25,4 @@
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
   </ItemGroup>
-  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

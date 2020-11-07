@@ -14,5 +14,4 @@
     <AssemblyVersion>$(MDIXColorsVersion)</AssemblyVersion>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
   </PropertyGroup>
-  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

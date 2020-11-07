@@ -3,7 +3,6 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <Prefer32Bit>true</Prefer32Bit>
@@ -36,9 +35,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="paket.references" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
     <ProjectReference Include="..\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
   </ItemGroup>
@@ -52,5 +48,4 @@
   <ItemGroup>
     <Resource Include="favicon.ico" />
   </ItemGroup>
-  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
