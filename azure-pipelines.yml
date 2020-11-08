@@ -26,7 +26,6 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '3.1.0'
-    vsVersion: '16.8.0'
 
 - task: UseDotNet@2
   inputs:
