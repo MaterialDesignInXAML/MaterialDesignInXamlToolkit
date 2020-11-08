@@ -15,8 +15,8 @@
     <copyright>$copyright$</copyright>
     <tags>WPF XAML Material Design Colour Color UI UX</tags>
     <dependencies>
-      <group targetFramework=".NETFramework4.5.2" />
-      <group targetFramework=".NETCoreApp3.1" />
+      <group targetFramework="net452" />
+      <group targetFramework="netcoreapp3.1" />
     </dependencies>
   </metadata>
   <files>

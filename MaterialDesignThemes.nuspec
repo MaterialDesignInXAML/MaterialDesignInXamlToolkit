@@ -15,10 +15,10 @@
     <copyright>$copyright$</copyright>
     <tags>WPF XAML Material Design Theme Colour Color UI UX</tags>
     <dependencies>
-      <group targetFramework=".NETFramework4.5.2">
+      <group targetFramework="net452">
         <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
       </group>
-      <group targetFramework=".NETCoreApp3.1">
+      <group targetFramework="netcoreapp3.1">
         <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
       </group>
     </dependencies>
