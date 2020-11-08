@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -40,6 +41,16 @@ namespace MaterialDesignThemes.Wpf
             => (double)element.GetValue(HeaderFontSizeProperty);
         public static void SetHeaderFontSize(Expander element, double value)
             => element.SetValue(HeaderFontSizeProperty, value);
+        #endregion
+        
+        #region AttachedProperty : HeaderBackgroundProperty
+        public static readonly DependencyProperty HeaderBackgroundProperty
+            = DependencyProperty.RegisterAttached("HeaderBackground", typeof(SolidColorBrush), typeof(ExpanderAssist));
+
+        public static SolidColorBrush GetHeaderBackground(Expander element)
+            => (SolidColorBrush)element.GetValue(HeaderBackgroundProperty);
+        public static void SetHeaderBackground(Expander element, SolidColorBrush value)
+            => element.SetValue(HeaderBackgroundProperty, value);
         #endregion
     }
 }
