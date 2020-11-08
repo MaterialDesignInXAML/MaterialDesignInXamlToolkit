@@ -25,7 +25,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '3.1.0'
+    version: '3.1.403'
 
 - task: UseDotNet@2
   inputs:
