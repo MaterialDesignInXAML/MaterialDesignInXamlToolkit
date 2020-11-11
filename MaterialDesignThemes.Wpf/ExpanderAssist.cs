@@ -45,11 +45,11 @@ namespace MaterialDesignThemes.Wpf
         
         #region AttachedProperty : HeaderBackgroundProperty
         public static readonly DependencyProperty HeaderBackgroundProperty
-            = DependencyProperty.RegisterAttached("HeaderBackground", typeof(SolidColorBrush), typeof(ExpanderAssist));
+            = DependencyProperty.RegisterAttached("HeaderBackground", typeof(Brush), typeof(ExpanderAssist));
 
-        public static SolidColorBrush GetHeaderBackground(Expander element)
-            => (SolidColorBrush)element.GetValue(HeaderBackgroundProperty);
-        public static void SetHeaderBackground(Expander element, SolidColorBrush value)
+        public static Brush GetHeaderBackground(Expander element)
+            => (Brush)element.GetValue(HeaderBackgroundProperty);
+        public static void SetHeaderBackground(Expander element, Brush value)
             => element.SetValue(HeaderBackgroundProperty, value);
         #endregion
     }

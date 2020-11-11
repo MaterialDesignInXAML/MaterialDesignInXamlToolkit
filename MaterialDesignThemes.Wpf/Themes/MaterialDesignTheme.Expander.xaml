@@ -54,8 +54,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="{Binding Path=(wpf:ExpanderAssist.HeaderBackground) , RelativeSource={RelativeSource AncestorType=Expander, AncestorLevel=1}}"
-                            Padding="{Binding Path=(wpf:ExpanderAssist.HorizontalHeaderPadding) , RelativeSource={RelativeSource AncestorType=Expander, AncestorLevel=1}}">
+                    <Border Background="{TemplateBinding Background}" Padding="{Binding Path=(wpf:ExpanderAssist.HorizontalHeaderPadding) , RelativeSource={RelativeSource AncestorType=Expander, AncestorLevel=1}}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -248,8 +247,9 @@
                                           IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                           Style="{StaticResource MaterialDesignHorizontalHeaderStyle}"
                                           TextElement.FontSize="{TemplateBinding wpf:ExpanderAssist.HeaderFontSize}"
-                                          Opacity="0.87"
+                                          Opacity="0.87"                                          
                                           Foreground="{TemplateBinding Foreground}"
+                                          Background="{TemplateBinding wpf:ExpanderAssist.HeaderBackground}"
                                           Content="{TemplateBinding Header}"
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"
                                           ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
