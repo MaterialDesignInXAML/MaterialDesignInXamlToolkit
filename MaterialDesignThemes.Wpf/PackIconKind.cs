@@ -1962,6 +1962,7 @@ namespace MaterialDesignThemes.Wpf
         CalendarTime=CalendarClock,
         EventClock=CalendarClock,
         EventTime=CalendarClock,
+        CalendarClockOutline,
         CalendarCursor,
         CalendarEdit,
         EventEdit=CalendarEdit,
