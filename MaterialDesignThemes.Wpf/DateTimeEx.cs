@@ -8,20 +8,19 @@ namespace MaterialDesignThemes.Wpf
     {
         internal static DateTimeFormatInfo GetDateFormat(this CultureInfo culture)
         {
-            if (culture == null) throw new ArgumentNullException(nameof(culture));
+            if (culture is null) throw new ArgumentNullException(nameof(culture));
 
             if (culture.Calendar is GregorianCalendar || culture.Calendar is PersianCalendar)
             {
                 return culture.DateTimeFormat;
             }
 
-            GregorianCalendar foundCal = null;
-            DateTimeFormatInfo dtfi = null;
+            GregorianCalendar? foundCal = null;
             foreach (var cal in culture.OptionalCalendars.OfType<GregorianCalendar>())
             {
                 // Return the first Gregorian calendar with CalendarType == Localized 
                 // Otherwise return the first Gregorian calendar
-                if (foundCal == null)
+                if (foundCal is null)
                 {
                     foundCal = cal;
                 }
@@ -33,7 +32,8 @@ namespace MaterialDesignThemes.Wpf
             }
 
 
-            if (foundCal == null)
+            DateTimeFormatInfo? dtfi;
+            if (foundCal is null)
             {
                 // if there are no GregorianCalendars in the OptionalCalendars list, use the invariant dtfi 
                 dtfi = ((CultureInfo)CultureInfo.InvariantCulture.Clone()).DateTimeFormat;

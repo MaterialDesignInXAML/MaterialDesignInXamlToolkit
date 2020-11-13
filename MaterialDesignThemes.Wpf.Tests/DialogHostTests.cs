@@ -28,13 +28,13 @@ namespace MaterialDesignThemes.Wpf.Tests
         public void CanOpenAndCloseDialogWithIsOpen()
         {
             _dialogHost.IsOpen = true;
-            DialogSession session = _dialogHost.CurrentSession;
-            Assert.False(session.IsEnded);
+            DialogSession? session = _dialogHost.CurrentSession;
+            Assert.False(session?.IsEnded);
             _dialogHost.IsOpen = false;
 
             Assert.False(_dialogHost.IsOpen);
             Assert.Null(_dialogHost.CurrentSession);
-            Assert.True(session.IsEnded);
+            Assert.True(session?.IsEnded);
         }
 
         [StaFact]
@@ -43,7 +43,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             var id = Guid.NewGuid();
             _dialogHost.Identifier = id;
 
-            object result = await DialogHost.Show("Content", id,
+            object? result = await DialogHost.Show("Content", id,
                 new DialogOpenedEventHandler(((sender, args) => { args.Session.Close(42); })));
 
             Assert.Equal(42, result);
@@ -56,7 +56,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             var id = Guid.NewGuid();
             _dialogHost.Identifier = id;
 
-            object result = await DialogHost.Show("Content", id,
+            object? result = await DialogHost.Show("Content", id,
                 new DialogOpenedEventHandler(((sender, args) => { _dialogHost.IsOpen = false; })));
 
             Assert.Null(result);
@@ -67,15 +67,15 @@ namespace MaterialDesignThemes.Wpf.Tests
         public async Task CanCloseDialogWithRoutedEvent()
         {
             Guid closeParameter = Guid.NewGuid();
-            Task<object> showTask = _dialogHost.ShowDialog("Content");
-            DialogSession session = _dialogHost.CurrentSession;
-            Assert.False(session.IsEnded);
+            Task<object?> showTask = _dialogHost.ShowDialog("Content");
+            DialogSession? session = _dialogHost.CurrentSession;
+            Assert.False(session?.IsEnded);
 
             DialogHost.CloseDialogCommand.Execute(closeParameter, _dialogHost);
 
             Assert.False(_dialogHost.IsOpen);
             Assert.Null(_dialogHost.CurrentSession);
-            Assert.True(session.IsEnded);
+            Assert.True(session?.IsEnded);
             Assert.Equal(closeParameter, await showTask);
         }
 
@@ -161,7 +161,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         [StaFact]
         public async Task WhenContentIsNullItThrows()
         {
-            var ex = await Assert.ThrowsAsync<ArgumentNullException>(() => DialogHost.Show(null));
+            var ex = await Assert.ThrowsAsync<ArgumentNullException>(() => DialogHost.Show(null!));
 
             Assert.Equal("content", ex.ParamName);
         }
@@ -181,9 +181,9 @@ namespace MaterialDesignThemes.Wpf.Tests
             }
 
             var dialogTask = DialogHost.Show("Content", ClosingHandler);
-            _dialogHost.CurrentSession.Close("FirstResult");
-            _dialogHost.CurrentSession.Close("SecondResult");
-            object result = await dialogTask;
+            _dialogHost.CurrentSession?.Close("FirstResult");
+            _dialogHost.CurrentSession?.Close("SecondResult");
+            object? result = await dialogTask;
 
             Assert.Equal("SecondResult", result);
             Assert.Equal(2, closeInvokeCount);
@@ -232,8 +232,8 @@ namespace MaterialDesignThemes.Wpf.Tests
         {
             Guid closeParameter = Guid.NewGuid();
 
-            Task<object> showTask = _dialogHost.ShowDialog("Content");
-            _dialogHost.CurrentSession.CloseParameter = closeParameter;
+            Task<object?> showTask = _dialogHost.ShowDialog("Content");
+            _dialogHost.CurrentSession!.CloseParameter = closeParameter;
 
             _dialogHost.IsOpen = false;
 
@@ -246,7 +246,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         {
             Guid closeParameter = Guid.NewGuid();
 
-            Task<object> showTask = _dialogHost.ShowDialog("Content", (object sender, DialogClosingEventArgs args) =>
+            Task<object?> showTask = _dialogHost.ShowDialog("Content", (object sender, DialogClosingEventArgs args) =>
             {
                 args.Session.CloseParameter = closeParameter;
             });
@@ -262,7 +262,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         {
             _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
-            var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null));
+            var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null!));
             Assert.Equal("No loaded DialogHost instances.", ex.Message);
         }
 
@@ -283,7 +283,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             try
             {
                 secondInstance.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
-                var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null));
+                var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null!));
                 Assert.Equal("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.", ex.Message);
             }
             finally
@@ -296,7 +296,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         [Description("Pull Request 2029")]
         public void WhenClosingDialogThatIsNotOpenItThrowsDialogNotOpen()
         {
-            var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null));
+            var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null!));
             Assert.Equal("DialogHost is not open.", ex.Message);
         }
 
@@ -305,7 +305,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         public void WhenClosingDialogWithParameterItPassesParameterToHandlers()
         {
             object parameter = Guid.NewGuid();
-            object closingParameter = null;
+            object? closingParameter = null;
             _dialogHost.DialogClosing += DialogClosing;
             _dialogHost.IsOpen = true;
 

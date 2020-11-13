@@ -41,7 +41,7 @@ namespace MaterialDesignThemes.Wpf.Tests
                 .Where(e => e.Value is Style style && style.TargetType is T)
                 .Select(e => e.Key);
 
-        private static Style GetStyle(object key)
+        private static Style? GetStyle(object key)
             => DefaultResourceDictionary[key] as Style
                ?? GenericResourceDictionary[key] as Style;
 

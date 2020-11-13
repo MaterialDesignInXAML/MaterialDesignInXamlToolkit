@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using MaterialDesignDemo.Domain;
-using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo
@@ -36,9 +35,9 @@ namespace MaterialDesignDemo
         public ICommand SearchCommand { get; }
         public ICommand CopyToClipboardCommand { get; }
 
-        private IEnumerable<PackIconKindGroup> _kinds;
-        private PackIconKindGroup _group;
-        private string _kind;
+        private IEnumerable<PackIconKindGroup>? _kinds;
+        private PackIconKindGroup? _group;
+        private string? _kind;
         private PackIconKind _packIconKind;
 
         public IEnumerable<PackIconKindGroup> Kinds
@@ -47,7 +46,7 @@ namespace MaterialDesignDemo
             set => this.MutateVerbose(ref _kinds, value, e => PropertyChanged?.Invoke(this, e));
         }
 
-        public PackIconKindGroup Group
+        public PackIconKindGroup? Group
         {
             get => _group;
             set
@@ -59,7 +58,7 @@ namespace MaterialDesignDemo
             }
         }
 
-        public string Kind
+        public string? Kind
         {
             get => _kind;
             set
@@ -100,6 +99,6 @@ namespace MaterialDesignDemo
             _snackbarMessageQueue.Enqueue(toBeCopied + " copied to clipboard");
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

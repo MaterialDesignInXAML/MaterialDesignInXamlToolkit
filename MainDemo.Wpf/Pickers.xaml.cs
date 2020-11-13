@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -87,9 +88,10 @@ namespace MaterialDesignDemo
 
         public void CombinedDialogClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
         {
-            if (Equals(eventArgs.Parameter, "1"))
+            if (Equals(eventArgs.Parameter, "1") &&
+                CombinedCalendar.SelectedDate is DateTime selectedDate)
             {
-                var combined = CombinedCalendar.SelectedDate.Value.AddSeconds(CombinedClock.Time.TimeOfDay.TotalSeconds);
+                var combined = selectedDate.AddSeconds(CombinedClock.Time.TimeOfDay.TotalSeconds);
                 ((PickersViewModel)DataContext).Time = combined;
                 ((PickersViewModel)DataContext).Date = combined;
             }

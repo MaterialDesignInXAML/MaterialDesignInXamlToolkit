@@ -30,8 +30,8 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsActive
         {
-            get { return (bool)GetValue(IsActiveProperty); }
-            set { SetValue(IsActiveProperty, value); }
+            get => (bool)GetValue(IsActiveProperty);
+            set => SetValue(IsActiveProperty, value);
         }
 
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
@@ -40,8 +40,8 @@ namespace MaterialDesignThemes.Wpf
 
         public CornerRadius CornerRadius
         {
-            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
+            get => (CornerRadius)GetValue(CornerRadiusProperty);
+            set => SetValue(CornerRadiusProperty, value);
         }
 
         public override void OnApplyTemplate()
@@ -51,14 +51,10 @@ namespace MaterialDesignThemes.Wpf
             GotoVisualState(false);
         }
 
-        private void GotoVisualState(bool useTransitions)
-        {
-            VisualStateManager.GoToState(this, SelectStateName(), useTransitions);
-        }
+        private void GotoVisualState(bool useTransitions) =>
+            _ = VisualStateManager.GoToState(this, SelectStateName(), useTransitions);
 
         private string SelectStateName()
-        {
-            return IsActive ? ActiveStateName : InactiveStateName;
-        }
+            => IsActive ? ActiveStateName : InactiveStateName;
     }
 }

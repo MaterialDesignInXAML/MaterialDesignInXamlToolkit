@@ -59,10 +59,10 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty ComponentOneContentProperty =
             ComponentOneContentPropertyKey.DependencyProperty;
 
-        public string ComponentOneContent
+        public string? ComponentOneContent
         {
-            get { return (string)GetValue(ComponentOneContentProperty); }
-            private set { SetValue(ComponentOneContentPropertyKey, value); }
+            get => (string)GetValue(ComponentOneContentProperty);
+            private set => SetValue(ComponentOneContentPropertyKey, value);
         }
 
         private static readonly DependencyPropertyKey ComponentTwoContentPropertyKey =
@@ -73,10 +73,10 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty ComponentTwoContentProperty =
             ComponentTwoContentPropertyKey.DependencyProperty;
 
-        public string ComponentTwoContent
+        public string? ComponentTwoContent
         {
-            get { return (string)GetValue(ComponentTwoContentProperty); }
-            private set { SetValue(ComponentTwoContentPropertyKey, value); }
+            get => (string?)GetValue(ComponentTwoContentProperty);
+            private set => SetValue(ComponentTwoContentPropertyKey, value);
         }
 
         private static readonly DependencyPropertyKey ComponentThreeContentPropertyKey =
@@ -87,10 +87,10 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty ComponentThreeContentProperty =
             ComponentThreeContentPropertyKey.DependencyProperty;
 
-        public string ComponentThreeContent
+        public string? ComponentThreeContent
         {
-            get { return (string)GetValue(ComponentThreeContentProperty); }
-            private set { SetValue(ComponentThreeContentPropertyKey, value); }
+            get => (string?)GetValue(ComponentThreeContentProperty);
+            private set => SetValue(ComponentThreeContentPropertyKey, value);
         }
 
         private static readonly DependencyPropertyKey IsDayInFirstComponentPropertyKey =
@@ -103,8 +103,8 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsDayInFirstComponent
         {
-            get { return (bool)GetValue(IsDayInFirstComponentProperty); }
-            private set { SetValue(IsDayInFirstComponentPropertyKey, value); }
+            get => (bool)GetValue(IsDayInFirstComponentProperty);
+            private set => SetValue(IsDayInFirstComponentPropertyKey, value);
         }
 
         private void UpdateComponents()

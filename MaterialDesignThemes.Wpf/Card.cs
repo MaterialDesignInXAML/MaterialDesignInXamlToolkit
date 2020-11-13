@@ -8,7 +8,7 @@ namespace MaterialDesignThemes.Wpf
     [TemplatePart(Name = ClipBorderPartName, Type = typeof(Border))]
     public class Card : ContentControl
     {
-        private Border _clipBorder;
+        private Border? _clipBorder;
         private const double DefaultUniformCornerRadius = 2.0;
         public const string ClipBorderPartName = "PART_ClipBorder";
 
@@ -27,9 +27,9 @@ namespace MaterialDesignThemes.Wpf
         private static readonly DependencyPropertyKey ContentClipPropertyKey
             = DependencyProperty.RegisterReadOnly(nameof(ContentClip), typeof(Geometry), typeof(Card), new PropertyMetadata(default(Geometry)));
 
-        public Geometry ContentClip
+        public Geometry? ContentClip
         {
-            get => (Geometry)GetValue(ContentClipProperty);
+            get => (Geometry?)GetValue(ContentClipProperty);
             private set => SetValue(ContentClipPropertyKey, value);
         }
 

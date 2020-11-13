@@ -37,8 +37,8 @@ namespace MaterialDesignThemes.Wpf
         {
             if (resourceDictionary == null) throw new ArgumentNullException(nameof(resourceDictionary));
 
-            string lightSource = GetResourceDictionarySource(BaseTheme.Light);
-            string darkSource = GetResourceDictionarySource(BaseTheme.Dark);
+            string? lightSource = GetResourceDictionarySource(BaseTheme.Light);
+            string? darkSource = GetResourceDictionarySource(BaseTheme.Dark);
 
             foreach (ResourceDictionary mergedDictionary in resourceDictionary.MergedDictionaries.ToList())
             {
@@ -46,7 +46,7 @@ namespace MaterialDesignThemes.Wpf
                 {
                     resourceDictionary.MergedDictionaries.Remove(mergedDictionary);
                 }
-                if (string.Equals(mergedDictionary.Source?.ToString(), darkSource, StringComparison.OrdinalIgnoreCase))
+                else if (string.Equals(mergedDictionary.Source?.ToString(), darkSource, StringComparison.OrdinalIgnoreCase))
                 {
                     resourceDictionary.MergedDictionaries.Remove(mergedDictionary);
                 }
@@ -66,16 +66,14 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private static string GetResourceDictionarySource(BaseTheme theme)
+        private static string? GetResourceDictionarySource(BaseTheme theme)
         {
-            switch (theme)
+            return theme switch
             {
-                case BaseTheme.Light:
-                    return "pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml";
-                case BaseTheme.Dark:
-                    return "pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml";
-            }
-            return null;
+                BaseTheme.Light => "pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml",
+                BaseTheme.Dark => "pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml",
+                _ => null,
+            };
         }
     }
 }

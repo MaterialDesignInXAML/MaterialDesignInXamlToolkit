@@ -1,13 +1,11 @@
-﻿using System.Configuration;
-using MaterialDesignDemo;
-using MaterialDesignDemo.Domain;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Configuration;
+using System.Linq;
+using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
-using System.Windows.Controls;
-using System;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace MaterialDesignDemo.Domain
 {
@@ -39,15 +37,15 @@ namespace MaterialDesignDemo.Domain
                _ => SelectedIndex < _allItems.Count - 1);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         private readonly ObservableCollection<DemoItem> _allItems;
-        private ObservableCollection<DemoItem> _demoItems;
-        private DemoItem _selectedItem;
+        private ObservableCollection<DemoItem>? _demoItems;
+        private DemoItem? _selectedItem;
         private int _selectedIndex;
-        private string _searchKeyword;
+        private string? _searchKeyword;
 
-        public string SearchKeyword
+        public string? SearchKeyword
         {
             get => _searchKeyword;
             set
@@ -58,7 +56,7 @@ namespace MaterialDesignDemo.Domain
             }
         }
 
-        public ObservableCollection<DemoItem> DemoItems
+        public ObservableCollection<DemoItem>? DemoItems
         {
             get => _demoItems;
             set
@@ -68,7 +66,7 @@ namespace MaterialDesignDemo.Domain
             }
         }
 
-        public DemoItem SelectedItem
+        public DemoItem? SelectedItem
         {
             get => _selectedItem;
             set
@@ -95,7 +93,7 @@ namespace MaterialDesignDemo.Domain
 
         private ObservableCollection<DemoItem> GenerateDemoItems(ISnackbarMessageQueue snackbarMessageQueue)
         {
-            if (snackbarMessageQueue == null)
+            if (snackbarMessageQueue is null)
                 throw new ArgumentNullException(nameof(snackbarMessageQueue));
 
             return new ObservableCollection<DemoItem>
@@ -328,12 +326,12 @@ namespace MaterialDesignDemo.Domain
             };
         }
 
-        private void FilterItems(string keyword)
+        private void FilterItems(string? keyword)
         {
             var filteredItems =
                 string.IsNullOrWhiteSpace(keyword) ?
                 _allItems :
-                _allItems.Where(i => i.Name.ToLower().Contains(keyword.ToLower()));
+                _allItems.Where(i => i.Name.ToLower().Contains(keyword!.ToLower()));
 
             DemoItems = new ObservableCollection<DemoItem>(filteredItems);
         }

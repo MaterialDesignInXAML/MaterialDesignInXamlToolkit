@@ -16,8 +16,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double CentreX
         {
-            get { return (double)GetValue(CentreXProperty); }
-            set { SetValue(CentreXProperty, value); }
+            get => (double)GetValue(CentreXProperty);
+            set => SetValue(CentreXProperty, value);
         }
 
         public static readonly DependencyProperty CentreYProperty = DependencyProperty.Register(
@@ -25,8 +25,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double CentreY
         {
-            get { return (double)GetValue(CentreYProperty); }
-            set { SetValue(CentreYProperty, value); }
+            get => (double)GetValue(CentreYProperty);
+            set => SetValue(CentreYProperty, value);
         }
 
         private static readonly DependencyPropertyKey XPropertyKey =
@@ -39,8 +39,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double X
         {
-            get { return (double)GetValue(XProperty); }
-            private set { SetValue(XPropertyKey, value); }
+            get => (double)GetValue(XProperty);
+            private set => SetValue(XPropertyKey, value);
         }
 
         private static readonly DependencyPropertyKey YPropertyKey =
@@ -51,12 +51,12 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty YProperty =
             YPropertyKey.DependencyProperty;
 
-        private Thumb _thumb;
+        private Thumb? _thumb;
 
         public double Y
         {
-            get { return (double)GetValue(YProperty); }
-            private set { SetValue(YPropertyKey, value); }
+            get => (double)GetValue(YProperty);
+            private set => SetValue(YPropertyKey, value);
         }
 
         public override void OnApplyTemplate()
@@ -165,14 +165,10 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void ThumbOnDragDelta(object sender, DragDeltaEventArgs dragDeltaEventArgs)
-        {
-            OnDragDelta(this, dragDeltaEventArgs.HorizontalChange, dragDeltaEventArgs.VerticalChange);
-        }
+            => OnDragDelta(this, dragDeltaEventArgs.HorizontalChange, dragDeltaEventArgs.VerticalChange);
 
         private void ThumbOnDragCompleted(object sender, DragCompletedEventArgs dragCompletedEventArgs)
-        {
-            OnDragCompleted(this, dragCompletedEventArgs.HorizontalChange, dragCompletedEventArgs.VerticalChange, dragCompletedEventArgs.Canceled);
-        }
+            => OnDragCompleted(this, dragCompletedEventArgs.HorizontalChange, dragCompletedEventArgs.VerticalChange, dragCompletedEventArgs.Canceled);
 
         protected override Size ArrangeOverride(Size finalSize)
         {

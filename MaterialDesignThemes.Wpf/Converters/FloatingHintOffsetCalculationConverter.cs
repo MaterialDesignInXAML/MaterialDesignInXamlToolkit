@@ -8,7 +8,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 {
     public class FloatingHintOffsetCalculationConverter : IMultiValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object? parameter, CultureInfo culture)
         {
             double height = 0;
             if (values[0] is FontFamily fontFamily

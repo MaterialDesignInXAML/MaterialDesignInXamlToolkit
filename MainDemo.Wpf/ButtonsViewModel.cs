@@ -1,5 +1,4 @@
-﻿using MaterialDesignDemo.Domain;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -11,7 +10,7 @@ namespace MaterialDesignDemo
     {
         private bool _showDismissButton;
         private double _dismissButtonProgress;
-        private string _demoRestartCountdownText;
+        private string? _demoRestartCountdownText;
         private int _orClickMeCount;
 
         public ButtonsViewModel()
@@ -99,7 +98,10 @@ namespace MaterialDesignDemo
                             IsSaveComplete = true;
                             IsSaving = false;
                             SaveProgress = 0;
-                            ((DispatcherTimer)o).Stop();
+                            if (o is DispatcherTimer timer)
+                            {
+                                timer.Stop();
+                            }
                         }
 
                     }), Dispatcher.CurrentDispatcher);
@@ -112,20 +114,20 @@ namespace MaterialDesignDemo
 
         public bool ShowDismissButton
         {
-            get { return _showDismissButton; }
-            set { this.MutateVerbose(ref _showDismissButton, value, RaisePropertyChanged()); }
+            get => _showDismissButton;
+            set => this.MutateVerbose(ref _showDismissButton, value, RaisePropertyChanged());
         }
 
         public double DismissButtonProgress
         {
-            get { return _dismissButtonProgress; }
-            set { this.MutateVerbose(ref _dismissButtonProgress, value, RaisePropertyChanged()); }
+            get => _dismissButtonProgress;
+            set => this.MutateVerbose(ref _dismissButtonProgress, value, RaisePropertyChanged());
         }
 
-        public string DemoRestartCountdownText
+        public string? DemoRestartCountdownText
         {
-            get { return _demoRestartCountdownText; }
-            private set { this.MutateVerbose(ref _demoRestartCountdownText, value, RaisePropertyChanged()); }
+            get => _demoRestartCountdownText;
+            private set => this.MutateVerbose(ref _demoRestartCountdownText, value, RaisePropertyChanged());
         }
 
         private void UpdateDemoRestartCountdownText(DateTime endTime, out bool isComplete)
@@ -141,8 +143,8 @@ namespace MaterialDesignDemo
         #region OrClickMe Demo
         public int OrClickMeCount
         {
-            get { return _orClickMeCount; }
-            private set { this.MutateVerbose(ref _orClickMeCount, value, RaisePropertyChanged()); }
+            get => _orClickMeCount;
+            private set => this.MutateVerbose(ref _orClickMeCount, value, RaisePropertyChanged());
         }
         public ICommand IncrementOrClickMeCountCommand { get; }
 
@@ -155,31 +157,29 @@ namespace MaterialDesignDemo
         private bool _isSaving;
         public bool IsSaving
         {
-            get { return _isSaving; }
-            private set { this.MutateVerbose(ref _isSaving, value, RaisePropertyChanged()); }
+            get => _isSaving;
+            private set => this.MutateVerbose(ref _isSaving, value, RaisePropertyChanged());
         }
 
         private bool _isSaveComplete;
         public bool IsSaveComplete
         {
-            get { return _isSaveComplete; }
-            private set { this.MutateVerbose(ref _isSaveComplete, value, RaisePropertyChanged()); }
+            get => _isSaveComplete;
+            private set => this.MutateVerbose(ref _isSaveComplete, value, RaisePropertyChanged());
         }
 
         private double _saveProgress;
         public double SaveProgress
         {
-            get { return _saveProgress; }
-            private set { this.MutateVerbose(ref _saveProgress, value, RaisePropertyChanged()); }
+            get => _saveProgress;
+            private set => this.MutateVerbose(ref _saveProgress, value, RaisePropertyChanged());
         }
 
         #endregion
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        private Action<PropertyChangedEventArgs> RaisePropertyChanged()
-        {
-            return args => PropertyChanged?.Invoke(this, args);
-        }
+        private Action<PropertyChangedEventArgs> RaisePropertyChanged() =>
+            args => PropertyChanged?.Invoke(this, args);
     }
 }

@@ -16,13 +16,13 @@ namespace MaterialDesignThemes.Wpf
     [ContentProperty("Child")]
     public class Plane3D : FrameworkElement
     {
-        private FrameworkElement _logicalChild;
-        private FrameworkElement _visualChild;
-        private FrameworkElement _originalChild;
+        private FrameworkElement? _logicalChild;
+        private FrameworkElement? _visualChild;
+        private FrameworkElement? _originalChild;
 
         private readonly QuaternionRotation3D _quaternionRotation = new QuaternionRotation3D();
         private readonly RotateTransform3D _rotationTransform = new RotateTransform3D();
-        private Viewport3D _viewport3D;
+        private Viewport3D? _viewport3D;
         private readonly ScaleTransform3D _scaleTransform = new ScaleTransform3D();
 
         private static readonly Point3D[] Mesh = { new Point3D(0, 0, 0), new Point3D(0, 1, 0), new Point3D(1, 1, 0), new Point3D(1, 0, 0) };
@@ -38,8 +38,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double RotationX
         {
-            get { return (double)GetValue(RotationXProperty); }
-            set { SetValue(RotationXProperty, value); }
+            get => (double)GetValue(RotationXProperty);
+            set => SetValue(RotationXProperty, value);
         }
 
         public static readonly DependencyProperty RotationYProperty =
@@ -47,8 +47,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double RotationY
         {
-            get { return (double)GetValue(RotationYProperty); }
-            set { SetValue(RotationYProperty, value); }
+            get => (double)GetValue(RotationYProperty);
+            set => SetValue(RotationYProperty, value);
         }
 
         public static readonly DependencyProperty RotationZProperty =
@@ -56,8 +56,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double RotationZ
         {
-            get { return (double)GetValue(RotationZProperty); }
-            set { SetValue(RotationZProperty, value); }
+            get => (double)GetValue(RotationZProperty);
+            set => SetValue(RotationZProperty, value);
         }
 
         public static readonly DependencyProperty FieldOfViewProperty =
@@ -66,8 +66,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double FieldOfView
         {
-            get { return (double)GetValue(FieldOfViewProperty); }
-            set { SetValue(FieldOfViewProperty, value); }
+            get => (double)GetValue(FieldOfViewProperty);
+            set => SetValue(FieldOfViewProperty, value);
         }
 
         public static readonly DependencyProperty ZFactorProperty = DependencyProperty.Register(
@@ -75,16 +75,13 @@ namespace MaterialDesignThemes.Wpf
 
         public double ZFactor
         {
-            get { return (double)GetValue(ZFactorProperty); }
-            set { SetValue(ZFactorProperty, value); }
+            get => (double)GetValue(ZFactorProperty);
+            set => SetValue(ZFactorProperty, value);
         }
 
-        public FrameworkElement Child
+        public FrameworkElement? Child
         {
-            get
-            {
-                return _originalChild;
-            }
+            get => _originalChild;
             set
             {
                 if (Equals(_originalChild, value)) return;
@@ -114,7 +111,7 @@ namespace MaterialDesignThemes.Wpf
                 // Measure based on the size of the logical child, since we want to align with it.
                 _logicalChild.Measure(availableSize);
                 result = _logicalChild.DesiredSize;
-                _visualChild.Measure(result);
+                _visualChild?.Measure(result);
             }
             else
             {
@@ -125,18 +122,14 @@ namespace MaterialDesignThemes.Wpf
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            if (_logicalChild == null) return base.ArrangeOverride(finalSize);
+            if (_logicalChild is null) return base.ArrangeOverride(finalSize);
             _logicalChild.Arrange(new Rect(finalSize));
-            _visualChild.Arrange(new Rect(finalSize));
+            _visualChild?.Arrange(new Rect(finalSize));
             Update3D();
             return base.ArrangeOverride(finalSize);
         }
 
-        protected override Visual GetVisualChild(int index)
-        {
-            return _visualChild;
-
-        }
+        protected override Visual? GetVisualChild(int index) => _visualChild;
 
         protected override int VisualChildrenCount => _visualChild == null ? 0 : 1;
 
@@ -215,7 +208,7 @@ namespace MaterialDesignThemes.Wpf
             // for derivation of this camera.
             var fovInRadians = FieldOfView * (Math.PI / 180);
             var zValue = w / Math.Tan(fovInRadians / 2) / ZFactor;
-            _viewport3D.Camera = new PerspectiveCamera(new Point3D(w / 2, h / 2, zValue),
+            _viewport3D!.Camera = new PerspectiveCamera(new Point3D(w / 2, h / 2, zValue),
                                                        -ZAxis,
                                                        YAxis,
                                                        FieldOfView);
@@ -238,7 +231,7 @@ namespace MaterialDesignThemes.Wpf
         {
             protected override Size MeasureOverride(Size constraint)
             {
-                Plane3D pl = this.Parent as Plane3D;
+                Plane3D? pl = Parent as Plane3D;
                 if (pl != null)
                 {
                     pl.InvalidateMeasure();
@@ -248,7 +241,7 @@ namespace MaterialDesignThemes.Wpf
 
             protected override Size ArrangeOverride(Size arrangeSize)
             {
-                Plane3D pl = this.Parent as Plane3D;
+                Plane3D? pl = Parent as Plane3D;
                 if (pl != null)
                 {
                     pl.InvalidateArrange();

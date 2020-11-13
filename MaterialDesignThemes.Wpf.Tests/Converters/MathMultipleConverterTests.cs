@@ -15,7 +15,7 @@ namespace MaterialDesignThemes.Wpf.Tests.Converters
                 Operation = operation
             };
 
-            Assert.True(converter.Convert(new object[] { 1.0, 1.0 }, null, null, CultureInfo.CurrentUICulture) is double);
+            Assert.True(converter.Convert(new object?[] { 1.0, 1.0 }, null, null, CultureInfo.CurrentUICulture) is double);
         }
     }
 }

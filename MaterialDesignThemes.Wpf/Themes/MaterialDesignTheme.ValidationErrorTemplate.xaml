@@ -31,11 +31,11 @@
                            Text="{Binding CurrentItem.ErrorContent}"
                            UseLayoutRounding="false" />
             </Border>
-            <controlzEx:PopupEx x:Name="ValidationPopup"
-                                IsOpen="False"
-                                Placement="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.PopupPlacement)}"
-                                PlacementTarget="{Binding ElementName=Placeholder, Mode=OneWay}"
-                                AllowsTransparency="True">
+            <wpf:PopupEx x:Name="ValidationPopup"
+                         IsOpen="False"
+                         Placement="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.PopupPlacement)}"
+                         PlacementTarget="{Binding ElementName=Placeholder, Mode=OneWay}"
+                         AllowsTransparency="True">
                 <Border x:Name="PopupBorder" Background="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Background)}">
                     <TextBlock Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
                                FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
@@ -45,7 +45,7 @@
                                Text="{Binding CurrentItem.ErrorContent}"
                                UseLayoutRounding="false" />
                 </Border>
-            </controlzEx:PopupEx>
+            </wpf:PopupEx>
         </StackPanel>
         <ControlTemplate.Triggers>
             <MultiDataTrigger>

@@ -14,12 +14,12 @@ namespace MaterialDesignThemes.Wpf.Converters
         /// <summary>
         /// Item container style to use when <see cref="ListView.View"/> is <c>null</c>.
         /// </summary>
-        public object DefaultValue { get; set; }
+        public object? DefaultValue { get; set; }
 
         /// <summary>
         /// Item container style to use when <see cref="ListView.View"/> is not <c>null</c>, typically when a <see cref="GridView"/> is applied.
         /// </summary>
-        public object ViewValue { get; set; }
+        public object? ViewValue { get; set; }
 
         /// <summary>
         /// Returns the item container <see cref="Style"/> to use for a <see cref="ListView"/>.
@@ -29,10 +29,9 @@ namespace MaterialDesignThemes.Wpf.Converters
         /// <param name="parameter"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            var listView = value as ListView;
-            if (listView != null)
+            if (value is ListView listView)
             {
                 return listView.View != null ? ViewValue : DefaultValue;
             }
@@ -40,9 +39,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             return value is ViewBase ? ViewValue : DefaultValue;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return Binding.DoNothing;
-        }
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+            => Binding.DoNothing;
     }
 }

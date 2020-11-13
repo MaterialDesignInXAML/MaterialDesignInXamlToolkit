@@ -26,7 +26,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             foreach (var (key, solidColorBrush) in resourceDictionary
                 .Cast<DictionaryEntry>()
                 .Where(e => e.Value is SolidColorBrush)
-                .Select(e => ((string) e.Key, (SolidColorBrush) e.Value))
+                .Select(e => ((string) e.Key, e.Value as SolidColorBrush))
                 .OrderBy(e => e.Item1))
             {
                 var baseThemePropertyName = key == "MaterialDesignValidationErrorBrush"
@@ -39,10 +39,10 @@ namespace MaterialDesignThemes.Wpf.Tests
                     ? "ValidationError"
                     : key.Replace("MaterialDesign", "");
                 var themeProperty = theme.GetType().GetProperty(themePropertyName);
-                Assert.False(themeProperty == null, $"{themePropertyName} from {xaml} not found in {theme.GetType()}");
+                Assert.False(themeProperty is null, $"{themePropertyName} from {xaml} not found in {theme.GetType()}");
                 Assert.NotNull(themeProperty);
 
-                Assert.Equal(solidColorBrush.Color, themeProperty.GetValue(theme));
+                Assert.Equal(solidColorBrush.Color, themeProperty!.GetValue(theme));
             }
         }
 

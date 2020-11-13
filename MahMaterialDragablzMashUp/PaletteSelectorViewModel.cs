@@ -10,7 +10,7 @@ namespace MahMaterialDragablzMashUp
 {
     public class PaletteSelectorViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
 
         public PaletteSelectorViewModel()
@@ -69,7 +69,12 @@ namespace MahMaterialDragablzMashUp
             => ModifyTheme(theme => theme.SetPrimaryColor(swatch.ExemplarHue.Color));
 
         private static void ApplyAccent(Swatch swatch)
-            => ModifyTheme(theme => theme.SetSecondaryColor(swatch.AccentExemplarHue.Color));
+        {
+            if (swatch.AccentExemplarHue is Hue accentHue)
+            {
+                ModifyTheme(theme => theme.SetSecondaryColor(accentHue.Color));
+            }
+        }
 
         private static void ModifyTheme(Action<ITheme> modificationAction)
         {

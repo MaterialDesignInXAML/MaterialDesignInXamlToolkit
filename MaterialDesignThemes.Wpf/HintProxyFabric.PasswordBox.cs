@@ -19,14 +19,14 @@ namespace MaterialDesignThemes.Wpf
 
             public bool IsFocused() => _passwordBox.IsKeyboardFocused;
 
-            public event EventHandler ContentChanged;
-            public event EventHandler IsVisibleChanged;
-            public event EventHandler Loaded;
-            public event EventHandler FocusedChanged;
+            public event EventHandler? ContentChanged;
+            public event EventHandler? IsVisibleChanged;
+            public event EventHandler? Loaded;
+            public event EventHandler? FocusedChanged;
 
             public PasswordBoxHintProxy(PasswordBox passwordBox)
             {
-                if (passwordBox == null) throw new ArgumentNullException(nameof(passwordBox));
+                if (passwordBox is null) throw new ArgumentNullException(nameof(passwordBox));
 
                 _passwordBox = passwordBox;
                 _passwordBox.PasswordChanged += PasswordBoxPasswordChanged;

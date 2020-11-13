@@ -21,9 +21,9 @@ namespace MaterialDesignThemes.Wpf
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ColorPicker), new FrameworkPropertyMetadata(typeof(ColorPicker)));
         }
 
-        private Thumb _saturationBrightnessThumb;
-        private Canvas _saturationBrightnessCanvas;
-        private Slider _hueSlider;
+        private Thumb? _saturationBrightnessThumb;
+        private Canvas? _saturationBrightnessCanvas;
+        private Slider? _hueSlider;
 
         public static readonly DependencyProperty ColorProperty = DependencyProperty.Register(nameof(Color), typeof(Color), typeof(ColorPicker),
             new FrameworkPropertyMetadata(default(Color), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, ColorPropertyChangedCallback));
@@ -147,7 +147,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void SaturationBrightnessCanvasMouseDown(object sender, MouseButtonEventArgs e)
         {
-            _saturationBrightnessThumb.CaptureMouse();
+            _saturationBrightnessThumb?.CaptureMouse();
         }
 
         private void SaturationBrightnessCanvasMouseMove(object sender, MouseEventArgs e)
@@ -161,7 +161,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void SaturationBrightnessCanvasMouseUp(object sender, MouseButtonEventArgs e)
         {
-            _saturationBrightnessThumb.ReleaseMouseCapture();
+            _saturationBrightnessThumb?.ReleaseMouseCapture();
         }
 
         protected override Size ArrangeOverride(Size arrangeBounds)
@@ -186,25 +186,31 @@ namespace MaterialDesignThemes.Wpf
             if (left < 0) left = 0;
             if (top < 0) top = 0;
 
-            if (left > _saturationBrightnessCanvas.ActualWidth) left = _saturationBrightnessCanvas.ActualWidth;
-            if (top > _saturationBrightnessCanvas.ActualHeight) top = _saturationBrightnessCanvas.ActualHeight;
+            if (left > _saturationBrightnessCanvas?.ActualWidth)
+            {
+                left = _saturationBrightnessCanvas.ActualWidth;
+            }
+            if (top > _saturationBrightnessCanvas?.ActualHeight)
+            {
+                top = _saturationBrightnessCanvas.ActualHeight;
+            }
 
-            var saturation = 1 / (_saturationBrightnessCanvas.ActualWidth / left);
-            var brightness = 1 - (top / _saturationBrightnessCanvas.ActualHeight);
+            double saturation = (1 / (_saturationBrightnessCanvas?.ActualWidth / left)) ?? 0;
+            double brightness = (1 - (top / _saturationBrightnessCanvas?.ActualHeight)) ?? 0;
 
             SetCurrentValue(HsbProperty, new Hsb(Hsb.Hue, saturation, brightness));
         }
 
         private void SetThumbLeft()
         {
-            if (_saturationBrightnessCanvas == null) return;
+            if (_saturationBrightnessCanvas is null) return;
             var left = (_saturationBrightnessCanvas.ActualWidth) / (1 / Hsb.Saturation);
             Canvas.SetLeft(_saturationBrightnessThumb, left);
         }
 
         private void SetThumbTop()
         {
-            if (_saturationBrightnessCanvas == null) return;
+            if (_saturationBrightnessCanvas is null) return;
             var top = ((1 - Hsb.Brightness) * _saturationBrightnessCanvas.ActualHeight);
             Canvas.SetTop(_saturationBrightnessThumb, top);
         }

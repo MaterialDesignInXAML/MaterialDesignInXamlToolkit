@@ -49,9 +49,9 @@ namespace MaterialDesignThemes.Wpf
 
         private Point _centreCanvas = new Point(0, 0);
         private Point _currentStartPosition = new Point(0, 0);
-        private TextBlock _hourReadOutPartName;
-        private TextBlock _minuteReadOutPartName;
-        private TextBlock _secondReadOutPartName;
+        private TextBlock? _hourReadOutPartName;
+        private TextBlock? _minuteReadOutPartName;
+        private TextBlock? _secondReadOutPartName;
 
         static Clock()
         {
@@ -76,8 +76,8 @@ namespace MaterialDesignThemes.Wpf
 
         public DateTime Time
         {
-            get { return (DateTime)GetValue(TimeProperty); }
-            set { SetValue(TimeProperty, value); }
+            get => (DateTime)GetValue(TimeProperty);
+            set => SetValue(TimeProperty, value);
         }
 
         private static readonly DependencyPropertyKey IsMidnightHourPropertyKey =
@@ -90,8 +90,8 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsMidnightHour
         {
-            get { return (bool)GetValue(IsMidnightHourProperty); }
-            private set { SetValue(IsMidnightHourPropertyKey, value); }
+            get => (bool)GetValue(IsMidnightHourProperty);
+            private set => SetValue(IsMidnightHourPropertyKey, value);
         }
 
         private static readonly DependencyPropertyKey IsMiddayHourPropertyKey =
@@ -104,8 +104,8 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsMiddayHour
         {
-            get { return (bool)GetValue(IsMiddayHourProperty); }
-            private set { SetValue(IsMiddayHourPropertyKey, value); }
+            get => (bool)GetValue(IsMiddayHourProperty);
+            private set => SetValue(IsMiddayHourPropertyKey, value);
         }
 
         public static readonly DependencyProperty IsPostMeridiemProperty = DependencyProperty.Register(
@@ -122,8 +122,8 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsPostMeridiem
         {
-            get { return (bool)GetValue(IsPostMeridiemProperty); }
-            set { SetValue(IsPostMeridiemProperty, value); }
+            get => (bool)GetValue(IsPostMeridiemProperty);
+            set => SetValue(IsPostMeridiemProperty, value);
         }
 
         public static readonly DependencyProperty Is24HoursProperty = DependencyProperty.Register(
@@ -136,10 +136,9 @@ namespace MaterialDesignThemes.Wpf
 
         public bool Is24Hours
         {
-            get { return (bool)GetValue(Is24HoursProperty); }
-            set { SetValue(Is24HoursProperty, value); }
+            get => (bool)GetValue(Is24HoursProperty);
+            set => SetValue(Is24HoursProperty, value);
         }
-
 
         public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(
             nameof(DisplayMode), typeof(ClockDisplayMode), typeof(Clock), new FrameworkPropertyMetadata(ClockDisplayMode.Hours, DisplayModePropertyChangedCallback));
@@ -151,8 +150,8 @@ namespace MaterialDesignThemes.Wpf
 
         public ClockDisplayMode DisplayMode
         {
-            get { return (ClockDisplayMode)GetValue(DisplayModeProperty); }
-            set { SetValue(DisplayModeProperty, value); }
+            get => (ClockDisplayMode)GetValue(DisplayModeProperty);
+            set => SetValue(DisplayModeProperty, value);
         }
 
         public static readonly DependencyProperty DisplayAutomationProperty = DependencyProperty.Register(
@@ -160,26 +159,26 @@ namespace MaterialDesignThemes.Wpf
 
         public ClockDisplayAutomation DisplayAutomation
         {
-            get { return (ClockDisplayAutomation)GetValue(DisplayAutomationProperty); }
-            set { SetValue(DisplayAutomationProperty, value); }
+            get => (ClockDisplayAutomation)GetValue(DisplayAutomationProperty);
+            set => SetValue(DisplayAutomationProperty, value);
         }
 
         public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register(
-            nameof(ButtonStyle), typeof(Style), typeof(Clock), new PropertyMetadata(default(Style)));
+            nameof(ButtonStyle), typeof(Style), typeof(Clock), new PropertyMetadata(default(Style?)));
 
-        public Style ButtonStyle
+        public Style? ButtonStyle
         {
-            get { return (Style)GetValue(ButtonStyleProperty); }
-            set { SetValue(ButtonStyleProperty, value); }
+            get => (Style?)GetValue(ButtonStyleProperty);
+            set => SetValue(ButtonStyleProperty, value);
         }
 
         public static readonly DependencyProperty LesserButtonStyleProperty = DependencyProperty.Register(
-            nameof(LesserButtonStyle), typeof(Style), typeof(Clock), new PropertyMetadata(default(Style)));
+            nameof(LesserButtonStyle), typeof(Style), typeof(Clock), new PropertyMetadata(default(Style?)));
 
-        public Style LesserButtonStyle
+        public Style? LesserButtonStyle
         {
-            get { return (Style)GetValue(LesserButtonStyleProperty); }
-            set { SetValue(LesserButtonStyleProperty, value); }
+            get => (Style?)GetValue(LesserButtonStyleProperty);
+            set => SetValue(LesserButtonStyleProperty, value);
         }
 
         public static readonly DependencyProperty ButtonRadiusRatioProperty = DependencyProperty.Register(
@@ -187,8 +186,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double ButtonRadiusRatio
         {
-            get { return (double)GetValue(ButtonRadiusRatioProperty); }
-            set { SetValue(ButtonRadiusRatioProperty, value); }
+            get => (double)GetValue(ButtonRadiusRatioProperty);
+            set => SetValue(ButtonRadiusRatioProperty, value);
         }
 
         public static readonly DependencyProperty ButtonRadiusInnerRatioProperty = DependencyProperty.Register(
@@ -196,8 +195,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double ButtonRadiusInnerRatio
         {
-            get { return (double)GetValue(ButtonRadiusInnerRatioProperty); }
-            set { SetValue(ButtonRadiusInnerRatioProperty, value); }
+            get => (double)GetValue(ButtonRadiusInnerRatioProperty);
+            set => SetValue(ButtonRadiusInnerRatioProperty, value);
         }
 
         private static readonly DependencyPropertyKey HourLineAnglePropertyKey =
@@ -210,8 +209,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double HourLineAngle
         {
-            get { return (double)GetValue(HourLineAngleProperty); }
-            private set { SetValue(HourLineAnglePropertyKey, value); }
+            get => (double)GetValue(HourLineAngleProperty);
+            private set => SetValue(HourLineAnglePropertyKey, value);
         }
 
         public static readonly RoutedEvent ClockChoiceMadeEvent =
@@ -457,7 +456,11 @@ namespace MaterialDesignThemes.Wpf
             clock.IsMiddayHour = clock.Time.Hour == 12;
         }
 
-        private BindingBase GetBinding(string propertyName, object owner = null, IValueConverter converter = null, object converterParameter = null)
+        private BindingBase GetBinding(
+            string propertyName,
+            object? owner = null,
+            IValueConverter? converter = null,
+            object? converterParameter = null)
         {
             var result = new Binding(propertyName) { Source = owner ?? this, Converter = converter, ConverterParameter = converterParameter };
             return result;

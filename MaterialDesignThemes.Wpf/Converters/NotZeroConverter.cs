@@ -6,7 +6,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 {
     public class NotZeroConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (double.TryParse((value ?? "").ToString(), out double val))
             {
@@ -15,9 +15,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             return null;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return Binding.DoNothing;
-        }
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+            => Binding.DoNothing;
     }
 }

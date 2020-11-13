@@ -15,7 +15,7 @@ namespace MaterialDesignThemes.MahApps
         protected override void ApplyTheme(ITheme theme)
         {
             base.ApplyTheme(theme);
-            if (TryGetResourceDictionaries(theme, out ResourceDictionary light, out ResourceDictionary dark))
+            if (TryGetResourceDictionaries(theme, out ResourceDictionary? light, out ResourceDictionary? dark))
             {
                 switch (BaseTheme)
                 {
@@ -38,15 +38,14 @@ namespace MaterialDesignThemes.MahApps
                         break;
                 }
 
-                IThemeManager themeManager = this.GetThemeManager();
-                if (themeManager != null)
+                if (this.GetThemeManager() is IThemeManager themeManager)
                 {
                     themeManager.ThemeChanged += ThemeManagerOnThemeChanged;
                 }
             }
         }
 
-        private bool TryGetResourceDictionaries(ITheme theme, out ResourceDictionary light, out ResourceDictionary dark)
+        private bool TryGetResourceDictionaries(ITheme theme, out ResourceDictionary? light, out ResourceDictionary? dark)
         {
             if (PrimaryColor is PrimaryColor primaryColor &&
                 SecondaryColor is SecondaryColor secondaryColor &&
@@ -93,7 +92,7 @@ namespace MaterialDesignThemes.MahApps
             }
         }
 
-        private void ThemeManagerOnThemeChanged(object sender, Wpf.ThemeChangedEventArgs e)
+        private void ThemeManagerOnThemeChanged(object? sender, Wpf.ThemeChangedEventArgs e)
         {
             ResourceDictionary resourceDictionary = e.ResourceDictionary;
 
@@ -101,7 +100,7 @@ namespace MaterialDesignThemes.MahApps
 
             BaseTheme baseTheme = newTheme.GetBaseTheme();
 
-            if (TryGetResourceDictionaries(newTheme, out ResourceDictionary light, out ResourceDictionary dark))
+            if (TryGetResourceDictionaries(newTheme, out ResourceDictionary? light, out ResourceDictionary? dark))
             {
                 for (int i = resourceDictionary.MergedDictionaries.Count - 1; i >= 0; i--)
                 {

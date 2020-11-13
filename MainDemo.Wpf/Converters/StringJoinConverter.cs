@@ -8,15 +8,15 @@ namespace MaterialDesignDemo.Converters
 {
     public class StringJoinConverter : IValueConverter
     {
-        public string Separator { get; set; }
+        public string? Separator { get; set; }
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             IEnumerable values = value as IEnumerable ?? Array.Empty<object>();
             return string.Join(Separator ?? "", values.OfType<object>());
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

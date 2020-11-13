@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net452;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <MDIXVersion Condition="$(MDIXVersion) == '' Or $(MDIXVersion) == '*Undefined*'">1.0.1</MDIXVersion>
@@ -15,17 +15,6 @@
     <DocumentationFile>bin\$(Configuration)\MaterialDesignThemes.Wpf.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\BadgedEx.cs">
-      <Paket>True</Paket>
-      <Link>ControlzEx/BadgedEx.cs</Link>
-    </Compile>
-    <Compile Include="..\paket-files\ControlzEx\ControlzEx\src\ControlzEx\PopupEx.cs">
-      <Paket>True</Paket>
-      <Link>ControlzEx/PopupEx.cs</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="paket.references" />
     <Resource Include="Resources\Roboto\*.ttf" />
     <Content Include="Resources\Roboto\*.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -34,5 +23,4 @@
   <ItemGroup>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
   </ItemGroup>
-  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

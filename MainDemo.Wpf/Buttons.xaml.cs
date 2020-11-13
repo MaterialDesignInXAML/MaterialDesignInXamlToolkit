@@ -32,7 +32,7 @@ namespace MaterialDesignDemo
             if (CountingBadge.Badge == null || Equals(CountingBadge.Badge, string.Empty))
                 CountingBadge.Badge = 0;
 
-            var next = int.Parse(CountingBadge.Badge.ToString()) + 1;
+            var next = int.Parse(CountingBadge.Badge.ToString() ?? "0") + 1;
 
             CountingBadge.Badge = next < 21 ? (object)next : null;
         }

@@ -77,7 +77,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="cultureName">A string that specify the name of culture to set the <paramref name="yearPattern"/> for.</param>
         /// <param name="yearPattern">The custom format string for a year value. If null, culture-specific custom format string for a year value is removed.</param>
         /// <exception cref="ArgumentNullException"><paramref name="cultureName"/> is null.</exception>
-        public static void SetYearPattern(string cultureName, string yearPattern)
+        public static void SetYearPattern(string cultureName, string? yearPattern)
         {
             if (cultureName is null)
                 throw new ArgumentNullException(nameof(cultureName));
@@ -179,14 +179,12 @@ namespace MaterialDesignThemes.Wpf
             if (cultureInfo is null)
                 throw new ArgumentNullException(nameof(cultureInfo));
 
-            CalendarFormatInfo calendarInfo;
-            if (_formatInfoCache.TryGetValue(cultureInfo.Name, out calendarInfo))
+            if (_formatInfoCache.TryGetValue(cultureInfo.Name, out var calendarInfo))
                 return calendarInfo;
 
             var dateTimeFormat = cultureInfo.DateTimeFormat;
 
-            string yearPattern;
-            if (!_cultureYearPatterns.TryGetValue(cultureInfo.Name, out yearPattern))
+            if (!_cultureYearPatterns.TryGetValue(cultureInfo.Name, out string? yearPattern))
                 yearPattern = "yyyy";
 
             DayOfWeekStyle dayOfWeekStyle;

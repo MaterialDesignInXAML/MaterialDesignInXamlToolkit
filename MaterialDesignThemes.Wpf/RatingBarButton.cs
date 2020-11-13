@@ -34,8 +34,8 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsWithinSelectedValue
         {
-            get { return (bool)GetValue(IsWithinSelectedValueProperty); }
-            internal set { SetValue(IsWithinValuePropertyKey, value); }
+            get => (bool)GetValue(IsWithinSelectedValueProperty);
+            internal set => SetValue(IsWithinValuePropertyKey, value);
         }
     }
 }

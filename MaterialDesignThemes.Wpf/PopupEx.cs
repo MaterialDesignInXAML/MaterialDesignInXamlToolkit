@@ -8,9 +8,12 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
 
-namespace ControlzEx
+namespace MaterialDesignThemes.Wpf
 {
     /// <summary>
+    /// This class was initially based on work done in ControlzEx
+    /// https://github.com/ControlzEx/ControlzEx
+    /// 
     /// This custom popup can be used by validation error templates or something else.
     /// It provides some additional nice features:
     ///     - repositioning if host-window size or location changed
@@ -30,8 +33,8 @@ namespace ControlzEx
         /// </summary>
         public bool CloseOnMouseLeftButtonDown
         {
-            get { return (bool)GetValue(CloseOnMouseLeftButtonDownProperty); }
-            set { SetValue(CloseOnMouseLeftButtonDownProperty, value); }
+            get => (bool)GetValue(CloseOnMouseLeftButtonDownProperty);
+            set => SetValue(CloseOnMouseLeftButtonDownProperty, value);
         }
 
         public static readonly DependencyProperty AllowTopMostProperty
@@ -42,14 +45,14 @@ namespace ControlzEx
 
         public bool AllowTopMost
         {
-            get { return (bool)GetValue(AllowTopMostProperty); }
-            set { SetValue(AllowTopMostProperty, value); }
+            get => (bool)GetValue(AllowTopMostProperty);
+            set => SetValue(AllowTopMostProperty, value);
         }
 
         public PopupEx()
         {
-            this.Loaded += this.PopupEx_Loaded;
-            this.Opened += this.PopupEx_Opened;
+            Loaded += PopupEx_Loaded;
+            Opened += PopupEx_Opened;
         }
 
         /// <summary>
@@ -57,89 +60,82 @@ namespace ControlzEx
         /// </summary>
         public void RefreshPosition()
         {
-            var offset = this.HorizontalOffset;
+            var offset = HorizontalOffset;
             // "bump" the offset to cause the popup to reposition itself on its own
             SetCurrentValue(HorizontalOffsetProperty, offset + 1);
             SetCurrentValue(HorizontalOffsetProperty, offset);
         }
 
-        private void PopupEx_Loaded(object sender, RoutedEventArgs e)
+        private void PopupEx_Loaded(object? sender, RoutedEventArgs e)
         {
-            var target = this.PlacementTarget as FrameworkElement;
-            if (target == null)
+            var target = PlacementTarget as FrameworkElement;
+            if (target is null)
             {
                 return;
             }
 
-            this.hostWindow = Window.GetWindow(target);
-            if (this.hostWindow == null)
+            _hostWindow = Window.GetWindow(target);
+            if (_hostWindow is null)
             {
                 return;
             }
 
-            this.hostWindow.LocationChanged -= this.hostWindow_SizeOrLocationChanged;
-            this.hostWindow.LocationChanged += this.hostWindow_SizeOrLocationChanged;
-            this.hostWindow.SizeChanged -= this.hostWindow_SizeOrLocationChanged;
-            this.hostWindow.SizeChanged += this.hostWindow_SizeOrLocationChanged;
-            target.SizeChanged -= this.hostWindow_SizeOrLocationChanged;
-            target.SizeChanged += this.hostWindow_SizeOrLocationChanged;
-            this.hostWindow.StateChanged -= this.hostWindow_StateChanged;
-            this.hostWindow.StateChanged += this.hostWindow_StateChanged;
-            this.hostWindow.Activated -= this.hostWindow_Activated;
-            this.hostWindow.Activated += this.hostWindow_Activated;
-            this.hostWindow.Deactivated -= this.hostWindow_Deactivated;
-            this.hostWindow.Deactivated += this.hostWindow_Deactivated;
+            _hostWindow.LocationChanged -= HostWindow_SizeOrLocationChanged;
+            _hostWindow.LocationChanged += HostWindow_SizeOrLocationChanged;
+            _hostWindow.SizeChanged -= HostWindow_SizeOrLocationChanged;
+            _hostWindow.SizeChanged += HostWindow_SizeOrLocationChanged;
+            target.SizeChanged -= HostWindow_SizeOrLocationChanged;
+            target.SizeChanged += HostWindow_SizeOrLocationChanged;
+            _hostWindow.StateChanged -= HostWindow_StateChanged;
+            _hostWindow.StateChanged += HostWindow_StateChanged;
+            _hostWindow.Activated -= HostWindow_Activated;
+            _hostWindow.Activated += HostWindow_Activated;
+            _hostWindow.Deactivated -= HostWindow_Deactivated;
+            _hostWindow.Deactivated += HostWindow_Deactivated;
 
-            this.Unloaded -= this.PopupEx_Unloaded;
-            this.Unloaded += this.PopupEx_Unloaded;
+            Unloaded -= PopupEx_Unloaded;
+            Unloaded += PopupEx_Unloaded;
         }
 
-        private void PopupEx_Opened(object sender, EventArgs e)
-        {
-            this.SetTopmostState(hostWindow?.IsActive ?? true);
-        }
+        private void PopupEx_Opened(object? sender, EventArgs e)
+            => SetTopmostState(_hostWindow?.IsActive ?? true);
 
-        private void hostWindow_Activated(object sender, EventArgs e)
-        {
-            this.SetTopmostState(true);
-        }
+        private void HostWindow_Activated(object? sender, EventArgs e)
+            => SetTopmostState(true);
 
-        private void hostWindow_Deactivated(object sender, EventArgs e)
-        {
-            this.SetTopmostState(false);
-        }
+        private void HostWindow_Deactivated(object? sender, EventArgs e)
+            => SetTopmostState(false);
 
-        private void PopupEx_Unloaded(object sender, RoutedEventArgs e)
+        private void PopupEx_Unloaded(object? sender, RoutedEventArgs e)
         {
-            var target = this.PlacementTarget as FrameworkElement;
-            if (target != null)
+            if (PlacementTarget is FrameworkElement target)
             {
-                target.SizeChanged -= this.hostWindow_SizeOrLocationChanged;
+                target.SizeChanged -= HostWindow_SizeOrLocationChanged;
             }
-            if (this.hostWindow != null)
+            if (_hostWindow != null)
             {
-                this.hostWindow.LocationChanged -= this.hostWindow_SizeOrLocationChanged;
-                this.hostWindow.SizeChanged -= this.hostWindow_SizeOrLocationChanged;
-                this.hostWindow.StateChanged -= this.hostWindow_StateChanged;
-                this.hostWindow.Activated -= this.hostWindow_Activated;
-                this.hostWindow.Deactivated -= this.hostWindow_Deactivated;
+                _hostWindow.LocationChanged -= HostWindow_SizeOrLocationChanged;
+                _hostWindow.SizeChanged -= HostWindow_SizeOrLocationChanged;
+                _hostWindow.StateChanged -= HostWindow_StateChanged;
+                _hostWindow.Activated -= HostWindow_Activated;
+                _hostWindow.Deactivated -= HostWindow_Deactivated;
             }
-            this.Unloaded -= this.PopupEx_Unloaded;
-            this.Opened -= this.PopupEx_Opened;
-            this.hostWindow = null;
+            Unloaded -= PopupEx_Unloaded;
+            Opened -= PopupEx_Opened;
+            _hostWindow = null;
         }
 
-        private void hostWindow_StateChanged(object sender, EventArgs e)
+        private void HostWindow_StateChanged(object? sender, EventArgs e)
         {
-            if (this.hostWindow != null && this.hostWindow.WindowState != WindowState.Minimized)
+            if (_hostWindow != null && _hostWindow.WindowState != WindowState.Minimized)
             {
                 // special handling for validation popup
-                var target = this.PlacementTarget as FrameworkElement;
+                var target = PlacementTarget as FrameworkElement;
                 var holder = target != null ? target.DataContext as AdornedElementPlaceholder : null;
                 if (holder != null && holder.AdornedElement != null)
                 {
-                    this.PopupAnimation = PopupAnimation.None;
-                    this.IsOpen = false;
+                    PopupAnimation = PopupAnimation.None;
+                    IsOpen = false;
                     var errorTemplate = holder.AdornedElement.GetValue(Validation.ErrorTemplateProperty);
                     holder.AdornedElement.SetValue(Validation.ErrorTemplateProperty, null);
                     holder.AdornedElement.SetValue(Validation.ErrorTemplateProperty, errorTemplate);
@@ -147,27 +143,25 @@ namespace ControlzEx
             }
         }
 
-        private void hostWindow_SizeOrLocationChanged(object sender, EventArgs e)
-        {
-            RefreshPosition();
-        }
+        private void HostWindow_SizeOrLocationChanged(object? sender, EventArgs e)
+            => RefreshPosition();
 
         private void SetTopmostState(bool isTop)
         {
             isTop &= AllowTopMost;
             // Don’t apply state if it’s the same as incoming state
-            if (this.appliedTopMost.HasValue && this.appliedTopMost == isTop)
+            if (appliedTopMost.HasValue && appliedTopMost == isTop)
             {
                 return;
             }
 
-            if (this.Child == null)
+            if (Child is null)
             {
                 return;
             }
 
-            var hwndSource = (PresentationSource.FromVisual(this.Child)) as HwndSource;
-            if (hwndSource == null)
+            var hwndSource = (PresentationSource.FromVisual(Child)) as HwndSource;
+            if (hwndSource is null)
             {
                 return;
             }
@@ -199,18 +193,18 @@ namespace ControlzEx
                 SetWindowPos(hwnd, HWND_NOTOPMOST, left, top, width, height, SWP.TOPMOST);
             }
 
-            this.appliedTopMost = isTop;
+            appliedTopMost = isTop;
         }
 
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             if (CloseOnMouseLeftButtonDown)
             {
-                this.IsOpen = false;
+                IsOpen = false;
             }
         }
 
-        private Window hostWindow;
+        private Window? _hostWindow;
         private bool? appliedTopMost;
         static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
         static readonly IntPtr HWND_NOTOPMOST = new IntPtr(-2);
@@ -241,7 +235,6 @@ namespace ControlzEx
             TOPMOST = SWP.NOACTIVATE | SWP.NOOWNERZORDER | SWP.NOSIZE | SWP.NOMOVE | SWP.NOREDRAW | SWP.NOSENDCHANGING,
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal static int LOWORD(int i)
         {
             return (short)(i & 0xFFFF);
@@ -269,7 +262,6 @@ namespace ControlzEx
             private int _right;
             private int _bottom;
 
-            [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
             public void Offset(int dx, int dy)
             {
                 _left += dx;
@@ -278,57 +270,37 @@ namespace ControlzEx
                 _bottom += dy;
             }
 
-            [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
             public int Left
             {
-                get { return _left; }
-                set { _left = value; }
+                get => _left;
+                set => _left = value;
             }
 
-            [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
             public int Right
             {
-                get { return _right; }
-                set { _right = value; }
+                get => _right;
+                set => _right = value;
             }
 
-            [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
             public int Top
             {
-                get { return _top; }
-                set { _top = value; }
+                get => _top;
+                set => _top = value;
             }
 
-            [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
             public int Bottom
             {
-                get { return _bottom; }
-                set { _bottom = value; }
+                get => _bottom;
+                set => _bottom = value;
             }
 
-            [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-            public int Width
-            {
-                get { return _right - _left; }
-            }
+            public int Width => _right - _left;
 
-            [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-            public int Height
-            {
-                get { return _bottom - _top; }
-            }
+            public int Height => _bottom - _top;
 
-            [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-            public POINT Position
-            {
-                get { return new POINT { x = _left, y = _top }; }
-            }
+            public POINT Position => new POINT { x = _left, y = _top };
 
-            [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-            public SIZE Size
-            {
-                get { return new SIZE { cx = Width, cy = Height }; }
-            }
+            public SIZE Size => new SIZE { cx = Width, cy = Height };
 
             public static RECT Union(RECT rect1, RECT rect2)
             {
@@ -341,11 +313,11 @@ namespace ControlzEx
                 };
             }
 
-            public override bool Equals(object obj)
+            public override bool Equals(object? obj)
             {
                 try
                 {
-                    var rc = (RECT)obj;
+                    var rc = (RECT)obj!;
                     return rc._bottom == _bottom
                         && rc._left == _left
                         && rc._right == _right
@@ -358,25 +330,20 @@ namespace ControlzEx
             }
 
             public override int GetHashCode()
-            {
-                return (_left << 16 | LOWORD(_right)) ^ (_top << 16 | LOWORD(_bottom));
-            }
+                => (_left << 16 | LOWORD(_right)) ^ (_top << 16 | LOWORD(_bottom));
         }
 
         [SecurityCritical]
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [DllImport("user32.dll", EntryPoint = "GetWindowRect", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
 
         [SecurityCritical]
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [DllImport("user32.dll", EntryPoint = "SetWindowPos", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool _SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, SWP uFlags);
 
         [SecurityCritical]
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         private static bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, SWP uFlags)
         {
             if (!_SetWindowPos(hWnd, hWndInsertAfter, x, y, cx, cy, uFlags))

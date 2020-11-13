@@ -30,7 +30,7 @@ namespace MaterialDesignThemes.Wpf
         /// Available only while the snackbar is displayed.
         /// Should be locked by <see cref="_snackbarMessagesLock"/>.
         /// </remarks>
-        private ManualResetEvent _closeSnackbarEvent = null;
+        private ManualResetEvent? _closeSnackbarEvent;
 
         /// <summary>
         /// Gets the <see cref="System.Windows.Threading.Dispatcher"/> this <see cref="SnackbarMessageQueue"/> is associated with.
@@ -157,28 +157,22 @@ namespace MaterialDesignThemes.Wpf
         public void Enqueue(object content, bool neverConsiderToBeDuplicate)
             => Enqueue(content, null, null, null, false, neverConsiderToBeDuplicate);
 
-        public void Enqueue(object content, object actionContent, Action actionHandler)
+        public void Enqueue(object content, object? actionContent, Action? actionHandler)
             => Enqueue(content, actionContent, actionHandler, false);
 
-        public void Enqueue(object content, object actionContent, Action actionHandler, bool promote)
-        {
-            if (content is null) throw new ArgumentNullException(nameof(content));
-            if (actionContent is null) throw new ArgumentNullException(nameof(actionContent));
-            if (actionHandler is null) throw new ArgumentNullException(nameof(actionHandler));
+        public void Enqueue(object content, object? actionContent, Action? actionHandler, bool promote)
+            => Enqueue(content, actionContent, _ => actionHandler?.Invoke(), promote, false, false);
 
-            Enqueue(content, actionContent, _ => actionHandler(), promote, false, false);
-        }
-
-        public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
-            TArgument actionArgument)
+        public void Enqueue<TArgument>(object content, object? actionContent, Action<TArgument?>? actionHandler,
+            TArgument? actionArgument)
             => Enqueue(content, actionContent, actionHandler, actionArgument, false, false);
 
-        public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
-            TArgument actionArgument, bool promote) =>
+        public void Enqueue<TArgument>(object content, object? actionContent, Action<TArgument?>? actionHandler,
+            TArgument? actionArgument, bool promote) =>
             Enqueue(content, actionContent, actionHandler, actionArgument, promote, promote);
 
-        public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
-            TArgument actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null)
+        public void Enqueue<TArgument>(object content, object? actionContent, Action<TArgument?>? actionHandler,
+            TArgument? actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null)
         {
             if (content is null) throw new ArgumentNullException(nameof(content));
 
@@ -188,14 +182,14 @@ namespace MaterialDesignThemes.Wpf
                     actionContent != null ? nameof(actionContent) : nameof(actionHandler));
             }
 
-            Action<object> handler = actionHandler != null
-                ? new Action<object>(argument => actionHandler((TArgument)argument))
+            Action<object?>? handler = actionHandler != null
+                ? new Action<object?>(argument => actionHandler((TArgument?)argument))
                 : null;
             Enqueue(content, actionContent, handler, actionArgument, promote, neverConsiderToBeDuplicate, durationOverride);
         }
 
-        public void Enqueue(object content, object actionContent, Action<object> actionHandler,
-            object actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null)
+        public void Enqueue(object content, object? actionContent, Action<object?>? actionHandler,
+            object? actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null)
         {
             if (content is null) throw new ArgumentNullException(nameof(content));
 
@@ -302,7 +296,7 @@ namespace MaterialDesignThemes.Wpf
                     await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(true);
                 }
 
-                LinkedListNode<SnackbarMessageQueueItem> messageNode;
+                LinkedListNode<SnackbarMessageQueueItem>? messageNode;
                 lock (_snackbarMessagesLock)
                 {
                     messageNode = _snackbarMessages.First;
@@ -413,8 +407,7 @@ namespace MaterialDesignThemes.Wpf
         {
             try
             {
-                messageQueueItem.ActionHandler(messageQueueItem.ActionArgument);
-
+                messageQueueItem.ActionHandler?.Invoke(messageQueueItem.ActionArgument);
             }
             catch (Exception exc)
             {

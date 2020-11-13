@@ -20,7 +20,7 @@ namespace MaterialDesignThemes.Wpf
             Application.Current.Resources.SetTheme(theme);
         }
 
-        public virtual IThemeManager GetThemeManager()
+        public virtual IThemeManager? GetThemeManager()
         {
             if (Application.Current is null)
                 throw new InvalidOperationException("Cannot get ThemeManager. Use ResourceDictionaryExtensions.GetThemeManager on the appropriate resource dictionary instead.");
