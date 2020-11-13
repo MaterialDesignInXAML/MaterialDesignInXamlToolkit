@@ -22,13 +22,7 @@ variables:
   mdixVersion: '4.0.0'
 
 steps:
-- task: UseDotNet@2
-  displayName: "Use NetCore 3.1"
-  inputs:
-    packageType: 'sdk'
-    vsVersion: '16.8.0'
-    version: '3.1.403'
-    includePreviewVersions: true
+- script: dotnet --version
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
