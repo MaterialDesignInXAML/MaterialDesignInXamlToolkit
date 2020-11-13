@@ -12,8 +12,6 @@
     <DelaySign>false</DelaySign>
 
     <Nullable>enable</Nullable>
-    <WarningsAsErrors />
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>

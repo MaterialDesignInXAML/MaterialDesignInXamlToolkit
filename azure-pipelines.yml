@@ -30,7 +30,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '5.0.100-rc.2.20479.15'
+    version: '5.0.100'
     vsVersion: '16.8.0'
     includePreviewVersions: true
 
@@ -38,7 +38,7 @@ steps:
   displayName: 'dotnet build'
   inputs:
     projects: '$(solution)'
-    arguments: '/p:Configuration=$(buildConfiguration) /p:Platform="Any CPU" /p:MDIXVersion=$(mdixVersion).$(Build.BuildID) /p:MDIXColorsVersion=$(mdixColorsVersion).$(Build.BuildID) /p:MDIXMahAppsVersion=$(mdixMahappsVersion).$(Build.BuildID)'
+    arguments: '/p:Configuration=$(buildConfiguration) /p:Platform="Any CPU" /p:MDIXVersion=$(mdixVersion).$(Build.BuildID) /p:MDIXColorsVersion=$(mdixColorsVersion).$(Build.BuildID) /p:MDIXMahAppsVersion=$(mdixMahappsVersion).$(Build.BuildID) /p:TreatWarningsAsErrors=True'
 
 - task: DotNetCoreCLI@2
   displayName: 'Unit Tests'
