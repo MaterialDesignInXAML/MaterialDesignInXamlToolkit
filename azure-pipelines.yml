@@ -22,7 +22,12 @@ variables:
   mdixVersion: '4.0.0'
 
 steps:
-- script: dotnet --version
+- task: UseDotNet@2
+  displayName: 'Install NET5.0 SDK'
+  inputs:
+    packageType: sdk
+    version: '5.0.100'
+    vsVersion: '16.8.0'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
