@@ -23,16 +23,11 @@ variables:
 
 steps:
 - task: UseDotNet@2
+  displayName: "Use NetCore 3.1"
   inputs:
     packageType: 'sdk'
-    version: '3.1.403'
-
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '5.0.100'
     vsVersion: '16.8.0'
-    includePreviewVersions: true
+    version: '3.1.403'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
