@@ -53,7 +53,7 @@ steps:
   name: "PublishUITestsScreenshots"
   inputs:
     artifact: 'Screenshots'
-    targetPath: 'MaterialDesignThemes.UITests/bin/$(buildConfiguration)/netcoreapp3.1/Screenshots'
+    targetPath: 'MaterialDesignThemes.UITests/bin/$(buildConfiguration)/net5.0-windows/Screenshots'
     publishLocation: 'pipeline'
   condition: always()
 
