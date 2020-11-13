@@ -252,7 +252,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Identifier which is used in conjunction with <see cref="Show(object)"/> to determine where a dialog should be shown.
         /// </summary>
-        public object Identifier
+        public object? Identifier
         {
             get => GetValue(IdentifierProperty);
             set => SetValue(IdentifierProperty, value);
@@ -344,7 +344,7 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty DialogContentProperty = DependencyProperty.Register(
             nameof(DialogContent), typeof(object), typeof(DialogHost), new PropertyMetadata(default(object)));
 
-        public object DialogContent
+        public object? DialogContent
         {
             get => GetValue(DialogContentProperty);
             set => SetValue(DialogContentProperty, value);
@@ -353,27 +353,27 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty DialogContentTemplateProperty = DependencyProperty.Register(
             nameof(DialogContentTemplate), typeof(DataTemplate), typeof(DialogHost), new PropertyMetadata(default(DataTemplate)));
 
-        public DataTemplate DialogContentTemplate
+        public DataTemplate? DialogContentTemplate
         {
-            get => (DataTemplate)GetValue(DialogContentTemplateProperty);
+            get => (DataTemplate?)GetValue(DialogContentTemplateProperty);
             set => SetValue(DialogContentTemplateProperty, value);
         }
 
         public static readonly DependencyProperty DialogContentTemplateSelectorProperty = DependencyProperty.Register(
             nameof(DialogContentTemplateSelector), typeof(DataTemplateSelector), typeof(DialogHost), new PropertyMetadata(default(DataTemplateSelector)));
 
-        public DataTemplateSelector DialogContentTemplateSelector
+        public DataTemplateSelector? DialogContentTemplateSelector
         {
-            get => (DataTemplateSelector)GetValue(DialogContentTemplateSelectorProperty);
+            get => (DataTemplateSelector?)GetValue(DialogContentTemplateSelectorProperty);
             set => SetValue(DialogContentTemplateSelectorProperty, value);
         }
 
         public static readonly DependencyProperty DialogContentStringFormatProperty = DependencyProperty.Register(
             nameof(DialogContentStringFormat), typeof(string), typeof(DialogHost), new PropertyMetadata(default(string)));
 
-        public string DialogContentStringFormat
+        public string? DialogContentStringFormat
         {
-            get => (string)GetValue(DialogContentStringFormatProperty);
+            get => (string?)GetValue(DialogContentStringFormatProperty);
             set => SetValue(DialogContentStringFormatProperty, value);
         }
 
@@ -417,7 +417,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Parameter to provide to close handlers if an close due to click away is instigated.
         /// </summary>
-        public object CloseOnClickAwayParameter
+        public object? CloseOnClickAwayParameter
         {
             get => GetValue(CloseOnClickAwayParameterProperty);
             set => SetValue(CloseOnClickAwayParameterProperty, value);
@@ -443,9 +443,9 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Allows association of a snackbar, so that notifications can be paused whilst a dialog is being displayed.
         /// </summary>
-        public SnackbarMessageQueue SnackbarMessageQueue
+        public SnackbarMessageQueue? SnackbarMessageQueue
         {
-            get => (SnackbarMessageQueue)GetValue(SnackbarMessageQueueProperty);
+            get => (SnackbarMessageQueue?)GetValue(SnackbarMessageQueueProperty);
             set => SetValue(SnackbarMessageQueueProperty, value);
         }
 
@@ -464,9 +464,9 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty PopupStyleProperty = DependencyProperty.Register(
             nameof(PopupStyle), typeof(Style), typeof(DialogHost), new PropertyMetadata(default(Style)));
 
-        public Style PopupStyle
+        public Style? PopupStyle
         {
-            get => (Style)GetValue(PopupStyleProperty);
+            get => (Style?)GetValue(PopupStyleProperty);
             set => SetValue(PopupStyleProperty, value);
         }
 
@@ -476,9 +476,9 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Represents the overlay brush that is used to dim the background behind the dialog
         /// </summary>
-        public Brush OverlayBackground
+        public Brush? OverlayBackground
         {
-            get => (Brush)GetValue(OverlayBackgroundProperty);
+            get => (Brush?)GetValue(OverlayBackgroundProperty);
             set => SetValue(OverlayBackgroundProperty, value);
         }
 
@@ -539,9 +539,9 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Callback fired when the <see cref="DialogOpened"/> event is fired, allowing the event to be processed from a binding/view model.
         /// </summary>
-        public DialogOpenedEventHandler DialogOpenedCallback
+        public DialogOpenedEventHandler? DialogOpenedCallback
         {
-            get => (DialogOpenedEventHandler)GetValue(DialogOpenedCallbackProperty);
+            get => (DialogOpenedEventHandler?)GetValue(DialogOpenedCallbackProperty);
             set => SetValue(DialogOpenedCallbackProperty, value);
         }
 
@@ -592,9 +592,9 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Callback fired when the <see cref="DialogClosing"/> event is fired, allowing the event to be processed from a binding/view model.
         /// </summary>
-        public DialogClosingEventHandler DialogClosingCallback
+        public DialogClosingEventHandler? DialogClosingCallback
         {
-            get => (DialogClosingEventHandler)GetValue(DialogClosingCallbackProperty);
+            get => (DialogClosingEventHandler?)GetValue(DialogClosingCallbackProperty);
             set => SetValue(DialogClosingCallbackProperty, value);
         }
 

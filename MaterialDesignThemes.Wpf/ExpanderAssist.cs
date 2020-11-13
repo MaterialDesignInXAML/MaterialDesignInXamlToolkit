@@ -47,9 +47,9 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty HeaderBackgroundProperty
             = DependencyProperty.RegisterAttached("HeaderBackground", typeof(Brush), typeof(ExpanderAssist));
 
-        public static Brush GetHeaderBackground(Expander element)
-            => (Brush)element.GetValue(HeaderBackgroundProperty);
-        public static void SetHeaderBackground(Expander element, Brush value)
+        public static Brush? GetHeaderBackground(Expander element)
+            => (Brush?)element.GetValue(HeaderBackgroundProperty);
+        public static void SetHeaderBackground(Expander element, Brush? value)
             => element.SetValue(HeaderBackgroundProperty, value);
         #endregion
     }

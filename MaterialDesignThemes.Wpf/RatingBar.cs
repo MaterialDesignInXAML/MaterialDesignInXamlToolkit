@@ -38,8 +38,8 @@ namespace MaterialDesignThemes.Wpf
 
         public int Min
         {
-            get { return (int)GetValue(MinProperty); }
-            set { SetValue(MinProperty, value); }
+            get => (int)GetValue(MinProperty);
+            set => SetValue(MinProperty, value);
         }
 
         public static readonly DependencyProperty MaxProperty = DependencyProperty.Register(
@@ -47,8 +47,8 @@ namespace MaterialDesignThemes.Wpf
 
         public int Max
         {
-            get { return (int)GetValue(MaxProperty); }
-            set { SetValue(MaxProperty, value); }
+            get => (int)GetValue(MaxProperty);
+            set => SetValue(MaxProperty, value);
         }
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
@@ -64,8 +64,8 @@ namespace MaterialDesignThemes.Wpf
 
         public int Value
         {
-            get { return (int)GetValue(ValueProperty); }
-            set { SetValue(ValueProperty, value); }
+            get => (int)GetValue(ValueProperty);
+            set => SetValue(ValueProperty, value);
         }
 
         public static readonly RoutedEvent ValueChangedEvent =
@@ -97,28 +97,28 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty ValueItemContainerButtonStyleProperty = DependencyProperty.Register(
             nameof(ValueItemContainerButtonStyle), typeof(Style), typeof(RatingBar), new PropertyMetadata(default(Style)));
 
-        public Style ValueItemContainerButtonStyle
+        public Style? ValueItemContainerButtonStyle
         {
-            get { return (Style)GetValue(ValueItemContainerButtonStyleProperty); }
-            set { SetValue(ValueItemContainerButtonStyleProperty, value); }
+            get => (Style?)GetValue(ValueItemContainerButtonStyleProperty);
+            set => SetValue(ValueItemContainerButtonStyleProperty, value);
         }
 
         public static readonly DependencyProperty ValueItemTemplateProperty = DependencyProperty.Register(
             nameof(ValueItemTemplate), typeof(DataTemplate), typeof(RatingBar), new PropertyMetadata(default(DataTemplate)));
 
-        public DataTemplate ValueItemTemplate
+        public DataTemplate? ValueItemTemplate
         {
-            get { return (DataTemplate)GetValue(ValueItemTemplateProperty); }
-            set { SetValue(ValueItemTemplateProperty, value); }
+            get => (DataTemplate?)GetValue(ValueItemTemplateProperty);
+            set => SetValue(ValueItemTemplateProperty, value);
         }
 
         public static readonly DependencyProperty ValueItemTemplateSelectorProperty = DependencyProperty.Register(
             nameof(ValueItemTemplateSelector), typeof(DataTemplateSelector), typeof(RatingBar), new PropertyMetadata(default(DataTemplateSelector)));
 
-        public DataTemplateSelector ValueItemTemplateSelector
+        public DataTemplateSelector? ValueItemTemplateSelector
         {
-            get { return (DataTemplateSelector)GetValue(ValueItemTemplateSelectorProperty); }
-            set { SetValue(ValueItemTemplateSelectorProperty, value); }
+            get => (DataTemplateSelector?)GetValue(ValueItemTemplateSelectorProperty);
+            set => SetValue(ValueItemTemplateSelectorProperty, value);
         }
 
         public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
@@ -126,8 +126,8 @@ namespace MaterialDesignThemes.Wpf
 
         public Orientation Orientation
         {
-            get { return (Orientation)GetValue(OrientationProperty); }
-            set { SetValue(OrientationProperty, value); }
+            get => (Orientation)GetValue(OrientationProperty);
+            set => SetValue(OrientationProperty, value);
         }
 
         public static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.Register(
@@ -135,8 +135,8 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsReadOnly
         {
-            get { return (bool)GetValue(IsReadOnlyProperty); }
-            set { SetValue(IsReadOnlyProperty, value); }
+            get => (bool)GetValue(IsReadOnlyProperty);
+            set => SetValue(IsReadOnlyProperty, value);
         }
 
         private static void MaxPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)

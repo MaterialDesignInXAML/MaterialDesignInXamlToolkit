@@ -6,7 +6,7 @@ namespace MaterialDesignDemo.Domain
     {
         protected override Freezable CreateInstanceCore() => new BindingProxy();
 
-        public object Data
+        public object? Data
         {
             get => GetValue(DataProperty);
             set => SetValue(DataProperty, value);

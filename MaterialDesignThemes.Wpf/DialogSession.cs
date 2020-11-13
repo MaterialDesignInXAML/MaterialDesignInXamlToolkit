@@ -31,7 +31,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Gets the <see cref="DialogHost.DialogContent"/> which is currently displayed, so this could be a view model or a UI element.
         /// </summary>
-        public object Content => _owner.DialogContent;
+        public object? Content => _owner.DialogContent;
 
         /// <summary>
         /// Update the current content in the dialog.

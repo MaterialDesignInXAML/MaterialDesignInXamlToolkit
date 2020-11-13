@@ -21,9 +21,7 @@ namespace MaterialDesignThemes.Wpf
             = DependencyProperty.Register(nameof(Kind), typeof(PackIconKind), typeof(PackIcon), new PropertyMetadata(default(PackIconKind), KindPropertyChangedCallback));
 
         private static void KindPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            ((PackIcon)dependencyObject).UpdateData();
-        }
+            => ((PackIcon)dependencyObject).UpdateData();
 
         /// <summary>
         /// Gets or sets the icon to display.
@@ -46,7 +44,7 @@ namespace MaterialDesignThemes.Wpf
         [TypeConverter(typeof(GeometryConverter))]
         public string? Data
         {
-            get => (string)GetValue(DataProperty);
+            get => (string?)GetValue(DataProperty);
             private set => SetValue(DataPropertyKey, value);
         }
 

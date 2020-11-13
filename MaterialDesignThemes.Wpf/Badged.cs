@@ -104,10 +104,10 @@ namespace MaterialDesignThemes.Wpf
         }
 
         #region DependencyProperty : BadgeChangedStoryboardProperty
-        public Storyboard BadgeChangedStoryboard
+        public Storyboard? BadgeChangedStoryboard
         {
-            get { return (Storyboard)GetValue(BadgeChangedStoryboardProperty); }
-            set { SetValue(BadgeChangedStoryboardProperty, value); }
+            get => (Storyboard?)GetValue(BadgeChangedStoryboardProperty);
+            set => SetValue(BadgeChangedStoryboardProperty, value);
         }
         public static readonly DependencyProperty BadgeChangedStoryboardProperty
             = DependencyProperty.Register(nameof(BadgeChangedStoryboard), typeof(Storyboard), typeof(Badged), new PropertyMetadata(default(Storyboard)));
@@ -116,8 +116,8 @@ namespace MaterialDesignThemes.Wpf
         #region DependencyProperty : BadgeColorZoneModeProperty
         public ColorZoneMode BadgeColorZoneMode
         {
-            get { return (ColorZoneMode)GetValue(BadgeColorZoneModeProperty); }
-            set { SetValue(BadgeColorZoneModeProperty, value); }
+            get => (ColorZoneMode)GetValue(BadgeColorZoneModeProperty);
+            set => SetValue(BadgeColorZoneModeProperty, value);
         }
         public static readonly DependencyProperty BadgeColorZoneModeProperty
             = DependencyProperty.Register(nameof(BadgeColorZoneMode), typeof(ColorZoneMode), typeof(Badged), new PropertyMetadata(default(ColorZoneMode)));
@@ -126,8 +126,8 @@ namespace MaterialDesignThemes.Wpf
         #region DependencyProperty : CornerRadiusProperty
         public CornerRadius CornerRadius
         {
-            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
+            get => (CornerRadius)GetValue(CornerRadiusProperty);
+            set => SetValue(CornerRadiusProperty, value);
         }
         public static readonly DependencyProperty CornerRadiusProperty
             = DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(Badged), new PropertyMetadata(DefaultCornerRadius));
