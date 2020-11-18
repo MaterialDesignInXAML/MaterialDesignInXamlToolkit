@@ -80,17 +80,17 @@ namespace mdresgen
 
         private static void GenerateClasses(MdPalette palettes)
         {
-            foreach(var palette in palettes.palettes)
+            foreach(var palette in palettes.palettes ?? Enumerable.Empty<MdPalette.palette>())
             {
                 var sb = new StringBuilder();
 
                 var colors = new StringBuilder();
                 var hueNames = new StringBuilder();
-                var shortName = palette.name.Replace(" ", "");
+                var shortName = palette.name?.Replace(" ", "");
 
-                for (var i = 0; i < palette.hexes.Length; i++)
+                for (var i = 0; i < palette.hexes?.Length; i++)
                 {
-                    var colorName = shortName + palettes.shades[i];
+                    var colorName = shortName + palettes.shades?[i];
                     colors.AppendLine($"\t\tpublic static Color {colorName} {{ get; }} = (Color)ColorConverter.ConvertFromString(\"{palette.hexes[i]}\");");
                     hueNames.AppendLine($"\t\t\t{{ MaterialDesignColor.{colorName}, {colorName} }},");
                 }
