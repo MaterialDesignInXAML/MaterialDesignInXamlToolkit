@@ -4,14 +4,11 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Remove="*.template.cs" />
         <Content Include="MdPaletteJson.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <None Include="PackIconDataFactory.template.cs">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="PackIconKind.template.cs">
+        <Compile Remove="*.template.cs" />
+        <None Include="*.template.cs">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <Content Include="MaterialColourSwatchesSnippet.xml">
@@ -25,13 +22,13 @@
         </None>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Humanizer" Version="2.8.26" />
-        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.0" PrivateAssets="all" />
-        <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.7.0" />
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.7.0" />
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.7.0" />
-        <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.7.0" />
-        <PackageReference Include="Microsoft.Composition" Version="1.0.31" />
-        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+        <PackageReference Include="Humanizer" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Common" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
+        <PackageReference Include="Microsoft.Composition" />
+        <PackageReference Include="Newtonsoft.Json" />
     </ItemGroup>
 </Project>
