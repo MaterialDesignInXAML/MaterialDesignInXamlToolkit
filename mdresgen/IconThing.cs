@@ -36,11 +36,11 @@ namespace mdresgen
 
         private static void Write(string content, string filePath)
         {
-            for(string currentDirectory = Path.GetFullPath(".");
+            for(string? currentDirectory = Path.GetFullPath(".");
                 !string.IsNullOrEmpty(Path.GetDirectoryName(currentDirectory));
                 currentDirectory = Path.GetDirectoryName(currentDirectory))
             {
-                string path = Path.Combine(currentDirectory, filePath);
+                string path = Path.Combine(currentDirectory!, filePath);
                 if (File.Exists(path))
                 {
                     File.WriteAllText(path, content);
@@ -71,9 +71,10 @@ namespace mdresgen
             var icons = new[] { new Icon("None", string.Empty, new List<string>()) } //Add None value always to Enum at first place
                 .Concat(
                    jObject["icons"].Select(t => new Icon(
-                   t["name"].ToString().Underscore().Pascalize(),
-                   t["data"].ToString(),
-                   t["aliases"].ToObject<IEnumerable<string>>().Select(x => x.Underscore().Pascalize()).ToList()))
+                   t["name"]?.ToString().Underscore().Pascalize() ?? throw new Exception("Failed to find name"),
+                   t["data"]?.ToString() ?? throw new Exception("Failed to find data"),
+                   t["aliases"]?.ToObject<IEnumerable<string>>().Select(x => x.Underscore().Pascalize()).ToList()
+                        ?? throw new Exception("Failed to find aliases")))
                 );
 
             var iconsByName = new Dictionary<string, Icon>(StringComparer.OrdinalIgnoreCase);
@@ -135,7 +136,8 @@ namespace mdresgen
             var namespaceDeclarationNode = rootNode.ChildNodes().Single();
             var enumDeclarationSyntaxNode = namespaceDeclarationNode.ChildNodes().OfType<EnumDeclarationSyntax>().Single();
 
-            var emptyEnumDeclarationSyntaxNode = enumDeclarationSyntaxNode.RemoveNodes(enumDeclarationSyntaxNode.ChildNodes().OfType<EnumMemberDeclarationSyntax>(), SyntaxRemoveOptions.KeepDirectives);
+            var emptyEnumDeclarationSyntaxNode = enumDeclarationSyntaxNode.RemoveNodes(enumDeclarationSyntaxNode.ChildNodes().OfType<EnumMemberDeclarationSyntax>(), SyntaxRemoveOptions.KeepDirectives)
+                ?? throw new Exception("Removed all nodes");
 
             var leadingTriviaList = SyntaxTriviaList.Create(SyntaxFactory.Whitespace("        "));
             var enumMemberDeclarationSyntaxs = icons.SelectMany(GetEnumMemberDeclarations).ToArray();
@@ -173,7 +175,7 @@ namespace mdresgen
                 .Select(nodeOrToken => nodeOrToken.AsToken())
                 .FirstOrDefault(
                     token =>
-                        token.Value.Equals(",") &&
+                        token.Value?.Equals(",") == true &&
                         (!token.HasTrailingTrivia || !token.TrailingTrivia.Any(SyntaxKind.EndOfLineTrivia)));
 
             SyntaxToken current;

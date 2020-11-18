@@ -1,10 +1,18 @@
 <Project>
     <ItemGroup>
         <PackageVersion Include="Dragablz" Version="0.0.3.223" />
+        <PackageVersion Include="Humanizer" Version="2.8.26" />
         <PackageVersion Include="MahApps.Metro" Version="2.3.0" />
+        <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.0" PrivateAssets="all" />
+        <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="3.7.0" />
+        <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="3.7.0" />
+        <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.7.0" />
+        <PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.7.0" />
+        <PackageVersion Include="Microsoft.Composition" Version="1.0.31" />
         <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
         <PackageVersion Include="Microsoft.NETCore.Platforms" Version="5.0.0" />
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+        <PackageVersion Include="Newtonsoft.Json" Version="12.0.3" />
         <PackageVersion Include="Shouldly" Version="3.0.2" />
         <PackageVersion Include="ShowMeTheXAML" Version="2.0.0" />
         <PackageVersion Include="ShowMeTheXAML.AvalonEdit" Version="2.0.0" />
