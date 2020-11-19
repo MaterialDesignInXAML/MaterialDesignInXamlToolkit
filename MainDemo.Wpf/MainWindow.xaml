@@ -11,13 +11,7 @@
     AutomationProperties.Name="{Binding Title, RelativeSource={RelativeSource Self}}"
     Height="800"
     Width="1100"
-    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-    TextElement.FontWeight="Regular"
-    TextElement.FontSize="13"
-    TextOptions.TextFormattingMode="Ideal" 
-    TextOptions.TextRenderingMode="Auto"
-    Background="{DynamicResource MaterialDesignPaper}"
-    FontFamily="{materialDesign:MaterialDesignFont}" 
+    Style="{StaticResource MaterialDesignWindow}" 
     Icon="favicon.ico">
     <Window.CommandBindings>
         <CommandBinding Command="Copy" Executed="OnCopy"/>
