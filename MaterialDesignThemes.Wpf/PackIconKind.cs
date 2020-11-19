@@ -7959,6 +7959,7 @@ namespace MaterialDesignThemes.Wpf
         SafeSquare,
         SafeSquareOutline,
         SafetyGoggles,
+        SafetyGlasses=SafetyGoggles,
         SailBoat,
         Sale,
         Discount=Sale,
