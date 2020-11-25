@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,9 +16,9 @@ namespace MaterialDesignThemes.Wpf
             DependencyObject currentVisualTreeElement = visual;
             do
             {
-                visual = (Visual)currentVisualTreeElement as Visual;
-                if (visual != null)
+                if (currentVisualTreeElement is Visual)
                 {
+                    visual = (Visual)currentVisualTreeElement;
                     Transform transform = VisualTreeHelper.GetTransform(visual);
                     if ((transform != null) &&
                         (transform.Value.M12 == 0) &&
@@ -40,9 +40,9 @@ namespace MaterialDesignThemes.Wpf
             DependencyObject currentVisualTreeElement = visual;
             do
             {
-                visual = currentVisualTreeElement as Visual;
-                if (visual != null)
+                if (currentVisualTreeElement is Visual)
                 {
+                    visual = (Visual)currentVisualTreeElement;
                     Transform transform = VisualTreeHelper.GetTransform(visual);
                     if ((transform != null) &&
                         (transform.Value.M21 == 0) &&
