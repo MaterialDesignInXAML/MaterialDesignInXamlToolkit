@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
@@ -31,6 +32,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             {
                 // add width of picker-button to textfield-padding
                 case 2 when values[1] is double rightAddend:
+                    Debug.WriteLine($"PickerInnerPaddingConverter: {padding.Right}+{rightAddend}+{Constants.PickerTextBoxInnerButtonSpacing}");
                     return new Thickness(
                         padding.Left,
                         padding.Top,
