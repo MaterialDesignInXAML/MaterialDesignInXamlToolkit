@@ -186,7 +186,7 @@
                         <Canvas VerticalAlignment="Bottom">
                             <TextBlock
                                 Canvas.Top="2"
-                                FontSize="10"
+                                FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
                                 MaxWidth="{Binding ActualWidth, ElementName=border}"
                                 Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                 Text="{TemplateBinding wpf:HintAssist.HelperText}" />
@@ -268,7 +268,7 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="HintWrapper" Property="Opacity" Value="1" />
                         </MultiTrigger>
-                        
+
                         <!-- IsEnabled -->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -316,7 +316,7 @@
                                 </Setter.Value>
                             </Setter>
                         </MultiTrigger>
-                        
+
                         <!-- IsKeyboardFocused -->
                         <Trigger Property="IsKeyboardFocused" Value="True">
                             <Setter TargetName="Underline" Property="IsActive" Value="True" />
@@ -337,7 +337,7 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="borderUnderline" Property="Height" Value="2" />
                         </MultiTrigger>
-                        
+
                         <!-- IsMouseOver -->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -374,7 +374,7 @@
                             <Setter TargetName="border" Property="Margin" Value="-1" />
                             <Setter Property="BorderThickness" Value="2" />
                         </MultiTrigger>
-                        
+
                         <!-- Validation.HasError -->
                         <Trigger Property="Validation.HasError" Value="true">
                             <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
