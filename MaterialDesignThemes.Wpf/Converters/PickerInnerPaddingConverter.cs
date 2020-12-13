@@ -15,7 +15,7 @@ namespace MaterialDesignThemes.Wpf.Converters
         /// </summary>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
             => value is Thickness padding
-                ? new Thickness(Constants.PickerTextBoxInnerButtonSpacing, padding.Top, padding.Right, padding.Bottom)
+                ? new Thickness(Constants.TextBoxInnerButtonSpacing, padding.Top, padding.Right, padding.Bottom)
                 : Binding.DoNothing;
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotSupportedException();
@@ -32,11 +32,10 @@ namespace MaterialDesignThemes.Wpf.Converters
             {
                 // add width of picker-button to textfield-padding
                 case 2 when values[1] is double rightAddend:
-                    Debug.WriteLine($"PickerInnerPaddingConverter: {padding.Right}+{rightAddend}+{Constants.PickerTextBoxInnerButtonSpacing}");
                     return new Thickness(
                         padding.Left,
                         padding.Top,
-                        padding.Right + rightAddend + Constants.PickerTextBoxInnerButtonSpacing,
+                        padding.Right + rightAddend + Constants.TextBoxInnerButtonSpacing,
                         padding.Bottom);
 
                 // calculate padding for picker-button (considering floating hint offset)

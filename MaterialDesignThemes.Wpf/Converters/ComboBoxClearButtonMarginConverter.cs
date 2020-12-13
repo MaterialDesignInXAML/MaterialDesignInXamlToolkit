@@ -14,7 +14,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             return new Thickness(
                 borderThickness.Left,
                 borderThickness.Top + padding.Top,
-                borderThickness.Right + padding.Right + Constants.ComboBoxArrowSize + Constants.PickerTextBoxInnerButtonSpacing,
+                borderThickness.Right + padding.Right + Constants.ComboBoxArrowSize + Constants.TextBoxInnerButtonSpacing,
                 borderThickness.Bottom + padding.Bottom);
         }
 
