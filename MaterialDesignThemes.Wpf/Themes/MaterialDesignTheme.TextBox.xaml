@@ -8,7 +8,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearTextConverter" />
+    <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearButtonVisibilityConverter" />
     <converters:NotConverter x:Key="NotConverter" />
     <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
     <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
@@ -155,9 +155,9 @@
                                         Focusable="False"
                                         Style="{DynamicResource MaterialDesignToolButton}">
                                         <Button.Visibility>
-                                            <MultiBinding Converter="{StaticResource ClearTextConverter}">
-                                                <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}" />
-                                                <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <MultiBinding Converter="{StaticResource ClearButtonVisibilityConverter}">
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.HasClearButton)" />
+                                                <Binding ElementName="Hint" Path="IsContentNullOrEmpty" />
                                             </MultiBinding>
                                         </Button.Visibility>
                                         <wpf:PackIcon Margin="0" Kind="CloseCircle" />

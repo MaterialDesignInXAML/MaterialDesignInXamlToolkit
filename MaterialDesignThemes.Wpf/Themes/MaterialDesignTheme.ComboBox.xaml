@@ -15,7 +15,7 @@
     <converters:MathConverter x:Key="DivisionMathConverter" Operation="Divide" />
     <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
     <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
-    <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearTextConverter" />
+    <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearButtonVisibilityConverter" />
     <converters:NotConverter x:Key="NotConverter" />
     <converters:FallbackBrushConverter x:Key="FallbackBrushConverter" />
     <converters:RemoveAlphaBrushConverter x:Key="RemoveAlphaBrushConverter" />
@@ -563,9 +563,9 @@
                     </MultiBinding>
                 </Button.Margin>
                 <Button.Visibility>
-                    <MultiBinding Converter="{StaticResource ClearTextConverter}">
-                        <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}" />
+                    <MultiBinding Converter="{StaticResource ClearButtonVisibilityConverter}">
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.HasClearButton)" />
+                        <Binding ElementName="Hint" Path="IsContentNullOrEmpty" />
                     </MultiBinding>
                 </Button.Visibility>
                 <wpf:PackIcon Margin="0" Kind="CloseCircle" />
@@ -923,9 +923,9 @@
                     </MultiBinding>
                 </Button.Margin>
                 <Button.Visibility>
-                    <MultiBinding Converter="{StaticResource ClearTextConverter}">
-                        <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}" />
+                    <MultiBinding Converter="{StaticResource ClearButtonVisibilityConverter}">
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.HasClearButton)" />
+                        <Binding ElementName="Hint" Path="IsContentNullOrEmpty" />
                     </MultiBinding>
                 </Button.Visibility>
                 <wpf:PackIcon Margin="0" Kind="CloseCircle" />
