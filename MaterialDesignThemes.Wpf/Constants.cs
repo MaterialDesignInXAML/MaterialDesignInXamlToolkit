@@ -11,5 +11,6 @@ namespace MaterialDesignThemes.Wpf
         public const double TextBoxNotEnabledOpacity = 0.56;
         public const double PickerTextBoxInnerButtonSpacing = 2;
         public static readonly Thickness InnerButtonMargin = new Thickness(PickerTextBoxInnerButtonSpacing, 0, 0, 0);
+        public const double ComboBoxArrowSize = 8;
     }
 }

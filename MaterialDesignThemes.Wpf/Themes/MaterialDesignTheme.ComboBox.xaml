@@ -20,7 +20,8 @@
     <converters:FallbackBrushConverter x:Key="FallbackBrushConverter" />
     <converters:RemoveAlphaBrushConverter x:Key="RemoveAlphaBrushConverter" />
     <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
-    <converters:FontToLineHeightConverter x:Key="FontToLineHeightConverter" />
+    <converters:ComboBoxClearButtonMarginConverter x:Key="ComboBoxClearButtonMarginConverter" />
+    <converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
 
     <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
     <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
@@ -328,6 +329,7 @@
 
     <Style x:Key="MaterialDesignComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Focusable" Value="False" />
@@ -348,7 +350,8 @@
                                     BorderBrush="Transparent"
                                     BorderThickness="0">
                                 <Path x:Name="arrow"
-                                      Width="8" Height="8"
+                                      Width="{x:Static wpf:Constants.ComboBoxArrowSize}"
+                                      Height="{x:Static wpf:Constants.ComboBoxArrowSize}"
                                       Margin="0"
                                       Stretch="Uniform"
                                       HorizontalAlignment="Right"
@@ -401,15 +404,6 @@
 
     <ControlTemplate x:Key="MaterialDesignFloatingHintComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid>
-            <ToggleButton
-                x:Name="toggleButton"
-                Grid.Column="0"
-                Panel.ZIndex="1"
-                Background="Transparent"
-                BorderBrush="{TemplateBinding BorderBrush}"
-                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                Style="{StaticResource MaterialDesignComboBoxToggleButton}"
-                Padding="{TemplateBinding Padding}" />
             <AdornerDecorator>
                 <Border
                     x:Name="templateRoot"
@@ -482,24 +476,13 @@
                                     Hint="{TemplateBinding wpf:HintAssist.Hint}"
                                     Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}" />
 
-                                <StackPanel
-                                    Orientation="Horizontal"
-                                    Grid.Column="2">
-                                    <TextBlock
-                                        FontSize="{TemplateBinding FontSize}"
-                                        Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                        Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
-                                        IsHitTestVisible="False" />
-                                    <Button x:Name="PART_ClearButton" Height="Auto" Padding="2 0 0 0" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
-                                        <Button.Visibility>
-                                            <MultiBinding Converter="{StaticResource ClearTextConverter}">
-                                                <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}" />
-                                                <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}" />
-                                            </MultiBinding>
-                                        </Button.Visibility>
-                                        <wpf:PackIcon Margin="0" Kind="CloseCircle" />
-                                    </Button>
-                                </StackPanel>
+                                <TextBlock
+                                    Grid.Column="2"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                                    Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
+                                    IsHitTestVisible="False"
+                                    Margin="{Binding ActualWidth, ElementName=PART_ClearButton, Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter={x:Static Dock.Right}}" />
                             </Grid>
                         </Border>
                     </Grid>
@@ -559,6 +542,29 @@
                     </ScrollViewer>
                 </ContentControl>
             </wpf:ComboBoxPopup>
+            <ToggleButton
+                x:Name="toggleButton"
+                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                Style="{StaticResource MaterialDesignComboBoxToggleButton}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                Padding="{TemplateBinding Padding}" />
+            <Button
+                x:Name="PART_ClearButton" 
+                Style="{DynamicResource MaterialDesignToolButton}"
+                Margin="{TemplateBinding Padding, Converter={StaticResource ComboBoxClearButtonMarginConverter}}"
+                Height="Auto"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Padding="0"
+                Focusable="False">
+                <Button.Visibility>
+                    <MultiBinding Converter="{StaticResource ClearTextConverter}">
+                        <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.HasClearButton)" />
+                    </MultiBinding>
+                </Button.Visibility>
+                <wpf:PackIcon Margin="0" Kind="CloseCircle" />
+            </Button>
         </Grid>
 
         <ControlTemplate.Triggers>
@@ -756,14 +762,6 @@
 
     <ControlTemplate x:Key="MaterialDesignFilledComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid>
-            <ToggleButton
-                x:Name="toggleButton"
-                Panel.ZIndex="1"
-                Background="Transparent"
-                BorderBrush="{TemplateBinding BorderBrush}"
-                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                Style="{StaticResource MaterialDesignComboBoxToggleButton}"
-                Padding="{TemplateBinding Padding}" />
             <AdornerDecorator>
                 <Border
                     x:Name="templateRoot"
@@ -834,23 +832,14 @@
                                     Hint="{TemplateBinding wpf:HintAssist.Hint}"
                                     Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}" />
 
-                                <StackPanel Orientation="Horizontal" Grid.Column="2">
-                                    <TextBlock
-                                        x:Name="SuffixTextBlock"
-                                        FontSize="{TemplateBinding FontSize}"
-                                        Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                        Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
-                                        IsHitTestVisible="False" />
-                                    <Button x:Name="PART_ClearButton" Height="Auto" Padding="2 0 0 0" Style="{DynamicResource MaterialDesignToolButton}" Focusable="False">
-                                        <Button.Visibility>
-                                            <MultiBinding Converter="{StaticResource ClearTextConverter}">
-                                                <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}" />
-                                                <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}" />
-                                            </MultiBinding>
-                                        </Button.Visibility>
-                                        <wpf:PackIcon Margin="0" Kind="CloseCircle" />
-                                    </Button>
-                                </StackPanel>
+                                <TextBlock
+                                    Grid.Column="2"
+                                    x:Name="SuffixTextBlock"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                                    Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
+                                    IsHitTestVisible="False"
+                                    Margin="{Binding ActualWidth, ElementName=PART_ClearButton, Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter={x:Static Dock.Right}}" />
                             </Grid>
                         </Border>
                     </Grid>
@@ -908,6 +897,29 @@
                     </ScrollViewer>
                 </ContentControl>
             </wpf:ComboBoxPopup>
+            <ToggleButton
+                x:Name="toggleButton"
+                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                Style="{StaticResource MaterialDesignComboBoxToggleButton}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                Padding="{TemplateBinding Padding}" />
+            <Button
+                x:Name="PART_ClearButton" 
+                Style="{DynamicResource MaterialDesignToolButton}"
+                Margin="{TemplateBinding Padding, Converter={StaticResource ComboBoxClearButtonMarginConverter}}"
+                Height="Auto"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Padding="0"
+                Focusable="False">
+                <Button.Visibility>
+                    <MultiBinding Converter="{StaticResource ClearTextConverter}">
+                        <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.HasClearButton)" />
+                    </MultiBinding>
+                </Button.Visibility>
+                <wpf:PackIcon Margin="0" Kind="CloseCircle" />
+            </Button>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="False">
