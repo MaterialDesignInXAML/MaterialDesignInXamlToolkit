@@ -551,12 +551,17 @@
             <Button
                 x:Name="PART_ClearButton" 
                 Style="{DynamicResource MaterialDesignToolButton}"
-                Margin="{TemplateBinding Padding, Converter={StaticResource ComboBoxClearButtonMarginConverter}}"
                 Height="Auto"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Right"
                 Padding="0"
                 Focusable="False">
+                <Button.Margin>
+                    <MultiBinding Converter="{StaticResource ComboBoxClearButtonMarginConverter}">
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Padding" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="BorderThickness" />
+                    </MultiBinding>
+                </Button.Margin>
                 <Button.Visibility>
                     <MultiBinding Converter="{StaticResource ClearTextConverter}">
                         <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}" />
@@ -906,12 +911,17 @@
             <Button
                 x:Name="PART_ClearButton" 
                 Style="{DynamicResource MaterialDesignToolButton}"
-                Margin="{TemplateBinding Padding, Converter={StaticResource ComboBoxClearButtonMarginConverter}}"
                 Height="Auto"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Right"
                 Padding="0"
                 Focusable="False">
+                <Button.Margin>
+                    <MultiBinding Converter="{StaticResource ComboBoxClearButtonMarginConverter}">
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Padding" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="BorderThickness" />
+                    </MultiBinding>
+                </Button.Margin>
                 <Button.Visibility>
                     <MultiBinding Converter="{StaticResource ClearTextConverter}">
                         <Binding ElementName="Hint" Path="IsContentNullOrEmpty" Converter="{StaticResource NotConverter}" />

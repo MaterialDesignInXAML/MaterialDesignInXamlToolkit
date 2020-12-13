@@ -5,19 +5,19 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    internal class ComboBoxClearButtonMarginConverter : IValueConverter
+    internal class ComboBoxClearButtonMarginConverter : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            var padding = (Thickness)value;
+            var padding = (Thickness)values[0];
+            var borderThickness = (Thickness)values[1];
             return new Thickness(
-                0,
-                0,
-                padding.Right + Constants.ComboBoxArrowSize + Constants.PickerTextBoxInnerButtonSpacing,
-                0);
+                borderThickness.Left,
+                borderThickness.Top + padding.Top,
+                borderThickness.Right + padding.Right + Constants.ComboBoxArrowSize + Constants.PickerTextBoxInnerButtonSpacing,
+                borderThickness.Bottom + padding.Bottom);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => throw new NotImplementedException();
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }
