@@ -6,23 +6,26 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    public class FloatingHintOffsetCalculationConverter : IMultiValueConverter
+    internal class FloatingHintOffsetCalculationConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object? parameter, CultureInfo culture)
         {
-            double height = 0;
-            if (values[0] is FontFamily fontFamily
-                && values[1] is double fontSize
-                && values[2] is double floatingScale)
-                height = fontFamily.LineSpacing * fontSize * floatingScale;
+            var hintHeight = ((FontFamily)values[0]).LineSpacing
+                             * (double)values[1]; // fontSize
+            var floatingHintHeight = hintHeight
+                                     * (double)values[2]; // floatingScale
 
-            if (values.Length > 3 && values[3] is Thickness padding)
-                height = height / 2 + padding.Top;
+            var offset = (values.Length > 3 ? values[3] : null) switch
+            {
+                Thickness padding => floatingHintHeight / 2 + padding.Top,
+                double parentHeight => (parentHeight - hintHeight + floatingHintHeight) / 2,
+                _ => floatingHintHeight
+            };
 
             if (targetType == typeof(Point)) // offset
-                return new Point(0, -height); 
+                return new Point(0, -offset);
             if (targetType == typeof(Thickness)) // margin
-                return new Thickness(0, height, 0, 0);
+                return new Thickness(0, offset, 0, 0);
             throw new NotSupportedException(targetType.FullName);
         }
 
