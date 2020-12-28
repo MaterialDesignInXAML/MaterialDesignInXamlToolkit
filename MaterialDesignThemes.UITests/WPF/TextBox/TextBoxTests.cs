@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using XamlTest;
 using Xunit;
@@ -50,7 +51,6 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
 
             recorder.Success();
         }
-
 
         [Fact]
         [Description("Issue 1883")]
@@ -148,6 +148,28 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
             Color background = await hintBackground.GetEffectiveBackground(textFieldGrid);
 
             Assert.Equal(255, background.A);
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Pull Request 2192")]
+        public async Task OnTextBoxHelperTextFontSize_ChangesHelperTextFontSize()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml(@"
+<Grid Margin=""30"">
+    <TextBox VerticalAlignment=""Top""
+             Text=""Some Text""
+             materialDesign:HintAssist.HelperTextFontSize=""20"">
+    </TextBox>
+</Grid>");
+            IVisualElement textBox = await grid.GetElement("/TextBox");
+            IVisualElement helpTextBlock = await textBox.GetElement("/Grid/Canvas/TextBlock");
+            
+            double fontSize = await helpTextBlock.GetProperty<double>(TextBlock.FontSizeProperty.Name);
+
+            Assert.Equal(20, fontSize);
             recorder.Success();
         }
     }
