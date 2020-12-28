@@ -171,7 +171,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0" 
+                <Border Grid.Row="0"
                         Height="{StaticResource PopupTopBottomMargin}"
                         Background="{Binding ElementName=PART_Popup, Path=Background}" />
                 <ContentPresenter Grid.Row="1"/>
@@ -292,7 +292,7 @@
                                                    Converter={StaticResource BrushRoundConverter}}"
                         Focusable="False"
                         Padding="{TemplateBinding Padding}"
-                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                         RecognizesAccessKey="False" />
         </Grid>
         <ControlTemplate.Triggers>
@@ -498,7 +498,7 @@
             <Canvas VerticalAlignment="Bottom">
                 <TextBlock
                     Canvas.Top="2"
-                    FontSize="10"
+                    FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
                     MaxWidth="{Binding ActualWidth, ElementName=toggleButton}"
                     Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                     Text="{TemplateBinding wpf:HintAssist.HelperText}" />
@@ -860,7 +860,7 @@
             <Canvas VerticalAlignment="Bottom">
                 <TextBlock
                     Canvas.Top="2"
-                    FontSize="10"
+                    FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
                     MaxWidth="{Binding ActualWidth, ElementName=toggleButton}"
                     Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                     Text="{TemplateBinding wpf:HintAssist.HelperText}" />
