@@ -287,6 +287,9 @@ namespace MaterialDesignThemes.Wpf
             var mainVisual = visualAncestry.OfType<Visual>().LastOrDefault();
             if (mainVisual is null) throw new ArgumentException($"{nameof(visualAncestry)} must contains unless one {nameof(Visual)} control inside.");
 
+            var controlVisual = visualAncestry.OfType<Visual>().FirstOrDefault();
+            if (controlVisual == null) throw new ArgumentException($"{nameof(visualAncestry)} must contains unless one {nameof(Visual)} control inside.");
+
             var screen = Screen.FromPoint(locationFromScreen);
             var screenWidth = (int)screen.Bounds.Width;
             var screenHeight = (int)screen.Bounds.Height;
@@ -295,10 +298,10 @@ namespace MaterialDesignThemes.Wpf
             var locationX = (int)(locationFromScreen.X - screen.Bounds.X) % screenWidth;
             var locationY = (int)(locationFromScreen.Y - screen.Bounds.Y) % screenHeight;
 
-            var upVerticalOffsetIndependent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset);
+            var upVerticalOffsetIndependent = DpiHelper.TransformToDeviceY(mainVisual, UpVerticalOffset) * ScaleHelper.GetTotalTransformScaleY(controlVisual);
             var newUpY = upVerticalOffsetIndependent - popupSize.Height + targetSize.Height;
-            var newDownY = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset);
-            var offsetX = DpiHelper.TransformToDeviceX(mainVisual, RelativeHorizontalOffset);
+            var newDownY = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset) * ScaleHelper.GetTotalTransformScaleY(controlVisual);
+            var offsetX = DpiHelper.TransformToDeviceX(mainVisual, RelativeHorizontalOffset) * ScaleHelper.GetTotalTransformScaleX(controlVisual);
             if (FlowDirection == FlowDirection.LeftToRight)
                 offsetX = Round(offsetX);
             else
