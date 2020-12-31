@@ -51,7 +51,7 @@
         <StackPanel Grid.Row="1">
             <StackPanel
                 Orientation="Horizontal"
-                Margin="0 24 0 0">
+                Margin="0 16 0 0">
                 
                 <StackPanel.Resources>
                     <system:Double x:Key="IconSize">24</system:Double>
@@ -374,10 +374,10 @@
             </StackPanel>
         </StackPanel>
         
-        <Border
+        <Rectangle
             Margin="0 24 0 0"
-            BorderThickness="0 1 0 0"
-            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            Height="1"
+            Fill="{DynamicResource MaterialDesignDivider}"
             Grid.Row="2" />
 
         <TextBlock
@@ -443,11 +443,12 @@
                 </Grid>
             </smtx:XamlDisplay>            
         </StackPanel>
-        
-        <Border
+
+        <Rectangle
             Margin="0 24 0 0"
-            BorderThickness="0 1 0 0"
-            BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="5" />
+            Height="1"
+            Fill="{DynamicResource MaterialDesignDivider}"
+            Grid.Row="5" />
 
         <TextBlock
             Style="{StaticResource MaterialDesignHeadline5TextBlock}"
@@ -583,11 +584,11 @@
                 </smtx:XamlDisplay>
             </StackPanel>
         </StackPanel>
-        
-        <Border
+
+        <Rectangle
             Margin="0 24 0 0"
-            BorderThickness="0 1 0 0"
-            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            Height="1"
+            Fill="{DynamicResource MaterialDesignDivider}"
             Grid.Row="8" />
 
         <TextBlock

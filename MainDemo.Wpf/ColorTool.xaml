@@ -565,55 +565,53 @@
                             Color="{Binding SelectedColor, Delay=25}"/>
                     </Grid>
                     
-                    <ScrollViewer
+                    <StackPanel
                         Visibility="{Binding IsChecked,
                                 ElementName=MdPaletteButton,
                                 Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <StackPanel.Resources>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Width" Value="40" />
-                                        <Setter Property="Margin" Value="1 1 0 0" />
-                                        <Setter Property="TextAlignment" Value="Center" />
-                                    </Style>
-                                </StackPanel.Resources>
-                                
-                                <Rectangle Width="80" />
-                                <TextBlock Text="50" />
-                                <TextBlock Text="100" />
-                                <TextBlock Text="200" />
-                                <TextBlock Text="300" />
-                                <TextBlock Text="400" />
-                                <TextBlock Text="500" />
-                                <TextBlock Text="600" />
-                                <TextBlock Text="700" />
-                                <TextBlock Text="800" />
-                                <TextBlock Text="900" />
-                                <TextBlock Text="A100" />
-                                <TextBlock Text="A200" />
-                                <TextBlock Text="A400" />
-                                <TextBlock Text="A700" />
-                            </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Width" Value="40" />
+                                    <Setter Property="Margin" Value="1 1 0 0" />
+                                    <Setter Property="TextAlignment" Value="Center" />
+                                </Style>
+                            </StackPanel.Resources>
                             
-                            <ItemsControl ItemsSource="{Binding Swatches}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate DataType="{x:Type materialDesignColors:ISwatch}">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Name}" Width="80" VerticalAlignment="Center" />
-                                            <ItemsControl ItemsSource="{Binding Hues}" ItemTemplate="{StaticResource SwatchColorTemplate}">
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <VirtualizingStackPanel Orientation="Horizontal" />
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-                                            </ItemsControl>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+                            <Rectangle Width="80" />
+                            <TextBlock Text="50" />
+                            <TextBlock Text="100" />
+                            <TextBlock Text="200" />
+                            <TextBlock Text="300" />
+                            <TextBlock Text="400" />
+                            <TextBlock Text="500" />
+                            <TextBlock Text="600" />
+                            <TextBlock Text="700" />
+                            <TextBlock Text="800" />
+                            <TextBlock Text="900" />
+                            <TextBlock Text="A100" />
+                            <TextBlock Text="A200" />
+                            <TextBlock Text="A400" />
+                            <TextBlock Text="A700" />
                         </StackPanel>
-                    </ScrollViewer>
+                        
+                        <ItemsControl ItemsSource="{Binding Swatches}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type materialDesignColors:ISwatch}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}" Width="80" VerticalAlignment="Center" />
+                                        <ItemsControl ItemsSource="{Binding Hues}" ItemTemplate="{StaticResource SwatchColorTemplate}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <VirtualizingStackPanel Orientation="Horizontal" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
                 </Grid>
             </DockPanel>
         </DockPanel>

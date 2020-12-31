@@ -6,239 +6,237 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <ScrollViewer>
-        <GroupBox
-            materialDesign:ColorZoneAssist.Mode="Custom"
-            materialDesign:ColorZoneAssist.Background="{DynamicResource PrimaryHueLightBrush}"
-            materialDesign:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
-            Margin="10"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top">
-            <GroupBox.Header>
-                <StackPanel
-                    Orientation="Horizontal">
-                    <StackPanel>
-                        <StackPanel.Resources>
-                            <Style TargetType="Slider" BasedOn="{StaticResource MaterialDesignSlider}">
-                                <Setter Property="Width" Value="130" />
-                                <Setter Property="Margin" Value="10 0" />
-                                <Setter Property="IsSnapToTickEnabled" Value="True" />
-                                <Setter Property="VerticalAlignment" Value="Center" />
-                            </Style>
-                            <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
-                                <Setter Property="Margin" Value="10 0" />
-                                <Setter Property="HorizontalAlignment" Value="Left" />
-                            </Style>
-                        </StackPanel.Resources>
-                        <TextBlock>
-                            <Run Text="FontSize" FontFamily="Consolas" />
-                            <Run Text="{Binding Value, ElementName=FontSizeSlider, Mode=OneWay}" FontStyle="Italic" />
-                        </TextBlock>
-                        <Slider
-                            x:Name="FontSizeSlider"
-                            Minimum="8"
-                            Maximum="24"
-                            Value="14" />
-                        <TextBlock>
-                            <Run Text="Padding" FontFamily="Consolas" />
-                            <LineBreak />
-                            <Run Text="horizontal" />
-                            <Run Text="{Binding Value, ElementName=HorizontalPaddingSlider, Mode=OneWay}" FontStyle="Italic" />
-                        </TextBlock>
-                        <Slider
-                            x:Name="HorizontalPaddingSlider"
-                            Minimum="0"
-                            Maximum="16"
-                            Value="0" />
-                        <TextBlock>
-                            <Run Text="Padding" FontFamily="Consolas" />
-                            <LineBreak />
-                            <Run Text="vertical" />
-                            <Run Text="{Binding Value, ElementName=VerticalPaddingSlider, Mode=OneWay}" FontStyle="Italic" />
-                        </TextBlock>
-                        <Slider
-                            x:Name="VerticalPaddingSlider"
-                            Minimum="0"
-                            Maximum="16"
-                            Value="4" />
-                        <TextBlock>
-                            <Run Text="TextFieldAssist.TextBoxViewMargin" FontFamily="Consolas" />
-                            <LineBreak />
-                            <Run Text="horizontal" />
-                            <Run Text="{Binding Value, ElementName=HorizontalTextBoxViewMarginSlider, Mode=OneWay}" FontStyle="Italic" />
-                        </TextBlock>
-                        <Slider
-                            x:Name="HorizontalTextBoxViewMarginSlider"
-                            Minimum="0"
-                            Maximum="16"
-                            Value="4" />
-                    </StackPanel>
-                    <StackPanel>
-                        <StackPanel.Resources>
-                            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
-                                <Setter Property="FontFamily" Value="Consolas" />
-                                <Setter Property="MinWidth" Value="200" />
-                                <Setter Property="materialDesign:HintAssist.IsFloating" Value="True" />
-                                <Setter Property="Margin" Value="10 2" />
-                                <Setter Property="HorizontalAlignment" Value="Left" />
-                                <Setter Property="VerticalAlignment" Value="Center" />
-                            </Style>
-                        </StackPanel.Resources>
-                        <TextBox x:Name="HintTextBox" materialDesign:HintAssist.Hint="HintAssist.Hint" Text="Hint" />
-                        <TextBox x:Name="HelperTextBox" materialDesign:HintAssist.Hint="HintAssist.HelperText" />
-                        <TextBox x:Name="ValidationErrorTextBox" materialDesign:HintAssist.Hint="Validation error" />
-                        <TextBox x:Name="PrefixTextBox" materialDesign:HintAssist.Hint="TextFieldAssist.PrefixText" />
-                        <TextBox x:Name="SuffixTextBox" materialDesign:HintAssist.Hint="TextFieldAssist.SuffixText" />
-                    </StackPanel>
-                    <StackPanel>
-                        <StackPanel.Resources>
-                            <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
-                                <Setter Property="FontFamily" Value="Consolas" />
-                                <Setter Property="Margin" Value="10 4" />
-                                <Setter Property="HorizontalAlignment" Value="Left" />
-                            </Style>
-                        </StackPanel.Resources>
-                        <CheckBox x:Name="IsEnabledCheckBox" Content="IsEnabled" IsChecked="True" />
-                        <CheckBox x:Name="HasClearButtonCheckBox" Content="TextFieldAssist.HasClearButton" />
-                        <CheckBox x:Name="IsEditableCheckBox" Content="ComboBox.IsEditable" />
-                    </StackPanel>
-                </StackPanel>
-            </GroupBox.Header>
-            <StackPanel>
-                <Grid
-                    x:Name="FieldsLineUpGrid"
-                    TextElement.FontSize="{Binding Value, ElementName=FontSizeSlider}"
-                    IsEnabled="{Binding IsChecked, ElementName=IsEnabledCheckBox}"
-                    HorizontalAlignment="Left">
-                    <Grid.Resources>
-                        <Style x:Key="StyleHeader" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
-                            <Setter Property="VerticalAlignment" Value="Center" />
-                            <Setter Property="HorizontalAlignment" Value="Left" />
+    <GroupBox
+        materialDesign:ColorZoneAssist.Mode="Custom"
+        materialDesign:ColorZoneAssist.Background="{DynamicResource PrimaryHueLightBrush}"
+        materialDesign:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+        Margin="10"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top">
+        <GroupBox.Header>
+            <StackPanel
+                Orientation="Horizontal">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="Slider" BasedOn="{StaticResource MaterialDesignSlider}">
+                            <Setter Property="Width" Value="130" />
                             <Setter Property="Margin" Value="10 0" />
-                            <Setter Property="Opacity" Value="0.56" />
-                        </Style>
-                        <Style x:Key="FieldHeader" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
-                            <Setter Property="VerticalAlignment" Value="Top" />
-                            <Setter Property="HorizontalAlignment" Value="Center" />
-                            <Setter Property="Margin" Value="0 6" />
-                            <Setter Property="Opacity" Value="0.56" />
-                        </Style>
-                        <Style x:Key="NotAvailable" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
-                            <Setter Property="Text" Value="N/A" />
-                            <Setter Property="Opacity" Value="0.24" />
+                            <Setter Property="IsSnapToTickEnabled" Value="True" />
                             <Setter Property="VerticalAlignment" Value="Center" />
-                            <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
-                    </Grid.Resources>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition MinWidth="100" />
-                        <ColumnDefinition MinWidth="100" />
-                        <ColumnDefinition MinWidth="100" />
-                        <ColumnDefinition MinWidth="100" />
-                        <ColumnDefinition MinWidth="100" />
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource StyleHeader}" Text="Default" />
-                    <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource StyleHeader}" Text="Floating" />
-                    <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource StyleHeader}" Text="Filled" />
-                    <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource StyleHeader}" Text="Outlined" />
-
-                    <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource FieldHeader}" Text="TextField" />
-                    <TextBlock Grid.Column="2" Grid.Row="0" Style="{StaticResource FieldHeader}" Text="PasswordBox" />
-                    <TextBlock Grid.Column="3" Grid.Row="0" Style="{StaticResource FieldHeader}" Text="ComboBox" />
-                    <TextBlock Grid.Column="4" Grid.Row="0" Style="{StaticResource FieldHeader}" Text="DatePicker" />
-                    <TextBlock Grid.Column="5" Grid.Row="0" Style="{StaticResource FieldHeader}" Text="TimePicker" />
-
-                    <TextBox
-                        Grid.Column="1"
-                        Grid.Row="1" />
-                    <TextBox
-                        Grid.Column="1"
-                        Grid.Row="2"
-                        materialDesign:HintAssist.IsFloating="True" />
-                    <TextBox
-                        Grid.Column="1"
-                        Grid.Row="3"
-                        Style="{StaticResource MaterialDesignFilledTextBox}" />
-                    <TextBox
-                        Grid.Column="1"
-                        Grid.Row="4"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-
-                    <PasswordBox
-                        Grid.Column="2"
-                        Grid.Row="1" />
-                    <PasswordBox
-                        Grid.Column="2"
-                        Grid.Row="2"
-                        materialDesign:HintAssist.IsFloating="True" />
-                    <PasswordBox
-                        Grid.Column="2"
-                        Grid.Row="3"
-                        Style="{StaticResource MaterialDesignFilledPasswordBox}" />
-                    <PasswordBox
-                        Grid.Column="2"
-                        Grid.Row="4"
-                        Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
-
-                    <ComboBox
-                        Grid.Column="3"
-                        Grid.Row="1" />
-                    <ComboBox
-                        Grid.Column="3"
-                        Grid.Row="2"
-                        materialDesign:HintAssist.IsFloating="true" />
-                    <ComboBox
-                        Grid.Column="3"
-                        Grid.Row="3"
-                        Style="{StaticResource MaterialDesignFilledComboBox}" />
-                    <TextBlock
-                        Grid.Column="3"
-                        Grid.Row="4"
-                        Style="{StaticResource NotAvailable}" />
-
-                    <DatePicker
-                        Grid.Column="4"
-                        Grid.Row="1" />
-                    <DatePicker
-                        Grid.Column="4"
-                        Grid.Row="2"
-                        materialDesign:HintAssist.IsFloating="True" />
-                    <DatePicker
-                        Grid.Column="4"
-                        Grid.Row="3"
-                        Style="{StaticResource MaterialDesignFilledDatePicker}" />
-                    <DatePicker
-                        Grid.Column="4"
-                        Grid.Row="4"
-                        Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-
-                    <materialDesign:TimePicker
-                        Grid.Column="5"
-                        Grid.Row="1" />
-                    <materialDesign:TimePicker
-                        Grid.Column="5"
-                        Grid.Row="2"
-                        Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
-                    <materialDesign:TimePicker
-                        Grid.Column="5"
-                        Grid.Row="3"
-                        Style="{StaticResource MaterialDesignFilledTimePicker}" />
-                    <materialDesign:TimePicker
-                        Grid.Column="5"
-                        Grid.Row="4"
-                        Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
-
-                </Grid>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+                            <Setter Property="Margin" Value="10 0" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock>
+                        <Run Text="FontSize" FontFamily="Consolas" />
+                        <Run Text="{Binding Value, ElementName=FontSizeSlider, Mode=OneWay}" FontStyle="Italic" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="FontSizeSlider"
+                        Minimum="8"
+                        Maximum="24"
+                        Value="14" />
+                    <TextBlock>
+                        <Run Text="Padding" FontFamily="Consolas" />
+                        <LineBreak />
+                        <Run Text="horizontal" />
+                        <Run Text="{Binding Value, ElementName=HorizontalPaddingSlider, Mode=OneWay}" FontStyle="Italic" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="HorizontalPaddingSlider"
+                        Minimum="0"
+                        Maximum="16"
+                        Value="0" />
+                    <TextBlock>
+                        <Run Text="Padding" FontFamily="Consolas" />
+                        <LineBreak />
+                        <Run Text="vertical" />
+                        <Run Text="{Binding Value, ElementName=VerticalPaddingSlider, Mode=OneWay}" FontStyle="Italic" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="VerticalPaddingSlider"
+                        Minimum="0"
+                        Maximum="16"
+                        Value="4" />
+                    <TextBlock>
+                        <Run Text="TextFieldAssist.TextBoxViewMargin" FontFamily="Consolas" />
+                        <LineBreak />
+                        <Run Text="horizontal" />
+                        <Run Text="{Binding Value, ElementName=HorizontalTextBoxViewMarginSlider, Mode=OneWay}" FontStyle="Italic" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="HorizontalTextBoxViewMarginSlider"
+                        Minimum="0"
+                        Maximum="16"
+                        Value="4" />
+                </StackPanel>
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                            <Setter Property="FontFamily" Value="Consolas" />
+                            <Setter Property="MinWidth" Value="200" />
+                            <Setter Property="materialDesign:HintAssist.IsFloating" Value="True" />
+                            <Setter Property="Margin" Value="10 2" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBox x:Name="HintTextBox" materialDesign:HintAssist.Hint="HintAssist.Hint" Text="Hint" />
+                    <TextBox x:Name="HelperTextBox" materialDesign:HintAssist.Hint="HintAssist.HelperText" />
+                    <TextBox x:Name="ValidationErrorTextBox" materialDesign:HintAssist.Hint="Validation error" />
+                    <TextBox x:Name="PrefixTextBox" materialDesign:HintAssist.Hint="TextFieldAssist.PrefixText" />
+                    <TextBox x:Name="SuffixTextBox" materialDesign:HintAssist.Hint="TextFieldAssist.SuffixText" />
+                </StackPanel>
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
+                            <Setter Property="FontFamily" Value="Consolas" />
+                            <Setter Property="Margin" Value="10 4" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <CheckBox x:Name="IsEnabledCheckBox" Content="IsEnabled" IsChecked="True" />
+                    <CheckBox x:Name="HasClearButtonCheckBox" Content="TextFieldAssist.HasClearButton" />
+                    <CheckBox x:Name="IsEditableCheckBox" Content="ComboBox.IsEditable" />
+                </StackPanel>
             </StackPanel>
-        </GroupBox>
-    </ScrollViewer>
+        </GroupBox.Header>
+        <StackPanel>
+            <Grid
+                x:Name="FieldsLineUpGrid"
+                TextElement.FontSize="{Binding Value, ElementName=FontSizeSlider}"
+                IsEnabled="{Binding IsChecked, ElementName=IsEnabledCheckBox}"
+                HorizontalAlignment="Left">
+                <Grid.Resources>
+                    <Style x:Key="StyleHeader" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="Margin" Value="10 0" />
+                        <Setter Property="Opacity" Value="0.56" />
+                    </Style>
+                    <Style x:Key="FieldHeader" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+                        <Setter Property="VerticalAlignment" Value="Top" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="0 6" />
+                        <Setter Property="Opacity" Value="0.56" />
+                    </Style>
+                    <Style x:Key="NotAvailable" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+                        <Setter Property="Text" Value="N/A" />
+                        <Setter Property="Opacity" Value="0.24" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition MinWidth="100" />
+                    <ColumnDefinition MinWidth="100" />
+                    <ColumnDefinition MinWidth="100" />
+                    <ColumnDefinition MinWidth="100" />
+                    <ColumnDefinition MinWidth="100" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource StyleHeader}" Text="Default" />
+                <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource StyleHeader}" Text="Floating" />
+                <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource StyleHeader}" Text="Filled" />
+                <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource StyleHeader}" Text="Outlined" />
+
+                <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource FieldHeader}" Text="TextField" />
+                <TextBlock Grid.Column="2" Grid.Row="0" Style="{StaticResource FieldHeader}" Text="PasswordBox" />
+                <TextBlock Grid.Column="3" Grid.Row="0" Style="{StaticResource FieldHeader}" Text="ComboBox" />
+                <TextBlock Grid.Column="4" Grid.Row="0" Style="{StaticResource FieldHeader}" Text="DatePicker" />
+                <TextBlock Grid.Column="5" Grid.Row="0" Style="{StaticResource FieldHeader}" Text="TimePicker" />
+
+                <TextBox
+                    Grid.Column="1"
+                    Grid.Row="1" />
+                <TextBox
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    materialDesign:HintAssist.IsFloating="True" />
+                <TextBox
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Style="{StaticResource MaterialDesignFilledTextBox}" />
+                <TextBox
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+
+                <PasswordBox
+                    Grid.Column="2"
+                    Grid.Row="1" />
+                <PasswordBox
+                    Grid.Column="2"
+                    Grid.Row="2"
+                    materialDesign:HintAssist.IsFloating="True" />
+                <PasswordBox
+                    Grid.Column="2"
+                    Grid.Row="3"
+                    Style="{StaticResource MaterialDesignFilledPasswordBox}" />
+                <PasswordBox
+                    Grid.Column="2"
+                    Grid.Row="4"
+                    Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+
+                <ComboBox
+                    Grid.Column="3"
+                    Grid.Row="1" />
+                <ComboBox
+                    Grid.Column="3"
+                    Grid.Row="2"
+                    materialDesign:HintAssist.IsFloating="true" />
+                <ComboBox
+                    Grid.Column="3"
+                    Grid.Row="3"
+                    Style="{StaticResource MaterialDesignFilledComboBox}" />
+                <TextBlock
+                    Grid.Column="3"
+                    Grid.Row="4"
+                    Style="{StaticResource NotAvailable}" />
+
+                <DatePicker
+                    Grid.Column="4"
+                    Grid.Row="1" />
+                <DatePicker
+                    Grid.Column="4"
+                    Grid.Row="2"
+                    materialDesign:HintAssist.IsFloating="True" />
+                <DatePicker
+                    Grid.Column="4"
+                    Grid.Row="3"
+                    Style="{StaticResource MaterialDesignFilledDatePicker}" />
+                <DatePicker
+                    Grid.Column="4"
+                    Grid.Row="4"
+                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+
+                <materialDesign:TimePicker
+                    Grid.Column="5"
+                    Grid.Row="1" />
+                <materialDesign:TimePicker
+                    Grid.Column="5"
+                    Grid.Row="2"
+                    Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
+                <materialDesign:TimePicker
+                    Grid.Column="5"
+                    Grid.Row="3"
+                    Style="{StaticResource MaterialDesignFilledTimePicker}" />
+                <materialDesign:TimePicker
+                    Grid.Column="5"
+                    Grid.Row="4"
+                    Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
+
+            </Grid>
+        </StackPanel>
+    </GroupBox>
 </UserControl>

@@ -144,19 +144,16 @@
                     Text="Dark"/>
             </StackPanel>
 
-            <ScrollViewer
+            <ItemsControl
                 Grid.Row="1"
-                VerticalScrollBarVisibility="Auto"
-                HorizontalScrollBarVisibility="Disabled"
-                Margin="0 12 0 0">
-                <ItemsControl ItemsSource="{Binding Swatches, Mode=OneTime}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-            </ScrollViewer>
+                Margin="0 12 0 0"
+                ItemsSource="{Binding Swatches, Mode=OneTime}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
         </Grid>
     </DockPanel>
 </UserControl>
