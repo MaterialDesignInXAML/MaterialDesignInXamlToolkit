@@ -94,5 +94,8 @@ namespace MaterialDesignDemo
             theme.SetBaseTheme(isDarkTheme ? Theme.Dark : Theme.Light);
             paletteHelper.SetTheme(theme);
         }
+
+        private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e)
+            => MainScrollViewer.ScrollToHome();
     }
 }
