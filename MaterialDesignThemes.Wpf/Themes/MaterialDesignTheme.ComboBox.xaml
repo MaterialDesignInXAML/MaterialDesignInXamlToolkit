@@ -13,6 +13,7 @@
     <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" IsNotEmptyValue="Collapsed" />
     <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
     <converters:MathConverter x:Key="DivisionMathConverter" Operation="Divide" />
+    <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
     <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
     <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
     <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearButtonVisibilityConverter" />
@@ -297,7 +298,7 @@
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter TargetName="GridWrapper" Property="Opacity" Value="0.56" />
+                <Setter TargetName="GridWrapper" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -480,8 +481,18 @@
                                     FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                     FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                                     HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                    Hint="{TemplateBinding wpf:HintAssist.Hint}"
-                                    Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}" />
+                                    Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}">
+                                    <wpf:SmartHint.Hint>
+                                        <Border
+                                            x:Name="HintBackgroundBorder"
+                                            Background="{TemplateBinding wpf:HintAssist.Background}"
+                                            CornerRadius="2">
+                                            <ContentPresenter
+                                                x:Name="HintWrapper"
+                                                Content="{TemplateBinding wpf:HintAssist.Hint}" />
+                                        </Border>
+                                    </wpf:SmartHint.Hint>
+                                </wpf:SmartHint>
 
                                 <TextBlock
                                     x:Name="SuffixTextBlock"
@@ -581,17 +592,6 @@
         </Grid>
 
         <ControlTemplate.Triggers>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsEnabled" Value="False" />
-                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
-                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
-                </MultiTrigger.Conditions>
-                <Setter TargetName="templateRoot" Property="wpf:BottomDashedLineAdorner.Brush" Value="{Binding BorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
-                <Setter TargetName="templateRoot" Property="wpf:BottomDashedLineAdorner.Thickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}}" />
-                <Setter TargetName="templateRoot" Property="wpf:BottomDashedLineAdorner.IsAttached" Value="True" />
-                <Setter TargetName="templateRoot" Property="BorderBrush" Value="Transparent" />
-            </MultiTrigger>
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
                 <Setter TargetName="PART_Popup" Property="RelativeHorizontalOffset" Value="-6" />
                 <Setter TargetName="PART_Popup" Property="DefaultVerticalOffset" Value="-1" />
@@ -604,11 +604,27 @@
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
                 <Setter TargetName="PART_Popup" Property="RelativeHorizontalOffset" Value="-6" />
-                <Setter TargetName="PART_Popup" Property="DefaultVerticalOffset" Value="-1" />
+                <Setter TargetName="PART_Popup" Property="DefaultVerticalOffset" Value="0" />
                 <Setter TargetName="PART_Popup" Property="DownVerticalOffset" Value="0" />
                 <Setter TargetName="PART_Popup" Property="UpVerticalOffset" Value="0" />
+                <Setter TargetName="PART_Popup" Property="CornerRadius" Value="4" />
+                <Setter TargetName="PART_Popup" Property="ContentMargin" Value="6,0,6,6" />
                 <Setter TargetName="PART_Popup" Property="ContentMinWidth" Value="{Binding Path=ActualWidth, ElementName=templateRoot}" />
                 <Setter TargetName="PART_Popup" Property="ClassicMode" Value="True" />
+                <Setter TargetName="Underline" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
+                <Setter TargetName="HintWrapper" Property="Opacity"
+                        Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="Hint" Property="FloatingOffset">
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
+                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontFamily" />
+                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontSize" />
+                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.FloatingScale)" />
+                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight" />
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -618,31 +634,26 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
             </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
-                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
-                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" TargetName="templateRoot" Value="{Binding Background, ElementName=PART_Popup}" />
-            </MultiTrigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter TargetName="templateRoot" Property="Opacity" Value="0.56" />
-            </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsEnabled" Value="False" />
-                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
-                </MultiTrigger.Conditions>
-                <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent" />
-            </MultiTrigger>
             <Trigger Property="IsEditable" Value="True">
                 <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
                 <Setter TargetName="Underline" Property="Visibility"
                         Value="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed" />
             </Trigger>
-            <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsGrouping" Value="True" />
+                    <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+            </MultiTrigger>
+
+            <!-- Hint -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="FloatingOffset">
                     <Setter.Value>
                         <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
@@ -661,35 +672,15 @@
                         </MultiBinding>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
-                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
-                    <Condition Property="IsEditable" Value="False" />
-                    <Condition Property="IsDropDownOpen" Value="True" />
-                </MultiTrigger.Conditions>
-                <Setter TargetName="Underline" Property="Visibility" Value="Hidden" />
-                <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="templateRoot" Property="BorderBrush" Value="Transparent" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
-                    <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
-                    <Condition Property="IsKeyboardFocusWithin" Value="True" />
-                </MultiTrigger.Conditions>
-                <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}" />
-                <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
-            </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                     <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
                     <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
-                    <Condition Property="IsKeyboardFocusWithin" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}" />
-                <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
+                <Setter TargetName="HintBackgroundBorder" Property="Padding" Value="4, 0" />
+                <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesignPaper}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -699,35 +690,146 @@
                 <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
             </MultiTrigger>
+
+            <!-- IsEnabled -->
             <MultiTrigger>
                 <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="False" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="templateRoot" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="False" />
+                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="templateRoot" Property="wpf:BottomDashedLineAdorner.Brush" Value="{Binding BorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="templateRoot" Property="wpf:BottomDashedLineAdorner.Thickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="templateRoot" Property="wpf:BottomDashedLineAdorner.IsAttached" Value="True" />
+                <Setter TargetName="templateRoot" Property="BorderBrush" Value="Transparent" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="False" />
+                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="False" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaInactiveBorder}" />
+                <Setter TargetName="PrefixTextBlock" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+                <Setter TargetName="contentPresenter" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+                <Setter TargetName="PART_EditableTextBox" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+                <Setter TargetName="SuffixTextBlock" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+                <Setter TargetName="PART_ClearButton" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+                <Setter TargetName="HintWrapper" Property="Opacity">
+                    <Setter.Value>
+                        <Binding
+                            Path="(wpf:HintAssist.HintOpacity)"
+                            RelativeSource="{RelativeSource TemplatedParent}"
+                            Converter="{StaticResource MathMultiplyConverter}"
+                            ConverterParameter="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
+
+            <!-- IsKeyboardFocused -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsKeyboardFocused" Value="True" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Underline" Property="IsActive" Value="True" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsKeyboardFocusWithin" Value="True" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                    <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                    <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="HintWrapper" Property="Opacity" Value="1" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsKeyboardFocusWithin" Value="True" />
                     <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
-                    <Condition Property="IsDropDownOpen" Value="True" />
+                    <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="IsGrouping" Value="True" />
-                    <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="False" />
+                    <Condition Property="IsKeyboardFocusWithin" Value="True" />
+                    <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                    <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
             </MultiTrigger>
-            <Trigger Property="IsKeyboardFocused" Value="True">
-                <Setter TargetName="Underline" Property="IsActive" Value="True" />
-            </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
+                    <Condition Property="IsKeyboardFocused" Value="True" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
+            </MultiTrigger>
+
+            <!-- IsDropDownOpen -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
                     <Condition Property="IsDropDownOpen" Value="True" />
+                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Underline" Property="IsActive" Value="True" />
             </MultiTrigger>
-            <Trigger Property="Validation.HasError" Value="True">
-                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
-                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
-            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsDropDownOpen" Value="True" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsDropDownOpen" Value="True" />
+                    <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsDropDownOpen" Value="True" />
+                    <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="HintWrapper" Property="Opacity" Value="1" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsDropDownOpen" Value="True" />
+                    <Condition Property="IsEditable" Value="False" />
+                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Underline" Property="Visibility" Value="Hidden" />
+                <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent" />
+                <Setter TargetName="templateRoot" Property="BorderBrush" Value="Transparent" />
+            </MultiTrigger>
+
+            <!-- IsMouseOver -->
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsMouseOver" Value="True" />
@@ -740,9 +842,52 @@
                 <MultiTrigger.Conditions>
                     <Condition Property="IsMouseOver" Value="True" />
                     <Condition Property="Validation.HasError" Value="False" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
                 </MultiTrigger.Conditions>
                 <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
                 <Setter TargetName="Underline" Property="Background" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
+                <Setter Property="BorderThickness" Value="2" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                    <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                    <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="HintWrapper" Property="Opacity" Value="1" />
+            </MultiTrigger>
+
+            <!-- Validation.HasError -->
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
+                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Validation.HasError" Value="True" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+            </MultiTrigger>
+
+            <!-- PART_Popup.IsOpen -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
+                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
+                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" TargetName="templateRoot" Value="{Binding Background, ElementName=PART_Popup}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -894,6 +1039,9 @@
     <Style x:Key="MaterialDesignOutlinedComboBox" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}" TargetType="ComboBox">
         <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
+        <Setter Property="Padding" Value="16" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
     </Style>
 
 </ResourceDictionary>
