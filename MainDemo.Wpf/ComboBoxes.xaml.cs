@@ -7,7 +7,7 @@ namespace MaterialDesignDemo
         public ComboBoxes()
         {
             InitializeComponent();
-            DataContext = new FieldsViewModel();
+            DataContext = new ComboBoxesViewModel();
         }
 
         private void ClearFilledComboBox_Click(object sender, System.Windows.RoutedEventArgs e)

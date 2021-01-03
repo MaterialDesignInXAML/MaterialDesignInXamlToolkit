@@ -740,6 +740,12 @@
             </MultiTrigger>
 
             <!-- IsKeyboardFocused -->
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
+            </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsKeyboardFocused" Value="True" />
@@ -780,8 +786,7 @@
                     <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
-                <Setter Property="BorderThickness" Value="2" />
-                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
+                <Setter TargetName="templateRoot" Property="BorderThickness" Value="2" />
             </MultiTrigger>
 
             <!-- IsDropDownOpen -->
@@ -798,7 +803,7 @@
                     <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
-                <Setter Property="BorderThickness" Value="2" />
+                <Setter TargetName="templateRoot" Property="BorderThickness" Value="2" />
                 <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
             </MultiTrigger>
             <MultiTrigger>
@@ -833,15 +838,6 @@
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsMouseOver" Value="True" />
-                    <Condition Property="Validation.HasError" Value="True" />
-                </MultiTrigger.Conditions>
-                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
-                <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}"/>
-            </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="True" />
-                    <Condition Property="Validation.HasError" Value="False" />
                     <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
                 </MultiTrigger.Conditions>
                 <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
@@ -853,7 +849,7 @@
                     <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
-                <Setter Property="BorderThickness" Value="2" />
+                <Setter TargetName="templateRoot" Property="BorderThickness" Value="2" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -876,7 +872,7 @@
                     <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
-                <Setter Property="BorderThickness" Value="2" />
+                <Setter TargetName="templateRoot" Property="BorderThickness" Value="2" />
                 <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
             </MultiTrigger>
 
@@ -996,12 +992,6 @@
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
         <Style.Triggers>
-            <Trigger Property="IsKeyboardFocused" Value="True">
-                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
-            </Trigger>
-            <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
-            </Trigger>
             <Trigger Property="IsEditable" Value="True">
                 <Setter Property="IsTabStop" Value="False" />
                 <!-- designer prefers hard bool -->
