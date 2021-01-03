@@ -357,7 +357,8 @@
                                       HorizontalAlignment="Right"
                                       VerticalAlignment="Center"
                                       Data="M7,10L12,15L17,10H7Z"
-                                      Fill="{TemplateBinding BorderBrush}" />
+                                      Fill="{TemplateBinding BorderBrush}"
+                                      RenderTransformOrigin="0.5,0.5" />
                             </Border>
                         </Border>
                     </Grid>
@@ -396,6 +397,13 @@
                             <Setter TargetName="ToggleTemplateRoot" Property="BorderBrush" Value="Transparent"/>
                             <Setter TargetName="splitBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
                         </MultiDataTrigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="arrow" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleY="-1" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
