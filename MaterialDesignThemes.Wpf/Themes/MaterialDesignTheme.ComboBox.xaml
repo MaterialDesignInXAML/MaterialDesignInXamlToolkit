@@ -172,13 +172,9 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0"
-                        Height="{StaticResource PopupTopBottomMargin}"
-                        Background="{Binding ElementName=PART_Popup, Path=Background}" />
+                <Border Grid.Row="0" Height="{StaticResource PopupTopBottomMargin}" />
                 <ContentPresenter Grid.Row="1"/>
-                <Border Grid.Row="2"
-                        Height="{StaticResource PopupTopBottomMargin}"
-                        Background="{Binding ElementName=PART_Popup, Path=Background}" />
+                <Border Grid.Row="2" Height="{StaticResource PopupTopBottomMargin}" />
             </Grid>
          </Border>
       </Grid>
@@ -419,7 +415,6 @@
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
                     SnapsToDevicePixels="True"
                     wpf:BottomDashedLineAdorner.IsAttached="False">
                     <Grid>
@@ -593,21 +588,23 @@
 
         <ControlTemplate.Triggers>
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
+                <Setter TargetName="templateRoot" Property="CornerRadius" Value="{Binding Path=(wpf:TextFieldAssist.TextFieldCornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="PART_Popup" Property="RelativeHorizontalOffset" Value="-6" />
                 <Setter TargetName="PART_Popup" Property="DefaultVerticalOffset" Value="-1" />
                 <Setter TargetName="PART_Popup" Property="DownVerticalOffset" Value="0" />
                 <Setter TargetName="PART_Popup" Property="UpVerticalOffset" Value="0" />
-                <Setter TargetName="PART_Popup" Property="CornerRadius" Value="0,0,2,2" />
+                <Setter TargetName="PART_Popup" Property="CornerRadius" Value="0,0,4,4" />
                 <Setter TargetName="PART_Popup" Property="ContentMargin" Value="6,0,6,6" />
                 <Setter TargetName="PART_Popup" Property="ContentMinWidth" Value="{Binding Path=ActualWidth, ElementName=templateRoot}" />
                 <Setter TargetName="PART_Popup" Property="ClassicMode" Value="True" />
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
+                <Setter TargetName="templateRoot" Property="CornerRadius" Value="{Binding Path=(wpf:TextFieldAssist.TextFieldCornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="PART_Popup" Property="RelativeHorizontalOffset" Value="-6" />
                 <Setter TargetName="PART_Popup" Property="DefaultVerticalOffset" Value="0" />
                 <Setter TargetName="PART_Popup" Property="DownVerticalOffset" Value="0" />
                 <Setter TargetName="PART_Popup" Property="UpVerticalOffset" Value="0" />
-                <Setter TargetName="PART_Popup" Property="CornerRadius" Value="4" />
+                <Setter TargetName="PART_Popup" Property="CornerRadius" Value="{Binding Path=(wpf:TextFieldAssist.TextFieldCornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="PART_Popup" Property="ContentMargin" Value="6,0,6,6" />
                 <Setter TargetName="PART_Popup" Property="ContentMinWidth" Value="{Binding Path=ActualWidth, ElementName=templateRoot}" />
                 <Setter TargetName="PART_Popup" Property="ClassicMode" Value="True" />
