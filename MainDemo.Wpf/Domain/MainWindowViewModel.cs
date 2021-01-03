@@ -1,15 +1,13 @@
-﻿using System.Configuration;
-using MaterialDesignDemo;
-using MaterialDesignDemo.Domain;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Configuration;
+using System.Linq;
+using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
-using System.Windows.Controls;
-using System;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-using System.Linq;
 
-namespace MaterialDesignColors.WpfExample.Domain
+namespace MaterialDesignDemo.Domain
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
@@ -17,28 +15,48 @@ namespace MaterialDesignColors.WpfExample.Domain
         {
             _allItems = GenerateDemoItems(snackbarMessageQueue);
             FilterItems(null);
+
+            MovePrevCommand = new AnotherCommandImplementation(
+                _ =>
+                {
+                    if (!string.IsNullOrWhiteSpace(SearchKeyword))
+                        SearchKeyword = string.Empty;
+
+                    SelectedIndex--;
+                },
+                _ => SelectedIndex > 0);
+
+            MoveNextCommand = new AnotherCommandImplementation(
+               _ =>
+               {
+                   if (!string.IsNullOrWhiteSpace(SearchKeyword))
+                       SearchKeyword = string.Empty;
+
+                   SelectedIndex++;
+               },
+               _ => SelectedIndex < _allItems.Count - 1);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        private string _searchKeyword;
-        private ObservableCollection<DemoItem> _allItems;
-        private ObservableCollection<DemoItem> _demoItems;
-        private DemoItem _selectedItem;
+        private readonly ObservableCollection<DemoItem> _allItems;
+        private ObservableCollection<DemoItem>? _demoItems;
+        private DemoItem? _selectedItem;
+        private int _selectedIndex;
+        private string? _searchKeyword;
 
-
-        public string SearchKeyword
+        public string? SearchKeyword
         {
             get => _searchKeyword;
             set
             {
                 _searchKeyword = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DemoItems)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SearchKeyword)));
                 FilterItems(_searchKeyword);
             }
         }
 
-        public ObservableCollection<DemoItem> DemoItems
+        public ObservableCollection<DemoItem>? DemoItems
         {
             get => _demoItems;
             set
@@ -48,7 +66,7 @@ namespace MaterialDesignColors.WpfExample.Domain
             }
         }
 
-        public DemoItem SelectedItem
+        public DemoItem? SelectedItem
         {
             get => _selectedItem;
             set
@@ -60,10 +78,22 @@ namespace MaterialDesignColors.WpfExample.Domain
             }
         }
 
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set
+            {
+                _selectedIndex = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedIndex)));
+            }
+        }
+
+        public AnotherCommandImplementation MovePrevCommand { get; }
+        public AnotherCommandImplementation MoveNextCommand { get; }
 
         private ObservableCollection<DemoItem> GenerateDemoItems(ISnackbarMessageQueue snackbarMessageQueue)
         {
-            if (snackbarMessageQueue == null)
+            if (snackbarMessageQueue is null)
                 throw new ArgumentNullException(nameof(snackbarMessageQueue));
 
             return new ObservableCollection<DemoItem>
@@ -108,13 +138,17 @@ namespace MaterialDesignColors.WpfExample.Domain
                     {
                         VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
                     },
-                new DemoItem("Toggles", new Toggles(), new []
-                {
-                    DocumentationLink.DemoPageLink<Toggles>(),
-                    DocumentationLink.StyleLink("ToggleButton"),
-                    DocumentationLink.StyleLink("CheckBox"),
-                    DocumentationLink.ApiLink<Toggles>()
-                }),
+                new DemoItem("Toggles", new Toggles(), 
+                    new []
+                    {
+                        DocumentationLink.DemoPageLink<Toggles>(),
+                        DocumentationLink.StyleLink("ToggleButton"),
+                        DocumentationLink.StyleLink("CheckBox"),
+                        DocumentationLink.ApiLink<Toggles>()
+                    })
+                    {
+                        VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                    },
                 new DemoItem("Rating Bar", new RatingBar(), new []
                 {
                     DocumentationLink.DemoPageLink<RatingBar>(),
@@ -130,6 +164,10 @@ namespace MaterialDesignColors.WpfExample.Domain
                     {
                         VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
                     },
+                new DemoItem("Fields line up", new FieldsLineUp(), new []
+                {
+                    DocumentationLink.DemoPageLink<FieldsLineUp>()
+                }),
                 new DemoItem("ComboBoxes", new ComboBoxes(),
                     new []
                     {
@@ -239,6 +277,15 @@ namespace MaterialDesignColors.WpfExample.Domain
                         DocumentationLink.DemoPageLink<Progress>(),
                         DocumentationLink.StyleLink("ProgressBar")
                     }),
+                new DemoItem("Navigation Rail", new NavigationRail { DataContext = null},
+                    new []
+                    {
+                        DocumentationLink.DemoPageLink<NavigationRail>("Demo View"),
+                        DocumentationLink.StyleLink("TabControl"),
+                    })
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
                 new DemoItem("Dialogs", new Dialogs { DataContext = new DialogsViewModel()},
                     new []
                     {
@@ -275,16 +322,16 @@ namespace MaterialDesignColors.WpfExample.Domain
                     new []
                     {
                         DocumentationLink.DemoPageLink<Shadows>(),
-                    }),
+                    })
             };
         }
 
-        private void FilterItems(string keyword)
+        private void FilterItems(string? keyword)
         {
             var filteredItems =
                 string.IsNullOrWhiteSpace(keyword) ?
                 _allItems :
-                _allItems.Where(i => i.Name.ToLower().Contains(keyword.ToLower()));
+                _allItems.Where(i => i.Name.ToLower().Contains(keyword!.ToLower()));
 
             DemoItems = new ObservableCollection<DemoItem>(filteredItems);
         }

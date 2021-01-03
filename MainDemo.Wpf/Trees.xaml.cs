@@ -1,20 +1,13 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
-using MaterialDesignColors.WpfExample.Domain;
+using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for Trees.xaml
-    /// </summary>
-    public partial class Trees : UserControl
+    public partial class Trees
     {
-        public Trees()
-        {
-            InitializeComponent();
-        }
+        public Trees() => InitializeComponent();
 
-        public TreesViewModel ViewModel => DataContext as TreesViewModel;
+        public TreesViewModel? ViewModel => DataContext as TreesViewModel;
 
         /// <summary>
         /// TreesView's SelectedItem is read-only. Hence we can't bind it. There is a way to obtain a selected item.
@@ -23,7 +16,8 @@ namespace MaterialDesignColors.WpfExample
         /// <param name="e"></param>
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (ViewModel == null) return;
+            if (ViewModel is null)
+                return;
 
             ViewModel.SelectedItem = e.NewValue;
         }

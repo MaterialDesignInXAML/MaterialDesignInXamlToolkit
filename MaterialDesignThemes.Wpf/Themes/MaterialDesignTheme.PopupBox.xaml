@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
-                    xmlns:controlzEx="clr-namespace:ControlzEx">
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
@@ -102,15 +101,15 @@
                                       Content="{TemplateBinding ToggleContent}" ContentTemplate="{TemplateBinding ToggleContentTemplate}"
                                       Cursor="Hand" TabIndex="{TemplateBinding TabIndex}" VerticalAlignment="Center" IsTabStop="{TemplateBinding IsTabStop}"
                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        <controlzEx:PopupEx x:Name="PART_Popup" 
-                                            IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
-                                            CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
-                                            HorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupHorizontalOffset}"
-                                            VerticalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupVerticalOffset}"
-                                            PlacementTarget="{Binding ElementName=PART_Toggle}"
-                                            Placement="Custom"
-                                            PopupAnimation="Fade"
-                                            AllowsTransparency="True">
+                        <wpf:PopupEx x:Name="PART_Popup" 
+                                     IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
+                                     CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
+                                     HorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupHorizontalOffset}"
+                                     VerticalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupVerticalOffset}"
+                                     PlacementTarget="{Binding ElementName=PART_Toggle}"
+                                     Placement="Custom"
+                                     PopupAnimation="Fade"
+                                     AllowsTransparency="True">
                             <wpf:Card Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"
                                       Foreground="{DynamicResource MaterialDesignBody}"
                                       Padding="{TemplateBinding Padding}"
@@ -120,7 +119,7 @@
                                     <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignPopupBoxButton}" />
                                 </wpf:Card.Resources>
                             </wpf:Card>
-                        </controlzEx:PopupEx>
+                        </wpf:PopupEx>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
@@ -150,7 +149,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
         <Setter Property="PlacementMode" Value="TopAndAlignCentres" />
-        <Setter Property="PopupMode" Value="MouseOverEager" />
+        <Setter Property="PopupMode" Value="Click" />
         <Setter Property="ToolTipService.Placement" Value="Left" />
         <Setter Property="ToolTipService.IsEnabled" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -332,13 +331,13 @@
                                 </ContentControl>
                             </Grid>
                         </ToggleButton>
-                        <controlzEx:PopupEx x:Name="PART_Popup" 
-                                          IsOpen="False"
-                                          CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
-                                          PlacementTarget="{Binding ElementName=PART_Toggle}"
-                                          Placement="Custom"
-                                          PopupAnimation="None"
-                                          AllowsTransparency="True">
+                        <wpf:PopupEx x:Name="PART_Popup" 
+                                     IsOpen="False"
+                                     CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
+                                     PlacementTarget="{Binding ElementName=PART_Toggle}"
+                                     Placement="Custom"
+                                     PopupAnimation="None"
+                                     AllowsTransparency="True">
                             <Grid>
                                 <!-- with PopupBox.PopupMode == MouseOverEager the popup is always open, with 
                                      content hidden. but Transparent doesn't seem to register hit test in the popup.
@@ -367,7 +366,7 @@
                                     </ContentControl.Resources>
                                 </ContentControl>
                             </Grid>
-                        </controlzEx:PopupEx>
+                        </wpf:PopupEx>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPopupOpen" Value="True">
@@ -417,9 +416,9 @@
     <Style TargetType="{x:Type wpf:PopupBox}" 
            x:Key="MaterialDesignMultiFloatingActionAccentPopupBox"
            BasedOn="{StaticResource MaterialDesignMultiFloatingActionPopupBox}">
-        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
     </Style>
 
 </ResourceDictionary>

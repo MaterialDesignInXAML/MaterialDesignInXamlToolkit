@@ -16,7 +16,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="content">Message.</param>
         /// <param name="actionContent">Content for the action button.</param>
         /// <param name="actionHandler">Call back to be executed if user clicks the action button.</param>
-        void Enqueue(object content, object actionContent, Action actionHandler);
+        void Enqueue(object content, object? actionContent, Action? actionHandler);
 
         /// <summary>
         /// Queues a notification message for display in a snackbar.
@@ -25,7 +25,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="actionContent">Content for the action button.</param>
         /// <param name="actionHandler">Call back to be executed if user clicks the action button.</param>
         /// <param name="actionArgument">Argument to pass to <paramref name="actionHandler"/>.</param>
-        void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler, TArgument actionArgument);
+        void Enqueue<TArgument>(object content, object? actionContent, Action<TArgument?>? actionHandler, TArgument? actionArgument);
 
         /// <summary>
         /// Queues a notification message for display in a snackbar.
@@ -42,7 +42,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="actionContent">Content for the action button.</param>
         /// <param name="actionHandler">Call back to be executed if user clicks the action button.</param>
         /// <param name="promote">The message will promoted to the front of the queue.</param>
-        void Enqueue(object content, object actionContent, Action actionHandler, bool promote);
+        void Enqueue(object content, object? actionContent, Action? actionHandler, bool promote);
 
         /// <summary>
         /// Queues a notification message for display in a snackbar.
@@ -52,7 +52,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="actionHandler">Call back to be executed if user clicks the action button.</param>
         /// <param name="actionArgument">Argument to pass to <paramref name="actionHandler"/>.</param>
         /// <param name="promote">The message will be promoted to the front of the queue and never considered to be a duplicate.</param>
-        void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler, TArgument actionArgument, bool promote);
+        void Enqueue<TArgument>(object content, object? actionContent, Action<TArgument?>? actionHandler, TArgument? actionArgument, bool promote);
 
         /// <summary>
         /// Queues a notification message for display in a snackbar.
@@ -64,8 +64,8 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="promote">The message will be promoted to the front of the queue.</param>
         /// <param name="neverConsiderToBeDuplicate">The message will never be considered a duplicate.</param>
         /// <param name="durationOverride">Message show duration override.</param>
-        void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
-            TArgument actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null);
+        void Enqueue<TArgument>(object content, object? actionContent, Action<TArgument?>? actionHandler,
+            TArgument? actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null);
 
         /// <summary>
         /// Queues a notification message for display in a snackbar.
@@ -77,7 +77,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="promote">The message will promoted to the front of the queue.</param>
         /// <param name="neverConsiderToBeDuplicate">The message will never be considered a duplicate.</param>
         /// <param name="durationOverride">Message show duration override.</param>
-        void Enqueue(object content, object actionContent, Action<object> actionHandler, object actionArgument,
+        void Enqueue(object content, object? actionContent, Action<object?>? actionHandler, object? actionArgument,
             bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null);
     }
 }

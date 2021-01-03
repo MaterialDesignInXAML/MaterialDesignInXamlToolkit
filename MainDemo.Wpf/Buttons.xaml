@@ -1,16 +1,17 @@
-<UserControl x:Class="MaterialDesignColors.WpfExample.Buttons"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
-             xmlns:wpfExample="clr-namespace:MaterialDesignColors.WpfExample"
-             xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
-             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="800">
+<UserControl
+    x:Class="MaterialDesignDemo.Buttons"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+    xmlns:wpfExample="clr-namespace:MaterialDesignDemo"
+    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="d" 
+    d:DesignHeight="500"
+    d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -42,274 +43,467 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}">Buttons</TextBlock>
+        </Grid.RowDefinitions>        
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Buttons"/>
+        
         <StackPanel Grid.Row="1">
-            <StackPanel Orientation="Horizontal" Margin="0 24 0 0" >
-                <smtx:XamlDisplay Key="buttons_1" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                            ToolTip="MaterialDesignFloatingActionMiniLightButton">
-                        <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 24 0 0">
+                
+                <StackPanel.Resources>
+                    <system:Double x:Key="IconSize">24</system:Double>
+                </StackPanel.Resources>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_1" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                        ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_2" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                            HorizontalAlignment="Left"
-                            ToolTip="MaterialDesignFloatingActionMiniButton">
-                        <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+                
+                <smtx:XamlDisplay UniqueKey="buttons_2" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        HorizontalAlignment="Left"
+                        ToolTip="MaterialDesignFloatingActionMiniButton">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_3" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                            ToolTip="MaterialDesignFloatingActionMiniDarkButton">
-                        <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+                
+                <smtx:XamlDisplay UniqueKey="buttons_3" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                        ToolTip="MaterialDesignFloatingActionMiniDarkButton">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_4" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                            ToolTip="MaterialDesignFloatingActionMiniAccentButton">
-                        <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+                
+                <smtx:XamlDisplay UniqueKey="buttons_4" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        ToolTip="MaterialDesignFloatingActionMiniAccentButton">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_5" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                            ToolTip="MaterialDesignFloatingActionLightButton">
-                        <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+                
+                <smtx:XamlDisplay UniqueKey="buttons_5" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                        ToolTip="MaterialDesignFloatingActionLightButton">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_6" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
-                            ToolTip="MaterialDesignFloatingActionButton">
-                        <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+                
+                <smtx:XamlDisplay UniqueKey="buttons_6" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionButton}"
+                        ToolTip="MaterialDesignFloatingActionButton">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_7" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                            ToolTip="MaterialDesignFloatingActionDarkButton">
-                        <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+                
+                <smtx:XamlDisplay UniqueKey="buttons_7" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                        ToolTip="MaterialDesignFloatingActionDarkButton">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_8" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
-                            ToolTip="MaterialDesignFloatingActionAccentButton">
-                        <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+                
+                <smtx:XamlDisplay UniqueKey="buttons_8" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                        ToolTip="MaterialDesignFloatingActionAccentButton">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 24 0 0">
-                <smtx:XamlDisplay Key="buttons_12" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Width="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton">
-                        _LIGHT
-                    </Button>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_13" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Width="100"
-                        ToolTip="Resource name: MaterialDesignRaisedButton">
-                        _MID
-                    </Button>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_14" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
-                        _DARK
-                    </Button>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_15" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="100"
-                        ToolTip="Resource name: MaterialDesignRaisedAccentButton">
-                        ACCENT
-                    </Button>
-                </smtx:XamlDisplay>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 24 0 0">
-                <smtx:XamlDisplay Key="buttons_16" Margin="8 0">
-                    <materialDesign:Badged Badge="3">
-                        <Button>MAIL</Button>
-                    </materialDesign:Badged>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_17" Margin="8 0">
-                    <materialDesign:Badged Badge="{materialDesign:PackIcon Heart}"
-                                       BadgeColorZoneMode="Accent">
-                        <Button>LOVE</Button>
-                    </materialDesign:Badged>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_18" Margin="8 0">
-                    <materialDesign:Badged Badge="DANGER" BadgeColorZoneMode="Dark">
-                        <Button>STATUS</Button>
-                    </materialDesign:Badged>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_19" Margin="8 0">
-                    <materialDesign:Badged x:Name="CountingBadge" BadgeColorZoneMode="PrimaryDark">
-                        <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
-                            Click="CountingButton_OnClick">CLICK ME!</Button>
-                    </materialDesign:Badged>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_20180807" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Width="150"
+            
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 24 0 0">
+                
+                <StackPanel.Resources>
+                    <system:Double x:Key="ButtonWidth">100</system:Double>
+                </StackPanel.Resources>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_12" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                        Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignRaisedLightButton"
-                        Content="{Binding OrClickMeCount}"
+                        Content="_LIGHT"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_13" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"
+                        Content="_MID"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_14" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                        Content="_DARK"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_15" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                        Content="ACCENT"/>
+                </smtx:XamlDisplay>                
+            </StackPanel>
+            
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 24 0 0">
+                <smtx:XamlDisplay UniqueKey="buttons_16" Margin="8 0">
+                    <materialDesign:Badged Badge="3">
+                        <Button Content="MAIL"/>
+                    </materialDesign:Badged>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_17" Margin="8 0">
+                    <materialDesign:Badged
+                        Badge="{materialDesign:PackIcon Heart}"
+                        BadgeColorZoneMode="SecondaryMid">
+                        <Button Content="LOVE"/>
+                    </materialDesign:Badged>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_18" Margin="8 0">
+                    <materialDesign:Badged
+                        Badge="DANGER"
+                        BadgeColorZoneMode="Dark">
+                        <Button Content="STATUS"/>
+                    </materialDesign:Badged>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_19" Margin="8 0">
+                    <materialDesign:Badged
+                        x:Name="CountingBadge"
+                        BadgeColorZoneMode="PrimaryDark">
+                        <Button
+                            Style="{StaticResource MaterialDesignRaisedLightButton}"
+                            Click="CountingButton_OnClick"
+                            Content="CLICK ME!"/>
+                    </materialDesign:Badged>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_20180807" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedLightButton}" Width="150"
+                        ToolTip="Resource name: MaterialDesignRaisedLightButton"
                         ContentStringFormat="OR CLICK ME {0}"
-                        Command="{Binding IncrementOrClickMeCountCommand }"
-                        />
+                        Content="{Binding OrClickMeCount}"
+                        Command="{Binding IncrementOrClickMeCountCommand }"/>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_20" Margin="8 0">
-                    <Button Content="{materialDesign:PackIcon AirplaneTakeoff}" ToolTip="Icon" />
-                </smtx:XamlDisplay>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 24 0 0">
-                <smtx:XamlDisplay Key="buttons_21" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            Width="150"
-                            ToolTip="Resource name: MaterialDesignRaisedAccentButton"
-                            materialDesign:RippleAssist.Feedback="#DD000000">CUSTOM RIPPLE</Button>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_22" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            Width="150"
-                            ToolTip="Resource name: MaterialDesignRaisedAccentButton"
-                            materialDesign:RippleAssist.IsDisabled="True">NO RIPPLE</Button>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_23" Margin="8 0">
-                    <RepeatButton  Width="100" ToolTip="Resource name: MaterialDesignRaisedButton">
-                        REPEAT
-                    </RepeatButton>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_20" Margin="8 0">
+                    <Button
+                        Content="{materialDesign:PackIcon AirplaneTakeoff}"
+                        ToolTip="Icon" />
                 </smtx:XamlDisplay>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 24 0 0">
-                <smtx:XamlDisplay Key="buttons_24" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBase_OnClick" ToolTip="MaterialDesignFlatButton">ACCEPT</Button>
+            
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 24 0 0">
+
+                <StackPanel.Resources>
+                    <system:Double x:Key="ButtonWidth">150</system:Double>
+                </StackPanel.Resources>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_21" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                        materialDesign:RippleAssist.Feedback="#DD000000"
+                        Content="CUSTOM RIPPLE"/>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_25" Margin="0 0 8 0">
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton">CANCEL</Button>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_22" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                        materialDesign:RippleAssist.IsDisabled="True"
+                        Content="NO RIPPLE"/>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_25_1" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFlatLightBgButton}" ToolTip="MaterialDesignFlatLightButton">Okay</Button>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_25_2" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFlatMidBgButton}" ToolTip="MaterialDesignFlatMidButton">Okay</Button>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_25_3" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}" ToolTip="MaterialDesignFlatDarkButton">Okay</Button>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_25_4" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}" ToolTip="MaterialDesignFlatAccentBackgroundButton">Okay</Button>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_outlined_1" Margin="20 0 0 0">
-                    <Button Style="{StaticResource MaterialDesignOutlinedButton}" ToolTip="MaterialDesignOutlinedButton">LEARN MORE</Button>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_outlined_2" >
-                    <Button Style="{StaticResource MaterialDesignOutlinedButton}" IsEnabled="False" >LEARN LESS</Button>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_23" Margin="8 0">
+                    <RepeatButton
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"
+                        Content="REPEAT"/>
                 </smtx:XamlDisplay>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
-                <smtx:XamlDisplay Key="buttons_251" >
-                    <Button Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton">
+            
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 24 0 0">
+                <smtx:XamlDisplay UniqueKey="buttons_24" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="ButtonBase_OnClick"
+                        ToolTip="MaterialDesignFlatButton"
+                        Content="ACCEPT"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_25" Margin="0 0 8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        ToolTip="MaterialDesignFlatButton"
+                        Content="CANCEL"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_25_1" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                        ToolTip="MaterialDesignFlatLightButton"
+                        Content="Okay"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_25_2" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                        ToolTip="MaterialDesignFlatMidButton"
+                        Content="Okay"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_25_3" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                        ToolTip="MaterialDesignFlatDarkButton"
+                        Content="Okay"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_25_4" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                        ToolTip="MaterialDesignFlatAccentBackgroundButton"
+                        Content="Okay"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_outlined_1" Margin="20 0 0 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignOutlinedButton}"
+                        ToolTip="MaterialDesignOutlinedButton"
+                        Content="LEARN MORE"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_outlined_2" >
+                    <Button
+                        Style="{StaticResource MaterialDesignOutlinedButton}"
+                        IsEnabled="False"
+                        Content="LEARN LESS"/>
+                </smtx:XamlDisplay>
+            </StackPanel>
+            
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 12 0 0">
+                <smtx:XamlDisplay UniqueKey="buttons_251" >
+                    <Button
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="MaterialDesignIconButton">
                         <materialDesign:PackIcon Kind="Play"/>
                     </Button>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_252">
-                    <Button Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" IsEnabled="False">
+                
+                <smtx:XamlDisplay UniqueKey="buttons_252">
+                    <Button
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="MaterialDesignIconButton"
+                        IsEnabled="False">
                         <materialDesign:PackIcon Kind="Play"/>
                     </Button>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_253">
-                    <Button Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="MaterialDesignIconForegroundButton">
+                
+                <smtx:XamlDisplay UniqueKey="buttons_253">
+                    <Button
+                        Style="{StaticResource MaterialDesignIconForegroundButton}"
+                        ToolTip="MaterialDesignIconForegroundButton">
                         <materialDesign:PackIcon Kind="Play"/>
                     </Button>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_254">
-                    <Button Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
+                
+                <smtx:XamlDisplay UniqueKey="buttons_254">
+                    <Button
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="MaterialDesignIconButton"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
                         <materialDesign:PackIcon Kind="Play"/>
                     </Button>
                 </smtx:XamlDisplay>
             </StackPanel>
         </StackPanel>
-        <Border Margin="0 24 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="2" />
-        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                   Grid.Row="3" Margin="0 24">Buttons - With Custom Corner Radius</TextBlock>
-        <StackPanel Grid.Row="4" Orientation="Horizontal">
-            <smtx:XamlDisplay Key="button_roundcorner_1" Margin="8 0">
-                <Grid Width="124">
-                    <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
-                            Height="50"
-                            materialDesign:ButtonAssist.CornerRadius="5"
-                            ToolTip="MaterialDesignRaisedLightButton with Round Corners">
+        
+        <Border
+            Margin="0 24 0 0"
+            BorderThickness="0 1 0 0"
+            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            Grid.Row="2" />
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Grid.Row="3"
+            Margin="0 24"
+            Text="Buttons - With Custom Corner Radius"/>
+        
+        <StackPanel
+            Grid.Row="4"
+            Orientation="Horizontal">
+
+            <StackPanel.Resources>
+                <system:Double x:Key="GridWidth">124</system:Double>
+                <system:Double x:Key="ButtonHeight">50</system:Double>
+            </StackPanel.Resources>
+
+            <smtx:XamlDisplay UniqueKey="button_roundcorner_1" Margin="8 0">
+                <Grid Width="{StaticResource GridWidth}">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                        Height="{StaticResource ButtonHeight}"
+                        materialDesign:ButtonAssist.CornerRadius="5"
+                        ToolTip="MaterialDesignRaisedLightButton with Round Corners">
                         <TextBlock Text="5/50 Radius" />
                     </Button>
                 </Grid>
             </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="button_roundcorner_2" Margin="8 0">
-                <Grid Width="124">
-                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                            Height="50"
-                            materialDesign:ButtonAssist.CornerRadius="10"
-                            ToolTip="MaterialDesignRaisedButton with Round Corners">
+            
+            <smtx:XamlDisplay UniqueKey="button_roundcorner_2" Margin="8 0">
+                <Grid Width="{StaticResource GridWidth}">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Height="{StaticResource ButtonHeight}"
+                        materialDesign:ButtonAssist.CornerRadius="10"
+                        ToolTip="MaterialDesignRaisedButton with Round Corners">
                         <TextBlock Text="10/50 Radius" />
                     </Button>
                 </Grid>
             </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="button_roundcorner_3" Margin="8 0">
-                <Grid Width="124">
-                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            Height="50"
-                            materialDesign:ButtonAssist.CornerRadius="25"
-                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners">
-                        <TextBlock Text="25/50 Radius" />
-                    </Button>
-                </Grid>
-            </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="button_roundcorner_4" Margin="8 0">
-                <Grid Width="124">
-                    <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            Height="50"
-                            materialDesign:ButtonAssist.CornerRadius="25 25 0 0"
-                            ToolTip="MaterialDesignRaisedAccentButton with Round Top Corners">
+            
+            <smtx:XamlDisplay UniqueKey="button_roundcorner_3" Margin="8 0">
+                <Grid Width="{StaticResource GridWidth}">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="{StaticResource ButtonHeight}"
+                        materialDesign:ButtonAssist.CornerRadius="25"
+                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners">
                         <TextBlock Text="25/50 Radius" />
                     </Button>
                 </Grid>
             </smtx:XamlDisplay>
             
+            <smtx:XamlDisplay UniqueKey="button_roundcorner_4" Margin="8 0">
+                <Grid Width="{StaticResource GridWidth}">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                        Height="{StaticResource ButtonHeight}"
+                        materialDesign:ButtonAssist.CornerRadius="25 25 0 0"
+                        ToolTip="MaterialDesignRaisedAccentButton with Round Top Corners">
+                        <TextBlock Text="25/50 Radius" />
+                    </Button>
+                </Grid>
+            </smtx:XamlDisplay>            
         </StackPanel>
-        <Border Margin="0 24 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="5" />
-        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                   Grid.Row="6" Margin="0 24">Buttons - With Progress</TextBlock>
+        
+        <Border
+            Margin="0 24 0 0"
+            BorderThickness="0 1 0 0"
+            BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="5" />
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Grid.Row="6"
+            Margin="0 24"
+            Text="Buttons - With Progress"/>
+
         <StackPanel Grid.Row="7">
             <StackPanel Orientation="Horizontal">
-                <smtx:XamlDisplay Key="buttons_26" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_26" Margin="8 0">
                     <Grid Width="124">
                         <!-- raised button with progress, useful to auto dismiss/accept something -->
-                        <Button Command="{Binding DismissCommand}"
+                        <Button
+                            Command="{Binding DismissCommand}"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             HorizontalAlignment="Left"
                             materialDesign:ButtonProgressAssist.Value="{Binding DismissButtonProgress}"
                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                             Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock>DISMISS</TextBlock>
-                                <materialDesign:PackIcon Margin="4 .5 0 0" Kind="Close" />
+                                <TextBlock Text="DISMISS"/>
+                                <materialDesign:PackIcon
+                                    Margin="4 .5 0 0"
+                                    Kind="Close" />
                             </StackPanel>
                         </Button>
-                        <TextBlock Text="{Binding DemoRestartCountdownText}"
-                               VerticalAlignment="Center"
-                               Visibility="{Binding ShowDismissButton, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
-                               />
+                        
+                        <TextBlock
+                            Text="{Binding DemoRestartCountdownText}"
+                            VerticalAlignment="Center"
+                            Visibility="{Binding ShowDismissButton, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
                     </Grid>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_27" Margin="8 0">
+                
+                <smtx:XamlDisplay UniqueKey="buttons_27" Margin="8 0">
                     <Grid Width="124">
-                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                        <Button
+                            Style="{StaticResource MaterialDesignRaisedButton}"
                             materialDesign:ButtonProgressAssist.Value="-1"
                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                             materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                             Content="Indeterminate" Margin="2,0"/>
                     </Grid>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_28" Margin="8 0">
+                
+                <smtx:XamlDisplay UniqueKey="buttons_28" Margin="8 0">
                     <StackPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
                         <!-- floating action button with progress -->
-                        <TextBlock Margin="0,0,8,0" VerticalAlignment="Center">Click Me:</TextBlock>
-                        <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}" Margin="8 0 0 0"
+                        <TextBlock
+                            Margin="0,0,8,0"
+                            VerticalAlignment="Center"
+                            Text="Click Me:"/>
+                        
+                        <Button
+                            Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                            Margin="8 0 0 0"
                             Command="{Binding SaveCommand}"
                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
                             materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}">
@@ -324,7 +518,11 @@
                                                 <DataTrigger.EnterActions>
                                                     <BeginStoryboard>
                                                         <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.8" />
+                                                            <DoubleAnimation
+                                                                Storyboard.TargetProperty="Opacity"
+                                                                From="0"
+                                                                To="1"
+                                                                Duration="0:0:0.8" />
                                                         </Storyboard>
                                                     </BeginStoryboard>
                                                 </DataTrigger.EnterActions>
@@ -337,23 +535,35 @@
                     </StackPanel>
                 </smtx:XamlDisplay>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 24 0 0">
-                <TextBlock Margin="8 0" VerticalAlignment="Center">Variations:</TextBlock>
-                <smtx:XamlDisplay Key="buttons_29" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
+            
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 24 0 0">
+                <TextBlock
+                    Margin="8 0"
+                    VerticalAlignment="Center"
+                    Text="Variations:"/>
+                
+                <smtx:XamlDisplay UniqueKey="buttons_29" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionButton}"
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                         materialDesign:ButtonProgressAssist.Value="-1" 
                         materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                         Content="{materialDesign:PackIcon DotsHorizontal}" />
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_30" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                
+                <smtx:XamlDisplay UniqueKey="buttons_30" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                         materialDesign:ButtonProgressAssist.Value="50" 
                         Content="{materialDesign:PackIcon DotsHorizontal}" />
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_31" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
+                
+                <smtx:XamlDisplay UniqueKey="buttons_31" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionButton}"
                         Background="#81d4fa"
                         BorderBrush="#81d4fa"
                         Foreground="#DD000000"
@@ -363,38 +573,59 @@
                         materialDesign:ButtonProgressAssist.IndicatorBackground="#ffcc80"
                         Content="{materialDesign:PackIcon DotsHorizontal}" />
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="buttons_32" Margin="8 0">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                
+                <smtx:XamlDisplay UniqueKey="buttons_32" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                         materialDesign:ButtonProgressAssist.Value="75" 
                         Content="{materialDesign:PackIcon DotsHorizontal}" />
                 </smtx:XamlDisplay>
             </StackPanel>
-
-
         </StackPanel>
-        <Border Margin="0 24 0 0" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="8" />
-        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                   Grid.Row="9" Margin="0 24">PopupBox</TextBlock>
-        <StackPanel Grid.Row="10" Orientation="Horizontal">
-            <smtx:XamlDisplay Key="buttons_10" Margin="8 0">
+        
+        <Border
+            Margin="0 24 0 0"
+            BorderThickness="0 1 0 0"
+            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            Grid.Row="8" />
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Grid.Row="9"
+            Margin="0 24"
+            Text="PopupBox"/>
+
+        <StackPanel
+            Grid.Row="10"
+            Orientation="Horizontal">
+            <smtx:XamlDisplay UniqueKey="buttons_10" Margin="8 0">
                 <StackPanel Orientation="Horizontal">
-                    <CheckBox Name="PopupEnabled" IsChecked="True">Enable Popup</CheckBox>
-                    <materialDesign:PopupBox StaysOpen="True" IsEnabled="{Binding IsChecked, ElementName=PopupEnabled}">
+                    <CheckBox
+                        Name="PopupEnabled"
+                        IsChecked="True"
+                        Content="Enable Popup"/>
+                    
+                    <materialDesign:PopupBox
+                        StaysOpen="True"
+                        IsEnabled="{Binding IsChecked, ElementName=PopupEnabled}">
                         <Grid Width="300" Margin="8,8,8,8">
                             <Grid.Resources>
                                 <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
                                     <Setter Property="Margin" Value="8,8,10,8"/>
                                 </Style>
+                                
                                 <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
                                     <Setter Property="materialDesign:HintAssist.IsFloating" Value="True"/>
                                     <Setter Property="Margin" Value="8,8,8,8"/>
                                 </Style>
                             </Grid.Resources>
+                            
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
+                            
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
@@ -403,29 +634,77 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="8,8,8,16">OPTIONS</TextBlock>
-                            <TextBox Grid.Column="0" Grid.Row="1" materialDesign:HintAssist.Hint="Setting 1" Text="200"/>
-                            <TextBox Grid.Column="0" Grid.Row="2" materialDesign:HintAssist.Hint="Setting 2" Text="400"/>
-                            <TextBox Grid.Column="0" Grid.Row="3" materialDesign:HintAssist.Hint="Setting 3" Text="600"/>
-                            <CheckBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" />
-                            <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="True" VerticalAlignment="Bottom" />
-                            <CheckBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" />
-                            <ComboBox Grid.Column="0" Grid.Row="4" materialDesign:HintAssist.Hint="Setting 4" materialDesign:HintAssist.IsFloating="True"
-                                  MaxDropDownHeight="200"
-                                  Margin="8 8 8 8">
-                                <ComboBoxItem>25%</ComboBoxItem>
-                                <ComboBoxItem>50%</ComboBoxItem>
-                                <ComboBoxItem>75%</ComboBoxItem>
-                                <ComboBoxItem>100%</ComboBoxItem>
-                                <ComboBoxItem>150%</ComboBoxItem>
-                                <ComboBoxItem>200%</ComboBoxItem>
-                                <ComboBoxItem>250%</ComboBoxItem>
-                                <ComboBoxItem>501%</ComboBoxItem>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Margin="8,8,8,16"
+                                Text="OPTIONS"/>
+                            
+                            <TextBox
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                materialDesign:HintAssist.Hint="Setting 1"
+                                Text="200"/>
+                            
+                            <TextBox
+                                Grid.Column="0"
+                                Grid.Row="2"
+                                materialDesign:HintAssist.Hint="Setting 2"
+                                Text="400"/>
+                            
+                            <TextBox
+                                Grid.Column="0"
+                                Grid.Row="3"
+                                materialDesign:HintAssist.Hint="Setting 3"
+                                Text="600"/>
+                            
+                            <CheckBox
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                VerticalAlignment="Bottom" />
+                            
+                            <CheckBox
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                IsChecked="True"
+                                VerticalAlignment="Bottom" />
+                            
+                            <CheckBox
+                                Grid.Column="1"
+                                Grid.Row="3"
+                                VerticalAlignment="Bottom" />
+                            
+                            <ComboBox
+                                Grid.Column="0"
+                                Grid.Row="4"
+                                materialDesign:HintAssist.Hint="Setting 4"
+                                materialDesign:HintAssist.IsFloating="True"
+                                MaxDropDownHeight="200"
+                                Margin="8">
+                                <ComboBoxItem Content="25%" />
+                                <ComboBoxItem Content="50%" />
+                                <ComboBoxItem Content="75%" />
+                                <ComboBoxItem Content="100%" />
+                                <ComboBoxItem Content="150%" />
+                                <ComboBoxItem Content="200%" />
+                                <ComboBoxItem Content="250%" />
+                                <ComboBoxItem Content="500%"/>
                             </ComboBox>
 
-                            <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Button Content="_Save" Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}" />
-                                <Button Content="_Cancel" Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}">
+                            <StackPanel
+                                Grid.Row="5"
+                                Grid.ColumnSpan="2"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                                <Button
+                                    Content="_Save"
+                                    Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}" />
+                                
+                                <Button
+                                    Content="_Cancel"
+                                    Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}">
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignPopupBoxButton}">
                                             <Setter Property="Foreground" Value="Red" />
@@ -434,37 +713,62 @@
                                 </Button>
                             </StackPanel>
                         </Grid>
-
                     </materialDesign:PopupBox>
                 </StackPanel>
             </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="buttons_11" Margin="8 0 0 5">
-                <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                                         PlacementMode="BottomAndAlignCentres"
-                                         ToggleCheckedContentCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpfExample:Buttons}, Path=FloatingActionDemoCommand}"
-                                         ToggleCheckedContentCommandParameter="wowsers"
-                                         ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox" >
+            
+            <smtx:XamlDisplay UniqueKey="buttons_11" Margin="8 0 0 5">
+                <materialDesign:PopupBox
+                    Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                    PlacementMode="BottomAndAlignCentres"
+                    ToggleCheckedContentCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpfExample:Buttons}, Path=FloatingActionDemoCommand}"
+                    ToggleCheckedContentCommandParameter="wowsers"
+                    ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
                     <materialDesign:PopupBox.ToggleCheckedContent>
-                        <materialDesign:PackIcon Kind="Pencil" Width="24" Height="24" />
+                        <materialDesign:PackIcon
+                            Kind="Pencil"
+                            Width="24"
+                            Height="24" />
                     </materialDesign:PopupBox.ToggleCheckedContent>
+                    
                     <StackPanel>
-                        <Button ToolTip="One">1</Button>
-                        <Button ToolTip="Two" IsEnabled="False">2</Button>
-                        <Button ToolTip="Three">3</Button>
-                    </StackPanel>
+                        <Button
+                            ToolTip="One"
+                            Content="1" />
+                        
+                        <Button
+                            ToolTip="Two"
+                            IsEnabled="False"
+                            Content="2" />
+                        
+                        <Button
+                            ToolTip="Three"
+                            Content="3" />
+                    </StackPanel>                    
                 </materialDesign:PopupBox>
             </smtx:XamlDisplay>
-            <smtx:XamlDisplay Key="buttons_9" Margin="8 0 0 5">
-                <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
-                                         PlacementMode="BottomAndAlignCentres"
-                                         ToolTipService.Placement="Right"
-                                         ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox"
-                                         Opened="PopupBox_OnOpened"
-                                         Closed="PopupBox_OnClosed">
+            
+            <smtx:XamlDisplay UniqueKey="buttons_9" Margin="8 0 0 5">
+                <materialDesign:PopupBox
+                    Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+                    PlacementMode="BottomAndAlignCentres"
+                    ToolTipService.Placement="Right"
+                    ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox"
+                    Opened="PopupBox_OnOpened"
+                    Closed="PopupBox_OnClosed">
                     <StackPanel>
-                        <Button ToolTip="One with custom opacity" Opacity="0.5">1</Button>
-                        <Button ToolTip="Two">2</Button>
-                        <Button ToolTip="Three">3</Button>
+                        <Button
+                            ToolTip="One with custom opacity"
+                            Opacity="0.5"
+                            Content="1" />
+                        
+                        <Button
+                            ToolTip="Two"
+                            Content="2" />
+                        
+                        <Button
+                            ToolTip="Three"
+                            Content="3" />
                     </StackPanel>
                 </materialDesign:PopupBox>
             </smtx:XamlDisplay>

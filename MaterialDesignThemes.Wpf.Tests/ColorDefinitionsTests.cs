@@ -26,23 +26,23 @@ namespace MaterialDesignThemes.Wpf.Tests
             foreach (var (key, solidColorBrush) in resourceDictionary
                 .Cast<DictionaryEntry>()
                 .Where(e => e.Value is SolidColorBrush)
-                .Select(e => ((string) e.Key, (SolidColorBrush) e.Value))
+                .Select(e => ((string) e.Key, e.Value as SolidColorBrush))
                 .OrderBy(e => e.Item1))
             {
-                var baseThemePropertyName = key == "ValidationErrorBrush"
-                    ? "ValidationErrorColor"
+                var baseThemePropertyName = key == "MaterialDesignValidationErrorBrush"
+                    ? "MaterialDesignValidationErrorColor"
                     : key;
                 var baseThemeProperty = baseTheme.GetType().GetProperty(baseThemePropertyName);
                 Assert.False(baseThemeProperty == null, $"{baseThemePropertyName} from {xaml} not found in {baseTheme.GetType()}");
 
-                var themePropertyName = key == "ValidationErrorBrush"
+                var themePropertyName = key == "MaterialDesignValidationErrorBrush"
                     ? "ValidationError"
                     : key.Replace("MaterialDesign", "");
                 var themeProperty = theme.GetType().GetProperty(themePropertyName);
-                Assert.False(themeProperty == null, $"{themePropertyName} from {xaml} not found in {theme.GetType()}");
+                Assert.False(themeProperty is null, $"{themePropertyName} from {xaml} not found in {theme.GetType()}");
                 Assert.NotNull(themeProperty);
 
-                Assert.Equal(solidColorBrush.Color, themeProperty.GetValue(theme));
+                Assert.Equal(solidColorBrush.Color, themeProperty!.GetValue(theme));
             }
         }
 
@@ -68,7 +68,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             {
                 var propertyColor = (Color) property.GetValue(theme)!;
                 var (nameBrush, nameColor) = property.Name == "ValidationError"
-                    ? ("ValidationErrorBrush", "ValidationErrorColor")
+                    ? ("MaterialDesignValidationErrorBrush", "MaterialDesignValidationErrorColor")
                     : ("MaterialDesign" + property.Name, "MaterialDesign" + property.Name + "Color");
 
                 Assert.True(resourceDictionary.Contains(nameBrush), $"{nameBrush} from {theme.GetType()} not found in {xaml}");
@@ -103,7 +103,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             {
                 var propertyColor = (Color)property.GetValue(theme)!;
                 var (nameBrush, nameColor) = property.Name == "ValidationError"
-                    ? ("ValidationErrorBrush", "ValidationErrorColor")
+                    ? ("MaterialDesignValidationErrorBrush", "MaterialDesignValidationErrorColor")
                     : ("MaterialDesign" + property.Name, "MaterialDesign" + property.Name + "Color");
 
                 var xamlColor = ((SolidColorBrush)resourceDictionary[nameBrush]).Color;

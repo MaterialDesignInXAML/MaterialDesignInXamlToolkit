@@ -1,15 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignColors.WpfExample
+﻿namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for Lists.xaml
-    /// </summary>
-    public partial class Lists : UserControl
+    public partial class Lists
     {
-        public Lists()
-        {
-            InitializeComponent();
-        }
+        public Lists() => InitializeComponent();
     }
 }

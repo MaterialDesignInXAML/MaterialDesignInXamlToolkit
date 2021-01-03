@@ -38,7 +38,7 @@ namespace MaterialDesignColors.Wpf.Fixture
                 swatch => swatch.Name == "brown");
 
             brownSwatch.IsAccented.ShouldBe(false);
-            brownSwatch.AccentHues.ShouldNotBe(null);
+            brownSwatch.AccentHues.ShouldNotBeNull();
             brownSwatch.AccentHues.Count().ShouldBe(0);
         }
 
@@ -51,7 +51,7 @@ namespace MaterialDesignColors.Wpf.Fixture
                 swatch => swatch.Name == "brown");
 
             brownSwatch.IsAccented.ShouldBe(false);
-            brownSwatch.PrimaryHues.ShouldNotBe(null);
+            brownSwatch.PrimaryHues.ShouldNotBeNull();
             brownSwatch.PrimaryHues.Count().ShouldBe(10);
         }
 
@@ -64,7 +64,7 @@ namespace MaterialDesignColors.Wpf.Fixture
                 swatch => swatch.Name == "indigo");
 
             brownSwatch.IsAccented.ShouldBe(true);
-            brownSwatch.AccentHues.ShouldNotBe(null);
+            brownSwatch.AccentHues.ShouldNotBeNull();
             brownSwatch.AccentHues.Count().ShouldBe(4);
         }
     }

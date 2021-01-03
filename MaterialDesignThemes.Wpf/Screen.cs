@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Threading;
@@ -28,7 +29,7 @@ namespace MaterialDesignThemes.Wpf
 
             [DllImport(User32, ExactSpelling = true)]
             [ResourceExposure(ResourceScope.None)]
-            public static extern bool EnumDisplayMonitors(HandleRef hdc, COMRECT rcClip, MonitorEnumProc lpfnEnum, IntPtr dwData);
+            public static extern bool EnumDisplayMonitors(HandleRef hdc, COMRECT? rcClip, MonitorEnumProc lpfnEnum, IntPtr dwData);
 
             [DllImport(User32, ExactSpelling = true)]
             [ResourceExposure(ResourceScope.None)]
@@ -117,7 +118,7 @@ namespace MaterialDesignThemes.Wpf
         private const int MONITORINFOF_PRIMARY = 0x00000001;
 
         private static readonly bool _multiMonitorSupport = NativeMethods.GetSystemMetrics(NativeMethods.SM_CMONITORS) != 0;
-        private static Screen[] _screens;
+        private static Screen[]? _screens;
 
         private Screen(IntPtr monitor)
         {
@@ -149,7 +150,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Gets an array of all of the displays on the system.
         /// </summary>
-        public static Screen[] AllScreens
+        public static Screen[]? AllScreens
         {
             get
             {
@@ -174,7 +175,14 @@ namespace MaterialDesignThemes.Wpf
                     }
                     else
                     {
-                        _screens = new[] { PrimaryScreen };
+                        if (PrimaryScreen is Screen screen)
+                        {
+                            _screens = new[] { screen };
+                        }
+                        else
+                        {
+                            _screens = null;
+                        }
                     }
 
                     // Now that we have our screens, attach a display setting changed
@@ -204,13 +212,13 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Gets the primary display.
         /// </summary>
-        public static Screen PrimaryScreen
+        public static Screen? PrimaryScreen
         {
             get
             {
                 if (_multiMonitorSupport)
                 {
-                    foreach (Screen screen in AllScreens)
+                    foreach (Screen screen in AllScreens ?? Enumerable.Empty<Screen>())
                     {
                         if (screen.Primary)
                         {
@@ -289,10 +297,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Specifies a value that indicates whether the specified object is equal to this one.
         /// </summary>
-        public override bool Equals(object obj)
-        {
-            return obj is Screen comp && _hmonitor == comp._hmonitor;
-        }
+        public override bool Equals(object? obj) => obj is Screen comp && _hmonitor == comp._hmonitor;
 
         /// <summary>
         /// Retrieves a <see cref='Screen'/> for the monitor that contains the specified point.
@@ -323,49 +328,34 @@ namespace MaterialDesignThemes.Wpf
         ///<summary>
         /// Retrieves the working area for the monitor that is closest to the specified point.
         /// </summary>
-        public static Rect GetWorkingArea(Point pt)
-        {
-            return FromPoint(pt).WorkingArea;
-        }
+        public static Rect GetWorkingArea(Point pt) => FromPoint(pt).WorkingArea;
 
         ///<summary>
         /// Retrieves the working area for the monitor that contains the largest region of the specified Rect.
         /// </summary>
-        public static Rect GetWorkingArea(Rect rect)
-        {
-            return FromRect(rect).WorkingArea;
-        }
+        public static Rect GetWorkingArea(Rect rect) => FromRect(rect).WorkingArea;
 
         ///<summary>
         /// Retrieves the bounds of the monitor that is closest to the specified point.
         /// </summary>
-        public static Rect GetBounds(Point pt)
-        {
-            return FromPoint(pt).Bounds;
-        }
+        public static Rect GetBounds(Point pt) => FromPoint(pt).Bounds;
 
         /// <summary>
         /// Retrieves the bounds of the monitor that contains the largest region of the specified Rect.
         /// </summary>
-        public static Rect GetBounds(Rect rect)
-        {
-            return FromRect(rect).Bounds;
-        }
+        public static Rect GetBounds(Rect rect) => FromRect(rect).Bounds;
 
         /// <summary>
         /// Computes and retrieves a hash code for an object.
         /// </summary>
-        public override int GetHashCode()
-        {
-            return (int)_hmonitor;
-        }
+        public override int GetHashCode() => (int)_hmonitor;
 
         /// <summary>
         /// Called by the SystemEvents class when our display settings are
         /// changing.  We cache screen information and at this point we must
         /// invalidate our cache.
         /// </summary>
-        private static void OnDisplaySettingsChanging(object sender, EventArgs e)
+        private static void OnDisplaySettingsChanging(object? sender, EventArgs e)
         {
             // Now that we've responded to this event, we don't need it again until
             // someone re-queries. We will re-add the event at that time.
@@ -380,7 +370,7 @@ namespace MaterialDesignThemes.Wpf
         /// changed.  Here, we increment a static counter that Screen instances
         /// can check against to invalidate their cache.
         /// </summary>
-        private static void OnUserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
+        private static void OnUserPreferenceChanged(object? sender, UserPreferenceChangedEventArgs e)
         {
             if (e.Category == UserPreferenceCategory.Desktop)
             {
@@ -391,10 +381,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Retrieves a string representing this object.
         /// </summary>
-        public override string ToString()
-        {
-            return GetType().Name + "[Bounds=" + Bounds + " WorkingArea=" + WorkingArea + " Primary=" + Primary + " DeviceName=" + DeviceName;
-        }
+        public override string ToString() => GetType().Name + "[Bounds=" + Bounds + " WorkingArea=" + WorkingArea + " Primary=" + Primary + " DeviceName=" + DeviceName;
 
         private class MonitorEnumCallback
         {

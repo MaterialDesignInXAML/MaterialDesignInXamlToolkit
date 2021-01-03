@@ -7,8 +7,7 @@
                       xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
                       xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
                       WindowTransitionsEnabled="False"
-                      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-                      Background="{DynamicResource MaterialDesignPaper}"
+                      Style="{StaticResource MaterialDesignWindow}"
                       GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
                       FontFamily="{DynamicResource MahApps.Fonts.Family.Window.Title}"
                       Title="Material-MahApps-Dragablz Mash Up" Height="640" Width="800">
@@ -20,7 +19,7 @@
     </controls:MetroWindow.WindowButtonCommands>
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>
-            <controls:Flyout x:Name="LeftFlyout" Position="Left" Header="Settings" wpf:FlyoutAssist.HeaderColorMode="Accent">
+            <controls:Flyout x:Name="LeftFlyout" Position="Left" Header="Settings" wpf:FlyoutAssist.HeaderColorMode="SecondaryMid">
                 <mahMaterialDragablzMashUp:FlyoutContent />
             </controls:Flyout>
         </controls:FlyoutsControl>

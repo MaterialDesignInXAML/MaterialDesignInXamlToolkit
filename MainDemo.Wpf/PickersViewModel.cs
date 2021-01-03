@@ -2,13 +2,13 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
     public class PickersViewModel : INotifyPropertyChanged
     {
         private DateTime _date;
         private DateTime _time;
-        private string _validatingTime;
+        private string? _validatingTime;
         private DateTime? _futureValidatingDate;
 
         public PickersViewModel()
@@ -19,49 +19,59 @@ namespace MaterialDesignColors.WpfExample
 
         public DateTime Date
         {
-            get { return _date; }
+            get => _date;
             set
             {
-                _date = value;
-                OnPropertyChanged();
+                if (_date != value)
+                {
+                    _date = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
         public DateTime Time
         {
-            get { return _time; }
+            get => _time;
             set
             {
-                _time = value;
-                OnPropertyChanged();
+                if (_time != value)
+                {
+                    _time = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        public string ValidatingTime
+        public string? ValidatingTime
         {
-            get { return _validatingTime; }
+            get => _validatingTime;
             set
             {
-                _validatingTime = value;
-                OnPropertyChanged();
+                if (_validatingTime != value)
+                {
+                    _validatingTime = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
         public DateTime? FutureValidatingDate
         {
-            get { return _futureValidatingDate; }
+            get => _futureValidatingDate;
             set
             {
-                _futureValidatingDate = value;
-                OnPropertyChanged();
+                if (_futureValidatingDate != value)
+                {
+                    _futureValidatingDate = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

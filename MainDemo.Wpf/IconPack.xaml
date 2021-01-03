@@ -1,95 +1,166 @@
-﻿<UserControl x:Class="MaterialDesignDemo.IconPack"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:virtualCollection="clr-namespace:VirtualCollection.VirtualCollection"
-             xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
-             mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance materialDesignDemo:IconPackViewModel}">
+﻿<UserControl
+    x:Class="MaterialDesignDemo.IconPack"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:virtualCollection="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel" xmlns:sys="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance materialDesignDemo:IconPackViewModel}">
+    
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <materialDesign:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
-
+            <materialDesign:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter"/>
             <converters:StringJoinConverter x:Key="StringJoinConverter" Separator="{x:Static system:Environment.NewLine}"/>
         </ResourceDictionary>
     </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        
         <StackPanel>
-            <TextBlock Style="{StaticResource MaterialDesignHeadline3TextBlock}">Icon Pack</TextBlock>
-            <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                       Margin="0 8 0 0">
-                Material Design In XAML Toolkit includes the Material Design Icons collection.
-            </TextBlock>
+            <TextBlock
+                Style="{StaticResource MaterialDesignHeadline3TextBlock}"
+                Text="Icon Pack"/>
+
+            <TextBlock
+                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                Margin="0 8 0 0"
+                Text="Material Design In XAML Toolkit includes the Material Design Icons collection."/>
+            
             <TextBlock Margin="0 12 0 0">
                 For more information on Material Design Icons see the official website:
                 <Hyperlink Command="{Binding OpenDotComCommand}">materialdesignicons.com</Hyperlink>
             </TextBlock>
         </StackPanel>
-        <ListBox ItemsSource="{Binding Kinds}" Grid.Row="1" Margin="0 8 0 0" SelectedItem="{Binding Group}">
+        
+        <ListBox
+            Grid.Row="1"
+            Margin="0 8 0 0"
+            ItemsSource="{Binding Kinds}"
+            SelectedItem="{Binding Group}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <virtualCollection:VirtualizingWrapPanel ItemHeight="80" ItemWidth="80" />
+                    <virtualCollection:VirtualizingWrapPanel />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
+            
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="materialDesignDemo:PackIconKindGroup">
-                    <DockPanel ToolTip="{Binding Aliases, Converter={StaticResource StringJoinConverter}}" Width="64" Height="64" Background="Transparent">
-                        <TextBlock Text="{Binding Kind}" DockPanel.Dock="Bottom" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" />
-                        <materialDesign:PackIcon Kind="{Binding Kind}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="32" Height="32" />
+                    <DockPanel
+                        ToolTip="{Binding Aliases, Converter={StaticResource StringJoinConverter}}"
+                        Width="64"
+                        Height="64"
+                        Background="Transparent">
+                        <TextBlock
+                            Text="{Binding Kind}"
+                            DockPanel.Dock="Bottom"
+                            TextTrimming="CharacterEllipsis"
+                            HorizontalAlignment="Center"/>
+                        
+                        <materialDesign:PackIcon
+                            Kind="{Binding Kind}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Width="32"
+                            Height="32"/>
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <materialDesign:ColorZone Mode="PrimaryLight" Grid.Row="2" Margin="0 8 0 0" CornerRadius="2" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+        
+        <materialDesign:ColorZone
+            Mode="PrimaryLight"
+            Grid.Row="2"
+            Margin="0 8 0 0"
+            CornerRadius="2"
+            materialDesign:ShadowAssist.ShadowDepth="Depth2">
             <StackPanel Orientation="Horizontal" Margin="8">
-                <Border Background="White" MaxHeight="30" CornerRadius="3" ToolTip="Enter to search, ignore case">
+                <Border
+                    Background="White"
+                    MaxHeight="30"
+                    CornerRadius="3"
+                    ToolTip="Enter to search, ignore case">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Style="{DynamicResource MaterialDesignToolButton}"
-                                Command="{Binding SearchCommand}" x:Name="SearchButton"
-                                CommandParameter="{Binding ElementName=SearchBox, Path=Text}"
-                                Height="24" Width="24">
-                            <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
+                        
+                        <Button
+                            x:Name="SearchButton"
+                            Style="{DynamicResource MaterialDesignToolButton}"
+                            Command="{Binding SearchCommand}"
+                            CommandParameter="{Binding ElementName=SearchBox, Path=Text}"
+                            Height="24"
+                            Width="24">
+                            <materialDesign:PackIcon
+                                Kind="Magnify"
+                                Opacity=".56"/>
                         </Button>
-                        <TextBox Grid.Column="1" Margin="5 0 0 0" KeyDown="Search_OnKeyDown"
-                             materialDesign:HintAssist.Hint="Search" x:Name="SearchBox"
-                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
-                             MinWidth="200" VerticalAlignment="Center" />
+                        
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="5 0 0 0"
+                            KeyDown="Search_OnKeyDown"
+                            materialDesign:HintAssist.Hint="Search" x:Name="SearchBox"
+                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                            BorderThickness="0"
+                            MinWidth="200"
+                            VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
-                <TextBlock Margin="8 0 0 0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" VerticalAlignment="Center">Usage:</TextBlock>
-                <materialDesign:ColorZone Mode="Standard" Margin="8" CornerRadius="2" Padding="6 2 6 2">
-                    <TextBox IsReadOnly="True"
-                             materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
-                             BorderThickness="0"
-                             FontFamily="Courier New"
-                             FontWeight="Bold"
-                             GotFocus="TextBox_OnGotFocus"
-                             Text="{Binding Kind, StringFormat='&lt;materialDesign:PackIcon Kind=&quot;{0}&quot; \/>'}" />
+
+                <TextBlock
+                    Margin="8 0 0 0"
+                    Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                    VerticalAlignment="Center"
+                    Text="Usage:"/>
+                
+                <materialDesign:ColorZone
+                    Mode="Standard"
+                    Margin="8"
+                    CornerRadius="2"
+                    Padding="6 2 6 2">
+                    <TextBox
+                        IsReadOnly="True"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
+                        BorderThickness="0"
+                        FontFamily="Courier New"
+                        FontWeight="Bold"
+                        GotFocus="TextBox_OnGotFocus"
+                        Text="{Binding Kind, StringFormat='&lt;materialDesign:PackIcon Kind=&quot;{0}&quot; \/>'}"/>
                 </materialDesign:ColorZone>
-                <materialDesign:PackIcon Kind="{Binding PackIconKind}" VerticalAlignment="Center"
-                                         Visibility="{Binding Kind, Converter={StaticResource NullableToVisibilityConverter}}" />
-                <Button Margin="8 0" Command="{Binding CopyToClipboardCommand, Mode=OneTime}" CommandParameter="{Binding Kind}">
+                
+                <materialDesign:PackIcon
+                    Kind="{Binding PackIconKind}"
+                    VerticalAlignment="Center"
+                    Visibility="{Binding Kind, Converter={StaticResource NullableToVisibilityConverter}}"/>
+                
+                <Button
+                    Margin="8 0"
+                    Command="{Binding CopyToClipboardCommand, Mode=OneTime}"
+                    CommandParameter="{Binding Kind}">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="ContentCopy" />
-                        <TextBlock Text="Copy To Clipboard" Margin="8 0 0 0" />
+                        <materialDesign:PackIcon Kind="ContentCopy"/>
+                        <TextBlock
+                            Text="Copy To Clipboard"
+                            Margin="8 0 0 0"/>
                     </StackPanel>
                 </Button>
             </StackPanel>

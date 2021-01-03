@@ -23,7 +23,7 @@ namespace MaterialDesignThemes.Wpf
         private const string ActivateStoryboardName = "ActivateStoryboard";
         private const string DeactivateStoryboardName = "DeactivateStoryboard";
 
-        private Action _messageQueueRegistrationCleanUp;
+        private Action? _messageQueueRegistrationCleanUp;
 
         static Snackbar()
         {
@@ -33,14 +33,15 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty MessageProperty = DependencyProperty.Register(
             nameof(Message), typeof(SnackbarMessage), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessage)));
 
-        public SnackbarMessage Message
+        public SnackbarMessage? Message
         {
-            get => (SnackbarMessage) GetValue(MessageProperty);
+            get => (SnackbarMessage?) GetValue(MessageProperty);
             set => SetValue(MessageProperty, value);
         }
 
         public static readonly DependencyProperty MessageQueueProperty = DependencyProperty.Register(
-            nameof(MessageQueue), typeof(SnackbarMessageQueue), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessageQueue), MessageQueuePropertyChangedCallback));
+            nameof(MessageQueue), typeof(SnackbarMessageQueue), typeof(Snackbar), new PropertyMetadata(default(SnackbarMessageQueue), MessageQueuePropertyChangedCallback),
+            MessageQueueValidateValueCallback);
 
         private static void MessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -50,9 +51,16 @@ namespace MaterialDesignThemes.Wpf
             snackbar._messageQueueRegistrationCleanUp = messageQueue?.Pair(snackbar);
         }
 
-        public SnackbarMessageQueue MessageQueue
+        private static bool MessageQueueValidateValueCallback(object value)
         {
-            get => (SnackbarMessageQueue) GetValue(MessageQueueProperty);
+            if (value is null || ((SnackbarMessageQueue)value).Dispatcher == Dispatcher.CurrentDispatcher)
+                return true;
+            throw new ArgumentException("SnackbarMessageQueue must be created by the same thread.", nameof(value));
+        }
+
+        public SnackbarMessageQueue? MessageQueue
+        {
+            get => (SnackbarMessageQueue?) GetValue(MessageQueueProperty);
             set => SetValue(MessageQueueProperty, value);
         }
 
@@ -78,7 +86,9 @@ namespace MaterialDesignThemes.Wpf
         {
             var instance = d as Snackbar;
             var args = new RoutedPropertyChangedEventArgs<bool>((bool) e.OldValue, (bool) e.NewValue)
-                { RoutedEvent = IsActiveChangedEvent };
+            {
+                RoutedEvent = IsActiveChangedEvent
+            };
             instance?.RaiseEvent(args);
         }
 
@@ -104,9 +114,9 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty ActionButtonStyleProperty = DependencyProperty.Register(
             nameof(ActionButtonStyle), typeof(Style), typeof(Snackbar), new PropertyMetadata(default(Style)));
 
-        public Style ActionButtonStyle
+        public Style? ActionButtonStyle
         {
-            get => (Style) GetValue(ActionButtonStyleProperty);
+            get => (Style?) GetValue(ActionButtonStyleProperty);
             set => SetValue(ActionButtonStyleProperty, value);
         }
 
@@ -150,7 +160,7 @@ namespace MaterialDesignThemes.Wpf
             if ((bool) dependencyPropertyChangedEventArgs.NewValue) return;
 
             var snackbar = (Snackbar) dependencyObject;
-            if (snackbar.Message == null) return;
+            if (snackbar.Message is null) return;
 
             var dispatcherTimer = new DispatcherTimer
             {
@@ -161,13 +171,15 @@ namespace MaterialDesignThemes.Wpf
             dispatcherTimer.Start();
         }
 
-        private static void DeactivateStoryboardDispatcherTimerOnTick(object sender, EventArgs eventArgs)
+        private static void DeactivateStoryboardDispatcherTimerOnTick(object? sender, EventArgs eventArgs)
         {
-            var dispatcherTimer = (DispatcherTimer) sender;
-            dispatcherTimer.Stop();
-            dispatcherTimer.Tick -= DeactivateStoryboardDispatcherTimerOnTick;
-            var source = (Tuple<Snackbar, SnackbarMessage>) dispatcherTimer.Tag;
-            OnDeactivateStoryboardCompleted(source.Item1, source.Item2);
+            if (sender is DispatcherTimer dispatcherTimer)
+            {
+                dispatcherTimer.Stop();
+                dispatcherTimer.Tick -= DeactivateStoryboardDispatcherTimerOnTick;
+                var source = (Tuple<Snackbar, SnackbarMessage>)dispatcherTimer.Tag;
+                OnDeactivateStoryboardCompleted(source.Item1, source.Item2);
+            }
         }
 
         public static readonly DependencyProperty ActionButtonPlacementProperty = DependencyProperty.Register(

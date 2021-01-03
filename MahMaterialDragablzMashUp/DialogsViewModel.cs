@@ -24,7 +24,7 @@ namespace MahMaterialDragablzMashUp
             ShowLeftFlyoutCommand = new AnotherCommandImplementation(_ => ShowLeftFlyout());
         }
 
-        public Flyout LeftFlyout { get; set; }
+        public Flyout? LeftFlyout { get; set; }
 
         private void InputDialog()
         {

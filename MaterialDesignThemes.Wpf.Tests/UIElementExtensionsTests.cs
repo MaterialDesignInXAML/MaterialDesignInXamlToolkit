@@ -17,7 +17,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         public void AddAdornerNullArgumentThrowsException()
         { 
             Assert.Throws<ArgumentNullException>(
-                () => testFixture.testElement.AddAdorner<BottomDashedLineAdorner>(null));
+                () => testFixture.testElement.AddAdorner<BottomDashedLineAdorner>(null!));
         }
 
         [Fact]

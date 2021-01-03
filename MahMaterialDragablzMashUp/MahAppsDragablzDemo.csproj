@@ -13,9 +13,6 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="paket.references" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
     <ProjectReference Include="..\MaterialDesignThemes.MahApps\MaterialDesignThemes.MahApps.csproj" />
     <ProjectReference Include="..\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
@@ -24,9 +21,10 @@
     <Resource Include="Resources\ProfilePic.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Update="Dragablz">
-      <NoWarn>NU1701</NoWarn>
-    </PackageReference>
+    <PackageReference Include="Dragablz" />
+    <PackageReference Include="MahApps.Metro" />
+    <PackageReference Include="ShowMeTheXAML" />
+    <PackageReference Include="ShowMeTheXAML.AvalonEdit" />
+    <PackageReference Include="ShowMeTheXAML.MSBuild" />
   </ItemGroup>
-  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

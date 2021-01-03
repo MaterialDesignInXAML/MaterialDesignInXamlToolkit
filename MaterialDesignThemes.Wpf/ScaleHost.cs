@@ -12,8 +12,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double Scale
         {
-            get { return (double)GetValue(ScaleProperty); }
-            set { SetValue(ScaleProperty, value); }
+            get => (double)GetValue(ScaleProperty);
+            set => SetValue(ScaleProperty, value);
         }
     }
 }

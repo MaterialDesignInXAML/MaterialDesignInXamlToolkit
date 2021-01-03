@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Data;
 using System.Windows.Markup;
 
@@ -7,10 +8,10 @@ namespace MaterialDesignThemes.Wpf.Converters
 {
     public sealed class CalendarYearMonthConverter: IMultiValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
         {
             long ticks = long.MaxValue;
-            foreach (var value in values)
+            foreach (var value in values ?? Enumerable.Empty<object?>())
             {
                 if (value is DateTime dt)
                     ticks = dt.Ticks;
@@ -30,9 +31,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             }
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public object?[]? ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture)
+            => throw new NotImplementedException();
     }
 }

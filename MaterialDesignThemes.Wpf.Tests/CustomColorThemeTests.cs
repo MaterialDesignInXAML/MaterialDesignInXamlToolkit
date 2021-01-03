@@ -24,17 +24,17 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Throws<InvalidOperationException>(() => bundledTheme.GetTheme());
         }
 
-        public static IEnumerable<object[]> GetThemeValues()
+        public static IEnumerable<object?[]> GetThemeValues()
         {
-            yield return new object[] { null, null, null };
-            yield return new object[] { BaseTheme.Light, null, null };
-            yield return new object[] { BaseTheme.Inherit, null, null };
-            yield return new object[] { null, Colors.Blue, null };
-            yield return new object[] { BaseTheme.Light, Colors.Blue, null };
-            yield return new object[] { BaseTheme.Inherit, Colors.Blue, null };
-            yield return new object[] { null, null, Colors.Blue };
-            yield return new object[] { BaseTheme.Light, null, Colors.Blue };
-            yield return new object[] { BaseTheme.Inherit, null, Colors.Blue };
+            yield return new object?[] { null, null, null };
+            yield return new object?[] { BaseTheme.Light, null, null };
+            yield return new object?[] { BaseTheme.Inherit, null, null };
+            yield return new object?[] { null, Colors.Blue, null };
+            yield return new object?[] { BaseTheme.Light, Colors.Blue, null };
+            yield return new object?[] { BaseTheme.Inherit, Colors.Blue, null };
+            yield return new object?[] { null, null, Colors.Blue };
+            yield return new object?[] { BaseTheme.Light, null, Colors.Blue };
+            yield return new object?[] { BaseTheme.Inherit, null, Colors.Blue };
         }
 
         [StaFact]

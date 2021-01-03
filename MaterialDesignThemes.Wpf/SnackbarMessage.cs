@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
 using MaterialDesignThemes.Wpf.Converters;
 
 namespace MaterialDesignThemes.Wpf
@@ -11,13 +12,19 @@ namespace MaterialDesignThemes.Wpf
     /// <summary>
     /// Defines the content of a message within a <see cref="Snackbar"/>.  Primary content should be set via the 
     /// standard <see cref="SnackbarMessage.Content"/> property.  Where an action is allowed, content
-    /// can be provided in <see cref="SnackbarMessage.ActionContent"/>.  Standard button properties are 
-    /// provided for actions, includiing <see cref="SnackbarMessage.ActionCommand"/>.
+    /// can be provided in <see cref="ActionContent"/>.  Standard button properties are 
+    /// provided for actions, includiing <see cref="ActionCommand"/>.
     /// </summary>
     [TypeConverter(typeof(SnackbarMessageTypeConverter))]
     [TemplatePart(Name = ActionButtonPartName, Type = typeof(ButtonBase))]
     public class SnackbarMessage : ContentControl
     {
+        internal static readonly ResourceDictionary defaultResources = new ResourceDictionary
+        {
+            { "SecondaryHueMidBrush", Brushes.Transparent },
+            { "MaterialDesignSnackbarRipple", Brushes.Transparent },
+        };
+
         public const string ActionButtonPartName = "PART_ActionButton";
         private Action _templateCleanupAction = () => { };
 
@@ -27,57 +34,57 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ActionCommandProperty = DependencyProperty.Register(
-            "ActionCommand", typeof(ICommand), typeof(SnackbarMessage), new PropertyMetadata(default(ICommand)));
+            "ActionCommand", typeof(ICommand), typeof(SnackbarMessage), new PropertyMetadata(default(ICommand?)));
 
-        public ICommand ActionCommand
+        public ICommand? ActionCommand
         {
-            get { return (ICommand)GetValue(ActionCommandProperty); }
-            set { SetValue(ActionCommandProperty, value); }
+            get => (ICommand?)GetValue(ActionCommandProperty);
+            set => SetValue(ActionCommandProperty, value);
         }
 
         public static readonly DependencyProperty ActionCommandParameterProperty = DependencyProperty.Register(
-            "ActionCommandParameter", typeof(object), typeof(SnackbarMessage), new PropertyMetadata(default(object)));
+            "ActionCommandParameter", typeof(object), typeof(SnackbarMessage), new PropertyMetadata(default(object?)));
 
-        public object ActionCommandParameter
+        public object? ActionCommandParameter
         {
-            get { return (object)GetValue(ActionCommandParameterProperty); }
-            set { SetValue(ActionCommandParameterProperty, value); }
+            get => GetValue(ActionCommandParameterProperty);
+            set => SetValue(ActionCommandParameterProperty, value);
         }
 
         public static readonly DependencyProperty ActionContentProperty = DependencyProperty.Register(
-            "ActionContent", typeof(object), typeof(SnackbarMessage), new PropertyMetadata(default(object)));
+            "ActionContent", typeof(object), typeof(SnackbarMessage), new PropertyMetadata(default(object?)));
 
-        public object ActionContent
+        public object? ActionContent
         {
-            get { return (object)GetValue(ActionContentProperty); }
-            set { SetValue(ActionContentProperty, value); }
+            get => GetValue(ActionContentProperty);
+            set => SetValue(ActionContentProperty, value);
         }
 
         public static readonly DependencyProperty ActionContentTemplateProperty = DependencyProperty.Register(
-            "ActionContentTemplate", typeof(DataTemplate), typeof(SnackbarMessage), new PropertyMetadata(default(DataTemplate)));
+            "ActionContentTemplate", typeof(DataTemplate), typeof(SnackbarMessage), new PropertyMetadata(default(DataTemplate?)));
 
-        public DataTemplate ActionContentTemplate
+        public DataTemplate? ActionContentTemplate
         {
-            get { return (DataTemplate)GetValue(ActionContentTemplateProperty); }
-            set { SetValue(ActionContentTemplateProperty, value); }
+            get => (DataTemplate?)GetValue(ActionContentTemplateProperty);
+            set => SetValue(ActionContentTemplateProperty, value);
         }
 
         public static readonly DependencyProperty ActionContentStringFormatProperty = DependencyProperty.Register(
-            "ActionContentStringFormat", typeof(string), typeof(SnackbarMessage), new PropertyMetadata(default(string)));
+            "ActionContentStringFormat", typeof(string), typeof(SnackbarMessage), new PropertyMetadata(default(string?)));
 
-        public string ActionContentStringFormat
+        public string? ActionContentStringFormat
         {
-            get { return (string)GetValue(ActionContentStringFormatProperty); }
-            set { SetValue(ActionContentStringFormatProperty, value); }
+            get => (string?)GetValue(ActionContentStringFormatProperty);
+            set => SetValue(ActionContentStringFormatProperty, value);
         }
 
         public static readonly DependencyProperty ActionContentTemplateSelectorProperty = DependencyProperty.Register(
-            "ActionContentTemplateSelector", typeof(DataTemplateSelector), typeof(SnackbarMessage), new PropertyMetadata(default(DataTemplateSelector)));
+            "ActionContentTemplateSelector", typeof(DataTemplateSelector), typeof(SnackbarMessage), new PropertyMetadata(default(DataTemplateSelector?)));
 
-        public DataTemplateSelector ActionContentTemplateSelector
+        public DataTemplateSelector? ActionContentTemplateSelector
         {
-            get { return (DataTemplateSelector)GetValue(ActionContentTemplateSelectorProperty); }
-            set { SetValue(ActionContentTemplateSelectorProperty, value); }
+            get => (DataTemplateSelector?)GetValue(ActionContentTemplateSelectorProperty);
+            set => SetValue(ActionContentTemplateSelectorProperty, value);
         }
 
         /// <summary>
@@ -90,7 +97,11 @@ namespace MaterialDesignThemes.Wpf
         /// Add / Remove ActionClickEvent handler 
         /// </summary>
         [Category("Behavior")]
-        public event RoutedEventHandler ActionClick { add { AddHandler(ActionClickEvent, value); } remove { RemoveHandler(ActionClickEvent, value); } }
+        public event RoutedEventHandler ActionClick
+        {
+            add { AddHandler(ActionClickEvent, value); }
+            remove { RemoveHandler(ActionClickEvent, value); }
+        }
 
         protected virtual void OnActionClick()
         {
@@ -116,9 +127,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void ButtonBaseOnClick(object sender, RoutedEventArgs routedEventArgs)
-        {
-            OnActionClick();
-        }
+            => OnActionClick();
 
         /// <summary>
         /// Maximum total height of snackbar for the action button to be inlined.
@@ -131,12 +140,12 @@ namespace MaterialDesignThemes.Wpf
             "InlineActionButtonMaxHeight", typeof(double), typeof(SnackbarMessage), new PropertyMetadata(55d));
 
         public static void SetInlineActionButtonMaxHeight(DependencyObject element, double value) => element.SetValue(InlineActionButtonMaxHeightProperty, value);
-        public static double GetInlineActionButtonMaxHeight(DependencyObject element) => (double) element.GetValue(InlineActionButtonMaxHeightProperty);
+        public static double GetInlineActionButtonMaxHeight(DependencyObject element) => (double)element.GetValue(InlineActionButtonMaxHeightProperty);
 
         public static readonly DependencyProperty ContentMaxHeightProperty = DependencyProperty.RegisterAttached(
             "ContentMaxHeight", typeof(double), typeof(SnackbarMessage), new PropertyMetadata(36d));
 
         public static void SetContentMaxHeight(DependencyObject element, double value) => element.SetValue(ContentMaxHeightProperty, value);
-        public static double GetContentMaxHeight(DependencyObject element) => (double) element.GetValue(ContentMaxHeightProperty);
+        public static double GetContentMaxHeight(DependencyObject element) => (double)element.GetValue(ContentMaxHeightProperty);
     }
 }

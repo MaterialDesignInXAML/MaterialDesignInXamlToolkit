@@ -14,7 +14,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            TransitionEffectBase transitionEffect;
+            TransitionEffectBase? transitionEffect;
 
             if (value is string stringValue &&
                 Enum.TryParse(stringValue, out TransitionEffectKind effectKind))
@@ -26,7 +26,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 transitionEffect = value as TransitionEffectBase;
             }
 
-            if (transitionEffect == null)
+            if (transitionEffect is null)
                 throw new XamlParseException($"Could not parse to type {typeof(TransitionEffectKind).FullName} or {typeof(TransitionEffectBase).FullName}.");
 
             return transitionEffect;

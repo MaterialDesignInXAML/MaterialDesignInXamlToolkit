@@ -8,7 +8,7 @@ namespace MaterialDesignThemes.Wpf.Converters
     {
         public MathOperation Operation { get; set; }
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             try
             {
@@ -36,9 +36,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return Binding.DoNothing;
-        }
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+            => Binding.DoNothing;
     }
 }

@@ -2,17 +2,17 @@
 using System.Configuration;
 using System.Windows.Controls;
 using System.Windows.Input;
-using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignColors.WpfExample.Domain
+namespace MaterialDesignDemo.Domain
 {
     public class DocumentationLink
     {
-        public DocumentationLink(DocumentationLinkType type, string url) : this(type, url, null)
+        public DocumentationLink(DocumentationLinkType type, string url)
+            : this(type, url, null)
         {
         }
 
-        public DocumentationLink(DocumentationLinkType type, string url, string label)
+        public DocumentationLink(DocumentationLinkType type, string url, string? label)
         {
             Label = label ?? type.ToString();
             Url = url;
@@ -46,9 +46,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
 
         public static DocumentationLink ApiLink<TClass>()
-        {
-            return ApiLink(typeof(TClass));
-        }
+            => ApiLink(typeof(TClass));
 
         public static DocumentationLink ApiLink(Type type)
         {
@@ -61,16 +59,12 @@ namespace MaterialDesignColors.WpfExample.Domain
         }
 
         public static DocumentationLink DemoPageLink<TDemoPage>()
-        {
-            return DemoPageLink<TDemoPage>(null);
-        }
+            => DemoPageLink<TDemoPage>(null);
 
-        public static DocumentationLink DemoPageLink<TDemoPage>(string label)
-        {
-            return DemoPageLink<TDemoPage>(label, null);
-        }
+        public static DocumentationLink DemoPageLink<TDemoPage>(string? label)
+            => DemoPageLink<TDemoPage>(label, null);
 
-        public static DocumentationLink DemoPageLink<TDemoPage>(string label, string nameSpace)
+        public static DocumentationLink DemoPageLink<TDemoPage>(string? label, string? @namespace)
         {
             var ext = typeof(UserControl).IsAssignableFrom(typeof(TDemoPage))
                 ? "xaml"
@@ -79,7 +73,7 @@ namespace MaterialDesignColors.WpfExample.Domain
 
             return new DocumentationLink(
                 DocumentationLinkType.DemoPageSource,
-                $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MainDemo.Wpf/{(string.IsNullOrWhiteSpace(nameSpace) ? "" : ("/" + nameSpace + "/"))}{typeof(TDemoPage).Name}.{ext}",
+                $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MainDemo.Wpf/{(string.IsNullOrWhiteSpace(@namespace) ? "" : ("/" + @namespace + "/"))}{typeof(TDemoPage).Name}.{ext}",
                 label ?? typeof(TDemoPage).Name);
         }
 

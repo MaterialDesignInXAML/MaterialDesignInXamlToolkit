@@ -7,13 +7,13 @@ namespace MaterialDesignThemes.Wpf.Converters
 {
     internal static class ShadowInfo
     {
-        private static readonly IDictionary<ShadowDepth, DropShadowEffect> ShadowsDictionary;
+        private static readonly IDictionary<ShadowDepth, DropShadowEffect?> ShadowsDictionary;
 
         static ShadowInfo()
         {
             var resourceDictionary = new ResourceDictionary { Source = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml", UriKind.Absolute) };
 
-            ShadowsDictionary = new Dictionary<ShadowDepth, DropShadowEffect>
+            ShadowsDictionary = new Dictionary<ShadowDepth, DropShadowEffect?>
             {
                 { ShadowDepth.Depth0, null },
                 { ShadowDepth.Depth1, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth1"] },
@@ -24,7 +24,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             };
         }
 
-        public static DropShadowEffect GetDropShadow(ShadowDepth depth)
+        public static DropShadowEffect? GetDropShadow(ShadowDepth depth)
         {
             return ShadowsDictionary[depth];
         }

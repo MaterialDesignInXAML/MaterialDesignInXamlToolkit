@@ -79,12 +79,10 @@ namespace MaterialDesignDemo.Domain
         public ObservableCollection<SelectableViewModel> Items2 { get; }
         public ObservableCollection<SelectableViewModel> Items3 { get; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         public IEnumerable<string> Foods => new[] { "Burger", "Fries", "Shake", "Lettuce" };
     }

@@ -1,13 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:controlzEx="clr-namespace:ControlzEx">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <ControlTemplate x:Key="MaterialDesignValidationErrorTemplate">
         <ControlTemplate.Resources>
             <DataTemplate DataType="{x:Type ValidationError}">
-                <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
+                <TextBlock Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
                            FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
                            MaxWidth="{Binding ElementName=Placeholder, Path=ActualWidth}"
                            HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
@@ -22,7 +21,7 @@
             <Border x:Name="DefaultErrorViewer"
                     Visibility="Collapsed"
                     Background="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Background)}">
-                <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
+                <TextBlock Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
                            FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
                            MaxWidth="{Binding ElementName=Placeholder, Path=ActualWidth}"
                            HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
@@ -31,13 +30,13 @@
                            Text="{Binding CurrentItem.ErrorContent}"
                            UseLayoutRounding="false" />
             </Border>
-            <controlzEx:PopupEx x:Name="ValidationPopup"
-                                IsOpen="False"
-                                Placement="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.PopupPlacement)}"
-                                PlacementTarget="{Binding ElementName=Placeholder, Mode=OneWay}"
-                                AllowsTransparency="True">
+            <wpf:PopupEx x:Name="ValidationPopup"
+                         IsOpen="False"
+                         Placement="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.PopupPlacement)}"
+                         PlacementTarget="{Binding ElementName=Placeholder, Mode=OneWay}"
+                         AllowsTransparency="True">
                 <Border x:Name="PopupBorder" Background="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Background)}">
-                    <TextBlock Foreground="{DynamicResource ValidationErrorBrush}"
+                    <TextBlock Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
                                FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
                                HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
                                Margin="0 2"
@@ -45,7 +44,7 @@
                                Text="{Binding CurrentItem.ErrorContent}"
                                UseLayoutRounding="false" />
                 </Border>
-            </controlzEx:PopupEx>
+            </wpf:PopupEx>
         </StackPanel>
         <ControlTemplate.Triggers>
             <MultiDataTrigger>
@@ -95,6 +94,11 @@
             <DataTrigger Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Background)}" Value="{x:Null}">
                 <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
                 <Setter TargetName="DefaultErrorViewer" Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:TextFieldAssist.HasOutlinedTextField)}" Value="True">
+                <Setter TargetName="DefaultErrorViewer" Property="Margin" Value="0,2,0,0"/>
+                <Setter TargetName="ValidationPopup" Property="VerticalOffset" Value="2"/>
             </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

@@ -55,15 +55,11 @@ namespace MaterialDesignThemes.Wpf
         private static readonly DependencyPropertyKey LocalInfoPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "LocalInfo", typeof(ShadowLocalInfo), typeof(ShadowAssist), new PropertyMetadata(default(ShadowLocalInfo)));
 
-        private static void SetLocalInfo(DependencyObject element, ShadowLocalInfo value)
-        {
-            element.SetValue(LocalInfoPropertyKey, value);
-        }
+        private static void SetLocalInfo(DependencyObject element, ShadowLocalInfo? value)
+            => element.SetValue(LocalInfoPropertyKey, value);
 
-        private static ShadowLocalInfo GetLocalInfo(DependencyObject element)
-        {
-            return (ShadowLocalInfo)element.GetValue(LocalInfoPropertyKey.DependencyProperty);
-        }
+        private static ShadowLocalInfo? GetLocalInfo(DependencyObject element)
+            => (ShadowLocalInfo?)element.GetValue(LocalInfoPropertyKey.DependencyProperty);
 
         public static readonly DependencyProperty DarkenProperty = DependencyProperty.RegisterAttached(
             "Darken", typeof(bool), typeof(ShadowAssist), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.AffectsRender, DarkenPropertyChangedCallback));

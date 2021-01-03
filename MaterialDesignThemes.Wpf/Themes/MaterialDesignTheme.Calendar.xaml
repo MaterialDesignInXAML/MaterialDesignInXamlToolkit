@@ -3,6 +3,9 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:globalization="clr-namespace:System.Globalization;assembly=mscorlib">
+
+    <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    
     <Style x:Key="MaterialDesignCalendarButton" TargetType="{x:Type CalendarButton}">
         <Setter Property="MinWidth" Value="5"/>
         <Setter Property="MinHeight" Value="5"/>
@@ -134,8 +137,8 @@
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Margin" Value="2"/>
-        <Setter Property="Width" Value="34" />
-        <Setter Property="Height" Value="34" />
+        <Setter Property="Width" Value="28" />
+        <Setter Property="Height" Value="28" />
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -318,8 +321,8 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <wpf:Card UniformCornerRadius="2"  Background="{TemplateBinding Background}" wpf:ShadowAssist.ShadowDepth="Depth0">
-                            <Grid>
+                        <wpf:Card UniformCornerRadius="2" wpf:ShadowAssist.ShadowDepth="Depth0">
+                            <Grid Background="{TemplateBinding Background}" RenderOptions.ClearTypeHint="Enabled">
                                 <Grid.Resources>
                                     <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="{x:Type Button}">
                                         <Grid Cursor="Hand">
@@ -387,7 +390,7 @@
                                     <converters:CalendarYearMonthConverter x:Key="CalendarYearMonthConverter"/>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
@@ -400,20 +403,26 @@
                                 <Border Grid.ColumnSpan="3" Grid.Row="0" Background="{DynamicResource PrimaryHueMidBrush}" />
                                 <Button x:Name="PART_HeaderButton"
                                         Grid.Row="0"
+                                        Grid.Column="0"
                                         Grid.ColumnSpan="3"
-                                        FontWeight="Bold" Focusable="False" FontSize="10.5"
-                                        HorizontalAlignment="Left" VerticalAlignment="Center"
+                                        FontWeight="Bold"
+                                        Focusable="False"
+                                        FontSize="10.5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
                                         Template="{StaticResource HeaderButtonTemplate}"
+                                        Visibility="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Height="Auto"
-                                        Margin="20 15"/>
-                                <Button x:Name="PART_PreviousButton" Grid.Row="1" Grid.Column="0" Focusable="False" HorizontalAlignment="Left" Height="36" Template="{StaticResource PreviousButtonTemplate}" Width="32"
-                                            Margin="6 0 0 0" Foreground="{TemplateBinding Foreground}" />
+                                        Margin="20 15" />
                                 <TextBlock x:Name="CurrentDateTextBlock"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           Margin="8"
+                                           Grid.Row="1" 
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left" 
+                                           VerticalAlignment="Center"
+                                           Margin="13 8 8 8"
                                            FontSize="14"
-                                           Grid.Row="1" Grid.Column="1"
                                            FontWeight="SemiBold"
+                                           Opacity="0.56"
                                            RenderTransformOrigin="0, 0.5">
                                     <TextBlock.Text>
                                         <MultiBinding Converter="{StaticResource CalendarYearMonthConverter}">
@@ -425,8 +434,28 @@
                                         <TranslateTransform X="0" Y="0"/>
                                     </TextBlock.RenderTransform>
                                 </TextBlock>
-                                <Button x:Name="PART_NextButton" Grid.Row="1" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="36" Template="{StaticResource NextButtonTemplate}" Width="32"
-                                            Margin="0 0 6 0" Foreground="{TemplateBinding Foreground}" />
+                                <Button x:Name="PART_PreviousButton"
+                                        Grid.Row="1"
+                                        Grid.Column="1" 
+                                        Focusable="False" 
+                                        HorizontalAlignment="Left" 
+                                        Height="36" 
+                                        Width="32"
+                                        Template="{StaticResource PreviousButtonTemplate}"
+                                        Margin="3 0"
+                                        Opacity="0.56"
+                                        Foreground="{TemplateBinding Foreground}" />
+                                <Button x:Name="PART_NextButton" 
+                                        Grid.Row="1" 
+                                        Grid.Column="2" 
+                                        Focusable="False" 
+                                        HorizontalAlignment="Right"
+                                        Height="36"
+                                        Width="32"
+                                        Template="{StaticResource NextButtonTemplate}"
+                                        Margin="3 0"
+                                        Opacity="0.56"
+                                        Foreground="{TemplateBinding Foreground}" />
 
                                 <Grid x:Name="MonthViewWrapperGrid"
                                       Grid.ColumnSpan="3"
@@ -444,7 +473,7 @@
                                             <TranslateTransform X="0"/>
                                         </Border.RenderTransform>
                                     </Border>
-                                    <Grid x:Name="PART_MonthView" RenderTransformOrigin="0, 0.5">
+                                    <Grid x:Name="PART_MonthView" RenderTransformOrigin="0, 0.5" IsSharedSizeScope="True">
                                         <Grid.RenderTransform>
                                             <TranslateTransform X="0" />
                                         </Grid.RenderTransform>
@@ -458,13 +487,13 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
+                                            <RowDefinition SharedSizeGroup="WeekRow" />
                                         </Grid.RowDefinitions>
                                     </Grid>
                                 </Grid>
@@ -611,7 +640,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Calendar}">
-                    <CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Style="{DynamicResource MaterialDesignCalendarItemPortrait}"/>
+                    <CalendarItem
+                        x:Name="PART_CalendarItem"
+                        Style="{DynamicResource MaterialDesignCalendarItemPortrait}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        wpf:CalendarAssist.IsHeaderVisible="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
