@@ -23,7 +23,7 @@
     <WrapPanel Margin="0 0 8 8">
         <smtx:XamlDisplay
             UniqueKey="cards_1"
-            Margin="4 4 0 0"
+            Margin="4 4 0 16"
             VerticalContentAlignment="Top">
             <materialDesign:Card Width="200">
                 <Grid>
@@ -85,7 +85,7 @@
 
         <smtx:XamlDisplay
             UniqueKey="cards_2"
-            Margin="4 4 0 0"
+            Margin="4 4 0 16"
             VerticalContentAlignment="Top">
             <materialDesign:Card Width="220">
                 <Grid>
@@ -192,7 +192,7 @@
         <StackPanel>
             <smtx:XamlDisplay
                 UniqueKey="cards_3"
-                Margin="4 4 0 0"
+                Margin="4 4 0 16"
                 VerticalContentAlignment="Top">
                 <materialDesign:Card Background="#03a9f4"
                       Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
@@ -248,7 +248,7 @@
             
             <smtx:XamlDisplay
                 UniqueKey="cards_4"
-                Margin="4 4 0 0"
+                Margin="4 4 0 16"
                 VerticalContentAlignment="Top">
                 <materialDesign:Card Background="{DynamicResource PrimaryHueLightBrush}"
                       Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
@@ -262,7 +262,7 @@
             
             <smtx:XamlDisplay
                 UniqueKey="cards_5"
-                Margin="4 4 0 0">
+                Margin="4 4 0 16">
                 <materialDesign:Card
                     Background="{DynamicResource PrimaryHueDarkBrush}"
                     Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
@@ -278,7 +278,7 @@
         
         <smtx:XamlDisplay
             UniqueKey="cards_6"
-            Margin="4 4 0 0"
+            Margin="4 4 0 16"
             VerticalContentAlignment="Top">
             <materialDesign:Card
                 Background="{DynamicResource PrimaryHueDarkBrush}"

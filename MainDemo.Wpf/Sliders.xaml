@@ -137,7 +137,7 @@
             Grid.Row="4"
             Grid.Column="0"
             HorizontalAlignment="Left"
-            Margin="24 8 0 0">
+            Margin="8 8 0 0">
             <StackPanel
                     Orientation="Horizontal"
                     Margin="0 16 0 0">

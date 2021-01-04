@@ -15,17 +15,16 @@
     
     <UserControl.Resources>
         <Style x:Key="SectionTitle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock }">
-            <Setter Property="Margin" Value="0 32 0 0" />
+            <Setter Property="Margin" Value="0 24 0 0" />
         </Style>
 
         <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
-            <Setter Property="Margin" Value="16 0" />
+            <Setter Property="Margin" Value="16 0 0 0" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
         </Style>
     </UserControl.Resources>
     
     <StackPanel
-        Margin="16 0"
         VerticalAlignment="Top"
         HorizontalAlignment="Left">
         <TextBlock
@@ -40,7 +39,7 @@
                 </Style>
             </StackPanel.Resources>
      
-            <smtx:XamlDisplay UniqueKey="comboboxes_1">
+            <smtx:XamlDisplay UniqueKey="comboboxes_1" Margin="0">
 
                 <ComboBox materialDesign:HintAssist.Hint="OS">
                     <ComboBoxItem Content="Android"/>
@@ -100,7 +99,7 @@
             </smtx:XamlDisplay>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0 32 0 0">
+        <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
                     <Setter Property="Margin" Value="0 8 0 0" />
@@ -108,7 +107,7 @@
                 </Style>
             </StackPanel.Resources>
        
-            <smtx:XamlDisplay UniqueKey="comboboxes_9">
+            <smtx:XamlDisplay UniqueKey="comboboxes_9" Margin="0">
 
                 <StackPanel>
                     <CheckBox
@@ -146,14 +145,17 @@
             </smtx:XamlDisplay>
         </StackPanel>
 
-
+        <Rectangle
+            Margin="0 32 0 0"
+            Height="1"
+            Fill="{DynamicResource MaterialDesignDivider}" />
         <TextBlock
             Style="{StaticResource SectionTitle}"
             Text="Virtualised ComboBoxes"/>
 
         <StackPanel Orientation="Horizontal">
 
-            <smtx:XamlDisplay UniqueKey="comboboxes_5">
+            <smtx:XamlDisplay UniqueKey="comboboxes_5" Margin="0">
                 <ComboBox
                     materialDesign:HintAssist.Hint="Virtualisation"
                     MinWidth="72"
@@ -240,6 +242,10 @@
             </smtx:XamlDisplay>
         </StackPanel>
 
+        <Rectangle
+            Margin="0 32 0 0"
+            Height="1"
+            Fill="{DynamicResource MaterialDesignDivider}" />
         <TextBlock
             Style="{StaticResource SectionTitle}"
             Text="Filled ComboBox"/>
