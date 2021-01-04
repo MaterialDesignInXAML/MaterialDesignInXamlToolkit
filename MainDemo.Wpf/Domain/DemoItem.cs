@@ -11,7 +11,7 @@ namespace MaterialDesignDemo.Domain
         private string _name;
         private object? _content;
         private ScrollBarVisibility _horizontalScrollBarVisibilityRequirement;
-        private ScrollBarVisibility _verticalScrollBarVisibilityRequirement;
+        private ScrollBarVisibility _verticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto;
         private Thickness _marginRequirement = new Thickness(16);
 
         public DemoItem(string name, object? content, IEnumerable<DocumentationLink> documentation)

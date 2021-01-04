@@ -2,10 +2,13 @@
     x:Class="MaterialDesignDemo.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance domain:MainWindowViewModel}"
     WindowStartupLocation="CenterScreen"
     Title="Material Design in XAML" 
     AutomationProperties.Name="{Binding Title, RelativeSource={RelativeSource Self}}"
@@ -106,21 +109,30 @@
                                 IsChecked="False"
                                 Click="MenuToggleButton_OnClick"
                                 AutomationProperties.Name="HamburgerToggleButton"/>
-                            
+
                             <Button
-                                Margin="24,0,12,0"
+                                Margin="24,0,0,0"
                                 ToolTip="Previous Item"
                                 Command="{Binding MovePrevCommand}"
                                 Content="{materialDesign:PackIcon Kind=ArrowLeft, Size=24}"
                                 Style="{DynamicResource MaterialDesignToolButton}"
                                 Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
                                 materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"/>
-                            
+
                             <Button 
-                                Margin="8,0,0,0"
+                                Margin="16,0,0,0"
                                 ToolTip="Next Item"
                                 Command="{Binding MoveNextCommand}"
                                 Content="{materialDesign:PackIcon Kind=ArrowRight, Size=24}"
+                                Style="{DynamicResource MaterialDesignToolButton}"
+                                Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
+                                materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+
+                            <Button
+                                Margin="16,0,0,0"
+                                ToolTip="Home"
+                                Command="{Binding HomeCommand}"
+                                Content="{materialDesign:PackIcon Kind=Home, Size=24}"
                                 Style="{DynamicResource MaterialDesignToolButton}"
                                 Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
                                 materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"/>
@@ -183,18 +195,19 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     
-                    <domain1:DocumentationLinks
-                        DataContext="{Binding ElementName=DemoItemsListBox, Path=SelectedItem}"
-                        Margin="0 0 0 16"/>
+                    <domain:DocumentationLinks DataContext="{Binding SelectedItem}"/>
                     
                     <ScrollViewer
-                        Grid.Row="1" 
+                        x:Name="MainScrollViewer"
+                        Grid.Row="1"
                         materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
-                        HorizontalScrollBarVisibility="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
-                        VerticalScrollBarVisibility="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}" 
-                        Padding="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.MarginRequirement}">
+                        HorizontalScrollBarVisibility="{Binding SelectedItem.HorizontalScrollBarVisibilityRequirement, FallbackValue=Disabled}"
+                        VerticalScrollBarVisibility="{Binding SelectedItem.VerticalScrollBarVisibilityRequirement, FallbackValue=Disabled}" >
                         <ContentControl
-                            Content="{Binding SelectedItem.Content, UpdateSourceTrigger=PropertyChanged}"/>
+                            DataContextChanged="OnSelectedItemChanged"
+                            DataContext="{Binding SelectedItem}"
+                            Margin="{Binding MarginRequirement, FallbackValue=16}"
+                            Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"/>
                     </ScrollViewer>
 
                     <materialDesign:Snackbar

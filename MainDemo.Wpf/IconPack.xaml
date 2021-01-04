@@ -53,7 +53,10 @@
             Grid.Row="1"
             Margin="0 8 0 0"
             ItemsSource="{Binding Kinds}"
-            SelectedItem="{Binding Group}">
+            SelectedItem="{Binding Group}"
+            VirtualizingPanel.IsVirtualizing="True"
+            VirtualizingPanel.ScrollUnit="Pixel"
+            VirtualizingPanel.VirtualizationMode="Recycling">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <virtualCollection:VirtualizingWrapPanel />
