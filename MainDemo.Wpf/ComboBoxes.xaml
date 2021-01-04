@@ -11,13 +11,13 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="600"
-    d:DataContext="{d:DesignInstance colorsDomain:FieldsViewModel, IsDesignTimeCreatable=False}">
+    d:DataContext="{d:DesignInstance colorsDomain:ComboBoxesViewModel, IsDesignTimeCreatable=False}">
     
     <UserControl.Resources>
         <Style x:Key="SectionTitle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock }">
             <Setter Property="Margin" Value="0 24 0 0" />
         </Style>
-        
+
         <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
             <Setter Property="Margin" Value="16 0 0 0" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
@@ -249,43 +249,132 @@
         <TextBlock
             Style="{StaticResource SectionTitle}"
             Text="Filled ComboBox"/>
-        
-        <smtx:XamlDisplay
-            UniqueKey="comboboxes_filled_combobox"
-            HorizontalAlignment="Left"
-            Margin="0 16 0 0">
 
-            <StackPanel>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox
-                        x:Name="MaterialDesignFilledComboBoxEnabledComboBox"
-                        IsChecked="True"
-                        Margin="0,0,0,8"
-                        Content="Enabled"/>
+        <StackPanel
+            Orientation="Horizontal"
+            Margin="0,8,0,0">
+            <smtx:XamlDisplay
+                UniqueKey="comboboxes_filled_combobox"
+                HorizontalAlignment="Left">
+
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox
+                            x:Name="FilledComboBoxEnabledCheckBox"
+                            IsChecked="True"
+                            Margin="0,0,0,8"
+                            Content="Enabled"/>
+                        
+                        <Button
+                            Content="Clear"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            HorizontalAlignment="Right"
+                            Grid.Column="1"
+                            Click="ClearFilledComboBox_Click" />
+                    </Grid>
                     
-                    <Button
-                        Content="Clear"
-                        Style="{StaticResource MaterialDesignFlatButton}"
-                        HorizontalAlignment="Right"
-                        Grid.Column="1"
-                        Click="ClearFilledComboBox_Click" />
-                </Grid>
-                
+                    <ComboBox
+                        x:Name="FilledComboBox"
+                        Style="{StaticResource MaterialDesignFilledComboBox}" 
+                        IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}"
+                        materialDesign:HintAssist.Hint="Some item"
+                        Width="256">
+                        <ComboBoxItem Content="Item 1"/>
+                        <ComboBoxItem Content="Item 2"/>
+                        <ComboBoxItem Content="Item 3"/>
+                    </ComboBox>
+                </StackPanel>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="comboboxes_validation_filled_combobox"
+                HorizontalAlignment="Left">
                 <ComboBox
-                    x:Name="FilledComboBox"
-                    Style="{StaticResource MaterialDesignFilledComboBox}" 
-                    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledComboBoxEnabledComboBox}"
-                    materialDesign:HintAssist.Hint="Some item"
+                    Style="{StaticResource MaterialDesignFilledComboBox}"
+                    materialDesign:HintAssist.Hint="Validation test"
+                    ItemsSource="{Binding ShortStringList}"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
                     Width="256">
-                    <ComboBoxItem Content="Item 1"/>
-                    <ComboBoxItem Content="Item 2"/>
-                    <ComboBoxItem Content="Item 3"/>
+                    <ComboBox.SelectedItem>
+                        <Binding
+                            Path="SelectedValidationFilled"
+                            Mode="TwoWay"
+                            UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <demoAppDomain:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
                 </ComboBox>
-            </StackPanel>
-        </smtx:XamlDisplay>
+            </smtx:XamlDisplay>
+        </StackPanel>
+
+        <TextBlock
+            Style="{StaticResource SectionTitle}"
+            Text="Outlined ComboBox"/>
+
+        <StackPanel
+            Orientation="Horizontal"
+            Margin="0,8,0,0">
+            <smtx:XamlDisplay
+                UniqueKey="comboboxes_outlined_combobox"
+                HorizontalAlignment="Left">
+
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox
+                            x:Name="OutlinedComboBoxEnabledCheckBox"
+                            IsChecked="True"
+                            Margin="0,0,0,8"
+                            Content="Enabled"/>
+                        
+                        <Button
+                            Content="Clear"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            HorizontalAlignment="Right"
+                            Grid.Column="1"
+                            Click="ClearOutlinedComboBox_Click" />
+                    </Grid>
+                    
+                    <ComboBox
+                        x:Name="OutlinedComboBox"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                        materialDesign:HintAssist.Hint="Some item"
+                        ItemsSource="{Binding ShortStringList}"
+                        Width="256" />
+                </StackPanel>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="comboboxes_validation_outlined_combobox"
+                HorizontalAlignment="Left">
+                <ComboBox
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                    materialDesign:HintAssist.Hint="Validation test"
+                    ItemsSource="{Binding ShortStringList}"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    Width="256">
+                    <ComboBox.SelectedItem>
+                        <Binding
+                            Path="SelectedValidationOutlined"
+                            Mode="TwoWay"
+                            UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <demoAppDomain:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
+                </ComboBox>
+            </smtx:XamlDisplay>
+        </StackPanel>
     </StackPanel>
 </UserControl>
