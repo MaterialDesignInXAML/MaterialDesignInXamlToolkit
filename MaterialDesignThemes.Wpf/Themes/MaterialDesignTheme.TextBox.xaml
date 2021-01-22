@@ -179,9 +179,11 @@
                             Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}"
                             CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
                             Background="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}" />
-                        <Canvas VerticalAlignment="Bottom">
+                        <Canvas
+                            x:Name="HelperTextWrapper"
+                            VerticalAlignment="Bottom">
                             <TextBlock
-                                Canvas.Top="2"
+                                Canvas.Top="2"                                
                                 FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
                                 MaxWidth="{Binding ActualWidth, ElementName=border}"
                                 Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
@@ -222,15 +224,16 @@
                             </Setter>
                         </MultiTrigger>
                         <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
-                            <Setter Property="Padding" Value="16 8" />
+                            <Setter Property="Padding" Value="16 8 12 8" />
                             <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
                             <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
+                            <Setter TargetName="HelperTextWrapper" Property="Margin" Value="16 0 0 0" />
                         </Trigger>
                         <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
                             <Setter Property="VerticalContentAlignment" Value="Top" />
                             <Setter Property="BorderThickness" Value="1" />
                             <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
-                            <Setter Property="Padding" Value="16" />
+                            <Setter Property="Padding" Value="16 16 12 16" />
                             <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
                             <Setter TargetName="Underline" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
@@ -246,6 +249,7 @@
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
+                            <Setter TargetName="HelperTextWrapper" Property="Margin" Value="16 0 0 0" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
