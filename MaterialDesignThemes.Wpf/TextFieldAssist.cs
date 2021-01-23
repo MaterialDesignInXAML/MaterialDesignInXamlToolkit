@@ -180,7 +180,9 @@ namespace MaterialDesignThemes.Wpf
         public static bool GetHasClearButton(DependencyObject element)
             => (bool)element.GetValue(HasClearButtonProperty);
 
-        // Controls visibility of the leading icon
+        /// <summary>
+        /// Controls visibility of the leading icon
+        /// </summary>
         public static readonly DependencyProperty HasLeadingIconProperty = DependencyProperty.RegisterAttached(
             "HasLeadingIcon", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(default(bool)));
 
@@ -201,6 +203,18 @@ namespace MaterialDesignThemes.Wpf
 
         public static PackIconKind GetLeadingIcon(DependencyObject element)
             => (PackIconKind)element.GetValue(LeadingIconProperty);
+
+        /// <summary>
+        /// Controls the size of the leading icon
+        /// </summary>
+        public static readonly DependencyProperty LeadingIconSizeProperty = DependencyProperty.RegisterAttached(
+            "LeadingIconSize", typeof(double), typeof(TextFieldAssist), new PropertyMetadata(20.0));
+
+        public static void SetLeadingIconSize(DependencyObject element, double value)
+            => element.SetValue(LeadingIconSizeProperty, value);
+
+        public static double GetLeadingIconSize(DependencyObject element)
+            => (double)element.GetValue(LeadingIconSizeProperty);
 
         #region Methods
 
