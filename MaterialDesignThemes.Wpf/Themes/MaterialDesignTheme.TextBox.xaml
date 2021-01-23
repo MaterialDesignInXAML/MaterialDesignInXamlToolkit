@@ -95,16 +95,23 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Grid
-                                        x:Name="grid"
-                                        VerticalAlignment="Center"
+                                        x:Name="grid"                                        
                                         MinWidth="1">
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
+                                        <wpf:PackIcon
+                                            x:Name="LeadingPackIcon"
+                                            Margin="0 0 12 0"
+                                            Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                                            Visibility="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                            Kind="{TemplateBinding wpf:TextFieldAssist.LeadingIcon}" />
+
                                         <WrapPanel
-                                            Grid.Column="0">
+                                            Grid.Column="1">
                                             <TextBlock
                                                 x:Name="PrefixTextBlock"
                                                 Margin="0 0 2 0"
@@ -131,7 +138,7 @@
                                         </WrapPanel>
                                         <wpf:SmartHint
                                             x:Name="Hint"
-                                            Grid.Column="0"
+                                            Grid.Column="1"
                                             HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                             FontSize="{TemplateBinding FontSize}"
                                             FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
@@ -153,7 +160,7 @@
                                         </wpf:SmartHint>
                                         <TextBlock
                                             x:Name="SuffixTextBlock"
-                                            Grid.Column="2"
+                                            Grid.Column="3"
                                             FontSize="{TemplateBinding FontSize}"
                                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                             Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
