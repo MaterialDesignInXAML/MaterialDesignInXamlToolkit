@@ -110,15 +110,16 @@
                                         Grid.Column="1"
                                         x:Name="grid"                                        
                                         MinWidth="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        
-                                        <WrapPanel
+                                        <Grid
                                             Grid.Column="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            
                                             <TextBlock
+                                                Grid.Column="0"
                                                 x:Name="PrefixTextBlock"
                                                 Margin="0 0 2 0"
                                                 FontSize="{TemplateBinding FontSize}"
@@ -133,6 +134,7 @@
                                             </TextBlock>
                                             
                                             <ScrollViewer
+                                                Grid.Column="1"
                                                 x:Name="PART_ContentHost"
                                                 Panel.ZIndex="1"
                                                 Focusable="false"
@@ -141,7 +143,15 @@
                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                                 UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                                                 wpf:ScrollViewerAssist.IgnorePadding="True" />
-                                        </WrapPanel>
+
+                                            <TextBlock
+                                                x:Name="SuffixTextBlock"
+                                                Grid.Column="2"
+                                                FontSize="{TemplateBinding FontSize}"
+                                                Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                                                Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
+                                        </Grid>
+
                                         <wpf:SmartHint
                                             x:Name="Hint"
                                             Grid.Column="0"
@@ -164,13 +174,9 @@
                                                 </Border>
                                             </wpf:SmartHint.Hint>
                                         </wpf:SmartHint>
-                                        <TextBlock
-                                            x:Name="SuffixTextBlock"
-                                            Grid.Column="2"
-                                            FontSize="{TemplateBinding FontSize}"
-                                            Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                            Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
+                                        
                                     </Grid>
+                                    
                                     <wpf:PackIcon
                                         Grid.Column="2"
                                         x:Name="TrailingPackIcon"
