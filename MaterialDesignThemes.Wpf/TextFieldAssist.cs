@@ -216,6 +216,42 @@ namespace MaterialDesignThemes.Wpf
         public static double GetLeadingIconSize(DependencyObject element)
             => (double)element.GetValue(LeadingIconSizeProperty);
 
+        /// <summary>
+        /// Controls visibility of the leading icon
+        /// </summary>
+        public static readonly DependencyProperty HasTrailingIconProperty = DependencyProperty.RegisterAttached(
+            "HasTrailingIcon", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(default(bool)));
+
+        public static void SetHasTrailingIcon(DependencyObject element, bool value)
+            => element.SetValue(HasTrailingIconProperty, value);
+
+        public static bool GetHasTrailingIcon(DependencyObject element)
+            => (bool)element.GetValue(HasTrailingIconProperty);
+
+        /// <summary>
+        /// Controls the leading icon
+        /// </summary>
+        public static readonly DependencyProperty TrailingIconProperty = DependencyProperty.RegisterAttached(
+            "TrailingIcon", typeof(PackIconKind), typeof(TextFieldAssist), new PropertyMetadata());
+
+        public static void SetTrailingIcon(DependencyObject element, PackIconKind value)
+            => element.SetValue(TrailingIconProperty, value);
+
+        public static PackIconKind GetTrailingIcon(DependencyObject element)
+            => (PackIconKind)element.GetValue(TrailingIconProperty);
+
+        /// <summary>
+        /// Controls the size of the leading icon
+        /// </summary>
+        public static readonly DependencyProperty TrailingIconSizeProperty = DependencyProperty.RegisterAttached(
+            "TrailingIconSize", typeof(double), typeof(TextFieldAssist), new PropertyMetadata(20.0));
+
+        public static void SetTrailingIconSize(DependencyObject element, double value)
+            => element.SetValue(TrailingIconSizeProperty, value);
+
+        public static double GetTrailingIconSize(DependencyObject element)
+            => (double)element.GetValue(TrailingIconSizeProperty);
+
         #region Methods
 
         private static void IncludeSpellingSuggestionsChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
