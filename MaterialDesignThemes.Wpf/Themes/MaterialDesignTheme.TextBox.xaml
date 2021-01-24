@@ -245,7 +245,7 @@
                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontFamily" />
                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontSize" />
                                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.FloatingScale)" />
-                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Padding" />
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>

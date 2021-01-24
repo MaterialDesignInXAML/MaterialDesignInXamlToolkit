@@ -10,25 +10,35 @@ namespace MaterialDesignThemes.Wpf.Converters
     {
         public object Convert(object[] values, Type targetType, object? parameter, CultureInfo culture)
         {
-            var hintHeight = ((FontFamily)values[0]).LineSpacing
-                             * (double)values[1]; // fontSize
-            var floatingHintHeight = hintHeight
-                                     * (double)values[2]; // floatingScale
+            var fontFamily = (FontFamily)values[0];
+            double fontSize = (double)values[1];
+            double floatingScale = (double)values[2];
 
-            var offset = (values.Length > 3 ? values[3] : null) switch
+            double hintHeight = fontFamily.LineSpacing * fontSize;
+            double floatingHintHeight = hintHeight * floatingScale;
+
+            double offset = (values.Length > 3 ? values[3] : null) switch
             {
                 Thickness padding => floatingHintHeight / 2 + padding.Top,
                 double parentHeight => (parentHeight - hintHeight + floatingHintHeight) / 2,
                 _ => floatingHintHeight
             };
 
-            if (targetType == typeof(Point)) // offset
+            if (IsType<Point>(targetType))
+            {
                 return new Point(0, -offset);
-            if (targetType == typeof(Thickness)) // margin
+            }
+
+            if (IsType<Thickness>(targetType))
+            {
                 return new Thickness(0, offset, 0, 0);
+            }
+
             throw new NotSupportedException(targetType.FullName);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotSupportedException();
+
+        private bool IsType<T>(Type type) => type == typeof(T);
     }
 }
