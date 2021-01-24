@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using MaterialDesignThemes.Wpf;
 using XamlTest;
 using Xunit;
 using Xunit.Abstractions;
@@ -170,6 +171,31 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
             double fontSize = await helpTextBlock.GetProperty<double>(TextBlock.FontSizeProperty.Name);
 
             Assert.Equal(20, fontSize);
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Issue 2203")]
+        public async Task OnOutlinedTextBox_FloatingHintOffsetWithinRange()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml(@"
+<Grid Margin=""30"">
+    <TextBox
+        Style=""{StaticResource MaterialDesignOutlinedTextBox}""
+        VerticalAlignment=""Top""
+        materialDesign:HintAssist.Hint=""This is a hint""
+    />
+</Grid>");
+            IVisualElement textBox = await grid.GetElement("/TextBox");
+            IVisualElement hint = await textBox.GetElement("Hint");
+
+            Point floatingOffset = await hint.GetProperty<Point>(SmartHint.FloatingOffsetProperty);
+
+            Assert.Equal(0, floatingOffset.X);
+            Assert.InRange(floatingOffset.Y, -22, -20);
+
             recorder.Success();
         }
     }
