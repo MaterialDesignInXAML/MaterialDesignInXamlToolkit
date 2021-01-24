@@ -9,6 +9,7 @@
 
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearButtonVisibilityConverter" />
+    <converters:TextFieldPrefixTextVisibilityConverter x:Key="PrefixTextVisibilityConverter" />
     <converters:NotConverter x:Key="NotConverter" />
     <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
     <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
@@ -102,25 +103,35 @@
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock
-                                            x:Name="PrefixTextBlock"
-                                            Grid.Column="0"
-                                            FontSize="{TemplateBinding FontSize}"
-                                            Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                            Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}" />
-                                        <ScrollViewer
-                                            x:Name="PART_ContentHost"
-                                            Grid.Column="1"
-                                            Panel.ZIndex="1"
-                                            Focusable="false"
-                                            HorizontalScrollBarVisibility="Hidden"
-                                            VerticalScrollBarVisibility="Hidden"
-                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                            UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                            wpf:ScrollViewerAssist.IgnorePadding="True" />
+                                        <WrapPanel
+                                            Grid.Column="0">
+                                            <TextBlock
+                                                x:Name="PrefixTextBlock"
+                                                Margin="0 0 2 0"
+                                                FontSize="{TemplateBinding FontSize}"
+                                                Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                                                Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}">
+                                                <TextBlock.Visibility>
+                                                    <MultiBinding Converter="{StaticResource PrefixTextVisibilityConverter}">
+                                                        <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
+                                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.PrefixText)" />
+                                                    </MultiBinding>
+                                                </TextBlock.Visibility>
+                                            </TextBlock>
+                                            
+                                            <ScrollViewer
+                                                x:Name="PART_ContentHost"
+                                                Panel.ZIndex="1"
+                                                Focusable="false"
+                                                HorizontalScrollBarVisibility="Hidden"
+                                                VerticalScrollBarVisibility="Hidden"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                                wpf:ScrollViewerAssist.IgnorePadding="True" />
+                                        </WrapPanel>
                                         <wpf:SmartHint
                                             x:Name="Hint"
-                                            Grid.Column="1"
+                                            Grid.Column="0"
                                             HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                             FontSize="{TemplateBinding FontSize}"
                                             FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
