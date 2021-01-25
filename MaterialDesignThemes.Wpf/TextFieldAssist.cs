@@ -217,7 +217,7 @@ namespace MaterialDesignThemes.Wpf
             => (double)element.GetValue(LeadingIconSizeProperty);
 
         /// <summary>
-        /// Controls visibility of the leading icon
+        /// Controls visibility of the trailing icon
         /// </summary>
         public static readonly DependencyProperty HasTrailingIconProperty = DependencyProperty.RegisterAttached(
             "HasTrailingIcon", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(default(bool)));
@@ -229,7 +229,7 @@ namespace MaterialDesignThemes.Wpf
             => (bool)element.GetValue(HasTrailingIconProperty);
 
         /// <summary>
-        /// Controls the leading icon
+        /// Controls the trailing icon
         /// </summary>
         public static readonly DependencyProperty TrailingIconProperty = DependencyProperty.RegisterAttached(
             "TrailingIcon", typeof(PackIconKind), typeof(TextFieldAssist), new PropertyMetadata());
@@ -241,7 +241,7 @@ namespace MaterialDesignThemes.Wpf
             => (PackIconKind)element.GetValue(TrailingIconProperty);
 
         /// <summary>
-        /// Controls the size of the leading icon
+        /// Controls the size of the trailing icon
         /// </summary>
         public static readonly DependencyProperty TrailingIconSizeProperty = DependencyProperty.RegisterAttached(
             "TrailingIconSize", typeof(double), typeof(TextFieldAssist), new PropertyMetadata(20.0));
