@@ -98,10 +98,10 @@
                                     <wpf:PackIcon
                                         Grid.Column="0"
                                         x:Name="LeadingPackIcon"
-                                        Margin="0 0 8 0"
+                                        Margin="0 0 6 0"
+                                        VerticalAlignment="Center"
                                         Height="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
                                         Width="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
-                                        VerticalAlignment="Bottom"
                                         Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                         Visibility="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Kind="{TemplateBinding wpf:TextFieldAssist.LeadingIcon}" />
@@ -171,6 +171,17 @@
                                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                             Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
                                     </Grid>
+                                    <wpf:PackIcon
+                                        Grid.Column="2"
+                                        x:Name="TrailingPackIcon"
+                                        Margin="4 0 0 0"
+                                        VerticalAlignment="Center"
+                                        Height="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
+                                        Width="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
+                                        Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                                        Visibility="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Kind="{TemplateBinding wpf:TextFieldAssist.TrailingIcon}" />
+
                                     <Button
                                         Grid.Column="2"
                                         x:Name="PART_ClearButton"
