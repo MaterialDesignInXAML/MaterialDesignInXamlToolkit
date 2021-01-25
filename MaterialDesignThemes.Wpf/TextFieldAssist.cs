@@ -144,6 +144,80 @@ namespace MaterialDesignThemes.Wpf
 
         public static bool GetIncludeSpellingSuggestions(TextBoxBase element) => (bool)element.GetValue(IncludeSpellingSuggestionsProperty);
 
+        /// <summary>
+        /// SuffixText dependency property
+        /// </summary>
+        public static readonly DependencyProperty SuffixTextProperty = DependencyProperty.RegisterAttached(
+            "SuffixText", typeof(string), typeof(TextFieldAssist), new PropertyMetadata(default(string?)));
+
+        public static void SetSuffixText(DependencyObject element, string? value)
+            => element.SetValue(SuffixTextProperty, value);
+
+        public static string? GetSuffixText(DependencyObject element)
+            => (string?)element.GetValue(SuffixTextProperty);
+
+        /// <summary>
+        /// PrefixText dependency property
+        /// </summary>
+        public static readonly DependencyProperty PrefixTextProperty = DependencyProperty.RegisterAttached(
+            "PrefixText", typeof(string), typeof(TextFieldAssist), new PropertyMetadata(default(string?)));
+
+        public static void SetPrefixText(DependencyObject element, string? value)
+            => element.SetValue(PrefixTextProperty, value);
+
+        public static string? GetPrefixText(DependencyObject element)
+            => (string?)element.GetValue(PrefixTextProperty);
+
+        /// <summary>
+        /// Controls the visbility of the clear button.
+        /// </summary>
+        public static readonly DependencyProperty HasClearButtonProperty = DependencyProperty.RegisterAttached(
+            "HasClearButton", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false, HasClearButtonChanged));
+
+        public static void SetHasClearButton(DependencyObject element, bool value)
+            => element.SetValue(HasClearButtonProperty, value);
+
+        public static bool GetHasClearButton(DependencyObject element)
+            => (bool)element.GetValue(HasClearButtonProperty);
+
+        /// <summary>
+        /// Controls visibility of the leading icon
+        /// </summary>
+        public static readonly DependencyProperty HasLeadingIconProperty = DependencyProperty.RegisterAttached(
+            "HasLeadingIcon", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(default(bool)));
+
+        public static void SetHasLeadingIcon(DependencyObject element, bool value)
+            => element.SetValue(HasLeadingIconProperty, value);
+
+        public static bool GetHasLeadingIcon(DependencyObject element)
+            => (bool)element.GetValue(HasLeadingIconProperty);
+
+        /// <summary>
+        /// Controls the leading icon
+        /// </summary>
+        public static readonly DependencyProperty LeadingIconProperty = DependencyProperty.RegisterAttached(
+            "LeadingIcon", typeof(PackIconKind), typeof(TextFieldAssist), new PropertyMetadata());
+
+        public static void SetLeadingIcon(DependencyObject element, PackIconKind value)
+            => element.SetValue(LeadingIconProperty, value);
+
+        public static PackIconKind GetLeadingIcon(DependencyObject element)
+            => (PackIconKind)element.GetValue(LeadingIconProperty);
+
+        /// <summary>
+        /// Controls the size of the leading icon
+        /// </summary>
+        public static readonly DependencyProperty LeadingIconSizeProperty = DependencyProperty.RegisterAttached(
+            "LeadingIconSize", typeof(double), typeof(TextFieldAssist), new PropertyMetadata(20.0));
+
+        public static void SetLeadingIconSize(DependencyObject element, double value)
+            => element.SetValue(LeadingIconSizeProperty, value);
+
+        public static double GetLeadingIconSize(DependencyObject element)
+            => (double)element.GetValue(LeadingIconSizeProperty);
+
+        #region Methods
+
         private static void IncludeSpellingSuggestionsChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
         {
             if (element is TextBoxBase textBox)
@@ -255,13 +329,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 menu.Items.Remove(item);
             }
-        }
-
-        /// <summary>
-        /// Controls the visbility of the clear button.
-        /// </summary>
-        public static readonly DependencyProperty HasClearButtonProperty = DependencyProperty.RegisterAttached(
-            "HasClearButton", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false, HasClearButtonChanged));
+        }        
 
         private static void HasClearButtonChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -299,39 +367,7 @@ namespace MaterialDesignThemes.Wpf
                     clearButton.Click -= handler;
             }
         }
-
-        public static void SetHasClearButton(DependencyObject element, bool value)
-            => element.SetValue(HasClearButtonProperty, value);
-
-        public static bool GetHasClearButton(DependencyObject element)
-            => (bool)element.GetValue(HasClearButtonProperty);
-
-        /// <summary>
-        /// SuffixText dependency property
-        /// </summary>
-        public static readonly DependencyProperty SuffixTextProperty = DependencyProperty.RegisterAttached(
-            "SuffixText", typeof(string), typeof(TextFieldAssist), new PropertyMetadata(default(string?)));
-
-        public static void SetSuffixText(DependencyObject element, string? value)
-            => element.SetValue(SuffixTextProperty, value);
-
-        public static string? GetSuffixText(DependencyObject element)
-            => (string?)element.GetValue(SuffixTextProperty);
-
-        /// <summary>
-        /// PrefixText dependency property
-        /// </summary>
-        public static readonly DependencyProperty PrefixTextProperty = DependencyProperty.RegisterAttached(
-            "PrefixText", typeof(string), typeof(TextFieldAssist), new PropertyMetadata(default(string?)));
-
-        public static void SetPrefixText(DependencyObject element, string? value)
-            => element.SetValue(PrefixTextProperty, value);
-
-        public static string? GetPrefixText(DependencyObject element)
-            => (string?)element.GetValue(PrefixTextProperty);
-
-        #region Methods
-
+       
         /// <summary>
         /// Applies the text box view margin.
         /// </summary>
