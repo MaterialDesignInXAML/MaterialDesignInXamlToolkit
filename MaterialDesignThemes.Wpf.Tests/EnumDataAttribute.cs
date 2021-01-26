@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Xunit.Sdk;
 
@@ -13,14 +14,14 @@ namespace MaterialDesignThemes.Wpf.Tests
             if (parameters.Length != 1 ||
                 !parameters[0].ParameterType.IsEnum)
             {
-                throw new Exception($"{testMethod.DeclaringType.FullName}.{testMethod.Name} must have a single enum parameter");
+                throw new Exception($"{testMethod.DeclaringType?.FullName}.{testMethod.Name} must have a single enum parameter");
             }
 
             return GetDataImplementation(parameters[0].ParameterType);
 
             static IEnumerable<object[]> GetDataImplementation(Type parameterType)
             {
-                foreach (object enumValue in Enum.GetValues(parameterType))
+                foreach (object enumValue in Enum.GetValues(parameterType).OfType<object>())
                 {
                     yield return new[] { enumValue };
                 }

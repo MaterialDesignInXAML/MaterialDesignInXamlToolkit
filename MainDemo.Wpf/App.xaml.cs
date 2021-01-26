@@ -1,9 +1,7 @@
 ﻿using System.Windows;
-using System.Windows.Media;
-using MaterialDesignThemes.Wpf;
 using ShowMeTheXAML;
 
-namespace MaterialDesignColors.WpfExample
+namespace MaterialDesignDemo
 {
     /// <summary>
     /// Interaction logic for App.xaml

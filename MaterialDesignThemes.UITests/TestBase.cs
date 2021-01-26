@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
+using MaterialDesignColors;
+using MaterialDesignThemes.Wpf;
 using XamlTest;
 using Xunit;
 using Xunit.Abstractions;
@@ -26,7 +28,7 @@ namespace MaterialDesignThemes.UITests
         protected async Task<Color> GetThemeColor(string name)
         {
             IResource resource = await App.GetResource(name);
-            return resource.GetValueAs<Color?>() ?? throw new Exception($"Failed to convert resource '{name}' to color");
+            return resource.GetAs<Color?>() ?? throw new Exception($"Failed to convert resource '{name}' to color");
         }
 
         protected async Task<IVisualElement> LoadXaml(string xaml)

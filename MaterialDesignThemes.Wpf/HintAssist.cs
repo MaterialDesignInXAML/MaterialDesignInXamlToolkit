@@ -7,8 +7,9 @@ namespace MaterialDesignThemes.Wpf
     {
         private const double DefaultFloatingScale = 0.74;
         private const double DefaultHintOpacity = 0.56;
-        private static readonly Point DefaultFloatingOffset = new Point(1, -16);
+        private static readonly Point DefaultFloatingOffset = new Point(0, -16);
         private static readonly Brush DefaultBackground = new SolidColorBrush(Colors.Transparent);
+        private static readonly double DefaultHelperTextFontSize = 10;
 
         #region AttachedProperty : IsFloatingProperty
         public static readonly DependencyProperty IsFloatingProperty
@@ -57,13 +58,24 @@ namespace MaterialDesignThemes.Wpf
 
         #region AttachedProperty : HintOpacityProperty
         public static readonly DependencyProperty HintOpacityProperty
-            = DependencyProperty.RegisterAttached("HintOpacity", typeof(double), typeof(HintAssist), 
+            = DependencyProperty.RegisterAttached("HintOpacity", typeof(double), typeof(HintAssist),
                 new PropertyMetadata(DefaultHintOpacity));
 
         public static double GetHintOpacityProperty(DependencyObject element)
             => (double)element.GetValue(HintOpacityProperty);
         public static void SetHintOpacity(DependencyObject element, double value)
             => element.SetValue(HintOpacityProperty, value);
+        #endregion
+
+        #region AttachedProperty : HintFontFamilyProperty
+        public static readonly DependencyProperty FontFamilyProperty
+            = DependencyProperty.RegisterAttached("FontFamily", typeof(FontFamily), typeof(HintAssist),
+                new PropertyMetadata(default));
+
+        public static FontFamily GetFontFamily(DependencyObject element)
+            => (FontFamily)element.GetValue(FontFamilyProperty);
+        public static void SetFontFamily(DependencyObject element, FontFamily value)
+            => element.SetValue(FontFamilyProperty, value);
         #endregion
 
         #region AttachedProperty : ForegroundProperty
@@ -79,7 +91,7 @@ namespace MaterialDesignThemes.Wpf
         #region AttachedProperty : BackgroundProperty
         public static readonly DependencyProperty BackgroundProperty
             = DependencyProperty.RegisterAttached("Background", typeof(Brush), typeof(HintAssist), new PropertyMetadata(DefaultBackground));
-        
+
         public static Brush GetBackground(DependencyObject element)
             => (Brush)element.GetValue(BackgroundProperty);
         public static void SetBackground(DependencyObject element, Brush value)
@@ -95,6 +107,18 @@ namespace MaterialDesignThemes.Wpf
              => element.GetValue(HelperTextProperty);
         public static void SetHelperText(DependencyObject element, object value)
             => element.SetValue(HelperTextProperty, value);
+        #endregion
+
+        #region AttachedProperty : HelperTextFontSizeProperty
+        public static readonly DependencyProperty HelperTextFontSizeProperty
+            = DependencyProperty.RegisterAttached("HelperTextFontSize", typeof(double), typeof(HintAssist),
+                new FrameworkPropertyMetadata(DefaultHelperTextFontSize, FrameworkPropertyMetadataOptions.Inherits));
+
+        public static double GetHelperTextFontSize(DependencyObject element) =>
+            (double)element.GetValue(HelperTextFontSizeProperty);
+        public static void SetHelperTextFontSize(DependencyObject element, double value) =>
+            element.SetValue(HelperTextFontSizeProperty, value);
+
         #endregion
     }
 }

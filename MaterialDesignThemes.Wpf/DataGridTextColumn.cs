@@ -5,7 +5,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public class DataGridTextColumn : System.Windows.Controls.DataGridTextColumn
     {
-        protected override object PrepareCellForEdit(FrameworkElement editingElement, RoutedEventArgs editingEventArgs)
+        protected override object? PrepareCellForEdit(FrameworkElement? editingElement, RoutedEventArgs editingEventArgs)
         {
             var textBox = editingElement as TextBox;
             if (textBox != null)
@@ -14,7 +14,7 @@ namespace MaterialDesignThemes.Wpf
                 textBox.SelectionStart = textBox.Text.Length;
             }
 
-            editingElement.Focus();
+            editingElement?.Focus();
 
             return null;
         }

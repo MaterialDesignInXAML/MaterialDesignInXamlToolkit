@@ -276,7 +276,7 @@
                                 Opacity="0"
                                 Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
 
-                        <Grid Grid.Column="1" Grid.ColumnSpan="2" x:Name="ContentGrid" Background="Transparent">
+                        <Grid Grid.Column="1" Grid.ColumnSpan="2" x:Name="ContentGrid" Background="{TemplateBinding Background}">
                             <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                                         Focusable="False"
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"

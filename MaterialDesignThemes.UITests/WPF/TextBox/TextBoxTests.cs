@@ -2,7 +2,9 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
+using MaterialDesignThemes.Wpf;
 using XamlTest;
 using Xunit;
 using Xunit.Abstractions;
@@ -50,7 +52,6 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
 
             recorder.Success();
         }
-
 
         [Fact]
         [Description("Issue 1883")]
@@ -100,7 +101,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
             //Arrange
             IVisualElement grid = await LoadXaml(@"
 <Grid>
-    <TextBox Style=""{StaticResource MaterialDesignFilledTextFieldTextBox}""
+    <TextBox Style=""{StaticResource MaterialDesignFilledTextBox}""
              materialDesign:HintAssist.Hint=""Floating hint in a box""
              VerticalAlignment=""Top""/>
 </Grid>");
@@ -132,7 +133,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
             IVisualElement grid = await LoadXaml(@"
 <Grid Background=""Red"">
     <TextBox
-        Style=""{StaticResource MaterialDesignOutlinedTextFieldTextBox}""
+        Style=""{StaticResource MaterialDesignOutlinedTextBox}""
         VerticalAlignment=""Top""
         Height=""100""
         Text=""Some content to force hint to float""
@@ -142,12 +143,59 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
 </Grid>");
             IVisualElement textBox = await grid.GetElement("/TextBox");
             //textFieldGrid is the element just inside of the border
-            IVisualElement textFieldGrid = await textBox.GetElement("textFieldGrid");
+            IVisualElement textFieldGrid = await textBox.GetElement("grid");
             IVisualElement hintBackground = await textBox.GetElement("HintBackgroundBorder");
 
             Color background = await hintBackground.GetEffectiveBackground(textFieldGrid);
 
             Assert.Equal(255, background.A);
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Pull Request 2192")]
+        public async Task OnTextBoxHelperTextFontSize_ChangesHelperTextFontSize()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml(@"
+<Grid Margin=""30"">
+    <TextBox VerticalAlignment=""Top""
+             Text=""Some Text""
+             materialDesign:HintAssist.HelperTextFontSize=""20"">
+    </TextBox>
+</Grid>");
+            IVisualElement textBox = await grid.GetElement("/TextBox");
+            IVisualElement helpTextBlock = await textBox.GetElement("/Grid/Canvas/TextBlock");
+            
+            double fontSize = await helpTextBlock.GetProperty<double>(TextBlock.FontSizeProperty.Name);
+
+            Assert.Equal(20, fontSize);
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Issue 2203")]
+        public async Task OnOutlinedTextBox_FloatingHintOffsetWithinRange()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml(@"
+<Grid Margin=""30"">
+    <TextBox
+        Style=""{StaticResource MaterialDesignOutlinedTextBox}""
+        VerticalAlignment=""Top""
+        materialDesign:HintAssist.Hint=""This is a hint""
+    />
+</Grid>");
+            IVisualElement textBox = await grid.GetElement("/TextBox");
+            IVisualElement hint = await textBox.GetElement("Hint");
+
+            Point floatingOffset = await hint.GetProperty<Point>(SmartHint.FloatingOffsetProperty);
+
+            Assert.Equal(0, floatingOffset.X);
+            Assert.InRange(floatingOffset.Y, -22, -20);
+
             recorder.Success();
         }
     }

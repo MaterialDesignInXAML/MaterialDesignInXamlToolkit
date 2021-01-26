@@ -85,10 +85,10 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
             nameof(Feedback), typeof(Brush), typeof(Ripple), new PropertyMetadata(default(Brush)));
 
-        public Brush Feedback
+        public Brush? Feedback
         {
-            get { return (Brush)GetValue(FeedbackProperty); }
-            set { SetValue(FeedbackProperty, value); }
+            get => (Brush?)GetValue(FeedbackProperty);
+            set => SetValue(FeedbackProperty, value);
         }
 
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
@@ -141,8 +141,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double RippleSize
         {
-            get { return (double)GetValue(RippleSizeProperty); }
-            private set { SetValue(RippleSizePropertyKey, value); }
+            get => (double)GetValue(RippleSizeProperty);
+            private set => SetValue(RippleSizePropertyKey, value);
         }
 
         private static readonly DependencyPropertyKey RippleXPropertyKey =
@@ -155,8 +155,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double RippleX
         {
-            get { return (double)GetValue(RippleXProperty); }
-            private set { SetValue(RippleXPropertyKey, value); }
+            get => (double)GetValue(RippleXProperty);
+            private set => SetValue(RippleXPropertyKey, value);
         }
 
         private static readonly DependencyPropertyKey RippleYPropertyKey =
@@ -169,8 +169,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double RippleY
         {
-            get { return (double)GetValue(RippleYProperty); }
-            private set { SetValue(RippleYPropertyKey, value); }
+            get => (double)GetValue(RippleYProperty);
+            private set => SetValue(RippleYPropertyKey, value);
         }
 
         /// <summary>
@@ -187,8 +187,8 @@ namespace MaterialDesignThemes.Wpf
         /// </summary> 
         public bool RecognizesAccessKey
         {
-            get { return (bool)GetValue(RecognizesAccessKeyProperty); }
-            set { SetValue(RecognizesAccessKeyProperty, value); }
+            get => (bool)GetValue(RecognizesAccessKeyProperty);
+            set => SetValue(RecognizesAccessKeyProperty, value);
         }
 
         public override void OnApplyTemplate()

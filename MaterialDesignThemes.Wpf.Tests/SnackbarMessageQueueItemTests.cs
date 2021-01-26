@@ -9,7 +9,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         public void IsDuplicate_ThrowsOnNullArgument()
         {
             SnackbarMessageQueueItem item = CreateItem();
-            Assert.Throws<ArgumentNullException>(() => item.IsDuplicate(null));
+            Assert.Throws<ArgumentNullException>(() => item.IsDuplicate(null!));
         }
 
         [Fact]
@@ -51,10 +51,8 @@ namespace MaterialDesignThemes.Wpf.Tests
 
         private static SnackbarMessageQueueItem CreateItem(
             string content = "Content",
-            string actionContent = null,
+            string? actionContent = null,
             bool ignoreDuplicate = false)
-        {
-            return new SnackbarMessageQueueItem(content, TimeSpan.Zero, actionContent:actionContent, ignoreDuplicate: ignoreDuplicate);
-        }
+            => new SnackbarMessageQueueItem(content, TimeSpan.Zero, actionContent: actionContent, ignoreDuplicate: ignoreDuplicate);
     }
 }

@@ -68,11 +68,11 @@ namespace MaterialDesignThemes.Wpf
             return element.ActualWidth;
         }
 
-        private static bool IsAncestorTill(FrameworkElement element, object ancestor, object container)
+        private static bool IsAncestorTill(FrameworkElement? element, object ancestor, object container)
         {
-            if (element == null) return false;
+            if (element is null) return false;
 
-            FrameworkElement parent = element;
+            FrameworkElement? parent = element;
 
             do
             {
@@ -83,10 +83,10 @@ namespace MaterialDesignThemes.Wpf
             return false;
         }
 
-        public static Visual FindMainTreeVisual(Visual visual)
+        public static Visual? FindMainTreeVisual(Visual? visual)
         {
-            DependencyObject root = null;
-            DependencyObject dependencyObject = visual;
+            DependencyObject? root = null;
+            DependencyObject? dependencyObject = visual;
 
             while (dependencyObject != null)
             {

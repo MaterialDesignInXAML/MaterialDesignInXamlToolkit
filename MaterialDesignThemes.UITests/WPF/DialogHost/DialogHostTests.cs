@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using MaterialDesignThemes.UITests.Samples.DialogHost;
 using XamlTest;
@@ -38,9 +39,10 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHost
             await Wait.For(async () => await resultTextBlock.GetText() == "Clicks: 1");
             await closeDialogButton.Click();
 
-            await Wait.For(async () => await overlay.GetVisibility() != Visibility.Visible);
+            var retry = new Retry(5, TimeSpan.FromSeconds(5));
+            await Wait.For(async () => await overlay.GetVisibility() != Visibility.Visible, retry);
             await testOverlayButton.Click();
-            await Wait.For(async () => Assert.Equal("Clicks: 2", await resultTextBlock.GetText()));
+            await Wait.For(async () => Assert.Equal("Clicks: 2", await resultTextBlock.GetText()), retry);
         }
     }
 }

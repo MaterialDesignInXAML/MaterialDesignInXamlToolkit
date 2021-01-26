@@ -1,15 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignColors.WpfExample
+﻿namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for Typography.xaml
-    /// </summary>
-    public partial class Typography : UserControl
+    public partial class Typography
     {
-        public Typography()
-        {
-            InitializeComponent();
-        }
+        public Typography() => InitializeComponent();
     }
 }

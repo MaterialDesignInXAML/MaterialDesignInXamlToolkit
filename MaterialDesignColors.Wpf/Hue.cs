@@ -7,7 +7,7 @@ namespace MaterialDesignColors
     {
         public Hue(string name, Color color, Color foreground)
         {
-            if (name == null) throw new ArgumentNullException(nameof(name));
+            if (name is null) throw new ArgumentNullException(nameof(name));
 
             Name = name;
             Color = color;
@@ -20,9 +20,6 @@ namespace MaterialDesignColors
 
         public Color Foreground { get; }
 
-        public override string ToString()
-        {
-            return Name;
-        }
+        public override string ToString() => Name;
     }
 }

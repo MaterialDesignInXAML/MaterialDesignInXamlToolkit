@@ -181,7 +181,7 @@
                             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
                             <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
                         </Trigger>
-                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="Accent">
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryMid">
                             <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
                             <Setter Property="Background" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
                         </Trigger>
@@ -273,7 +273,7 @@
                             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
                             <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
                         </Trigger>
-                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="Accent">
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryMid">
                             <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
                             <Setter Property="Background" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
                         </Trigger>
@@ -374,8 +374,10 @@
                             <Setter TargetName="DividerRect" Property="HorizontalAlignment" Value="Stretch" />
                             <Setter TargetName="DividerRect" Property="Grid.ColumnSpan" Value="2" />
                             <Setter TargetName="DividerRect" Property="Grid.RowSpan" Value="1" />
-                            <Setter TargetName="HeaderPanel" Property="Rows" Value="0"/>
-                            <Setter TargetName="HeaderPanel" Property="Columns" Value="1"/>
+                            <Setter TargetName="HeaderPanel" Property="Rows" Value="1"/>
+                            <Setter TargetName="HeaderPanel" Property="Columns" Value="0"/>
+                            <Setter TargetName="HeaderPanel" Property="HorizontalAlignment" Value="Left"/>
+                            <Setter TargetName="HeaderPanel" Property="VerticalAlignment" Value="Stretch"/>
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Bottom">
                             <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Top"/>
@@ -387,8 +389,10 @@
                             <Setter TargetName="DividerRect" Property="HorizontalAlignment" Value="Stretch" />
                             <Setter TargetName="DividerRect" Property="Grid.ColumnSpan" Value="2" />
                             <Setter TargetName="DividerRect" Property="Grid.RowSpan" Value="1" />
-                            <Setter TargetName="HeaderPanel" Property="Rows" Value="0"/>
-                            <Setter TargetName="HeaderPanel" Property="Columns" Value="1"/>
+                            <Setter TargetName="HeaderPanel" Property="Rows" Value="1"/>
+                            <Setter TargetName="HeaderPanel" Property="Columns" Value="0"/>
+                            <Setter TargetName="HeaderPanel" Property="HorizontalAlignment" Value="Left"/>
+                            <Setter TargetName="HeaderPanel" Property="VerticalAlignment" Value="Stretch"/>
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Right">
                             <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Left"/>

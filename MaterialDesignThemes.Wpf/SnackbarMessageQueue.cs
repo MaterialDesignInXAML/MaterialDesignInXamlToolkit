@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace MaterialDesignThemes.Wpf
         /// Available only while the snackbar is displayed.
         /// Should be locked by <see cref="_snackbarMessagesLock"/>.
         /// </remarks>
-        private ManualResetEvent _closeSnackbarEvent = null;
+        private ManualResetEvent? _closeSnackbarEvent;
 
         /// <summary>
         /// Gets the <see cref="System.Windows.Threading.Dispatcher"/> this <see cref="SnackbarMessageQueue"/> is associated with.
@@ -69,7 +69,7 @@ namespace MaterialDesignThemes.Wpf
                     }
                     catch (ObjectDisposedException)
                     {
-                        /* we are we suppressing this? 
+                        /* we are we suppressing this?
                          * as we have switched out wait onto another thread, so we don't block the UI thread, the
                          * _cleanUp/Dispose() action might also happen, and the _disposedWaitHandle might get disposed
                          * just before we WaitOne. We won't add a lock in the _cleanUp because it might block for 2 seconds.
@@ -105,7 +105,7 @@ namespace MaterialDesignThemes.Wpf
 
         #endregion
 
-        public SnackbarMessageQueue() 
+        public SnackbarMessageQueue()
             : this(TimeSpan.FromSeconds(3))
         {
         }
@@ -121,7 +121,7 @@ namespace MaterialDesignThemes.Wpf
             _dispatcher = dispatcher ?? throw new ArgumentNullException(nameof(dispatcher));
         }
 
-        //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragablz, 
+        //oh if only I had Disposable.Create in this lib :)  tempted to copy it in like dragablz,
         //but this is an internal method so no one will know my dirty Action disposer...
         internal Action Pair(Snackbar snackbar)
         {
@@ -147,38 +147,32 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates. 
+        /// Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates.
         /// True to show every message even if there are duplicates.
         /// </summary>
         public bool IgnoreDuplicate { get; set; }
 
         public void Enqueue(object content) => Enqueue(content, false);
 
-        public void Enqueue(object content, bool neverConsiderToBeDuplicate) 
+        public void Enqueue(object content, bool neverConsiderToBeDuplicate)
             => Enqueue(content, null, null, null, false, neverConsiderToBeDuplicate);
 
-        public void Enqueue(object content, object actionContent, Action actionHandler) 
+        public void Enqueue(object content, object? actionContent, Action? actionHandler)
             => Enqueue(content, actionContent, actionHandler, false);
 
-        public void Enqueue(object content, object actionContent, Action actionHandler, bool promote)
-        {
-            if (content is null) throw new ArgumentNullException(nameof(content));
-            if (actionContent is null) throw new ArgumentNullException(nameof(actionContent));
-            if (actionHandler is null) throw new ArgumentNullException(nameof(actionHandler));
+        public void Enqueue(object content, object? actionContent, Action? actionHandler, bool promote)
+            => Enqueue(content, actionContent, _ => actionHandler?.Invoke(), promote, false, false);
 
-            Enqueue(content, actionContent, _ => actionHandler(), promote, false, false);
-        }
-
-        public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
-            TArgument actionArgument) 
+        public void Enqueue<TArgument>(object content, object? actionContent, Action<TArgument?>? actionHandler,
+            TArgument? actionArgument)
             => Enqueue(content, actionContent, actionHandler, actionArgument, false, false);
 
-        public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
-            TArgument actionArgument, bool promote) =>
+        public void Enqueue<TArgument>(object content, object? actionContent, Action<TArgument?>? actionHandler,
+            TArgument? actionArgument, bool promote) =>
             Enqueue(content, actionContent, actionHandler, actionArgument, promote, promote);
 
-        public void Enqueue<TArgument>(object content, object actionContent, Action<TArgument> actionHandler,
-            TArgument actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null)
+        public void Enqueue<TArgument>(object content, object? actionContent, Action<TArgument?>? actionHandler,
+            TArgument? actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null)
         {
             if (content is null) throw new ArgumentNullException(nameof(content));
 
@@ -188,14 +182,14 @@ namespace MaterialDesignThemes.Wpf
                     actionContent != null ? nameof(actionContent) : nameof(actionHandler));
             }
 
-            Action<object> handler = actionHandler != null
-                ? new Action<object>(argument => actionHandler((TArgument)argument))
+            Action<object?>? handler = actionHandler != null
+                ? new Action<object?>(argument => actionHandler((TArgument?)argument))
                 : null;
-            Enqueue(content, actionContent, handler, actionArgument, promote, neverConsiderToBeDuplicate);
+            Enqueue(content, actionContent, handler, actionArgument, promote, neverConsiderToBeDuplicate, durationOverride);
         }
 
-        public void Enqueue(object content, object actionContent, Action<object> actionHandler,
-            object actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null)
+        public void Enqueue(object content, object? actionContent, Action<object?>? actionHandler,
+            object? actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null)
         {
             if (content is null) throw new ArgumentNullException(nameof(content));
 
@@ -231,7 +225,7 @@ namespace MaterialDesignThemes.Wpf
                 }
                 if (!added)
                     _snackbarMessages.AddLast(item);
-                
+
             }
 
             _dispatcher.InvokeAsync(ShowNextAsync);
@@ -302,7 +296,7 @@ namespace MaterialDesignThemes.Wpf
                     await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(true);
                 }
 
-                LinkedListNode<SnackbarMessageQueueItem> messageNode;
+                LinkedListNode<SnackbarMessageQueueItem>? messageNode;
                 lock (_snackbarMessagesLock)
                 {
                     messageNode = _snackbarMessages.First;
@@ -310,7 +304,7 @@ namespace MaterialDesignThemes.Wpf
                         return;
                     _closeSnackbarEvent = new ManualResetEvent(false);
                 }
-                
+
                 await ShowAsync(snackbar, messageNode.Value, _closeSnackbarEvent)
                     .ConfigureAwait(false);
 
@@ -338,7 +332,10 @@ namespace MaterialDesignThemes.Wpf
         private async Task ShowAsync(Snackbar snackbar, SnackbarMessageQueueItem messageQueueItem, ManualResetEvent actionClickWaitHandle)
         {
             //create and show the message, setting up all the handles we need to wait on
-            var mouseNotOverManagedWaitHandle = CreateAndShowMessage(snackbar, messageQueueItem, actionClickWaitHandle);
+            var tuple = CreateAndShowMessage(snackbar, messageQueueItem, actionClickWaitHandle);
+            var snackbarMessage = tuple.Item1;
+            var mouseNotOverManagedWaitHandle = tuple.Item2;
+
             var durationPassedWaitHandle = new ManualResetEvent(false);
             StartDuration(messageQueueItem.Duration.Add(snackbar.ActivateStoryboardDuration), durationPassedWaitHandle);
 
@@ -348,9 +345,13 @@ namespace MaterialDesignThemes.Wpf
             //close message on snackbar
             snackbar.SetCurrentValue(Snackbar.IsActiveProperty, false);
 
-            //we could wait for the animation event, but just doing 
+            //we could wait for the animation event, but just doing
             //this for now...at least it is prevent extra call back hell
             await Task.Delay(snackbar.DeactivateStoryboardDuration);
+
+            //this prevents missing resource warnings after the message is removed from the Snackbar
+            //see https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/2040
+            snackbarMessage.Resources = SnackbarMessage.defaultResources;
 
             //remove message on snackbar
             snackbar.SetCurrentValue(Snackbar.MessageProperty, null);
@@ -359,7 +360,7 @@ namespace MaterialDesignThemes.Wpf
             durationPassedWaitHandle.Dispose();
         }
 
-        private static MouseNotOverManagedWaitHandle CreateAndShowMessage(UIElement snackbar,
+        private static Tuple<SnackbarMessage, MouseNotOverManagedWaitHandle> CreateAndShowMessage(UIElement snackbar,
             SnackbarMessageQueueItem messageQueueItem, EventWaitHandle actionClickWaitHandle)
         {
             var clickCount = 0;
@@ -376,7 +377,7 @@ namespace MaterialDesignThemes.Wpf
             };
             snackbar.SetCurrentValue(Snackbar.MessageProperty, snackbarMessage);
             snackbar.SetCurrentValue(Snackbar.IsActiveProperty, true);
-            return new MouseNotOverManagedWaitHandle(snackbar);
+            return Tuple.Create(snackbarMessage, new MouseNotOverManagedWaitHandle(snackbar));
         }
 
         private static async Task WaitForCompletionAsync(
@@ -406,8 +407,7 @@ namespace MaterialDesignThemes.Wpf
         {
             try
             {
-                messageQueueItem.ActionHandler(messageQueueItem.ActionArgument);
-
+                messageQueueItem.ActionHandler?.Invoke(messageQueueItem.ActionArgument);
             }
             catch (Exception exc)
             {

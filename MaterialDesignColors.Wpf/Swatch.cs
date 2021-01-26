@@ -11,9 +11,9 @@ namespace MaterialDesignColors
     {
         public Swatch(string name, IEnumerable<Hue> primaryHues, IEnumerable<Hue> accentHues)
         {
-            if (name == null) throw new ArgumentNullException(nameof(name));
-            if (primaryHues == null) throw new ArgumentNullException(nameof(primaryHues));
-            if (accentHues == null) throw new ArgumentNullException(nameof(accentHues));
+            if (name is null) throw new ArgumentNullException(nameof(name));
+            if (primaryHues is null) throw new ArgumentNullException(nameof(primaryHues));
+            if (accentHues is null) throw new ArgumentNullException(nameof(accentHues));
 
             var primaryHuesList = primaryHues.ToList();
             if (primaryHuesList.Count == 0) throw new ArgumentException("Non primary hues provided.", nameof(primaryHues));
@@ -31,7 +31,7 @@ namespace MaterialDesignColors
 
         public Hue ExemplarHue { get; }
 
-        public Hue AccentExemplarHue { get; }
+        public Hue? AccentExemplarHue { get; }
 
         public IList<Hue> PrimaryHues { get; }
 
@@ -39,10 +39,7 @@ namespace MaterialDesignColors
 
         public bool IsAccented => AccentHues.Any();
 
-        public override string ToString()
-        {
-            return Name;
-        }
+        public override string ToString() => Name;
 
         public int ExemplarHueIndex => Math.Min(5, PrimaryHues.Count - 1);
 

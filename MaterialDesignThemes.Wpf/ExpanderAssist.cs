@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -31,80 +32,25 @@ namespace MaterialDesignThemes.Wpf
             => element.SetValue(VerticalHeaderPaddingProperty, value);
         #endregion
 
-        #region Obsolete (Remove in next major rev)
+        #region AttachedProperty : HeaderFontSizeProperty
+        public static readonly DependencyProperty HeaderFontSizeProperty
+            = DependencyProperty.RegisterAttached("HeaderFontSize", typeof(double), typeof(ExpanderAssist),
+                new FrameworkPropertyMetadata(15.0));
 
-        [Obsolete("This will be removed in the next major version. Use HorizontalHeaderPaddingProperty instead.")]
-        public static readonly DependencyProperty LeftHeaderPaddingProperty =
-            DependencyProperty.RegisterAttached(
-        "LeftHeaderPadding", typeof(Thickness), typeof(ExpanderAssist),
-        new FrameworkPropertyMetadata(new Thickness(0, 0, 0, 0), FrameworkPropertyMetadataOptions.Inherits));
+        public static double GetHeaderFontSize(Expander element)
+            => (double)element.GetValue(HeaderFontSizeProperty);
+        public static void SetHeaderFontSize(Expander element, double value)
+            => element.SetValue(HeaderFontSizeProperty, value);
+        #endregion
+        
+        #region AttachedProperty : HeaderBackgroundProperty
+        public static readonly DependencyProperty HeaderBackgroundProperty
+            = DependencyProperty.RegisterAttached("HeaderBackground", typeof(Brush), typeof(ExpanderAssist));
 
-        [Obsolete("This will be removed in the next major version. Use HorizontalHeaderPaddingProperty instead.")]
-        public static void SetLeftHeaderPadding(DependencyObject element, Thickness value)
-        {
-            element.SetValue(LeftHeaderPaddingProperty, value);
-        }
-
-        [Obsolete("This will be removed in the next major version. Use HorizontalHeaderPaddingProperty instead.")]
-        public static Thickness GetLeftHeaderPadding(DependencyObject element)
-        {
-            return (Thickness)element.GetValue(LeftHeaderPaddingProperty);
-        }
-
-        [Obsolete("This will be removed in the next major version. Use HorizontalHeaderPaddingProperty instead.")]
-        public static readonly DependencyProperty RightHeaderPaddingProperty =
-            DependencyProperty.RegisterAttached(
-                "RightHeaderPadding", typeof(Thickness), typeof(ExpanderAssist),
-                new FrameworkPropertyMetadata(new Thickness(0, 0, 0, 0), FrameworkPropertyMetadataOptions.Inherits));
-
-        [Obsolete("This will be removed in the next major version. Use HorizontalHeaderPaddingProperty instead.")]
-        public static void SetRightHeaderPadding(DependencyObject element, Thickness value)
-        {
-            element.SetValue(RightHeaderPaddingProperty, value);
-        }
-
-        [Obsolete("This will be removed in the next major version. Use HorizontalHeaderPaddingProperty instead.")]
-        public static Thickness GetRightHeaderPadding(DependencyObject element)
-        {
-            return (Thickness)element.GetValue(RightHeaderPaddingProperty);
-        }
-
-        [Obsolete("This will be removed in the next major version. Use VerticalHeaderPaddingProperty instead.")]
-        public static readonly DependencyProperty UpHeaderPaddingProperty =
-            DependencyProperty.RegisterAttached(
-                "UpHeaderPadding", typeof(Thickness), typeof(ExpanderAssist),
-                new FrameworkPropertyMetadata(new Thickness(0, 0, 0, 0), FrameworkPropertyMetadataOptions.Inherits));
-
-        [Obsolete("This will be removed in the next major version. Use VerticalHeaderPaddingProperty instead.")]
-        public static void SetUpHeaderPadding(DependencyObject element, Thickness value)
-        {
-            element.SetValue(UpHeaderPaddingProperty, value);
-        }
-
-        [Obsolete("This will be removed in the next major version. Use VerticalHeaderPaddingProperty instead.")]
-        public static Thickness GetUpHeaderPadding(DependencyObject element)
-        {
-            return (Thickness)element.GetValue(UpHeaderPaddingProperty);
-        }
-
-        [Obsolete("This will be removed in the next major version. Use VerticalHeaderPaddingProperty instead.")]
-        public static readonly DependencyProperty DownHeaderPaddingProperty =
-            DependencyProperty.RegisterAttached(
-                "DownHeaderPadding", typeof(Thickness), typeof(ExpanderAssist),
-                new FrameworkPropertyMetadata(new Thickness(0, 0, 0, 0), FrameworkPropertyMetadataOptions.Inherits));
-
-        [Obsolete("This will be removed in the next major version. Use VerticalHeaderPaddingProperty instead.")]
-        public static void SetDownHeaderPadding(DependencyObject element, Thickness value)
-        {
-            element.SetValue(DownHeaderPaddingProperty, value);
-        }
-
-        [Obsolete("This will be removed in the next major version. Use VerticalHeaderPaddingProperty instead.")]
-        public static Thickness GetDownHeaderPadding(DependencyObject element)
-        {
-            return (Thickness)element.GetValue(DownHeaderPaddingProperty);
-        }
-
+        public static Brush? GetHeaderBackground(Expander element)
+            => (Brush?)element.GetValue(HeaderBackgroundProperty);
+        public static void SetHeaderBackground(Expander element, Brush? value)
+            => element.SetValue(HeaderBackgroundProperty, value);
         #endregion
     }
 }

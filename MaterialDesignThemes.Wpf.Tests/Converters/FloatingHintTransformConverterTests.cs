@@ -9,23 +9,23 @@ namespace MaterialDesignThemes.Wpf.Tests.Converters
 {
     public class FloatingHintTransformConverterTests
     {
-        public static IEnumerable<object[]> InvalidParameters =>
+        public static IEnumerable<object?[]> InvalidParameters =>
             new[]
             {
-                new object[] {null, null, null, null},
-                new object[] {1.0, null, null, null},
-                new object[] {null, 1.0, null, null},
-                new object[] {null, null, 1.0, null},
-                new object[] {null, null, null, new Point()},
-                new object[] {1.0, DependencyProperty.UnsetValue, DependencyProperty.UnsetValue, DependencyProperty.UnsetValue},
-                new object[] {DependencyProperty.UnsetValue, 1.0, DependencyProperty.UnsetValue, DependencyProperty.UnsetValue},
-                new object[] {DependencyProperty.UnsetValue, DependencyProperty.UnsetValue, 1.0, DependencyProperty.UnsetValue},
-                new object[] {DependencyProperty.UnsetValue, DependencyProperty.UnsetValue, DependencyProperty.UnsetValue, new Point() },
+                new object?[] {null, null, null, null},
+                new object?[] {1.0, null, null, null},
+                new object?[] {null, 1.0, null, null},
+                new object?[] {null, null, 1.0, null},
+                new object?[] {null, null, null, new Point()},
+                new object?[] {1.0, DependencyProperty.UnsetValue, DependencyProperty.UnsetValue, DependencyProperty.UnsetValue},
+                new object?[] {DependencyProperty.UnsetValue, 1.0, DependencyProperty.UnsetValue, DependencyProperty.UnsetValue},
+                new object?[] {DependencyProperty.UnsetValue, DependencyProperty.UnsetValue, 1.0, DependencyProperty.UnsetValue},
+                new object?[] {DependencyProperty.UnsetValue, DependencyProperty.UnsetValue, DependencyProperty.UnsetValue, new Point() },
             };
 
         [StaTheory]
         [MemberData(nameof(InvalidParameters))]
-        public void WhenParametersAreNotSetItReturnsIdentity(object scale, object lower, object upper, object offset)
+        public void WhenParametersAreNotSetItReturnsIdentity(object? scale, object? lower, object? upper, object? offset)
         {
             var converter = new FloatingHintTransformConverter();
 
@@ -42,9 +42,10 @@ namespace MaterialDesignThemes.Wpf.Tests.Converters
         {
             var converter = new FloatingHintTransformConverter();
 
-            var result = (TransformGroup)converter.Convert(new object[] { scale, lower, upper, new Point(x, y) }, typeof(Transform), null, CultureInfo.CurrentUICulture);
+            var result = (TransformGroup?)converter.Convert(new object?[] { scale, lower, upper, new Point(x, y) }, typeof(Transform), null, CultureInfo.CurrentUICulture);
 
-            var scaleTransform = (ScaleTransform)result.Children[0];
+            Assert.NotNull(result);
+            var scaleTransform = (ScaleTransform)result!.Children[0];
             var translateTransform = (TranslateTransform)result.Children[1];
 
             Assert.Equal(upper + (lower - upper) * scale, scaleTransform.ScaleX);

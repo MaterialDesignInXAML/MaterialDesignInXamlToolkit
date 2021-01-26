@@ -1,4 +1,4 @@
-﻿namespace MaterialDesignColors.WpfExample.Domain
+﻿namespace MaterialDesignDemo.Domain
 {
     public enum DocumentationLinkType
     {

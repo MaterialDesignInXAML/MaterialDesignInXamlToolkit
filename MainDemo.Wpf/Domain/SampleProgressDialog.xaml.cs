@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace MaterialDesignColors.WpfExample.Domain
+namespace MaterialDesignDemo.Domain
 {
     /// <summary>
     /// Interaction logic for SampleProgressDialog.xaml

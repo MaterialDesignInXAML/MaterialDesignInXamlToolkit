@@ -26,7 +26,7 @@
 
         <controls:MetroAnimatedSingleRowTabControl TabStripPlacement="Left" Background="Transparent">
             <TabItem Header="ListBox">
-                <smtx:XamlDisplay Key="ListBox_1">
+                <smtx:XamlDisplay UniqueKey="ListBox_1">
                     <ListBox Margin="0 8 0 0">
                         <ListBoxItem IsSelected="True">MahApps</ListBoxItem>
                         <ListBoxItem>Dragablz</ListBoxItem>
@@ -36,10 +36,10 @@
             </TabItem>
             <TabItem Header="Button/Switch">
                 <StackPanel>
-                    <smtx:XamlDisplay Key="ToggleSwitch_1" HorizontalAlignment="Left">
+                    <smtx:XamlDisplay UniqueKey="ToggleSwitch_1" HorizontalAlignment="Left">
                         <controls:ToggleSwitch IsOn="True" HorizontalAlignment="Left" />
                     </smtx:XamlDisplay>
-                    <smtx:XamlDisplay Key="AccentSquareButton_1" HorizontalAlignment="Left">
+                    <smtx:XamlDisplay UniqueKey="AccentSquareButton_1" HorizontalAlignment="Left">
                         <Button Width="100" Margin="0 8 0 0" Content="Nice" HorizontalAlignment="Left"
                                 Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
                     </smtx:XamlDisplay>
@@ -47,29 +47,29 @@
             </TabItem>
             <TabItem Header="Sliders">
                 <StackPanel>
-                    <smtx:XamlDisplay Key="Slider_1">
+                    <smtx:XamlDisplay UniqueKey="Slider_1">
                         <Slider Margin="6 16 6 0" TickPlacement="BottomRight" TickFrequency="10" />
                     </smtx:XamlDisplay>
-                    <smtx:XamlDisplay Key="Slider_2">
+                    <smtx:XamlDisplay UniqueKey="Slider_2">
                         <controls:RangeSlider Margin="6 16 6 0" LowerValue="25" UpperValue="75" TickPlacement="BottomRight" TickFrequency="10" />
                     </smtx:XamlDisplay>
-                    <smtx:XamlDisplay Key="Slider_3">
+                    <smtx:XamlDisplay UniqueKey="Slider_3">
                         <controls:RangeSlider Margin="0 16 0 0" LowerValue="25" UpperValue="75" Orientation="Vertical" Height="200"  />
                     </smtx:XamlDisplay>
                 </StackPanel>
             </TabItem>
             <TabItem Header="NumericUpDown">
                 <StackPanel>
-                    <smtx:XamlDisplay Key="NumericUpDown_1">
+                    <smtx:XamlDisplay UniqueKey="NumericUpDown_1">
                         <controls:NumericUpDown Margin="5" Value="{Binding UpDownValue, ValidatesOnExceptions=True}"/>
                     </smtx:XamlDisplay>
-                    <smtx:XamlDisplay Key="NumericUpDown_2">
+                    <smtx:XamlDisplay UniqueKey="NumericUpDown_2">
                         <controls:NumericUpDown Culture="ar-EG" FlowDirection="RightToLeft" Margin="5" controls:TextBoxHelper.SelectAllOnFocus="True"/>
                     </smtx:XamlDisplay>
                 </StackPanel>
             </TabItem>
             <TabItem Header="DataGrid">
-                <smtx:XamlDisplay Key="DataGrid_1">
+                <smtx:XamlDisplay UniqueKey="DataGrid_1">
                     <DataGrid ItemsSource="{Binding GridData}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Binding="{Binding IsChecked}"

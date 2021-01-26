@@ -1,21 +1,19 @@
-﻿using MaterialDesignColors.WpfExample.Domain;
+﻿using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignDemo
 {
-    /// <summary>
-    /// Interaction logic for ComboBoxes.xaml
-    /// </summary>
     public partial class ComboBoxes
     {
         public ComboBoxes()
         {
             InitializeComponent();
-            DataContext = new FieldsViewModel();
+            DataContext = new ComboBoxesViewModel();
         }
 
         private void ClearFilledComboBox_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            FilledComboBox.SelectedItem = null;
-        }
+            => FilledComboBox.SelectedItem = null;
+
+        private void ClearOutlinedComboBox_Click(object sender, System.Windows.RoutedEventArgs e)
+            => OutlinedComboBox.SelectedItem = null;
     }
 }

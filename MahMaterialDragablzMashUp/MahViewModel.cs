@@ -9,7 +9,7 @@ namespace MahAppsDragablzDemo
 {
     public class MahViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public ObservableCollection<GridRowData> GridData { get; }
 
@@ -98,7 +98,7 @@ namespace MahAppsDragablzDemo
     public class GridRowData
     {
         public bool IsChecked { get; set; }
-        public string Text { get; set; }
+        public string? Text { get; set; }
         public EnumValues EnumValue { get; set; }
         public int IntValue { get; set; }
     }

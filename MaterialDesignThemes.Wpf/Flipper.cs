@@ -18,7 +18,7 @@ namespace MaterialDesignThemes.Wpf
         public const string TemplateFlippedStateName = "Flipped";
         public const string TemplateUnflippedStateName = "Unflipped";
 
-        private Plane3D _plane3D;
+        private Plane3D? _plane3D;
 
         static Flipper()
         {
@@ -31,74 +31,74 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty FrontContentProperty = DependencyProperty.Register(
-            nameof(FrontContent), typeof(object), typeof(Flipper), new PropertyMetadata(default(object)));
+            nameof(FrontContent), typeof(object), typeof(Flipper), new PropertyMetadata(default(object?)));
 
-        public object FrontContent
+        public object? FrontContent
         {
             get => GetValue(FrontContentProperty);
             set => SetValue(FrontContentProperty, value);
         }
 
         public static readonly DependencyProperty FrontContentTemplateProperty = DependencyProperty.Register(
-            nameof(FrontContentTemplate), typeof(DataTemplate), typeof(Flipper), new PropertyMetadata(default(DataTemplate)));
+            nameof(FrontContentTemplate), typeof(DataTemplate), typeof(Flipper), new PropertyMetadata(default(DataTemplate?)));
 
-        public DataTemplate FrontContentTemplate
+        public DataTemplate? FrontContentTemplate
         {
-            get => (DataTemplate)GetValue(FrontContentTemplateProperty);
+            get => (DataTemplate?)GetValue(FrontContentTemplateProperty);
             set => SetValue(FrontContentTemplateProperty, value);
         }
 
         public static readonly DependencyProperty FrontContentTemplateSelectorProperty = DependencyProperty.Register(
             nameof(FrontContentTemplateSelector), typeof(DataTemplateSelector), typeof(Flipper), new PropertyMetadata(default(DataTemplateSelector)));
 
-        public DataTemplateSelector FrontContentTemplateSelector
+        public DataTemplateSelector? FrontContentTemplateSelector
         {
             get => (DataTemplateSelector)GetValue(FrontContentTemplateSelectorProperty);
             set => SetValue(FrontContentTemplateSelectorProperty, value);
         }
 
         public static readonly DependencyProperty FrontContentStringFormatProperty = DependencyProperty.Register(
-            nameof(FrontContentStringFormat), typeof(string), typeof(Flipper), new PropertyMetadata(default(string)));
+            nameof(FrontContentStringFormat), typeof(string), typeof(Flipper), new PropertyMetadata(default(string?)));
 
-        public string FrontContentStringFormat
+        public string? FrontContentStringFormat
         {
-            get => (string)GetValue(FrontContentStringFormatProperty);
+            get => (string?)GetValue(FrontContentStringFormatProperty);
             set => SetValue(FrontContentStringFormatProperty, value);
         }
 
         public static readonly DependencyProperty BackContentProperty = DependencyProperty.Register(
-            nameof(BackContent), typeof(object), typeof(Flipper), new PropertyMetadata(default(object)));
+            nameof(BackContent), typeof(object), typeof(Flipper), new PropertyMetadata(default(object?)));
 
-        public object BackContent
+        public object? BackContent
         {
-            get => (object)GetValue(BackContentProperty);
+            get => GetValue(BackContentProperty);
             set => SetValue(BackContentProperty, value);
         }
 
         public static readonly DependencyProperty BackContentTemplateProperty = DependencyProperty.Register(
-            nameof(BackContentTemplate), typeof(DataTemplate), typeof(Flipper), new PropertyMetadata(default(DataTemplate)));
+            nameof(BackContentTemplate), typeof(DataTemplate), typeof(Flipper), new PropertyMetadata(default(DataTemplate?)));
 
-        public DataTemplate BackContentTemplate
+        public DataTemplate? BackContentTemplate
         {
-            get => (DataTemplate)GetValue(BackContentTemplateProperty);
+            get => (DataTemplate?)GetValue(BackContentTemplateProperty);
             set => SetValue(BackContentTemplateProperty, value);
         }
 
         public static readonly DependencyProperty BackContentTemplateSelectorProperty = DependencyProperty.Register(
-            nameof(BackContentTemplateSelector), typeof(DataTemplateSelector), typeof(Flipper), new PropertyMetadata(default(DataTemplateSelector)));
+            nameof(BackContentTemplateSelector), typeof(DataTemplateSelector), typeof(Flipper), new PropertyMetadata(default(DataTemplateSelector?)));
 
-        public DataTemplateSelector BackContentTemplateSelector
+        public DataTemplateSelector? BackContentTemplateSelector
         {
-            get => (DataTemplateSelector)GetValue(BackContentTemplateSelectorProperty);
+            get => (DataTemplateSelector?)GetValue(BackContentTemplateSelectorProperty);
             set => SetValue(BackContentTemplateSelectorProperty, value);
         }
 
         public static readonly DependencyProperty BackContentStringFormatProperty = DependencyProperty.Register(
-            nameof(BackContentStringFormat), typeof(string), typeof(Flipper), new PropertyMetadata(default(string)));
+            nameof(BackContentStringFormat), typeof(string), typeof(Flipper), new PropertyMetadata(default(string?)));
 
-        public string BackContentStringFormat
+        public string? BackContentStringFormat
         {
-            get => (string)GetValue(BackContentStringFormatProperty);
+            get => (string?)GetValue(BackContentStringFormatProperty);
             set => SetValue(BackContentStringFormatProperty, value);
         }
 
@@ -161,15 +161,15 @@ namespace MaterialDesignThemes.Wpf
             var remeasureInterval = new TimeSpan(0, 0, 0, 0, storyboardMs / granularity);
             var refreshCount = 0;
             var plane3D = _plane3D;
-            if (plane3D == null) return;
+            if (plane3D is null) return;
 
-            DispatcherTimer dt = null;
+            DispatcherTimer? dt = null;
             dt = new DispatcherTimer(remeasureInterval, DispatcherPriority.Normal,
                 (sender, args) =>
                 {
                     plane3D.InvalidateMeasure();
                     if (refreshCount++ == granularity)
-                        dt.Stop();
+                        dt?.Stop();
                 }, Dispatcher);
             dt.Start();
         }

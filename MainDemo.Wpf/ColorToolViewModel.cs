@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignColors;
-using MaterialDesignColors.WpfExample.Domain;
 using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
@@ -16,7 +15,6 @@ namespace MaterialDesignDemo
         private readonly PaletteHelper _paletteHelper = new PaletteHelper();
 
         private ColorScheme _activeScheme;
-
         public ColorScheme ActiveScheme
         {
             get => _activeScheme;
@@ -228,11 +226,9 @@ namespace MaterialDesignDemo
             _paletteHelper.SetTheme(theme);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

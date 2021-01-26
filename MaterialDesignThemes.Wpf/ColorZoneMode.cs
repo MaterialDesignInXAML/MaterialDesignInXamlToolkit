@@ -7,7 +7,9 @@
         PrimaryLight,
         PrimaryMid,
         PrimaryDark,
-        Accent,
+        SecondaryLight,
+        SecondaryMid,
+        SecondaryDark,
         Light,
         Dark,
         Custom

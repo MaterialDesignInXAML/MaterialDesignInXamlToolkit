@@ -17,10 +17,10 @@ namespace MaterialDesignDemo.TransitionsDemo
 
         public class Slide1ViewModel : INotifyPropertyChanged
         {
-            public event PropertyChangedEventHandler PropertyChanged;
+            public event PropertyChangedEventHandler? PropertyChanged;
 
-            private string _name;
-            public string Name
+            private string? _name;
+            public string? Name
             {
                 get => _name;
                 set => this.MutateVerbose(ref _name, value, args => PropertyChanged?.Invoke(this, args));

@@ -1,39 +1,60 @@
-﻿<UserControl x:Class="MaterialDesignColors.WpfExample.NavigationRail"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="MaterialDesignDemo.NavigationRail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d" 
+    d:DesignHeight="450"
+    d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <GroupBox Header="General" Style="{StaticResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5" materialDesign:ShadowAssist.ShadowEdges="Right" Grid.RowSpan="2">
+        
+        <GroupBox
+            Header="General"
+            Style="{StaticResource MaterialDesignCardGroupBox}"
+            Margin="5"
+            materialDesign:ColorZoneAssist.Mode="Standard"
+            materialDesign:ShadowAssist.ShadowEdges="Right"
+            Grid.RowSpan="2">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
+                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <smtx:XamlDisplay Key="navrail_1" Margin="5,5,5,0" >
+              
+                <smtx:XamlDisplay
+                    UniqueKey="navrail_1"
+                    Margin="5,5,5,0">
                     <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}">
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}">
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
-                            </TabItem.Header>
-                            <TextBlock Padding="5" TextWrapping="Wrap" >
-                                <Run Text="tab 1 content. Default look and behaviors. "/>
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Head, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                            <TextBlock>
+                                <Run Text="tab 1 content. Default look and behaviors."/>
                                 <LineBreak/>
                                 <LineBreak/>
                                 <Run FontStyle="Italic">
@@ -41,12 +62,12 @@
                                 </Run>
                             </TextBlock>
                         </TabItem>
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
-                            </TabItem.Header>
-                            <TextBlock Padding="5" TextWrapping="Wrap" >
-                                <Run Text="tab 2 content. Default look and behaviors. "/>
+
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Spade, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                            <TextBlock>
+                                <Run Text="tab 2 content. Default look and behaviors."/>
                                 <LineBreak/>
                                 <LineBreak/>
                                 <Run FontStyle="Italic">
@@ -56,15 +77,18 @@
                         </TabItem>
                     </TabControl>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="navrail_4" Margin="5,5,5,0" Grid.Column="1">
-                    <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
-                                materialDesign:ColorZoneAssist.Mode="Accent">
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
-                            </TabItem.Header>
-                            <TextBlock Padding="5" TextWrapping="Wrap" >
-                                <Run Text="tab 1 content. Default look and behaviors. "/>
+                <smtx:XamlDisplay
+                    UniqueKey="navrail_4"
+                    Margin="5,5,5,0"
+                    Grid.Column="1">
+                    <TabControl
+                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                        materialDesign:ColorZoneAssist.Mode="SecondaryMid">
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Heart, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                            <TextBlock>
+                                <Run Text="tab 1 content. Default look and behaviors."/>
                                 <LineBreak/>
                                 <LineBreak/>
                                 <Run FontStyle="Italic">
@@ -72,12 +96,12 @@
                                 </Run>
                             </TextBlock>
                         </TabItem>
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
-                            </TabItem.Header>
-                            <TextBlock Padding="5" TextWrapping="Wrap" >
-                                <Run Text="tab 2 content. Default look and behaviors. "/>
+
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Spade, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                            <TextBlock>
+                                <Run Text="tab 2 content. Default look and behaviors."/>
                                 <LineBreak/>
                                 <LineBreak/>
                                 <Run FontStyle="Italic">
@@ -86,14 +110,18 @@
                             </TextBlock>
                         </TabItem>
                     </TabControl>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="navrail_2" Margin="5,5,5,0" Grid.Row="1" >
-                    <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}" TabStripPlacement="Right">
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
-                            </TabItem.Header>
-                            <TextBlock Padding="5" TextWrapping="Wrap" >
+                </smtx:XamlDisplay>      
+                <smtx:XamlDisplay
+                    UniqueKey="navrail_2"
+                    Margin="5,5,5,0"
+                    Grid.Row="1">
+                    <TabControl
+                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                        TabStripPlacement="Right">
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Heart, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                            <TextBlock>
                                 <Run Text="tab 1 content. Default look and right aligned. "/>
                                 <LineBreak/>
                                 <LineBreak/>
@@ -102,11 +130,11 @@
                                 </Run>
                             </TextBlock>
                         </TabItem>
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
-                            </TabItem.Header>
-                            <TextBlock Padding="5" TextWrapping="Wrap" >
+
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Spade, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                            <TextBlock>
                                 <Run Text="tab 2 content. Default look and right aligned. "/>
                                 <LineBreak/>
                                 <LineBreak/>
@@ -115,11 +143,11 @@
                                 </Run>
                             </TextBlock>
                         </TabItem>
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Tree" Width="24" Height="24"/>
-                            </TabItem.Header>
-                            <TextBlock Padding="5" TextWrapping="Wrap" >
+
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Tree, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                            <TextBlock>
                                 <Run Text="tab 3 content. Default look and right aligned. "/>
                                 <LineBreak/>
                                 <LineBreak/>
@@ -129,15 +157,20 @@
                             </TextBlock>
                         </TabItem>
                     </TabControl>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="navrail_3" Margin="5,5,5,0" Grid.Row="1" Grid.Column="1">
-                    <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}" materialDesign:ColorZoneAssist.Mode="PrimaryMid">
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
-                            </TabItem.Header>
-                            <TextBlock Padding="5" TextWrapping="Wrap" >
-                                <Run Text="tab 1 content. Default look and behaviors. "/>
+                </smtx:XamlDisplay>     
+                <smtx:XamlDisplay
+                    UniqueKey="navrail_3"
+                    Margin="5,5,5,0"
+                    Grid.Row="1"
+                    Grid.Column="1">
+                    <TabControl
+                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                        materialDesign:ColorZoneAssist.Mode="PrimaryMid">
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Heart, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                            <TextBlock>
+                                <Run Text="tab 1 content. Default look and behaviors."/>
                                 <LineBreak/>
                                 <LineBreak/>
                                 <Run FontStyle="Italic">
@@ -145,12 +178,12 @@
                                 </Run>
                             </TextBlock>
                         </TabItem>
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
-                            </TabItem.Header>
-                            <TextBlock Padding="5" TextWrapping="Wrap" >
-                                <Run Text="tab 2 content. Default look and behaviors. "/>
+
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Spade, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                            <TextBlock>
+                                <Run Text="tab 2 content. Default look and behaviors."/>
                                 <LineBreak/>
                                 <LineBreak/>
                                 <Run FontStyle="Italic">
@@ -158,11 +191,11 @@
                                 </Run>
                             </TextBlock>
                         </TabItem>
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Tree" Width="24" Height="24"/>
-                            </TabItem.Header>
-                            <TextBlock Padding="5" TextWrapping="Wrap" >
+
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Tree, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                            <TextBlock>
                                 <Run Text="tab 3 content. Default look and right aligned. "/>
                                 <LineBreak/>
                                 <LineBreak/>
@@ -173,111 +206,119 @@
                         </TabItem>
                     </TabControl>
                 </smtx:XamlDisplay>
-
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Column="1" Header="Floating Action Button" Style="{StaticResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
-            <smtx:XamlDisplay Key="navrail_floating_1">
-                <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
-                            materialDesign:ColorZoneAssist.Mode="PrimaryDark">
+        <GroupBox
+            Grid.Column="1"
+            Header="Floating Action Button"
+            Style="{StaticResource MaterialDesignCardGroupBox}"
+            materialDesign:ColorZoneAssist.Mode="Standard"
+            Margin="5">
+            <smtx:XamlDisplay UniqueKey="navrail_floating_1">
+                <TabControl
+                    Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
+                    materialDesign:ColorZoneAssist.Mode="PrimaryDark">
                     <materialDesign:NavigationRailAssist.FloatingContent>
-                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Margin="0,8">
-                            <materialDesign:PackIcon Kind="Plus" />
-                        </Button>
+                        <Button
+                            Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                            Margin="0,8"
+                            Content="{materialDesign:PackIcon Kind=Plus}"/>
                     </materialDesign:NavigationRailAssist.FloatingContent>
-                    <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                        <TabItem.Header>
-                            <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
-                        </TabItem.Header>
-                        <TextBlock Padding="5" TextWrapping="Wrap" >
-                        <Run Text="tab 1 content. Default look and behaviors. "/>
-                        <LineBreak/>
-                        <LineBreak/>
-                        <Run FontStyle="Italic">
-                            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-                        </Run>
+
+                    <TabItem
+                        Header="{materialDesign:PackIcon Kind=Heart, Size=24}"
+                        Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                        <TextBlock>
+                            <Run Text="tab 1 content. Default look and behaviors."/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run FontStyle="Italic">
+                                Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                            </Run>
                         </TextBlock>
                     </TabItem>
-                    <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                        <TabItem.Header>
-                            <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
-                        </TabItem.Header>
-                        <TextBlock Padding="5" TextWrapping="Wrap" >
-                        <Run Text="tab 2 content. Default look and behaviors. "/>
-                        <LineBreak/>
-                        <LineBreak/>
-                        <Run FontStyle="Italic">
-                            Praesent sed dui arcu. Vivamus porta auctor sagittis
-                        </Run>
+
+                    <TabItem
+                        Header="{materialDesign:PackIcon Kind=Spade, Size=24}"
+                        Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                        <TextBlock>
+                            <Run Text="tab 2 content. Default look and behaviors."/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run FontStyle="Italic">
+                                Praesent sed dui arcu. Vivamus porta auctor sagittis
+                            </Run>
                         </TextBlock>
                     </TabItem>
                 </TabControl>
             </smtx:XamlDisplay>
         </GroupBox>
-        <GroupBox Grid.Column="1" Grid.Row="1" Header="Shadow" Style="{StaticResource MaterialDesignCardGroupBox}" materialDesign:ColorZoneAssist.Mode="Standard" Margin="5">
+        
+        <GroupBox
+            Grid.Column="1"
+            Grid.Row="1"
+            Header="Shadow"
+            Style="{StaticResource MaterialDesignCardGroupBox}"
+            materialDesign:ColorZoneAssist.Mode="Standard"
+            Margin="5">
             <StackPanel Orientation="Horizontal">
-                <smtx:XamlDisplay Key="navrail_noshadow_1">
-                    <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
-                                materialDesign:ColorZoneAssist.Mode="Standard"
-                                materialDesign:ShadowAssist.ShadowDepth="Depth0">
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
-                            </TabItem.Header>
-                        </TabItem>
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
-                            </TabItem.Header>
-                        </TabItem>
+                <smtx:XamlDisplay UniqueKey="navrail_noshadow_1">
+                    <TabControl
+                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
+                        materialDesign:ColorZoneAssist.Mode="Standard"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Heart, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}"/>
+
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Spade, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}"/>
                     </TabControl>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="navrail_wshadow_1">
-                    <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
-                                materialDesign:ColorZoneAssist.Mode="Standard"
-                                materialDesign:ShadowAssist.ShadowDepth="Depth1" >
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
-                            </TabItem.Header>
-                        </TabItem>
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
-                            </TabItem.Header>
-                        </TabItem>
+                
+                <smtx:XamlDisplay UniqueKey="navrail_wshadow_1">
+                    <TabControl
+                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
+                        materialDesign:ColorZoneAssist.Mode="Standard"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Heart, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}"/>
+
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Spade, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}"/>
                     </TabControl>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="navrail_wshadow_2">
-                    <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
-                                materialDesign:ColorZoneAssist.Mode="Standard"
-                                materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
-                            </TabItem.Header>
-                        </TabItem>
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
-                            </TabItem.Header>
-                        </TabItem>
+                
+                <smtx:XamlDisplay UniqueKey="navrail_wshadow_2">
+                    <TabControl
+                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
+                        materialDesign:ColorZoneAssist.Mode="Standard"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Heart, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}"/>
+
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Spade, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}"/>
                     </TabControl>
                 </smtx:XamlDisplay>
-                <smtx:XamlDisplay Key="navrail_wshadow_3">
-                    <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
-                                materialDesign:ColorZoneAssist.Mode="Standard"
-                                materialDesign:ShadowAssist.ShadowDepth="Depth3">
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Heart" Width="24" Height="24"/>
-                            </TabItem.Header>
-                        </TabItem>
-                        <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
-                            <TabItem.Header>
-                                <materialDesign:PackIcon Kind="Spade" Width="24" Height="24"/>
-                            </TabItem.Header>
-                        </TabItem>
+                
+                <smtx:XamlDisplay UniqueKey="navrail_wshadow_3">
+                    <TabControl
+                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
+                        materialDesign:ColorZoneAssist.Mode="Standard"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Heart, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}"/>
+
+                        <TabItem
+                            Header="{materialDesign:PackIcon Kind=Spade, Size=24}"
+                            Style="{StaticResource MaterialDesignNavigationRailTabItem}"/>
                     </TabControl>
                 </smtx:XamlDisplay>
             </StackPanel>      

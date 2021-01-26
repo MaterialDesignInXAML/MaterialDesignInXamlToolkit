@@ -12,7 +12,7 @@ namespace MaterialDesignThemes.Wpf
             EditingElementStyleProperty.OverrideMetadata(typeof(DataGridComboBoxColumn), new FrameworkPropertyMetadata(DefaultEditingElementStyle));
         }
 
-        public Binding ItemsSourceBinding { get; set; }
+        public Binding? ItemsSourceBinding { get; set; }
 
         public bool? IsEditable { get; set; }
 

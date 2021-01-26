@@ -122,6 +122,7 @@
                                         Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}"
                                         Content="{TemplateBinding Hint}"
                                         FontSize="{TemplateBinding FontSize}"
+                                        FontFamily="{TemplateBinding FontFamily}"
                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Opacity="{TemplateBinding HintOpacity}"

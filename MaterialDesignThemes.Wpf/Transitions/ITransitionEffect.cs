@@ -5,6 +5,6 @@ namespace MaterialDesignThemes.Wpf.Transitions
 {
     public interface ITransitionEffect
     {
-        Timeline Build<TSubject>(TSubject effectSubject) where TSubject : FrameworkElement, ITransitionEffectSubject;
+        Timeline? Build<TSubject>(TSubject effectSubject) where TSubject : FrameworkElement, ITransitionEffectSubject;
     }
 }

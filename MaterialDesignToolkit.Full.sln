@@ -3,14 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29021.104
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{D6F6620A-5634-4A1E-9731-AC7C5D50B2B2}"
-	ProjectSection(SolutionItems) = preProject
-		paket.dependencies = paket.dependencies
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesignDemo", "MainDemo.Wpf\MaterialDesignDemo.csproj", "{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesignThemes.Wpf", "MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj", "{F079FB0A-A8ED-4216-B6A5-345756751A04}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesignDemo", "MainDemo.Wpf\MaterialDesignDemo.csproj", "{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesignColors.Wpf", "MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj", "{90B53209-C60C-4655-B28D-A1B3E1044BA3}"
 EndProject
@@ -35,19 +30,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		azure-pipelines.yml = azure-pipelines.yml
+		Scripts\BuildNugets.ps1 = Scripts\BuildNugets.ps1
 		Directory.Build.props = Directory.Build.props
+		Directory.packages.props = Directory.packages.props
 		global.json = global.json
 		MaterialDesignColors.nuspec = MaterialDesignColors.nuspec
 		MaterialDesignThemes.MahApps.nuspec = MaterialDesignThemes.MahApps.nuspec
 		MaterialDesignThemes.nuspec = MaterialDesignThemes.nuspec
-		paket.dependencies = paket.dependencies
-		paket.lock = paket.lock
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesignThemes.UITests", "MaterialDesignThemes.UITests\MaterialDesignThemes.UITests.csproj", "{594D2254-3623-4088-A8BD-D74B6E96DE9F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CF0A27A8-EF82-44E5-B673-ECCC150C48ED} = {CF0A27A8-EF82-44E5-B673-ECCC150C48ED}
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{9E303A4A-3712-44B9-91EE-830FDC087795}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mdresgen", "mdresgen\mdresgen.csproj", "{59CE50AC-D176-4CC0-B465-26F66054A15E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,22 +60,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|ARM.Build.0 = Debug|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|x64.Build.0 = Debug|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|x86.Build.0 = Debug|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|ARM.ActiveCfg = Release|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|ARM.Build.0 = Release|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|x64.ActiveCfg = Release|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|x64.Build.0 = Release|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|x86.ActiveCfg = Release|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|x86.Build.0 = Release|Any CPU
 		{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -93,6 +76,22 @@ Global
 		{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}.Release|x64.Build.0 = Release|Any CPU
 		{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}.Release|x86.ActiveCfg = Release|Any CPU
 		{CF0A27A8-EF82-44E5-B673-ECCC150C48ED}.Release|x86.Build.0 = Release|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|ARM.Build.0 = Debug|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|x64.Build.0 = Debug|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|x86.Build.0 = Debug|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|ARM.Build.0 = Release|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|x64.ActiveCfg = Release|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|x64.Build.0 = Release|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|x86.ActiveCfg = Release|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|x86.Build.0 = Release|Any CPU
 		{90B53209-C60C-4655-B28D-A1B3E1044BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90B53209-C60C-4655-B28D-A1B3E1044BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90B53209-C60C-4655-B28D-A1B3E1044BA3}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -189,6 +188,22 @@ Global
 		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|x64.Build.0 = Release|Any CPU
 		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|x86.ActiveCfg = Release|Any CPU
 		{594D2254-3623-4088-A8BD-D74B6E96DE9F}.Release|x86.Build.0 = Release|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Debug|ARM.Build.0 = Debug|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Debug|x64.Build.0 = Debug|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Debug|x86.Build.0 = Debug|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Release|ARM.ActiveCfg = Release|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Release|ARM.Build.0 = Release|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Release|x64.ActiveCfg = Release|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Release|x64.Build.0 = Release|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Release|x86.ActiveCfg = Release|Any CPU
+		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -196,6 +211,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CF0A27A8-EF82-44E5-B673-ECCC150C48ED} = {D34BE232-DE51-43C1-ABDC-B69003BB50FF}
 		{803954E5-3A35-4D8B-95A7-F6E9B63EC0DF} = {D34BE232-DE51-43C1-ABDC-B69003BB50FF}
+		{59CE50AC-D176-4CC0-B465-26F66054A15E} = {9E303A4A-3712-44B9-91EE-830FDC087795}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {730B2F9E-74AE-46CE-9E61-89AA5C6D5DD3}

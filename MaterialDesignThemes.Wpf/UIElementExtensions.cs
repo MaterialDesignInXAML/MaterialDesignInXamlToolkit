@@ -37,7 +37,7 @@ namespace MaterialDesignThemes.Wpf
 
             foreach (var adorner in adorners.OfType<TAdorner>())
             {
-                adornerLayer.Remove(adorner);
+                adornerLayer!.Remove(adorner);
             }
         }
     }

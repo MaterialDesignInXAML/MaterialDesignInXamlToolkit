@@ -1,0 +1,41 @@
+﻿<Window x:Class="MaterialDesignThemes.UITests.Samples.Theme.ColorAdjustWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Height="800" Width="1100"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{materialDesign:MaterialDesignFont}" 
+        Title="Test Window"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                      Checked="ChangeThemeClick"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"/>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Large Text"
+                       FontSize="20"
+                       Foreground="{DynamicResource PrimaryHueMidBrush}"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="Small Text"
+                       Margin="0,40,0,0"
+                       Foreground="{DynamicResource PrimaryHueMidBrush}"
+                       HorizontalAlignment="Center" />
+        </StackPanel>
+    </Grid>
+</Window>

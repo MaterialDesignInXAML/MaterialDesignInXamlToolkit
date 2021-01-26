@@ -4,8 +4,13 @@ namespace MaterialDesignThemes.Wpf
 {
     internal class SnackbarMessageQueueItem
     {
-        public SnackbarMessageQueueItem(object content, TimeSpan duration, object actionContent = null, Action<object> actionHandler = null, object actionArgument = null,
-            bool isPromoted = false, bool ignoreDuplicate = false)
+        public SnackbarMessageQueueItem(object content,
+            TimeSpan duration,
+            object? actionContent = null,
+            Action<object?>? actionHandler = null,
+            object? actionArgument = null,
+            bool isPromoted = false,
+            bool ignoreDuplicate = false)
         {
             Content = content;
             Duration = duration;
@@ -29,17 +34,17 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// The content for the action button on the snackbar
         /// </summary>
-        public object ActionContent { get; }
+        public object? ActionContent { get; }
 
         /// <summary>
         /// Handler to be invoked when the action button is clicked
         /// </summary>
-        public Action<object> ActionHandler { get; }
+        public Action<object?>? ActionHandler { get; }
 
         /// <summary>
         /// The argument to pass to the <see cref="ActionHandler"/> delegate.
         /// </summary>
-        public object ActionArgument { get; }
+        public object? ActionArgument { get; }
 
         /// <summary>
         /// Promote the message, pushing it in front of any message that is not promoted.

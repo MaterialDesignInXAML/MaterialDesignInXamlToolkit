@@ -17,27 +17,17 @@ variables:
   solution: 'MaterialDesignToolkit.Full.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  nugetVersionSpec: '5.x.x'
+  mdixColorsVersion: '2.0.0'
+  mdixMahAppsVersion: '0.1.6'
+  mdixVersion: '4.0.0'
 
 steps:
-- task: NuGetToolInstaller@0
-  displayName: 'Use NuGet $(nugetVersionSpec)'
-  inputs:
-    versionSpec: '$(nugetVersionSpec)'
-
-- powershell: .paket\paket.exe restore
-
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet restore'
-  inputs:
-    command: restore
-    projects: $(solution)
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
     projects: '$(solution)'
-    arguments: '/p:Configuration=$(buildConfiguration) /p:Platform="Any CPU" /p:MDIXVersion=$(mdixVersion).$(Build.BuildID) /p:MDIXColorsVersion=$(mdixColorsVersion).$(Build.BuildID) /p:MDIXMahAppsVersion=$(mdixMahappsVersion).$(Build.BuildID)'
+    arguments: '/p:Configuration=$(buildConfiguration) /p:Platform="Any CPU" /p:MDIXVersion=$(mdixVersion).$(Build.BuildID) /p:MDIXColorsVersion=$(mdixColorsVersion).$(Build.BuildID) /p:MDIXMahAppsVersion=$(mdixMahappsVersion).$(Build.BuildID) /p:TreatWarningsAsErrors=True'
+    includeNuGetOrg: true
 
 - task: DotNetCoreCLI@2
   displayName: 'Unit Tests'
@@ -53,11 +43,12 @@ steps:
     projects: '**/*.UITests'
     arguments: '--configuration $(buildConfiguration) --no-build'
 
-- task: PublishPipelineArtifact@0
+- task: PublishPipelineArtifact@1
   name: "PublishUITestsScreenshots"
   inputs:
-    artifactName: 'Screenshots'
-    targetPath: 'MaterialDesignThemes.UITests/bin/$(buildConfiguration)/netcoreapp3.1/Screenshots'
+    artifact: 'Screenshots'
+    targetPath: 'MaterialDesignThemes.UITests/bin/$(buildConfiguration)/net5.0-windows/Screenshots'
+    publishLocation: 'pipeline'
   condition: always()
 
 - task: PowerShell@2
@@ -66,32 +57,37 @@ steps:
     filePath: 'Scripts\\BuildNugets.ps1'
     arguments: '-MDIXVersion $(mdixVersion)-ci$(Build.BuildId) -MDIXMahAppsVersion $(mdixMahappsVersion)-ci$(Build.BuildId) -MDIXColorsVersion $(mdixColorsVersion)-ci$(Build.BuildId)'
 
-- task: PublishPipelineArtifact@0
+- task: PublishPipelineArtifact@1
   name: "PublishDemoApp"
   inputs:
-    artifactName: 'DemoApp'
+    artifact: 'DemoApp'
     targetPath: 'MainDemo.Wpf/bin/$(buildConfiguration)'
+    publishLocation: 'pipeline'
 
-- task: PublishPipelineArtifact@0
+- task: PublishPipelineArtifact@1
   name: "PublishMaterialDesign"
   inputs:
-    artifactName: 'MDIX'
+    artifact: 'MDIX'
     targetPath: 'MaterialDesignThemes.$(mdixVersion)-ci$(Build.BuildId).nupkg'
+    publishLocation: 'pipeline'
 
-- task: PublishPipelineArtifact@0
+- task: PublishPipelineArtifact@1
   name: "PublishMaterialDesignColors"
   inputs:
-    artifactName: 'MDIX.Colors'
+    artifact: 'MDIX.Colors'
     targetPath: 'MaterialDesignColors.$(mdixColorsVersion)-ci$(Build.BuildId).nupkg'
+    publishLocation: 'pipeline'
 
-- task: PublishPipelineArtifact@0
+- task: PublishPipelineArtifact@1
   name: "PublishMaterialDesignMahApps"
   inputs:
-    artifactName: 'MDIX.MahApps'
+    artifact: 'MDIX.MahApps'
     targetPath: 'MaterialDesignThemes.MahApps.$(mdixMahappsVersion)-ci$(Build.BuildId).nupkg'
+    publishLocation: 'pipeline'
 
-- task: PublishPipelineArtifact@0
+- task: PublishPipelineArtifact@1
   name: "PublishScript"
   inputs:
-    artifactName: 'Script'
+    artifact: 'Script'
     targetPath: 'Scripts\\UpdateNugets.ps1'
+    publishLocation: 'pipeline'

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using XamlTest;
 using Xunit;
@@ -319,6 +321,26 @@ namespace MaterialDesignThemes.UITests.WPF.TimePicker
             var actual = await timePickerTextBox.GetText();
             Assert.Equal("1:02 AM", actual);
 
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Pull Request 2192")]
+        public async Task OnTimePickerHelperTextFontSize_ChangesHelperTextFontSize()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var stackPanel = await LoadXaml(@"
+<StackPanel>
+    <materialDesign:TimePicker
+        materialDesign:HintAssist.HelperTextFontSize=""20""/>
+</StackPanel>");
+            var timePicker = await stackPanel.GetElement("/TimePicker");
+            IVisualElement helpTextBlock = await timePicker.GetElement("/Grid/Canvas/TextBlock");
+
+            double fontSize = await helpTextBlock.GetProperty<double>(TextBlock.FontSizeProperty.Name);
+
+            Assert.Equal(20, fontSize);
             recorder.Success();
         }
     }

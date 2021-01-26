@@ -8,7 +8,7 @@ namespace MaterialDesignThemes.Wpf
         private BaseTheme? _baseTheme;
         public BaseTheme? BaseTheme
         {
-            get { return _baseTheme; }
+            get => _baseTheme;
             set
             {
                 if (_baseTheme != value)
@@ -22,7 +22,7 @@ namespace MaterialDesignThemes.Wpf
         private PrimaryColor? _primaryColor;
         public PrimaryColor? PrimaryColor
         {
-            get { return _primaryColor; }
+            get => _primaryColor;
             set
             {
                 if (_primaryColor != value)
@@ -36,12 +36,26 @@ namespace MaterialDesignThemes.Wpf
         private SecondaryColor? _secondaryColor;
         public SecondaryColor? SecondaryColor
         {
-            get { return _secondaryColor; }
+            get => _secondaryColor;
             set
             {
                 if (_secondaryColor != value)
                 {
                     _secondaryColor = value;
+                    SetTheme();
+                }
+            }
+        }
+
+        private ColorAdjustment? _colorAdjustment;
+        public ColorAdjustment? ColorAdjustment
+        {
+            get => _colorAdjustment;
+            set
+            {
+                if (_colorAdjustment != value)
+                {
+                    _colorAdjustment = value;
                     SetTheme();
                 }
             }
@@ -53,7 +67,7 @@ namespace MaterialDesignThemes.Wpf
                 PrimaryColor is PrimaryColor primaryColor &&
                 SecondaryColor is SecondaryColor secondaryColor)
             {
-                var theme = Theme.Create(baseTheme.GetBaseTheme(),
+                ITheme theme = Theme.Create(baseTheme.GetBaseTheme(),
                     SwatchHelper.Lookup[(MaterialDesignColor)primaryColor],
                     SwatchHelper.Lookup[(MaterialDesignColor)secondaryColor]);
 
@@ -61,9 +75,7 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        protected virtual void ApplyTheme(ITheme theme)
-        {
-            this.SetTheme(theme);
-        }
+        protected virtual void ApplyTheme(ITheme theme) =>
+            this.SetTheme(theme, ColorAdjustment);
     }
 }
