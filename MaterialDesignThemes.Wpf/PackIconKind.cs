@@ -1884,6 +1884,7 @@ namespace MaterialDesignThemes.Wpf
         Broom,
         Brush,
         Paintbrush=Brush,
+        BrushOff,
         Bucket,
         BucketOutline,
         Buffer,
