@@ -86,6 +86,15 @@ namespace MaterialDesignThemes.Wpf
             set => SetValue(OverlayBackgroundProperty, value);
         }
 
+        public DrawerHostOpenMode OpenMode
+        {
+            get => (DrawerHostOpenMode)GetValue(OpenModeProperty);
+            set => SetValue(OpenModeProperty, value);
+        }
+
+        public static readonly DependencyProperty OpenModeProperty =
+            DependencyProperty.Register("OpenMode", typeof(DrawerHostOpenMode), typeof(DrawerHost), new PropertyMetadata(DrawerHostOpenMode.Default));
+
         #region top drawer
 
         public static readonly DependencyProperty TopDrawerContentProperty = DependencyProperty.Register(
@@ -424,10 +433,7 @@ namespace MaterialDesignThemes.Wpf
             remove { RemoveHandler(DrawerOpenedEvent, value); }
         }
 
-        protected void OnDrawerOpened(DrawerOpenedEventArgs eventArgs)
-        {
-            RaiseEvent(eventArgs);
-        }
+        protected void OnDrawerOpened(DrawerOpenedEventArgs eventArgs) => RaiseEvent(eventArgs);
 
         #endregion
 
@@ -449,10 +455,7 @@ namespace MaterialDesignThemes.Wpf
             remove { RemoveHandler(DrawerClosingEvent, value); }
         }
 
-        protected void OnDrawerClosing(DrawerClosingEventArgs eventArgs)
-        {
-            RaiseEvent(eventArgs);
-        }
+        protected void OnDrawerClosing(DrawerClosingEventArgs eventArgs) => RaiseEvent(eventArgs);
 
         #endregion
 
@@ -529,40 +532,32 @@ namespace MaterialDesignThemes.Wpf
             var anyOpen = IsTopDrawerOpen || IsLeftDrawerOpen || IsBottomDrawerOpen || IsRightDrawerOpen;
 
             VisualStateManager.GoToState(this,
-                !anyOpen ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
+                !anyOpen ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, useTransitions ?? !TransitionAssist.GetDisableTransitions(this));
 
             VisualStateManager.GoToState(this,
-                IsLeftDrawerOpen ? TemplateLeftOpenStateName : TemplateLeftClosedStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
+                IsLeftDrawerOpen ? TemplateLeftOpenStateName : TemplateLeftClosedStateName, useTransitions ?? !TransitionAssist.GetDisableTransitions(this));
 
             VisualStateManager.GoToState(this,
-                IsTopDrawerOpen ? TemplateTopOpenStateName : TemplateTopClosedStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
+                IsTopDrawerOpen ? TemplateTopOpenStateName : TemplateTopClosedStateName, useTransitions ?? !TransitionAssist.GetDisableTransitions(this));
 
             VisualStateManager.GoToState(this,
-                IsRightDrawerOpen ? TemplateRightOpenStateName : TemplateRightClosedStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
+                IsRightDrawerOpen ? TemplateRightOpenStateName : TemplateRightClosedStateName, useTransitions ?? !TransitionAssist.GetDisableTransitions(this));
 
             VisualStateManager.GoToState(this,
-                IsBottomDrawerOpen ? TemplateBottomOpenStateName : TemplateBottomClosedStateName, useTransitions.HasValue ? useTransitions.Value : !TransitionAssist.GetDisableTransitions(this));
+                IsBottomDrawerOpen ? TemplateBottomOpenStateName : TemplateBottomClosedStateName, useTransitions ?? !TransitionAssist.GetDisableTransitions(this));
         }
 
         private static void IsTopDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            IsDrawerOpenPropertyChanged(dependencyObject, dependencyPropertyChangedEventArgs, Dock.Top);
-        }
+            => IsDrawerOpenPropertyChanged(dependencyObject, dependencyPropertyChangedEventArgs, Dock.Top);
 
         private static void IsLeftDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            IsDrawerOpenPropertyChanged(dependencyObject, dependencyPropertyChangedEventArgs, Dock.Left);
-        }
+            => IsDrawerOpenPropertyChanged(dependencyObject, dependencyPropertyChangedEventArgs, Dock.Left);
 
         private static void IsRightDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            IsDrawerOpenPropertyChanged(dependencyObject, dependencyPropertyChangedEventArgs, Dock.Right);
-        }
+            => IsDrawerOpenPropertyChanged(dependencyObject, dependencyPropertyChangedEventArgs, Dock.Right);
 
         private static void IsBottomDrawerOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            IsDrawerOpenPropertyChanged(dependencyObject, dependencyPropertyChangedEventArgs, Dock.Bottom);
-        }
+            => IsDrawerOpenPropertyChanged(dependencyObject, dependencyPropertyChangedEventArgs, Dock.Bottom);
 
         private static void IsDrawerOpenPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs, Dock dock)
         {
@@ -630,9 +625,9 @@ namespace MaterialDesignThemes.Wpf
 
         private void SetOpenFlag(ExecutedRoutedEventArgs executedRoutedEventArgs, bool value)
         {
-            if (executedRoutedEventArgs.Parameter is Dock)
+            if (executedRoutedEventArgs.Parameter is Dock dock)
             {
-                switch ((Dock)executedRoutedEventArgs.Parameter)
+                switch (dock)
                 {
                     case Dock.Left:
                         SetCurrentValue(IsLeftDrawerOpenProperty, value);
