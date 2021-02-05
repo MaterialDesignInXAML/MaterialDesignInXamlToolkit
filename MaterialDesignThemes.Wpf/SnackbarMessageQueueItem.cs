@@ -62,23 +62,36 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public DateTime LastShownAt { get; set; }
 
-        public bool MessageExpired()
-        {
-            return LastShownAt <= DateTime.Now.Subtract(Duration);
-        }
-
         public override bool Equals(object obj)
         {
-            if (!(obj is SnackbarMessageQueueItem message))
+            if (obj is not SnackbarMessageQueueItem message)
+            {
                 return false;
+            }
 
             return EqualityComparer<object>.Default.Equals(Content, message.Content)
-                   && EqualityComparer<object>.Default.Equals(ActionContent, message.ActionContent);
+                   && EqualityComparer<object?>.Default.Equals(ActionContent, message.ActionContent);
         }
 
         public override int GetHashCode()
         {
-            return (Content, ActionContent).GetHashCode();
+            unchecked
+            {
+                int rv = Content.GetHashCode();
+                rv = (rv * 397) ^ (ActionContent?.GetHashCode() ?? 0);
+                return rv;
+            }
+        }
+
+        public bool IsDuplicate(SnackbarMessageQueueItem value)
+        {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            if (AlwaysShow) return false;
+            return Equals(value);
         }
     }
 }

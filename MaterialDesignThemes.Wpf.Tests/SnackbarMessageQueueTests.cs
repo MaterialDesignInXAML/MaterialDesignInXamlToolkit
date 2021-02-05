@@ -2,77 +2,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Threading;
 using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
 {
     public class SnackbarMessageQueueTests
     {
-        #region Fields & Constructor
-        private readonly SnackbarMessageQueue snackbarMessageQueue;
+        private readonly SnackbarMessageQueue _snackbarMessageQueue;
+        private readonly Dispatcher _dispatcher;
 
         public SnackbarMessageQueueTests()
         {
-             snackbarMessageQueue = new SnackbarMessageQueue();
-        }
-        #endregion
-
-        #region StaFacts
-        [StaFact]
-        [Description("Ensures that GetSnackbarMessage behaves correctly if the queue is empty")]
-        public void GetSnackbarMessageEmptyQueue()
-        {
-            var getMessage = snackbarMessageQueue.GetType().GetMethod("GetSnackbarMessage", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var ret = getMessage.Invoke(snackbarMessageQueue, null);
-
-            Assert.Null(ret);
+            _dispatcher = Dispatcher.CurrentDispatcher;
+            _snackbarMessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(3), _dispatcher);
         }
 
         [StaFact]
         [Description("Ensures that GetSnackbarMessage raises an exception on null values")]
         public void GetSnackbarMessageNullValues()
         {
-            Assert.Throws<ArgumentNullException>(() => snackbarMessageQueue.Enqueue(null));
-            Assert.Throws<ArgumentNullException>(() => snackbarMessageQueue.Enqueue("", null, null));
-            Assert.Throws<ArgumentNullException>(() => snackbarMessageQueue.Enqueue(null, "", null));
-            Assert.Throws<ArgumentNullException>(() => snackbarMessageQueue.Enqueue(null, null, new Action(() => { })));
+            Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!));
+            Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue("", null, null));
+            Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!, "", null));
+            Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!, null, new Action(() => { })));
         }
 
         [StaFact]
         [Description("Ensures that GetSnackbaMessage behaves correctly if the queue should discard duplicate items")]
         public void GetSnackbarMessageDiscardDuplicatesQueue()
         {
-            snackbarMessageQueue.DiscardDuplicates = true;
+            _snackbarMessageQueue.DiscardDuplicates = true;
 
             var firstItem = new object[] { "String & Action content", "Action content" };
             var secondItem = new object[] { "String & Action content", "Action content" };
             var thirdItem = new object[] { "Different String & Action content", "Action content" };
 
-            snackbarMessageQueue.Enqueue(firstItem[0], firstItem[1], new Action(() => { }));
-            snackbarMessageQueue.Enqueue(secondItem[0], secondItem[1], new Action(() => { }));
-            snackbarMessageQueue.Enqueue(thirdItem[0], thirdItem[1], new Action(() => { }));
+            _snackbarMessageQueue.Enqueue(firstItem[0], firstItem[1], new Action(() => { }));
+            _snackbarMessageQueue.Enqueue(secondItem[0], secondItem[1], new Action(() => { }));
+            _snackbarMessageQueue.Enqueue(thirdItem[0], thirdItem[1], new Action(() => { }));
 
-            var getMessage = snackbarMessageQueue.GetType().GetMethod("GetSnackbarMessage", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var ret = getMessage.Invoke(snackbarMessageQueue, null) as SnackbarMessageQueueItem;
+            IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
 
-            ret.LastShownAt = DateTime.Now;
+            Assert.Equal(2, messages.Count);
 
-            var lastMessage = snackbarMessageQueue.GetType().GetField("_latestShownMessage", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            lastMessage.SetValue(snackbarMessageQueue, ret);
-
-            Assert.Equal(firstItem, new object[] { ret.Content, ret.ActionContent });
-
-            ret = getMessage.Invoke(snackbarMessageQueue, null) as SnackbarMessageQueueItem;
-
-            Assert.Null(ret);
-
-            ret = getMessage.Invoke(snackbarMessageQueue, null) as SnackbarMessageQueueItem;
-
-            Assert.Equal(thirdItem, new object[] { ret.Content, ret.ActionContent });
+            Assert.Equal("String & Action content", messages[0].Content);
+            Assert.Equal("Action content", messages[0].ActionContent);
+            Assert.Equal("Different String & Action content", messages[1].Content);
+            Assert.Equal("Action content", messages[1].ActionContent);
         }
-        #endregion
 
-        #region StaTheories
         private class SnackbarMessageQueueSimpleTestData : IEnumerable<object[]>
         {
             public IEnumerator<object[]> GetEnumerator()
@@ -91,14 +70,16 @@ namespace MaterialDesignThemes.Wpf.Tests
         [Description("Ensures that GetSnackbaMessage behaves correctly if the queue simply outputs items")]
         public void GetSnackbarMessageSimpleQueue(object content, object actionContent, object[] expected)
         {
-            snackbarMessageQueue.Enqueue(content, actionContent, new Action(() => { }));
-            var getMessage = snackbarMessageQueue.GetType().GetMethod("GetSnackbarMessage", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var ret = getMessage.Invoke(snackbarMessageQueue, null) as SnackbarMessageQueueItem;
+            _snackbarMessageQueue.DiscardDuplicates = false;
 
-            var res = new object[] { ret.Content, ret.ActionContent };
+            _snackbarMessageQueue.Enqueue(content, actionContent, new Action(() => { }));
 
-            Assert.Equal(res, expected);
+            IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
+
+            Assert.Equal(1, messages.Count);
+
+            Assert.Equal(content, messages[0].Content);
+            Assert.Equal(actionContent, messages[0].ActionContent);
         }
-        #endregion
     }
 }

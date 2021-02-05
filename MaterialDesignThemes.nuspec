@@ -17,7 +17,6 @@
     <dependencies>
       <group targetFramework="net452">
         <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
-        <dependency id="System.ValueTuple" version="[4.3, 4.4)" />
       </group>
       <group targetFramework="netcoreapp3.1">
         <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
