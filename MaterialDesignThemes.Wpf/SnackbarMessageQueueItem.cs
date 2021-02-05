@@ -57,11 +57,6 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public bool AlwaysShow { get; }
 
-        /// <summary>
-        /// Last time this message was shown
-        /// </summary>
-        public DateTime LastShownAt { get; set; }
-
         public override bool Equals(object obj)
         {
             if (obj is not SnackbarMessageQueueItem message)
