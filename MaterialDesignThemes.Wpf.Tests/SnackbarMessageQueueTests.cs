@@ -56,10 +56,10 @@ namespace MaterialDesignThemes.Wpf.Tests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                yield return new object[] { "String & Action content", "Action content", new object[] { "String & Action content", "Action content" } };
-                yield return new object[] { "Different String & Action content", "Action content", new object[] { "Different String & Action content", "Action content" } };
-                yield return new object[] { "Different String & Action content", "Action content", new object[] { "Different String & Action content", "Action content" } };
-                yield return new object[] { "", "", new object[] { "", "" } };
+                yield return new object[] { "String & Action content", "Action content" };
+                yield return new object[] { "Different String & Action content", "Action content" };
+                yield return new object[] { "Different String & Action content", "Action content" };
+                yield return new object[] { "", "" };
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -68,7 +68,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         [StaTheory]
         [ClassData(typeof(SnackbarMessageQueueSimpleTestData))]
         [Description("Ensures that GetSnackbaMessage behaves correctly if the queue simply outputs items")]
-        public void GetSnackbarMessageSimpleQueue(object content, object actionContent, object[] expected)
+        public void GetSnackbarMessageSimpleQueue(object content, object actionContent)
         {
             _snackbarMessageQueue.DiscardDuplicates = false;
 
