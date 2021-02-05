@@ -24,7 +24,7 @@ namespace MaterialDesignDemo
         {
             if (SnackbarFour.MessageQueue is { } messageQueue)
             {
-                messageQueue.IgnoreDuplicate = !(DiscardDuplicateCheckBox.IsChecked ?? false);
+                SnackbarFour.MessageQueue.DiscardDuplicates = DiscardDuplicateCheckBox.IsChecked ?? false;
                 foreach (var s in ExampleFourTextBox.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     messageQueue.Enqueue(
