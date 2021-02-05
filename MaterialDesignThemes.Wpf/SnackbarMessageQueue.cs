@@ -20,6 +20,8 @@ namespace MaterialDesignThemes.Wpf
         private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _pausedEvent = new ManualResetEvent(false);
         private readonly SemaphoreSlim _showMessageSemaphore = new SemaphoreSlim(1, 1);
+        private readonly ManualResetEvent _messageWaitingEvent = new ManualResetEvent(false);
+        private SnackbarMessageQueueItem _latestShownMessage;
         private int _pauseCounter;
         private bool _isDisposed;
 
@@ -147,10 +149,10 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates.
-        /// True to show every message even if there are duplicates.
+        /// Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates. 
+        /// False to show every message even if there are duplicates.
         /// </summary>
-        public bool IgnoreDuplicate { get; set; }
+        public bool DiscardDuplicates { get; set; }
 
         public void Enqueue(object content) => Enqueue(content, false);
 

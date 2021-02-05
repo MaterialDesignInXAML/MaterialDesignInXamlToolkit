@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MaterialDesignThemes.Wpf
 {
-    internal class SnackbarMessageQueueItem
+    public class SnackbarMessageQueueItem
     {
         public SnackbarMessageQueueItem(object content,
             TimeSpan duration,
@@ -10,7 +11,7 @@ namespace MaterialDesignThemes.Wpf
             Action<object?>? actionHandler = null,
             object? actionArgument = null,
             bool isPromoted = false,
-            bool ignoreDuplicate = false)
+            bool alwaysShow = false)
         {
             Content = content;
             Duration = duration;
@@ -18,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
             ActionHandler = actionHandler;
             ActionArgument = actionArgument;
             IsPromoted = isPromoted;
-            IgnoreDuplicate = ignoreDuplicate;
+            AlwaysShow = alwaysShow;
         }
 
         /// <summary>
@@ -52,25 +53,32 @@ namespace MaterialDesignThemes.Wpf
         public bool IsPromoted { get; }
 
         /// <summary>
-        /// Still display this message even if it is a duplicate.
+        /// Always show this message, even if it's a duplicate
         /// </summary>
-        public bool IgnoreDuplicate { get; }
+        public bool AlwaysShow { get; }
 
         /// <summary>
-        /// Checks if given item is a duplicate to this
+        /// Last time this message was shown
         /// </summary>
-        /// <param name="item">Item to check for duplicate</param>
-        /// <returns><c>true</c> if given item is a duplicate to this, <c>false</c> otherwise</returns>
-        public bool IsDuplicate(SnackbarMessageQueueItem item)
-        {
-            if (item is null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
+        public DateTime LastShownAt { get; set; }
 
-            return !IgnoreDuplicate
-                   && Equals(item.Content, Content)
-                   && Equals(item.ActionContent, ActionContent);
+        public bool MessageExpired()
+        {
+            return LastShownAt <= DateTime.Now.Subtract(Duration);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is SnackbarMessageQueueItem message))
+                return false;
+
+            return EqualityComparer<object>.Default.Equals(Content, message.Content)
+                   && EqualityComparer<object>.Default.Equals(ActionContent, message.ActionContent);
+        }
+
+        public override int GetHashCode()
+        {
+            return (Content, ActionContent).GetHashCode();
         }
     }
 }
