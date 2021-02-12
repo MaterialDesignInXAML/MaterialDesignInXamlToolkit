@@ -1,10 +1,8 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.Linq;
 
 namespace MaterialDesignDemo.Domain
 {
-    public class FieldsViewModel : INotifyPropertyChanged
+    public class FieldsViewModel : ViewModelBase
     {
         private string? _name;
         private string? _name2;
@@ -12,19 +10,15 @@ namespace MaterialDesignDemo.Domain
         public string? Name
         {
             get => _name;
-            set => this.MutateVerbose(ref _name, value, RaisePropertyChanged());
+            set => SetProperty(ref _name, value);
         }
 
         public string? Name2
         {
             get => _name2;
-            set => this.MutateVerbose(ref _name2, value, RaisePropertyChanged());
+            set => SetProperty(ref _name2, value);
         }
 
         public DemoItem DemoItem => new DemoItem("Mr. Test", null, Enumerable.Empty<DocumentationLink>());
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        private Action<PropertyChangedEventArgs> RaisePropertyChanged() => args => PropertyChanged?.Invoke(this, args);
     }
 }

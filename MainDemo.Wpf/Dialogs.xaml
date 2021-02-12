@@ -4,9 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    d:DataContext="{d:DesignInstance domain:DialogsViewModel}"
     mc:Ignorable="d" 
     d:DesignHeight="300"
     d:DesignWidth="300">
@@ -361,6 +363,3 @@
         </Grid>
     </Grid>
 </UserControl>
-
-
-

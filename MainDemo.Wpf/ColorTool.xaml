@@ -4,12 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
     xmlns:local="clr-namespace:MaterialDesignDemo"
     xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
     mc:Ignorable="d" 
-    d:DataContext="{d:DesignInstance Type=local:ColorToolViewModel}"
+    d:DataContext="{d:DesignInstance Type=domain:ColorToolViewModel}"
     d:DesignHeight="600"
     d:DesignWidth="600">
     <UserControl.Resources>

@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace MaterialDesignDemo.Domain
 {
-    public class ListsAndGridsViewModel : INotifyPropertyChanged
+    public class ListsAndGridsViewModel : ViewModelBase
     {
         public ListsAndGridsViewModel()
         {
@@ -78,11 +76,6 @@ namespace MaterialDesignDemo.Domain
         public ObservableCollection<SelectableViewModel> Items1 { get; }
         public ObservableCollection<SelectableViewModel> Items2 { get; }
         public ObservableCollection<SelectableViewModel> Items3 { get; }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         public IEnumerable<string> Foods => new[] { "Burger", "Fries", "Shake", "Lettuce" };
     }

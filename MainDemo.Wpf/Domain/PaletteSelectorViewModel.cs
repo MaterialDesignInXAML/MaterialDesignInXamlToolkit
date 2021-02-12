@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Input;
 using MaterialDesignColors;
-using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
-namespace MaterialDesignDemo
+namespace MaterialDesignDemo.Domain
 {
-    public class PaletteSelectorViewModel : INotifyPropertyChanged
+    public class PaletteSelectorViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         public PaletteSelectorViewModel()
         {
             Swatches = new SwatchesProvider().Swatches;
@@ -36,7 +32,7 @@ namespace MaterialDesignDemo
             get => _isDarkTheme;
             set
             {
-                if (this.MutateVerbose(ref _isDarkTheme, value, e => PropertyChanged?.Invoke(this, e)))
+                if (SetProperty(ref _isDarkTheme, value))
                 {
                     ModifyTheme(theme => theme.SetBaseTheme(value ? Theme.Dark : Theme.Light));
                 }

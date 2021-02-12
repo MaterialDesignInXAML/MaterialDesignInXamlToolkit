@@ -6,7 +6,7 @@ using System.Windows.Controls;
 
 namespace MaterialDesignDemo.Domain
 {
-    public class DemoItem : INotifyPropertyChanged
+    public class DemoItem : ViewModelBase
     {
         private string _name;
         private object? _content;
@@ -24,38 +24,33 @@ namespace MaterialDesignDemo.Domain
         public string Name
         {
             get => _name;
-            set => this.MutateVerbose(ref _name, value, RaisePropertyChanged());
+            set => SetProperty(ref _name, value);
         }
 
         public object? Content
         {
             get => _content;
-            set => this.MutateVerbose(ref _content, value, RaisePropertyChanged());
+            set => SetProperty(ref _content, value);
         }
 
         public ScrollBarVisibility HorizontalScrollBarVisibilityRequirement
         {
             get => _horizontalScrollBarVisibilityRequirement;
-            set => this.MutateVerbose(ref _horizontalScrollBarVisibilityRequirement, value, RaisePropertyChanged());
+            set => SetProperty(ref _horizontalScrollBarVisibilityRequirement, value);
         }
 
         public ScrollBarVisibility VerticalScrollBarVisibilityRequirement
         {
             get => _verticalScrollBarVisibilityRequirement;
-            set => this.MutateVerbose(ref _verticalScrollBarVisibilityRequirement, value, RaisePropertyChanged());
+            set => SetProperty(ref _verticalScrollBarVisibilityRequirement, value);
         }
 
         public Thickness MarginRequirement
         {
             get => _marginRequirement;
-            set => this.MutateVerbose(ref _marginRequirement, value, RaisePropertyChanged());
+            set => SetProperty(ref _marginRequirement, value);
         }
 
         public IEnumerable<DocumentationLink> Documentation { get; }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        private Action<PropertyChangedEventArgs> RaisePropertyChanged()
-            => args => PropertyChanged?.Invoke(this, args);
     }
 }

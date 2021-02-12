@@ -11,7 +11,7 @@ using MaterialDesignThemes.Wpf.Transitions;
 
 namespace MaterialDesignDemo.Domain
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainWindowViewModel : ViewModelBase
     {
         public MainWindowViewModel(ISnackbarMessageQueue snackbarMessageQueue)
         {
@@ -62,8 +62,6 @@ namespace MaterialDesignDemo.Domain
                _ => SelectedIndex < DemoItems.Count - 1);
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         private readonly ICollectionView _demoItemsView;
         private DemoItem? _selectedItem;
         private int _selectedIndex;
@@ -74,9 +72,10 @@ namespace MaterialDesignDemo.Domain
             get => _searchKeyword;
             set
             {
-                _searchKeyword = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SearchKeyword)));
-                _demoItemsView.Refresh();
+                if (SetProperty(ref _searchKeyword, value))
+                {
+                    _demoItemsView.Refresh();
+                }
             }
         }
 
@@ -85,23 +84,13 @@ namespace MaterialDesignDemo.Domain
         public DemoItem? SelectedItem
         {
             get => _selectedItem;
-            set
-            {
-                if (value == null || value.Equals(_selectedItem)) return;
-
-                _selectedItem = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedItem)));
-            }
+            set => SetProperty(ref _selectedItem, value);
         }
 
         public int SelectedIndex
         {
             get => _selectedIndex;
-            set
-            {
-                _selectedIndex = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedIndex)));
-            }
+            set => SetProperty(ref _selectedIndex, value);
         }
 
         public AnotherCommandImplementation HomeCommand { get; }

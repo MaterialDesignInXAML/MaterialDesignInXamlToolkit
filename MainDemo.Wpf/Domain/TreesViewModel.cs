@@ -63,7 +63,7 @@ namespace MaterialDesignDemo.Domain
         public ObservableCollection<Movie> Movies { get; }
     }
 
-    public sealed class TreesViewModel : INotifyPropertyChanged
+    public sealed class TreesViewModel : ViewModelBase
     {
         private object? _selectedItem;
 
@@ -76,7 +76,7 @@ namespace MaterialDesignDemo.Domain
         public object? SelectedItem
         {
             get => _selectedItem;
-            set => this.MutateVerbose(ref _selectedItem, value, args => PropertyChanged?.Invoke(this, args));
+            set => SetProperty(ref _selectedItem, value);
         }
 
         public TreesViewModel()
@@ -135,7 +135,5 @@ namespace MaterialDesignDemo.Domain
                 Enumerable.Range(0, length)
                 .Select(v => (char)random.Next('a', 'z' + 1)));
         }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

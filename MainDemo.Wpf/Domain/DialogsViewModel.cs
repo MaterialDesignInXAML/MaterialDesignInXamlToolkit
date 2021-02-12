@@ -1,14 +1,11 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo.Domain
 {
-    public class DialogsViewModel : INotifyPropertyChanged
+    public class DialogsViewModel : ViewModelBase
     {
         public DialogsViewModel()
         {
@@ -93,23 +90,13 @@ namespace MaterialDesignDemo.Domain
         public bool IsSample4DialogOpen
         {
             get => _isSample4DialogOpen;
-            set
-            {
-                if (_isSample4DialogOpen == value) return;
-                _isSample4DialogOpen = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref _isSample4DialogOpen, value);
         }
 
         public object? Sample4Content
         {
             get => _sample4Content;
-            set
-            {
-                if (_sample4Content == value) return;
-                _sample4Content = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref _sample4Content, value);
         }
 
         private void OpenSample4Dialog(object obj)
@@ -118,10 +105,7 @@ namespace MaterialDesignDemo.Domain
             IsSample4DialogOpen = true;
         }
 
-        private void CancelSample4Dialog(object obj)
-        {
-            IsSample4DialogOpen = false;
-        }
+        private void CancelSample4Dialog(object obj) => IsSample4DialogOpen = false;
 
         private void AcceptSample4Dialog(object obj)
         {
@@ -133,12 +117,5 @@ namespace MaterialDesignDemo.Domain
         }
 
         #endregion
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }
