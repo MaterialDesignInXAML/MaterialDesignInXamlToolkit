@@ -40,6 +40,7 @@
                         <smtxAe:TextDocumentValueConverter x:Key="TextDocumentValueConverter"/>
                     </ResourceDictionary>
                 </Style.Resources>
+                <Setter Property="IsTabStop" Value="False" />
                 <Setter Property="VerticalContentAlignment" Value="Bottom" />
                 <Setter Property="HorizontalContentAlignment" Value="Right" />
                 <Setter Property="materialDesignDemo:XamlDisplayEx.ButtonDock" Value="Right" />
@@ -57,7 +58,7 @@
                         <ControlTemplate TargetType="smtx:XamlDisplay">
                             <DockPanel>
                                 <materialDesign:PopupBox DockPanel.Dock="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesignDemo:XamlDisplayEx.ButtonDock)}"
-                                                         Padding="10" StaysOpen="True" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                         IsTabStop="False" Padding="10" StaysOpen="True" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
                                                          x:Name="PopupBox">
                                     <materialDesign:PopupBox.ToggleContent>
