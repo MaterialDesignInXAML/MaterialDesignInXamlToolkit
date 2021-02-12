@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
     xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    d:DataContext="{d:DesignInstance domain:SlidersViewModel}"
     mc:Ignorable="d" 
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -21,145 +23,160 @@
     <Grid VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
+            <ColumnDefinition Width="16" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="16" />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
-        <smtx:XamlDisplay
-            UniqueKey="slider_1"
-            Margin="5 5 0 0">
-            <Slider
-                TickFrequency="5"
-                Orientation="Horizontal"
-                Minimum="1"
-                Maximum="50"
-                Value="25"/>
-        </smtx:XamlDisplay>
-        
-        <StackPanel
-            Orientation="Horizontal"
-            Grid.Row="0"
-            Grid.Column="1"
-            Grid.RowSpan="3"
-            Margin="0 36 0 0">
-            <smtx:XamlDisplay UniqueKey="slider_2">
-                <Slider
-                    TickFrequency="5"
-                    TickPlacement="BottomRight"
-                    Orientation="Vertical"
-                    Minimum="1"
-                    Maximum="50"/>
-            </smtx:XamlDisplay>
-            
-            <smtx:XamlDisplay
-                UniqueKey="slider_3"
-                Margin="24 8 0 8">
-                <Slider
-                    TickFrequency="25"
-                    TickPlacement="TopLeft"
-                    Orientation="Vertical"
-                    Minimum="1"
-                    Maximum="50"
-                    IsEnabled="False"/>
-            </smtx:XamlDisplay>
-        </StackPanel>
-        
-        <smtx:XamlDisplay
-            UniqueKey="slider_4"
-            Grid.Row="1"
-            Grid.Column="0"
-            Margin="5 36 0 0">
-            <Slider
-                TickFrequency="5"
-                Orientation="Horizontal"
-                TickPlacement="BottomRight"
-                Minimum="1"
-                Maximum="50"
-                Value="25"
-                IsSelectionRangeEnabled="True"/>
-        </smtx:XamlDisplay>
-        
-        <smtx:XamlDisplay
-            UniqueKey="slider_5"
-            Grid.Row="2"
-            Grid.Column="0"
-            Margin="5 36 0 0">
-            <Slider
-                TickFrequency="5"
-                Orientation="Horizontal"
-                TickPlacement="BottomRight"
-                Minimum="1"
-                Maximum="50"
-                Value="25"
-                IsEnabled="False"/>
-        </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay
-            UniqueKey="slider_6"
-            Grid.Row="3"
-            Grid.Column="0"
-            Margin="8 0 0 0">
-            <StackPanel
-                Orientation="Horizontal"
-                Margin="0 16 0 0">
-                <TextBlock
-                    VerticalAlignment="Bottom"
-                    Text="Maximum"/>
-               
-                <TextBox
-                    x:Name="sliderMaxH"
-                    Text="100000"
-                    Margin="4 0"
-                    VerticalAlignment="Bottom"/>
-               
-                <Slider
-                    Value="50"
-                    Width="280"
-                    Minimum="0"                    
-                    Maximum="{Binding Text, ElementName=sliderMaxH, Mode=OneWay}"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
-                    ToolTip="MaterialDesignDiscreteSlider"
-                    TickFrequency="5000"
-                    TickPlacement="BottomRight"/>
+        <GroupBox Header="Continuous: Horizontal">
+            <StackPanel Margin="15,10">
+
+                <smtx:XamlDisplay UniqueKey="slider_1">
+                    <Slider
+                        Minimum="0"
+                        Maximum="50"
+                        Value="35" />
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay
+                    UniqueKey="slider_2"
+                    Margin="0 16 0 0">
+                    <Slider
+                        Minimum="0"
+                        Maximum="50"
+                        Value="25"
+                        IsEnabled="False" />
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay
+                    UniqueKey="slider_3"
+                    Margin="0 16 0 0">
+                    <Slider
+                        TickFrequency="5"
+                        Orientation="Horizontal"
+                        TickPlacement="BottomRight"
+                        Minimum="0"
+                        Maximum="50"
+                        Value="15"
+                        SelectionStart="10"
+                        SelectionEnd="20"
+                        IsSelectionRangeEnabled="True"/>
+                </smtx:XamlDisplay>
+
             </StackPanel>
-        </smtx:XamlDisplay>
-        
-        <smtx:XamlDisplay
-            UniqueKey="slider_7"
-            Grid.Row="4"
-            Grid.Column="0"
-            HorizontalAlignment="Left"
-            Margin="8 8 0 0">
-            <StackPanel
+        </GroupBox>
+
+        <GroupBox Grid.Column="2" Grid.Row="0" Header="Continuous: Vertical" MinHeight="280">
+            <StackPanel Orientation="Horizontal" Margin="15,10">
+
+                <smtx:XamlDisplay UniqueKey="slider_4">
+                    <Slider
+                        Orientation="Vertical"
+                        Minimum="0"
+                        Maximum="50"
+                        Value="25" />
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay
+                    UniqueKey="slider_5"
+                    Margin="16 0 0 0">
+                    <Slider
+                        TickFrequency="25"
+                        TickPlacement="TopLeft"
+                        Orientation="Vertical"
+                        Minimum="0"
+                        Maximum="50"
+                        Value="25"
+                        IsEnabled="False"/>
+                </smtx:XamlDisplay>
+
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Grid.Column="0" Header="Discrete: Horizontal">
+            <StackPanel Margin="15,10">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        VerticalAlignment="Bottom"
+                        Text="Maximum"/>
+                    <TextBox
+                        x:Name="SliderMaxH"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Text="{Binding DiscreteHorizontal.Maximum, UpdateSourceTrigger=PropertyChanged}"
+                        Margin="4 0"
+                        VerticalAlignment="Bottom"/>
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        VerticalAlignment="Bottom"
+                        Text="Ticks Frequency"/>
+                    <TextBox
+                        x:Name="SliderFrequency"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Text="{Binding DiscreteHorizontal.TicksFrequency, UpdateSourceTrigger=PropertyChanged}"
+                        Margin="4 0"
+                        VerticalAlignment="Bottom"/>
+
+                    <smtx:XamlDisplay
+                        UniqueKey="slider_6"
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="2"
+                        Margin="16,0,0,0">
+                        <Slider
+                            Value="50"
+                            Minimum="0"
+                            Maximum="{Binding DiscreteHorizontal.Maximum}"
+                            Style="{StaticResource MaterialDesignDiscreteSlider}"
+                            TickFrequency="{Binding DiscreteHorizontal.TicksFrequency}"
+                            TickPlacement="BottomRight" />
+                    </smtx:XamlDisplay>
+                </Grid>
+
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Grid.Column="2" Header="Discrete: Vertical" MinHeight="280">
+            <StackPanel Orientation="Horizontal">
+            
+                <StackPanel
                     Orientation="Horizontal"
                     Margin="0 16 0 0">
-                <TextBlock
-                    VerticalAlignment="Center"
-                    Text="Maximum"/>
-             
-                <TextBox
-                    x:Name="sliderMaxV"
-                    Text="100000"
-                    Margin="4 0"
-                    VerticalAlignment="Center"/>
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        Text="Maximum"/>
+                    <TextBox
+                        Text="{Binding DiscreteVertical.Maximum, UpdateSourceTrigger=PropertyChanged}"
+                        Margin="4 0"
+                        VerticalAlignment="Center"/>
+                    <smtx:XamlDisplay UniqueKey="slider_7" Margin="10 0 0 0">
+                        <Slider
+                            Orientation="Vertical"
+                            Minimum="0"
+                            Maximum="{Binding DiscreteVertical.Maximum}"
+                            Style="{StaticResource MaterialDesignDiscreteSlider}" />
+                    </smtx:XamlDisplay>
+                </StackPanel>
 
-                <Slider
-                    Orientation="Vertical"                
-                    Height="100"
-                    Minimum="0"
-                    Maximum="{Binding Text, ElementName=sliderMaxV, Mode=OneWay}"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}" 
-                    ToolTip="MaterialDesignDiscreteSlider"/>
             </StackPanel>
-        </smtx:XamlDisplay>
-   </Grid>
-</UserControl>
+        </GroupBox>
 
+    </Grid>
+</UserControl>
