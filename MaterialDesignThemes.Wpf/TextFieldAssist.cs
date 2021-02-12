@@ -252,6 +252,13 @@ namespace MaterialDesignThemes.Wpf
         public static double GetTrailingIconSize(DependencyObject element)
             => (double)element.GetValue(TrailingIconSizeProperty);
 
+        public static Style GetCharacterCounterStyle(DependencyObject obj) => (Style)obj.GetValue(CharacterCounterStyleProperty);
+
+        public static void SetCharacterCounterStyle(DependencyObject obj, Style value) => obj.SetValue(CharacterCounterStyleProperty, value);
+
+        public static readonly DependencyProperty CharacterCounterStyleProperty =
+            DependencyProperty.RegisterAttached("CharacterCounterStyle", typeof(Style), typeof(TextFieldAssist), new PropertyMetadata(null));
+
         #region Methods
 
         private static void IncludeSpellingSuggestionsChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
