@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Windows;
 using MaterialDesignDemo.Domain;
 
@@ -13,13 +14,13 @@ namespace MaterialDesignDemo
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-            => Console.WriteLine("Just checking we haven't suppressed the button.");
+            => Debug.WriteLine("Just checking we haven't suppressed the button.");
 
         private void PopupBox_OnOpened(object sender, RoutedEventArgs e)
-            => Console.WriteLine("Just making sure the popup has opened.");
+            => Debug.WriteLine("Just making sure the popup has opened.");
 
         private void PopupBox_OnClosed(object sender, RoutedEventArgs e)
-            => Console.WriteLine("Just making sure the popup has closed.");
+            => Debug.WriteLine("Just making sure the popup has closed.");
 
         private void CountingButton_OnClick(object sender, RoutedEventArgs e)
         {

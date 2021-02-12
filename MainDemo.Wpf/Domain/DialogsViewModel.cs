@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
@@ -33,11 +34,11 @@ namespace MaterialDesignDemo.Domain
             var result = await DialogHost.Show(view, "RootDialog", ClosingEventHandler);
 
             //check the result...
-            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
+            Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
         }
 
         private void ClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
-            => Console.WriteLine("You can intercept the closing event, and cancel here.");
+            => Debug.WriteLine("You can intercept the closing event, and cancel here.");
 
         private async void ExecuteRunExtendedDialog(object o)
         {
@@ -51,11 +52,11 @@ namespace MaterialDesignDemo.Domain
             var result = await DialogHost.Show(view, "RootDialog", ExtendedOpenedEventHandler, ExtendedClosingEventHandler);
 
             //check the result...
-            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
+            Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
         }
 
         private void ExtendedOpenedEventHandler(object sender, DialogOpenedEventArgs eventargs)
-            => Console.WriteLine("You could intercept the open and affect the dialog using eventArgs.Session.");
+            => Debug.WriteLine("You could intercept the open and affect the dialog using eventArgs.Session.");
 
         private void ExtendedClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -111,7 +112,7 @@ namespace MaterialDesignDemo.Domain
         public ICommand FloatingActionDemoCommand { get; }
 
         private static void FloatingActionDemo(object? o)
-            => Console.WriteLine($"Floating action button command. - {o ?? "NULL"}");
+            => Debug.WriteLine($"Floating action button command. - {o ?? "NULL"}");
 
         #region Dismiss button demo
 
