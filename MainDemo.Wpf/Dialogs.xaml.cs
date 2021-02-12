@@ -1,11 +1,16 @@
-﻿using MaterialDesignThemes.Wpf;
-using System;
+﻿using System;
+using MaterialDesignDemo.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo
 {
     public partial class Dialogs
     {
-        public Dialogs() => InitializeComponent();
+        public Dialogs()
+        {
+            DataContext = new DialogsViewModel();
+            InitializeComponent();
+        }
 
         private void Sample1_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {

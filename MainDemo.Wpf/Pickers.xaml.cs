@@ -12,6 +12,7 @@ namespace MaterialDesignDemo
     {
         public Pickers()
         {
+            DataContext = new PickersViewModel();
             InitializeComponent();
             FutureDatePicker.BlackoutDates.AddDatesInPast();
             LoadLocales();

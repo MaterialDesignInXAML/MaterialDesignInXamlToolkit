@@ -724,7 +724,7 @@
                 <materialDesign:PopupBox
                     Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
                     PlacementMode="BottomAndAlignCentres"
-                    ToggleCheckedContentCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpfExample:Buttons}, Path=FloatingActionDemoCommand}"
+                    ToggleCheckedContentCommand="{Binding FloatingActionDemoCommand}"
                     ToggleCheckedContentCommandParameter="wowsers"
                     ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
                     <materialDesign:PopupBox.ToggleCheckedContent>

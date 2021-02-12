@@ -13,6 +13,8 @@ namespace MaterialDesignDemo.Domain
 
         public ButtonsViewModel()
         {
+            FloatingActionDemoCommand = new AnotherCommandImplementation(FloatingActionDemo);
+
             var autoStartingActionCountdownStart = DateTime.Now;
             var demoRestartCountdownComplete = DateTime.Now;
             var dismissRequested = false;
@@ -105,6 +107,11 @@ namespace MaterialDesignDemo.Domain
                     }), Dispatcher.CurrentDispatcher);
             });
         }
+
+        public ICommand FloatingActionDemoCommand { get; }
+
+        private static void FloatingActionDemo(object? o)
+            => Console.WriteLine($"Floating action button command. - {o ?? "NULL"}");
 
         #region Dismiss button demo
 
