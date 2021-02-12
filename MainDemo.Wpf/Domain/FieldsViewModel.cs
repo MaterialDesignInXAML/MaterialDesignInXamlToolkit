@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace MaterialDesignDemo.Domain
+﻿namespace MaterialDesignDemo.Domain
 {
     public class FieldsViewModel : ViewModelBase
     {
@@ -19,6 +17,24 @@ namespace MaterialDesignDemo.Domain
             set => SetProperty(ref _name2, value);
         }
 
-        public DemoItem DemoItem => new DemoItem("Mr. Test", null, Enumerable.Empty<DocumentationLink>());
+        public FieldsTestObject TestObject => new() { Name = "Mr. Test" };
+    }
+
+    public class FieldsTestObject : ViewModelBase
+    {
+        private string? _name;
+        private string? _content;
+
+        public string? Name
+        {
+            get => _name;
+            set => SetProperty(ref _name, value);
+        }
+
+        public string? Content
+        {
+            get => _content;
+            set => SetProperty(ref _content, value);
+        }
     }
 }
