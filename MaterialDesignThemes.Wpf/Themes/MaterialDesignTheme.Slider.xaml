@@ -26,12 +26,17 @@
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                     <Grid Background="Transparent">
                         <Border
-                            x:Name="PART_SelectionRange"
+                            x:Name="border"
                             VerticalAlignment="Center"
                             Background="{TemplateBinding Background}"
                             CornerRadius="3,0,0,3"
                             Height="6" />
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsDirectionReversed, RelativeSource={RelativeSource FindAncestor, AncestorType=Track}}" Value="True">
+                            <Setter TargetName="border" Property="CornerRadius" Value="0,3,3,0" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -47,12 +52,17 @@
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                     <Grid Background="Transparent">
                         <Border
-                            x:Name="PART_SelectionRange"
+                            x:Name="border"
                             HorizontalAlignment="Center"
                             Background="{TemplateBinding Background}"
                             CornerRadius="0,0,3,3"
                             Width="6" />
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsDirectionReversed, RelativeSource={RelativeSource FindAncestor, AncestorType=Track}}" Value="True">
+                            <Setter TargetName="border" Property="CornerRadius" Value="3,3,0,0" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

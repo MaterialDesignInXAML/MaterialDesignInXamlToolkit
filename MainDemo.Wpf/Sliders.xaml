@@ -65,6 +65,14 @@
                         IsEnabled="False" />
                 </smtx:XamlDisplay>
 
+                <smtx:XamlDisplay UniqueKey="continuous_slider_h_4" Margin="0 16 0 0">
+                    <Slider
+                        Minimum="0"
+                        Maximum="50"
+                        Value="40"
+                        IsDirectionReversed="True" />
+                </smtx:XamlDisplay>
+
             </StackPanel>
         </GroupBox>
 
