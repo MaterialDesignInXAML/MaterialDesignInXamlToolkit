@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Globalization;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
+    [ValueConversion(typeof(double), typeof(double), ParameterType = typeof(Orientation))]
     internal class SliderValueLabelPositionConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            const double halfGridSize = 10.0;
-
-            if (value is double size)
+            if (parameter is Orientation orientation && value is double width)
             {
-                return (-size * 0.5) + halfGridSize;
+                const double halfGripWidth = 9.0;
+                const double margin = 4.0;
+                return orientation switch
+                {
+                    Orientation.Horizontal => (-width * 0.5) + halfGripWidth,
+                    Orientation.Vertical => -width - margin,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
             }
 
             return 0.0;
