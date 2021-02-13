@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="MaterialDesignDemo.Fields"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -99,6 +99,7 @@
                 Grid.Column="1">
                 <TextBox
                     x:Name="PhoneTextBox"
+                    MaxLength="12"
                     materialDesign:TransitionAssist.DisableTransitions="True"/>
             </smtx:XamlDisplay>
 
