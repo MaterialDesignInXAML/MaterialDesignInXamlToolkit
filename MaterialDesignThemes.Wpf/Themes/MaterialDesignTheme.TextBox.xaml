@@ -317,7 +317,6 @@
                                 </Setter.Value>
                             </Setter>
                             <Setter TargetName="HelperTextTextBlock" Property="Margin" Value="16 0 0 0" />
-                            <Setter TargetName="border" Property="Margin" Value="-1" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -406,6 +405,7 @@
                                 <Condition Property="IsKeyboardFocused" Value="True" />
                                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                             </MultiTrigger.Conditions>
+                            <Setter TargetName="border" Property="Margin" Value="-1" />
                             <Setter Property="BorderThickness" Value="2" />
                             <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
                         </MultiTrigger>
@@ -450,6 +450,7 @@
                                 <Condition Property="IsMouseOver" Value="True" />
                                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                             </MultiTrigger.Conditions>
+                            <Setter TargetName="border" Property="Margin" Value="-1" />
                             <Setter Property="BorderThickness" Value="2" />
                         </MultiTrigger>
 
@@ -463,6 +464,7 @@
                                 <Condition Property="Validation.HasError" Value="True" />
                                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                             </MultiTrigger.Conditions>
+                            <Setter TargetName="border" Property="Margin" Value="-1" />
                             <Setter Property="BorderThickness" Value="2" />
                             <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
                             <Setter Property="Margin" Value="0,0,1,0" TargetName="FooterGrid" />
