@@ -9,11 +9,17 @@
 
     <converters:SliderValueLabelPositionConverter x:Key="SliderValueLabelPositionConverter" />
 
-    <Style x:Key="MaterialDesignHorizontalTrackRepeatButton" TargetType="{x:Type RepeatButton}">
-        <Setter Property="OverridesDefaultStyle" Value="true"/>
+    <Style x:Key="MaterialDesignRepeatButtonBaseStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Focusable" Value="false"/>
-        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="IsTabStop" Value="False"/>
+    </Style>
+
+    <Style
+        x:Key="MaterialDesignHorizontalActiveTrackRepeatButton"
+        BasedOn="{StaticResource MaterialDesignRepeatButtonBaseStyle}"
+        TargetType="{x:Type RepeatButton}">
         <Setter Property="Height" Value="20"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -24,24 +30,17 @@
                             VerticalAlignment="Center"
                             Background="{TemplateBinding Background}"
                             CornerRadius="3,0,0,3"
-                            Height="6"
-                            Visibility="Collapsed" />
+                            Height="6" />
                     </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="wpf:SliderAssist.IsActiveTrack" Value="True">
-                            <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignVerticalTrackRepeatButton" TargetType="{x:Type RepeatButton}">
-        <Setter Property="OverridesDefaultStyle" Value="true"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Focusable" Value="false"/>
-        <Setter Property="IsTabStop" Value="false"/>
+    <Style
+        x:Key="MaterialDesignVerticalActiveTrackRepeatButton"
+        BasedOn="{StaticResource MaterialDesignRepeatButtonBaseStyle}"
+        TargetType="{x:Type RepeatButton}">
         <Setter Property="Width" Value="20"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -52,14 +51,21 @@
                             HorizontalAlignment="Center"
                             Background="{TemplateBinding Background}"
                             CornerRadius="0,0,3,3"
-                            Width="6"
-                            Visibility="Collapsed" />
+                            Width="6" />
                     </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="wpf:SliderAssist.IsActiveTrack" Value="True">
-                            <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="MaterialDesignInactiveTrackRepeatButton"
+        BasedOn="{StaticResource MaterialDesignRepeatButtonBaseStyle}"
+        TargetType="{x:Type RepeatButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid Background="Transparent" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -75,7 +81,7 @@
                 Fill="{TemplateBinding Foreground}"
                 Opacity="0" />
             <Ellipse
-                x:Name="pressed"
+                x:Name="focusedHalo"
                 Width="48"
                 Height="48"
                 Margin="-24"
@@ -115,8 +121,8 @@
                 <DataTrigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="pressed" Storyboard.TargetProperty="Opacity" To="0.15" Duration="0" />
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="RenderTransform.ScaleX">
+                            <DoubleAnimation Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="Opacity" To="0.15" Duration="0" />
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1">
                                     <EasingDoubleKeyFrame.EasingFunction>
@@ -124,7 +130,7 @@
                                     </EasingDoubleKeyFrame.EasingFunction>
                                 </EasingDoubleKeyFrame>
                             </DoubleAnimationUsingKeyFrames>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="RenderTransform.ScaleY">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1">
                                     <EasingDoubleKeyFrame.EasingFunction>
@@ -138,7 +144,7 @@
                 <DataTrigger.ExitActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="Opacity">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="Opacity">
                                 <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0.15" />
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0">
                                     <EasingDoubleKeyFrame.EasingFunction>
@@ -146,13 +152,11 @@
                                     </EasingDoubleKeyFrame.EasingFunction>
                                 </EasingDoubleKeyFrame>
                             </DoubleAnimationUsingKeyFrames>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="RenderTransform.ScaleX">
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.101" Value="0" />
+                            <DoubleAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
                             </DoubleAnimationUsingKeyFrames>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="RenderTransform.ScaleY">
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.101" Value="0" />
+                            <DoubleAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </BeginStoryboard>
@@ -179,7 +183,7 @@
                 Fill="{TemplateBinding Foreground}"
                 Opacity="0" />
             <Ellipse
-                x:Name="pressed"
+                x:Name="focusedHalo"
                 Width="48"
                 Height="48"
                 Margin="-24"
@@ -191,7 +195,7 @@
                 </Ellipse.RenderTransform>
             </Ellipse>
             <Canvas>
-                <Grid x:Name="label" Height="34" IsHitTestVisible="False" RenderTransformOrigin="0.5,1">
+                <Grid x:Name="label" Height="34" IsHitTestVisible="False" RenderTransformOrigin="0.5,1" Visibility="Collapsed">
                     <Grid.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="0" ScaleY="0" />
@@ -241,8 +245,8 @@
                 <DataTrigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="pressed" Storyboard.TargetProperty="Opacity" To="0.15" Duration="0" />
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="RenderTransform.ScaleX">
+                            <DoubleAnimation Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="Opacity" To="0.15" Duration="0" />
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1">
                                     <EasingDoubleKeyFrame.EasingFunction>
@@ -250,7 +254,7 @@
                                     </EasingDoubleKeyFrame.EasingFunction>
                                 </EasingDoubleKeyFrame>
                             </DoubleAnimationUsingKeyFrames>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="RenderTransform.ScaleY">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1">
                                     <EasingDoubleKeyFrame.EasingFunction>
@@ -258,36 +262,9 @@
                                     </EasingDoubleKeyFrame.EasingFunction>
                                 </EasingDoubleKeyFrame>
                             </DoubleAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </DataTrigger.EnterActions>
-                <DataTrigger.ExitActions>
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="Opacity">
-                                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0.15" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0">
-                                    <EasingDoubleKeyFrame.EasingFunction>
-                                        <SineEase EasingMode="EaseInOut" />
-                                    </EasingDoubleKeyFrame.EasingFunction>
-                                </EasingDoubleKeyFrame>
-                            </DoubleAnimationUsingKeyFrames>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="RenderTransform.ScaleX">
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.101" Value="0" />
-                            </DoubleAnimationUsingKeyFrames>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="RenderTransform.ScaleY">
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.101" Value="0" />
-                            </DoubleAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </DataTrigger.ExitActions>
-            </DataTrigger>
-            <Trigger Property="IsDragging" Value="true">
-                <Trigger.EnterActions>
-                    <BeginStoryboard>
-                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="label" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                            </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="label" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
                                 <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0" />
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1">
@@ -314,10 +291,24 @@
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </BeginStoryboard>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
                     <BeginStoryboard>
                         <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="Opacity">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0.15" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <SineEase EasingMode="EaseInOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="label" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
                                 <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1" />
                                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0">
@@ -342,10 +333,13 @@
                                     </EasingDoubleKeyFrame.EasingFunction>
                                 </EasingDoubleKeyFrame>
                             </DoubleAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="label" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Collapsed}" />
+                            </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </BeginStoryboard>
-                </Trigger.ExitActions>
-            </Trigger>
+                </DataTrigger.ExitActions>
+            </DataTrigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Fill" TargetName="grip" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
             </Trigger>
@@ -362,7 +356,7 @@
                 Fill="{TemplateBinding Foreground}"
                 Opacity="0" />
             <Ellipse
-                x:Name="pressed"
+                x:Name="focusedHalo"
                 Width="48"
                 Height="48"
                 Margin="-24"
@@ -374,7 +368,7 @@
                 </Ellipse.RenderTransform>
             </Ellipse>
             <Canvas>
-                <Grid x:Name="label" Height="34" IsHitTestVisible="False" RenderTransformOrigin="0.5,1">
+                <Grid x:Name="label" Height="34" IsHitTestVisible="False" RenderTransformOrigin="0.5,1" Visibility="Collapsed">
                     <Grid.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="0" ScaleY="0" />
@@ -420,13 +414,13 @@
                     </BeginStoryboard>
                 </Trigger.ExitActions>
             </Trigger>
-            <Trigger Property="IsDragging" Value="true">
-                <Trigger.EnterActions>
+            <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}}" Value="True">
+                <DataTrigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
                             <Storyboard>
-                                <DoubleAnimation Storyboard.TargetName="pressed" Storyboard.TargetProperty="Opacity" To="0.15" Duration="0" />
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="RenderTransform.ScaleX">
+                                <DoubleAnimation Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="Opacity" To="0.15" Duration="0" />
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="RenderTransform.ScaleX">
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1">
                                         <EasingDoubleKeyFrame.EasingFunction>
@@ -434,7 +428,7 @@
                                         </EasingDoubleKeyFrame.EasingFunction>
                                     </EasingDoubleKeyFrame>
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="RenderTransform.ScaleY">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="RenderTransform.ScaleY">
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1">
                                         <EasingDoubleKeyFrame.EasingFunction>
@@ -442,6 +436,9 @@
                                         </EasingDoubleKeyFrame.EasingFunction>
                                     </EasingDoubleKeyFrame>
                                 </DoubleAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="label" Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="label" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
                                     <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0" />
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1">
@@ -469,12 +466,12 @@
                             </Storyboard>
                         </Storyboard>
                     </BeginStoryboard>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
                     <BeginStoryboard>
                         <Storyboard>
                             <Storyboard>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="Opacity">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="Opacity">
                                     <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0.15" />
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0">
                                         <EasingDoubleKeyFrame.EasingFunction>
@@ -482,13 +479,11 @@
                                         </EasingDoubleKeyFrame.EasingFunction>
                                     </EasingDoubleKeyFrame>
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="RenderTransform.ScaleX">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1" />
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.101" Value="0" />
+                                <DoubleAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressed" Storyboard.TargetProperty="RenderTransform.ScaleY">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1" />
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.101" Value="0" />
+                                <DoubleAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="focusedHalo" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
                                 </DoubleAnimationUsingKeyFrames>
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="label" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
                                     <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1" />
@@ -514,11 +509,14 @@
                                         </EasingDoubleKeyFrame.EasingFunction>
                                     </EasingDoubleKeyFrame>
                                 </DoubleAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="label" Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Collapsed}" />
+                                </ObjectAnimationUsingKeyFrames>
                             </Storyboard>
                         </Storyboard>
                     </BeginStoryboard>
-                </Trigger.ExitActions>
-            </Trigger>
+                </DataTrigger.ExitActions>
+            </DataTrigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Fill" TargetName="grip" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
             </Trigger>
@@ -548,15 +546,15 @@
                 <Track x:Name="PART_Track" Grid.Row="1">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton
-                            wpf:SliderAssist.IsActiveTrack="True"
                             Command="{x:Static Slider.DecreaseLarge}"
-                            Style="{StaticResource MaterialDesignHorizontalTrackRepeatButton}"
+                            Style="{StaticResource MaterialDesignHorizontalActiveTrackRepeatButton}"
                             Background="{TemplateBinding Foreground}" />
                     </Track.DecreaseRepeatButton>
                     <Track.IncreaseRepeatButton>
                         <RepeatButton
                             Command="{x:Static Slider.IncreaseLarge}"
-                            Style="{StaticResource MaterialDesignHorizontalTrackRepeatButton}" />
+                            Height="20"
+                            Style="{StaticResource MaterialDesignInactiveTrackRepeatButton}" />
                     </Track.IncreaseRepeatButton>
                     <!--  It's important that the Thumb gets added last in the XAML to make sure it is drawn on top of both repeat buttons  -->
                     <Track.Thumb>
@@ -600,15 +598,15 @@
                 <Track x:Name="PART_Track" Grid.Column="1">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton
-                            wpf:SliderAssist.IsActiveTrack="True"
                             Command="{x:Static Slider.DecreaseLarge}"
-                            Style="{StaticResource MaterialDesignVerticalTrackRepeatButton}"
+                            Style="{StaticResource MaterialDesignVerticalActiveTrackRepeatButton}"
                             Background="{TemplateBinding Foreground}" />
                     </Track.DecreaseRepeatButton>
                     <Track.IncreaseRepeatButton>
                         <RepeatButton
                             Command="{x:Static Slider.IncreaseLarge}"
-                            Style="{StaticResource MaterialDesignVerticalTrackRepeatButton}" />
+                            Width="20"
+                            Style="{StaticResource MaterialDesignInactiveTrackRepeatButton}" />
                     </Track.IncreaseRepeatButton>
                     <!--  It's important that the Thumb gets added last in the XAML to make sure it is drawn on top of both repeat buttons  -->
                     <Track.Thumb>
@@ -652,15 +650,15 @@
                 <Track Grid.Row="1" x:Name="PART_Track" OpacityMask="{x:Null}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton
-                            wpf:SliderAssist.IsActiveTrack="True"
                             Command="{x:Static Slider.DecreaseLarge}"
-                            Style="{StaticResource MaterialDesignHorizontalTrackRepeatButton}"
+                            Style="{StaticResource MaterialDesignHorizontalActiveTrackRepeatButton}"
                             Background="{TemplateBinding Foreground}" />
                     </Track.DecreaseRepeatButton>
                     <Track.IncreaseRepeatButton>
                         <RepeatButton
                             Command="{x:Static Slider.IncreaseLarge}"
-                            Style="{StaticResource MaterialDesignHorizontalTrackRepeatButton}" />
+                            Height="20"
+                            Style="{StaticResource MaterialDesignInactiveTrackRepeatButton}" />
                     </Track.IncreaseRepeatButton>
                     <!--  It's important that the Thumb gets added last in the XAML to make sure it is drawn on top of both repeat buttons  -->
                     <Track.Thumb>
@@ -704,15 +702,15 @@
                 <Track Grid.Column="1" x:Name="PART_Track" OpacityMask="{x:Null}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton
-                            wpf:SliderAssist.IsActiveTrack="True"
                             Command="{x:Static Slider.DecreaseLarge}"
-                            Style="{StaticResource MaterialDesignVerticalTrackRepeatButton}"
+                            Style="{StaticResource MaterialDesignVerticalActiveTrackRepeatButton}"
                             Background="{TemplateBinding Foreground}" />
                     </Track.DecreaseRepeatButton>
                     <Track.IncreaseRepeatButton>
                         <RepeatButton
                             Command="{x:Static Slider.IncreaseLarge}"
-                            Style="{StaticResource MaterialDesignVerticalTrackRepeatButton}" />
+                            Width="20"
+                            Style="{StaticResource MaterialDesignInactiveTrackRepeatButton}" />
                     </Track.IncreaseRepeatButton>
                     <!--  It's important that the Thumb gets added last in the XAML to make sure it is drawn on top of both repeat buttons  -->
                     <Track.Thumb>

@@ -13,7 +13,7 @@
 
     <Style
         x:Key="MaterialDesignHorizontalColorSliderTrackRepeatButton"
-        BasedOn="{StaticResource MaterialDesignHorizontalTrackRepeatButton}"
+        BasedOn="{StaticResource MaterialDesignRepeatButtonBaseStyle}"
         TargetType="{x:Type RepeatButton}">
         <Setter Property="Template">
             <Setter.Value>
