@@ -20,7 +20,6 @@
         x:Key="MaterialDesignHorizontalActiveTrackRepeatButton"
         BasedOn="{StaticResource MaterialDesignRepeatButtonBaseStyle}"
         TargetType="{x:Type RepeatButton}">
-        <Setter Property="Height" Value="20"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
@@ -46,7 +45,6 @@
         x:Key="MaterialDesignVerticalActiveTrackRepeatButton"
         BasedOn="{StaticResource MaterialDesignRepeatButtonBaseStyle}"
         TargetType="{x:Type RepeatButton}">
-        <Setter Property="Width" Value="20"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
@@ -82,7 +80,7 @@
     </Style>
 
     <ControlTemplate x:Key="MaterialDesignSliderThumb" TargetType="{x:Type Thumb}">
-        <Grid x:Name="thumbGrid" Height="20" Width="18" UseLayoutRounding="True">
+        <Grid x:Name="thumbGrid" Height="20" Width="18">
             <Ellipse
                 x:Name="halo"
                 Width="48"
@@ -102,11 +100,15 @@
                     <ScaleTransform ScaleX="0" ScaleY="0" />
                 </Ellipse.RenderTransform>
             </Ellipse>
-            <AdornerDecorator x:Name="gripDecorator" CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}" Margin="-1,0">
+            <AdornerDecorator>
+                <AdornerDecorator.CacheMode>
+                    <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                </AdornerDecorator.CacheMode>
                 <Ellipse
-                    x:Name="grip" 
+                    x:Name="grip"
                     Fill="{TemplateBinding Foreground}"
-                    Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" />
+                    Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                    Margin="-1,0" />
             </AdornerDecorator>
         </Grid>
         <ControlTemplate.Triggers>
@@ -171,19 +173,16 @@
                     </BeginStoryboard>
                 </DataTrigger.ExitActions>
             </DataTrigger>
-            <Trigger Property="IsEnabled" Value="false">
-                <Setter TargetName="grip" Property="Fill" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
-            </Trigger>
             <DataTrigger Binding="{Binding Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Track}}" Value="{x:Static Orientation.Vertical}">
                 <Setter TargetName="thumbGrid" Property="Height" Value="18" />
                 <Setter TargetName="thumbGrid" Property="Width" Value="20" />
-                <Setter TargetName="gripDecorator" Property="Margin" Value="0,-1" />
+                <Setter TargetName="grip" Property="Margin" Value="0,-1" />
             </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <ControlTemplate x:Key="MaterialDesignDiscreteSliderThumb" TargetType="{x:Type Thumb}">
-        <Grid Height="20" Width="18" UseLayoutRounding="True">
+        <Grid Height="20" Width="18">
             <Ellipse
                 x:Name="halo"
                 Width="48"
@@ -211,7 +210,10 @@
                             <TranslateTransform Y="-40" X="{Binding ActualWidth, ElementName=label, Converter={StaticResource SliderValueLabelPositionConverter}, ConverterParameter={x:Static Orientation.Horizontal}}" />
                         </TransformGroup>
                     </Grid.RenderTransform>
-                    <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+                    <AdornerDecorator>
+                        <AdornerDecorator.CacheMode>
+                            <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </AdornerDecorator.CacheMode>
                         <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
                             <Rectangle
                                 Fill="{DynamicResource MaterialDesignToolTipBackground}"
@@ -229,7 +231,10 @@
                         VerticalAlignment="Center" />
                 </Grid>
             </Canvas>
-            <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}" >
+            <AdornerDecorator>
+                <AdornerDecorator.CacheMode>
+                    <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                </AdornerDecorator.CacheMode>
                 <Ellipse
                     x:Name="grip"
                     Fill="{TemplateBinding Foreground}"
@@ -337,14 +342,11 @@
                     </BeginStoryboard>
                 </DataTrigger.ExitActions>
             </DataTrigger>
-            <Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Fill" TargetName="grip" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
-            </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <ControlTemplate x:Key="MaterialDesignLeftDiscreteSliderThumb" TargetType="{x:Type Thumb}">
-        <Grid Height="18" Width="20" UseLayoutRounding="True">
+        <Grid Height="18" Width="20">
             <Ellipse
                 x:Name="halo"
                 Width="48"
@@ -372,14 +374,19 @@
                             <TranslateTransform Y="-7" X="{Binding ActualWidth, ElementName=label, Converter={StaticResource SliderValueLabelPositionConverter}, ConverterParameter={x:Static Orientation.Vertical}}" />
                         </TransformGroup>
                     </Grid.RenderTransform>
-                    <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
-                        <Rectangle
-                            Fill="{DynamicResource MaterialDesignToolTipBackground}"
-                            Margin="0,0,5,0"
-                            RadiusX="2"
-                            RadiusY="2" />
-                        <Polygon VerticalAlignment="Center" HorizontalAlignment="Right" Points="0,0 5,4.5 0,9" Fill="{DynamicResource MaterialDesignToolTipBackground}" />
-                    </Grid>
+                    <AdornerDecorator>
+                        <AdornerDecorator.CacheMode>
+                            <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </AdornerDecorator.CacheMode>
+                        <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
+                            <Rectangle
+                                Fill="{DynamicResource MaterialDesignToolTipBackground}"
+                                Margin="0,0,5,0"
+                                RadiusX="2"
+                                RadiusY="2" />
+                            <Polygon VerticalAlignment="Center" HorizontalAlignment="Right" Points="0,0 6,5 0,10" Fill="{DynamicResource MaterialDesignToolTipBackground}" />
+                        </Grid>
+                    </AdornerDecorator>
                     <TextBlock
                         Foreground="{DynamicResource MaterialDesignPaper}"
                         Margin="12,0,17,0"
@@ -388,11 +395,16 @@
                         VerticalAlignment="Center" />
                 </Grid>
             </Canvas>
-            <Ellipse
-                x:Name="grip"
-                Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                Fill="{TemplateBinding Foreground}"
-                Margin="0,-1" />
+            <AdornerDecorator>
+                <AdornerDecorator.CacheMode>
+                    <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                </AdornerDecorator.CacheMode>
+                <Ellipse
+                     x:Name="grip"
+                     Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                     Fill="{TemplateBinding Foreground}"
+                     Margin="0,-1" />
+            </AdornerDecorator>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
@@ -498,9 +510,6 @@
                     </BeginStoryboard>
                 </DataTrigger.ExitActions>
             </DataTrigger>
-            <Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Fill" TargetName="grip" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
-            </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -509,8 +518,9 @@
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}"
             Background="{TemplateBinding Background}"
-            SnapsToDevicePixels="True">
-            <Grid>
+            SnapsToDevicePixels="True"
+            UseLayoutRounding="True">
+            <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
@@ -523,7 +533,7 @@
                 <Canvas Grid.Row="1" VerticalAlignment="Center" Height="10">
                     <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="10" RadiusX="2" RadiusY="2" Visibility="Collapsed" />
                 </Canvas>
-                <Track x:Name="PART_Track" Grid.Row="1">
+                <Track x:Name="PART_Track" Grid.Row="1" Height="20">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton
                             Command="{x:Static Slider.DecreaseLarge}"
@@ -538,7 +548,7 @@
                     </Track.IncreaseRepeatButton>
                     <!--  It's important that the Thumb gets added last in the XAML to make sure it is drawn on top of both repeat buttons  -->
                     <Track.Thumb>
-                        <Thumb Template="{StaticResource MaterialDesignSliderThumb}" />
+                        <Thumb Template="{StaticResource MaterialDesignSliderThumb}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Track.Thumb>
                 </Track>
             </Grid>
@@ -565,8 +575,9 @@
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}"
             Background="{TemplateBinding Background}"
-            SnapsToDevicePixels="True">
-            <Grid>
+            SnapsToDevicePixels="True"
+            UseLayoutRounding="True">
+            <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition MinWidth="{TemplateBinding MinWidth}" Width="Auto"/>
@@ -579,7 +590,7 @@
                 <Canvas Grid.Column="1" HorizontalAlignment="Center" Width="10">
                     <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Width="10" RadiusY="2" RadiusX="2" Visibility="Collapsed" />
                 </Canvas>
-                <Track x:Name="PART_Track" Grid.Column="1">
+                <Track x:Name="PART_Track" Grid.Column="1" Width="20">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton
                             Command="{x:Static Slider.DecreaseLarge}"
@@ -594,7 +605,7 @@
                     </Track.IncreaseRepeatButton>
                     <!--  It's important that the Thumb gets added last in the XAML to make sure it is drawn on top of both repeat buttons  -->
                     <Track.Thumb>
-                        <Thumb Template="{StaticResource MaterialDesignSliderThumb}" />
+                        <Thumb Template="{StaticResource MaterialDesignSliderThumb}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Track.Thumb>
                 </Track>
             </Grid>
@@ -620,8 +631,10 @@
         <Border
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}"
-            Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-            <Grid>
+            Background="{TemplateBinding Background}"
+            SnapsToDevicePixels="True"
+            UseLayoutRounding="True">
+            <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
@@ -634,7 +647,7 @@
                 <Canvas Grid.Row="1" VerticalAlignment="Center" Height="10">
                     <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="10" RadiusY="2" RadiusX="2" Visibility="Collapsed" />
                 </Canvas>
-                <Track Grid.Row="1" x:Name="PART_Track" VerticalAlignment="Center">
+                <Track Grid.Row="1" x:Name="PART_Track" Height="20">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton
                             Command="{x:Static Slider.DecreaseLarge}"
@@ -649,7 +662,7 @@
                     </Track.IncreaseRepeatButton>
                     <!--  It's important that the Thumb gets added last in the XAML to make sure it is drawn on top of both repeat buttons  -->
                     <Track.Thumb>
-                        <Thumb Template="{StaticResource MaterialDesignDiscreteSliderThumb}" />
+                        <Thumb Template="{StaticResource MaterialDesignDiscreteSliderThumb}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Track.Thumb>
                 </Track>
             </Grid>
@@ -672,8 +685,13 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="MaterialDesignDiscreteSliderVertical" TargetType="{x:Type Slider}">
-        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-            <Grid>
+        <Border
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            Background="{TemplateBinding Background}"
+            SnapsToDevicePixels="True"
+            UseLayoutRounding="True">
+            <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition MinWidth="{TemplateBinding MinWidth}" Width="Auto" />
@@ -686,7 +704,7 @@
                 <Canvas Grid.Column="1" HorizontalAlignment="Center" Width="10">
                     <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Width="10" RadiusY="2" RadiusX="2" Visibility="Collapsed" />
                 </Canvas>
-                <Track Grid.Column="1" x:Name="PART_Track" HorizontalAlignment="Center">
+                <Track Grid.Column="1" x:Name="PART_Track" Width="20">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton
                             Command="{x:Static Slider.DecreaseLarge}"
@@ -701,7 +719,7 @@
                     </Track.IncreaseRepeatButton>
                     <!--  It's important that the Thumb gets added last in the XAML to make sure it is drawn on top of both repeat buttons  -->
                     <Track.Thumb>
-                        <Thumb Template="{StaticResource MaterialDesignLeftDiscreteSliderThumb}" />
+                        <Thumb Template="{StaticResource MaterialDesignLeftDiscreteSliderThumb}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Track.Thumb>
                 </Track>
             </Grid>
@@ -731,6 +749,8 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="IsMoveToPointEnabled" Value="True" />
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
+        <Setter Property="SnapsToDevicePixels" Value="False" />
+        <Setter Property="UseLayoutRounding" Value="False" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignSliderHorizontal}"/>
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Vertical">
@@ -752,6 +772,8 @@
         <Setter Property="IsSnapToTickEnabled" Value="True"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
+        <Setter Property="SnapsToDevicePixels" Value="False" />
+        <Setter Property="UseLayoutRounding" Value="False" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignDiscreteSliderHorizontal}"/>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
@@ -770,6 +792,8 @@
         <Setter Property="IsSnapToTickEnabled" Value="True"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
+        <Setter Property="SnapsToDevicePixels" Value="False" />
+        <Setter Property="UseLayoutRounding" Value="False" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignDiscreteSliderVertical}"/>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">

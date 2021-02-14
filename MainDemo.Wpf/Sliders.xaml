@@ -35,7 +35,7 @@
         </Grid.RowDefinitions>
 
         <GroupBox Header="Continuous: Horizontal">
-            <StackPanel Margin="10,15,10,0">
+            <StackPanel Margin="10,15,10,10">
 
                 <smtx:XamlDisplay UniqueKey="continuous_slider_h_1">
                     <Slider
