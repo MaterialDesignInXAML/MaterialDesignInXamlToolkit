@@ -11,22 +11,6 @@
     <converters:HsbLinearGradientConverter x:Key="HsbLinearGradientConverter" />
     <converters:MathConverter x:Key="DivideBy360Converter" Operation="Multiply" />
 
-    <Style
-        x:Key="MaterialDesignHorizontalColorSliderTrackRepeatButton"
-        BasedOn="{StaticResource MaterialDesignRepeatButtonBaseStyle}"
-        TargetType="{x:Type RepeatButton}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type RepeatButton}">
-                    <Canvas
-                        Width="{TemplateBinding Width}"
-                        Height="{TemplateBinding Height}"
-                        Background="Transparent" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <ControlTemplate x:Key="MaterialDesignColorSliderThumb" TargetType="{x:Type Thumb}">
         <Grid
             HorizontalAlignment="Center"
@@ -188,10 +172,10 @@
                     Grid.Row="1"
                     OpacityMask="{x:Null}">
                     <Track.DecreaseRepeatButton>
-                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource MaterialDesignHorizontalColorSliderTrackRepeatButton}" />
+                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource MaterialDesignRepeatButton}" />
                     </Track.DecreaseRepeatButton>
                     <Track.IncreaseRepeatButton>
-                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource MaterialDesignHorizontalColorSliderTrackRepeatButton}" />
+                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource MaterialDesignRepeatButton}" />
                     </Track.IncreaseRepeatButton>
                     <Track.Thumb>
                         <Thumb
@@ -255,10 +239,10 @@
                 </Border>
                 <Track x:Name="PART_Track" Grid.Column="1">
                     <Track.DecreaseRepeatButton>
-                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource MaterialDesignHorizontalColorSliderTrackRepeatButton}" />
+                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource MaterialDesignRepeatButton}" />
                     </Track.DecreaseRepeatButton>
                     <Track.IncreaseRepeatButton>
-                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource MaterialDesignHorizontalColorSliderTrackRepeatButton}" />
+                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource MaterialDesignRepeatButton}" />
                     </Track.IncreaseRepeatButton>
                     <Track.Thumb>
                         <Thumb
