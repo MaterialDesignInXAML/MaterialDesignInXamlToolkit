@@ -1,12 +1,11 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using System.Windows.Threading;
-using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignDemo
+namespace MaterialDesignDemo.Domain
 {
-    public class ButtonsViewModel : INotifyPropertyChanged
+    public class ButtonsViewModel : ViewModelBase
     {
         private bool _showDismissButton;
         private double _dismissButtonProgress;
@@ -15,6 +14,8 @@ namespace MaterialDesignDemo
 
         public ButtonsViewModel()
         {
+            FloatingActionDemoCommand = new AnotherCommandImplementation(FloatingActionDemo);
+
             var autoStartingActionCountdownStart = DateTime.Now;
             var demoRestartCountdownComplete = DateTime.Now;
             var dismissRequested = false;
@@ -108,6 +109,11 @@ namespace MaterialDesignDemo
             });
         }
 
+        public ICommand FloatingActionDemoCommand { get; }
+
+        private static void FloatingActionDemo(object? o)
+            => Debug.WriteLine($"Floating action button command. - {o ?? "NULL"}");
+
         #region Dismiss button demo
 
         public ICommand DismissCommand { get; }
@@ -115,19 +121,19 @@ namespace MaterialDesignDemo
         public bool ShowDismissButton
         {
             get => _showDismissButton;
-            set => this.MutateVerbose(ref _showDismissButton, value, RaisePropertyChanged());
+            set => SetProperty(ref _showDismissButton, value);
         }
 
         public double DismissButtonProgress
         {
             get => _dismissButtonProgress;
-            set => this.MutateVerbose(ref _dismissButtonProgress, value, RaisePropertyChanged());
+            set => SetProperty(ref _dismissButtonProgress, value);
         }
 
         public string? DemoRestartCountdownText
         {
             get => _demoRestartCountdownText;
-            private set => this.MutateVerbose(ref _demoRestartCountdownText, value, RaisePropertyChanged());
+            private set => SetProperty(ref _demoRestartCountdownText, value);
         }
 
         private void UpdateDemoRestartCountdownText(DateTime endTime, out bool isComplete)
@@ -144,7 +150,7 @@ namespace MaterialDesignDemo
         public int OrClickMeCount
         {
             get => _orClickMeCount;
-            private set => this.MutateVerbose(ref _orClickMeCount, value, RaisePropertyChanged());
+            private set => SetProperty(ref _orClickMeCount, value);
         }
         public ICommand IncrementOrClickMeCountCommand { get; }
 
@@ -158,28 +164,23 @@ namespace MaterialDesignDemo
         public bool IsSaving
         {
             get => _isSaving;
-            private set => this.MutateVerbose(ref _isSaving, value, RaisePropertyChanged());
+            private set => SetProperty(ref _isSaving, value);
         }
 
         private bool _isSaveComplete;
         public bool IsSaveComplete
         {
             get => _isSaveComplete;
-            private set => this.MutateVerbose(ref _isSaveComplete, value, RaisePropertyChanged());
+            private set => SetProperty(ref _isSaveComplete, value);
         }
 
         private double _saveProgress;
         public double SaveProgress
         {
             get => _saveProgress;
-            private set => this.MutateVerbose(ref _saveProgress, value, RaisePropertyChanged());
+            private set => SetProperty(ref _saveProgress, value);
         }
 
         #endregion
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        private Action<PropertyChangedEventArgs> RaisePropertyChanged() =>
-            args => PropertyChanged?.Invoke(this, args);
     }
 }

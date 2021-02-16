@@ -1,61 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace MaterialDesignDemo.Domain
 {
-    public class DemoItem : INotifyPropertyChanged
+    public class DemoItem : ViewModelBase
     {
-        private string _name;
+        private readonly Type _contentType;
+        private readonly object? _dataContext;
+
         private object? _content;
         private ScrollBarVisibility _horizontalScrollBarVisibilityRequirement;
         private ScrollBarVisibility _verticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto;
-        private Thickness _marginRequirement = new Thickness(16);
+        private Thickness _marginRequirement = new(16);
 
-        public DemoItem(string name, object? content, IEnumerable<DocumentationLink> documentation)
+        public DemoItem(string name, Type contentType, IEnumerable<DocumentationLink> documentation, object? dataContext = null)
         {
-            _name = name;
-            Content = content;
+            Name = name;
+            _contentType = contentType;
+            _dataContext = dataContext;
             Documentation = documentation;
         }
 
-        public string Name
-        {
-            get => _name;
-            set => this.MutateVerbose(ref _name, value, RaisePropertyChanged());
-        }
+        public string Name { get; }
 
-        public object? Content
-        {
-            get => _content;
-            set => this.MutateVerbose(ref _content, value, RaisePropertyChanged());
-        }
+        public IEnumerable<DocumentationLink> Documentation { get; }
+
+        public object? Content => _content ??= CreateContent();
 
         public ScrollBarVisibility HorizontalScrollBarVisibilityRequirement
         {
             get => _horizontalScrollBarVisibilityRequirement;
-            set => this.MutateVerbose(ref _horizontalScrollBarVisibilityRequirement, value, RaisePropertyChanged());
+            set => SetProperty(ref _horizontalScrollBarVisibilityRequirement, value);
         }
 
         public ScrollBarVisibility VerticalScrollBarVisibilityRequirement
         {
             get => _verticalScrollBarVisibilityRequirement;
-            set => this.MutateVerbose(ref _verticalScrollBarVisibilityRequirement, value, RaisePropertyChanged());
+            set => SetProperty(ref _verticalScrollBarVisibilityRequirement, value);
         }
 
         public Thickness MarginRequirement
         {
             get => _marginRequirement;
-            set => this.MutateVerbose(ref _marginRequirement, value, RaisePropertyChanged());
+            set => SetProperty(ref _marginRequirement, value);
         }
 
-        public IEnumerable<DocumentationLink> Documentation { get; }
+        private object? CreateContent()
+        {
+            var content = Activator.CreateInstance(_contentType);
+            if (_dataContext != null && content is FrameworkElement element)
+            {
+                element.DataContext = _dataContext;
+            }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        private Action<PropertyChangedEventArgs> RaisePropertyChanged()
-            => args => PropertyChanged?.Invoke(this, args);
+            return content;
+        }
     }
 }

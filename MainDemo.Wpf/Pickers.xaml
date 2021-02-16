@@ -7,9 +7,10 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
     xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-    mc:Ignorable="d" 
+    d:DataContext="{d:DesignInstance domain:PickersViewModel}"
     d:DesignHeight="300"
-    d:DesignWidth="300">
+    d:DesignWidth="300"
+    mc:Ignorable="d">
     <!-- for some reason to get the validation templates to show on this page need an extra decorator. haven't figure out why yet -->
     <AdornerDecorator>
         <Grid>

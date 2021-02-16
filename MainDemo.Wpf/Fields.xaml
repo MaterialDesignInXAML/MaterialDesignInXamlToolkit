@@ -429,9 +429,9 @@
                 UniqueKey="fields_20"
                 Grid.Row="1"
                 Grid.Column="0">
-                <ContentControl Content="{Binding DemoItem}">
+                <ContentControl Content="{Binding TestObject}">
                     <ContentControl.ContentTemplate>
-                        <DataTemplate DataType="domain:DemoItem">
+                        <DataTemplate DataType="domain:FieldsTestObject">
                             <StackPanel Orientation="Horizontal">
                                 <TextBox
                                     materialDesign:HintAssist.Hint="Name"
@@ -475,11 +475,11 @@
                 UniqueKey="fields_21"
                 HorizontalAlignment="Left"
                 Margin="32 0 0 0">
-                <ContentControl Content="{Binding DemoItem}">
+                <ContentControl Content="{Binding TestObject}">
                     <ContentControl.ContentTemplateSelector>
                         <domain1:SimpleDataTemplateSelector>
                             <domain1:SimpleDataTemplateSelector.FixedTemplate>
-                                <DataTemplate DataType="domain:DemoItem">
+                                <DataTemplate DataType="domain:FieldsTestObject">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBox
                                             materialDesign:HintAssist.Hint="Name"

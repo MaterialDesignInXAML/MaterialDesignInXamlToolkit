@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
-namespace MaterialDesignDemo
+namespace MaterialDesignDemo.Domain
 {
-    public class IconPackViewModel : INotifyPropertyChanged
+    public class IconPackViewModel : ViewModelBase
     {
         private readonly Lazy<IEnumerable<PackIconKindGroup>> _packIconKinds;
         private readonly ISnackbarMessageQueue _snackbarMessageQueue;
@@ -43,7 +41,7 @@ namespace MaterialDesignDemo
         public IEnumerable<PackIconKindGroup> Kinds
         {
             get => _kinds ??= _packIconKinds.Value;
-            set => this.MutateVerbose(ref _kinds, value, e => PropertyChanged?.Invoke(this, e));
+            set => SetProperty(ref _kinds, value);
         }
 
         public PackIconKindGroup? Group
@@ -51,7 +49,7 @@ namespace MaterialDesignDemo
             get => _group;
             set
             {
-                if (this.MutateVerbose(ref _group, value, e => PropertyChanged?.Invoke(this, e)))
+                if (SetProperty(ref _group, value))
                 {
                     Kind = value?.Kind;
                 }
@@ -63,7 +61,7 @@ namespace MaterialDesignDemo
             get => _kind;
             set
             {
-                if (this.MutateVerbose(ref _kind, value, e => PropertyChanged?.Invoke(this, e)))
+                if (SetProperty(ref _kind, value))
                     PackIconKind = value != null ? (PackIconKind) Enum.Parse(typeof(PackIconKind), value) : default;
             }
         }
@@ -71,7 +69,7 @@ namespace MaterialDesignDemo
         public PackIconKind PackIconKind
         {
             get => _packIconKind;
-            set => this.MutateVerbose(ref _packIconKind, value, e => PropertyChanged?.Invoke(this, e));
+            set => SetProperty(ref _packIconKind, value);
         }
 
         private void OpenDotCom(object obj)
@@ -98,7 +96,5 @@ namespace MaterialDesignDemo
             Clipboard.SetDataObject(toBeCopied);
             _snackbarMessageQueue.Enqueue(toBeCopied + " copied to clipboard");
         }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }
