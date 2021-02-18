@@ -646,7 +646,7 @@ namespace MaterialDesignThemes.Wpf
         /// <returns>The popup content.</returns>
         internal UIElement? FocusPopup()
         {
-            var child = _popup?.Child;
+            var child = _popup?.Child ?? _popupContentControl;
             if (child is null) return null;
 
             CommandManager.InvalidateRequerySuggested();
