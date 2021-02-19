@@ -259,6 +259,16 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty CharacterCounterStyleProperty =
             DependencyProperty.RegisterAttached("CharacterCounterStyle", typeof(Style), typeof(TextFieldAssist), new PropertyMetadata(null));
 
+        public static Visibility GetCharacterCounterVisibility(DependencyObject obj)
+            => (Visibility)obj.GetValue(CharacterCounterVisibilityProperty);
+
+        public static void SetCharacterCounterVisibility(DependencyObject obj, Visibility value)
+            => obj.SetValue(CharacterCounterVisibilityProperty, value);
+
+        public static readonly DependencyProperty CharacterCounterVisibilityProperty =
+            DependencyProperty.RegisterAttached("CharacterCounterVisibility", typeof(Visibility), typeof(TextFieldAssist),
+                new PropertyMetadata(Visibility.Visible));
+
         #region Methods
 
         private static void IncludeSpellingSuggestionsChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)

@@ -234,7 +234,27 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
             IVisualElement textBox = await grid.GetElement("/TextBox");
             IVisualElement characterCounter = await textBox.GetElement("CharacterCounterTextBlock");
 
-            Assert.Equal(Visibility.Collapsed, await characterCounter.GetVisibility());
+            Assert.False(await characterCounter.GetIsVisible());
+
+            recorder.Success();
+        }
+
+        [Fact]
+        public async Task CharacterCount_WithMaxLengthSetAndCharacterCounterVisibilityCollapsed_IsNotDisplayed()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml(@"
+<Grid Margin=""30"">
+    <TextBox
+        MaxLength=""10""
+        materialDesign:TextFieldAssist.CharacterCounterVisibility=""Collapsed""
+    />
+</Grid>");
+            IVisualElement textBox = await grid.GetElement("/TextBox");
+            IVisualElement characterCounter = await textBox.GetElement("CharacterCounterTextBlock");
+
+            Assert.False(await characterCounter.GetIsVisible());
 
             recorder.Success();
         }
