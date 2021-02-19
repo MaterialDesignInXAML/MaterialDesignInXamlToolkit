@@ -30,7 +30,7 @@
             <TextBlock Text="Open Mode" Margin="30,0,16,0" VerticalAlignment="Center"/>
             <ComboBox SelectedValue="{Binding OpenMode, ElementName=DrawerHost}"
                           SelectedValuePath="Content">
-                <ComboBoxItem Content="{x:Static materialDesign:DrawerHostOpenMode.Model}" />
+                <ComboBoxItem Content="{x:Static materialDesign:DrawerHostOpenMode.Modal}" />
                 <ComboBoxItem Content="{x:Static materialDesign:DrawerHostOpenMode.Standard}" />
             </ComboBox>
         </StackPanel>

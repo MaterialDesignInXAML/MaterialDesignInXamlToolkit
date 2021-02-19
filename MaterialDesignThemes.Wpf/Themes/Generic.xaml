@@ -778,15 +778,6 @@
                                     <ContentPresenter.Tag>
                                         <system:Boolean>False</system:Boolean>
                                     </ContentPresenter.Tag>
-                                    <ContentPresenter.Style>
-                                        <Style TargetType="ContentPresenter">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding OpenMode, RelativeSource={RelativeSource TemplatedParent}}" Value="Modal">
-                                                    <Setter Property="IsEnabled" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </ContentPresenter.Style>
                                 </ContentPresenter>
                             </AdornerDecorator>
                             <Grid x:Name="PART_ContentCover"
