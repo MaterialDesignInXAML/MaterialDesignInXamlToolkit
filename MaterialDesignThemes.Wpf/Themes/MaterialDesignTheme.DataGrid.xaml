@@ -286,6 +286,7 @@
                             <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
                                 <wpf:ListSortDirectionIndicator
                                     x:Name="SortDirectionIndicator"
+                                    IsTabStop="False"
                                     ListSortDirection="{TemplateBinding SortDirection}"
                                     HorizontalAlignment="Left"
                                     Width="0"
