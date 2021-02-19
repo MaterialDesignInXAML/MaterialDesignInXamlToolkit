@@ -272,6 +272,18 @@
                             IsEnabled="False" />
                     </smtx:XamlDisplay>
 
+                    <smtx:XamlDisplay UniqueKey="discrete_slider_v_6">
+                        <Slider
+                            materialDesign:SliderAssist.OnlyShowFocusVisualWhileDragging="True"
+                            Orientation="Vertical"
+                            Minimum="0"
+                            Maximum="{Binding DiscreteVertical.Maximum}"
+                            Value="70000"
+                            Style="{StaticResource MaterialDesignDiscreteSlider}"
+                            TickFrequency="{Binding DiscreteVertical.TickFrequency}"
+                            TickPlacement="BottomRight" />
+                    </smtx:XamlDisplay>
+
                 </StackPanel>
             </Grid>
         </GroupBox>
