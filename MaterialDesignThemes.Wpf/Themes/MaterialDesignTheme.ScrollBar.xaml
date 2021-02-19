@@ -124,7 +124,7 @@
                         </Grid.RowDefinitions>
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Row="1"/>
                         <RepeatButton Grid.Row="0" x:Name="PART_LineUpButton" Command="{x:Static ScrollBar.LineUpCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Style="{StaticResource MaterialDesignScrollBarButton}">
-                            <Viewbox Width="12" Height="12" Margin="3">
+                            <Viewbox Width="12" Height="12" Margin="2,3,2,1">
                                 <Canvas Width="24" Height="24">
                                     <Path x:Name="ArrowTop" Data="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z" Fill="{DynamicResource MaterialDesignBody}" Stretch="Uniform"/>
                                 </Canvas>
@@ -142,7 +142,7 @@
                             </Track.Thumb>
                         </Track>
                         <RepeatButton x:Name="PART_LineDownButton" Command="{x:Static ScrollBar.LineDownCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="2" Style="{StaticResource MaterialDesignScrollBarButton}">
-                            <Viewbox Width="12" Height="12" Margin="3">
+                            <Viewbox Width="12" Height="12" Margin="2,3,2,1">
                                 <Canvas Width="24" Height="24">
                                     <Path x:Name="ArrowBottom" Data="M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z" Fill="{DynamicResource MaterialDesignBody}" Stretch="Uniform"/>
                                 </Canvas>
@@ -191,7 +191,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Column="1"/>
                                 <RepeatButton Grid.Column="0" x:Name="PART_LineLeftButton" Command="{x:Static ScrollBar.LineLeftCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Style="{StaticResource MaterialDesignScrollBarButton}">
-                                    <Viewbox Width="12" Height="12" Margin="3">
+                                    <Viewbox Width="12" Height="12" Margin="3,2,1,2">
                                         <Canvas Width="24" Height="24">
                                             <Path x:Name="ArrowLeft" Data="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" Fill="{DynamicResource MaterialDesignBody}" Stretch="Uniform"/>
                                         </Canvas>
@@ -209,7 +209,7 @@
                                     </Track.Thumb>
                                 </Track>
                                 <RepeatButton x:Name="PART_LineRightButton" Grid.Column="2" Command="{x:Static ScrollBar.LineRightCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Style="{StaticResource MaterialDesignScrollBarButton}">
-                                    <Viewbox Width="12" Height="12" Margin="3">
+                                    <Viewbox Width="12" Height="12" Margin="3,2,1,2">
                                         <Canvas Width="24" Height="24">
                                             <Path x:Name="ArrowRight" Data="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" Fill="{DynamicResource MaterialDesignBody}" Stretch="Uniform"/>
                                         </Canvas>
