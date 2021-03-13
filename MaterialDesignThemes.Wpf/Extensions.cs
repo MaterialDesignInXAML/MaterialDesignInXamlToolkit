@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -50,6 +51,8 @@ namespace MaterialDesignThemes.Wpf
 
         /// <summary>
         /// Returns full visual ancestry, starting at the leaf.
+        /// <para>If element is not of <see cref="Visual"/> or <see cref="Visual3D"/> the
+        /// logical ancestry is used.</para>
         /// </summary>
         /// <param name="leaf"></param>
         /// <returns></returns>
@@ -58,7 +61,9 @@ namespace MaterialDesignThemes.Wpf
             while (leaf is not null)
             {
                 yield return leaf;
-                leaf = VisualTreeHelper.GetParent(leaf);
+                leaf = leaf is Visual || leaf is Visual3D
+                    ? VisualTreeHelper.GetParent(leaf)
+                    : LogicalTreeHelper.GetParent(leaf);
             }
         }
 
