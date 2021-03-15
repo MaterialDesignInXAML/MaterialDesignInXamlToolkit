@@ -8089,6 +8089,8 @@ namespace MaterialDesignThemes.Wpf
         PrinterPreview=PrinterEye,
         PrinterView=PrinterEye,
         PrinterOff,
+        PrinterOffOutline,
+        PrinterOutline,
         PrinterPos,
         PrinterPointOfSale=PrinterPos,
         PrinterSearch,
