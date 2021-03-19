@@ -42,7 +42,7 @@ namespace MaterialDesignDemo.Domain
             SetDefaultIconColors();
         }
 
-        private void ThemeManager_ThemeChanged(object sender, ThemeChangedEventArgs e)
+        private void ThemeManager_ThemeChanged(object? sender, ThemeChangedEventArgs e)
             => SetDefaultIconColors();
 
         public ICommand OpenDotComCommand { get; }
