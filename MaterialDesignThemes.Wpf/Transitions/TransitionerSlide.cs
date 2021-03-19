@@ -21,21 +21,17 @@ namespace MaterialDesignThemes.Wpf.Transitions
             set => SetValue(TransitionOriginProperty, value);
         }
 
-        public static RoutedEvent InTransitionFinished =
+        public static readonly RoutedEvent InTransitionFinished =
             EventManager.RegisterRoutedEvent("InTransitionFinished", RoutingStrategy.Bubble, typeof(RoutedEventHandler),
                 typeof(TransitionerSlide));
 
         protected void OnInTransitionFinished(RoutedEventArgs e)
-        {
-            RaiseEvent(e);
-        }
+            => RaiseEvent(e);
 
         public static readonly DependencyProperty StateProperty = DependencyProperty.Register("State", typeof(TransitionerSlideState), typeof(TransitionerSlide), new PropertyMetadata(default(TransitionerSlideState), new PropertyChangedCallback(StatePropertyChangedCallback)));
 
         private static void StatePropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((TransitionerSlide)d).AnimateToState();
-        }
+            => ((TransitionerSlide)d).AnimateToState();
 
         public TransitionerSlideState State
         {

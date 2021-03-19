@@ -49,13 +49,13 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Routed command to be used somewhere inside an instance to trigger showing of the dialog. Content can be passed to the dialog via a <see cref="Button.CommandParameter"/>.
         /// </summary>
-        public static RoutedCommand OpenDialogCommand = new RoutedCommand();
+        public static readonly RoutedCommand OpenDialogCommand = new();
         /// <summary>
         /// Routed command to be used inside dialog content to close a dialog. Use a <see cref="Button.CommandParameter"/> to indicate the result of the parameter.
         /// </summary>
-        public static RoutedCommand CloseDialogCommand = new RoutedCommand();
+        public static readonly RoutedCommand CloseDialogCommand = new();
 
-        private static readonly HashSet<DialogHost> LoadedInstances = new HashSet<DialogHost>();
+        private static readonly HashSet<DialogHost> LoadedInstances = new();
 
         private DialogOpenedEventHandler? _asyncShowOpenedEventHandler;
         private DialogClosingEventHandler? _asyncShowClosingEventHandler;

@@ -47,8 +47,8 @@ namespace MaterialDesignThemes.Wpf
         public const string TemplateRightDrawerPartName = "PART_RightDrawer";
         public const string TemplateBottomDrawerPartName = "PART_BottomDrawer";
 
-        public static RoutedCommand OpenDrawerCommand = new RoutedCommand();
-        public static RoutedCommand CloseDrawerCommand = new RoutedCommand();
+        public static readonly RoutedCommand OpenDrawerCommand = new();
+        public static readonly RoutedCommand CloseDrawerCommand = new();
 
         private FrameworkElement? _templateContentCoverElement;
         private FrameworkElement? _leftDrawerElement;

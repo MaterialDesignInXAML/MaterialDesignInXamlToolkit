@@ -106,7 +106,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Routed command to be used inside of a popup content to close it.
         /// </summary>
-        public static RoutedCommand ClosePopupCommand = new RoutedCommand();
+        public static readonly RoutedCommand ClosePopupCommand = new();
 
         private PopupEx? _popup;
         private ContentControl? _popupContentControl;
