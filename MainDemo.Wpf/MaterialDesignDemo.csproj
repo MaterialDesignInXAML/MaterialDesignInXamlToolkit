@@ -39,6 +39,7 @@
     <Resource Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="BluwolfIcons" />
     <PackageReference Include="VirtualizingWrapPanel" />
     <PackageReference Include="ShowMeTheXAML" />
     <PackageReference Include="ShowMeTheXAML.AvalonEdit" />

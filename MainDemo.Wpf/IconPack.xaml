@@ -10,11 +10,11 @@
     xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:virtualCollection="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
+    d:DataContext="{d:DesignInstance Type=domain:IconPackViewModel}"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance domain:IconPackViewModel}">
-    
+    d:DesignWidth="300">
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -24,16 +24,17 @@
 
             <materialDesign:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter"/>
             <converters:StringJoinConverter x:Key="StringJoinConverter" Separator="{x:Static system:Environment.NewLine}"/>
+            <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
+
         <StackPanel>
             <TextBlock
                 Style="{StaticResource MaterialDesignHeadline3TextBlock}"
@@ -43,13 +44,13 @@
                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                 Margin="0 8 0 0"
                 Text="Material Design In XAML Toolkit includes the Material Design Icons collection."/>
-            
+
             <TextBlock Margin="0 12 0 0">
                 For more information on Material Design Icons see the official website:
                 <Hyperlink Command="{Binding OpenDotComCommand}">materialdesignicons.com</Hyperlink>
             </TextBlock>
         </StackPanel>
-        
+
         <ListBox
             Grid.Row="1"
             Margin="0 8 0 0"
@@ -63,7 +64,7 @@
                     <virtualCollection:VirtualizingWrapPanel />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
-            
+
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="materialDesignDemo:PackIconKindGroup">
                     <DockPanel
@@ -76,7 +77,7 @@
                             DockPanel.Dock="Bottom"
                             TextTrimming="CharacterEllipsis"
                             HorizontalAlignment="Center"/>
-                        
+
                         <materialDesign:PackIcon
                             Kind="{Binding Kind}"
                             VerticalAlignment="Center"
@@ -87,7 +88,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        
+
         <materialDesign:ColorZone
             Mode="PrimaryLight"
             Grid.Row="2"
@@ -105,7 +106,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        
+
                         <Button
                             x:Name="SearchButton"
                             Style="{DynamicResource MaterialDesignToolButton}"
@@ -117,7 +118,7 @@
                                 Kind="Magnify"
                                 Opacity=".56"/>
                         </Button>
-                        
+
                         <TextBox
                             Grid.Column="1"
                             Margin="5 0 0 0"
@@ -135,7 +136,7 @@
                     Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                     VerticalAlignment="Center"
                     Text="Usage:"/>
-                
+
                 <materialDesign:ColorZone
                     Mode="Standard"
                     Margin="8"
@@ -150,12 +151,12 @@
                         GotFocus="TextBox_OnGotFocus"
                         Text="{Binding Kind, StringFormat='&lt;materialDesign:PackIcon Kind=&quot;{0}&quot; \/>'}"/>
                 </materialDesign:ColorZone>
-                
+
                 <materialDesign:PackIcon
                     Kind="{Binding PackIconKind}"
                     VerticalAlignment="Center"
                     Visibility="{Binding Kind, Converter={StaticResource NullableToVisibilityConverter}}"/>
-                
+
                 <Button
                     Margin="8 0"
                     Command="{Binding CopyToClipboardCommand, Mode=OneTime}"
@@ -167,6 +168,65 @@
                             Margin="8 0 0 0"/>
                     </StackPanel>
                 </Button>
+
+                <materialDesign:PopupBox StaysOpen="True" >
+                    <materialDesign:PopupBox.ToggleContent>
+                        <materialDesign:PackIcon Kind="FileExport" Width="30" Height="30"
+                                                 ToolTip="Export pack icon as icon file (.ico)"/>
+                    </materialDesign:PopupBox.ToggleContent>
+                    <StackPanel Width="300" Margin="8,8,8,8">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Generate Icon (.ioc file)"
+                                       Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
+                            <Border BorderThickness="1"
+                                    BorderBrush="{DynamicResource MaterialDesignBody}"
+                                    HorizontalAlignment="Center"
+                                    CornerRadius="4"
+                                    Padding="2"
+                                    Margin="0,0,20,0"
+                                    Grid.Column="1"
+                                    Grid.RowSpan="2">
+                                <materialDesign:PackIcon
+                                    Kind="{Binding PackIconKind}"
+                                    Background="{Binding GeneratedIconBackground, Converter={StaticResource ColorToBrushConverter}}"
+                                    Foreground="{Binding GeneratedIconForeground, Converter={StaticResource ColorToBrushConverter}}"
+                                    Height="40" Width="40"
+                                    Visibility="{Binding Kind, Converter={StaticResource NullableToVisibilityConverter}}"/>
+                            </Border>
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                                <RadioButton Content="Foreground" IsChecked="True" x:Name="IconForeground" />
+                                <RadioButton Content="Background" Margin="10,0,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <materialDesign:ColorPicker
+                            Margin="0,10"
+                            MinHeight="100">
+                            <materialDesign:ColorPicker.Style>
+                                <Style TargetType="materialDesign:ColorPicker" BasedOn="{StaticResource {x:Type materialDesign:ColorPicker}}">
+                                    <Setter Property="Color" Value="{Binding GeneratedIconBackground, Delay=25}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=IconForeground}" Value="True">
+                                            <Setter Property="Color" Value="{Binding GeneratedIconForeground, Delay=25}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </materialDesign:ColorPicker.Style>
+                        </materialDesign:ColorPicker>
+
+                        <Button Content="_Save"
+                                Command="{Binding SaveIconCommand}"
+                                HorizontalAlignment="Right" />
+                    </StackPanel>
+                </materialDesign:PopupBox>
             </StackPanel>
         </materialDesign:ColorZone>
     </Grid>
