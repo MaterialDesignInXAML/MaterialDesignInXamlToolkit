@@ -47,8 +47,8 @@ namespace MaterialDesignThemes.Wpf
         public const string MinutesVisualStateName = "Minutes";
         public const string SecondsVisualStateName = "Seconds";
 
-        private Point _centreCanvas = new Point(0, 0);
-        private Point _currentStartPosition = new Point(0, 0);
+        private Point _centreCanvas = new(0, 0);
+        private Point _currentStartPosition = new(0, 0);
         private TextBlock? _hourReadOutPartName;
         private TextBlock? _minuteReadOutPartName;
         private TextBlock? _secondReadOutPartName;
@@ -130,9 +130,7 @@ namespace MaterialDesignThemes.Wpf
             nameof(Is24Hours), typeof(bool), typeof(Clock), new PropertyMetadata(default(bool), Is24HoursChanged));
 
         private static void Is24HoursChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((Clock)d).GenerateButtons();
-        }
+            => ((Clock)d).GenerateButtons();
 
         public bool Is24Hours
         {
@@ -309,7 +307,7 @@ namespace MaterialDesignThemes.Wpf
                         ClockDisplayMode.Seconds);
             }
 
-            void RemoveExistingButtons(Canvas canvas)
+            static void RemoveExistingButtons(Canvas canvas)
             {
                 for (int i = canvas.Children.Count - 1; i >= 0; i--)
                 {
@@ -322,22 +320,22 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void SecondReadOutPartNameOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            SetCurrentValue(Clock.DisplayModeProperty, ClockDisplayMode.Seconds);
-        }
+            => SetCurrentValue(DisplayModeProperty, ClockDisplayMode.Seconds);
 
         private void MinuteReadOutPartNameOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            SetCurrentValue(Clock.DisplayModeProperty, ClockDisplayMode.Minutes);
-        }
+            => SetCurrentValue(DisplayModeProperty, ClockDisplayMode.Minutes);
 
         private void HourReadOutPartNameOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
-        {
-            SetCurrentValue(Clock.DisplayModeProperty, ClockDisplayMode.Hours);
-        }
+            => SetCurrentValue(DisplayModeProperty, ClockDisplayMode.Hours);
 
-        private void GenerateButtons(Panel canvas, ICollection<int> range, double radiusRatio, IValueConverter isCheckedConverter, Func<int, string> stylePropertySelector,
-            string format, ClockDisplayMode clockDisplayMode)
+        private void GenerateButtons(
+            Panel canvas,
+            ICollection<int> range,
+            double radiusRatio,
+            IValueConverter isCheckedConverter,
+            Func<int, string> stylePropertySelector,
+            string format,
+            ClockDisplayMode clockDisplayMode)
         {
             var anglePerItem = 360.0 / range.Count;
             var radiansPerItem = anglePerItem * (Math.PI / 180);
@@ -365,6 +363,20 @@ namespace MaterialDesignThemes.Wpf
 
                 button.Content = (i == 60 ? 0 : (i == 24 && clockDisplayMode == ClockDisplayMode.Hours ? 0 : i)).ToString(format);
                 canvas.Children.Add(button);
+            }
+
+            BindingBase GetBinding(
+                string propertyName,
+                object? owner = null,
+                IValueConverter? converter = null,
+                object? converterParameter = null)
+            {
+                return new Binding(propertyName)
+                {
+                    Source = owner ?? this,
+                    Converter = converter,
+                    ConverterParameter = converterParameter
+                };
             }
         }
 
@@ -404,9 +416,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void ClockItemDragStartedHandler(object sender, DragStartedEventArgs dragStartedEventArgs)
-        {
-            _currentStartPosition = new Point(dragStartedEventArgs.HorizontalOffset, dragStartedEventArgs.VerticalOffset);
-        }
+            => _currentStartPosition = new Point(dragStartedEventArgs.HorizontalOffset, dragStartedEventArgs.VerticalOffset);
 
         private void ClockItemDragDeltaHandler(object sender, DragDeltaEventArgs dragDeltaEventArgs)
         {
@@ -454,16 +464,6 @@ namespace MaterialDesignThemes.Wpf
             clock.IsPostMeridiem = clock.Time.Hour >= 12;
             clock.IsMidnightHour = clock.Time.Hour == 0;
             clock.IsMiddayHour = clock.Time.Hour == 12;
-        }
-
-        private BindingBase GetBinding(
-            string propertyName,
-            object? owner = null,
-            IValueConverter? converter = null,
-            object? converterParameter = null)
-        {
-            var result = new Binding(propertyName) { Source = owner ?? this, Converter = converter, ConverterParameter = converterParameter };
-            return result;
         }
     }
 }

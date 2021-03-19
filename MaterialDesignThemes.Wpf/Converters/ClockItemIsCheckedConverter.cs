@@ -22,7 +22,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             var dateTime = (DateTime)value;
             var i = (int)parameter;
 
-            int converted = 0;
+            int converted;
             if (_displayMode == ClockDisplayMode.Hours)
                 converted = MassageHour(dateTime.Hour, _is24Hours);
             else if (_displayMode == ClockDisplayMode.Minutes)
@@ -58,9 +58,7 @@ namespace MaterialDesignThemes.Wpf.Converters
         }
 
         private static int MassageMinuteSecond(int val)
-        {
-            return val == 0 ? 60 : val;
-        }
+            => val == 0 ? 60 : val;
 
         private static int ReverseMassageHour(int val, DateTime currentTime, bool is24Hours)
         {
@@ -75,8 +73,6 @@ namespace MaterialDesignThemes.Wpf.Converters
         }
 
         private static int ReverseMassageMinuteSecond(int val)
-        {
-            return val == 60 ? 0 : val;
-        }
+            => val == 60 ? 0 : val;
     }
 }

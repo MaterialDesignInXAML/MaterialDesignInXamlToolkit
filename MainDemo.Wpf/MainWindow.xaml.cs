@@ -13,7 +13,7 @@ namespace MaterialDesignDemo
 {
     public partial class MainWindow
     {
-        public static Snackbar Snackbar = new Snackbar();
+        public static Snackbar Snackbar = new();
         public MainWindow()
         {
             InitializeComponent();
