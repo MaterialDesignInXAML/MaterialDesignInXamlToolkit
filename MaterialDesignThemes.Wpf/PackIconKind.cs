@@ -4577,6 +4577,7 @@ namespace MaterialDesignThemes.Wpf
         Flag,
         AssistantPhoto=Flag,
         FlagCheckered,
+        Goal=FlagCheckered,
         FlagMinus,
         FlagMinusOutline,
         FlagOutline,
