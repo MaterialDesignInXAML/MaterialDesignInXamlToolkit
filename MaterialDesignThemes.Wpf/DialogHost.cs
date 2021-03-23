@@ -267,7 +267,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (dialogHost._popupContentControl != null)
                 ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
-            VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
+            VisualStateManager.GoToState(dialogHost, dialogHost.GetStateName(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
             if (dialogHost.IsOpen)
             {
@@ -494,7 +494,7 @@ namespace MaterialDesignThemes.Wpf
             if (_contentCoverGrid != null)
                 _contentCoverGrid.MouseLeftButtonUp += ContentCoverGridOnMouseLeftButtonUp;
 
-            VisualStateManager.GoToState(this, SelectState(), false);
+            VisualStateManager.GoToState(this, GetStateName(), false);
 
             base.OnApplyTemplate();
         }
@@ -729,7 +729,7 @@ namespace MaterialDesignThemes.Wpf
             executedRoutedEventArgs.Handled = true;
         }
 
-        private string SelectState()
+        private string GetStateName()
         {
             return IsOpen ? OpenStateName : ClosedStateName;
         }
