@@ -14,14 +14,25 @@ namespace MaterialDesignThemes.Wpf
     {
         private readonly Dispatcher _dispatcher;
         private readonly TimeSpan _messageDuration;
-        private readonly HashSet<Snackbar> _pairedSnackbars = new HashSet<Snackbar>();
-        private readonly LinkedList<SnackbarMessageQueueItem> _snackbarMessages = new LinkedList<SnackbarMessageQueueItem>();
-        private readonly object _snackbarMessagesLock = new object();
-        private readonly ManualResetEvent _disposedEvent = new ManualResetEvent(false);
-        private readonly ManualResetEvent _pausedEvent = new ManualResetEvent(false);
-        private readonly SemaphoreSlim _showMessageSemaphore = new SemaphoreSlim(1, 1);
+        private readonly HashSet<Snackbar> _pairedSnackbars = new();
+        private readonly LinkedList<SnackbarMessageQueueItem> _snackbarMessages = new();
+        private readonly object _snackbarMessagesLock = new();
+        private readonly ManualResetEvent _disposedEvent = new(false);
+        private readonly ManualResetEvent _pausedEvent = new(false);
+        private readonly SemaphoreSlim _showMessageSemaphore = new(1, 1);
         private int _pauseCounter;
         private bool _isDisposed;
+
+        public IReadOnlyList<SnackbarMessageQueueItem> QueuedMessages
+        {
+            get
+            {
+                lock (_snackbarMessagesLock)
+                {
+                    return _snackbarMessages.ToList();
+                }
+            }
+        }
 
         /// <summary>
         /// If set, the active snackbar will be closed.
@@ -127,7 +138,7 @@ namespace MaterialDesignThemes.Wpf
         {
             if (snackbar is null) throw new ArgumentNullException(nameof(snackbar));
 
-           _pairedSnackbars.Add(snackbar);
+            _pairedSnackbars.Add(snackbar);
 
             return () => _pairedSnackbars.Remove(snackbar);
         }
@@ -147,10 +158,10 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates.
-        /// True to show every message even if there are duplicates.
+        /// Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates. 
+        /// False to show every message even if there are duplicates.
         /// </summary>
-        public bool IgnoreDuplicate { get; set; }
+        public bool DiscardDuplicates { get; set; }
 
         public void Enqueue(object content) => Enqueue(content, false);
 
@@ -178,8 +189,8 @@ namespace MaterialDesignThemes.Wpf
 
             if (actionContent is null ^ actionHandler is null)
             {
-                throw new ArgumentException("All action arguments must be provided if any are provided.",
-                    actionContent != null ? nameof(actionContent) : nameof(actionHandler));
+                throw new ArgumentNullException(actionContent != null ? nameof(actionContent) : nameof(actionHandler),
+                    "All action arguments must be provided if any are provided.");
             }
 
             Action<object?>? handler = actionHandler != null
@@ -195,8 +206,8 @@ namespace MaterialDesignThemes.Wpf
 
             if (actionContent is null ^ actionHandler is null)
             {
-                throw new ArgumentException("All action arguments must be provided if any are provided.",
-                    actionContent != null ? nameof(actionContent) : nameof(actionHandler));
+                throw new ArgumentNullException(actionContent != null ? nameof(actionContent) : nameof(actionHandler),
+                    "All action arguments must be provided if any are provided.");
             }
 
             var snackbarMessageQueueItem = new SnackbarMessageQueueItem(content, durationOverride ?? _messageDuration,
@@ -212,8 +223,7 @@ namespace MaterialDesignThemes.Wpf
                 var node = _snackbarMessages.First;
                 while (node != null)
                 {
-                    if (!IgnoreDuplicate && item.IsDuplicate(node.Value))
-                        return;
+                    if (DiscardDuplicates && item.IsDuplicate(node.Value)) return;
 
                     if (item.IsPromoted && !node.Value.IsPromoted)
                     {
@@ -224,7 +234,9 @@ namespace MaterialDesignThemes.Wpf
                     node = node.Next;
                 }
                 if (!added)
+                {
                     _snackbarMessages.AddLast(item);
+                }
 
             }
 
@@ -274,7 +286,6 @@ namespace MaterialDesignThemes.Wpf
                 }
             });
         }
-
 
         private async Task ShowNextAsync()
         {

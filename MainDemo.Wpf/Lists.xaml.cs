@@ -1,7 +1,13 @@
-﻿namespace MaterialDesignDemo
+﻿using MaterialDesignDemo.Domain;
+
+namespace MaterialDesignDemo
 {
     public partial class Lists
     {
-        public Lists() => InitializeComponent();
+        public Lists()
+        {
+            DataContext = new ListsAndGridsViewModel();
+            InitializeComponent();
+        }
     }
 }

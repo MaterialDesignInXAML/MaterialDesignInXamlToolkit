@@ -49,13 +49,13 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Routed command to be used somewhere inside an instance to trigger showing of the dialog. Content can be passed to the dialog via a <see cref="Button.CommandParameter"/>.
         /// </summary>
-        public static RoutedCommand OpenDialogCommand = new RoutedCommand();
+        public static readonly RoutedCommand OpenDialogCommand = new();
         /// <summary>
         /// Routed command to be used inside dialog content to close a dialog. Use a <see cref="Button.CommandParameter"/> to indicate the result of the parameter.
         /// </summary>
-        public static RoutedCommand CloseDialogCommand = new RoutedCommand();
+        public static readonly RoutedCommand CloseDialogCommand = new();
 
-        private static readonly HashSet<DialogHost> LoadedInstances = new HashSet<DialogHost>();
+        private static readonly HashSet<DialogHost> LoadedInstances = new();
 
         private DialogOpenedEventHandler? _asyncShowOpenedEventHandler;
         private DialogClosingEventHandler? _asyncShowClosingEventHandler;
@@ -267,7 +267,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (dialogHost._popupContentControl != null)
                 ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
-            VisualStateManager.GoToState(dialogHost, dialogHost.SelectState(), !TransitionAssist.GetDisableTransitions(dialogHost));
+            VisualStateManager.GoToState(dialogHost, dialogHost.GetStateName(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
             if (dialogHost.IsOpen)
             {
@@ -323,7 +323,7 @@ namespace MaterialDesignThemes.Wpf
 
                 if (child != null)
                 {
-                    //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/187
+                    //https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/187
                     //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
                     Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));
                 }
@@ -494,7 +494,7 @@ namespace MaterialDesignThemes.Wpf
             if (_contentCoverGrid != null)
                 _contentCoverGrid.MouseLeftButtonUp += ContentCoverGridOnMouseLeftButtonUp;
 
-            VisualStateManager.GoToState(this, SelectState(), false);
+            VisualStateManager.GoToState(this, GetStateName(), false);
 
             base.OnApplyTemplate();
         }
@@ -646,7 +646,7 @@ namespace MaterialDesignThemes.Wpf
         /// <returns>The popup content.</returns>
         internal UIElement? FocusPopup()
         {
-            var child = _popup?.Child;
+            var child = _popup?.Child ?? _popupContentControl;
             if (child is null) return null;
 
             CommandManager.InvalidateRequerySuggested();
@@ -729,7 +729,7 @@ namespace MaterialDesignThemes.Wpf
             executedRoutedEventArgs.Handled = true;
         }
 
-        private string SelectState()
+        private string GetStateName()
         {
             return IsOpen ? OpenStateName : ClosedStateName;
         }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
-namespace MaterialDesignDemo.Domain
+﻿namespace MaterialDesignDemo.Domain
 {
-    public class SelectableViewModel : INotifyPropertyChanged
+    public class SelectableViewModel : ViewModelBase
     {
         private bool _isSelected;
         private string? _name;
@@ -16,72 +12,37 @@ namespace MaterialDesignDemo.Domain
         public bool IsSelected
         {
             get => _isSelected;
-            set
-            {
-                if (_isSelected == value) return;
-                _isSelected = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref _isSelected, value);
         }
 
         public char Code
         {
             get => _code;
-            set
-            {
-                if (_code == value) return;
-                _code = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref _code, value);
         }
 
         public string? Name
         {
             get => _name;
-            set
-            {
-                if (_name == value) return;
-                _name = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref _name, value);
         }
 
         public string? Description
         {
             get => _description;
-            set
-            {
-                if (_description == value) return;
-                _description = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref _description, value);
         }
 
         public double Numeric
         {
             get => _numeric;
-            set
-            {
-                if (Math.Abs(_numeric - value) < 0.01) return;
-                _numeric = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref _numeric, value);
         }
 
         public string? Food
         {
             get => _food;
-            set
-            {
-                if (_food == value) return;
-                _food = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref _food, value);
         }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

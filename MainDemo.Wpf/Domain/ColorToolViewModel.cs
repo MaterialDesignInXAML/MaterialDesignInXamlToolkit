@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignColors;
-using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
-namespace MaterialDesignDemo
+namespace MaterialDesignDemo.Domain
 {
-    internal class ColorToolViewModel : INotifyPropertyChanged
+    internal class ColorToolViewModel : ViewModelBase
     {
         private readonly PaletteHelper _paletteHelper = new PaletteHelper();
 
@@ -64,7 +61,7 @@ namespace MaterialDesignDemo
             get => _isDarkTheme;
             set
             {
-                if (this.MutateVerbose(ref _isDarkTheme, value, e => PropertyChanged?.Invoke(this, e)))
+                if (SetProperty(ref _isDarkTheme, value))
                 {
                     ApplyBase(value);
                 }
@@ -225,10 +222,5 @@ namespace MaterialDesignDemo
 
             _paletteHelper.SetTheme(theme);
         }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

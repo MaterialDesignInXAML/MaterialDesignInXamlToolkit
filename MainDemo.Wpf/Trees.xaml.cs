@@ -5,21 +5,20 @@ namespace MaterialDesignDemo
 {
     public partial class Trees
     {
-        public Trees() => InitializeComponent();
+        private readonly TreesViewModel _viewModel;
 
-        public TreesViewModel? ViewModel => DataContext as TreesViewModel;
+        public Trees()
+        {
+            _viewModel = new TreesViewModel();
+            DataContext = _viewModel;
+            InitializeComponent();
+        }
 
         /// <summary>
         /// TreesView's SelectedItem is read-only. Hence we can't bind it. There is a way to obtain a selected item.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            if (ViewModel is null)
-                return;
-
-            ViewModel.SelectedItem = e.NewValue;
-        }
+        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) => _viewModel.SelectedItem = e.NewValue;
     }
 }

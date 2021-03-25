@@ -14,6 +14,22 @@
     <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
     <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
 
+    <Style x:Key="MaterialDesignCharacterCounterTextBlock" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Opacity" Value="0.56" />
+        <Setter Property="Margin" Value="0,0,16,0" />
+        <Setter Property="Visibility" Value="{Binding Path=(wpf:TextFieldAssist.CharacterCounterVisibility), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TextBox}}}" />
+        <Setter Property="Text">
+            <Setter.Value>
+                <MultiBinding StringFormat="{}{0} / {1}">
+                    <Binding Path="Text.Length" RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
+                    <Binding Path="MaxLength" RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
+                </MultiBinding>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style x:Key="MaterialDesignTextBoxBase" TargetType="{x:Type TextBoxBase}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
@@ -35,6 +51,8 @@
         <Setter Property="Cursor" Value="IBeam"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local"/>
         <Setter Property="wpf:TextFieldAssist.IncludeSpellingSuggestions" Value="{Binding RelativeSource={RelativeSource Self}, Path=(SpellCheck.IsEnabled)}" />
+        <Setter Property="wpf:TextFieldAssist.CharacterCounterStyle" Value="{StaticResource MaterialDesignCharacterCounterTextBlock}" />
+        <Setter Property="wpf:TextFieldAssist.CharacterCounterVisibility" Value="Visible" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
@@ -108,7 +126,7 @@
 
                                     <Grid
                                         Grid.Column="1"
-                                        x:Name="grid"                                        
+                                        x:Name="grid"
                                         MinWidth="1">
                                         <Grid
                                             Grid.Column="0">
@@ -221,14 +239,25 @@
                             CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
                             Background="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}" />
                         <Canvas
-                            x:Name="HelperTextWrapper"
                             VerticalAlignment="Bottom">
-                            <TextBlock
-                                Canvas.Top="2"                                
-                                FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
-                                MaxWidth="{Binding ActualWidth, ElementName=border}"
-                                Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                Text="{TemplateBinding wpf:HintAssist.HelperText}" />
+                            <Grid Canvas.Top="2"
+                                  x:Name="FooterGrid"
+                                  Width="{Binding ActualWidth, ElementName=border}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    x:Name="HelperTextTextBlock"
+                                    FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
+                                    Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                                    Text="{TemplateBinding wpf:HintAssist.HelperText}" />
+                                <Border Grid.Column="1" x:Name="CharacterCounterContainer">
+                                    <TextBlock
+                                        x:Name="CharacterCounterTextBlock"
+                                        Style="{Binding Path=(wpf:TextFieldAssist.CharacterCounterStyle), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                </Border>
+                            </Grid>
                         </Canvas>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -268,7 +297,7 @@
                             <Setter Property="Padding" Value="16 8 12 8" />
                             <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
                             <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
-                            <Setter TargetName="HelperTextWrapper" Property="Margin" Value="16 0 0 0" />
+                            <Setter TargetName="HelperTextTextBlock" Property="Margin" Value="16 0 0 0" />
                         </Trigger>
                         <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
                             <Setter Property="VerticalContentAlignment" Value="Top" />
@@ -290,7 +319,7 @@
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
-                            <Setter TargetName="HelperTextWrapper" Property="Margin" Value="16 0 0 0" />
+                            <Setter TargetName="HelperTextTextBlock" Property="Margin" Value="16 0 0 0" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -309,6 +338,15 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="HintWrapper" Property="Opacity" Value="1" />
                         </MultiTrigger>
+                        <DataTrigger Value="0">
+                            <DataTrigger.Binding>
+                                <PriorityBinding>
+                                    <Binding Path="MaxLength" RelativeSource="{RelativeSource Self}" FallbackValue="0" />
+                                    <Binding Source="0" />
+                                </PriorityBinding>
+                            </DataTrigger.Binding>
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="CharacterCounterContainer"/>
+                        </DataTrigger>
 
                         <!-- IsEnabled -->
                         <MultiTrigger>
@@ -429,6 +467,7 @@
                             <Setter TargetName="border" Property="Margin" Value="-1" />
                             <Setter Property="BorderThickness" Value="2" />
                             <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+                            <Setter Property="Margin" Value="0,0,1,0" TargetName="FooterGrid" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

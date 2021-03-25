@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
@@ -7,7 +6,6 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class ToggleButtonAssist
     {
-
         private static readonly DependencyPropertyKey HasOnContentPropertyKey =
             DependencyProperty.RegisterAttachedReadOnly(
                 "HasOnContent", typeof(bool), typeof(ToggleButtonAssist),
@@ -16,9 +14,7 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty HasOnContentProperty = HasOnContentPropertyKey.DependencyProperty;
 
         private static void SetHasOnContent(DependencyObject element, object value)
-        {
-            element.SetValue(HasOnContentPropertyKey, value);
-        }
+            => element.SetValue(HasOnContentPropertyKey, value);
 
         /// <summary>
         /// Framework use only.
@@ -26,9 +22,7 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="element"></param>
         /// <returns></returns>
         public static bool GetHasOnContent(DependencyObject element)
-        {
-            return (bool)element.GetValue(HasOnContentProperty);
-        }
+            => (bool)element.GetValue(HasOnContentProperty);
 
         /// <summary>
         /// Allows on (IsChecked) content to be provided on supporting <see cref="ToggleButton"/> styles.
@@ -37,9 +31,7 @@ namespace MaterialDesignThemes.Wpf
             "OnContent", typeof(object), typeof(ToggleButtonAssist), new PropertyMetadata(default(object), OnContentPropertyChangedCallback));
 
         private static void OnContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            SetHasOnContent(dependencyObject, dependencyPropertyChangedEventArgs.NewValue != null);
-        }
+            => SetHasOnContent(dependencyObject, dependencyPropertyChangedEventArgs.NewValue != null);
 
         /// <summary>
         /// Allows on (IsChecked) content to be provided on supporting <see cref="ToggleButton"/> styles.
@@ -47,17 +39,13 @@ namespace MaterialDesignThemes.Wpf
         /// <param name="element"></param>
         /// <param name="value"></param>
         public static void SetOnContent(DependencyObject element, object value)
-        {
-            element.SetValue(OnContentProperty, value);
-        }
+            => element.SetValue(OnContentProperty, value);
 
         /// <summary>
         /// Allows on (IsChecked) content to be provided on supporting <see cref="ToggleButton"/> styles.
         /// </summary>
         public static object GetOnContent(DependencyObject element)
-        {
-            return (object)element.GetValue(OnContentProperty);
-        }
+            => element.GetValue(OnContentProperty);
 
         /// <summary>
         /// Allows an on (IsChecked) template to be provided on supporting <see cref="ToggleButton"/> styles.
@@ -69,44 +57,32 @@ namespace MaterialDesignThemes.Wpf
         /// Allows an on (IsChecked) template to be provided on supporting <see cref="ToggleButton"/> styles.
         /// </summary>
         public static void SetOnContentTemplate(DependencyObject element, DataTemplate value)
-        {
-            element.SetValue(OnContentTemplateProperty, value);
-        }
+            => element.SetValue(OnContentTemplateProperty, value);
 
         /// <summary>
         /// Allows an on (IsChecked) template to be provided on supporting <see cref="ToggleButton"/> styles.
         /// </summary>
         public static DataTemplate GetOnContentTemplate(DependencyObject element)
-        {
-            return (DataTemplate)element.GetValue(OnContentTemplateProperty);
-        }
+            => (DataTemplate)element.GetValue(OnContentTemplateProperty);
 
-        public static DependencyProperty SwitchTrackOnBackgroundProperty =
+        public static readonly DependencyProperty SwitchTrackOnBackgroundProperty =
             DependencyProperty.RegisterAttached(
                 "SwitchTrackOnBackground", typeof(SolidColorBrush), typeof(ToggleButtonAssist));
 
         public static void SetSwitchTrackOnBackground(DependencyObject element, SolidColorBrush value)
-        {
-            element.SetValue(SwitchTrackOnBackgroundProperty, value);
-        }
+            => element.SetValue(SwitchTrackOnBackgroundProperty, value);
 
         public static SolidColorBrush GetSwitchTrackOnBackground(DependencyObject element)
-        {
-            return (SolidColorBrush)element.GetValue(SwitchTrackOnBackgroundProperty);
-        }
+            => (SolidColorBrush)element.GetValue(SwitchTrackOnBackgroundProperty);
 
-        public static DependencyProperty SwitchTrackOffBackgroundProperty =
+        public static readonly DependencyProperty SwitchTrackOffBackgroundProperty =
             DependencyProperty.RegisterAttached(
                 "SwitchTrackOffBackground", typeof(SolidColorBrush), typeof(ToggleButtonAssist));
 
         public static void SetSwitchTrackOffBackground(DependencyObject element, SolidColorBrush value)
-        {
-            element.SetValue(SwitchTrackOffBackgroundProperty, value);
-        }
+            => element.SetValue(SwitchTrackOffBackgroundProperty, value);
 
         public static SolidColorBrush GetSwitchTrackOffBackground(DependencyObject element)
-        {
-            return (SolidColorBrush)element.GetValue(SwitchTrackOffBackgroundProperty);
-        }
+            => (SolidColorBrush)element.GetValue(SwitchTrackOffBackgroundProperty);
     }
 }

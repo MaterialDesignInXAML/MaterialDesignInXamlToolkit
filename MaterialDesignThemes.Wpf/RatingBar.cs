@@ -11,7 +11,7 @@ namespace MaterialDesignThemes.Wpf
     /// </summary>
     public class RatingBar : Control
     {
-        public static RoutedCommand SelectRatingCommand = new RoutedCommand();
+        public static readonly RoutedCommand SelectRatingCommand = new();
 
         static RatingBar()
         {

@@ -198,5 +198,65 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
 
             recorder.Success();
         }
+
+        [Fact]
+        public async Task CharacterCount_WithMaxLengthSet_IsDisplayed()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml(@"
+<Grid Margin=""30"">
+    <TextBox
+        MaxLength=""10""
+    />
+</Grid>");
+            IVisualElement textBox = await grid.GetElement("/TextBox");
+            IVisualElement characterCounter = await textBox.GetElement("CharacterCounterTextBlock");
+
+            Assert.Equal("0 / 10", await characterCounter.GetText());
+
+            await textBox.SetText("12345");
+
+            Assert.Equal("5 / 10", await characterCounter.GetText());
+
+            recorder.Success();
+        }
+
+        [Fact]
+        public async Task CharacterCount_WithoutMaxLengthSet_IsCollapsed()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml(@"
+<Grid Margin=""30"">
+    <TextBox />
+</Grid>");
+            IVisualElement textBox = await grid.GetElement("/TextBox");
+            IVisualElement characterCounter = await textBox.GetElement("CharacterCounterTextBlock");
+
+            Assert.False(await characterCounter.GetIsVisible());
+
+            recorder.Success();
+        }
+
+        [Fact]
+        public async Task CharacterCount_WithMaxLengthSetAndCharacterCounterVisibilityCollapsed_IsNotDisplayed()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml(@"
+<Grid Margin=""30"">
+    <TextBox
+        MaxLength=""10""
+        materialDesign:TextFieldAssist.CharacterCounterVisibility=""Collapsed""
+    />
+</Grid>");
+            IVisualElement textBox = await grid.GetElement("/TextBox");
+            IVisualElement characterCounter = await textBox.GetElement("CharacterCounterTextBlock");
+
+            Assert.False(await characterCounter.GetIsVisible());
+
+            recorder.Success();
+        }
     }
 }

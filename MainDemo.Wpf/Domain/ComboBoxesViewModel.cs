@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 
 namespace MaterialDesignDemo.Domain
 {
-    public class ComboBoxesViewModel : INotifyPropertyChanged
+    public class ComboBoxesViewModel : ViewModelBase
     {
         private int? _selectedValueOne;
         private string? _selectedTextTwo;
@@ -28,33 +27,28 @@ namespace MaterialDesignDemo.Domain
         public int? SelectedValueOne
         {
             get => _selectedValueOne;
-            set => this.MutateVerbose(ref _selectedValueOne, value, RaisePropertyChanged());
+            set => SetProperty(ref _selectedValueOne, value);
         }
 
         public string? SelectedTextTwo
         {
             get => _selectedTextTwo;
-            set => this.MutateVerbose(ref _selectedTextTwo, value, RaisePropertyChanged());
+            set => SetProperty(ref _selectedTextTwo, value);
         }
 
         public string? SelectedValidationFilled
         {
             get => _selectedValidationFilled;
-            set => this.MutateVerbose(ref _selectedValidationFilled, value, RaisePropertyChanged());
+            set => SetProperty(ref _selectedValidationFilled, value);
         }
 
         public string? SelectedValidationOutlined
         {
             get => _selectedValidationOutlined;
-            set => this.MutateVerbose(ref _selectedValidationOutlined, value, RaisePropertyChanged());
+            set => SetProperty(ref _selectedValidationOutlined, value);
         }
 
         public IList<int> LongListToTestComboVirtualization { get; }
         public IList<string> ShortStringList { get; }
-
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        private System.Action<PropertyChangedEventArgs> RaisePropertyChanged() => args => PropertyChanged?.Invoke(this, args);
     }
 }

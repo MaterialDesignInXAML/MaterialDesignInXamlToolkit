@@ -5,6 +5,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignDemo.Converters
 {
+    [ValueConversion(typeof(Color), typeof(Brush))]
     public class ColorToBrushConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

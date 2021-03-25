@@ -22,22 +22,22 @@ namespace MaterialDesignThemes.Wpf.Transitions
         /// <summary>
         /// Causes the the next slide to be displayed (affectively increments <see cref="Selector.SelectedIndex"/>).
         /// </summary>
-        public static RoutedCommand MoveNextCommand = new RoutedCommand();
+        public static readonly RoutedCommand MoveNextCommand = new();
 
         /// <summary>
         /// Causes the the previous slide to be displayed (affectively decrements <see cref="Selector.SelectedIndex"/>).
         /// </summary>
-        public static RoutedCommand MovePreviousCommand = new RoutedCommand();
+        public static readonly RoutedCommand MovePreviousCommand = new();
 
         /// <summary>
         /// Moves to the first slide.
         /// </summary>
-        public static RoutedCommand MoveFirstCommand = new RoutedCommand();
+        public static readonly RoutedCommand MoveFirstCommand = new();
 
         /// <summary>
         /// Moves to the last slide.
         /// </summary>
-        public static RoutedCommand MoveLastCommand = new RoutedCommand();
+        public static readonly RoutedCommand MoveLastCommand = new();
 
         public static readonly DependencyProperty AutoApplyTransitionOriginsProperty = DependencyProperty.Register(
             "AutoApplyTransitionOrigins", typeof(bool), typeof(Transitioner), new PropertyMetadata(default(bool)));

@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="MaterialDesignDemo.Fields"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -99,6 +99,7 @@
                 Grid.Column="1">
                 <TextBox
                     x:Name="PhoneTextBox"
+                    MaxLength="12"
                     materialDesign:TransitionAssist.DisableTransitions="True"/>
             </smtx:XamlDisplay>
 
@@ -428,9 +429,9 @@
                 UniqueKey="fields_20"
                 Grid.Row="1"
                 Grid.Column="0">
-                <ContentControl Content="{Binding DemoItem}">
+                <ContentControl Content="{Binding TestObject}">
                     <ContentControl.ContentTemplate>
-                        <DataTemplate DataType="domain:DemoItem">
+                        <DataTemplate DataType="domain:FieldsTestObject">
                             <StackPanel Orientation="Horizontal">
                                 <TextBox
                                     materialDesign:HintAssist.Hint="Name"
@@ -474,11 +475,11 @@
                 UniqueKey="fields_21"
                 HorizontalAlignment="Left"
                 Margin="32 0 0 0">
-                <ContentControl Content="{Binding DemoItem}">
+                <ContentControl Content="{Binding TestObject}">
                     <ContentControl.ContentTemplateSelector>
                         <domain1:SimpleDataTemplateSelector>
                             <domain1:SimpleDataTemplateSelector.FixedTemplate>
-                                <DataTemplate DataType="domain:DemoItem">
+                                <DataTemplate DataType="domain:FieldsTestObject">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBox
                                             materialDesign:HintAssist.Hint="Name"

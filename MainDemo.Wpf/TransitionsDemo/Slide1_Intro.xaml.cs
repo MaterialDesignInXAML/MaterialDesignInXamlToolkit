@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignDemo.TransitionsDemo
@@ -15,15 +14,13 @@ namespace MaterialDesignDemo.TransitionsDemo
             InitializeComponent();
         }
 
-        public class Slide1ViewModel : INotifyPropertyChanged
+        public class Slide1ViewModel : ViewModelBase
         {
-            public event PropertyChangedEventHandler? PropertyChanged;
-
             private string? _name;
             public string? Name
             {
                 get => _name;
-                set => this.MutateVerbose(ref _name, value, args => PropertyChanged?.Invoke(this, args));
+                set => SetProperty(ref _name, value);
             }
         }
     }

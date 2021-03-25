@@ -1,14 +1,12 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo.Domain
 {
-    public class DialogsViewModel : INotifyPropertyChanged
+    public class DialogsViewModel : ViewModelBase
     {
         public DialogsViewModel()
         {
@@ -36,11 +34,11 @@ namespace MaterialDesignDemo.Domain
             var result = await DialogHost.Show(view, "RootDialog", ClosingEventHandler);
 
             //check the result...
-            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
+            Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
         }
 
         private void ClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
-            => Console.WriteLine("You can intercept the closing event, and cancel here.");
+            => Debug.WriteLine("You can intercept the closing event, and cancel here.");
 
         private async void ExecuteRunExtendedDialog(object o)
         {
@@ -54,11 +52,11 @@ namespace MaterialDesignDemo.Domain
             var result = await DialogHost.Show(view, "RootDialog", ExtendedOpenedEventHandler, ExtendedClosingEventHandler);
 
             //check the result...
-            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
+            Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
         }
 
         private void ExtendedOpenedEventHandler(object sender, DialogOpenedEventArgs eventargs)
-            => Console.WriteLine("You could intercept the open and affect the dialog using eventArgs.Session.");
+            => Debug.WriteLine("You could intercept the open and affect the dialog using eventArgs.Session.");
 
         private void ExtendedClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
         {
@@ -93,23 +91,13 @@ namespace MaterialDesignDemo.Domain
         public bool IsSample4DialogOpen
         {
             get => _isSample4DialogOpen;
-            set
-            {
-                if (_isSample4DialogOpen == value) return;
-                _isSample4DialogOpen = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref _isSample4DialogOpen, value);
         }
 
         public object? Sample4Content
         {
             get => _sample4Content;
-            set
-            {
-                if (_sample4Content == value) return;
-                _sample4Content = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref _sample4Content, value);
         }
 
         private void OpenSample4Dialog(object obj)
@@ -118,10 +106,7 @@ namespace MaterialDesignDemo.Domain
             IsSample4DialogOpen = true;
         }
 
-        private void CancelSample4Dialog(object obj)
-        {
-            IsSample4DialogOpen = false;
-        }
+        private void CancelSample4Dialog(object obj) => IsSample4DialogOpen = false;
 
         private void AcceptSample4Dialog(object obj)
         {
@@ -133,12 +118,5 @@ namespace MaterialDesignDemo.Domain
         }
 
         #endregion
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

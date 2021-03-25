@@ -11,7 +11,7 @@ namespace MaterialDesignThemes.Wpf
     [TemplateVisualState(GroupName = TemplateFlipGroupName, Name = TemplateUnflippedStateName)]
     public class Flipper : Control
     {
-        public static RoutedCommand FlipCommand = new RoutedCommand();
+        public static readonly RoutedCommand FlipCommand = new();
 
         public const string Plane3DPartName = "PART_Plane3D";
         public const string TemplateFlipGroupName = "FlipStates";
