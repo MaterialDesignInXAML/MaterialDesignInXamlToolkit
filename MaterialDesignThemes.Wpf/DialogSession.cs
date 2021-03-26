@@ -11,9 +11,7 @@ namespace MaterialDesignThemes.Wpf
         private readonly DialogHost _owner;
 
         internal DialogSession(DialogHost owner)
-        {
-            _owner = owner ?? throw new ArgumentNullException(nameof(owner));
-        }
+            => _owner = owner ?? throw new ArgumentNullException(nameof(owner));
 
         /// <summary>
         /// Indicates if the dialog session has ended.  Once ended no further method calls will be permitted.
