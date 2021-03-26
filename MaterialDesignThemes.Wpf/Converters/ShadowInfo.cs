@@ -25,8 +25,6 @@ namespace MaterialDesignThemes.Wpf.Converters
         }
 
         public static DropShadowEffect? GetDropShadow(ShadowDepth depth)
-        {
-            return ShadowsDictionary[depth];
-        }
+            => ShadowsDictionary[depth];
     }
 }
