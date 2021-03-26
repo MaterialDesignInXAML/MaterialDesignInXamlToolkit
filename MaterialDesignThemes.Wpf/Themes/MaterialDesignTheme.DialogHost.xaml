@@ -142,13 +142,15 @@
                                      x:Name="PART_Popup" 
                                      Style="{TemplateBinding PopupStyle}"
                                      wpf:ThemeAssist.Theme="{TemplateBinding DialogTheme}">
-                            <Border Background="Transparent" IsHitTestVisible="{TemplateBinding CloseOnClickAway}">
-                                <Border.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick"
+                            <Grid>
+                                <Border Background="Transparent" IsHitTestVisible="{TemplateBinding CloseOnClickAway}">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick"
                                                   Command="{x:Static wpf:DialogHost.CloseDialogCommand}"
                                                   CommandParameter="{TemplateBinding CloseOnClickAwayParameter}"
                                                   />
-                                </Border.InputBindings>
+                                    </Border.InputBindings>
+                                </Border>
                                 <wpf:Card x:Name="PART_PopupContentElement" 
                                           Margin="{TemplateBinding DialogMargin}"
                                           wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
@@ -162,6 +164,7 @@
                                           Foreground="{DynamicResource MaterialDesignBody}"
                                           Focusable="True"
                                           IsTabStop="False"
+                                          IsHitTestVisible="True"
                                           Opacity="0"
                                           RenderTransformOrigin=".5,.5"
                                           Content="{TemplateBinding DialogContent}"
@@ -176,7 +179,7 @@
                                         </TransformGroup>
                                     </wpf:Card.RenderTransform>
                                 </wpf:Card>
-                            </Border>
+                            </Grid>
                         </wpf:PopupEx>
                         <AdornerDecorator>
                             <ContentPresenter x:Name="ContentPresenter" Opacity="1" Content="{TemplateBinding ContentControl.Content}" 
