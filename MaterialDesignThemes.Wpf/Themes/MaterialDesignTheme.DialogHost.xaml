@@ -142,33 +142,44 @@
                                      x:Name="PART_Popup" 
                                      Style="{TemplateBinding PopupStyle}"
                                      wpf:ThemeAssist.Theme="{TemplateBinding DialogTheme}">
-                            <wpf:Card x:Name="PART_PopupContentElement" 
-                                        Margin="{TemplateBinding DialogMargin}"
-                                        wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
-                                        UniformCornerRadius="4"
-                                        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-                                        TextElement.FontWeight="Regular"
-                                        TextElement.FontSize="13"
-                                        TextOptions.TextFormattingMode="Ideal"
-                                        TextOptions.TextRenderingMode="Auto" 
-                                        FocusManager.IsFocusScope="False"
-                                        Foreground="{DynamicResource MaterialDesignBody}"
-                                        Focusable="True"
-                                        IsTabStop="False"
-                                        Opacity="0"
-                                        RenderTransformOrigin=".5,.5"
-                                        Content="{TemplateBinding DialogContent}"
-                                        ContentTemplate="{TemplateBinding DialogContentTemplate}"
-                                        ContentTemplateSelector="{TemplateBinding DialogContentTemplateSelector}"
-                                        ContentStringFormat="{TemplateBinding DialogContentStringFormat}">
-                                <wpf:Card.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform x:Name="CardScaleTransform"
+                            <Grid>
+                                <Border Background="Transparent" IsHitTestVisible="{TemplateBinding CloseOnClickAway}">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick"
+                                                  Command="{x:Static wpf:DialogHost.CloseDialogCommand}"
+                                                  CommandParameter="{TemplateBinding CloseOnClickAwayParameter}"
+                                                  />
+                                    </Border.InputBindings>
+                                </Border>
+                                <wpf:Card x:Name="PART_PopupContentElement" 
+                                          Margin="{TemplateBinding DialogMargin}"
+                                          wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
+                                          UniformCornerRadius="4"
+                                          TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                                          TextElement.FontWeight="Regular"
+                                          TextElement.FontSize="13"
+                                          TextOptions.TextFormattingMode="Ideal"
+                                          TextOptions.TextRenderingMode="Auto" 
+                                          FocusManager.IsFocusScope="False"
+                                          Foreground="{DynamicResource MaterialDesignBody}"
+                                          Focusable="True"
+                                          IsTabStop="False"
+                                          IsHitTestVisible="True"
+                                          Opacity="0"
+                                          RenderTransformOrigin=".5,.5"
+                                          Content="{TemplateBinding DialogContent}"
+                                          ContentTemplate="{TemplateBinding DialogContentTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding DialogContentTemplateSelector}"
+                                          ContentStringFormat="{TemplateBinding DialogContentStringFormat}">
+                                    <wpf:Card.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform x:Name="CardScaleTransform"
                                                         ScaleX="0"
                                                         ScaleY="0" />
-                                    </TransformGroup>
-                                </wpf:Card.RenderTransform>
-                            </wpf:Card>
+                                        </TransformGroup>
+                                    </wpf:Card.RenderTransform>
+                                </wpf:Card>
+                            </Grid>
                         </wpf:PopupEx>
                         <AdornerDecorator>
                             <ContentPresenter x:Name="ContentPresenter" Opacity="1" Content="{TemplateBinding ContentControl.Content}" 
