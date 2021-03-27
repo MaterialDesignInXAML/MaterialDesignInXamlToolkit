@@ -200,7 +200,6 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsOpen" Value="True">
-                            <Setter TargetName="ContentPresenter" Property="IsEnabled" Value="False" />
                             <Setter TargetName="PART_ContentCoverGrid" Property="IsHitTestVisible" Value="True" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -388,7 +387,6 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsOpen" Value="True">
-                            <Setter TargetName="ContentPresenter" Property="IsEnabled" Value="False" />
                             <Setter TargetName="PART_ContentCoverGrid" Property="IsHitTestVisible" Value="True" />
                         </Trigger>
                     </ControlTemplate.Triggers>
