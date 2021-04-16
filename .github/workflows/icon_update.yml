@@ -1,10 +1,9 @@
 name: .NET
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 3 * * *'
 
 jobs:
   build:
@@ -20,4 +19,20 @@ jobs:
     - name: Build
       run: dotnet run -c Release -- icons
       working-directory: ./mdresgen
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        commit-message: >
+          [Icon update detected by Github Action].
+          Auto generated pull request.
+        committer: Material Design Service Account <mdixsa@outlook.com>
+        author: Material Design Service Account <mdixsa@outlook.com>
+        branch: pipeline/icons
+        delete-branch: true
+        base: master
+        title: Update Icons [GitHub Action]
+        body: >
+          [Icon update detected by Github Action].
+          Auto generated pull request.
+        
     
