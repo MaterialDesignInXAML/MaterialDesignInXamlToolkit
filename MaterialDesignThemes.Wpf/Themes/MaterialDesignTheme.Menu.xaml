@@ -207,8 +207,7 @@
                                IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
                                PopupAnimation="Slide"
                                Placement="Bottom"
-                               VerticalOffset="-16"
-                                CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+                               CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                             <Border x:Name="SubMenuBorder"
                                     Background="{Binding Path=Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuBase}}"
                                     Effect="{DynamicResource MaterialDesignShadowDepth1}"
@@ -239,6 +238,7 @@
                         <Trigger Property="Role" Value="SubmenuHeader">
                             <Setter TargetName="SubBlock" Property="Visibility" Value="Visible" />
                             <Setter TargetName="PART_Popup" Property="Placement" Value="Right" />
+                            <Setter TargetName="PART_Popup" Property="VerticalOffset" Value="-16" />
                             <Setter Property="Height" Value="32"/>
                             <Setter TargetName="BoldHeaderPresenter" Property="Visibility" Value="Collapsed"/>
                         </Trigger>
