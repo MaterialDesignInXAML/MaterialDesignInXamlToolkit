@@ -1,11 +1,9 @@
 name: Icon Update
 
 on:
-  pull_request:
-    branches: [ master ]
   workflow_dispatch:
-  #schedule:
-  #  - cron:  '0 3 * * *'
+  schedule:
+    - cron:  '0 3 * * *'
 
 jobs:
   build:
