@@ -7133,6 +7133,7 @@ namespace MaterialDesignThemes.Wpf
         PostItNoteAlertOutline=NoteAlertOutline,
         StickyNoteAlertOutline=NoteAlertOutline,
         Notebook,
+        Diary=Notebook,
         Journal=Notebook,
         Planner=Notebook,
         NotebookCheck,
