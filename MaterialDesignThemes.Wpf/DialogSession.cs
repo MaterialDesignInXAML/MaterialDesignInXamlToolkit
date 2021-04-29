@@ -35,10 +35,10 @@ namespace MaterialDesignThemes.Wpf
         /// Update the current content in the dialog.
         /// </summary>
         /// <param name="content"></param>
-        public void UpdateContent(object content)
+        public void UpdateContent(object? content)
         {
             _owner.AssertTargetableContent();
-            _owner.DialogContent = content ?? throw new ArgumentNullException(nameof(content));
+            _owner.DialogContent = content;
             _owner.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
                 _owner.FocusPopup();
