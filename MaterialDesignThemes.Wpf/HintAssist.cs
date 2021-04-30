@@ -120,5 +120,17 @@ namespace MaterialDesignThemes.Wpf
             element.SetValue(HelperTextFontSizeProperty, value);
 
         #endregion
+
+        #region AttachedProperty : HelperTextStyleProperty
+        public static readonly DependencyProperty HelperTextStyleProperty
+            = DependencyProperty.RegisterAttached("HelperTextStyle", typeof(Style), typeof(HintAssist),
+                new PropertyMetadata(null));
+
+        public static Style? GetHelperTextStyle(DependencyObject element) =>
+            (Style?)element.GetValue(HelperTextStyleProperty);
+        public static void SetHelperTextStyle(DependencyObject element, Style? value) =>
+            element.SetValue(HelperTextStyleProperty, value);
+
+        #endregion
     }
 }

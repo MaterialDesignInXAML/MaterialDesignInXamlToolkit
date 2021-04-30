@@ -258,5 +258,30 @@ namespace MaterialDesignThemes.UITests.WPF.TextBox
 
             recorder.Success();
         }
+
+        [Fact]
+        [Description("Issue 2300")]
+        public async Task HelperText_CanSetFontColorWithAttachedStyle()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml(@"
+<Grid Margin=""30"">
+    <TextBox
+        materialDesign:HintAssist.HelperText=""Test"">
+        <materialDesign:HintAssist.HelperTextStyle>
+            <Style TargetType=""TextBlock"" BasedOn=""{StaticResource MaterialDesignHelperTextBlock}"">
+                <Setter Property=""Foreground"" Value=""Red"" />
+            </Style>
+        </materialDesign:HintAssist.HelperTextStyle>
+    </TextBox>
+</Grid>");
+            IVisualElement textBox = await grid.GetElement("/TextBox");
+            IVisualElement helperText = await textBox.GetElement("HelperTextTextBlock");
+
+            Assert.Equal(Colors.Red, await helperText.GetForegroundColor());
+
+            recorder.Success();
+        }
     }
 }
