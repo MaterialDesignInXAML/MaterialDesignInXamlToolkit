@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
 
-    <Color x:Key="MaterialDesignValidationErrorColor">#f44336</Color>
+    <Color x:Key="MaterialDesignValidationErrorColor">#CF6679</Color>
     <SolidColorBrush x:Key="MaterialDesignValidationErrorBrush" Color="{StaticResource MaterialDesignValidationErrorColor}"/>
 
     <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FF000000" po:Freeze="True" />
