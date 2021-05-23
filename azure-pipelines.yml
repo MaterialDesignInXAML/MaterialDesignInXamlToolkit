@@ -17,9 +17,9 @@ variables:
   solution: 'MaterialDesignToolkit.Full.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  mdixColorsVersion: '2.0.1'
-  mdixMahAppsVersion: '0.1.7'
-  mdixVersion: '4.1.0'
+  mdixColorsVersion: '2.0.2'
+  mdixMahAppsVersion: '0.1.8'
+  mdixVersion: '4.1.1'
 
 steps:
 - task: DotNetCoreCLI@2
