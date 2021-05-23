@@ -17,8 +17,8 @@ variables:
   solution: 'MaterialDesignToolkit.Full.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  mdixColorsVersion: '2.0.0'
-  mdixMahAppsVersion: '0.1.6'
+  mdixColorsVersion: '2.0.1'
+  mdixMahAppsVersion: '0.1.7'
   mdixVersion: '4.1.0'
 
 steps:
