@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
@@ -83,6 +84,48 @@ namespace MaterialDesignThemes.UITests.WPF.ListBox
             await earth.Click();
 
             await Wait.For(async () => Assert.Equal(2, await listBox.GetProperty<int>(nameof(Selector.SelectedIndex))));
+
+            recorder.Success();
+        }
+
+        [Fact]
+        public async Task ScrollBarAssist_ButtonsVisibility_HidesButtonsOnMinimalistStyle()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            string xaml = @"<ListBox Height=""300"" Width=""300""
+materialDesign:ScrollBarAssist.ButtonsVisibility=""Collapsed"" 
+ScrollViewer.HorizontalScrollBarVisibility=""Visible"" 
+ScrollViewer.VerticalScrollBarVisibility=""Visible"">
+<ListBox.Resources>
+    <Style BasedOn=""{StaticResource MaterialDesignScrollBarMinimal}"" TargetType=""{x:Type ScrollBar}"" />
+</ListBox.Resources>
+";
+            for(int i = 0; i < 50; i++)
+            {
+                xaml += $"    <ListBoxItem>This is a pretty long meaningless text just to make horizontal scrollbar visibile</ListBoxItem>{Environment.NewLine}";
+            }
+            xaml += "</ListBox>";
+
+            IVisualElement listBox = await LoadXaml(xaml);
+            IVisualElement verticalScrollBar = await listBox.GetElement("PART_VerticalScrollBar");
+            IVisualElement horizontalScrollBar = await listBox.GetElement("PART_HorizontalScrollBar");
+
+            Assert.Equal(17, await verticalScrollBar.GetActualWidth());
+            var verticalThumb = await verticalScrollBar.GetElement("/Thumb~border");
+            Assert.Equal(10, await verticalThumb.GetActualWidth());
+            var upButton = await verticalScrollBar.GetElement("PART_LineUpButton");
+            Assert.False(await upButton.GetIsVisible());
+            var downButton = await verticalScrollBar.GetElement("PART_LineDownButton");
+            Assert.False(await downButton.GetIsVisible());
+
+            Assert.Equal(17, await horizontalScrollBar.GetActualHeight());
+            var horizontalThumb = await horizontalScrollBar.GetElement("/Thumb~border");
+            Assert.Equal(10, await horizontalThumb.GetActualHeight());
+            var leftButton = await horizontalScrollBar.GetElement("PART_LineLeftButton");
+            Assert.False(await upButton.GetIsVisible());
+            var rightButton = await horizontalScrollBar.GetElement("PART_LineRightButton");
+            Assert.False(await downButton.GetIsVisible());
 
             recorder.Success();
         }

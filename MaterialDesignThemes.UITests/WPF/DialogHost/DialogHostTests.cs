@@ -58,9 +58,9 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHost
             IVisualElement closeButton = await dialogHost.GetElement("CloseButton");
             IVisualElement resultTextBlock = await dialogHost.GetElement("ResultTextBlock");
 
-
             await showButton.Click();
             await Wait.For(async () => await closeButton.GetIsVisible());
+            await Task.Delay(300);
             await closeButton.Click();
 
             await Wait.For(async () => Assert.Equal("1", await resultTextBlock.GetText()));
