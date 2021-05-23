@@ -19,7 +19,7 @@ variables:
   buildConfiguration: 'Release'
   mdixColorsVersion: '2.0.0'
   mdixMahAppsVersion: '0.1.6'
-  mdixVersion: '4.0.0'
+  mdixVersion: '4.1.0'
 
 steps:
 - task: DotNetCoreCLI@2
