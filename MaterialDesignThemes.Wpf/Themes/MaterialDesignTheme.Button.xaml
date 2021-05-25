@@ -69,6 +69,7 @@
                                              Maximum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Maximum)}"
                                              Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorForeground)}"
                                              Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
+                                             BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
                                              Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}"
                                              IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}"
                                              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -77,6 +78,14 @@
                                              Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
                                              HorizontalAlignment="Left"
                                              VerticalAlignment="Center">
+                                    <ProgressBar.Clip>
+                                        <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                            <Binding ElementName="border" Path="ActualWidth" />
+                                            <Binding ElementName="border" Path="ActualHeight" />
+                                            <Binding ElementName="border" Path="CornerRadius" />
+                                            <Binding ElementName="border" Path="BorderThickness" />
+                                        </MultiBinding>
+                                    </ProgressBar.Clip>
                                 </ProgressBar>
                             </Grid>
                         </AdornerDecorator>
