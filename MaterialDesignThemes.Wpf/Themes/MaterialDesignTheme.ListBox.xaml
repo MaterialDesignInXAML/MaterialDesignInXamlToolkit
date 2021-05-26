@@ -328,14 +328,14 @@
     </Style>
 
     <Style x:Key="MaterialDesignNavigationListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="Padding" Value="8"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Margin" Value="4 2 4 2"/>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="wpf:ListBoxItemAssist.CornerRadius" Value="4"/>
 
@@ -344,9 +344,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Border x:Name="border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
                             Margin="{TemplateBinding Margin}"
                             CornerRadius="{Binding Path=(wpf:ListBoxItemAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                             ClipToBounds="{TemplateBinding ClipToBounds}">
@@ -404,7 +401,9 @@
 
                             <Border x:Name="SelectedBorder"
                                     Opacity="0"
-                                    Background="{DynamicResource PrimaryHueMidBrush}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
                                     RenderTransformOrigin="0.5,0.5">
                                 <Border.RenderTransform>
                                     <ScaleTransform ScaleX="1"/>
@@ -432,19 +431,48 @@
                             <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
                         </Trigger>
 
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
-                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
-                            <Setter TargetName="SelectedBorder" Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-                        </MultiDataTrigger>
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+
+    </Style>
+
+    <Style x:Key="MaterialDesignNavigationPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignNavigationListBoxItem}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style x:Key="MaterialDesignNavigationAccentListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignNavigationListBoxItem}">
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
 
     </Style>
 
@@ -488,6 +516,14 @@
 
     <Style x:Key="MaterialDesignNavigationListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationListBoxItem}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignNavigationPrimaryListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationPrimaryListBoxItem}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignNavigationAccentListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationAccentListBoxItem}"/>
     </Style>
 
     <Style x:Key="MaterialDesignFilterChipListBoxItem" TargetType="{x:Type ListBoxItem}">
