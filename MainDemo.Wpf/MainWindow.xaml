@@ -82,7 +82,7 @@
                         ItemsSource="{Binding DemoItems}"
                         PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
                         AutomationProperties.Name="DemoPagesListBox"
-                        Style="{StaticResource MaterialDesignNavigationListBox}">
+                        Style="{StaticResource }">
                         <ListBox.Resources>
                             <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
                         </ListBox.Resources>
