@@ -9,6 +9,8 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
         <ResourceDictionary>
             <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
+            <converters:BorderClipConverter x:Key="BorderClipConverter" />
+            <converters:IsDarkConverter x:Key="IsDarkConverter" />
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
@@ -209,7 +211,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="MaterialDesignToolToggleFlatListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignToolToggleListBox}">
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
     </Style>
@@ -325,6 +327,127 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignNavigationListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Margin" Value="4 2 4 2"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="wpf:ListBoxItemAssist.CornerRadius" Value="4"/>
+
+        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Margin="{TemplateBinding Margin}"
+                            CornerRadius="{Binding Path=(wpf:ListBoxItemAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                            ClipToBounds="{TemplateBinding ClipToBounds}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CircleEase EasingMode="EaseOut"/>
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Normal"/>
+                                <VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
+                                                             To="0.1" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Disabled"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup Name="SelectionStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.6"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Selected">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.12" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Unselected"/>
+                                <VisualState Name="SelectedUnfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.12" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <Grid.Clip>
+                                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                    <Binding ElementName="border" Path="ActualWidth" />
+                                    <Binding ElementName="border" Path="ActualHeight" />
+                                    <Binding ElementName="border" Path="CornerRadius" />
+                                    <Binding ElementName="border" Path="BorderThickness" />
+                                </MultiBinding>
+                            </Grid.Clip>
+                            <Border x:Name="MouseOverBorder"
+                                    Opacity="0"
+                                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+
+                            <Border x:Name="SelectedBorder"
+                                    Opacity="0"
+                                    Background="{DynamicResource PrimaryHueMidBrush}"
+                                    RenderTransformOrigin="0.5,0.5">
+                                <Border.RenderTransform>
+                                    <ScaleTransform ScaleX="1"/>
+                                </Border.RenderTransform>
+                            </Border>
+                            <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                        Focusable="False"
+                                        Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Padding="{TemplateBinding Padding}"
+                                        RecognizesAccessKey="False">
+                            </wpf:Ripple>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value=".56" />
+                        </Trigger>
+
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+                        </Trigger>
+
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                            <Setter TargetName="SelectedBorder" Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+                        </MultiDataTrigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
     <Style x:Key="MaterialDesignListBox" TargetType="{x:Type ListBox}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -361,6 +484,10 @@
 
     <Style x:Key="MaterialDesignCardsListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignCardsListBoxItem}"/>
+    </Style>
+
+    <Style x:Key="MaterialDesignNavigationListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationListBoxItem}"/>
     </Style>
 
     <Style x:Key="MaterialDesignFilterChipListBoxItem" TargetType="{x:Type ListBoxItem}">
@@ -526,11 +653,11 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="MaterialDesignFilterChipPrimaryOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipPrimaryOutlineListBoxItem}"/>
     </Style>
-    
+
     <Style x:Key="MaterialDesignFilterChipAccentOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
             <Setter.Value>
@@ -580,7 +707,7 @@
         <Setter Property="SelectionMode" Value="Single"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipListBoxItem}"/>
     </Style>
-    
+
     <Style x:Key="MaterialDesignChoiceChipPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
             <Setter.Value>
@@ -655,7 +782,7 @@
     <Style x:Key="MaterialDesignChoiceChipOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipOutlineListBoxItem}"/>
     </Style>
-    
+
     <Style x:Key="MaterialDesignChoiceChipPrimaryOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
             <Setter.Value>
@@ -679,7 +806,7 @@
 
     <Style x:Key="MaterialDesignChoiceChipPrimaryOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBoxItem}"/>
-    </Style>    
+    </Style>
 
     <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
