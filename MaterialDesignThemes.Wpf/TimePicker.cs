@@ -173,6 +173,16 @@ namespace MaterialDesignThemes.Wpf
             set => SetValue(Is24HoursProperty, value);
         }
 
+        public static readonly DependencyProperty IsHeaderVisibleProperty = DependencyProperty.Register(
+            nameof(IsHeaderVisible), typeof(bool), typeof(TimePicker), new PropertyMetadata(default(bool)));
+
+        public bool IsHeaderVisible
+        {
+            get => (bool)GetValue(IsHeaderVisibleProperty);
+            set => SetValue(IsHeaderVisibleProperty, value);
+        }
+
+
         private static object OnCoerceIsDropDownOpen(DependencyObject d, object baseValue)
         {
             var timePicker = (TimePicker)d;
