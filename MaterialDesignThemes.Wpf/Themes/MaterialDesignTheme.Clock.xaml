@@ -1136,7 +1136,10 @@
                                 <Ellipse x:Name="BackgroundEllipse" Width="230" Height="230" Fill="{DynamicResource MaterialDesignBodyLight}" Opacity=".12" />
                                 <Canvas x:Name="PART_HoursCanvas" Width="230" Height="230"
 											    RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="HourLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Width="2.75" RenderTransformOrigin="0.5,0.985"
+                                    <Path x:Name="HourLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
+                                          Fill="{DynamicResource PrimaryHueMidBrush}" Canvas.Left="113.625"
+                                          Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}"
+                                          Width="3" RenderTransformOrigin="0.5,0.985"
                                           Height="96.959" Canvas.Top="19.047">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
@@ -1148,7 +1151,12 @@
                                 </Canvas>
                                 <Canvas x:Name="PART_MinutesCanvas" Width="230" Height="230" Opacity="0" IsHitTestVisible="False"
 											    RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="MinuteLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
+                                    <Path x:Name="MinuteLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
+                                          Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959"
+                                          Canvas.Left="113.625" Stretch="Fill"
+                                          Stroke="{DynamicResource PrimaryHueMidBrush}"
+                                          Canvas.Top="19.047" Width="3"
+                                          RenderTransformOrigin="0.5,0.985">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
                                         </Path.RenderTransform>
@@ -1159,7 +1167,12 @@
                                 </Canvas>
                                 <Canvas x:Name="PART_SecondsCanvas" Width="230" Height="230" Opacity="0" IsHitTestVisible="False"
 											    RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="SecondLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
+                                    <Path x:Name="SecondLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
+                                          Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959"
+                                          Canvas.Left="113.625" Stretch="Fill"
+                                          Stroke="{DynamicResource PrimaryHueMidBrush}"
+                                          Canvas.Top="19.047" Width="3"
+                                          RenderTransformOrigin="0.5,0.985">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockSecondLineConverter}}" />
                                         </Path.RenderTransform>
@@ -1730,7 +1743,7 @@
                                           Canvas.Left="113.625"
                                           Stretch="Fill"
                                           Stroke="{DynamicResource SecondaryHueMidBrush}"
-                                          Width="2.75"
+                                          Width="3"
                                           RenderTransformOrigin="0.5,0.985"
                                           Height="96.959"
                                           Canvas.Top="19.047">
@@ -1752,7 +1765,7 @@
                                           Stretch="Fill"
                                           Stroke="{DynamicResource SecondaryHueMidBrush}"
                                           Canvas.Top="19.047"
-                                          Width="2.75"
+                                          Width="3"
                                           RenderTransformOrigin="0.5,0.985">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
@@ -1772,7 +1785,7 @@
                                           Stretch="Fill"
                                           Stroke="{DynamicResource SecondaryHueMidBrush}"
                                           Canvas.Top="19.047"
-                                          Width="2.75"
+                                          Width="3"
                                           RenderTransformOrigin="0.5,0.985">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockSecondLineConverter}}" />
@@ -2343,7 +2356,11 @@
                                 <Ellipse x:Name="BackgroundEllipse" Width="230" Height="230" Fill="{DynamicResource MaterialDesignBodyLight}" Opacity=".12" />
                                 <Canvas x:Name="PART_HoursCanvas" Width="230" Height="230"
 											    RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="HourLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Width="2.75" RenderTransformOrigin="0.5,0.985"
+                                    <Path x:Name="HourLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
+                                          Fill="{DynamicResource PrimaryHueMidBrush}"
+                                          Canvas.Left="113.625" Stretch="Fill"
+                                          Stroke="{DynamicResource PrimaryHueMidBrush}"
+                                          Width="3" RenderTransformOrigin="0.5,0.985"
                                           Height="96.959" Canvas.Top="19.047">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
@@ -2353,9 +2370,17 @@
                                         <ScaleTransform x:Name="HoursScaleTransform" ScaleX="1" ScaleY="1" />
                                     </Canvas.RenderTransform>
                                 </Canvas>
-                                <Canvas x:Name="PART_MinutesCanvas" Width="230" Height="230" Opacity="0" IsHitTestVisible="False"
-											    RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="MinuteLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
+                                <Canvas x:Name="PART_MinutesCanvas"
+                                        Width="230" Height="230"
+                                        Opacity="0"
+                                        IsHitTestVisible="False"
+										RenderTransformOrigin=".5,.5">
+                                    <Path x:Name="MinuteLine"
+                                          Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
+                                          Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959"
+                                          Canvas.Left="113.625" Stretch="Fill"
+                                          Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047"
+                                          Width="3" RenderTransformOrigin="0.5,0.985">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
                                         </Path.RenderTransform>
@@ -2366,7 +2391,12 @@
                                 </Canvas>
                                 <Canvas x:Name="PART_SecondsCanvas" Width="230" Height="230" Opacity="0" IsHitTestVisible="False"
 											    RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="SecondLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
+                                    <Path x:Name="SecondLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
+                                          Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959"
+                                          Canvas.Left="113.625" Stretch="Fill"
+                                          Stroke="{DynamicResource PrimaryHueMidBrush}"
+                                          Canvas.Top="19.047" Width="3"
+                                          RenderTransformOrigin="0.5,0.985">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockSecondLineConverter}}" />
                                         </Path.RenderTransform>
@@ -2803,7 +2833,7 @@
                                                     CornerRadius="{TemplateBinding CornerRadius}">
                                                 <Border.Style>
                                                     <Style TargetType="Border">
-                                                        <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}"/>
+                                                        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
                                                                 <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
@@ -2941,7 +2971,7 @@
                                           Fill="{DynamicResource SecondaryHueMidBrush}"
                                           Canvas.Left="113.625" Stretch="Fill"
                                           Stroke="{DynamicResource SecondaryHueMidBrush}"
-                                          Width="2.75" RenderTransformOrigin="0.5,0.985"
+                                          Width="3" RenderTransformOrigin="0.5,0.985"
                                           Height="96.959" Canvas.Top="19.047">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
@@ -2957,7 +2987,7 @@
                                           Fill="{DynamicResource SecondaryHueMidBrush}"
                                           Height="96.959" Canvas.Left="113.625" Stretch="Fill"
                                           Stroke="{DynamicResource SecondaryHueMidBrush}"
-                                          Canvas.Top="19.047" Width="2.75"
+                                          Canvas.Top="19.047" Width="3"
                                           RenderTransformOrigin="0.5,0.985">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
@@ -2973,7 +3003,7 @@
                                           Fill="{DynamicResource SecondaryHueMidBrush}" Height="96.959"
                                           Canvas.Left="113.625" Stretch="Fill"
                                           Stroke="{DynamicResource SecondaryHueMidBrush}"
-                                          Canvas.Top="19.047" Width="2.75"
+                                          Canvas.Top="19.047" Width="3"
                                           RenderTransformOrigin="0.5,0.985">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockSecondLineConverter}}" />
