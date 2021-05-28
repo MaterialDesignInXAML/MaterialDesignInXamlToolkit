@@ -301,6 +301,7 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
+
                                     <VisualTransition From="Minutes" To="Seconds">
                                         <Storyboard>
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
@@ -359,6 +360,125 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
+
+                                    <VisualTransition From="Hours" To="Seconds">
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+
+                                    <VisualTransition From="Seconds" To="Minutes">
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Hours">
                                     <Storyboard>
@@ -465,47 +585,58 @@
                                             <Setter Property="FontWeight" Value="Normal" />
                                         </Style>
                                     </StackPanel.Resources>
-                                    <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:%h}}" 
-													   x:Name="PART_HourReadOut">
-                                        <TextBlock.Style>
-                                            <Style BasedOn="{StaticResource TimeTextBlock}" TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Opacity" Value=".56"></Setter>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
-                                                        <Setter Property="Opacity" Value="1" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+                                    <Grid x:Name="PART_HourReadOut">
+                                        <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:%h}}" 
+												   x:Name="PART_HourReadOutText" >
+                                            <TextBlock.Style>
+                                                <Style BasedOn="{StaticResource TimeTextBlock}" TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Opacity" Value=".56"></Setter>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
+                                                            <Setter Property="Opacity" Value="1" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>                                        
+                                    </Grid>
+
                                     <TextBlock Text=":" Style="{StaticResource TimeTextBlock}" />
-                                    <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:mm}}" 
-													   x:Name="PART_MinuteReadOut">
-                                        <TextBlock.Style>
-                                            <Style BasedOn="{StaticResource TimeTextBlock}" TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Opacity" Value=".56"></Setter>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static  wpf:ClockDisplayMode.Minutes}">
-                                                        <Setter Property="Opacity" Value="1" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+                                    
+                                    <Grid x:Name="PART_MinuteReadOut">
+                                        <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:mm}}" 
+													x:Name="PART_MinuteReadOutText">
+                                            <TextBlock.Style>
+                                                <Style BasedOn="{StaticResource TimeTextBlock}" TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Opacity" Value=".56"></Setter>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static  wpf:ClockDisplayMode.Minutes}">
+                                                            <Setter Property="Opacity" Value="1" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>                                        
+                                    </Grid>
+
                                     <TextBlock x:Name="PART_SecondColonPrefix" Text=":" Style="{StaticResource TimeTextBlock}" />
-                                    <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:ss}}"
-													   x:Name="PART_SecondReadOut">
-                                        <TextBlock.Style>
-                                            <Style BasedOn="{StaticResource TimeTextBlock}" TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Opacity" Value=".56"></Setter>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static  wpf:ClockDisplayMode.Seconds}">
-                                                        <Setter Property="Opacity" Value="1" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+
+                                    <Grid x:Name="PART_SecondReadOut">
+                                        <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:ss}}"
+												    x:Name="PART_SecondReadOutText">
+                                            <TextBlock.Style>
+                                                <Style BasedOn="{StaticResource TimeTextBlock}" TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Opacity" Value=".56"></Setter>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static  wpf:ClockDisplayMode.Seconds}">
+                                                            <Setter Property="Opacity" Value="1" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>                                        
+                                    </Grid>
+
                                     <TextBlock FontSize="16" 
                                                x:Name="AmPmReadout"
                                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:tt}}" 
@@ -572,7 +703,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Is24Hours" Value="True">
-                            <Setter TargetName="PART_HourReadOut" Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:HH}}" />
+                            <Setter TargetName="PART_HourReadOutText" Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:HH}}" />
                             <Setter TargetName="TimeReadoutStackPanel" Property="HorizontalAlignment" Value="Center" />
                             <Setter TargetName="TimeReadoutStackPanel" Property="Margin" Value="0 6 0 0" />
                             <Setter TargetName="AmPmReadout" Property="Visibility" Value="Collapsed" />
@@ -830,6 +961,7 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
+
                                     <VisualTransition From="Minutes" To="Seconds">
                                         <Storyboard>
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
@@ -888,6 +1020,125 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
+
+                                    <VisualTransition From="Hours" To="Seconds">
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+
+                                    <VisualTransition From="Seconds" To="Minutes">
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Hours">
                                     <Storyboard>
@@ -1434,6 +1685,7 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
+
                                     <VisualTransition From="Minutes" To="Seconds">
                                         <Storyboard>
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
@@ -1492,6 +1744,125 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
+
+                                    <VisualTransition From="Hours" To="Seconds">
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+
+                                    <VisualTransition From="Seconds" To="Minutes">
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Hours">
                                     <Storyboard>
@@ -2046,6 +2417,7 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
+
                                     <VisualTransition From="Minutes" To="Seconds">
                                         <Storyboard>
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
@@ -2104,6 +2476,125 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
+
+                                    <VisualTransition From="Hours" To="Seconds">
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+
+                                    <VisualTransition From="Seconds" To="Minutes">
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Hours">
                                     <Storyboard>
@@ -2660,6 +3151,7 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
+
                                     <VisualTransition From="Minutes" To="Seconds">
                                         <Storyboard>
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
@@ -2718,6 +3210,125 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
+
+                                    <VisualTransition From="Hours" To="Seconds">
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HoursScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1.2" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="0.85" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+
+                                    <VisualTransition From="Seconds" To="Minutes">
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SecondsScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value=".85" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame Value="0" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MinutesScaleTransform" Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame Value="1.2" KeyTime="0" />
+                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Hours">
                                     <Storyboard>
