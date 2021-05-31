@@ -275,13 +275,8 @@
                                     Opacity="0"
                                     Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
 
-                            <Border x:Name="SelectedBorder"
-                                    Opacity="0"
-                                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                    RenderTransformOrigin="0.5,0.5">
-                                <Border.RenderTransform>
-                                    <ScaleTransform ScaleX="1"/>
-                                </Border.RenderTransform>
+                            <Border x:Name="SelectedBorder" Opacity="0"
+                                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}">
                             </Border>
                             <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                                         Focusable="False"
@@ -399,15 +394,10 @@
                                     Opacity="0"
                                     Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
 
-                            <Border x:Name="SelectedBorder"
-                                    Opacity="0"
+                            <Border x:Name="SelectedBorder" Opacity="0"
                                     Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    RenderTransformOrigin="0.5,0.5">
-                                <Border.RenderTransform>
-                                    <ScaleTransform ScaleX="1"/>
-                                </Border.RenderTransform>
+                                    BorderThickness="{TemplateBinding BorderThickness}">
                             </Border>
                             <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                                         Focusable="False"
