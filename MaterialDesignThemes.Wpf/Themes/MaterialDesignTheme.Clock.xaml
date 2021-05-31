@@ -102,8 +102,6 @@
     </Style>
 
     <Style x:Key="MaterialDesignClock" TargetType="{x:Type wpf:Clock}">
-        <Setter Property="Width" Value="280" />
-        <Setter Property="Height" Value="470" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="ButtonRadiusRatio" Value=".835" />
         <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
@@ -572,9 +570,9 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Border Background="{DynamicResource PrimaryHueMidBrush}"
-                                    Height="120"  CornerRadius="2 2 0 0"
+                                    Height="120"  CornerRadius="2 2 0 0" Margin="0 0 0 12"
                                     Visibility="{TemplateBinding IsHeaderVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <StackPanel Orientation="Horizontal"
+                                <StackPanel Orientation="Horizontal" Margin="24"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Right"
                                             x:Name="TimeReadoutStackPanel">
@@ -598,11 +596,13 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </TextBlock.Style>
-                                        </TextBlock>                                        
+                                        </TextBlock>
                                     </Grid>
 
-                                    <TextBlock Text=":" Style="{StaticResource TimeTextBlock}" />
-                                    
+                                    <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}"
+                                               Margin="-16 0 -16 0" 
+                                               Style="{StaticResource TimeTextBlock}" />
+
                                     <Grid x:Name="PART_MinuteReadOut">
                                         <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:mm}}" 
 													x:Name="PART_MinuteReadOutText">
@@ -616,10 +616,13 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </TextBlock.Style>
-                                        </TextBlock>                                        
+                                        </TextBlock>
                                     </Grid>
 
-                                    <TextBlock x:Name="PART_SecondColonPrefix" Text=":" Style="{StaticResource TimeTextBlock}" />
+                                    <TextBlock x:Name="PART_SecondColonPrefix"
+                                               Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}"
+                                               Style="{StaticResource TimeTextBlock}"
+                                               Margin="-16 0 -16 0" />
 
                                     <Grid x:Name="PART_SecondReadOut">
                                         <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:ss}}"
@@ -634,16 +637,16 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </TextBlock.Style>
-                                        </TextBlock>                                        
+                                        </TextBlock>
                                     </Grid>
 
-                                    <TextBlock FontSize="16" 
+                                    <TextBlock FontSize="20" 
                                                x:Name="AmPmReadout"
                                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:tt}}" 
-                                               VerticalAlignment="Bottom" Margin="2 0 0 16" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                                               VerticalAlignment="Bottom" Margin="2 0 0 8" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" />
                                 </StackPanel>
                             </Border>
-                            <Grid Grid.Row="1" VerticalAlignment="Center">
+                            <Grid Grid.Row="1" VerticalAlignment="Center" Margin="24">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="auto"/>
@@ -651,7 +654,11 @@
                                 <Ellipse x:Name="BackgroundEllipse" Width="230" Height="230" Fill="{DynamicResource PrimaryHueLightBrush}" Opacity=".23" />
                                 <Canvas x:Name="PART_HoursCanvas" Width="230" Height="230"
 											    RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="HourLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Width="2.75" RenderTransformOrigin="0.5,0.985"
+                                    <Path x:Name="HourLine"
+                                          Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
+                                          Fill="{DynamicResource PrimaryHueMidBrush}" Canvas.Left="113.625" Stretch="Fill"
+                                          Stroke="{DynamicResource PrimaryHueMidBrush}" Width="3"
+                                          RenderTransformOrigin="0.5,0.985"
                                           Height="96.959" Canvas.Top="19.047">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
@@ -663,7 +670,10 @@
                                 </Canvas>
                                 <Canvas x:Name="PART_MinutesCanvas" Width="230" Height="230" Opacity="0" IsHitTestVisible="False"
 											    RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="MinuteLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
+                                    <Path x:Name="MinuteLine"
+                                          Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}"
+                                          Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}"
+                                          Canvas.Top="19.047" Width="3" RenderTransformOrigin="0.5,0.985">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
                                         </Path.RenderTransform>
@@ -674,7 +684,12 @@
                                 </Canvas>
                                 <Canvas x:Name="PART_SecondsCanvas" Width="230" Height="230" Opacity="0" IsHitTestVisible="False"
 											    RenderTransformOrigin=".5,.5">
-                                    <Path x:Name="SecondLine" Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}" Height="96.959" Canvas.Left="113.625" Stretch="Fill" Stroke="{DynamicResource PrimaryHueMidBrush}" Canvas.Top="19.047" Width="2.75" RenderTransformOrigin="0.5,0.985">
+                                    <Path x:Name="SecondLine"
+                                          Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001" Fill="{DynamicResource PrimaryHueMidBrush}"
+                                          Height="96.959" Canvas.Left="113.625" Stretch="Fill"
+                                          Stroke="{DynamicResource PrimaryHueMidBrush}"
+                                          Canvas.Top="19.047" Width="3"
+                                          RenderTransformOrigin="0.5,0.985">
                                         <Path.RenderTransform>
                                             <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockSecondLineConverter}}" />
                                         </Path.RenderTransform>
@@ -684,85 +699,52 @@
                                     </Canvas.RenderTransform>
                                 </Canvas>
 
-                                <RadioButton Content="AM" HorizontalAlignment="Left" Height="47.333" Margin="32,0,0,0"
-                                         Grid.Row="1" VerticalAlignment="Bottom" Width="47.333"
-                                         Style="{StaticResource MaterialDesignCalendarMeridiemRadioButton}"
-                                         x:Name="AMRadioButton"
-                                         IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPostMeridiem, Converter={StaticResource NotConverter}}" />
-                                <RadioButton Content="PM" HorizontalAlignment="Right" Height="47.333" Margin="0,0,32,0"
-                                         Grid.Row="1" VerticalAlignment="Bottom" Width="47.333"
-                                         Style="{StaticResource MaterialDesignCalendarMeridiemRadioButton}"
-                                         x:Name="PMRadioButton"
-                                         IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPostMeridiem}" />
-
+                                <UniformGrid Rows="1" Grid.Row="1">
+                                    <RadioButton x:Name="AMRadioButton" Content="AM"
+                                                 HorizontalAlignment="Center" Margin="0,0,30,0"
+                                                 VerticalAlignment="Bottom" Width="47.333" Height="47.333" 
+                                                 Style="{StaticResource MaterialDesignCalendarMeridiemRadioButton}"
+                                                 IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPostMeridiem, Converter={StaticResource NotConverter}}" />
+                                    <RadioButton x:Name="PMRadioButton" Content="PM"
+                                                 HorizontalAlignment="Center" Margin="30,0,0,0"
+                                                 VerticalAlignment="Bottom" Width="47.333" Height="47.333"
+                                                 Style="{StaticResource MaterialDesignCalendarMeridiemRadioButton}"
+                                                 IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPostMeridiem}" />
+                                </UniformGrid>
                             </Grid>
-
-
-
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Is24Hours" Value="True">
                             <Setter TargetName="PART_HourReadOutText" Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:HH}}" />
-                            <Setter TargetName="TimeReadoutStackPanel" Property="HorizontalAlignment" Value="Center" />
-                            <Setter TargetName="TimeReadoutStackPanel" Property="Margin" Value="0 6 0 0" />
                             <Setter TargetName="AmPmReadout" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="AMRadioButton" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PMRadioButton" Property="Visibility" Value="Collapsed" />
-                            <!--<Setter TargetName="BackgroundEllipse" Property="Margin" Value="0,24.5,0,26" />-->
                         </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Is24Hours" Value="True" />
-                                <Condition Property="IsPostMeridiem" Value="False" />
-                                <Condition Property="IsMidnightHour" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="HourLine" Property="Height" Value="76" />
-                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Is24Hours" Value="True" />
-                                <Condition Property="IsMiddayHour" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="HourLine" Property="Height" Value="76" />
-                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
-                        </MultiTrigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.None}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
-                            <Setter TargetName="TimeReadoutStackPanel" Property="Margin" Value="0 6 38 0" />
                         </Trigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.Cycle}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
-                            <Setter TargetName="TimeReadoutStackPanel" Property="Margin" Value="0 6 38 0" />
                         </Trigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.ToMinutesOnly}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
-                            <Setter TargetName="TimeReadoutStackPanel" Property="Margin" Value="0 6 38 0" />
                         </Trigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.ToSeconds}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Visible" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="TimeReadoutStackPanel" Property="Margin" Value="0 6 0 0" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="Is24Hours" Value="True">
-                <Setter Property="Height" Value="402" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
 
     <Style x:Key="MaterialDesignClockVertical" TargetType="{x:Type wpf:Clock}">
-        <Setter Property="Height" Value="auto"/>
-        <Setter Property="Width" Value="auto"/>
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="ButtonRadiusRatio" Value=".835" />
         <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
@@ -1280,10 +1262,11 @@
                                             </TextBlock>
                                         </Grid>
 
-                                        <TextBlock Text=":" Style="{StaticResource TimeTextBlock}"
+                                        <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}"
+                                                   Style="{StaticResource TimeTextBlock}"
                                                    Foreground="{DynamicResource MaterialDesignBody}"
-                                                   VerticalAlignment="Center"
-                                                   Width="24" TextAlignment="Center"/>
+                                                   Margin="-6 0 -6 0"
+                                                   VerticalAlignment="Center" />
 
                                         <Grid Width="96" Height="80" x:Name="PART_MinuteReadOut">
                                             <Border x:Name="PART_MinuteReadOutBorder"
@@ -1316,11 +1299,12 @@
                                             </TextBlock>
                                         </Grid>
 
-                                        <TextBlock x:Name="PART_SecondColonPrefix" Text=":"
+                                        <TextBlock x:Name="PART_SecondColonPrefix"
+                                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}"
                                                    Style="{StaticResource TimeTextBlock}"
                                                    Foreground="{DynamicResource MaterialDesignBody}"
-                                                   VerticalAlignment="Center"
-                                                   Width="24" TextAlignment="Center"/>
+                                                   VerticalAlignment="Center" 
+                                                   Margin="-6 0 -6 0"/>
 
                                         <Grid Width="96" Height="80" x:Name="PART_SecondReadOut">
                                             <Border x:Name="PART_SecondReadOutBorder"
@@ -1443,23 +1427,6 @@
                             <Setter TargetName="PART_HourReadOutText" Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:HH}}" />
                             <Setter TargetName="AmPmBorder" Property="Visibility" Value="Collapsed" />
                         </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Is24Hours" Value="True" />
-                                <Condition Property="IsPostMeridiem" Value="False" />
-                                <Condition Property="IsMidnightHour" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="HourLine" Property="Height" Value="76" />
-                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Is24Hours" Value="True" />
-                                <Condition Property="IsMiddayHour" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="HourLine" Property="Height" Value="76" />
-                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
-                        </MultiTrigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.None}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
@@ -1483,8 +1450,6 @@
     </Style>
 
     <Style x:Key="MaterialDesignClockVerticalThemed" TargetType="{x:Type wpf:Clock}">
-        <Setter Property="Height" Value="auto"/>
-        <Setter Property="Width" Value="auto"/>
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="ButtonRadiusRatio" Value=".835" />
         <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
@@ -2003,10 +1968,11 @@
                                             </TextBlock>
                                         </Grid>
 
-                                        <TextBlock Text=":" Style="{StaticResource TimeTextBlock}"
+                                        <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}"
+                                                   Style="{StaticResource TimeTextBlock}"
                                                    Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                                    VerticalAlignment="Center"
-                                                   Width="24" TextAlignment="Center"/>
+                                                   Margin="-6 0 -6 0"/>
 
                                         <Grid Width="96" Height="80" x:Name="PART_MinuteReadOut">
                                             <Border x:Name="PART_MinuteReadOutBorder"
@@ -2038,11 +2004,12 @@
                                             </TextBlock>
                                         </Grid>
 
-                                        <TextBlock x:Name="PART_SecondColonPrefix" Text=":"
+                                        <TextBlock x:Name="PART_SecondColonPrefix"
+                                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}"
                                                    Style="{StaticResource TimeTextBlock}"
                                                    Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                                    VerticalAlignment="Center"
-                                                   Width="24" TextAlignment="Center"/>
+                                                   Margin="-6 0 -6 0"/>
 
                                         <Grid Width="96" Height="80" x:Name="PART_SecondReadOut">
                                             <Border x:Name="PART_SecondReadOutBorder"
@@ -2177,23 +2144,6 @@
                             <Setter TargetName="PART_HourReadOutText" Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:HH}}" />
                             <Setter TargetName="AmPmBorder" Property="Visibility" Value="Collapsed" />
                         </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Is24Hours" Value="True" />
-                                <Condition Property="IsPostMeridiem" Value="False" />
-                                <Condition Property="IsMidnightHour" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="HourLine" Property="Height" Value="76" />
-                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Is24Hours" Value="True" />
-                                <Condition Property="IsMiddayHour" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="HourLine" Property="Height" Value="76" />
-                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
-                        </MultiTrigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.None}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
@@ -2217,8 +2167,6 @@
     </Style>
 
     <Style x:Key="MaterialDesignClockHorizontal" TargetType="{x:Type wpf:Clock}">
-        <Setter Property="Height" Value="auto"/>
-        <Setter Property="Width" Value="auto"/>
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="ButtonRadiusRatio" Value=".835" />
         <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
@@ -2417,7 +2365,6 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
-
                                     <VisualTransition From="Minutes" To="Seconds">
                                         <Storyboard>
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesCanvas" Storyboard.TargetProperty="IsHitTestVisible">
@@ -2476,7 +2423,6 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
-
                                     <VisualTransition From="Hours" To="Seconds">
                                         <Storyboard>
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursCanvas" Storyboard.TargetProperty="IsHitTestVisible">
@@ -2535,7 +2481,6 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
-
                                     <VisualTransition From="Seconds" To="Minutes">
                                         <Storyboard>
                                             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_SecondsCanvas" Storyboard.TargetProperty="IsHitTestVisible">
@@ -2736,10 +2681,11 @@
                                             </TextBlock>
                                         </Grid>
 
-                                        <TextBlock Text=":" Style="{StaticResource TimeTextBlock}"
+                                        <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}"
+                                                   Style="{StaticResource TimeTextBlock}"
                                                    Foreground="{DynamicResource MaterialDesignBody}"
                                                    VerticalAlignment="Center"
-                                                   Width="24" TextAlignment="Center"/>
+                                                   Margin="-6 0 -6 0"/>
 
                                         <Grid Width="96" Height="80" x:Name="PART_MinuteReadOut">
                                             <Border x:Name="PART_MinuteReadOutBorder"
@@ -2772,11 +2718,12 @@
                                             </TextBlock>
                                         </Grid>
 
-                                        <TextBlock x:Name="PART_SecondColonPrefix" Text=":"
+                                        <TextBlock x:Name="PART_SecondColonPrefix"
+                                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}"
                                                    Style="{StaticResource TimeTextBlock}"
                                                    Foreground="{DynamicResource MaterialDesignBody}"
                                                    VerticalAlignment="Center"
-                                                   Width="24" TextAlignment="Center"/>
+                                                   Margin="-6 0 -6 0"/>
 
                                         <Grid Width="96" Height="80" x:Name="PART_SecondReadOut">
                                             <Border x:Name="PART_SecondReadOutBorder"
@@ -2907,23 +2854,6 @@
                             <Setter TargetName="PART_HourReadOutText" Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:HH}}" />
                             <Setter TargetName="AmPmBorder" Property="Visibility" Value="Collapsed" />
                         </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Is24Hours" Value="True" />
-                                <Condition Property="IsPostMeridiem" Value="False" />
-                                <Condition Property="IsMidnightHour" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="HourLine" Property="Height" Value="76" />
-                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Is24Hours" Value="True" />
-                                <Condition Property="IsMiddayHour" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="HourLine" Property="Height" Value="76" />
-                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
-                        </MultiTrigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.None}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
@@ -2947,8 +2877,6 @@
     </Style>
 
     <Style x:Key="MaterialDesignClockHorizontalThemed" TargetType="{x:Type wpf:Clock}">
-        <Setter Property="Height" Value="auto"/>
-        <Setter Property="Width" Value="auto"/>
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="ButtonRadiusRatio" Value=".835" />
         <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
@@ -3469,10 +3397,11 @@
                                             </TextBlock>
                                         </Grid>
 
-                                        <TextBlock Text=":" Style="{StaticResource TimeTextBlock}"
+                                        <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}"
+                                                   Style="{StaticResource TimeTextBlock}"
                                                    Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                                    VerticalAlignment="Center"
-                                                   Width="24" TextAlignment="Center"/>
+                                                   Margin="-6 0 -6 0"/>
 
                                         <Grid Width="96" Height="80" x:Name="PART_MinuteReadOut">
                                             <Border x:Name="PART_MinuteReadOutBorder"
@@ -3504,11 +3433,12 @@
                                             </TextBlock>
                                         </Grid>
 
-                                        <TextBlock x:Name="PART_SecondColonPrefix" Text=":"
+                                        <TextBlock x:Name="PART_SecondColonPrefix"
+                                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}"
                                                    Style="{StaticResource TimeTextBlock}"
                                                    Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                                    VerticalAlignment="Center"
-                                                   Width="24" TextAlignment="Center"/>
+                                                   Margin="-6 0 -6 0"/>
 
                                         <Grid Width="96" Height="80" x:Name="PART_SecondReadOut">
                                             <Border x:Name="PART_SecondReadOutBorder"
@@ -3635,23 +3565,6 @@
                             <Setter TargetName="PART_HourReadOutText" Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:HH}}" />
                             <Setter TargetName="AmPmBorder" Property="Visibility" Value="Collapsed" />
                         </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Is24Hours" Value="True" />
-                                <Condition Property="IsPostMeridiem" Value="False" />
-                                <Condition Property="IsMidnightHour" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="HourLine" Property="Height" Value="76" />
-                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Is24Hours" Value="True" />
-                                <Condition Property="IsMiddayHour" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="HourLine" Property="Height" Value="76" />
-                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
-                        </MultiTrigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.None}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
