@@ -427,6 +427,7 @@
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>
         <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="IsHeaderVisible" Value="True"/>
         <Setter Property="ClockStyle" Value="{DynamicResource MaterialDesignClock}" />
         <Setter Property="ClockHostContentControlStyle">
             <Setter.Value>
