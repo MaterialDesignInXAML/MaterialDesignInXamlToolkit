@@ -456,6 +456,9 @@
                                 <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.0" ScaleY="1.0" x:Name="CheckedEllipseScale"/>
                             </Ellipse.RenderTransform>
                         </Ellipse>
+                        <Ellipse Fill="{TemplateBinding Foreground}"
+                                 Opacity=".16" Visibility="Hidden"
+                                 x:Name="overlay"/>
                         <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
                                     ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -467,7 +470,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Fill" TargetName="border" Value="{DynamicResource MaterialDesignFlatButtonClick}" />
+                            <Setter Property="Visibility" TargetName="overlay" Value="Visible"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.23"/>
