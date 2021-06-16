@@ -6,6 +6,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <converters:BorderClipConverter x:Key="BorderClipConverter"/>
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
@@ -216,10 +217,11 @@
                     <Grid x:Name="Root"
                           Cursor="Hand">
                         <Grid >
-                            <Rectangle Fill="{TemplateBinding Background}"
-                                         x:Name="MouseOverBorder"
-                                         Visibility="Hidden"
-                                         Opacity=".08"/>
+                            <Border Background="{TemplateBinding Background}"
+                                       x:Name="MouseOverBorder"
+                                       Visibility="Hidden"
+                                       Opacity=".08"
+                                       CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionUniformCornerRadius), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"/>
                             <wpf:ColorZone x:Name="colorZone"
                                            HorizontalAlignment="Stretch"
                                            VerticalAlignment="Stretch"
@@ -231,7 +233,6 @@
                                            wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}">
                                 <wpf:Ripple Focusable="False"
                                             ClipToBounds="True"
-                                            Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}"
                                             Content="{TemplateBinding Header}"
                                             ContentTemplate="{TemplateBinding HeaderTemplate}"
                                             ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
@@ -246,16 +247,24 @@
                                             TextBlock.FontWeight="Medium"
                                             TextBlock.FontSize="15"
                                             TextOptions.TextFormattingMode="Ideal" 
-                                            TextOptions.TextRenderingMode="Auto"/>
-
+                                            TextOptions.TextRenderingMode="Auto">
+                                    <wpf:Ripple.Clip>
+                                        <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                            <Binding ElementName="MouseOverBorder" Path="ActualWidth" />
+                                            <Binding ElementName="MouseOverBorder" Path="ActualHeight" />
+                                            <Binding ElementName="MouseOverBorder" Path="CornerRadius" />
+                                            <Binding ElementName="MouseOverBorder" Path="BorderThickness" />
+                                        </MultiBinding>
+                                    </wpf:Ripple.Clip>
+                                </wpf:Ripple>
                             </wpf:ColorZone>
-                            <Rectangle x:Name="GeometryEllipse" Fill="Transparent" IsHitTestVisible="False" Focusable="False" />
                         </Grid>
                         <Border x:Name="SelectionHighlightBorder" 
                                 Visibility="Hidden" >
-                            <Rectangle x:Name="PART_BackgroundSelection"
-                                       Fill="{TemplateBinding Background}"
-                                       Opacity="0.12"/>
+                            <Border x:Name="PART_BackgroundSelection"
+                                       Background="{TemplateBinding Background}"
+                                       Opacity="0.12"
+                                       CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionUniformCornerRadius), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"/>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -336,7 +345,6 @@
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0"/>
         <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Right"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationRailTabItem}"/>
-        <Setter Property="wpf:NavigationRailAssist.ShowSelectionBackground" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabControl}">
