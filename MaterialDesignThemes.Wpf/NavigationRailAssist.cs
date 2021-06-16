@@ -30,11 +30,11 @@ namespace MaterialDesignThemes.Wpf
 
         #region Property SelectionCornerRadius
 
-        public static readonly DependencyProperty SelectionUniformCornerRadiusProperty = DependencyProperty.RegisterAttached(
-            "SelectionUniformCornerRadius", typeof(CornerRadius), typeof(NavigationRailAssist), new PropertyMetadata(default(CornerRadius)));
+        public static readonly DependencyProperty SelectionCornerRadiusProperty = DependencyProperty.RegisterAttached(
+            "SelectionCornerRadius", typeof(CornerRadius), typeof(NavigationRailAssist), new PropertyMetadata(default(CornerRadius)));
 
-        public static object GetSelectionUniformCornerRadius(DependencyObject element) => (CornerRadius)element.GetValue(SelectionUniformCornerRadiusProperty);
-        public static void SetSelectionUniformCornerRadius(DependencyObject element, CornerRadius value) => element.SetValue(SelectionUniformCornerRadiusProperty, value);
+        public static object GetSelectionCornerRadius(DependencyObject element) => (CornerRadius)element.GetValue(SelectionCornerRadiusProperty);
+        public static void SetSelectionCornerRadius(DependencyObject element, CornerRadius value) => element.SetValue(SelectionCornerRadiusProperty, value);
 
         #endregion
     }

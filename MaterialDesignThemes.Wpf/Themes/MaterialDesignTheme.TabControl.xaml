@@ -221,7 +221,7 @@
                                        x:Name="MouseOverBorder"
                                        Visibility="Hidden"
                                        Opacity=".08"
-                                       CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionUniformCornerRadius), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"/>
+                                       CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionCornerRadius), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"/>
                             <wpf:ColorZone x:Name="colorZone"
                                            HorizontalAlignment="Stretch"
                                            VerticalAlignment="Stretch"
@@ -264,7 +264,7 @@
                             <Border x:Name="PART_BackgroundSelection"
                                        Background="{TemplateBinding Background}"
                                        Opacity="0.12"
-                                       CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionUniformCornerRadius), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"/>
+                                       CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionCornerRadius), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"/>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
