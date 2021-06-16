@@ -17,5 +17,15 @@ namespace MaterialDesignThemes.Wpf
         public static void SetFloatingContent(DependencyObject element, object value) => element.SetValue(FloatingContentProperty, value);
 
         #endregion
+
+        #region Property FloatingContent
+
+        public static readonly DependencyProperty ShowSelectionBackgroundProperty = DependencyProperty.RegisterAttached(
+            "ShowSelectionBackground", typeof(bool), typeof(NavigationRailAssist), new PropertyMetadata(false));
+
+        public static object GetShowSelectionBackground(DependencyObject element) => (bool)element.GetValue(ShowSelectionBackgroundProperty);
+        public static void SetShowSelectionBackground(DependencyObject element, bool value) => element.SetValue(ShowSelectionBackgroundProperty, value);
+
+        #endregion
     }
 }

@@ -3,6 +3,12 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -210,7 +216,7 @@
                     <Grid x:Name="Root"
                           Cursor="Hand">
                         <Grid >
-                            <Rectangle Fill="{TemplateBinding Foreground}"
+                            <Rectangle Fill="{TemplateBinding Background}"
                                          x:Name="MouseOverBorder"
                                          Visibility="Hidden"
                                          Opacity=".08"/>
@@ -261,7 +267,6 @@
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="contentPresenter" Property="Opacity" Value="1"/>
-                            <Setter TargetName="SelectionHighlightBorder" Property="Visibility" Value="Visible" />
                         </Trigger>
 
                         <MultiTrigger>
@@ -269,12 +274,51 @@
                                 <Condition Property="IsSelected" Value="True"/>
                                 <Condition Property="wpf:ColorZoneAssist.Mode" Value="Standard"/>
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="contentPresenter" Property="Opacity" Value="1"/>
-                            <Setter TargetName="SelectionHighlightBorder" Property="Visibility" Value="Visible" />
                             <Setter TargetName="contentPresenter" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
                         </MultiTrigger>
+
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding Path=(wpf:NavigationRailAssist.ShowSelectionBackground), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="True"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="SelectionHighlightBorder" Property="Visibility" Value="Visible" />
+                        </MultiDataTrigger>
+
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="Standard">
+                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignBody}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
+                        </Trigger>
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid">
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryLight">
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryDark">
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryLight">
+                            <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryMid">
+                            <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryDark">
+                            <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="Custom">
+                            <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}" />
+                            <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}" />
+                        </Trigger>
+                        
                     </ControlTemplate.Triggers>
-                    
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -292,6 +336,7 @@
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0"/>
         <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Right"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationRailTabItem}"/>
+        <Setter Property="wpf:NavigationRailAssist.ShowSelectionBackground" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabControl}">
