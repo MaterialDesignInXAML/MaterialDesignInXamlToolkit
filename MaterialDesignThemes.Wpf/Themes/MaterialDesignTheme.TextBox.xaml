@@ -165,6 +165,7 @@
                                                 Focusable="false"
                                                 HorizontalScrollBarVisibility="Hidden"
                                                 VerticalScrollBarVisibility="Hidden"
+                                                VerticalAlignment="Bottom"
                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                                 UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                                                 wpf:ScrollViewerAssist.IgnorePadding="True" />
