@@ -17,6 +17,8 @@
         <Setter Property="Height" Value="48" />
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="wpf:CalendarAssist.SelectionColor" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="wpf:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CalendarButton}">
@@ -51,10 +53,7 @@
                                 <VisualState x:Name="Unselected"/>
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To=".75" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBackground"/>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText" FillBehavior="Stop">
-                                            <DiscreteObjectKeyFrame Value="{DynamicResource PrimaryHueMidForegroundBrush}" KeyTime="0" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBackground"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -93,29 +92,34 @@
                                 <VisualState x:Name="Inactive" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Ellipse x:Name="TodayBackground"
-                                 Fill="{DynamicResource PrimaryHueLightBrush}"
-                                 Opacity="0" />
-                        <Ellipse x:Name="SelectedBackground"
-                                 Fill="{DynamicResource PrimaryHueMidBrush}"
-                                 Opacity="0" />
+                        <Rectangle x:Name="TodayBackground"
+                                 Fill="{TemplateBinding wpf:CalendarAssist.SelectionColor}"
+                                 Opacity="0" RadiusX="15" RadiusY="15" Height="30"/>
+                        <Rectangle x:Name="SelectedBackground"
+                                 Fill="{TemplateBinding wpf:CalendarAssist.SelectionColor}"
+                                 Opacity="0" RadiusX="15" RadiusY="15" Height="30"/>
                         <Border BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}" />
-                        <Ellipse x:Name="HighlightBackground"
-                                 Fill="{DynamicResource PrimaryHueDarkBrush}"
-                                 Opacity="0" />
+                        <Rectangle x:Name="HighlightBackground"
+                                 Fill="{TemplateBinding wpf:CalendarAssist.SelectionColor}"
+                                 Opacity="0" RadiusX="15" RadiusY="15" Height="30"/>
                         <ContentPresenter x:Name="NormalText"
-                                          TextElement.Foreground="{TemplateBinding Foreground}"
+                                          TextElement.Foreground="{TemplateBinding wpf:CalendarAssist.SelectionForegroundColor}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           Margin="5,1,5,1"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Ellipse x:Name="DayButtonFocusVisual"
-                                 Stroke="{DynamicResource PrimaryHueDarkBrush}"
+                        <Rectangle x:Name="DayButtonFocusVisual"
+                                 Stroke="{TemplateBinding wpf:CalendarAssist.SelectionColor}"
                                  Opacity="0"
                                  Visibility="Collapsed"
-                                 StrokeThickness="1" />
+                                 StrokeThickness="1" RadiusX="15" RadiusY="15" Height="30"/>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="False">
+                            <Setter TargetName="NormalText" Property="TextElement.Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -131,7 +135,6 @@
     </Style>
 
     <Style x:Key="MaterialDesignCalendarDayButton" TargetType="{x:Type CalendarDayButton}">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="MinWidth" Value="5"/>
         <Setter Property="MinHeight" Value="5"/>
         <Setter Property="FontSize" Value="12"/>
@@ -141,6 +144,8 @@
         <Setter Property="Height" Value="28" />
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="wpf:CalendarAssist.SelectionColor" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="wpf:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CalendarDayButton}">
@@ -153,12 +158,12 @@
                                 <VisualState x:Name="Normal"/>
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To="0.5" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HighlightBackground"/>
+                                        <DoubleAnimation Duration="0" To="0.5" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HighlightingBorder"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To="0.5" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HighlightBackground"/>
+                                        <DoubleAnimation Duration="0" To="0.5" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HighlightingBorder"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -169,10 +174,7 @@
                                 <VisualState x:Name="Unselected"/>
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To=".75" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBackground"/>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)" Storyboard.TargetName="NormalText" FillBehavior="Stop">
-                                            <DiscreteObjectKeyFrame Value="{DynamicResource PrimaryHueMidForegroundBrush}" KeyTime="0" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBackground"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -246,28 +248,33 @@
                                  StrokeThickness="1"
                                  Stroke="{TemplateBinding Foreground}"/>
                         <Ellipse x:Name="SelectedBackground"
-                                 Fill="{DynamicResource PrimaryHueMidBrush}"
+                                 Fill="{TemplateBinding wpf:CalendarAssist.SelectionColor}"
                                  Opacity="0" />
                         <Border BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"/>
                         <Border x:Name="HighlightingBorder"
-                                Opacity="1">
+                                Opacity="0">
                             <Ellipse x:Name="HighlightBackground"
-                                     Fill="{DynamicResource PrimaryHueDarkBrush}"
-                                     Opacity="0"/>
+                                     Fill="{TemplateBinding wpf:CalendarAssist.SelectionColor}"
+                                     Opacity="1"/>
                         </Border>
                         <ContentPresenter x:Name="NormalText"
-                                          TextElement.Foreground="{TemplateBinding Foreground}"
+                                          TextElement.Foreground="{TemplateBinding wpf:CalendarAssist.SelectionForegroundColor}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           Margin="5,1,5,1"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         <Ellipse x:Name="DayButtonFocusVisual"
-                                 Stroke="{DynamicResource PrimaryHueDarkBrush}"
+                                 Stroke="{TemplateBinding wpf:CalendarAssist.SelectionColor}"
                                  Opacity="0"
                                  Visibility="Collapsed"
                                  StrokeThickness="1"/>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="NormalText" Property="TextElement.Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -289,7 +296,7 @@
 
     <Style x:Key="MaterialDesignCalendarItemPortrait" TargetType="{x:Type CalendarItem}">
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Margin" Value="0,3,0,3"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CalendarItem}">
@@ -298,8 +305,7 @@
                         <CubicEase x:Key="EasingFunctionIn" EasingMode="EaseIn"/>
 
                         <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
-                            <TextBlock Foreground="{DynamicResource MaterialDesignToolTipBackground}"
-                                       Opacity="0.65"
+                            <TextBlock Opacity="0.65"
                                        FontWeight="Bold"
                                        FontSize="9.5"                                       
                                        HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -307,6 +313,7 @@
                                        Text="{Binding [0]}"/>
                         </DataTemplate>
                     </ControlTemplate.Resources>
+
                     <Grid x:Name="PART_Root">
                         <Grid.Resources>
                             <SolidColorBrush x:Key="DisabledColor" Color="#A5FFFFFF"/>
@@ -321,8 +328,11 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <wpf:Card UniformCornerRadius="2" wpf:ShadowAssist.ShadowDepth="Depth0">
-                            <Grid Background="{TemplateBinding Background}" RenderOptions.ClearTypeHint="Enabled">
+
+                        <wpf:Card UniformCornerRadius="2" Background="{TemplateBinding Background}" Padding="0 -1 0 0"
+                                    wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}" Visibility="Visible">
+                  
+                            <Grid RenderOptions.ClearTypeHint="Enabled">
                                 <Grid.Resources>
                                     <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="{x:Type Button}">
                                         <Grid Cursor="Hand">
@@ -373,8 +383,10 @@
                                                     <VisualState x:Name="Disabled"/>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                            <wpf:MaterialDateDisplay x:Name="buttonContent" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
-                                                                     IsEnabled="{TemplateBinding IsEnabled}">
+                                            <wpf:MaterialDateDisplay x:Name="buttonContent"
+                                                                         Foreground="{TemplateBinding Foreground}"
+                                                                         IsEnabled="{TemplateBinding IsEnabled}"
+                                                                         wpf:CalendarAssist.Orientation="{TemplateBinding wpf:CalendarAssist.Orientation}">
                                                 <wpf:MaterialDateDisplay.DisplayDate>
                                                     <MultiBinding Mode="OneWay">
                                                         <MultiBinding.Converter>
@@ -390,6 +402,7 @@
                                     <converters:CalendarYearMonthConverter x:Key="CalendarYearMonthConverter"/>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
@@ -397,14 +410,21 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <Border Grid.ColumnSpan="3" Grid.Row="0" Background="{DynamicResource PrimaryHueMidBrush}" />
+                                <Border x:Name="HeaderBorder"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="4"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="1"
+                                        Background="{TemplateBinding wpf:CalendarAssist.HeaderBackground}" />
                                 <Button x:Name="PART_HeaderButton"
+                                        Foreground="{TemplateBinding wpf:CalendarAssist.HeaderForeground}"
+                                        wpf:CalendarAssist.Orientation="{TemplateBinding wpf:CalendarAssist.Orientation}"
                                         Grid.Row="0"
                                         Grid.Column="0"
-                                        Grid.ColumnSpan="3"
+                                        Grid.ColumnSpan="4"
+                                        Grid.RowSpan="1"
                                         FontWeight="Bold"
                                         Focusable="False"
                                         FontSize="10.5"
@@ -416,7 +436,7 @@
                                         Margin="20 15" />
                                 <TextBlock x:Name="CurrentDateTextBlock"
                                            Grid.Row="1" 
-                                           Grid.Column="0"
+                                           Grid.Column="1"
                                            HorizontalAlignment="Left" 
                                            VerticalAlignment="Center"
                                            Margin="13 8 8 8"
@@ -436,7 +456,7 @@
                                 </TextBlock>
                                 <Button x:Name="PART_PreviousButton"
                                         Grid.Row="1"
-                                        Grid.Column="1" 
+                                        Grid.Column="2" 
                                         Focusable="False" 
                                         HorizontalAlignment="Left" 
                                         Height="36" 
@@ -447,7 +467,7 @@
                                         Foreground="{TemplateBinding Foreground}" />
                                 <Button x:Name="PART_NextButton" 
                                         Grid.Row="1" 
-                                        Grid.Column="2" 
+                                        Grid.Column="3" 
                                         Focusable="False" 
                                         HorizontalAlignment="Right"
                                         Height="36"
@@ -458,14 +478,15 @@
                                         Foreground="{TemplateBinding Foreground}" />
 
                                 <Grid x:Name="MonthViewWrapperGrid"
-                                      Grid.ColumnSpan="3"
-                                      Grid.Row="2"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Top"
-                                      Margin="6 -1 6 6"
-                                      Visibility="Visible">
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="3"
+                                        Grid.Row="2"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        Margin="6 -1 6 6" 
+                                        Visibility="Visible">
                                     <Border x:Name="PART_MonthViewCopy" RenderTransformOrigin="0, 0.5"
-                                            Opacity="0" Margin="4 7 4 3">
+                                                Opacity="0" Margin="4 7 4 3" >
                                         <Border.Background>
                                             <VisualBrush Visual="{Binding ElementName=PART_MonthView}" Stretch="UniformToFill"/>
                                         </Border.Background>
@@ -473,7 +494,7 @@
                                             <TranslateTransform X="0"/>
                                         </Border.RenderTransform>
                                     </Border>
-                                    <Grid x:Name="PART_MonthView" RenderTransformOrigin="0, 0.5" IsSharedSizeScope="True">
+                                    <Grid x:Name="PART_MonthView" RenderTransformOrigin="0, 0.5" IsSharedSizeScope="True" Opacity="1">
                                         <Grid.RenderTransform>
                                             <TranslateTransform X="0" />
                                         </Grid.RenderTransform>
@@ -499,14 +520,15 @@
                                 </Grid>
 
                                 <Grid x:Name="YearViewWrapperGrid"
-                                      Grid.ColumnSpan="3"
-                                      Grid.Row="2"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Top"
-                                      Margin="6 -3 7 6"
-                                      Visibility="Hidden">
+                                          Grid.Column="1"
+                                          Grid.ColumnSpan="3"
+                                          Grid.Row="2"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Top"
+                                          Margin="6 -3 7 6"
+                                          Visibility="Hidden">
                                     <Border x:Name="PART_YearViewCopy" RenderTransformOrigin="0, 0.5"
-                                            Opacity="0" Margin="2">
+                                                Opacity="0" Margin="2">
                                         <Border.Background>
                                             <VisualBrush Visual="{Binding ElementName=PART_YearView}" Stretch="UniformToFill"/>
                                         </Border.Background>
@@ -515,7 +537,7 @@
                                         </Border.RenderTransform>
                                     </Border>
                                     <Grid x:Name="PART_YearView"
-                                                 RenderTransformOrigin="0, 0.5">
+                                                     RenderTransformOrigin="0, 0.5">
                                         <Grid.RenderTransform>
                                             <TranslateTransform X="0" />
                                         </Grid.RenderTransform>
@@ -534,7 +556,13 @@
                                 </Grid>
                             </Grid>
                         </wpf:Card>
-                        <Rectangle x:Name="PART_DisabledVisual" Fill="{StaticResource DisabledColor}" Opacity="0" RadiusY="2" RadiusX="2" Stretch="Fill" Stroke="{StaticResource DisabledColor}" StrokeThickness="1" Visibility="Collapsed"/>
+                        <Rectangle x:Name="PART_DisabledVisual"
+                                       Fill="white"
+                                       Opacity="0.5"
+                                       RadiusY="2"
+                                       RadiusX="2"
+                                       Stretch="Fill"
+                                       Visibility="Collapsed"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
@@ -548,6 +576,12 @@
                             <Setter Property="Visibility" TargetName="MonthViewWrapperGrid" Value="Hidden"/>
                             <Setter Property="Visibility" TargetName="YearViewWrapperGrid" Value="Visible"/>
                         </DataTrigger>
+                        <Trigger Property="wpf:CalendarAssist.Orientation" Value="Horizontal">
+                            <Setter TargetName="HeaderBorder" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="HeaderBorder" Property="Grid.RowSpan" Value="3"/>
+                            <Setter TargetName="PART_HeaderButton" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="PART_HeaderButton" Property="Grid.RowSpan" Value="3"/>
+                        </Trigger>
                         <EventTrigger RoutedEvent="Button.Click" SourceName="PART_NextButton">
                             <BeginStoryboard>
                                 <Storyboard>
@@ -635,8 +669,13 @@
     <Style x:Key="MaterialDesignCalendarPortrait" TargetType="{x:Type Calendar}">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="CalendarDayButtonStyle" Value="{StaticResource MaterialDesignCalendarDayButton}" />
         <Setter Property="CalendarButtonStyle" Value="{StaticResource MaterialDesignCalendarButton}" />
+        <Setter Property="wpf:CalendarAssist.HeaderBackground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="wpf:CalendarAssist.HeaderForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+        <Setter Property="wpf:CalendarAssist.Orientation" Value="Vertical"/>
+        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Calendar}">
@@ -646,9 +685,19 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         Background="{TemplateBinding Background}"
-                        wpf:CalendarAssist.IsHeaderVisible="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible}" />
+                        Foreground="{TemplateBinding Foreground}"
+                        wpf:CalendarAssist.IsHeaderVisible="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible}"
+                        wpf:CalendarAssist.Orientation="{TemplateBinding wpf:CalendarAssist.Orientation}"
+                        wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
+                        wpf:CalendarAssist.HeaderBackground="{TemplateBinding wpf:CalendarAssist.HeaderBackground}"
+                        wpf:CalendarAssist.HeaderForeground="{TemplateBinding wpf:CalendarAssist.HeaderForeground}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignCalendarPortraitForeground" TargetType="Calendar" BasedOn="{StaticResource MaterialDesignCalendarPortrait}">
+        <Setter Property="wpf:CalendarAssist.HeaderBackground" Value="Transparent"/>
+        <Setter Property="wpf:CalendarAssist.HeaderForeground" Value="{DynamicResource MaterialDesignBody}"/>
     </Style>
 </ResourceDictionary>
