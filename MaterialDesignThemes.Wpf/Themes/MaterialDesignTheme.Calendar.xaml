@@ -307,7 +307,7 @@
                         <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
                             <TextBlock Opacity="0.65"
                                        FontWeight="Bold"
-                                       FontSize="9.5"                                       
+                                       FontSize="9.5"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"
                                        Margin="0,6,0,6"
                                        Text="{Binding [0]}"/>
@@ -330,7 +330,7 @@
                         </VisualStateManager.VisualStateGroups>
 
                         <wpf:Card UniformCornerRadius="2" Background="{TemplateBinding Background}" Padding="0 -1 0 0"
-                                    wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}" Visibility="Visible">
+                                  wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}">
                   
                             <Grid RenderOptions.ClearTypeHint="Enabled">
                                 <Grid.Resources>
@@ -483,8 +483,7 @@
                                         Grid.Row="2"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
-                                        Margin="6 -1 6 6" 
-                                        Visibility="Visible">
+                                        Margin="6 -1 6 6">
                                     <Border x:Name="PART_MonthViewCopy" RenderTransformOrigin="0, 0.5"
                                                 Opacity="0" Margin="4 7 4 3" >
                                         <Border.Background>
