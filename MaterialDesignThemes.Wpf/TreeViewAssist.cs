@@ -9,6 +9,7 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class TreeViewAssist
     {
+        #region AdditionalTemplate
         /// <summary>
         /// Allows additional rendering for each tree node, outside of the rippled part of the node which responsds to user selection.                        
         /// </summary>
@@ -43,6 +44,10 @@ namespace MaterialDesignThemes.Wpf
         {
             return (DataTemplate)element.GetValue(AdditionalTemplateProperty);
         }
+
+        #endregion
+
+        #region AdditionalTemplateSelector
 
         /// <summary>
         /// Allows additional rendering for each tree node, outside of the rippled part of the node which responsds to user selection.                        
@@ -79,6 +84,10 @@ namespace MaterialDesignThemes.Wpf
             return (DataTemplateSelector)element.GetValue(AdditionalTemplateSelectorProperty);
         }
 
+        #endregion
+
+        #region NoTemplate
+
         private static readonly Lazy<DataTemplate> NoAdditionalTemplateProvider = new Lazy<DataTemplate>(CreateEmptyGridDataTemplate);
 
         /// <summary>
@@ -99,5 +108,32 @@ namespace MaterialDesignThemes.Wpf
                 return (DataTemplate)XamlReader.Load(memoryStream, parserContext);
             }
         }
+
+        #endregion
+
+        #region ExpanderSize
+
+        public static double GetExpanderSize(DependencyObject element)
+            => (double)element.GetValue(ExpanderSizeProperty);
+        public static void SetExpanderSize(DependencyObject element, double value)
+            => element.SetValue(ExpanderSizeProperty, value);
+
+        public static readonly DependencyProperty ExpanderSizeProperty =
+            DependencyProperty.RegisterAttached("ExpanderSize", typeof(double), typeof(TreeViewAssist), new PropertyMetadata(default(double)));
+
+        #endregion
+
+        #region ShowSelection
+
+        public static bool GetShowSelection(DependencyObject element)
+            => (bool)element.GetValue(ExpanderSizeProperty);
+        public static void SetShowSelection(DependencyObject element, bool value)
+            => element.SetValue(ExpanderSizeProperty, value);
+
+        public static readonly DependencyProperty ShowSelectionProperty =
+            DependencyProperty.RegisterAttached("ShowSelection", typeof(bool), typeof(TreeViewAssist), new PropertyMetadata(true));
+
+        #endregion
+
     }
 }
