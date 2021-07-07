@@ -35,7 +35,6 @@ namespace MaterialDesignThemes.UITests.WPF.Theme
             await App.InitialzeWithMaterialDesign(BaseTheme.Light, primary, colorAdjustment:new ColorAdjustment());
 
             IWindow window = await App.CreateWindow<ColorAdjustWindow>();
-            await recorder.SaveScreenshot();
 
             Color windowBackground = await window.GetBackgroundColor();
 

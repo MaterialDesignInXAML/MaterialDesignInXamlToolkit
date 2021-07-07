@@ -64,6 +64,7 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHost
             await closeButton.Click();
 
             await Wait.For(async () => Assert.Equal("1", await resultTextBlock.GetText()));
+            recorder.Success();
         }
     }
 }

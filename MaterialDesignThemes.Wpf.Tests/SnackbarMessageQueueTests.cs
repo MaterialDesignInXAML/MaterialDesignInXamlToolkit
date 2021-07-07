@@ -7,10 +7,11 @@ using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
 {
-    public class SnackbarMessageQueueTests
+    public sealed class SnackbarMessageQueueTests : IDisposable
     {
         private readonly SnackbarMessageQueue _snackbarMessageQueue;
         private readonly Dispatcher _dispatcher;
+        private bool _isDisposed;
 
         public SnackbarMessageQueueTests()
         {
@@ -22,10 +23,10 @@ namespace MaterialDesignThemes.Wpf.Tests
         [Description("Ensures that GetSnackbarMessage raises an exception on null values")]
         public void GetSnackbarMessageNullValues()
         {
-            Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!));
-            Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue("", null, null));
-            Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!, "", null));
-            Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!, null, new Action(() => { })));
+            _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!));
+            _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue("", null, null));
+            _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!, "", null));
+            _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!, null, new Action(() => { })));
         }
 
         [StaFact]
@@ -80,6 +81,38 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             Assert.Equal(content, messages[0].Content);
             Assert.Equal(actionContent, messages[0].ActionContent);
+        }
+
+        [Fact]
+        [Description("Pull Request 2367")]
+        public void Enqueue_ProperlySetsPromote()
+        {
+            _snackbarMessageQueue.Enqueue("Content", "Action Content", actionHandler: null, promote: true);
+
+            IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
+            Assert.Equal(1, messages.Count);
+            Assert.Equal("Content", messages[0].Content);
+            Assert.Equal("Action Content", messages[0].ActionContent);
+            Assert.True(messages[0].IsPromoted);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+                if (disposing)
+                {
+                    _snackbarMessageQueue.Dispose();
+                }
+
+                _isDisposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }
