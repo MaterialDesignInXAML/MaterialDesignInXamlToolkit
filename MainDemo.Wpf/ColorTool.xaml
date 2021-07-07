@@ -193,6 +193,7 @@
 
                                 <TextBlock
                                     Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                    Foreground="{DynamicResource MaterialDesignBody}"
                                     Text="Primary"/>
                                 
                                 <!-- Primary mid section -->
@@ -287,6 +288,7 @@
 
                                 <TextBlock
                                     Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                    Foreground="{DynamicResource MaterialDesignBody}"
                                     Text="Secondary"/>
                                 
                                 <!-- Secondary mid section -->
@@ -383,6 +385,7 @@
 
                                     <TextBlock
                                         Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                        Foreground="{DynamicResource MaterialDesignBody}"
                                         Text="Text on Primary"/>
                                     
                                     <Border
@@ -453,6 +456,7 @@
 
                                     <TextBlock
                                         Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                        Foreground="{DynamicResource MaterialDesignBody}"
                                         Text="Text on Secondary"/>
                                     
                                     <Border
