@@ -46,7 +46,7 @@ steps:
 - task: PublishPipelineArtifact@1
   name: "PublishUITestsScreenshots"
   inputs:
-    artifact: 'Screenshots'
+    artifact: 'Screenshots-$(Build.BuildNumber)'
     targetPath: 'MaterialDesignThemes.UITests/bin/$(buildConfiguration)/net5.0-windows/Screenshots'
     publishLocation: 'pipeline'
   condition: always()
