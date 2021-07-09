@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MaterialDesignThemes.Wpf;
 using XamlTest;
 
-namespace MaterialDesignThemes.UITests.WPF.TimePicker
+namespace MaterialDesignThemes.UITests.WPF.TimePickers
 {
     static class MaterialDesignTimePicker
     {
@@ -28,7 +28,7 @@ namespace MaterialDesignThemes.UITests.WPF.TimePicker
         public static async Task PickClock(this IVisualElement timePicker, int hour, int minute)
         {
             var button = await timePicker.GetElement("PART_Button");
-            await button.Click();
+            await button.LeftClick();
 
             var popup = await timePicker.GetElement("PART_Popup");
             await popup.ClickHour(hour);
@@ -51,7 +51,7 @@ namespace MaterialDesignThemes.UITests.WPF.TimePicker
             await Task.Delay(delay);
             await Wait.For(async () =>
             {
-                await button.Click();
+                await button.LeftClick();
                 await Task.Delay(delay);
                 return await button.GetNullableProperty<bool?>(nameof(ClockItemButton.IsChecked)) == true;
             });
