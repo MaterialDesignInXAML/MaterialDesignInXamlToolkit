@@ -22,6 +22,11 @@ variables:
   mdixVersion: '4.2.0'
 
 steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '5.0.x'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
