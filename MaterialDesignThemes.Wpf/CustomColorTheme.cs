@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public class CustomColorTheme : ResourceDictionary
+    public class CustomColorTheme : ResourceDictionary, IMaterialDesignThemeDictionary
     {
         private BaseTheme? _baseTheme;
         public BaseTheme? BaseTheme
