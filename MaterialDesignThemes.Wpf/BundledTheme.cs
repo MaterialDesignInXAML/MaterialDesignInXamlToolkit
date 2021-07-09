@@ -3,7 +3,7 @@ using MaterialDesignColors;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public class BundledTheme : ResourceDictionary
+    public class BundledTheme : ResourceDictionary, IMaterialDesignThemeDictionary
     {
         private BaseTheme? _baseTheme;
         public BaseTheme? BaseTheme
