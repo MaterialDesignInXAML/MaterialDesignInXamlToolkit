@@ -4,6 +4,7 @@
     <IsPackable>false</IsPackable>
     <SignAssembly>false</SignAssembly>
     <UseWPF>true</UseWPF>
+    <NoWarn>$(NoWarn);CA1707</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
