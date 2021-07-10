@@ -25,7 +25,9 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '5.0.x'
+    version: '6.x'
+    vsVersion: '16.10.x'
+    includePreviewVersions: true
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
