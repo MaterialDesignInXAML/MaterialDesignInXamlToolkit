@@ -25,7 +25,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '5.0.x'
+    version: '5.x'
     vsVersion: '16.10.x'
 
 - task: DotNetCoreCLI@2
