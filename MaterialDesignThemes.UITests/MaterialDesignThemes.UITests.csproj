@@ -5,6 +5,7 @@
     <SignAssembly>false</SignAssembly>
     <UseWPF>true</UseWPF>
     <NoWarn>$(NoWarn);CA1707</NoWarn>
+    <IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
   </PropertyGroup>
 
   <ItemGroup>
