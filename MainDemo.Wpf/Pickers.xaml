@@ -15,373 +15,621 @@
     <AdornerDecorator>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>                    
-            </Grid.ColumnDefinitions>
+            <Grid Margin="0 0 0 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <TextBlock
-                Grid.ColumnSpan="3"
-                Text="Classic WPF DatePicker control with Material Design theme, and new TimePicker control:"/>
-            
-            <StackPanel
-                Grid.Row="1"
-                Grid.Column="0">
-                <smtx:XamlDisplay
-                    UniqueKey="pickers_1"
-                    HorizontalAlignment="Left"
-                    Margin="0 16 0 0">
-                    <DatePicker
-                        Width="100"
-                        materialDesign:HintAssist.Hint="Pick Date"
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay
-                    UniqueKey="pickers_2"
-                    HorizontalAlignment="Left"
-                    Margin="0 16 0 0" >
-                    <DatePicker
-                        x:Name="FutureDatePicker"
-                        Width="100"
-                        materialDesign:HintAssist.Hint="Future Date"
-                        materialDesign:CalendarAssist.IsHeaderVisible="False">
-                        <DatePicker.SelectedDate>
-                            <Binding Path="FutureValidatingDate" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <domain:FutureDateValidationRule ValidatesOnTargetUpdated="True"/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </DatePicker.SelectedDate>
-                    </DatePicker>
-                </smtx:XamlDisplay>
-                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    Grid.ColumnSpan="3"
+                    Text="Classic WPF DatePicker control with Material Design theme, and new TimePicker control:"/>
+
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="0">
                     <smtx:XamlDisplay
-                        UniqueKey="pickers_2_disabled"
+                        UniqueKey="pickers_1"
+                        HorizontalAlignment="Left"
+                        Margin="0 16 0 0">
+                        <DatePicker
+                            Width="100"
+                            materialDesign:HintAssist.Hint="Pick Date"
+                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                    </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
+                        UniqueKey="pickers_2"
                         HorizontalAlignment="Left"
                         Margin="0 16 0 0" >
                         <DatePicker
-                            IsEnabled="False"
+                            x:Name="FutureDatePicker"
                             Width="100"
+                            materialDesign:HintAssist.Hint="Future Date"
+                            materialDesign:CalendarAssist.IsHeaderVisible="False">
+                            <DatePicker.SelectedDate>
+                                <Binding Path="FutureValidatingDate" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <domain:FutureDateValidationRule ValidatesOnTargetUpdated="True"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </DatePicker.SelectedDate>
+                        </DatePicker>
+                    </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
+                            UniqueKey="pickers_2_disabled"
+                            HorizontalAlignment="Left"
+                            Margin="0 16 0 0" >
+                        <DatePicker
+                                IsEnabled="False"
+                                Width="100"
+                                materialDesign:HintAssist.Hint="Disabled"/>
+                    </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
+                            UniqueKey="pickers_3"
+                            HorizontalAlignment="Left"
+                            Margin="0 32 0 0">
+                        <ComboBox
+                            Name="LocaleCombo"
+                            Width="50">
+                            <ComboBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel/>
+                                </ItemsPanelTemplate>
+                            </ComboBox.ItemsPanel>
+                        </ComboBox>
+                    </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
+                        UniqueKey="pickers_4"
+                        HorizontalAlignment="Left"
+                        Margin="0 16 0 0">
+                        <DatePicker
+                            Name="LocaleDatePicker"
+                            Width="120"
+                            materialDesign:HintAssist.Hint="Locale Date"/>
+                    </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
+                        UniqueKey="pickers_5"
+                        HorizontalAlignment="Left"
+                        Margin="0 16 0 0">
+                        <DatePicker
+                            Name="LocaleDatePickerRTL"
+                            Width="120"
+                            FlowDirection="RightToLeft"
+                            materialDesign:HintAssist.Hint="RTL Locale Date"/>
+                    </smtx:XamlDisplay>
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="1" >
+                    <smtx:XamlDisplay
+                        UniqueKey="pickers_6"
+                        HorizontalAlignment="Left"
+                        Margin="0 16 0 0"
+                        VerticalAlignment="Top">
+                        <materialDesign:TimePicker
+                            Width="100" 
+                            Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
+                            materialDesign:HintAssist.Hint="Custom hint"/>
+                    </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
+                        UniqueKey="pickers_6_disabled"
+                        HorizontalAlignment="Left"
+                        Margin="0 16 0 0"
+                        VerticalAlignment="Top">
+                        <materialDesign:TimePicker
+                            Width="100"
+                            IsEnabled="False"
+                            Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                             materialDesign:HintAssist.Hint="Disabled"/>
                     </smtx:XamlDisplay>
-                
+
                     <smtx:XamlDisplay
-                        UniqueKey="pickers_3"
+                        UniqueKey="pickers_13"
                         HorizontalAlignment="Left"
                         Margin="0 32 0 0">
-                    <ComboBox
-                        Name="LocaleCombo"
-                        Width="50">
-                        <ComboBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VirtualizingStackPanel/>
-                            </ItemsPanelTemplate>
-                        </ComboBox.ItemsPanel>
-                    </ComboBox>
-                </smtx:XamlDisplay>
-                
+                        <DatePicker
+                            Width="140"
+                            materialDesign:HintAssist.Hint="Pick Date"
+                            Style="{StaticResource MaterialDesignFilledDatePicker}"/>
+                    </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
+                        UniqueKey="pickers_14"
+                        HorizontalAlignment="Left"
+                        Margin="0 16 0 0">
+                        <DatePicker
+                            Width="140"
+                            materialDesign:HintAssist.Hint="Pick Date"
+                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                    </smtx:XamlDisplay>
+                </StackPanel>
+
                 <smtx:XamlDisplay
-                    UniqueKey="pickers_4"
+                    UniqueKey="pickers_7"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    VerticalAlignment="Top"
                     HorizontalAlignment="Left"
                     Margin="0 16 0 0">
-                    <DatePicker
-                        Name="LocaleDatePicker"
-                        Width="120"
-                        materialDesign:HintAssist.Hint="Locale Date"/>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay
-                    UniqueKey="pickers_5"
-                    HorizontalAlignment="Left"
-                    Margin="0 16 0 0">
-                    <DatePicker
-                        Name="LocaleDatePickerRTL"
-                        Width="120"
-                        FlowDirection="RightToLeft"
-                        materialDesign:HintAssist.Hint="RTL Locale Date"/>
-                </smtx:XamlDisplay>
-            </StackPanel>
-            
-            <StackPanel
-                Grid.Row="1"
-                Grid.Column="1" >
-                <smtx:XamlDisplay
-                    UniqueKey="pickers_6"
-                    HorizontalAlignment="Left"
-                    Margin="0 16 0 0"
-                    VerticalAlignment="Top">
                     <materialDesign:TimePicker
-                        Width="100" 
-                        Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
-                        materialDesign:HintAssist.Hint="Custom hint"/>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay
-                    UniqueKey="pickers_6_disabled"
-                    HorizontalAlignment="Left"
-                    Margin="0 16 0 0"
-                    VerticalAlignment="Top">
-                    <materialDesign:TimePicker
+                        x:Name="PresetTimePicker"
+                        Is24Hours="True"
                         Width="100"
-                        IsEnabled="False"
-                        Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
-                        materialDesign:HintAssist.Hint="Disabled"/>
+                        SelectedTimeChanged="PresetTimePicker_SelectedTimeChanged"/>
                 </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay
-                    UniqueKey="pickers_13"
-                    HorizontalAlignment="Left"
-                    Margin="0 32 0 0">
-                    <DatePicker
-                        Width="140"
-                        materialDesign:HintAssist.Hint="Pick Date"
-                        Style="{StaticResource MaterialDesignFilledDatePicker}"/>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay
-                    UniqueKey="pickers_14"
-                    HorizontalAlignment="Left"
-                    Margin="0 16 0 0">
-                    <DatePicker
-                        Width="140"
-                        materialDesign:HintAssist.Hint="Pick Date"
-                        Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
-                </smtx:XamlDisplay>
-            </StackPanel>
 
-            <smtx:XamlDisplay
-                UniqueKey="pickers_7"
-                Grid.Row="1"
-                Grid.Column="2"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                Margin="0 16 0 0">
-                <materialDesign:TimePicker
-                    x:Name="PresetTimePicker"
-                    Is24Hours="True"
-                    Width="100"
-                    SelectedTimeChanged="PresetTimePicker_SelectedTimeChanged"/>
-            </smtx:XamlDisplay>
-            
-            <StackPanel
-                Grid.Row="1"
-                Grid.Column="3"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left">
-                <smtx:XamlDisplay
-                    UniqueKey="pickers_8"
-                    Margin="0 16 0 0">
-                    <materialDesign:TimePicker 
-                        materialDesign:HintAssist.Hint="Validates"
-                        IsInvalidTextAllowed="True"
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left">
+                    <smtx:XamlDisplay
+                        UniqueKey="pickers_8"
+                        Margin="0 16 0 0">
+                        <materialDesign:TimePicker 
+                            materialDesign:HintAssist.Hint="Validates"
+                            IsInvalidTextAllowed="True"
+                            Is24Hours="{Binding IsChecked, ElementName=Is24HourCheckbox}"
+                            Width="100">
+                            <materialDesign:TimePicker.Text>
+                                <Binding Path="ValidatingTime" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <domain:SimpleDateValidationRule ValidatesOnTargetUpdated="True"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </materialDesign:TimePicker.Text>
+                        </materialDesign:TimePicker>
+                    </smtx:XamlDisplay>
+
+                    <CheckBox
+                        x:Name="Is24HourCheckbox"
+                        Content="Is 24 Hour"
+                        IsChecked="True"
+                        Margin="0,10,0,0"
+                        VerticalAlignment="Top"/>
+                </StackPanel>
+
+                <smtx:XamlDisplay UniqueKey="pickers_11" Grid.Row="1" Grid.Column="4" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 16 0 0">
+                    <materialDesign:TimePicker
+                        materialDesign:HintAssist.Hint="With Seconds"
                         Is24Hours="{Binding IsChecked, ElementName=Is24HourCheckbox}"
-                        Width="100">
-                        <materialDesign:TimePicker.Text>
-                            <Binding Path="ValidatingTime" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <domain:SimpleDateValidationRule ValidatesOnTargetUpdated="True"/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </materialDesign:TimePicker.Text>
-                    </materialDesign:TimePicker>
+                        x:Name="WithSecondsTimePicker"
+                        WithSeconds="True"
+                        Width="100"/>
                 </smtx:XamlDisplay>
-                
-                <CheckBox
-                    x:Name="Is24HourCheckbox"
-                    Content="Is 24 Hour"
-                    IsChecked="True"
-                    Margin="0,10,0,0"
-                    VerticalAlignment="Top"/>
-            </StackPanel>
-            
-            <smtx:XamlDisplay UniqueKey="pickers_11" Grid.Row="1" Grid.Column="4" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 16 0 0">
-                <materialDesign:TimePicker
-                    materialDesign:HintAssist.Hint="With Seconds"
-                    Is24Hours="{Binding IsChecked, ElementName=Is24HourCheckbox}"
-                    x:Name="WithSecondsTimePicker"
-                    WithSeconds="True"
-                    Width="100"/>
-            </smtx:XamlDisplay>
 
-            <TextBlock
-                Grid.Row="2"
-                Grid.Column="0"
-                Grid.ColumnSpan="4"
-                Margin="0 64 0 0"
-                Text="By combining the DialogHost (see MainWindow.xaml) and the Calendar and Clock controls, custom popups can be built."/>
-            
-            <smtx:XamlDisplay
-                UniqueKey="pickers_9"
-                Grid.Row="3"
-                Grid.Column="0"
-                Margin="0 32 0 0"
-                HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock
-                        Text="{Binding Date, StringFormat=d}"
-                        VerticalAlignment="Center"
-                        FontSize="24"/>
-                    
-                    <Button
-                        Margin="8 0 0 0"
-                        Content="..." 
-                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                        materialDesign:DialogHost.DialogOpenedAttached="CalendarDialogOpenedEventHandler"
-                        materialDesign:DialogHost.DialogClosingAttached="CalendarDialogClosingEventHandler">
-                        <Button.CommandParameter>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>                                    
-                                <Calendar
-                                    x:Name="Calendar"
-                                    Margin="-1 -4 -1 0"/>
-                                
-                                <StackPanel
-                                    Grid.Row="1"
-                                    Margin="8"
-                                    HorizontalAlignment="Right"
-                                    Orientation="Horizontal">
-                                    <Button
-                                        Style="{DynamicResource MaterialDesignFlatButton}"
-                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                        CommandParameter="0"
-                                        Content="CANCEL"/>
-                                    
-                                    <Button
-                                        Style="{DynamicResource MaterialDesignFlatButton}"
-                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                        CommandParameter="1"
-                                        Content="OK"/>
-                                </StackPanel>
-                            </Grid>
-                        </Button.CommandParameter>
-                    </Button>
-                </StackPanel>
-            </smtx:XamlDisplay>
-            
-            <smtx:XamlDisplay
-                UniqueKey="pickers_10"
-                Grid.Row="3"
-                Grid.Column="1"
-                Margin="0 32 0 0"
-                HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock
-                        Text="{Binding Time, StringFormat=t}"
-                        VerticalAlignment="Center"
-                        FontSize="24"/>
-                    
-                    <Button
-                        Margin="8 0 0 0"
-                        Content="..." 
-                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                        materialDesign:DialogHost.DialogOpenedAttached="ClockDialogOpenedEventHandler"
-                        materialDesign:DialogHost.DialogClosingAttached="ClockDialogClosingEventHandler">
-                        <Button.CommandParameter>
-                            <Grid Margin="-1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>                                    
-                                <materialDesign:Clock
-                                    DisplayAutomation="ToSeconds"
-                                    x:Name="Clock"/>
-                                
-                                <StackPanel
-                                    Grid.Row="1"
-                                    Margin="8"
-                                    HorizontalAlignment="Right"
-                                    Orientation="Horizontal">
-                                    <Button
-                                        Style="{DynamicResource MaterialDesignFlatButton}"
-                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                        CommandParameter="0"
-                                        Content="CANCEL"/>
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    Margin="0 64 0 0"
+                    Text="By combining the DialogHost (see MainWindow.xaml) and the Calendar and Clock controls, custom popups can be built."/>
 
-                                    <Button
-                                        Style="{DynamicResource MaterialDesignFlatButton}"
-                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                        CommandParameter="1"
-                                        Content="OK"/>
-                                </StackPanel>
-                            </Grid>
-                        </Button.CommandParameter>
-                    </Button>
-                </StackPanel>
-            </smtx:XamlDisplay>
-            
-            <smtx:XamlDisplay
-                UniqueKey="pickers_12"
-                Grid.Row="3"
-                Grid.Column="2"
-                Margin="0 32 0 0"
-                HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock
-                        Text="{Binding Date, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"
-                        VerticalAlignment="Center"
-                        FontSize="24"/>
-                    <Button
-                        Margin="8 0 0 0"
-                        Content="..."
-                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                        materialDesign:DialogHost.DialogOpenedAttached="CombinedDialogOpenedEventHandler"
-                        materialDesign:DialogHost.DialogClosingAttached="CombinedDialogClosingEventHandler">
-                        <Button.CommandParameter>
-                            <Grid Margin="-1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                
-                                <StackPanel
-                                    Grid.Row="0"
-                                    Orientation="Horizontal">
-                                    <Calendar
-                                        x:Name="CombinedCalendar"
-                                        Margin="-1 -4 -1 0"/>
-                                    
+                <smtx:XamlDisplay
+                    UniqueKey="pickers_9"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Margin="0 32 0 0"
+                    HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Date, StringFormat=d}"
+                            VerticalAlignment="Center"
+                            FontSize="24"/>
+
+                        <Button
+                            Margin="8 0 0 0"
+                            Content="..." 
+                            Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                            materialDesign:DialogHost.DialogOpenedAttached="CalendarDialogOpenedEventHandler"
+                            materialDesign:DialogHost.DialogClosingAttached="CalendarDialogClosingEventHandler">
+                            <Button.CommandParameter>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Viewbox Stretch="Uniform" Width="300">
+                                        <Calendar
+                                            x:Name="Calendar"
+                                            Margin="-1 -4 -1 0"/>
+                                    </Viewbox>
+
+
+                                    <StackPanel
+                                        Grid.Row="1"
+                                        Margin="8"
+                                        HorizontalAlignment="Right"
+                                        Orientation="Horizontal">
+                                        <Button
+                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            CommandParameter="0"
+                                            Content="CANCEL"/>
+
+                                        <Button
+                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            CommandParameter="1"
+                                            Content="OK"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Button.CommandParameter>
+                        </Button>
+                    </StackPanel>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay
+                    UniqueKey="pickers_10"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Margin="0 32 0 0"
+                    HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Time, StringFormat=t}"
+                            VerticalAlignment="Center"
+                            FontSize="24"/>
+
+                        <Button
+                            Margin="8 0 0 0"
+                            Content="..." 
+                            Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                            materialDesign:DialogHost.DialogOpenedAttached="ClockDialogOpenedEventHandler"
+                            materialDesign:DialogHost.DialogClosingAttached="ClockDialogClosingEventHandler">
+                            <Button.CommandParameter>
+                                <Grid Margin="-1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
                                     <materialDesign:Clock
-                                        x:Name="CombinedClock"
-                                        DisplayAutomation="CycleWithSeconds"
-                                        Is24Hours="True"/>
-                                </StackPanel>
-                                
-                                <StackPanel
-                                    Grid.Row="1"
-                                    Margin="8"
-                                    HorizontalAlignment="Right"
-                                    Orientation="Horizontal">
-                                    <Button
-                                        Style="{DynamicResource MaterialDesignFlatButton}"
-                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                        CommandParameter="0"
-                                        Content="CANCEL"/>
+                                        DisplayAutomation="ToSeconds"
+                                        x:Name="Clock"/>
 
-                                    <Button
-                                        Style="{DynamicResource MaterialDesignFlatButton}"
-                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                        CommandParameter="1"
-                                        Content="OK"/>
-                                </StackPanel>
+                                    <StackPanel
+                                        Grid.Row="1"
+                                        Margin="8"
+                                        HorizontalAlignment="Right"
+                                        Orientation="Horizontal">
+                                        <Button
+                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            CommandParameter="0"
+                                            Content="CANCEL"/>
+
+                                        <Button
+                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            CommandParameter="1"
+                                            Content="OK"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Button.CommandParameter>
+                        </Button>
+                    </StackPanel>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay
+                    UniqueKey="pickers_12"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Margin="0 32 0 0"
+                    HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Date, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"
+                            VerticalAlignment="Center"
+                            FontSize="24"/>
+                        <Button
+                            Margin="8 0 0 0"
+                            Content="..."
+                            Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                            materialDesign:DialogHost.DialogOpenedAttached="CombinedDialogOpenedEventHandler"
+                            materialDesign:DialogHost.DialogClosingAttached="CombinedDialogClosingEventHandler">
+                            <Button.CommandParameter>
+                                <Grid Margin="-1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel
+                                        Grid.Row="0"
+                                        Orientation="Horizontal">
+                                        <Calendar
+                                            x:Name="CombinedCalendar"
+                                            Margin="-1 -4 -1 0"/>
+
+                                        <materialDesign:Clock
+                                            x:Name="CombinedClock"
+                                            DisplayAutomation="CycleWithSeconds"
+                                            Is24Hours="True"/>
+                                    </StackPanel>
+
+                                    <StackPanel
+                                        Grid.Row="1"
+                                        Margin="8"
+                                        HorizontalAlignment="Right"
+                                        Orientation="Horizontal">
+                                        <Button
+                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            CommandParameter="0"
+                                            Content="CANCEL"/>
+
+                                        <Button
+                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            CommandParameter="1"
+                                            Content="OK"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Button.CommandParameter>
+                        </Button>
+                    </StackPanel>
+                </smtx:XamlDisplay>
+            </Grid>
+
+            <Expander Grid.Row="1" Header="Calendar Picker Styles">
+                <WrapPanel>
+
+                    <GroupBox Header="Default" Style="{StaticResource MaterialDesignCardGroupBox}"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="10"
+                                  materialDesign:ColorZoneAssist.Mode="SecondaryMid">
+                        <smtx:XamlDisplay UniqueKey="calendar_1">
+                            <Calendar />
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="Custom Colors" Style="{StaticResource MaterialDesignCardGroupBox}"
+                              materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="10"
+                              materialDesign:ColorZoneAssist.Mode="SecondaryMid">
+                        <smtx:XamlDisplay UniqueKey="calendar_2">
+                            <Grid>
+                                <Grid.Resources>
+                                    <Style x:Key="SecondaryCalendarDayButton" TargetType="CalendarDayButton" BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
+                                        <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="{DynamicResource SecondaryHueMidBrush}"/>
+                                        <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
+                                    </Style>
+                                    <Style x:Key="SecondaryCalendarButton" TargetType="CalendarButton" BasedOn="{StaticResource MaterialDesignCalendarButton}">
+                                        <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="{DynamicResource SecondaryHueMidBrush}"/>
+                                        <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource SecondaryHueMidForegroundBrush}"/>
+                                    </Style>
+                                </Grid.Resources>
+                                <Calendar Background="{DynamicResource PrimaryHueLightBrush}"
+                                      Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                                      materialDesign:CalendarAssist.HeaderBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                      materialDesign:CalendarAssist.HeaderForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                      CalendarDayButtonStyle="{StaticResource SecondaryCalendarDayButton}"
+                                      CalendarButtonStyle="{StaticResource SecondaryCalendarButton}"/>
                             </Grid>
-                        </Button.CommandParameter>
-                    </Button>
-                </StackPanel>
-            </smtx:XamlDisplay>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="Even More Custom Colors" Style="{StaticResource MaterialDesignCardGroupBox}"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="10"
+                                  materialDesign:ColorZoneAssist.Mode="SecondaryMid" >
+                        <smtx:XamlDisplay UniqueKey="calendar_3" >
+                            <Grid>
+                                <Grid.Resources>
+                                    <Style x:Key="CustomCalendarDayButton" TargetType="CalendarDayButton" BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
+                                        <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="#B2F39B"/>
+                                        <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="Black"/>
+                                    </Style>
+                                    <Style x:Key="CustomCalendarButton" TargetType="CalendarButton" BasedOn="{StaticResource MaterialDesignCalendarButton}">
+                                        <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="#B2F39B"/>
+                                        <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="Black"/>
+                                    </Style>
+                                </Grid.Resources>
+                                <Calendar Background="#343C3F"
+                                      Foreground="White"
+                                      materialDesign:CalendarAssist.HeaderBackground="#A2E9FF"
+                                      materialDesign:CalendarAssist.HeaderForeground="Black"
+                                      CalendarDayButtonStyle="{StaticResource CustomCalendarDayButton}"
+                                      CalendarButtonStyle="{StaticResource CustomCalendarButton}"/>
+                            </Grid>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="Horizontal" Style="{StaticResource MaterialDesignCardGroupBox}"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" 
+                                  materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                                  VerticalAlignment="Top" Margin="10">
+                        <smtx:XamlDisplay UniqueKey="calendar_4" >
+                            <Calendar materialDesign:CalendarAssist.Orientation="Horizontal" />
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+
+
+                    <GroupBox Header="Transparent Header and shadow" Style="{StaticResource MaterialDesignCardGroupBox}"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth3"  Margin="10"
+                                  materialDesign:ColorZoneAssist.Mode="SecondaryMid">
+                        <smtx:XamlDisplay UniqueKey="calendar_5" >
+                            <Calendar Style="{StaticResource MaterialDesignCalendarPortraitForeground}"
+                                      materialDesign:ShadowAssist.ShadowDepth="Depth3"/>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                </WrapPanel>
+            </Expander>
+
+            <Expander Grid.Row="2" Header="24H Clock Picker Styles">
+                <WrapPanel>
+
+                    <GroupBox Header="MaterialDesignClock" Margin="10"
+                              Style="{DynamicResource MaterialDesignCardGroupBox}"
+                              materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                              materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                        <smtx:XamlDisplay UniqueKey="clock_1" >
+                            <materialDesign:Clock Width="auto" DisplayAutomation="CycleWithSeconds"
+                                                  Is24Hours="True"
+                                                  Style="{StaticResource MaterialDesignClock}"/>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="No Header" Margin="10" VerticalAlignment="Top"
+                                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                                  materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                        <smtx:XamlDisplay UniqueKey="clock_2" >
+                            <materialDesign:Clock Width="auto" DisplayAutomation="CycleWithSeconds"
+                                                  Is24Hours="True" IsHeaderVisible="False" />
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="MaterialDesignClockHorizontal" Margin="10"
+                                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                                  materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" VerticalAlignment="Top">
+                        <smtx:XamlDisplay UniqueKey="clock_3" >
+                            <materialDesign:Clock Width="auto" DisplayAutomation="CycleWithSeconds"
+                                                  Is24Hours="True" 
+                                                  Style="{StaticResource MaterialDesignClockHorizontal}"/>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="MaterialDesignClockVertical" Margin="10"
+                                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                                  materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                        <smtx:XamlDisplay UniqueKey="clock_4" >
+                            <materialDesign:Clock Width="auto" DisplayAutomation="CycleWithSeconds"
+                                                  Is24Hours="True" 
+                                                  Style="{StaticResource MaterialDesignClockVertical}"/>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="MaterialDesignClockHorizontalThemed" Margin="10"
+                                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                                  materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                        <smtx:XamlDisplay UniqueKey="clock_5" >
+                            <materialDesign:Clock Width="auto" DisplayAutomation="CycleWithSeconds"
+                                                  Is24Hours="True" 
+                                                  Style="{StaticResource MaterialDesignClockHorizontalThemed}"/>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="MaterialDesignClockVerticalThemed" Margin="10"
+                                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                                  materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                        <smtx:XamlDisplay UniqueKey="clock_6" >
+                            <materialDesign:Clock Width="auto" DisplayAutomation="CycleWithSeconds"
+                                                  Is24Hours="True" 
+                                                  Style="{StaticResource MaterialDesignClockVerticalThemed}"/>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                </WrapPanel>
+            </Expander>
+
+            <Expander Grid.Row="3" Header="12H Clock picker styles">
+                <WrapPanel >
+                    <GroupBox Header="MaterialDesignClock" Margin="10"
+                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                              materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                              materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                        <smtx:XamlDisplay UniqueKey="clock_7" >
+                            <materialDesign:Clock Width="auto"
+                                  DisplayAutomation="ToSeconds"
+                                  Is24Hours="False" IsHeaderVisible="True"
+                                  Style="{StaticResource MaterialDesignClock}"/>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="No Header" Margin="10"
+                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                              materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                              materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                              VerticalAlignment="Top">
+                        <smtx:XamlDisplay UniqueKey="clock_8" >
+                            <materialDesign:Clock Width="auto"
+                                  DisplayAutomation="ToSeconds"
+                                  Is24Hours="False" IsHeaderVisible="False"
+                                  Style="{StaticResource MaterialDesignClock}"/>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="MaterialDesignClockHorizontal" Margin="10"
+                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                              materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                              materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                              VerticalAlignment="Top">
+                        <smtx:XamlDisplay UniqueKey="clock_9" >
+                            <materialDesign:Clock 
+                                      DisplayAutomation="CycleWithSeconds"
+                                      Is24Hours="False" IsHeaderVisible="True"
+                                      Style="{StaticResource MaterialDesignClockHorizontal}"/>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="MaterialDesignClockVertical" Margin="10"
+                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                              materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                              materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                        <smtx:XamlDisplay UniqueKey="clock_10" >
+                            <materialDesign:Clock 
+                                      DisplayAutomation="CycleWithSeconds"
+                                      Is24Hours="False" IsHeaderVisible="True"
+                                      Style="{StaticResource MaterialDesignClockVertical}"/>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="MaterialDesignClockHorizontalThemed" Margin="10"
+                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                              materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                              materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                        <smtx:XamlDisplay UniqueKey="clock_11" >
+                            <materialDesign:Clock Width="auto"
+                                      DisplayAutomation="CycleWithSeconds"
+                                      Is24Hours="False" IsHeaderVisible="True"
+                                      Style="{StaticResource MaterialDesignClockHorizontalThemed}"/>
+                        </smtx:XamlDisplay>
+                    </GroupBox>
+
+                    <GroupBox Header="MaterialDesignClockVerticalThemed" Margin="10"
+                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                              materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                              materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                        <smtx:XamlDisplay UniqueKey="clock_12" >
+                            <materialDesign:Clock Width="auto"
+                                      DisplayAutomation="CycleWithSeconds"
+                                      Is24Hours="False" IsHeaderVisible="True"
+                                      Style="{StaticResource MaterialDesignClockVerticalThemed}"/>
+                        </smtx:XamlDisplay>
+
+                    </GroupBox>
+
+
+                </WrapPanel>
+            </Expander>
         </Grid>
+
     </AdornerDecorator>
 </UserControl>
 
