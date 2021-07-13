@@ -42,10 +42,13 @@
             <materialDesign:DrawerHost
                 x:Name="DrawerHost"
                 Margin="32"
+                Height="480" Width="480"
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" 
                 BorderThickness="2"
-                BorderBrush="{DynamicResource MaterialDesignDivider}">
+                BorderBrush="{DynamicResource MaterialDesignDivider}"
+                BottomDrawerCornerRadius="20 20 0 0"
+                BottomDrawerBackground="{DynamicResource SecondaryHueLightBrush}">
 
                 <materialDesign:DrawerHost.Style>
                     <Style TargetType="materialDesign:DrawerHost" BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
@@ -140,7 +143,8 @@
                         <TextBlock
                             Margin="4"
                             VerticalAlignment="Center"
-                            Text="BOTTOM BRACKET"/>
+                            Text="BOTTOM BRACKET"
+                            Foreground="{DynamicResource SecondaryHueLightBrushForeground}"/>
 
                         <Button
                             Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
@@ -160,64 +164,61 @@
                 </materialDesign:DrawerHost.BottomDrawerContent>
 
                 <Grid
-                    MinWidth="480"
-                    MinHeight="480">
-                    <Grid
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                        <Button
-                            Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                            CommandParameter="{x:Static Dock.Left}"
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Margin="4"
-                            Content="{materialDesign:PackIcon Kind=ArrowLeft}"/>
+                    <Button
+                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Left}"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="4"
+                        Content="{materialDesign:PackIcon Kind=ArrowLeft}"/>
 
-                        <Button
-                            Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                            CommandParameter="{x:Static Dock.Top}"
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            Margin="4"
-                            Content="{materialDesign:PackIcon Kind=ArrowUp}"/>
+                    <Button
+                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Top}"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="4"
+                        Content="{materialDesign:PackIcon Kind=ArrowUp}"/>
 
-                        <Button
-                            Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                            CommandParameter="{x:Static Dock.Right}"
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            Margin="4"
-                            Content="{materialDesign:PackIcon Kind=ArrowRight}"/>
+                    <Button
+                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Right}"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="4"
+                        Content="{materialDesign:PackIcon Kind=ArrowRight}"/>
 
-                        <Button
-                            Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                            CommandParameter="{x:Static Dock.Bottom}"
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            Margin="4"
-                            Content="{materialDesign:PackIcon Kind=ArrowDown}"/>
+                    <Button
+                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Bottom}"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="4"
+                        Content="{materialDesign:PackIcon Kind=ArrowDown}"/>
 
-                        <Button
-                            Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Margin="4" 
-                            Style="{DynamicResource MaterialDesignRaisedAccentButton}"
-                            Content="{materialDesign:PackIcon Kind=ArrowAll}"/>
-                    </Grid>
+                    <Button
+                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="4" 
+                        Style="{DynamicResource MaterialDesignRaisedAccentButton}"
+                        Content="{materialDesign:PackIcon Kind=ArrowAll}"/>
                 </Grid>
+
             </materialDesign:DrawerHost>
         </smtx:XamlDisplay>
     </DockPanel>
