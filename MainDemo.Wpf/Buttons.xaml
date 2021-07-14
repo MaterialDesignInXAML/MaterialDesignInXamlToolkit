@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
@@ -276,58 +277,69 @@
                 </smtx:XamlDisplay>
             </StackPanel>
 
-            <StackPanel
-                Orientation="Horizontal"
-                Margin="0 24 0 0">
-                <smtx:XamlDisplay UniqueKey="buttons_paper_1" Margin="8 0">
-                    <Button
+            <materialDesign:ColorZone Margin="0 24 0 0" Mode="{Binding SelectedItem, ElementName=ColorZoneMode}">
+                <StackPanel Margin="0 8"
+                Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <ObjectDataProvider x:Key="ColorZoneModes" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+                            <ObjectDataProvider.MethodParameters>
+                                <x:Type TypeName="materialDesign:ColorZoneMode" />
+                            </ObjectDataProvider.MethodParameters>
+                        </ObjectDataProvider>
+                    </StackPanel.Resources>
+                    <smtx:XamlDisplay UniqueKey="buttons_paper_1" Margin="8 0">
+                        <Button
                         Style="{StaticResource MaterialDesignPaperLightButton}"
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignPaperLightButton"
                         Content="LIGHT"
                         IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay UniqueKey="buttons_paper_2" Margin="8 0">
-                    <Button
+                    </smtx:XamlDisplay>
+                    <smtx:XamlDisplay UniqueKey="buttons_paper_2" Margin="8 0">
+                        <Button
                         Style="{StaticResource MaterialDesignPaperButton}"
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignPaperButton"
                         Content="MID"
                         IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay UniqueKey="buttons_paper_3" Margin="8 0">
-                    <Button
+                    </smtx:XamlDisplay>
+                    <smtx:XamlDisplay UniqueKey="buttons_paper_3" Margin="8 0">
+                        <Button
                         Style="{StaticResource MaterialDesignPaperDarkButton}"
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignPaperDarkButton"
                         Content="DARK"
                         IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay UniqueKey="buttons_paper_4" Margin="8 0">
-                    <Button
+                    </smtx:XamlDisplay>
+                    <smtx:XamlDisplay UniqueKey="buttons_paper_4" Margin="8 0">
+                        <Button
                         Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignPaperSecondaryLightButton"
                         Content="LIGHT"
                         IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay UniqueKey="buttons_paper_5" Margin="8 0">
-                    <Button
+                    </smtx:XamlDisplay>
+                    <smtx:XamlDisplay UniqueKey="buttons_paper_5" Margin="8 0">
+                        <Button
                         Style="{StaticResource MaterialDesignPaperSecondaryButton}"
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignPaperSecondaryButton"
                         Content="MID"
                         IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay UniqueKey="buttons_paper_6" Margin="8 0">
-                    <Button
+                    </smtx:XamlDisplay>
+                    <smtx:XamlDisplay UniqueKey="buttons_paper_6" Margin="8 0">
+                        <Button
                         Style="{StaticResource MaterialDesignPaperSecondaryDarkButton}"
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignPaperSecondaryDarkButton"
                         Content="DARK"
                         IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
-                </smtx:XamlDisplay>
-            </StackPanel>
+                    </smtx:XamlDisplay>
+                    <ComboBox Name="ColorZoneMode" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="120" ItemsSource="{Binding Source={StaticResource ColorZoneModes}}" SelectedIndex="0" />
+                </StackPanel>
+
+            </materialDesign:ColorZone>
+
             <StackPanel
                 Orientation="Horizontal"
                 Margin="0 24 0 0">
