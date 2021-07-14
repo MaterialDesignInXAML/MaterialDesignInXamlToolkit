@@ -459,7 +459,7 @@
                     <Button
                         Style="{StaticResource MaterialDesignFlatLightBgButton}"
                         ToolTip="MaterialDesignFlatLightButton"
-                        Content="Okay"
+                        Content="LIGHT"
                         Width="{StaticResource ButtonWidth}"
                         IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
@@ -468,7 +468,7 @@
                     <Button
                         Style="{StaticResource MaterialDesignFlatMidBgButton}"
                         ToolTip="MaterialDesignFlatMidButton"
-                        Content="Okay"
+                        Content="MID"
                         Width="{StaticResource ButtonWidth}"
                         IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
@@ -477,7 +477,7 @@
                     <Button
                         Style="{StaticResource MaterialDesignFlatDarkBgButton}"
                         ToolTip="MaterialDesignFlatDarkButton"
-                        Content="Okay"
+                        Content="DARK"
                         Width="{StaticResource ButtonWidth}"
                         IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
@@ -486,7 +486,7 @@
                     <Button
                         Style="{StaticResource MaterialDesignFlatSecondaryLightBgButton}"
                         ToolTip="MaterialDesignFlatSecondaryLightBgButton"
-                        Content="Okay"
+                        Content="LIGHT"
                         Width="{StaticResource ButtonWidth}"
                         IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
@@ -495,7 +495,7 @@
                     <Button
                         Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
                         ToolTip="MaterialDesignFlatAccentBackgroundButton"
-                        Content="Okay"
+                        Content="MID"
                         Width="{StaticResource ButtonWidth}"
                         IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
@@ -504,7 +504,7 @@
                     <Button
                         Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
                         ToolTip="MaterialDesignFlatSecondaryDarkBgButton"
-                        Content="Okay"
+                        Content="DARK"
                         Width="{StaticResource ButtonWidth}"
                         IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
