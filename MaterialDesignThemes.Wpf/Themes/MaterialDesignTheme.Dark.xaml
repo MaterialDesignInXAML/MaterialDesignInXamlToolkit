@@ -12,6 +12,7 @@
     <SolidColorBrush x:Key="MaterialDesignBody" Color="#DDFFFFFF" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignBodyLight" Color="#89FFFFFF" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignColumnHeader" Color="#BCFFFFFF" po:Freeze="True" /><!-- 74% -->
+    <!-- 74% -->
 
     <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89FFFFFF" po:Freeze="True" />
     <SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#FF647076" po:Freeze="True" />

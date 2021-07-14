@@ -12,7 +12,7 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     d:DataContext="{d:DesignInstance domain:ButtonsViewModel}"
     mc:Ignorable="d" 
-    d:DesignHeight="500"
+    d:DesignHeight="1200"
     d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -45,102 +45,95 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>        
-        <TextBlock
+        </Grid.RowDefinitions>
+        <DockPanel LastChildFill="False">
+            <TextBlock
             Style="{StaticResource MaterialDesignHeadline5TextBlock}"
             Text="Buttons"/>
+            <ToggleButton x:Name="ButtonsEnabled"
+                    Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                    ToolTip="MaterialDesignSwitchLightToggleButton"
+                    IsChecked="True" DockPanel.Dock="Right"
+                    Margin="8 2"/>
+            <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="8 0 0 0"
+                       DockPanel.Dock="Right">Enabled</TextBlock>
+
+        </DockPanel>
+
         
         <StackPanel Grid.Row="1">
+            <StackPanel.Resources>
+                <system:Double x:Key="IconSize">24</system:Double>
+                <system:Double x:Key="ButtonWidth">90</system:Double>
+            </StackPanel.Resources>
+            
             <StackPanel
                 Orientation="Horizontal"
                 Margin="0 16 0 0">
-                
-                <StackPanel.Resources>
-                    <system:Double x:Key="IconSize">24</system:Double>
-                </StackPanel.Resources>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_1" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_mini_action_1" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                        ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                        ToolTip="MaterialDesignFloatingActionMiniLightButton"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}">
                         <materialDesign:PackIcon
                             Kind="Alarm"
                             Height="{StaticResource IconSize}"
                             Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_2" Margin="8 0">
+
+                <smtx:XamlDisplay UniqueKey="buttons_mini_action_2" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         HorizontalAlignment="Left"
-                        ToolTip="MaterialDesignFloatingActionMiniButton">
+                        ToolTip="MaterialDesignFloatingActionMiniButton"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}">
                         <materialDesign:PackIcon
                             Kind="Alarm"
                             Height="{StaticResource IconSize}"
                             Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_3" Margin="8 0">
+
+                <smtx:XamlDisplay UniqueKey="buttons_mini_action_3" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                        ToolTip="MaterialDesignFloatingActionMiniDarkButton">
+                        ToolTip="MaterialDesignFloatingActionMiniDarkButton"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}">
                         <materialDesign:PackIcon
                             Kind="Alarm"
                             Height="{StaticResource IconSize}"
                             Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_4" Margin="8 0">
+
+                <smtx:XamlDisplay UniqueKey="buttons_mini_action_4" Margin="8 0">
                     <Button
-                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                        ToolTip="MaterialDesignFloatingActionMiniAccentButton">
+                        Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryLightButton}"
+                        ToolTip="MaterialDesignFloatingActionMiniSecondaryLightButton"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}">
                         <materialDesign:PackIcon
                             Kind="Alarm"
                             Height="{StaticResource IconSize}"
                             Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_5" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_mini_action_5" Margin="8 0">
                     <Button
-                        Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                        ToolTip="MaterialDesignFloatingActionLightButton">
+                        Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}"
+                        ToolTip="MaterialDesignFloatingActionMiniSecondaryButton"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}">
                         <materialDesign:PackIcon
                             Kind="Alarm"
                             Height="{StaticResource IconSize}"
                             Width="{StaticResource IconSize}" />
                     </Button>
                 </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_6" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_mini_action_6" Margin="8 0">
                     <Button
-                        Style="{StaticResource MaterialDesignFloatingActionButton}"
-                        ToolTip="MaterialDesignFloatingActionButton">
-                        <materialDesign:PackIcon
-                            Kind="Alarm"
-                            Height="{StaticResource IconSize}"
-                            Width="{StaticResource IconSize}" />
-                    </Button>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_7" Margin="8 0">
-                    <Button
-                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                        ToolTip="MaterialDesignFloatingActionDarkButton">
-                        <materialDesign:PackIcon
-                            Kind="Alarm"
-                            Height="{StaticResource IconSize}"
-                            Width="{StaticResource IconSize}" />
-                    </Button>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_8" Margin="8 0">
-                    <Button
-                        Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
-                        ToolTip="MaterialDesignFloatingActionAccentButton">
+                        Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
+                        ToolTip="MaterialDesignFloatingActionMiniSecondaryDarkButton"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}">
                         <materialDesign:PackIcon
                             Kind="Alarm"
                             Height="{StaticResource IconSize}"
@@ -148,54 +141,368 @@
                     </Button>
                 </smtx:XamlDisplay>
             </StackPanel>
-            
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 16 0 0">
+
+                <smtx:XamlDisplay UniqueKey="buttons_action_1" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                        ToolTip="MaterialDesignFloatingActionLightButton"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
+                    </Button>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_action_2" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionButton}"
+                        ToolTip="MaterialDesignFloatingActionButton"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
+                    </Button>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_action_3" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                        ToolTip="MaterialDesignFloatingActionDarkButton"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
+                    </Button>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_action_4" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionSecondaryLightButton}"
+                        ToolTip="MaterialDesignFloatingActionSecondaryLightButton"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
+                    </Button>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_action_5" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}"
+                        ToolTip="MaterialDesignFloatingActionSecondaryButton"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
+                    </Button>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_action_6" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}"
+                        ToolTip="MaterialDesignFloatingActionSecondaryDarkButton"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}">
+                        <materialDesign:PackIcon
+                            Kind="Alarm"
+                            Height="{StaticResource IconSize}"
+                            Width="{StaticResource IconSize}" />
+                    </Button>
+                </smtx:XamlDisplay>
+            </StackPanel>
+
             <StackPanel
                 Orientation="Horizontal"
                 Margin="0 24 0 0">
-                
-                <StackPanel.Resources>
-                    <system:Double x:Key="ButtonWidth">100</system:Double>
-                </StackPanel.Resources>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_12" Margin="8 0">
+                <smtx:XamlDisplay UniqueKey="buttons_raised_1" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignRaisedLightButton"
-                        Content="_LIGHT"/>
+                        Content="_LIGHT"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_13" Margin="8 0">
+
+                <smtx:XamlDisplay UniqueKey="buttons_raised_2" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignRaisedButton"
-                        Content="_MID"/>
+                        Content="_MID"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_14" Margin="8 0">
+
+                <smtx:XamlDisplay UniqueKey="buttons_raised_3" Margin="8 0">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                        Content="_DARK"/>
+                        Content="_DARK"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_15" Margin="8 0">
+
+                <smtx:XamlDisplay UniqueKey="buttons_raised_4" Margin="8 0">
                     <Button
-                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                        Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
                         Width="{StaticResource ButtonWidth}"
-                        ToolTip="Resource name: MaterialDesignRaisedAccentButton"
-                        Content="ACCENT"/>
-                </smtx:XamlDisplay>                
+                        ToolTip="Resource name: MaterialDesignRaisedSecondaryLightButton"
+                        Content="LIGHT"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_raised_5" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignRaisedSecondaryButton"
+                        Content="MID"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_raised_6" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedSecondaryDarkButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignRaisedSecondaryDarkButton"
+                        Content="DARK"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
             </StackPanel>
-            
+
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 24 0 0">
+                <smtx:XamlDisplay UniqueKey="buttons_paper_1" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignPaperLightButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignPaperLightButton"
+                        Content="LIGHT"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay UniqueKey="buttons_paper_2" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignPaperButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignPaperButton"
+                        Content="MID"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay UniqueKey="buttons_paper_3" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignPaperDarkButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignPaperDarkButton"
+                        Content="DARK"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay UniqueKey="buttons_paper_4" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignPaperSecondaryLightButton"
+                        Content="LIGHT"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay UniqueKey="buttons_paper_5" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignPaperSecondaryButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignPaperSecondaryButton"
+                        Content="MID"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay UniqueKey="buttons_paper_6" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignPaperSecondaryDarkButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        ToolTip="Resource name: MaterialDesignPaperSecondaryDarkButton"
+                        Content="DARK"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+            </StackPanel>
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 24 0 0">
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_1" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatLightButton}"
+                        Click="ButtonBase_OnClick"
+                        ToolTip="MaterialDesignFlatLightButton"
+                        Content="LIGHT"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_2" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="ButtonBase_OnClick"
+                        ToolTip="MaterialDesignFlatButton"
+                        Content="MID"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_3" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatDarkButton}"
+                        Click="ButtonBase_OnClick"
+                        ToolTip="MaterialDesignFlatButton"
+                        Content="DARK"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_4" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatSecondaryLightButton}"
+                        ToolTip="MaterialDesignFlatButton"
+                        Content="LIGHT"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_5" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatSecondaryButton}"
+                        ToolTip="MaterialDesignFlatButton"
+                        Content="MID"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_6" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatSecondaryDarkButton}"
+                        ToolTip="MaterialDesignFlatButton"
+                        Content="DARK"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+            </StackPanel>
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 12 0 0">
+                <smtx:XamlDisplay UniqueKey="buttons_outlined_1" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignOutlinedLightButton}"
+                        ToolTip="MaterialDesignOutlinedButton"
+                        Content="LIGHT"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay UniqueKey="buttons_outlined_2" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignOutlinedButton}"
+                        ToolTip="MaterialDesignOutlinedButton"
+                        Content="MID"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay UniqueKey="buttons_outlined_3" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                        ToolTip="MaterialDesignOutlinedButton"
+                        Content="DARK"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_outlined_4" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignOutlinedSecondaryLightButton}"
+                        Content="LIGHT"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}" />
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay UniqueKey="buttons_outlined_5" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignOutlinedSecondaryButton}"
+                        Content="MID"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}" />
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay UniqueKey="buttons_outlined_6" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignOutlinedSecondaryDarkButton}"
+                        Content="DARK"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}" />
+                </smtx:XamlDisplay>
+            </StackPanel>
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 12 0 0">
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_bg_1" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                        ToolTip="MaterialDesignFlatLightButton"
+                        Content="Okay"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_bg_2" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                        ToolTip="MaterialDesignFlatMidButton"
+                        Content="Okay"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_bg_3" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                        ToolTip="MaterialDesignFlatDarkButton"
+                        Content="Okay"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_bg_4" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatSecondaryLightBgButton}"
+                        ToolTip="MaterialDesignFlatSecondaryLightBgButton"
+                        Content="Okay"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_bg_5" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
+                        ToolTip="MaterialDesignFlatAccentBackgroundButton"
+                        Content="Okay"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_bg_6" Margin="8 0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
+                        ToolTip="MaterialDesignFlatSecondaryDarkBgButton"
+                        Content="Okay"
+                        Width="{StaticResource ButtonWidth}"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
+                </smtx:XamlDisplay>
+            </StackPanel>
             <StackPanel
                 Orientation="Horizontal"
                 Margin="0 24 0 0">
                 <smtx:XamlDisplay UniqueKey="buttons_16" Margin="8 0">
                     <materialDesign:Badged Badge="3">
-                        <Button Content="MAIL"/>
+                        <Button Content="MAIL" IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                     </materialDesign:Badged>
                 </smtx:XamlDisplay>
                 
@@ -203,7 +510,7 @@
                     <materialDesign:Badged
                         Badge="{materialDesign:PackIcon Heart}"
                         BadgeColorZoneMode="SecondaryMid">
-                        <Button Content="LOVE"/>
+                        <Button Content="LOVE" IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                     </materialDesign:Badged>
                 </smtx:XamlDisplay>
                 
@@ -211,7 +518,7 @@
                     <materialDesign:Badged
                         Badge="DANGER"
                         BadgeColorZoneMode="Dark">
-                        <Button Content="STATUS"/>
+                        <Button Content="STATUS" IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                     </materialDesign:Badged>
                 </smtx:XamlDisplay>
                 
@@ -222,7 +529,8 @@
                         <Button
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                             Click="CountingButton_OnClick"
-                            Content="CLICK ME!"/>
+                            Content="CLICK ME!"
+                            IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                     </materialDesign:Badged>
                 </smtx:XamlDisplay>
                 
@@ -232,13 +540,15 @@
                         ToolTip="Resource name: MaterialDesignRaisedLightButton"
                         ContentStringFormat="OR CLICK ME {0}"
                         Content="{Binding OrClickMeCount}"
-                        Command="{Binding IncrementOrClickMeCountCommand }"/>
+                        Command="{Binding IncrementOrClickMeCountCommand }"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
                 
                 <smtx:XamlDisplay UniqueKey="buttons_20" Margin="8 0">
                     <Button
                         Content="{materialDesign:PackIcon AirplaneTakeoff}"
-                        ToolTip="Icon" />
+                        ToolTip="Icon" 
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
             </StackPanel>
             
@@ -256,7 +566,8 @@
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton"
                         materialDesign:RippleAssist.Feedback="#DD000000"
-                        Content="CUSTOM RIPPLE"/>
+                        Content="CUSTOM RIPPLE"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
                 
                 <smtx:XamlDisplay UniqueKey="buttons_22" Margin="8 0">
@@ -265,78 +576,19 @@
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton"
                         materialDesign:RippleAssist.IsDisabled="True"
-                        Content="NO RIPPLE"/>
+                        Content="NO RIPPLE"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
                 
                 <smtx:XamlDisplay UniqueKey="buttons_23" Margin="8 0">
                     <RepeatButton
                         Width="{StaticResource ButtonWidth}"
                         ToolTip="Resource name: MaterialDesignRaisedButton"
-                        Content="REPEAT"/>
+                        Content="REPEAT"
+                        IsEnabled="{Binding IsChecked, ElementName=ButtonsEnabled}"/>
                 </smtx:XamlDisplay>
             </StackPanel>
-            
-            <StackPanel
-                Orientation="Horizontal"
-                Margin="0 24 0 0">
-                <smtx:XamlDisplay UniqueKey="buttons_24" Margin="8 0">
-                    <Button
-                        Style="{StaticResource MaterialDesignFlatButton}"
-                        Click="ButtonBase_OnClick"
-                        ToolTip="MaterialDesignFlatButton"
-                        Content="ACCEPT"/>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_25" Margin="0 0 8 0">
-                    <Button
-                        Style="{StaticResource MaterialDesignFlatButton}"
-                        ToolTip="MaterialDesignFlatButton"
-                        Content="CANCEL"/>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_25_1" Margin="8 0">
-                    <Button
-                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                        ToolTip="MaterialDesignFlatLightButton"
-                        Content="Okay"/>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_25_2" Margin="8 0">
-                    <Button
-                        Style="{StaticResource MaterialDesignFlatMidBgButton}"
-                        ToolTip="MaterialDesignFlatMidButton"
-                        Content="Okay"/>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_25_3" Margin="8 0">
-                    <Button
-                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"
-                        ToolTip="MaterialDesignFlatDarkButton"
-                        Content="Okay"/>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_25_4" Margin="8 0">
-                    <Button
-                        Style="{StaticResource MaterialDesignFlatAccentBgButton}"
-                        ToolTip="MaterialDesignFlatAccentBackgroundButton"
-                        Content="Okay"/>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_outlined_1" Margin="20 0 0 0">
-                    <Button
-                        Style="{StaticResource MaterialDesignOutlinedButton}"
-                        ToolTip="MaterialDesignOutlinedButton"
-                        Content="LEARN MORE"/>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="buttons_outlined_2" >
-                    <Button
-                        Style="{StaticResource MaterialDesignOutlinedButton}"
-                        IsEnabled="False"
-                        Content="LEARN LESS"/>
-                </smtx:XamlDisplay>
-            </StackPanel>
-            
+
             <StackPanel
                 Orientation="Horizontal"
                 Margin="0 12 0 0">
