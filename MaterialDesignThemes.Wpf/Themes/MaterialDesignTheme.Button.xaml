@@ -623,7 +623,8 @@
                             <Grid>
                                 <Border Background="{TemplateBinding Background}" 
                                         CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
-                                        Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" />
+                                        Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                        x:Name="background" />
                                 <Border CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
@@ -648,7 +649,8 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{Binding BorderBrush,
+                            <Setter TargetName="background" Property="wpf:ShadowAssist.Darken" Value="True" />
+                            <Setter TargetName="border" Property="Background" Value="{Binding BorderBrush,
                                                                                         RelativeSource={RelativeSource Mode=TemplatedParent},
                                                                                         Converter={StaticResource BrushOpacityConverter},
                                                                                         ConverterParameter=0.16}" />
