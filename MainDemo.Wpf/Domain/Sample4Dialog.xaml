@@ -4,23 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             mc:Ignorable="d" >
+             xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
+             d:DataContext="{d:DesignInstance Type=domain:DialogsViewModel}"
+             mc:Ignorable="d">
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />            
         </Grid.RowDefinitions>
-        <TextBox wpf:HintAssist.Hint="Name" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+        <TextBox wpf:HintAssist.Hint="Name"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Margin="0 6 0 0"
                  FontSize="18" Grid.Row="0"
                  />
         <StackPanel Orientation="Horizontal" Grid.Row="1"
                     Margin="0 16 0 0">
-            <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}"
+            <Button IsDefault="True"
+                    Style="{StaticResource MaterialDesignFlatButton}"
                     Command="{Binding AcceptSample4DialogCommand}">
                 ACCEPT
             </Button>
-            <Button IsCancel="True" Margin="8 0 0 0" Style="{DynamicResource MaterialDesignFlatButton}"
+            <Button IsCancel="True"
+                    Margin="8 0 0 0"
+                    Style="{StaticResource MaterialDesignFlatButton}"
                     Command="{Binding CancelSample4DialogCommand}">
                 CANCEL
             </Button>

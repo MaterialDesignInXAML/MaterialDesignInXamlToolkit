@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="MaterialDesignThemes.UITests.Samples.DialogHost.ClosingEventCounter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:dialogHost="clr-namespace:MaterialDesignThemes.UITests.Samples.DialogHost"
+             d:DataContext="{d:DesignInstance Type=dialogHost:ClosingEventViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <dialogHost:ClosingEventViewModel />
+    </UserControl.DataContext>
+    <materialDesign:DialogHost IsOpen="{Binding DialogIsOpen}" DialogClosing="DialogHost_DialogClosing">
+        <materialDesign:DialogHost.DialogContent>
+            <StackPanel Margin="10">
+                <TextBlock Text="Some Text" />
+                <Button Content="Close"
+                        Command="{Binding CloseDialogCommand}"
+                        x:Name="CloseButton"/>
+            </StackPanel>
+        </materialDesign:DialogHost.DialogContent>
+
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Button Content="Show Dialog"
+                    x:Name="ShowDialogButton"
+                    Command="{Binding OpenDialogCommand}"/>
+            <TextBlock x:Name="ResultTextBlock" Text="0" />
+        </StackPanel>
+    </materialDesign:DialogHost>
+</UserControl>

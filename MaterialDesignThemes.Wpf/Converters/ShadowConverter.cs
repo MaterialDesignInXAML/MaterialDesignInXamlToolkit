@@ -7,7 +7,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 {
     public class ShadowConverter : IValueConverter
     {
-        public static readonly ShadowConverter Instance = new ShadowConverter();
+        public static readonly ShadowConverter Instance = new();
 
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
@@ -22,9 +22,7 @@ namespace MaterialDesignThemes.Wpf.Converters
             => throw new NotImplementedException();
 
         public static DropShadowEffect? Convert(ShadowDepth shadowDepth)
-        {
-            return ShadowInfo.GetDropShadow(shadowDepth);
-        }
+            => ShadowInfo.GetDropShadow(shadowDepth);
 
         private static DropShadowEffect? Clone(DropShadowEffect? dropShadowEffect)
         {

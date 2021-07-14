@@ -184,7 +184,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <TextBlock Text="Generate Icon (.ioc file)"
+                            <TextBlock Text="Generate Icon (.ico file)"
                                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
                             <Border BorderThickness="1"
                                     BorderBrush="{DynamicResource MaterialDesignBody}"

@@ -77,7 +77,10 @@ namespace MaterialDesignThemes.Wpf
         {
             var timePicker = (TimePicker)dependencyObject;
             if (!timePicker._isManuallyMutatingText)
+            {
                 timePicker.SetSelectedTime();
+            }
+
             if (timePicker._textBox != null)
             {
                 timePicker.UpdateTextBoxText(dependencyPropertyChangedEventArgs.NewValue as string ?? "");
@@ -170,16 +173,20 @@ namespace MaterialDesignThemes.Wpf
             set => SetValue(Is24HoursProperty, value);
         }
 
+        public static readonly DependencyProperty IsHeaderVisibleProperty = DependencyProperty.Register(
+            nameof(IsHeaderVisible), typeof(bool), typeof(TimePicker), new PropertyMetadata(default(bool)));
+
+        public bool IsHeaderVisible
+        {
+            get => (bool)GetValue(IsHeaderVisibleProperty);
+            set => SetValue(IsHeaderVisibleProperty, value);
+        }
+
+
         private static object OnCoerceIsDropDownOpen(DependencyObject d, object baseValue)
         {
             var timePicker = (TimePicker)d;
-
-            if (!timePicker.IsEnabled)
-            {
-                return false;
-            }
-
-            return baseValue;
+            return timePicker.IsEnabled ? baseValue : false;
         }
 
         /// <summary> 
@@ -326,7 +333,9 @@ namespace MaterialDesignThemes.Wpf
                 UpdateTextBoxTextIfNeeded(text!);
             }
             else // Invalid time, jump back to previous good time
+            {
                 SetInvalidTime();
+            }
         }
 
         private void SetInvalidTime()
@@ -352,9 +361,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void TextBoxOnKeyDown(object sender, KeyEventArgs keyEventArgs)
-        {
-            keyEventArgs.Handled = ProcessKey(keyEventArgs) || keyEventArgs.Handled;
-        }
+            => keyEventArgs.Handled = ProcessKey(keyEventArgs) || keyEventArgs.Handled;
 
         private bool ProcessKey(KeyEventArgs keyEventArgs)
         {
@@ -394,11 +401,15 @@ namespace MaterialDesignThemes.Wpf
             if (_textBox is { } textBox &&
                 (_popup?.IsOpen == true || IsInvalidTextAllowed))
             {
+                _isManuallyMutatingText = true;
                 SetCurrentValue(TextProperty, textBox.Text);
+                _isManuallyMutatingText = false;
             }
 
             if (_popup?.IsOpen == false)
+            {
                 SetSelectedTime(true);
+            }
         }
 
         private void UpdateTextBoxText(string? text)
@@ -406,7 +417,7 @@ namespace MaterialDesignThemes.Wpf
             // Save and restore the cursor position
             if (_textBox is { } textBox)
             {
-                var caretIndex = textBox.CaretIndex;
+                int caretIndex = textBox.CaretIndex;
                 textBox.Text = text;
                 textBox.CaretIndex = caretIndex;
             }
@@ -418,26 +429,31 @@ namespace MaterialDesignThemes.Wpf
             {
                 string? formattedText = DateTimeToString(SelectedTime);
                 if (formattedText != lastText)
+                {
                     UpdateTextBoxText(formattedText);
+                }
             }
         }
 
         private void SetSelectedTime(in DateTime time)
-        {
-            SetCurrentValue(SelectedTimeProperty, (SelectedTime?.Date ?? DateTime.Today).Add(time.TimeOfDay));
-        }
+            => SetCurrentValue(SelectedTimeProperty, (SelectedTime?.Date ?? DateTime.Today).Add(time.TimeOfDay));
 
         private void SetSelectedTime(bool beCautious = false)
         {
-            var currentText = _textBox?.Text;
+            string? currentText = _textBox?.Text;
             if (!string.IsNullOrEmpty(currentText))
             {
                 ParseTime(currentText!, t =>
                 {
                     if (!beCautious || DateTimeToString(t) == currentText)
+                    {
                         SetSelectedTime(t);
+                    }
+
                     if (!beCautious)
+                    {
                         UpdateTextBoxTextIfNeeded(currentText!);
+                    }
                 });
             }
             else
@@ -449,7 +465,9 @@ namespace MaterialDesignThemes.Wpf
         private void ParseTime(string s, Action<DateTime> successContinuation)
         {
             if (IsTimeValid(s, out DateTime time))
+            {
                 successContinuation(time);
+            }
         }
 
         private bool IsTimeValid(string s, out DateTime time)
@@ -500,7 +518,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void PopupOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
-            if (!(sender is Popup popup) || popup.StaysOpen) return;
+            if (sender is not Popup popup || popup.StaysOpen) return;
 
             if (_dropDownButton?.InputHitTest(mouseButtonEventArgs.GetPosition(_dropDownButton)) != null)
             {
@@ -573,11 +591,15 @@ namespace MaterialDesignThemes.Wpf
         private void TogglePopup()
         {
             if (IsDropDownOpen)
+            {
                 SetCurrentValue(IsDropDownOpenProperty, false);
+            }
             else
             {
                 if (_disablePopupReopen)
+                {
                     _disablePopupReopen = false;
+                }
                 else
                 {
                     SetSelectedTime();

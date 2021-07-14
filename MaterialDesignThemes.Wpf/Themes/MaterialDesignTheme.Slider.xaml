@@ -553,7 +553,7 @@
                     </Track.IncreaseRepeatButton>
                     <!--  It's important that the Thumb gets added last in the XAML to make sure it is drawn on top of both repeat buttons  -->
                     <Track.Thumb>
-                        <Thumb Template="{StaticResource MaterialDesignSliderThumb}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Thumb Template="{StaticResource MaterialDesignSliderThumb}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Foreground="{TemplateBinding Foreground}" />
                     </Track.Thumb>
                 </Track>
             </Grid>
@@ -617,7 +617,7 @@
                     </Track.IncreaseRepeatButton>
                     <!--  It's important that the Thumb gets added last in the XAML to make sure it is drawn on top of both repeat buttons  -->
                     <Track.Thumb>
-                        <Thumb Template="{StaticResource MaterialDesignSliderThumb}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Thumb Template="{StaticResource MaterialDesignSliderThumb}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Foreground="{TemplateBinding Foreground}" />
                     </Track.Thumb>
                 </Track>
             </Grid>
@@ -681,7 +681,7 @@
                     </Track.IncreaseRepeatButton>
                     <!--  It's important that the Thumb gets added last in the XAML to make sure it is drawn on top of both repeat buttons  -->
                     <Track.Thumb>
-                        <Thumb Template="{StaticResource MaterialDesignDiscreteSliderThumb}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Thumb Template="{StaticResource MaterialDesignDiscreteSliderThumb}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Foreground="{TemplateBinding Foreground}" />
                     </Track.Thumb>
                 </Track>
             </Grid>
@@ -745,7 +745,7 @@
                     </Track.IncreaseRepeatButton>
                     <!--  It's important that the Thumb gets added last in the XAML to make sure it is drawn on top of both repeat buttons  -->
                     <Track.Thumb>
-                        <Thumb Template="{StaticResource MaterialDesignLeftDiscreteSliderThumb}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Thumb Template="{StaticResource MaterialDesignLeftDiscreteSliderThumb}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Foreground="{TemplateBinding Foreground}" />
                     </Track.Thumb>
                 </Track>
             </Grid>

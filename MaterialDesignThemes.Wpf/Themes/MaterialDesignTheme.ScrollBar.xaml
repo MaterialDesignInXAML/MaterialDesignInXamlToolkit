@@ -262,5 +262,6 @@
         <Setter Property="wpf:ScrollBarAssist.ThumbCornerRadius" Value="0"/>
         <Setter Property="wpf:ScrollBarAssist.ButtonsVisibility" Value="Collapsed"/>
         <Setter Property="wpf:ScrollBarAssist.ThumbWidth" Value="10"/>
+        <Setter Property="wpf:ScrollBarAssist.ThumbHeight" Value="10"/>
     </Style>
 </ResourceDictionary>

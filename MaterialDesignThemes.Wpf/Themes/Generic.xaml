@@ -4,7 +4,8 @@
     xmlns:local="clr-namespace:MaterialDesignThemes.Wpf"
     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
     xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions"
-    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
     <ResourceDictionary.MergedDictionaries>
         <!--    we only bring in the dictionaries for controls which were "invented"
@@ -278,8 +279,8 @@
                                        FontSize="15" FontWeight="Normal" />
                             <StackPanel x:Name="ComponentOneTwoWrapper" Orientation="Horizontal"
                                         HorizontalAlignment="Left">
-                                <TextBlock Text="{TemplateBinding ComponentTwoContent}" FontSize="30" FontWeight="Normal" />
-                                <TextBlock Text="{TemplateBinding ComponentOneContent}" Margin="10 0 0 0" FontSize="30" FontWeight="Normal" />
+                                <TextBlock Text="{TemplateBinding ComponentTwoContent}" Margin="0 0 10 0" FontSize="30" FontWeight="Normal"/>
+                                <TextBlock Text="{TemplateBinding ComponentOneContent}" FontSize="30" FontWeight="Normal"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>
@@ -290,6 +291,9 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="ComponentThreeTextBlock" Property="Opacity" Value="1"/>
                             <Setter TargetName="ComponentOneTwoWrapper" Property="Opacity" Value=".56"/>
+                        </Trigger>
+                        <Trigger Property="wpf:CalendarAssist.Orientation" Value="Horizontal">
+                            <Setter TargetName="ComponentOneTwoWrapper" Property="Orientation" Value="Vertical"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -823,7 +827,7 @@
                                 
                                 <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                                     <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                            Opacity="0"
+                                            Opacity="0" CornerRadius="{TemplateBinding LeftDrawerCornerRadius}"
                                             Background="{TemplateBinding LeftDrawerBackground}"
                                             x:Name="LeftDrawerShadow">
                                     </Border>
@@ -852,7 +856,7 @@
                                 </Grid.Style>
                                 <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                                     <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                            Opacity="0"
+                                            Opacity="0" CornerRadius="{TemplateBinding RightDrawerCornerRadius}"
                                             Background="{TemplateBinding RightDrawerBackground}"
                                             x:Name="RightDrawerShadow">
                                     </Border>
@@ -880,7 +884,7 @@
                                 </Grid.Style>
                                 <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                                     <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                            Opacity="0"
+                                            Opacity="0" CornerRadius="{TemplateBinding TopDrawerCornerRadius}"
                                             Background="{TemplateBinding TopDrawerBackground}"
                                             x:Name="TopDrawerShadow">
                                     </Border>
@@ -908,7 +912,7 @@
                                 </Grid.Style>
                                 <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
                                     <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
-                                            Opacity="0"
+                                            Opacity="0" CornerRadius="{TemplateBinding BottomDrawerCornerRadius}"
                                             Background="{TemplateBinding BottomDrawerBackground}"
                                             x:Name="BottomDrawerShadow">
                                     </Border>

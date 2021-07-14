@@ -1,0 +1,27 @@
+name: Wiki - Update Control Styles
+
+on:
+  # push:
+  #   branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Generate Control Styles Markdown
+      run: Scripts/GenerateThemesWikiMarkdown.ps1
+      shell: pwsh
+    - name: Upload Control Styles to Wiki
+      uses: docker://decathlon/wiki-page-creator-action:latest
+      env:
+        GH_PAT: ${{ secrets.SA_TOKEN }}
+        ACTION_MAIL: mdixsa@outlook.com
+        ACTION_NAME: Material Design Service Account
+        OWNER: MaterialDesignInXAML
+        REPO_NAME: MaterialDesignInXamlToolkit
+        MD_FOLDER: Scripts
+        WIKI_PUSH_MESSAGE: Automatic update of ControlStyleList.md from GitHub Action

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using MaterialDesignThemes.UITests.Samples.DialogHost;
+using MaterialDesignThemes.UITests.WPF.TimePicker;
 using XamlTest;
 using Xunit;
 using Xunit.Abstractions;
@@ -43,6 +45,26 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHost
             await Wait.For(async () => await overlay.GetVisibility() != Visibility.Visible, retry);
             await testOverlayButton.Click();
             await Wait.For(async () => Assert.Equal("Clicks: 2", await resultTextBlock.GetText()), retry);
+        }
+
+        [Fact]
+        [Description("Issue 2282")]
+        public async Task ClosingDialogWithIsOpenProperty_ShouldRaiseDialogClosingEvent()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement dialogHost = await LoadUserControl<ClosingEventCounter>();
+            IVisualElement showButton = await dialogHost.GetElement("ShowDialogButton");
+            IVisualElement closeButton = await dialogHost.GetElement("CloseButton");
+            IVisualElement resultTextBlock = await dialogHost.GetElement("ResultTextBlock");
+
+            await showButton.Click();
+            await Wait.For(async () => await closeButton.GetIsVisible());
+            await Task.Delay(300);
+            await closeButton.Click();
+
+            await Wait.For(async () => Assert.Equal("1", await resultTextBlock.GetText()));
+            recorder.Success();
         }
     }
 }

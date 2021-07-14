@@ -172,7 +172,7 @@ namespace MaterialDesignThemes.Wpf
             => Enqueue(content, actionContent, actionHandler, false);
 
         public void Enqueue(object content, object? actionContent, Action? actionHandler, bool promote)
-            => Enqueue(content, actionContent, _ => actionHandler?.Invoke(), promote, false, false);
+            => Enqueue(content, actionContent, _ => actionHandler?.Invoke(), false, promote, false);
 
         public void Enqueue<TArgument>(object content, object? actionContent, Action<TArgument?>? actionHandler,
             TArgument? actionArgument)
@@ -180,7 +180,7 @@ namespace MaterialDesignThemes.Wpf
 
         public void Enqueue<TArgument>(object content, object? actionContent, Action<TArgument?>? actionHandler,
             TArgument? actionArgument, bool promote) =>
-            Enqueue(content, actionContent, actionHandler, actionArgument, promote, promote);
+            Enqueue(content, actionContent, actionHandler, actionArgument, promote, false);
 
         public void Enqueue<TArgument>(object content, object? actionContent, Action<TArgument?>? actionHandler,
             TArgument? actionArgument, bool promote, bool neverConsiderToBeDuplicate, TimeSpan? durationOverride = null)

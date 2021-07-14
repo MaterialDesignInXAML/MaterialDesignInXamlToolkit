@@ -1,0 +1,38 @@
+name: Icon Update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 3 * * *'
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+    - name: Run Icon Generation
+      run: dotnet run -c Release -- icons
+      working-directory: ./mdresgen
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        commit-message: >
+          [Icon update detected by Github Action].
+          Auto generated pull request.
+        committer: Material Design Service Account <mdixsa@outlook.com>
+        author: Material Design Service Account <mdixsa@outlook.com>
+        branch: pipeline/icons
+        delete-branch: true
+        base: master
+        title: Update Icons [GitHub Action]
+        body: >
+          [Icon update detected by Github Action].
+          Auto generated pull request.
+        
+    

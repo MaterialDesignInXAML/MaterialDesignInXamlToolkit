@@ -429,21 +429,24 @@ namespace MaterialDesignThemes.Wpf
         private static void ApplyTextBoxViewMargin(Control textBox, Thickness margin)
         {
             if (margin.Equals(new Thickness(double.NegativeInfinity))
-                || textBox.Template == null)
+                || textBox.Template is null)
+            {
                 return;
+            }
 
             if (textBox is ComboBox
                 && textBox.Template.FindName("PART_EditableTextBox", textBox) is TextBox editableTextBox)
             {
                 textBox = editableTextBox;
-                if (textBox.Template == null)
-                    return;
+                if (textBox.Template is null) return;
                 textBox.ApplyTemplate();
             }
 
             if (textBox.Template.FindName("PART_ContentHost", textBox) is ScrollViewer scrollViewer
                 && scrollViewer.Content is FrameworkElement frameworkElement)
+            {
                 frameworkElement.Margin = margin;
+            }
         }
 
         /// <summary>
@@ -455,7 +458,7 @@ namespace MaterialDesignThemes.Wpf
             DependencyObject dependencyObject,
             DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            if (!(dependencyObject is Control box))
+            if (dependencyObject is not Control box)
             {
                 return;
             }

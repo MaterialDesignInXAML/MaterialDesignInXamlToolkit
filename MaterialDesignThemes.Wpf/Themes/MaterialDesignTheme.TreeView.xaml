@@ -70,10 +70,11 @@
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="Width" Value="16"/>
         <Setter Property="Height" Value="16"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="Transparent" Height="16" Width="16">
+                    <Border Background="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CheckStates">
                                 <VisualStateGroup.Transitions>
@@ -162,6 +163,8 @@
         <Setter Property="Padding" Value="8" />
         <Setter Property="FocusVisualStyle" Value="{StaticResource MaterialDesignTreeViewItemFocusVisual}"/>
         <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type TreeView}}}"/>
+        <Setter Property="wpf:TreeViewAssist.ExpanderSize" Value="16"/>
+        <Setter Property="wpf:TreeViewAssist.ShowSelection" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeViewItem}">
@@ -177,7 +180,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
+                            <VisualStateGroup Name="CommonStates" >
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
                                         <VisualTransition.GeneratedEasingFunction>
@@ -200,7 +203,7 @@
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition GeneratedDuration="0:0:0.6"/>
                                 </VisualStateGroup.Transitions>
-                                <VisualState Name="Selected">
+                                <VisualState Name="Selected" >
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="SelectedBorder"
                                                          Storyboard.TargetProperty="Opacity"
@@ -261,8 +264,9 @@
                                       Style="{StaticResource MaterialDesignExpandCollapseToggleStyle}"
                                       Foreground="{TemplateBinding Foreground}"
                                       Margin="8 0 8 0"
-                                      VerticalAlignment="Center"
-                                              />
+                                      Width="{TemplateBinding wpf:TreeViewAssist.ExpanderSize}"
+                                      Height="{TemplateBinding wpf:TreeViewAssist.ExpanderSize}"
+                                      VerticalAlignment="Center"/>
                         
                         <Border x:Name="MouseOverBorder"
                                 Grid.Column="1" Grid.ColumnSpan="2"
@@ -278,6 +282,7 @@
 
                         <Grid Grid.Column="1" Grid.ColumnSpan="2" x:Name="ContentGrid" Background="{TemplateBinding Background}">
                             <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                        x:Name="Ripple"
                                         Focusable="False"
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -326,6 +331,11 @@
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value=".56"/>
                         </Trigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.ShowSelection)}" Value="False">
+                            <Setter TargetName="MouseOverBorder" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="SelectedBorder" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="Ripple" Property="Feedback" Value="Transparent"/>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

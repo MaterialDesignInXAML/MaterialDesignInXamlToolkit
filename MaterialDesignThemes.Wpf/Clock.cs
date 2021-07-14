@@ -30,8 +30,8 @@ namespace MaterialDesignThemes.Wpf
     [TemplatePart(Name = HoursCanvasPartName, Type = typeof(Canvas))]
     [TemplatePart(Name = MinutesCanvasPartName, Type = typeof(Canvas))]
     [TemplatePart(Name = SecondsCanvasPartName, Type = typeof(Canvas))]
-    [TemplatePart(Name = MinuteReadOutPartName, Type = typeof(TextBlock))]
-    [TemplatePart(Name = HourReadOutPartName, Type = typeof(TextBlock))]
+    [TemplatePart(Name = MinuteReadOutPartName, Type = typeof(Grid))]
+    [TemplatePart(Name = HourReadOutPartName, Type = typeof(Grid))]
     [TemplateVisualState(GroupName = "DisplayModeStates", Name = HoursVisualStateName)]
     [TemplateVisualState(GroupName = "DisplayModeStates", Name = MinutesVisualStateName)]
     public class Clock : Control
@@ -49,9 +49,9 @@ namespace MaterialDesignThemes.Wpf
 
         private Point _centreCanvas = new(0, 0);
         private Point _currentStartPosition = new(0, 0);
-        private TextBlock? _hourReadOutPartName;
-        private TextBlock? _minuteReadOutPartName;
-        private TextBlock? _secondReadOutPartName;
+        private Grid? _hourReadOutPartName;
+        private Grid? _minuteReadOutPartName;
+        private Grid? _secondReadOutPartName;
 
         static Clock()
         {
@@ -211,6 +211,24 @@ namespace MaterialDesignThemes.Wpf
             private set => SetValue(HourLineAnglePropertyKey, value);
         }
 
+        public static readonly DependencyProperty IsHeaderVisibleProperty = DependencyProperty.Register(
+            nameof(IsHeaderVisible), typeof(bool), typeof(Clock), new PropertyMetadata(default(bool)));
+
+        public bool IsHeaderVisible
+        {
+            get => (bool)GetValue(IsHeaderVisibleProperty);
+            set => SetValue(IsHeaderVisibleProperty, value);
+        }
+
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
+            nameof(CornerRadius), typeof(CornerRadius), typeof(Clock), new PropertyMetadata(default(CornerRadius)));
+
+        public CornerRadius CornerRadius
+        {
+            get => (CornerRadius)GetValue(CornerRadiusProperty);
+            set => SetValue(CornerRadiusProperty, value);
+        }
+
         public static readonly RoutedEvent ClockChoiceMadeEvent =
             EventManager.RegisterRoutedEvent(
                 "ClockChoiceMade",
@@ -241,9 +259,9 @@ namespace MaterialDesignThemes.Wpf
                 _minuteReadOutPartName.PreviewMouseLeftButtonDown -= MinuteReadOutPartNameOnPreviewMouseLeftButtonDown;
             if (_secondReadOutPartName != null)
                 _secondReadOutPartName.PreviewMouseLeftButtonDown -= SecondReadOutPartNameOnPreviewMouseLeftButtonDown;
-            _hourReadOutPartName = GetTemplateChild(HourReadOutPartName) as TextBlock;
-            _minuteReadOutPartName = GetTemplateChild(MinuteReadOutPartName) as TextBlock;
-            _secondReadOutPartName = GetTemplateChild(SecondReadOutPartName) as TextBlock;
+            _hourReadOutPartName = GetTemplateChild(HourReadOutPartName) as Grid;
+            _minuteReadOutPartName = GetTemplateChild(MinuteReadOutPartName) as Grid;
+            _secondReadOutPartName = GetTemplateChild(SecondReadOutPartName) as Grid;
             if (_hourReadOutPartName != null)
                 _hourReadOutPartName.PreviewMouseLeftButtonDown += HourReadOutPartNameOnPreviewMouseLeftButtonDown;
             if (_minuteReadOutPartName != null)

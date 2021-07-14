@@ -17,9 +17,9 @@ variables:
   solution: 'MaterialDesignToolkit.Full.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  mdixColorsVersion: '2.0.0'
-  mdixMahAppsVersion: '0.1.6'
-  mdixVersion: '4.0.0'
+  mdixColorsVersion: '2.0.2'
+  mdixMahAppsVersion: '0.1.8'
+  mdixVersion: '4.2.0'
 
 steps:
 - task: DotNetCoreCLI@2
@@ -46,7 +46,7 @@ steps:
 - task: PublishPipelineArtifact@1
   name: "PublishUITestsScreenshots"
   inputs:
-    artifact: 'Screenshots'
+    artifact: 'Screenshots-$(Build.BuildNumber)'
     targetPath: 'MaterialDesignThemes.UITests/bin/$(buildConfiguration)/net5.0-windows/Screenshots'
     publishLocation: 'pipeline'
   condition: always()

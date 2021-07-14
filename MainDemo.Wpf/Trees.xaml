@@ -151,9 +151,13 @@
                     <TreeView
                         Grid.Row="0"
                         ItemsSource="{Binding MovieCategories}"
-                        MinWidth="220"
+                        MinWidth="220" 
                         SelectedItemChanged="TreeView_SelectedItemChanged">
                         <TreeView.Resources>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
+                                <Setter Property="materialDesign:TreeViewAssist.ExpanderSize" Value="32"/>
+                                <Setter Property="materialDesign:TreeViewAssist.ShowSelection" Value="False"/>
+                            </Style>
                             <HierarchicalDataTemplate
                                 DataType="{x:Type domain:MovieCategory}"
                                 ItemsSource="{Binding Movies}">
