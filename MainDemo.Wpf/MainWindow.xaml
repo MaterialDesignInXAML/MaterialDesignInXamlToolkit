@@ -142,22 +142,41 @@
                             DockPanel.Dock="Right"
                             PlacementMode="BottomAndAlignRightEdges"
                             StaysOpen="False">
+
                             <StackPanel>
-                                <StackPanel
-                                    Orientation="Horizontal"
-                                    HorizontalAlignment="Center"
-                                    Margin="10">
+                                <Grid Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
                                     <TextBlock
                                         Text="Light"
                                         Margin="0 0 10 0"/>
                                     <ToggleButton
                                         x:Name="DarkModeToggleButton"
-                                        Click="MenuDarkModeButton_Click"/>
+                                        Click="MenuDarkModeButton_Click"
+                                        Grid.Column="1"/>
                                     <TextBlock
                                         Text="Dark"
-                                        Margin="10 0 0 0"/>
-                                </StackPanel>
-                                
+                                        Margin="10 0 0 0"
+                                        Grid.Column="2"/>
+                                    <TextBlock
+                                        Text="Enabled"
+                                        Margin="0 10 10 0"
+                                        Grid.Row="1"/>
+                                    <ToggleButton
+                                        x:Name="ControlsEnabledToggleButton"
+                                        Margin="0 10 0 0"
+                                        IsChecked="{Binding ControlsEnabled}"
+                                        Grid.Row="1"
+                                        Grid.Column="1"/>
+                                </Grid>
+
                                 <Separator/>
                                 
                                 <Button
