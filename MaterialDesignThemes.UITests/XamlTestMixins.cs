@@ -57,6 +57,7 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
         Background=""{{DynamicResource MaterialDesignPaper}}""
         FontFamily=""{{materialDesign:MaterialDesignFont}}"" 
         Title=""Test Window""
+        Topmost=""True""
         WindowStartupLocation=""CenterScreen"">
         {xaml}
 </Window>";
@@ -82,6 +83,7 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
         Background=""{{DynamicResource MaterialDesignPaper}}""
         FontFamily=""{{materialDesign:MaterialDesignFont}}"" 
         Title=""Test Window""
+        Topmost=""True""
         WindowStartupLocation=""CenterScreen"">
         {xaml}
 </Window>";
@@ -109,6 +111,7 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
         Background=""{{DynamicResource MaterialDesignPaper}}""
         FontFamily=""{{materialDesign:MaterialDesignFont}}"" 
         Title=""Test Window""
+        Topmost=""True""
         WindowStartupLocation=""CenterScreen"">
         <local:{typeof(TControl).Name} />
 </Window>";
