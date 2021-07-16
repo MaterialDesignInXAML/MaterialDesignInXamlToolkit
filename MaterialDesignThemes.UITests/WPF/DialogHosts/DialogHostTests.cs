@@ -16,7 +16,7 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts
         {
         }
 
-        [Fact(Skip = "Testing")]
+        [Fact]
         public async Task OnOpenDialog_OverlayCoversContent()
         {
             await using var recorder = new TestRecorder(App);
@@ -47,7 +47,7 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts
             await Wait.For(async () => Assert.Equal("Clicks: 2", await resultTextBlock.GetText()), retry);
         }
 
-        [Fact(Skip = "testing")]
+        [Fact]
         [Description("Issue 2282")]
         public async Task ClosingDialogWithIsOpenProperty_ShouldRaiseDialogClosingEvent()
         {

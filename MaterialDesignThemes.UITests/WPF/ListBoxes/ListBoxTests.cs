@@ -16,7 +16,7 @@ namespace MaterialDesignThemes.UITests.WPF.ListBoxes
             : base(output)
         { }
 
-        [Fact(Skip = "Testing")]
+        [Fact]
         public async Task OnMouseOver_BackgroundIsSet()
         {
             await using var recorder = new TestRecorder(App);
