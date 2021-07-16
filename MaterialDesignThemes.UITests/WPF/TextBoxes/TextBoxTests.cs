@@ -13,7 +13,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
 {
     public class TextBoxTests : TestBase
     {
-        public TextBoxTests(ITestOutputHelper output) 
+        public TextBoxTests(ITestOutputHelper output)
             : base(output)
         {
         }
@@ -280,6 +280,28 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
             var helperText = await textBox.GetElement<TextBlock>("HelperTextTextBlock");
 
             Assert.Equal(Colors.Red, await helperText.GetForegroundColor());
+
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Issue 2362")]
+        public async Task FloatingOffset_ValuesGetApproprietlyApplied()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var textBox = await LoadXaml<TextBox>(@"
+<TextBox Style=""{StaticResource MaterialDesignFloatingHintTextBox}""
+         materialDesign:HintAssist.Hint=""Hint with offset""
+         materialDesign:HintAssist.FloatingOffset=""1,-42""
+         Margin=""100"" VerticalAlignment=""Center""
+         Text=""Something"" />
+");
+            var hint = await textBox.GetElement<SmartHint>("Hint");
+            Point offset = await hint.GetFloatingOffset();
+            
+            Assert.Equal(1, offset.X);
+            Assert.Equal(-42, offset.Y);
 
             recorder.Success();
         }
