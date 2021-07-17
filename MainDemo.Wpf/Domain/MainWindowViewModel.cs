@@ -66,6 +66,7 @@ namespace MaterialDesignDemo.Domain
         private DemoItem? _selectedItem;
         private int _selectedIndex;
         private string? _searchKeyword;
+        private bool _controlsEnabled = true;
 
         public string? SearchKeyword
         {
@@ -91,6 +92,12 @@ namespace MaterialDesignDemo.Domain
         {
             get => _selectedIndex;
             set => SetProperty(ref _selectedIndex, value);
+        }
+
+        public bool ControlsEnabled
+        {
+            get => _controlsEnabled;
+            set => SetProperty(ref _controlsEnabled, value);
         }
 
         public AnotherCommandImplementation HomeCommand { get; }
