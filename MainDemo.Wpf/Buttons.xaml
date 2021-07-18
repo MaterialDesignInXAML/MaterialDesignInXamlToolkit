@@ -4,11 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
-    xmlns:wpfExample="clr-namespace:MaterialDesignDemo"
     xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     d:DataContext="{d:DesignInstance domain:ButtonsViewModel}"
@@ -54,11 +52,6 @@
             <StackPanel.Resources>
                 <system:Double x:Key="IconSize">24</system:Double>
                 <system:Double x:Key="ButtonWidth">90</system:Double>
-                <ObjectDataProvider x:Key="ColorZoneModes" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
-                    <ObjectDataProvider.MethodParameters>
-                        <x:Type TypeName="materialDesign:ColorZoneMode" />
-                    </ObjectDataProvider.MethodParameters>
-                </ObjectDataProvider>
             </StackPanel.Resources>
 
             <StackPanel Margin="0 24 0 0">
