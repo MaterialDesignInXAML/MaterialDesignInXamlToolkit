@@ -128,7 +128,7 @@
 
             <smtx:XamlDisplay
                 UniqueKey="list_3"
-                Grid.Column="4"
+                Grid.Column="3"
                 Grid.Row="0">
                 <!-- and here's another -->
                 <ItemsControl
@@ -217,4 +217,3 @@
         </smtx:XamlDisplay>
     </Grid>
 </UserControl>
-
