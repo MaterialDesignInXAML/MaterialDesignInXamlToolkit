@@ -126,9 +126,9 @@ namespace MaterialDesignThemes.Wpf
         #region ShowSelection
 
         public static bool GetShowSelection(DependencyObject element)
-            => (bool)element.GetValue(ExpanderSizeProperty);
+            => (bool)element.GetValue(ShowSelectionProperty);
         public static void SetShowSelection(DependencyObject element, bool value)
-            => element.SetValue(ExpanderSizeProperty, value);
+            => element.SetValue(ShowSelectionProperty, value);
 
         public static readonly DependencyProperty ShowSelectionProperty =
             DependencyProperty.RegisterAttached("ShowSelection", typeof(bool), typeof(TreeViewAssist), new PropertyMetadata(true));

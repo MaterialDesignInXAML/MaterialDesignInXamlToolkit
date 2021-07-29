@@ -18,5 +18,14 @@ namespace MaterialDesignThemes.Wpf
         public static void SetCornerRadius(DependencyObject element, CornerRadius value) => element.SetValue(CornerRadiusProperty, value);
         #endregion
 
+        #region ShowSelection
+        public static bool GetShowSelection(DependencyObject element)
+            => (bool)element.GetValue(ShowSelectionProperty);
+        public static void SetShowSelection(DependencyObject element, bool value)
+            => element.SetValue(ShowSelectionProperty, value);
+
+        public static readonly DependencyProperty ShowSelectionProperty =
+            DependencyProperty.RegisterAttached("ShowSelection", typeof(bool), typeof(ListBoxItemAssist), new PropertyMetadata(true));
+        #endregion
     }
 }

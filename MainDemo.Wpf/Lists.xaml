@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
     xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     mc:Ignorable="d" 
     d:DesignHeight="300"
     d:DesignWidth="300"
@@ -44,6 +45,7 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>      
             <smtx:XamlDisplay
                 UniqueKey="list_1"
@@ -64,8 +66,27 @@
                 Content="Enabled"/>
 
             <smtx:XamlDisplay
+                UniqueKey="list_4"
+                Grid.Column="1">
+                <Grid>
+                    <ListBox>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                                <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection" Value="False"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <TextBlock Text="Listbox"/>
+                        <TextBlock Text="Without"/>
+                        <TextBlock Text="Selection"/>
+                        <TextBlock Text="Highlights"/>
+                    </ListBox>                    
+                </Grid>
+
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
                 UniqueKey="list_2"
-                Grid.Column="1"
+                Grid.Column="2"
                 Grid.Row="0">
                 <!-- piece together your own items control to create some nice stuff that will make everyone think you are cool. and rightly so, because you are cool.  you might even be a hipster for all I know -->
                 <ItemsControl
@@ -107,7 +128,7 @@
 
             <smtx:XamlDisplay
                 UniqueKey="list_3"
-                Grid.Column="2"
+                Grid.Column="3"
                 Grid.Row="0">
                 <!-- and here's another -->
                 <ItemsControl
@@ -196,4 +217,3 @@
         </smtx:XamlDisplay>
     </Grid>
 </UserControl>
-
