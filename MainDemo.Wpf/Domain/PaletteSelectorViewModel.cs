@@ -17,6 +17,9 @@ namespace MaterialDesignDemo.Domain
 
             IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark;
 
+            if (theme is Theme internalTheme)
+                IsColorAdjusted = internalTheme.ColorAdjustment is not null;
+
             if (paletteHelper.GetThemeManager() is { } themeManager)
             {
                 themeManager.ThemeChanged += (_, e) =>
@@ -35,6 +38,23 @@ namespace MaterialDesignDemo.Domain
                 if (SetProperty(ref _isDarkTheme, value))
                 {
                     ModifyTheme(theme => theme.SetBaseTheme(value ? Theme.Dark : Theme.Light));
+                }
+            }
+        }
+
+        private bool _isColorAdjusted;
+        public bool IsColorAdjusted
+        {
+            get => _isColorAdjusted;
+            set
+            {
+                if (SetProperty(ref _isColorAdjusted, value))
+                {
+                    ModifyTheme(theme =>
+                    {
+                        if (theme is Theme internalTheme)
+                            internalTheme.ColorAdjustment = value ? new ColorAdjustment() : null;
+                    });
                 }
             }
         }

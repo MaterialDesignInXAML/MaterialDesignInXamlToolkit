@@ -143,6 +143,15 @@
                 <TextBlock
                     VerticalAlignment="Center"
                     Text="Dark"/>
+
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Margin="50 0 0 0"
+                    Text="Color Adjustment"/>
+
+                <ToggleButton
+                    Margin="8 0 0 0"
+                    IsChecked="{Binding IsColorAdjusted}"/>
             </StackPanel>
 
             <ItemsControl
