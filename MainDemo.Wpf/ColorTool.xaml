@@ -122,22 +122,9 @@
     </UserControl.Resources>
     
     <DockPanel>
-        <StackPanel
+        <local:ThemeSettings
             DockPanel.Dock="Top"
-            Orientation="Horizontal"
-            Margin="8">
-            <TextBlock
-                VerticalAlignment="Center"
-                Text="Light"/>
-            
-            <ToggleButton
-                Margin="8 0 16 0"
-                IsChecked="{Binding IsDarkTheme}"/>
-
-            <TextBlock
-                VerticalAlignment="Center"
-                Text="Dark"/>
-        </StackPanel>
+            Margin="8" />
         
         <DockPanel>
             <!-- Selection controls -->
