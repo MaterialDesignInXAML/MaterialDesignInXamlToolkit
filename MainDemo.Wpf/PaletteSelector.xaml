@@ -10,7 +10,7 @@
     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
     d:DataContext="{d:DesignInstance domain:PaletteSelectorViewModel}"
     d:DesignHeight="300"
-    d:DesignWidth="300"
+    d:DesignWidth="400"
     mc:Ignorable="d">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type materialDesignColors:Swatch}">
@@ -143,6 +143,81 @@
                 <TextBlock
                     VerticalAlignment="Center"
                     Text="Dark"/>
+
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Margin="50 0 0 0"
+                    Text="Color Adjustment"/>
+
+                <ToggleButton
+                    Margin="8 0 0 0"
+                    IsChecked="{Binding IsColorAdjusted}"/>
+
+                <wpf:PopupBox StaysOpen="True">
+                    <Grid Margin="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Margin="10"
+                            VerticalAlignment="Center"
+                            Text="Desired Contrast Ratio"/>
+                        <Slider
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Minimum="1"
+                            Maximum="21"
+                            TickFrequency="0.1"
+                            Value="{Binding DesiredContrastRatio}"
+                            IsSnapToTickEnabled="True"
+                            VerticalAlignment="Center"
+                            Width="150"/>
+                        <TextBlock
+                            Grid.Column="2"
+                            Grid.Row="0"
+                            VerticalAlignment="Center"
+                            TextAlignment="Right"
+                            Margin="8"
+                            Width="40"
+                            Text="{Binding DesiredContrastRatio, StringFormat={}{0}:1}">
+                        </TextBlock>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Margin="10"
+                            VerticalAlignment="Center"
+                            Text="Contrast"/>
+                        <ComboBox
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            ItemsSource="{Binding ContrastValues}"
+                            SelectedItem="{Binding ContrastValue}"/>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Grid.Row="2"
+                            Margin="10"
+                            VerticalAlignment="Center"
+                            Text="Color Selection"/>
+                        <ComboBox
+                            Grid.Column="1"
+                            Grid.Row="2"
+                            ItemsSource="{Binding ColorSelectionValues}"
+                            SelectedItem="{Binding ColorSelectionValue}"/>
+                    </Grid>
+                </wpf:PopupBox>
             </StackPanel>
 
             <ItemsControl
