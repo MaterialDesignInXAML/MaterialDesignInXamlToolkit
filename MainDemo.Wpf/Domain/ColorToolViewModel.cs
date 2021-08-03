@@ -55,19 +55,6 @@ namespace MaterialDesignDemo.Domain
             }
         }
 
-        private bool _isDarkTheme;
-        public bool IsDarkTheme
-        {
-            get => _isDarkTheme;
-            set
-            {
-                if (SetProperty(ref _isDarkTheme, value))
-                {
-                    ApplyBase(value);
-                }
-            }
-        }
-
         public IEnumerable<ISwatch> Swatches { get; } = SwatchHelper.Swatches;
 
         public ICommand ChangeCustomHueCommand { get; }
@@ -105,16 +92,6 @@ namespace MaterialDesignDemo.Domain
             _secondaryColor = theme.SecondaryMid.Color;
 
             SelectedColor = _primaryColor;
-
-            IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark;
-
-            if (_paletteHelper.GetThemeManager() is { } themeManager)
-            {
-                themeManager.ThemeChanged += (_, e) =>
-                {
-                    IsDarkTheme = e.NewTheme?.GetBaseTheme() == BaseTheme.Dark;
-                };
-            }
         }
 
         private void ChangeCustomColor(object obj)
