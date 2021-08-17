@@ -66,5 +66,53 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts
             await Wait.For(async () => Assert.Equal("1", await resultTextBlock.GetText()));
             recorder.Success();
         }
+
+        [Fact]
+        [Description("Issue 2398")]
+        public async Task FontSettingsSholdInheritIntoDialog()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml<Grid>(@"
+<Grid TextElement.FontSize=""42""
+      TextElement.FontFamily=""Times New Roman""
+      TextElement.FontWeight=""ExtraBold"">
+  <Grid.ColumnDefinitions>
+    <ColumnDefinition />
+    <ColumnDefinition />
+  </Grid.ColumnDefinitions>
+  <materialDesign:DialogHost>
+    <materialDesign:DialogHost.DialogContent>
+      <TextBlock Text=""Some Text"" x:Name=""TextBlock1"" />
+    </materialDesign:DialogHost.DialogContent>
+    <Button Content=""Show Dialog"" x:Name=""ShowButton1"" Command=""{x:Static materialDesign:DialogHost.OpenDialogCommand}"" />
+  </materialDesign:DialogHost>
+  <materialDesign:DialogHost Style=""{StaticResource MaterialDesignEmbeddedDialogHost}"" Grid.Column=""1"">
+    <materialDesign:DialogHost.DialogContent>
+      <TextBlock Text=""Some Text"" x:Name=""TextBlock2"" />
+    </materialDesign:DialogHost.DialogContent>
+    <Button Content=""Show Dialog"" x:Name=""ShowButton2"" Command=""{x:Static materialDesign:DialogHost.OpenDialogCommand}"" />
+  </materialDesign:DialogHost>
+</Grid>");
+            var showButton1 = await grid.GetElement<Button>("ShowButton1");
+            var showButton2 = await grid.GetElement<Button>("ShowButton2");
+            
+            await showButton1.LeftClick();
+            await showButton2.LeftClick();
+            await Task.Delay(300);
+
+            var text1 = await grid.GetElement<TextBlock>("TextBlock1");
+            var text2 = await grid.GetElement<TextBlock>("TextBlock2");
+
+            Assert.Equal(42, await text1.GetFontSize());
+            Assert.True((await text1.GetFontFamily())?.FamilyNames.Values.Contains("Times New Roman"));
+            Assert.Equal(FontWeights.ExtraBold, await text1.GetFontWeight());
+
+            Assert.Equal(42, await text2.GetFontSize());
+            Assert.True((await text2.GetFontFamily())?.FamilyNames.Values.Contains("Times New Roman"));
+            Assert.Equal(FontWeights.ExtraBold, await text2.GetFontWeight());
+
+            recorder.Success();
+        }
     }
 }
