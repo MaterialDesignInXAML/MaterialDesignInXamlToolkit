@@ -242,10 +242,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
                     <Grid SnapsToDevicePixels="true">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
                         <ProgressBar x:Name="ProgressBar"
                                        Style="{DynamicResource MaterialDesignLinearProgressBar}"
                                        Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
@@ -260,10 +256,8 @@
                                        Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"
-                                       BorderThickness="0"
-                                       Grid.Row="0"
-                                       Grid.RowSpan="2" />
-                        <Border Background="{TemplateBinding Background}" Grid.Row="0">
+                                       BorderThickness="0" />
+                        <Border Background="{TemplateBinding Background}" Margin="{TemplateBinding BorderThickness}">
                             <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -272,8 +266,7 @@
                                         Opacity=".82"
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Border>
-                        <Border x:Name="SelectionHighlightBorder" Background="{TemplateBinding BorderBrush}" Height="2"
-                                Grid.Row="1"
+                        <Border x:Name="SelectionHighlightBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
                                 Visibility="Hidden" />
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -289,7 +282,19 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    <Style x:Key="MaterialDesignTabRadioButtonLeft"  TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignTabRadioButton}">
+        <Setter Property="BorderThickness" Value="2 0 0 0" />
+    </Style>
+    <Style x:Key="MaterialDesignTabRadioButtonTop"  TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignTabRadioButton}">
+        <Setter Property="BorderThickness" Value="0 2 0 0" />
+    </Style>
+    <Style x:Key="MaterialDesignTabRadioButtonRight"  TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignTabRadioButton}">
+        <Setter Property="BorderThickness" Value="0 0 2 0" />
+    </Style>
+    <Style x:Key="MaterialDesignTabRadioButtonBottom"  TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignTabRadioButton}">
+        <Setter Property="BorderThickness" Value="0 0 0 2" />
+    </Style>
+    
     <Style x:Key="MaterialDesignToolRadioButton" TargetType="{x:Type RadioButton}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
