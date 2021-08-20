@@ -626,18 +626,21 @@
                         Margin="4">
                             <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                            BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                             Margin="4"
                             IsChecked="True"
                             Content="FIRST"/>
 
                             <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                            BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                             Margin="4"
                             IsChecked="False"
                             Content="SECOND"/>
 
                             <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                            BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                             Margin="4"
                             IsChecked="False"
                             IsEnabled="False"
@@ -648,24 +651,27 @@
                     <smtx:XamlDisplay
                     UniqueKey="buttons_72"
                     HorizontalAlignment="Left">
-                        <materialDesign:ColorZone Mode="PrimaryMid">
+                        <materialDesign:ColorZone Mode="SecondaryMid">
                             <StackPanel
                             Orientation="Horizontal"
                             Margin="2">
                                 <RadioButton
                                 Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                                BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                                 Margin="4"
                                 IsChecked="True"
                                 Content="FIRST"/>
 
                                 <RadioButton
                                 Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                                BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                                 Margin="4"
                                 IsChecked="False"
                                 Content="SECOND"/>
 
                                 <RadioButton
                                 Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                                BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                                 Margin="4"
                                 IsChecked="False"
                                 IsEnabled="False"
@@ -677,64 +683,86 @@
 
             </WrapPanel>
             <WrapPanel Orientation="Horizontal" Margin="0 24 0 0">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <smtx:XamlDisplay
                     UniqueKey="buttons_73"
                     HorizontalAlignment="Left">
                         <StackPanel
-                        Orientation="Vertical"
+                        Orientation="Horizontal"
                         Margin="4">
                             <RadioButton
-                            Style="{StaticResource MaterialDesignTabRadioButtonRight}"
+                            Style="{StaticResource MaterialDesignTabRadioButton}"
                             Margin="4"
-                            IsChecked="True"
-                            Content="FIRST"/>
+                            IsChecked="True">
+                                <StackPanel>
+                                    <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Star" />
+                                    <TextBlock Margin="0 4 0 0" Text="FIRST" />
+                                </StackPanel>
+                            </RadioButton>
 
                             <RadioButton
-                            Style="{StaticResource MaterialDesignTabRadioButtonRight}"
+                            Style="{StaticResource MaterialDesignTabRadioButton}"
                             Margin="4"
-                            IsChecked="False"
-                            Content="SECOND"/>
+                            IsChecked="False">
+                                <StackPanel>
+                                    <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Heart" />
+                                    <TextBlock Margin="0 4 0 0" Text="SECOND" />
+                                </StackPanel>
+                            </RadioButton>
 
                             <RadioButton
-                            Style="{StaticResource MaterialDesignTabRadioButtonRight}"
+                            Style="{StaticResource MaterialDesignTabRadioButton}"
                             Margin="4"
                             IsChecked="False"
-                            IsEnabled="False"
-                            Content="THIRD"/>
+                            IsEnabled="False">
+                                <StackPanel>
+                                    <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Smiley" />
+                                    <TextBlock Margin="0 4 0 0" Text="THIRD" />
+                                </StackPanel>
+                            </RadioButton>
                         </StackPanel>
                     </smtx:XamlDisplay>
-
                     <smtx:XamlDisplay
                     UniqueKey="buttons_74"
                     HorizontalAlignment="Left">
-                        <materialDesign:ColorZone Mode="PrimaryMid">
-                            <StackPanel
-                            Orientation="Vertical"
-                            Margin="2">
-                                <RadioButton
-                                Style="{StaticResource MaterialDesignTabRadioButtonRight}"
-                                Margin="4"
-                                IsChecked="True"
-                                Content="FIRST"/>
+                        <StackPanel
+                        Orientation="Horizontal"
+                        Margin="4">
+                            <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButton}"
+                            Margin="4"
+                            IsChecked="True">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Star" />
+                                    <TextBlock Margin="4 0 0 0" Text="FIRST" />
+                                </StackPanel>
+                            </RadioButton>
 
-                                <RadioButton
-                                Style="{StaticResource MaterialDesignTabRadioButtonRight}"
-                                Margin="4"
-                                IsChecked="False"
-                                Content="SECOND"/>
+                            <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButton}"
+                            Margin="4"
+                            IsChecked="False">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Heart" />
+                                    <TextBlock Margin="4 0 0 0" Text="SECOND" />
+                                </StackPanel>
+                            </RadioButton>
 
-                                <RadioButton
-                                Style="{StaticResource MaterialDesignTabRadioButtonRight}"
-                                Margin="4"
-                                IsChecked="False"
-                                IsEnabled="False"
-                                Content="THIRD"/>
-                            </StackPanel>
-                        </materialDesign:ColorZone>
+                            <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButton}"
+                            Margin="4"
+                            IsChecked="False"
+                            IsEnabled="False">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Smiley" />
+                                    <TextBlock Margin="4 0 0 0" Text="THIRD" />
+                                </StackPanel>
+                            </RadioButton>
+                        </StackPanel>
                     </smtx:XamlDisplay>
                 </StackPanel>
-
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal" Margin="0 24 0 0">
                 <StackPanel Orientation="Horizontal">
                     <smtx:XamlDisplay
                     UniqueKey="buttons_75"
@@ -743,6 +771,35 @@
                         Orientation="Vertical"
                         Margin="4">
                             <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButtonRight}"
+                            Margin="4"
+                            IsChecked="True"
+                            Content="FIRST"/>
+
+                            <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButtonRight}"
+                            Margin="4"
+                            IsChecked="False"
+                            Content="SECOND"/>
+
+                            <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButtonRight}"
+                            Margin="4"
+                            IsChecked="False"
+                            IsEnabled="False"
+                            Content="THIRD"/>
+                        </StackPanel>
+                    </smtx:XamlDisplay>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <smtx:XamlDisplay
+                    UniqueKey="buttons_76"
+                    HorizontalAlignment="Left">
+                        <StackPanel
+                        Orientation="Vertical"
+                        Margin="4">
+                            <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButtonLeft}"
                             Margin="4"
                             IsChecked="True"
@@ -763,34 +820,63 @@
                         </StackPanel>
                     </smtx:XamlDisplay>
 
+                </StackPanel>
+                
+                <StackPanel>
                     <smtx:XamlDisplay
-                    UniqueKey="buttons_76"
+                    UniqueKey="buttons_77"
                     HorizontalAlignment="Left">
-                        <materialDesign:ColorZone Mode="PrimaryMid">
-                            <StackPanel
-                            Orientation="Vertical"
-                            Margin="2">
-                                <RadioButton
-                                Style="{StaticResource MaterialDesignTabRadioButtonLeft}"
-                                Margin="4"
-                                IsChecked="True"
-                                Content="FIRST"/>
+                        <StackPanel
+                        Orientation="Horizontal"
+                        Margin="4">
+                            <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButtonBottom}"
+                            Margin="4"
+                            IsChecked="True"
+                            Content="FIRST" />
 
-                                <RadioButton
-                                Style="{StaticResource MaterialDesignTabRadioButtonLeft}"
-                                Margin="4"
-                                IsChecked="False"
-                                Content="SECOND"/>
+                            <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButtonBottom}"
+                            Margin="4"
+                            IsChecked="False"
+                            Content="SECOND" />
 
-                                <RadioButton
-                                Style="{StaticResource MaterialDesignTabRadioButtonLeft}"
-                                Margin="4"
-                                IsChecked="False"
-                                IsEnabled="False"
-                                Content="THIRD"/>
-                            </StackPanel>
-                        </materialDesign:ColorZone>
+                            <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButtonBottom}"
+                            Margin="4"
+                            IsChecked="False"
+                            IsEnabled="False"
+                            Content="THIRD" />
+                        </StackPanel>
                     </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
+                    UniqueKey="buttons_78"
+                    HorizontalAlignment="Left">
+                        <StackPanel
+                        Orientation="Horizontal"
+                        Margin="4">
+                            <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                            Margin="4"
+                            IsChecked="True"
+                            Content="FIRST" />
+
+                            <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                            Margin="4"
+                            IsChecked="False"
+                            Content="SECOND" />
+
+                            <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                            Margin="4"
+                            IsChecked="False"
+                            IsEnabled="False"
+                            Content="THIRD" />
+                        </StackPanel>
+                    </smtx:XamlDisplay>
+
                 </StackPanel>
             </WrapPanel>
         </StackPanel>
