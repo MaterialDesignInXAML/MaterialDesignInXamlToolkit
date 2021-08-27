@@ -1,0 +1,48 @@
+name: .NET
+
+on:
+  pull_request:
+    branches: [ master ]
+
+env:
+  solution: MaterialDesignToolkit.Full.sln
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core 3.1
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: "3.1.x"
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.PAT}}
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: "5.0.x"
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.PAT}}
+
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.solution }}
+
+    - name: Build
+      run: dotnet build ${{ env.solution }} --configuration ${{ env.buildConfiguration }} --no-restore -p:Platform="${{ env.buildPlatform }}" -p:TreatWarningsAsErrors=True
+
+    - name: Test
+      run: dotnet test ${{ env.solution }} --configuration ${{ env.buildConfiguration }} --no-build --verbosity detailed --blame-crash
+
+    - name: Upload Screenshots
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: Screenshots-${{ github.run_number }}
+        path: ${{ github.workspace }}/MaterialDesignThemes.UITests/bin/${{ env.buildConfiguration }}/net5.0-windows/Screenshots

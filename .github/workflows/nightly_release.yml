@@ -1,10 +1,9 @@
 name: .NET
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 9 * * *'
 
 env:
   solution: MaterialDesignToolkit.Full.sln
@@ -13,8 +12,6 @@ env:
   mdixColorsVersion: '2.0.2'
   mdixMahAppsVersion: '0.1.8'
   mdixVersion: '4.2.0'
-  #baseVersion: 0.1.1
-  #preRelease: true
 
 jobs:
   build:
@@ -68,3 +65,7 @@ jobs:
       with:
         name: DemoApp-${{ github.run_number }}
         path: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
+
+    #- name: Publish to NuGet.org
+    #  if: ${{ github.event_name != 'pull_request' }}
+    #  run: dotnet nuget push ${{ github.workspace }}\*.nupkg --source https://api.nuget.org/v3/index.json -k ${{ secrets.PAT }} --skip-duplicate
