@@ -1,0 +1,70 @@
+name: Nightly Release
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 9 * * *'
+
+env:
+  solution: MaterialDesignToolkit.Full.sln
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  mdixColorsVersion: '2.0.2'
+  mdixMahAppsVersion: '0.1.8'
+  mdixVersion: '4.2.0'
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core 3.1
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: "3.1.x"
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.PAT}}
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: "5.0.x"
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.PAT}}
+
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.solution }}
+
+    - name: Build
+      run: dotnet build ${{ env.solution }} --configuration ${{ env.buildConfiguration }} --no-restore -p:Platform="${{ env.buildPlatform }}" -p:MDIXVersion=${{ env.mdixVersion }}.${{ github.run_number }} -p:MDIXColorsVersion=${{ env.mdixColorsVersion }}.${{ github.run_number }} -p:MDIXMahAppsVersion=${{ env.mdixMahappsVersion }}.${{ github.run_number }} -p:TreatWarningsAsErrors=True
+
+    #- name: Test
+    #  run: dotnet test ${{ env.solution }} --configuration ${{ env.buildConfiguration }} --no-build --verbosity detailed --blame-crash
+
+    #- name: Upload Screenshots
+    #  if: ${{ always() }}
+    #  uses: actions/upload-artifact@v2
+    #  with:
+    #    name: Screenshots-${{ github.run_number }}
+    #    path: ${{ github.workspace }}/MaterialDesignThemes.UITests/bin/${{ env.buildConfiguration }}/net5.0-windows/Screenshots
+
+    - name: Build NuGets
+      run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ env.mdixVersion }}-ci${{ github.run_number }} -MDIXMahAppsVersion ${{ env.mdixMahappsVersion }}-ci${{ github.run_number }} -MDIXColorsVersion ${{ env.mdixColorsVersion }}-ci${{ github.run_number }}
+
+    - name: Upload NuGets
+      uses: actions/upload-artifact@v2
+      with:
+        name: NuGets-${{ github.run_number }}
+        path: "*.nupkg"
+
+    - name: Upload Demo App
+      uses: actions/upload-artifact@v2
+      with:
+        name: DemoApp-${{ github.run_number }}
+        path: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
+
+    - name: Publish to NuGet.org
+      run: dotnet nuget push ${{ github.workspace }}\*.nupkg --source https://api.nuget.org/v3/index.json -k ${{ secrets.PAT }} --skip-duplicate
