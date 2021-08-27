@@ -53,22 +53,11 @@ namespace MaterialDesignThemes.Wpf.Tests
             Assert.Equal("Action content", messages[1].ActionContent);
         }
 
-        private class SnackbarMessageQueueSimpleTestData : IEnumerable<object[]>
-        {
-            public IEnumerator<object[]> GetEnumerator()
-            {
-                yield return new object[] { "String & Action content", "Action content" };
-                yield return new object[] { "Different String & Action content", "Action content" };
-                yield return new object[] { "Different String & Action content", "Action content" };
-                yield return new object[] { "", "" };
-            }
-
-            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        }
-
         [StaTheory]
-        [ClassData(typeof(SnackbarMessageQueueSimpleTestData))]
         [Description("Ensures that GetSnackbaMessage behaves correctly if the queue simply outputs items")]
+        [InlineData("String & Action content", "Action content")]
+        [InlineData("Different String & Action content", "Action content")]
+        [InlineData("", "")]
         public void GetSnackbarMessageSimpleQueue(object content, object actionContent)
         {
             _snackbarMessageQueue.DiscardDuplicates = false;
