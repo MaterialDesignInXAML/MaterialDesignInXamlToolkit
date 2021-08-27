@@ -1,6 +1,8 @@
 name: Pull Request Verification
 
 on:
+  push:
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -24,10 +26,10 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.PAT}}
 
-    - name: Setup .NET
+    - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: "5.0.x"
+        dotnet-version: "5.x"
       env:
         NUGET_AUTH_TOKEN: ${{secrets.PAT}}
 
