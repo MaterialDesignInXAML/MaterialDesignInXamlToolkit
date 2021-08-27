@@ -1,4 +1,4 @@
-name: .NET
+name: Nightly Release
 
 on:
   workflow_dispatch:
