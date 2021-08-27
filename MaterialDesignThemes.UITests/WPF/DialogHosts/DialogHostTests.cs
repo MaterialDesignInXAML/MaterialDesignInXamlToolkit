@@ -39,6 +39,7 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts
 
             await testOverlayButton.LeftClick();
             await Wait.For(async () => await resultTextBlock.GetText() == "Clicks: 1");
+            await Task.Delay(200);
             await closeDialogButton.LeftClick();
 
             var retry = new Retry(5, TimeSpan.FromSeconds(5));
