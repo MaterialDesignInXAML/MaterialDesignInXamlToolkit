@@ -45,6 +45,8 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts
             await Wait.For(async () => await overlay.GetVisibility() != Visibility.Visible, retry);
             await testOverlayButton.LeftClick();
             await Wait.For(async () => Assert.Equal("Clicks: 2", await resultTextBlock.GetText()), retry);
+
+            recorder.Success();
         }
 
         [Fact]
