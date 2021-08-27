@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  configuration: Release
+  solution: MaterialDesignToolkit.Full.sln
+  #baseVersion: 0.1.1
+  #preRelease: true
+
 jobs:
   build:
 
@@ -20,6 +26,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ${{ env.solution }} --configuration ${{ env.configuration }} --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test ${{ env.solution }} --no-build --verbosity normal
