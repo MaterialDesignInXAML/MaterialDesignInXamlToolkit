@@ -24,10 +24,17 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Setup .NET Core 3.1
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: "3.1.x"
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.PAT}}
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: "5.0.x"
       env:
         NUGET_AUTH_TOKEN: ${{secrets.PAT}}
 
