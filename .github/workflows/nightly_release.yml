@@ -14,8 +14,24 @@ env:
   mdixVersion: '4.2.1'
 
 jobs:
-  build:
+  check_for_changes:
+    runs-on: windows-latest
 
+    outputs:
+      has_changed: ${{ steps.check_tag.outputs.has_changed }}
+
+    steps:
+    - id: check_tag
+      name: Check latest tag
+      run: |
+        $latestHash = $(git rev-parse latest)
+        $masterHash = $(git rev-parse master)
+        $hasChanged = $latestHash -ne $masterHash
+        echo "::set-output name=has_changed::$hasChanged"
+
+  build:
+    needs: [check_for_changes]
+    if: needs.check_for_changes.outputs.has_changed
     runs-on: windows-latest
 
     steps:
