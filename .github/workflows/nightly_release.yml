@@ -26,16 +26,16 @@ jobs:
         fetch-depth: 0
 
     - id: check_tag
-      name: Check latest tag
+      name: Check nightly_release tag
       run: |
-        $latestHash = $(git rev-parse latest)
+        $nightlyReleaseHash = $(git rev-parse nightly_release)
         $masterHash = $(git rev-parse master)
-        $hasChanged = ($latestHash -ne $masterHash).ToString().ToLower()
+        $hasChanged = ($nightlyReleaseHash -ne $masterHash).ToString().ToLower()
         echo "::set-output name=has_changed::$hasChanged"
 
   build:
     needs: [check_for_changes]
-    if: ${{ needs.check_for_changes.outputs.has_changed }}
+    if: ${{ needs.check_for_changes.outputs.has_changed == 'true' }}
     runs-on: windows-latest
 
     steps:
@@ -93,5 +93,5 @@ jobs:
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git tag -f latest master
+        git tag -f nightly_release master
         git push -f --tags
