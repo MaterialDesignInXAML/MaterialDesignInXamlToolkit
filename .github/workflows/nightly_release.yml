@@ -86,3 +86,10 @@ jobs:
 
     - name: Publish to NuGet.org
       run: dotnet nuget push ${{ github.workspace }}\*.nupkg --source https://api.nuget.org/v3/index.json -k ${{ secrets.PAT }} --skip-duplicate
+
+    - name: Update latest tag
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git tag -f latest master
+        git push
