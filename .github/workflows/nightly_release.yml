@@ -21,6 +21,8 @@ jobs:
       has_changed: ${{ steps.check_tag.outputs.has_changed }}
 
     steps:
+    - uses: actions/checkout@v2
+
     - id: check_tag
       name: Check latest tag
       run: |
