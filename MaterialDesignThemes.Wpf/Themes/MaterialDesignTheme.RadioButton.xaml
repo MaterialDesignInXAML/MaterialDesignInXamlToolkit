@@ -227,7 +227,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
-        <Setter Property="Height" Value="32" />
+        <Setter Property="MinHeight" Value="32" />
         <Setter Property="MinWidth" Value="80" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
         <Setter Property="TextBlock.FontWeight" Value="Medium"/>
@@ -281,6 +281,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Foreground" Value="{Binding BorderBrush, RelativeSource={RelativeSource Mode=Self}}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
     <Style x:Key="MaterialDesignTabRadioButtonLeft"  TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignTabRadioButton}">
         <Setter Property="BorderThickness" Value="2 0 0 0" />
