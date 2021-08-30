@@ -30,12 +30,12 @@ jobs:
       run: |
         $latestHash = $(git rev-parse latest)
         $masterHash = $(git rev-parse master)
-        $hasChanged = $latestHash -ne $masterHash
+        $hasChanged = ($latestHash -ne $masterHash).ToString().ToLower()
         echo "::set-output name=has_changed::$hasChanged"
 
   build:
     needs: [check_for_changes]
-    if: needs.check_for_changes.outputs.has_changed
+    if: ${{ needs.check_for_changes.outputs.has_changed }}
     runs-on: windows-latest
 
     steps:
