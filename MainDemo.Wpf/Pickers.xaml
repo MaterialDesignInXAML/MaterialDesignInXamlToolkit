@@ -54,6 +54,37 @@
                     </smtx:XamlDisplay>
 
                     <smtx:XamlDisplay
+                        UniqueKey="pickers_custom"
+                        HorizontalAlignment="Left"
+                        Margin="0 16 0 0">
+                        <DatePicker
+                            Width="100"
+                            materialDesign:HintAssist.Hint="Custom">
+                            <DatePicker.Resources>
+                                <Style x:Key="CustomCalendarDayButton" TargetType="CalendarDayButton" BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
+                                    <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="#B2F39B"/>
+                                    <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="Black"/>
+                                </Style>
+                                <Style x:Key="CustomCalendarButton" TargetType="CalendarButton" BasedOn="{StaticResource MaterialDesignCalendarButton}">
+                                    <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="#B2F39B"/>
+                                    <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="Black"/>
+                                </Style>
+                                <Style x:Key="CustomCalendar" TargetType="{x:Type Calendar}" BasedOn="{StaticResource MaterialDesignDatePickerCalendarPortrait}">
+                                    <Setter Property="Background" Value="#343C3F"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="materialDesign:CalendarAssist.HeaderBackground" Value="#A2E9FF"/>
+                                    <Setter Property="materialDesign:CalendarAssist.HeaderForeground" Value="Black"/>
+                                    <Setter Property="CalendarDayButtonStyle" Value="{StaticResource CustomCalendarDayButton}"/>
+                                    <Setter Property="CalendarButtonStyle" Value="{StaticResource CustomCalendarButton}"/>
+                                </Style>
+                                <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                                    <Setter Property="CalendarStyle" Value="{StaticResource CustomCalendar}"/>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
+                    </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
                         UniqueKey="pickers_2"
                         HorizontalAlignment="Left"
                         Margin="0 16 0 0" >
