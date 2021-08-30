@@ -17,7 +17,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 - Demo applications included in the source project
 
 [![Backers on Open Collective](https://opencollective.com/materialdesigninxaml/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/materialdesigninxaml/sponsors/badge.svg)](#sponsors) [![Gitter](https://img.shields.io/badge/Gitter-Join%20Chat,%20Get%20Help,%20Say%20Hello!-green.svg?style=flat-square)](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit)
-[![Build Status](https://dev.azure.com/MaterialDesignInXAML/MaterialDesignInXaml/_apis/build/status/MaterialDesignInXAML.MaterialDesignInXamlToolkit?branchName=master)](https://dev.azure.com/MaterialDesignInXAML/MaterialDesignInXaml/_build/latest?definitionId=2&branchName=master)
+![Nightly Build](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/actions/workflows/nightly_release.yml/badge.svg?branch=master)
 [![NuGet-Themes](https://img.shields.io/nuget/v/MaterialDesignThemes.svg?label=NuGet:%20Themes&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](<https://img.shields.io/nuget/vpre/MaterialDesignThemes.svg?label=NuGet:%20Themes%20(CI)&style=flat-square>)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](https://img.shields.io/nuget/vpre/MaterialDesignColors.svg?label=NuGet:%20Colours&style=flat-square)](https://www.nuget.org/packages/MaterialDesignColors/)
