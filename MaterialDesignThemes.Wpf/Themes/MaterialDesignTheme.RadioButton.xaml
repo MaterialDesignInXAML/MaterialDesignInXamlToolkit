@@ -229,6 +229,7 @@
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="MinWidth" Value="80" />
+        <Setter Property="BorderThickness" Value="0 0 0 2" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
         <Setter Property="TextBlock.FontWeight" Value="Medium"/>
         <Setter Property="TextBlock.FontSize" Value="14"/>
