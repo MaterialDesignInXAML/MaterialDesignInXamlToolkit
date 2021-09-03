@@ -37,6 +37,7 @@ namespace MaterialDesignThemes.Wpf
 
         public static IHintProxy Get(Control? control)
         {
+            if (control is null) return null!;
             var builder = Builders.FirstOrDefault(v => v.CanBuild(control));
 
             if (builder is null) throw new NotImplementedException();

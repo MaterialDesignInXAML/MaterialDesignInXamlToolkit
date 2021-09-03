@@ -45,6 +45,31 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="AllowDrop" Value="True" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="ContextMenu" Value="{StaticResource MaterialDesignDefaultContextMenu}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <ScrollViewer
+                        x:Name="PART_ContentHost"
+                        Focusable="False"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Hidden"
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                        UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                        wpf:ScrollViewerAssist.IgnorePadding="True" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <ControlTemplate x:Key="PopupContentUpTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding Path=ContentMinWidth, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
               Margin="{Binding Path=ContentMargin, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
@@ -94,9 +119,6 @@
     <ControlTemplate x:Key="PopupContentDownTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding Path=ContentMinWidth, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
               Margin="{Binding Path=ContentMargin, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
             <Border Background="Transparent"
                     BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
                     BorderThickness="1"
@@ -105,7 +127,7 @@
                     <BlurEffect Radius="6"/>
                 </Border.Effect>
             </Border>
-            <Border Margin="1"
+            <Border Margin="1" Background="{Binding ElementName=PART_Popup, Path=Background}"
                     CornerRadius="{Binding Path=CornerRadius, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
                 <Grid SnapsToDevicePixels="True">
                     <Grid.RowDefinitions>
@@ -115,35 +137,105 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="0"
-                        Height="{StaticResource PopupTopBottomMargin}"
-                        Background="{Binding ElementName=PART_Popup, Path=Background}"/>
+                    <Border Grid.Row="0" Height="{StaticResource PopupTopBottomMargin}" />
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0"
-                            Background="{Binding ElementName=PART_Popup, Path=Background}"
-                            Width="{StaticResource PopupLeftRightMargin}"/>
-                        <Grid Grid.Column="1"
-                          Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth}"
-                          Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
-                        <Border Grid.Column="2"
-                            Background="{Binding ElementName=PART_Popup, Path=Background}"
-                            MinWidth="{StaticResource PopupLeftRightMargin}"/>
+                        <Border Grid.Column="0" Width="{StaticResource PopupLeftRightMargin}"/>
+                        <Grid
+                            Grid.Column="1"
+                            x:Name="InnerRoot"
+                            
+                            SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                            UseLayoutRounding="{Binding UseLayoutRounding}"
+                            HorizontalAlignment="{Binding HorizontalContentAlignment}"
+                            VerticalAlignment="{Binding VerticalContentAlignment}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                    DataContext="{Binding Path=ComboBox, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
+                                    x:Name="PrefixTextBlock"
+                                    Grid.Column="0"
+                                    FontSize="{Binding FontSize}"
+                                    Opacity="{Binding Path=(wpf:HintAssist.HintOpacity)}"
+                                    Text="{Binding Path=(wpf:TextFieldAssist.PrefixText)}"
+                                    IsHitTestVisible="False" />
+
+                            <ContentPresenter
+                                    x:Name="contentPresenter"
+                                    Grid.Column="1"
+                                    Content="{Binding SelectionBoxItem}"
+                                    ContentStringFormat="{Binding SelectionBoxItemStringFormat}"
+                                    ContentTemplate="{Binding SelectionBoxItemTemplate}"
+                                    ContentTemplateSelector="{Binding ItemTemplateSelector}"
+                                    IsHitTestVisible="False"
+                                    Margin="{Binding Path=(wpf:TextFieldAssist.TextBoxViewMargin)}" />
+                            <ContentControl x:Name="TextBoxHolder" Grid.Column="1" />
+                            <!--<TextBox DataContext="{Binding Path=ComboBoxEditableTextBox, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
+                                    Grid.Column="1"
+                                    MinWidth="{Binding MinWidth}"
+                                    IsReadOnly="{Binding IsReadOnly}"
+                                    HorizontalAlignment="{Binding HorizontalAlignment}"
+                                    HorizontalContentAlignment="{Binding HorizontalAlignment}"
+                                    Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                                    CaretBrush="{Binding CaretBrush}"
+                                     Text="{Binding Text}"
+                                     SelectedText="{Binding SelectedText}"
+                                     SelectionLength="{Binding SelectionLength}"
+                                    Visibility="{Binding Visibility}" />-->
+
+                            <wpf:SmartHint
+                                    DataContext="{Binding Path=ComboBox, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="2"
+                                    FontSize="{Binding FontSize}"
+                                    FontFamily="{Binding Path=(wpf:HintAssist.FontFamily)}"
+                                    HintProxy="{Binding Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                    SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                                    UseLayoutRounding="{Binding UseLayoutRounding}"
+                                    UseFloating="{Binding Path=(wpf:HintAssist.IsFloating)}"
+                                    FloatingScale="{Binding Path=(wpf:HintAssist.FloatingScale)}"
+                                    FloatingOffset="{Binding Path=(wpf:HintAssist.FloatingOffset)}"
+                                    HintOpacity="{Binding Path=(wpf:HintAssist.HintOpacity)}"
+                                    Margin="{Binding Path=(wpf:TextFieldAssist.TextBoxViewMargin)}">
+                                <wpf:SmartHint.Hint>
+                                    <Border
+                                            x:Name="HintBackgroundBorder"
+                                            Background="{Binding Path=(wpf:HintAssist.Background)}"
+                                            CornerRadius="2">
+                                        <ContentPresenter
+                                                x:Name="HintWrapper"
+                                                Content="{Binding Path=(wpf:HintAssist.Hint)}" />
+                                    </Border>
+                                </wpf:SmartHint.Hint>
+                            </wpf:SmartHint>
+
+                            <TextBlock
+                                    DataContext="{Binding Path=ComboBox, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
+                                    x:Name="SuffixTextBlock"
+                                    Grid.Column="3"
+                                    FontSize="{Binding FontSize}"
+                                    Opacity="{Binding Path=(wpf:HintAssist.HintOpacity)}"
+                                    Text="{Binding Path=(wpf:TextFieldAssist.SuffixText)}"
+                                    IsHitTestVisible="False" />
+                            <!-- TODO -->
+                            <!--Margin="{Binding ActualWidth, ElementName=PART_ClearButton, Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter={x:Static Dock.Right}}" />-->
+                        </Grid>
+                        <Border Grid.Column="2" MinWidth="{StaticResource PopupLeftRightMargin}"/>
                     </Grid>
 
-                    <Border Grid.Row="2"
-                        Background="{Binding ElementName=PART_Popup, Path=Background}"
-                        Height="{StaticResource PopupContentPresenterExtend}"/>
+                    <Border Grid.Row="2" Height="{StaticResource PopupContentPresenterExtend}"/>
 
                     <ContentPresenter Grid.Row="3"/>
 
-                    <Border Grid.Row="4"
-                        Background="{Binding ElementName=PART_Popup, Path=Background}"
-                        Height="{StaticResource PopupTopBottomMargin}" />
+                    <Border Grid.Row="4" Height="{StaticResource PopupTopBottomMargin}" />
                 </Grid>
             </Border>
         </Grid>
@@ -179,31 +271,6 @@
             </Border>
         </Grid>
     </ControlTemplate>
-
-    <Style x:Key="MaterialDesignComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="AllowDrop" Value="True" />
-        <Setter Property="MinWidth" Value="0" />
-        <Setter Property="MinHeight" Value="0" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
-        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
-        <Setter Property="ContextMenu" Value="{StaticResource MaterialDesignDefaultContextMenu}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TextBox}">
-                    <ScrollViewer
-                        x:Name="PART_ContentHost"
-                        Focusable="False"
-                        HorizontalScrollBarVisibility="Hidden"
-                        VerticalScrollBarVisibility="Hidden"
-                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                        UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                        wpf:ScrollViewerAssist.IgnorePadding="True" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
     <ControlTemplate x:Key="MaterialDesignComboBoxItemTemplate" TargetType="{x:Type ComboBoxItem}">
         <Grid x:Name="GridWrapper">
@@ -549,7 +616,9 @@
                                ClassicMode="{Binding Path=(wpf:ComboBoxAssist.ClassicMode), RelativeSource={RelativeSource TemplatedParent}}"
                                UpContentTemplate="{StaticResource PopupContentUpTemplate}"
                                DownContentTemplate="{StaticResource PopupContentDownTemplate}"
-                               ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}">
+                               ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}"
+                               ComboBox="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                               ComboBoxEditableTextBox="{Binding ElementName=PART_EditableTextBox}">
                     <wpf:ComboBoxPopup.Background>
                         <MultiBinding Converter="{StaticResource FallbackBrushConverter}">
                             <Binding Path="Background" RelativeSource="{RelativeSource TemplatedParent}" />

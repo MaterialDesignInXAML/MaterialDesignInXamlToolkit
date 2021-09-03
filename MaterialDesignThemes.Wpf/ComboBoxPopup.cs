@@ -10,6 +10,29 @@ namespace MaterialDesignThemes.Wpf
 {
     public class ComboBoxPopup : Popup
     {
+        public TextBox ComboBoxEditableTextBox
+        {
+            get { return (TextBox)GetValue(ComboBoxEditableTextBoxProperty); }
+            set { SetValue(ComboBoxEditableTextBoxProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ComboBoxEditableTextBox.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ComboBoxEditableTextBoxProperty =
+            DependencyProperty.Register("ComboBoxEditableTextBox", typeof(TextBox), typeof(ComboBoxPopup), new PropertyMetadata(null));
+
+
+
+        public ComboBox ComboBox
+        {
+            get => (ComboBox)GetValue(ComboBoxProperty);
+            set => SetValue(ComboBoxProperty, value);
+        }
+
+        public static readonly DependencyProperty ComboBoxProperty =
+            DependencyProperty.Register("ComboBox", typeof(ComboBox), typeof(ComboBoxPopup), new PropertyMetadata(null));
+
+
+
         #region UpContentTemplate property
 
         public static readonly DependencyProperty UpContentTemplateProperty
@@ -232,6 +255,33 @@ namespace MaterialDesignThemes.Wpf
                 {
                     UpdateChildTemplate(PopupPlacement);
                 }
+            }
+        }
+
+        private Grid? _parent;
+        protected override void OnOpened(EventArgs e)
+        {
+            base.OnOpened(e);
+            if (this.Child.VisualBreadthFirstTraversal()
+                .OfType<ContentControl>().FirstOrDefault(x => x.Name == "TextBoxHolder") is ContentControl cc &&
+                ComboBoxEditableTextBox is { } textBox &&
+                VisualTreeHelper.GetParent(textBox) is Grid parent)
+            {
+                _parent = parent;
+                parent.Children.Remove(textBox);
+                cc.Content = textBox;
+            }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            if (GetTemplateChild("TextBoxHolder") is ContentControl cc &&
+                ComboBoxEditableTextBox is { } textBox &&
+                _parent is { } parent)
+            {
+                cc.Content = null;
+                parent.Children.Add(textBox);
             }
         }
 
