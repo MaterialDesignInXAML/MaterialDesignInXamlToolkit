@@ -10,28 +10,15 @@ namespace MaterialDesignThemes.Wpf
 {
     public class ComboBoxPopup : Popup
     {
-        public TextBox ComboBoxEditableTextBox
+        public UIElement? LiftedContent
         {
-            get { return (TextBox)GetValue(ComboBoxEditableTextBoxProperty); }
-            set { SetValue(ComboBoxEditableTextBoxProperty, value); }
+            get => (UIElement?)GetValue(ComboBoxEditableTextBoxProperty);
+            set => SetValue(ComboBoxEditableTextBoxProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for ComboBoxEditableTextBox.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ComboBoxEditableTextBoxProperty =
-            DependencyProperty.Register("ComboBoxEditableTextBox", typeof(TextBox), typeof(ComboBoxPopup), new PropertyMetadata(null));
-
-
-
-        public ComboBox ComboBox
-        {
-            get => (ComboBox)GetValue(ComboBoxProperty);
-            set => SetValue(ComboBoxProperty, value);
-        }
-
-        public static readonly DependencyProperty ComboBoxProperty =
-            DependencyProperty.Register("ComboBox", typeof(ComboBox), typeof(ComboBoxPopup), new PropertyMetadata(null));
-
-
+            DependencyProperty.Register("LiftedContent", typeof(UIElement), typeof(ComboBoxPopup), new PropertyMetadata(null));
 
         #region UpContentTemplate property
 
@@ -258,32 +245,65 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
-        private Grid? _parent;
+        private DependencyObject? _liftedContentParent;
+        private Canvas? _visualBrush;
         protected override void OnOpened(EventArgs e)
         {
             base.OnOpened(e);
-            if (this.Child.VisualBreadthFirstTraversal()
-                .OfType<ContentControl>().FirstOrDefault(x => x.Name == "TextBoxHolder") is ContentControl cc &&
-                ComboBoxEditableTextBox is { } textBox &&
-                VisualTreeHelper.GetParent(textBox) is Grid parent)
+            if (GetLiftedContentHolder() is ContentControl cc &&
+                LiftedContent is FrameworkElement liftedContent)
             {
-                _parent = parent;
-                parent.Children.Remove(textBox);
-                cc.Content = textBox;
+                VisualBrush visualBrush = new(liftedContent)
+                {
+                    Stretch = Stretch.None,
+                    AlignmentX = AlignmentX.Left
+                };
+                Canvas c = new()
+                {
+                    Background = visualBrush,
+                    Width = liftedContent.ActualWidth,
+                    Height = liftedContent.ActualHeight
+                };
+                _visualBrush = c;
+                _liftedContentParent = VisualTreeHelper.GetParent(liftedContent);
+                switch (_liftedContentParent)
+                {
+                    case Panel p:
+                        p.Children.Insert(p.Children.IndexOf(liftedContent), c);
+                        p.Children.Remove(liftedContent);
+                        break;
+                    case Decorator element:
+                        element.Child = c;
+                        break;
+                };
+                cc.Content = liftedContent;
             }
         }
 
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            if (GetTemplateChild("TextBoxHolder") is ContentControl cc &&
-                ComboBoxEditableTextBox is { } textBox &&
-                _parent is { } parent)
+            if (GetLiftedContentHolder() is ContentControl cc &&
+                LiftedContent is { } liftedContent)
             {
                 cc.Content = null;
-                parent.Children.Add(textBox);
+                switch (_liftedContentParent)
+                {
+                    case Panel p:
+                        p.Children.Add(liftedContent);
+                        p.Children.Remove(_visualBrush);
+                        break;
+                    case Decorator element:
+                        element.Child = liftedContent;
+                        break;
+                }
             }
         }
+
+        private ContentControl? GetLiftedContentHolder()
+            => Child.VisualBreadthFirstTraversal()
+                    .OfType<ContentControl>()
+                    .FirstOrDefault(x => x.Name == "PART_LiftedContent");
 
         private void SetupVisiblePlacementWidth(IEnumerable<DependencyObject?> visualAncestry)
         {
@@ -343,7 +363,7 @@ namespace MaterialDesignThemes.Wpf
             var screen = Screen.FromPoint(locationFromScreen);
             var screenWidth = (int)screen.Bounds.Width;
             var screenHeight = (int)screen.Bounds.Height;
-            
+
             //Adjust the location to be in terms of the current screen
             var locationX = (int)(locationFromScreen.X - screen.Bounds.X) % screenWidth;
             var locationY = (int)(locationFromScreen.Y - screen.Bounds.Y) % screenHeight;
