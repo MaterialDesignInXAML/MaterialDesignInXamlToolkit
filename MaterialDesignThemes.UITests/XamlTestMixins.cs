@@ -41,6 +41,12 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
 
         public static async Task<IVisualElement<T>> CreateWindowWith<T>(this IApp app, string xaml)
         {
+            IWindow window = await CreateWindow(app, xaml);
+            return await window.GetElement<T>(".Content");
+        }
+
+        public static async Task<IWindow> CreateWindow(this IApp app, string xaml)
+        {
             string windowXaml = @$"<Window
         xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
@@ -61,8 +67,7 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
         WindowStartupLocation=""CenterScreen"">
         {xaml}
 </Window>";
-            IWindow window = await app.CreateWindow(windowXaml);
-            return await window.GetElement<T>(".Content");
+            return await app.CreateWindow(windowXaml);
         }
 
         public static async Task<IVisualElement> CreateWindowWith(this IApp app, string xaml)

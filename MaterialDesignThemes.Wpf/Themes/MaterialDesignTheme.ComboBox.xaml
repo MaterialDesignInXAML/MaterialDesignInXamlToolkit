@@ -95,7 +95,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0" Height="{StaticResource PopupTopBottomMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
-                    <ContentPresenter Grid.Row="1"/>
+                    <ContentControl x:Name="PART_LiftedContent" Grid.Column="1" />
                     <Border Grid.Row="2" Height="{StaticResource PopupContentPresenterExtend}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
 
                     <Grid Grid.Row="3">
@@ -525,7 +525,7 @@
                                PopupAnimation="Fade"
                                VerticalOffset="0"
                                DefaultVerticalOffset="5"
-                               DownVerticalOffset="-15"
+                               DownVerticalOffset="-11"
                                UpVerticalOffset="15"
                                CornerRadius="2"
                                ContentMargin="6"

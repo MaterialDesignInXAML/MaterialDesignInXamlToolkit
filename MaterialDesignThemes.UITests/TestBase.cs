@@ -38,6 +38,12 @@ namespace MaterialDesignThemes.UITests
             return await App.CreateWindowWith<T>(xaml);
         }
 
+        protected async Task<IWindow> LoadXamlWindow(string xaml)
+        {
+            await App.InitialzeWithMaterialDesign();
+            return await XamlTestMixins.CreateWindow(App, xaml);
+        }
+
         protected async Task<IVisualElement> LoadUserControl<TControl>()
             where TControl : UserControl
         {

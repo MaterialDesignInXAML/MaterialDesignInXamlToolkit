@@ -7,6 +7,9 @@
     <NoWarn>$(NoWarn);CA1707</NoWarn>
     <IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\MaterialDesignThemes.Wpf\Screen.cs" Link="Screen.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
