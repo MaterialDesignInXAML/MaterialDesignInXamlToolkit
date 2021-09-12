@@ -133,5 +133,58 @@ namespace MaterialDesignThemes.UITests.WPF.ComboBoxes
 
             recorder.Success();
         }
+
+        [Fact]
+        [Description("Issue 2340")]
+        public async Task OnComboBoxElementsOnOpen_MaintainsPositions()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IWindow window = await LoadXamlWindow(@"
+<StackPanel HorizontalAlignment=""Center"" VerticalAlignment=""Center"">
+    <ComboBox
+        Style=""{StaticResource MaterialDesignFloatingHintComboBox}""
+        materialDesign:TextFieldAssist.HasClearButton=""True""
+        materialDesign:TextFieldAssist.PrefixText=""Pre""
+        materialDesign:TextFieldAssist.SuffixText=""Suf""
+        materialDesign:HintAssist.Hint=""OS""
+        materialDesign:HintAssist.HelperText=""Select one OS""
+        MinWidth=""128"">
+            <ComboBoxItem Content=""Android"" />
+            <ComboBoxItem Content=""iOS"" />
+            <ComboBoxItem Content=""Linux"" />
+            <ComboBoxItem Content=""Windows"" />
+    </ComboBox>
+</StackPanel>");
+            var comboBox = await window.GetElement<ComboBox>("/ComboBox");
+
+            var toggleButton = await comboBox.GetElement<ToggleButton>("/ToggleButton");
+            var prefix = await comboBox.GetElement<TextBlock>("PrefixTextBlock");
+            var suffix = await comboBox.GetElement<TextBlock>("SuffixTextBlock");
+            var smartHint = await comboBox.GetElement<SmartHint>("/SmartHint");
+
+            Rect prefixCoords = await prefix.GetCoordinates();
+            Rect suffixCoords = await suffix.GetCoordinates();
+            Rect hintCoords = await smartHint.GetCoordinates();
+            await toggleButton.LeftClick();
+            await Task.Delay(300);
+            await Wait.For(async () =>
+            {
+                Rect prefixOpenCoords = await prefix.GetCoordinates();
+                Rect suffixOpenCoords = await suffix.GetCoordinates();
+                Rect hintOpenCoords = await smartHint.GetCoordinates();
+
+                Vector distance = prefixCoords.TopLeft - prefixOpenCoords.TopLeft;
+                Assert.True(distance.Length <= 1);
+
+                distance = suffixCoords.TopLeft - suffixOpenCoords.TopLeft;
+                Assert.True(distance.Length <= 1);
+
+                distance = hintCoords.TopLeft - hintOpenCoords.TopLeft;
+                Assert.True(distance.Length <= 1);
+            });
+
+            recorder.Success();
+        }
     }
 }

@@ -142,8 +142,8 @@
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Border Grid.Column="0" Width="{StaticResource PopupLeftRightMargin}"/>
                         <ContentControl x:Name="PART_LiftedContent" Grid.Column="1" />
@@ -490,8 +490,17 @@
                                     FontSize="{TemplateBinding FontSize}"
                                     Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                     Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
-                                    IsHitTestVisible="False"
-                                    Margin="{Binding ActualWidth, ElementName=PART_ClearButton, Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter={x:Static Dock.Right}}" />
+                                    IsHitTestVisible="False">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Visibility, ElementName=PART_ClearButton}" Value="Visible">
+                                                    <Setter Property="Margin" Value="{Binding ActualWidth, ElementName=PART_ClearButton, Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter={x:Static Dock.Right}}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
                             </Grid>
                         </Border>
                     </Grid>

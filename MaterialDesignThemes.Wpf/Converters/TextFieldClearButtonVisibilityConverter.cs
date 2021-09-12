@@ -13,7 +13,7 @@ namespace MaterialDesignThemes.Wpf.Converters
                 return Visibility.Collapsed;
 
             return (bool)values[1] // Hint.IsContentNullOrEmpty
-                ? Visibility.Hidden
+                ? Visibility.Collapsed
                 : Visibility.Visible;
         }
 
