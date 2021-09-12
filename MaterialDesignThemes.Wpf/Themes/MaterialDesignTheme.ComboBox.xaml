@@ -427,7 +427,6 @@
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
@@ -487,7 +486,7 @@
 
                                 <TextBlock
                                     x:Name="SuffixTextBlock"
-                                    Grid.Column="3"
+                                    Grid.Column="2"
                                     FontSize="{TemplateBinding FontSize}"
                                     Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                     Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
