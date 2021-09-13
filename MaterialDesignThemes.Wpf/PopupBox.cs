@@ -224,7 +224,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty IsPopupOpenProperty = DependencyProperty.Register(
-            nameof(IsPopupOpen), typeof(bool), typeof(PopupBox), new FrameworkPropertyMetadata(default(bool), IsPopupOpenPropertyChangedCallback));
+            nameof(IsPopupOpen), typeof(bool), typeof(PopupBox), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, IsPopupOpenPropertyChangedCallback));
 
         private static void IsPopupOpenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
