@@ -440,7 +440,6 @@
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
@@ -475,7 +474,6 @@
                                 <wpf:SmartHint
                                     x:Name="Hint"
                                     Grid.Column="1"
-                                    Grid.ColumnSpan="2"
                                     HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                     FontSize="{TemplateBinding FontSize}"
                                     FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
@@ -500,7 +498,7 @@
 
                                 <TextBlock
                                     x:Name="SuffixTextBlock"
-                                    Grid.Column="3"
+                                    Grid.Column="2"
                                     FontSize="{TemplateBinding FontSize}"
                                     Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                     Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
@@ -940,12 +938,32 @@
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="SecondaryLight"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueLightBrush}" />
+                <Setter TargetName="PART_Popup" Property="Background"
+                        Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
                     <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="SecondaryMid"/>
                 </MultiTrigger.Conditions>
                 <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter TargetName="PART_Popup" Property="Background"
                         Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
                 <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True"/>
+                    <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="SecondaryDark"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueDarkBrush}" />
+                <Setter TargetName="PART_Popup" Property="Background"
+                        Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -971,6 +989,9 @@
     </ControlTemplate>
 
     <Style x:Key="MaterialDesignComboBox" TargetType="{x:Type ComboBox}">
+        <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
+        <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="False" />
+
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
@@ -980,10 +1001,10 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
-        <Setter Property="VerticalContentAlignment" Value="Top" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />

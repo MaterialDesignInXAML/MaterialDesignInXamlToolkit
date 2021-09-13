@@ -226,12 +226,10 @@ namespace MaterialDesignThemes.Wpf
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
         {
             base.OnPropertyChanged(e);
-            if (e.Property == ChildProperty)
+            if (e.Property == ChildProperty &&
+                PopupPlacement != ComboBoxPopupPlacement.Undefined)
             {
-                if (PopupPlacement != ComboBoxPopupPlacement.Undefined)
-                {
-                    UpdateChildTemplate(PopupPlacement);
-                }
+                UpdateChildTemplate(PopupPlacement);
             }
         }
 
@@ -270,11 +268,8 @@ namespace MaterialDesignThemes.Wpf
 
         private void SetChildTemplateIfNeed(ControlTemplate? template)
         {
-            var contentControl = Child as ContentControl;
-            if (contentControl is null) return;
-            //throw new InvalidOperationException($"The type of {nameof(Child)} must be {nameof(ContentControl)}");
-
-            if (!ReferenceEquals(contentControl.Template, template))
+            if (Child is ContentControl contentControl &&
+                !ReferenceEquals(contentControl.Template, template))
             {
                 contentControl.Template = template;
             }
@@ -293,7 +288,7 @@ namespace MaterialDesignThemes.Wpf
             var screen = Screen.FromPoint(locationFromScreen);
             var screenWidth = (int)screen.Bounds.Width;
             var screenHeight = (int)screen.Bounds.Height;
-            
+
             //Adjust the location to be in terms of the current screen
             var locationX = (int)(locationFromScreen.X - screen.Bounds.X) % screenWidth;
             var locationY = (int)(locationFromScreen.Y - screen.Bounds.Y) % screenHeight;
@@ -321,13 +316,9 @@ namespace MaterialDesignThemes.Wpf
         {
             return delegate (DependencyObject d, DependencyPropertyChangedEventArgs e)
             {
-                var popup = d as ComboBoxPopup;
-                if (popup is null) return;
-
-                var template = e.NewValue as ControlTemplate;
-                if (template is null) return;
-
-                if (popup.PopupPlacement == popupPlacement)
+                if (d is ComboBoxPopup popup &&
+                    e.NewValue is ControlTemplate template &&
+                    popup.PopupPlacement == popupPlacement)
                 {
                     popup.SetChildTemplateIfNeed(template);
                 }
@@ -354,12 +345,11 @@ namespace MaterialDesignThemes.Wpf
 
         private static void PopupPlacementPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var popup = d as ComboBoxPopup;
-            if (popup is null) return;
-
-            if (!(e.NewValue is ComboBoxPopupPlacement)) return;
-            var placement = (ComboBoxPopupPlacement)e.NewValue;
-            popup.UpdateChildTemplate(placement);
+            if (d is ComboBoxPopup popup &&
+                e.NewValue is ComboBoxPopupPlacement placement)
+            {
+                popup.UpdateChildTemplate(placement);
+            }
         }
 
         private static CustomPopupPlacement GetClassicPopupPlacement(ComboBoxPopup popup, PositioningData data)
@@ -373,10 +363,10 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private static CustomPopupPlacement GetDownPopupPlacement(PositioningData data)
-            => new CustomPopupPlacement(new Point(data.OffsetX, data.NewDownY), PopupPrimaryAxis.None);
+            => new(new Point(data.OffsetX, data.NewDownY), PopupPrimaryAxis.None);
 
         private static CustomPopupPlacement GetUpPopupPlacement(PositioningData data)
-            => new CustomPopupPlacement(new Point(data.OffsetX, data.NewUpY), PopupPrimaryAxis.None);
+            => new(new Point(data.OffsetX, data.NewUpY), PopupPrimaryAxis.None);
 
         private struct PositioningData
         {
@@ -398,9 +388,12 @@ namespace MaterialDesignThemes.Wpf
                 OffsetX = Round(offsetX);
                 NewUpY = Round(newUpY);
                 NewDownY = Round(newDownY);
-                PopupSize = popupSize; TargetSize = targetSize;
-                LocationX = locationX; LocationY = locationY;
-                ScreenWidth = screenWidth; ScreenHeight = screenHeight;
+                PopupSize = popupSize;
+                TargetSize = targetSize;
+                LocationX = locationX;
+                LocationY = locationY;
+                ScreenWidth = screenWidth;
+                ScreenHeight = screenHeight;
             }
         }
     }

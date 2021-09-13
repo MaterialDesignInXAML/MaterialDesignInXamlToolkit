@@ -38,7 +38,7 @@
                     <Setter Property="Width" Value="96" />
                 </Style>
             </StackPanel.Resources>
-     
+
             <smtx:XamlDisplay UniqueKey="comboboxes_1" Margin="0">
 
                 <ComboBox materialDesign:HintAssist.Hint="OS">
@@ -47,7 +47,7 @@
                     <ComboBoxItem Content="Linux"/>
                     <ComboBoxItem Content="Windows"/>
                 </ComboBox>
-            </smtx:XamlDisplay>           
+            </smtx:XamlDisplay>
             <smtx:XamlDisplay UniqueKey="comboboxes_2">
                 <ComboBox
                     materialDesign:HintAssist.Hint="Search"
@@ -78,7 +78,7 @@
                     materialDesign:TextFieldAssist.HasClearButton="True"
                     materialDesign:TextFieldAssist.SuffixText="sw"
                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
-                    materialDesign:ColorZoneAssist.Mode="Inverted"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryLight"
                     materialDesign:HintAssist.Hint="OS"
                     materialDesign:HintAssist.HelperText="Select one OS"
                     MinWidth="128">
