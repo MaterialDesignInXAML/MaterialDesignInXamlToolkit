@@ -44,7 +44,7 @@
                             <Setter Property="Background" Value="{DynamicResource MaterialDesignSnackbarMouseOver}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" Value="0.23" />
+                            <Setter Property="Opacity" Value="0.38" />
                         </Trigger>
                         <Trigger Property="DockPanel.Dock" Value="Bottom">
                             <Setter Property="Margin" Value="0 18 -8 -8" />

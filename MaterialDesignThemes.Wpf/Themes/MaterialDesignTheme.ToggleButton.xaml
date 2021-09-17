@@ -51,7 +51,7 @@
                                 <VisualState x:Name="Normal"/>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To="0.23" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                                        <DoubleAnimation Duration="0" To="0.38" Storyboard.TargetProperty="(UIElement.Opacity)" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -186,7 +186,7 @@
                                 <VisualState x:Name="Normal"/>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To="0.23" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                                        <DoubleAnimation Duration="0" To="0.38" Storyboard.TargetProperty="(UIElement.Opacity)" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -452,7 +452,7 @@
                                 <VisualState Name="Normal"/>
                                 <VisualState Name="Disabled">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To="0.23" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                                        <DoubleAnimation Duration="0" To="0.38" Storyboard.TargetProperty="(UIElement.Opacity)" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
