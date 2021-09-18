@@ -160,7 +160,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.23"/>
+                            <Setter Property="Opacity" Value="0.38"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="contentPresenter" Property="Opacity" Value="1"/>
@@ -269,7 +269,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.23"/>
+                            <Setter Property="Opacity" Value="0.38"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True" SourceName="Root">
                             <Setter TargetName="MouseOverBorder" Property="Visibility" Value="Visible"/>
