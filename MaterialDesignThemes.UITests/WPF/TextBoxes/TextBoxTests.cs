@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -302,6 +303,48 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
             
             Assert.Equal(1, offset.X);
             Assert.Equal(-42, offset.Y);
+
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Issue 2390")]
+        public async Task ContextMenu_FollowsTextBoxFontFamily()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var textBox = await LoadXaml<TextBox>(@"<TextBox FontFamily=""Times New Roman""/>");
+
+            await textBox.RightClick();
+
+            var contextMenu = await textBox.GetElement<ContextMenu>(".ContextMenu");
+
+            var textBoxFont = await textBox.GetFontFamily();
+            Assert.Equal("Times New Roman", textBoxFont?.FamilyNames.Values.First());
+            Assert.Equal(textBoxFont, await contextMenu.GetFontFamily());
+
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Issue 2390")]
+        public async Task ContextMenu_UsesInheritedFontFamily()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var stackPanel = await LoadXaml<StackPanel>(@"
+<StackPanel TextElement.FontFamily=""Times New Roman"">
+    <TextBox />
+</StackPanel>
+");
+            var textBox = await stackPanel.GetElement<TextBox>("/TextBox");
+            await textBox.RightClick();
+
+            var contextMenu = await textBox.GetElement<ContextMenu>(".ContextMenu");
+
+            var textBoxFont = await textBox.GetFontFamily();
+            Assert.Equal("Times New Roman", textBoxFont?.FamilyNames.Values.First());
+            Assert.Equal(textBoxFont, await contextMenu.GetFontFamily());
 
             recorder.Success();
         }
