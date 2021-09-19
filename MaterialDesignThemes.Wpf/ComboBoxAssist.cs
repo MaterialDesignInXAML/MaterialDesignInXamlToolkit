@@ -5,10 +5,10 @@ namespace MaterialDesignThemes.Wpf
 {
     public static class ComboBoxAssist
     {
-        [Obsolete("ClassicMode is now obsolete and has no affect.")]
         /// <summary>
         /// By default ComboBox uses the wrapper popup. Popup can be switched to classic Windows desktop view by means of this attached property.
         /// </summary>
+        [Obsolete("ClassicMode is now obsolete and has no affect.")]
         public static readonly DependencyProperty ClassicModeProperty = DependencyProperty.RegisterAttached(
             "ClassicMode",
             typeof(bool),

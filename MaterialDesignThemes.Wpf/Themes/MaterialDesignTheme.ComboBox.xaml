@@ -529,12 +529,10 @@
                                AllowsTransparency="True"
                                ClassicMode="True"
                                ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}"
-                               CornerRadius="0,0,4,4"
                                wpf:ColorZoneAssist.Mode="{Binding Path=(wpf:ColorZoneAssist.Mode), RelativeSource={RelativeSource TemplatedParent}}"
                                ContentMargin="6,0,6,6"
                                ContentMinWidth="{Binding Path=ActualWidth, ElementName=templateRoot}"
                                DefaultVerticalOffset="-1"
-                               DownContentTemplate="{StaticResource PopupContentDownTemplate}"
                                DownVerticalOffset="0"
                                Focusable="False"
                                HorizontalOffset="0"
@@ -547,7 +545,6 @@
                                Tag="{DynamicResource MaterialDesignPaper}"
                                UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                                VerticalOffset="0"
-                               UpContentTemplate="{StaticResource PopupContentUpTemplate}"
                                UpVerticalOffset="15">
                     <wpf:ComboBoxPopup.Background>
                         <MultiBinding Converter="{StaticResource FallbackBrushConverter}">
@@ -555,6 +552,16 @@
                             <Binding Path="Tag" ElementName="PART_Popup" />
                         </MultiBinding>
                     </wpf:ComboBoxPopup.Background>
+                    <wpf:ComboBoxPopup.Style>
+                        <Style TargetType="wpf:ComboBoxPopup" BasedOn="{StaticResource {x:Type wpf:ComboBoxPopup}}">
+                            <Setter Property="CornerRadius" Value="0,0,4,4" />
+                            <Style.Triggers>
+                                <Trigger Property="OpenDirection" Value="Up">
+                                    <Setter Property="CornerRadius" Value="4,4,0,0" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </wpf:ComboBoxPopup.Style>
                     <ContentControl>
                         <ScrollViewer MaxHeight="{TemplateBinding MaxDropDownHeight}"
                                   MinHeight="1"
@@ -941,7 +948,6 @@
 
     <Style x:Key="MaterialDesignComboBox" TargetType="{x:Type ComboBox}">
         <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="False" />
-
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>
         <Setter Property="BorderThickness" Value="0 0 0 1"/>

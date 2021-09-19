@@ -8,6 +8,13 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
+    public enum PopupDirection
+    {
+        None,
+        Up,
+        Down
+    }
+
     public class ComboBoxPopup : Popup
     {
         #region UpContentTemplate property
@@ -238,6 +245,17 @@ namespace MaterialDesignThemes.Wpf
         }
         #endregion RelativeHorizontalOffset
 
+        public PopupDirection OpenDirection
+        {
+            get => (PopupDirection)GetValue(OpenDirectionProperty);
+            set => SetValue(OpenDirectionProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for OpenDirection.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty OpenDirectionProperty =
+            DependencyProperty.Register(nameof(OpenDirection), typeof(PopupDirection),
+                typeof(ComboBoxPopup), new PropertyMetadata(PopupDirection.None));
+
         public ComboBoxPopup()
             => CustomPopupPlacementCallback = ComboBoxCustomPopupPlacementCallback;
 
@@ -252,6 +270,12 @@ namespace MaterialDesignThemes.Wpf
             }
         }
 
+        protected override void OnClosed(EventArgs e)
+        {
+            SetCurrentValue(OpenDirectionProperty, PopupDirection.None);
+            base.OnClosed(e);
+        }
+
         private CustomPopupPlacement[] ComboBoxCustomPopupPlacementCallback(
             Size popupSize, Size targetSize, Point offset)
         {
@@ -262,17 +286,23 @@ namespace MaterialDesignThemes.Wpf
 
             var data = GetPositioningData(visualAncestry, popupSize, targetSize);
 
-            return new[] { GetClassicPopupPlacement(this, data) };
+            var defaultVerticalOffsetIndependent = DpiHelper.TransformToDeviceY(data.MainVisual, DefaultVerticalOffset);
 
-            static CustomPopupPlacement GetClassicPopupPlacement(ComboBoxPopup popup, PositioningData data)
+            double newY;
+            PopupDirection direction;
+            if (data.LocationY + data.PopupSize.Height > data.ScreenHeight)
             {
-                var defaultVerticalOffsetIndependent = DpiHelper.TransformToDeviceY(data.MainVisual, popup.DefaultVerticalOffset);
-                var newY = data.LocationY + data.PopupSize.Height > data.ScreenHeight
-                    ? -(defaultVerticalOffsetIndependent + data.PopupSize.Height)
-                    : defaultVerticalOffsetIndependent + data.TargetSize.Height;
-
-                return new CustomPopupPlacement(new Point(data.OffsetX, newY), PopupPrimaryAxis.Horizontal);
+                newY = -(defaultVerticalOffsetIndependent + data.PopupSize.Height);
+                direction = PopupDirection.Up;
             }
+            else
+            {
+                newY = defaultVerticalOffsetIndependent + data.TargetSize.Height;
+                direction = PopupDirection.Down;
+            }
+
+            SetCurrentValue(OpenDirectionProperty, direction);
+            return new[] { new CustomPopupPlacement(new Point(data.OffsetX, newY), PopupPrimaryAxis.Horizontal) };
 
             PositioningData GetPositioningData(IEnumerable<DependencyObject?> visualAncestry, Size popupSize, Size targetSize)
             {
@@ -296,10 +326,9 @@ namespace MaterialDesignThemes.Wpf
                 var newUpY = upVerticalOffsetIndependent - popupSize.Height + targetSize.Height;
                 var newDownY = DpiHelper.TransformToDeviceY(mainVisual, DownVerticalOffset) * ScaleHelper.GetTotalTransformScaleY(controlVisual);
                 var offsetX = DpiHelper.TransformToDeviceX(mainVisual, RelativeHorizontalOffset) * ScaleHelper.GetTotalTransformScaleX(controlVisual);
-                if (FlowDirection == FlowDirection.LeftToRight)
-                    offsetX = Round(offsetX);
-                else
-                    offsetX = Math.Truncate(offsetX - targetSize.Width);
+                offsetX = FlowDirection == FlowDirection.LeftToRight
+                    ? Round(offsetX)
+                    : Math.Truncate(offsetX - targetSize.Width);
 
                 return new PositioningData(
                     mainVisual, offsetX,
