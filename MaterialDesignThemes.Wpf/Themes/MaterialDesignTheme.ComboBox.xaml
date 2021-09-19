@@ -421,6 +421,7 @@
                     x:Name="templateRoot"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{Binding Path=(wpf:TextFieldAssist.TextFieldCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                     SnapsToDevicePixels="True"
                     wpf:BottomDashedLineAdorner.IsAttached="False">
                     <Grid>
@@ -526,28 +527,28 @@
                 <wpf:ComboBoxPopup x:Name="PART_Popup"
                                Grid.Column="0"
                                AllowsTransparency="True"
+                               ClassicMode="True"
+                               ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}"
+                               CornerRadius="0,0,4,4"
+                               wpf:ColorZoneAssist.Mode="{Binding Path=(wpf:ColorZoneAssist.Mode), RelativeSource={RelativeSource TemplatedParent}}"
+                               ContentMargin="6,0,6,6"
+                               ContentMinWidth="{Binding Path=ActualWidth, ElementName=templateRoot}"
+                               DefaultVerticalOffset="-1"
+                               DownContentTemplate="{StaticResource PopupContentDownTemplate}"
+                               DownVerticalOffset="0"
                                Focusable="False"
                                HorizontalOffset="0"
-                               RelativeHorizontalOffset="-23"
                                IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                               PlacementTarget="{Binding ElementName=templateRoot}"
-                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                               UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                                Placement="Custom"
+                               PlacementTarget="{Binding ElementName=templateRoot}"
                                PopupAnimation="Fade"
-                               VerticalOffset="0"
-                               DefaultVerticalOffset="5"
-                               DownVerticalOffset="-15"
-                               UpVerticalOffset="15"
-                               CornerRadius="2"
-                               ContentMargin="6"
-                               ContentMinWidth="{Binding ElementName=templateRoot, Path=ActualWidth, Converter={StaticResource MathAddConverter}, ConverterParameter=32}"
-                               wpf:ColorZoneAssist.Mode="{Binding Path=(wpf:ColorZoneAssist.Mode), RelativeSource={RelativeSource TemplatedParent}}"
+                               RelativeHorizontalOffset="-6"
+                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                Tag="{DynamicResource MaterialDesignPaper}"
-                               ClassicMode="{Binding Path=(wpf:ComboBoxAssist.ClassicMode), RelativeSource={RelativeSource TemplatedParent}}"
+                               UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                               VerticalOffset="0"
                                UpContentTemplate="{StaticResource PopupContentUpTemplate}"
-                               DownContentTemplate="{StaticResource PopupContentDownTemplate}"
-                               ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}">
+                               UpVerticalOffset="15">
                     <wpf:ComboBoxPopup.Background>
                         <MultiBinding Converter="{StaticResource FallbackBrushConverter}">
                             <Binding Path="Background" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -587,17 +588,6 @@
             </Grid>
         </AdornerDecorator>
         <ControlTemplate.Triggers>
-            <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
-                <Setter TargetName="templateRoot" Property="CornerRadius" Value="{Binding Path=(wpf:TextFieldAssist.TextFieldCornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
-                <Setter TargetName="PART_Popup" Property="RelativeHorizontalOffset" Value="-6" />
-                <Setter TargetName="PART_Popup" Property="DefaultVerticalOffset" Value="-1" />
-                <Setter TargetName="PART_Popup" Property="DownVerticalOffset" Value="0" />
-                <Setter TargetName="PART_Popup" Property="UpVerticalOffset" Value="0" />
-                <Setter TargetName="PART_Popup" Property="CornerRadius" Value="0,0,4,4" />
-                <Setter TargetName="PART_Popup" Property="ContentMargin" Value="6,0,6,6" />
-                <Setter TargetName="PART_Popup" Property="ContentMinWidth" Value="{Binding Path=ActualWidth, ElementName=templateRoot}" />
-                <Setter TargetName="PART_Popup" Property="ClassicMode" Value="True" />
-            </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
                 <Setter TargetName="templateRoot" Property="CornerRadius" Value="{Binding Path=(wpf:TextFieldAssist.TextFieldCornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="PART_Popup" Property="RelativeHorizontalOffset" Value="-6" />
@@ -607,7 +597,6 @@
                 <Setter TargetName="PART_Popup" Property="CornerRadius" Value="{Binding Path=(wpf:TextFieldAssist.TextFieldCornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="PART_Popup" Property="ContentMargin" Value="6,0,6,6" />
                 <Setter TargetName="PART_Popup" Property="ContentMinWidth" Value="{Binding Path=ActualWidth, ElementName=templateRoot}" />
-                <Setter TargetName="PART_Popup" Property="ClassicMode" Value="True" />
                 <Setter TargetName="Underline" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
                 <Setter TargetName="HintWrapper" Property="Opacity"
@@ -624,14 +613,6 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
-                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
-                    <Condition SourceName="PART_Popup" Property="PopupPlacement" Value="Classic" />
-                </MultiTrigger.Conditions>
-                <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
-            </MultiTrigger>
             <Trigger Property="IsEditable" Value="True">
                 <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
                 <Setter TargetName="Underline" Property="Visibility"
@@ -699,21 +680,10 @@
                 </MultiTrigger.Conditions>
                 <Setter TargetName="templateRoot" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
             </MultiTrigger>
+            <!-- TODO Single trigger -->
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsEnabled" Value="False" />
-                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
-                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
-                </MultiTrigger.Conditions>
-                <Setter TargetName="templateRoot" Property="wpf:BottomDashedLineAdorner.Brush" Value="{Binding BorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
-                <Setter TargetName="templateRoot" Property="wpf:BottomDashedLineAdorner.Thickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}}" />
-                <Setter TargetName="templateRoot" Property="wpf:BottomDashedLineAdorner.IsAttached" Value="True" />
-                <Setter TargetName="templateRoot" Property="BorderBrush" Value="Transparent" />
-            </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsEnabled" Value="False" />
-                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent" />
             </MultiTrigger>
@@ -790,10 +760,10 @@
             </MultiTrigger>
 
             <!-- IsDropDownOpen -->
+            <!-- TODO: Single trigger -->
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsDropDownOpen" Value="True" />
-                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Underline" Property="IsActive" Value="True" />
             </MultiTrigger>
@@ -821,17 +791,6 @@
                     <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="HintWrapper" Property="Opacity" Value="1" />
-            </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsDropDownOpen" Value="True" />
-                    <Condition Property="IsEditable" Value="False" />
-                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
-                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
-                </MultiTrigger.Conditions>
-                <Setter TargetName="Underline" Property="Visibility" Value="Hidden" />
-                <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="templateRoot" Property="BorderBrush" Value="Transparent" />
             </MultiTrigger>
 
             <!-- IsMouseOver -->
@@ -877,14 +836,6 @@
             </MultiTrigger>
 
             <!-- PART_Popup.IsOpen -->
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
-                    <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
-                    <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" TargetName="templateRoot" Value="{Binding Background, ElementName=PART_Popup}" />
-            </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
@@ -989,7 +940,6 @@
     </ControlTemplate>
 
     <Style x:Key="MaterialDesignComboBox" TargetType="{x:Type ComboBox}">
-        <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
         <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="False" />
 
         <Setter Property="Background" Value="Transparent"/>
@@ -1034,7 +984,6 @@
     </Style>
 
     <Style x:Key="MaterialDesignFilledComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
-        <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
         <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
         <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="False" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
