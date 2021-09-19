@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -7,6 +8,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// By default ComboBox uses the wrapper popup. Popup can be switched to classic Windows desktop view by means of this attached property.
         /// </summary>
+        [Obsolete("ClassicMode is now obsolete and has no affect.")]
         public static readonly DependencyProperty ClassicModeProperty = DependencyProperty.RegisterAttached(
             "ClassicMode",
             typeof(bool),
@@ -14,9 +16,11 @@ namespace MaterialDesignThemes.Wpf
             new FrameworkPropertyMetadata(false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
+        [Obsolete("ClassicMode is now obsolete and has no affect.")]
         public static bool GetClassicMode(DependencyObject element)
             => (bool)element.GetValue(ClassicModeProperty);
 
+        [Obsolete("ClassicMode is now obsolete and has no affect.")]
         public static void SetClassicMode(DependencyObject element, bool value)
             => element.SetValue(ClassicModeProperty, value);
 

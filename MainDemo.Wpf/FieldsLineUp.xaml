@@ -199,10 +199,10 @@
                     Grid.Column="3"
                     Grid.Row="3"
                     Style="{StaticResource MaterialDesignFilledComboBox}" />
-                <TextBlock
+                <ComboBox
                     Grid.Column="3"
                     Grid.Row="4"
-                    Style="{StaticResource NotAvailable}" />
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}" />
 
                 <DatePicker
                     Grid.Column="4"
