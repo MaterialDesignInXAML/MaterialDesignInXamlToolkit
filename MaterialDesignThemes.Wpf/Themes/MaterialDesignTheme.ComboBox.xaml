@@ -45,110 +45,6 @@
         </Setter>
     </Style>
 
-    <ControlTemplate x:Key="PopupContentUpTemplate" TargetType="ContentControl">
-        <Grid MinWidth="{Binding Path=ContentMinWidth, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
-              Margin="{Binding Path=ContentMargin, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Border Background="Transparent"
-                    BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
-                    BorderThickness="1"
-                    CornerRadius="{Binding Path=CornerRadius, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
-                <Border.Effect>
-                    <BlurEffect Radius="6"/>
-                </Border.Effect>
-            </Border>
-            <Border Margin="1"
-                 CornerRadius="{Binding Path=CornerRadius, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}" >
-                <Grid SnapsToDevicePixels="True">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Border Grid.Row="0" Height="{StaticResource PopupTopBottomMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
-                    <ContentPresenter Grid.Row="1"/>
-                    <Border Grid.Row="2" Height="{StaticResource PopupContentPresenterExtend}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
-
-                    <Grid Grid.Row="3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" Width="{StaticResource PopupLeftRightMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
-                        <Grid Grid.Column="1"
-                             Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth}"
-                             Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
-                        <Border Grid.Column="2" MinWidth="{StaticResource PopupLeftRightMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
-                    </Grid>
-                    <Border Grid.Row="4" Height="{StaticResource PopupTopBottomMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
-                </Grid>
-            </Border>
-        </Grid>
-    </ControlTemplate>
-
-    <ControlTemplate x:Key="PopupContentDownTemplate" TargetType="ContentControl">
-        <Grid MinWidth="{Binding Path=ContentMinWidth, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
-              Margin="{Binding Path=ContentMargin, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Border Background="Transparent"
-                    BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
-                    BorderThickness="1"
-                    CornerRadius="{Binding Path=CornerRadius, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
-                <Border.Effect>
-                    <BlurEffect Radius="6"/>
-                </Border.Effect>
-            </Border>
-            <Border Margin="1"
-                    CornerRadius="{Binding Path=CornerRadius, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
-                <Grid SnapsToDevicePixels="True">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Border Grid.Row="0"
-                        Height="{StaticResource PopupTopBottomMargin}"
-                        Background="{Binding ElementName=PART_Popup, Path=Background}"/>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0"
-                            Background="{Binding ElementName=PART_Popup, Path=Background}"
-                            Width="{StaticResource PopupLeftRightMargin}"/>
-                        <Grid Grid.Column="1"
-                          Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth}"
-                          Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
-                        <Border Grid.Column="2"
-                            Background="{Binding ElementName=PART_Popup, Path=Background}"
-                            MinWidth="{StaticResource PopupLeftRightMargin}"/>
-                    </Grid>
-
-                    <Border Grid.Row="2"
-                        Background="{Binding ElementName=PART_Popup, Path=Background}"
-                        Height="{StaticResource PopupContentPresenterExtend}"/>
-
-                    <ContentPresenter Grid.Row="3"/>
-
-                    <Border Grid.Row="4"
-                        Background="{Binding ElementName=PART_Popup, Path=Background}"
-                        Height="{StaticResource PopupTopBottomMargin}" />
-                </Grid>
-            </Border>
-        </Grid>
-    </ControlTemplate>
-
     <ControlTemplate x:Key="PopupContentClassicTemplate" TargetType="ContentControl">
         <Grid MinWidth="{Binding Path=ContentMinWidth, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
               Margin="{Binding Path=ContentMargin, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
@@ -1010,5 +906,111 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
     </Style>
+
+    <!-- OBSOLETE -->
+    <ControlTemplate x:Key="PopupContentUpTemplate" TargetType="ContentControl">
+        <Grid MinWidth="{Binding Path=ContentMinWidth, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
+              Margin="{Binding Path=ContentMargin, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Background="Transparent"
+                    BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{Binding Path=CornerRadius, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
+                <Border.Effect>
+                    <BlurEffect Radius="6"/>
+                </Border.Effect>
+            </Border>
+            <Border Margin="1"
+                 CornerRadius="{Binding Path=CornerRadius, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}" >
+                <Grid SnapsToDevicePixels="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Height="{StaticResource PopupTopBottomMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
+                    <ContentPresenter Grid.Row="1"/>
+                    <Border Grid.Row="2" Height="{StaticResource PopupContentPresenterExtend}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Width="{StaticResource PopupLeftRightMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
+                        <Grid Grid.Column="1"
+                             Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth}"
+                             Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
+                        <Border Grid.Column="2" MinWidth="{StaticResource PopupLeftRightMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
+                    </Grid>
+                    <Border Grid.Row="4" Height="{StaticResource PopupTopBottomMargin}" Background="{Binding ElementName=PART_Popup, Path=Background}"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+
+    <!-- OBSOLETE -->
+    <ControlTemplate x:Key="PopupContentDownTemplate" TargetType="ContentControl">
+        <Grid MinWidth="{Binding Path=ContentMinWidth, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
+              Margin="{Binding Path=ContentMargin, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Background="Transparent"
+                    BorderBrush="{DynamicResource MaterialDesignShadowBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{Binding Path=CornerRadius, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
+                <Border.Effect>
+                    <BlurEffect Radius="6"/>
+                </Border.Effect>
+            </Border>
+            <Border Margin="1"
+                    CornerRadius="{Binding Path=CornerRadius, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
+                <Grid SnapsToDevicePixels="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0"
+                        Height="{StaticResource PopupTopBottomMargin}"
+                        Background="{Binding ElementName=PART_Popup, Path=Background}"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0"
+                            Background="{Binding ElementName=PART_Popup, Path=Background}"
+                            Width="{StaticResource PopupLeftRightMargin}"/>
+                        <Grid Grid.Column="1"
+                          Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:ComboBoxPopup}}, Path=VisiblePlacementWidth}"
+                          Height="{Binding ElementName=templateRoot, Path=ActualHeight}"/>
+                        <Border Grid.Column="2"
+                            Background="{Binding ElementName=PART_Popup, Path=Background}"
+                            MinWidth="{StaticResource PopupLeftRightMargin}"/>
+                    </Grid>
+
+                    <Border Grid.Row="2"
+                        Background="{Binding ElementName=PART_Popup, Path=Background}"
+                        Height="{StaticResource PopupContentPresenterExtend}"/>
+
+                    <ContentPresenter Grid.Row="3"/>
+
+                    <Border Grid.Row="4"
+                        Background="{Binding ElementName=PART_Popup, Path=Background}"
+                        Height="{StaticResource PopupTopBottomMargin}" />
+                </Grid>
+            </Border>
+        </Grid>
+    </ControlTemplate>
 
 </ResourceDictionary>
