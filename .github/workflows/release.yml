@@ -51,7 +51,7 @@ jobs:
         path: ${{ github.workspace }}/MaterialDesignThemes.UITests/bin/${{ env.buildConfiguration }}/net5.0-windows/Screenshots
 
     - name: Build NuGets
-      run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ env.mdixVersion }}-ci${{ github.run_number }} -MDIXMahAppsVersion ${{ env.mdixMahappsVersion }}-ci${{ github.run_number }} -MDIXColorsVersion ${{ env.mdixColorsVersion }}-ci${{ github.run_number }}
+      run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ env.mdixVersion }} -MDIXMahAppsVersion ${{ env.mdixMahappsVersion }} -MDIXColorsVersion ${{ env.mdixColorsVersion }}
 
     - name: Upload NuGets
       uses: actions/upload-artifact@v2
