@@ -491,16 +491,16 @@ namespace MaterialDesignThemes.Wpf
             set => SetValue(OverlayBackgroundProperty, value);
         }
 
-        public static readonly DependencyProperty ContentBackgroundProperty = DependencyProperty.Register(
-            nameof(ContentBackground), typeof(Brush), typeof(DialogHost), new PropertyMetadata(Brushes.White));
+        public static readonly DependencyProperty DialogBackgroundProperty = DependencyProperty.Register(
+            nameof(DialogBackground), typeof(Brush), typeof(DialogHost), new PropertyMetadata(Brushes.White));
 
         /// <summary>
-        /// Represents the overlay brush that is used to dim the background behind the dialog
+        /// Represents the brush for the Dialog's background
         /// </summary>
-        public Brush? ContentBackground
+        public Brush? DialogBackground
         {
-            get => (Brush?)GetValue(ContentBackgroundProperty);
-            set => SetValue(ContentBackgroundProperty, value);
+            get => (Brush?)GetValue(DialogBackgroundProperty);
+            set => SetValue(DialogBackgroundProperty, value);
         }
 
         public override void OnApplyTemplate()
