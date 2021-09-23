@@ -168,7 +168,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
 </Grid>");
             var textBox = await grid.GetElement<TextBox>("/TextBox");
             var helpTextBlock = await textBox.GetElement<TextBlock>("/Grid/Canvas/TextBlock");
-            
+
             double fontSize = await helpTextBlock.GetFontSize();
 
             Assert.Equal(20, fontSize);
@@ -300,7 +300,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
 ");
             var hint = await textBox.GetElement<SmartHint>("Hint");
             Point offset = await hint.GetFloatingOffset();
-            
+
             Assert.Equal(1, offset.X);
             Assert.Equal(-42, offset.Y);
 
@@ -345,6 +345,28 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
             var textBoxFont = await textBox.GetFontFamily();
             Assert.Equal("Times New Roman", textBoxFont?.FamilyNames.Values.First());
             Assert.Equal(textBoxFont, await contextMenu.GetFontFamily());
+
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Issue 2430")]
+        public async Task VerticalContentAlignment_ProperlyAlignsText()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var textBox = await LoadXaml<TextBox>($@"
+    <TextBox Height=""100"" Text=""Test""/>
+");
+            
+            var scrollViewer = await textBox.GetElement<ScrollViewer>("PART_ContentHost");
+            Assert.Equal(VerticalAlignment.Top, await scrollViewer.GetVerticalAlignment());
+
+            foreach (var alignment in Enum.GetValues<VerticalAlignment>())
+            {
+                await textBox.SetVerticalContentAlignment(alignment);
+                Assert.Equal(alignment, await scrollViewer.GetVerticalAlignment());
+            }
 
             recorder.Success();
         }
