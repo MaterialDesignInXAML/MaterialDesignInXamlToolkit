@@ -9,9 +9,9 @@ env:
   solution: MaterialDesignToolkit.Full.sln
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  mdixColorsVersion: '2.0.3'
-  mdixMahAppsVersion: '0.1.9'
-  mdixVersion: '4.2.1'
+  mdixColorsVersion: '2.0.4'
+  mdixMahAppsVersion: '0.2.0'
+  mdixVersion: '4.3.0'
 
 jobs:
   build:
