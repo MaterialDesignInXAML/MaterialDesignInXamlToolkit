@@ -721,6 +721,23 @@
                             <Setter TargetName="AMRadioButton" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PMRadioButton" Property="Visibility" Value="Collapsed" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Is24Hours" Value="True" />
+                                <Condition Property="IsPostMeridiem" Value="False" />
+                                <Condition Property="IsMidnightHour" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HourLine" Property="Height" Value="76" />
+                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Is24Hours" Value="True" />
+                                <Condition Property="IsMiddayHour" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HourLine" Property="Height" Value="76" />
+                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
+                        </MultiTrigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.None}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
@@ -1427,6 +1444,23 @@
                             <Setter TargetName="PART_HourReadOutText" Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:HH}}" />
                             <Setter TargetName="AmPmBorder" Property="Visibility" Value="Collapsed" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Is24Hours" Value="True" />
+                                <Condition Property="IsPostMeridiem" Value="False" />
+                                <Condition Property="IsMidnightHour" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HourLine" Property="Height" Value="76" />
+                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Is24Hours" Value="True" />
+                                <Condition Property="IsMiddayHour" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HourLine" Property="Height" Value="76" />
+                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
+                        </MultiTrigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.None}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
@@ -2144,6 +2178,23 @@
                             <Setter TargetName="PART_HourReadOutText" Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:HH}}" />
                             <Setter TargetName="AmPmBorder" Property="Visibility" Value="Collapsed" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Is24Hours" Value="True" />
+                                <Condition Property="IsPostMeridiem" Value="False" />
+                                <Condition Property="IsMidnightHour" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HourLine" Property="Height" Value="76" />
+                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Is24Hours" Value="True" />
+                                <Condition Property="IsMiddayHour" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HourLine" Property="Height" Value="76" />
+                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
+                        </MultiTrigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.None}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
@@ -2854,6 +2905,23 @@
                             <Setter TargetName="PART_HourReadOutText" Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:HH}}" />
                             <Setter TargetName="AmPmBorder" Property="Visibility" Value="Collapsed" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Is24Hours" Value="True" />
+                                <Condition Property="IsPostMeridiem" Value="False" />
+                                <Condition Property="IsMidnightHour" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HourLine" Property="Height" Value="76" />
+                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Is24Hours" Value="True" />
+                                <Condition Property="IsMiddayHour" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HourLine" Property="Height" Value="76" />
+                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
+                        </MultiTrigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.None}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
@@ -3565,6 +3633,23 @@
                             <Setter TargetName="PART_HourReadOutText" Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:HH}}" />
                             <Setter TargetName="AmPmBorder" Property="Visibility" Value="Collapsed" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Is24Hours" Value="True" />
+                                <Condition Property="IsPostMeridiem" Value="False" />
+                                <Condition Property="IsMidnightHour" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HourLine" Property="Height" Value="76" />
+                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Is24Hours" Value="True" />
+                                <Condition Property="IsMiddayHour" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="HourLine" Property="Height" Value="76" />
+                            <Setter TargetName="HourLine" Property="Canvas.Top" Value="40" />
+                        </MultiTrigger>
                         <Trigger Property="DisplayAutomation" Value="{x:Static  wpf:ClockDisplayAutomation.None}">
                             <Setter TargetName="PART_SecondReadOut" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_SecondColonPrefix" Property="Visibility" Value="Collapsed" />
