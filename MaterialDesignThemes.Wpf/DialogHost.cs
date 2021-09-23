@@ -298,7 +298,7 @@ namespace MaterialDesignThemes.Wpf
                     closeParameter = session.CloseParameter;
                     dialogHost.CurrentSession = null;
                 }
-                
+
                 //NB: _dialogTaskCompletionSource is only set in the case where the dialog is shown with Show
                 dialogHost._dialogTaskCompletionSource?.TrySetResult(closeParameter);
 
@@ -489,6 +489,18 @@ namespace MaterialDesignThemes.Wpf
         {
             get => (Brush?)GetValue(OverlayBackgroundProperty);
             set => SetValue(OverlayBackgroundProperty, value);
+        }
+
+        public static readonly DependencyProperty DialogBackgroundProperty = DependencyProperty.Register(
+            nameof(DialogBackground), typeof(Brush), typeof(DialogHost), new PropertyMetadata(Brushes.White));
+
+        /// <summary>
+        /// Represents the brush for the Dialog's background
+        /// </summary>
+        public Brush? DialogBackground
+        {
+            get => (Brush?)GetValue(DialogBackgroundProperty);
+            set => SetValue(DialogBackgroundProperty, value);
         }
 
         public override void OnApplyTemplate()
