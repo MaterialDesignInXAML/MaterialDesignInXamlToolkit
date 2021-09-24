@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf
 {
-    public class DataGridComboBoxColumn : System.Windows.Controls.DataGridComboBoxColumn //DataGridBoundColumn
+    public class DataGridComboBoxColumn : System.Windows.Controls.DataGridComboBoxColumn
     {
         static DataGridComboBoxColumn()
         {
@@ -12,7 +12,7 @@ namespace MaterialDesignThemes.Wpf
             EditingElementStyleProperty.OverrideMetadata(typeof(DataGridComboBoxColumn), new FrameworkPropertyMetadata(DefaultEditingElementStyle));
         }
 
-        public Binding? ItemsSourceBinding { get; set; }
+        public BindingBase? ItemsSourceBinding { get; set; }
 
         public bool? IsEditable { get; set; }
 
@@ -35,8 +35,8 @@ namespace MaterialDesignThemes.Wpf
                 comboBox.IsEditable = isEditable;
             }
 
-            if (ItemsSourceBinding != null)
-                comboBox.SetBinding(ItemsControl.ItemsSourceProperty, ItemsSourceBinding);
+            if (ItemsSourceBinding is { } binding)
+                comboBox.SetBinding(ItemsControl.ItemsSourceProperty, binding);
             ApplyStyle(true, false, comboBox);
 
             return comboBox;
@@ -70,14 +70,14 @@ namespace MaterialDesignThemes.Wpf
 
         private void ApplyStyle(bool isEditing, bool defaultToElementStyle, FrameworkElement element)
         {
-            var style = PickStyle(isEditing, defaultToElementStyle);
+            Style? style = PickStyle(isEditing, defaultToElementStyle);
             if (style != null)
             {
                 element.Style = style;
             }
         }
 
-        private Style PickStyle(bool isEditing, bool defaultToElementStyle)
+        private Style? PickStyle(bool isEditing, bool defaultToElementStyle)
         {
             var style = isEditing ? EditingElementStyle : ElementStyle;
             if (isEditing && defaultToElementStyle && (style == null))
@@ -88,14 +88,14 @@ namespace MaterialDesignThemes.Wpf
             return style;
         }
 
-        protected override void CancelCellEdit(FrameworkElement editingElement, object uneditedValue)
+        protected override void CancelCellEdit(FrameworkElement? editingElement, object? uneditedValue)
         {
             if (editingElement is ComboBox comboBox)
                 comboBox.SetCurrentValue(ComboBox.IsDropDownOpenProperty, false);
             base.CancelCellEdit(editingElement, uneditedValue);
         }
 
-        protected override bool CommitCellEdit(FrameworkElement editingElement)
+        protected override bool CommitCellEdit(FrameworkElement? editingElement)
         {
             if (editingElement is ComboBox comboBox)
                 comboBox.SetCurrentValue(ComboBox.IsDropDownOpenProperty, false);

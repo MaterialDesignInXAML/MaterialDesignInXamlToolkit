@@ -7,8 +7,7 @@ namespace MaterialDesignThemes.Wpf
     {
         protected override object? PrepareCellForEdit(FrameworkElement? editingElement, RoutedEventArgs editingEventArgs)
         {
-            var textBox = editingElement as TextBox;
-            if (textBox != null)
+            if (editingElement is TextBox textBox)
             {
                 textBox.MaxLength = MaxLength;
                 textBox.SelectionStart = textBox.Text.Length;
