@@ -3878,6 +3878,7 @@ namespace MaterialDesignThemes.Wpf
         CrossOutline,
         ChristianityOutline=CrossOutline,
         ReligionChristianOutline=CrossOutline,
+        Crowd,
         Crown,
         CrownCircle,
         Checkers=CrownCircle,
