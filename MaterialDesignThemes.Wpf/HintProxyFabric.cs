@@ -19,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
             }
 
             public bool CanBuild(Control? control) => _canBuild(control);
-            public IHintProxy Build(Control control) => _build(control);
+            public IHintProxy? Build(Control control) => _build(control);
         }
 
         private static readonly List<HintProxyBuilder> Builders = new List<HintProxyBuilder>();
@@ -35,13 +35,11 @@ namespace MaterialDesignThemes.Wpf
         public static void RegisterBuilder(Func<Control?, bool> canBuild, Func<Control, IHintProxy> build)
             => Builders.Add(new HintProxyBuilder(canBuild, build));
 
-        public static IHintProxy Get(Control? control)
+        public static IHintProxy? Get(Control? control)
         {
+            if (control is null) return null;
             var builder = Builders.FirstOrDefault(v => v.CanBuild(control));
-
-            if (builder is null) throw new NotImplementedException();
-
-            return builder.Build(control!);
+            return builder?.Build(control);
         }
     }
 }
