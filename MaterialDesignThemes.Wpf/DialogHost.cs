@@ -55,7 +55,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public static readonly RoutedCommand CloseDialogCommand = new();
 
-        private static readonly HashSet<DialogHost> LoadedInstances = new();
+        private static readonly HashSet<WeakReference<DialogHost>> LoadedInstances = new();
 
         private DialogOpenedEventHandler? _asyncShowOpenedEventHandler;
         private DialogClosingEventHandler? _asyncShowClosingEventHandler;
@@ -200,9 +200,24 @@ namespace MaterialDesignThemes.Wpf
         {
             if (LoadedInstances.Count == 0)
                 throw new InvalidOperationException("No loaded DialogHost instances.");
-            LoadedInstances.First().Dispatcher.VerifyAccess();
 
-            var targets = LoadedInstances.Where(dh => dialogIdentifier == null || Equals(dh.Identifier, dialogIdentifier)).ToList();
+            List<DialogHost> targets = new();
+            foreach(var instance in LoadedInstances.ToList())
+            {
+                if (instance.TryGetTarget(out DialogHost? dialogInstance))
+                {
+                    dialogInstance.Dispatcher.VerifyAccess();
+                    if (dialogIdentifier is null || Equals(dialogIdentifier, dialogInstance.Identifier))
+                    {
+                        targets.Add(dialogInstance);
+                    }
+                }
+                else
+                {
+                    LoadedInstances.Remove(instance);
+                }
+            }
+
             if (targets.Count == 0)
                 throw new InvalidOperationException($"No loaded DialogHost have an {nameof(Identifier)} property matching {nameof(dialogIdentifier)} ('{dialogIdentifier}') argument.");
             if (targets.Count > 1)
@@ -671,9 +686,10 @@ namespace MaterialDesignThemes.Wpf
 
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
         {
-            var window = Window.GetWindow(this);
-            if (window != null && !window.IsActive)
+            if (Window.GetWindow(this) is { } window && !window.IsActive)
+            {
                 window.Activate();
+            }
             base.OnPreviewMouseDown(e);
         }
 
@@ -733,10 +749,19 @@ namespace MaterialDesignThemes.Wpf
             => IsOpen ? OpenStateName : ClosedStateName;
 
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
-            => LoadedInstances.Remove(this);
+        {
+            foreach(var weakRef in LoadedInstances.ToList())
+            {
+                if (!weakRef.TryGetTarget(out DialogHost? dialogHost) ||
+                    Equals(dialogHost, this))
+                {
+                    LoadedInstances.Remove(weakRef);
+                }
+            }
+        }
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
-            => LoadedInstances.Add(this);
+            => LoadedInstances.Add(new WeakReference<DialogHost>(this));
 
     }
 }
