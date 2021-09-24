@@ -85,10 +85,10 @@
                                 <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                     <Grid RenderOptions.ClearTypeHint="Enabled" Margin="0 16">
                                         <ItemsPresenter x:Name="ItemsPresenter"
-                                                                KeyboardNavigation.DirectionalNavigation="Cycle"
-                                                                Grid.IsSharedSizeScope="True"
-                                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                                KeyboardNavigation.TabNavigation="Cycle"/>
+                                                        KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                        Grid.IsSharedSizeScope="True"
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                        KeyboardNavigation.TabNavigation="Cycle"/>
                                     </Grid>
                                 </ScrollViewer>
                             </Border>
@@ -106,7 +106,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
                     <ControlTemplate.Resources>
-                        <Style TargetType="{x:Type wpf:PackIcon}" >
+                        <Style TargetType="wpf:PackIcon">
                             <Setter Property="FrameworkElement.Width" Value="16" />
                             <Setter Property="FrameworkElement.Height" Value="16" />
                         </Style>
@@ -124,13 +124,13 @@
                                 SnapsToDevicePixels="True"
                                 Opacity="0"/>
                         <wpf:Ripple Background="Transparent"
-                                        HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                                        Focusable="False"
-                                        Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}">
+                                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                                    Focusable="False"
+                                    Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}">
                             <Grid Height="{TemplateBinding Height}" Background="Transparent">
                                 <Grid VerticalAlignment="Center"
-                                          Background="Transparent"
-                                          Margin="{TemplateBinding Padding}">
+                                      Background="Transparent"
+                                      Margin="{TemplateBinding Padding}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" SharedSizeGroup="IconGroup"/>
                                         <ColumnDefinition Width="*" SharedSizeGroup="HeaderGroup"/>
@@ -138,22 +138,22 @@
                                     </Grid.ColumnDefinitions>
                                     <Grid x:Name="IconWrapper" Visibility="Visible" Width="40">
                                         <ContentPresenter x:Name="Icon"
-                                                              Content="{TemplateBinding Icon}"
-                                                              ContentSource="Icon"
-                                                              HorizontalAlignment="Left" VerticalAlignment="Center"
-                                                              Height="16" Width="16"
-                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                          Content="{TemplateBinding Icon}"
+                                                          ContentSource="Icon"
+                                                          HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                          Height="16" Width="16"
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                     </Grid>
                                     <Grid x:Name="GlyphWrapper" Visibility="Collapsed" Width="40">
                                         <Viewbox x:Name="GlyphPanel"
-                                                     Width="16" Height="16"
-                                                     HorizontalAlignment="Left"
-                                                     Margin="0" Visibility="Collapsed" VerticalAlignment="Center"
-                                                     FlowDirection="LeftToRight">
+                                                 Width="16" Height="16"
+                                                 HorizontalAlignment="Left"
+                                                 Margin="0" Visibility="Collapsed" VerticalAlignment="Center"
+                                                 FlowDirection="LeftToRight">
                                             <Canvas Width="24" Height="24">
                                                 <Path Data="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" 
-					    		        					  x:Name="Glyph"
-					    		        					  Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" />
+					    		        			  x:Name="Glyph"
+					    		        			  Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" />
                                             </Canvas>
                                         </Viewbox>
                                     </Grid>
@@ -178,26 +178,26 @@
                                                           VerticalAlignment="Center"/>
                                     </Grid>
                                     <Grid x:Name="InputGestureTextWrapper"
-                                              Grid.Column="2"
-                                              Visibility="Collapsed">
+                                          Grid.Column="2"
+                                          Visibility="Collapsed">
                                         <TextBlock Visibility="{TemplateBinding InputGestureText, Converter={StaticResource StringIsEmptyVisibilityConverter}}"
-                                                       Margin="16 0 0 0"
-                                                       VerticalAlignment="Center" HorizontalAlignment="Right"
-                                                       Text="{TemplateBinding InputGestureText}"
-                                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                       Foreground="{TemplateBinding Foreground}"/>
+                                                   Margin="16 0 0 0"
+                                                   VerticalAlignment="Center" HorizontalAlignment="Right"
+                                                   Text="{TemplateBinding InputGestureText}"
+                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                   Foreground="{TemplateBinding Foreground}"/>
                                     </Grid>
                                     <Grid x:Name="SubBlock"
-                                              Grid.Column="2"
-                                              Visibility="Collapsed"
-                                              Margin="16 0 0 0">
+                                          Grid.Column="2"
+                                          Visibility="Collapsed"
+                                          Margin="16 0 0 0">
                                         <Path Width="5" Height="10"
-                                                  Stretch="Uniform"
-                                                  HorizontalAlignment="Right"
-                                                  VerticalAlignment="Center"
-                                                  Data="M0,16 L8,8 L0,0 Z"
-                                                  Fill="{TemplateBinding Foreground}"
-                                                  SnapsToDevicePixels="False"/>
+                                              Stretch="Uniform"
+                                              HorizontalAlignment="Right"
+                                              VerticalAlignment="Center"
+                                              Data="M0,16 L8,8 L0,0 Z"
+                                              Fill="{TemplateBinding Foreground}"
+                                              SnapsToDevicePixels="False"/>
                                     </Grid>
                                 </Grid>
                             </Grid>
