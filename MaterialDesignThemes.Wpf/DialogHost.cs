@@ -202,7 +202,7 @@ namespace MaterialDesignThemes.Wpf
                 throw new InvalidOperationException("No loaded DialogHost instances.");
 
             List<DialogHost> targets = new();
-            foreach(var instance in LoadedInstances.ToList())
+            foreach (var instance in LoadedInstances.ToList())
             {
                 if (instance.TryGetTarget(out DialogHost? dialogInstance))
                 {
@@ -750,7 +750,7 @@ namespace MaterialDesignThemes.Wpf
 
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            foreach(var weakRef in LoadedInstances.ToList())
+            foreach (var weakRef in LoadedInstances.ToList())
             {
                 if (!weakRef.TryGetTarget(out DialogHost? dialogHost) ||
                     Equals(dialogHost, this))
@@ -761,7 +761,19 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
-            => LoadedInstances.Add(new WeakReference<DialogHost>(this));
-
+        {
+            foreach (var weakRef in LoadedInstances.ToList())
+            {
+                if (!weakRef.TryGetTarget(out DialogHost? dialogHost))
+                {
+                    LoadedInstances.Remove(weakRef);
+                }
+                if (Equals(dialogHost, this))
+                {
+                    return;
+                }
+            }
+            LoadedInstances.Add(new WeakReference<DialogHost>(this));
+        }
     }
 }
