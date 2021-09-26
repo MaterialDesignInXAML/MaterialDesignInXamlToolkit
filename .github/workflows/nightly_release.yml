@@ -15,6 +15,7 @@ env:
 
 jobs:
   check_for_changes:
+    if: ${{ github.repository == 'MaterialDesignInXAML/MaterialDesignInXamlToolkit' && secrets.PAT != '' }}
     runs-on: windows-latest
 
     outputs:
