@@ -207,7 +207,7 @@ namespace MaterialDesignThemes.Wpf
                 if (instance.TryGetTarget(out DialogHost? dialogInstance))
                 {
                     dialogInstance.Dispatcher.VerifyAccess();
-                    if (dialogIdentifier is null || Equals(dialogIdentifier, dialogInstance.Identifier))
+                    if (Equals(dialogIdentifier, dialogInstance.Identifier))
                     {
                         targets.Add(dialogInstance);
                     }
