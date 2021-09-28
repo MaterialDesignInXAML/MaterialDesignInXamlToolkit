@@ -104,7 +104,7 @@ namespace MaterialDesignThemes.Wpf
             => SetTopmostState(true);
 
         private void HostWindow_Deactivated(object? sender, EventArgs e)
-            => SetTopmostState(false);
+            => SetTopmostState(_hostWindow?.Topmost ?? false);
 
         private void PopupEx_Unloaded(object? sender, RoutedEventArgs e)
         {
