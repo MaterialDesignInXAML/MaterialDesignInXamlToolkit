@@ -333,5 +333,28 @@ namespace MaterialDesignThemes.Wpf.Tests
             DialogHost.Close(id);
             Assert.False(DialogHost.IsDialogOpen(id));
         }
+
+        [StaFact]
+        [Description("Issue 2262")]
+        public async Task WhenOnlySingleDialogHostIdentifierIsNullItShowsDialog()
+        {
+            DialogHost dialogHost2 = new();
+            dialogHost2.ApplyDefaultStyle();
+            dialogHost2.Identifier = Guid.NewGuid();
+
+            try
+            {
+                dialogHost2.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+                Task showTask = DialogHost.Show("Content");
+                Assert.True(DialogHost.IsDialogOpen(null));
+                Assert.False(DialogHost.IsDialogOpen(dialogHost2.Identifier));
+                DialogHost.Close(null);
+                await showTask;
+            }
+            finally
+            {
+                dialogHost2.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+            }
+        }
     }
 }

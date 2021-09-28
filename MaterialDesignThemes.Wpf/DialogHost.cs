@@ -159,7 +159,7 @@ namespace MaterialDesignThemes.Wpf
         ///  Close a modal dialog.
         /// </summary>
         /// <param name="dialogIdentifier"> of the instance where the dialog should be closed. Typically this will match an identifer set in XAML. </param>
-        public static void Close(object dialogIdentifier)
+        public static void Close(object? dialogIdentifier)
             => Close(dialogIdentifier, null);
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         /// <param name="dialogIdentifier">The identifier to use to retrieve the DialogHost</param>
         /// <returns>The DialogSession if one is in process, or null</returns>
-        public static DialogSession? GetDialogSession(object dialogIdentifier)
+        public static DialogSession? GetDialogSession(object? dialogIdentifier)
         {
             DialogHost dialogHost = GetInstance(dialogIdentifier);
             return dialogHost.CurrentSession;
@@ -194,7 +194,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         /// <param name="dialogIdentifier">of the instance where the dialog should be closed. Typically this will match an identifer set in XAML.</param>
         /// <returns></returns>
-        public static bool IsDialogOpen(object dialogIdentifier) => GetDialogSession(dialogIdentifier)?.IsEnded == false;
+        public static bool IsDialogOpen(object? dialogIdentifier) => GetDialogSession(dialogIdentifier)?.IsEnded == false;
 
         private static DialogHost GetInstance(object? dialogIdentifier)
         {
