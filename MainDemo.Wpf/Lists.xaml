@@ -69,12 +69,15 @@
                 UniqueKey="list_4"
                 Grid.Column="1">
                 <Grid>
-                    <ListBox>
+                    <ListBox materialDesign:ListBoxItemAssist.ShowSelection="False">
+                        <!--
+                        Alternatively you can specify ListBoxItemAssist.ShowSelection on individual items
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
                                 <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection" Value="False"/>
                             </Style>
                         </ListBox.ItemContainerStyle>
+                        -->
                         <TextBlock Text="Listbox"/>
                         <TextBlock Text="Without"/>
                         <TextBlock Text="Selection"/>
