@@ -124,25 +124,25 @@
                         Background="Transparent"
                         Orientation="Horizontal">
                 <RepeatButton x:Name="PART_LeftEdge"
-                              Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"
+                              Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillBrush)}"
                               Style="{DynamicResource MaterialDesign.RangeSlider.HorizontalTrack}" />
 
                 <controls:MetroThumb x:Name="PART_LeftThumb"
-                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"
+                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillBrush)}"
                                      Cursor="Arrow"
                                      Style="{DynamicResource MaterialDesign.RangeSlider.Thumb}" />
                 <controls:MetroThumb x:Name="PART_MiddleThumb"
                                      MinWidth="{TemplateBinding MinRangeWidth}"
                                      Cursor="Hand"
-                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"
+                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackValueFillBrush)}"
                                      Style="{DynamicResource MaterialDesign.RangeSlider.HorizontalMiddleThumb}" />
                 <controls:MetroThumb x:Name="PART_RightThumb"
-                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"
+                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillBrush)}"
                                      Cursor="Arrow"
                                      Style="{DynamicResource MaterialDesign.RangeSlider.Thumb}" />
 
                 <RepeatButton x:Name="PART_RightEdge"
-                              Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"
+                              Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillBrush)}"
                               Style="{DynamicResource MaterialDesign.RangeSlider.HorizontalTrack}" />
             </StackPanel>
         </Grid>
@@ -241,25 +241,25 @@
                         Background="Transparent"
                         Orientation="Vertical">
                 <RepeatButton x:Name="PART_RightEdge"
-                              Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"
+                              Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillBrush)}"
                               Style="{DynamicResource MaterialDesign.RangeSlider.VerticalTrack}" />
 
                 <controls:MetroThumb x:Name="PART_RightThumb"
-                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"
+                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillBrush)}"
                                      Cursor="Arrow"
                                      Style="{DynamicResource MaterialDesign.RangeSlider.Thumb}" />
                 <controls:MetroThumb x:Name="PART_MiddleThumb"
                                      MinHeight="{TemplateBinding MinRangeWidth}"
                                      Cursor="Hand"
-                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"
+                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackValueFillBrush)}"
                                      Style="{StaticResource MaterialDesign.RangeSlider.VerticalMiddleThumb}" />
                 <controls:MetroThumb x:Name="PART_LeftThumb"
-                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"
+                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillBrush)}"
                                      Cursor="Arrow"
                                      Style="{DynamicResource MaterialDesign.RangeSlider.Thumb}" />
 
                 <RepeatButton x:Name="PART_LeftEdge"
-                              Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"
+                              Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillBrush)}"
                               Style="{DynamicResource MaterialDesign.RangeSlider.VerticalTrack}" />
             </StackPanel>
         </Grid>
