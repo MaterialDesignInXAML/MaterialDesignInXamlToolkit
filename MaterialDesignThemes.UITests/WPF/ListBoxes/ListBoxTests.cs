@@ -130,5 +130,25 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
 
             recorder.Success();
         }
+
+        [Fact]
+        public async Task OnListBoxAssist_WithShowSelectDisabled_SelectionIsDisabled()
+        {
+            await using var recorder = new TestRecorder(App);
+            var listBox = await LoadXaml<ListBox>($@"
+<ListBox materialDesign:ListBoxItemAssist.ShowSelection=""False"">
+    <ListBoxItem>Mercury</ListBoxItem>
+    <ListBoxItem>Venus</ListBoxItem>
+    <ListBoxItem>Earth</ListBoxItem>
+    <ListBoxItem>Pluto</ListBoxItem>
+</ListBox>
+");
+            var earth = await listBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
+            await earth.LeftClick();
+            var selectedBorder = await earth.GetElement<Border>("SelectedBorder");
+            await Wait.For(async () => Assert.False(await selectedBorder.GetIsVisible()));
+
+            recorder.Success();
+        }
     }
 }
