@@ -160,38 +160,38 @@
 
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="PART_LeftEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillHoverBrush)}" />
-                <Setter TargetName="PART_LeftThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillHoverBrush)}" />
+                <Setter TargetName="PART_LeftThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillHoverBrush)}" />
                 <Setter TargetName="PART_MiddleThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackValueFillHoverBrush)}" />
                 <Setter TargetName="PART_RightEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillHoverBrush)}" />
-                <Setter TargetName="PART_RightThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillHoverBrush)}" />
+                <Setter TargetName="PART_RightThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillHoverBrush)}" />
             </Trigger>
             <Trigger SourceName="PART_LeftEdge" Property="IsPressed" Value="True">
                 <Setter TargetName="PART_LeftEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillPressedBrush)}" />
-                <Setter TargetName="PART_LeftThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
+                <Setter TargetName="PART_LeftThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
                 <Setter TargetName="PART_MiddleThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackValueFillPressedBrush)}" />
                 <Setter TargetName="PART_RightEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillPressedBrush)}" />
-                <Setter TargetName="PART_RightThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
+                <Setter TargetName="PART_RightThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
             </Trigger>
             <Trigger SourceName="PART_RightEdge" Property="IsPressed" Value="True">
                 <Setter TargetName="PART_LeftEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillPressedBrush)}" />
-                <Setter TargetName="PART_LeftThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
+                <Setter TargetName="PART_LeftThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
                 <Setter TargetName="PART_MiddleThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackValueFillPressedBrush)}" />
                 <Setter TargetName="PART_RightEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillPressedBrush)}" />
-                <Setter TargetName="PART_RightThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
+                <Setter TargetName="PART_RightThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
             </Trigger>
             <Trigger SourceName="PART_MiddleThumb" Property="IsDragging" Value="True">
                 <Setter TargetName="PART_LeftEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillPressedBrush)}" />
-                <Setter TargetName="PART_LeftThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
+                <Setter TargetName="PART_LeftThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
                 <Setter TargetName="PART_MiddleThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackValueFillPressedBrush)}" />
                 <Setter TargetName="PART_RightEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillPressedBrush)}" />
-                <Setter TargetName="PART_RightThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
+                <Setter TargetName="PART_RightThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="PART_LeftEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillDisabledBrush)}" />
-                <Setter TargetName="PART_LeftThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillDisabledBrush)}" />
+                <Setter TargetName="PART_LeftThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillDisabledBrush)}" />
                 <Setter TargetName="PART_MiddleThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackValueFillDisabledBrush)}" />
                 <Setter TargetName="PART_RightEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillDisabledBrush)}" />
-                <Setter TargetName="PART_RightThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillDisabledBrush)}" />
+                <Setter TargetName="PART_RightThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillDisabledBrush)}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -277,38 +277,38 @@
 
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="PART_LeftEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillHoverBrush)}" />
-                <Setter TargetName="PART_LeftThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillHoverBrush)}" />
+                <Setter TargetName="PART_LeftThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillHoverBrush)}" />
                 <Setter TargetName="PART_MiddleThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackValueFillHoverBrush)}" />
                 <Setter TargetName="PART_RightEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillHoverBrush)}" />
-                <Setter TargetName="PART_RightThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillHoverBrush)}" />
+                <Setter TargetName="PART_RightThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillHoverBrush)}" />
             </Trigger>
             <Trigger SourceName="PART_LeftEdge" Property="IsPressed" Value="True">
                 <Setter TargetName="PART_LeftEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillPressedBrush)}" />
-                <Setter TargetName="PART_LeftThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
+                <Setter TargetName="PART_LeftThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
                 <Setter TargetName="PART_MiddleThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackValueFillPressedBrush)}" />
                 <Setter TargetName="PART_RightEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillPressedBrush)}" />
-                <Setter TargetName="PART_RightThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
+                <Setter TargetName="PART_RightThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
             </Trigger>
             <Trigger SourceName="PART_RightEdge" Property="IsPressed" Value="True">
                 <Setter TargetName="PART_LeftEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillPressedBrush)}" />
-                <Setter TargetName="PART_LeftThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
+                <Setter TargetName="PART_LeftThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
                 <Setter TargetName="PART_MiddleThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackValueFillPressedBrush)}" />
                 <Setter TargetName="PART_RightEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillPressedBrush)}" />
-                <Setter TargetName="PART_RightThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
+                <Setter TargetName="PART_RightThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
             </Trigger>
             <Trigger SourceName="PART_MiddleThumb" Property="IsDragging" Value="True">
                 <Setter TargetName="PART_LeftEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillPressedBrush)}" />
-                <Setter TargetName="PART_LeftThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
+                <Setter TargetName="PART_LeftThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
                 <Setter TargetName="PART_MiddleThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackValueFillPressedBrush)}" />
                 <Setter TargetName="PART_RightEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillPressedBrush)}" />
-                <Setter TargetName="PART_RightThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
+                <Setter TargetName="PART_RightThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillPressedBrush)}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="PART_LeftEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillDisabledBrush)}" />
-                <Setter TargetName="PART_LeftThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillDisabledBrush)}" />
+                <Setter TargetName="PART_LeftThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillDisabledBrush)}" />
                 <Setter TargetName="PART_MiddleThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackValueFillDisabledBrush)}" />
                 <Setter TargetName="PART_RightEdge" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.TrackFillDisabledBrush)}" />
-                <Setter TargetName="PART_RightThumb" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillDisabledBrush)}" />
+                <Setter TargetName="PART_RightThumb" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:SliderHelper.ThumbFillDisabledBrush)}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
