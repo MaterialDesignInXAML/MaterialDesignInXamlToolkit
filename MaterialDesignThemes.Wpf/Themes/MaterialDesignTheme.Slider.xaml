@@ -90,12 +90,12 @@
                 <Ellipse
                     x:Name="grip"
                     Fill="{TemplateBinding Foreground}"
-                    Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                    Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                     Margin="-1,0" />
             </AdornerDecorator>
         </Grid>
         <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Track}}" Value="{x:Static Orientation.Vertical}">
+            <DataTrigger Binding="{Binding Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}}" Value="{x:Static Orientation.Vertical}">
                 <Setter TargetName="thumbGrid" Property="Height" Value="18" />
                 <Setter TargetName="thumbGrid" Property="Width" Value="20" />
                 <Setter TargetName="grip" Property="Margin" Value="0,-1" />
@@ -119,8 +119,8 @@
             <DataTrigger Value="True">
                 <DataTrigger.Binding>
                     <MultiBinding Converter="{StaticResource BooleanAllConverter}">
-                        <Binding Path="IsFocused" RelativeSource="{RelativeSource FindAncestor, AncestorType=Slider}" />
-                        <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=Slider}" Converter="{StaticResource InvertBooleanConverter}"  />
+                        <Binding Path="IsFocused" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
+                        <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" Converter="{StaticResource InvertBooleanConverter}"  />
                     </MultiBinding>
                 </DataTrigger.Binding>
                 <DataTrigger.EnterActions>
@@ -134,7 +134,7 @@
                 <DataTrigger.Binding>
                     <MultiBinding Converter="{StaticResource BooleanAllConverter}">
                         <Binding Path="IsDragging" RelativeSource="{RelativeSource Self}" />
-                        <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=Slider}" />
+                        <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
                     </MultiBinding>
                 </DataTrigger.Binding>
                 <DataTrigger.EnterActions>
@@ -255,7 +255,7 @@
                         <AdornerDecorator.CacheMode>
                             <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </AdornerDecorator.CacheMode>
-                        <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
+                        <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
                             <Rectangle
                                 Fill="{DynamicResource MaterialDesignToolTipBackground}"
                                 Margin="0,0,0,5"
@@ -267,7 +267,7 @@
                     <TextBlock
                         Foreground="{DynamicResource MaterialDesignPaper}"
                         Margin="12,0,12,5"
-                        Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=Value}"
+                        Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=Value}"
                         TextAlignment="Center"
                         VerticalAlignment="Center" />
                 </Grid>
@@ -279,7 +279,7 @@
                 <Ellipse
                     x:Name="grip"
                     Fill="{TemplateBinding Foreground}"
-                    Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                    Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                     Margin="-1,0" />
             </AdornerDecorator>
         </Grid>
@@ -303,8 +303,8 @@
             <DataTrigger Value="True">
                 <DataTrigger.Binding>
                     <MultiBinding Converter="{StaticResource BooleanAllConverter}">
-                        <Binding Path="IsFocused" RelativeSource="{RelativeSource FindAncestor, AncestorType=Slider}" />
-                        <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=Slider}" Converter="{StaticResource InvertBooleanConverter}" />
+                        <Binding Path="IsFocused" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
+                        <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" Converter="{StaticResource InvertBooleanConverter}" />
                     </MultiBinding>
                 </DataTrigger.Binding>
                 <DataTrigger.EnterActions>
@@ -318,7 +318,7 @@
                 <DataTrigger.Binding>
                     <MultiBinding Converter="{StaticResource BooleanAllConverter}">
                         <Binding Path="IsDragging" RelativeSource="{RelativeSource Self}" />
-                        <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=Slider}" />
+                        <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
                     </MultiBinding>
                 </DataTrigger.Binding>
                 <DataTrigger.EnterActions>
@@ -439,7 +439,7 @@
                         <AdornerDecorator.CacheMode>
                             <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </AdornerDecorator.CacheMode>
-                        <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
+                        <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
                             <Rectangle
                                 Fill="{DynamicResource MaterialDesignToolTipBackground}"
                                 Margin="0,0,5,0"
@@ -451,7 +451,7 @@
                     <TextBlock
                         Foreground="{DynamicResource MaterialDesignPaper}"
                         Margin="12,0,17,0"
-                        Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=Value}"
+                        Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=Value}"
                         TextAlignment="Center"
                         VerticalAlignment="Center" />
                 </Grid>
@@ -462,7 +462,7 @@
                 </AdornerDecorator.CacheMode>
                 <Ellipse
                      x:Name="grip"
-                     Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                     Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
                      Fill="{TemplateBinding Foreground}"
                      Margin="0,-1" />
             </AdornerDecorator>
@@ -487,8 +487,8 @@
             <DataTrigger Value="True">
                 <DataTrigger.Binding>
                     <MultiBinding Converter="{StaticResource BooleanAllConverter}">
-                        <Binding Path="IsFocused" RelativeSource="{RelativeSource FindAncestor, AncestorType=Slider}" />
-                        <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=Slider}" Converter="{StaticResource InvertBooleanConverter}"  />
+                        <Binding Path="IsFocused" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
+                        <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" Converter="{StaticResource InvertBooleanConverter}"  />
                     </MultiBinding>
                 </DataTrigger.Binding>
                 <DataTrigger.EnterActions>
@@ -502,7 +502,7 @@
                 <DataTrigger.Binding>
                     <MultiBinding Converter="{StaticResource BooleanAllConverter}">
                         <Binding Path="IsDragging" RelativeSource="{RelativeSource Self}" />
-                        <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=Slider}" />
+                        <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
                     </MultiBinding>
                 </DataTrigger.Binding>
                 <DataTrigger.EnterActions>

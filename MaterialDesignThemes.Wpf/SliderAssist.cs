@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -12,10 +12,10 @@ namespace MaterialDesignThemes.Wpf
                 typeof(SliderAssist),
                 new PropertyMetadata(false));
 
-        public static void SetOnlyShowFocusVisualWhileDragging(Slider slider, bool value)
-            => slider.SetValue(OnlyShowFocusVisualWhileDraggingProperty, value);
+        public static void SetOnlyShowFocusVisualWhileDragging(RangeBase element, bool value)
+            => element.SetValue(OnlyShowFocusVisualWhileDraggingProperty, value);
 
-        public static bool GetOnlyShowFocusVisualWhileDragging(Slider element)
+        public static bool GetOnlyShowFocusVisualWhileDragging(RangeBase element)
             => (bool)element.GetValue(OnlyShowFocusVisualWhileDraggingProperty);
     }
 }
