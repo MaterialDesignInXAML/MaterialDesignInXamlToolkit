@@ -843,13 +843,13 @@
     </ControlTemplate>
 
     <Style x:Key="MaterialDesignComboBox" TargetType="{x:Type ComboBox}">
-        <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="False" />
+        <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemSelectedCollapsedStyle}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
@@ -873,8 +873,8 @@
                 <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="{StaticResource TrueValue}" />
             </Trigger>
             <!-- designer prefers hard bool -->
-            <Trigger Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="{StaticResource TrueValue}" >
-                <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
+            <Trigger Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="{StaticResource FalseValue}" >
+                <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemSelectedCollapsedStyle}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -887,7 +887,7 @@
 
     <Style x:Key="MaterialDesignFilledComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
         <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
-        <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="False" />
+        <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Padding" Value="12,8,8,8" />
