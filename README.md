@@ -43,7 +43,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
 - Before contributing code read the [Contribution Guidelines](.github/CONTRIBUTING.md)
-  - GitHub issues are for bugs and feature requests.
+  - GitHub issues are for bugs.
   - For queries, help, and general chat stop by the [Gitter chat room](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit).
   - Stack Overflow tag: [material-design-in-xaml](http://stackoverflow.com/questions/tagged/material-design-in-xaml)
 - Want to say thanks?
