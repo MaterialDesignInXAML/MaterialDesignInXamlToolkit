@@ -28,6 +28,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 
 - Checkout the [Super Quick Start](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Super-Quick-Start)
 - Or, the more comprehensive [Starting Guide](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Getting-Started) guide.
+- Examples can be seen [here](https://github.com/Keboo/MaterialDesignInXaml.Examples)
 - Or, watch the [Material Design In XAML Toolkit An Introduction](https://www.youtube.com/watch?v=-n5yeEOsbCk) video.
 
 # ![Alt text](web/images/MD4XAML28.png "In Action") See It In Action
