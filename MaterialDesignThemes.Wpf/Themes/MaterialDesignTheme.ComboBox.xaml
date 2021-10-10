@@ -312,7 +312,8 @@
                     Style="{StaticResource MaterialDesignComboBoxToggleButton}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     Background="{TemplateBinding Background}"
-                    Padding="{TemplateBinding Padding}" />
+                    Padding="{TemplateBinding Padding}"
+                    Margin="{Binding ElementName=InnerRoot, Path=Margin}"/>
                 <Border
                     x:Name="templateRoot"
                     BorderBrush="{TemplateBinding BorderBrush}"
@@ -478,6 +479,7 @@
                         <MultiBinding Converter="{StaticResource ComboBoxClearButtonMarginConverter}">
                             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Padding" />
                             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="BorderThickness" />
+                            <Binding ElementName="InnerRoot" Path="Margin" />
                         </MultiBinding>
                     </Button.Margin>
                     <Button.Visibility>
