@@ -11,9 +11,10 @@ namespace MaterialDesignThemes.Wpf.Converters
         {
             var padding = (Thickness)values[0];
             var borderThickness = (Thickness)values[1];
+            var floatingHintTopOffset = ((Thickness)values[2]).Top;
             return new Thickness(
                 borderThickness.Left,
-                borderThickness.Top + padding.Top,
+                borderThickness.Top + padding.Top + floatingHintTopOffset,
                 borderThickness.Right + padding.Right + Constants.ComboBoxArrowSize + Constants.TextBoxInnerButtonSpacing,
                 borderThickness.Bottom + padding.Bottom);
         }
