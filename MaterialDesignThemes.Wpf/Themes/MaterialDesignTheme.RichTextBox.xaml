@@ -7,5 +7,6 @@
 
     <Style x:Key="MaterialDesignRichTextBox" TargetType="RichTextBox" BasedOn="{StaticResource MaterialDesignTextBoxBase}">
         <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="-4 0 1 0" />
+        <Setter Property="wpf:TextFieldAssist.CharacterCounterStyle" Value="{x:Null}" />
     </Style>
 </ResourceDictionary>
