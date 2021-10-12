@@ -257,6 +257,15 @@
                             <Setter TargetName="PART_NumericDown" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_NumericUp" Property="Visibility" Value="Collapsed" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocusWithin" Value="True" />
+                                <Condition Property="mah:ControlsHelper.FocusBorderThickness" Value="1" />
+                                <Condition Property="mah:ControlsHelper.CornerRadius" Value="4" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Base" Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mah:ControlsHelper.FocusBorderThickness)}" />
+                            <Setter TargetName="Base" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mah:ControlsHelper.MouseOverBorderBrush)}" />
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -265,4 +274,13 @@
         <Setter Property="UpDownButtonsWidth" Value="22" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
     </Style>
+
+    <Style TargetType="{x:Type mah:NumericUpDown}" x:Key="MaterialDesignOutlinedNumericUpDown" BasedOn="{StaticResource MaterialDesignNumericUpDown}">
+        <Setter Property="mah:ControlsHelper.CornerRadius" Value="4" />
+        <Setter Property="mah:ControlsHelper.FocusBorderThickness" Value="1" />
+        <Setter Property="Padding" Value="16" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
+    </Style>
+
 </ResourceDictionary>
