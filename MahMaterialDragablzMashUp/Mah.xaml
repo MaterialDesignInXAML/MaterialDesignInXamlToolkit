@@ -66,6 +66,9 @@
                     <smtx:XamlDisplay UniqueKey="NumericUpDown_2">
                         <controls:NumericUpDown Culture="ar-EG" FlowDirection="RightToLeft" Margin="5" controls:TextBoxHelper.SelectAllOnFocus="True"/>
                     </smtx:XamlDisplay>
+                    <smtx:XamlDisplay UniqueKey="NumericUpDown_3">
+                        <controls:NumericUpDown Style="{StaticResource MaterialDesignOutlinedNumericUpDown}"/>
+                    </smtx:XamlDisplay>
                 </StackPanel>
             </TabItem>
             <TabItem Header="DataGrid">
