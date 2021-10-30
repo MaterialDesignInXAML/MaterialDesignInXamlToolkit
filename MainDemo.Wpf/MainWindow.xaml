@@ -203,6 +203,7 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontSize="22"
+                            Margin="-152,0,0,0"
                             AutomationProperties.Name="Material Design In XAML Toolkit"
                             Text="Material Design In XAML Toolkit"/>
                     </DockPanel>
