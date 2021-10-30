@@ -39,7 +39,12 @@ namespace MaterialDesignDemo.Domain
             _demoItemsView = CollectionViewSource.GetDefaultView(DemoItems);
             _demoItemsView.Filter = DemoItemsFilter;
 
-            HomeCommand = new AnotherCommandImplementation(_ => { SelectedIndex = 0; });
+            HomeCommand = new AnotherCommandImplementation(
+                _ =>
+                {
+                    SearchKeyword = string.Empty;
+                    SelectedIndex = 0;
+                });
 
             MovePrevCommand = new AnotherCommandImplementation(
                 _ =>
