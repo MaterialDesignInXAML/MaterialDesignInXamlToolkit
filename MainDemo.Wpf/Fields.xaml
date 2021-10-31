@@ -304,6 +304,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Grid.Resources>
@@ -393,6 +394,26 @@
                 Grid.Row="1"
                 Grid.Column="3"
                 UniqueKey="fields_29">
+                <StackPanel>
+                    <CheckBox
+                        x:Name="MaterialDesignOutlinedPasswordFieldTextCountComboBox"
+                        Content="View Text Input Count"/>
+
+                    <TextBox
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        VerticalAlignment="Top"
+                        Height="100"
+                        TextWrapping="Wrap"
+                        MaxLength="40"
+                        materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        VerticalScrollBarVisibility="Auto"
+                        materialDesign:HintAssist.Hint="This is a limited text area"/>
+                </StackPanel>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                Grid.Row="1"
+                Grid.Column="4"
+                UniqueKey="fields_30">
                 <StackPanel>
                     <CheckBox
                         x:Name="MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox"
