@@ -30,16 +30,14 @@
 
     <SolidColorBrush x:Key="AttentionToActionBrush" Color="{StaticResource MaterialDesignShadow}" Opacity=".23" po:Freeze="True" />
 
+    <!--#region Raised Button-->
+    
     <Style x:Key="MaterialDesignRaisedButton" TargetType="{x:Type ButtonBase}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
-        <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
-        <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
-        <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
         <Setter Property="TextBlock.FontWeight" Value="Medium"/>
         <Setter Property="TextBlock.FontSize" Value="14"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -47,10 +45,13 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
+        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />        
+        <Setter Property="wpf:ButtonAssist.CornerRadius" Value="2" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
+        <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+        <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:ButtonProgressAssist.IsIndicatorVisible" Value="False" />
         <Setter Property="wpf:ButtonProgressAssist.Opacity" Value=".4" />
-        <Setter Property="wpf:ButtonAssist.CornerRadius" Value="2" />
-
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
@@ -154,13 +155,14 @@
     <Style x:Key="MaterialDesignRaisedAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedSecondaryButton}">
     </Style>
 
+    <!--#endregion-->
+    <!--#region Flat Button-->
     <Style x:Key="MaterialDesignFlatButton" TargetType="{x:Type ButtonBase}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
-        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="TextBlock.FontWeight" Value="Medium"/>
         <Setter Property="TextBlock.FontSize" Value="14"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -168,6 +170,12 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
+        <Setter Property="wpf:ButtonAssist.CornerRadius" Value="2" />
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+        <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="wpf:ButtonProgressAssist.IsIndicatorVisible" Value="False" />
+        <Setter Property="wpf:ButtonProgressAssist.Opacity" Value=".4" />        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
@@ -175,7 +183,32 @@
                         <Border Background="{TemplateBinding Background}" x:Name="border" 
                                 CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                 BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
+                            <ProgressBar x:Name="ProgressBar"
+                                         Style="{DynamicResource MaterialDesignLinearProgressBar}"
+                                         Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
+                                         Maximum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Maximum)}"
+                                         Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorForeground)}"
+                                         Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
+                                         BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
+                                         Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}"
+                                         IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}"
+                                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={StaticResource BooleanToVisibilityConverter}}"
+                                         Height="{TemplateBinding Height}"
+                                         Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth}"
+                                         Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
+                                         HorizontalAlignment="Left"
+                                         VerticalAlignment="Center">
+                                <ProgressBar.Clip>
+                                    <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                        <Binding ElementName="border" Path="ActualWidth" />
+                                        <Binding ElementName="border" Path="ActualHeight" />
+                                        <Binding ElementName="border" Path="CornerRadius" />
+                                        <Binding ElementName="border" Path="BorderThickness" />
+                                    </MultiBinding>
+                                </ProgressBar.Clip>
+                            </ProgressBar>
+                        </Border>
+                        <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False"
                                         ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -190,7 +223,6 @@
                                     </MultiBinding>
                                 </wpf:Ripple.Clip>
                             </wpf:Ripple>
-                        </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
@@ -207,8 +239,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    
 
     <Style x:Key="MaterialDesignFlatLightButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}"/>
@@ -242,6 +272,9 @@
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
     </Style>
 
+    <!--#endregion-->
+    <!--#region Flat Background Button-->
+
     <Style x:Key="MaterialDesignFlatMidBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
     </Style>
@@ -265,6 +298,9 @@
     <Style x:Key="MaterialDesignFlatAccentBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatSecondaryMidBgButton}">
     </Style>
 
+    <!--#endregion-->
+    <!--#region Outlined Button-->
+
     <Style x:Key="MaterialDesignOutlinedButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -278,7 +314,32 @@
                                 CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
-                            <wpf:Ripple Content="{TemplateBinding Content}" 
+                            <ProgressBar x:Name="ProgressBar"
+                                             Style="{DynamicResource MaterialDesignLinearProgressBar}"
+                                             Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
+                                             Maximum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Maximum)}"
+                                             Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorForeground)}"
+                                             Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
+                                             BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
+                                             Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}"
+                                             IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}"
+                                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={StaticResource BooleanToVisibilityConverter}}"
+                                             Height="{TemplateBinding Height}"
+                                             Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth}"
+                                             Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
+                                             HorizontalAlignment="Left"
+                                             VerticalAlignment="Center">
+                                <ProgressBar.Clip>
+                                    <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                        <Binding ElementName="border" Path="ActualWidth" />
+                                        <Binding ElementName="border" Path="ActualHeight" />
+                                        <Binding ElementName="border" Path="CornerRadius" />
+                                        <Binding ElementName="border" Path="BorderThickness" />
+                                    </MultiBinding>
+                                </ProgressBar.Clip>
+                            </ProgressBar>
+                        </Border>
+                        <wpf:Ripple Content="{TemplateBinding Content}" 
                                         ContentTemplate="{TemplateBinding ContentTemplate}" 
                                         Focusable="False"
                                         ContentStringFormat="{TemplateBinding ContentStringFormat}"
@@ -286,16 +347,15 @@
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Padding="{TemplateBinding Padding}" 
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                <wpf:Ripple.Clip>
-                                    <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                                        <Binding ElementName="border" Path="ActualWidth" />
-                                        <Binding ElementName="border" Path="ActualHeight" />
-                                        <Binding ElementName="border" Path="CornerRadius" />
-                                        <Binding ElementName="border" Path="BorderThickness" />
-                                    </MultiBinding>
-                                </wpf:Ripple.Clip>
-                            </wpf:Ripple>
-                        </Border>
+                            <wpf:Ripple.Clip>
+                                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                    <Binding ElementName="border" Path="ActualWidth" />
+                                    <Binding ElementName="border" Path="ActualHeight" />
+                                    <Binding ElementName="border" Path="CornerRadius" />
+                                    <Binding ElementName="border" Path="BorderThickness" />
+                                </MultiBinding>
+                            </wpf:Ripple.Clip>
+                        </wpf:Ripple>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
@@ -344,6 +404,9 @@
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueDarkBrush}"/>
     </Style>
 
+    <!--#endregion-->
+    <!--#region Tool Button-->
+
     <Style x:Key="MaterialDesignToolButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignToolForeground}"/>
         <Setter Property="Padding" Value="4"/>
@@ -371,6 +434,9 @@
     <Style x:Key="MaterialDesignToolForegroundButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignToolButton}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
     </Style>
+
+    <!--#endregion-->
+    <!--#region FAB-->
 
     <Style x:Key="MaterialDesignFloatingActionMiniButton" TargetType="{x:Type ButtonBase}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
@@ -549,6 +615,9 @@
     <Style x:Key="MaterialDesignFloatingActionAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFloatingActionSecondaryButton}">
     </Style>
 
+    <!--#endregion-->
+    <!--#region Icon Button-->
+
     <Style x:Key="MaterialDesignIconButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
         <Setter Property="Padding" Value="0"/>
         <Setter Property="Width" Value="48" />
@@ -600,6 +669,9 @@
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
     </Style>
 
+    <!--#endregion-->
+    <!--#region Paper Button-->
+    
     <Style x:Key="MaterialDesignPaperButton" TargetType="{x:Type ButtonBase}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
@@ -686,5 +758,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueDarkBrush}"/>
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueDarkBrush}"/>
     </Style>
+
+    <!--#endregion-->
 
 </ResourceDictionary>
