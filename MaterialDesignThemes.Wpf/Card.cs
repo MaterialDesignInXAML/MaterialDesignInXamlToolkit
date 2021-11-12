@@ -37,6 +37,16 @@ namespace MaterialDesignThemes.Wpf
             = ContentClipPropertyKey.DependencyProperty;
         #endregion
 
+
+        public static readonly DependencyProperty ClipContentProperty =
+            DependencyProperty.Register("ClipContent", typeof(bool), typeof(Card), new PropertyMetadata(false));
+
+        public bool ClipContent
+        {
+            get => (bool)GetValue(ClipContentProperty);
+            set => SetValue(ClipContentProperty, value);
+        }
+
         static Card()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Card), new FrameworkPropertyMetadata(typeof(Card)));

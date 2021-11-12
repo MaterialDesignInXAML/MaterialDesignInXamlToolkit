@@ -6,14 +6,12 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
-    <converters:CardClipConverter x:Key="CardClipConverter" />
 
     <ControlTemplate TargetType="{x:Type wpf:Card}" x:Key="CardTemplate">
         <ControlTemplate.Resources>
             <converters:ShadowEdgeConverter x:Key="ShadowEdgeConverter" />
         </ControlTemplate.Resources>
-        <Grid Background="Transparent" Clip="{TemplateBinding ContentClip}">
+        <Grid Background="Transparent">
             <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                 <AdornerDecorator.OpacityMask>
                     <MultiBinding Converter="{StaticResource ShadowEdgeConverter}">
@@ -39,6 +37,11 @@
                 ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">
             </ContentPresenter>
         </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="ClipContent" Value="True">
+                <Setter Property="Clip" TargetName="ContentPresenter" Value="{Binding ContentClip, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
     <Style TargetType="{x:Type wpf:Card}">
         <Setter Property="Template" Value="{StaticResource CardTemplate}" />
