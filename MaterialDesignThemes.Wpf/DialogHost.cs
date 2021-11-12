@@ -507,7 +507,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DialogBackgroundProperty = DependencyProperty.Register(
-            nameof(DialogBackground), typeof(Brush), typeof(DialogHost), new PropertyMetadata(Brushes.White));
+            nameof(DialogBackground), typeof(Brush), typeof(DialogHost), new PropertyMetadata(null));
 
         /// <summary>
         /// Represents the brush for the Dialog's background
