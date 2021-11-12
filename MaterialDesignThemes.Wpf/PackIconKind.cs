@@ -10533,6 +10533,7 @@ namespace MaterialDesignThemes.Wpf
         SurroundSound71,
         Svg,
         SwapHorizontal,
+        Exchange=SwapHorizontal,
         SwapHorizontalBold,
         SwapHorizontalCircle,
         SwapHorizontalCircleOutline,
