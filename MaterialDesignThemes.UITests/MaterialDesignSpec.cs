@@ -1,4 +1,9 @@
-﻿namespace MaterialDesignThemes.UITests
+﻿using System.Threading.Tasks;
+using System.Windows.Media;
+using MaterialDesignColors.ColorManipulation;
+using Xunit;
+
+namespace MaterialDesignThemes.UITests
 {
     public static class MaterialDesignSpec
     {
@@ -13,5 +18,13 @@
         /// https://www.material.io/design/usability/accessibility.html#color-and-contrast
         /// </summary>
         public const double MinimumContrastLargeText = 3.0;
+
+        public static void AssertContrastRatio(Color foreground, Color background, double minimumContrastRatio)
+        {
+            const double tollerance = 0.1;
+            
+            var ratio = ColorAssist.ContrastRatio(foreground, background);
+            Assert.True(ratio >= minimumContrastRatio - tollerance, $"Contrast ratio '{ratio}' is less than {minimumContrastRatio} with a tollerance of 0.1");
+        }
     }
 }

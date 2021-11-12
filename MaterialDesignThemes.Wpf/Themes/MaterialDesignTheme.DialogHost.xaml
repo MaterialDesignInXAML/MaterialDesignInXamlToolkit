@@ -155,7 +155,7 @@
                                           Margin="{TemplateBinding DialogMargin}"
                                           wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
                                           UniformCornerRadius="4"
-                                          Background="{Binding DialogBackground, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Tag="{TemplateBinding DialogBackground}"
                                           TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                                           FocusManager.IsFocusScope="False"
                                           Foreground="{DynamicResource MaterialDesignBody}"
@@ -168,6 +168,16 @@
                                           ContentTemplate="{TemplateBinding DialogContentTemplate}"
                                           ContentTemplateSelector="{TemplateBinding DialogContentTemplateSelector}"
                                           ContentStringFormat="{TemplateBinding DialogContentStringFormat}">
+                                    <wpf:Card.Style>
+                                        <Style TargetType="wpf:Card" BasedOn="{StaticResource {x:Type wpf:Card}}">
+                                            <Setter Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
+                                            <Style.Triggers>
+                                                <Trigger Property="Tag" Value="{x:Null}">
+                                                    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </wpf:Card.Style>
                                     <wpf:Card.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform x:Name="CardScaleTransform"
@@ -335,7 +345,8 @@
                             x:Name="ContentPresenter" Opacity="1"
                             Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
 
-                        <Grid x:Name="PART_ContentCoverGrid" Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" 
+                        <Grid x:Name="PART_ContentCoverGrid"
+                              Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" 
                               Opacity="0" IsHitTestVisible="False" Focusable="False">
                             <Grid.Style>
                                 <Style TargetType="Grid">
@@ -356,7 +367,7 @@
                                 Margin="{TemplateBinding DialogMargin}"
                                 wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
                                 UniformCornerRadius="4"
-                                Background="{Binding DialogBackground, RelativeSource={RelativeSource TemplatedParent}}"
+                                Tag="{TemplateBinding DialogBackground}"
                                 TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                                 FocusManager.IsFocusScope="False"
                                 Foreground="{DynamicResource MaterialDesignBody}"
@@ -375,6 +386,16 @@
                                                         ScaleY="0" />
                                     </TransformGroup>
                                 </wpf:Card.RenderTransform>
+                                <wpf:Card.Style>
+                                    <Style TargetType="wpf:Card" BasedOn="{StaticResource {x:Type wpf:Card}}">
+                                        <Setter Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
+                                        <Style.Triggers>
+                                            <Trigger Property="Tag" Value="{x:Null}">
+                                                <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </wpf:Card.Style>
                             </wpf:Card>
                         </Grid>
 
