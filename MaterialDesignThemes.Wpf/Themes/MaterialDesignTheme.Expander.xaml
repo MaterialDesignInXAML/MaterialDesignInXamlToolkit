@@ -180,11 +180,11 @@
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity" 
                                                              Storyboard.TargetName="ContentPanel" 
                                                              From="0" To="1"
-                                                             Duration="{StaticResource ExpandDuration}"/>
+                                                             Duration="{DynamicResource ExpandDuration}"/>
                                             <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform" 
                                                              Storyboard.TargetProperty="(ScaleTransform.ScaleY)" 
                                                              From="0" To="1"
-                                                             Duration="{StaticResource ExpandDuration}">
+                                                             Duration="{DynamicResource ExpandDuration}">
                                                 <DoubleAnimation.EasingFunction>
                                                     <CubicEase EasingMode="EaseInOut"/>
                                                 </DoubleAnimation.EasingFunction>
@@ -197,11 +197,11 @@
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity" 
                                                              Storyboard.TargetName="ContentPanel" 
                                                              From="1" To="0" 
-                                                             Duration="{StaticResource CollapseDuration}"/>
+                                                             Duration="{DynamicResource CollapseDuration}"/>
                                             <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform" 
                                                              Storyboard.TargetProperty="(ScaleTransform.ScaleY)" 
                                                              From="1" To="0"
-                                                             Duration="{StaticResource CollapseDuration}">
+                                                             Duration="{DynamicResource CollapseDuration}">
                                                 <DoubleAnimation.EasingFunction>
                                                     <CubicEase EasingMode="EaseInOut"/>
                                                 </DoubleAnimation.EasingFunction>
