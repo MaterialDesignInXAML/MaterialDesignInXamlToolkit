@@ -409,6 +409,7 @@ namespace MaterialDesignThemes.Wpf
                 {
                     (box as TextBox)?.SetCurrentValue(TextBox.TextProperty, null);
                     (box as ComboBox)?.SetCurrentValue(ComboBox.TextProperty, null);
+                    (box as DatePicker)?.SetCurrentValue(DatePicker.SelectedDateProperty, null);
                     if (box is PasswordBox passwordBox)
                     {
                         passwordBox.Password = null;
