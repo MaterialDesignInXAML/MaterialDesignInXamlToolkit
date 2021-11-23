@@ -12,6 +12,7 @@ namespace MaterialDesignThemes.Wpf.Converters
         {
             if (values.Length > 3 &&
                 values[3] is Point floatingOffset &&
+                IsType<Point>(targetType) &&
                 floatingOffset != HintAssist.DefaultFloatingOffset)
             {
                 return floatingOffset;
