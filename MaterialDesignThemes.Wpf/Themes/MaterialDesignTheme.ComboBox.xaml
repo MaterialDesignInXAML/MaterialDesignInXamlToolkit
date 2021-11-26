@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
@@ -474,7 +475,8 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Padding="0"
-                    Focusable="False">
+                    Focusable="False"
+                    Command="{x:Static internal:ClearText.ClearCommand}">
                     <Button.Margin>
                         <MultiBinding Converter="{StaticResource ComboBoxClearButtonMarginConverter}">
                             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Padding" />
@@ -868,6 +870,7 @@
         <Setter Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
         <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
+        <Setter Property="internal:ClearText.HandlesClearCommand" Value="True" />
         <Style.Triggers>
             <Trigger Property="IsEditable" Value="True">
                 <Setter Property="IsTabStop" Value="False" />
