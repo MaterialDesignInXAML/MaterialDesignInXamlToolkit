@@ -172,7 +172,7 @@ namespace MaterialDesignThemes.Wpf
         /// Controls the visbility of the clear button.
         /// </summary>
         public static readonly DependencyProperty HasClearButtonProperty = DependencyProperty.RegisterAttached(
-            "HasClearButton", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false, HasClearButtonChanged));
+            "HasClearButton", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
 
         public static void SetHasClearButton(DependencyObject element, bool value)
             => element.SetValue(HasClearButtonProperty, value);
@@ -376,51 +376,15 @@ namespace MaterialDesignThemes.Wpf
 
         private static void RemoveSpellingSuggestions(ContextMenu menu)
         {
-            foreach (FrameworkElement item in (from item in menu.Items.OfType<FrameworkElement>()
-                where ReferenceEquals(item.Tag, typeof(Spelling))
-                select item).ToList())
+            foreach (FrameworkElement item in
+                (from item in menu.Items.OfType<FrameworkElement>()
+                 where ReferenceEquals(item.Tag, typeof(Spelling))
+                 select item).ToList())
             {
                 menu.Items.Remove(item);
             }
-        }        
-
-        private static void HasClearButtonChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var box = d as Control; //could be a text box or password box
-            if (box == null)
-            {
-                return;
-            }
-
-            if (box.IsLoaded)
-                SetClearHandler(box);
-            else
-                box.Loaded += (sender, args) =>
-                    SetClearHandler(box);
         }
 
-        private static void SetClearHandler(Control box)
-        {
-            var bValue = GetHasClearButton(box);
-            var clearButton = box.Template.FindName("PART_ClearButton", box) as Button;
-            if (clearButton != null)
-            {
-                RoutedEventHandler handler = (sender, args) =>
-                {
-                    (box as TextBox)?.SetCurrentValue(TextBox.TextProperty, null);
-                    (box as ComboBox)?.SetCurrentValue(ComboBox.TextProperty, null);
-                    if (box is PasswordBox passwordBox)
-                    {
-                        passwordBox.Password = null;
-                    }
-                };
-                if (bValue)
-                    clearButton.Click += handler;
-                else
-                    clearButton.Click -= handler;
-            }
-        }
-       
         /// <summary>
         /// Applies the text box view margin.
         /// </summary>

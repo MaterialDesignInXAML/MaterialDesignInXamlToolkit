@@ -50,6 +50,7 @@
                         <DatePicker
                             Width="100"
                             materialDesign:HintAssist.Hint="Pick Date"
+                            materialDesign:TextFieldAssist.HasClearButton="True"
                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                     </smtx:XamlDisplay>
 
