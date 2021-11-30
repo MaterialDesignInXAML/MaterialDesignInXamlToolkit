@@ -13,13 +13,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
+
     - name: Run Icon Generation
       run: dotnet run -c Release -- icons
       working-directory: ./mdresgen
+
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
@@ -35,5 +38,3 @@ jobs:
         body: >
           [Icon update detected by Github Action].
           Auto generated pull request.
-        
-    
