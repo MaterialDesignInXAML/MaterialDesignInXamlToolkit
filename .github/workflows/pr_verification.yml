@@ -19,20 +19,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup .NET Core 3.1
+    - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: "3.1.x"
+        dotnet-version: | 
+          3.1.x
+          5.x
+          6.x
       env:
         NUGET_AUTH_TOKEN: ${{secrets.PAT}}
-
-    - name: Setup .NET 5
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: "5.x"
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.PAT}}
-
+        
     - name: Restore dependencies
       run: dotnet restore ${{ env.solution }}
 
