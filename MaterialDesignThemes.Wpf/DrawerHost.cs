@@ -491,7 +491,8 @@ namespace MaterialDesignThemes.Wpf
             remove { RemoveHandler(DrawerClosingEvent, value); }
         }
 
-        protected void OnDrawerClosing(DrawerClosingEventArgs eventArgs) => RaiseEvent(eventArgs);
+        protected void OnDrawerClosing(DrawerClosingEventArgs eventArgs)
+            => RaiseEvent(eventArgs);
 
         #endregion
 
@@ -598,6 +599,17 @@ namespace MaterialDesignThemes.Wpf
         private static void IsDrawerOpenPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs, Dock dock)
         {
             var drawerHost = (DrawerHost)dependencyObject;
+            if (!(bool)dependencyPropertyChangedEventArgs.NewValue)
+            {
+                var args = new DrawerClosingEventArgs(dock, DrawerClosingEvent);
+                drawerHost.OnDrawerClosing(args);
+                if (args.IsCancelled)
+                {
+                    drawerHost.SetCurrentValue(dependencyPropertyChangedEventArgs.Property, dependencyPropertyChangedEventArgs.OldValue);
+                    return;
+                }
+            }
+
             if (!drawerHost._lockZIndexes && (bool)dependencyPropertyChangedEventArgs.NewValue)
                 drawerHost.PrepareZIndexes(drawerHost._zIndexPropertyLookup[dependencyPropertyChangedEventArgs.Property]);
             drawerHost.UpdateVisualStates();
