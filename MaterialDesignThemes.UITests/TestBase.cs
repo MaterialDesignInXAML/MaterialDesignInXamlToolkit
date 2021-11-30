@@ -10,6 +10,7 @@ using Xunit.Abstractions;
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
 [assembly: GenerateHelpers(typeof(SmartHint))]
 [assembly: GenerateHelpers(typeof(TimePicker))]
+[assembly: GenerateHelpers(typeof(DrawerHost))]
 
 namespace MaterialDesignThemes.UITests
 {

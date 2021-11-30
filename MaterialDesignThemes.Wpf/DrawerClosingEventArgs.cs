@@ -5,7 +5,8 @@ namespace MaterialDesignThemes.Wpf
 {
     public class DrawerClosingEventArgs : RoutedEventArgs
     {
-        public DrawerClosingEventArgs(Dock dock, RoutedEvent routedEvent) : base(routedEvent)
+        public DrawerClosingEventArgs(Dock dock, RoutedEvent routedEvent)
+            : base(routedEvent)
         {
             Dock = dock;
         }
