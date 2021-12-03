@@ -20,6 +20,7 @@ runs:
   using: "composite"
   steps:
     - name: Build NuGets
+      shell: pwsh
       run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdixVersion }} -MDIXMahAppsVersion ${{ inputs.mdixMahAppsVersion }} -MDIXColorsVersion ${{ inputs.mdixColorsVersion }}
 
     - name: Upload NuGets
@@ -35,4 +36,5 @@ runs:
         path: "${{ inputs.demoAppPath }}"
 
     - name: Publish to NuGet.org
+      shell: pwsh
       run: dotnet nuget push ${{ github.workspace }}\*.nupkg --source https://api.nuget.org/v3/index.json -k ${{ inputs.nugetKey }} --skip-duplicate

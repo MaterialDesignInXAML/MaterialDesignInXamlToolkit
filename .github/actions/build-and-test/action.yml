@@ -24,12 +24,15 @@ runs:
         NUGET_AUTH_TOKEN: ${{ inputs.nugetToken }}
         
     - name: Restore dependencies
+      shell: pwsh
       run: dotnet restore ${{ inputs.solution }}
 
     - name: Build
+      shell: pwsh
       run: dotnet build ${{ inputs.solution }} --configuration ${{ inputs.buildConfiguration }} --no-restore -p:Platform="Any CPU" -p:TreatWarningsAsErrors=True
 
     - name: Test
+      shell: pwsh
       run: dotnet test ${{ inputs.solution }} --configuration ${{ inputs.buildConfiguration }} --no-build --verbosity detailed --blame-crash
 
     - name: Upload Screenshots
