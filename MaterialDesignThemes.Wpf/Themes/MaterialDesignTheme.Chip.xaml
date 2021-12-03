@@ -83,6 +83,7 @@
         <Setter Property="IconBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="IconForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Margin" Value="4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:Chip}">
