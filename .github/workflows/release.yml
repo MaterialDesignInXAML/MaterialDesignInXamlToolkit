@@ -48,6 +48,19 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Set Nightly Version Numbers
+      if: ${{ github.event_name != 'push' }}
+      run: |
+        echo "mdixVersion=${{ env.mdixVersion }}-ci${{ github.run_number }}" >> $GITHUB_ENV
+        echo "mdixColorsVersion=${{ env.mdixColorsVersion }}-ci${{ github.run_number }}" >> $GITHUB_ENV
+        echo "mdixMahAppsVersion=${{ env.mdixMahAppsVersion }}-ci${{ github.run_number }}" >> $GITHUB_ENV
+
+    - name: Just Testing
+      run: |
+        echo ${{ env.mdixVersion }}
+        echo ${{ env.mdixColorsVersion }}
+        echo ${{ env.mdixMahAppsVersion }}
+
     - name: Build and Test
       uses: ./.github/actions/build-and-test
       timeout-minutes: 20
