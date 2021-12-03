@@ -21,7 +21,7 @@ jobs:
     runs-on: windows-latest
 
     outputs:
-      has_changed: ${{ github.event_name == 'push' || steps.check_tag.outputs.has_changed }}
+      should_run: ${{ github.event_name == 'push' || steps.check_tag.outputs.has_changed }}
 
     steps:
     - uses: actions/checkout@v2
@@ -40,6 +40,7 @@ jobs:
 
   build:
     needs: [check_for_changes]
+    if: ${{ needs.check_for_changes.outputs.should_run == 'true' }}
     runs-on: windows-latest
 
     steps:
