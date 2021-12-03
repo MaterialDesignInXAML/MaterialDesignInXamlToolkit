@@ -8,7 +8,6 @@ on:
 
 env:
   solution: MaterialDesignToolkit.Full.sln
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 jobs:
@@ -19,28 +18,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+    - name: Build and Test
+      uses: ./.github/actions/build-and-test
+      timeout-minutes: 20
       with:
-        dotnet-version: | 
-          3.1.x
-          5.x
-          6.x
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.PAT}}
-        
-    - name: Restore dependencies
-      run: dotnet restore ${{ env.solution }}
-
-    - name: Build
-      run: dotnet build ${{ env.solution }} --configuration ${{ env.buildConfiguration }} --no-restore -p:Platform="${{ env.buildPlatform }}" -p:TreatWarningsAsErrors=True
-
-    - name: Test
-      run: dotnet test ${{ env.solution }} --configuration ${{ env.buildConfiguration }} --no-build --verbosity detailed --blame-crash
-
-    - name: Upload Screenshots
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v2
-      with:
-        name: Screenshots-${{ github.run_number }}
-        path: ${{ github.workspace }}/MaterialDesignThemes.UITests/bin/${{ env.buildConfiguration }}/net5.0-windows/Screenshots
+        solution: ${{ env.solution }}
+        buildConfiguration: ${{ env.buildConfiguration }}
+        nugetKey: ${{ secrets.PAT }}

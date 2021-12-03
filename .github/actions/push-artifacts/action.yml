@@ -1,0 +1,38 @@
+name: 'Compile and Test'
+description: 'Build the solution and runs the tests'
+inputs:
+  mdixVersion:
+    description: 'The version number for the Matrial Design in XAML library'
+    required: true
+  mdixColorsVersion:
+    description: 'The version number for the Matrial Design Colors library'
+    required: true
+  mdixMahAppsVersion:
+    description: 'The version number for the Matrial Design MahApps library'
+    required: true
+  demoAppPath:
+    description: 'The relative path to the compiled version of the demo app'
+    required: true
+  nugetKey:
+    description: 'The NuGet API key'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Build NuGets
+      run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdixVersion }} -MDIXMahAppsVersion ${{ inputs.mdixMahAppsVersion }} -MDIXColorsVersion ${{ inputs.mdixColorsVersion }}
+
+    - name: Upload NuGets
+      uses: actions/upload-artifact@v2
+      with:
+        name: NuGets-${{ github.run_number }}
+        path: "*.nupkg"
+
+    - name: Upload Demo App
+      uses: actions/upload-artifact@v2
+      with:
+        name: DemoApp-${{ github.run_number }}
+        path: "${{ inputs.demoAppPath }}"
+
+    - name: Publish to NuGet.org
+      run: dotnet nuget push ${{ github.workspace }}\*.nupkg --source https://api.nuget.org/v3/index.json -k ${{ inputs.nugetKey }} --skip-duplicate
