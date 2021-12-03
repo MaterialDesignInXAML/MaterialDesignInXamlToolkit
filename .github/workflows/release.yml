@@ -54,18 +54,12 @@ jobs:
         echo "mdixVersion=${{ env.mdixVersion }}-ci${{ github.run_number }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
         echo "mdixColorsVersion=${{ env.mdixColorsVersion }}-ci${{ github.run_number }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
         echo "mdixMahAppsVersion=${{ env.mdixMahAppsVersion }}-ci${{ github.run_number }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
-        echo "extra_var=hello" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
         
-      # echo "mdixVersion=${{ env.mdixVersion }}-ci${{ github.run_number }}" >> $GITHUB_ENV
-      # echo "mdixColorsVersion=${{ env.mdixColorsVersion }}-ci${{ github.run_number }}" >> $GITHUB_ENV
-      # echo "mdixMahAppsVersion=${{ env.mdixMahAppsVersion }}-ci${{ github.run_number }}" >> $GITHUB_ENV
-
     - name: Just Testing
       run: |
         echo ${{ env.mdixVersion }}
         echo ${{ env.mdixColorsVersion }}
         echo ${{ env.mdixMahAppsVersion }}
-        echo ${{ env.extra_var }}
 
     - name: Build and Test
       uses: ./.github/actions/build-and-test
