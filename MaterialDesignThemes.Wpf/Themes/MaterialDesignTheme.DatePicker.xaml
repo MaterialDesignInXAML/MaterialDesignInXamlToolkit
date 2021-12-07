@@ -456,6 +456,7 @@
                             x:Name="PART_TextBox"
                             Grid.Column="0"
                             Grid.Row="0"
+                            Background="{TemplateBinding Background}"
                             Focusable="{TemplateBinding Focusable}"
                             Style="{DynamicResource MaterialDesignDatePickerTextBox}"
                             VerticalContentAlignment="Center"
