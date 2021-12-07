@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Humanizer;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -14,11 +16,13 @@ namespace mdresgen
 {
     static class IconThing
     {
-        public static void Run()
+        private static HttpClient Client { get; } = new();
+
+        public static async Task RunAsync()
         {
             Console.WriteLine("Downloading icon data...");
 
-            var nameDataPairs = GetIcons(GetSourceData()).ToList();
+            var nameDataPairs = GetIcons(await GetSourceDataAsync()).ToList();
             Console.WriteLine("Items: " + nameDataPairs.Count);
 
             //var nameDataPairs = GetNameDataPairs("TEST").ToList();
@@ -50,19 +54,10 @@ namespace mdresgen
             Console.WriteLine($"WARNING: Failed to find '{filePath}'");
         }
 
-        private static string GetSourceData()
+        private static async Task<string> GetSourceDataAsync()
         {
-            var webClient = new WebClient();
-
-            webClient.Credentials = CredentialCache.DefaultCredentials;
-            if (webClient.Proxy != null)
-                webClient.Proxy.Credentials = CredentialCache.DefaultCredentials;
-
-            var iconData =
-                webClient.DownloadString(
+            return await Client.GetStringAsync(
                     "https://materialdesignicons.com/api/package/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B");
-
-            return iconData;
         }
 
         private static IEnumerable<Icon> GetIcons(string sourceData)
