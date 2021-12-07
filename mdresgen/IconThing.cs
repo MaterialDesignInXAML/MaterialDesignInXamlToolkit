@@ -65,11 +65,11 @@ namespace mdresgen
             var jObject = JObject.Parse(sourceData);
             var icons = new[] { new Icon("None", string.Empty, new List<string>()) } //Add None value always to Enum at first place
                 .Concat(
-                   jObject["icons"].Select(t => new Icon(
+                   jObject["icons"]?.Select(t => new Icon(
                    t["name"]?.ToString().Underscore().Pascalize() ?? throw new Exception("Failed to find name"),
                    t["data"]?.ToString() ?? throw new Exception("Failed to find data"),
-                   t["aliases"]?.ToObject<IEnumerable<string>>().Select(x => x.Underscore().Pascalize()).ToList()
-                        ?? throw new Exception("Failed to find aliases")))
+                   t["aliases"]?.ToObject<IEnumerable<string>>()?.Select(x => x.Underscore().Pascalize()).ToList()
+                        ?? throw new Exception("Failed to find aliases"))) ?? throw new Exception("failed to find icons")
                 );
 
             var iconsByName = new Dictionary<string, Icon>(StringComparer.OrdinalIgnoreCase);
