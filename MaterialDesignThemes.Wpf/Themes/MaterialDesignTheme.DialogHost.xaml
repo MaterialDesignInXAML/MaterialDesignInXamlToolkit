@@ -139,6 +139,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <wpf:PopupEx PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"
+                                     Placement="{TemplateBinding Placement}"
                                      x:Name="PART_Popup" 
                                      Style="{TemplateBinding PopupStyle}"
                                      wpf:ThemeAssist.Theme="{TemplateBinding DialogTheme}">
