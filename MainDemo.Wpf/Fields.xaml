@@ -36,7 +36,7 @@
         </Style>
     </UserControl.Resources>
 
-    <StackPanel Margin="16 0 16 16">
+    <StackPanel Margin="8 0 16 16">
         <Grid VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -130,12 +130,34 @@
                     VerticalAlignment="Center"/>
             </smtx:XamlDisplay>
 
+            <smtx:XamlDisplay
+                UniqueKey="fields_16"
+                Grid.Row="5"
+                Grid.Column="1"
+                Margin="0 8">
+                <TextBox
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    Text="Good stuff"
+                    VerticalAlignment="Center"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    materialDesign:TextFieldAssist.PrefixText="$"
+                    materialDesign:TextFieldAssist.SuffixText="mm">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Margin="-2 0 0 0">
+                            <materialDesign:PackIcon Kind="AccessPoint"/>
+                            <TextBlock Text="WiFi"/>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
+            </smtx:XamlDisplay>
+
             <materialDesign:PackIcon
                 Grid.Row="1"
                 Grid.Column="2"
                 Kind="Key"
-                Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}"
-                HorizontalAlignment="Right"/>
+                Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}" />
 
             <smtx:XamlDisplay
                 UniqueKey="fields_7"
@@ -268,29 +290,6 @@
                     </RichTextBox>
                 </Grid>
             </smtx:XamlDisplay>
-
-            <smtx:XamlDisplay
-                UniqueKey="fields_16"
-                Grid.Row="5"
-                Grid.Column="1"
-                Margin="0 8">
-                <TextBox
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="Good stuff"
-                    VerticalAlignment="Center"
-                    materialDesign:TextFieldAssist.HasClearButton="True"
-                    materialDesign:TextFieldAssist.PrefixText="$"
-                    materialDesign:TextFieldAssist.SuffixText="mm">
-                    <materialDesign:HintAssist.Hint>
-                        <StackPanel
-                            Orientation="Horizontal"
-                            Margin="-2 0 0 0">
-                            <materialDesign:PackIcon Kind="AccessPoint"/>
-                            <TextBlock Text="WiFi"/>
-                        </StackPanel>
-                    </materialDesign:HintAssist.Hint>
-                </TextBox>
-            </smtx:XamlDisplay>
         </Grid>
 
         <Grid Margin="0 48 0 0">
@@ -300,8 +299,6 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -324,13 +321,6 @@
                 Grid.ColumnSpan="2"
                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                 Text="Filled fields"/>
-
-            <TextBlock
-                Grid.Column="2"
-                Grid.Row="0"
-                Grid.ColumnSpan="2"
-                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                Text="Outlined fields"/>
 
             <smtx:XamlDisplay
                 Grid.Row="1"
@@ -355,23 +345,75 @@
             <smtx:XamlDisplay
                 Grid.Row="1"
                 Grid.Column="1"
-                UniqueKey="fields_28">
+                UniqueKey="fields_27">
                 <StackPanel>
                     <CheckBox
-                        x:Name="MaterialDesignFilledPasswordFieldPasswordBoxEnabledComboBox"
-                        Content="Enabled"/>
+                        x:Name="MaterialDesignFilledTextBoxTextCountComboBox"
+                        Content="View Text Input Count"/>
 
-                    <PasswordBox
-                        Style="{StaticResource MaterialDesignFilledPasswordBox}"
+                    <TextBox
+                        Style="{StaticResource MaterialDesignFilledTextBox}"
                         VerticalAlignment="Top"
-                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledPasswordFieldPasswordBoxEnabledComboBox}"
-                        materialDesign:HintAssist.Hint="Password"/>
+                        TextWrapping="Wrap"
+                        MaxLength="40"
+                        materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        materialDesign:HintAssist.Hint="This is a limited text area"/>
                 </StackPanel>
             </smtx:XamlDisplay>
 
             <smtx:XamlDisplay
                 Grid.Row="1"
                 Grid.Column="2"
+                UniqueKey="fields_28">
+                <StackPanel>
+                    <CheckBox
+                        x:Name="MaterialDesignFilledPasswordBoxEnabledComboBox"
+                        Content="Enabled"/>
+
+                    <PasswordBox
+                        Style="{StaticResource MaterialDesignFilledPasswordBox}"
+                        VerticalAlignment="Top"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledPasswordBoxEnabledComboBox}"
+                        materialDesign:HintAssist.Hint="Password"/>
+                </StackPanel>
+            </smtx:XamlDisplay>
+        </Grid>
+
+        <Grid Margin="0 48 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
+                    <Setter Property="Width" Value="200"/>
+                    <Setter Property="VerticalAlignment" Value="Top"/>
+                    <Setter Property="Margin" Value="0 0 16 0"/>
+                </Style>
+
+                <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                    <Setter Property="Margin" Value="0 8"/>
+                    <Setter Property="IsChecked" Value="True"/>
+                </Style>
+            </Grid.Resources>
+
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                Text="Outlined fields"/>
+
+            <smtx:XamlDisplay
+                Grid.Row="1"
+                Grid.Column="0"
                 UniqueKey="fields_26">
 
                 <StackPanel>
@@ -390,13 +432,14 @@
                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"/>
                 </StackPanel>
             </smtx:XamlDisplay>
+
             <smtx:XamlDisplay
                 Grid.Row="1"
-                Grid.Column="3"
+                Grid.Column="1"
                 UniqueKey="fields_29">
                 <StackPanel>
                     <CheckBox
-                        x:Name="MaterialDesignOutlinedPasswordFieldTextCountComboBox"
+                        x:Name="MaterialDesignOutlinedTextBoxTextCountComboBox"
                         Content="View Text Input Count"/>
 
                     <TextBox
@@ -405,24 +448,25 @@
                         Height="100"
                         TextWrapping="Wrap"
                         MaxLength="40"
-                        materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
                         VerticalScrollBarVisibility="Auto"
                         materialDesign:HintAssist.Hint="This is a limited text area"/>
                 </StackPanel>
             </smtx:XamlDisplay>
+
             <smtx:XamlDisplay
                 Grid.Row="1"
-                Grid.Column="4"
+                Grid.Column="2"
                 UniqueKey="fields_30">
                 <StackPanel>
                     <CheckBox
-                        x:Name="MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox"
+                        x:Name="MaterialDesignOutlinedPasswordBoxEnabledComboBox"
                         Content="Enabled"/>
 
                     <PasswordBox
                         Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                         VerticalAlignment="Top"
-                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordBoxEnabledComboBox}"
                         materialDesign:HintAssist.Hint="Password"/>
                 </StackPanel>
             </smtx:XamlDisplay>
