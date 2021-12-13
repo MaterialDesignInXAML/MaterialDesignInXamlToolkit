@@ -1,0 +1,429 @@
+﻿<UserControl
+    x:Class="MaterialDesign3Demo.Chips"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    mc:Ignorable="d" 
+    d:DesignHeight="800"
+    d:DesignWidth="1000">
+    
+    <UserControl.Resources>
+        <Style
+            x:Key="ChipsHeadline"
+            TargetType="TextBlock"
+            BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}">
+            <Setter Property="Margin" Value="0,16,0,16"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Style="{StaticResource ChipsHeadline}"
+            Margin="0,0,0,16"
+            Text="Action Chips"/>
+        
+        <StackPanel Grid.Row="1">
+            <WrapPanel
+                Orientation="Horizontal"
+                smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay UniqueKey="chips_1" Margin="0 0 6 4">
+                    <materialDesign:Chip Content="James Willock">
+                        <materialDesign:Chip.Icon>
+                            <Image Source="Resources/ProfilePic.jpg" />
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_2" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="Example Chip"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_3" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="ANZ Bank" Icon="A" />
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_4" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="ZNA Inc" Icon="Z" />
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_5" Margin="0 0 4 4">
+                    <materialDesign:Chip
+                        Content="Twitter"
+                        IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                        IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                        <materialDesign:Chip.Icon>
+                            <materialDesign:PackIcon Kind="Twitter"/>
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
+                </smtx:XamlDisplay>
+            </WrapPanel>
+
+            <WrapPanel
+                Orientation="Horizontal"
+                smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay UniqueKey="chips_6" Margin="0 0 4 4">
+                    <materialDesign:Chip
+                        Content="James Willock"
+                        IsDeletable="True"
+                        Click="ButtonsDemoChip_OnClick"
+                        DeleteClick="ButtonsDemoChip_OnDeleteClick"
+                        ToolTip="Just a tool tip"
+                        DeleteToolTip="Your friendly neighbor delete button">
+                        <materialDesign:Chip.Icon>
+                            <Image Source="Resources/ProfilePic.jpg" />
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="chips_7" Margin="0 0 4 4">
+                    <materialDesign:Chip
+                        Content="Example Chip"
+                        IsDeletable="True"
+                        ToolTip="This is an example chip">
+                    </materialDesign:Chip>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_8" Margin="0 0 4 4">
+                    <materialDesign:Chip
+                        Content="ANZ Bank" 
+                        Icon="A"
+                        IsDeletable="True" />
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_9" Margin="0 0 4 4">
+                    <materialDesign:Chip
+                        Content="ZNA Inc" 
+                        Icon="Z" 
+                        IsDeletable="True"
+                        IconBackground="{DynamicResource PrimaryHueLightBrush}"
+                        IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                </smtx:XamlDisplay>
+            </WrapPanel>
+
+            <WrapPanel
+                Orientation="Horizontal"
+                smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay UniqueKey="chips_34" Margin="0 0 6 4">
+                    <materialDesign:Chip Content="James Willock" Style="{StaticResource MaterialDesignOutlineChip}">
+                        <materialDesign:Chip.Icon>
+                            <Image Source="Resources/ProfilePic.jpg" />
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="chips_35" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="Example Chip" Style="{StaticResource MaterialDesignOutlineChip}" />
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="chips_36" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="ANZ Bank" Icon="A" Style="{StaticResource MaterialDesignOutlineChip}" />
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="chips_37" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="ZNA Inc" Icon="Z" Style="{StaticResource MaterialDesignOutlineChip}" />
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="chips_38" Margin="0 0 4 4">
+                    <materialDesign:Chip
+                        Content="Twitter"
+                        Style="{StaticResource MaterialDesignOutlineChip}"
+                        IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                        IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                        <materialDesign:Chip.Icon>
+                            <materialDesign:PackIcon Kind="Twitter"/>
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
+                </smtx:XamlDisplay>
+            </WrapPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2">
+            <Rectangle
+                Margin="0 24 0 0"
+                Height="1"
+                Fill="{DynamicResource MaterialDesignDivider}" />
+            <TextBlock
+                Style="{StaticResource ChipsHeadline}"
+                Text="Filter Chips"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="3">
+            <WrapPanel
+                Orientation="Horizontal"
+                smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay UniqueKey="chips_10" Margin="0 0 4 4">
+                    <CheckBox
+                        Style="{StaticResource MaterialDesignFilterChipCheckBox}"
+                        IsChecked="True"
+                        Content="CheckBox" />
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_11" Margin="0 0 4 4">
+                    <CheckBox
+                        Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}"
+                        IsChecked="True"
+                        Content="Primary" />
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_12" Margin="0 0 4 4">
+                    <CheckBox
+                        Style="{StaticResource MaterialDesignFilterChipAccentCheckBox}"
+                        IsChecked="True">Secondary</CheckBox>
+                </smtx:XamlDisplay>
+            </WrapPanel>
+            
+            <WrapPanel
+                Orientation="Horizontal"
+                smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay UniqueKey="chips_13" Margin="0 0 4 4">
+                    <CheckBox
+                        Style="{StaticResource MaterialDesignFilterChipOutlineCheckBox}"
+                        IsChecked="True"
+                        Content="Outline"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_14" Margin="0 0 4 4">
+                    <CheckBox
+                        Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}"
+                        IsChecked="True"
+                        Content="Primary Outline"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_15" Margin="0 0 4 4">
+                    <CheckBox
+                        Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}"
+                        IsChecked="True"
+                        Content="Secondary Outline"/>
+                </smtx:XamlDisplay>
+            </WrapPanel>
+
+            <WrapPanel>
+                <materialDesign:Card Margin="4">
+                    <smtx:XamlDisplay UniqueKey="chips_16" Margin="4">
+                        <ListBox Style="{StaticResource MaterialDesignFilterChipListBox}">
+                            <ListBoxItem Content="Mercury"/>
+                            <ListBoxItem IsSelected="True" Content="Venus"/>
+                            <ListBoxItem Content="Earth"/>
+                            <ListBoxItem IsEnabled="False" Content="Pluto"/>
+                        </ListBox>
+                    </smtx:XamlDisplay>
+                </materialDesign:Card>
+                
+                <materialDesign:Card Margin="4">
+                    <smtx:XamlDisplay UniqueKey="chips_17" Margin="4">
+                        <ListBox Style="{StaticResource MaterialDesignFilterChipPrimaryListBox}">
+                            <ListBoxItem Content="Mercury"/>
+                            <ListBoxItem IsSelected="True" Content="Venus"/>
+                            <ListBoxItem Content="Earth"/>
+                            <ListBoxItem IsEnabled="False" Content="Pluto"/>
+                        </ListBox>
+                    </smtx:XamlDisplay>
+                </materialDesign:Card>
+                
+                <materialDesign:Card Margin="4">
+                    <smtx:XamlDisplay UniqueKey="chips_18" Margin="4">
+                        <ListBox Style="{StaticResource MaterialDesignFilterChipAccentListBox}">
+                            <ListBoxItem Content="Mercury"/>
+                            <ListBoxItem IsSelected="True" Content="Venus"/>
+                            <ListBoxItem Content="Earth"/>
+                            <ListBoxItem IsEnabled="False" Content="Pluto"/>
+                        </ListBox>
+                    </smtx:XamlDisplay>
+                </materialDesign:Card>
+            </WrapPanel>
+            
+            <WrapPanel>
+                <materialDesign:Card Margin="4">
+                    <smtx:XamlDisplay UniqueKey="chips_19" Margin="4">
+                        <ListBox Style="{StaticResource MaterialDesignFilterChipOutlineListBox}">
+                            <ListBoxItem Content="Mercury"/>
+                            <ListBoxItem IsSelected="True" Content="Venus"/>
+                            <ListBoxItem Content="Earth"/>
+                            <ListBoxItem IsEnabled="False" Content="Pluto"/>
+                        </ListBox>
+                    </smtx:XamlDisplay>
+                </materialDesign:Card>
+                
+                <materialDesign:Card Margin="4">
+                    <smtx:XamlDisplay UniqueKey="chips_20" Margin="4">
+                        <ListBox Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineListBox}">
+                            <ListBoxItem Content="Mercury"/>
+                            <ListBoxItem IsSelected="True" Content="Venus"/>
+                            <ListBoxItem Content="Earth"/>
+                            <ListBoxItem IsEnabled="False" Content="Pluto"/>
+                        </ListBox>
+                    </smtx:XamlDisplay>
+                </materialDesign:Card>
+                
+                <materialDesign:Card Margin="4">
+                    <smtx:XamlDisplay UniqueKey="chips_21" Margin="4">
+                        <ListBox Style="{StaticResource MaterialDesignFilterChipAccentOutlineListBox}">
+                            <ListBoxItem Content="Mercury"/>
+                            <ListBoxItem IsSelected="True" Content="Venus"/>
+                            <ListBoxItem Content="Earth"/>
+                            <ListBoxItem IsEnabled="False" Content="Pluto"/>
+                        </ListBox>
+                    </smtx:XamlDisplay>
+                </materialDesign:Card>
+            </WrapPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4">
+            <Rectangle
+                Margin="0 24 0 0"
+                Height="1"
+                Fill="{DynamicResource MaterialDesignDivider}" />
+            <TextBlock
+                Style="{StaticResource ChipsHeadline}"
+                Text="Choice Chips"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="5">
+            <WrapPanel
+                Orientation="Horizontal"
+                smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay UniqueKey="chips_22" Margin="0 0 4 4">
+                    <RadioButton
+                        Style="{StaticResource MaterialDesignChoiceChipRadioButton}"
+                        GroupName="GroupChoiceChip"
+                        Content="RadioButton"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_23" Margin="0 0 4 4">
+                    <RadioButton
+                        Style="{StaticResource MaterialDesignChoiceChipPrimaryRadioButton}"
+                        IsChecked="True"
+                        GroupName="GroupChoiceChip"
+                        Content="Primary"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_24" Margin="0 0 4 4">
+                    <RadioButton
+                        Style="{StaticResource MaterialDesignChoiceChipAccentRadioButton}"
+                        GroupName="GroupChoiceChip"
+                        Content="Secondary"/>
+                </smtx:XamlDisplay>
+            </WrapPanel>
+            
+            <WrapPanel
+                Orientation="Horizontal"
+                smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay UniqueKey="chips_25" Margin="0 0 4 4">
+                    <RadioButton
+                        Style="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}"
+                        GroupName="GroupChoiceChipOutline"
+                        Content="Outline"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_26" Margin="0 0 4 4">
+                    <RadioButton
+                        Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
+                        IsChecked="True"
+                        GroupName="GroupChoiceChipOutline"
+                        Content="Primary Outline"/>
+                </smtx:XamlDisplay>
+                
+                <smtx:XamlDisplay UniqueKey="chips_27" Margin="0 0 4 4">
+                    <RadioButton
+                        Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}"
+                        GroupName="GroupChoiceChipOutline"
+                        Content="Secondary Outline"/>
+                </smtx:XamlDisplay>
+            </WrapPanel>
+
+            <WrapPanel>
+                <materialDesign:Card Margin="4">
+                    <smtx:XamlDisplay UniqueKey="chips_28" Margin="0 0 6 4">
+                        <ListBox
+                            Style="{StaticResource MaterialDesignChoiceChipListBox}"
+                            x:Name="RadioButtonGroupChoiceChip">
+                            <ListBoxItem Content="Mercury"/>
+                            <ListBoxItem IsSelected="True" Content="Venus"/>
+                            <ListBoxItem Content="Earth"/>
+                            <ListBoxItem IsEnabled="False" Content="Pluto"/>
+                        </ListBox>
+                    </smtx:XamlDisplay>
+                </materialDesign:Card>
+                
+                <materialDesign:Card Margin="4">
+                    <smtx:XamlDisplay UniqueKey="chips_29" Margin="0 0 6 4">
+                        <ListBox
+                            Style="{StaticResource MaterialDesignChoiceChipPrimaryListBox}"
+                            x:Name="RadioButtonGroupChoiceChipPrimary">
+                            <ListBoxItem Content="Mercury"/>
+                            <ListBoxItem IsSelected="True" Content="Venus"/>
+                            <ListBoxItem Content="Earth"/>
+                            <ListBoxItem IsEnabled="False" Content="Pluto"/>
+                        </ListBox>
+                    </smtx:XamlDisplay>
+                </materialDesign:Card>
+                
+                <materialDesign:Card Margin="4">
+                    <smtx:XamlDisplay UniqueKey="chips_30" Margin="0 0 6 4">
+                        <ListBox
+                            Style="{StaticResource MaterialDesignChoiceChipAccentListBox}"
+                            x:Name="RadioButtonGroupChoiceChipAccent">
+                            <ListBoxItem Content="Mercury"/>
+                            <ListBoxItem IsSelected="True" Content="Venus"/>
+                            <ListBoxItem Content="Earth"/>
+                            <ListBoxItem IsEnabled="False" Content="Pluto"/>
+                        </ListBox>
+                    </smtx:XamlDisplay>
+                </materialDesign:Card>
+            </WrapPanel>
+
+            <WrapPanel>
+                <materialDesign:Card Margin="4">
+                    <smtx:XamlDisplay UniqueKey="chips_31" Margin="0 0 6 4">
+                        <ListBox
+                            Style="{StaticResource MaterialDesignChoiceChipOutlineListBox}"
+                            x:Name="RadioButtonGroupChoiceChipOutline">
+                            <ListBoxItem Content="Mercury"/>
+                            <ListBoxItem IsSelected="True" Content="Venus"/>
+                            <ListBoxItem Content="Earth"/>
+                            <ListBoxItem IsEnabled="False" Content="Pluto"/>
+                        </ListBox>
+                    </smtx:XamlDisplay>
+                </materialDesign:Card>
+                
+                <materialDesign:Card Margin="4">
+                    <smtx:XamlDisplay UniqueKey="chips_32" Margin="0 0 6 4">
+                        <ListBox
+                            Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}"
+                            x:Name="RadioButtonGroupChoiceChipPrimaryOutline">
+                            <ListBoxItem Content="Mercury"/>
+                            <ListBoxItem IsSelected="True" Content="Venus"/>
+                            <ListBoxItem Content="Earth"/>
+                            <ListBoxItem IsEnabled="False" Content="Pluto"/>
+                        </ListBox>
+                    </smtx:XamlDisplay>
+                </materialDesign:Card>
+                
+                <materialDesign:Card Margin="4">
+                    <smtx:XamlDisplay UniqueKey="chips_33" Margin="0 0 6 4">
+                        <ListBox
+                            Style="{StaticResource MaterialDesignChoiceChipAccentOutlineListBox}"
+                            x:Name="RadioButtonGroupChoiceChipAccentOutline">
+                            <ListBoxItem Content="Mercury"/>
+                            <ListBoxItem IsSelected="True" Content="Venus"/>
+                            <ListBoxItem Content="Earth"/>
+                            <ListBoxItem IsEnabled="False" Content="Pluto"/>
+                        </ListBox>
+                    </smtx:XamlDisplay>
+                </materialDesign:Card>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
