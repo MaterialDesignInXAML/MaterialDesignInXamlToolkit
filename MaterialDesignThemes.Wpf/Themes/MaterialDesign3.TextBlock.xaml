@@ -1,0 +1,213 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Hyperlink.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- MaterialDesignBody -->
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignBodySmall">
+        <Setter
+            Property="FontWeight"
+            Value="Regular" />
+        <Setter
+            Property="FontSize"
+            Value="12" />
+        <Setter
+            Property="LineHeight"
+            Value="16" />
+    </Style>
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignBodyMedium">
+        <Setter
+            Property="FontWeight"
+            Value="Regular" />
+        <Setter
+            Property="FontSize"
+            Value="14" />
+        <Setter
+            Property="LineHeight"
+            Value="20" />
+    </Style>
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignBodyLarge">
+        <Setter
+            Property="FontWeight"
+            Value="Regular" />
+        <Setter
+            Property="FontSize"
+            Value="16" />
+        <Setter
+            Property="LineHeight"
+            Value="24" />
+    </Style>
+
+    <!-- MaterialDesignLabel -->
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignLabelSmall">
+        <Setter
+            Property="FontWeight"
+            Value="Medium" />
+        <Setter
+            Property="FontSize"
+            Value="11" />
+        <Setter
+            Property="LineHeight"
+            Value="16" />
+    </Style>
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignLabelMedium">
+        <Setter
+            Property="FontWeight"
+            Value="Medium" />
+        <Setter
+            Property="FontSize"
+            Value="12" />
+        <Setter
+            Property="LineHeight"
+            Value="16" />
+    </Style>
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignLabelLarge">
+        <Setter
+            Property="FontWeight"
+            Value="Medium" />
+        <Setter
+            Property="FontSize"
+            Value="14" />
+        <Setter
+            Property="LineHeight"
+            Value="20" />
+    </Style>
+
+    <!-- MaterialDesignTitle -->
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignTitleSmall">
+        <Setter
+            Property="FontWeight"
+            Value="Medium" />
+        <Setter
+            Property="FontSize"
+            Value="14" />
+        <Setter
+            Property="LineHeight"
+            Value="20" />
+    </Style>
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignTitleMedium">
+        <Setter
+            Property="FontWeight"
+            Value="Medium" />
+        <Setter
+            Property="FontSize"
+            Value="16" />
+        <Setter
+            Property="LineHeight"
+            Value="24" />
+    </Style>
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignTitleLarge">
+        <Setter
+            Property="FontWeight"
+            Value="Medium" />
+        <Setter
+            Property="FontSize"
+            Value="22" />
+        <Setter
+            Property="LineHeight"
+            Value="28" />
+    </Style>
+
+    <!-- MaterialDesignHeadline -->
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignHeadlineSmall">
+        <Setter
+            Property="FontWeight"
+            Value="Regular" />
+        <Setter
+            Property="FontSize"
+            Value="24" />
+        <Setter
+            Property="LineHeight"
+            Value="32" />
+    </Style>
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignHeadlinelMedium">
+        <Setter
+            Property="FontWeight"
+            Value="Regular" />
+        <Setter
+            Property="FontSize"
+            Value="28" />
+        <Setter
+            Property="LineHeight"
+            Value="36" />
+    </Style>
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignHeadlineLarge">
+        <Setter
+            Property="FontWeight"
+            Value="Regular" />
+        <Setter
+            Property="FontSize"
+            Value="32" />
+        <Setter
+            Property="LineHeight"
+            Value="40" />
+    </Style>
+
+    <!-- MaterialDesignDisplay -->
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignDisplaySmall">
+        <Setter
+            Property="FontWeight"
+            Value="Regular" />
+        <Setter
+            Property="FontSize"
+            Value="36" />
+        <Setter
+            Property="LineHeight"
+            Value="44" />
+    </Style>
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignDisplayMedium">
+        <Setter
+            Property="FontWeight"
+            Value="Regular" />
+        <Setter
+            Property="FontSize"
+            Value="45" />
+        <Setter
+            Property="LineHeight"
+            Value="52" />
+    </Style>
+    <Style
+        TargetType="{x:Type TextBlock}"
+        x:Key="MaterialDesignDisplayLarge">
+        <Setter
+            Property="FontWeight"
+            Value="Regular" />
+        <Setter
+            Property="FontSize"
+            Value="57" />
+        <Setter
+            Property="LineHeight"
+            Value="64" />
+    </Style>
+</ResourceDictionary>
