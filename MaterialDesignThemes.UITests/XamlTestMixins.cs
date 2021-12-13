@@ -29,7 +29,7 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
     <ResourceDictionary.MergedDictionaries>
         <materialDesign:BundledTheme BaseTheme=""{baseTheme}"" PrimaryColor=""{primary}"" SecondaryColor=""{secondary}"" {colorAdjustString}/>
 
-        <ResourceDictionary Source = ""pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"" />
+        <ResourceDictionary Source = ""pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml"" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>";
 

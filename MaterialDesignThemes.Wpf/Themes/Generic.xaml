@@ -13,7 +13,7 @@
                 must be selected manually by the user, so that they override default styles.
                 The easiest way to do this is include:
         
-                    MaterialDesignTheme.Defaults.xaml 
+                    MaterialDesign2.Defaults.xaml 
                 in your App.xaml
         -->
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Badged.xaml" />
