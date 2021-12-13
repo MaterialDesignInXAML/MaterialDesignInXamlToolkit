@@ -23,4 +23,9 @@
   <ItemGroup>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Update="Themes\MaterialDesign2.Defaults.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
 </Project>
