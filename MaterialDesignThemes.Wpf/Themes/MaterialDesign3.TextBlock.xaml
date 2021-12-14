@@ -145,7 +145,7 @@
     </Style>
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignHeadlinelMediumTextBlock">
+        x:Key="MaterialDesignHeadlineMediumTextBlock">
         <Setter
             Property="FontWeight"
             Value="Regular" />
